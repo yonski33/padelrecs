@@ -4,7 +4,7 @@ type Racket = typeof rackets.$inferSelect;
 export default function RacketSpecs({models,brands,racketId}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string}) {
  const selected=models.find(r=>r.id===racketId);
  return <div className="narrow">
-  <h2 className="admin-heading">Racket specs</h2>
+  <h2 className="admin-heading">Edit racket details</h2>
   <form action="/admin" method="get" className="spec-selector">
    <input type="hidden" name="tab" value="specs"/>
    <label className="field">Select a racket<select name="racket" required defaultValue={selected?.id||""}><option value="" disabled>Choose a racket…</option>{models.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></label>
@@ -14,6 +14,7 @@ export default function RacketSpecs({models,brands,racketId}:{models:Racket[],br
   {selected ? <form action="/api/admin/racket-specs" method="post" className="review-form" key={selected.id}>
    <input type="hidden" name="id" value={selected.id}/>
    <p className="small"><a href={`/rackets/${selected.slug}`} target="_blank" rel="noopener noreferrer">View racket page ↗</a></p>
+   <p className="small muted">Name, brand, year and specifications are shared by all reviews of this racket.</p>
    <label className="field">Racket name<input name="name" required maxLength={260} defaultValue={selected.name}/></label>
    <div className="form-grid">
     <label className="field">Brand<select name="brandId" required defaultValue={selected.brandId}>{brands.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
@@ -26,7 +27,7 @@ export default function RacketSpecs({models,brands,racketId}:{models:Racket[],br
    </div>
    <label className="field">Description<textarea name="description" maxLength={5000} defaultValue={selected.description||""}/></label>
    <p className="small muted">Blank optional fields display as “Not specified.” Saving updates the public racket page immediately. The page URL and linked reviews stay the same.</p>
-   <button type="submit">Save specs</button>
+   <button type="submit">Save racket details</button>
   </form> : !racketId && <p className="muted">Choose a racket to edit its specifications.</p>}
  </div>;
 }

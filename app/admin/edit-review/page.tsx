@@ -4,6 +4,7 @@ import {isAdmin} from "../auth";
 import {database} from "../../../db/data";
 import {reviews,externalReviews,rackets} from "../../../db/schema";
 import {reviewRevision} from "../../../db/review-editing";
+import RacketEditSelector from "../racket-edit-selector";
 export const dynamic="force-dynamic";
 export const metadata={title:"Edit review",robots:{index:false,follow:false}};
 const errors:Record<string,string>={invalid:"Check the required fields, ratings, email and source URL. Review text must contain at least 20 characters.",stale:"This review changed while you were editing. Its latest values are shown below. Check them before saving again.",missing:"This review no longer exists.",failed:"Could not save your changes. Please try again."};
@@ -23,7 +24,7 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
  <form action="/api/admin/edit-review" method="post" className="review-form">
  <input type="hidden" name="type" value={web?"web":"player"}/><input type="hidden" name="id" value={selected.id}/><input type="hidden" name="revision" value={reviewRevision(selected)}/>
  <input type="hidden" name="returnStatus" value={player?.status||"pending"}/>
- <label className="field">Racket<select name="racketId" required defaultValue={selected.racketId}>{models.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></label>
+ <RacketEditSelector key={selected.id} models={models} racketId={selected.racketId}/>
  {player?<>
   <p className="small muted">Status: {player.status}. Saving keeps this moderation status.</p>
   <label className="field">Overall rating<select name="rating" required defaultValue={player.rating}>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>
