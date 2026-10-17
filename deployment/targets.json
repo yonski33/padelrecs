@@ -4,7 +4,7 @@
   "vercelProjectName": "padelrecs",
   "vercelProjectId": "prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx",
   "supabaseProjectName": "PadelRecs",
-  "supabaseProjectRef": null,
+  "supabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
     "adxxysbmpwlfebjbzixl"
   ],
@@ -13,5 +13,6 @@
     "reddit-digest-next"
   ],
   "githubRepositoryId": "1423182114",
-  "vercelAccountId": "team_LzhqdWFqQWUDlV6PKvDfQHGA"
+  "vercelAccountId": "team_LzhqdWFqQWUDlV6PKvDfQHGA",
+  "supabaseOrganizationId": "kcrlvsjbamphyowzlqxs"
 }
