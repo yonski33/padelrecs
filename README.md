@@ -68,7 +68,7 @@ The four tables are in a dedicated `padelrecs` PostgreSQL schema, not the defaul
 
 ## Admin access
 
-Create your admin user inside the **new PadelRecs** project's Supabase Auth dashboard. Put its verified user UUID in `ADMIN_USER_IDS`. `/admin/login` sends sign-in links for existing accounts only; it does not sign up public users. Supabase callback URL: `https://YOUR-PADELRECS-HOST/auth/callback`.
+Create your admin user inside the **new PadelRecs** project's Supabase Auth dashboard. Put its verified user UUID in `ADMIN_USER_IDS`. `/admin/login` signs in with the existing Auth user’s email and password. An email-link option is also available for existing accounts only; it does not sign up public users. Password login verifies the returned user UUID against `ADMIN_USER_IDS`, and signs out non-admin sessions. Email throttling is shown explicitly. Supabase callback URL: `https://YOUR-PADELRECS-HOST/auth/callback`.
 
 The server verifies the Supabase user before authorizing every admin page and POST. It never trusts the old Sites headers, browser-supplied roles, or email text as authorization. Writes require a matching Origin. `SITE_URL` must be the exact deployed origin; preview environments need their own exact URL and allowed callback.
 
