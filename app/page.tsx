@@ -1,11 +1,29 @@
 export const dynamic = "force-dynamic";
+import { Fragment } from "react";
 import { catalog } from "../db/data";
-import { Review, External, Sidebar } from "./components";
+import { Review, External, Sidebar, activity, racketParts } from "./components";
+import { RacketIcon } from "./icons";
+
+const DAY = 86_400_000;
+
+// "Today", "Yesterday", a weekday within the last week, otherwise the full date (UTC, like the stored timestamps).
+function dayLabel(iso: string, now: Date) {
+  const day = iso.slice(0, 10);
+  const today = now.toISOString().slice(0, 10);
+  const diff = Math.round((Date.parse(today) - Date.parse(day)) / DAY);
+  const date = new Date(day + "T00:00:00Z");
+  const short = date.toLocaleDateString("en-GB", {weekday: "short", day: "numeric", month: "short", timeZone: "UTC"});
+  if (diff === 0) return { title: "Today", sub: short };
+  if (diff === 1) return { title: "Yesterday", sub: short };
+  if (diff > 1 && diff < 7) return { title: date.toLocaleDateString("en-GB", {weekday: "long", timeZone: "UTC"}), sub: date.toLocaleDateString("en-GB", {day: "numeric", month: "short", timeZone: "UTC"}) };
+  return { title: date.toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}), sub: "" };
+}
 
 export default async function Home({ searchParams }: {
   searchParams: Promise<{ source?: string | string[] }>;
 }) {
   const [data, params] = await Promise.all([catalog(), searchParams]);
+  const now = new Date();
   const source = params.source === "players" || params.source === "web" ? params.source : "all";
   const sources = [
     { value: "all", label: "All", count: data.reviews.length + data.external.length, href: "/" },
@@ -17,17 +35,45 @@ export default async function Home({ searchParams }: {
     ...(source !== "players" ? data.external.map(e => ({ date: e.createdAt, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
   ].sort((a, b) => b.date.localeCompare(a.date));
 
+  const weekNotes = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now.getTime() - 7 * DAY).length;
+
+  // Popular strip: most notes this week, or this month when the week is quiet. Hidden if there's nothing to rank.
+  const week = activity(data, now.getTime() - 7 * DAY);
+  const month = activity(data, now.getTime() - 30 * DAY);
+  const popular = (week.length >= 2 ? week : month).slice(0, 4);
+  const popularLabel = week.length >= 2 ? "this week" : "this month";
+  const strip = popular.length >= 2 && <section className="strip" aria-label={`Popular ${popularLabel}`}>
+    <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new notes</span></div>
+    <ol>{popular.map(({racket, count}) => { const {brand, model} = racketParts(racket, data); return <li key={racket.id}><a href={`/rackets/${racket.slug}`}>
+      <RacketIcon shape={racket.shape}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "note" : "notes"}</span>
+    </a></li>; })}</ol>
+  </section>;
+
+  let lastDay = "";
   return <main className="home"><div className="columns"><div>
     <div className="feed-heading">
-      <h1 className="feed-title">Latest player notes</h1>
+      <div>
+        <h1 className="feed-title">Latest player notes</h1>
+        <p className="feed-sub">{weekNotes > 0 ? `${weekNotes} new this week, from players and from around the web.` : "From players, and from around the web with the source linked."}</p>
+      </div>
       <nav className="source-nav" aria-label="Note sources">
         {sources.map(item => <a key={item.value} href={item.href} aria-current={source === item.value ? "page" : undefined}>
-          {item.label} <span className="source-count">{item.count.toLocaleString("en-US")}</span>
+          {item.label}{item.value !== "all" && <span className="source-count">{item.count.toLocaleString("en-US")}</span>}
         </a>)}
       </nav>
     </div>
-    {items.map(i => <div key={i.key}>{i.node}</div>)}
-    {items.length === 0 && <p className="small muted">No notes from this source yet.</p>}
-    <p className="end-note"><a href="/add-review">Add a review →</a></p>
+    {items.map((item, index) => {
+      const day = item.date.slice(0, 10);
+      const label = day !== lastDay ? dayLabel(item.date, now) : null;
+      lastDay = day;
+      return <Fragment key={item.key}>
+        {label && <h2 className="day">{label.title}{label.sub && <span>{label.sub}</span>}</h2>}
+        {item.node}
+        {index === 3 && strip}
+      </Fragment>;
+    })}
+    {items.length > 0 && items.length < 4 && strip}
+    {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No notes here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
+    {items.length > 0 && <p className="end-note"><a className="button ghost" href="/add-review">Played one of these? Add your own note</a></p>}
   </div><Sidebar data={data}/></div></main>;
 }

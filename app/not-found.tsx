@@ -1,1 +1,1 @@
-export default function NotFound(){return <main className="narrow"><h1>Page not found</h1><p>We couldn’t find that racket or page.</p><a href="/rackets">Browse rackets →</a></main>}
+export default function NotFound(){return <main className="narrow prose"><h1>Out of bounds</h1><p>We couldn’t find that racket or page. Maybe it moved, maybe it never existed, maybe the link took a bad bounce off the glass.</p><p><a className="button" href="/rackets">Browse rackets</a></p></main>}
