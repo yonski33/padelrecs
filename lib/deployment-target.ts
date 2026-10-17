@@ -1,7 +1,7 @@
 import targets from "../deployment/targets.json";
 export function assertProjectRef(projectRef:string|undefined,confirmedRef=targets.supabaseProjectRef as string|null) {
  if(!projectRef||!confirmedRef||projectRef!==confirmedRef)throw new Error("No verified PadelRecs Supabase target. Record the new project's ref in deployment/targets.json and SUPABASE_PROJECT_REF before connecting.");
- if(targets.application!=="padelrecs"||targets.supabaseProjectName!=="padelrecs"||targets.protectedExistingSupabaseProjectRefs.includes(projectRef))throw new Error("Protected existing project: refusing to connect.");
+ if(targets.application!=="padelrecs"||targets.supabaseProjectName.toLowerCase()!=="padelrecs"||targets.protectedExistingSupabaseProjectRefs.includes(projectRef))throw new Error("Protected existing project: refusing to connect.");
  return projectRef;
 }
 export function assertDatabaseTarget(databaseUrl:string,projectRef:string|undefined,confirmedRef=targets.supabaseProjectRef as string|null) {
