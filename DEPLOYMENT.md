@@ -8,17 +8,17 @@ Create entirely NEW resources. Never modify or connect the existing RedRecs / re
 | --- | --- | --- |
 | GitHub | public `yonski33/padelrecs` (ID `1423182114`) | Created by user |
 | Supabase organization | `liror82-9024’s projects` | User chose existing organization |
-| Supabase project | `PadelRecs` (`wwwcnebilsfcvmkxatmu`) | Created by user |
-| Vercel project | `padelrecs`, connected only to `yonski33/padelrecs` | Not created |
+| Supabase project | Replacement `PadelRecs` | Awaiting new project ID |
+| Vercel project | `padelrecs` (`prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx`), connected only to `yonski33/padelrecs` | Created; not deployed |
 | Domain | `padelrecs.com` / `www.padelrecs.com` | Change only after verification |
 
 Read back each new resource's exact name and ID and record it in `deployment/targets.json`. The Supabase ref in `.env.local` must match the recorded new ref. Never copy `.vercel` metadata, Git remotes or secrets from another project.
 
 ## 2. Supabase project
 
-The user created a separate **PadelRecs** project in the existing organization and approved using it. The project ref is `wwwcnebilsfcvmkxatmu`. Do not change the organization subscription or any existing project.
+The user created a separate **PadelRecs** project in the existing organization and approved using it. The earlier project `wwwcnebilsfcvmkxatmu` was deleted by the user. A replacement was created under the user’s `reddit-digest-next` organization; verify its new ref before any connection or data change. Do not change the organization subscription or any existing project.
 
-The project is active in region `ap-south-1`. Verify the exact project name and ref before any write.
+The replacement project ID and region are awaiting verification. Verify the exact project name and ref before any write.
 
 Verify the project's name and ID in the dashboard. Record its project ref in `deployment/targets.json` under `supabaseProjectRef`, and in `.env.local` as `SUPABASE_PROJECT_REF`.
 

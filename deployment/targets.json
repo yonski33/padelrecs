@@ -2,9 +2,9 @@
   "application": "padelrecs",
   "githubRepository": "yonski33/padelrecs",
   "vercelProjectName": "padelrecs",
-  "vercelProjectId": null,
+  "vercelProjectId": "prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx",
   "supabaseProjectName": "PadelRecs",
-  "supabaseProjectRef": "wwwcnebilsfcvmkxatmu",
+  "supabaseProjectRef": null,
   "protectedExistingSupabaseProjectRefs": [
     "adxxysbmpwlfebjbzixl"
   ],
@@ -12,5 +12,6 @@
     "redrecs",
     "reddit-digest-next"
   ],
-  "githubRepositoryId": "1423182114"
+  "githubRepositoryId": "1423182114",
+  "vercelAccountId": "team_LzhqdWFqQWUDlV6PKvDfQHGA"
 }
