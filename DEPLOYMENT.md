@@ -9,7 +9,7 @@ Create entirely NEW resources. Never modify or connect the existing RedRecs / re
 | GitHub | public `yonski33/padelrecs` (ID `1423182114`) | Created by user |
 | Supabase organization | `reddit-digest-next` (`kcrlvsjbamphyowzlqxs`) | User chose organization; only PadelRecs project is used |
 | Supabase project | `PadelRecs` (`pqkcxsqkhibcmrzrxuhx`) | Verified; schema and fresh import complete |
-| Vercel project | `padelrecs` (`prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx`), connected only to `yonski33/padelrecs` | Created; not deployed |
+| Vercel project | `padelrecs` (`prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx`), connected only to `yonski33/padelrecs` | Deployed; final verification in progress |
 | Domain | `padelrecs.com` / `www.padelrecs.com` | Change only after verification |
 
 Read back each new resource's exact name and ID and record it in `deployment/targets.json`. The Supabase ref in `.env.local` must match the recorded new ref. Never copy `.vercel` metadata, Git remotes or secrets from another project.
@@ -24,7 +24,7 @@ Verify the project's name and ID in the dashboard. Record its project ref in `de
 
 Copy only the NEW project's:
 
-- PostgreSQL **Transaction pooler** URI into `DATABASE_URL`.
+- PostgreSQL **shared Session pooler** URI (port 5432) into `DATABASE_URL`. Repeated queries stalled through this project’s transaction-pooler endpoint; the session endpoint passed repeated page-load checks. Runtime connections are limited to one per instance with a 20-second idle timeout.
 - Direct or session pooler URI into `MIGRATION_DATABASE_URL` (optional; use a reachable connection).
 - Project URL into `NEXT_PUBLIC_SUPABASE_URL`.
 - Publishable key into `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
@@ -59,7 +59,7 @@ Check that the host/ref is the new PadelRecs project before `--apply`. The scrip
 
 ## 5. GitHub
 
-Create a NEW **private** repository named `padelrecs` under `yonski33`, without template files. Check the URL reads exactly `github.com/yonski33/padelrecs`.
+The user created the separate public repository `yonski33/padelrecs`. Keep private backups and credentials excluded. Check the URL reads exactly `github.com/yonski33/padelrecs`.
 
 This folder is a separate repository. Verify its remote before pushing. Push the reviewed migration commit to the new repository's main branch. Do not push to reddit-digest-next or change any of its branches, webhooks, secrets or deployments.
 

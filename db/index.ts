@@ -8,7 +8,7 @@ export function getDb() {
  const url=process.env.DATABASE_URL;
  if (!url) throw new Error("DATABASE_URL is required. Configure the Supabase PostgreSQL connection in .env.local or Vercel.");
  assertDatabaseTarget(url,process.env.SUPABASE_PROJECT_REF);
- // prepare:false supports Supabase's transaction pooler. Keep each serverless instance small.
+ // Keep the tested shared session-pooler connection small and release idle sockets.
  connection ??= postgres(url,{prepare:false,max:1,idle_timeout:20,connect_timeout:10});
  return drizzle(connection,{schema});
 }
