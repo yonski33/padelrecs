@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import "./globals.css";
+import { SiteHeader } from "./site-header";
 import { isAdmin } from "./admin/auth";
 export const metadata: Metadata = { title: {default: "PadelRecs — racket database", template: "%s · PadelRecs"}, description: "Padel racket specifications, player reviews, and external review sources." };
-export default async function Layout({children}: {children: React.ReactNode}) { const admin = await isAdmin(); return <html lang="en"><body><div className="site"><header><a className="logo" href="/">padelrecs.com</a><nav aria-label="Main navigation"><a href="/">Reviews</a><a href="/rackets">Rackets</a><a href="/brands">Brands</a><a href="/add-review">Add a review</a><a href="/about">About</a></nav><form action="/rackets" className="search"><label className="sr-only" htmlFor="search">Search rackets</label><input id="search" name="q" placeholder="Search rackets…"/><button aria-label="Search">Go</button></form></header>{children}<footer><a className="footer-logo" href="/">padelrecs</a><a href="/about">About this project</a>{admin && <><a href="/admin">Review admin</a><form method="post" action="/auth/signout"><button className="text-button">Sign out</button></form></>}</footer></div></body></html> }
+export default async function Layout({children}: {children: React.ReactNode}) { const admin = await isAdmin(); return <html lang="en"><body><div className="site"><SiteHeader/>{children}<footer><a className="footer-logo" href="/">padelrecs</a><a href="/about">About this project</a>{admin && <><a href="/admin">Review admin</a><form method="post" action="/auth/signout"><button className="text-button">Sign out</button></form></>}</footer></div></body></html> }
