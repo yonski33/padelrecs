@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { RacketSearch } from "./racket-search";
 
 const links = [
   ["/", "Player notes"],
@@ -19,11 +20,7 @@ export function SiteHeader() {
           <a className="logo" href="/">padelrecs.com</a>
           <span className="site-descriptor">player notes on padel rackets</span>
         </div>
-        <form action="/rackets" className="search" role="search">
-          <label className="sr-only" htmlFor="search">Search rackets</label>
-          <input id="search" name="q" placeholder="Search rackets…"/>
-          <button aria-label="Search">Go</button>
-        </form>
+        <RacketSearch/>
       </div>
       <nav className="main-nav" aria-label="Main navigation">
         {links.map(([href, label]) => {
