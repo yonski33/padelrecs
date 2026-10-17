@@ -1,0 +1,16 @@
+{
+  "application": "padelrecs",
+  "githubRepository": "yonski33/padelrecs",
+  "vercelProjectName": "padelrecs",
+  "vercelProjectId": null,
+  "supabaseProjectName": "PadelRecs",
+  "supabaseProjectRef": "wwwcnebilsfcvmkxatmu",
+  "protectedExistingSupabaseProjectRefs": [
+    "adxxysbmpwlfebjbzixl"
+  ],
+  "protectedRepositoryNames": [
+    "redrecs",
+    "reddit-digest-next"
+  ],
+  "githubRepositoryId": "1423182114"
+}

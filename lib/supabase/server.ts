@@ -1,0 +1,13 @@
+import "server-only";
+import { assertAuthTarget } from "../deployment-target";
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+export async function createClient() {
+ const url=process.env.NEXT_PUBLIC_SUPABASE_URL,key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+ if(!url||!key)return null;
+ assertAuthTarget(url,process.env.SUPABASE_PROJECT_REF);
+ const store=await cookies();
+ return createServerClient(url,key,{cookies:{getAll:()=>store.getAll(),setAll(values){
+  try{values.forEach(({name,value,options})=>store.set(name,value,options));}catch{/* Proxy refreshes cookies for Server Components. */}
+ }}});
+}
