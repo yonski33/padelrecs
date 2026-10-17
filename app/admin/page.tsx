@@ -15,6 +15,8 @@ const messages: Record<string,string> = {
  rejected:"Review rejected. It is hidden from the feed and excluded from ratings.",
  pending:"Review moved back to pending and hidden from the public feed.",
  web:"Web review published.",
+ "edit-saved":"Review updated.",
+ "edit-invalid":"Could not open the review editor. Please try again.",
  invalid:"Please check all fields. A web review needs an existing racket or a new brand, model and year (1980–2100), an excerpt of at least 20 characters, source details, and a valid HTTP or HTTPS source link.",
  missing:"That review no longer exists.",
  stale:"This review changed since the page loaded. Check its current status and try again.",
@@ -36,11 +38,11 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
   db.select().from(rackets).orderBy(rackets.name),
   db.select({status:reviews.status,total:count()}).from(reviews).where(notLike(reviews.id,"demo-%")).groupBy(reviews.status),
   db.select().from(reviews).where(and(eq(reviews.status,status),notLike(reviews.id,"demo-%"))).orderBy(desc(reviews.createdAt)).limit(21).offset((page-1)*20),
-  web ? db.select().from(externalReviews).where(notLike(externalReviews.id,"demo-%")).orderBy(desc(externalReviews.createdAt)).limit(20) : Promise.resolve([]),
+  web ? db.select().from(externalReviews).where(notLike(externalReviews.id,"demo-%")).orderBy(desc(externalReviews.createdAt)).limit(21).offset((page-1)*20) : Promise.resolve([]),
   (web||specs) ? db.select({id:brands.id,name:brands.name}).from(brands).orderBy(brands.name) : Promise.resolve([])
  ]);
  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Manage player submissions, web reviews, and racket specifications.</p></div>
- <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Add a web review</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>Racket specs</a></nav>
+ <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>Racket specs</a></nav>
  {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
  {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
  <form method="post" action="/api/admin/external-reviews" className="review-form">
@@ -50,7 +52,9 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} placeholder="https://…"/><small>Use a direct link to the specific review, comment, or video.</small></label>
  <label className="field">Source date <span className="muted">(optional)</span><input name="sourceDate" type="date"/><small>Leave blank if the original publication date is unknown.</small></label>
  <p className="small muted">Web excerpts appear with their source below the text. They have no star rating and do not affect player averages.</p><button type="submit">Publish web review</button></form>
- <h2 className="admin-heading">Recently added by you</h2>{external.length ? external.map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3><p className="review-text">{e.excerpt}</p><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div></article>) : <p className="muted">No web reviews added yet.</p>}</div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
+ <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3><p className="review-text">{e.excerpt}</p><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/admin/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p></article>) : <p className="muted">No web reviews added yet.</p>}
+ <div className="admin-pagination">{page>1&&<a href={`/admin?tab=web&page=${page-1}`}>← Newer</a>}{external.length>20&&<a href={`/admin?tab=web&page=${page+1}`}>Older →</a>}</div>
+ </div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/admin?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
  <div className="admin-queue">{queue.slice(0,20).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
@@ -58,6 +62,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <p className="review-text">{r.reviewText}</p><div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||"No player details provided"}</div>
  <div className="byline"><span>by <b>{r.alias||"Anonymous player"}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
+ <p><a href={`/admin/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
  <div className="admin-actions">{["approved","rejected","pending"].filter(s=>s!==r.status).map(next=><form action="/api/admin/reviews" method="post" key={next}><input type="hidden" name="id" value={r.id}/><input type="hidden" name="status" value={next}/><input type="hidden" name="expectedStatus" value={r.status}/><input type="hidden" name="returnStatus" value={status}/><button type="submit" className={next==="approved"?"":"secondary-button"}>{next==="approved"?"Approve":next==="rejected"?"Reject":"Move to pending"}</button></form>)}</div>
  </article>})}{!queue.length && <p className="admin-empty">No {status} submissions.</p>}</div>
  <div className="admin-pagination">{page>1&&<a href={`/admin?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>20&&<a href={`/admin?status=${status}&page=${page+1}`}>Older →</a>}</div>
