@@ -4,7 +4,9 @@
   "vercelProjectName": "padelrecs",
   "vercelProjectId": "prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx",
   "supabaseProjectName": "PadelRecs",
-  "supabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
+  "supabaseProjectRef": "myauwuulzvkdsinfcfbc",
+  "supabaseRegion": "eu-central-1",
+  "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
     "adxxysbmpwlfebjbzixl"
   ],
