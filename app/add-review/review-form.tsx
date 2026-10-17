@@ -1,6 +1,6 @@
 "use client";
 import {Fragment, useRef, useState} from "react";
-import RacketPicker from "../racket-picker";
+import RacketField, {type FieldRacket} from "./racket-field";
 import {BallIcon} from "../icons";
 
 // Option values must match the API's accepted values in app/api/reviews/route.ts.
@@ -17,7 +17,7 @@ function Options({name, options}: {name: string; options: readonly (string | rea
   return <label key={value}><input type="radio" name={name} value={value}/><span>{name === "timeWithRacket" ? hint : value}{name !== "timeWithRacket" && hint && <small>{hint}</small>}</span></label>; })}</div>;
 }
 
-export default function ReviewForm({rackets,brands,initialRacket}:{rackets:{id:string,name:string,slug:string}[],brands:{name:string}[],initialRacket?:string}) {
+export default function ReviewForm({rackets,brands,initialRacket}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string}) {
  const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState("");
  const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string}>(null);
  const textarea=useRef<HTMLTextAreaElement>(null);
@@ -25,7 +25,8 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:{id:s
  async function submit(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();setError("");
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
-  if(values.racketMode==="existing"&&!values.racketId){setError("Pick a racket from the list, or choose “New racket” to add one.");return;}
+  if(values.racketMode==="existing"&&!values.racketId){setError("Pick a racket from the list as you type.");return;}
+  if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&/^\d{4}$/.test(values.year||""))){setError(values.brandName===undefined?"Which racket? Start typing its name and pick it from the list.":"For a new racket we need the brand, model and year.");return;}
   if(!values.rating){setError("Give it an overall rating — tap one of the balls.");return;}
   if((values.reviewText||"").trim().length<20){setError("Tell us a little more — at least 20 characters about how it played.");return;}
   setBusy(true);
@@ -34,7 +35,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:{id:s
    const result=await response.json() as {error?:string};
    if(!response.ok)throw new Error(result.error||"Could not save your review.");
    const picked=rackets.find(r=>r.id===values.racketId);
-   setDone({alias:values.alias?.trim()||"",racket:picked?.name||[values.brandName,values.modelName].filter(Boolean).join(" "),slug:picked?.slug});
+   setDone({alias:values.alias?.trim()||"",racket:picked?.name||[values.brandName,values.modelName,values.year].filter(Boolean).join(" "),slug:picked?.slug});
    window.scrollTo({top:0,behavior:"smooth"});
   }catch(e){setError(e instanceof Error?e.message:"Could not save your review. Please try again.");}
   finally{setBusy(false);}
@@ -59,7 +60,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:{id:s
    <form className="review-form" onSubmit={submit} noValidate>
     <section className="step">
      <h2 className="step-h"><span className="no">1</span>Which racket?</h2>
-     <RacketPicker models={rackets} brands={brands} initialRacket={initialRacket} searchable/>
+     <RacketField rackets={rackets} brands={brands} initialRacket={initialRacket}/>
     </section>
 
     <section className="step">
