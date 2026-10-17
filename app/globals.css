@@ -600,3 +600,29 @@ summary { cursor: pointer; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Single racket field (add review) ---------- */
+
+.racket-field { position: relative; }
+.combo { position: relative; }
+.combo-list { margin-top: 6px; padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 32px -14px rgba(22,32,26,.2); }
+.combo-list ul { list-style: none; margin: 0; padding: 0; }
+.combo-list .sug-item { width: 100%; min-height: 0; border: 0; background: none; text-align: left; font: inherit; font-size: 15px; color: var(--ink); white-space: normal; }
+.combo-list .sug-item:hover, .combo-list .sug-item[aria-selected="true"] { background: var(--green-wash); color: var(--ink); }
+.combo-list .sug-item .ct { color: var(--green); font-weight: 600; }
+.combo-label { margin: 6px 10px 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+.combo-new { width: 100%; justify-content: flex-start; min-height: 0; margin-top: 4px; padding: 10px; border: 0; border-top: 1px solid var(--line); border-radius: 0 0 9px 9px; background: none; color: var(--green); font-size: 14px; font-weight: 600; white-space: normal; text-align: left; }
+.combo-new:hover { background: var(--lime-wash); color: var(--green-ink); }
+.picked { display: flex; align-items: center; gap: 14px; padding: 12px 14px; background: var(--green-wash); border: 1.5px solid var(--green); border-radius: 12px; font-size: 13.5px; color: var(--ink-2); }
+.picked svg { width: 20px; height: 32px; color: var(--green); }
+.picked b { display: block; color: var(--ink); font-size: 15.5px; }
+.picked .text-button { margin-left: auto; font-weight: 600; }
+.new-racket { margin-top: 10px; padding: 14px 16px 16px; background: var(--lime-wash); border-radius: 12px; }
+.new-racket p { margin: 0 0 10px; font-size: 14px; color: var(--ink-2); }
+.new-racket p b { color: var(--ink); }
+.new-racket .help { margin: 8px 0 0; }
+.new-racket-grid { display: grid; grid-template-columns: 1fr 1.6fr 90px; gap: 10px; }
+.new-racket-grid label { font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.new-racket-grid input { margin-top: 4px; }
+.new-racket .text-button { margin-top: 10px; font-size: 13.5px; }
+@media (max-width: 680px) { .new-racket-grid { grid-template-columns: 1fr 90px; } .new-racket-grid label:nth-child(2) { grid-column: 1 / -1; grid-row: 1; } }
