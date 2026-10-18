@@ -4,8 +4,10 @@ import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
 import { RacketIcon } from "./icons";
+import { LoadMore } from "./load-more";
 
 const DAY = 86_400_000;
+const PAGE = 24;
 
 const homeTitle = "PadelRecs – Real Player Reviews of Padel Rackets";
 const homeDescription = "Browse real padel racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.";
@@ -30,11 +32,14 @@ function dayLabel(iso: string, now: Date) {
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[] }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[] }>;
 }) {
   const [data, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
   const source = params.source === "players" || params.source === "web" ? params.source : "all";
+  // How many notes to show: 24 at first, 24 more per "Load more" click (kept in the URL so it's linkable and crawlable).
+  const requested = Number(Array.isArray(params.show) ? params.show[0] : params.show);
+  const show = Number.isFinite(requested) ? Math.min(2400, Math.max(PAGE, Math.ceil(requested / PAGE) * PAGE)) : PAGE;
   const sources = [
     { value: "all", label: "All", count: data.reviews.length + data.external.length, href: "/" },
     { value: "players", label: "From players", count: data.reviews.length, href: "/?source=players" },
@@ -72,7 +77,7 @@ export default async function Home({ searchParams }: {
         </a>)}
       </nav>
     </div>
-    {items.map((item, index) => {
+    {items.slice(0, show).map((item, index) => {
       const day = item.date.slice(0, 10);
       const label = day !== lastDay ? dayLabel(item.date, now) : null;
       lastDay = day;
@@ -84,6 +89,7 @@ export default async function Home({ searchParams }: {
     })}
     {items.length > 0 && items.length < 4 && strip}
     {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No notes here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
+    {items.length > show && <LoadMore href={`/?${source !== "all" ? `source=${source}&` : ""}show=${show + PAGE}`}/>}
     {items.length > 0 && <p className="end-note"><a className="button ghost" href="/add-review">Played one of these? Add your own note</a></p>}
   </div><Sidebar data={data}/></div></main>;
 }
