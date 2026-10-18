@@ -17,5 +17,6 @@ export function adminRedirect(request: Request, query: string) {
 }
 export async function readAdminForm(request: Request) {
  const text = await request.text();
- return Object.fromEntries(new URLSearchParams(text));
+ const params = new URLSearchParams(text);
+ return { ...Object.fromEntries(params), tags: params.getAll("tags") } as Record<string, string> & { tags: string[] };
 }

@@ -7,6 +7,7 @@ import { getCurrentUser } from "../../lib/supabase/auth";
 import RacketPicker from "../racket-picker";
 import RacketSpecs from "./racket-specs";
 import { Stars } from "../components";
+import { TagCheckboxes, TagList } from "../tags";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {title: "Review admin", robots: {index: false, follow: false}};
 const date = (value:string) => new Date(value).toLocaleDateString("en-GB", {day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
@@ -51,15 +52,16 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue="Reddit">{["Reddit","YouTube","Padel shop","Forum","Other"].map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} placeholder="e.g. r/padel or a channel name"/></label></div>
  <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} placeholder="https://…"/><small>Use a direct link to the specific review, comment, or video.</small></label>
  <label className="field">Source date <span className="muted">(optional)</span><input name="sourceDate" type="date"/><small>Leave blank if the original publication date is unknown.</small></label>
+ <TagCheckboxes/>
  <p className="small muted">Web excerpts appear with their source below the text. They have no star rating and do not affect player averages.</p><button type="submit">Publish web review</button></form>
- <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3><p className="review-text">{e.excerpt}</p><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/admin/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p></article>) : <p className="muted">No web reviews added yet.</p>}
+ <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3><p className="review-text">{e.excerpt}</p><TagList tags={e.tags}/><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/admin/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p></article>) : <p className="muted">No web reviews added yet.</p>}
  <div className="admin-pagination">{page>1&&<a href={`/admin?tab=web&page=${page-1}`}>← Newer</a>}{external.length>20&&<a href={`/admin?tab=web&page=${page+1}`}>Older →</a>}</div>
  </div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/admin?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
  <div className="admin-queue">{queue.slice(0,20).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
  <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={`/rackets/${model?.slug}`}>{model?.name}</a></h3>
- <p className="review-text">{r.reviewText}</p><div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||"No player details provided"}</div>
+ <p className="review-text">{r.reviewText}</p><TagList tags={r.tags}/><div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||"No player details provided"}</div>
  <div className="byline"><span>by <b>{r.alias||"Anonymous player"}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
  <p><a href={`/admin/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>

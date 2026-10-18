@@ -5,6 +5,7 @@ import {database} from "../../../db/data";
 import {reviews,externalReviews,rackets} from "../../../db/schema";
 import {reviewRevision} from "../../../db/review-editing";
 import RacketEditSelector from "../racket-edit-selector";
+import {TagCheckboxes} from "../../tags";
 export const dynamic="force-dynamic";
 export const metadata={title:"Edit review",robots:{index:false,follow:false}};
 const errors:Record<string,string>={invalid:"Check the required fields, ratings, email and source URL. Review text must contain at least 20 characters.",stale:"This review changed while you were editing. Its latest values are shown below. Check them before saving again.",missing:"This review no longer exists.",failed:"Could not save your changes. Please try again."};
@@ -39,11 +40,13 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
   <fieldset><legend>Category ratings</legend><div className="form-grid">{[
    ["Power","powerRating",player.powerRating],["Control","controlRating",player.controlRating],["Maneuverability","maneuverabilityRating",player.maneuverabilityRating],["Comfort","comfortRating",player.comfortRating],["Sweet spot / forgiveness","forgivenessRating",player.forgivenessRating]
   ].map(([label,name,value])=><label className="field" key={name as string}>{label}<select name={name as string} defaultValue={value??""}><option value="">Not rated</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>)}</div></fieldset>
+  <TagCheckboxes selected={player.tags}/>
  </>:external?<>
   <label className="field">Review text<textarea name="excerpt" required minLength={20} defaultValue={external.excerpt}/></label>
   <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={external.sourcePlatform}>{["Reddit","YouTube","Padel shop","Forum","Other"].map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} defaultValue={external.sourceName}/></label></div>
   <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} defaultValue={external.sourceUrl}/></label>
   <label className="field">Source date<input name="sourceDate" type="date" defaultValue={external.sourceDate||""}/></label>
+  <TagCheckboxes selected={external.tags}/>
   <p className="small muted">Saving updates this published web review immediately.</p>
  </>:null}
  <button type="submit">Save changes</button>

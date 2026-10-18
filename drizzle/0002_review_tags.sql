@@ -1,0 +1,2 @@
+ALTER TABLE "padelrecs"."external_reviews" ADD COLUMN "tags" text[] DEFAULT '{}'::text[] NOT NULL;--> statement-breakpoint
+ALTER TABLE "padelrecs"."reviews" ADD COLUMN "tags" text[] DEFAULT '{}'::text[] NOT NULL;
