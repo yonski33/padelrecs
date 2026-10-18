@@ -687,3 +687,13 @@ summary { cursor: pointer; font-weight: 600; }
 .sort-links { display: flex; align-items: center; gap: 4px 14px; margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
 .sort-links a { color: var(--ink-2); font-weight: 500; }
 .sort-links a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--lime); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+
+/* Admin: page address field */
+.slug-input { display: flex; align-items: stretch; margin-top: 7px; border: 1.5px solid var(--line-2); border-radius: 10px; background: var(--surface); overflow: hidden; }
+.slug-input:focus-within { border-color: var(--green); box-shadow: 0 0 0 4px var(--lime-wash); }
+.slug-input span { display: flex; align-items: center; padding: 0 4px 0 13px; background: var(--tint); color: var(--ink-3); font-weight: 400; font-size: 14px; white-space: nowrap; }
+.slug-input input { border: 0; border-radius: 0; box-shadow: none; margin: 0; min-width: 0; }
+.slug-input input:focus { box-shadow: none; }
+.slug-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 6px; font-size: 13px; font-weight: 400; color: var(--ink-2); }
+.slug-field small code { margin-right: 8px; font-size: 12px; }
+@media (max-width: 680px) { .slug-input { flex-direction: column; } .slug-input span { padding: 6px 13px; } }

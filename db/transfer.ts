@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { brands, rackets, reviews, externalReviews } from "./schema";
+import { brands, rackets, reviews, externalReviews, racketSlugRedirects } from "./schema";
 import type { getDb } from "./index";
 const nullable=z.string().nullable();
 const category=z.number().int().min(1).max(5).nullable();
@@ -11,19 +11,23 @@ const tables=z.object({
  brands:z.array(z.object({...identity,name:z.string().min(1),slug:z.string().min(1)}).strict()),
  rackets:z.array(z.object({...identity,brand_id:z.string().min(1),name:z.string().min(1),slug:z.string().min(1),year:z.number().int(),image_url:nullable,shape:nullable,weight:nullable,balance:nullable,surface:nullable,core:nullable,description:nullable,...date}).strict()),
  reviews:z.array(z.object({...identity,...racketId,rating:z.number().int().min(1).max(5),power_rating:category,control_rating:category,maneuverability_rating:category,comfort_rating:category,forgiveness_rating:category,player_level:nullable,playing_side:nullable,playing_style:nullable,time_with_racket:nullable,review_text:z.string(),alias:nullable,email:nullable,status:z.enum(["pending","approved","rejected"]),...tags,...date}).strict()),
- external_reviews:z.array(z.object({...identity,...racketId,excerpt:z.string(),source_platform:z.string(),source_name:z.string(),source_url:z.string(),source_date:nullable,external_rating:z.number().int().nullable(),...tags,...date}).strict())
+ external_reviews:z.array(z.object({...identity,...racketId,excerpt:z.string(),source_platform:z.string(),source_name:z.string(),source_url:z.string(),source_date:nullable,external_rating:z.number().int().nullable(),...tags,...date}).strict()),
+ // Optional so snapshots taken before slug redirects existed still import.
+ racket_slug_redirects:z.array(z.object({slug:z.string().min(1),...racketId,...date}).strict()).optional()
 }).strict();
 const format=z.object({formatVersion:z.literal(1),source:z.string(),exportedAt:z.string().datetime(),tables}).strict();
 export type Snapshot=z.infer<typeof format>;
 export function parseSnapshot(raw:unknown):Snapshot {
  const snapshot=format.parse(raw),t=snapshot.tables;
- for(const [name,rows] of Object.entries(t)){
-  if(new Set(rows.map(r=>r.id)).size!==rows.length)throw new Error(`Duplicate IDs in ${name}`);
+ for(const name of ["brands","rackets","reviews","external_reviews"] as const){
+  if(new Set(t[name].map(r=>r.id)).size!==t[name].length)throw new Error(`Duplicate IDs in ${name}`);
  }
+ const redirectSlugs=(t.racket_slug_redirects??[]).map(r=>r.slug);
+ if(new Set(redirectSlugs).size!==redirectSlugs.length)throw new Error("Duplicate slugs in racket_slug_redirects");
  for(const name of ["brands","rackets"] as const)if(new Set(t[name].map(r=>r.slug)).size!==t[name].length)throw new Error(`Duplicate slugs in ${name}`);
  const brandIds=new Set(t.brands.map(r=>r.id)),racketIds=new Set(t.rackets.map(r=>r.id));
  if(t.rackets.some(r=>!brandIds.has(r.brand_id)))throw new Error("Snapshot contains a racket with a missing brand");
- if([...t.reviews,...t.external_reviews].some(r=>!racketIds.has(r.racket_id)))throw new Error("Snapshot contains a review with a missing racket");
+ if([...t.reviews,...t.external_reviews,...(t.racket_slug_redirects??[])].some(r=>!racketIds.has(r.racket_id)))throw new Error("Snapshot contains a review with a missing racket");
  if(t.reviews.some(r=>/^demo-review-(?:[0-9]|1[0-4])$/.test(r.id))||t.external_reviews.some(r=>/^demo-external-[0-9]$/.test(r.id)))throw new Error("Snapshot includes retired fictional reviews");
  return snapshot;
 }
@@ -34,7 +38,8 @@ export function normalized(snapshot:Snapshot){
   brands:snapshot.tables.brands.map(camel) as typeof brands.$inferSelect[],
   rackets:snapshot.tables.rackets.map(camel) as typeof rackets.$inferSelect[],
   reviews:snapshot.tables.reviews.map(camel) as typeof reviews.$inferSelect[],
-  externalReviews:snapshot.tables.external_reviews.map(camel) as typeof externalReviews.$inferSelect[]
+  externalReviews:snapshot.tables.external_reviews.map(camel) as typeof externalReviews.$inferSelect[],
+  slugRedirects:(snapshot.tables.racket_slug_redirects??[]).map(camel) as typeof racketSlugRedirects.$inferSelect[]
  };
 }
 type Database=ReturnType<typeof getDb>;
@@ -51,6 +56,12 @@ export async function verifySnapshot(db:Reader,snapshot:Snapshot){
   }
   counts[key]=expected[key].length;
  }
+ const redirects=new Map((await db.select().from(racketSlugRedirects)).map(row=>[row.slug,row]));
+ for(const row of expected.slugRedirects){
+  const stored=redirects.get(row.slug);
+  if(!stored||stored.racketId!==row.racketId||stored.createdAt!==row.createdAt)throw new Error(`Data mismatch in slugRedirects, slug ${row.slug}; import has not overwritten existing data`);
+ }
+ if(expected.slugRedirects.length)counts.slugRedirects=expected.slugRedirects.length;
  return counts;
 }
 export async function importSnapshot(db:Database,snapshot:Snapshot){
@@ -60,6 +71,7 @@ export async function importSnapshot(db:Database,snapshot:Snapshot){
   for(let i=0;i<data.rackets.length;i+=50)await tx.insert(rackets).values(data.rackets.slice(i,i+50)).onConflictDoNothing({target:rackets.id});
   for(let i=0;i<data.reviews.length;i+=50)await tx.insert(reviews).values(data.reviews.slice(i,i+50)).onConflictDoNothing({target:reviews.id});
   for(let i=0;i<data.externalReviews.length;i+=50)await tx.insert(externalReviews).values(data.externalReviews.slice(i,i+50)).onConflictDoNothing({target:externalReviews.id});
+  for(let i=0;i<data.slugRedirects.length;i+=50)await tx.insert(racketSlugRedirects).values(data.slugRedirects.slice(i,i+50)).onConflictDoNothing({target:racketSlugRedirects.slug});
   // An existing same-ID/different-value row aborts the whole import. Nothing gets overwritten.
   return verifySnapshot(tx,snapshot);
  });

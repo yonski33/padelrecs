@@ -16,3 +16,7 @@ export const externalReviews = catalogSchema.table("external_reviews", {
 export const reviewVotes = catalogSchema.table("review_votes", {
  reviewType: text("review_type", { enum: ["player", "web"] }).notNull(), reviewId: text("review_id").notNull(), voter: text("voter").notNull(), createdAt: text("created_at").notNull()
 }, t => [uniqueIndex("review_votes_unique").on(t.reviewType, t.reviewId, t.voter), index("review_votes_voter_idx").on(t.voter, t.createdAt), check("review_vote_type", sql`${t.reviewType} in ('player','web')`)]).enableRLS();
+// Old racket URLs keep working after a slug change: /rackets/<old slug> redirects to the racket's current slug.
+export const racketSlugRedirects = catalogSchema.table("racket_slug_redirects", {
+ slug: text("slug").primaryKey(), racketId: text("racket_id").notNull().references(() => rackets.id), createdAt: text("created_at").notNull()
+}, t => [index("racket_slug_redirects_racket_idx").on(t.racketId)]).enableRLS();

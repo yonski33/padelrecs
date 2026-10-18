@@ -2,7 +2,8 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import type { getDb } from "./index";
 import { brands, rackets } from "./schema";
-export const slugify=(name:string)=>name.normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^\p{L}\p{N}]+/gu,"-").replace(/^-+|-+$/g,"");
+import { slugify } from "../lib/slug";
+export { slugify };
 const normalizedName=(max:number)=>z.string().trim().min(1).max(max).transform(s=>s.replace(/\s+/g," ")).refine(s=>slugify(s).length>0);
 export const racketSelection=z.discriminatedUnion("racketMode",[
  z.object({racketMode:z.literal("existing"),racketId:z.string().min(1)}),

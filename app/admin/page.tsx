@@ -6,6 +6,7 @@ import { isAdmin } from "./auth";
 import { getCurrentUser } from "../../lib/supabase/auth";
 import RacketPicker from "../racket-picker";
 import RacketSpecs from "./racket-specs";
+import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
 export const dynamic = "force-dynamic";
@@ -24,6 +25,9 @@ const messages: Record<string,string> = {
  "spec-saved":"Racket specs saved. The public racket page has been updated.",
  "spec-invalid":"Check the racket name, brand, year (1980–2100), and field lengths.",
  "spec-missing":"That racket no longer exists. Choose another racket.",
+ "spec-slug-changed":"Racket saved with its new page address. The old address now redirects to the new one.",
+ "spec-slug-taken":"That page address is already used by another racket. Nothing was saved — pick a different one.",
+ "spec-slug-invalid":"That page address can't be used. Use letters, numbers and dashes. Nothing was saved.",
  failed:"Could not save your changes. Please try again."
 };
 export default async function Admin({searchParams}:{searchParams:Promise<{status?:string,tab?:string,page?:string,result?:string,racket?:string}>}) {
@@ -44,8 +48,8 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  ]);
  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Manage player submissions, web reviews, and racket specifications.</p></div>
  <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>Rackets &amp; specs</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
- {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
- {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
+ {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing","spec-slug-taken","spec-slug-invalid"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
+ {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket} oldSlugs={q.racket ? await oldSlugs(db, q.racket) : []}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
  <form method="post" action="/api/admin/external-reviews" className="review-form">
  <RacketPicker models={models} brands={allBrands}/>
  <label className="field">Review excerpt<textarea name="excerpt" required minLength={20} placeholder="A short excerpt from the original review…"/><small>At least 20 characters. Keep the original meaning and credit the source.</small></label>
