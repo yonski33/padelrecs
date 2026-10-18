@@ -1,4 +1,4 @@
-export type SearchRacket = { name: string; slug: string; shape?: string | null; notes?: number };
+export type SearchRacket = { name: string; slug: string; shape?: string | null; brand?: string; notes?: number };
 
 function normalize(value: string) {
   return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();

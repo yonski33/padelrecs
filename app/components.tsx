@@ -27,8 +27,8 @@ function RacketHeading({racket, data}: {racket: Racket; data: Catalog}) {
   return <a className="racket-link" href={`/rackets/${racket.slug}`}>{brand && <span className="brand">{brand}</span>}<span className="model">{model}</span></a>;
 }
 
-function Thumb({racket}: {racket: Racket}) {
-  return <a className="thumb" href={`/rackets/${racket.slug}`} aria-hidden="true" tabIndex={-1}><RacketIcon shape={racket.shape}/></a>;
+function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
+  return <a className="thumb" href={`/rackets/${racket.slug}`} aria-hidden="true" tabIndex={-1}><RacketIcon shape={racket.shape} brand={brand}/></a>;
 }
 
 function Avatar({alias}: {alias: string | null}) {
@@ -48,7 +48,7 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
   const details = [r.playerLevel, r.playingSide && `${r.playingSide} side`, r.playingStyle && !showRacket ? r.playingStyle : null, r.timeWithRacket && timeLabel(r.timeWithRacket)].filter(Boolean);
   const scores = categories.filter(([, key]) => r[key] != null);
   return <article className={showRacket ? "note" : "note compact"}>
-    {showRacket && <Thumb racket={racket}/>}
+    {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     <header className="note-head">
       {showRacket && <RacketHeading racket={racket} data={data}/>}
       <Balls rating={r.rating}/>
@@ -68,7 +68,7 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
 export function External({entry: e, data, showRacket = true}: {entry: WebReview; data: Catalog; showRacket?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
   return <article className={showRacket ? "note ext" : "note compact ext"}>
-    {showRacket && <Thumb racket={racket}/>}
+    {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     {showRacket && <header className="note-head"><RacketHeading racket={racket} data={data}/></header>}
     <div className="quote" style={showRacket ? undefined : {marginTop: 0}}>
       <p className="note-body">{e.excerpt}</p>
@@ -84,9 +84,9 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
   </article>;
 }
 
-export function RacketRow({racket: r, average, count, details}: {racket: Racket; average: string | null; count: number; details: string}) {
+export function RacketRow({racket: r, brand, average, count, details}: {racket: Racket; brand?: string | null; average: string | null; count: number; details: string}) {
   return <article className="racket-row">
-    <Thumb racket={r}/>
+    <Thumb racket={r} brand={brand}/>
     <div><h2><a href={`/rackets/${r.slug}`}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">{average ? <><Balls rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></> : <span>no ratings yet</span>}</div>
   </article>;
@@ -158,7 +158,7 @@ export function Sidebar({data}: {data: Catalog}) {
     {recentlyAdded.length > 0 && <section>
       <h2>Recently added</h2>
       <ul className="mini">{recentlyAdded.map(r => <li key={r.id}><a href={`/rackets/${r.slug}`}>
-        <RacketIcon shape={r.shape}/><span className="nm">{r.name}<span className="mt">{notes(notesFor(r.id))}</span></span><span className="end">{shortDate(r.createdAt)}</span>
+        <RacketIcon shape={r.shape} brand={racketParts(r, data).brand}/><span className="nm">{r.name}<span className="mt">{notes(notesFor(r.id))}</span></span><span className="end">{shortDate(r.createdAt)}</span>
       </a></li>)}</ul>
     </section>}
 
@@ -166,7 +166,7 @@ export function Sidebar({data}: {data: Catalog}) {
       <h2>Lonely rackets</h2>
       <p className="side-note">Hardly any reviews yet. Played one? Keep it company.</p>
       <ul className="mini">{lonely.map(({racket, count}) => <li key={racket.id}><a href={`/add-review?racket=${racket.id}`}>
-        <RacketIcon shape={racket.shape}/><span className="nm">{racket.name}<span className="mt">{notes(count)}</span></span><span className="end">+ add</span>
+        <RacketIcon shape={racket.shape} brand={racketParts(racket, data).brand}/><span className="nm">{racket.name}<span className="mt">{notes(count)}</span></span><span className="end">+ add</span>
       </a></li>)}</ul>
     </section>}
   </aside>;
