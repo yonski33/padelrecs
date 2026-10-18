@@ -100,7 +100,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
-        <RacketIcon shape={r.shape}/>
+        <RacketIcon shape={r.shape} brand={brand?.name}/>
         {r.shape && <small>{r.shape.toLowerCase()}</small>}
       </div>
 
@@ -179,7 +179,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
           <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={`/rackets/${x.slug}`}>
-            <RacketIcon shape={x.shape}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : "no ratings yet"}</span></span>
+            <RacketIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : "no ratings yet"}</span></span>
             {sc.average && <span className="end"><Balls rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>
         </section>}

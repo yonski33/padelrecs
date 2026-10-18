@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { matchingRackets } from "../../lib/racket-search";
 import { RacketIcon } from "../icons";
 
-export type FieldRacket = { id: string; name: string; slug: string; shape: string | null };
+export type FieldRacket = { id: string; name: string; slug: string; shape: string | null; brand?: string };
 
 const norm = (s: string) => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 const tokens = (s: string) => norm(s).split(" ").filter(Boolean).map(t => /^\d+$/.test(t) ? String(Number(t)) : t);
@@ -66,7 +66,7 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
     <input type="hidden" name="racketId" value={selected?.id ?? ""}/>
 
     {selected ? <div className="picked">
-      <RacketIcon shape={selected.shape}/>
+      <RacketIcon shape={selected.shape} brand={selected.brand}/>
       <span><b>{selected.name}</b>{selected.shape ?? "In the database"}</span>
       <button type="button" className="text-button" onClick={change}>Change</button>
     </div> : <div className="combo">
@@ -88,7 +88,7 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
           {suggestions.map((r, i) => <li key={r.id} role="presentation">
             <button type="button" id={`racket-option-${i}`} role="option" aria-selected={i === active} className="sug-item"
               onMouseDown={e => e.preventDefault()} onClick={() => choose(r)}>
-              <RacketIcon shape={r.shape}/><span className="nm">{r.name}{r.shape && <span className="mt">{r.shape}</span>}</span><span className="ct">pick</span>
+              <RacketIcon shape={r.shape} brand={r.brand}/><span className="nm">{r.name}{r.shape && <span className="mt">{r.shape}</span>}</span><span className="ct">pick</span>
             </button>
           </li>)}
         </ul>
