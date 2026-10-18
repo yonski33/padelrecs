@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 
 export type Shape = "round" | "teardrop" | "diamond" | "unknown";
 
-// Catalog shapes are free text ("Round", "Teardrop / hybrid"…). Anything unrecognised, or not set yet, is "unknown".
+// Catalog shapes are free text ("Round", "Teardrop / hybrid"…). Anything unrecognised, or not set yet, is "unknown" and drawn as the default teardrop.
 export function shapeOf(shape?: string | null): Shape {
   const s = (shape || "").toLowerCase();
   if (s.includes("round")) return "round";
@@ -61,7 +61,7 @@ export function RacketIcon({ shape, brand, className }: { shape?: string | null;
       {mark?.extra === "kuikma-ring" && <ellipse cx="20" cy="20.6" rx="15.4" ry="9.6" transform="rotate(-38 20 20.6)" fill="none" stroke="currentColor" strokeOpacity=".45" strokeWidth="3.2"/>}
       <g fill="currentColor" fillOpacity={mark ? 0.28 : 0.5}>{DOTS.map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.05"/>)}</g>
     </g>
-    <path d={head} fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray={kind === "unknown" ? "3.2 2.4" : undefined}/>
+    <path d={head} fill="none" stroke="currentColor" strokeWidth="2"/>
     <path d={throat} stroke="currentColor" strokeWidth="2" fill="none"/>
     <rect x="17.5" y="48" width="5" height="14" rx="1.5" fill="currentColor"/>
   </svg>;
