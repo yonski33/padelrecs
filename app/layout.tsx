@@ -9,7 +9,7 @@ import { isAdmin } from "./admin/auth";
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
-export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"), title: {default: "PadelRecs – Real Player Reviews of Padel Rackets", template: "%s | PadelRecs"}, description: "Real player experiences with padel rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked." };
+export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"), title: {default: "PadelRecs – Real Player Reviews of Padel Rackets", template: "%s | PadelRecs"}, description: "Real player experiences with padel rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked.", openGraph: { siteName: "PadelRecs", type: "website" }, twitter: { card: "summary_large_image" } };
 
 export default async function Layout({children}: {children: React.ReactNode}) {
   const admin = await isAdmin();

@@ -65,9 +65,30 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const tagged = [...reviews, ...external].filter(x => x.tags.length);
   const tagCounts = new Map<string, number>();
   for (const t of tagged.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+  const url = `${base}/rackets/${r.slug}`;
+  // Structured data for Google: product + player ratings (web quotes never count), and breadcrumbs.
+  const jsonLd = { "@context": "https://schema.org", "@graph": [
+    ...(s.average ? [{
+      "@type": "Product", name: r.name, url, image: `${url}/opengraph-image`, category: "Padel racket",
+      description: r.description || `Player reviews and ratings of the ${r.name}.`,
+      ...(brand ? { brand: { "@type": "Brand", name: brand.name } } : {}),
+      aggregateRating: { "@type": "AggregateRating", ratingValue: s.average, ratingCount: s.count, reviewCount: s.count, bestRating: 5, worstRating: 1 },
+      review: reviews.slice(0, 10).map(x => ({
+        "@type": "Review", author: { "@type": "Person", name: x.alias || "Anonymous player" }, datePublished: x.createdAt.slice(0, 10), reviewBody: x.reviewText,
+        reviewRating: { "@type": "Rating", ratingValue: x.rating, bestRating: 5, worstRating: 1 },
+      })),
+    }] : []),
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Rackets", item: `${base}/rackets` },
+      ...(brand ? [{ "@type": "ListItem", position: 2, name: brand.name, item: `${base}/brands/${brand.slug}` }] : []),
+      { "@type": "ListItem", position: brand ? 3 : 2, name: r.name, item: url },
+    ] },
+  ] };
   const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
 
   return <main>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
         <RacketIcon shape={r.shape}/>
