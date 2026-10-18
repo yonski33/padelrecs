@@ -1,5 +1,7 @@
 export const dynamic = "force-dynamic";
-import { catalog, score } from "../../../db/data";
+import { cache } from "react";
+import type { Metadata } from "next";
+import { catalog as loadCatalog, score } from "../../../db/data";
 import { notFound } from "next/navigation";
 import { Review, External, racketParts } from "../../components";
 import { Balls, PlusIcon, RacketIcon, SourceIcon } from "../../icons";
@@ -7,6 +9,17 @@ import { TagList } from "../../tags";
 
 const categories = [["Power","powerRating"],["Control","controlRating"],["Maneuverability","maneuverabilityRating"],["Comfort","comfortRating"],["Forgiveness","forgivenessRating"]] as const;
 const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)}%` : "0%";
+// One catalog read per request, shared by the page and its metadata.
+const catalog = cache(() => loadCatalog());
+
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+  const [{slug}, data] = await Promise.all([params, catalog()]);
+  const r = data.rackets.find(x => x.slug === slug);
+  if (!r) return { title: { absolute: "Racket not found | PadelRecs" }, robots: { index: false } };
+  const title = `${r.name} Player Reviews | PadelRecs`;
+  const description = `Read real player experiences with the ${r.name}. Ratings, strengths, weaknesses, playing style, and opinions from PadelRecs and around the web.`;
+  return { title: { absolute: title }, description, alternates: { canonical: `/rackets/${r.slug}` }, openGraph: { title, description, url: `/rackets/${r.slug}`, type: "website" } };
+}
 
 export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]}>}) {
   const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
