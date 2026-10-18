@@ -2,6 +2,7 @@
 import {Fragment, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
 import {BallIcon} from "../icons";
+import {MAX_TAGS, TAGS} from "../../lib/tags";
 
 // Option values must match the API's accepted values in app/api/reviews/route.ts.
 const levels = [["Beginner","< 1 year"],["Intermediate","regular matches"],["Advanced","tournaments"],["Competitive","ranked play"]] as const;
@@ -19,6 +20,7 @@ function Options({name, options}: {name: string; options: readonly (string | rea
 
 export default function ReviewForm({rackets,brands,initialRacket}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string}) {
  const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState("");
+ const [tags,setTags]=useState<string[]>([]);
  const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string}>(null);
  const textarea=useRef<HTMLTextAreaElement>(null);
 
@@ -31,7 +33,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   if((values.reviewText||"").trim().length<20){setError("Tell us a little more — at least 20 characters about how it played.");return;}
   setBusy(true);
   try {
-   const response=await fetch("/api/reviews",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(values)});
+   const response=await fetch("/api/reviews",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...values,tags})});
    const result=await response.json() as {error?:string};
    if(!response.ok)throw new Error(result.error||"Could not save your review.");
    const picked=rackets.find(r=>r.id===values.racketId);
@@ -104,6 +106,12 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
      <div className="prompts">Stuck? Try:{prompts.map(([label,start])=><button type="button" key={label} onClick={()=>addPrompt(start)}>{label}</button>)}</div>
      <textarea id="reviewText" name="reviewText" ref={textarea} value={text} onChange={e=>setText(e.target.value)} minLength={20} required placeholder="What did you like? What drove you nuts? What would you tell a friend thinking about buying it?"/>
      <div className="count-row"><span>{text.trim().length<20?`At least 20 characters — ${20-text.trim().length} to go.`:"A few sentences is plenty."}</span><span>{text.length.toLocaleString()} characters</span></div>
+     <div className="group" style={{marginTop:20}}>
+      <span className="group-label" id="tags-label">Quick tags <span className="opt">optional · pick up to {MAX_TAGS}</span></span>
+      <div className="chip-picker" role="group" aria-labelledby="tags-label">{TAGS.map(t=>{const on=tags.includes(t.label),full=!on&&tags.length>=MAX_TAGS;
+       return <button type="button" key={t.label} className={t.tone} aria-pressed={on} disabled={full} onClick={()=>setTags(prev=>prev.includes(t.label)?prev.filter(x=>x!==t.label):prev.length>=MAX_TAGS?prev:[...prev,t.label])}>{t.label}</button>;})}</div>
+      <p className="help">{tags.length>=MAX_TAGS?"That’s three — untick one to swap.":"Tags help others skim. Pick what you’d say first about it."}</p>
+     </div>
     </section>
 
     <section className="step">

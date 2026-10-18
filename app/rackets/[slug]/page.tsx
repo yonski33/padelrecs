@@ -3,6 +3,7 @@ import { catalog, score } from "../../../db/data";
 import { notFound } from "next/navigation";
 import { Review, External, racketParts } from "../../components";
 import { Balls, PlusIcon, RacketIcon, SourceIcon } from "../../icons";
+import { TagList } from "../../tags";
 
 const categories = [["Power","powerRating"],["Control","controlRating"],["Maneuverability","maneuverabilityRating"],["Comfort","comfortRating"],["Forgiveness","forgivenessRating"]] as const;
 const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)}%` : "0%";
@@ -48,6 +49,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   ];
   const specs: [string, string | number | null][] = [["Year", r.year], ["Shape", r.shape], ["Weight", r.weight], ["Balance", r.balance], ["Core", r.core], ["Surface", r.surface]];
   const addHref = `/add-review?racket=${r.id}`;
+  const tagged = [...reviews, ...external].filter(x => x.tags.length);
+  const tagCounts = new Map<string, number>();
+  for (const t of tagged.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
 
   return <main>
     <section className="profile">
@@ -66,6 +71,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
+        {tagged.length >= 2 && <div className="says">
+          <h3>What players keep saying <span>· from {tagged.length} notes</span></h3>
+          <TagList tags={topTags} counts={tagCounts}/>
+        </div>}
       </div>
 
       <aside className="scorecard">

@@ -626,3 +626,35 @@ summary { cursor: pointer; font-weight: 600; }
 .new-racket-grid input { margin-top: 4px; }
 .new-racket .text-button { margin-top: 10px; font-size: 13.5px; }
 @media (max-width: 680px) { .new-racket-grid { grid-template-columns: 1fr 90px; } .new-racket-grid label:nth-child(2) { grid-column: 1 / -1; grid-row: 1; } }
+
+/* ---------- Quick tags ---------- */
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.quote .tags { margin-top: 10px; }
+.tag { font-size: 12.5px; font-weight: 500; padding: 2px 9px; border-radius: 6px; background: var(--lime-wash); color: #3d4a17; }
+.tag.neg { background: #f3e6dc; color: #6b3d22; }
+.tag.neutral { background: var(--tint); color: var(--ink-2); }
+.quote .tag.neutral { background: var(--surface); }
+.tag .c { opacity: .65; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.says { margin-top: 16px; }
+.says h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.says h3 span { font-weight: 400; color: var(--ink-3); }
+.says .tags { margin-top: 0; }
+
+.chip-picker { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-picker button, .chip-picker label span {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px;
+  border: 1.5px dashed var(--line-2); border-radius: 8px; background: transparent;
+  font: 500 13.5px/1.2 var(--sans); color: var(--ink-2); cursor: pointer; white-space: nowrap;
+  transition: background .12s, border-color .12s;
+}
+.chip-picker button:hover, .chip-picker label:hover span { border-color: var(--ink-3); background: transparent; color: var(--ink); }
+.chip-picker button[aria-pressed="true"], .chip-picker input:checked + span { border-style: solid; border-color: #c7db5a; background: var(--lime-wash); color: #2f3b0e; }
+.chip-picker .neg[aria-pressed="true"], .chip-picker .neg input:checked + span { border-color: #e2c3ad; background: #f3e6dc; color: #6b3d22; }
+.chip-picker .neutral[aria-pressed="true"], .chip-picker .neutral input:checked + span { border-color: var(--line-2); background: var(--tint); color: var(--ink); }
+.chip-picker button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.chip-picker label { position: relative; }
+.chip-picker label input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip-picker input:focus-visible + span { box-shadow: 0 0 0 3px var(--lime-wash); }
+.tag-field { margin: 4px 0 22px; }
+.tag-field legend { font-size: 14.5px; }

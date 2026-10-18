@@ -1,5 +1,6 @@
 import type { Catalog } from "../db/data";
 import { Balls, RacketIcon, SourceIcon } from "./icons";
+import { TagList } from "./tags";
 
 type Racket = Catalog["rackets"][number];
 type PlayerReview = Catalog["reviews"][number];
@@ -52,6 +53,7 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
       <Balls rating={r.rating}/>
     </header>
     <p className="note-body">{r.reviewText}</p>
+    <TagList tags={r.tags}/>
     {!showRacket && scores.length > 0 && <div className="subscores-line">{scores.map(([label, key]) => <span key={key}>{label}<b>{r[key]}</b></span>)}</div>}
     <footer className="note-foot">
       <Avatar alias={r.alias}/>
@@ -68,6 +70,7 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
     {showRacket && <header className="note-head"><RacketHeading racket={racket} data={data}/></header>}
     <div className="quote" style={showRacket ? undefined : {marginTop: 0}}>
       <p className="note-body">{e.excerpt}</p>
+      <TagList tags={e.tags}/>
       <div className="cite">
         <SourceIcon platform={e.sourcePlatform}/>
         <b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}
