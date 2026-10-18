@@ -5,5 +5,5 @@ export const size = ogSize;
 export const contentType = "image/png";
 
 export default function Image() {
-  return ogCard({ eyebrow: "Player notes on padel rackets", title: "Real player reviews of padel rackets", detail: "From players, Reddit, YouTube, shops and forums" });
+  return ogCard({ eyebrow: "Player reviews of padel rackets", title: "Real player reviews of padel rackets", detail: "From players, Reddit, YouTube, shops and forums" });
 }

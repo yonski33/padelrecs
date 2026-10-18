@@ -106,7 +106,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
         {tagged.length >= 2 && <div className="says">
-          <h3>What players keep saying <span>· from {tagged.length} notes</span></h3>
+          <h3>What players keep saying <span>· from {tagged.length} reviews</span></h3>
           <TagList tags={topTags} counts={tagCounts}/>
         </div>}
       </div>
@@ -115,12 +115,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {s.average ? <>
           <div className="big">{s.average}<small>/ 5</small></div>
           <Balls rating={Number(s.average)} size="lg"/>
-          <p><b>{s.count}</b> player {s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> notes</p>
+          <p><b>{s.count}</b> player {s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
         </> : <>
           <div className="no-score">No ratings yet</div>
           <p>{external.length ? `${external.length} quoted from around the web, but no player has rated it here yet.` : "Nobody has rated this one yet. Be the first."}</p>
         </>}
-        <a className="button" href={addHref}><PlusIcon/>Add your note</a>
+        <a className="button" href={addHref}><PlusIcon/>Add your review</a>
         <p className="hint">Played it? No account needed.</p>
       </aside>
     </section>
@@ -156,13 +156,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div>}
 
         <div className="feed-heading">
-          <h2 className="feed-title">Notes</h2>
-          <nav className="source-nav" aria-label="Note sources">
+          <h2 className="feed-title">Reviews</h2>
+          <nav className="source-nav" aria-label="Review sources">
             {tabs.map(t => <a key={t.value} href={t.href} aria-current={source === t.value ? "page" : undefined}>{t.label}<span className="source-count">{t.count}</span></a>)}
           </nav>
         </div>
         {items.map(i => <div key={i.key}>{i.node}</div>)}
-        {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No player notes yet. This racket is waiting for its first review."} <a href={addHref}>Write one →</a></p>}
+        {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No player reviews yet. This racket is waiting for its first one."} <a href={addHref}>Write one →</a></p>}
       </div>
 
       <aside className="database-sidebar">
@@ -182,7 +182,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
         <section>
           <h2>About these ratings</h2>
-          <p className="side-note">Only approved player reviews count toward the average. Every player note is checked for spam before it appears.</p>
+          <p className="side-note">Only approved player reviews count toward the average. Every player review is checked for spam before it appears.</p>
         </section>
       </aside>
     </div>
