@@ -43,7 +43,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
   (web||specs) ? db.select({id:brands.id,name:brands.name}).from(brands).orderBy(brands.name) : Promise.resolve([])
  ]);
  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Manage player submissions, web reviews, and racket specifications.</p></div>
- <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>Rackets &amp; specs</a></nav>
+ <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>Rackets &amp; specs</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
  {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
  {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
  <form method="post" action="/api/admin/external-reviews" className="review-form">
