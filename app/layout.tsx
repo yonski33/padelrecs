@@ -4,6 +4,7 @@ import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "./site-header";
 import { BallIcon } from "./icons";
+import { Analytics } from "./analytics";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
@@ -21,5 +22,6 @@ export default function Layout({children}: {children: React.ReactNode}) {
         <a href="/rackets">All rackets</a>
       </nav>
     </div></footer>
+    {process.env.VERCEL_ENV === "production" && <Analytics/>}
   </body></html>;
 }
