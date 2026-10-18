@@ -174,7 +174,8 @@ button:disabled { opacity: .6; cursor: progress; }
 .day::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .day span { font-weight: 400; color: var(--ink-3); }
 
-.end-note { text-align: center; padding: 28px 0 0; }
+.end-note { text-align: center; padding: 28px 0 0; font-size: 14.5px; color: var(--ink-3); }
+.end-note a { font-weight: 600; }
 .empty-feed { padding: 32px 0; color: var(--ink-2); }
 
 /* ---------- Notes ---------- */
@@ -661,7 +662,6 @@ summary { cursor: pointer; font-weight: 600; }
 
 .load-more { display: flex; justify-content: center; margin: 28px 0 0; }
 .load-more .button { min-width: 220px; }
-.load-more + .end-note { padding-top: 14px; }
 
 /* ---------- Helpful votes ---------- */
 

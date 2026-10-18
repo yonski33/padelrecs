@@ -90,6 +90,6 @@ export default async function Home({ searchParams }: {
     {items.length > 0 && items.length < 4 && strip}
     {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
     {items.length > show && <LoadMore href={`/?${source !== "all" ? `source=${source}&` : ""}show=${show + PAGE}`}/>}
-    {items.length > 0 && <p className="end-note"><a className="button ghost" href="/add-review">Played one of these? Add your own review</a></p>}
+    {items.length > 0 && items.length <= show && <p className="end-note">You've reached the end. Played one of these? <a href="/add-review">Add your own review →</a></p>}
   </div><Sidebar data={data}/></div></main>;
 }
