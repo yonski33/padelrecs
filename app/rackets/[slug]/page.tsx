@@ -21,7 +21,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   return { title: { absolute: title }, description, alternates: { canonical: `/rackets/${r.slug}` }, openGraph: { title, description, url: `/rackets/${r.slug}`, type: "website" } };
 }
 
-export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]}>}) {
+export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]; sort?: string | string[]}>}) {
   const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
   const r = data.rackets.find(r => r.slug === slug);
   if (!r) notFound();
@@ -31,6 +31,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const reviews = data.reviews.filter(x => x.racketId === r.id);
   const external = data.external.filter(e => e.racketId === r.id);
   const source = query.source === "players" || query.source === "web" ? query.source : "all";
+  const sort = query.sort === "helpful" ? "helpful" : "newest";
+  const link = (src: string, srt: string) => { const q = new URLSearchParams(); if (src !== "all") q.set("source", src); if (srt !== "newest") q.set("sort", srt); const qs = q.toString(); return `/rackets/${r.slug}${qs ? `?${qs}` : ""}`; };
 
   const cats = categories.map(([label, key]) => {
     const vals = reviews.flatMap(x => x[key] == null ? [] : [x[key]!]);
@@ -52,13 +54,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const platforms = [...external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
 
   const items = [
-    ...(source !== "web" ? reviews.map(x => ({ date: x.createdAt, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/> })) : []),
-    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/> })) : []),
-  ].sort((a, b) => b.date.localeCompare(a.date));
+    ...(source !== "web" ? reviews.map(x => ({ date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/> })) : []),
+    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/> })) : []),
+  ].sort((a, b) => (sort === "helpful" ? b.helpful - a.helpful : 0) || b.date.localeCompare(a.date));
   const tabs = [
-    { value: "all", label: "All", count: reviews.length + external.length, href: `/rackets/${r.slug}` },
-    { value: "players", label: "From players", count: reviews.length, href: `/rackets/${r.slug}?source=players` },
-    { value: "web", label: "From around the web", count: external.length, href: `/rackets/${r.slug}?source=web` },
+    { value: "all", label: "All", count: reviews.length + external.length, href: link("all", sort) },
+    { value: "players", label: "From players", count: reviews.length, href: link("players", sort) },
+    { value: "web", label: "From around the web", count: external.length, href: link("web", sort) },
   ];
   const specs: [string, string | number | null][] = [["Year", r.year], ["Shape", r.shape], ["Weight", r.weight], ["Balance", r.balance], ["Core", r.core], ["Surface", r.surface]];
   const addHref = `/add-review?racket=${r.id}`;
@@ -161,6 +163,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             {tabs.map(t => <a key={t.value} href={t.href} aria-current={source === t.value ? "page" : undefined}>{t.label}<span className="source-count">{t.count}</span></a>)}
           </nav>
         </div>
+        {items.length > 1 && <p className="sort-links">Sort: {(["newest", "helpful"] as const).map(v => <a key={v} href={link(source, v)} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</a>)}</p>}
         {items.map(i => <div key={i.key}>{i.node}</div>)}
         {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No player reviews yet. This racket is waiting for its first one."} <a href={addHref}>Write one →</a></p>}
       </div>

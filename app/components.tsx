@@ -1,6 +1,7 @@
 import type { Catalog } from "../db/data";
 import { Balls, RacketIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
+import { HelpfulButton } from "./helpful-button";
 
 type Racket = Catalog["rackets"][number];
 type PlayerReview = Catalog["reviews"][number];
@@ -59,6 +60,7 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
       <Avatar alias={r.alias}/>
       <span className="who"><b>{r.alias || "anonymous"}</b>{details.map(d => <span key={d}><span className="dot">·</span>{d}</span>)}</span>
       <time dateTime={r.createdAt}>{shortDate(r.createdAt)}</time>
+      <HelpfulButton type="player" id={r.id} count={r.helpful}/>
     </footer>
   </article>;
 }
@@ -78,6 +80,7 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
         {e.sourceUrl ? <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original ↗</a> : <span className="pending-link">source link coming</span>}
       </div>
     </div>
+    <footer className="note-foot ext-foot"><HelpfulButton type="web" id={e.id} count={e.helpful}/></footer>
   </article>;
 }
 
