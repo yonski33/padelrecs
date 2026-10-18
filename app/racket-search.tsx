@@ -25,7 +25,7 @@ function highlight(name: string, query: string) {
   return parts;
 }
 
-const noteCount = (n?: number) => n === undefined ? "" : n === 0 ? "no notes yet" : `${n} ${n === 1 ? "note" : "notes"}`;
+const noteCount = (n?: number) => n === undefined ? "" : n === 0 ? "no reviews yet" : `${n} ${n === 1 ? "review" : "reviews"}`;
 
 export function RacketSearch() {
   const [query, setQuery] = useState("");

@@ -5,7 +5,7 @@ import { RacketSearch } from "./racket-search";
 import { BallIcon, PlusIcon } from "./icons";
 
 const links = [
-  ["/", "Player notes"],
+  ["/", "Player reviews"],
   ["/rackets", "Rackets"],
   ["/brands", "Brands"],
   ["/add-review", "Add a review"],
@@ -20,7 +20,7 @@ export function SiteHeader() {
       <div className="wrap header-top">
         <a className="logo" href="/">
           <BallIcon/>
-          <span className="logo-text"><span className="wordmark">padelrecs<span>.com</span></span><span className="descriptor">player notes on padel rackets</span></span>
+          <span className="logo-text"><span className="wordmark">padelrecs<span>.com</span></span><span className="descriptor">player reviews of padel rackets</span></span>
         </a>
         <RacketSearch/>
         {!onAddPage && <a className="button header-add" href="/add-review"><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}

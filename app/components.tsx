@@ -114,21 +114,21 @@ export function Sidebar({data}: {data: Catalog}) {
   const recentlyAdded = [...data.rackets].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
   const lonely = data.rackets.map(r => ({ racket: r, count: notesFor(r.id) })).filter(x => x.count <= 2)
     .sort((a, b) => a.count - b.count || b.racket.createdAt.localeCompare(a.racket.createdAt)).slice(0, 3);
-  const notes = (n: number) => n === 0 ? "no notes yet" : `${n} ${n === 1 ? "note" : "notes"}`;
+  const notes = (n: number) => n === 0 ? "no reviews yet" : `${n} ${n === 1 ? "review" : "reviews"}`;
 
   return <aside className="database-sidebar">
     <section className="week">
       {weekPlayers + weekWeb > 0 ? <>
         <h2>This week <small>last 7 days</small></h2>
         <dl>
-          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "note" : "notes"}, {weekPlayers} from players</dd>
+          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "review" : "reviews"}, {weekPlayers} from players</dd>
           <dt>{weekRackets}</dt><dd>{weekRackets === 1 ? "racket" : "rackets"} talked about</dd>
           <dt>{data.rackets.length}</dt><dd>rackets in the database</dd>
         </dl>
       </> : <>
         <h2>So far</h2>
         <dl>
-          <dt>{data.reviews.length}</dt><dd>notes from players</dd>
+          <dt>{data.reviews.length}</dt><dd>reviews from players</dd>
           <dt>{data.external.length}</dt><dd>quoted from around the web</dd>
           <dt>{data.rackets.length}</dt><dd>rackets in the database</dd>
         </dl>
@@ -161,7 +161,7 @@ export function Sidebar({data}: {data: Catalog}) {
 
     {lonely.length > 0 && <section>
       <h2>Lonely rackets</h2>
-      <p className="side-note">Hardly any notes yet. Played one? Keep it company.</p>
+      <p className="side-note">Hardly any reviews yet. Played one? Keep it company.</p>
       <ul className="mini">{lonely.map(({racket, count}) => <li key={racket.id}><a href={`/add-review?racket=${racket.id}`}>
         <RacketIcon shape={racket.shape}/><span className="nm">{racket.name}<span className="mt">{notes(count)}</span></span><span className="end">+ add</span>
       </a></li>)}</ul>

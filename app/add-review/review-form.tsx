@@ -52,7 +52,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
  if(done)return <div className="success" role="status">
   <BallIcon/>
   <h1>Nice one{done.alias?`, ${done.alias}`:""}.</h1>
-  <p>Your note on the {done.racket||"racket"} is in the queue. It goes live after a quick check, and the next person deciding will thank you.</p>
+  <p>Your review of the {done.racket||"racket"} is in the queue. It goes live after a quick check, and the next person deciding will thank you.</p>
   <div className="row">{done.slug&&<a className="button" href={`/rackets/${done.slug}`}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">Review another racket</a></div>
  </div>;
 
@@ -122,14 +122,14 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
      </div>
      {error&&<div className="form-error" role="alert">{error}</div>}
      <div className="submit-row">
-      <button disabled={busy} type="submit">{busy?"Posting…":"Post my note"}</button>
+      <button disabled={busy} type="submit">{busy?"Posting…":"Post my review"}</button>
       <p>Goes live after a quick spam check.</p>
      </div>
     </section>
    </form>
   </div>
   <aside className="tips">
-   <h2>What makes a note useful</h2>
+   <h2>What makes a review useful</h2>
    <ul>
     <li>What you played with before, and how this compares</li>
     <li>Your weight as played, if you know it</li>
@@ -137,7 +137,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
     <li>Arm comfort, if that matters to you</li>
     <li>Durability, once you’ve had it a while</li>
    </ul>
-   <p>Negative notes are just as welcome. We check for spam, not for opinions.</p>
+   <p>Negative reviews are just as welcome. We check for spam, not for opinions.</p>
   </aside>
  </div>;
 }

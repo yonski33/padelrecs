@@ -58,9 +58,9 @@ export default async function Home({ searchParams }: {
   const popular = (week.length >= 2 ? week : month).slice(0, 4);
   const popularLabel = week.length >= 2 ? "this week" : "this month";
   const strip = popular.length >= 2 && <section className="strip" aria-label={`Popular ${popularLabel}`}>
-    <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new notes</span></div>
+    <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new reviews</span></div>
     <ol>{popular.map(({racket, count}) => { const {brand, model} = racketParts(racket, data); return <li key={racket.id}><a href={`/rackets/${racket.slug}`}>
-      <RacketIcon shape={racket.shape}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "note" : "notes"}</span>
+      <RacketIcon shape={racket.shape}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
     </a></li>; })}</ol>
   </section>;
 
@@ -68,10 +68,10 @@ export default async function Home({ searchParams }: {
   return <main className="home"><div className="columns"><div>
     <div className="feed-heading">
       <div>
-        <h1 className="feed-title">Latest player notes</h1>
+        <h1 className="feed-title">Latest player reviews</h1>
         <p className="feed-sub">{weekNotes > 0 ? `${weekNotes} new this week, from players and from around the web.` : "From players, and from around the web with the source linked."}</p>
       </div>
-      <nav className="source-nav" aria-label="Note sources">
+      <nav className="source-nav" aria-label="Review sources">
         {sources.map(item => <a key={item.value} href={item.href} aria-current={source === item.value ? "page" : undefined}>
           {item.label}{item.value !== "all" && <span className="source-count">{item.count.toLocaleString("en-US")}</span>}
         </a>)}
@@ -88,8 +88,8 @@ export default async function Home({ searchParams }: {
       </Fragment>;
     })}
     {items.length > 0 && items.length < 4 && strip}
-    {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No notes here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
+    {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
     {items.length > show && <LoadMore href={`/?${source !== "all" ? `source=${source}&` : ""}show=${show + PAGE}`}/>}
-    {items.length > 0 && <p className="end-note"><a className="button ghost" href="/add-review">Played one of these? Add your own note</a></p>}
+    {items.length > 0 && <p className="end-note"><a className="button ghost" href="/add-review">Played one of these? Add your own review</a></p>}
   </div><Sidebar data={data}/></div></main>;
 }
