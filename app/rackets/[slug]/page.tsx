@@ -2,7 +2,9 @@ export const dynamic = "force-dynamic";
 import { cache } from "react";
 import type { Metadata } from "next";
 import { catalog as loadCatalog, score } from "../../../db/data";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { redirectedSlug } from "../../../db/racket-slugs";
+import { database } from "../../../db/data";
 import { Review, External, racketParts } from "../../components";
 import { Balls, PlusIcon, RacketIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
@@ -24,7 +26,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]; sort?: string | string[]}>}) {
   const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
   const r = data.rackets.find(r => r.slug === slug);
-  if (!r) notFound();
+  if (!r) {
+    // Renamed rackets: old addresses redirect permanently so links and search rankings carry over.
+    const moved = await redirectedSlug(await database(), slug);
+    if (moved) permanentRedirect(`/rackets/${moved}`);
+    notFound();
+  }
   const brand = data.brands.find(b => b.id === r.brandId);
   const { model } = racketParts(r, data);
   const s = score(data, r.id);

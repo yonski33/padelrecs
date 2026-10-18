@@ -1,0 +1,667 @@
+{
+  "id": "88fe0b80-e4eb-445c-bd09-5ed183412ec5",
+  "prevId": "cef8df2c-2749-449c-aa15-e581b615e4bc",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "padelrecs.brands": {
+      "name": "brands",
+      "schema": "padelrecs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "brands_slug_unique": {
+          "name": "brands_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "padelrecs.external_reviews": {
+      "name": "external_reviews",
+      "schema": "padelrecs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "racket_id": {
+          "name": "racket_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "excerpt": {
+          "name": "excerpt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_platform": {
+          "name": "source_platform",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_name": {
+          "name": "source_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_url": {
+          "name": "source_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_date": {
+          "name": "source_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "external_rating": {
+          "name": "external_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tags": {
+          "name": "tags",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::text[]"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "external_racket_idx": {
+          "name": "external_racket_idx",
+          "columns": [
+            {
+              "expression": "racket_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "external_feed_idx": {
+          "name": "external_feed_idx",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "external_reviews_racket_id_rackets_id_fk": {
+          "name": "external_reviews_racket_id_rackets_id_fk",
+          "tableFrom": "external_reviews",
+          "tableTo": "rackets",
+          "schemaTo": "padelrecs",
+          "columnsFrom": [
+            "racket_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "padelrecs.racket_slug_redirects": {
+      "name": "racket_slug_redirects",
+      "schema": "padelrecs",
+      "columns": {
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "racket_id": {
+          "name": "racket_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "racket_slug_redirects_racket_idx": {
+          "name": "racket_slug_redirects_racket_idx",
+          "columns": [
+            {
+              "expression": "racket_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "racket_slug_redirects_racket_id_rackets_id_fk": {
+          "name": "racket_slug_redirects_racket_id_rackets_id_fk",
+          "tableFrom": "racket_slug_redirects",
+          "tableTo": "rackets",
+          "schemaTo": "padelrecs",
+          "columnsFrom": [
+            "racket_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "padelrecs.rackets": {
+      "name": "rackets",
+      "schema": "padelrecs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "brand_id": {
+          "name": "brand_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "year": {
+          "name": "year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "shape": {
+          "name": "shape",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weight": {
+          "name": "weight",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "balance": {
+          "name": "balance",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "surface": {
+          "name": "surface",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "core": {
+          "name": "core",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "rackets_brand_idx": {
+          "name": "rackets_brand_idx",
+          "columns": [
+            {
+              "expression": "brand_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "rackets_brand_id_brands_id_fk": {
+          "name": "rackets_brand_id_brands_id_fk",
+          "tableFrom": "rackets",
+          "tableTo": "brands",
+          "schemaTo": "padelrecs",
+          "columnsFrom": [
+            "brand_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "rackets_slug_unique": {
+          "name": "rackets_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "padelrecs.review_votes": {
+      "name": "review_votes",
+      "schema": "padelrecs",
+      "columns": {
+        "review_type": {
+          "name": "review_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "review_id": {
+          "name": "review_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "voter": {
+          "name": "voter",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "review_votes_unique": {
+          "name": "review_votes_unique",
+          "columns": [
+            {
+              "expression": "review_type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "review_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "voter",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "review_votes_voter_idx": {
+          "name": "review_votes_voter_idx",
+          "columns": [
+            {
+              "expression": "voter",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "review_vote_type": {
+          "name": "review_vote_type",
+          "value": "\"padelrecs\".\"review_votes\".\"review_type\" in ('player','web')"
+        }
+      },
+      "isRLSEnabled": true
+    },
+    "padelrecs.reviews": {
+      "name": "reviews",
+      "schema": "padelrecs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "racket_id": {
+          "name": "racket_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "power_rating": {
+          "name": "power_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "control_rating": {
+          "name": "control_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "maneuverability_rating": {
+          "name": "maneuverability_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "comfort_rating": {
+          "name": "comfort_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "forgiveness_rating": {
+          "name": "forgiveness_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "player_level": {
+          "name": "player_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "playing_side": {
+          "name": "playing_side",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "playing_style": {
+          "name": "playing_style",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "time_with_racket": {
+          "name": "time_with_racket",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_text": {
+          "name": "review_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "alias": {
+          "name": "alias",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::text[]"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "reviews_feed_idx": {
+          "name": "reviews_feed_idx",
+          "columns": [
+            {
+              "expression": "status",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "reviews_racket_idx": {
+          "name": "reviews_racket_idx",
+          "columns": [
+            {
+              "expression": "racket_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "reviews_racket_id_rackets_id_fk": {
+          "name": "reviews_racket_id_rackets_id_fk",
+          "tableFrom": "reviews",
+          "tableTo": "rackets",
+          "schemaTo": "padelrecs",
+          "columnsFrom": [
+            "racket_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "review_status": {
+          "name": "review_status",
+          "value": "\"padelrecs\".\"reviews\".\"status\" in ('pending','approved','rejected')"
+        },
+        "review_rating": {
+          "name": "review_rating",
+          "value": "\"padelrecs\".\"reviews\".\"rating\" between 1 and 5"
+        },
+        "review_category_0": {
+          "name": "review_category_0",
+          "value": "\"padelrecs\".\"reviews\".\"power_rating\" is null or \"padelrecs\".\"reviews\".\"power_rating\" between 1 and 5"
+        },
+        "review_category_1": {
+          "name": "review_category_1",
+          "value": "\"padelrecs\".\"reviews\".\"control_rating\" is null or \"padelrecs\".\"reviews\".\"control_rating\" between 1 and 5"
+        },
+        "review_category_2": {
+          "name": "review_category_2",
+          "value": "\"padelrecs\".\"reviews\".\"maneuverability_rating\" is null or \"padelrecs\".\"reviews\".\"maneuverability_rating\" between 1 and 5"
+        },
+        "review_category_3": {
+          "name": "review_category_3",
+          "value": "\"padelrecs\".\"reviews\".\"comfort_rating\" is null or \"padelrecs\".\"reviews\".\"comfort_rating\" between 1 and 5"
+        },
+        "review_category_4": {
+          "name": "review_category_4",
+          "value": "\"padelrecs\".\"reviews\".\"forgiveness_rating\" is null or \"padelrecs\".\"reviews\".\"forgiveness_rating\" between 1 and 5"
+        }
+      },
+      "isRLSEnabled": true
+    }
+  },
+  "enums": {},
+  "schemas": {
+    "padelrecs": "padelrecs"
+  },
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
