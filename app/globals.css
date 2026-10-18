@@ -662,3 +662,28 @@ summary { cursor: pointer; font-weight: 600; }
 .load-more { display: flex; justify-content: center; margin: 28px 0 0; }
 .load-more .button { min-width: 220px; }
 .load-more + .end-note { padding-top: 14px; }
+
+/* ---------- Helpful votes ---------- */
+
+.react { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; }
+.helpful {
+  display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 0 11px;
+  border: 1px solid var(--line); border-radius: 999px; background: transparent;
+  font: 500 12.5px/1 var(--sans); color: var(--ink-2); white-space: nowrap;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.helpful svg { width: 13px; height: 13px; transition: transform .25s cubic-bezier(.3,1.8,.5,1); }
+.helpful:hover { border-color: var(--line-2); background: var(--surface); color: var(--ink); }
+.helpful[aria-pressed="true"] { background: var(--lime-wash); border-color: #c7db5a; color: #2f3b0e; }
+.helpful[aria-pressed="true"] svg { transform: translateY(-2px); }
+.helpful .n { font-variant-numeric: tabular-nums; font-weight: 600; }
+.react-note { font-size: 12px; color: #8a3424; }
+.ext-foot { margin-top: 8px; }
+@media (max-width: 680px) {
+  .note-foot .react { margin-left: 0; width: 100%; padding-top: 4px; }
+  .ext-foot .react { width: auto; margin-left: auto; padding-top: 0; }
+  .helpful { min-height: 36px; padding: 0 14px; font-size: 13px; }
+}
+.sort-links { display: flex; align-items: center; gap: 4px 14px; margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
+.sort-links a { color: var(--ink-2); font-weight: 500; }
+.sort-links a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--lime); text-decoration-thickness: 3px; text-underline-offset: 4px; }

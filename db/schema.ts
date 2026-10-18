@@ -1,4 +1,4 @@
-import { pgSchema, text, integer, index, check } from "drizzle-orm/pg-core";
+import { pgSchema, text, integer, index, check, uniqueIndex } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 // Not exposed through Supabase's public Data API. All catalog access goes through Next.js.
 export const catalogSchema = pgSchema("padelrecs");
@@ -12,3 +12,7 @@ export const reviews = catalogSchema.table("reviews", {
 export const externalReviews = catalogSchema.table("external_reviews", {
  id: text("id").primaryKey(), racketId: text("racket_id").notNull().references(() => rackets.id), excerpt: text("excerpt").notNull(), sourcePlatform: text("source_platform").notNull(), sourceName: text("source_name").notNull(), sourceUrl: text("source_url").notNull(), sourceDate: text("source_date"), externalRating: integer("external_rating"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull()
 }, t => [index("external_racket_idx").on(t.racketId),index("external_feed_idx").on(t.createdAt)]).enableRLS();
+// "Helpful" votes. The voter is a keyed hash of the visitor's network and browser, never the raw IP.
+export const reviewVotes = catalogSchema.table("review_votes", {
+ reviewType: text("review_type", { enum: ["player", "web"] }).notNull(), reviewId: text("review_id").notNull(), voter: text("voter").notNull(), createdAt: text("created_at").notNull()
+}, t => [uniqueIndex("review_votes_unique").on(t.reviewType, t.reviewId, t.voter), index("review_votes_voter_idx").on(t.voter, t.createdAt), check("review_vote_type", sql`${t.reviewType} in ('player','web')`)]).enableRLS();

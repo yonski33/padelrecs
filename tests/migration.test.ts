@@ -77,7 +77,7 @@ test("RLS is enabled for all catalog tables and anonymous roles cannot read priv
  const {engine,portable}=await setup();try{
   await importSnapshot(portable,parseSnapshot(fixture));
   const result=await engine.query<{tablename:string,rowsecurity:boolean}>("select tablename,rowsecurity from pg_tables where schemaname='padelrecs'");
-  assert.equal(result.rows.length,4);assert(result.rows.every(r=>r.rowsecurity));
+  assert.equal(result.rows.length,5);assert(result.rows.every(r=>r.rowsecurity));
   await engine.exec("CREATE ROLE anonymous_test; GRANT USAGE ON SCHEMA padelrecs TO anonymous_test; GRANT SELECT ON ALL TABLES IN SCHEMA padelrecs TO anonymous_test; SET ROLE anonymous_test;");
   const visible=await engine.query("select email from padelrecs.reviews");assert.equal(visible.rows.length,0);
   await engine.exec("RESET ROLE;");
