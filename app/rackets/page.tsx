@@ -1,4 +1,6 @@
 export const dynamic = "force-dynamic";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "All Padel Rackets – Player Reviews and Ratings", description: "Every padel racket on PadelRecs with community ratings. Filter by brand, year and shape, then read what players say about each one.", alternates: { canonical: "/rackets" } };
 import { catalog, score } from "../../db/data";
 import { matchingRackets } from "../../lib/racket-search";
 import { RacketRow } from "../components";

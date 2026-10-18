@@ -1,10 +1,20 @@
 export const dynamic = "force-dynamic";
 import { Fragment } from "react";
+import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
 import { RacketIcon } from "./icons";
 
 const DAY = 86_400_000;
+
+const homeTitle = "PadelRecs – Real Player Reviews of Padel Rackets";
+const homeDescription = "Browse real padel racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.";
+export const metadata: Metadata = {
+  title: { absolute: homeTitle },
+  description: homeDescription,
+  alternates: { canonical: "/" },
+  openGraph: { title: homeTitle, description: homeDescription, url: "/", type: "website" },
+};
 
 // "Today", "Yesterday", a weekday within the last week, otherwise the full date (UTC, like the stored timestamps).
 function dayLabel(iso: string, now: Date) {
