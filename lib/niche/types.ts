@@ -45,6 +45,10 @@ export type Niche = {
     adminLoginHint: string;
   };
   words: Words;
+  /** Who writes reviews: "player" / "players" on sports sites, "user" / "users" on SkinRecs. */
+  people: Words;
+  /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
+  productYears?: boolean;
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */
@@ -94,6 +98,17 @@ export type Niche = {
     ogFallbackTitle: string;
   };
   copy: {
+    /** Sentence-level wording that differs between sports and other niches. */
+    ui: {
+      formIntro: string;        // under "Add a review"
+      howItWent: string;        // "how it played" in "…at least 20 characters about how it played."
+      aboutYou: string;         // form step "About your game"
+      howItPerforms: string;    // "How it plays": form step and racket-page panel
+      whoUsesIt: string;        // "Who's playing it" panel
+      triedIt: string;          // "Played it?"
+      triedOne: string;         // "Played one?"
+      triedOneOfThese: string;  // "Played one of these?"
+    };
     notFound: string;
     about: { heading: string; paragraphs: [string, ...string[]]; sections: { heading: string; body: string }[] };
   };

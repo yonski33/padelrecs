@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { niche } from "../lib/niche";
+import { niche, hasYears } from "../lib/niche";
 
 const { words: w, examples: ex } = niche;
 
@@ -24,8 +24,8 @@ export default function RacketPicker({models,brands,searchable=false,initialRack
    <input type="hidden" name="racketId" value={selected?.id||""}/>
   </> : <select name="racketId" required defaultValue={initialRacket||""}><option value="" disabled>{`Choose a ${w.one}…`}</option>{models.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select>}<small>{`Not listed? Select “New ${w.one}” above to add it.`}</small></label> : <div className="new-racket-fields">
    <label className="field">Brand<input name="brandName" defaultValue={typedBrand?.name||""} list="brand-options" required maxLength={100} placeholder={`e.g. ${ex.brand}`}/><datalist id="brand-options">{brands.map(b=><option key={b.name} value={b.name}/>)}</datalist><small>Choose an existing brand or type a new one.</small></label>
-   <div className="form-grid"><label className="field">Model name<input name="modelName" defaultValue={typedModel} required maxLength={150} placeholder={`e.g. ${ex.model}`}/><small>Without the brand or year.</small></label><label className="field">Year<input name="year" defaultValue={typedYear} type="number" required min={1980} max={2100} placeholder={`e.g. ${ex.year}`}/></label></div>
-   <p className="small muted">{searchable ? "Enter the brand, model and year. Your review will be held for moderation." : `The ${w.one} will be added to the catalog when you publish this review. Other specifications can remain blank.`}</p>
+   <div className="form-grid"><label className="field">Model name<input name="modelName" defaultValue={typedModel} required maxLength={150} placeholder={`e.g. ${ex.model}`}/><small>{hasYears ? "Without the brand or year." : "Without the brand."}</small></label>{hasYears && <label className="field">Year<input name="year" defaultValue={typedYear} type="number" required min={1980} max={2100} placeholder={`e.g. ${ex.year}`}/></label>}</div>
+   <p className="small muted">{searchable ? `Enter the brand, ${hasYears ? "model and year" : "and product name"}. Your review will be held for moderation.` : `The ${w.one} will be added to the catalog when you publish this review. Other specifications can remain blank.`}</p>
   </div>}
  </fieldset>;
 }

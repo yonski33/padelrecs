@@ -21,7 +21,7 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
  const selected=player||external;if(!selected)notFound();
  const models=await db.select({id:rackets.id,name:rackets.name}).from(rackets).orderBy(rackets.name);
  const back=web?"/admin?tab=web":`/admin?status=${player!.status}`;
- return <main className="narrow"><div className="page-title"><h1>Edit {web?"web review":"player submission"}</h1></div>
+ return <main className="narrow"><div className="page-title"><h1>Edit {web?"web review":`${niche.people.one} submission`}</h1></div>
  <p><a href={back}>← Back to reviews</a></p>
  {q.result&&errors[q.result]&&<p className="form-error" role="alert">{errors[q.result]}</p>}
  <form action="/api/admin/edit-review" method="post" className="review-form">

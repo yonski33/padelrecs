@@ -124,8 +124,29 @@ test("every niche has its tab and home-screen icons", async () => {
   for (const id of Object.keys(niches)) for (const file of ["favicon.ico", "icon.svg", "apple-icon.png"]) await access(`public/niches/${id}/${file}`);
 });
 
-test("every niche has a recorded Vercel project", () => {
+test("live sites have their Vercel project recorded", () => {
+  // A niche gets its entry once its Vercel project exists (SkinRecs is still being built).
   const projects = (targets as { vercelProjects: Record<string, { name: string; id: string }> }).vercelProjects;
-  for (const id of Object.keys(niches)) assert.match(projects[id]?.id ?? "", /^prj_/, `${id} needs a Vercel project in deployment/targets.json`);
+  for (const id of ["padel", "pickleball"]) assert.match(projects[id]?.id ?? "", /^prj_/, `${id} needs a Vercel project in deployment/targets.json`);
+  for (const [id, project] of Object.entries(projects)) assert(Object.hasOwn(niches, id) && /^prj_/.test(project.id), `bad vercelProjects entry ${id}`);
   assert.equal(projects.padel.id, targets.vercelProjectId);
+});
+
+test("skin: products without years, users instead of players, skincare profile", () => {
+  const n = selectNiche("skin");
+  assert.equal(n.schema, "skinrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.people.many, "users");
+  assert.deepEqual(n.categories.map(c => c.label), ["Results", "Texture", "Gentleness", "Scent", "Value"]);
+  assert.deepEqual(n.profile.playerLevel.options.map(o => o.value), ["Dry", "Oily", "Combination", "Normal", "Sensitive"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Type", "Size", "Key ingredients", "Skin types", "Fragrance"]);
+  assert(n.copy.about.sections.some(s => s.heading === "Not medical advice"));
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+  // Sports sites keep their wording.
+  assert.equal(niches.padel.people.many, "players");
+  assert.equal(niches.padel.copy.ui.whoUsesIt, "Who's playing it");
+  assert.notEqual(niches.padel.productYears, false);
 });

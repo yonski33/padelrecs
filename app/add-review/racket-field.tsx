@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import { matchingRackets } from "../../lib/racket-search";
 import { ProductIcon } from "../icons";
-import { niche } from "../../lib/niche";
+import { niche, hasYears } from "../../lib/niche";
 
 const { words: w, examples: ex } = niche;
 
@@ -38,8 +38,8 @@ function closeRackets(list: FieldRacket[], typed: string) {
 function guess(typed: string, brands: { name: string }[]) {
   const text = typed.trim().replace(/\s+/g, " ");
   const brand = [...brands].sort((a, b) => b.name.length - a.name.length).find(b => text.toLowerCase().startsWith(b.name.toLowerCase() + " "));
-  const year = text.match(/(?:^|\s)((?:19|20)\d{2})$/)?.[1] ?? "";
-  const rest = text.slice(brand ? brand.name.length + 1 : 0).replace(/\s*(?:19|20)\d{2}$/, "");
+  const year = hasYears ? text.match(/(?:^|\s)((?:19|20)\d{2})$/)?.[1] ?? "" : "";
+  const rest = text.slice(brand ? brand.name.length + 1 : 0).replace(hasYears ? /\s*(?:19|20)\d{2}$/ : /$^/, "");
   if (brand) return { brand: brand.name, model: rest, year };
   const [first = "", ...others] = rest.split(" ");
   return { brand: first, model: others.join(" "), year };
@@ -74,7 +74,7 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
       <button type="button" className="text-button" onClick={change}>Change</button>
     </div> : <div className="combo">
       <label className="sr-only" htmlFor="racket-input">{w.One}</label>
-      <input id="racket-input" value={text} autoComplete="off" placeholder={`Start typing, e.g. ${ex.brand} ${ex.model} ${ex.year}`}
+      <input id="racket-input" value={text} autoComplete="off" placeholder={`Start typing, e.g. ${ex.brand} ${ex.model}${hasYears ? ` ${ex.year}` : ""}`}
         role="combobox" aria-expanded={focused && suggestions.length > 0 && !isNew} aria-controls="racket-options" aria-autocomplete="list"
         aria-activedescendant={active >= 0 ? `racket-option-${active}` : undefined}
         onFocus={() => setFocused(true)} onBlur={() => setTimeout(() => setFocused(false), 150)}
@@ -106,10 +106,10 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
       <div className="new-racket-grid">
         <label>Brand<input name="brandName" list="brand-options" value={parts.brand} maxLength={100} required onChange={e => setEdits({ ...parts, brand: e.target.value })}/></label>
         <label>Model<input name="modelName" value={parts.model} maxLength={150} required onChange={e => setEdits({ ...parts, model: e.target.value })}/></label>
-        <label>Year<input name="year" type="number" inputMode="numeric" min={1980} max={2100} value={parts.year} required placeholder={String(ex.year)} onChange={e => setEdits({ ...parts, year: e.target.value })}/></label>
+        {hasYears && <label>Year<input name="year" type="number" inputMode="numeric" min={1980} max={2100} value={parts.year} required placeholder={String(ex.year)} onChange={e => setEdits({ ...parts, year: e.target.value })}/></label>}
       </div>
       <datalist id="brand-options">{brands.map(b => <option key={b.name} value={b.name}/>)}</datalist>
-      {!parts.year && <p className="help">Add the year — it tells this season’s model apart from last one’s.</p>}
+      {hasYears && !parts.year && <p className="help">Add the year — it tells this season’s model apart from last one’s.</p>}
       {forceNew && <button type="button" className="text-button" onClick={() => setForceNew(false)}>← Back to suggestions</button>}
     </div>}
 

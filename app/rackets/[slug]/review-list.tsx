@@ -30,7 +30,7 @@ export default function ReviewList({ slug, addHref, items, initialSource, initia
   const count = (src: Source) => src === "all" ? items.length : items.filter(i => i.kind === src).length;
   const shown = items.filter(i => source === "all" || i.kind === source)
     .sort((a, b) => (sort === "helpful" ? b.helpful - a.helpful : 0) || b.date.localeCompare(a.date));
-  const tabs: [Source, string][] = [["all", "All"], ["players", "From players"], ["web", "From around the web"]];
+  const tabs: [Source, string][] = [["all", "All"], ["players", `From ${niche.people.many}`], ["web", "From around the web"]];
 
   return <>
     <div className="feed-heading">
@@ -42,6 +42,6 @@ export default function ReviewList({ slug, addHref, items, initialSource, initia
     {shown.length > 1 && <p className="sort-links">Sort: {(["newest", "helpful"] as const).map(v =>
       <a key={v} href={link(source, v)} onClick={e => go(e, source, v)} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</a>)}</p>}
     {shown.map(i => <div key={i.key}>{i.node}</div>)}
-    {shown.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : `No player reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
+    {shown.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : `No ${niche.people.one} reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
   </>;
 }

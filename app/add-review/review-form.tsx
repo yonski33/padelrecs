@@ -3,7 +3,7 @@ import {Fragment, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
 import {LogoIcon} from "../icons";
 import {MAX_TAGS, TAGS} from "../../lib/tags";
-import { niche, catalogPath } from "../../lib/niche";
+import { niche, catalogPath, hasYears } from "../../lib/niche";
 
 // The API (app/api/reviews/route.ts) accepts exactly these niche option values.
 const {words: w, scoreUnit, profile, ratingWords, form: {prompts, tips}} = niche;
@@ -26,9 +26,9 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   event.preventDefault();setError("");
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
   if(values.racketMode==="existing"&&!values.racketId){setError(`Pick a ${w.one} from the list as you type.`);return;}
-  if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&/^\d{4}$/.test(values.year||""))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand, model and year.`);return;}
+  if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&(!hasYears||/^\d{4}$/.test(values.year||"")))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand${hasYears?", model and year":" and product name"}.`);return;}
   if(!values.rating){setError(`Give it an overall rating — tap one of the ${scoreUnit.many}.`);return;}
-  if((values.reviewText||"").trim().length<20){setError("Tell us a little more — at least 20 characters about how it played.");return;}
+  if((values.reviewText||"").trim().length<20){setError(`Tell us a little more — at least 20 characters about ${niche.copy.ui.howItWent}.`);return;}
   setBusy(true);
   try {
    const response=await fetch("/api/reviews",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...values,tags})});
@@ -56,7 +56,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
 
  return <div className="review-page">
   <div>
-   <div className="form-title"><h1>Add a review</h1><p>{`Tell other players how a ${w.one} actually played for you. Takes about two minutes, no account needed.`}</p></div>
+   <div className="form-title"><h1>Add a review</h1><p>{niche.copy.ui.formIntro}</p></div>
    <form className="review-form" onSubmit={submit} noValidate>
     <section className="step">
      <h2 className="step-h"><span className="no">1</span>{`Which ${w.one}?`}</h2>
@@ -80,14 +80,14 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
     </section>
 
     <section className="step">
-     <h2 className="step-h"><span className="no">3</span>About your game <small>optional · helps people find players like them</small></h2>
+     <h2 className="step-h"><span className="no">3</span>{`${niche.copy.ui.aboutYou} `}<small>{`optional · helps people find ${niche.people.many} like them`}</small></h2>
      <div className="group" role="radiogroup" aria-labelledby="level-label"><span className="group-label" id="level-label">{profile.playerLevel.label}</span><Options name="playerLevel" options={profile.playerLevel.options}/></div>
      <div className="group" role="radiogroup" aria-labelledby="side-label"><span className="group-label" id="side-label">{profile.playingSide.label}</span><Options name="playingSide" options={profile.playingSide.options}/></div>
      <div className="group" role="radiogroup" aria-labelledby="style-label"><span className="group-label" id="style-label">{profile.playingStyle.label}</span><Options name="playingStyle" options={profile.playingStyle.options}/></div>
     </section>
 
     <section className="step">
-     <h2 className="step-h"><span className="no">4</span>How it plays <small>optional · skip anything you’re unsure about</small></h2>
+     <h2 className="step-h"><span className="no">4</span>{`${niche.copy.ui.howItPerforms} `}<small>optional · skip anything you’re unsure about</small></h2>
      <div className="scale-ends" aria-hidden="true"><span>← low</span><span>high →</span></div>
      <div className="scale-rows">{categories.map(([label,name,hint])=><div className="scale-row" key={name} role="radiogroup" aria-labelledby={`${name}-label`}>
       <span className="nm" id={`${name}-label`}>{label}<small>{hint}</small></span>

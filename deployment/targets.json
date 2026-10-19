@@ -20,7 +20,8 @@
   "supabaseRegion": "eu-central-1",
   "nicheSchemas": {
     "padel": "padelrecs",
-    "pickleball": "pickleballrecs"
+    "pickleball": "pickleballrecs",
+    "skin": "skinrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

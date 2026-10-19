@@ -19,6 +19,7 @@ export const padel: Niche = {
     adminLoginHint: "Use the email and password for your PadelRecs admin account.",
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
+  people: { one: "player", many: "players", One: "Player", Many: "Players" },
   productPath: "rackets",
   scoreUnit: { one: "ball", many: "balls" },
   // Warm paper, court green, one ball-yellow accent.
@@ -131,6 +132,16 @@ export const padel: Niche = {
     ogFallbackTitle: "Padel racket reviews",
   },
   copy: {
+    ui: {
+      formIntro: "Tell other players how a racket actually played for you. Takes about two minutes, no account needed.",
+      howItWent: "how it played",
+      aboutYou: "About your game",
+      howItPerforms: "How it plays",
+      whoUsesIt: "Who's playing it",
+      triedIt: "Played it?",
+      triedOne: "Played one?",
+      triedOneOfThese: "Played one of these?",
+    },
     notFound: "We couldn’t find that racket or page. Maybe it moved, maybe it never existed, maybe the link took a bad bounce off the glass.",
     about: {
       heading: "Why PadelRecs exists",

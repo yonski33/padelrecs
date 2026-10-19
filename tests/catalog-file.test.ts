@@ -28,3 +28,22 @@ test("the pickleball starter catalog is complete, sourced and imports cleanly", 
     assert.deepEqual(counts, { brands: 8, rackets: 28, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("skin product types pick the right container", async () => {
+  const { shapeOf } = await import("../app/art/skin");
+  assert.equal(shapeOf("Serum"), "dropper");
+  assert.equal(shapeOf("Moisturizer"), "jar");
+  assert.equal(shapeOf("Eye cream"), "tube");
+  assert.equal(shapeOf("Sunscreen"), "tube");
+  assert.equal(shapeOf("Cleanser"), "bottle");
+  assert.equal(shapeOf("Mask"), "jar");
+});
+
+test("catalogs without model years keep the year out of names", () => {
+  const snapshot = catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "cerave", name: "CeraVe" }],
+    paddles: [{ brand: "cerave", name: "CeraVe Moisturizing Cream", shape: "Moisturizer", weight: null, core: null, surface: null, swingWeight: null, sources: ["https://example.com/"] }] }, "skinrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.rackets[0].name, "CeraVe Moisturizing Cream");
+  assert.equal(snapshot.tables.rackets[0].slug, "cerave-moisturizing-cream");
+  assert.equal(snapshot.tables.rackets[0].year, 2026);
+  assert.throws(() => catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "x", name: "X" }], paddles: [{ brand: "x", name: "X One", shape: null, weight: null, core: null, surface: null, swingWeight: null, sources: ["https://e.com"] }] }, "pickleballrecs", "t"), /needs a model year/);
+});
