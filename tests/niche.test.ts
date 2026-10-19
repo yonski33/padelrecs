@@ -151,11 +151,11 @@ test("skin: products without years, users instead of players, skincare profile",
   assert.notEqual(niches.padel.productYears, false);
 });
 
-test("tennis: rackets with years, NTRP hints, backhand, spin in the forgiveness column", () => {
+test("tennis: rackets named by generation (no years), NTRP hints, backhand, spin in the forgiveness column", () => {
   const n = selectNiche("tennis");
   assert.equal(n.schema, "tennisrecs");
   assert.equal(n.productPath, "rackets");
-  assert.notEqual(n.productYears, false);
+  assert.equal(n.productYears, false);
   assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Power:powerRating", "Control:controlRating", "Spin:forgivenessRating", "Comfort:comfortRating", "Maneuverability:maneuverabilityRating"]);
   assert(n.profile.playerLevel.options.every(o => o.hint?.startsWith("NTRP")));
   assert.deepEqual(n.profile.playingSide.options.map(o => o.value), ["One-handed", "Two-handed"]);

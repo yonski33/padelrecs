@@ -81,3 +81,20 @@ test("tennis head sizes pick the frame size", async () => {
   assert.equal(shapeOf("645 cm²"), "unknown");
   assert.equal(shapeOf(null), "unknown");
 });
+
+test("the TennisRecs starter catalog: 35 sourced rackets named by generation, with comparable stiffness", async () => {
+  const catalog = await readCatalog("db/catalogs/tennis.json");
+  const snapshot = catalogSnapshot(catalog, "tennisrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 6);
+  assert.equal(snapshot.tables.rackets.length, 35);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/tennis");
+  for (const r of snapshot.tables.rackets) {
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: head size ${r.shape}`);
+    assert(r.surface === null || /^\d\d RA$/.test(r.surface), `${r.name}: stiffness ${r.surface}`);
+    assert(r.core && /^\d\dx\d\d$/.test(r.core), `${r.name}: pattern ${r.core}`);
+  }
+  assert(catalog.products.every(p => p.sources.length > 0 && p.sources.every(s => /^https:\/\//.test(s))));
+  assert(!catalog.products.some(p => p.name.includes("Defyer")));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Wilson Pro Staff 97 V14")?.shape, "97 sq in (626 cm²)");
+});
