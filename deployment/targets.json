@@ -13,6 +13,11 @@
       "name": "pickleballrecs",
       "id": "prj_OA2gw9OeY3XBNtHAoySRm4Txr0sk",
       "domain": "www.pickleballrecs.com"
+    },
+    "skin": {
+      "name": "skinrecs",
+      "id": "prj_usyd9x8fQQen8k72d3HpMfZ2wJnx",
+      "domain": "www.skinrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
