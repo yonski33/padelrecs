@@ -81,7 +81,7 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
         <p className="note-body summary">{e.summary}</p>
         {e.excerpt && <blockquote className="source-quote">“{e.excerpt}”</blockquote>}
       </> : <p className="note-body">{e.excerpt}</p>}
-      <TagList tags={e.tags}/>
+      <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}/>
       <div className="cite">
         <SourceIcon platform={e.sourcePlatform}/>
         <b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}
@@ -89,14 +89,15 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
         {e.sourceUrl ? <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original ↗</a> : <span className="pending-link">source link coming</span>}
       </div>
     </div>
-    <footer className="note-foot ext-foot">{e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}<HelpfulButton type="web" id={e.id} count={e.helpful}/></footer>
+    <footer className="note-foot ext-foot"><HelpfulButton type="web" id={e.id} count={e.helpful}/></footer>
   </article>;
 }
 
 const sentimentLabel = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as const;
+// Shown first in the tag row, styled like a tag but in its own colour, so it reads as our label rather than the source's words.
 /** Our reading of how the source felt overall, set when the comment was moderated. Kept apart from the source's words. */
 export function SentimentBadge({sentiment}: {sentiment: keyof typeof sentimentLabel}) {
-  return <span className={`sentiment s-${sentiment}`} title="How this comment feels about it overall">{sentimentLabel[sentiment]}</span>;
+  return <span className={`tag sentiment s-${sentiment}`} title="How this comment feels about it overall">{sentimentLabel[sentiment].toLowerCase()}</span>;
 }
 
 /** Positive / mixed / negative share of a racket's web reviews, once there are enough judged ones to mean something. */

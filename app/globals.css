@@ -672,8 +672,9 @@ summary { cursor: pointer; font-weight: 600; }
 .ext-foot { margin-top: 8px; }
 /* Moderated sentiment of a web review, and the racket's overall web split. */
 .s-positive { --c: var(--green); } .s-mixed { --c: #d9b65c; } .s-negative { --c: #c47a52; }
-.sentiment { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
-.sentiment::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.tag.sentiment.s-positive, .quote .tag.sentiment.s-positive { background: #dfece2; color: #24543a; }
+.tag.sentiment.s-mixed, .quote .tag.sentiment.s-mixed { background: #ecebf6; color: #45436b; }
+.tag.sentiment.s-negative, .quote .tag.sentiment.s-negative { background: #f3e6dc; color: #6b3d22; }
 .web-split { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
 .web-split .lbl { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
 .web-split .lbl span { font-weight: 400; color: var(--ink-3); }
