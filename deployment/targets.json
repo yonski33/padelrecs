@@ -18,6 +18,11 @@
       "name": "skinrecs",
       "id": "prj_usyd9x8fQQen8k72d3HpMfZ2wJnx",
       "domain": "www.skinrecs.com"
+    },
+    "tennis": {
+      "name": "tennisrecs",
+      "id": "prj_Ke5UECinpe6ROKjpghc8nXazvV5Y",
+      "domain": "www.tennisrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
