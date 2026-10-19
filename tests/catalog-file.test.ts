@@ -98,3 +98,23 @@ test("the TennisRecs starter catalog: 35 sourced rackets named by generation, wi
   assert(!catalog.products.some(p => p.name.includes("Defyer")));
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Wilson Pro Staff 97 V14")?.shape, "97 sq in (626 cm²)");
 });
+
+test("the padel catalog expansion: sourced current models with unique URLs that import cleanly", async () => {
+  const catalog = await readCatalog("db/catalogs/padel.json");
+  const snapshot = catalogSnapshot(catalog, "padelrecs", "catalog:test");
+  const rows = snapshot.tables.rackets;
+  assert(rows.length >= 150, "the owner chose about 150 mid and top models");
+  assert.equal(new Set(rows.map(r => r.slug)).size, rows.length, "every racket gets its own URL");
+  assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every racket has an https source");
+  assert(rows.every(r => /\b20(25|26|27)$/.test(r.name)), "current models only, named with their year");
+  assert.equal(rows.find(r => r.name === "Oxdog Hyper Pro+ 2.0 2026")!.slug, "oxdog-hyper-pro-plus-2-0-2026", "a + model doesn't take the plain model's URL");
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    // The live import goes on top of the existing padel data; scripts/catalog-snapshot.ts + db:import check that against a backup first.
+    const counts = await importSnapshot(db, snapshot);
+    assert.deepEqual(counts, { brands: catalog.brands.length, rackets: rows.length, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
