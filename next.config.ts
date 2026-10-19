@@ -11,7 +11,9 @@ const config:NextConfig={
  // The catalogue pages live in app/rackets. A niche with another product word (PickleballRecs: /paddles) serves them there,
  // and plain /rackets addresses redirect. Generated share images keep their /rackets/<slug>/opengraph-image address.
  async rewrites(){
-  return products==="/rackets"?[]:[{source:products,destination:"/rackets"},{source:`${products}/:path*`,destination:"/rackets/:path*"}];
+  // Browsers ask for /favicon.ico on their own, and older pages linked /icon.svg and /apple-icon.png: answer with the niche's.
+  const icons=["favicon.ico","icon.svg","apple-icon.png"].map(file=>({source:`/${file}`,destination:`/niches/${niche.id}/${file}`}));
+  return products==="/rackets"?icons:[...icons,{source:products,destination:"/rackets"},{source:`${products}/:path*`,destination:"/rackets/:path*"}];
  },
  async redirects(){
   return products==="/rackets"?[]:[{source:"/rackets",destination:products,permanent:true},{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}];

@@ -11,7 +11,10 @@ import { niche, catalogPath } from "../lib/niche";
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
-export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"), title: {default: niche.seo.homeTitle, template: niche.seo.titleTemplate}, description: niche.seo.layoutDescription, openGraph: { siteName: niche.site.name, type: "website" }, twitter: { card: "summary_large_image" } };
+export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"), title: {default: niche.seo.homeTitle, template: niche.seo.titleTemplate}, description: niche.seo.layoutDescription, openGraph: { siteName: niche.site.name, type: "website" },
+  // Each niche's tab and home-screen icons live in public/niches/<niche> (scripts/niche-icons.tsx makes new ones).
+  icons: { icon: [{ url: `/niches/${niche.id}/favicon.ico`, sizes: "48x48", type: "image/x-icon" }, { url: `/niches/${niche.id}/icon.svg`, sizes: "any", type: "image/svg+xml" }], apple: [{ url: `/niches/${niche.id}/apple-icon.png`, sizes: "180x180", type: "image/png" }] },
+  twitter: { card: "summary_large_image" } };
 
 export default function Layout({children}: {children: React.ReactNode}) {
   return <html lang="en" className={`${display.variable} ${sans.variable}`} style={niche.theme as CSSProperties}><body>
