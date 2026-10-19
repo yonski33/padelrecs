@@ -40,7 +40,7 @@ test("PostgreSQL import preserves all values, pending status and long text; publ
   assert.equal(score(publicData,"racket-nox").average,"4.0");
   assert(!JSON.stringify(publicData).includes("private@example.test"));
   assert(!JSON.stringify(publicData).includes("pending@example.test"));
-  assert(publicData.reviews[0].reviewText.length>20000);assert(publicData.external[0].excerpt.length>20000);
+  assert(publicData.reviews[0].reviewText.length>20000);assert(publicData.external[0].excerpt!.length>20000);
   const pending=await db.select().from(reviews).where(eq(reviews.id,"pending-review"));assert.equal(pending[0].status,"pending");
  }finally{await engine.close();}
 });

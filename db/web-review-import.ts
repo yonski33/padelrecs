@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { eq } from "drizzle-orm";
 import { externalReviews, rackets } from "./schema";
 import type { PgDatabase, PgQueryResultHKT } from "drizzle-orm/pg-core";
 import type * as schema from "./schema";
@@ -6,8 +7,8 @@ import type { Niche } from "../lib/niche/types";
 
 /**
  * Publishing approved candidates from the research agent's queue (research-agent/data/candidates.jsonl) as web reviews.
- * Only approved items with an exact quote are published; the site shows web reviews as the source's own words,
- * so our own summaries are never presented as quotes.
+ * Each web review shows our summary (labelled as ours) and, when there is one, the source's exact words as a quote,
+ * so our own words are never presented as the source's. Already-published items are updated when their text changed.
  */
 const candidate = z.object({
   id: z.string().min(1),
@@ -17,6 +18,7 @@ const candidate = z.object({
   source_url: z.string().url(),
   source_date: z.string().nullable().optional(),
   excerpt: z.string().nullable().optional(),
+  summary: z.string().nullable().optional(),
   tags: z.array(z.string()).default([]),
   status: z.string(),
 }).passthrough();
@@ -41,19 +43,29 @@ export function sameSource(url: string) {
 }
 
 type Row = typeof externalReviews.$inferInsert;
-export type Plan = { rows: (Row & { candidateId: string })[]; skipped: { candidate: Candidate; reason: string }[] };
+type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; tags: string[] };
+export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; skipped: { candidate: Candidate; reason: string }[] };
 
-export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string }[]; external: { id: string; racketId: string; sourceUrl: string }[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
-  const plan: Plan = { rows: [], skipped: [] };
-  const ids = new Set(site.external.map(e => e.id));
+type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; tags: string[] };
+export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
+  const plan: Plan = { rows: [], updates: [], skipped: [] };
+  const byId = new Map(site.external.map(e => [e.id, e]));
   const quoted = new Set(site.external.map(e => `${e.racketId}|${sameSource(e.sourceUrl)}`));
   const tagBank = new Set(niche.tags.map(t => t.label));
   for (const c of candidates) {
-    if (c.status !== "approved") continue;
+    if (c.status !== "approved" && c.status !== "published") continue;
     const skip = (reason: string) => plan.skipped.push({ candidate: c, reason });
-    if (ids.has(webReviewId(c.id))) { skip("already published"); continue; }
-    const excerpt = c.excerpt?.trim();
-    if (!excerpt || excerpt.length < 20) { skip("no exact quote of at least 20 characters (summaries are never published as quotes)"); continue; }
+    const excerpt = c.excerpt?.trim() && c.excerpt.trim().length >= 20 ? c.excerpt.trim() : null;
+    const summary = c.summary?.trim() && c.summary.trim().length >= 30 ? c.summary.trim() : null;
+    const live = byId.get(webReviewId(c.id));
+    if (live) {
+      // Published before: bring the site's text and tags in line with the queue, never anything else.
+      const tags = [...new Set(c.tags)].filter(t => tagBank.has(t)).slice(0, 3);
+      if ((excerpt || summary) && (live.excerpt !== excerpt || live.summary !== summary || JSON.stringify(live.tags) !== JSON.stringify(tags))) plan.updates.push({ candidateId: c.id, id: live.id, excerpt, summary, tags });
+      continue;
+    }
+    if (c.status !== "approved") continue;
+    if (!excerpt && !summary) { skip("needs an exact quote (20+ characters) or a summary (30+ characters)"); continue; }
     const racket = site.rackets.find(r => r.name.toLowerCase() === c.racket_name.trim().toLowerCase());
     if (!racket) { skip(`no racket named "${c.racket_name}" on the site`); continue; }
     if (!niche.sourcePlatforms.includes(c.source_platform)) { skip(`source platform "${c.source_platform}" is not one the site uses`); continue; }
@@ -63,7 +75,7 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     if (quoted.has(key)) { skip("this source is already quoted for this racket on the site"); continue; }
     quoted.add(key);
     plan.rows.push({
-      candidateId: c.id, id: webReviewId(c.id), racketId: racket.id, excerpt,
+      candidateId: c.id, id: webReviewId(c.id), racketId: racket.id, excerpt, summary,
       sourcePlatform: c.source_platform, sourceName: c.source_name.trim(), sourceUrl: c.source_url.trim(),
       // Only full dates are shown on the site; a month or year alone would display as the 1st.
       sourceDate: c.source_date && /^\d{4}-\d{2}-\d{2}$/.test(c.source_date) ? c.source_date : null,
@@ -77,17 +89,22 @@ type Database = PgDatabase<PgQueryResultHKT, typeof schema>;
 export async function siteState(db: Pick<Database, "select">) {
   const [r, e] = await Promise.all([
     db.select({ id: rackets.id, name: rackets.name }).from(rackets),
-    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl }).from(externalReviews),
+    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, tags: externalReviews.tags }).from(externalReviews),
   ]);
   return { rackets: r, external: e };
 }
 
-/** Inserts the planned rows in one transaction; an existing id aborts nothing and is simply left alone. */
+/** Inserts new rows and applies text updates in one transaction; an existing id is never overwritten by an insert. */
 export async function applyImport(db: Database, plan: Plan) {
-  if (!plan.rows.length) return 0;
+  if (!plan.rows.length && !plan.updates.length) return { inserted: 0, updated: 0 };
   return db.transaction(async tx => {
-    const inserted = await tx.insert(externalReviews).values(plan.rows.map(({ candidateId: _, ...row }) => row)).onConflictDoNothing({ target: externalReviews.id }).returning({ id: externalReviews.id });
-    return inserted.length;
+    const inserted = plan.rows.length ? await tx.insert(externalReviews).values(plan.rows.map(({ candidateId: _, ...row }) => row)).onConflictDoNothing({ target: externalReviews.id }).returning({ id: externalReviews.id }) : [];
+    let updated = 0;
+    for (const u of plan.updates) {
+      const done = await tx.update(externalReviews).set({ excerpt: u.excerpt, summary: u.summary, tags: u.tags }).where(eq(externalReviews.id, u.id)).returning({ id: externalReviews.id });
+      updated += done.length;
+    }
+    return { inserted: inserted.length, updated };
   });
 }
 
