@@ -9,7 +9,7 @@ export function shapeOf(shape?: string | null): Shape {
   if (s.includes("elong")) return "elongated";
   if (s.includes("hybrid")) return "hybrid";
   if (s.includes("wide")) return "widebody";
-  if (s.includes("standard") || s.includes("classic") || s.includes("square")) return "standard";
+  if (s.includes("standard") || s.includes("traditional") || s.includes("classic") || s.includes("square")) return "standard";
   return "unknown";
 }
 
