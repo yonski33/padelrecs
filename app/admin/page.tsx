@@ -9,24 +9,26 @@ import RacketSpecs from "./racket-specs";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
+import { niche } from "../../lib/niche";
+const w = niche.words;
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {title: "Review admin", robots: {index: false, follow: false}};
 const date = (value:string) => new Date(value).toLocaleDateString("en-GB", {day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
 const messages: Record<string,string> = {
- approved:"Review approved. It is now visible in the feed and included in racket ratings.",
+ approved:`Review approved. It is now visible in the feed and included in ${w.one} ratings.`,
  rejected:"Review rejected. It is hidden from the feed and excluded from ratings.",
  pending:"Review moved back to pending and hidden from the public feed.",
  web:"Web review published.",
  "edit-saved":"Review updated.",
  "edit-invalid":"Could not open the review editor. Please try again.",
- invalid:"Please check all fields. A web review needs an existing racket or a new brand, model and year (1980–2100), an excerpt of at least 20 characters, source details, and a valid HTTP or HTTPS source link.",
+ invalid:`Please check all fields. A web review needs an existing ${w.one} or a new brand, model and year (1980–2100), an excerpt of at least 20 characters, source details, and a valid HTTP or HTTPS source link.`,
  missing:"That review no longer exists.",
  stale:"This review changed since the page loaded. Check its current status and try again.",
- "spec-saved":"Racket specs saved. The public racket page has been updated.",
- "spec-invalid":"Check the racket name, brand, year (1980–2100), and field lengths.",
- "spec-missing":"That racket no longer exists. Choose another racket.",
- "spec-slug-changed":"Racket saved with its new page address. The old address now redirects to the new one.",
- "spec-slug-taken":"That page address is already used by another racket. Nothing was saved — pick a different one.",
+ "spec-saved":`${w.One} specs saved. The public ${w.one} page has been updated.`,
+ "spec-invalid":`Check the ${w.one} name, brand, year (1980–2100), and field lengths.`,
+ "spec-missing":`That ${w.one} no longer exists. Choose another ${w.one}.`,
+ "spec-slug-changed":`${w.One} saved with its new page address. The old address now redirects to the new one.`,
+ "spec-slug-taken":`That page address is already used by another ${w.one}. Nothing was saved — pick a different one.`,
  "spec-slug-invalid":"That page address can't be used. Use letters, numbers and dashes. Nothing was saved.",
  failed:"Could not save your changes. Please try again."
 };
@@ -46,14 +48,14 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
   web ? db.select().from(externalReviews).where(notLike(externalReviews.id,"demo-%")).orderBy(desc(externalReviews.createdAt)).limit(21).offset((page-1)*20) : Promise.resolve([]),
   (web||specs) ? db.select({id:brands.id,name:brands.name}).from(brands).orderBy(brands.name) : Promise.resolve([])
  ]);
- return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Manage player submissions, web reviews, and racket specifications.</p></div>
- <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>Rackets &amp; specs</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
+ return <main><div className="page-title"><h1>Review admin</h1><p className="muted">{`Manage player submissions, web reviews, and ${w.one} specifications.`}</p></div>
+ <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>Player submissions</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>{`${w.Many} & specs`}</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
  {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing","spec-slug-taken","spec-slug-invalid"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
  {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket} oldSlugs={q.racket ? await oldSlugs(db, q.racket) : []}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
  <form method="post" action="/api/admin/external-reviews" className="review-form">
  <RacketPicker models={models} brands={allBrands}/>
  <label className="field">Review excerpt<textarea name="excerpt" required minLength={20} placeholder="A short excerpt from the original review…"/><small>At least 20 characters. Keep the original meaning and credit the source.</small></label>
- <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue="Reddit">{["Reddit","YouTube","Padel shop","Forum","Other"].map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} placeholder="e.g. r/padel or a channel name"/></label></div>
+ <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={niche.sourcePlatforms[0]}>{niche.sourcePlatforms.map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} placeholder="e.g. r/padel or a channel name"/></label></div>
  <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} placeholder="https://…"/><small>Use a direct link to the specific review, comment, or video.</small></label>
  <label className="field">Source date <span className="muted">(optional)</span><input name="sourceDate" type="date"/><small>Leave blank if the original publication date is unknown.</small></label>
  <TagCheckboxes/>

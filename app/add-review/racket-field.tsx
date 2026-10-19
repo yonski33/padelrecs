@@ -1,7 +1,10 @@
 "use client";
 import { useMemo, useState } from "react";
 import { matchingRackets } from "../../lib/racket-search";
-import { RacketIcon } from "../icons";
+import { ProductIcon } from "../icons";
+import { niche } from "../../lib/niche";
+
+const { words: w, examples: ex } = niche;
 
 export type FieldRacket = { id: string; name: string; slug: string; shape: string | null; brand?: string };
 
@@ -66,12 +69,12 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
     <input type="hidden" name="racketId" value={selected?.id ?? ""}/>
 
     {selected ? <div className="picked">
-      <RacketIcon shape={selected.shape} brand={selected.brand}/>
+      <ProductIcon shape={selected.shape} brand={selected.brand}/>
       <span><b>{selected.name}</b>{selected.shape ?? "In the database"}</span>
       <button type="button" className="text-button" onClick={change}>Change</button>
     </div> : <div className="combo">
-      <label className="sr-only" htmlFor="racket-input">Racket</label>
-      <input id="racket-input" value={text} autoComplete="off" placeholder="Start typing, e.g. Nox AT10 Genius 18K 2026"
+      <label className="sr-only" htmlFor="racket-input">{w.One}</label>
+      <input id="racket-input" value={text} autoComplete="off" placeholder={`Start typing, e.g. ${ex.brand} ${ex.model} ${ex.year}`}
         role="combobox" aria-expanded={focused && suggestions.length > 0 && !isNew} aria-controls="racket-options" aria-autocomplete="list"
         aria-activedescendant={active >= 0 ? `racket-option-${active}` : undefined}
         onFocus={() => setFocused(true)} onBlur={() => setTimeout(() => setFocused(false), 150)}
@@ -84,16 +87,16 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
         }}/>
       {typed && !isNew && suggestions.length > 0 && <div className="combo-list">
         <p className="combo-label">{matches.length ? "In the database" : "Did you mean…"}</p>
-        <ul id="racket-options" role="listbox" aria-label="Matching rackets">
+        <ul id="racket-options" role="listbox" aria-label={`Matching ${w.many}`}>
           {suggestions.map((r, i) => <li key={r.id} role="presentation">
             <button type="button" id={`racket-option-${i}`} role="option" aria-selected={i === active} className="sug-item"
               onMouseDown={e => e.preventDefault()} onClick={() => choose(r)}>
-              <RacketIcon shape={r.shape} brand={r.brand}/><span className="nm">{r.name}{r.shape && <span className="mt">{r.shape}</span>}</span><span className="ct">pick</span>
+              <ProductIcon shape={r.shape} brand={r.brand}/><span className="nm">{r.name}{r.shape && <span className="mt">{r.shape}</span>}</span><span className="ct">pick</span>
             </button>
           </li>)}
         </ul>
         {typed.length >= 3 && <button type="button" className="combo-new" onMouseDown={e => e.preventDefault()} onClick={() => setForceNew(true)}>
-          None of these — add “{typed}” as a new racket
+          None of these — add “{typed}{`” as a new ${w.one}`}
         </button>}
       </div>}
     </div>}
@@ -103,7 +106,7 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
       <div className="new-racket-grid">
         <label>Brand<input name="brandName" list="brand-options" value={parts.brand} maxLength={100} required onChange={e => setEdits({ ...parts, brand: e.target.value })}/></label>
         <label>Model<input name="modelName" value={parts.model} maxLength={150} required onChange={e => setEdits({ ...parts, model: e.target.value })}/></label>
-        <label>Year<input name="year" type="number" inputMode="numeric" min={1980} max={2100} value={parts.year} required placeholder="2026" onChange={e => setEdits({ ...parts, year: e.target.value })}/></label>
+        <label>Year<input name="year" type="number" inputMode="numeric" min={1980} max={2100} value={parts.year} required placeholder={String(ex.year)} onChange={e => setEdits({ ...parts, year: e.target.value })}/></label>
       </div>
       <datalist id="brand-options">{brands.map(b => <option key={b.name} value={b.name}/>)}</datalist>
       {!parts.year && <p className="help">Add the year — it tells this season’s model apart from last one’s.</p>}

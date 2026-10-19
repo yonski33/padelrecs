@@ -6,6 +6,8 @@ import {reviews,externalReviews,rackets} from "../../../db/schema";
 import {reviewRevision} from "../../../db/review-editing";
 import RacketEditSelector from "../racket-edit-selector";
 import {TagCheckboxes} from "../../tags";
+import {niche} from "../../../lib/niche";
+const {profile}=niche;
 export const dynamic="force-dynamic";
 export const metadata={title:"Edit review",robots:{index:false,follow:false}};
 const errors:Record<string,string>={invalid:"Check the required fields, ratings, email and source URL. Review text must contain at least 20 characters.",stale:"This review changed while you were editing. Its latest values are shown below. Check them before saving again.",missing:"This review no longer exists.",failed:"Could not save your changes. Please try again."};
@@ -31,19 +33,12 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
   <label className="field">Overall rating<select name="rating" required defaultValue={player.rating}>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>
   <label className="field">Review text<textarea name="reviewText" required minLength={20} defaultValue={player.reviewText}/></label>
   <div className="form-grid"><label className="field">Alias<input name="alias" maxLength={50} defaultValue={player.alias||""}/></label><label className="field">Private email<input name="email" type="email" maxLength={254} defaultValue={player.email||""}/><small>Not shown publicly.</small></label></div>
-  <div className="form-grid">{[
-   ["Player level","playerLevel",player.playerLevel,["Beginner","Intermediate","Advanced","Competitive"]],
-   ["Playing side","playingSide",player.playingSide,["Left","Right","Both"]],
-   ["Playing style","playingStyle",player.playingStyle,["Defensive","All-round","Attacking"]],
-   ["Time with racket","timeWithRacket",player.timeWithRacket,["Tried briefly","Less than 1 month","1–6 months","6–12 months","More than 1 year"]]
-  ].map(([label,name,value,options])=><label className="field" key={name as string}>{label}<select name={name as string} defaultValue={value as string||""}><option value="">Not provided</option>{(options as string[]).map(o=><option key={o}>{o}</option>)}</select></label>)}</div>
-  <fieldset><legend>Category ratings</legend><div className="form-grid">{[
-   ["Power","powerRating",player.powerRating],["Control","controlRating",player.controlRating],["Maneuverability","maneuverabilityRating",player.maneuverabilityRating],["Comfort","comfortRating",player.comfortRating],["Sweet spot / forgiveness","forgivenessRating",player.forgivenessRating]
-  ].map(([label,name,value])=><label className="field" key={name as string}>{label}<select name={name as string} defaultValue={value??""}><option value="">Not rated</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>)}</div></fieldset>
+  <div className="form-grid">{(["playerLevel","playingSide","playingStyle","timeWithRacket"] as const).map(name=><label className="field" key={name}>{profile[name].adminLabel}<select name={name} defaultValue={player[name]||""}><option value="">Not provided</option>{profile[name].options.map(o=><option key={o.value}>{o.value}</option>)}</select></label>)}</div>
+  <fieldset><legend>Category ratings</legend><div className="form-grid">{niche.categories.map(({column:name,label,adminLabel})=><label className="field" key={name}>{adminLabel??label}<select name={name} defaultValue={player[name]??""}><option value="">Not rated</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>)}</div></fieldset>
   <TagCheckboxes selected={player.tags}/>
  </>:external?<>
   <label className="field">Review text<textarea name="excerpt" required minLength={20} defaultValue={external.excerpt}/></label>
-  <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={external.sourcePlatform}>{["Reddit","YouTube","Padel shop","Forum","Other"].map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} defaultValue={external.sourceName}/></label></div>
+  <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={external.sourcePlatform}>{niche.sourcePlatforms.map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} defaultValue={external.sourceName}/></label></div>
   <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} defaultValue={external.sourceUrl}/></label>
   <label className="field">Source date<input name="sourceDate" type="date" defaultValue={external.sourceDate||""}/></label>
   <TagCheckboxes selected={external.tags}/>

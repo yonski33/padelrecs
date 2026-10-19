@@ -1,6 +1,6 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
-import {readFile,readdir} from "node:fs/promises";
+import {migrationSql} from "../db/migrations";
 import {PGlite} from "@electric-sql/pglite";
 import {drizzle} from "drizzle-orm/pglite";
 import {eq} from "drizzle-orm";
@@ -16,7 +16,7 @@ const fields=(row:object)=>Object.fromEntries(Object.entries(row).map(([key,valu
 test("player and web edits preserve identity and dates, update public data, and reject stale forms",async()=>{
  const engine=new PGlite();
  try{
-  for(const file of (await readdir("drizzle")).filter(f=>f.endsWith(".sql")).sort())await engine.exec(await readFile(`drizzle/${file}`,"utf8"));
+  for(const statement of migrationSql("padelrecs"))await engine.exec(statement);
   const db=drizzle(engine),portable=db as unknown as ReturnType<typeof getDb>;
   await importSnapshot(portable,parseSnapshot(fixture));
   const [oldRacket]=await db.select().from(rackets);

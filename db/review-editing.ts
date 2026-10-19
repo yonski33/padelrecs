@@ -4,17 +4,17 @@ import {z} from "zod";
 import type {getDb} from "./index";
 import {reviews,externalReviews,rackets} from "./schema";
 import {tagsInput} from "../lib/tags";
+import {profileChoice,sourcePlatform} from "../lib/review-options";
 
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===undefined?null:v,rating.nullable());
-const choice=(values:[string,...string[]])=>z.union([z.literal(""),z.enum(values)]);
 const common={id:z.string().min(1).max(100),revision:z.string().regex(/^[a-f0-9]{64}$/),racketId:z.string().min(1).max(100),tags:tagsInput};
 const sourceDate=z.union([z.literal(""),z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(d=>{const date=new Date(d);return !isNaN(date.getTime())&&date.toISOString().slice(0,10)===d;})]);
 export const reviewEditInput=z.discriminatedUnion("type",[
  z.object({...common,type:z.literal("player"),rating,reviewText:z.string().trim().min(20),alias:z.string().trim().max(50),email:z.union([z.literal(""),z.string().trim().email().max(254)]),
  powerRating:optionalRating,controlRating:optionalRating,maneuverabilityRating:optionalRating,comfortRating:optionalRating,forgivenessRating:optionalRating,
- playerLevel:choice(["Beginner","Intermediate","Advanced","Competitive"]),playingSide:choice(["Left","Right","Both"]),playingStyle:choice(["Defensive","All-round","Attacking"]),timeWithRacket:choice(["Tried briefly","Less than 1 month","1–6 months","6–12 months","More than 1 year"])}),
- z.object({...common,type:z.literal("web"),excerpt:z.string().trim().min(20),sourcePlatform:z.enum(["Reddit","YouTube","Padel shop","Forum","Other"]),sourceName:z.string().trim().min(1).max(120),
+ playerLevel:profileChoice("playerLevel"),playingSide:profileChoice("playingSide"),playingStyle:profileChoice("playingStyle"),timeWithRacket:profileChoice("timeWithRacket")}),
+ z.object({...common,type:z.literal("web"),excerpt:z.string().trim().min(20),sourcePlatform,sourceName:z.string().trim().min(1).max(120),
  sourceUrl:z.string().trim().max(2000).url().refine(value=>{const u=new URL(value);return ["http:","https:"].includes(u.protocol)&&!u.username&&!u.password;}),sourceDate})
 ]);
 export type ReviewEditInput=z.infer<typeof reviewEditInput>;

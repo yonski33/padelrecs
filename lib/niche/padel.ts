@@ -1,0 +1,148 @@
+import type { Niche } from "./types";
+
+// Rating-icon images. Repeated horizontally by .balls (17×14 tiles) and shown one per option by .ballpick (20×20).
+const ballTile = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'%3E%3Ccircle cx='7' cy='7' r='6.1' fill='%23d4ea4f' stroke='%231b3d27' stroke-width='1.3'/%3E%3Cpath d='M2.4 4.4c2.2 1 2.2 4.2 0 5.2M11.6 4.4c-2.2 1-2.2 4.2 0 5.2' fill='none' stroke='%231b3d27' stroke-width='1.1' stroke-linecap='round'/%3E%3C/svg%3E\")";
+const ballTileOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'%3E%3Ccircle cx='7' cy='7' r='6' fill='%23e0dccf'/%3E%3C/svg%3E\")";
+const ballPick = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8.6' fill='%23d4ea4f' stroke='%231b3d27' stroke-width='1.4'/%3E%3Cpath d='M3.4 5.2c3.4 1.6 3.4 8 0 9.6M16.6 5.2c-3.4 1.6-3.4 8 0 9.6' fill='none' stroke='%231b3d27' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E\")";
+const ballPickOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8.6' fill='%23e0dccf'/%3E%3C/svg%3E\")";
+
+export const padel: Niche = {
+  id: "padel",
+  schema: "padelrecs",
+  site: {
+    name: "PadelRecs",
+    domain: "padelrecs.com",
+    wordmark: "padelrecs",
+    descriptor: "player reviews of padel rackets",
+    footer: "kept by people who own too many rackets. No affiliate links.",
+    analyticsId: "G-GKZDEE5HBK",
+    adminLoginHint: "Use the email and password for your PadelRecs admin account.",
+  },
+  words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
+  scoreUnit: { one: "ball", many: "balls" },
+  // Warm paper, court green, one ball-yellow accent.
+  theme: {
+    "--bg": "#f6f4ee",
+    "--surface": "#fffdf8",
+    "--tint": "#efece3",
+    "--ink": "#16201a",
+    "--ink-2": "#3c473f",
+    "--ink-3": "#6f776f",
+    "--line": "#e2ded2",
+    "--line-2": "#cfcabb",
+    "--green": "#1b6b43",
+    "--green-ink": "#114a2d",
+    "--green-wash": "#e3eee4",
+    "--green-line": "#bcd5c2",
+    "--on-green": "#e9f1e8",
+    "--on-green-muted": "#a9c6b2",
+    "--lime": "#d4ea4f",
+    "--lime-wash": "#f0f6d0",
+    "--lime-line": "#c7db5a",
+    "--lime-ink": "#3d4a17",
+    "--lime-ink-2": "#2f3b0e",
+    "--score-on": ballTile,
+    "--score-off": ballTileOff,
+    "--score-pick-on": ballPick,
+    "--score-pick-off": ballPickOff,
+  },
+  chartColors: ["var(--green)", "var(--lime)", "#e0d9c2", "#b9c9bd"],
+  og: {
+    background: "#1b6b43",
+    accent: "#d4ea4f",
+    muted: "#a9c6b2",
+    text: "#d9e8dd",
+    scoreOn: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#d4ea4f" stroke="#0e3a24" stroke-width="1.4"/><path d="M3.4 5.2c3.4 1.6 3.4 8 0 9.6M16.6 5.2c-3.4 1.6-3.4 8 0 9.6" fill="none" stroke="#0e3a24" stroke-width="1.3" stroke-linecap="round"/></svg>`,
+    scoreOff: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.6" fill="#2f7a52"/></svg>`,
+  },
+  ratingWords: { "5": "5 — loved it", "4": "4 — really liked it", "3": "3 — it’s fine", "2": "2 — not for me", "1": "1 — regret buying it" },
+  categories: [
+    { column: "powerRating", label: "Power", hint: "smashes, ball speed" },
+    { column: "controlRating", label: "Control", hint: "placement, touch" },
+    { column: "maneuverabilityRating", label: "Maneuverability", hint: "speed at the net" },
+    { column: "comfortRating", label: "Comfort", hint: "vibration, arm" },
+    { column: "forgivenessRating", label: "Forgiveness", hint: "sweet spot, mishits", adminLabel: "Sweet spot / forgiveness" },
+  ],
+  profile: {
+    playerLevel: { label: "Level", adminLabel: "Player level", options: [
+      { value: "Beginner", hint: "< 1 year" }, { value: "Intermediate", hint: "regular matches" }, { value: "Advanced", hint: "tournaments" }, { value: "Competitive", hint: "ranked play" },
+    ] },
+    playingSide: { label: "Side", adminLabel: "Playing side", options: [{ value: "Left" }, { value: "Right" }, { value: "Both" }] },
+    playingStyle: { label: "Style", adminLabel: "Playing style", options: [{ value: "Attacking" }, { value: "All-round" }, { value: "Defensive" }] },
+    timeWithRacket: { label: "Time with racket", adminLabel: "Time with racket", options: [
+      { value: "Tried briefly", hint: "A few sessions", display: "tried briefly" }, { value: "Less than 1 month", hint: "< 1 month" }, { value: "1–6 months", hint: "1–6 months" }, { value: "6–12 months", hint: "6–12 months" }, { value: "More than 1 year", hint: "1 year +" },
+    ] },
+    sideSuffix: " side",
+  },
+  specs: [
+    { column: "shape", label: "Shape", max: 100, placeholder: "e.g. Round", options: ["Round", "Teardrop", "Diamond", "Hybrid"] },
+    { column: "weight", label: "Weight", max: 120, placeholder: "e.g. 365 g or 355–375 g" },
+    { column: "balance", label: "Balance", max: 120, placeholder: "e.g. Medium or 265 mm", options: ["Low", "Medium", "High"] },
+    { column: "core", label: "Core", max: 200, placeholder: "e.g. Multi-EVA" },
+    { column: "surface", label: "Surface", max: 200, placeholder: "e.g. 12K carbon" },
+  ],
+  shapeFilter: ["Round", "Teardrop", "Diamond"],
+  rowDetail: { column: "balance", suffix: " balance" },
+  // The fixed bank of quick tags. Reviews can only carry terms from this list, so counts stay comparable.
+  // Add new terms at the end; renaming or removing one orphans it on existing reviews.
+  tags: [
+    { label: "easy power", tone: "pos" },
+    { label: "great on smashes", tone: "pos" },
+    { label: "good control", tone: "pos" },
+    { label: "forgiving", tone: "pos" },
+    { label: "arm-friendly", tone: "pos" },
+    { label: "fast at the net", tone: "pos" },
+    { label: "good spin", tone: "pos" },
+    { label: "great in defence", tone: "pos" },
+    { label: "head-heavy", tone: "neg" },
+    { label: "small sweet spot", tone: "neg" },
+    { label: "tiring in long matches", tone: "neg" },
+    { label: "vibrates on mishits", tone: "neg" },
+    { label: "demanding", tone: "neg" },
+    { label: "durability issues", tone: "neg" },
+    { label: "firm", tone: "neutral" },
+    { label: "soft", tone: "neutral" },
+  ],
+  sourcePlatforms: ["Reddit", "YouTube", "Padel shop", "Forum", "Other"],
+  examples: { brand: "Nox", model: "AT10 Genius 18K", year: 2026, search: "nox" },
+  form: {
+    prompts: [["What did you switch from?", "Before this I played with "], ["Weight as played?", "Mine weighs about "], ["Arm comfort?", "On my arm it "]],
+    tips: ["What you played with before, and how this compares", "Your weight as played, if you know it", "Where it shines and where it struggles", "Arm comfort, if that matters to you", "Durability, once you’ve had it a while"],
+  },
+  seo: {
+    homeTitle: "PadelRecs – Real Player Reviews of Padel Rackets",
+    homeDescription: "Browse real padel racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.",
+    layoutDescription: "Real player experiences with padel rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    titleTemplate: "%s | PadelRecs",
+    catalog: { title: "All Padel Rackets – Player Reviews and Ratings", description: "Every padel racket on PadelRecs with community ratings. Filter by brand, year and shape, then read what players say about each one." },
+    brands: { title: "Padel Racket Brands", description: "Browse padel rackets by brand — Nox, Bullpadel, Adidas, Head, Babolat and more — and read real player reviews of each model." },
+    brand: brand => ({ title: `${brand} Padel Rackets – Player Reviews`, description: `Real player reviews of ${brand} padel rackets: ratings, strengths and weaknesses for every ${brand} model on PadelRecs.` }),
+    product: name => ({ title: `${name} Player Reviews | PadelRecs`, description: `Read real player experiences with the ${name}. Ratings, strengths, weaknesses, playing style, and opinions from PadelRecs and around the web.` }),
+    productNotFound: "Racket not found | PadelRecs",
+    productCategory: "Padel racket",
+    addReview: { title: "Add a Padel Racket Review", description: "Played with a padel racket? Share how it felt on court in about two minutes. No account needed." },
+    about: { title: "About", description: "Why PadelRecs exists: padel racket opinions are scattered across Reddit, YouTube, shops and forums. PadelRecs collects them and lets players add their own." },
+    ogAlt: "PadelRecs – real player reviews of padel rackets",
+    ogProductAlt: "Padel racket player reviews on PadelRecs",
+    ogEyebrow: "Player reviews of padel rackets",
+    ogTitle: "Real player reviews of padel rackets",
+    ogDetail: "From players, Reddit, YouTube, shops and forums",
+    ogFallbackTitle: "Padel racket reviews",
+  },
+  copy: {
+    notFound: "We couldn’t find that racket or page. Maybe it moved, maybe it never existed, maybe the link took a bad bounce off the glass.",
+    about: {
+      heading: "Why PadelRecs exists",
+      paragraphs: [
+        "Racket reviews are scattered across Reddit, YouTube, shops and forums. PadelRecs puts those experiences in one place and lets players add their own.",
+        "A racket that works for one player won’t work for everyone. Knowing someone’s level, playing side and time with a racket often tells you more than a score on its own.",
+      ],
+      sections: [
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from player submissions, and external comments stay separate from those ratings." },
+        { heading: "A work in progress", body: "This is a rough prototype. The initial fictional reviews have been removed. Player submissions are moderated before publication, and web reviews link to their sources. Some catalog specifications remain illustrative." },
+        { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
+        { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },
+      ],
+    },
+  },
+};

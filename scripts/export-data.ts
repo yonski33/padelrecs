@@ -3,8 +3,10 @@ import { asc } from "drizzle-orm";
 import { brands, rackets, reviews, externalReviews, racketSlugRedirects } from "../db/schema";
 import { parseSnapshot } from "../db/transfer";
 import { connect } from "./connection";
+import { niche } from "../lib/niche";
+import { snapshotSource } from "../db/transfer";
 
-// Writes the configured PadelRecs database to a snapshot that db:import / db:verify understand.
+// Writes the active niche's schema (NICHE, default padel) of the configured database to a snapshot that db:import / db:verify understand.
 // Includes private emails and pending reviews: keep the file in the ignored backups/ folder.
 const path = process.argv[2];
 if (!path) throw new Error("Usage: npm run db:export -- backups/export.json");
@@ -20,10 +22,10 @@ try {
   ]);
   const snapshot = parseSnapshot({
     formatVersion: 1,
-    source: `supabase:${process.env.SUPABASE_PROJECT_REF}`,
+    source: snapshotSource(`supabase:${process.env.SUPABASE_PROJECT_REF}`, niche.schema),
     exportedAt: new Date().toISOString(),
     tables: { brands: b.map(snake), rackets: r.map(snake), reviews: rv.map(snake), external_reviews: ex.map(snake), racket_slug_redirects: rd.map(snake) },
   });
   await writeFile(path, JSON.stringify(snapshot, null, 1), { mode: 0o600 });
-  console.log("Exported", Object.fromEntries(Object.entries(snapshot.tables).map(([k, rows]) => [k, rows.length])), "to", path);
+  console.log(`Exported schema "${niche.schema}"`, Object.fromEntries(Object.entries(snapshot.tables).map(([k, rows]) => [k, rows.length])), "to", path);
 } finally { await client.end(); }

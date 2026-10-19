@@ -1,6 +1,6 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
-import {readFile,readdir} from "node:fs/promises";
+import {migrationSql} from "../db/migrations";
 import {PGlite} from "@electric-sql/pglite";
 import {drizzle} from "drizzle-orm/pglite";
 import {eq,sql} from "drizzle-orm";
@@ -16,7 +16,7 @@ import {adminWriteGuard} from "../app/admin/auth";
 type Database=ReturnType<typeof getDb>;
 async function setup(){
  const engine=new PGlite();
- for(const file of (await readdir("drizzle")).filter(f=>f.endsWith(".sql")).sort())await engine.exec(await readFile(`drizzle/${file}`,"utf8"));
+ for(const statement of migrationSql("padelrecs"))await engine.exec(statement);
  const db=drizzle(engine);
  return {engine,db,portable:db as unknown as Database};
 }

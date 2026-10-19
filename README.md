@@ -12,6 +12,15 @@ The intended GitHub repository is `yonski33/padelrecs`. New Vercel and Supabase 
 
 The known pre-existing Supabase project is explicitly blocked in code. Database and auth connections also refuse to run until the new PadelRecs project ref is recorded. A database URL for another Supabase project is rejected even if the environment variable name is correct.
 
+## One codebase, several Recs sites
+
+PadelRecs is the first of several niche sites (PickleballRecs, TennisRecs, GolfRecs, GamingRecs) served by this same code. Each Vercel project sets `NICHE` (unset = `padel`):
+
+- `lib/niche/<niche>.ts` holds everything niche-specific that is text or data: site name and domain, product words ("racket"), theme colours and rating-icon images, rating categories (mapped onto the fixed `*_rating` columns), player-profile options, spec fields, quick tags, source platforms, SEO and share-card copy, About and 404 copy. `lib/niche/types.ts` documents every field.
+- `app/art/<niche>.tsx` holds the drawings: product icon by shape with brand marks, and the logo / rating icon. Register new modules in `app/art/index.ts` and `lib/niche/index.ts`.
+- Each niche stores its data in its own Postgres schema (`padelrecs`, …) of the one Frankfurt Supabase project. `deployment/targets.json` `nicheSchemas` must list it, or every connection is refused.
+- `drizzle/*.sql` is generated for `padelrecs`; `npm run db:migrate` rewrites it for the active niche's schema (`db/migrations.ts`) and tracks other niches in their own `drizzle.__drizzle_migrations_<schema>` table. Run every `db:*` script with the right `NICHE=…`. Exports record their schema, and `db:import` refuses a snapshot from another schema unless `--from-other-schema` is given.
+
 ## Local setup
 
 Requires Node.js 22.13+ and npm.

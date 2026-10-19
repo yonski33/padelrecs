@@ -1,7 +1,9 @@
 import { pgSchema, text, integer, index, check, uniqueIndex } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
-// Not exposed through Supabase's public Data API. All catalog access goes through Next.js.
-export const catalogSchema = pgSchema("padelrecs");
+import { niche } from "../lib/niche";
+// One Postgres schema per niche ("padelrecs", …) in the shared Supabase project. Not exposed through Supabase's
+// public Data API; all catalog access goes through Next.js. Table names say "rackets" for every niche.
+export const catalogSchema = pgSchema(niche.schema);
 export const brands = catalogSchema.table("brands", { id: text("id").primaryKey(), name: text("name").notNull(), slug: text("slug").notNull().unique() }).enableRLS();
 export const rackets = catalogSchema.table("rackets", {
  id: text("id").primaryKey(), brandId: text("brand_id").notNull().references(() => brands.id), name: text("name").notNull(), slug: text("slug").notNull().unique(), year: integer("year").notNull(), imageUrl: text("image_url"), shape: text("shape"), weight: text("weight"), balance: text("balance"), surface: text("surface"), core: text("core"), description: text("description"), createdAt: text("created_at").notNull()

@@ -2,11 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
-import { BallIcon, PlusIcon } from "./icons";
+import { LogoIcon, PlusIcon } from "./icons";
+import { niche } from "../lib/niche";
 
 const links = [
   ["/", "Player reviews"],
-  ["/rackets", "Rackets"],
+  ["/rackets", niche.words.Many],
   ["/brands", "Brands"],
   ["/add-review", "Add a review"],
   ["/about", "About"],
@@ -19,8 +20,8 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="wrap header-top">
         <a className="logo" href="/">
-          <BallIcon/>
-          <span className="logo-text"><span className="wordmark">padelrecs<span>.com</span></span><span className="descriptor">player reviews of padel rackets</span></span>
+          <LogoIcon/>
+          <span className="logo-text"><span className="wordmark">{niche.site.wordmark}<span>.com</span></span><span className="descriptor">{niche.site.descriptor}</span></span>
         </a>
         <RacketSearch/>
         {!onAddPage && <a className="button header-add" href="/add-review"><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}

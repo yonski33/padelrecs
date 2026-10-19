@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { matchingRackets, type SearchRacket } from "../lib/racket-search";
-import { RacketIcon, SearchIcon } from "./icons";
+import { ProductIcon, SearchIcon } from "./icons";
+import { niche } from "../lib/niche";
+
+const w = niche.words;
 
 // Wrap each typed word in <mark> where it appears in the name.
 function highlight(name: string, query: string) {
@@ -75,8 +78,8 @@ export function RacketSearch() {
   }}>
     <div className="search-box">
       <SearchIcon/>
-      <label className="sr-only" htmlFor="search">Search rackets</label>
-      <input id="search" name="q" ref={input} placeholder="Search rackets — try “nox”" autoComplete="off"
+      <label className="sr-only" htmlFor="search">{`Search ${w.many}`}</label>
+      <input id="search" name="q" ref={input} placeholder={`Search ${w.many} — try “${niche.examples.search}”`} autoComplete="off"
         role="combobox" aria-autocomplete="list" aria-expanded={expanded} aria-controls="racket-search-results"
         aria-activedescendant={expanded && active >= 0 ? `racket-search-option-${active}` : undefined}
         value={query} onFocus={() => setOpen(true)}
@@ -94,23 +97,23 @@ export function RacketSearch() {
       <button className="sr-only" type="submit">Search</button>
     </div>
     {open && (typed || matches.length > 0 || !rackets) && <div className="search-dropdown">
-      {matches.length > 0 && <h4>{typed ? "Rackets" : "Most discussed"}</h4>}
-      <ul id="racket-search-results" role="listbox" aria-label="Matching rackets" ref={list}>
+      {matches.length > 0 && <h4>{typed ? w.Many : "Most discussed"}</h4>}
+      <ul id="racket-search-results" role="listbox" aria-label={`Matching ${w.many}`} ref={list}>
         {matches.map((racket, index) => <li key={racket.slug} role="presentation">
           <a className="sug-item" id={`racket-search-option-${index}`} role="option" aria-selected={index === active}
             tabIndex={-1} href={`/rackets/${racket.slug}`} onMouseEnter={() => setActive(index)}>
-            <RacketIcon shape={racket.shape} brand={racket.brand}/>
+            <ProductIcon shape={racket.shape} brand={racket.brand}/>
             <span className="nm">{highlight(racket.name, typed)}{racket.shape && <span className="mt">{racket.shape}</span>}</span>
             <span className="ct">{noteCount(racket.notes)}</span>
           </a>
         </li>)}
       </ul>
-      <span className="sr-only" role="status">{rackets && typed ? `${matches.length} matching ${matches.length === 1 ? "racket" : "rackets"}` : ""}</span>
+      <span className="sr-only" role="status">{rackets && typed ? `${matches.length} matching ${matches.length === 1 ? w.one : w.many}` : ""}</span>
       {typed && matches.length > 0 && <p className="search-foot">↵ Enter to see every result for “{typed}”</p>}
       {!matches.length && <p className="search-status" role="status">{
         failed ? "Press Enter to search." :
-        !rackets ? "Loading rackets…" :
-        <><b>No racket found.</b>Either it’s very new, very obscure, or we need to add it. <a href="/add-review">Add it with a review →</a></>
+        !rackets ? `Loading ${w.many}…` :
+        <><b>{`No ${w.one} found.`}</b>Either it’s very new, very obscure, or we need to add it. <a href="/add-review">Add it with a review →</a></>
       }</p>}
     </div>}
   </form>;
