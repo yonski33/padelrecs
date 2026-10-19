@@ -20,6 +20,8 @@ export const tennis: Niche = {
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  // Makers name generations (Wilson V10, Babolat Gen9), not years, so names carry the maker's generation instead of a year.
+  productYears: false,
   productPath: "rackets",
   scoreUnit: { one: "ball", many: "balls" },
   // Warm paper, clay-court terracotta, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
@@ -119,7 +121,7 @@ export const tennis: Niche = {
     homeDescription: "Browse real tennis racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Wilson, Babolat, Head, Yonex, Prince, Tecnifibre, and more.",
     layoutDescription: "Real player experiences with tennis rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | TennisRecs",
-    catalog: { title: "All Tennis Rackets – Player Reviews and Ratings", description: "Every tennis racket on TennisRecs with community ratings. Filter by brand, year and head size, then read what players say about each one." },
+    catalog: { title: "All Tennis Rackets – Player Reviews and Ratings", description: "Every tennis racket on TennisRecs with community ratings. Filter by brand and head size, then read what players say about each one." },
     brands: { title: "Tennis Racket Brands", description: "Browse tennis rackets by brand — Wilson, Babolat, Head, Yonex, Prince, Tecnifibre and more — and read real player reviews of each model." },
     brand: brand => ({ title: `${brand} Tennis Rackets – Player Reviews`, description: `Real player reviews of ${brand} tennis rackets: ratings, strengths and weaknesses for every ${brand} model on TennisRecs.` }),
     product: name => ({ title: `${name} Player Reviews | TennisRecs`, description: `Read real player experiences with the ${name}. Ratings for power, control, spin and comfort, and opinions from TennisRecs and around the web.` }),
