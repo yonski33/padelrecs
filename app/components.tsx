@@ -89,8 +89,32 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
         {e.sourceUrl ? <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original ↗</a> : <span className="pending-link">source link coming</span>}
       </div>
     </div>
-    <footer className="note-foot ext-foot"><HelpfulButton type="web" id={e.id} count={e.helpful}/></footer>
+    <footer className="note-foot ext-foot">{e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}<HelpfulButton type="web" id={e.id} count={e.helpful}/></footer>
   </article>;
+}
+
+const sentimentLabel = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as const;
+/** Our reading of how the source felt overall, set when the comment was moderated. Kept apart from the source's words. */
+export function SentimentBadge({sentiment}: {sentiment: keyof typeof sentimentLabel}) {
+  return <span className={`sentiment s-${sentiment}`} title="How this comment feels about it overall">{sentimentLabel[sentiment]}</span>;
+}
+
+/** Positive / mixed / negative share of a racket's web reviews, once there are enough judged ones to mean something. */
+export function WebSplit({entries, min = 3}: {entries: {sentiment: keyof typeof sentimentLabel | null}[]; min?: number}) {
+  const judged = entries.flatMap(e => e.sentiment ? [e.sentiment] : []);
+  if (judged.length < min) return null;
+  const parts = (["positive", "mixed", "negative"] as const).map(s => ({ s, n: judged.filter(x => x === s).length })).filter(x => x.n > 0);
+  // Whole percentages that always add up to 100 (largest remainder).
+  const raw = parts.map(x => x.n / judged.length * 100), floors = raw.map(Math.floor);
+  let left = 100 - floors.reduce((a, b) => a + b, 0);
+  raw.map((r, i) => [r - floors[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (left > 0) { floors[i]++; left--; } });
+  return <div className="web-split">
+    <div className="lbl">Around the web <span>· {judged.length} comments</span></div>
+    <div className="stack" role="img" aria-label={parts.map((x, i) => `${floors[i]}% ${sentimentLabel[x.s].toLowerCase()}`).join(", ")}>
+      {parts.map(x => <i key={x.s} className={`s-${x.s}`} style={{width: `${x.n / judged.length * 100}%`}}/>)}
+    </div>
+    <div className="legend">{parts.map((x, i) => <span key={x.s} className={`s-${x.s}`}>{floors[i]}% {sentimentLabel[x.s].toLowerCase()}</span>)}</div>
+  </div>;
 }
 
 export function RacketRow({racket: r, brand, average, count, details}: {racket: Racket; brand?: string | null; average: string | null; count: number; details: string}) {

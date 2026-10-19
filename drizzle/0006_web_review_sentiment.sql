@@ -1,0 +1,2 @@
+ALTER TABLE "padelrecs"."external_reviews" ADD COLUMN "sentiment" text;--> statement-breakpoint
+ALTER TABLE "padelrecs"."external_reviews" ADD CONSTRAINT "external_review_sentiment" CHECK ("padelrecs"."external_reviews"."sentiment" is null or "padelrecs"."external_reviews"."sentiment" in ('positive','negative','mixed'));

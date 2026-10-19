@@ -5,7 +5,7 @@ import { catalog as loadCatalog, score } from "../../../db/data";
 import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
-import { Review, External, racketParts } from "../../components";
+import { Review, External, WebSplit, racketParts } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
@@ -123,9 +123,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <div className="big">{s.average}<small>/ 5</small></div>
           <Score rating={Number(s.average)} size="lg"/>
           <p><b>{s.count}</b>{` ${niche.people.one} `}{s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
+          <WebSplit entries={external}/>
         </> : <>
           <div className="no-score">No ratings yet</div>
           <p>{external.length ? `${external.length} quoted from around the web, but no ${niche.people.one} has rated it here yet.` : "Nobody has rated this one yet. Be the first."}</p>
+          <WebSplit entries={external}/>
         </>}
         <a className="button" href={addHref}><PlusIcon/>Add your review</a>
         <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>

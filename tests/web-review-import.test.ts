@@ -62,6 +62,7 @@ test("publishing writes web reviews that show on the site, can't happen twice, a
     assert.equal(published.sourceName, "r/Padelracket");
     assert.match(published.summary!, /Seven-month owner/);
     assert.deepEqual(published.tags, ["soft"]);
+    assert.equal(published.sentiment, "positive", "the moderated sentiment is published with the review");
     // Running again finds nothing new.
     const again = planImport(candidates, await siteState(db), niches.padel);
     assert.equal(again.rows.length, 0);
@@ -74,6 +75,9 @@ test("publishing writes web reviews that show on the site, can't happen twice, a
     assert.deepEqual(update.updates.map(u => u.candidateId), ["c1"]);
     assert.deepEqual(await applyImport(db, update), { inserted: 0, updated: 1 });
     assert.match((await catalog(db)).external.find(e => e.id === webReviewId("c1"))!.summary!, /^Rewritten/);
+    // A changed sentiment (or one published before sentiments were stored) is brought in line too.
+    const relabelled = rewritten.map(c => c.id === "c1" ? { ...c, sentiment: "mixed" as const } : c);
+    assert.deepEqual(planImport(relabelled, await siteState(db), niches.padel).updates.map(u => [u.candidateId, u.sentiment]), [["c1", "mixed"]]);
     assert.equal(marked.find(c => c.id === "c2")!.status, "approved");
   } finally { await engine.close(); }
 });
