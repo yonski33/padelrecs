@@ -11,7 +11,7 @@
     { "id": "franklin", "name": "Franklin" },
     { "id": "head", "name": "Head" }
   ],
-  "paddles": [
+  "products": [
     { "brand": "joola", "name": "Joola Perseus Pro V", "year": 2026, "shape": "Elongated", "weight": "16 mm: 8.1 oz · 14 mm: 7.9 oz", "core": "16 or 14 mm", "surface": "Carbon friction surface", "swingWeight": null,
       "sources": ["https://joola.com/products/joola-perseus-pro-v-pickleball-paddle", "https://pickleballcentral.com/joola-perseus-pro-v-ben-johns-16mm-pickleball-paddle/"] },
     { "brand": "joola", "name": "Joola Hyperion Pro V", "year": 2026, "shape": "Elongated", "weight": "16 mm: 8.1 oz · 14 mm: 7.9 oz", "core": "16 or 14 mm", "surface": "Textured carbon fiber", "swingWeight": null,

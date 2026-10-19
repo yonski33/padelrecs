@@ -15,7 +15,7 @@ test("the pickleball starter catalog is complete, sourced and imports cleanly", 
   assert.equal(snapshot.tables.brands.length, 8);
   assert.equal(snapshot.tables.rackets.length, 28);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0, "a catalog never brings reviews");
-  assert(catalog.paddles.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every value has an https source");
+  assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every value has an https source");
   assert(snapshot.tables.rackets.some(r => r.slug === "crbn1-trufoam-genesis-2025"));
   assert.equal(shapeOf("Traditional"), "standard");
   // A throwaway local engine. db/schema.ts follows the active niche (padel while testing), so this checks the rows fit the
@@ -41,9 +41,33 @@ test("skin product types pick the right container", async () => {
 
 test("catalogs without model years keep the year out of names", () => {
   const snapshot = catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "cerave", name: "CeraVe" }],
-    paddles: [{ brand: "cerave", name: "CeraVe Moisturizing Cream", shape: "Moisturizer", weight: null, core: null, surface: null, swingWeight: null, sources: ["https://example.com/"] }] }, "skinrecs", "catalog:test", false);
+    products: [{ brand: "cerave", name: "CeraVe Moisturizing Cream", shape: "Moisturizer", weight: null, core: null, surface: null, swingWeight: null, sources: ["https://example.com/"] }] }, "skinrecs", "catalog:test", false);
   assert.equal(snapshot.tables.rackets[0].name, "CeraVe Moisturizing Cream");
   assert.equal(snapshot.tables.rackets[0].slug, "cerave-moisturizing-cream");
   assert.equal(snapshot.tables.rackets[0].year, 2026);
-  assert.throws(() => catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "x", name: "X" }], paddles: [{ brand: "x", name: "X One", shape: null, weight: null, core: null, surface: null, swingWeight: null, sources: ["https://e.com"] }] }, "pickleballrecs", "t"), /needs a model year/);
+  assert.throws(() => catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "x", name: "X" }], products: [{ brand: "x", name: "X One", shape: null, weight: null, core: null, surface: null, swingWeight: null, sources: ["https://e.com"] }] }, "pickleballrecs", "t"), /needs a model year/);
+});
+
+test("the SkinRecs starter catalog: 31 sourced face products, no years in names, known types and fragrance values", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/skin.json");
+  const snapshot = catalogSnapshot(catalog, "skinrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 8);
+  assert.equal(snapshot.tables.rackets.length, 31);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const types = niches.skin.specs.find(s => s.column === "shape")!.options!;
+  for (const r of snapshot.tables.rackets) {
+    assert(!/\b20\d\d$/.test(r.name), `${r.name} should not end in a year`);
+    assert(types.includes(r.shape!), `${r.name}: unknown type ${r.shape}`);
+    assert(r.balance === null || ["Fragrance-free", "Contains fragrance"].includes(r.balance), `${r.name}: fragrance ${r.balance}`);
+  }
+  assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))));
+  assert(snapshot.tables.brands.some(b => b.slug === "paulas-choice"));
+  assert(!catalog.products.some(p => /Advanced Repair|Hydrogel Mask/.test(p.name)), "body cream and unavailable mask were dropped");
+});
+
+test("apostrophes vanish from slugs", async () => {
+  const { slugify } = await import("../lib/slug");
+  assert.equal(slugify("Paula's Choice 10% Niacinamide Booster"), "paulas-choice-10-niacinamide-booster");
+  assert.equal(slugify("Nox AT10 Genius 12K 2025"), "nox-at10-genius-12k-2025");
 });
