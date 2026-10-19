@@ -80,7 +80,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
     </section>
 
     <section className="step">
-     <h2 className="step-h"><span className="no">3</span>{`${niche.copy.ui.aboutYou} `}<small>{`optional · helps people find ${niche.people.many} like them`}</small></h2>
+     <h2 className="step-h"><span className="no">3</span>{`${niche.copy.ui.aboutYou} `}<small>{niche.copy.ui.aboutYouHint}</small></h2>
      <div className="group" role="radiogroup" aria-labelledby="level-label"><span className="group-label" id="level-label">{profile.playerLevel.label}</span><Options name="playerLevel" options={profile.playerLevel.options}/></div>
      <div className="group" role="radiogroup" aria-labelledby="side-label"><span className="group-label" id="side-label">{profile.playingSide.label}</span><Options name="playingSide" options={profile.playingSide.options}/></div>
      <div className="group" role="radiogroup" aria-labelledby="style-label"><span className="group-label" id="style-label">{profile.playingStyle.label}</span><Options name="playingStyle" options={profile.playingStyle.options}/></div>

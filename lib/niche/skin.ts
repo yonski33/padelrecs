@@ -144,6 +144,7 @@ export const skin: Niche = {
       formIntro: "Tell other people how a product actually worked on your skin. Takes about two minutes, no account needed.",
       howItWent: "how it worked for you",
       aboutYou: "About your skin",
+      aboutYouHint: "optional · helps people with similar skin find your review",
       howItPerforms: "How it performs",
       whoUsesIt: "Who's using it",
       triedIt: "Used it?",

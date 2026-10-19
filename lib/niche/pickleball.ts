@@ -143,6 +143,7 @@ export const pickleball: Niche = {
       formIntro: "Tell other players how a paddle actually played for you. Takes about two minutes, no account needed.",
       howItWent: "how it played",
       aboutYou: "About your game",
+      aboutYouHint: "optional · helps people find players like them",
       howItPerforms: "How it plays",
       whoUsesIt: "Who's playing it",
       triedIt: "Played it?",
