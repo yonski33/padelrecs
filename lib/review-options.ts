@@ -14,4 +14,8 @@ const optionalText = (min: number, max: number, label: string) => z.string().tri
 // No practical cap on excerpts (as before); summaries stay short.
 export const webExcerpt = optionalText(20, 1_000_000, "The excerpt");
 export const webSummary = optionalText(30, 1200, "The summary");
+/** How the source felt overall; "" means not judged. */
+export const sentiments = ["positive", "mixed", "negative"] as const;
+export type Sentiment = typeof sentiments[number];
+export const webSentiment = z.union([z.literal(""), z.enum(sentiments)]).optional().transform(v => v || null);
 export const hasWebText = (v: { excerpt: string | null; summary: string | null }) => !!(v.excerpt || v.summary);

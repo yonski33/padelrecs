@@ -13,7 +13,7 @@ const tables=z.object({
  brands:z.array(z.object({...identity,name:z.string().min(1),slug:z.string().min(1)}).strict()),
  rackets:z.array(z.object({...identity,brand_id:z.string().min(1),name:z.string().min(1),slug:z.string().min(1),year:z.number().int(),image_url:nullable,shape:nullable,weight:nullable,balance:nullable,surface:nullable,core:nullable,description:nullable,...date}).strict()),
  reviews:z.array(z.object({...identity,...racketId,rating:z.number().int().min(1).max(5),power_rating:category,control_rating:category,maneuverability_rating:category,comfort_rating:category,forgiveness_rating:category,player_level:nullable,playing_side:nullable,playing_style:nullable,time_with_racket:nullable,review_text:z.string(),alias:nullable,email:nullable,status:z.enum(["pending","approved","rejected"]),...tags,...date}).strict()),
- external_reviews:z.array(z.object({...identity,...racketId,excerpt:nullable,summary:nullable.optional(),source_platform:z.string(),source_name:z.string(),source_url:z.string(),source_date:nullable,external_rating:z.number().int().nullable(),...tags,...date}).strict()),
+ external_reviews:z.array(z.object({...identity,...racketId,excerpt:nullable,summary:nullable.optional(),sentiment:z.enum(["positive","negative","mixed"]).nullable().optional(),source_platform:z.string(),source_name:z.string(),source_url:z.string(),source_date:nullable,external_rating:z.number().int().nullable(),...tags,...date}).strict()),
  // Optional so snapshots taken before slug redirects existed still import.
  racket_slug_redirects:z.array(z.object({slug:z.string().min(1),...racketId,...date}).strict()).optional()
 }).strict();

@@ -4,7 +4,7 @@ import {z} from "zod";
 import type {getDb} from "./index";
 import {reviews,externalReviews,rackets} from "./schema";
 import {tagsInput} from "../lib/tags";
-import {profileChoice,sourcePlatform,webExcerpt,webSummary,hasWebText} from "../lib/review-options";
+import {profileChoice,sourcePlatform,webExcerpt,webSummary,webSentiment,hasWebText} from "../lib/review-options";
 
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===undefined?null:v,rating.nullable());
@@ -14,7 +14,7 @@ export const reviewEditInput=z.discriminatedUnion("type",[
  z.object({...common,type:z.literal("player"),rating,reviewText:z.string().trim().min(20),alias:z.string().trim().max(50),email:z.union([z.literal(""),z.string().trim().email().max(254)]),
  powerRating:optionalRating,controlRating:optionalRating,maneuverabilityRating:optionalRating,comfortRating:optionalRating,forgivenessRating:optionalRating,
  playerLevel:profileChoice("playerLevel"),playingSide:profileChoice("playingSide"),playingStyle:profileChoice("playingStyle"),timeWithRacket:profileChoice("timeWithRacket")}),
- z.object({...common,type:z.literal("web"),excerpt:webExcerpt,summary:webSummary,sourcePlatform,sourceName:z.string().trim().min(1).max(120),
+ z.object({...common,type:z.literal("web"),excerpt:webExcerpt,summary:webSummary,sentiment:webSentiment,sourcePlatform,sourceName:z.string().trim().min(1).max(120),
  sourceUrl:z.string().trim().max(2000).url().refine(value=>{const u=new URL(value);return ["http:","https:"].includes(u.protocol)&&!u.username&&!u.password;}),sourceDate})
 ]).superRefine((value,ctx)=>{if(value.type==="web"&&!hasWebText(value))ctx.addIssue({code:"custom",message:"Add an excerpt or a summary",path:["excerpt"]});});
 export type ReviewEditInput=z.infer<typeof reviewEditInput>;
@@ -37,7 +37,7 @@ export async function saveReviewEdit(db:ReturnType<typeof getDb>,value:ReviewEdi
    if(reviewRevision(current)!==value.revision)return "stale";
    const [racket]=await tx.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return "invalid";
-   await tx.update(externalReviews).set({racketId:value.racketId,excerpt:value.excerpt,summary:value.summary,sourcePlatform:value.sourcePlatform,sourceName:value.sourceName,sourceUrl:value.sourceUrl,sourceDate:value.sourceDate||null,tags:value.tags}).where(eq(externalReviews.id,value.id));
+   await tx.update(externalReviews).set({racketId:value.racketId,excerpt:value.excerpt,summary:value.summary,sentiment:value.sentiment,sourcePlatform:value.sourcePlatform,sourceName:value.sourceName,sourceUrl:value.sourceUrl,sourceDate:value.sourceDate||null,tags:value.tags}).where(eq(externalReviews.id,value.id));
   }
   return "saved";
  });
