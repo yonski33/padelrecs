@@ -103,6 +103,7 @@ export type Niche = {
       formIntro: string;        // under "Add a review"
       howItWent: string;        // "how it played" in "…at least 20 characters about how it played."
       aboutYou: string;         // form step "About your game"
+      aboutYouHint: string;     // its hint: "optional · helps people find players like them"
       howItPerforms: string;    // "How it plays": form step and racket-page panel
       whoUsesIt: string;        // "Who's playing it" panel
       triedIt: string;          // "Played it?"
