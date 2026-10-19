@@ -3,6 +3,18 @@
   "githubRepository": "yonski33/padelrecs",
   "vercelProjectName": "padelrecs",
   "vercelProjectId": "prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx",
+  "vercelProjects": {
+    "padel": {
+      "name": "padelrecs",
+      "id": "prj_L2FtJaXgJAFjjaPMBGfbIBhHDHKx",
+      "domain": "www.padelrecs.com"
+    },
+    "pickleball": {
+      "name": "pickleballrecs",
+      "id": "prj_OA2gw9OeY3XBNtHAoySRm4Txr0sk",
+      "domain": "www.pickleballrecs.com"
+    }
+  },
   "supabaseProjectName": "PadelRecs",
   "supabaseProjectRef": "myauwuulzvkdsinfcfbc",
   "supabaseRegion": "eu-central-1",
