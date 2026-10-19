@@ -103,3 +103,18 @@ test("snapshots record their schema; older ones count as padel", () => {
   assert.equal(snapshotSchema({ source: "supabase:ref#pickleballrecs" }), "pickleballrecs");
   assert.equal(snapshotSchema({ source: "supabase:myauwuulzvkdsinfcfbc" }), "padelrecs");
 });
+
+test("pickleball: paddles under /paddles, spin stored in the comfort column, DUPR hints, own schema", () => {
+  const p = selectNiche("pickleball");
+  assert.equal(p.schema, "pickleballrecs");
+  assert.equal(p.productPath, "paddles");
+  assert.equal(p.words.many, "paddles");
+  assert.deepEqual(p.categories.map(c => `${c.label}:${c.column}`), ["Power:powerRating", "Control:controlRating", "Spin:comfortRating", "Forgiveness:forgivenessRating", "Maneuverability:maneuverabilityRating"]);
+  assert.deepEqual(p.profile.playingSide.options.map(o => o.value), ["Singles", "Doubles", "Both"]);
+  assert(p.profile.playerLevel.options.every(o => o.hint?.startsWith("DUPR")));
+  assert.equal(niches.padel.productPath, "rackets");
+  // Rating images are valid data URIs like padel's: only <, > and # escaped.
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(p.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

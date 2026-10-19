@@ -1,6 +1,6 @@
 import type { rackets } from "../../db/schema";
 import SlugField from "./slug-field";
-import { niche } from "../../lib/niche";
+import { niche, catalogPath } from "../../lib/niche";
 const w = niche.words;
 
 type Racket = typeof rackets.$inferSelect;
@@ -16,7 +16,7 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
   {racketId && !selected && <p role="alert" className="form-error">{`${w.One} not found. Choose a ${w.one} from the list.`}</p>}
   {selected ? <form action="/api/admin/racket-specs" method="post" className="review-form" key={selected.id}>
    <input type="hidden" name="id" value={selected.id}/>
-   <p className="small"><a href={`/rackets/${selected.slug}`} target="_blank" rel="noopener noreferrer">{`View ${w.one} page ↗`}</a></p>
+   <p className="small"><a href={`${catalogPath}/${selected.slug}`} target="_blank" rel="noopener noreferrer">{`View ${w.one} page ↗`}</a></p>
    <p className="small muted">{`Name, brand, year and specifications are shared by all reviews of this ${w.one}.`}</p>
    <label className="field">{`${w.One} name`}<input name="name" required maxLength={260} defaultValue={selected.name}/></label>
    <SlugField initial={selected.slug} oldSlugs={oldSlugs}/>

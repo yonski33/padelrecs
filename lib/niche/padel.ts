@@ -19,6 +19,7 @@ export const padel: Niche = {
     adminLoginHint: "Use the email and password for your PadelRecs admin account.",
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
+  productPath: "rackets",
   scoreUnit: { one: "ball", many: "balls" },
   // Warm paper, court green, one ball-yellow accent.
   theme: {

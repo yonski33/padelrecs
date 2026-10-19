@@ -3,7 +3,7 @@ import {Fragment, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
 import {LogoIcon} from "../icons";
 import {MAX_TAGS, TAGS} from "../../lib/tags";
-import {niche} from "../../lib/niche";
+import { niche, catalogPath } from "../../lib/niche";
 
 // The API (app/api/reviews/route.ts) accepts exactly these niche option values.
 const {words: w, scoreUnit, profile, ratingWords, form: {prompts, tips}} = niche;
@@ -51,7 +51,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   <LogoIcon/>
   <h1>Nice one{done.alias?`, ${done.alias}`:""}.</h1>
   <p>Your review of the {done.racket||w.one} is in the queue. It goes live after a quick check, and the next person deciding will thank you.</p>
-  <div className="row">{done.slug&&<a className="button" href={`/rackets/${done.slug}`}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">{`Review another ${w.one}`}</a></div>
+  <div className="row">{done.slug&&<a className="button" href={`${catalogPath}/${done.slug}`}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">{`Review another ${w.one}`}</a></div>
  </div>;
 
  return <div className="review-page">

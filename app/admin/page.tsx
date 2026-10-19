@@ -9,7 +9,7 @@ import RacketSpecs from "./racket-specs";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
-import { niche } from "../../lib/niche";
+import { niche, catalogPath } from "../../lib/niche";
 const w = niche.words;
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {title: "Review admin", robots: {index: false, follow: false}};
@@ -66,7 +66,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/admin?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
  <div className="admin-queue">{queue.slice(0,20).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
- <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={`/rackets/${model?.slug}`}>{model?.name}</a></h3>
+ <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={`${catalogPath}/${model?.slug}`}>{model?.name}</a></h3>
  <p className="review-text">{r.reviewText}</p><TagList tags={r.tags}/><div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||"No player details provided"}</div>
  <div className="byline"><span>by <b>{r.alias||"Anonymous player"}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>

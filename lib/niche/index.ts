@@ -1,10 +1,11 @@
 import type { Niche } from "./types";
 import { padel } from "./padel";
+import { pickleball } from "./pickleball";
 
 export type { Niche } from "./types";
 
 /** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel };
+export const niches: Record<string, Niche> = { padel, pickleball };
 export const DEFAULT_NICHE = "padel";
 
 /** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */
@@ -17,3 +18,7 @@ export function selectNiche(id: string | undefined): Niche {
 
 // next.config.ts inlines NICHE at build time, so browser code sees the same value as the server.
 export const niche = selectNiche(process.env.NICHE);
+
+/** "/rackets" on PadelRecs, "/paddles" on PickleballRecs. The pages live in app/rackets; next.config.ts maps other paths onto them. */
+export const catalogPath = `/${niche.productPath}`;
+export const productHref = (slug: string) => `${catalogPath}/${slug}`;

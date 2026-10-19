@@ -5,7 +5,7 @@ import { catalog } from "../db/data";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
 import { ProductIcon } from "./icons";
 import { LoadMore } from "./load-more";
-import { niche } from "../lib/niche";
+import { niche, catalogPath } from "../lib/niche";
 
 const DAY = 86_400_000;
 const PAGE = 24;
@@ -60,7 +60,7 @@ export default async function Home({ searchParams }: {
   const popularLabel = week.length >= 2 ? "this week" : "this month";
   const strip = popular.length >= 2 && <section className="strip" aria-label={`Popular ${popularLabel}`}>
     <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new reviews</span></div>
-    <ol>{popular.map(({racket, count}) => { const {brand, model} = racketParts(racket, data); return <li key={racket.id}><a href={`/rackets/${racket.slug}`}>
+    <ol>{popular.map(({racket, count}) => { const {brand, model} = racketParts(racket, data); return <li key={racket.id}><a href={`${catalogPath}/${racket.slug}`}>
       <ProductIcon shape={racket.shape} brand={brand}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
     </a></li>; })}</ol>
   </section>;
