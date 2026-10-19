@@ -17,3 +17,9 @@ test("database and authentication URLs must match the exact confirmed new projec
  assert.throws(()=>assertDatabaseTarget("postgres://postgres:password@db.unrelated.supabase.co/postgres",ref,ref),/does not match/);
  assert.throws(()=>assertAuthTarget("https://unrelated.supabase.co",ref,ref),/does not match/);
 });
+test("the site talks to Supabase's transaction pooler; direct connections are left alone",async()=>{
+ const {transactionPoolerUrl}=await import("../db/index");
+ const ref="newpadelrecsprojectref";
+ assert.equal(transactionPoolerUrl(`postgresql://postgres.${ref}:p%40ss@aws-1-eu-central-1.pooler.supabase.com:5432/postgres`),`postgresql://postgres.${ref}:p%40ss@aws-1-eu-central-1.pooler.supabase.com:6543/postgres`);
+ assert.equal(transactionPoolerUrl(`postgresql://postgres:pass@db.${ref}.supabase.co:5432/postgres`),`postgresql://postgres:pass@db.${ref}.supabase.co:5432/postgres`);
+});
