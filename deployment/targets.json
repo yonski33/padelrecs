@@ -6,6 +6,9 @@
   "supabaseProjectName": "PadelRecs",
   "supabaseProjectRef": "myauwuulzvkdsinfcfbc",
   "supabaseRegion": "eu-central-1",
+  "nicheSchemas": {
+    "padel": "padelrecs"
+  },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
     "adxxysbmpwlfebjbzixl"

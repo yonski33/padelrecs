@@ -3,14 +3,15 @@ import { Fragment } from "react";
 import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
-import { RacketIcon } from "./icons";
+import { ProductIcon } from "./icons";
 import { LoadMore } from "./load-more";
+import { niche } from "../lib/niche";
 
 const DAY = 86_400_000;
 const PAGE = 24;
 
-const homeTitle = "PadelRecs – Real Player Reviews of Padel Rackets";
-const homeDescription = "Browse real padel racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.";
+const homeTitle = niche.seo.homeTitle;
+const homeDescription = niche.seo.homeDescription;
 export const metadata: Metadata = {
   title: { absolute: homeTitle },
   description: homeDescription,
@@ -60,7 +61,7 @@ export default async function Home({ searchParams }: {
   const strip = popular.length >= 2 && <section className="strip" aria-label={`Popular ${popularLabel}`}>
     <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new reviews</span></div>
     <ol>{popular.map(({racket, count}) => { const {brand, model} = racketParts(racket, data); return <li key={racket.id}><a href={`/rackets/${racket.slug}`}>
-      <RacketIcon shape={racket.shape} brand={brand}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
+      <ProductIcon shape={racket.shape} brand={brand}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
     </a></li>; })}</ol>
   </section>;
 

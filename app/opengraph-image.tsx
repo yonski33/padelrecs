@@ -1,9 +1,10 @@
 import { ogCard, ogSize } from "./og-card";
+import { niche } from "../lib/niche";
 
-export const alt = "PadelRecs – real player reviews of padel rackets";
+export const alt = niche.seo.ogAlt;
 export const size = ogSize;
 export const contentType = "image/png";
 
 export default function Image() {
-  return ogCard({ eyebrow: "Player reviews of padel rackets", title: "Real player reviews of padel rackets", detail: "From players, Reddit, YouTube, shops and forums" });
+  return ogCard({ eyebrow: niche.seo.ogEyebrow, title: niche.seo.ogTitle, detail: niche.seo.ogDetail });
 }

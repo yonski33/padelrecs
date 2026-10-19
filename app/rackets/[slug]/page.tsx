@@ -6,11 +6,13 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
 import { Review, External, racketParts } from "../../components";
-import { Balls, PlusIcon, RacketIcon, SourceIcon } from "../../icons";
+import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
+import { niche } from "../../../lib/niche";
 
-const categories = [["Power","powerRating"],["Control","controlRating"],["Maneuverability","maneuverabilityRating"],["Comfort","comfortRating"],["Forgiveness","forgivenessRating"]] as const;
+const categories = niche.categories.map(c => [c.label, c.column] as const);
+const { playerLevel, playingSide } = niche.profile;
 const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)}%` : "0%";
 // One catalog read per request, shared by the page and its metadata.
 const catalog = cache(() => loadCatalog());
@@ -18,9 +20,8 @@ const catalog = cache(() => loadCatalog());
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const [{slug}, data] = await Promise.all([params, catalog()]);
   const r = data.rackets.find(x => x.slug === slug);
-  if (!r) return { title: { absolute: "Racket not found | PadelRecs" }, robots: { index: false } };
-  const title = `${r.name} Player Reviews | PadelRecs`;
-  const description = `Read real player experiences with the ${r.name}. Ratings, strengths, weaknesses, playing style, and opinions from PadelRecs and around the web.`;
+  if (!r) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
+  const { title, description } = niche.seo.product(r.name);
   return { title: { absolute: title }, description, alternates: { canonical: `/rackets/${r.slug}` }, openGraph: { title, description, url: `/rackets/${r.slug}`, type: "website" } };
 }
 
@@ -47,10 +48,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   });
   const catPlayers = reviews.filter(x => categories.some(([, key]) => x[key] != null)).length;
   const tally = (values: (string | null)[], options: string[]) => options.map(o => ({ o, n: values.filter(v => v === o).length })).filter(x => x.n > 0);
-  const sides = tally(reviews.map(x => x.playingSide), ["Left", "Right", "Both"]);
-  const levels = tally(reviews.map(x => x.playerLevel), ["Competitive", "Advanced", "Intermediate", "Beginner"]);
+  const sides = tally(reviews.map(x => x.playingSide), playingSide.options.map(o => o.value));
+  // Highest level first.
+  const levels = tally(reviews.map(x => x.playerLevel), playerLevel.options.map(o => o.value).reverse());
   const sideTotal = sides.reduce((a, x) => a + x.n, 0), levelTotal = levels.reduce((a, x) => a + x.n, 0);
-  const colors = ["var(--green)", "var(--lime)", "#e0d9c2", "#b9c9bd"];
+  const colors = niche.chartColors;
   const dist = [5, 4, 3, 2, 1].map(n => ({ n, count: reviews.filter(x => x.rating === n).length }));
   const distMax = Math.max(1, ...dist.map(d => d.count));
 
@@ -65,7 +67,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/> })),
     ...external.map(e => ({ kind: "web" as const, date: e.createdAt, helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/> })),
   ];
-  const specs: [string, string | number | null][] = [["Year", r.year], ["Shape", r.shape], ["Weight", r.weight], ["Balance", r.balance], ["Core", r.core], ["Surface", r.surface]];
+  const specs: [string, string | number | null][] = [["Year", r.year], ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])];
   const addHref = `/add-review?racket=${r.id}`;
   const tagged = [...reviews, ...external].filter(x => x.tags.length);
   const tagCounts = new Map<string, number>();
@@ -75,7 +77,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // Structured data for Google: product + player ratings (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     ...(s.average ? [{
-      "@type": "Product", name: r.name, url, image: `${url}/opengraph-image`, category: "Padel racket",
+      "@type": "Product", name: r.name, url, image: `${url}/opengraph-image`, category: niche.seo.productCategory,
       description: r.description || `Player reviews and ratings of the ${r.name}.`,
       ...(brand ? { brand: { "@type": "Brand", name: brand.name } } : {}),
       aggregateRating: { "@type": "AggregateRating", ratingValue: s.average, ratingCount: s.count, reviewCount: s.count, bestRating: 5, worstRating: 1 },
@@ -85,7 +87,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       })),
     }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Rackets", item: `${base}/rackets` },
+      { "@type": "ListItem", position: 1, name: niche.words.Many, item: `${base}/rackets` },
       ...(brand ? [{ "@type": "ListItem", position: 2, name: brand.name, item: `${base}/brands/${brand.slug}` }] : []),
       { "@type": "ListItem", position: brand ? 3 : 2, name: r.name, item: url },
     ] },
@@ -96,13 +98,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
-        <RacketIcon shape={r.shape} brand={brand?.name}/>
+        <ProductIcon shape={r.shape} brand={brand?.name}/>
         {r.shape && <small>{r.shape.toLowerCase()}</small>}
       </div>
 
       <div className="profile-info">
         <div className="titleblock">
-          <div className="crumbs"><a href="/rackets">Rackets</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+          <div className="crumbs"><a href="/rackets">{niche.words.Many}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
           {brand && <span className="brandline">{brand.name}</span>}
           <h1>{model}</h1>
           {r.description && <p className="description">{r.description}</p>}
@@ -119,7 +121,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <aside className="scorecard">
         {s.average ? <>
           <div className="big">{s.average}<small>/ 5</small></div>
-          <Balls rating={Number(s.average)} size="lg"/>
+          <Score rating={Number(s.average)} size="lg"/>
           <p><b>{s.count}</b> player {s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
         </> : <>
           <div className="no-score">No ratings yet</div>
@@ -144,12 +146,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <section className="panel">
             <h2>Who's playing it</h2>
             {sideTotal > 0 && <div className="split">
-              <div className="lbl">Side</div>
+              <div className="lbl">{playingSide.label}</div>
               <div className="stack">{sides.map((x, i) => <i key={x.o} style={{width: pct(x.n, sideTotal), background: colors[i]}}/>)}</div>
               <div className="legend">{sides.map((x, i) => <span key={x.o} style={{"--c": colors[i]} as React.CSSProperties}>{x.o} {pct(x.n, sideTotal)}</span>)}</div>
             </div>}
             {levelTotal > 0 && <div className="split">
-              <div className="lbl">Level</div>
+              <div className="lbl">{playerLevel.label}</div>
               <div className="stack">{levels.map((x, i) => <i key={x.o} style={{width: pct(x.n, levelTotal), background: colors[i]}}/>)}</div>
               <div className="legend">{levels.map((x, i) => <span key={x.o} style={{"--c": colors[i]} as React.CSSProperties}>{x.o} {x.n}</span>)}</div>
             </div>}
@@ -167,8 +169,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
           <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={`/rackets/${x.slug}`}>
-            <RacketIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : "no ratings yet"}</span></span>
-            {sc.average && <span className="end"><Balls rating={Number(sc.average)} size="sm"/></span>}
+            <ProductIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : "no ratings yet"}</span></span>
+            {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>
         </section>}
 

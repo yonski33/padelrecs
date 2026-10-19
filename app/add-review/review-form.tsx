@@ -1,21 +1,19 @@
 "use client";
 import {Fragment, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
-import {BallIcon} from "../icons";
+import {LogoIcon} from "../icons";
 import {MAX_TAGS, TAGS} from "../../lib/tags";
+import {niche} from "../../lib/niche";
 
-// Option values must match the API's accepted values in app/api/reviews/route.ts.
-const levels = [["Beginner","< 1 year"],["Intermediate","regular matches"],["Advanced","tournaments"],["Competitive","ranked play"]] as const;
-const sides = ["Left","Right","Both"] as const;
-const styles = ["Attacking","All-round","Defensive"] as const;
-const times = [["Tried briefly","A few sessions"],["Less than 1 month","< 1 month"],["1–6 months","1–6 months"],["6–12 months","6–12 months"],["More than 1 year","1 year +"]] as const;
-const categories = [["Power","powerRating","smashes, ball speed"],["Control","controlRating","placement, touch"],["Maneuverability","maneuverabilityRating","speed at the net"],["Comfort","comfortRating","vibration, arm"],["Forgiveness","forgivenessRating","sweet spot, mishits"]] as const;
-const ratingWords: Record<string,string> = {"5":"5 — loved it","4":"4 — really liked it","3":"3 — it’s fine","2":"2 — not for me","1":"1 — regret buying it"};
-const prompts = [["What did you switch from?","Before this I played with "],["Weight as played?","Mine weighs about "],["Arm comfort?","On my arm it "]] as const;
+// The API (app/api/reviews/route.ts) accepts exactly these niche option values.
+const {words: w, scoreUnit, profile, ratingWords, form: {prompts, tips}} = niche;
+const categories = niche.categories.map(c => [c.label, c.column, c.hint] as const);
+type Option = {value: string; hint?: string};
 
-function Options({name, options}: {name: string; options: readonly (string | readonly [string, string])[]}) {
- return <div className="opts">{options.map(o => { const [value, hint] = typeof o === "string" ? [o, ""] : o;
-  return <label key={value}><input type="radio" name={name} value={value}/><span>{name === "timeWithRacket" ? hint : value}{name !== "timeWithRacket" && hint && <small>{hint}</small>}</span></label>; })}</div>;
+// "Time with …" shows only its hint ("A few sessions"); other options show the value with the hint underneath.
+function Options({name, options}: {name: string; options: readonly Option[]}) {
+ return <div className="opts">{options.map(({value, hint = ""}) =>
+  <label key={value}><input type="radio" name={name} value={value}/><span>{name === "timeWithRacket" ? hint : value}{name !== "timeWithRacket" && hint && <small>{hint}</small>}</span></label>)}</div>;
 }
 
 export default function ReviewForm({rackets,brands,initialRacket}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string}) {
@@ -27,9 +25,9 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
  async function submit(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();setError("");
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
-  if(values.racketMode==="existing"&&!values.racketId){setError("Pick a racket from the list as you type.");return;}
-  if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&/^\d{4}$/.test(values.year||""))){setError(values.brandName===undefined?"Which racket? Start typing its name and pick it from the list.":"For a new racket we need the brand, model and year.");return;}
-  if(!values.rating){setError("Give it an overall rating — tap one of the balls.");return;}
+  if(values.racketMode==="existing"&&!values.racketId){setError(`Pick a ${w.one} from the list as you type.`);return;}
+  if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&/^\d{4}$/.test(values.year||""))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand, model and year.`);return;}
+  if(!values.rating){setError(`Give it an overall rating — tap one of the ${scoreUnit.many}.`);return;}
   if((values.reviewText||"").trim().length<20){setError("Tell us a little more — at least 20 characters about how it played.");return;}
   setBusy(true);
   try {
@@ -50,18 +48,18 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
  }
 
  if(done)return <div className="success" role="status">
-  <BallIcon/>
+  <LogoIcon/>
   <h1>Nice one{done.alias?`, ${done.alias}`:""}.</h1>
-  <p>Your review of the {done.racket||"racket"} is in the queue. It goes live after a quick check, and the next person deciding will thank you.</p>
-  <div className="row">{done.slug&&<a className="button" href={`/rackets/${done.slug}`}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">Review another racket</a></div>
+  <p>Your review of the {done.racket||w.one} is in the queue. It goes live after a quick check, and the next person deciding will thank you.</p>
+  <div className="row">{done.slug&&<a className="button" href={`/rackets/${done.slug}`}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">{`Review another ${w.one}`}</a></div>
  </div>;
 
  return <div className="review-page">
   <div>
-   <div className="form-title"><h1>Add a review</h1><p>Tell other players how a racket actually played for you. Takes about two minutes, no account needed.</p></div>
+   <div className="form-title"><h1>Add a review</h1><p>{`Tell other players how a ${w.one} actually played for you. Takes about two minutes, no account needed.`}</p></div>
    <form className="review-form" onSubmit={submit} noValidate>
     <section className="step">
-     <h2 className="step-h"><span className="no">1</span>Which racket?</h2>
+     <h2 className="step-h"><span className="no">1</span>{`Which ${w.one}?`}</h2>
      <RacketField rackets={rackets} brands={brands} initialRacket={initialRacket}/>
     </section>
 
@@ -71,21 +69,21 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
       <span className="group-label" id="rating-label">Overall rating</span>
       <div className="ballpick-row">
        <div className="ballpick">{["5","4","3","2","1"].map(n=><Fragment key={n}><input type="radio" name="rating" value={n} id={`rating-${n}`} checked={rating===n} onChange={()=>setRating(n)}/><label htmlFor={`rating-${n}`} title={ratingWords[n]}><span className="sr-only">{ratingWords[n]}</span></label></Fragment>)}</div>
-       <span className="ball-word" aria-hidden="true">{rating?ratingWords[rating]:"Tap a ball"}</span>
+       <span className="ball-word" aria-hidden="true">{rating?ratingWords[rating]:`Tap a ${scoreUnit.one}`}</span>
       </div>
       <p className="help">Rate how it worked for <em>you</em>, not how good it is on paper.</p>
      </div>
      <div className="group" role="radiogroup" aria-labelledby="time-label">
-      <span className="group-label" id="time-label">Time with racket <span className="opt">optional</span></span>
-      <Options name="timeWithRacket" options={times}/>
+      <span className="group-label" id="time-label">{`${profile.timeWithRacket.label} `}<span className="opt">optional</span></span>
+      <Options name="timeWithRacket" options={profile.timeWithRacket.options}/>
      </div>
     </section>
 
     <section className="step">
      <h2 className="step-h"><span className="no">3</span>About your game <small>optional · helps people find players like them</small></h2>
-     <div className="group" role="radiogroup" aria-labelledby="level-label"><span className="group-label" id="level-label">Level</span><Options name="playerLevel" options={levels}/></div>
-     <div className="group" role="radiogroup" aria-labelledby="side-label"><span className="group-label" id="side-label">Side</span><Options name="playingSide" options={sides}/></div>
-     <div className="group" role="radiogroup" aria-labelledby="style-label"><span className="group-label" id="style-label">Style</span><Options name="playingStyle" options={styles}/></div>
+     <div className="group" role="radiogroup" aria-labelledby="level-label"><span className="group-label" id="level-label">{profile.playerLevel.label}</span><Options name="playerLevel" options={profile.playerLevel.options}/></div>
+     <div className="group" role="radiogroup" aria-labelledby="side-label"><span className="group-label" id="side-label">{profile.playingSide.label}</span><Options name="playingSide" options={profile.playingSide.options}/></div>
+     <div className="group" role="radiogroup" aria-labelledby="style-label"><span className="group-label" id="style-label">{profile.playingStyle.label}</span><Options name="playingStyle" options={profile.playingStyle.options}/></div>
     </section>
 
     <section className="step">
@@ -131,11 +129,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   <aside className="tips">
    <h2>What makes a review useful</h2>
    <ul>
-    <li>What you played with before, and how this compares</li>
-    <li>Your weight as played, if you know it</li>
-    <li>Where it shines and where it struggles</li>
-    <li>Arm comfort, if that matters to you</li>
-    <li>Durability, once you’ve had it a while</li>
+    {tips.map(tip=><li key={tip}>{tip}</li>)}
    </ul>
    <p>Negative reviews are just as welcome. We check for spam, not for opinions.</p>
   </aside>

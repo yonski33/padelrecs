@@ -1,5 +1,6 @@
 "use client";
 import { useState, type MouseEvent, type ReactNode } from "react";
+import { niche } from "../../../lib/niche";
 
 type Source = "all" | "players" | "web";
 type Sort = "newest" | "helpful";
@@ -41,6 +42,6 @@ export default function ReviewList({ slug, addHref, items, initialSource, initia
     {shown.length > 1 && <p className="sort-links">Sort: {(["newest", "helpful"] as const).map(v =>
       <a key={v} href={link(source, v)} onClick={e => go(e, source, v)} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</a>)}</p>}
     {shown.map(i => <div key={i.key}>{i.node}</div>)}
-    {shown.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No player reviews yet. This racket is waiting for its first one."} <a href={addHref}>Write one →</a></p>}
+    {shown.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : `No player reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
   </>;
 }

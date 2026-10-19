@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { brands, rackets, reviews, externalReviews, racketSlugRedirects } from "./schema";
 import type { getDb } from "./index";
+import { SOURCE_SCHEMA } from "./migrations";
 const nullable=z.string().nullable();
 const category=z.number().int().min(1).max(5).nullable();
 const identity={id:z.string().min(1)};
@@ -17,6 +18,9 @@ const tables=z.object({
 }).strict();
 const format=z.object({formatVersion:z.literal(1),source:z.string(),exportedAt:z.string().datetime(),tables}).strict();
 export type Snapshot=z.infer<typeof format>;
+/** Snapshots name the schema they came from ("supabase:<ref>#<schema>"); older ones without it came from padelrecs. */
+export const snapshotSource=(origin:string,schema:string)=>`${origin}#${schema}`;
+export const snapshotSchema=(snapshot:Pick<Snapshot,"source">)=>snapshot.source.match(/#([a-z][a-z0-9_]*)$/)?.[1]??SOURCE_SCHEMA;
 export function parseSnapshot(raw:unknown):Snapshot {
  const snapshot=format.parse(raw),t=snapshot.tables;
  for(const name of ["brands","rackets","reviews","external_reviews"] as const){

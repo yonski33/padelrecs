@@ -2,10 +2,8 @@
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 
-const GA_ID = "G-GKZDEE5HBK";
-
-/** Google Analytics (GA4). Rendered on the live site only (see layout) and never on admin pages. */
-export function Analytics() {
+/** Google Analytics (GA4). Rendered on the live site only (see layout) and never on admin pages. The ID is per niche. */
+export function Analytics({ id: GA_ID }: { id: string }) {
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return null;
   return <>

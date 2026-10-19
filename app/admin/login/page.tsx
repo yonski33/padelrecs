@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { isAdmin } from "../auth";
+import { niche } from "../../../lib/niche";
 export const dynamic="force-dynamic";
 export const metadata={title:"Admin sign in",robots:{index:false,follow:false}};
 export default async function Login({searchParams}:{searchParams:Promise<{result?:string}>}) {
@@ -18,7 +19,7 @@ export default async function Login({searchParams}:{searchParams:Promise<{result
  <label className="field">Email<input name="email" type="email" required maxLength={254} autoComplete="username"/></label>
  <label className="field">Password<input name="password" type="password" required maxLength={4096} autoComplete="current-password"/></label>
  <button>Sign in</button></form>
- <p className="small muted">Use the email and password for your PadelRecs admin account.</p>
+ <p className="small muted">{niche.site.adminLoginHint}</p>
  <details><summary>Email a sign-in link instead</summary><form className="review-form" method="post" action="/auth/login"><input type="hidden" name="method" value="email"/><label className="field">Email<input name="email" type="email" required maxLength={254} autoComplete="email"/></label><button>Send sign-in link</button></form></details></>}
  </main>;
 }
