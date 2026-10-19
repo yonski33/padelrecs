@@ -150,3 +150,17 @@ test("skin: products without years, users instead of players, skincare profile",
   assert.equal(niches.padel.copy.ui.whoUsesIt, "Who's playing it");
   assert.notEqual(niches.padel.productYears, false);
 });
+
+test("tennis: rackets with years, NTRP hints, backhand, spin in the forgiveness column", () => {
+  const n = selectNiche("tennis");
+  assert.equal(n.schema, "tennisrecs");
+  assert.equal(n.productPath, "rackets");
+  assert.notEqual(n.productYears, false);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Power:powerRating", "Control:controlRating", "Spin:forgivenessRating", "Comfort:comfortRating", "Maneuverability:maneuverabilityRating"]);
+  assert(n.profile.playerLevel.options.every(o => o.hint?.startsWith("NTRP")));
+  assert.deepEqual(n.profile.playingSide.options.map(o => o.value), ["One-handed", "Two-handed"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Head size", "Weight", "Balance", "String pattern", "Stiffness"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
