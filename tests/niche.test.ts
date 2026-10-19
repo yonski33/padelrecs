@@ -123,3 +123,9 @@ test("every niche has its tab and home-screen icons", async () => {
   const { access } = await import("node:fs/promises");
   for (const id of Object.keys(niches)) for (const file of ["favicon.ico", "icon.svg", "apple-icon.png"]) await access(`public/niches/${id}/${file}`);
 });
+
+test("every niche has a recorded Vercel project", () => {
+  const projects = (targets as { vercelProjects: Record<string, { name: string; id: string }> }).vercelProjects;
+  for (const id of Object.keys(niches)) assert.match(projects[id]?.id ?? "", /^prj_/, `${id} needs a Vercel project in deployment/targets.json`);
+  assert.equal(projects.padel.id, targets.vercelProjectId);
+});
