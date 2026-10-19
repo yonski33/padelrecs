@@ -1,6 +1,6 @@
 import type { rackets } from "../../db/schema";
 import SlugField from "./slug-field";
-import { niche, catalogPath } from "../../lib/niche";
+import { niche, catalogPath, hasYears } from "../../lib/niche";
 const w = niche.words;
 
 type Racket = typeof rackets.$inferSelect;
@@ -22,7 +22,7 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
    <SlugField initial={selected.slug} oldSlugs={oldSlugs}/>
    <div className="form-grid">
     <label className="field">Brand<select name="brandId" required defaultValue={selected.brandId}>{brands.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
-    <label className="field">Year<input name="year" type="number" required min={1980} max={2100} defaultValue={selected.year}/></label>
+    {hasYears ? <label className="field">Year<input name="year" type="number" required min={1980} max={2100} defaultValue={selected.year}/></label> : <input type="hidden" name="year" value={selected.year}/>}
     {niche.specs.map(spec=><label className="field" key={spec.column}>{spec.label}<input name={spec.column} list={spec.options?`${spec.column}-options`:undefined} maxLength={spec.max} defaultValue={selected[spec.column]||""} placeholder={spec.placeholder}/>{spec.options&&<datalist id={`${spec.column}-options`}>{spec.options.map(s=><option key={s} value={s}/>)}</datalist>}</label>)}
    </div>
    <label className="field">Description<textarea name="description" maxLength={5000} defaultValue={selected.description||""}/></label>

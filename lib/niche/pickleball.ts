@@ -28,6 +28,7 @@ export const pickleball: Niche = {
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "paddle", many: "paddles", One: "Paddle", Many: "Paddles" },
+  people: { one: "player", many: "players", One: "Player", Many: "Players" },
   productPath: "paddles",
   scoreUnit: { one: "ball", many: "balls" },
   // Warm paper, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
@@ -138,6 +139,16 @@ export const pickleball: Niche = {
     ogFallbackTitle: "Pickleball paddle reviews",
   },
   copy: {
+    ui: {
+      formIntro: "Tell other players how a paddle actually played for you. Takes about two minutes, no account needed.",
+      howItWent: "how it played",
+      aboutYou: "About your game",
+      howItPerforms: "How it plays",
+      whoUsesIt: "Who's playing it",
+      triedIt: "Played it?",
+      triedOne: "Played one?",
+      triedOneOfThese: "Played one of these?",
+    },
     notFound: "We couldn’t find that paddle or page. Maybe it moved, maybe it never existed, maybe the link just landed in the kitchen.",
     about: {
       heading: "Why PickleballRecs exists",

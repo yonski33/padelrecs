@@ -43,7 +43,7 @@ export default async function Home({ searchParams }: {
   const show = Number.isFinite(requested) ? Math.min(2400, Math.max(PAGE, Math.ceil(requested / PAGE) * PAGE)) : PAGE;
   const sources = [
     { value: "all", label: "All", count: data.reviews.length + data.external.length, href: "/" },
-    { value: "players", label: "From players", count: data.reviews.length, href: "/?source=players" },
+    { value: "players", label: `From ${niche.people.many}`, count: data.reviews.length, href: "/?source=players" },
     { value: "web", label: "From around the web", count: data.external.length, href: "/?source=web" },
   ];
   const items = [
@@ -69,8 +69,8 @@ export default async function Home({ searchParams }: {
   return <main className="home"><div className="columns"><div>
     <div className="feed-heading">
       <div>
-        <h1 className="feed-title">Latest player reviews</h1>
-        <p className="feed-sub">{weekNotes > 0 ? `${weekNotes} new this week, from players and from around the web.` : "From players, and from around the web with the source linked."}</p>
+        <h1 className="feed-title">{`Latest ${niche.people.one} reviews`}</h1>
+        <p className="feed-sub">{weekNotes > 0 ? `${weekNotes} new this week, from ${niche.people.many} and from around the web.` : `From ${niche.people.many}, and from around the web with the source linked.`}</p>
       </div>
       <nav className="source-nav" aria-label="Review sources">
         {sources.map(item => <a key={item.value} href={item.href} aria-current={source === item.value ? "page" : undefined}>
@@ -91,6 +91,6 @@ export default async function Home({ searchParams }: {
     {items.length > 0 && items.length < 4 && strip}
     {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
     {items.length > show && <LoadMore href={`/?${source !== "all" ? `source=${source}&` : ""}show=${show + PAGE}`}/>}
-    {items.length > 0 && items.length <= show && <p className="end-note">You've reached the end. Played one of these? <a href="/add-review">Add your own review →</a></p>}
+    {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
   </div><Sidebar data={data}/></div></main>;
 }

@@ -6,7 +6,7 @@ import { LogoIcon, PlusIcon } from "./icons";
 import { niche, catalogPath } from "../lib/niche";
 
 const links = [
-  ["/", "Player reviews"],
+  ["/", `${niche.people.One} reviews`],
   [catalogPath, niche.words.Many],
   ["/brands", "Brands"],
   ["/add-review", "Add a review"],

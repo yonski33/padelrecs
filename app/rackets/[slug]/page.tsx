@@ -9,7 +9,7 @@ import { Review, External, racketParts } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
-import { niche, catalogPath } from "../../../lib/niche";
+import { niche, catalogPath, hasYears } from "../../../lib/niche";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -67,7 +67,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/> })),
     ...external.map(e => ({ kind: "web" as const, date: e.createdAt, helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/> })),
   ];
-  const specs: [string, string | number | null][] = [["Year", r.year], ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])];
+  const specs: [string, string | number | null][] = [...(hasYears ? [["Year", r.year] as [string, number]] : []), ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])];
   const addHref = `/add-review?racket=${r.id}`;
   const tagged = [...reviews, ...external].filter(x => x.tags.length);
   const tagCounts = new Map<string, number>();
@@ -78,11 +78,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     ...(s.average ? [{
       "@type": "Product", name: r.name, url, image: `${url}/opengraph-image`, category: niche.seo.productCategory,
-      description: r.description || `Player reviews and ratings of the ${r.name}.`,
+      description: r.description || `${niche.people.One} reviews and ratings of the ${r.name}.`,
       ...(brand ? { brand: { "@type": "Brand", name: brand.name } } : {}),
       aggregateRating: { "@type": "AggregateRating", ratingValue: s.average, ratingCount: s.count, reviewCount: s.count, bestRating: 5, worstRating: 1 },
       review: reviews.slice(0, 10).map(x => ({
-        "@type": "Review", author: { "@type": "Person", name: x.alias || "Anonymous player" }, datePublished: x.createdAt.slice(0, 10), reviewBody: x.reviewText,
+        "@type": "Review", author: { "@type": "Person", name: x.alias || `Anonymous ${niche.people.one}` }, datePublished: x.createdAt.slice(0, 10), reviewBody: x.reviewText,
         reviewRating: { "@type": "Rating", ratingValue: x.rating, bestRating: 5, worstRating: 1 },
       })),
     }] : []),
@@ -113,7 +113,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
         {tagged.length >= 2 && <div className="says">
-          <h3>What players keep saying <span>· from {tagged.length} reviews</span></h3>
+          <h3>{`What ${niche.people.many} keep saying `}<span>· from {tagged.length} reviews</span></h3>
           <TagList tags={topTags} counts={tagCounts}/>
         </div>}
       </div>
@@ -122,13 +122,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {s.average ? <>
           <div className="big">{s.average}<small>/ 5</small></div>
           <Score rating={Number(s.average)} size="lg"/>
-          <p><b>{s.count}</b> player {s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
+          <p><b>{s.count}</b>{` ${niche.people.one} `}{s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
         </> : <>
           <div className="no-score">No ratings yet</div>
-          <p>{external.length ? `${external.length} quoted from around the web, but no player has rated it here yet.` : "Nobody has rated this one yet. Be the first."}</p>
+          <p>{external.length ? `${external.length} quoted from around the web, but no ${niche.people.one} has rated it here yet.` : "Nobody has rated this one yet. Be the first."}</p>
         </>}
         <a className="button" href={addHref}><PlusIcon/>Add your review</a>
-        <p className="hint">Played it? No account needed.</p>
+        <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
       </aside>
     </section>
 
@@ -136,7 +136,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div>
         {reviews.length > 0 && <div className="panels">
           <section className="panel">
-            <h2>How it plays<small>{catPlayers} {catPlayers === 1 ? "player" : "players"}</small></h2>
+            <h2>{niche.copy.ui.howItPerforms}<small>{catPlayers} {catPlayers === 1 ? niche.people.one : niche.people.many}</small></h2>
             {catPlayers ? <ul className="cats">{cats.map(c => <li key={c.key}>
               <span>{c.label}</span><span className="track"><i style={{width: c.avg ? `${c.avg / 5 * 100}%` : 0}}/></span>
               <b className={c.avg ? undefined : "na"}>{c.avg ? c.avg.toFixed(1) : "—"}</b>
@@ -144,7 +144,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
 
           <section className="panel">
-            <h2>Who's playing it</h2>
+            <h2>{niche.copy.ui.whoUsesIt}</h2>
             {sideTotal > 0 && <div className="split">
               <div className="lbl">{playingSide.label}</div>
               <div className="stack">{sides.map((x, i) => <i key={x.o} style={{width: pct(x.n, sideTotal), background: colors[i]}}/>)}</div>
@@ -177,12 +177,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {platforms.length > 0 && <section>
           <h2>Quotes come from</h2>
           <ul className="mini">{platforms.map(([p, n]) => <li key={p}><span className="row"><span className="src"><SourceIcon platform={p}/></span><span className="nm">{p}</span><span className="end">{n}</span></span></li>)}</ul>
-          <p className="side-note" style={{marginTop: 8}}>Quoted opinions never count toward the player rating.</p>
+          <p className="side-note" style={{marginTop: 8}}>{`Quoted opinions never count toward the ${niche.people.one} rating.`}</p>
         </section>}
 
         <section>
           <h2>About these ratings</h2>
-          <p className="side-note">Only approved player reviews count toward the average. Every player review is checked for spam before it appears.</p>
+          <p className="side-note">{`Only approved ${niche.people.one} reviews count toward the average. Every ${niche.people.one} review is checked for spam before it appears.`}</p>
         </section>
       </aside>
     </div>

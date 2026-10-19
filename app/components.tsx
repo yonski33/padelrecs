@@ -3,6 +3,7 @@ import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
 import { HelpfulButton } from "./helpful-button";
 import { niche, catalogPath } from "../lib/niche";
+import type { ProfileField } from "../lib/niche/types";
 
 type Racket = Catalog["rackets"][number];
 type PlayerReview = Catalog["reviews"][number];
@@ -39,19 +40,17 @@ function Avatar({alias}: {alias: string | null}) {
   return <span className={`avatar${tone ? ` a${tone + 1}` : ""}`} aria-hidden="true">{alias.trim()[0]?.toUpperCase()}</span>;
 }
 
-function sideLabel(value: string) {
-  return niche.profile.playingSide.options.find(o => o.value === value)?.display ?? `${value}${niche.profile.sideSuffix}`;
-}
-
-function timeLabel(value: string) {
-  return niche.profile.timeWithRacket.options.find(o => o.value === value)?.display ?? value;
+// How a profile answer reads in a review byline: the option's display text if the niche gives one ("tried briefly", "oily skin").
+function profileLabel(field: ProfileField, value: string) {
+  const display = niche.profile[field].options.find(o => o.value === value)?.display;
+  return display ?? (field === "playingSide" ? `${value}${niche.profile.sideSuffix}` : value);
 }
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 
 export function Review({review: r, data, showRacket = true}: {review: PlayerReview; data: Catalog; showRacket?: boolean}) {
   const racket = data.rackets.find(x => x.id === r.racketId)!;
-  const details = [r.playerLevel, r.playingSide && sideLabel(r.playingSide), r.playingStyle && !showRacket ? r.playingStyle : null, r.timeWithRacket && timeLabel(r.timeWithRacket)].filter(Boolean);
+  const details = [r.playerLevel && profileLabel("playerLevel", r.playerLevel), r.playingSide && profileLabel("playingSide", r.playingSide), r.playingStyle && !showRacket ? profileLabel("playingStyle", r.playingStyle) : null, r.timeWithRacket && profileLabel("timeWithRacket", r.timeWithRacket)].filter(Boolean);
   const scores = categories.filter(([, key]) => r[key] != null);
   return <article className={showRacket ? "note" : "note compact"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
@@ -130,14 +129,14 @@ export function Sidebar({data}: {data: Catalog}) {
       {weekPlayers + weekWeb > 0 ? <>
         <h2>This week <small>last 7 days</small></h2>
         <dl>
-          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "review" : "reviews"}, {weekPlayers} from players</dd>
+          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "review" : "reviews"}, {weekPlayers}{` from ${niche.people.many}`}</dd>
           <dt>{weekRackets}</dt><dd>{weekRackets === 1 ? w.one : w.many} talked about</dd>
           <dt>{data.rackets.length}</dt><dd>{`${w.many} in the database`}</dd>
         </dl>
       </> : <>
         <h2>So far</h2>
         <dl>
-          <dt>{data.reviews.length}</dt><dd>reviews from players</dd>
+          <dt>{data.reviews.length}</dt><dd>{`reviews from ${niche.people.many}`}</dd>
           <dt>{data.external.length}</dt><dd>quoted from around the web</dd>
           <dt>{data.rackets.length}</dt><dd>{`${w.many} in the database`}</dd>
         </dl>
@@ -170,7 +169,7 @@ export function Sidebar({data}: {data: Catalog}) {
 
     {lonely.length > 0 && <section>
       <h2>{`Lonely ${w.many}`}</h2>
-      <p className="side-note">Hardly any reviews yet. Played one? Keep it company.</p>
+      <p className="side-note">{`Hardly any reviews yet. ${niche.copy.ui.triedOne} Keep it company.`}</p>
       <ul className="mini">{lonely.map(({racket, count}) => <li key={racket.id}><a href={`/add-review?racket=${racket.id}`}>
         <ProductIcon shape={racket.shape} brand={racketParts(racket, data).brand}/><span className="nm">{racket.name}<span className="mt">{notes(count)}</span></span><span className="end">+ add</span>
       </a></li>)}</ul>
