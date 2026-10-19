@@ -77,10 +77,9 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
     {showRacket && <header className="note-head"><RacketHeading racket={racket} data={data}/></header>}
     <div className="quote" style={showRacket ? undefined : {marginTop: 0}}>
       {e.summary ? <>
-        {/* Our summary of the source's experience, then the source's exact words as evidence. */}
-        <p className="summary-label">{`${niche.site.name} summary`}</p>
-        <p className="note-body">{e.summary}</p>
-        {e.excerpt && <blockquote className="source-quote">“{e.excerpt}”<span>In their words</span></blockquote>}
+        {/* Our summary of the source's experience (written in the third person), then the source's exact words. */}
+        <p className="note-body summary">{e.summary}</p>
+        {e.excerpt && <blockquote className="source-quote">“{e.excerpt}”</blockquote>}
       </> : <p className="note-body">{e.excerpt}</p>}
       <TagList tags={e.tags}/>
       <div className="cite">

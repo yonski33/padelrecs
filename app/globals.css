@@ -199,10 +199,8 @@ button:disabled { opacity: .6; cursor: progress; }
 
 .quote { margin-top: 10px; max-width: calc(var(--measure) + 36px); padding: 14px 18px 12px; background: var(--tint); border-radius: 10px; }
 .quote .note-body { margin: 0; font-size: 16px; color: var(--ink-2); }
-.quote .summary-label { margin: 0 0 4px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
-.quote .summary-label + .note-body { color: var(--ink); }
+.quote .note-body.summary { color: var(--ink); }
 .source-quote { margin: 10px 0 0; padding: 2px 0 2px 12px; border-left: 3px solid var(--lime-line); font-style: italic; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); overflow-wrap: anywhere; }
-.source-quote span { display: block; margin-top: 2px; font-style: normal; font-size: 12.5px; color: var(--ink-3); }
 .cite { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
 .cite svg { width: 15px; height: 15px; color: var(--ink-2); }
 .cite b { color: var(--ink-2); font-weight: 600; }
