@@ -71,3 +71,13 @@ test("apostrophes vanish from slugs", async () => {
   assert.equal(slugify("Paula's Choice 10% Niacinamide Booster"), "paulas-choice-10-niacinamide-booster");
   assert.equal(slugify("Nox AT10 Genius 12K 2025"), "nox-at10-genius-12k-2025");
 });
+
+test("tennis head sizes pick the frame size", async () => {
+  const { shapeOf } = await import("../app/art/tennis");
+  assert.equal(shapeOf("97 sq in (626 cm²)"), "midplus");
+  assert.equal(shapeOf("90 sq in"), "midsize");
+  assert.equal(shapeOf("110 sq in"), "oversize");
+  assert.equal(shapeOf("100"), "midplus");
+  assert.equal(shapeOf("645 cm²"), "unknown");
+  assert.equal(shapeOf(null), "unknown");
+});

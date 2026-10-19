@@ -26,7 +26,8 @@
   "nicheSchemas": {
     "padel": "padelrecs",
     "pickleball": "pickleballrecs",
-    "skin": "skinrecs"
+    "skin": "skinrecs",
+    "tennis": "tennisrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
