@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { brands, rackets, reviews, externalReviews, racketSlugRedirects } from "./schema";
-import type { getDb } from "./index";
+import type { PgDatabase, PgQueryResultHKT } from "drizzle-orm/pg-core";
+import type * as schema from "./schema";
 import { SOURCE_SCHEMA } from "./migrations";
 const nullable=z.string().nullable();
 const category=z.number().int().min(1).max(5).nullable();
@@ -46,7 +47,8 @@ export function normalized(snapshot:Snapshot){
   slugRedirects:(snapshot.tables.racket_slug_redirects??[]).map(camel) as typeof racketSlugRedirects.$inferSelect[]
  };
 }
-type Database=ReturnType<typeof getDb>;
+// Any Drizzle Postgres driver: the site (node-postgres), db:import (postgres.js) and tests (PGlite).
+type Database=PgDatabase<PgQueryResultHKT,typeof schema>;
 type Reader=Pick<Database,"select">;
 export async function verifySnapshot(db:Reader,snapshot:Snapshot){
  const expected=normalized(snapshot);
