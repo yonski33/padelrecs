@@ -7,7 +7,8 @@
   "supabaseProjectRef": "myauwuulzvkdsinfcfbc",
   "supabaseRegion": "eu-central-1",
   "nicheSchemas": {
-    "padel": "padelrecs"
+    "padel": "padelrecs",
+    "pickleball": "pickleballrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

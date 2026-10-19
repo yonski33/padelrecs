@@ -9,7 +9,7 @@ import { Review, External, racketParts } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
-import { niche } from "../../../lib/niche";
+import { niche, catalogPath } from "../../../lib/niche";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -22,7 +22,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const r = data.rackets.find(x => x.slug === slug);
   if (!r) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
   const { title, description } = niche.seo.product(r.name);
-  return { title: { absolute: title }, description, alternates: { canonical: `/rackets/${r.slug}` }, openGraph: { title, description, url: `/rackets/${r.slug}`, type: "website" } };
+  return { title: { absolute: title }, description, alternates: { canonical: `${catalogPath}/${r.slug}` }, openGraph: { title, description, url: `${catalogPath}/${r.slug}`, type: "website" } };
 }
 
 export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]; sort?: string | string[]}>}) {
@@ -31,7 +31,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   if (!r) {
     // Renamed rackets: old addresses redirect permanently so links and search rankings carry over.
     const moved = await redirectedSlug(await database(), slug);
-    if (moved) permanentRedirect(`/rackets/${moved}`);
+    if (moved) permanentRedirect(`${catalogPath}/${moved}`);
     notFound();
   }
   const brand = data.brands.find(b => b.id === r.brandId);
@@ -73,7 +73,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const tagCounts = new Map<string, number>();
   for (const t of tagged.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
   const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
-  const url = `${base}/rackets/${r.slug}`;
+  const url = `${base}${catalogPath}/${r.slug}`;
   // Structured data for Google: product + player ratings (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     ...(s.average ? [{
@@ -87,7 +87,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       })),
     }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: niche.words.Many, item: `${base}/rackets` },
+      { "@type": "ListItem", position: 1, name: niche.words.Many, item: `${base}${catalogPath}` },
       ...(brand ? [{ "@type": "ListItem", position: 2, name: brand.name, item: `${base}/brands/${brand.slug}` }] : []),
       { "@type": "ListItem", position: brand ? 3 : 2, name: r.name, item: url },
     ] },
@@ -104,7 +104,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
       <div className="profile-info">
         <div className="titleblock">
-          <div className="crumbs"><a href="/rackets">{niche.words.Many}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+          <div className="crumbs"><a href={catalogPath}>{niche.words.Many}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
           {brand && <span className="brandline">{brand.name}</span>}
           <h1>{model}</h1>
           {r.description && <p className="description">{r.description}</p>}
@@ -168,7 +168,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <aside className="database-sidebar">
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
-          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={`/rackets/${x.slug}`}>
+          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={`${catalogPath}/${x.slug}`}>
             <ProductIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : "no ratings yet"}</span></span>
             {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>

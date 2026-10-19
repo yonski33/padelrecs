@@ -45,6 +45,8 @@ export type Niche = {
     adminLoginHint: string;
   };
   words: Words;
+  /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
+  productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */
   scoreUnit: { one: string; many: string };
   /** CSS custom properties set on <html>: colours plus the rating-icon images (see .balls/.ballpick in globals.css). */

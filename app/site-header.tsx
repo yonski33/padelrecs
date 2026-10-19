@@ -3,11 +3,11 @@
 import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
 import { LogoIcon, PlusIcon } from "./icons";
-import { niche } from "../lib/niche";
+import { niche, catalogPath } from "../lib/niche";
 
 const links = [
   ["/", "Player reviews"],
-  ["/rackets", niche.words.Many],
+  [catalogPath, niche.words.Many],
   ["/brands", "Brands"],
   ["/add-review", "Add a review"],
   ["/about", "About"],

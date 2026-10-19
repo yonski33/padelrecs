@@ -1,6 +1,6 @@
 "use client";
 import { useState, type MouseEvent, type ReactNode } from "react";
-import { niche } from "../../../lib/niche";
+import { niche, catalogPath } from "../../../lib/niche";
 
 type Source = "all" | "players" | "web";
 type Sort = "newest" | "helpful";
@@ -18,7 +18,7 @@ export default function ReviewList({ slug, addHref, items, initialSource, initia
     if (src !== "all") q.set("source", src);
     if (srt !== "newest") q.set("sort", srt);
     const qs = q.toString();
-    return `/rackets/${slug}${qs ? `?${qs}` : ""}`;
+    return `${catalogPath}/${slug}${qs ? `?${qs}` : ""}`;
   };
   function go(event: MouseEvent<HTMLAnchorElement>, src: Source, srt: Sort) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return; // let "open in new tab" work

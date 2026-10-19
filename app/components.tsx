@@ -2,7 +2,7 @@ import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
 import { HelpfulButton } from "./helpful-button";
-import { niche } from "../lib/niche";
+import { niche, catalogPath } from "../lib/niche";
 
 type Racket = Catalog["rackets"][number];
 type PlayerReview = Catalog["reviews"][number];
@@ -26,17 +26,21 @@ export function racketParts(racket: Racket, data: Catalog) {
 
 function RacketHeading({racket, data}: {racket: Racket; data: Catalog}) {
   const { brand, model } = racketParts(racket, data);
-  return <a className="racket-link" href={`/rackets/${racket.slug}`}>{brand && <span className="brand">{brand}</span>}<span className="model">{model}</span></a>;
+  return <a className="racket-link" href={`${catalogPath}/${racket.slug}`}>{brand && <span className="brand">{brand}</span>}<span className="model">{model}</span></a>;
 }
 
 function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
-  return <a className="thumb" href={`/rackets/${racket.slug}`} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
+  return <a className="thumb" href={`${catalogPath}/${racket.slug}`} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
 }
 
 function Avatar({alias}: {alias: string | null}) {
   if (!alias) return <span className="avatar anon" aria-hidden="true">?</span>;
   const tone = [...alias].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 4;
   return <span className={`avatar${tone ? ` a${tone + 1}` : ""}`} aria-hidden="true">{alias.trim()[0]?.toUpperCase()}</span>;
+}
+
+function sideLabel(value: string) {
+  return niche.profile.playingSide.options.find(o => o.value === value)?.display ?? `${value}${niche.profile.sideSuffix}`;
 }
 
 function timeLabel(value: string) {
@@ -47,7 +51,7 @@ const categories = niche.categories.map(c => [c.label, c.column] as const);
 
 export function Review({review: r, data, showRacket = true}: {review: PlayerReview; data: Catalog; showRacket?: boolean}) {
   const racket = data.rackets.find(x => x.id === r.racketId)!;
-  const details = [r.playerLevel, r.playingSide && `${r.playingSide}${niche.profile.sideSuffix}`, r.playingStyle && !showRacket ? r.playingStyle : null, r.timeWithRacket && timeLabel(r.timeWithRacket)].filter(Boolean);
+  const details = [r.playerLevel, r.playingSide && sideLabel(r.playingSide), r.playingStyle && !showRacket ? r.playingStyle : null, r.timeWithRacket && timeLabel(r.timeWithRacket)].filter(Boolean);
   const scores = categories.filter(([, key]) => r[key] != null);
   return <article className={showRacket ? "note" : "note compact"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
@@ -89,7 +93,7 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
 export function RacketRow({racket: r, brand, average, count, details}: {racket: Racket; brand?: string | null; average: string | null; count: number; details: string}) {
   return <article className="racket-row">
     <Thumb racket={r} brand={brand}/>
-    <div><h2><a href={`/rackets/${r.slug}`}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
+    <div><h2><a href={`${catalogPath}/${r.slug}`}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">{average ? <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></> : <span>no ratings yet</span>}</div>
   </article>;
 }
@@ -142,7 +146,7 @@ export function Sidebar({data}: {data: Catalog}) {
 
     {discussed.length > 0 && <section>
       <h2>Most discussed <small>{discussedLabel}</small></h2>
-      <ol className="rank">{discussed.map(({racket, count}) => <li key={racket.id}><a href={`/rackets/${racket.slug}`}>
+      <ol className="rank">{discussed.map(({racket, count}) => <li key={racket.id}><a href={`${catalogPath}/${racket.slug}`}>
         <span className="nm">{racket.name}</span><span className="ct">{count}</span>
         <span className="bar"><i style={{width: `${Math.round(count / discussed[0].count * 100)}%`}}/></span>
       </a></li>)}</ol>
@@ -154,12 +158,12 @@ export function Sidebar({data}: {data: Catalog}) {
         const count = data.rackets.filter(r => r.brandId === b.id).length;
         return <a key={b.id} href={`/brands/${b.slug}`}>{b.name} <span>{count}</span></a>;
       })}</div>
-      <a className="more-link" href="/rackets">{`All ${w.many} →`}</a>
+      <a className="more-link" href={catalogPath}>{`All ${w.many} →`}</a>
     </section>
 
     {recentlyAdded.length > 0 && <section>
       <h2>Recently added</h2>
-      <ul className="mini">{recentlyAdded.map(r => <li key={r.id}><a href={`/rackets/${r.slug}`}>
+      <ul className="mini">{recentlyAdded.map(r => <li key={r.id}><a href={`${catalogPath}/${r.slug}`}>
         <ProductIcon shape={r.shape} brand={racketParts(r, data).brand}/><span className="nm">{r.name}<span className="mt">{notes(notesFor(r.id))}</span></span><span className="end">{shortDate(r.createdAt)}</span>
       </a></li>)}</ul>
     </section>}

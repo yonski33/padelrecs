@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { matchingRackets, type SearchRacket } from "../lib/racket-search";
 import { ProductIcon, SearchIcon } from "./icons";
-import { niche } from "../lib/niche";
+import { niche, catalogPath } from "../lib/niche";
 
 const w = niche.words;
 
@@ -73,7 +73,7 @@ export function RacketSearch() {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  return <form action="/rackets" className="search" role="search" onBlur={event => {
+  return <form action={catalogPath} className="search" role="search" onBlur={event => {
     if (!event.currentTarget.contains(event.relatedTarget)) { setOpen(false); setActive(-1); }
   }}>
     <div className="search-box">
@@ -91,7 +91,7 @@ export function RacketSearch() {
             setActive(index => event.key === "ArrowDown" ? (index + 1) % matches.length : (index <= 0 ? matches.length : index) - 1);
           }
           if (event.key === "Enter" && expanded && active >= 0 && matches[active]) {
-            event.preventDefault(); window.location.assign(`/rackets/${matches[active].slug}`);
+            event.preventDefault(); window.location.assign(`${catalogPath}/${matches[active].slug}`);
           }
         }}/>
       <button className="sr-only" type="submit">Search</button>
@@ -101,7 +101,7 @@ export function RacketSearch() {
       <ul id="racket-search-results" role="listbox" aria-label={`Matching ${w.many}`} ref={list}>
         {matches.map((racket, index) => <li key={racket.slug} role="presentation">
           <a className="sug-item" id={`racket-search-option-${index}`} role="option" aria-selected={index === active}
-            tabIndex={-1} href={`/rackets/${racket.slug}`} onMouseEnter={() => setActive(index)}>
+            tabIndex={-1} href={`${catalogPath}/${racket.slug}`} onMouseEnter={() => setActive(index)}>
             <ProductIcon shape={racket.shape} brand={racket.brand}/>
             <span className="nm">{highlight(racket.name, typed)}{racket.shape && <span className="mt">{racket.shape}</span>}</span>
             <span className="ct">{noteCount(racket.notes)}</span>

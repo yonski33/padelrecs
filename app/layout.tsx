@@ -6,7 +6,7 @@ import "./globals.css";
 import { SiteHeader } from "./site-header";
 import { LogoIcon } from "./icons";
 import { Analytics } from "./analytics";
-import { niche } from "../lib/niche";
+import { niche, catalogPath } from "../lib/niche";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
@@ -21,7 +21,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
       <span className="footer-line"><LogoIcon/>{`${niche.site.domain} — ${niche.site.footer}`}</span>
       <nav aria-label="Footer">
         <a href="/about">About this project</a>
-        <a href="/rackets">{`All ${niche.words.many}`}</a>
+        <a href={catalogPath}>{`All ${niche.words.many}`}</a>
       </nav>
     </div></footer>
     {process.env.VERCEL_ENV === "production" && niche.site.analyticsId && <Analytics id={niche.site.analyticsId}/>}
