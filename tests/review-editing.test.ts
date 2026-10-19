@@ -39,7 +39,7 @@ test("player and web edits preserve identity and dates, update public data, and 
   const webEdit=reviewEditInput.parse({...fields(web),type:"web",revision:reviewRevision(web),racketId:"move-target",excerpt:"Edited web review. ".repeat(1500).trim(),sourcePlatform:"YouTube",sourceName:"Updated source",sourceUrl:"https://example.com/updated-review",sourceDate:"2026-10-17"});
   assert.equal(await saveReviewEdit(portable,webEdit),"saved");
   const [savedWeb]=await db.select().from(externalReviews);
-  assert.equal(savedWeb.id,web.id);assert.equal(savedWeb.createdAt,web.createdAt);assert.equal(savedWeb.externalRating,web.externalRating);assert.equal(savedWeb.sourceName,"Updated source");assert.equal(savedWeb.sourceDate,"2026-10-17");assert(savedWeb.excerpt.length>20000);
+  assert.equal(savedWeb.id,web.id);assert.equal(savedWeb.createdAt,web.createdAt);assert.equal(savedWeb.externalRating,web.externalRating);assert.equal(savedWeb.sourceName,"Updated source");assert.equal(savedWeb.sourceDate,"2026-10-17");assert(savedWeb.excerpt!.length>20000);
   assert.equal(await saveReviewEdit(portable,webEdit),"stale");
   assert.equal(await saveReviewEdit(portable,{...webEdit,id:"missing-review"}),"missing");
   assert.equal((await db.select().from(reviews)).length,2);assert.equal((await db.select().from(externalReviews)).length,1);
@@ -57,4 +57,13 @@ test("anonymous users cannot submit player or web edits",async()=>{
   const response=await POST(new Request("https://www.padelrecs.com/api/admin/edit-review",{method:"POST",headers:{origin:"https://www.padelrecs.com","content-type":"application/x-www-form-urlencoded"},body:`type=${type}&id=approved-review`}));
   assert.equal(response.status,403);
  }
+});
+
+test("web reviews need an excerpt or a summary, and blanks become null", () => {
+ const base={type:"web",id:"id",revision:"a".repeat(64),racketId:"racket",sourcePlatform:"Reddit",sourceName:"r/padel",sourceUrl:"https://example.com/review",sourceDate:""};
+ const summaryOnly=reviewEditInput.parse({...base,excerpt:"",summary:"A season with it: comfortable, but short of power on smashes."});
+ assert.equal(summaryOnly.type==="web"&&summaryOnly.excerpt,null);
+ assert.equal(reviewEditInput.safeParse({...base,excerpt:"",summary:""}).success,false);
+ assert.equal(reviewEditInput.safeParse({...base,excerpt:"too short",summary:""}).success,false);
+ assert.equal(reviewEditInput.safeParse({...base,excerpt:"A quote that is long enough to show.",summary:""}).success,true);
 });

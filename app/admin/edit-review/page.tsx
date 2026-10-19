@@ -37,7 +37,8 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
   <fieldset><legend>Category ratings</legend><div className="form-grid">{niche.categories.map(({column:name,label,adminLabel})=><label className="field" key={name}>{adminLabel??label}<select name={name} defaultValue={player[name]??""}><option value="">Not rated</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>)}</div></fieldset>
   <TagCheckboxes selected={player.tags}/>
  </>:external?<>
-  <label className="field">Review text<textarea name="excerpt" required minLength={20} defaultValue={external.excerpt}/></label>
+  <label className="field">Summary <span className="muted">(our own words)</span><textarea name="summary" maxLength={1200} defaultValue={external.summary??""}/><small>Shown first, labelled “{niche.site.name} summary”. Leave blank to show only the excerpt.</small></label>
+  <label className="field">Excerpt <span className="muted">(the source’s exact words)</span><textarea name="excerpt" defaultValue={external.excerpt??""}/><small>Shown as “In their words”. At least 20 characters; may be blank if there is a summary.</small></label>
   <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={external.sourcePlatform}>{niche.sourcePlatforms.map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} defaultValue={external.sourceName}/></label></div>
   <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} defaultValue={external.sourceUrl}/></label>
   <label className="field">Source date<input name="sourceDate" type="date" defaultValue={external.sourceDate||""}/></label>
