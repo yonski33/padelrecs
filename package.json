@@ -18,7 +18,8 @@
     "db:import": "tsx --env-file-if-exists=.env.local scripts/import-data.ts",
     "db:verify": "tsx --env-file-if-exists=.env.local scripts/verify-data.ts",
     "db:check-export": "tsx --env-file-if-exists=.env.local scripts/check-export.ts",
-    "db:export": "tsx --env-file-if-exists=.env.local scripts/export-data.ts"
+    "db:export": "tsx --env-file-if-exists=.env.local scripts/export-data.ts",
+    "db:publish-web-reviews": "tsx --env-file-if-exists=.env.local scripts/publish-web-reviews.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
