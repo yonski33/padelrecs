@@ -118,3 +118,8 @@ test("pickleball: paddles under /paddles, spin stored in the comfort column, DUP
     assert.match(p.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("every niche has its tab and home-screen icons", async () => {
+  const { access } = await import("node:fs/promises");
+  for (const id of Object.keys(niches)) for (const file of ["favicon.ico", "icon.svg", "apple-icon.png"]) await access(`public/niches/${id}/${file}`);
+});
