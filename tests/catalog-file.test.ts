@@ -12,9 +12,9 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
   const catalog = await readCatalog("db/catalogs/pickleball.json");
   const snapshot = catalogSnapshot(catalog, "pickleballrecs", "catalog:test");
   assert.equal(snapshotSchema(snapshot), "pickleballrecs");
-  assert.equal(snapshot.tables.brands.length, 18);
-  assert.equal(snapshot.tables.rackets.length, 196);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 196, "no two paddles share a URL");
+  assert.equal(snapshot.tables.brands.length, 28);
+  assert.equal(snapshot.tables.rackets.length, 270);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 270, "no two paddles share a URL");
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0, "a catalog never brings reviews");
   assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every value has an https source");
   assert(snapshot.tables.rackets.some(r => r.slug === "crbn1-trufoam-genesis-2025"));
@@ -28,7 +28,7 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
     const counts = await importSnapshot(db, snapshot);
-    assert.deepEqual(counts, { brands: 18, rackets: 196, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(counts, { brands: 28, rackets: 270, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
