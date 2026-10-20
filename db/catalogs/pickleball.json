@@ -1,5 +1,5 @@
 {
-  "about": "PickleballRecs starter catalog. Every value was read on the linked maker page (or, where noted, Pickleball Central) on the checked date and approved by the owner on 2026-10-19. Blank = not published. Products sold in several shapes are one entry per shape. Model year = maker's wording/URL, otherwise the year the maker's shop listed the product; Franklin gives none, 2025 used with the owner's OK. Swing weight is on each maker's own scale. Columns: core = core thickness, balance = swing weight. Expansion (owner chose current + popular brands, 2026-10-20): 2024–2026 performance paddles from the brands above plus Vatic Pro, Gearbox, Proton, Bread & Butter, 11SIX24, Volair, Diadem, ProKennex, Holbrook and Ronbus; colour, signature, limited, demo and blemished listings merged or left out, beginner/budget models left out. Model year = the year the maker shop first listed the product. Expansion rows record shape and core thickness only where the product title states them; their other columns are blank because they were not recorded, not because they are unpublished. Batch 2 (owner asked for the brands r/Pickleball discusses most, 2026-10-20): Spartus, RPM, Luzz, Pakle, Pickleball Apes, FLiK, Neonic, Enhance, Helios and Pickle Poppers, plus Engage Axiom and the older but still popular Vatic Pro Prism (2023); same rules as the expansion.",
+  "about": "PickleballRecs starter catalog. Every value was read on the linked maker page (or, where noted, Pickleball Central) on the checked date and approved by the owner on 2026-10-19. Blank = not published. Products sold in several shapes are one entry per shape. Model year = maker's wording/URL, otherwise the year the maker's shop listed the product; Franklin gives none, 2025 used with the owner's OK. Swing weight is on each maker's own scale. Columns: core = core thickness, balance = swing weight. Expansion (owner chose current + popular brands, 2026-10-20): 2024–2026 performance paddles from the brands above plus Vatic Pro, Gearbox, Proton, Bread & Butter, 11SIX24, Volair, Diadem, ProKennex, Holbrook and Ronbus; colour, signature, limited, demo and blemished listings merged or left out, beginner/budget models left out. Model year = the year the maker shop first listed the product. Expansion rows record shape and core thickness only where the product title states them; their other columns are blank because they were not recorded, not because they are unpublished. Batch 2 (owner asked for the brands r/Pickleball discusses most, 2026-10-20): Spartus, RPM, Luzz, Pakle, Pickleball Apes, FLiK, Neonic, Enhance, Helios and Pickle Poppers, plus Engage Axiom and the older but still popular Vatic Pro Prism (2023); same rules as the expansion. Batch 3 (2026-10-20): Friday and Honolulu from Pickleball Central pages, which give no model year, so 2026 (the current model year) is used with the owner OK, as for Franklin; Aireo from its own shop, with listing years.",
   "checked": "2026-10-19",
   "brands": [
     { "id": "joola", "name": "Joola" },
@@ -29,7 +29,10 @@
     { "id": "neonic", "name": "Neonic" },
     { "id": "enhance", "name": "Enhance" },
     { "id": "helios", "name": "Helios" },
-    { "id": "pickle-poppers", "name": "Pickle Poppers" }
+    { "id": "pickle-poppers", "name": "Pickle Poppers" },
+    { "id": "friday", "name": "Friday" },
+    { "id": "honolulu", "name": "Honolulu" },
+    { "id": "aireo", "name": "Aireo" }
   ],
   "products": [
     { "brand": "joola", "name": "Joola Perseus Pro V", "year": 2026, "shape": "Elongated", "weight": "16 mm: 8.1 oz · 14 mm: 7.9 oz", "core": "16 or 14 mm", "surface": "Carbon friction surface", "swingWeight": null,
@@ -606,6 +609,43 @@
       "sources": ["https://engagepickleball.com/products/engage-axiom-widebody-pickleball-paddle"] },
 
     { "brand": "vatic-pro", "name": "Vatic Pro Prism", "year": 2023, "shape": null, "weight": null, "core": "14 or 16 mm", "surface": null, "swingWeight": null,
-      "sources": ["https://vaticpro.com/products/prism"] }
+      "sources": ["https://vaticpro.com/products/prism"] },
+
+    { "brand": "friday", "name": "Friday Aura Elongated", "year": 2026, "shape": "Elongated", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-aura-elongated-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Aura Hybrid", "year": 2026, "shape": "Hybrid", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-aura-hybrid-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Aura Widebody", "year": 2026, "shape": "Widebody", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-aura-widebody-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Aura Pro Elongated", "year": 2026, "shape": "Elongated", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-aura-pro-elongated-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Aura Pro Hybrid", "year": 2026, "shape": "Hybrid", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-aura-pro-hybrid-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Aura Pro Widebody", "year": 2026, "shape": "Widebody", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-aura-pro-widebody-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Fever 101 Elongated", "year": 2026, "shape": "Elongated", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-fever-101-elongated-carbon-fiber-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Fever 102 Elongated", "year": 2026, "shape": "Elongated", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-fever-102-widebody-carbon-fiber-pickleball-paddle/"] },
+    { "brand": "friday", "name": "Friday Fever 102 Widebody", "year": 2026, "shape": "Widebody", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/friday-fever-102-widebody-pickleball-paddle/"] },
+
+    { "brand": "honolulu", "name": "Honolulu J2CR", "year": 2026, "shape": null, "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/honolulu-j2cr-crystal-blue-endurance-surface-pickleball-paddle/"] },
+    { "brand": "honolulu", "name": "Honolulu J3CR", "year": 2026, "shape": null, "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/honolulu-j3cr-crystal-blue-endurance-surface-pickleball-paddle/"] },
+    { "brand": "honolulu", "name": "Honolulu J6CR", "year": 2026, "shape": null, "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/honolulu-j6cr-crystal-blue-endurance-surface-pickleball-paddle/"] },
+
+    { "brand": "aireo", "name": "Aireo Cyclone Elongated", "year": 2026, "shape": "Elongated", "weight": null, "core": "16 mm", "surface": null, "swingWeight": null,
+      "sources": ["https://www.aireo-sports.com/products/aireo-cyclone-usap-pbcor-43-certified-16mm-pickleball-paddle-nanograph-grit-surface-with-pulsefoam%E2%84%A2-power-core-for-pro-level-performance"] },
+    { "brand": "aireo", "name": "Aireo Cyclone Hybrid", "year": 2026, "shape": "Hybrid", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://www.aireo-sports.com/products/aireo-cyclone-blackout-hybrid-nanograph"] },
+    { "brand": "aireo", "name": "Aireo Cyclone X Hybrid", "year": 2026, "shape": "Hybrid", "weight": null, "core": null, "surface": null, "swingWeight": null,
+      "sources": ["https://www.aireo-sports.com/products/aireo-cyclone-x-hybrid-nanograph"] },
+    { "brand": "aireo", "name": "Aireo Falcon Pro-O16", "year": 2025, "shape": null, "weight": null, "core": "16 mm", "surface": null, "swingWeight": null,
+      "sources": ["https://www.aireo-sports.com/products/falcon-pro-016"] },
+    { "brand": "aireo", "name": "Aireo Falcon Pro-L16", "year": 2025, "shape": null, "weight": null, "core": "16 mm", "surface": null, "swingWeight": null,
+      "sources": ["https://www.aireo-sports.com/products/falcon-pro-l16-1"] }
   ]
 }
