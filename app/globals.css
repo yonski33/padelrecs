@@ -204,8 +204,9 @@ button:disabled { opacity: .6; cursor: progress; }
 .cite { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
 .cite svg { width: 15px; height: 15px; color: var(--ink-2); }
 .cite b { color: var(--ink-2); font-weight: 600; }
-.cite a, .cite .pending-link { margin-left: auto; white-space: nowrap; }
-.cite a { font-weight: 600; }
+.cite .src-link { display: inline-flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
+.cite .src-link .arr { margin-left: -4px; color: var(--green); font-weight: 600; }
+.cite .src-link:hover span:not(.arr), .cite .src-link:hover b { text-decoration: underline; text-underline-offset: 3px; }
 .cite .pending-link { font-style: italic; }
 
 .subscores-line { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 10px; font-size: 13px; color: var(--ink-3); }
@@ -546,7 +547,7 @@ summary { cursor: pointer; font-weight: 600; }
   .racket-link .model { font-size: 18px; }
   .note-body { margin-top: 12px; line-height: 1.6; }
   .quote { margin-left: -4px; margin-right: -4px; padding: 14px 14px 12px; }
-  .cite a, .cite .pending-link { margin-left: 0; padding: 6px 0; }
+  .cite .src-link { padding: 6px 0; }
   .note-foot { gap: 4px 8px; }
 
   .strip { margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); border-radius: 0; padding: 16px 0 18px; }
@@ -669,7 +670,8 @@ summary { cursor: pointer; font-weight: 600; }
 .helpful[aria-pressed="true"] svg { transform: translateY(-2px); }
 .helpful .n { font-variant-numeric: tabular-nums; font-weight: 600; }
 .react-note { font-size: 12px; color: #8a3424; }
-.ext-foot { margin-top: 8px; }
+/* On web reviews the vote sits at the end of the source line, so it adds no row of its own. */
+.cite .helpful { min-height: 26px; padding: 0 9px; font-size: 12px; }
 /* Moderated sentiment of a web review, and the racket's overall web split. */
 .s-positive { --c: var(--green); } .s-mixed { --c: #d9b65c; } .s-negative { --c: #c47a52; }
 .tag.sentiment.s-positive, .quote .tag.sentiment.s-positive { background: #dfece2; color: #24543a; }
@@ -681,7 +683,9 @@ summary { cursor: pointer; font-weight: 600; }
 .web-split .stack i { background: var(--c); }
 @media (max-width: 680px) {
   .note-foot .react { margin-left: 0; width: 100%; padding-top: 4px; }
-  .ext-foot .react { width: auto; margin-left: auto; padding-top: 0; }
+  .cite .helpful { min-height: 32px; padding: 0 10px; font-size: 12.5px; }
+  /* Phones: the web-review vote shows just the arrow (and count) so it fits on the source line. The word stays for screen readers. */
+  .cite .helpful .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .helpful { min-height: 36px; padding: 0 14px; font-size: 13px; }
 }
 .sort-links { display: flex; align-items: center; gap: 4px 14px; margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
