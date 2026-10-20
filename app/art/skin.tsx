@@ -9,7 +9,7 @@ export function shapeOf(type?: string | null): Shape {
   const s = (type || "").toLowerCase();
   if (s.includes("serum") || s.includes("oil") || s.includes("ampoule")) return "dropper";
   if (s.includes("moistur") || s.includes("cream") && !s.includes("eye") || s.includes("mask") || s.includes("balm")) return "jar";
-  if (s.includes("sunscreen") || s.includes("spf") || s.includes("eye") || s.includes("exfol") || s.includes("gel")) return "tube";
+  if (s.includes("sunscreen") || s.includes("spf") || s.includes("eye") || s.includes("exfol") || s.includes("gel") || s.includes("treatment")) return "tube";
   if (s.includes("cleans") || s.includes("toner") || s.includes("lotion") || s.includes("wash")) return "bottle";
   return "unknown";
 }
