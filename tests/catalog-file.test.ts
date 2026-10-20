@@ -40,6 +40,7 @@ test("skin product types pick the right container", async () => {
   assert.equal(shapeOf("Sunscreen"), "tube");
   assert.equal(shapeOf("Cleanser"), "bottle");
   assert.equal(shapeOf("Mask"), "jar");
+  assert.equal(shapeOf("Treatment"), "tube");
 });
 
 test("catalogs without model years keep the year out of names", () => {
@@ -51,12 +52,14 @@ test("catalogs without model years keep the year out of names", () => {
   assert.throws(() => catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "x", name: "X" }], products: [{ brand: "x", name: "X One", shape: null, weight: null, core: null, surface: null, swingWeight: null, sources: ["https://e.com"] }] }, "pickleballrecs", "t"), /needs a model year/);
 });
 
-test("the SkinRecs starter catalog: 31 sourced face products, no years in names, known types and fragrance values", async () => {
+test("the SkinRecs catalog: 329 sourced face products, no years in names, known types and fragrance values", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/skin.json");
   const snapshot = catalogSnapshot(catalog, "skinrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 8);
-  assert.equal(snapshot.tables.rackets.length, 31);
+  assert.equal(snapshot.tables.brands.length, 40);
+  assert.equal(snapshot.tables.rackets.length, 329);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 329);
+  assert(snapshot.tables.rackets.some(r => r.shape === "Treatment"));
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const types = niches.skin.specs.find(s => s.column === "shape")!.options!;
   for (const r of snapshot.tables.rackets) {

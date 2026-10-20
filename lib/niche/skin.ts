@@ -86,13 +86,13 @@ export const skin: Niche = {
   },
   // Columns are shared: shape = product type, weight = size, core = key ingredients, surface = skin types, balance = fragrance.
   specs: [
-    { column: "shape", label: "Type", max: 100, placeholder: "e.g. Moisturizer", options: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask"] },
+    { column: "shape", label: "Type", max: 100, placeholder: "e.g. Moisturizer", options: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment"] },
     { column: "weight", label: "Size", max: 120, placeholder: "e.g. 50 ml / 1.7 fl oz" },
     { column: "core", label: "Key ingredients", max: 200, placeholder: "e.g. Ceramides, hyaluronic acid" },
     { column: "surface", label: "Skin types", max: 200, placeholder: "e.g. Dry to very dry" },
     { column: "balance", label: "Fragrance", max: 120, placeholder: "e.g. Fragrance-free", options: ["Fragrance-free", "Contains fragrance"] },
   ],
-  shapeFilter: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask"],
+  shapeFilter: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment"],
   rowDetail: { column: "weight", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [
