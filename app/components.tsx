@@ -17,6 +17,10 @@ export function Stars({rating}: {rating:number}) { return <Score rating={rating}
 export function shortDate(iso: string, withYear = false) {
   return new Date(iso).toLocaleDateString("en-GB", {day: "numeric", month: "short", ...(withYear ? {year: "numeric"} : {}), timeZone: "UTC"});
 }
+/** "Jul 2026": when a quoted source was written. The day adds nothing once the model year is in the title. */
+export function monthYear(iso: string) {
+  return new Date(iso).toLocaleDateString("en-GB", {month: "short", year: "numeric", timeZone: "UTC"});
+}
 
 // Split "Bullpadel Vertex 05 2026" into brand + model when the name starts with the brand.
 export function racketParts(racket: Racket, data: Catalog) {
@@ -88,7 +92,7 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
         {e.sourceUrl
           ? <a className="src-link" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`View the original on ${e.sourcePlatform}`}>{source}<span className="arr" aria-hidden="true">↗</span></a>
           : <>{source}<span className="pending-link">source link coming</span></>}
-        {e.sourceDate && <><span className="dot">·</span><time dateTime={e.sourceDate}>{shortDate(e.sourceDate, true)}</time></>}
+        {e.sourceDate && <><span className="dot">·</span><time dateTime={e.sourceDate} title={shortDate(e.sourceDate, true)}>{monthYear(e.sourceDate)}</time></>}
         <HelpfulButton type="web" id={e.id} count={e.helpful}/>
       </div>
     </div>
