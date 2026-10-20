@@ -672,6 +672,8 @@ summary { cursor: pointer; font-weight: 600; }
 .react-note { font-size: 12px; color: #8a3424; }
 /* On web reviews the vote sits at the end of the source line, so it adds no row of its own. */
 .cite .helpful { min-height: 26px; padding: 0 9px; font-size: 12px; }
+/* The web-review vote is just the arrow (and count), like an upvote. The word stays for screen readers. */
+.cite .helpful .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Moderated sentiment of a web review, and the racket's overall web split. */
 .s-positive { --c: var(--green); } .s-mixed { --c: #d9b65c; } .s-negative { --c: #c47a52; }
 .tag.sentiment.s-positive, .quote .tag.sentiment.s-positive { background: #dfece2; color: #24543a; }
@@ -684,8 +686,6 @@ summary { cursor: pointer; font-weight: 600; }
 @media (max-width: 680px) {
   .note-foot .react { margin-left: 0; width: 100%; padding-top: 4px; }
   .cite .helpful { min-height: 32px; padding: 0 10px; font-size: 12.5px; }
-  /* Phones: the web-review vote shows just the arrow (and count) so it fits on the source line. The word stays for screen readers. */
-  .cite .helpful .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .helpful { min-height: 36px; padding: 0 14px; font-size: 13px; }
 }
 .sort-links { display: flex; align-items: center; gap: 4px 14px; margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
