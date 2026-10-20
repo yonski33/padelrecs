@@ -93,7 +93,6 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
           ? <a className="src-link" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`View the original on ${e.sourcePlatform}`}>{source}<span className="arr" aria-hidden="true">↗</span></a>
           : <>{source}<span className="pending-link">source link coming</span></>}
         {e.sourceDate && <><span className="dot">·</span><time dateTime={e.sourceDate} title={shortDate(e.sourceDate, true)}>{monthYear(e.sourceDate)}</time></>}
-        <HelpfulButton type="web" id={e.id} count={e.helpful}/>
       </div>
     </div>
   </article>;
