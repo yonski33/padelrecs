@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 
 const key = (type: string, id: string) => `helpful:${type}:${id}`;
+// A handful of votes reads as an empty site, so the number only shows once it says something. Votes count from the first one either way.
+const SHOW_COUNT_FROM = 3;
 function remembered(type: string, id: string) { try { return localStorage.getItem(key(type, id)) === "1"; } catch { return false; } }
 function remember(type: string, id: string, on: boolean) { try { if (on) localStorage.setItem(key(type, id), "1"); else localStorage.removeItem(key(type, id)); } catch { /* private mode */ } }
 
@@ -32,7 +34,7 @@ export function HelpfulButton({ type, id, count: initial }: { type: "player" | "
   return <span className="react">
     <button type="button" className="helpful" aria-pressed={on} onClick={toggle} title={on ? "You found this helpful — tap to undo" : "Mark as helpful"}>
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.2l5 6H9.8v3.8H6.2V9.2H3z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>
-      <span className="lbl">Helpful</span>{count > 0 && <span className="n">{count}</span>}
+      <span className="lbl">Helpful</span>{count >= SHOW_COUNT_FROM && <span className="n">{count}</span>}
     </button>
     {note && <span className="react-note" role="status">{note}</span>}
   </span>;
