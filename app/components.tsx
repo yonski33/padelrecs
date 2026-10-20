@@ -72,6 +72,7 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
 
 export function External({entry: e, data, showRacket = true}: {entry: WebReview; data: Catalog; showRacket?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
+  const source = <><SourceIcon platform={e.sourcePlatform}/><b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}</>;
   return <article className={showRacket ? "note ext" : "note compact ext"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     {showRacket && <header className="note-head"><RacketHeading racket={racket} data={data}/></header>}
@@ -83,13 +84,14 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
       </> : <p className="note-body">{e.excerpt}</p>}
       <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}/>
       <div className="cite">
-        <SourceIcon platform={e.sourcePlatform}/>
-        <b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}
+        {/* The source name is the link to the original, so the row keeps room for the vote. */}
+        {e.sourceUrl
+          ? <a className="src-link" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`View the original on ${e.sourcePlatform}`}>{source}<span className="arr" aria-hidden="true">↗</span></a>
+          : <>{source}<span className="pending-link">source link coming</span></>}
         {e.sourceDate && <><span className="dot">·</span><time dateTime={e.sourceDate}>{shortDate(e.sourceDate, true)}</time></>}
-        {e.sourceUrl ? <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original ↗</a> : <span className="pending-link">source link coming</span>}
+        <HelpfulButton type="web" id={e.id} count={e.helpful}/>
       </div>
     </div>
-    <footer className="note-foot ext-foot"><HelpfulButton type="web" id={e.id} count={e.helpful}/></footer>
   </article>;
 }
 
