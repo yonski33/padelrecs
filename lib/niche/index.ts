@@ -3,11 +3,12 @@ import { padel } from "./padel";
 import { pickleball } from "./pickleball";
 import { skin } from "./skin";
 import { tennis } from "./tennis";
+import { running } from "./running";
 
 export type { Niche } from "./types";
 
 /** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis };
+export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running };
 export const DEFAULT_NICHE = "padel";
 
 /** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */

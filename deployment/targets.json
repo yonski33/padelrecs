@@ -32,7 +32,8 @@
     "padel": "padelrecs",
     "pickleball": "pickleballrecs",
     "skin": "skinrecs",
-    "tennis": "tennisrecs"
+    "tennis": "tennisrecs",
+    "running": "runningrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
