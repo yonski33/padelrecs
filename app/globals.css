@@ -359,6 +359,7 @@ button:disabled { opacity: .6; cursor: progress; }
 .racket-row p { margin: 3px 0 0; }
 .racket-score { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; white-space: nowrap; font-size: 12.5px; color: var(--ink-3); }
 .racket-score b { font-size: 15px; color: var(--ink); }
+.racket-score b.pos-share { font-size: 13.5px; }
 
 .brands-directory { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
 .brands-directory li a { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.015em; transition: border-color .15s; }
