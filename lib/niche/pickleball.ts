@@ -32,16 +32,16 @@ export const pickleball: Niche = {
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
   productPath: "paddles",
   scoreUnit: { one: "ball", many: "balls" },
-  // Warm paper, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
+  // White page, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
-    "--bg": "#f6f4ee",
-    "--surface": "#fffdf8",
-    "--tint": "#eceae3",
+    "--bg": "#ffffff",
+    "--surface": "#ffffff",
+    "--tint": "#f2f3ef",
     "--ink": "#141c27",
     "--ink-2": "#3a4452",
     "--ink-3": "#6c7480",
-    "--line": "#e0ddd3",
-    "--line-2": "#cbc8bd",
+    "--line": "#e1e3dc",
+    "--line-2": "#cbcfc4",
     "--green": "#1f4e8c",
     "--green-ink": "#143866",
     "--green-wash": "#e3ebf5",

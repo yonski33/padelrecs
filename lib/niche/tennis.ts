@@ -24,16 +24,16 @@ export const tennis: Niche = {
   productYears: false,
   productPath: "rackets",
   scoreUnit: { one: "ball", many: "balls" },
-  // Warm paper, clay-court terracotta, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
+  // White page, clay-court terracotta, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
-    "--bg": "#f6f4ee",
-    "--surface": "#fffdf8",
-    "--tint": "#efe9e1",
+    "--bg": "#ffffff",
+    "--surface": "#ffffff",
+    "--tint": "#f5f2ed",
     "--ink": "#1f1a17",
     "--ink-2": "#45403b",
     "--ink-3": "#75706a",
-    "--line": "#e4ddd2",
-    "--line-2": "#d1c8ba",
+    "--line": "#e6e0d7",
+    "--line-2": "#d3cbbe",
     "--green": "#a6492a",
     "--green-ink": "#7d3519",
     "--green-wash": "#f6e6dd",
