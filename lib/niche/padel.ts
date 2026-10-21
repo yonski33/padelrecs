@@ -22,16 +22,16 @@ export const padel: Niche = {
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
   productPath: "rackets",
   scoreUnit: { one: "ball", many: "balls" },
-  // Warm paper, court green, one ball-yellow accent.
+  // White page, court green, one ball-yellow accent.
   theme: {
-    "--bg": "#f6f4ee",
-    "--surface": "#fffdf8",
-    "--tint": "#efece3",
+    "--bg": "#ffffff",
+    "--surface": "#ffffff",
+    "--tint": "#f3f4ef",
     "--ink": "#16201a",
     "--ink-2": "#3c473f",
     "--ink-3": "#6f776f",
-    "--line": "#e2ded2",
-    "--line-2": "#cfcabb",
+    "--line": "#e2e4dc",
+    "--line-2": "#cdd1c4",
     "--green": "#1b6b43",
     "--green-ink": "#114a2d",
     "--green-wash": "#e3eee4",

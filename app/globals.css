@@ -204,8 +204,9 @@ button:disabled { opacity: .6; cursor: progress; }
 .dot { margin: 0 4px; color: var(--line-2); }
 .note-foot time { white-space: nowrap; }
 
-.quote { margin-top: 10px; max-width: calc(var(--measure) + 36px); padding: 14px 18px 12px; background: var(--tint); border-radius: 10px; }
-.quote .note-body { margin: 0; font-size: 16px; color: var(--ink-2); }
+/* Web reviews read like player reviews: no box, same body text. */
+.quote { margin-top: 10px; max-width: var(--measure); }
+.quote .note-body { margin: 0; color: var(--ink-2); }
 .quote .note-body.summary { color: var(--ink); }
 .source-quote { margin: 10px 0 0; padding: 2px 0 2px 12px; border-left: 3px solid var(--lime-line); font-style: italic; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); overflow-wrap: anywhere; }
 .cite { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
@@ -552,7 +553,6 @@ summary { cursor: pointer; font-weight: 600; }
   .note-head .balls { align-self: flex-start; }
   .racket-link .model { font-size: 18px; }
   .note-body { margin-top: 12px; line-height: 1.6; }
-  .quote { margin-left: -4px; margin-right: -4px; padding: 14px 14px 12px; }
   .cite .src-link { padding: 6px 0; }
   .note-foot { gap: 4px 8px; }
 
@@ -633,7 +633,6 @@ summary { cursor: pointer; font-weight: 600; }
 .tag { font-size: 12.5px; font-weight: 500; padding: 2px 9px; border-radius: 6px; background: var(--lime-wash); color: var(--lime-ink); }
 .tag.neg { background: #f3e6dc; color: #6b3d22; }
 .tag.neutral { background: var(--tint); color: var(--ink-2); }
-.quote .tag.neutral { background: var(--surface); }
 .tag .c { opacity: .65; margin-left: 4px; font-variant-numeric: tabular-nums; }
 .says { margin-top: 16px; }
 .says h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
