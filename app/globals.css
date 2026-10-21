@@ -99,6 +99,12 @@ button:disabled { opacity: .6; cursor: progress; }
 .main-nav a:first-child { margin-left: -12px; }
 .main-nav a:hover { color: var(--ink); }
 .main-nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+.type-nav { border-top: 1px solid var(--line); }
+.type-nav .wrap { display: flex; gap: 6px; padding-top: 9px; padding-bottom: 9px; overflow-x: auto; scrollbar-width: none; }
+.type-nav .wrap::-webkit-scrollbar { display: none; }
+.type-nav a { flex: none; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 13.5px; font-weight: 500; color: var(--ink-2); white-space: nowrap; transition: border-color .15s, background .15s, color .15s; }
+.type-nav a:hover { border-color: var(--green-line); color: var(--ink); }
+.type-nav a[aria-current="page"] { background: var(--green); border-color: var(--green); color: var(--on-green); }
 .main-nav a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 3px; border-radius: 3px 3px 0 0; background: var(--green); }
 
 /* ---------- Search ---------- */

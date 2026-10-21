@@ -94,6 +94,18 @@ export const skin: Niche = {
     { column: "balance", label: "Fragrance", max: 120, placeholder: "e.g. Fragrance-free", options: ["Fragrance-free", "Contains fragrance"] },
   ],
   shapeFilter: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment"],
+  // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  typePages: [
+    { shape: "Cleanser", slug: "cleansers", label: "Cleansers", intro: "Gel, foam, cream and oil cleansers" },
+    { shape: "Toner", slug: "toners", label: "Toners", intro: "Hydrating and exfoliating toners and pads" },
+    { shape: "Serum", slug: "serums", label: "Serums", intro: "Niacinamide, vitamin C, hyaluronic acid and other serums" },
+    { shape: "Moisturizer", slug: "moisturizers", label: "Moisturizers", intro: "Gels, lotions, creams and balms" },
+    { shape: "Sunscreen", slug: "sunscreens", label: "Sunscreens", intro: "Chemical and mineral sunscreens for the face" },
+    { shape: "Eye cream", slug: "eye-creams", label: "Eye creams", intro: "Eye creams, gels and serums" },
+    { shape: "Exfoliant", slug: "exfoliants", label: "Exfoliants", intro: "AHA, BHA and PHA exfoliants" },
+    { shape: "Mask", slug: "masks", label: "Masks", intro: "Sheet, clay and overnight masks" },
+    { shape: "Treatment", slug: "treatments", label: "Treatments", intro: "Retinoids, acids, spot treatments and patches" },
+  ],
   rowDetail: { column: "weight", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [
