@@ -44,7 +44,8 @@
     "skin": "skinrecs",
     "tennis": "tennisrecs",
     "running": "runningrecs",
-    "golf": "golfrecs"
+    "golf": "golfrecs",
+    "gaming": "gamingrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
