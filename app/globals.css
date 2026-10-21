@@ -278,7 +278,7 @@ button:disabled { opacity: .6; cursor: progress; }
 
 /* ---------- Racket profile ---------- */
 
-.profile { display: grid; grid-template-columns: 148px minmax(0, 1fr) 250px; gap: 32px; align-items: start; padding: 28px 0; }
+.profile { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 32px; align-items: start; padding: 28px 0; }
 .profile-art { display: grid; place-items: center; height: 188px; border-radius: 16px; background: var(--green); color: var(--lime); position: relative; overflow: hidden; }
 .profile-art::before { content: ""; position: absolute; left: 0; right: 0; top: 62%; height: 2px; background: rgba(255,255,255,.14); }
 .profile-art svg { width: 70px; height: 112px; position: relative; transform: rotate(-8deg); }
@@ -297,15 +297,17 @@ button:disabled { opacity: .6; cursor: progress; }
 .spec-strip dd { margin: 1px 0 0; font-weight: 600; font-size: 14.5px; }
 .spec-strip dd.unknown { color: var(--ink-3); font-weight: 400; }
 
-.scorecard { padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+/* Full-width summary card under the profile on every screen size: score (or web count) left, button right, web split below. */
+.scorecard { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 20px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
 .scorecard .big { display: flex; align-items: baseline; gap: 6px; font-family: var(--display); font-size: 50px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
 .scorecard .big small { font-size: 18px; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
-.scorecard .balls { margin: 10px 0; }
+.scorecard .balls { margin: 0; }
 .scorecard p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
 .scorecard p b { color: var(--ink); }
-.scorecard .button { width: 100%; margin-top: 16px; }
-.scorecard .hint { margin-top: 8px; font-size: 12px; color: var(--ink-3); text-align: center; }
-.scorecard .no-score { font-family: var(--display); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+.scorecard .button { width: auto; margin: 0; grid-row: 1 / span 2; grid-column: 3; }
+.scorecard .big { grid-row: 1 / span 2; }
+.scorecard .hint { display: none; }
+.scorecard .no-score { font-family: var(--display); font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
 
 .panels { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; margin-bottom: 36px; }
 .panel { padding: 18px 20px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
@@ -506,11 +508,7 @@ summary { cursor: pointer; font-weight: 600; }
   .strip ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .profile { grid-template-columns: 120px minmax(0, 1fr); }
   .profile-art { height: 160px; }
-  .scorecard { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 20px; }
-  .scorecard .balls { margin: 0; }
-  .scorecard .button { width: auto; margin: 0; grid-row: 1 / span 2; grid-column: 3; }
-  .scorecard .big { grid-row: 1 / span 2; }
-  .scorecard .hint { display: none; }
+  .scorecard { padding: 20px; }
   .review-page { grid-template-columns: 1fr; gap: 0; }
   .tips { position: static; margin-top: 10px; }
 }

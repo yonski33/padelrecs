@@ -123,11 +123,14 @@ export function WebSplit({entries, min = 3}: {entries: {sentiment: keyof typeof 
   </div>;
 }
 
-export function RacketRow({racket: r, brand, average, count, details}: {racket: Racket; brand?: string | null; average: string | null; count: number; details: string}) {
+/** Neutral line for a product with no user ratings yet: how many web reviews it has, or nothing. */
+export const webReviewsLine = (web: number) => web ? `${web} ${web === 1 ? "review" : "reviews"} from the web` : "";
+
+export function RacketRow({racket: r, brand, average, count, web = 0, details}: {racket: Racket; brand?: string | null; average: string | null; count: number; web?: number; details: string}) {
   return <article className="racket-row">
     <Thumb racket={r} brand={brand}/>
     <div><h2><a href={`${catalogPath}/${r.slug}`}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
-    <div className="racket-score">{average ? <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></> : <span>no ratings yet</span>}</div>
+    <div className="racket-score">{average ? <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></> : <span>{webReviewsLine(web)}</span>}</div>
   </article>;
 }
 
