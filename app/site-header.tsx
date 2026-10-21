@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
 import { LogoIcon, PlusIcon } from "./icons";
@@ -16,6 +17,12 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const onAddPage = pathname.startsWith("/add-review");
+  // On phones the type row scrolls sideways: bring the current type into view.
+  const typeRow = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const row = typeRow.current, current = row?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (row && current) row.scrollLeft = current.offsetLeft - (row.clientWidth - current.offsetWidth) / 2;
+  }, [pathname]);
   return (
     <header className="site-header">
       <div className="wrap header-top">
@@ -35,7 +42,7 @@ export function SiteHeader() {
         })}
       </nav>
       {niche.typePages && <nav className="type-nav" aria-label={`${niche.words.One} types`}>
-        <div className="wrap">
+        <div className="wrap" ref={typeRow}>
           <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
           {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : undefined}>{t.label}</a>)}
         </div>
