@@ -142,3 +142,19 @@ test("the RunningRecs starter catalog: sourced shoes named by version, every cat
   }
   assert(catalog.products.every(p => p.sources.length === 1 && p.sources[0].startsWith("https://runrepeat.com/")));
 });
+
+test("the GolfRecs starter catalog: sourced drivers named by generation, known categories, unique URLs", async () => {
+  const catalog = await readCatalog("db/catalogs/golf.json");
+  const snapshot = catalogSnapshot(catalog, "golfrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 13);
+  assert(snapshot.tables.rackets.length >= 75);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/golf");
+  for (const r of snapshot.tables.rackets) {
+    assert(r.shape === null || shapeOf(r.shape) !== "unknown", `${r.name}: category ${r.shape}`);
+    assert(r.weight === null || /^\d+(\.\d+)?°(, \d+(\.\d+)?°)*$/.test(r.weight), `${r.name}: lofts ${r.weight}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: drivers carry generations, not years`);
+  }
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+});
