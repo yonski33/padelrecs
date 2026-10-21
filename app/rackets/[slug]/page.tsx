@@ -5,7 +5,7 @@ import { catalog as loadCatalog, score } from "../../../db/data";
 import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
-import { Review, External, WebSplit, racketParts } from "../../components";
+import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
@@ -125,8 +125,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <p><b>{s.count}</b>{` ${niche.people.one} `}{s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
           <WebSplit entries={external}/>
         </> : <>
-          <div className="no-score">No ratings yet</div>
-          <p>{external.length ? `${external.length} quoted from around the web, but no ${niche.people.one} has rated it here yet.` : "Nobody has rated this one yet. Be the first."}</p>
+          {external.length ? <>
+            <div className="no-score">{external.length} {external.length === 1 ? "review" : "reviews"}</div>
+            <p>Quoted from around the web</p>
+          </> : <>
+            <div className="no-score">Be the first to review it</div>
+            <p>{`${niche.copy.ui.triedIt} Tell others how it went.`}</p>
+          </>}
           <WebSplit entries={external}/>
         </>}
         <a className="button" href={addHref}><PlusIcon/>Add your review</a>
@@ -171,7 +176,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
           <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={`${catalogPath}/${x.slug}`}>
-            <ProductIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : "no ratings yet"}</span></span>
+            <ProductIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : webReviewsLine(sc.web)}</span></span>
             {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>
         </section>}
