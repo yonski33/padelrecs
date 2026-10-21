@@ -14,17 +14,17 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
   const [data, f] = await Promise.all([catalog(), searchParams]);
   const sort = parseSort(f.sort);
   // ?q= still narrows the list for old links; the header search is where people type names now.
-  const results = sortProducts(matchingRackets(data.rackets, f.q || "")
+  const results = sortProducts(matchingRackets(data.listed, f.q || "")
     .filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && (!f.shape || r.shape === f.shape))
     .map(r => ({ r, s: score(data, r.id) })), sort);
-  const shapes = [...new Set([...niche.shapeFilter, ...data.rackets.map(r => r.shape).filter((s): s is string => !!s)])].sort();
+  const shapes = [...new Set([...niche.shapeFilter, ...data.listed.map(r => r.shape).filter((s): s is string => !!s)])].sort();
   const filtered = !!(f.q || f.brand || f.year || f.shape || f.sort);
   return <main>
     <div className="page-title"><h1>{w.Many}</h1><p>{`Find a ${w.one}. Read what ${niche.people.many} think.`}</p></div>
     <AutoSubmitForm className="filters" action={catalogPath}>
       <label>Sort by<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
-      <label>Brand<select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
-      {hasYears && <label>Year<select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.rackets.map(r => r.year))].map(y => <option key={y}>{y}</option>)}</select></label>}
+      <label>Brand<select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
+      {hasYears && <label>Year<select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].map(y => <option key={y}>{y}</option>)}</select></label>}
       {shapeSpec && <label>{shapeSpec.label}<select name="shape" defaultValue={f.shape || ""}><option value="">{`All ${shapeSpec.label.toLowerCase()}s`}</option>{shapes.map(s => <option key={s}>{s}</option>)}</select></label>}
       {f.q && <input type="hidden" name="q" value={f.q}/>}
       <noscript><button>Filter</button></noscript>
