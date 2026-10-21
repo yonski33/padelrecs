@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
+import { ChipRow } from "./chip-row";
 import { LogoIcon, PlusIcon } from "./icons";
 import { niche, catalogPath } from "../lib/niche";
 
@@ -17,12 +17,6 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const onAddPage = pathname.startsWith("/add-review");
-  // On phones the type row scrolls sideways: bring the current type into view.
-  const typeRow = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const row = typeRow.current, current = row?.querySelector<HTMLElement>('[aria-current="page"]');
-    if (row && current) row.scrollLeft = current.offsetLeft - (row.clientWidth - current.offsetWidth) / 2;
-  }, [pathname]);
   return (
     <header className="site-header">
       <div className="wrap header-top">
@@ -41,12 +35,11 @@ export function SiteHeader() {
           return <a key={href} href={href} className={className} aria-current={active ? "page" : undefined}>{label}</a>;
         })}
       </nav>
-      {niche.typePages && <nav className="type-nav" aria-label={`${niche.words.One} types`}>
-        <div className="wrap" ref={typeRow}>
-          <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
-          {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : undefined}>{t.label}</a>)}
-        </div>
-      </nav>}
+      {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
+      {niche.typePages && pathname !== "/" && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
+        <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
+        {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : undefined}>{t.label}</a>)}
+      </ChipRow>}
     </header>
   );
 }

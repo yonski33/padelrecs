@@ -5,6 +5,7 @@ import { catalog } from "../db/data";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
 import { ProductIcon } from "./icons";
 import { LoadMore } from "./load-more";
+import { ChipRow } from "./chip-row";
 import { niche, catalogPath } from "../lib/niche";
 
 const DAY = 86_400_000;
@@ -33,7 +34,7 @@ function dayLabel(iso: string, now: Date) {
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[] }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[] }>;
 }) {
   const [data, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -41,14 +42,27 @@ export default async function Home({ searchParams }: {
   // How many notes to show: 24 at first, 24 more per "Load more" click (kept in the URL so it's linkable and crawlable).
   const requested = Number(Array.isArray(params.show) ? params.show[0] : params.show);
   const show = Number.isFinite(requested) ? Math.min(2400, Math.max(PAGE, Math.ceil(requested / PAGE) * PAGE)) : PAGE;
+  // Product-type filter (SkinRecs: ?type=cleansers). Unknown values are ignored.
+  const typeSlug = Array.isArray(params.type) ? params.type[0] : params.type;
+  const type = niche.typePages?.find(t => t.slug === typeSlug);
+  const shapeOf = new Map(data.rackets.map(r => [r.id, r.shape?.toLowerCase()]));
+  const ofType = <T extends { racketId: string }>(list: T[]) => type ? list.filter(x => shapeOf.get(x.racketId) === type.shape.toLowerCase()) : list;
+  const reviews = ofType(data.reviews), external = ofType(data.external);
+  const query = (next: { source?: string; type?: string; show?: number }) => {
+    const q = new URLSearchParams();
+    if (next.source && next.source !== "all") q.set("source", next.source);
+    if (next.type) q.set("type", next.type);
+    if (next.show) q.set("show", String(next.show));
+    return q.size ? `/?${q}` : "/";
+  };
   const sources = [
-    { value: "all", label: "All", count: data.reviews.length + data.external.length, href: "/" },
-    { value: "players", label: `From ${niche.people.many}`, count: data.reviews.length, href: "/?source=players" },
-    { value: "web", label: "From around the web", count: data.external.length, href: "/?source=web" },
+    { value: "all", label: "All", count: reviews.length + external.length, href: query({ type: type?.slug }) },
+    { value: "players", label: `From ${niche.people.many}`, count: reviews.length, href: query({ source: "players", type: type?.slug }) },
+    { value: "web", label: "From around the web", count: external.length, href: query({ source: "web", type: type?.slug }) },
   ];
   const items = [
-    ...(source !== "web" ? data.reviews.map(r => ({ date: r.createdAt, key: `player-${r.id}`, node: <Review review={r} data={data}/> })) : []),
-    ...(source !== "players" ? data.external.map(e => ({ date: e.createdAt, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
+    ...(source !== "web" ? reviews.map(r => ({ date: r.createdAt, key: `player-${r.id}`, node: <Review review={r} data={data}/> })) : []),
+    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
   ].sort((a, b) => b.date.localeCompare(a.date));
 
   const weekNotes = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now.getTime() - 7 * DAY).length;
@@ -78,6 +92,10 @@ export default async function Home({ searchParams }: {
         </a>)}
       </nav>
     </div>
+    {niche.typePages && <ChipRow className="type-filter" label={`Filter reviews by ${niche.words.one} type`}>
+      <a href={query({ source })} aria-current={!type ? "page" : undefined}>All</a>
+      {niche.typePages.map(t => <a key={t.slug} href={query({ source, type: t.slug })} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</a>)}
+    </ChipRow>}
     {items.slice(0, show).map((item, index) => {
       const day = item.date.slice(0, 10);
       const label = day !== lastDay ? dayLabel(item.date, now) : null;
@@ -89,8 +107,8 @@ export default async function Home({ searchParams }: {
       </Fragment>;
     })}
     {items.length > 0 && items.length < 4 && strip}
-    {items.length === 0 && <p className="empty-feed">{source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
-    {items.length > show && <LoadMore href={`/?${source !== "all" ? `source=${source}&` : ""}show=${show + PAGE}`}/>}
+    {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
+    {items.length > show && <LoadMore href={query({ source, type: type?.slug, show: show + PAGE })}/>}
     {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
   </div><Sidebar data={data}/></div></main>;
 }
