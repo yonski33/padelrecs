@@ -164,3 +164,18 @@ test("tennis: rackets named by generation (no years), NTRP hints, backhand, spin
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("running: shoes named by version (no years), mileage hints, gait, cushioning in the forgiveness column, category type pages", async () => {
+  const n = selectNiche("running");
+  assert.equal(n.schema, "runningrecs");
+  assert.equal(n.productPath, "shoes");
+  assert.equal(n.productYears, false);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Cushioning:forgivenessRating", "Responsiveness:powerRating", "Stability:controlRating", "Comfort & fit:comfortRating", "Durability:maneuverabilityRating"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Weight", "Stack height", "Drop", "Plate"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  const { shapeOf } = await import("../app/art/running");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["daily", "max", "stability", "tempo", "racing", "trail"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
