@@ -33,6 +33,11 @@
       "name": "golfrecs",
       "id": "prj_MtTMLNoBlF8UA5ktAdVvqfzdyU7l",
       "domain": "www.golfrecs.com"
+    },
+    "gaming": {
+      "name": "gamingrecs",
+      "id": "prj_ZtpT4NzmyhW8n4SwA6tm8qzrO2J3",
+      "domain": "www.gamingrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
