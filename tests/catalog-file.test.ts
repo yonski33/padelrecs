@@ -160,3 +160,23 @@ test("the GolfRecs starter catalog: sourced drivers named by generation, known c
   }
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
 });
+
+test("the GamingRecs starter catalog: 460 sourced products in five known categories, no years in names, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/gaming.json");
+  const snapshot = catalogSnapshot(catalog, "gamingrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 40);
+  assert.equal(snapshot.tables.rackets.length, 460);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 460);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.gaming.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/gaming");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: gear carries generations, not years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 80, `${c}: at least 80 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Wooting 80HE+")?.slug, "wooting-80he-plus");
+});
