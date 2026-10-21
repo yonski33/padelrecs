@@ -1,10 +1,11 @@
 "use client";
 import { useState, type MouseEvent, type ReactNode } from "react";
 import { niche, catalogPath } from "../../../lib/niche";
+import { helpfulRank } from "../../../lib/review-order";
 
 type Source = "all" | "players" | "web";
 type Sort = "newest" | "helpful";
-export type ListItem = { key: string; kind: "players" | "web"; date: string; helpful: number; node: ReactNode };
+export type ListItem = { key: string; kind: "players" | "web"; date: string; helpful: number; score: number; node: ReactNode };
 
 /**
  * Racket-page review list. Source tabs and sorting switch instantly in the browser; the links stay real
@@ -29,7 +30,7 @@ export default function ReviewList({ slug, addHref, items, initialSource, initia
 
   const count = (src: Source) => src === "all" ? items.length : items.filter(i => i.kind === src).length;
   const shown = items.filter(i => source === "all" || i.kind === source)
-    .sort((a, b) => (sort === "helpful" ? b.helpful - a.helpful : 0) || b.date.localeCompare(a.date));
+    .sort((a, b) => (sort === "helpful" ? helpfulRank(b) - helpfulRank(a) : 0) || b.date.localeCompare(a.date));
   const tabs: [Source, string][] = [["all", "All"], ["players", `From ${niche.people.many}`], ["web", "From around the web"]];
 
   return <>

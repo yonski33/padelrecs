@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import { Fragment } from "react";
+import { spreadByProduct } from "../lib/review-order";
 import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
@@ -60,10 +61,10 @@ export default async function Home({ searchParams }: {
     { value: "players", label: `From ${niche.people.many}`, count: reviews.length, href: query({ source: "players", type: type?.slug }) },
     { value: "web", label: "From around the web", count: external.length, href: query({ source: "web", type: type?.slug }) },
   ];
-  const items = [
-    ...(source !== "web" ? reviews.map(r => ({ date: r.createdAt, key: `player-${r.id}`, node: <Review review={r} data={data}/> })) : []),
-    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
-  ].sort((a, b) => b.date.localeCompare(a.date));
+  const items = spreadByProduct([
+    ...(source !== "web" ? reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <Review review={r} data={data}/> })) : []),
+    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
+  ]);
 
   const weekNotes = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now.getTime() - 7 * DAY).length;
 
