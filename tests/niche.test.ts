@@ -194,3 +194,19 @@ test("golf: drivers named by generation (no years), handicap hints, swing speed,
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("gaming: gear named by generation (no years), five category pages that each pick a drawing, gamer profile, keycap rating icons", async () => {
+  const n = selectNiche("gaming");
+  assert.equal(n.schema, "gamingrecs");
+  assert.equal(n.productPath, "gear");
+  assert.equal(n.productYears, false);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Performance:powerRating", "Comfort:comfortRating", "Build quality:controlRating", "Software & features:maneuverabilityRating", "Value:forgivenessRating"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Weight", "Connection", "Key specs", "Form factor"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["mice", "keyboards", "headsets", "controllers", "monitors"]);
+  const { shapeOf } = await import("../app/art/gaming");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["mouse", "keyboard", "headset", "controller", "monitor"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

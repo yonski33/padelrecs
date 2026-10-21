@@ -6,11 +6,12 @@ import * as skin from "./skin";
 import * as tennis from "./tennis";
 import * as running from "./running";
 import * as golf from "./golf";
+import * as gaming from "./gaming";
 
 /** Per-niche drawings: the product icon (shape + brand mark) and the logo, which is also the rating icon. */
 export type Art = {
   ProductIcon: (props: { shape?: string | null; brand?: string | null; className?: string }) => JSX.Element;
   LogoIcon: (props: { className?: string }) => JSX.Element;
 };
-export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf };
+export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming };
 export const art = arts[niche.id];
