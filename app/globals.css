@@ -677,8 +677,8 @@ summary { cursor: pointer; font-weight: 600; }
 .helpful[aria-pressed="true"] svg { transform: translateY(-2px); }
 .helpful .n { font-variant-numeric: tabular-nums; font-weight: 600; }
 .react-note { font-size: 12px; color: #8a3424; }
-/* Moderated sentiment of a web review, and the racket's overall web split. */
-.s-positive { --c: var(--green); } .s-mixed { --c: #d9b65c; } .s-negative { --c: #cf4b40; }
+/* Moderated sentiment of a web review, and the racket's overall web split: fixed green / amber / red on every site, not the brand colour. */
+.s-positive { --c: #4a9a62; } .s-mixed { --c: #d9b65c; } .s-negative { --c: #cf4b40; }
 .tag.sentiment.s-positive { background: #dff0e3; color: #1f5733; }
 .tag.sentiment.s-mixed { background: #f8eecb; color: #6a520c; }
 .tag.sentiment.s-negative { background: #fde1de; color: #a3241c; }
