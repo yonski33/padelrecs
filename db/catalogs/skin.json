@@ -1,5 +1,5 @@
 {
-  "about": "SkinRecs starter catalog. Every value was read on the brand's US product page (CeraVe sizes from Ulta, because cerave.com shows none) on the checked date and approved by the owner on 2026-10-19. Blank = not published. Fragrance: 'Fragrance-free' only where the brand says so; 'Contains fragrance' where the brand says so or lists Fragrance in its own ingredient list; blank otherwise. No model years. Expanded on 2026-10-20 to 329 face products across 40 brands with a Treatment type: values were read the same way on each brand's US page (La Roche-Posay, Avène and Paula's Choice in a browser; CeraVe from its own pages via search results because cerave.com blocks this location); blank also means the value could not be read reliably. Columns: shape = type, weight = size, core = key ingredients, surface = skin types, balance = fragrance.",
+  "about": "SkinRecs starter catalog. Every value was read on the brand's US product page (CeraVe sizes from Ulta, because cerave.com shows none) on the checked date and approved by the owner on 2026-10-19. Blank = not published. Fragrance: 'Fragrance-free' only where the brand says so; 'Contains fragrance' where the brand says so or lists Fragrance in its own ingredient list; blank otherwise. No model years. Expanded on 2026-10-20 to 329 face products across 40 brands with a Treatment type: values were read the same way on each brand's US page (La Roche-Posay, Avène and Paula's Choice in a browser; CeraVe from its own pages via search results because cerave.com blocks this location); blank also means the value could not be read reliably. Columns: shape = type, weight = size, core = key ingredients, surface = skin types, balance = fragrance. Added on 2026-10-21 from reviews held as missing products: values from the linked page only, blank where it gives none. These four only confirm the product on the brand's own page; other columns stay blank until read there (the Neutrogena Extra-Dry gel-cream is listed as discontinued).",
   "checked": "2026-10-19",
   "brands": [
     { "id": "cerave", "name": "CeraVe" },
@@ -41,7 +41,9 @@
     { "id": "axis-y", "name": "AXIS-Y" },
     { "id": "numbuzin", "name": "numbuzin" },
     { "id": "mixsoon", "name": "mixsoon" },
-    { "id": "hada-labo", "name": "Hada Labo Tokyo" }
+    { "id": "hada-labo", "name": "Hada Labo Tokyo" },
+    { "id": "kiehls", "name": "Kiehl's", "slug": "kiehls" },
+    { "id": "dr-jart", "name": "Dr. Jart+", "slug": "dr-jart" }
   ],
   "products": [
     { "brand": "cerave", "name": "CeraVe Hydrating Facial Cleanser", "shape": "Cleanser", "weight": "3.0 oz · 8.0 oz · 12.0 oz · 16.0 oz", "core": "Ceramides, hyaluronic acid", "surface": "Normal to dry skin", "balance": "Fragrance-free",
@@ -710,6 +712,10 @@
     { "brand": "the-inkey-list", "name": "The INKEY List Retinol Eye Cream", "shape": "Eye cream", "weight": null, "core": "3% Vitalease retinol", "surface": null, "balance": null,
       "sources": ["https://www.theinkeylist.com/products/retinol-eye-cream"] },
     { "brand": "cetaphil", "name": "Cetaphil Healthy Renew Night Cream", "shape": "Moisturizer", "weight": null, "core": "Retinol alternative, peptides, niacinamide, panthenol", "surface": null, "balance": null,
-      "sources": ["https://www.cetaphil.com/us/products/skin-concern/healthy-aging/healthy-renew-night-cream/302990260014.html"] }
+      "sources": ["https://www.cetaphil.com/us/products/skin-concern/healthy-aging/healthy-renew-night-cream/302990260014.html"] },
+    { "brand": "cerave", "name": "CeraVe Ultra-Light Moisturizing Lotion SPF 30", "shape": "Sunscreen", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.cerave.com/skincare/moisturizers/ultra-light-moisturizing-lotion-spf-30"] },
+    { "brand": "kiehls", "name": "Kiehl's Ultra Facial Cream", "shape": "Moisturizer", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.kiehls.com/skincare/face-moisturizers/ultra-facial-cream-with-squalane/622.html"] },
+    { "brand": "dr-jart", "name": "Dr. Jart+ Cicapair Tiger Grass Cream", "shape": "Moisturizer", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.drjart.com/product/28258/94008/moisturisers/cicapair-tiger-grass-cream"] },
+    { "brand": "neutrogena", "name": "Neutrogena Hydro Boost Gel-Cream Extra-Dry", "shape": "Moisturizer", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.neutrogena.com/products/skincare/neutrogena-hydro-boost-gel-cream-with-hyaluronic-acid-for-extra-dry-skin/6811048"] }
   ]
 }

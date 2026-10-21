@@ -52,13 +52,13 @@ test("catalogs without model years keep the year out of names", () => {
   assert.throws(() => catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "x", name: "X" }], products: [{ brand: "x", name: "X One", shape: null, weight: null, core: null, surface: null, swingWeight: null, sources: ["https://e.com"] }] }, "pickleballrecs", "t"), /needs a model year/);
 });
 
-test("the SkinRecs catalog: 329 sourced face products, no years in names, known types and fragrance values", async () => {
+test("the SkinRecs catalog: 333 sourced face products, no years in names, known types and fragrance values", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/skin.json");
   const snapshot = catalogSnapshot(catalog, "skinrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 40);
-  assert.equal(snapshot.tables.rackets.length, 329);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 329);
+  assert.equal(snapshot.tables.brands.length, 42);
+  assert.equal(snapshot.tables.rackets.length, 333);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 333);
   assert(snapshot.tables.rackets.some(r => r.shape === "Treatment"));
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const types = niches.skin.specs.find(s => s.column === "shape")!.options!;
@@ -88,12 +88,12 @@ test("tennis head sizes pick the frame size", async () => {
   assert.equal(shapeOf(null), "unknown");
 });
 
-test("the TennisRecs catalog: 35 starter rackets plus current and previous generations (346), named by generation, with unique URLs", async () => {
+test("the TennisRecs catalog: 35 starter rackets plus current and previous generations (348), named by generation, with unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/tennis.json");
   const snapshot = catalogSnapshot(catalog, "tennisrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 10);
-  assert.equal(snapshot.tables.rackets.length, 346);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 346);
+  assert.equal(snapshot.tables.rackets.length, 348);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 348);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const { shapeOf } = await import("../app/art/tennis");
   for (const r of snapshot.tables.rackets) {
@@ -130,7 +130,7 @@ test("the padel catalog expansion: sourced current models with unique URLs that 
 test("the RunningRecs starter catalog: sourced shoes named by version, every category drawable, unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/running.json");
   const snapshot = catalogSnapshot(catalog, "runningrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 12);
+  assert.equal(snapshot.tables.brands.length, 16);
   assert(snapshot.tables.rackets.length >= 400);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
@@ -140,7 +140,9 @@ test("the RunningRecs starter catalog: sourced shoes named by version, every cat
     assert(r.core === null || /^\d+(\.\d+)? mm$/.test(r.core), `${r.name}: drop ${r.core}`);
     assert(!/ 20\d\d$/.test(r.name), `${r.name}: shoes carry versions, not years`);
   }
-  assert(catalog.products.every(p => p.sources.length === 1 && p.sources[0].startsWith("https://runrepeat.com/")));
+  // Starter shoes come from RunRepeat; shoes added later for held reviews may cite another review site (2026-10-21).
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert(catalog.products.filter(p => !p.sources[0].startsWith("https://runrepeat.com/")).length <= 10);
 });
 
 test("the GolfRecs starter catalog: sourced drivers named by generation, known categories, unique URLs", async () => {

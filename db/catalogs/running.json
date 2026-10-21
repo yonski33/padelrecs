@@ -1,5 +1,5 @@
 {
-  "about": "RunningRecs starter catalog (2026-10-21): running shoes from 12 brands, the two newest versions of each line that RunRepeat lists (releases before 2023, Gore-Tex and wide editions left out). Weight (men's), heel and forefoot stack height and drop are the brands' published figures as listed on each shoe's RunRepeat page, linked in sources. Category comes from RunRepeat's terrain, arch support and pace: trail, stability, racing (competition), tempo, max cushion (heel stack 38 mm or more) or daily trainer. Plate is left blank until checked. Columns: shape = category, balance = stack height, core = drop, surface = plate.",
+  "about": "RunningRecs starter catalog (2026-10-21): running shoes from 12 brands, the two newest versions of each line that RunRepeat lists (releases before 2023, Gore-Tex and wide editions left out). Weight (men's), heel and forefoot stack height and drop are the brands' published figures as listed on each shoe's RunRepeat page, linked in sources. Category comes from RunRepeat's terrain, arch support and pace: trail, stability, racing (competition), tempo, max cushion (heel stack 38 mm or more) or daily trainer. Plate is left blank until checked. Columns: shape = category, balance = stack height, core = drop, surface = plate. Added on 2026-10-21 from reviews held as missing products: values from the linked page only, blank where it gives none. These six come from The Run Testers, Runner's Verdict, Believe in the Run, Running Warehouse and RunRepeat (published figures; Alphafly 4 specs other than drop not yet published). Category follows the same rule; Aero Spark is Tempo per Believe in the Run ('lower-stacked tempo work').",
   "checked": "2026-10-21",
   "brands": [
     { "id": "adidas", "name": "adidas" },
@@ -13,7 +13,11 @@
     { "id": "on", "name": "On" },
     { "id": "puma", "name": "PUMA" },
     { "id": "salomon", "name": "Salomon" },
-    { "id": "saucony", "name": "Saucony" }
+    { "id": "saucony", "name": "Saucony" },
+    { "id": "li-ning", "name": "Li-Ning" },
+    { "id": "dynafish", "name": "Dynafish" },
+    { "id": "qiaodan", "name": "Qiaodan" },
+    { "id": "skechers", "name": "Skechers" }
   ],
   "products": [
     { "brand": "adidas", "name": "adidas Adistar 3", "shape": "Max cushion", "weight": "270 g (9.5 oz), men's", "balance": "40 mm heel / 35 mm forefoot", "core": "5 mm", "surface": null, "sources": ["https://runrepeat.com/adidas-adistar-3"] },
@@ -429,6 +433,12 @@
     { "brand": "saucony", "name": "Saucony Triumph 23", "shape": "Daily trainer", "weight": "263 g (9.3 oz), men's", "balance": "37 mm heel / 27 mm forefoot", "core": "10 mm", "surface": null, "sources": ["https://runrepeat.com/saucony-triumph-23"] },
     { "brand": "saucony", "name": "Saucony Triumph 24", "shape": "Max cushion", "weight": "250 g (8.8 oz), men's", "balance": "43 mm heel / 33 mm forefoot", "core": "10 mm", "surface": null, "sources": ["https://runrepeat.com/saucony-triumph-24"] },
     { "brand": "saucony", "name": "Saucony Xodus Ultra 3", "shape": "Trail", "weight": "288 g (10.2 oz), men's", "balance": "36 mm heel / 30 mm forefoot", "core": "6 mm", "surface": null, "sources": ["https://runrepeat.com/saucony-xodus-ultra-3"] },
-    { "brand": "saucony", "name": "Saucony Xodus Ultra 4", "shape": "Trail", "weight": "309 g (10.9 oz), men's", "balance": "36 mm heel / 30 mm forefoot", "core": "6 mm", "surface": null, "sources": ["https://runrepeat.com/saucony-xodus-ultra-4"] }
+    { "brand": "saucony", "name": "Saucony Xodus Ultra 4", "shape": "Trail", "weight": "309 g (10.9 oz), men's", "balance": "36 mm heel / 30 mm forefoot", "core": "6 mm", "surface": null, "sources": ["https://runrepeat.com/saucony-xodus-ultra-4"] },
+    { "brand": "li-ning", "name": "Li-Ning Red Hare 9 Ultra", "shape": "Max cushion", "weight": "232 g (8.2 oz), men's UK 8", "balance": "46 mm heel / 38 mm forefoot", "core": "8 mm", "surface": null, "sources": ["https://theruntesters.com/running-shoes/li-ning-red-hare-9-ultra-review/"] },
+    { "brand": "dynafish", "name": "Dynafish XiaoNian", "shape": "Max cushion", "weight": "190 g (6.7 oz), men's US 9", "balance": "41 mm heel / 34 mm forefoot", "core": "7 mm", "surface": null, "sources": ["https://theruntesters.com/dynafish-xiaonian-review/"] },
+    { "brand": "qiaodan", "name": "Qiaodan Leili 2.0 GT", "shape": "Max cushion", "weight": null, "balance": "43 mm heel / 35 mm forefoot", "core": "8 mm", "surface": null, "sources": ["https://runnersverdict.run/shoes/qiaodan-leili-2-0-gt"] },
+    { "brand": "skechers", "name": "Skechers Aero Spark", "shape": "Tempo", "weight": "275 g (9.7 oz), men's US 9", "balance": "36 mm heel / 30 mm forefoot", "core": "6 mm", "surface": null, "sources": ["https://believeintherun.com/shoe-reviews/skechers-aero-spark-review"] },
+    { "brand": "nike", "name": "Nike Alphafly 4", "shape": "Racing", "weight": null, "balance": null, "core": "8 mm", "surface": null, "sources": ["https://www.runningwarehouse.com/Nike_Alphafly_4/descpage-NAFL4M1.html"] },
+    { "brand": "adidas", "name": "adidas Adizero Adios Pro 3", "shape": "Racing", "weight": null, "balance": null, "core": "6.5 mm", "surface": null, "sources": ["https://runrepeat.com/adidas-adizero-adios-pro-3"] }
   ]
 }
