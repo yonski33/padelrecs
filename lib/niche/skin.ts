@@ -9,12 +9,12 @@ const drop = (size: "tile" | "pick", on: boolean) => {
   const box = size === "tile" ? "width='17' height='14' viewBox='0 0 17 14'" : "viewBox='0 0 20 20'";
   const d = size === "tile" ? dropTile : dropPick;
   return svg(on
-    ? `<svg xmlns='http://www.w3.org/2000/svg' ${box}><path d='${d}' fill='#f3a683' stroke='#4e1f43' stroke-width='${size === "tile" ? 1.2 : 1.4}' stroke-linejoin='round'/><path d='${shine(size)}' fill='none' stroke='#fff' stroke-opacity='.7' stroke-width='1.1' stroke-linecap='round'/></svg>`
-    : `<svg xmlns='http://www.w3.org/2000/svg' ${box}><path d='${d}' fill='#eadcd6'/></svg>`);
+    ? `<svg xmlns='http://www.w3.org/2000/svg' ${box}><path d='${d}' fill='#f3a683' stroke='#5e2a52' stroke-width='${size === "tile" ? 1.2 : 1.4}' stroke-linejoin='round'/><path d='${shine(size)}' fill='none' stroke='#fff' stroke-opacity='.7' stroke-width='1.1' stroke-linecap='round'/></svg>`
+    : `<svg xmlns='http://www.w3.org/2000/svg' ${box}><path d='${d}' fill='#efe2dd'/></svg>`);
 };
 const ogDrop = (on: boolean) => on
-  ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="${dropPick}" fill="#f3a683" stroke="#3a1532" stroke-width="1.4" stroke-linejoin="round"/></svg>`
-  : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="${dropPick}" fill="#8a4a7b"/></svg>`;
+  ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="${dropPick}" fill="#f3a683" stroke="#4a1f40" stroke-width="1.4" stroke-linejoin="round"/></svg>`
+  : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="${dropPick}" fill="#9a5a8b"/></svg>`;
 
 export const skin: Niche = {
   id: "skin",
@@ -32,25 +32,25 @@ export const skin: Niche = {
   productYears: false,
   productPath: "products",
   scoreUnit: { one: "drop", many: "drops" },
-  // Soft blush paper, deep plum, one peach accent. Token names are shared with padel ("green" = primary, "lime" = accent).
+  // Warm ivory paper, soft berry, one peach accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
     "--bg": "#fbf5f2",
-    "--surface": "#fffaf8",
-    "--tint": "#f4eae6",
-    "--ink": "#24161c",
+    "--surface": "#fffcfb",
+    "--tint": "#f8f1ee",
+    "--ink": "#2b1d24",
     "--ink-2": "#4a3a40",
-    "--ink-3": "#7a6a70",
-    "--line": "#ecdcd6",
-    "--line-2": "#dcc8c1",
-    "--green": "#6b2d5c",
-    "--green-ink": "#4e1f43",
-    "--green-wash": "#f3e5ef",
-    "--green-line": "#dcc0d5",
-    "--on-green": "#f6e9f2",
-    "--on-green-muted": "#cfadc6",
+    "--ink-3": "#76666c",
+    "--line": "#f1e6e2",
+    "--line-2": "#e6d6d0",
+    "--green": "#7d3a6e",
+    "--green-ink": "#5e2a52",
+    "--green-wash": "#f7eef4",
+    "--green-line": "#e6d0e0",
+    "--on-green": "#f8edf4",
+    "--on-green-muted": "#e2c8db",
     "--lime": "#f3a683",
-    "--lime-wash": "#fde9df",
-    "--lime-line": "#efbba1",
+    "--lime-wash": "#fdefe7",
+    "--lime-line": "#f4cdb9",
     "--lime-ink": "#6b3420",
     "--lime-ink-2": "#55281a",
     "--score-on": drop("tile", true),
@@ -58,8 +58,8 @@ export const skin: Niche = {
     "--score-pick-on": drop("pick", true),
     "--score-pick-off": drop("pick", false),
   },
-  chartColors: ["var(--green)", "var(--lime)", "#e6d6cf", "#cdb3c5", "#b9a59e", "#e9c9b8"],
-  og: { background: "#6b2d5c", accent: "#f3a683", muted: "#cfadc6", text: "#f1dfea", scoreOn: ogDrop(true), scoreOff: ogDrop(false) },
+  chartColors: ["var(--green)", "var(--lime)", "#ece0db", "#dcc3d4", "#c4b2ab", "#f0d4c6"],
+  og: { background: "#7d3a6e", accent: "#f3a683", muted: "#e2c8db", text: "#f8edf4", scoreOn: ogDrop(true), scoreOff: ogDrop(false) },
   ratingWords: { "5": "5 — love it", "4": "4 — really like it", "3": "3 — it’s fine", "2": "2 — not for me", "1": "1 — regret buying it" },
   // Stored in the existing rating columns; only the labels are skincare.
   categories: [
