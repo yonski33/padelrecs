@@ -179,3 +179,18 @@ test("running: shoes named by version (no years), mileage hints, gait, cushionin
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("golf: drivers named by generation (no years), handicap hints, swing speed, distance in the power column, category type pages", async () => {
+  const n = selectNiche("golf");
+  assert.equal(n.schema, "golfrecs");
+  assert.equal(n.productPath, "drivers");
+  assert.equal(n.productYears, false);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Distance:powerRating", "Accuracy:controlRating", "Forgiveness:forgivenessRating", "Feel & sound:comfortRating", "Looks:maneuverabilityRating"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Lofts", "Head size", "Stock shaft", "Adjustable hosel"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  const { shapeOf } = await import("../app/art/golf");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["lowspin", "max", "draw", "light", "mini"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
