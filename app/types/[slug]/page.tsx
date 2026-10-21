@@ -22,7 +22,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const [{ slug }, f, data] = await Promise.all([params, searchParams, catalog()]);
   const t = pageFor(slug);
   if (!t) notFound();
-  const ofType = data.rackets.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase());
+  const ofType = data.listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase());
   const scored = ofType.map(r => ({ r, s: score(data, r.id) }));
   const brandIds = new Set(ofType.map(r => r.brandId));
   const brands = data.brands.filter(b => brandIds.has(b.id));

@@ -160,8 +160,8 @@ export function Sidebar({data}: {data: Catalog}) {
   const discussedLabel = recent.length >= 3 ? "30 days" : "all time";
 
   const notesFor = (id: string) => data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
-  const recentlyAdded = [...data.rackets].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
-  const lonely = data.rackets.map(r => ({ racket: r, count: notesFor(r.id) })).filter(x => x.count <= 2)
+  const recentlyAdded = [...data.listed].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
+  const lonely = data.listed.map(r => ({ racket: r, count: notesFor(r.id) })).filter(x => x.count <= 2)
     .sort((a, b) => a.count - b.count || b.racket.createdAt.localeCompare(a.racket.createdAt)).slice(0, 3);
   const notes = (n: number) => n === 0 ? "no reviews yet" : `${n} ${n === 1 ? "review" : "reviews"}`;
 
@@ -194,8 +194,8 @@ export function Sidebar({data}: {data: Catalog}) {
 
     <section>
       <h2>Browse by brand</h2>
-      <div className="chip-links">{data.brands.map(b => {
-        const count = data.rackets.filter(r => r.brandId === b.id).length;
+      <div className="chip-links">{data.listedBrands.map(b => {
+        const count = data.listed.filter(r => r.brandId === b.id).length;
         return <a key={b.id} href={`/brands/${b.slug}`}>{b.name} <span>{count}</span></a>;
       })}</div>
       <a className="more-link" href={catalogPath}>{`All ${w.many} →`}</a>

@@ -30,7 +30,12 @@ export async function catalog(connection?:ReturnType<typeof getDb>) {
  db.select({racketId: reviews.racketId, createdAt: reviews.createdAt}).from(reviews).where(ne(reviews.status, "approved")),
  voteCounts(db)]);
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
- return { brands: visible.brands, rackets: visible.rackets,
+ // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
+ // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.
+ const reviewed = new Set([...publicReviews.map(r => r.racketId), ...external.map(e => e.racketId)]);
+ const listed = visible.rackets.filter(r => reviewed.has(r.id));
+ const listedBrands = visible.brands.filter(b => listed.some(r => r.brandId === b.id));
+ return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands,
   reviews: publicReviews.map(r => ({ ...r, helpful: votes.get(`player:${r.id}`) ?? 0 })),
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
 }

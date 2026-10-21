@@ -14,23 +14,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     { url: `${base}/`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 1 },
-    { url: `${base}${catalogPath}`, lastModified: latest(data.rackets.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}${catalogPath}`, lastModified: latest(data.listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/brands`, changeFrequency: "weekly", priority: 0.6 },
     ...(niche.typePages ?? []).map(t => ({
       url: `${base}/${t.slug}`,
-      lastModified: latest(data.rackets.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
+      lastModified: latest(data.listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...data.rackets.map(r => ({
+    ...data.listed.map(r => ({
       url: `${base}${catalogPath}/${r.slug}`,
       lastModified: latest([r.createdAt, ...notesFor(r.id)]),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     })),
-    ...data.brands.map(b => ({
+    ...data.listedBrands.map(b => ({
       url: `${base}/brands/${b.slug}`,
-      lastModified: latest(data.rackets.filter(r => r.brandId === b.id).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
+      lastModified: latest(data.listed.filter(r => r.brandId === b.id).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
