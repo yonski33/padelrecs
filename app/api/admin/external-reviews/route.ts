@@ -5,6 +5,7 @@ import { racketSelection, ensureRacket } from "../../../../db/racket-selection";
 import { rackets, externalReviews } from "../../../../db/schema";
 import { tagsInput } from "../../../../lib/tags";
 import { sourcePlatform, webExcerpt, webSummary, webSentiment, hasWebText } from "../../../../lib/review-options";
+import { revalidateSite } from "../../../../lib/revalidate";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../admin/auth";
 const sourceUrl=z.string().trim().max(2000).url().refine(value=>{const url=new URL(value);return ["http:","https:"].includes(url.protocol)&&!url.username&&!url.password;});
 const sourceDate=z.union([z.literal(""),z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(d=>{const date=new Date(d);return !isNaN(date.getTime())&&date.toISOString().slice(0,10)===d;})]);
@@ -26,6 +27,7 @@ export async function POST(request:Request) {
     await tx.insert(externalReviews).values({...review,racketId});
    });
   }
+  revalidateSite();
   return adminRedirect(request,"tab=web&result=web");
  }catch{return adminRedirect(request,"tab=web&result=failed");}
 }

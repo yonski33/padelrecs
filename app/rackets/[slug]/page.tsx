@@ -1,4 +1,7 @@
-export const dynamic = "force-dynamic";
+// Static and cached at the edge; see lib/revalidate.ts. Each page renders on its first visit and is then cached.
+// ?source= and ?sort= are read in the browser by ReviewList, so the page itself never reads the query.
+export const revalidate = 300;
+export async function generateStaticParams() { return []; }
 import { cache } from "react";
 import type { Metadata } from "next";
 import { catalog as loadCatalog, score } from "../../../db/data";
@@ -14,7 +17,7 @@ import { niche, catalogPath, hasYears, typePageFor } from "../../../lib/niche";
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
 const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)}%` : "0%";
-// One catalog read per request, shared by the page and its metadata.
+// One catalog read per render, shared by the page and its metadata.
 const catalog = cache(() => loadCatalog());
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
@@ -25,8 +28,8 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   return { title: { absolute: title }, description, alternates: { canonical: `${catalogPath}/${r.slug}` }, openGraph: { title, description, url: `${catalogPath}/${r.slug}`, type: "website" } };
 }
 
-export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]; sort?: string | string[]}>}) {
-  const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
+export default async function RacketPage({params}: {params: Promise<{slug: string}>}) {
+  const [{slug}, data] = await Promise.all([params, catalog()]);
   const r = data.rackets.find(r => r.slug === slug);
   if (!r) {
     // Renamed rackets: old addresses redirect permanently so links and search rankings carry over.
@@ -39,8 +42,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const s = score(data, r.id);
   const reviews = data.reviews.filter(x => x.racketId === r.id);
   const external = data.external.filter(e => e.racketId === r.id);
-  const source = query.source === "players" || query.source === "web" ? query.source : "all";
-  const sort = query.sort === "helpful" ? "helpful" : "newest";
 
   const cats = categories.map(([label, key]) => {
     const vals = reviews.flatMap(x => x[key] == null ? [] : [x[key]!]);
@@ -173,7 +174,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList slug={r.slug} addHref={addHref} items={items} initialSource={source} initialSort={sort}/>
+        <ReviewList slug={r.slug} addHref={addHref} items={items}/>
       </div>
 
       <aside className="database-sidebar">

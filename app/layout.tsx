@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";

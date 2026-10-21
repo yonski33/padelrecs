@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
 import { brands, rackets } from "../../../../db/schema";
 import { changeRacketSlug } from "../../../../db/racket-slugs";
+import { revalidateSite } from "../../../../lib/revalidate";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../admin/auth";
 const optionalText=(max:number)=>z.string().trim().max(max).transform(value=>value||null);
 const input=z.object({
@@ -33,6 +34,7 @@ export async function POST(request:Request) {
    }
    return "spec-saved";
   }).catch(error=>{if(rejected)return rejected;throw error;});
+  if(result==="spec-saved"||result==="spec-slug-changed")revalidateSite();
   return adminRedirect(request,`tab=specs${selected}&result=${result}`);
  }catch{return adminRedirect(request,`tab=specs${selected}&result=failed`);}
 }

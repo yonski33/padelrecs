@@ -1,6 +1,7 @@
 import {database} from "../../../../db/data";
 import {reviewEditInput,saveReviewEdit} from "../../../../db/review-editing";
 import {adminWriteGuard,adminRedirect,readAdminForm} from "../../../admin/auth";
+import {revalidateSite} from "../../../../lib/revalidate";
 import {siteOrigin} from "../../../../lib/site-url";
 
 export async function POST(request:Request){
@@ -12,6 +13,7 @@ export async function POST(request:Request){
  try{
   const value=parsed.data,result=await saveReviewEdit(await database(),value);
   if(result!=="saved")return editError(result);
+  revalidateSite();
   const status=["pending","approved","rejected"].includes(raw.returnStatus)?raw.returnStatus:"pending";
   return adminRedirect(request,`${value.type==="web"?"tab=web":`status=${status}`}&result=edit-saved`);
  }catch{return editError("failed");}

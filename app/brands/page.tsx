@@ -1,4 +1,5 @@
-export const dynamic = "force-dynamic";
+// Static and cached at the edge; see lib/revalidate.ts.
+export const revalidate = 300;
 import type { Metadata } from "next";
 import { niche } from "../../lib/niche";
 const w = niche.words;

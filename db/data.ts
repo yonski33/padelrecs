@@ -21,14 +21,25 @@ export function publicCatalogItems<R extends RacketRef, B extends BrandRef>(allB
  return { brands: visibleBrands, rackets: visibleRackets };
 }
 
-export async function catalog(connection?:ReturnType<typeof getDb>) {
- const db = connection ?? await database();
- const [allBrands, allRackets, publicReviews, external, unapproved, votes] = await Promise.all([
+/**
+ * `next build` prerenders the static public pages, which reads the catalogue. CI builds have no database: they render an
+ * empty catalogue instead (never served). A Vercel production build always needs the real one, so it still fails without it.
+ */
+function buildingWithoutDatabase() {
+ return process.env.NEXT_PHASE === "phase-production-build" && !process.env.DATABASE_URL && process.env.VERCEL_ENV !== "production";
+}
+async function catalogRows(db:ReturnType<typeof getDb>) {
+ return Promise.all([
  db.select().from(brands), db.select().from(rackets),
  db.select({id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, reviewText: reviews.reviewText, alias: reviews.alias, playerLevel: reviews.playerLevel, playingSide: reviews.playingSide, playingStyle: reviews.playingStyle, timeWithRacket: reviews.timeWithRacket, createdAt: reviews.createdAt, powerRating: reviews.powerRating, controlRating: reviews.controlRating, maneuverabilityRating: reviews.maneuverabilityRating, comfortRating: reviews.comfortRating, forgivenessRating: reviews.forgivenessRating, tags: reviews.tags}).from(reviews).where(eq(reviews.status, "approved")).orderBy(desc(reviews.createdAt)),
  db.select().from(externalReviews).orderBy(desc(externalReviews.createdAt)),
  db.select({racketId: reviews.racketId, createdAt: reviews.createdAt}).from(reviews).where(ne(reviews.status, "approved")),
  voteCounts(db)]);
+}
+export async function catalog(connection?:ReturnType<typeof getDb>) {
+ const [allBrands, allRackets, publicReviews, external, unapproved, votes] = !connection && buildingWithoutDatabase()
+  ? [[], [], [], [], [], new Map()] as Awaited<ReturnType<typeof catalogRows>>
+  : await catalogRows(connection ?? await database());
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
  // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
  // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.

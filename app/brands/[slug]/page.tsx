@@ -1,4 +1,6 @@
-export const dynamic = "force-dynamic";
+// Static and cached at the edge; see lib/revalidate.ts. Each brand page renders on its first visit and is then cached.
+export const revalidate = 300;
+export async function generateStaticParams() { return []; }
 import type { Metadata } from "next";
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params,data=await catalog(),brand=data.brands.find(b=>b.slug===slug);if(!brand)return {title:"Brand not found",robots:{index:false}};return {...niche.seo.brand(brand.name),alternates:{canonical:`/brands/${brand.slug}`}};}
 import { niche, hasYears } from "../../../lib/niche";

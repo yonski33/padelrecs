@@ -1,7 +1,7 @@
 import { createHmac } from "node:crypto";
 import { and, count, eq, gte } from "drizzle-orm";
 import type { getDb } from "./index";
-import { externalReviews, reviews, reviewVotes } from "./schema";
+import { externalReviews, rackets, reviews, reviewVotes } from "./schema";
 
 type Database = ReturnType<typeof getDb>;
 export type VoteTarget = { type: "player" | "web"; id: string };
@@ -29,6 +29,14 @@ export async function setVote(db: Database, target: VoteTarget, voter: string, o
   }
   const [total] = await db.select({ n: count() }).from(reviewVotes).where(match);
   return { status: "ok" as const, count: Number(total.n) };
+}
+
+/** The slug of the product a review belongs to, so its cached page can be refreshed after a vote. */
+export async function reviewProductSlug(db: Pick<Database, "select">, target: VoteTarget) {
+  const [row] = target.type === "player"
+    ? await db.select({ slug: rackets.slug }).from(reviews).innerJoin(rackets, eq(rackets.id, reviews.racketId)).where(eq(reviews.id, target.id))
+    : await db.select({ slug: rackets.slug }).from(externalReviews).innerJoin(rackets, eq(rackets.id, externalReviews.racketId)).where(eq(externalReviews.id, target.id));
+  return row?.slug ?? null;
 }
 
 /** Vote totals keyed "player:<id>" / "web:<id>". */
