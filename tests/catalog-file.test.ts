@@ -126,3 +126,19 @@ test("the padel catalog expansion: sourced current models with unique URLs that 
     assert.deepEqual(counts, { brands: catalog.brands.length, rackets: rows.length, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the RunningRecs starter catalog: sourced shoes named by version, every category drawable, unique URLs", async () => {
+  const catalog = await readCatalog("db/catalogs/running.json");
+  const snapshot = catalogSnapshot(catalog, "runningrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 12);
+  assert(snapshot.tables.rackets.length >= 400);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/running");
+  for (const r of snapshot.tables.rackets) {
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: category ${r.shape}`);
+    assert(r.core === null || /^\d+(\.\d+)? mm$/.test(r.core), `${r.name}: drop ${r.core}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: shoes carry versions, not years`);
+  }
+  assert(catalog.products.every(p => p.sources.length === 1 && p.sources[0].startsWith("https://runrepeat.com/")));
+});
