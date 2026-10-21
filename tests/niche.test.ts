@@ -127,7 +127,7 @@ test("every niche has its tab and home-screen icons", async () => {
 test("live sites have their Vercel project recorded", () => {
   // A niche gets its entry once its Vercel project exists.
   const projects = (targets as { vercelProjects: Record<string, { name: string; id: string }> }).vercelProjects;
-  for (const id of ["padel", "pickleball", "skin", "tennis"]) assert.match(projects[id]?.id ?? "", /^prj_/, `${id} needs a Vercel project in deployment/targets.json`);
+  for (const id of ["padel", "pickleball", "skin", "tennis", "running"]) assert.match(projects[id]?.id ?? "", /^prj_/, `${id} needs a Vercel project in deployment/targets.json`);
   for (const [id, project] of Object.entries(projects)) assert(Object.hasOwn(niches, id) && /^prj_/.test(project.id), `bad vercelProjects entry ${id}`);
   assert.equal(projects.padel.id, targets.vercelProjectId);
 });
