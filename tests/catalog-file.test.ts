@@ -88,11 +88,12 @@ test("tennis head sizes pick the frame size", async () => {
   assert.equal(shapeOf(null), "unknown");
 });
 
-test("the TennisRecs starter catalog: 35 sourced rackets named by generation, with comparable stiffness", async () => {
+test("the TennisRecs catalog: 35 starter rackets plus current and previous generations (346), named by generation, with unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/tennis.json");
   const snapshot = catalogSnapshot(catalog, "tennisrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 6);
-  assert.equal(snapshot.tables.rackets.length, 35);
+  assert.equal(snapshot.tables.brands.length, 10);
+  assert.equal(snapshot.tables.rackets.length, 346);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 346);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const { shapeOf } = await import("../app/art/tennis");
   for (const r of snapshot.tables.rackets) {
