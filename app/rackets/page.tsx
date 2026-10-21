@@ -30,7 +30,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
       <noscript><button>Filter</button></noscript>
       {filtered && <a href={catalogPath}>Reset</a>}
     </AutoSubmitForm>
-    <p className="small muted">{`${results.length} ${w.many}`}{sort === "positive" ? ` · % positive counts once a ${w.one} has 5+ web reviews` : sort === "rated" ? ` · averages count from 3+ ${niche.people.one} ratings` : ""}</p>
+    <p className="small muted">{`${results.length} ${w.many}`}{sort === "positive" ? ` · % positive counts once a ${w.one} has 5+ web reviews` : ""}</p>
     <div className="directory">{results.map(({ r, s }) => <RacketRow key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} average={s.average} count={s.count} web={s.web} positive={positiveShare(s)}
       details={[r.shape, niche.rowDetail && r[niche.rowDetail.column] && `${r[niche.rowDetail.column]}${niche.rowDetail.suffix}`, hasYears && r.year].filter(Boolean).join(" · ")}/>)}</div>
     {!results.length && <p className="empty-feed">{`No ${w.one} found. Either it’s very new, very obscure, or we need to add it. `}<a href={catalogPath}>Clear filters</a> or <a href="/add-review">add it with a review →</a></p>}

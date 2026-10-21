@@ -12,9 +12,8 @@ test("most positive needs 5 judged reviews and favours bigger samples", () => {
   assert.equal(positiveShare(list[2].s), 95);
 });
 
-test("highest rated needs 3 ratings, others follow by positive share", () => {
-  const list = [item("one-five-star", { count: 1, average: "5.0" }), item("rated", { count: 3, average: "4.0" }), item("web", { web: 6, judged: 6, positive: 6 })];
-  assert.deepEqual(sortProducts(list, "rated").map(x => x.r.name), ["rated", "web", "one-five-star"]);
+test("old Highest rated links land on Most positive", () => {
+  assert.equal(parseSort("rated"), "positive");
 });
 
 test("unknown sort falls back to most discussed", () => {

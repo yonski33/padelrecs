@@ -1,16 +1,15 @@
-// Catalogue ordering for the products and type pages. Shares and averages only rank a product once enough people weighed in,
+// Catalogue ordering for the products and type pages. Shares only rank a product once enough people weighed in,
 // so one glowing comment can't put a product on top; products below the minimum follow, in the same order.
 export const MIN_JUDGED = 5;   // web reviews with a sentiment before "% positive" counts
-export const MIN_RATINGS = 3;  // user ratings before the average counts
 
 export const SORTS = [
   { value: "discussed", label: "Most discussed" },
   { value: "positive", label: "Most positive" },
-  { value: "rated", label: "Highest rated" },
   { value: "newest", label: "Newest" },
 ] as const;
 export type SortKey = typeof SORTS[number]["value"];
-export const parseSort = (v: string | undefined): SortKey => SORTS.some(s => s.value === v) ? v as SortKey : "discussed";
+// "rated" (Highest rated) was dropped: with so few star ratings it always matched "Most positive", so old links land there.
+export const parseSort = (v: string | undefined): SortKey => v === "rated" ? "positive" : SORTS.some(s => s.value === v) ? v as SortKey : "discussed";
 
 type Stats = { count: number; average: string | null; web: number; judged: number; positive: number };
 type Item = { r: { name: string; createdAt: string }; s: Stats };
@@ -32,15 +31,9 @@ const byPositive = (a: Item, b: Item) => {
   if (qa && qb) { const d = wilson(b.s) - wilson(a.s); if (d) return d; }
   return byDiscussed(a, b);
 };
-const byRated = (a: Item, b: Item) => {
-  const qa = a.s.count >= MIN_RATINGS, qb = b.s.count >= MIN_RATINGS;
-  if (qa !== qb) return qa ? -1 : 1;
-  if (qa && qb) return Number(b.s.average) - Number(a.s.average) || b.s.count - a.s.count || byName(a, b);
-  return byPositive(a, b);
-};
 const byNewest = (a: Item, b: Item) => b.r.createdAt.localeCompare(a.r.createdAt) || byName(a, b);
 
 export function sortProducts<T extends Item>(list: T[], key: SortKey): T[] {
-  const cmp = { discussed: byDiscussed, positive: byPositive, rated: byRated, newest: byNewest }[key];
+  const cmp = { discussed: byDiscussed, positive: byPositive, newest: byNewest }[key];
   return [...list].sort(cmp);
 }
