@@ -235,7 +235,6 @@
     { "brand": "bullpadel", "name": "Bullpadel Xplo", "year": 2025, "shape": "Diamond", "weight": "365–375 g", "core": null, "surface": null, "balance": "High", "sources": ["https://www.padelgear.co.za/products/xplo"] },
     { "brand": "bullpadel", "name": "Bullpadel Hack 04", "year": 2025, "shape": "Diamond", "weight": "365–375 g", "core": null, "surface": null, "balance": "High", "sources": ["https://www.tennis-warehouse.com/Bullpadel_Hack_04_2025_Padel_Racket_/descpage-BUPRH0425.html"] },
     { "brand": "bullpadel", "name": "Bullpadel Neuron", "year": 2025, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://padelgids.nl/padelgear/padel-rackets/bullpadel-neuron-2025-padel-racket/", "https://www.padelgear.co.za/products/neuron-2025"] },
-    { "brand": "bullpadel", "name": "Bullpadel Vertex 04", "year": 2024, "shape": "Diamond", "weight": "365 g ±10 g", "core": null, "surface": null, "balance": "High", "sources": ["https://www.tennisnuts.com/bullpadel-vertex-04-padel-racket-1655625.html"] },
-    { "brand": "babolat", "name": "Babolat Technical Viper Juan Lebrón", "year": 2025, "shape": "Diamond", "weight": null, "core": null, "surface": null, "balance": "High", "sources": ["https://www.padelgear.co.za/products/technical-viper-juan-lebron-2025", "https://www.padelnuestro.com/uk/babolat-technical-viper-juan-lebron-2025"] }
+    { "brand": "bullpadel", "name": "Bullpadel Vertex 04", "year": 2024, "shape": "Diamond", "weight": "365 g ±10 g", "core": null, "surface": null, "balance": "High", "sources": ["https://www.tennisnuts.com/bullpadel-vertex-04-padel-racket-1655625.html"] }
   ]
 }
