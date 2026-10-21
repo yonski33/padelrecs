@@ -25,6 +25,7 @@ export const skin: Niche = {
     wordmark: "skinrecs",
     descriptor: "real reviews of skincare products",
     footer: "kept by people with too many half-used bottles. No affiliate links.",
+    analyticsId: "G-6YERWXHXH8",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
