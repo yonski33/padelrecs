@@ -35,4 +35,9 @@ export async function catalog(connection?:ReturnType<typeof getDb>) {
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
 }
 export type Catalog = Awaited<ReturnType<typeof catalog>>;
-export function score(data: Catalog, id: string) { const rs = data.reviews.filter(r => r.racketId === id); return {count: rs.length, average: rs.length ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: data.external.filter(e => e.racketId === id).length}; }
+export function score(data: Catalog, id: string) {
+ const rs = data.reviews.filter(r => r.racketId === id), web = data.external.filter(e => e.racketId === id);
+ const judged = web.filter(e => e.sentiment).length, positive = web.filter(e => e.sentiment === "positive").length;
+ return {count: rs.length, average: rs.length ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive};
+}
+export type Score = ReturnType<typeof score>;
