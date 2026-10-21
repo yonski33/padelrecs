@@ -170,7 +170,7 @@ export function Sidebar({data}: {data: Catalog}) {
       {weekPlayers + weekWeb > 0 ? <>
         <h2>This week <small>last 7 days</small></h2>
         <dl>
-          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "review" : "reviews"}, {weekPlayers}{` from ${niche.people.many}`}</dd>
+          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "review" : "reviews"}</dd>
           <dt>{weekRackets}</dt><dd>{weekRackets === 1 ? w.one : w.many} talked about</dd>
           <dt>{data.rackets.length}</dt><dd>{`${w.many} in the database`}</dd>
         </dl>
