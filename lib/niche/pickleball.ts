@@ -25,6 +25,7 @@ export const pickleball: Niche = {
     wordmark: "pickleballrecs",
     descriptor: "player reviews of pickleball paddles",
     footer: "kept by people who own too many paddles. No affiliate links.",
+    analyticsId: "G-2W4S5QT9CZ",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "paddle", many: "paddles", One: "Paddle", Many: "Paddles" },
