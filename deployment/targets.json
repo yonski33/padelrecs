@@ -28,6 +28,11 @@
       "name": "runningrecs",
       "id": "prj_YkIQxmYnpywIVHBwPu4JczkuYgmT",
       "domain": "www.runningrecs.com"
+    },
+    "golf": {
+      "name": "golfrecs",
+      "id": "prj_MtTMLNoBlF8UA5ktAdVvqfzdyU7l",
+      "domain": "www.golfrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
