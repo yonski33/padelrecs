@@ -66,6 +66,8 @@ export type Niche = {
   specs: { column: SpecColumn; label: string; max: number; placeholder: string; options?: string[] }[];
   /** Shapes always offered in the catalogue filter, even before any product uses them. */
   shapeFilter: string[];
+  /** Optional top-level browse pages per shape (SkinRecs: /cleansers, /sunscreens…) with a menu row under the header. */
+  typePages?: { shape: string; slug: string; label: string; intro: string }[];
   /** Extra detail on product rows in the catalogue, after the shape. */
   rowDetail?: { column: SpecColumn; suffix: string };
   tags: Tag[];

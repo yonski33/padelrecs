@@ -9,7 +9,7 @@ import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../c
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
-import { niche, catalogPath, hasYears } from "../../../lib/niche";
+import { niche, catalogPath, hasYears, typePageFor } from "../../../lib/niche";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -74,6 +74,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   for (const t of tagged.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
   const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
   const url = `${base}${catalogPath}/${r.slug}`;
+  const typePage = typePageFor(r.shape);
   // Structured data for Google: product + player ratings (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     ...(s.average ? [{
@@ -87,9 +88,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       })),
     }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: niche.words.Many, item: `${base}${catalogPath}` },
-      ...(brand ? [{ "@type": "ListItem", position: 2, name: brand.name, item: `${base}/brands/${brand.slug}` }] : []),
-      { "@type": "ListItem", position: brand ? 3 : 2, name: r.name, item: url },
+      ...[
+        { name: niche.words.Many, item: `${base}${catalogPath}` },
+        ...(typePage ? [{ name: typePage.label, item: `${base}/${typePage.slug}` }] : []),
+        ...(brand ? [{ name: brand.name, item: `${base}/brands/${brand.slug}` }] : []),
+        { name: r.name, item: url },
+      ].map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })),
     ] },
   ] };
   const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
@@ -104,7 +108,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
       <div className="profile-info">
         <div className="titleblock">
-          <div className="crumbs"><a href={catalogPath}>{niche.words.Many}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+          <div className="crumbs"><a href={catalogPath}>{niche.words.Many}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
           {brand && <span className="brandline">{brand.name}</span>}
           <h1>{model}</h1>
           {r.description && <p className="description">{r.description}</p>}

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
-import { catalogPath } from "../lib/niche";
+import { catalogPath, niche } from "../lib/niche";
 
 // Built per request from the public catalog, so new rackets and brands appear without a deploy.
 export const dynamic = "force-dynamic";
@@ -16,6 +16,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 1 },
     { url: `${base}${catalogPath}`, lastModified: latest(data.rackets.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/brands`, changeFrequency: "weekly", priority: 0.6 },
+    ...(niche.typePages ?? []).map(t => ({
+      url: `${base}/${t.slug}`,
+      lastModified: latest(data.rackets.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...data.rackets.map(r => ({
       url: `${base}${catalogPath}/${r.slug}`,
       lastModified: latest([r.createdAt, ...notesFor(r.id)]),

@@ -34,6 +34,12 @@ export function SiteHeader() {
           return <a key={href} href={href} className={className} aria-current={active ? "page" : undefined}>{label}</a>;
         })}
       </nav>
+      {niche.typePages && <nav className="type-nav" aria-label={`${niche.words.One} types`}>
+        <div className="wrap">
+          <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
+          {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : undefined}>{t.label}</a>)}
+        </div>
+      </nav>}
     </header>
   );
 }
