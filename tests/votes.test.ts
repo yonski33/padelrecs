@@ -6,7 +6,7 @@ import { drizzle } from "drizzle-orm/pglite";
 import { fixture } from "./fixture";
 import { parseSnapshot, importSnapshot } from "../db/transfer";
 import { reviewVotes } from "../db/schema";
-import { setVote, voterId, VOTES_PER_HOUR } from "../db/votes";
+import { reviewProductSlug, setVote, voterId, VOTES_PER_HOUR } from "../db/votes";
 import { catalog } from "../db/data";
 import type { getDb } from "../db/index";
 
@@ -44,5 +44,14 @@ test("helpful votes are rate limited per voter", async () => {
     await db.insert(reviewVotes).values(Array.from({ length: VOTES_PER_HOUR }, (_, i) => ({ reviewType: "web" as const, reviewId: `other-${i}`, voter: "busy", createdAt: now })));
     assert.equal((await setVote(db, { type: "player", id: "approved-review" }, "busy", true)).status, "limited");
     assert.equal((await setVote(db, { type: "player", id: "approved-review" }, "busy", false)).status, "ok");
+  } finally { await engine.close(); }
+});
+
+test("a vote's review leads back to its product page", async () => {
+  const { engine, db } = await setup();
+  try {
+    assert.equal(await reviewProductSlug(db, { type: "player", id: "approved-review" }), "nox-test-2025");
+    assert.equal(await reviewProductSlug(db, { type: "web", id: "external-review" }), "nox-test-2025");
+    assert.equal(await reviewProductSlug(db, { type: "web", id: "approved-review" }), null);
   } finally { await engine.close(); }
 });

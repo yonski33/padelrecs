@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
 import { catalogPath, niche } from "../lib/niche";
 
-// Built per request from the public catalog, so new rackets and brands appear without a deploy.
-export const dynamic = "force-dynamic";
+// Built from the public catalog and cached like the pages (lib/revalidate.ts), so new rackets and brands appear without a deploy.
+export const revalidate = 300;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");

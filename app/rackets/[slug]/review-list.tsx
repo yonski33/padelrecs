@@ -1,5 +1,5 @@
 "use client";
-import { useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { niche, catalogPath } from "../../../lib/niche";
 
 type Source = "all" | "players" | "web";
@@ -9,10 +9,17 @@ export type ListItem = { key: string; kind: "players" | "web"; date: string; hel
 /**
  * Racket-page review list. Source tabs and sorting switch instantly in the browser; the links stay real
  * (shareable, crawlable, and working without JavaScript) and the address bar follows along.
+ * The page is cached without its query, so a shared ?source=/?sort= link is applied here once the list mounts.
  */
-export default function ReviewList({ slug, addHref, items, initialSource, initialSort }: { slug: string; addHref: string; items: ListItem[]; initialSource: Source; initialSort: Sort }) {
-  const [source, setSource] = useState<Source>(initialSource);
-  const [sort, setSort] = useState<Sort>(initialSort);
+export default function ReviewList({ slug, addHref, items }: { slug: string; addHref: string; items: ListItem[] }) {
+  const [source, setSource] = useState<Source>("all");
+  const [sort, setSort] = useState<Sort>("newest");
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const src = q.get("source"), srt = q.get("sort");
+    if (src === "players" || src === "web") setSource(src);
+    if (srt === "helpful") setSort(srt);
+  }, []);
   const link = (src: Source, srt: Sort) => {
     const q = new URLSearchParams();
     if (src !== "all") q.set("source", src);

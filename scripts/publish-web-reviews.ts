@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, renameSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { niche } from "../lib/niche";
 import { connect } from "./connection";
+import { revalidateLiveSite } from "./revalidate-live";
 import { parseCandidates, planImport, siteState, applyImport, markPublished } from "../db/web-review-import";
 
 // Publishes approved research-agent candidates as web reviews on the active niche's site (NICHE, default padel).
@@ -37,5 +38,7 @@ try {
   const tmp = `${path}.tmp`;
   writeFileSync(tmp, markPublished(queue, published));
   renameSync(tmp, path);
-  console.log(`Published ${inserted} new and updated ${updated} existing web review(s) on ${niche.site.name}; ${published.length} newly marked "published" in the queue. Changes appear on the site within a minute (page cache).`);
+  console.log(`Published ${inserted} new and updated ${updated} existing web review(s) on ${niche.site.name}; ${published.length} newly marked "published" in the queue.`);
 } finally { await client.end(); }
+// Outside the try, so it runs only after a successful publish; the early exits above skip it.
+await revalidateLiveSite();

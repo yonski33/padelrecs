@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { parseSnapshot, importSnapshot } from "../db/transfer";
 import { connect } from "./connection";
+import { revalidateLiveSite } from "./revalidate-live";
 import { niche } from "../lib/niche";
 import { snapshotSchema } from "../db/transfer";
 const path=process.argv[2];
@@ -14,4 +15,5 @@ if(process.argv.includes("--apply")){
  console.log(`Importing into schema "${niche.schema}" (${niche.site.name}).`);
  const {db,client}=connect();
  try{console.log("Import verified",await importSnapshot(db,snapshot));}finally{await client.end();}
+ await revalidateLiveSite();
 }else console.log("Validation only. Add --apply after configuring the target database to import and verify transactionally.");

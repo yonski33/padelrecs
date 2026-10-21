@@ -71,6 +71,12 @@ Create a NEW project named `padelrecs` and connect only the new GitHub repositor
 
 Configure the new project's environment variables from `.env.example` for the appropriate environments. Store database credentials as secrets. For each deployment environment, `SITE_URL` and Supabase's allowed auth callback must agree with that environment's exact origin. Use a stable PadelRecs staging domain for repeated preview sign-in testing if needed; do not point RedRecs domains here.
 
+### Page caching
+
+Public pages (home, catalogue, type, brand and product pages, share images, sitemap) are static and served from Vercel's edge cache; they re-render from the database at most every 5 minutes, and right away after a change (see `lib/revalidate.ts`). Filtered and sorted addresses (`/?source=`, `/rackets?brand=`, `/cleansers?sort=`…) are rewritten to dynamic twins under `app/filtered` and get a 60-second CDN cache. Admin, sign-in, add-review, votes and search stay dynamic, and the proxy runs only on `/admin`, `/auth` and `/api/admin`.
+
+Set `REVALIDATE_SECRET` (Production) in every site's Vercel project, and the same value in `.env.local`, so `db:publish-web-reviews` and `db:import` can ask the live site to refresh at once. Without it they still work, and pages catch up within 5 minutes.
+
 Before each deployment, read back the Vercel project ID, project name, GitHub repository and Supabase ref and match them to `deployment/targets.json`.
 
 ## 7. Test before domain cutover

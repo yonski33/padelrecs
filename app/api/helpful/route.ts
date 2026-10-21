@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { database } from "../../../db/data";
-import { setVote, voterId } from "../../../db/votes";
+import { reviewProductSlug, setVote, voterId } from "../../../db/votes";
+import { revalidateProduct } from "../../../lib/revalidate";
 import { siteOrigin } from "../../../lib/site-url";
 
 const input = z.object({ type: z.enum(["player", "web"]), id: z.string().min(1).max(100), on: z.boolean() });
@@ -18,9 +19,13 @@ export async function POST(request: Request) {
   const ip = (request.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "unknown";
   const voter = voterId(ip, request.headers.get("user-agent") || "", secret);
   try {
-    const result = await setVote(await database(), parsed.data, voter, parsed.data.on);
+    const db = await database();
+    const result = await setVote(db, parsed.data, voter, parsed.data.on);
     if (result.status === "missing") return json({ error: "That review isn't available." }, 404);
     if (result.status === "limited") return json({ error: "That's a lot of votes — try again later." }, 429);
+    // The product page and home feed show vote counts; refresh their cached copies.
+    const slug = await reviewProductSlug(db, parsed.data);
+    if (slug) revalidateProduct(slug);
     return json({ count: result.count });
   } catch (error) {
     console.error("Vote failed", error);

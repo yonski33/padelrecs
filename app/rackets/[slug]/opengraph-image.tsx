@@ -6,7 +6,9 @@ import { niche } from "../../../lib/niche";
 export const alt = niche.seo.ogProductAlt;
 export const size = ogSize;
 export const contentType = "image/png";
-export const dynamic = "force-dynamic";
+// Cached like the racket page (lib/revalidate.ts): rendered on the first request, then refreshed after changes.
+export const revalidate = 300;
+export async function generateStaticParams() { return []; }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const [{ slug }, data] = await Promise.all([params, catalog()]);
