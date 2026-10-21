@@ -112,7 +112,8 @@ test("the padel catalog expansion: sourced current models with unique URLs that 
   assert(rows.length >= 150, "the owner chose about 150 mid and top models");
   assert.equal(new Set(rows.map(r => r.slug)).size, rows.length, "every racket gets its own URL");
   assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every racket has an https source");
-  assert(rows.every(r => /\b20(25|26|27)$/.test(r.name)), "current models only, named with their year");
+  // 2024 models are added only when reviews of them turn up (owner rule, 2026-10-21).
+  assert(rows.every(r => /\b20(24|25|26|27)$/.test(r.name)), "recent models only, named with their year");
   assert.equal(rows.find(r => r.name === "Oxdog Hyper Pro+ 2.0 2026")!.slug, "oxdog-hyper-pro-plus-2-0-2026", "a + model doesn't take the plain model's URL");
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const engine = new PGlite();
