@@ -630,8 +630,10 @@ summary { cursor: pointer; font-weight: 600; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .quote .tags { margin-top: 10px; }
-.tag { font-size: 12.5px; font-weight: 500; padding: 2px 9px; border-radius: 6px; background: var(--lime-wash); color: var(--lime-ink); }
-.tag.neg { background: #f3e6dc; color: #6b3d22; }
+/* Pill colours are the same on every site and never share a hue: praise blue, complaint orange, neutral grey,
+   and the sentiment pills green / amber / red to match the web split bar. */
+.tag { font-size: 12.5px; font-weight: 500; padding: 2px 9px; border-radius: 6px; background: #e4edf8; color: #23487a; }
+.tag.neg { background: #fbe8d6; color: #84420f; }
 .tag.neutral { background: var(--tint); color: var(--ink-2); }
 .tag .c { opacity: .65; margin-left: 4px; font-variant-numeric: tabular-nums; }
 .says { margin-top: 16px; }
@@ -648,7 +650,7 @@ summary { cursor: pointer; font-weight: 600; }
 }
 .chip-picker button:hover, .chip-picker label:hover span { border-color: var(--ink-3); background: transparent; color: var(--ink); }
 .chip-picker button[aria-pressed="true"], .chip-picker input:checked + span { border-style: solid; border-color: var(--lime-line); background: var(--lime-wash); color: var(--lime-ink-2); }
-.chip-picker .neg[aria-pressed="true"], .chip-picker .neg input:checked + span { border-color: #e2c3ad; background: #f3e6dc; color: #6b3d22; }
+.chip-picker .neg[aria-pressed="true"], .chip-picker .neg input:checked + span { border-color: #f0c9a6; background: #fbe8d6; color: #84420f; }
 .chip-picker .neutral[aria-pressed="true"], .chip-picker .neutral input:checked + span { border-color: var(--line-2); background: var(--tint); color: var(--ink); }
 .chip-picker button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
 .chip-picker label { position: relative; }
@@ -676,10 +678,10 @@ summary { cursor: pointer; font-weight: 600; }
 .helpful .n { font-variant-numeric: tabular-nums; font-weight: 600; }
 .react-note { font-size: 12px; color: #8a3424; }
 /* Moderated sentiment of a web review, and the racket's overall web split. */
-.s-positive { --c: var(--green); } .s-mixed { --c: #d9b65c; } .s-negative { --c: #c47a52; }
-.tag.sentiment.s-positive, .quote .tag.sentiment.s-positive { background: #dfece2; color: #24543a; }
-.tag.sentiment.s-mixed, .quote .tag.sentiment.s-mixed { background: #ecebf6; color: #45436b; }
-.tag.sentiment.s-negative, .quote .tag.sentiment.s-negative { background: #f3e6dc; color: #6b3d22; }
+.s-positive { --c: var(--green); } .s-mixed { --c: #d9b65c; } .s-negative { --c: #cf4b40; }
+.tag.sentiment.s-positive { background: #dff0e3; color: #1f5733; }
+.tag.sentiment.s-mixed { background: #f8eecb; color: #6a520c; }
+.tag.sentiment.s-negative { background: #fde1de; color: #a3241c; }
 .web-split { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
 .web-split .lbl { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
 .web-split .lbl span { font-weight: 400; color: var(--ink-3); }
