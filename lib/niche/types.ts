@@ -44,12 +44,18 @@ export type TopList = {
   title: string;
   /** One sentence under the title and on the index. */
   intro: string;
-  /** Tag bank labels and their weights. Positive weights reward, negative ones penalise the share of reviews carrying the tag. */
-  tagWeights?: Record<string, number>;
-  /** How much the tag part counts next to the positive share, 0–1. */
-  tagBlend?: number;
-  /** Reviews that must carry one of the positively weighted tags before a product can be listed. */
-  minTagged?: number;
+  /** Trait lists ("for power") only take products that reviewers describe that way, and order them half by how happy reviewers
+   *  are and half by how often they mention the trait. */
+  trait?: {
+    /** Tag bank labels that mean the trait. A review counts once if it carries any of them. */
+    tags: string[];
+    /** Share of a product's reviews, 0–1, that must carry one of `tags`. */
+    minShare: number;
+    /** Tags that contradict the trait: a product is left out when as many reviews carry these as carry `tags`. */
+    against?: string[];
+    /** Shown on each entry: "8 of 12 reviews mention {noun}". */
+    noun: string;
+  };
   filters?: SpecFilter[];
   /** Published reviews with a verdict a product needs before it can be listed (never below 5). */
   minReviews?: number;
