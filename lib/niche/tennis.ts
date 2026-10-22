@@ -16,6 +16,7 @@ export const tennis: Niche = {
     wordmark: "tennisrecs",
     descriptor: "player reviews of tennis rackets",
     footer: "kept by people who own too many rackets. No affiliate links.",
+    analyticsId: "G-QZ7FQ1NSY3",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
