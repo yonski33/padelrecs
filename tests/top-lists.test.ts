@@ -1,21 +1,22 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { rankList, adjustedShare, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, type ListInput, type Verdict } from "../lib/top-lists";
+import { rankList, aboveAverage, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 
 const tags = niches.padel.tags;
-const product = (id: string, specs: Partial<Record<"shape" | "balance", string>> = {}) =>
-  ({ id, slug: id, name: `Racket ${id}`, brandId: "b", shape: null, weight: null, balance: null, core: null, surface: null, ...specs });
+const product = (id: string, specs: Partial<Record<"shape" | "balance", string>> = {}, year = 2026) =>
+  ({ id, slug: id, name: `Racket ${id}`, brandId: "b", year, shape: null, weight: null, balance: null, core: null, surface: null, ...specs });
 let seq = 0;
-const web = (racketId: string, sentiment: Verdict | null, tagList: string[] = [], excerpt: string | null = null, createdAt = "2026-10-01T00:00:00Z") =>
-  ({ id: `w${seq++}`, racketId, sentiment, tags: tagList, excerpt, sourceUrl: "https://www.reddit.com/r/padel/x", sourcePlatform: "Reddit", sourceName: "r/padel", createdAt });
+const web = (racketId: string, sentiment: Verdict | null, tagList: string[] = [], excerpt: string | null = null, createdAt = "2026-10-01T00:00:00Z", sourceDate: string | null = null) =>
+  ({ id: `w${seq++}`, racketId, sentiment, tags: tagList, excerpt, sourceUrl: "https://www.reddit.com/r/padel/x", sourcePlatform: "Reddit", sourceName: "r/padel", sourceDate, createdAt });
+const NOW = new Date("2026-10-22T00:00:00Z");
 const many = (n: number, f: () => ReturnType<typeof web>) => Array.from({ length: n }, f);
 const overall: TopList = { slug: "all", label: "Best overall", title: "Best Padel Rackets", intro: "" };
 
 test("a handful of glowing reviews doesn't beat many mostly glowing ones", () => {
-  assert.equal(adjustedShare(0, 0, 0.7), 0.7);
-  assert(adjustedShare(6, 6, 0.7) < adjustedShare(40, 45, 0.7));
+  assert.equal(aboveAverage(0, 0, 0.7), 0);
+  assert(aboveAverage(6, 6, 0.7) < aboveAverage(40, 45, 0.7));
   const data: ListInput = {
     listed: [product("niche"), product("popular"), product("meh")],
     reviews: [],
@@ -25,11 +26,32 @@ test("a handful of glowing reviews doesn't beat many mostly glowing ones", () =>
       ...many(20, () => web("meh", "positive")), ...many(20, () => web("meh", "negative")),
     ],
   };
-  const ranked = rankList(overall, data, tags);
+  const ranked = rankList(overall, data, tags, NOW);
   assert.deepEqual(ranked.map(e => e.product.id), ["popular", "niche"]);
   assert.equal(ranked[1].positiveShare, 1);
   // A higher minimum leaves small samples out altogether.
   assert.deepEqual(rankList({ ...overall, minReviews: 15 }, data, tags).map(e => e.product.id), ["popular"]);
+});
+
+test("more discussion wins: 33 positive of 43 ranks above 15 of 17 (the PickleballRecs case)", () => {
+  const data: ListInput = { listed: [product("prism"), product("vapor"), product("vsol"), product("meh")], reviews: [], external: [
+    ...many(15, () => web("prism", "positive")), web("prism", "mixed"), web("prism", "negative"),
+    ...many(26, () => web("vapor", "positive")), ...many(6, () => web("vapor", "mixed")), ...many(2, () => web("vapor", "negative")),
+    ...many(33, () => web("vsol", "positive")), ...many(6, () => web("vsol", "mixed")), ...many(4, () => web("vsol", "negative")),
+    ...many(50, () => web("meh", "positive")), ...many(40, () => web("meh", "negative")),
+  ] };
+  assert.deepEqual(rankList(overall, data, tags, NOW).map(e => e.product.id), ["vsol", "vapor", "prism"]);
+});
+
+test("old reviews and old models stay out", () => {
+  const data: ListInput = { listed: [product("new", {}, 2026), product("old", {}, 2023), product("stale", {}, 2026)], reviews: [], external: [
+    ...many(8, () => web("new", "positive")), ...many(8, () => web("old", "positive")),
+    // Written in 2021: only collected recently, but the source is five years old.
+    ...many(8, () => web("stale", "positive", [], null, "2026-10-01T00:00:00Z", "2021-05-01")),
+  ] };
+  assert.deepEqual(rankList(overall, data, tags, NOW).map(e => e.product.id), ["new", "old"]);
+  assert.deepEqual(rankList({ ...overall, maxAgeYears: 2 }, data, tags, NOW).map(e => e.product.id), ["new"]);
+  assert.deepEqual(rankList({ ...overall, reviewYears: 6 }, data, tags, NOW).map(e => e.product.id).sort(), ["new", "old", "stale"]);
 });
 
 test("mixed counts as half, and lists leave out products most reviewers aren't happy with", () => {
@@ -86,7 +108,7 @@ test("trait lists only take products enough reviewers describe that way, then we
   // bland: 1 of 31 mention power, too few. powerful (6 of 8) outranks liked (6 of 20), which is happier.
   assert.deepEqual(ranked.map(e => e.product.id), ["powerful", "liked"]);
   assert.equal(ranked[1].traitReviews, 6);
-  assert(ranked[1].adjusted > ranked[0].adjusted);
+  assert(ranked[1].aboveAverage > ranked[0].aboveAverage);
   assert.deepEqual(rankList(forgiving, data, tags).map(e => e.product.id), []);
 });
 

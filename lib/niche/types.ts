@@ -44,8 +44,8 @@ export type TopList = {
   title: string;
   /** One sentence under the title and on the index. */
   intro: string;
-  /** Trait lists ("for power") only take products that reviewers describe that way, and order them half by how happy reviewers
-   *  are and half by how often they mention the trait. */
+  /** Trait lists ("for power") only take products that reviewers describe that way, and add how often reviewers mention the
+   *  trait (above the site average) to the order. */
   trait?: {
     /** Tag bank labels that mean the trait. A review counts once if it carries any of them. */
     tags: string[];
@@ -57,6 +57,11 @@ export type TopList = {
     noun: string;
   };
   filters?: SpecFilter[];
+  /** Only list models from the last this many model years (2 in 2026 → 2024–2026). Only for niches whose products carry
+   *  real years (productYears): elsewhere every product has the same placeholder year. */
+  maxAgeYears?: number;
+  /** Only reviews from the last this many years count (default REVIEW_YEARS in lib/top-lists.ts). */
+  reviewYears?: number;
   /** Published reviews with a verdict a product needs before it can be listed (never below 5). */
   minReviews?: number;
 };

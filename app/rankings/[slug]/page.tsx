@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, PRIOR_REVIEWS, RANKINGS_PATH, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, REVIEW_YEARS, RANKINGS_PATH, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
@@ -82,10 +82,11 @@ function Method({ list, count }: { list: TopList; count: number }) {
   return <section className="top-method" id="how-we-rank">
     <h2>How we rank</h2>
     <ul>
-      <li>{`Two kinds of published review count: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web, each linked to its source. Each one is read as positive, mixed or negative. A ${people.one} review's star rating decides it (4–5 positive, 3 mixed, 1–2 negative); quoted comments are judged when they are moderated, and ones nobody has judged yet don't count.`}</li>
+      <li>{`Two kinds of published review count: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web, each linked to its source. Each one is read as positive, mixed or negative. A ${people.one} review's star rating decides it (4–5 positive, 3 mixed, 1–2 negative); quoted comments are judged when they are moderated, and ones nobody has judged yet don't count. Only reviews from the last ${list.reviewYears ?? REVIEW_YEARS} years count.`}</li>
       <li>{`The % positive on each ${w.one} is its share of positive reviews, with mixed ones counting as half.`}</li>
-      <li>{`The order also weighs how many ${people.many} have reviewed it: each ${w.one} is scored as if it also had ${PRIOR_REVIEWS} reviews at the site-wide average, so its own reviews have to pull it up from there, and the more of them there are, the more they count. A ${w.one} with dozens of mostly happy reviews therefore ranks above one with a handful of glowing ones, which is why the order doesn't always follow the % positive.`}</li>
-      {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. The order is half how happy reviewers are and half how often they use those tags, with the same allowance for how many reviews there are.`}</li>}
+      <li>{`The order rewards ${w.many} that are both well liked and widely discussed: we count how many more positive reviews a ${w.one} has than an average ${w.one} with the same number of reviews would have. A ${w.one} with 33 positive reviews out of 43 therefore ranks above one with 15 out of 17, which is why the order doesn't always follow the % positive.`}</li>
+      {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. How often reviewers use those tags, counted the same way (mentions above the site average for that many reviews), is added to the order.`}</li>}
+      {list.maxAgeYears !== undefined && <li>{`Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
       <li>{`A ${w.one} needs at least ${min} reviews and at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% positive to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
       <li>{`The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
     </ul>
