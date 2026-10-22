@@ -31,6 +31,30 @@ export type Tag = { label: string; tone: "pos" | "neg" | "neutral" };
 
 export type Seo = { title: string; description: string };
 
+/** Keeps a product only when a catalogue spec matches. Values compare by their first word, ignoring case, so
+ *  "High (~26 cm)" counts as "high". With `include`, products whose spec is blank are left out; `exclude` keeps them. */
+export type SpecFilter = { column: SpecColumn; include?: string[]; exclude?: string[] };
+
+/** A data-driven "best of" page at /best/<slug>, ranked by lib/top-lists.ts. */
+export type TopList = {
+  slug: string;
+  /** Menu and index label, e.g. "Best for power". */
+  label: string;
+  /** Start of the page title; the year and review count follow: "Best Padel Rackets for Power" → "Best Padel Rackets for Power 2026, Ranked by …". */
+  title: string;
+  /** One sentence under the title and on the index. */
+  intro: string;
+  /** Tag bank labels and their weights. Positive weights reward, negative ones penalise the share of reviews carrying the tag. */
+  tagWeights?: Record<string, number>;
+  /** How much the tag part counts next to the positive share, 0–1. */
+  tagBlend?: number;
+  /** Reviews that must carry one of the positively weighted tags before a product can be listed. */
+  minTagged?: number;
+  filters?: SpecFilter[];
+  /** Published reviews with a verdict a product needs before it can be listed (never below 5). */
+  minReviews?: number;
+};
+
 export type Niche = {
   id: string;
   /** Postgres schema holding this niche's tables, inside the shared Supabase project. */
@@ -71,6 +95,8 @@ export type Niche = {
   /** Extra detail on product rows in the catalogue, after the shape. */
   rowDetail?: { column: SpecColumn; suffix: string };
   tags: Tag[];
+  /** "Top 10" pages under /best, in menu order. Niches without them get no menu item, pages or sitemap entries. */
+  topLists?: TopList[];
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */
   examples: { brand: string; model: string; year: number; search: string };
