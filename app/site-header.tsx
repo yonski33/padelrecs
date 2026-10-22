@@ -8,12 +8,10 @@ import { LogoIcon, PlusIcon } from "./icons";
 import { niche, catalogPath } from "../lib/niche";
 import { RANKINGS_PATH, rankingHref } from "../lib/top-lists";
 
+// Kept short: "Add a review" is the button above, and About and Brands live in the footer.
 const links = [
   ["/", `${niche.people.One} reviews`],
   [catalogPath, niche.words.Many],
-  ["/brands", "Brands"],
-  ["/add-review", "Add a review"],
-  ["/about", "About"],
 ] as const;
 
 const topLists = niche.topLists ?? [];
@@ -52,9 +50,7 @@ export function SiteHeader() {
       <nav className="wrap main-nav" aria-label="Main navigation">
         {links.map(([href, label]) => {
           const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
-          // On phones the header button already covers "Add a review", unless we're on that page.
-          const className = href === "/add-review" && !onAddPage ? "nav-add" : undefined;
-          const link = <a key={href} href={href} className={className} aria-current={active ? "page" : undefined}>{label}</a>;
+          const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
           return href === catalogPath && topLists.length ? [link, <TopMenu key="top10" pathname={pathname}/>] : link;
         })}
       </nav>

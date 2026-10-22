@@ -130,6 +130,14 @@ export const gaming: Niche = {
     { label: "short battery life", tone: "neg" },
     { label: "wireless", tone: "neutral" },
   ],
+  // /rankings pages (lib/top-lists.ts): one list per category with enough reviews. Mice, keyboards and monitors don't
+  // have enough reviewed products yet; add their lists here (shape "Mouse" / "Keyboard" / "Monitor") once they do.
+  topLists: [
+    { slug: "best-gaming-controllers", label: "Controllers", title: "Best Gaming Controllers", minReviews: 8,
+      intro: "The controllers gamers are most consistently happy with.", filters: [{ column: "shape", include: ["Controller"] }] },
+    { slug: "best-gaming-headsets", label: "Headsets", title: "Best Gaming Headsets", minReviews: 6,
+      intro: "The gaming headsets gamers are most consistently happy with.", filters: [{ column: "shape", include: ["Headset"] }] },
+  ],
   sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
   examples: { brand: "Logitech", model: "G Pro X Superlight 2", year: 2026, search: "logitech" },
   form: {

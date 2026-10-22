@@ -111,6 +111,23 @@ export const tennis: Niche = {
     { label: "crisp", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  // /rankings pages (lib/top-lists.ts). Lists go by review tags; head sizes are written too many ways to filter on.
+  topLists: [
+    { slug: "best-tennis-rackets", label: "Best overall", title: "Best Tennis Rackets", minReviews: 10,
+      intro: "The rackets players are most consistently happy with, among rackets enough players have reviewed." },
+    { slug: "best-power-tennis-rackets", label: "Best for power", title: "Best Tennis Rackets for Power", minReviews: 8,
+      intro: "Rackets players keep describing as powerful, on groundstrokes and serve.",
+      trait: { tags: ["easy power", "great on serve"], minShare: 0.15, against: ["underpowered"], noun: "power or serve" } },
+    { slug: "best-control-tennis-rackets", label: "Best for control", title: "Best Tennis Rackets for Control", minReviews: 8,
+      intro: "Rackets players praise for control and stability.",
+      trait: { tags: ["good control", "stable"], minShare: 0.2, noun: "control or stability" } },
+    { slug: "best-spin-tennis-rackets", label: "Best for spin", title: "Best Tennis Rackets for Spin", minReviews: 8,
+      intro: "Rackets players say make it easy to put spin on the ball.",
+      trait: { tags: ["great spin"], minShare: 0.2, noun: "spin" } },
+    { slug: "best-arm-friendly-tennis-rackets", label: "Most arm-friendly", title: "Most Arm-Friendly Tennis Rackets", minReviews: 8,
+      intro: "Rackets players call arm-friendly or forgiving, without many complaints about harshness.",
+      trait: { tags: ["arm-friendly", "forgiving"], minShare: 0.2, against: ["harsh on the arm"], noun: "comfort or forgiveness" } },
+  ],
   sourcePlatforms: ["Reddit", "YouTube", "Tennis shop", "Forum", "Other"],
   examples: { brand: "Babolat", model: "Pure Aero 98", year: 2026, search: "babolat" },
   form: {

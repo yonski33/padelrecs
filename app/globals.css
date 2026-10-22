@@ -533,7 +533,6 @@ summary { cursor: pointer; font-weight: 600; }
   .search { order: 3; flex-basis: 100%; max-width: none; }
   .search-box { height: 46px; }
   .main-nav a { padding: 6px 12px 10px; }
-  .main-nav .nav-add { display: none; }
 
   .home { padding-top: 20px; }
   .columns { gap: 36px; }
@@ -736,7 +735,6 @@ summary { cursor: pointer; font-weight: 600; }
 .top-list { list-style: none; margin: 0; padding: 0; counter-reset: none; }
 .top-entry { display: grid; grid-template-columns: 40px 52px minmax(0, 1fr); column-gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .top-rank { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--green); letter-spacing: -0.03em; padding-top: 4px; font-variant-numeric: tabular-nums; }
-.top-entry:nth-child(-n+3) .top-rank { color: var(--lime-ink); }
 .top-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .top-head h2 { font-size: inherit; }
 .top-score { flex: none; display: grid; place-items: center; min-width: 64px; padding: 6px 8px 5px; border-radius: 10px; background: var(--green); color: var(--on-green); line-height: 1; }
