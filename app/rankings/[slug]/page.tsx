@@ -43,7 +43,6 @@ function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList 
     <div className="top-body">
       <div className="top-head">
         <h2><a className="racket-link" href={href}>{brand && <span className="brand">{brand}</span>}<span className="model">{modelName(e.product.name, brand)}</span></a></h2>
-        <span className="top-score" title="Positive reviews, mixed counting as half"><b>{Math.round(e.positiveShare * 100)}%</b><small>positive</small></span>
       </div>
       <div className="top-split">
         <div className="stack" role="img" aria-label={label}>
@@ -83,11 +82,10 @@ function Method({ list, count }: { list: TopList; count: number }) {
     <h2>How we rank</h2>
     <ul>
       <li>{`Two kinds of published review count: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web, each linked to its source. Each one is read as positive, mixed or negative. A ${people.one} review's star rating decides it (4–5 positive, 3 mixed, 1–2 negative); quoted comments are judged when they are moderated, and ones nobody has judged yet don't count. Only reviews from the last ${list.reviewYears ?? REVIEW_YEARS} years count.`}</li>
-      <li>{`The % positive on each ${w.one} is its share of positive reviews, with mixed ones counting as half.`}</li>
-      <li>{`The order rewards ${w.many} that are both well liked and widely discussed: we count how many more positive reviews a ${w.one} has than an average ${w.one} with the same number of reviews would have. A ${w.one} with 33 positive reviews out of 43 therefore ranks above one with 15 out of 17, which is why the order doesn't always follow the % positive.`}</li>
-      {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. How often reviewers use those tags, counted the same way (mentions above the site average for that many reviews), is added to the order.`}</li>}
+      <li>{`The order rewards ${w.many} that are both well liked and widely discussed: we count how many more positive reviews a ${w.one} has than an average ${w.one} with the same number of reviews would have. A ${w.one} with 33 positive reviews out of 43 therefore ranks above one with 15 out of 17, which is why the order doesn't always follow the share of positive reviews.`}</li>
+      {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews are positive or mixed and tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. Positive and mixed reviews that use those tags, counted the same way (above the site average for that many reviews), are added to the order, but only for ${w.many} reviewers like at least as much as the average one.`}</li>}
       {list.maxAgeYears !== undefined && <li>{`Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
-      <li>{`A ${w.one} needs at least ${min} reviews and at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% positive to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
+      <li>{`A ${w.one} needs at least ${min} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
       <li>{`The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
     </ul>
   </section>;

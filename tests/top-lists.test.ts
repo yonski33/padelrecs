@@ -105,11 +105,27 @@ test("trait lists only take products enough reviewers describe that way, then we
     ],
   };
   const ranked = rankList(power, data, tags);
-  // bland: 1 of 31 mention power, too few. powerful (6 of 8) outranks liked (6 of 20), which is happier.
-  assert.deepEqual(ranked.map(e => e.product.id), ["powerful", "liked"]);
+  // bland: 1 of 31 mention power, too few. Nearly every review here is positive, so powerful (81%) is liked less than
+  // average and its power mentions don't lift it above liked.
+  assert.deepEqual(ranked.map(e => e.product.id), ["liked", "powerful"]);
   assert.equal(ranked[1].traitReviews, 6);
-  assert(ranked[1].aboveAverage > ranked[0].aboveAverage);
+  assert(ranked[1].aboveAverage < 0);
   assert.deepEqual(rankList(forgiving, data, tags).map(e => e.product.id), []);
+});
+
+test("trait mentions count only in positive or mixed reviews, and only lift products liked at least as much as average", () => {
+  const power: TopList = { ...overall, slug: "power", trait: { tags: ["easy power"], minShare: 0.2, noun: "power" } };
+  const data: ListInput = { listed: [product("liked"), product("loud"), product("panned")], reviews: [], external: [
+    // Liked, a few power mentions.
+    ...many(9, () => web("liked", "positive")), ...many(3, () => web("liked", "positive", ["easy power"])),
+    // Talked about for power a lot, but liked less than average (65%).
+    ...many(7, () => web("loud", "positive", ["easy power"])), ...many(3, () => web("loud", "positive")), ...many(6, () => web("loud", "mixed", ["easy power"])), ...many(4, () => web("loud", "negative")),
+    // Its power tags are all in negative reviews, so they don't count.
+    ...many(8, () => web("panned", "positive")), ...many(4, () => web("panned", "negative", ["easy power"])),
+  ] };
+  const ranked = rankList(power, data, tags, NOW);
+  assert.deepEqual(ranked.map(e => e.product.id), ["liked", "loud"]);
+  assert.equal(ranked[1].traitReviews, 13);
 });
 
 test("spec filters compare first words; include drops blanks, exclude keeps them", () => {
