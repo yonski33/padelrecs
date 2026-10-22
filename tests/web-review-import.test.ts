@@ -47,6 +47,13 @@ test("only approved items with an exact quote, a known racket and valid tags are
   assert.equal(reasons.c3, undefined);
 });
 
+test("items queued under a name that still ends in the model year find the renamed product", () => {
+  const plan = planImport(parseCandidates(line({ racket_name: "Vatic Pro Prism 2023" }) + "\n"), { rackets: [{ id: "vatic-pro-prism-2023", name: "Vatic Pro Prism", year: 2023 }], external: [] }, niches.padel);
+  assert.equal(plan.rows[0]?.racketId, "vatic-pro-prism-2023");
+  const wrongYear = planImport(parseCandidates(line({ racket_name: "Vatic Pro Prism 2024" }) + "\n"), { rackets: [{ id: "vatic-pro-prism-2023", name: "Vatic Pro Prism", year: 2023 }], external: [] }, niches.padel);
+  assert.match(wrongYear.skipped[0]?.reason ?? "", /no racket named/);
+});
+
 test("publishing writes web reviews that show on the site, can't happen twice, and marks the queue", async () => {
   const engine = new PGlite();
   try {

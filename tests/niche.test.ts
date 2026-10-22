@@ -104,9 +104,10 @@ test("snapshots record their schema; older ones count as padel", () => {
   assert.equal(snapshotSchema({ source: "supabase:myauwuulzvkdsinfcfbc" }), "padelrecs");
 });
 
-test("pickleball: paddles under /paddles, spin stored in the comfort column, DUPR hints, own schema", () => {
+test("pickleball: paddles under /paddles, no model years, spin stored in the comfort column, DUPR hints, own schema", () => {
   const p = selectNiche("pickleball");
   assert.equal(p.schema, "pickleballrecs");
+  assert.equal(p.productYears, false);
   assert.equal(p.productPath, "paddles");
   assert.equal(p.words.many, "paddles");
   assert.deepEqual(p.categories.map(c => `${c.label}:${c.column}`), ["Power:powerRating", "Control:controlRating", "Spin:comfortRating", "Forgiveness:forgivenessRating", "Maneuverability:maneuverabilityRating"]);

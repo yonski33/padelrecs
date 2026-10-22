@@ -10,8 +10,8 @@ export default function RacketPicker({models,brands,searchable=false,initialRack
  const selected=models.find(r=>r.name.toLowerCase()===name.trim().toLowerCase());
  const typed=name.trim().replace(/\s+/g," ");
  const typedBrand=[...brands].sort((a,b)=>b.name.length-a.name.length).find(b=>typed.toLowerCase().startsWith(b.name.toLowerCase()+" "));
- const typedYear=typed.match(/(?:^|\s)(\d{4})$/)?.[1]||"";
- const typedModel=typed.slice(typedBrand?typedBrand.name.length+1:0).replace(/\s+\d{4}$/,"");
+ const typedYear=hasYears?typed.match(/(?:^|\s)(\d{4})$/)?.[1]||"":"";
+ const typedModel=typed.slice(typedBrand?typedBrand.name.length+1:0).replace(hasYears?/\s+\d{4}$/:/$^/,"");
  return <fieldset className="racket-picker">
   <legend>{w.One}</legend>
   <div className="racket-mode">
