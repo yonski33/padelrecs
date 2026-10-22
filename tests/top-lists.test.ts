@@ -105,27 +105,26 @@ test("trait lists only take products enough reviewers describe that way, then we
     ],
   };
   const ranked = rankList(power, data, tags);
-  // bland: 1 of 31 mention power, too few. Nearly every review here is positive, so powerful (81%) is liked less than
-  // average and its power mentions don't lift it above liked.
-  assert.deepEqual(ranked.map(e => e.product.id), ["liked", "powerful"]);
+  // bland: 1 of 31 mention power, too few. powerful (6 of 8) leads liked (6 of 20), which is happier.
+  assert.deepEqual(ranked.map(e => e.product.id), ["powerful", "liked"]);
   assert.equal(ranked[1].traitReviews, 6);
-  assert(ranked[1].aboveAverage < 0);
+  assert(ranked[1].aboveAverage > ranked[0].aboveAverage);
   assert.deepEqual(rankList(forgiving, data, tags).map(e => e.product.id), []);
 });
 
-test("trait mentions count only in positive or mixed reviews, and only lift products liked at least as much as average", () => {
-  const power: TopList = { ...overall, slug: "power", trait: { tags: ["easy power"], minShare: 0.2, noun: "power" } };
-  const data: ListInput = { listed: [product("liked"), product("loud"), product("panned")], reviews: [], external: [
-    // Liked, a few power mentions.
-    ...many(9, () => web("liked", "positive")), ...many(3, () => web("liked", "positive", ["easy power"])),
-    // Talked about for power a lot, but liked less than average (65%).
-    ...many(7, () => web("loud", "positive", ["easy power"])), ...many(3, () => web("loud", "positive")), ...many(6, () => web("loud", "mixed", ["easy power"])), ...many(4, () => web("loud", "negative")),
-    // Its power tags are all in negative reviews, so they don't count.
+test("trait lists are led by trait mentions; mentions in negative reviews don't count", () => {
+  const power: TopList = { ...overall, slug: "power", trait: { tags: ["easy power", "great on smashes"], minShare: 0.2, noun: "power" } };
+  const data: ListInput = { listed: [product("fenix"), product("coello"), product("panned"), product("rest")], reviews: [], external: [
+    // The PadelRecs case: 9 of 29 mention power at 60% positive should rank above 3 of 14 at 75%.
+    ...many(9, () => web("fenix", "positive", ["easy power"])), ...many(5, () => web("fenix", "positive")), ...many(7, () => web("fenix", "mixed")), ...many(8, () => web("fenix", "negative")),
+    ...many(3, () => web("coello", "positive", ["easy power"])), ...many(6, () => web("coello", "positive")), ...many(3, () => web("coello", "mixed")), ...many(2, () => web("coello", "negative")),
+    // Its power tags are all in negative reviews, so it has no mentions that count and isn't listed.
     ...many(8, () => web("panned", "positive")), ...many(4, () => web("panned", "negative", ["easy power"])),
+    ...many(60, () => web("rest", "positive")), ...many(30, () => web("rest", "negative")),
   ] };
   const ranked = rankList(power, data, tags, NOW);
-  assert.deepEqual(ranked.map(e => e.product.id), ["liked", "loud"]);
-  assert.equal(ranked[1].traitReviews, 13);
+  assert.deepEqual(ranked.map(e => e.product.id), ["fenix", "coello"]);
+  assert(ranked[0].positiveShare < ranked[1].positiveShare);
 });
 
 test("spec filters compare first words; include drops blanks, exclude keeps them", () => {

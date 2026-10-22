@@ -44,8 +44,8 @@ export type TopList = {
   title: string;
   /** One sentence under the title and on the index. */
   intro: string;
-  /** Trait lists ("for power") only take products that reviewers describe that way, and add how often reviewers mention the
-   *  trait (above the site average) to the order. */
+  /** Trait lists ("for power") only take products that reviewers describe that way, and are ordered mainly by how often
+   *  reviewers mention the trait, with how liked the product is counting less (TRAIT_LIST_LIKED_WEIGHT). */
   trait?: {
     /** Tag bank labels that mean the trait. A review counts once if it carries any of them. */
     tags: string[];
