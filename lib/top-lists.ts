@@ -22,7 +22,8 @@ export type ListInput = { listed: Product[]; reviews: PlayerReview[]; external: 
 /** A player review's star rating read as a verdict: 4–5 positive, 3 mixed, 1–2 negative. Web reviews carry their own. */
 export const ratingVerdict = (rating: number): Verdict => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 
-/** On trait lists ("best for power"), how much being liked counts next to trait mentions, which count fully. */
+/** On trait lists ("best for power"), how much being liked more than average adds next to trait mentions, which count
+ *  fully. A bonus only: being liked less than average takes nothing away. */
 export const TRAIT_LIST_LIKED_WEIGHT = 0.5;
 
 /** By default only reviews written in the last this many years count, so lists follow what people say about products now.
@@ -57,7 +58,7 @@ export type ListEntry = {
   /** Positive reviews above what an average product with this many reviews would have (aboveAverage). */
   aboveAverage: number;
   /** What the list is ordered by: `aboveAverage`; on trait lists, trait mentions above average plus
-   *  TRAIT_LIST_LIKED_WEIGHT × `aboveAverage`. Not shown. */
+   *  TRAIT_LIST_LIKED_WEIGHT × `aboveAverage` when that is positive. Not shown. */
   rankScore: number;
   /** Positive or mixed reviews carrying at least one of the list's trait tags (0 on lists without a trait). A negative
    *  review that calls a racket powerful doesn't make it a good racket for power. */
@@ -117,8 +118,9 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
     return [{
       product, reviews: n, positive, mixed, negative: n - positive - mixed, positiveShare: (positive + mixed / 2) / n,
       aboveAverage: liked, traitReviews,
-      // Trait lists are about the trait: mentions lead, and how liked the product is counts at TRAIT_LIST_LIKED_WEIGHT.
-      rankScore: trait ? aboveAverage(traitReviews, n, traitAverage) + TRAIT_LIST_LIKED_WEIGHT * liked : liked,
+      // Trait lists are about the trait: mentions lead, and being liked more than average adds TRAIT_LIST_LIKED_WEIGHT of it.
+      // Being liked less never subtracts: the MIN_POSITIVE_SHARE floor already keeps disliked products out.
+      rankScore: trait ? aboveAverage(traitReviews, n, traitAverage) + TRAIT_LIST_LIKED_WEIGHT * Math.max(0, liked) : liked,
       pros: ranked("pos").slice(0, 3), con: ranked("neg")[0] ?? null,
       quote: pickQuote(data.external.filter(e => e.racketId === product.id), trait?.tags ?? []),
       latest: own.reduce((a, x) => x.createdAt > a ? x.createdAt : a, ""),

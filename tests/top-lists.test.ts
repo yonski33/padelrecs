@@ -127,6 +127,20 @@ test("trait lists are led by trait mentions; mentions in negative reviews don't 
   assert(ranked[0].positiveShare < ranked[1].positiveShare);
 });
 
+test("on trait lists being liked is a bonus, never a penalty", () => {
+  const power: TopList = { ...overall, slug: "power", trait: { tags: ["easy power"], minShare: 0.2, noun: "power" } };
+  const data: ListInput = { listed: [product("loved"), product("powerful"), product("rest")], reviews: [], external: [
+    // 4 of 10 mention power, all positive: a bonus for being liked.
+    ...many(4, () => web("loved", "positive", ["easy power"])), ...many(6, () => web("loved", "positive")),
+    // 6 of 10 mention power, 65% positive: below average, but that costs nothing.
+    ...many(6, () => web("powerful", "positive", ["easy power"])), ...many(1, () => web("powerful", "mixed")), ...many(3, () => web("powerful", "negative")),
+    ...many(60, () => web("rest", "positive")), ...many(20, () => web("rest", "negative")),
+  ] };
+  const ranked = rankList(power, data, tags, NOW);
+  assert.deepEqual(ranked.map(e => e.product.id), ["powerful", "loved"]);
+  assert(ranked[0].aboveAverage < 0 && ranked[1].aboveAverage > 0);
+});
+
 test("spec filters compare first words; include drops blanks, exclude keeps them", () => {
   assert(matchesFilters(product("a", { balance: "High (~26 cm)" }), [{ column: "balance", include: ["High"] }]));
   assert(!matchesFilters(product("a"), [{ column: "balance", include: ["High"] }]));
