@@ -20,8 +20,8 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
   assert(snapshot.tables.rackets.some(r => r.slug === "crbn1-trufoam-genesis"));
   assert(snapshot.tables.rackets.some(r => r.slug === "crbn2-trufoam-genesis"), "superscript CRBN numbers stay distinct");
   // Names and URLs carry no year; ids keep the year they were first imported with, and the year column keeps its value.
-  const prism = snapshot.tables.rackets.find(r => r.slug === "vatic-pro-prism")!;
-  assert.deepEqual([prism.id, prism.name, prism.year], ["vatic-pro-prism-2023", "Vatic Pro Prism", 2023]);
+  const prism = snapshot.tables.rackets.find(r => r.slug === "vatic-pro-prism-flash")!;
+  assert.deepEqual([prism.id, prism.name, prism.year], ["vatic-pro-prism-2023", "Vatic Pro Prism Flash", 2023], "a renamed product keeps its import id");
   assert(snapshot.tables.rackets.every(r => !/ (19|20)\d{2}$/.test(r.name)), "no name ends in a year");
   assert(snapshot.tables.brands.some(b => b.slug === "bread-butter"));
   assert.equal(shapeOf("Traditional"), "standard");
