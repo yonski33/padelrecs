@@ -210,3 +210,19 @@ test("gaming: gear named by generation (no years), five category pages that each
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("discgolf: discs named by mold (no years), throw and distance profile, distance in the power column, one page per disc type", async () => {
+  const n = selectNiche("discgolf");
+  assert.equal(n.schema, "discgolfrecs");
+  assert.equal(n.productPath, "discs");
+  assert.equal(n.productYears, false);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Distance:powerRating", "Accuracy:controlRating", "Forgiveness:forgivenessRating", "Grip & feel:comfortRating", "Versatility:maneuverabilityRating"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Type", "Flight numbers", "Rim width", "Plastics", "Max weight"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["distance-drivers", "fairway-drivers", "midranges", "putters"]);
+  const { shapeOf } = await import("../app/art/discgolf");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["distance", "fairway", "midrange", "putter"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

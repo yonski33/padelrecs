@@ -50,7 +50,8 @@
     "tennis": "tennisrecs",
     "running": "runningrecs",
     "golf": "golfrecs",
-    "gaming": "gamingrecs"
+    "gaming": "gamingrecs",
+    "discgolf": "discgolfrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
