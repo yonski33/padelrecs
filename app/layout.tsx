@@ -25,6 +25,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
       <nav aria-label="Footer">
         <a href="/about">About this project</a>
         <a href={catalogPath}>{`All ${niche.words.many}`}</a>
+        <a href="/brands">Brands</a>
       </nav>
     </div></footer>
     {process.env.VERCEL_ENV === "production" && niche.site.analyticsId && <Analytics id={niche.site.analyticsId}/>}

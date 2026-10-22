@@ -121,6 +121,17 @@ export const golf: Niche = {
     { label: "durability issues", tone: "neg" },
     { label: "adjustable", tone: "neutral" },
   ],
+  // /rankings pages (lib/top-lists.ts). Few drivers have many reviews yet, so the minimums are lower than on other sites.
+  topLists: [
+    { slug: "best-golf-drivers", label: "Best overall", title: "Best Golf Drivers", minReviews: 8,
+      intro: "The drivers golfers are most consistently happy with, among drivers enough golfers have reviewed." },
+    { slug: "most-forgiving-golf-drivers", label: "Most forgiving", title: "Most Forgiving Golf Drivers", minReviews: 6,
+      intro: "Drivers golfers call forgiving and straight.",
+      trait: { tags: ["forgiving", "straight"], minShare: 0.2, against: ["small sweet spot"], noun: "forgiveness or accuracy" } },
+    { slug: "longest-golf-drivers", label: "Longest", title: "Longest Golf Drivers", minReviews: 6,
+      intro: "Drivers golfers keep describing as long.",
+      trait: { tags: ["long", "low spin"], minShare: 0.2, against: ["too much spin"], noun: "distance or low spin" } },
+  ],
   sourcePlatforms: ["Reddit", "YouTube", "Golf shop", "Forum", "Other"],
   examples: { brand: "TaylorMade", model: "Qi4D", year: 2026, search: "taylormade" },
   form: {

@@ -126,6 +126,20 @@ export const skin: Niche = {
     { label: "rich texture", tone: "neutral" },
     { label: "fragrance-free", tone: "neutral" },
   ],
+  // /rankings pages (lib/top-lists.ts): one list per product type that has enough reviews, plus two by skin concern.
+  topLists: [
+    { slug: "best-moisturizers", label: "Moisturizers", title: "Best Moisturizers", minReviews: 10,
+      intro: "The face moisturizers users are most consistently happy with.", filters: [{ column: "shape", include: ["Moisturizer"] }] },
+    { slug: "best-cleansers", label: "Cleansers", title: "Best Face Cleansers", minReviews: 8,
+      intro: "The face cleansers users are most consistently happy with.", filters: [{ column: "shape", include: ["Cleanser"] }] },
+    { slug: "best-sunscreens", label: "Sunscreens", title: "Best Face Sunscreens", minReviews: 8,
+      intro: "The face sunscreens users are most consistently happy with.", filters: [{ column: "shape", include: ["Sunscreen"] }] },
+    { slug: "best-skincare-treatments", label: "Treatments", title: "Best Skincare Treatments", minReviews: 8,
+      intro: "Retinoids, acids and spot treatments users are most consistently happy with.", filters: [{ column: "shape", include: ["Treatment"] }] },
+    { slug: "best-skincare-for-sensitive-skin", label: "For sensitive skin", title: "Best Skincare for Sensitive Skin", minReviews: 10,
+      intro: "Products users call gentle, with few reports of irritation or stinging.",
+      trait: { tags: ["gentle"], minShare: 0.2, against: ["irritating", "stinging"], noun: "gentleness" } },
+  ],
   sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Other"],
   examples: { brand: "CeraVe", model: "Moisturizing Cream", year: 2026, search: "cerave" },
   form: {

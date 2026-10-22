@@ -127,6 +127,17 @@ export const discgolf: Niche = {
     { label: "understable", tone: "neutral" },
     { label: "overstable", tone: "neutral" },
   ],
+  // /rankings pages (lib/top-lists.ts): one list per disc type. Few discs have many reviews yet, so the minimums are low.
+  topLists: [
+    { slug: "best-distance-drivers", label: "Distance drivers", title: "Best Distance Drivers", minReviews: 6,
+      intro: "The distance drivers players are most consistently happy with.", filters: [{ column: "shape", include: ["Distance driver"] }] },
+    { slug: "best-fairway-drivers", label: "Fairway drivers", title: "Best Fairway Drivers", minReviews: 5,
+      intro: "The fairway drivers players are most consistently happy with.", filters: [{ column: "shape", include: ["Fairway driver"] }] },
+    { slug: "best-midrange-discs", label: "Midranges", title: "Best Midrange Discs", minReviews: 6,
+      intro: "The midranges players are most consistently happy with.", filters: [{ column: "shape", include: ["Midrange"] }] },
+    { slug: "best-putters", label: "Putters", title: "Best Disc Golf Putters", minReviews: 6,
+      intro: "The putters and approach discs players are most consistently happy with.", filters: [{ column: "shape", include: ["Putter"] }] },
+  ],
   sourcePlatforms: ["Reddit", "YouTube", "Disc golf shop", "Forum", "Other"],
   examples: { brand: "Innova", model: "Destroyer", year: 2026, search: "innova" },
   form: {
