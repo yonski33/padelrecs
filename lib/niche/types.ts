@@ -35,7 +35,7 @@ export type Seo = { title: string; description: string };
  *  "High (~26 cm)" counts as "high". With `include`, products whose spec is blank are left out; `exclude` keeps them. */
 export type SpecFilter = { column: SpecColumn; include?: string[]; exclude?: string[] };
 
-/** A data-driven "best of" page at /best/<slug>, ranked by lib/top-lists.ts. */
+/** A data-driven "best of" page at /rankings/<slug>, ranked by lib/top-lists.ts. */
 export type TopList = {
   slug: string;
   /** Menu and index label, e.g. "Best for power". */
@@ -95,7 +95,7 @@ export type Niche = {
   /** Extra detail on product rows in the catalogue, after the shape. */
   rowDetail?: { column: SpecColumn; suffix: string };
   tags: Tag[];
-  /** "Top 10" pages under /best, in menu order. Niches without them get no menu item, pages or sitemap entries. */
+  /** "Top 10" pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
   topLists?: TopList[];
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */

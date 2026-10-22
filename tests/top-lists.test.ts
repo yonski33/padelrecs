@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { rankList, wilsonLower, matchesFilters, ratingVerdict, tagPart, listTotals, listTitle, type ListInput, type Verdict } from "../lib/top-lists";
+import { rankList, wilsonLower, matchesFilters, ratingVerdict, tagPart, listTotals, listTitle, rankingHref, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 
 const tags = niches.padel.tags;
@@ -89,7 +89,8 @@ test("entries carry real tags and a positive verbatim quote with its source", ()
   assert.equal(e.latest, "2026-10-01T00:00:00Z");
 });
 
-test("title follows the agreed pattern", () => {
+test("title and address follow the agreed pattern", () => {
+  assert.equal(rankingHref("best-padel-rackets"), "/rankings/best-padel-rackets");
   assert.equal(listTitle({ title: "Best Padel Rackets" }, 2026, 1234), "Best Padel Rackets 2026, Ranked by 1,234 Real Player Reviews");
 });
 

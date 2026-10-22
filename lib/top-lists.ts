@@ -5,6 +5,9 @@ import type { SpecColumn, SpecFilter, Tag, TopList } from "./niche/types";
 /** No list ever ranks a product on fewer reviews than this, whatever the niche config says. */
 export const MIN_LIST_REVIEWS = 5;
 export const LIST_SIZE = 10;
+/** Where the lists live: /rankings is the index, /rankings/<slug> one list. Slugs carry the full phrase ("best-padel-rackets"). */
+export const RANKINGS_PATH = "/rankings";
+export const rankingHref = (slug: string) => `${RANKINGS_PATH}/${slug}`;
 /** Quotes shown on a list are the source's exact words, so they are picked, never shortened. */
 const QUOTE_MIN = 40, QUOTE_MAX = 220;
 

@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche } from "../../lib/niche";
-import { listTitle } from "../../lib/top-lists";
+import { listTitle, RANKINGS_PATH } from "../../lib/top-lists";
 import { rankedLists, listHref, longDate, currentYear } from "./lists";
 
 const w = niche.words, people = niche.people;
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { lists } = await rankedLists();
   const title = `${heading} ${currentYear()}, Ranked by Real ${people.One} Reviews`;
   const description = `${lists.map(l => l.list.label).join(", ")}: ${w.many} ranked by what ${people.many} actually say, from published first-hand reviews. Updated as new reviews come in.`;
-  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: "/best" }, openGraph: { title, description, url: "/best", type: "website" } };
+  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website" } };
 }
 
 export default async function TopListsIndex() {
