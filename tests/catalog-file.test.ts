@@ -197,3 +197,20 @@ test("the DiscGolfRecs starter catalog: sourced molds without years, known types
   }
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
 });
+
+test("the SimRacingRecs starter catalog: sourced gear without years in five known categories, unique URLs", async () => {
+  const catalog = await readCatalog("db/catalogs/simracing.json");
+  const snapshot = catalogSnapshot(catalog, "simracingrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 13);
+  assert(snapshot.tables.rackets.length >= 250);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/simracing");
+  for (const r of snapshot.tables.rackets) {
+    assert(r.shape !== null && shapeOf(r.shape) !== "unknown", `${r.name}: category ${r.shape}`);
+    assert(r.weight === null || /^\d+(\.\d)? (Nm|kg load cell)$/.test(r.weight), `${r.name}: torque / force ${r.weight}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: gear is named by generation, not year`);
+  }
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Fanatec ClubSport DD+")?.slug, "fanatec-clubsport-dd-plus");
+});
