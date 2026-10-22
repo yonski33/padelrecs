@@ -19,6 +19,7 @@ export const running: Niche = {
     wordmark: "runningrecs",
     descriptor: "runner reviews of running shoes",
     footer: "kept by people who own too many running shoes. No affiliate links.",
+    analyticsId: "G-VFQHV30LZX",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "shoe", many: "shoes", One: "Shoe", Many: "Shoes" },

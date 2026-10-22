@@ -24,6 +24,7 @@ export const gaming: Niche = {
     wordmark: "gamingrecs",
     descriptor: "gamer reviews of gaming gear",
     footer: "kept by people with too many mice in a drawer. No affiliate links.",
+    analyticsId: "G-K7QZDNJ41D",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
