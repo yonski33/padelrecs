@@ -180,3 +180,20 @@ test("the GamingRecs starter catalog: 460 sourced products in five known categor
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Wooting 80HE+")?.slug, "wooting-80he-plus");
 });
+
+test("the DiscGolfRecs starter catalog: sourced molds without years, known types, flight numbers in speed / glide / turn / fade, unique URLs", async () => {
+  const catalog = await readCatalog("db/catalogs/discgolf.json");
+  const snapshot = catalogSnapshot(catalog, "discgolfrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 12);
+  assert(snapshot.tables.rackets.length >= 450);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/discgolf");
+  for (const r of snapshot.tables.rackets) {
+    assert(r.shape !== null && shapeOf(r.shape) !== "unknown", `${r.name}: type ${r.shape}`);
+    assert(r.weight === null || /^\d+(\.5)? \/ \d+(\.5)? \/ -?\d+(\.5)? \/ \d+(\.5)?$/.test(r.weight), `${r.name}: flight numbers ${r.weight}`);
+    assert(r.balance === null || /^\d(\.\d)? cm$/.test(r.balance), `${r.name}: rim width ${r.balance}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: discs are molds, not years`);
+  }
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+});
