@@ -53,9 +53,11 @@ export type ListEntry = {
   positiveShare: number;
   /** Positive reviews above what an average product with this many reviews would have (aboveAverage). */
   aboveAverage: number;
-  /** What the list is ordered by: `aboveAverage`, plus on trait lists the trait mentions above average. Not shown. */
+  /** What the list is ordered by: `aboveAverage`, plus on trait lists the trait mentions above average when the product is
+   *  liked at least as much as average. Not shown. */
   rankScore: number;
-  /** Reviews carrying at least one of the list's trait tags (0 on lists without a trait). */
+  /** Positive or mixed reviews carrying at least one of the list's trait tags (0 on lists without a trait). A negative
+   *  review that calls a racket powerful doesn't make it a good racket for power. */
   traitReviews: number;
   pros: TagCount[];
   con: TagCount | null;
@@ -91,26 +93,30 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
   const everything = [...notes.values()].flat();
   const average = everything.length ? everything.reduce((a, x) => a + credit(x.verdict), 0) / everything.length : 0;
   const carrying = (own: Note[], list: string[]) => own.filter(x => x.tags.some(t => list.includes(t))).length;
+  const liking = (own: Note[], list: string[]) => carrying(own.filter(x => x.verdict !== "negative"), list);
   // How often reviews mention the trait across the whole site: the starting point for each product's trait share.
-  const traitAverage = trait && everything.length ? carrying(everything, trait.tags) / everything.length : 0;
+  const traitAverage = trait && everything.length ? liking(everything, trait.tags) / everything.length : 0;
 
   const scored = data.listed.filter(p => p.year >= oldest && matchesFilters(p, list.filters)).flatMap(product => {
     const own = notes.get(product.id) ?? [];
     const n = own.length;
     if (n < minReviews) return [];
-    const traitReviews = trait ? carrying(own, trait.tags) : 0;
+    const traitReviews = trait ? liking(own, trait.tags) : 0;
     // A trait list only takes products enough reviewers describe that way, and more of them for it than against it.
     if (trait && (traitReviews / n < trait.minShare || (trait.against && carrying(own, trait.against) >= traitReviews))) return [];
     const positive = own.filter(x => x.verdict === "positive").length, mixed = own.filter(x => x.verdict === "mixed").length;
     if ((positive + mixed / 2) / n < MIN_POSITIVE_SHARE) return [];
+    const liked = aboveAverage(positive + mixed / 2, n, average);
     const tagCounts = new Map<string, number>();
     for (const t of own.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
     const ranked = (want: Tag["tone"]) => [...tagCounts].filter(([t]) => tone.get(t) === want)
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([label, count]) => ({ label, count }));
     return [{
       product, reviews: n, positive, mixed, negative: n - positive - mixed, positiveShare: (positive + mixed / 2) / n,
-      aboveAverage: aboveAverage(positive + mixed / 2, n, average), traitReviews,
-      rankScore: aboveAverage(positive + mixed / 2, n, average) + (trait ? aboveAverage(traitReviews, n, traitAverage) : 0),
+      aboveAverage: liked, traitReviews,
+      // Trait mentions only lift a product reviewers like at least as much as the average one: being called powerful
+      // doesn't make a below-average racket one of the best for power.
+      rankScore: liked + (trait && liked > 0 ? aboveAverage(traitReviews, n, traitAverage) : 0),
       pros: ranked("pos").slice(0, 3), con: ranked("neg")[0] ?? null,
       quote: pickQuote(data.external.filter(e => e.racketId === product.id), trait?.tags ?? []),
       latest: own.reduce((a, x) => x.createdAt > a ? x.createdAt : a, ""),

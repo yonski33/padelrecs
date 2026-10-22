@@ -737,9 +737,6 @@ summary { cursor: pointer; font-weight: 600; }
 .top-rank { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--green); letter-spacing: -0.03em; padding-top: 4px; font-variant-numeric: tabular-nums; }
 .top-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .top-head h2 { font-size: inherit; }
-.top-score { flex: none; display: grid; place-items: center; min-width: 64px; padding: 6px 8px 5px; border-radius: 10px; background: var(--green); color: var(--on-green); line-height: 1; }
-.top-score b { font-family: var(--display); font-size: 21px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.top-score small { margin-top: 3px; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--on-green-muted); }
 .top-split { margin-top: 12px; max-width: 460px; }
 .top-split .stack i { background: var(--c); }
 .top-split .legend .top-count { font-weight: 600; color: var(--ink-2); }
