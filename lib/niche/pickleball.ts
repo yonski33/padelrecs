@@ -113,17 +113,17 @@ export const pickleball: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
-  // /rankings pages (lib/top-lists.ts). Paddle shapes are too sparsely filled in to filter on, so lists go by review tags.
+  // /rankings pages (lib/top-lists.ts). Model years are real here, so lists keep to the last three (maxAgeYears 2). Paddle shapes are too sparsely filled in to filter on, so lists go by review tags.
   topLists: [
-    { slug: "best-pickleball-paddles", label: "Best overall", title: "Best Pickleball Paddles", minReviews: 12,
+    { slug: "best-pickleball-paddles", label: "Best overall", title: "Best Pickleball Paddles", minReviews: 12, maxAgeYears: 2,
       intro: "The paddles players are most consistently happy with, among paddles enough players have reviewed." },
-    { slug: "best-power-pickleball-paddles", label: "Best for power", title: "Best Pickleball Paddles for Power", minReviews: 10,
+    { slug: "best-power-pickleball-paddles", label: "Best for power", title: "Best Pickleball Paddles for Power", minReviews: 10, maxAgeYears: 2,
       intro: "Paddles players keep describing as powerful: easy power and pop.",
       trait: { tags: ["easy power", "great pop"], minShare: 0.2, noun: "power or pop" } },
-    { slug: "best-control-pickleball-paddles", label: "Best for control", title: "Best Pickleball Paddles for Control", minReviews: 10,
+    { slug: "best-control-pickleball-paddles", label: "Best for control", title: "Best Pickleball Paddles for Control", minReviews: 10, maxAgeYears: 2,
       intro: "Paddles players praise for control, dinks and resets.",
       trait: { tags: ["good control", "great for dinks"], minShare: 0.2, against: ["hard to control"], noun: "control or dinks" } },
-    { slug: "best-spin-pickleball-paddles", label: "Best for spin", title: "Best Pickleball Paddles for Spin", minReviews: 10,
+    { slug: "best-spin-pickleball-paddles", label: "Best for spin", title: "Best Pickleball Paddles for Spin", minReviews: 10, maxAgeYears: 2,
       intro: "Paddles players say put lots of spin on the ball.",
       trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin" } },
   ],
