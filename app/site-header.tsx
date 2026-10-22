@@ -6,6 +6,7 @@ import { RacketSearch } from "./racket-search";
 import { ChipRow } from "./chip-row";
 import { LogoIcon, PlusIcon } from "./icons";
 import { niche, catalogPath } from "../lib/niche";
+import { RANKINGS_PATH, rankingHref } from "../lib/top-lists";
 
 const links = [
   ["/", `${niche.people.One} reviews`],
@@ -17,20 +18,20 @@ const links = [
 
 const topLists = niche.topLists ?? [];
 
-/** "Top 10" with its lists in a dropdown. The label links to the /best index, so it works without the menu (and on phones,
+/** "Top 10" with its lists in a dropdown. The label links to the rankings index, so it works without the menu (and on phones,
  *  where the nav scrolls sideways and has no room for a dropdown). */
 function TopMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
-  const active = pathname === "/best" || pathname.startsWith("/best/");
+  const active = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   return <div className={`nav-menu${open ? " open" : ""}`} onMouseLeave={() => setOpen(false)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
     onKeyDown={e => { if (e.key === "Escape") setOpen(false); }}>
-    <a href="/best" aria-current={active ? "page" : undefined}>Top 10</a>
+    <a href={RANKINGS_PATH} aria-current={active ? "page" : undefined}>Top 10</a>
     <button type="button" className="nav-caret" aria-expanded={open} aria-controls="top10-menu" aria-label="Show the Top 10 lists" onClick={() => setOpen(o => !o)}>
       <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
     </button>
     <div className="nav-sub" id="top10-menu">
-      {topLists.map(l => <a key={l.slug} href={`/best/${l.slug}`} aria-current={pathname === `/best/${l.slug}` ? "page" : undefined}>{l.label}</a>)}
-      <a href="/best" className="nav-sub-all">All lists</a>
+      {topLists.map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
+      <a href={RANKINGS_PATH} className="nav-sub-all">All lists</a>
     </div>
   </div>;
 }

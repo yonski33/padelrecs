@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, RANKINGS_PATH, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
@@ -104,14 +104,14 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     { "@type": "ItemList", name: title, url, numberOfItems: entries.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
       itemListElement: entries.map(e => ({ "@type": "ListItem", position: e.rank, name: e.product.name, url: `${base()}${productHref(e.product.slug)}` })) },
     { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Top 10", item: `${base()}/best` },
+      { "@type": "ListItem", position: 1, name: "Top 10", item: `${base()}${RANKINGS_PATH}` },
       { "@type": "ListItem", position: 2, name: list.label, item: url },
     ] },
   ] };
 
   return <main className="top-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
-    <p className="breadcrumb"><a href="/best">Top 10</a> / {list.label}</p>
+    <p className="breadcrumb"><a href={RANKINGS_PATH}>Top 10</a> / {list.label}</p>
     <div className="page-title">
       <h1>{title}</h1>
       <p>{list.intro}</p>
