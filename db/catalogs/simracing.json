@@ -1,0 +1,3284 @@
+{
+ "about": "SimRacingRecs starter catalog (2026-10-22): sim racing gear in five categories — wheelbases (including complete wheel sets), steering wheels and rims, pedals, cockpits and wheel stands, and shifters/handbrakes — from the makers' current stores: fanatec.com, mozaracing.com, simucube.com, simagic.com, thrustmaster.com, logitechg.com, asetek.com/simsports, heusinkveld.com, sim-lab.eu, trakracer.com, nextlevelracing.com and gtomega.com (Playseat as sold by Logitech G). One entry per model: colourways, mount editions (wheel plate vs front & side mount), 2- vs 3-pedal sets and console editions of the same set are merged and their pages listed together; bundles of products already listed, accessories, seats, monitors, button boxes, motion and flight sim gear are left out. Values are blank when not read on a listed page. Columns: shape = category, balance = type, weight = peak torque (wheelbases) or brake load cell, core = platforms, surface = notes.",
+ "checked": "2026-10-22",
+ "brands": [
+  {
+   "id": "asetek",
+   "name": "Asetek"
+  },
+  {
+   "id": "fanatec",
+   "name": "Fanatec"
+  },
+  {
+   "id": "gt-omega",
+   "name": "GT Omega"
+  },
+  {
+   "id": "heusinkveld",
+   "name": "Heusinkveld"
+  },
+  {
+   "id": "logitech",
+   "name": "Logitech"
+  },
+  {
+   "id": "moza",
+   "name": "MOZA"
+  },
+  {
+   "id": "next-level-racing",
+   "name": "Next Level Racing"
+  },
+  {
+   "id": "playseat",
+   "name": "Playseat"
+  },
+  {
+   "id": "sim-lab",
+   "name": "Sim-Lab"
+  },
+  {
+   "id": "simagic",
+   "name": "Simagic"
+  },
+  {
+   "id": "simucube",
+   "name": "Simucube"
+  },
+  {
+   "id": "thrustmaster",
+   "name": "Thrustmaster"
+  },
+  {
+   "id": "trak-racer",
+   "name": "Trak Racer"
+  }
+ ],
+ "products": [
+  {
+   "brand": "asetek",
+   "name": "Asetek Dual Mode Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "H-pattern + sequential",
+   "sources": [
+    "https://www.asetek.com/simsports/product/dual-mode-shifter/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "shape": "Wheelbase",
+   "weight": "18 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.asetek.com/simsports/product/forte-direct-drive-wheelbase-18nm/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Forte Formula",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.asetek.com/simsports/product/forte-formula-steering-wheel/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Forte Formula Pro",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.asetek.com/simsports/product/forte-formula-pro-steering-wheel/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Forte GT",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.asetek.com/simsports/product/forte-gt-steering-wheel-black-aluminum/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Forte Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.asetek.com/simsports/product/forte-sim-racing-pedals-brake-throttle/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Forte S-Series Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.asetek.com/simsports/product/forte-s-series-brake-throttle/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Initium 2-in-1 Cockpit",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.asetek.com/simsports/product/initium-2-in-1-cockpit/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Initium Direct Drive Wheelbase",
+   "shape": "Wheelbase",
+   "weight": "5.5 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.asetek.com/simsports/product/initium-direct-drive-wheelbase-eu/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Initium Pedal Set",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Hall sensor",
+   "sources": [
+    "https://www.asetek.com/simsports/product/initium-pedal-set/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Initium Steering Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.asetek.com/simsports/product/initium-steering-wheel-pc/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "shape": "Wheelbase",
+   "weight": "27 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.asetek.com/simsports/product/invicta-direct-drive-wheelbase-27nm/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Invicta Formula",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.asetek.com/simsports/product/invicta-formula-steering-wheel/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Invicta Pedals THORP II",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Hydraulic",
+   "sources": [
+    "https://www.asetek.com/simsports/product/invicta-pedals-thorp-2/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Invicta S-Series THORP II",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Hydraulic",
+   "sources": [
+    "https://www.asetek.com/simsports/product/invicta-s-series-thorp-2/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "shape": "Wheelbase",
+   "weight": "12 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.asetek.com/simsports/product/la-prima-direct-drive-wheelbase-12nm/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek La Prima Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.asetek.com/simsports/product/la-prima-sim-racing-pedals-brake-throttle/"
+   ]
+  },
+  {
+   "brand": "asetek",
+   "name": "Asetek Load Cell Handbrake",
+   "shape": "Shifter / handbrake",
+   "weight": "200 kg load cell",
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://www.asetek.com/simsports/product/load-cell-handbrake/"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Cockpit V1.5",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/cockpits/crd-9010009-ww/csl-cockpit-v1-5"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase",
+   "weight": "5 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-bases/csl_dd_qr2l_90_eu/csl-dd-qr2l-5-nm-eu"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase",
+   "weight": "8 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-bases/csl_dd_qr2l_180_eu/csl-dd-qr2l-8-nm-eu"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/csl_ep_v2/csl-elite-pedals-v2"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/csl_e_sw_pvgt/csl-elite-steering-wheel-porsche-vision-gt"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Hall sensor",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/csl_p/csl-pedals"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/csl_p_lc/csl_pedals_lc"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/crd-9020021-ww/csl-steering-wheel-gt3"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec CSL Steering Wheel R300 V2",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_csl_r300_v2_qr2l/csl-steering-wheel-r300-v2-qr2l"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase",
+   "weight": "15 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-bases/cs_dd_eu/clubsport-dd-eu"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase",
+   "weight": "18 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-bases/cs_dd+_eu/clubsport-dd-plus-eu"
+   ],
+   "slug": "fanatec-clubsport-dd-plus"
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/crd-9020019-ww/clubsport-formula-v3"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport GT Cockpit",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/cockpits/cs_gt_c_blk/clubsport-gt-cockpit-black",
+    "https://www.fanatec.com/eu/en/p/cockpits/cs_gt_c_w/clubsport-gt-cockpit-white"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/add-ons/crd-9050002-ww/clubsport-handbrake"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals",
+   "weight": "90 kg load cell",
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/csp_v3/clubsport-pedals-v3"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals",
+   "weight": "90 kg load cell",
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/csp_v3i/clubsport-pedals-v3-inverted"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/add-ons/crd-9040002-ww/clubsport-shifter-sq"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel 320 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_320_x/clubsport-steering-wheel-320-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel Flat 1 V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_fl1_v2_x/clubsport-steering-wheel-flat1-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel Flat 2 V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_fl2_v2_x/clubsport-steering-wheel-flat2-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel GT Alcantara V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_gtal_v2_x/clubsport-steering-wheel-gt-alcantara-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel GT V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_gt_v2_x/clubsport-steering-wheel-gt-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_gt3_e_x/clubsport-steering-wheel-gt3-endurance-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel GT3 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/xbox-steering-wheels/sw_cs_gt3_uhx/clubsport-steering-wheel-gt3-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_p911_gt3r_s_x/clubsport-steering-wheel-porsche-911-gt3r-v2-xbox-suede"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel R300 V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_r300_v2_x/clubsport-steering-wheel-r300-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel R330 V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_r330_v2_x/clubsport-steering-wheel-r330-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel Rally Sweden for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Rally",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_rsw_x/clubsport-steering-wheel-rally-sweden-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel Round 1 V2 for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Round",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_r1_v2_x/clubsport-steering-wheel-round1-v2-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Steering Wheel Sparco GT for Xbox",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_cs_sp_gt_x/clubsport-steering-wheel-sparco-gt-xbox"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim 320",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_320/clubsport-wheel-rim-320"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim 320 Alcantara",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_320_a/clubsport-wheel-rim-320-alcantara"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Classic 2",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rclassic2/clubsport-wheel-rim-classic-2"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Flat 1",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rflat1/clubsport-wheel-rim-flat-1"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Flat 2",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rflat2/clubsport-wheel-rim-flat-2"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim GT",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rgt/clubsport-wheel-rim-gt"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim GT Alcantara",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rgtal/clubsport-wheel-rim-gt-alcantara"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim GT3",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/crd-9020020-ww/clubsport-wheel-rim-gt3"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim GT3 Endurance",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_gt3e/clubsport-wheel-rim-gt3-endurance"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim R330",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r330/clubsport-wheel-rim-r330"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Round 1",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rround1/clubsport-wheel-rim-round-1"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Sparco Formula",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_s_f/clubsport-wheel-rim-sparco-formula"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Sparco GT",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_s_gt/clubsport-wheel-rim-sparco-gt"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Sparco Karting",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_s_k/clubsport-wheel-rim-sparco-karting"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec ClubSport Wheel Rim Sparco Rally",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_s_r/clubsport-wheel-rim-sparco-rally"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase",
+   "weight": "8 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-bases/crd-9020006-eu/gran-turismo-dd-pro-wheel-base-qr2-eu"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase",
+   "weight": "25 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-bases/crd-9020022-eu/podium-dd-eu"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/crd-9030003-ww/podium-pedals-formula"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/pedals/crd-9030005-ww/podium-pedals-sport"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/p_sw_bmw_gt3_h/podium-steering-wheel-bmw-m4-gt3"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_gt3_e_qr2/podium-steering-wheel-gt3-endurance-qr2"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Rally",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_mcr_qr2/podium-steering-wheel-monte-carlo-rally-qr2-pro"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_p911_gt3r_s_qr2/podium-steering-wheel-porsche-911-gt3r-suede-qr2",
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_p911_gt3r_l_qr2/podium-steering-wheel-porsche-911-gt3r-leather-qr2"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r911/podium-wheel-rim-porsche-911-gt3-cup-suede",
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r911s/podium-wheel-rim-porsche-911-gt3-cup-leather"
+   ]
+  },
+  {
+   "brand": "fanatec",
+   "name": "Fanatec Podium Wheel Rim R300",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r300/podium-wheel-rim-r300"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega ART",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://gtomega.com/products/art-racing-cockpit"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega HYBRID",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://gtomega.com/products/hybrid-cockpit"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega PRIME",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://gtomega.com/products/prime-cockpit"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega PRIME Lite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://gtomega.com/products/prime-lite-cockpit"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega PRIME Lite-R",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://gtomega.com/products/prime-lite-r"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega SPRINT",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Foldable",
+   "sources": [
+    "https://gtomega.com/products/sprint-folding-cockpit"
+   ]
+  },
+  {
+   "brand": "gt-omega",
+   "name": "GT Omega TITAN",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://gtomega.com/products/titan-cockpit"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld Handbrake",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://heusinkveld.com/shop/handbrake-shifters/handbrake/"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld MagShift",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Sequential",
+   "sources": [
+    "https://heusinkveld.com/shop/handbrake-shifters/magshift/"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld MagShift Mini",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Sequential",
+   "sources": [
+    "https://heusinkveld.com/shop/handbrake-shifters/magshift-mini/"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld One",
+   "shape": "Wheel",
+   "weight": null,
+   "core": "Wireless",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://heusinkveld.com/shop/wheel/one/"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld RaceCenter",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://heusinkveld.com/shop/racecenter-pedals/3-pedal-set/",
+    "https://heusinkveld.com/shop/racecenter-pedals/3-pedal-set-silver-copy/"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld Sprint",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://heusinkveld.com/shop/sprint-pedals/sprint/",
+    "https://heusinkveld.com/shop/sprint-pedals/sprint-3-pedal-set/",
+    "https://trakracer.com/products/heusinkveld-sprint-2-pedal-set-black"
+   ]
+  },
+  {
+   "brand": "heusinkveld",
+   "name": "Heusinkveld Ultimate+",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Hydraulic / load cell",
+   "sources": [
+    "https://heusinkveld.com/shop/pedals/ultimate-2-pedal-set-black/",
+    "https://heusinkveld.com/shop/pedals/ultimate-3-pedal-set-black/",
+    "https://trakracer.com/products/heusinkveld-ultimate-2-pedal-set"
+   ],
+   "slug": "heusinkveld-ultimate-plus"
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech Driving Force Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": "G29, G920",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/driving-force-shifter"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech G29",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PlayStation, PC",
+   "surface": "Bundle: wheel and pedals",
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech G920",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "Xbox, PC",
+   "surface": "Bundle: wheel and pedals",
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech G923",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/pro-dd11-base"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech PRO Racing GT D Rim",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel rim",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/pro-gtd-rim"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/pro-racing-pedals"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PlayStation, Xbox, PC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/pro-racing-wheel"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS Formula Wheel McLaren Racing Edition",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-formula-wheel-mclaren-racing-edition"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "H-pattern",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-h-shifter"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-pedals"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS Pedals SE",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-pedals-se"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS Round Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Round",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-round-wheel"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS Shifter & Handbrake",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Shifter + handbrake",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-shifter-handbrake"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS Track Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs-track-wheel"
+   ]
+  },
+  {
+   "brand": "logitech",
+   "name": "Logitech RS50",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/rs50-base",
+    "https://www.logitechg.com/en-us/shop/p/rs50-mclaren-racing-bundle"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "H-pattern + sequential",
+   "sources": [
+    "https://mozaracing.com/products/active-shifter"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://mozaracing.com/products/crp2-pedals"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA CS Pro",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/cs-pro-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA CS V2P",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/cs-v2p-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA ESX",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/esx-steering-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/lamborghini-essenza-scv12-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA FSR2",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://mozaracing.com/products/fsr2-formula-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/ford-gtd-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA GS V2P",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://mozaracing.com/products/gs-v2p-gt-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://mozaracing.com/products/hbp-handbrake"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/hgp-shifter"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA KS",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://mozaracing.com/products/ks-gt-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA KS Pro",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://mozaracing.com/products/ks-pro-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/porsche-mission-r-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase",
+   "weight": "12 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r12-wheelbase"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase",
+   "weight": "16 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r16-ultra"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase",
+   "weight": "21 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r21-ultra"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase",
+   "weight": "25 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r25-ultra"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R3",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC; Xbox & PC edition",
+   "surface": "Bundle: base, wheel and pedals",
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r3-racing-bundle-pc",
+    "https://mozaracing.com/products/r3-racing-bundle-xbox"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R5",
+   "shape": "Wheelbase",
+   "weight": "5.5 Nm",
+   "core": null,
+   "surface": "Sold as a bundle",
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r5-racing-bundle"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase",
+   "weight": "9 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://mozaracing.com/products/r9-wheelbase"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA RS V2",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/rs-v2-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/revuelto-sim-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Sequential",
+   "sources": [
+    "https://mozaracing.com/products/sgp-shifter"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://mozaracing.com/products/srp-pedals"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA SRP2 Pedals",
+   "shape": "Pedals",
+   "weight": "100 kg load cell",
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://mozaracing.com/products/srp2-pedals"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA TSW",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Truck",
+   "sources": [
+    "https://mozaracing.com/products/tsw-truck-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA Vision GS",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://mozaracing.com/products/vision-gs-wheel"
+   ]
+  },
+  {
+   "brand": "moza",
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Active",
+   "sources": [
+    "https://mozaracing.com/products/mbooster-active-pedal"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/next-level-racing-f1gt-formula-1-and-gt-simulator-cockpit/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT Elite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/f-gt-elite-wheel-plate-edition/",
+    "https://nextlevelracing.com/products/f-gt-elite-front-side-mount-edition-2/",
+    "https://nextlevelracing.com/products/f-gt-elite-iracing-edition/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT Elite 160",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/elite-160-wheel-plate-edition/",
+    "https://nextlevelracing.com/products/f-gt-elite-160-front-side-mount-edition/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT Elite Lite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/f-gt-elite-lite-wheelplate-edition/",
+    "https://nextlevelracing.com/products/f-gt-elite-lite-front-side-mount-edition/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT Lite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/f-gt-lite/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT Pro",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/f-gt-pro-formula-and-gt-racing-simulator-cockpit-black-edition/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing F-GT Shift",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/f-gt-shift/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing Formula Lite Pro",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/formula-lite-pro/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTElite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-wheel-plate-edition/",
+    "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-front-and-side-mount-edition/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTElite Lite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/gtelite-lite-wheel-plate-edition/",
+    "https://nextlevelracing.com/products/gtelite-lite-front-side-mount-edition/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTLite Air",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/gtlite-air/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTLite Pro",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/gtlite-pro/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTRacer 2.0",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/gtracer-2/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTtrack",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/next-level-racing-gttrack/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing Go Kart Plus",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/go-kart-plus/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing RC Essential",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/rc-e-racing-cockpit-essential/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing RC Foldable",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/products/rc-f-racing-cockpit-foldable/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing Wheel Stand 2.0",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel stand",
+   "sources": [
+    "https://nextlevelracing.com/products/racing-wheel-stand-2-0/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing Wheel Stand Lite 2.0",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Wheel stand",
+   "sources": [
+    "https://nextlevelracing.com/products/wheel-stand-lite-2-0/"
+   ]
+  },
+  {
+   "brand": "playseat",
+   "name": "Playseat Challenge X",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/playseat-challenge-x-sim-racing-seat"
+   ]
+  },
+  {
+   "brand": "playseat",
+   "name": "Playseat Trophy",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.logitechg.com/en-us/shop/p/playseat-trophy-sim-racing-seat"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab DDS TorqueSync",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://sim-lab.eu/products/dds-torquesync"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab GT1 Evo",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://sim-lab.eu/products/gt1-evo-sim-racing-cockpit-1"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab GT1 Pro",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://sim-lab.eu/products/gt1-pro-sim-racing-cockpit-int"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab GTSL Pro",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://sim-lab.eu/products/gtsl-pro-sim-racing-steering-wheel"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab Mercedes-AMG PETRONAS Formula One Team Sim Racing Cockpit",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://sim-lab.eu/products/mercedes-amg-petronas-formula-one-team-sim-racing-cockpit-int"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab Mercedes-AMG PETRONAS Formula One Team Steering Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://sim-lab.eu/products/mercedes-amg-petronas-formula-one-team-sim-racing-steering-wheel-2024"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab P1X Pro",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://sim-lab.eu/products/p1x-pro-sim-racing-cockpit-int"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab P1X Ultimate",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://sim-lab.eu/products/p1x-ultimate-simracing-cockpit-us"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab Porsche 911 RSR Steering Wheel",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://sim-lab.eu/products/porsche-911-rsr-sim-racing-steering-wheel"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab Push-Pull Rally Shifter",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Push-pull sequential",
+   "sources": [
+    "https://sim-lab.eu/products/push-pull-rally-shifter-sim-racing"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab SQ1",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Sequential",
+   "sources": [
+    "https://sim-lab.eu/products/sequential-shifter-sq1"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab XB1",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell handbrake",
+   "sources": [
+    "https://sim-lab.eu/products/handbrake-xb1-loadcell-sim-racing"
+   ]
+  },
+  {
+   "brand": "sim-lab",
+   "name": "Sim-Lab XP1",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://sim-lab.eu/products/pedal-set-xp1-loadcell-sim-racing"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase",
+   "weight": "15 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/alpha"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase",
+   "weight": "12 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/simagic-alpha-evo-wheel-base-9nm-12nm-18nm",
+    "https://trakracer.com/products/simagic-alpha-evo-12nm-wheel-base"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase",
+   "weight": "18 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/simagic-alpha-evo-wheel-base-9nm-12nm-18nm",
+    "https://trakracer.com/products/simagic-alpha-evo-pro-18nm-wheel-base"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase",
+   "weight": "9 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/simagic-alpha-evo-wheel-base-9nm-12nm-18nm",
+    "https://trakracer.com/products/simagic-alpha-evo-sport-9nm-wheel-base"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase",
+   "weight": "28 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/simagic-alpha-evo-ultra-28nm-direct-drive-wheel-base"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase",
+   "weight": "10 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/alpha-mini"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase",
+   "weight": "23 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simagic.com/products/alpha-u"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/simagic-aston-martin-valkyrie"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "H-pattern + sequential",
+   "sources": [
+    "https://simagic.com/products/ds-8x-shifter",
+    "https://trakracer.com/products/simagic-ds-8x-shifter"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic FX",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://simagic.com/products/fx-formula"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic FX Pro",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://simagic.com/products/fx-pro"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic GT Neo",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://simagic.com/products/gt-neo"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic GT1",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/gt1"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic GTC",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/gtc"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic GTS",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/gts"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P-325C",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/p-325c"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P-325D",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/p-325d"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P-330R",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Round",
+   "sources": [
+    "https://simagic.com/products/p-330r"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P1000",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://simagic.com/products/p1000",
+    "https://trakracer.com/products/simagic-p1000-3-pedal-set"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P1000i",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/p1000i"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P2000",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/p2000-r"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P500",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://simagic.com/products/simagic-p500-pedals",
+    "https://trakracer.com/products/simagic-p500-2-pedal-set"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P700",
+   "shape": "Pedals",
+   "weight": "150 kg load cell",
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://simagic.com/products/simagic-p700-pedal"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Sequential",
+   "sources": [
+    "https://simagic.com/products/sequential-shifter-q1"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Q1S",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Sequential",
+   "sources": [
+    "https://simagic.com/products/sequential-shifter-q1s"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake",
+   "weight": "100 kg load cell",
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://simagic.com/products/tb-1-handbrake",
+    "https://trakracer.com/products/simagic-tb-1-handbrake"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://simagic.com/products/tb-neo-handbrake"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Hydraulic handbrake",
+   "sources": [
+    "https://simagic.com/products/simagic-tb-rs"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://simagic.com/products/simagic-zeus-formula-steering-wheel"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://simagic.com/products/zeus-gt-steering-wheel"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simagic.com/products/zeus-sport-steering-wheel"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube 2 Pro",
+   "shape": "Wheelbase",
+   "weight": "25 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simucube.com/products/simucube-2-pro"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube 2 Sport",
+   "shape": "Wheelbase",
+   "weight": "17 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simucube.com/products/simucube-2-sport"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube 3 Pro",
+   "shape": "Wheelbase",
+   "weight": "25 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simucube.com/products/simucube-3-pro"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase",
+   "weight": "15 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simucube.com/products/simucube-3-sport"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube 3 Ultimate",
+   "shape": "Wheelbase",
+   "weight": "35 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://simucube.com/products/simucube-3-ultimate"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube ActivePedal Pro",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Active",
+   "sources": [
+    "https://simucube.com/products/simucube-activepedal-pro"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube ActivePedal Ultimate",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Active",
+   "sources": [
+    "https://simucube.com/products/simucube-activepedal-ultimate"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Pedals",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simucube.com/products/simucube-pedals"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Savu Pro",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simucube.com/products/simucube-savu-pro"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Savu Sport",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simucube.com/products/simucube-savu-sport"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Tahko GT-21",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://simucube.com/products/tahko"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Tahko Round",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Round",
+   "sources": [
+    "https://simucube.com/products/simucube-tahko-round-black",
+    "https://simucube.com/products/simucube-tahko-round-orange"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Valo EVO",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simucube.com/products/simucube-valo-evo"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube Valo GT-23",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://simucube.com/products/simucube-valo-gt-23"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube x Ascher Racing Ultimate USB",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simucube.com/products/simucube-x-ascher-racing-ultimate-usb-steering-wheel"
+   ]
+  },
+  {
+   "brand": "simucube",
+   "name": "Simucube x BavarianSimTec Delta Pro SC",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://simucube.com/products/simucube-x-bavariansimtec-delta-pro-sc"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/599xx-evo-30-wheel-add-on-alcantara-edition/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster EVO Racing 31U Leather",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/evo-racing-31u-leather/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster EVO Racing 32R Leather",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/evo-racing-32r-leather/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/ferrari-250-gto-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Ferrari 488 GT3 Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/ferrari-488-gt3-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/ferrari-f1-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Ferrari SF-25 Edition Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/formula-wheel-add-on-ferrari-sf-25-edition/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Formula",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/formula-wheel-add-on-ferrari-sf1000-edition-us-can/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster GT Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "GT",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/gt-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Hypercar Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/hypercar-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Raceline Pedals III",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/raceline-pedals-iii/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Raceline Pedals III LC",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/raceline-pedals-iii-lc/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/raceline-pedals-lte/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster Rally Wheel Add-On Sparco R383 Mod",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Rally",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/rally-wheel-add-on-sparco-r383-mod/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, PS4, PS5",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t-gt-ii/",
+    "https://www.thrustmaster.com/en-us/products/t-gt-ii-servo-base/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Load cell",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t-lcm-pedals/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PlayStation / PC; Xbox / PC edition",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t128/",
+    "https://www.thrustmaster.com/en-us/products/t128-xbox-pc/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, PS4",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t150-force-feedback/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PlayStation / PC; Xbox / PC edition",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t248/",
+    "https://www.thrustmaster.com/en-us/products/t248-xbox-pc/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T248R",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t248r/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t300rs/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, PS4, PS5",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t300rs-gt-edition/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t3pa-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t3pm/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, PlayStation; Xbox / PC edition",
+   "surface": null,
+   "balance": "Direct axial drive",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t598/",
+    "https://www.thrustmaster.com/en-us/products/t598-x/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T80 Ferrari 488 GTB Edition",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, PS4, PS5",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t80-ferrari-488-gtb-edition/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC",
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t818-black-edition/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster T98 Ferrari 296 GTB",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, PS4, PS5",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/t98-ferrari-296-gtb/",
+    "https://www.thrustmaster.com/en-us/products/t98-ferrari-296-gts/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/th8a-shifter-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/th8s-shifter-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tm-competition-wheel-add-on-sparco-p310-mod/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tm-leather-28-gt-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tm-open-wheel-add-on/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TMX",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, Xbox",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tmx-force-feedback/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/ts-pc-racer-ferrari-488-challenge-edition-2/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, Xbox",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/ts-xw-racer-sparco-p310-competition-mod/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tss-handbrake/"
+   ]
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "shape": "Shifter / handbrake",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Handbrake",
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tss-handbrake-sparco-mod/"
+   ],
+   "slug": "thrustmaster-tss-handbrake-sparco-mod-plus"
+  },
+  {
+   "brand": "thrustmaster",
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase",
+   "weight": null,
+   "core": "PC, Xbox",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.thrustmaster.com/en-us/products/tx-racing-wheel-leather-edition/"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer Aston Martin Aramco AMR26",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/aston-martin-amr26-formula-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer BWT Alpine Formula One Team TRA Hybrid",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/alpine-racing-tra-hybrid-extrusion-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer Carbon Fibre TRX",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/carbon-fibre-trx-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer Hot Wheels HW3",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/hot-wheels-hw3-compact-racing-simulator-cockpit"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer Hot Wheels HW5",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/hot-wheels-hw5-racing-simulator-cockpit"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer Porsche 91XTR",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/porsche-91xtr-hybrid-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TR200 Pro",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/tr200-pro-tank-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TR40S",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/tr40s-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TR5",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/tr5"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TR8 Pro V2",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/tr8-pro-racing-simulator-1"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TR80S",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/tr80s-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TRF",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/trf-racing-simulator"
+   ]
+  },
+  {
+   "brand": "trak-racer",
+   "name": "Trak Racer TRX V2",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/alpine-racing-trx-black-new"
+   ]
+  }
+ ]
+}
