@@ -43,6 +43,11 @@
       "name": "discgolfrecs",
       "id": "prj_WyhslMUUyBFuwrGG9fSdAUf3GE4P",
       "domain": "www.discgolfrecs.com"
+    },
+    "simracing": {
+      "name": "simracingrecs",
+      "id": "prj_UkKPkA3TWnQgAuS6x4fwrZAKdHyN",
+      "domain": "www.simracingrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
