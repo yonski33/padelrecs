@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, RANKINGS_PATH, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, PRIOR_REVIEWS, RANKINGS_PATH, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
@@ -33,7 +33,7 @@ const pct = (n: number, total: number) => `${n / total * 100}%`;
 // "Bullpadel Vertex 05 2026" under a "Bullpadel" line reads as "Vertex 05 2026", like the rest of the site.
 const modelName = (name: string, brand: string) => brand && name.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? name.slice(brand.length + 1) : name;
 
-function Entry({ e, brand }: { e: ListEntry; brand: string }) {
+function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList }) {
   const href = productHref(e.product.slug);
   const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
   const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
@@ -43,7 +43,7 @@ function Entry({ e, brand }: { e: ListEntry; brand: string }) {
     <div className="top-body">
       <div className="top-head">
         <h2><a className="racket-link" href={href}>{brand && <span className="brand">{brand}</span>}<span className="model">{modelName(e.product.name, brand)}</span></a></h2>
-        <span className="top-score" title="Rank score out of 100: see How we rank"><b>{Math.round(e.score * 100)}</b><small>score</small></span>
+        <span className="top-score" title="Positive reviews, mixed counting as half"><b>{Math.round(e.positiveShare * 100)}%</b><small>positive</small></span>
       </div>
       <div className="top-split">
         <div className="stack" role="img" aria-label={label}>
@@ -53,6 +53,7 @@ function Entry({ e, brand }: { e: ListEntry; brand: string }) {
           {parts.map(([s, n]) => <span key={s} className={`s-${s}`}>{n} {s}</span>)}
           <span className="top-count">{e.reviews} reviews</span>
         </div>
+        {list.trait && <p className="top-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       </div>
       {(e.pros.length > 0 || e.con) && <div className="tags">
         {e.pros.map(t => <span key={t.label} className={`tag ${tagTone(t.label)}`}>{t.label}<span className="c">{t.count}</span></span>)}
@@ -72,22 +73,21 @@ function Entry({ e, brand }: { e: ListEntry; brand: string }) {
 const quoted = (tags: string[]) => tags.map(t => `“${t}”`).join(tags.length > 2 ? ", " : " or ").replace(/, (“[^”]+”)$/, " or $1");
 
 function Method({ list, count }: { list: TopList; count: number }) {
-  const weights = Object.entries(list.tagWeights ?? {});
-  const rewarded = weights.filter(([, v]) => v > 0).map(([t]) => t), penalised = weights.filter(([, v]) => v < 0).map(([t]) => t);
-  const blend = rewarded.length ? Math.round(Math.min(1, Math.max(0, list.tagBlend ?? 0.5)) * 100) : 0;
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
   const filters = (list.filters ?? []).flatMap(f => {
     const spec = niche.specs.find(s => s.column === f.column)?.label.toLowerCase() ?? f.column;
     return [f.include && `only includes ${w.many} with a ${f.include.join(" or ").toLowerCase()} ${spec}`, f.exclude && `leaves out ${w.many} with a ${f.exclude.join(" or ").toLowerCase()} ${spec}`].filter(Boolean);
   });
+  const trait = list.trait;
   return <section className="top-method" id="how-we-rank">
     <h2>How we rank</h2>
     <ul>
       <li>{`Two kinds of published review count: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web, each linked to its source. Each one is read as positive, mixed or negative. A ${people.one} review's star rating decides it (4–5 positive, 3 mixed, 1–2 negative); quoted comments are judged when they are moderated, and ones nobody has judged yet don't count.`}</li>
-      <li>{`Mixed reviews count as half positive. To keep a ${w.one} with five glowing reviews from beating one with fifty mostly glowing ones, we use the lower bound of the 95% Wilson confidence interval of that positive share. More reviews, more confidence.`}</li>
-      {rewarded.length > 0 && <li>{`For this list, ${100 - blend}% of the score is that confidence figure and ${blend}% is how often reviewers tag the ${w.one} ${quoted(rewarded)}${penalised.length ? `, minus how often they tag it ${quoted(penalised)}` : ""}. A ${w.one} needs at least ${list.minTagged ?? 1} reviews with one of those positive tags.`}</li>}
-      <li>{`A ${w.one} needs at least ${min} reviews to be ranked${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
-      <li>{`The score shown is out of 100. The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
+      <li>{`The % positive on each ${w.one} is its share of positive reviews, with mixed ones counting as half.`}</li>
+      <li>{`The order also weighs how many ${people.many} have reviewed it: each ${w.one} is scored as if it also had ${PRIOR_REVIEWS} reviews at the site-wide average, so its own reviews have to pull it up from there, and the more of them there are, the more they count. A ${w.one} with dozens of mostly happy reviews therefore ranks above one with a handful of glowing ones, which is why the order doesn't always follow the % positive.`}</li>
+      {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. The order is half how happy reviewers are and half how often they use those tags, with the same allowance for how many reviews there are.`}</li>}
+      <li>{`A ${w.one} needs at least ${min} reviews and at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% positive to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
+      <li>{`The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
     </ul>
   </section>;
 }
@@ -121,7 +121,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       {topLists.map(l => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
     </nav>
     {entries.length
-      ? <ol className="top-list">{entries.map(e => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)}/>)}</ol>
+      ? <ol className="top-list">{entries.map(e => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list}/>)}</ol>
       : <p className="empty-feed">{`No ${w.one} has enough reviews for this list yet. It fills in as reviews are published.`}</p>}
     <Method list={list} count={entries.length}/>
   </main>;

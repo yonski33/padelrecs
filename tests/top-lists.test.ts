@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { rankList, wilsonLower, matchesFilters, ratingVerdict, tagPart, listTotals, listTitle, rankingHref, type ListInput, type Verdict } from "../lib/top-lists";
+import { rankList, adjustedShare, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 
 const tags = niches.padel.tags;
@@ -13,14 +13,34 @@ const web = (racketId: string, sentiment: Verdict | null, tagList: string[] = []
 const many = (n: number, f: () => ReturnType<typeof web>) => Array.from({ length: n }, f);
 const overall: TopList = { slug: "all", label: "Best overall", title: "Best Padel Rackets", intro: "" };
 
-test("Wilson lower bound rewards bigger samples and counts mixed as half", () => {
-  assert.equal(wilsonLower(0, 0), 0);
-  assert(wilsonLower(38, 40) > wilsonLower(5, 5));
-  assert(wilsonLower(5, 10) < 0.5 && wilsonLower(5, 10) > 0.2);
-  const data: ListInput = { listed: [product("a")], reviews: [], external: [...many(5, () => web("a", "mixed"))] };
-  const [e] = rankList(overall, data, tags);
-  assert.equal(e.positiveShare, 0.5);
-  assert.equal(e.score, wilsonLower(2.5, 5));
+test("a handful of glowing reviews doesn't beat many mostly glowing ones", () => {
+  assert.equal(adjustedShare(0, 0, 0.7), 0.7);
+  assert(adjustedShare(6, 6, 0.7) < adjustedShare(40, 45, 0.7));
+  const data: ListInput = {
+    listed: [product("niche"), product("popular"), product("meh")],
+    reviews: [],
+    external: [
+      ...many(6, () => web("niche", "positive")),
+      ...many(38, () => web("popular", "positive")), ...many(4, () => web("popular", "mixed")), ...many(3, () => web("popular", "negative")),
+      ...many(20, () => web("meh", "positive")), ...many(20, () => web("meh", "negative")),
+    ],
+  };
+  const ranked = rankList(overall, data, tags);
+  assert.deepEqual(ranked.map(e => e.product.id), ["popular", "niche"]);
+  assert.equal(ranked[1].positiveShare, 1);
+  // A higher minimum leaves small samples out altogether.
+  assert.deepEqual(rankList({ ...overall, minReviews: 15 }, data, tags).map(e => e.product.id), ["popular"]);
+});
+
+test("mixed counts as half, and lists leave out products most reviewers aren't happy with", () => {
+  const data: ListInput = { listed: [product("a"), product("b")], reviews: [], external: [
+    ...many(4, () => web("a", "positive")), ...many(2, () => web("a", "mixed")),
+    ...many(3, () => web("b", "positive")), ...many(2, () => web("b", "mixed")), ...many(2, () => web("b", "negative")),
+  ] };
+  const ranked = rankList(overall, data, tags);
+  assert.deepEqual(ranked.map(e => e.product.id), ["a"]);
+  assert.equal(ranked[0].positiveShare, 5 / 6);
+  assert(4 / 7 < MIN_POSITIVE_SHARE);
 });
 
 test("products need five judged reviews; lists are never padded", () => {
@@ -49,21 +69,25 @@ test("at most ten entries, ranked by score then review count", () => {
   assert.deepEqual(listTotals(ranked).reviews, ranked.reduce((a, e) => a + e.reviews, 0));
 });
 
-test("tag weights reorder a list and minTagged keeps untagged products out", () => {
-  const power: TopList = { ...overall, slug: "power", tagWeights: { "easy power": 1, "great on smashes": 1 }, tagBlend: 0.6, minTagged: 2 };
+test("trait lists only take products enough reviewers describe that way, then weigh happiness and the trait", () => {
+  const power: TopList = { ...overall, slug: "power", trait: { tags: ["easy power", "great on smashes"], minShare: 0.25, noun: "power" } };
+  const forgiving: TopList = { ...overall, slug: "forgiving", trait: { tags: ["forgiving"], minShare: 0.2, against: ["small sweet spot"], noun: "forgiveness" } };
   const data: ListInput = {
-    listed: [product("liked"), product("powerful"), product("bland")],
+    listed: [product("liked"), product("powerful"), product("bland"), product("disputed")],
     reviews: [],
     external: [
-      ...many(20, () => web("liked", "positive")), web("liked", "positive", ["easy power"]), web("liked", "positive", ["easy power"]),
+      ...many(14, () => web("liked", "positive")), ...many(6, () => web("liked", "positive", ["easy power"])),
       ...many(6, () => web("powerful", "positive", ["easy power", "great on smashes"])), web("powerful", "negative"), web("powerful", "mixed"),
       ...many(30, () => web("bland", "positive")), web("bland", "positive", ["easy power"]),
+      ...many(4, () => web("disputed", "positive", ["forgiving"])), ...many(4, () => web("disputed", "positive", ["small sweet spot"])),
     ],
   };
-  assert.deepEqual(rankList(power, data, tags).map(e => e.product.id), ["powerful", "liked"]);
-  assert.deepEqual(rankList(overall, data, tags).map(e => e.product.id), ["bland", "liked", "powerful"]);
-  assert.equal(tagPart({ "forgiving": 0.5, "small sweet spot": 0.8 }, { "forgiving": 1, "small sweet spot": -1 }), 0);
-  assert.equal(tagPart({ "forgiving": 1 }, { "forgiving": 1, "arm-friendly": 1 }), 0.5);
+  const ranked = rankList(power, data, tags);
+  // bland: 1 of 31 mention power, too few. powerful (6 of 8) outranks liked (6 of 20), which is happier.
+  assert.deepEqual(ranked.map(e => e.product.id), ["powerful", "liked"]);
+  assert.equal(ranked[1].traitReviews, 6);
+  assert(ranked[1].adjusted > ranked[0].adjusted);
+  assert.deepEqual(rankList(forgiving, data, tags).map(e => e.product.id), []);
 });
 
 test("spec filters compare first words; include drops blanks, exclude keeps them", () => {
@@ -100,7 +124,7 @@ test("every niche's lists use bank tags, real spec columns and unique slugs", ()
     assert.equal(new Set(lists.map(l => l.slug)).size, lists.length, `${id} list slugs`);
     for (const l of lists) {
       assert.match(l.slug, /^[a-z0-9-]+$/);
-      for (const t of Object.keys(l.tagWeights ?? {})) assert(n.tags.some(x => x.label === t), `${id}/${l.slug}: "${t}" is not in the tag bank`);
+      for (const t of [...l.trait?.tags ?? [], ...l.trait?.against ?? []]) assert(n.tags.some(x => x.label === t), `${id}/${l.slug}: "${t}" is not in the tag bank`);
       for (const f of l.filters ?? []) assert(n.specs.some(s => s.column === f.column), `${id}/${l.slug}: no ${f.column} spec`);
     }
   }
