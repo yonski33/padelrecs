@@ -19,6 +19,7 @@ export const golf: Niche = {
     wordmark: "golfrecs",
     descriptor: "golfer reviews of drivers",
     footer: "kept by people who spend too long at the range. No affiliate links.",
+    analyticsId: "G-8Y0MW4Y4QZ",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "driver", many: "drivers", One: "Driver", Many: "Drivers" },
