@@ -105,6 +105,24 @@ export const padel: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  // /best pages (lib/top-lists.ts). Tags come from the bank above. The catalogue has no player-level field, so the
+  // fourth list is "most forgiving" from review tags rather than "best for intermediate players".
+  topLists: [
+    { slug: "padel-rackets", label: "Best overall", title: "Best Padel Rackets",
+      intro: "The rackets players are most consistently happy with, once there are enough reviews to tell." },
+    { slug: "padel-rackets-for-power", label: "Best for power", title: "Best Padel Rackets for Power",
+      intro: "Well-liked rackets that players keep describing as powerful: easy power and big smashes.",
+      tagWeights: { "easy power": 1, "great on smashes": 1 }, tagBlend: 0.6, minTagged: 3,
+      filters: [{ column: "shape", exclude: ["Round"] }, { column: "balance", exclude: ["Low"] }] },
+    { slug: "padel-rackets-for-control", label: "Best for control", title: "Best Padel Rackets for Control",
+      intro: "Well-liked rackets that players praise for control, placement and defence.",
+      tagWeights: { "good control": 1, "great in defence": 0.5, "head-heavy": -0.5 }, tagBlend: 0.6, minTagged: 3,
+      filters: [{ column: "shape", exclude: ["Diamond"] }] },
+    { slug: "forgiving-padel-rackets", label: "Most forgiving", title: "Most Forgiving Padel Rackets",
+      intro: "Well-liked rackets players call forgiving and easy on the arm, with few complaints about a small sweet spot.",
+      tagWeights: { "forgiving": 1, "arm-friendly": 0.5, "small sweet spot": -1, "demanding": -0.5 }, tagBlend: 0.6, minTagged: 3,
+      filters: [{ column: "shape", exclude: ["Diamond"] }] },
+  ],
   sourcePlatforms: ["Reddit", "YouTube", "Padel shop", "Forum", "Other"],
   examples: { brand: "Nox", model: "AT10 Genius 18K", year: 2026, search: "nox" },
   form: {
