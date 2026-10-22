@@ -226,3 +226,19 @@ test("discgolf: discs named by mold (no years), throw and distance profile, dist
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("simracing: gear named by generation (no years), five category pages that each pick a drawing, driver profile, steering-wheel rating icons", async () => {
+  const n = selectNiche("simracing");
+  assert.equal(n.schema, "simracingrecs");
+  assert.equal(n.productPath, "gear");
+  assert.equal(n.productYears, false);
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.categories.map(c => c.label), ["Performance", "Feel & ergonomics", "Build quality", "Software & compatibility", "Value"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["wheelbases", "wheels", "pedals", "cockpits", "shifters-handbrakes"]);
+  const { shapeOf } = await import("../app/art/simracing");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["wheelbase", "wheel", "pedals", "cockpit", "shifter"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
