@@ -22,6 +22,9 @@ export type ListInput = { listed: Product[]; reviews: PlayerReview[]; external: 
 /** A player review's star rating read as a verdict: 4–5 positive, 3 mixed, 1–2 negative. Web reviews carry their own. */
 export const ratingVerdict = (rating: number): Verdict => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 
+/** On trait lists ("best for power"), how much being liked counts next to trait mentions, which count fully. */
+export const TRAIT_LIST_LIKED_WEIGHT = 0.5;
+
 /** By default only reviews written in the last this many years count, so lists follow what people say about products now.
  *  A web review is dated by its source; a player review by when it was submitted. Lists can set their own (reviewYears). */
 export const REVIEW_YEARS = 3;
@@ -53,8 +56,8 @@ export type ListEntry = {
   positiveShare: number;
   /** Positive reviews above what an average product with this many reviews would have (aboveAverage). */
   aboveAverage: number;
-  /** What the list is ordered by: `aboveAverage`, plus on trait lists the trait mentions above average when the product is
-   *  liked at least as much as average. Not shown. */
+  /** What the list is ordered by: `aboveAverage`; on trait lists, trait mentions above average plus
+   *  TRAIT_LIST_LIKED_WEIGHT × `aboveAverage`. Not shown. */
   rankScore: number;
   /** Positive or mixed reviews carrying at least one of the list's trait tags (0 on lists without a trait). A negative
    *  review that calls a racket powerful doesn't make it a good racket for power. */
@@ -114,9 +117,8 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
     return [{
       product, reviews: n, positive, mixed, negative: n - positive - mixed, positiveShare: (positive + mixed / 2) / n,
       aboveAverage: liked, traitReviews,
-      // Trait mentions only lift a product reviewers like at least as much as the average one: being called powerful
-      // doesn't make a below-average racket one of the best for power.
-      rankScore: liked + (trait && liked > 0 ? aboveAverage(traitReviews, n, traitAverage) : 0),
+      // Trait lists are about the trait: mentions lead, and how liked the product is counts at TRAIT_LIST_LIKED_WEIGHT.
+      rankScore: trait ? aboveAverage(traitReviews, n, traitAverage) + TRAIT_LIST_LIKED_WEIGHT * liked : liked,
       pros: ranked("pos").slice(0, 3), con: ranked("neg")[0] ?? null,
       quote: pickQuote(data.external.filter(e => e.racketId === product.id), trait?.tags ?? []),
       latest: own.reduce((a, x) => x.createdAt > a ? x.createdAt : a, ""),
