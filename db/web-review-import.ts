@@ -49,7 +49,7 @@ type Update = { candidateId: string; id: string; excerpt: string | null; summary
 export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; skipped: { candidate: Candidate; reason: string }[] };
 
 type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[] };
-export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
+export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string; year?: number }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
   const plan: Plan = { rows: [], updates: [], skipped: [] };
   const byId = new Map(site.external.map(e => [e.id, e]));
   const quoted = new Set(site.external.map(e => `${e.racketId}|${sameSource(e.sourceUrl)}`));
@@ -69,7 +69,9 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     }
     if (c.status !== "approved") continue;
     if (!excerpt && !summary) { skip("needs an exact quote (20+ characters) or a summary (30+ characters)"); continue; }
-    const racket = site.rackets.find(r => r.name.toLowerCase() === c.racket_name.trim().toLowerCase());
+    const wanted = c.racket_name.trim().toLowerCase();
+    // Queued under a name that still ended in the model year (PickleballRecs dropped years from names on 2026-10-22).
+    const racket = site.rackets.find(r => r.name.toLowerCase() === wanted) ?? site.rackets.find(r => r.year !== undefined && `${r.name} ${r.year}`.toLowerCase() === wanted);
     if (!racket) { skip(`no racket named "${c.racket_name}" on the site`); continue; }
     if (!niche.sourcePlatforms.includes(c.source_platform)) { skip(`source platform "${c.source_platform}" is not one the site uses`); continue; }
     const tags = [...new Set(c.tags)];
@@ -91,7 +93,7 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
 type Database = PgDatabase<PgQueryResultHKT, typeof schema>;
 export async function siteState(db: Pick<Database, "select">) {
   const [r, e] = await Promise.all([
-    db.select({ id: rackets.id, name: rackets.name }).from(rackets),
+    db.select({ id: rackets.id, name: rackets.name, year: rackets.year }).from(rackets),
     db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags }).from(externalReviews),
   ]);
   return { rackets: r, external: e };

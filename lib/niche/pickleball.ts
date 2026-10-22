@@ -30,6 +30,9 @@ export const pickleball: Niche = {
   },
   words: { one: "paddle", many: "paddles", One: "Paddle", Many: "Paddles" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  // Makers update paddles by name (Vatic Pro Prism → Prism Flash, Prism V7), not by year, so names carry no model year.
+  // The year column still holds the year the maker first listed the paddle.
+  productYears: false,
   productPath: "paddles",
   scoreUnit: { one: "ball", many: "balls" },
   // White page, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
@@ -139,7 +142,7 @@ export const pickleball: Niche = {
     homeDescription: "Browse real pickleball paddle reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Joola, Selkirk, Six Zero, CRBN, and more.",
     layoutDescription: "Real player experiences with pickleball paddles, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | PickleballRecs",
-    catalog: { title: "All Pickleball Paddles – Player Reviews and Ratings", description: "Every pickleball paddle on PickleballRecs with community ratings. Filter by brand, year and shape, then read what players say about each one." },
+    catalog: { title: "All Pickleball Paddles – Player Reviews and Ratings", description: "Every pickleball paddle on PickleballRecs with community ratings. Filter by brand and shape, then read what players say about each one." },
     brands: { title: "Pickleball Paddle Brands", description: "Browse pickleball paddles by brand — Joola, Selkirk, Six Zero, CRBN, Engage and more — and read real player reviews of each model." },
     brand: brand => ({ title: `${brand} Pickleball Paddles – Player Reviews`, description: `Real player reviews of ${brand} pickleball paddles: ratings, strengths and weaknesses for every ${brand} model on PickleballRecs.` }),
     product: name => ({ title: `${name} Player Reviews | PickleballRecs`, description: `Read real player experiences with the ${name}. Ratings, power, control, spin, and opinions from PickleballRecs and around the web.` }),

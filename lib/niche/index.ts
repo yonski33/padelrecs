@@ -27,7 +27,7 @@ export function selectNiche(id: string | undefined): Niche {
 export const niche = selectNiche(process.env.NICHE);
 
 /** "/rackets" on PadelRecs, "/paddles" on PickleballRecs. The pages live in app/rackets; next.config.ts maps other paths onto them. */
-/** Whether products carry a model year (padel, pickleball) or not (skincare). */
+/** Whether product names carry a model year (padel) or not (pickleball, skincare, …). */
 export const hasYears = niche.productYears !== false;
 
 export const catalogPath = `/${niche.productPath}`;
