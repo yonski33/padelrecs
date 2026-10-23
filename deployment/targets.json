@@ -73,6 +73,11 @@
       "name": "ultralightrecs",
       "id": "prj_IJwFYskXU0itWyIl22HTLFNnN5Fa",
       "domain": "www.ultralightrecs.com"
+    },
+    "badminton": {
+      "name": "badmintonrecs",
+      "id": "prj_t5Jv6rCutQoGDQkP5qrVkIKZ3Hl0",
+      "domain": "www.badmintonrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
