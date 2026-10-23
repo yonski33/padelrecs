@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { eq } from "drizzle-orm";
-import { externalReviews, rackets } from "./schema";
+import { and, eq, inArray } from "drizzle-orm";
+import { externalReviews, rackets, reviewVotes } from "./schema";
 import type { PgDatabase, PgQueryResultHKT } from "drizzle-orm/pg-core";
 import type * as schema from "./schema";
 import type { Niche } from "../lib/niche/types";
@@ -37,24 +37,32 @@ export function parseCandidates(jsonl: string): Candidate[] {
 /** Web review ids are derived from the candidate id, so publishing twice can never create a second copy. */
 export const webReviewId = (candidateId: string) => `research-${candidateId}`;
 
-/** Same page regardless of tracking parameters, mobile/old hosts, fragments or a trailing slash. */
+/** Same page regardless of tracking parameters, mobile/old hosts, fragments or a trailing slash. A YouTube comment is its video
+ *  plus its comment id (…/watch?v=<video>&lc=<comment>), so two comments under one video stay two sources. */
 export function sameSource(url: string) {
   const u = new URL(url);
-  u.hash = ""; u.search = "";
-  return `${u.hostname.toLowerCase().replace(/^(www|m|old|new|np)\./, "")}${u.pathname.replace(/\/+$/, "")}`;
+  const host = u.hostname.toLowerCase().replace(/^(www|m|old|new|np)\./, "");
+  const youtube = host === "youtube.com" ? ["v", "lc"].map(k => u.searchParams.get(k) ? `${k}=${u.searchParams.get(k)}` : "").filter(Boolean).join("&") : "";
+  return `${host}${u.pathname.replace(/\/+$/, "")}${youtube ? `?${youtube}` : ""}`;
 }
 
 type Row = typeof externalReviews.$inferInsert;
 type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[] };
-export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; skipped: { candidate: Candidate; reason: string }[] };
+/** A published web review whose candidate the research agent withdrew (its source no longer says what we quote). */
+type Removal = { candidateId: string; id: string };
+export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; removals: Removal[]; skipped: { candidate: Candidate; reason: string }[] };
 
 type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[] };
 export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string; year?: number }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
-  const plan: Plan = { rows: [], updates: [], skipped: [] };
+  const plan: Plan = { rows: [], updates: [], removals: [], skipped: [] };
   const byId = new Map(site.external.map(e => [e.id, e]));
   const quoted = new Set(site.external.map(e => `${e.racketId}|${sameSource(e.sourceUrl)}`));
   const tagBank = new Set(niche.tags.map(t => t.label));
   for (const c of candidates) {
+    if (c.status === "withdrawn") {
+      if (byId.has(webReviewId(c.id))) plan.removals.push({ candidateId: c.id, id: webReviewId(c.id) });
+      continue;
+    }
     if (c.status !== "approved" && c.status !== "published") continue;
     const skip = (reason: string) => plan.skipped.push({ candidate: c, reason });
     const excerpt = c.excerpt?.trim() && c.excerpt.trim().length >= 20 ? c.excerpt.trim() : null;
@@ -99,9 +107,10 @@ export async function siteState(db: Pick<Database, "select">) {
   return { rackets: r, external: e };
 }
 
-/** Inserts new rows and applies text updates in one transaction; an existing id is never overwritten by an insert. */
+/** Inserts new rows, applies text updates and deletes withdrawn web reviews (and their helpful votes) in one transaction;
+ *  an existing id is never overwritten by an insert. */
 export async function applyImport(db: Database, plan: Plan) {
-  if (!plan.rows.length && !plan.updates.length) return { inserted: 0, updated: 0 };
+  if (!plan.rows.length && !plan.updates.length && !plan.removals.length) return { inserted: 0, updated: 0, removed: 0 };
   return db.transaction(async tx => {
     const inserted = plan.rows.length ? await tx.insert(externalReviews).values(plan.rows.map(({ candidateId: _, ...row }) => row)).onConflictDoNothing({ target: externalReviews.id }).returning({ id: externalReviews.id }) : [];
     let updated = 0;
@@ -109,7 +118,13 @@ export async function applyImport(db: Database, plan: Plan) {
       const done = await tx.update(externalReviews).set({ excerpt: u.excerpt, summary: u.summary, sentiment: u.sentiment, tags: u.tags }).where(eq(externalReviews.id, u.id)).returning({ id: externalReviews.id });
       updated += done.length;
     }
-    return { inserted: inserted.length, updated };
+    let removed = 0;
+    if (plan.removals.length) {
+      const ids = plan.removals.map(r => r.id);
+      await tx.delete(reviewVotes).where(and(eq(reviewVotes.reviewType, "web"), inArray(reviewVotes.reviewId, ids)));
+      removed = (await tx.delete(externalReviews).where(inArray(externalReviews.id, ids)).returning({ id: externalReviews.id })).length;
+    }
+    return { inserted: inserted.length, updated, removed };
   });
 }
 
