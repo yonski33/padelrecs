@@ -78,6 +78,11 @@
       "name": "badmintonrecs",
       "id": "prj_t5Jv6rCutQoGDQkP5qrVkIKZ3Hl0",
       "domain": "www.badmintonrecs.com"
+    },
+    "fragrance": {
+      "name": "fragrancerecs",
+      "id": "prj_warOYWKbVzayGd94VMbLGrpQxC13",
+      "domain": "www.fragrancerecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
