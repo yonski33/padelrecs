@@ -98,7 +98,8 @@
     "monitor": "monitorrecs",
     "camera": "camerarecs",
     "ultralight": "ultralightrecs",
-    "badminton": "badmintonrecs"
+    "badminton": "badmintonrecs",
+    "fragrance": "fragrancerecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
