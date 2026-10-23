@@ -704,7 +704,7 @@ summary { cursor: pointer; font-weight: 600; }
 @media (max-width: 680px) { .slug-input { flex-direction: column; } .slug-input span { padding: 6px 13px; } }
 .scorecard .web-split { grid-column: 1 / -1; }
 
-/* ---------- Top 10 menu ---------- */
+/* ---------- Rankings menu ---------- */
 
 .nav-menu { position: relative; display: flex; align-items: stretch; }
 .nav-menu > a { padding-right: 4px; }
@@ -726,7 +726,7 @@ summary { cursor: pointer; font-weight: 600; }
 }
 @media (max-width: 680px) { .nav-caret { display: none; } .nav-menu > a { padding-right: 12px; } }
 
-/* ---------- Top 10 pages ---------- */
+/* ---------- Rankings pages ---------- */
 
 .top-page { max-width: 860px; padding-bottom: 40px; }
 .top-page .page-title h1 { font-size: 32px; max-width: 30ch; text-wrap: balance; }

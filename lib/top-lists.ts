@@ -1,4 +1,4 @@
-// "Top 10" rankings for the /rankings pages. Pure functions over the public catalogue, so tests can feed them plain objects.
+// Rankings for the /rankings pages (up to 10 products per list). Pure functions over the public catalogue, so tests can feed them plain objects.
 // Every number they return is counted from published reviews; nothing is estimated or filled in.
 import type { SpecColumn, SpecFilter, Tag, TopList } from "./niche/types";
 

@@ -106,7 +106,7 @@ export type Niche = {
   /** Extra detail on product rows in the catalogue, after the shape. */
   rowDetail?: { column: SpecColumn; suffix: string };
   tags: Tag[];
-  /** "Top 10" pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
+  /** Rankings pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
   topLists?: TopList[];
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */
