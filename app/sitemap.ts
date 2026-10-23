@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const latest = (dates: string[]) => dates.length ? new Date(dates.reduce((a, b) => a > b ? a : b)) : undefined;
   const notesFor = (racketId: string) => [...data.reviews, ...data.external].filter(n => n.racketId === racketId).map(n => n.createdAt);
   const allNotes = [...data.reviews, ...data.external].map(n => n.createdAt);
-  // Top 10 pages, dated by their newest ranked review. Lists nobody qualifies for yet are left out (they're noindex).
+  // Rankings pages, dated by their newest ranked review. Lists nobody qualifies for yet are left out (they're noindex).
   const lists = (niche.topLists ?? []).map(list => ({ list, ...listTotals(rankList(list, data, niche.tags)) })).filter(x => x.updated);
 
   return [

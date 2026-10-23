@@ -17,7 +17,7 @@ const base = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/
 function description(r: RankedList) {
   if (!r.entries.length) return `${r.list.intro} Not enough ${people.one} reviews yet to rank any ${w.many}.`;
   const names = r.entries.slice(0, 3).map(e => e.product.name).join(", ");
-  return `${r.list.intro} Top ${r.entries.length} from ${r.reviews.toLocaleString("en-US")} first-hand reviews: ${names}…`;
+  return `${r.list.intro} Ranked from ${r.reviews.toLocaleString("en-US")} first-hand reviews: ${names}…`;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -103,20 +103,20 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     { "@type": "ItemList", name: title, url, numberOfItems: entries.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
       itemListElement: entries.map(e => ({ "@type": "ListItem", position: e.rank, name: e.product.name, url: `${base()}${productHref(e.product.slug)}` })) },
     { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Top 10", item: `${base()}${RANKINGS_PATH}` },
+      { "@type": "ListItem", position: 1, name: "Rankings", item: `${base()}${RANKINGS_PATH}` },
       { "@type": "ListItem", position: 2, name: list.label, item: url },
     ] },
   ] };
 
   return <main className="top-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
-    <p className="breadcrumb"><a href={RANKINGS_PATH}>Top 10</a> / {list.label}</p>
+    <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
     <div className="page-title">
       <h1>{title}</h1>
       <p>{list.intro}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
-    <nav className="chips top-tabs" aria-label="Top 10 lists">
+    <nav className="chips top-tabs" aria-label="Rankings">
       {topLists.map(l => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
     </nav>
     {entries.length

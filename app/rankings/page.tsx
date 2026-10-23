@@ -9,12 +9,12 @@ import { rankedLists, listHref, longDate, currentYear } from "./lists";
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
 const category = niche.seo.productCategory.replace(/\b\w/g, c => c.toUpperCase());
-const heading = `Top 10 ${category} Lists`;
+const heading = `${category} Rankings`;
 
 export async function generateMetadata(): Promise<Metadata> {
   if (!niche.topLists?.length) return { robots: { index: false } };
   const { lists } = await rankedLists();
-  const title = `${heading} ${currentYear()}, Ranked by Real ${people.One} Reviews`;
+  const title = `${heading} ${currentYear()}, Based on Real ${people.One} Reviews`;
   const description = `${lists.map(l => l.list.label).join(", ")}: ${w.many} ranked by what ${people.many} actually say, from published first-hand reviews. Updated as new reviews come in.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website" } };
 }
