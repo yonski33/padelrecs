@@ -196,7 +196,7 @@ test("golf: drivers named by generation (no years), handicap hints, swing speed,
   }
 });
 
-test("gaming: gear named by generation (no years), five category pages that each pick a drawing, gamer profile, keycap rating icons", async () => {
+test("gaming: gear named by generation (no years), four category pages that each pick a drawing, gamer profile, keycap rating icons", async () => {
   const n = selectNiche("gaming");
   assert.equal(n.schema, "gamingrecs");
   assert.equal(n.productPath, "gear");
@@ -204,9 +204,9 @@ test("gaming: gear named by generation (no years), five category pages that each
   assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Performance:powerRating", "Comfort:comfortRating", "Build quality:controlRating", "Software & features:maneuverabilityRating", "Value:forgivenessRating"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Weight", "Connection", "Key specs", "Form factor"]);
   assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
-  assert.deepEqual(n.typePages?.map(t => t.slug), ["mice", "keyboards", "headsets", "controllers", "monitors"]);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["mice", "keyboards", "headsets", "controllers"]);
   const { shapeOf } = await import("../app/art/gaming");
-  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["mouse", "keyboard", "headset", "controller", "monitor"]);
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["mouse", "keyboard", "headset", "controller"]);
   for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
@@ -278,4 +278,42 @@ test("audio: headphones, IEMs and earbuds named by generation (no years), three 
   for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
+});
+
+test("monitor: monitors named by model number (no years), five category pages that each pick a drawing, owner profile, monitor rating icons", async () => {
+  const n = selectNiche("monitor");
+  assert.equal(n.schema, "monitorrecs");
+  assert.equal(n.productPath, "monitors");
+  assert.equal(n.productYears, false);
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Panel", "Screen", "Inputs", "Weight"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["gaming-monitors", "ultrawide-monitors", "productivity-monitors", "mac-monitors", "portable-monitors"]);
+  const { shapeOf } = await import("../app/art/monitor");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["gaming", "ultrawide", "productivity", "creator", "portable"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /monitors/, `${list.slug}: niche keyword in the slug`);
+    assert.match(list.title, /Monitors/, `${list.slug}: niche keyword in the title`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
+
+test("gaming: every moved monitor page 301s to the same page on MonitorRecs", async () => {
+  const { movedMonitorSlugs, movedMonitorBrandSlugs } = await import("../lib/niche/gaming-moved");
+  const n = selectNiche("gaming");
+  const moved = new Map((n.movedAway ?? []).filter(m => !m.query).map(m => [m.source, m.destination]));
+  assert.equal(movedMonitorSlugs.length, 88);
+  for (const slug of movedMonitorSlugs) assert.equal(moved.get(`/gear/${slug}`), `https://www.monitorrecs.com/monitors/${slug}`);
+  for (const slug of movedMonitorBrandSlugs) assert.equal(moved.get(`/brands/${slug}`), `https://www.monitorrecs.com/brands/${slug}`);
+  assert.equal(moved.get("/monitors"), "https://www.monitorrecs.com/gaming-monitors");
+  assert(!n.typePages?.some(t => t.slug === "monitors"));
+  assert(!n.shapeFilter.includes("Monitor"));
+  // Monitor-only brands never reappear on GamingRecs while their pages redirect.
+  const { readCatalog } = await import("../db/catalog-file");
+  const gaming = await readCatalog("db/catalogs/gaming.json");
+  assert(!gaming.brands.some(b => movedMonitorBrandSlugs.includes(b.id)));
+  assert(!gaming.products.some(p => p.shape === "Monitor"));
 });

@@ -74,7 +74,8 @@
     "discgolf": "discgolfrecs",
     "simracing": "simracingrecs",
     "cycling": "cyclingrecs",
-    "audio": "audiorecs"
+    "audio": "audiorecs",
+    "monitor": "monitorrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
