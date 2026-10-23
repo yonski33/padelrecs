@@ -41,12 +41,15 @@ export function parseCandidates(jsonl: string): Candidate[] {
 export const webReviewId = (candidateId: string) => `research-${candidateId}`;
 
 /** Same page regardless of tracking parameters, mobile/old hosts, fragments or a trailing slash. A YouTube comment is its video
- *  plus its comment id (…/watch?v=<video>&lc=<comment>), so two comments under one video stay two sources. */
+ *  plus its comment id (…/watch?v=<video>&lc=<comment>), so two comments under one video stay two sources. Forum software
+ *  that routes through a script (XenForo's index.php?threads/<thread>/post-<id>) keeps its query: there it names the post. */
 export function sameSource(url: string) {
   const u = new URL(url);
   const host = u.hostname.toLowerCase().replace(/^(www|m|old|new|np)\./, "");
   const youtube = host === "youtube.com" ? ["v", "lc"].map(k => u.searchParams.get(k) ? `${k}=${u.searchParams.get(k)}` : "").filter(Boolean).join("&") : "";
-  return `${host}${u.pathname.replace(/\/+$/, "")}${youtube ? `?${youtube}` : ""}`;
+  const script = /\.php$/i.test(u.pathname) ? decodeURIComponent(u.search.slice(1)).replace(/\/+$/, "") : "";
+  const query = youtube || script;
+  return `${host}${u.pathname.replace(/\/+$/, "")}${query ? `?${query}` : ""}`;
 }
 
 type Row = typeof externalReviews.$inferInsert;
