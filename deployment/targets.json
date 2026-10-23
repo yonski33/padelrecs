@@ -80,7 +80,8 @@
     "simracing": "simracingrecs",
     "cycling": "cyclingrecs",
     "audio": "audiorecs",
-    "monitor": "monitorrecs"
+    "monitor": "monitorrecs",
+    "camera": "camerarecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

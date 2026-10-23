@@ -317,3 +317,26 @@ test("gaming: every moved monitor page 301s to the same page on MonitorRecs", as
   assert(!gaming.brands.some(b => movedMonitorBrandSlugs.includes(b.id)));
   assert(!gaming.products.some(p => p.shape === "Monitor"));
 });
+
+test("camera: cameras named by generation (no years), four category pages that each pick a drawing, photographer profile, camera rating icons", async () => {
+  const n = selectNiche("camera");
+  assert.equal(n.schema, "camerarecs");
+  assert.equal(n.productPath, "cameras");
+  assert.equal(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.categories.map(c => c.label), ["Image quality", "Autofocus & speed", "Handling & build", "Video & features", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Sensor", "Resolution", "Mount / lens", "Weight"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["mirrorless-cameras", "compact-cameras", "vlogging-cameras", "action-cameras"]);
+  const { shapeOf } = await import("../app/art/camera");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["mirrorless", "compact", "vlogging", "action"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /cameras/, `${list.slug}: niche keyword in the slug`);
+    assert.match(list.title, /Cameras/, `${list.slug}: niche keyword in the title`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
