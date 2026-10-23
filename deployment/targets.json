@@ -68,6 +68,11 @@
       "name": "camerarecs",
       "id": "prj_gXyMUz3GLUC3IX9Fsh5mP4FIehXT",
       "domain": "www.camerarecs.com"
+    },
+    "ultralight": {
+      "name": "ultralightrecs",
+      "id": "prj_IJwFYskXU0itWyIl22HTLFNnN5Fa",
+      "domain": "www.ultralightrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
