@@ -259,3 +259,23 @@ test("cycling: bikes named by model and frame tier (no years), road/gravel/mount
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("audio: headphones, IEMs and earbuds named by generation (no years), three category pages that each pick a drawing, listener profile, headphone rating icons", async () => {
+  const n = selectNiche("audio");
+  assert.equal(n.schema, "audiorecs");
+  assert.equal(n.productPath, "gear");
+  assert.equal(n.productYears, false);
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.categories.map(c => c.label), ["Sound", "Comfort & fit", "Build quality", "Features", "Value"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["headphones", "iems", "earbuds"]);
+  const { shapeOf } = await import("../app/art/audio");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["headphones", "iem", "earbuds"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /headphones|iems|earbuds/, `${list.slug}: niche keyword in the slug`);
+    for (const tag of list.trait?.tags ?? []) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
