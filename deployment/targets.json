@@ -48,6 +48,11 @@
       "name": "simracingrecs",
       "id": "prj_UkKPkA3TWnQgAuS6x4fwrZAKdHyN",
       "domain": "www.simracingrecs.com"
+    },
+    "cycling": {
+      "name": "cyclingrecs",
+      "id": "prj_aApAoFBAEJzeISxSvdXDf578Yvmj",
+      "domain": "www.cyclingrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
