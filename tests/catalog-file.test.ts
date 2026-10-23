@@ -296,3 +296,24 @@ test("the CameraRecs starter catalog: sourced mirrorless, compact, vlogging and 
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Sony a7 IV")?.slug, "sony-a7-iv");
 });
+
+test("the UltralightRecs starter catalog: sourced tents, packs, pads and quilts, known categories, no years, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/ultralight.json");
+  const snapshot = catalogSnapshot(catalog, "ultralightrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 15);
+  assert(snapshot.tables.rackets.length >= 150);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.ultralight.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/ultralight");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: gear is named without years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one product`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Durston X-Mid Pro 2")?.slug, "durston-x-mid-pro-2");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Durston X-Mid Pro 2+")?.slug, "durston-x-mid-pro-2-plus");
+});

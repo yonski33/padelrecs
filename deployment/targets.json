@@ -86,7 +86,8 @@
     "cycling": "cyclingrecs",
     "audio": "audiorecs",
     "monitor": "monitorrecs",
-    "camera": "camerarecs"
+    "camera": "camerarecs",
+    "ultralight": "ultralightrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
