@@ -63,6 +63,11 @@
       "name": "monitorrecs",
       "id": "prj_FrM1xN2d7j8j2RpDlvgN3R8KeQ4E",
       "domain": "www.monitorrecs.com"
+    },
+    "camera": {
+      "name": "camerarecs",
+      "id": "prj_gXyMUz3GLUC3IX9Fsh5mP4FIehXT",
+      "domain": "www.camerarecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
