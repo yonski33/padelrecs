@@ -341,3 +341,28 @@ test("the BadmintonRecs starter catalog: sourced Yonex, Victor and Li-Ning racke
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Victor Auraspeed Fantôme")?.slug, "victor-auraspeed-fantome");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Li-Ning Halbertec 8000")?.balance, "Even balance (302 mm)");
 });
+
+test("the FragranceRecs starter catalog: sourced perfumes and colognes, one entry per concentration, known For values, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/fragrance.json");
+  const snapshot = catalogSnapshot(catalog, "fragrancerecs", "catalog:test", false);
+  assert(snapshot.tables.brands.length >= 40);
+  assert(snapshot.tables.rackets.length >= 250);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const forValues = niches.fragrance.specs.find(s => s.column === "shape")!.options!;
+  const concentrations = niches.fragrance.specs.find(s => s.column === "balance")!.options!;
+  for (const r of snapshot.tables.rackets) {
+    assert(!r.shape || forValues.includes(r.shape), `${r.name}: unknown For ${r.shape}`);
+    assert(!r.balance || concentrations.includes(r.balance), `${r.name}: unknown concentration ${r.balance}`);
+    assert(!/ 20[12]\d$/.test(r.name), `${r.name}: fragrances are named without years`);
+  }
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Concentrations are separate fragrances.
+  for (const name of ["Dior Sauvage Eau de Toilette", "Dior Sauvage Parfum", "Dior Sauvage Elixir", "Chanel Bleu de Chanel Eau de Parfum", "Creed Aventus", "Maison Francis Kurkdjian Baccarat Rouge 540 Eau de Parfum", "Maison Francis Kurkdjian Baccarat Rouge 540 Extrait de Parfum", "Le Labo Santal 33", "Lattafa Khamrah", "Armaf Club de Nuit Intense Man Eau de Parfum"])
+    assert(snapshot.tables.rackets.some(r => r.name === name), `${name}: in the catalog`);
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Dior Sauvage Eau de Toilette")?.slug, "dior-sauvage-eau-de-toilette");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Dior Sauvage Eau de Toilette")?.balance, "Eau de Toilette");
+  // "Elixir" read only out of a name is not a stated concentration.
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Jean Paul Gaultier Le Male Elixir")?.balance, null);
+});

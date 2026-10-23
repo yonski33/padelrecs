@@ -385,3 +385,27 @@ test("badminton: rackets named without years, series as the catalogue shape, sin
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("fragrance: fragrances named by line and concentration (no years), For as the catalogue shape with three type pages, bottle rating icons", async () => {
+  const n = selectNiche("fragrance");
+  assert.equal(n.schema, "fragrancerecs");
+  assert.equal(n.site.domain, "fragrancerecs.com");
+  assert.equal(n.productPath, "fragrances");
+  assert.equal(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.words.one, "fragrance");
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Scent:comfortRating", "Longevity:controlRating", "Projection:powerRating", "Versatility:maneuverabilityRating", "Value:forgivenessRating"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["For", "Concentration", "Sizes", "Notes", "Fragrance family"]);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["mens-fragrances", "womens-fragrances", "unisex-fragrances"]);
+  const { shapeOf } = await import("../app/art/fragrance");
+  for (const t of n.typePages ?? []) assert.notEqual(shapeOf(t.shape), "unknown", `${t.shape}: no drawing`);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /fragrances/, `${list.slug}: niche keyword in the slug`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+    for (const f of list.filters ?? []) for (const v of f.include ?? []) assert(n.typePages!.some(t => t.shape === v), `${list.slug}: unknown For value ${v}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
