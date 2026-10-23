@@ -8,13 +8,13 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
  const selected=models.find(r=>r.id===racketId);
  return <div className="narrow">
   <h2 className="admin-heading">{`Edit ${w.one} details`}</h2>
-  <form action="/admin" method="get" className="spec-selector">
+  <form action="/funtimes" method="get" className="spec-selector">
    <input type="hidden" name="tab" value="specs"/>
    <label className="field">{`Select a ${w.one}`}<select name="racket" required defaultValue={selected?.id||""}><option value="" disabled>{`Choose a ${w.one}…`}</option>{models.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></label>
    <button type="submit">{`Open ${w.one}`}</button>
   </form>
   {racketId && !selected && <p role="alert" className="form-error">{`${w.One} not found. Choose a ${w.one} from the list.`}</p>}
-  {selected ? <form action="/api/admin/racket-specs" method="post" className="review-form" key={selected.id}>
+  {selected ? <form action="/api/funtimes/racket-specs" method="post" className="review-form" key={selected.id}>
    <input type="hidden" name="id" value={selected.id}/>
    <p className="small"><a href={`${catalogPath}/${selected.slug}`} target="_blank" rel="noopener noreferrer">{`View ${w.one} page ↗`}</a></p>
    <p className="small muted">{`Name, brand, year and specifications are shared by all reviews of this ${w.one}.`}</p>

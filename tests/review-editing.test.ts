@@ -10,7 +10,7 @@ import {reviews,externalReviews,rackets} from "../db/schema";
 import {reviewEditInput,reviewRevision,saveReviewEdit} from "../db/review-editing";
 import {catalog,score} from "../db/data";
 import type {getDb} from "../db/index";
-import {POST} from "../app/api/admin/edit-review/route";
+import {POST} from "../app/api/funtimes/edit-review/route";
 
 const fields=(row:object)=>Object.fromEntries(Object.entries(row).map(([key,value])=>[key,value??""]));
 test("player and web edits preserve identity and dates, update public data, and reject stale forms",async()=>{
@@ -54,7 +54,7 @@ test("review edit validation rejects unsafe source links, invalid dates and out-
 });
 test("anonymous users cannot submit player or web edits",async()=>{
  for(const type of ["player","web"]){
-  const response=await POST(new Request("https://www.padelrecs.com/api/admin/edit-review",{method:"POST",headers:{origin:"https://www.padelrecs.com","content-type":"application/x-www-form-urlencoded"},body:`type=${type}&id=approved-review`}));
+  const response=await POST(new Request("https://www.padelrecs.com/api/funtimes/edit-review",{method:"POST",headers:{origin:"https://www.padelrecs.com","content-type":"application/x-www-form-urlencoded"},body:`type=${type}&id=approved-review`}));
   assert.equal(response.status,403);
  }
 });

@@ -35,7 +35,7 @@ const messages: Record<string,string> = {
 export default async function Admin({searchParams}:{searchParams:Promise<{status?:string,tab?:string,page?:string,result?:string,racket?:string}>}) {
  if (!(await isAdmin())) {
   const user = await getCurrentUser();
-  return <main className="narrow"><div className="page-title"><h1>Review admin</h1></div><p>{user ? "This account does not have admin access." : "Sign in with the owner account to manage reviews."}</p>{!user && <a className="button" href="/admin/login">Admin sign in →</a>}<p><a href="/">Back to reviews</a></p></main>;
+  return <main className="narrow"><div className="page-title"><h1>Review admin</h1></div><p>{user ? "This account does not have admin access." : "Sign in with the owner account to manage reviews."}</p>{!user && <a className="button" href="/funtimes/login">Admin sign in →</a>}<p><a href="/">Back to reviews</a></p></main>;
  }
  const q=await searchParams, web=q.tab==="web", specs=q.tab==="specs";
  const status = q.status==="approved"||q.status==="rejected" ? q.status : "pending";
@@ -49,10 +49,10 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
   (web||specs) ? db.select({id:brands.id,name:brands.name}).from(brands).orderBy(brands.name) : Promise.resolve([])
  ]);
  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">{`Manage ${niche.people.one} submissions, web reviews, and ${w.one} specifications.`}</p></div>
- <nav className="admin-nav" aria-label="Admin sections"><a href="/admin" aria-current={!web&&!specs?"page":undefined}>{`${niche.people.One} submissions`}</a><a href="/admin?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/admin?tab=specs" aria-current={specs?"page":undefined}>{`${w.Many} & specs`}</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
+ <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes" aria-current={!web&&!specs?"page":undefined}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={specs?"page":undefined}>{`${w.Many} & specs`}</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
  {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing","spec-slug-taken","spec-slug-invalid"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
  {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket} oldSlugs={q.racket ? await oldSlugs(db, q.racket) : []}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
- <form method="post" action="/api/admin/external-reviews" className="review-form">
+ <form method="post" action="/api/funtimes/external-reviews" className="review-form">
  <RacketPicker models={models} brands={allBrands}/>
  <label className="field">Summary <span className="muted">(our own words)</span><textarea name="summary" maxLength={1200} placeholder="Who is speaking and what they found, in our own words…"/><small>Shown first, as the card’s main text; write it in the third person (“Has played it for…”). At least 30 characters, or leave blank and add an excerpt.</small></label>
  <label className="field">Review excerpt <span className="muted">(the source’s exact words)</span><textarea name="excerpt" placeholder="A short excerpt from the original review…"/><small>At least 20 characters, or blank if there is a summary. Keep the original meaning and credit the source.</small></label>
@@ -62,20 +62,20 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <label className="field">Source date <span className="muted">(optional)</span><input name="sourceDate" type="date"/><small>Leave blank if the original publication date is unknown.</small></label>
  <TagCheckboxes/>
  <p className="small muted">Web excerpts appear with their source below the text. They have no star rating and do not affect {niche.people.one} averages.</p><button type="submit">Publish web review</button></form>
- <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3>{e.summary&&<p className="review-text"><b>Summary:</b> {e.summary}</p>}{e.excerpt&&<p className="review-text">“{e.excerpt}”</p>}<TagList tags={e.tags}/><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/admin/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p></article>) : <p className="muted">No web reviews added yet.</p>}
- <div className="admin-pagination">{page>1&&<a href={`/admin?tab=web&page=${page-1}`}>← Newer</a>}{external.length>20&&<a href={`/admin?tab=web&page=${page+1}`}>Older →</a>}</div>
+ <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3>{e.summary&&<p className="review-text"><b>Summary:</b> {e.summary}</p>}{e.excerpt&&<p className="review-text">“{e.excerpt}”</p>}<TagList tags={e.tags}/><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/funtimes/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p></article>) : <p className="muted">No web reviews added yet.</p>}
+ <div className="admin-pagination">{page>1&&<a href={`/funtimes?tab=web&page=${page-1}`}>← Newer</a>}{external.length>20&&<a href={`/funtimes?tab=web&page=${page+1}`}>Older →</a>}</div>
  </div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
- <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/admin?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
+ <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/funtimes?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
  <div className="admin-queue">{queue.slice(0,20).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
  <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={`${catalogPath}/${model?.slug}`}>{model?.name}</a></h3>
  <p className="review-text">{r.reviewText}</p><TagList tags={r.tags}/><div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
  <div className="byline"><span>by <b>{r.alias||`Anonymous ${niche.people.one}`}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
- <p><a href={`/admin/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
- <div className="admin-actions">{["approved","rejected","pending"].filter(s=>s!==r.status).map(next=><form action="/api/admin/reviews" method="post" key={next}><input type="hidden" name="id" value={r.id}/><input type="hidden" name="status" value={next}/><input type="hidden" name="expectedStatus" value={r.status}/><input type="hidden" name="returnStatus" value={status}/><button type="submit" className={next==="approved"?"":"secondary-button"}>{next==="approved"?"Approve":next==="rejected"?"Reject":"Move to pending"}</button></form>)}</div>
+ <p><a href={`/funtimes/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
+ <div className="admin-actions">{["approved","rejected","pending"].filter(s=>s!==r.status).map(next=><form action="/api/funtimes/reviews" method="post" key={next}><input type="hidden" name="id" value={r.id}/><input type="hidden" name="status" value={next}/><input type="hidden" name="expectedStatus" value={r.status}/><input type="hidden" name="returnStatus" value={status}/><button type="submit" className={next==="approved"?"":"secondary-button"}>{next==="approved"?"Approve":next==="rejected"?"Reject":"Move to pending"}</button></form>)}</div>
  </article>})}{!queue.length && <p className="admin-empty">No {status} submissions.</p>}</div>
- <div className="admin-pagination">{page>1&&<a href={`/admin?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>20&&<a href={`/admin?status=${status}&page=${page+1}`}>Older →</a>}</div>
+ <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>20&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
  </>}
  </main>;
 }

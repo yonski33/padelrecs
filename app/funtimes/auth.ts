@@ -13,7 +13,7 @@ export async function adminWriteGuard(request: Request) {
  return null;
 }
 export function adminRedirect(request: Request, query: string) {
- return new Response(null, {status: 303, headers: {Location: new URL(`/admin?${query}`, siteOrigin(request.url)).toString(), "Cache-Control": "no-store"}});
+ return new Response(null, {status: 303, headers: {Location: new URL(`/funtimes?${query}`, siteOrigin(request.url)).toString(), "Cache-Control": "no-store"}});
 }
 export async function readAdminForm(request: Request) {
  const text = await request.text();

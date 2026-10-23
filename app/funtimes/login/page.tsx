@@ -4,7 +4,7 @@ import { niche } from "../../../lib/niche";
 export const dynamic="force-dynamic";
 export const metadata={title:"Admin sign in",robots:{index:false,follow:false}};
 export default async function Login({searchParams}:{searchParams:Promise<{result?:string}>}) {
- if(await isAdmin())redirect("/admin");
+ if(await isAdmin())redirect("/funtimes");
  const {result}=await searchParams;
  const configured=!!process.env.NEXT_PUBLIC_SUPABASE_URL&&!!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
  return <main className="narrow"><div className="page-title"><h1>Admin sign in</h1></div>

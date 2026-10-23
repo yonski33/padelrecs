@@ -13,18 +13,18 @@ export const metadata={title:"Edit review",robots:{index:false,follow:false}};
 const errors:Record<string,string>={invalid:"Check the required fields, ratings, email and source URL. Review text must contain at least 20 characters.",stale:"This review changed while you were editing. Its latest values are shown below. Check them before saving again.",missing:"This review no longer exists.",failed:"Could not save your changes. Please try again."};
 
 export default async function EditReview({searchParams}:{searchParams:Promise<{type?:string,id?:string,result?:string}>}){
- if(!await isAdmin())redirect("/admin/login");
+ if(!await isAdmin())redirect("/funtimes/login");
  const q=await searchParams;if(!q.id||q.id.length>100||!["player","web"].includes(q.type||""))notFound();
  const db=await database(),web=q.type==="web";
  const [player]=web?[]:await db.select().from(reviews).where(eq(reviews.id,q.id));
  const [external]=web?await db.select().from(externalReviews).where(eq(externalReviews.id,q.id)):[];
  const selected=player||external;if(!selected)notFound();
  const models=await db.select({id:rackets.id,name:rackets.name}).from(rackets).orderBy(rackets.name);
- const back=web?"/admin?tab=web":`/admin?status=${player!.status}`;
+ const back=web?"/funtimes?tab=web":`/funtimes?status=${player!.status}`;
  return <main className="narrow"><div className="page-title"><h1>Edit {web?"web review":`${niche.people.one} submission`}</h1></div>
  <p><a href={back}>← Back to reviews</a></p>
  {q.result&&errors[q.result]&&<p className="form-error" role="alert">{errors[q.result]}</p>}
- <form action="/api/admin/edit-review" method="post" className="review-form">
+ <form action="/api/funtimes/edit-review" method="post" className="review-form">
  <input type="hidden" name="type" value={web?"web":"player"}/><input type="hidden" name="id" value={selected.id}/><input type="hidden" name="revision" value={reviewRevision(selected)}/>
  <input type="hidden" name="returnStatus" value={player?.status||"pending"}/>
  <RacketEditSelector key={selected.id} models={models} racketId={selected.racketId}/>

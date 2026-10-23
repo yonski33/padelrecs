@@ -1,5 +1,5 @@
 "use client";
-import {Fragment, useRef, useState} from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
 import {LogoIcon} from "../icons";
 import {MAX_TAGS, TAGS} from "../../lib/tags";
@@ -16,7 +16,17 @@ function Options({name, options}: {name: string; options: readonly Option[]}) {
   <label key={value}><input type="radio" name={name} value={value}/><span>{name === "timeWithRacket" ? hint : value}{name !== "timeWithRacket" && hint && <small>{hint}</small>}</span></label>)}</div>;
 }
 
+// A signed "form opened at" token (lib/form-token.ts); refreshed hourly so a form left open for a long time still posts.
+async function fetchFormToken(){
+ try{const r=await fetch("/api/reviews",{cache:"no-store"});return r.ok?((await r.json()) as {token?:string}).token||"":"";}catch{return "";}
+}
+
 export default function ReviewForm({rackets,brands,initialRacket}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string}) {
+ const formToken=useRef("");
+ useEffect(()=>{
+  const load=()=>fetchFormToken().then(t=>{if(t)formToken.current=t;});
+  load();const timer=setInterval(load,60*60_000);return ()=>clearInterval(timer);
+ },[]);
  const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState("");
  const [tags,setTags]=useState<string[]>([]);
  const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string}>(null);
@@ -29,9 +39,11 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&(!hasYears||/^\d{4}$/.test(values.year||"")))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand${hasYears?", model and year":" and product name"}.`);return;}
   if(!values.rating){setError(`Give it an overall rating — tap one of the ${scoreUnit.many}.`);return;}
   if((values.reviewText||"").trim().length<20){setError(`Tell us a little more — at least 20 characters about ${niche.copy.ui.howItWent}.`);return;}
+  if(!formToken.current)formToken.current=await fetchFormToken();
+  if(!formToken.current){setError("Could not reach the site. Check your connection and try again.");return;}
   setBusy(true);
   try {
-   const response=await fetch("/api/reviews",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...values,tags})});
+   const response=await fetch("/api/reviews",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...values,tags,formToken:formToken.current})});
    const result=await response.json() as {error?:string};
    if(!response.ok)throw new Error(result.error||"Could not save your review.");
    const picked=rackets.find(r=>r.id===values.racketId);
@@ -58,6 +70,8 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   <div>
    <div className="form-title"><h1>Add a review</h1><p>{niche.copy.ui.formIntro}</p></div>
    <form className="review-form" onSubmit={submit} noValidate>
+    {/* Honeypot: off-screen and skipped by keyboard and screen readers; a filled one marks the post as a bot's. */}
+    <div className="hp" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" defaultValue=""/></label></div>
     <section className="step">
      <h2 className="step-h"><span className="no">1</span>{`Which ${w.one}?`}</h2>
      <RacketField rackets={rackets} brands={brands} initialRacket={initialRacket}/>
