@@ -19,7 +19,9 @@ const config:NextConfig={
  },
  async redirects(){
   const types=niche.typePages?.length?[{source:"/types/:slug",destination:"/:slug",permanent:true}]:[];
-  return products==="/rackets"?types:[...types,{source:"/rackets",destination:products,permanent:true},{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}];
+  // Renamed ranking lists: each former slug answers with a 301 to the current one (lib/niche/<niche>.ts formerSlugs).
+  const rankings=(niche.topLists??[]).flatMap(l=>(l.formerSlugs??[]).map(old=>({source:`/rankings/${old}`,destination:`/rankings/${l.slug}`,statusCode:301 as const})));
+  return products==="/rackets"?[...types,...rankings]:[...types,...rankings,{source:"/rackets",destination:products,permanent:true},{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}];
  },
  turbopack:{root},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
  // Public pages look the same for everyone: Vercel's CDN may serve a copy up to a minute old and refresh it in the background.

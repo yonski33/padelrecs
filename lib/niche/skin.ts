@@ -129,11 +129,11 @@ export const skin: Niche = {
   // /rankings pages (lib/top-lists.ts). Skincare formulas change slowly, so reviews from the last 5 years count (reviewYears).
   // One list per product type that has enough reviews, plus two by skin concern.
   topLists: [
-    { slug: "best-moisturizers", label: "Moisturizers", title: "Best Moisturizers", minReviews: 10, reviewYears: 5,
+    { slug: "best-face-moisturizers", formerSlugs: ["best-moisturizers"], label: "Moisturizers", title: "Best Face Moisturizers", minReviews: 10, reviewYears: 5,
       intro: "The face moisturizers users are most consistently happy with.", filters: [{ column: "shape", include: ["Moisturizer"] }] },
-    { slug: "best-cleansers", label: "Cleansers", title: "Best Face Cleansers", minReviews: 8, reviewYears: 5,
+    { slug: "best-face-cleansers", formerSlugs: ["best-cleansers"], label: "Cleansers", title: "Best Face Cleansers", minReviews: 8, reviewYears: 5,
       intro: "The face cleansers users are most consistently happy with.", filters: [{ column: "shape", include: ["Cleanser"] }] },
-    { slug: "best-sunscreens", label: "Sunscreens", title: "Best Face Sunscreens", minReviews: 6, reviewYears: 5,
+    { slug: "best-face-sunscreens", formerSlugs: ["best-sunscreens"], label: "Sunscreens", title: "Best Face Sunscreens", minReviews: 6, reviewYears: 5,
       intro: "The face sunscreens users are most consistently happy with.", filters: [{ column: "shape", include: ["Sunscreen"] }] },
     { slug: "best-skincare-treatments", label: "Treatments", title: "Best Skincare Treatments", minReviews: 8, reviewYears: 5,
       intro: "Retinoids, acids and spot treatments users are most consistently happy with.", filters: [{ column: "shape", include: ["Treatment"] }] },

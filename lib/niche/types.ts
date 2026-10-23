@@ -38,6 +38,8 @@ export type SpecFilter = { column: SpecColumn; include?: string[]; exclude?: str
 /** A data-driven "best of" page at /rankings/<slug>, ranked by lib/top-lists.ts. */
 export type TopList = {
   slug: string;
+  /** Earlier slugs of this list. Each one 301-redirects to the current slug (next.config.ts), so links and rankings carry over. */
+  formerSlugs?: string[];
   /** Menu and index label, e.g. "Best for power". */
   label: string;
   /** Start of the page title; the year and review count follow: "Best Padel Rackets for Power" → "Best Padel Rackets for Power 2026, Ranked by …". */
