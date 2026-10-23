@@ -62,7 +62,7 @@ test("publishing writes web reviews that show on the site, can't happen twice, a
     await importSnapshot(db, parseSnapshot(fixture));
     const candidates = parseCandidates(queue);
     const plan = planImport(candidates, await siteState(db), niches.padel);
-    assert.deepEqual(await applyImport(db, plan), { inserted: 3, updated: 0 });
+    assert.deepEqual(await applyImport(db, plan), { inserted: 3, updated: 0, removed: 0 });
     const site = await catalog(db);
     const published = site.external.find(e => e.id === webReviewId("c1"))!;
     assert.equal(published.excerpt, "I have the same racket with 7 months of experience and I dont feel that at all.");
@@ -80,11 +80,30 @@ test("publishing writes web reviews that show on the site, can't happen twice, a
     const rewritten = marked.map(c => c.id === "c1" ? { ...c, summary: "Rewritten: a seven-month owner who never noticed any trampoline effect." } : c);
     const update = planImport(rewritten, await siteState(db), niches.padel);
     assert.deepEqual(update.updates.map(u => u.candidateId), ["c1"]);
-    assert.deepEqual(await applyImport(db, update), { inserted: 0, updated: 1 });
+    assert.deepEqual(await applyImport(db, update), { inserted: 0, updated: 1, removed: 0 });
     assert.match((await catalog(db)).external.find(e => e.id === webReviewId("c1"))!.summary!, /^Rewritten/);
     // A changed sentiment (or one published before sentiments were stored) is brought in line too.
     const relabelled = rewritten.map(c => c.id === "c1" ? { ...c, sentiment: "mixed" as const } : c);
     assert.deepEqual(planImport(relabelled, await siteState(db), niches.padel).updates.map(u => [u.candidateId, u.sentiment]), [["c1", "mixed"]]);
     assert.equal(marked.find(c => c.id === "c2")!.status, "approved");
+    // A withdrawn item (its source no longer says what we quote) comes off the site; withdrawing again changes nothing.
+    const withdrawn = relabelled.map(c => c.id === "c8" ? { ...c, status: "withdrawn" } : c);
+    const removal = planImport(withdrawn, await siteState(db), niches.padel);
+    assert.deepEqual(removal.removals, [{ candidateId: "c8", id: webReviewId("c8") }]);
+    assert.deepEqual(await applyImport(db, removal), { inserted: 0, updated: 1, removed: 1 });
+    assert.equal((await catalog(db)).external.some(e => e.id === webReviewId("c8")), false);
+    assert.equal(planImport(withdrawn, await siteState(db), niches.padel).removals.length, 0);
   } finally { await engine.close(); }
+});
+
+test("YouTube comments under one video are separate sources; the same comment found twice is one", () => {
+  const yt = (id: string, url: string) => line({ id, source_platform: "YouTube", source_name: "Padel Racket Reviews", source_url: url });
+  const q = [
+    yt("y1", "https://www.youtube.com/watch?v=abcdefghijk&lc=UgxOne"),
+    yt("y2", "https://youtube.com/watch?lc=UgxTwo&v=abcdefghijk"),
+    yt("y3", "https://m.youtube.com/watch?v=abcdefghijk&lc=UgxOne&t=42s"),
+  ].join("\n") + "\n";
+  const plan = planImport(parseCandidates(q), { rackets: [{ id: "racket-nox", name: "Nox Test 2025" }], external: [] }, niches.padel);
+  assert.deepEqual(plan.rows.map(r => r.candidateId), ["y1", "y2"]);
+  assert.match(plan.skipped[0].reason, /already quoted/);
 });
