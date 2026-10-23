@@ -108,6 +108,9 @@ export type Niche = {
   /** Extra detail on product rows in the catalogue, after the shape. */
   rowDetail?: { column: SpecColumn; suffix: string };
   tags: Tag[];
+  /** Pages that moved to another Recs site (GamingRecs monitors → MonitorRecs). Each answers with a 301 to the absolute
+   *  destination (next.config.ts); `query` limits one to addresses carrying that query value, e.g. a catalogue filter. */
+  movedAway?: { source: string; destination: string; query?: { key: string; value: string } }[];
   /** Rankings pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
   topLists?: TopList[];
   sourcePlatforms: string[];

@@ -21,7 +21,10 @@ const config:NextConfig={
   const types=niche.typePages?.length?[{source:"/types/:slug",destination:"/:slug",permanent:true}]:[];
   // Renamed ranking lists: each former slug answers with a 301 to the current one (lib/niche/<niche>.ts formerSlugs).
   const rankings=(niche.topLists??[]).flatMap(l=>(l.formerSlugs??[]).map(old=>({source:`/rankings/${old}`,destination:`/rankings/${l.slug}`,statusCode:301 as const})));
-  return products==="/rackets"?[...types,...rankings]:[...types,...rankings,{source:"/rackets",destination:products,permanent:true},{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}];
+  // Pages that moved to another Recs site: 301 to the absolute address there (lib/niche/<niche>.ts movedAway). Listed first
+  // so they win over the generic /rackets and /types redirects.
+  const moved=(niche.movedAway??[]).map(m=>({source:m.source,destination:m.destination,statusCode:301 as const,...(m.query?{has:[{type:"query" as const,key:m.query.key,value:m.query.value}]}:{})}));
+  return products==="/rackets"?[...moved,...types,...rankings]:[...moved,...types,...rankings,{source:"/rackets",destination:products,permanent:true},{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}];
  },
  turbopack:{root},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
  // Public pages look the same for everyone: Vercel's CDN may serve a copy up to a minute old and refresh it in the background.

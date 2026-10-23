@@ -1,7 +1,7 @@
-// GamingRecs visuals: one simple line drawing per category (mouse from above, keyboard, headset, controller, monitor),
+// GamingRecs visuals: one simple line drawing per category (mouse from above, keyboard, headset, controller),
 // all in the same 40×64 box as the other niches' product drawings, and the keycap logo.
 
-export type Shape = "mouse" | "keyboard" | "headset" | "controller" | "monitor" | "unknown";
+export type Shape = "mouse" | "keyboard" | "headset" | "controller" | "unknown";
 
 // The catalog's "Category" field picks the drawing; anything unrecognised is drawn as a plain tile.
 export function shapeOf(category?: string | null): Shape {
@@ -10,7 +10,6 @@ export function shapeOf(category?: string | null): Shape {
   if (s.includes("keyboard")) return "keyboard";
   if (s.includes("headset") || s.includes("earbud")) return "headset";
   if (s.includes("controller") || s.includes("gamepad")) return "controller";
-  if (s.includes("monitor")) return "monitor";
   return "unknown";
 }
 
@@ -45,11 +44,6 @@ export function ProductIcon({ shape, className }: { shape?: string | null; brand
       <path d="M12 23h16c5 0 7.5 3.5 8.3 9l1 7.5c.6 4.3-3.4 6.5-6.2 3.7L27 39H13l-4.1 4.2c-2.8 2.8-6.8.6-6.2-3.7l1-7.5C4.5 26.5 7 23 12 23z" {...line}/>
       <path d="M12 28.5v6M9 31.5h6" {...line} strokeOpacity=".6"/>
       <path d="M27 29h.01M30 32h.01" {...line} strokeWidth={3} strokeOpacity=".6"/>
-    </>}
-    {kind === "monitor" && <>
-      <rect x="3" y="18" width="34" height="23" rx="2.5" {...soft}/>
-      <rect x="3" y="18" width="34" height="23" rx="2.5" {...line}/>
-      <path d="M20 41v7M13 49h14" {...line}/>
     </>}
     {kind === "unknown" && <rect x="8" y="20" width="24" height="24" rx="4" {...line}/>}
   </svg>;
