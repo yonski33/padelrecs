@@ -58,6 +58,11 @@
       "name": "audiorecs",
       "id": "prj_3dZsgG3qW5vE673jLVCUNNIAYeKH",
       "domain": "www.audiorecs.com"
+    },
+    "monitor": {
+      "name": "monitorrecs",
+      "id": "prj_FrM1xN2d7j8j2RpDlvgN3R8KeQ4E",
+      "domain": "www.monitorrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
