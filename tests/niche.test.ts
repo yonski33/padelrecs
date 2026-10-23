@@ -362,3 +362,26 @@ test("ultralight: gear named without years, four category pages that each pick a
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("badminton: rackets named without years, series as the catalogue shape, singles/doubles profile, shuttlecock rating icons", async () => {
+  const n = selectNiche("badminton");
+  assert.equal(n.schema, "badmintonrecs");
+  assert.equal(n.site.domain, "badmintonrecs.com");
+  assert.equal(n.productPath, "rackets");
+  assert.equal(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.words.one, "racket");
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Power:powerRating", "Control:controlRating", "Speed:maneuverabilityRating", "Forgiveness:forgivenessRating", "Feel:comfortRating"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Series", "Weight", "Balance", "Flex", "String tension"]);
+  assert.deepEqual(n.profile.playingSide.options.map(o => o.value), ["Singles", "Doubles", "Mixed", "All of them"]);
+  const { shapeOf } = await import("../app/art/badminton");
+  assert(n.specs[0].options!.every(s => shapeOf(s) === "racket"));
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /badminton/, `${list.slug}: niche keyword in the slug`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

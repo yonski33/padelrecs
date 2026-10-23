@@ -317,3 +317,27 @@ test("the UltralightRecs starter catalog: sourced tents, packs, pads and quilts,
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Durston X-Mid Pro 2")?.slug, "durston-x-mid-pro-2");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Durston X-Mid Pro 2+")?.slug, "durston-x-mid-pro-2-plus");
 });
+
+test("the BadmintonRecs starter catalog: sourced Yonex, Victor and Li-Ning rackets, known series, no years or colour codes, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/badminton.json");
+  const snapshot = catalogSnapshot(catalog, "badmintonrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 3);
+  assert(snapshot.tables.rackets.length >= 180);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const series = niches.badminton.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/badminton");
+  for (const r of snapshot.tables.rackets) {
+    assert(series.includes(r.shape!), `${r.name}: unknown series ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    // Model numbers like Halbertec 2000 are not years; 2010–2029 would be.
+    assert(!/ 20[12]\d$/.test(r.name), `${r.name}: rackets are named without years`);
+    assert(r.name.split(" ").includes(r.shape!), `${r.name}: series ${r.shape} not in the name`);
+  }
+  for (const s of series) assert(snapshot.tables.rackets.some(r => r.shape === s), `${s}: at least one racket`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Yonex Astrox 99 Pro")?.slug, "yonex-astrox-99-pro");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Victor Auraspeed Fantôme")?.slug, "victor-auraspeed-fantome");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Li-Ning Halbertec 8000")?.balance, "Even balance (302 mm)");
+});
