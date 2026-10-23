@@ -236,3 +236,20 @@ test("the CyclingRecs starter catalog: sourced bikes without years, one per mode
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Trek Domane SL Gen 5")?.slug, "trek-domane-sl-gen-5");
 });
+
+test("the AudioRecs starter catalog: sourced headphones, IEMs and earbuds without years, no gaming headsets, unique URLs", async () => {
+  const catalog = await readCatalog("db/catalogs/audio.json");
+  const snapshot = catalogSnapshot(catalog, "audiorecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 26);
+  assert(snapshot.tables.rackets.length >= 400);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/audio");
+  for (const r of snapshot.tables.rackets) {
+    assert(r.shape !== null && shapeOf(r.shape) !== "unknown", `${r.name}: category ${r.shape}`);
+    assert(r.weight === null || ["Wired", "Wireless"].includes(r.weight), `${r.name}: connection ${r.weight}`);
+    assert(!/\b(INZONE|Maxwell|Gaming|Headset)\b/i.test(r.name), `${r.name}: gaming headsets belong to GamingRecs`);
+  }
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Sony WH-1000XM6")?.slug, "sony-wh-1000xm6");
+});

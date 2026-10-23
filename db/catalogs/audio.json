@@ -1,0 +1,5255 @@
+{
+  "about": "AudioRecs starter catalog (2026-10-23): headphones (over-ear and on-ear, wired and wireless), wired IEMs and true wireless earbuds the makers sell now, read from the makers' own pages (sony.jp, apple.com, bose.com, us.sennheiser-hearing.com and sennheiser.com, audio-technica.com, beyerdynamic.com, audeze.com, mezeaudio.com, gradolabs.com, campfireaudio.com, kiwiears.com) and from the audio retailers headphones.com (HIFIMAN, Focal, Dan Clark Audio, Truthear, Final, Bowers & Wilkins) and linsoul.com (Moondrop, 7Hz, Simgot, Tangzu, Thieaudio, Dunu, Letshuoer, Tanchjim, KZ). One entry per model as the maker names it, with the generation when the name carries one (Sony WH-1000XM6, AirPods Pro 3, Sennheiser Momentum 4 Wireless); colours, limited editions and bundles are left out, and so are gaming headsets (GamingRecs covers those). Columns: shape = category (Headphones, IEMs, Earbuds), balance = form (open-back, closed-back, over-ear, open-ear) and weight = connection (Wired, Wireless) only where the name or page says it; core and surface are blank.",
+  "checked": "2026-10-23",
+  "brands": [
+    {
+      "id": "7hz",
+      "name": "7Hz"
+    },
+    {
+      "id": "apple",
+      "name": "Apple"
+    },
+    {
+      "id": "audeze",
+      "name": "Audeze"
+    },
+    {
+      "id": "audio-technica",
+      "name": "Audio-Technica"
+    },
+    {
+      "id": "beyerdynamic",
+      "name": "Beyerdynamic"
+    },
+    {
+      "id": "bose",
+      "name": "Bose"
+    },
+    {
+      "id": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins"
+    },
+    {
+      "id": "campfire-audio",
+      "name": "Campfire Audio"
+    },
+    {
+      "id": "dan-clark-audio",
+      "name": "Dan Clark Audio"
+    },
+    {
+      "id": "dunu",
+      "name": "Dunu"
+    },
+    {
+      "id": "final",
+      "name": "Final"
+    },
+    {
+      "id": "focal",
+      "name": "Focal"
+    },
+    {
+      "id": "grado",
+      "name": "Grado"
+    },
+    {
+      "id": "hifiman",
+      "name": "HIFIMAN"
+    },
+    {
+      "id": "kiwi-ears",
+      "name": "Kiwi Ears"
+    },
+    {
+      "id": "kz",
+      "name": "KZ"
+    },
+    {
+      "id": "letshuoer",
+      "name": "Letshuoer"
+    },
+    {
+      "id": "meze",
+      "name": "Meze"
+    },
+    {
+      "id": "moondrop",
+      "name": "Moondrop"
+    },
+    {
+      "id": "sennheiser",
+      "name": "Sennheiser"
+    },
+    {
+      "id": "simgot",
+      "name": "Simgot"
+    },
+    {
+      "id": "sony",
+      "name": "Sony"
+    },
+    {
+      "id": "tanchjim",
+      "name": "Tanchjim"
+    },
+    {
+      "id": "tangzu",
+      "name": "Tangzu"
+    },
+    {
+      "id": "thieaudio",
+      "name": "Thieaudio"
+    },
+    {
+      "id": "truthear",
+      "name": "Truthear"
+    }
+  ],
+  "products": [
+    {
+      "brand": "7hz",
+      "name": "7Hz Aero",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-aero"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Aurora",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-aurora"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Diablo",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-x-crinacle-diablo"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Divine",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-x-crinacle-divine"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Elua",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-x-hbb-elua"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Elua Ultra",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-elua-ultra"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Eternal",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-eternal"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Five",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-five"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz G1",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-g1"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Legato",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-legato"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Salnotes Dioko",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-x-crinacle-salnotes-dioko"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Salnotes Zero",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-salnotes-zero"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Sonus",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-sonus"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Sonus II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-sonus-ii"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Timeless",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-timeless"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Timeless II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-timeless-ii"
+      ]
+    },
+    {
+      "brand": "7hz",
+      "name": "7Hz Zero:2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/7hz-x-crinacle-zero-2"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods 4",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods 4 with Active Noise Cancellation",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods 5",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods Max",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods Max 2",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods Pro 2",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirPods Pro 3",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airpods/",
+        "https://www.apple.com/airpods/compare/"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze CRBN",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/crbn"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze CRBN2",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/crbn2"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze Euclid",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audeze.com/products/euclid"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-1",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-1"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-2",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-2"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-2 Classic",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-2-classic"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-2 Closed-Back",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audeze.com/products/lcd-2-closed-back"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-24",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-24"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-3",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-3"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-4",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-4"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-4z",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-4z"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-5",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-5"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-5s",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-5s"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-MX4",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-mx4"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-S20",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audeze.com/products/lcd-s20"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-x"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCD-XC",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/lcd-xc"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCDi3",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audeze.com/products/lcd-i3"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze LCDi4",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audeze.com/products/lcd-i4"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze MM-100",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/mm-100"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze MM-500",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/mm-500"
+      ]
+    },
+    {
+      "brand": "audeze",
+      "name": "Audeze MM-520",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audeze.com/products/mm-520"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-A550Z",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-a550z"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-A990Z",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-a990z"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AD500X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-ad500x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AD700X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-ad700x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AD900X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-ad900x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-ADX3000",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-adx3000"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-ADX5000",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-adx5000"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-ADX7000",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-adx7000"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AL5NC",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-al5nc"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AWAS",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-awas"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AWKG",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-awkg"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-AWKT",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-awkt"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-CKS30TW+",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-cks30tw"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-CKS50TW2",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-cks50tw2"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-E40",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-e40"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-E50",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-e50"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-E70",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-e70"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-IEX1",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-iex1"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M20x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m20x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M20xBT",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m20xbt"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M30x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m30x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M40x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m40x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M50x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m50x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M50xBT2",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m50xbt2"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M60xa",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m60xa"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-M70x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-m70x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-R30x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-r30x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-R50x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-r50x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-R70xa",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-r70xa"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-S220BT",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-s220bt"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-S300BT",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-s300bt"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-TWX7",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-twx7"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-TWX9",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-twx9"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-WBLTD",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-wbltd"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-WP900",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.audio-technica.com/en-us/ath-wp900"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic Amiron 200",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic Amiron 300",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic Amiron Zero",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic Aventho 100",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic Aventho 300",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic Aventho Y",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DJ 300 PRO X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 1770 PRO MKII",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 1990 PRO MKII",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 70 IE",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 700 PRO X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 71 IE",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 72 IE",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 73 IE",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 770 PRO",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 770 PRO X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 880 Edition",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 880 PRO",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 900 PRO X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 990 Edition",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 990 PRO",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 990 PRO X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://north-america.beyerdynamic.com/c/headphones-headsets"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose QuietComfort Earbuds",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bose.com/c/earbuds"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose QuietComfort Headphones",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.bose.com/c/headphones"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose QuietComfort Headphones (2nd Gen)",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.bose.com/c/headphones"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose QuietComfort Ultra Earbuds",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bose.com/c/earbuds"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose QuietComfort Ultra Earbuds (2nd Gen)",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bose.com/c/earbuds"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose QuietComfort Ultra Headphones (2nd Gen)",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.bose.com/c/headphones"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose Sport Open Earbuds",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Open-ear",
+      "sources": [
+        "https://www.bose.com/c/earbuds"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose Ultra Open Earbuds",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Open-ear",
+      "sources": [
+        "https://www.bose.com/c/earbuds"
+      ]
+    },
+    {
+      "brand": "bose",
+      "name": "Bose Ultra Open Earbuds (2nd Gen)",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Open-ear",
+      "sources": [
+        "https://www.bose.com/c/earbuds"
+      ]
+    },
+    {
+      "brand": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins Pi5",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/bowers-wilkins-pi5-true-wireless-earbuds"
+      ]
+    },
+    {
+      "brand": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins Pi7",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/bowers-wilkins-pi7-true-wireless-noise-cancelling-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins Pi8",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/bowers-wilkins-pi8-true-wireless-earbuds"
+      ]
+    },
+    {
+      "brand": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins PX8",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/bowers-wilkins-px8-wireless-anc-headphones"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Alien Brain",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/alien-brain"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Andromeda 10",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/andromeda-10"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Andromeda Emerald Sea",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/andromeda-emerald-sea"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Astrolith",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/astrolith"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Axion",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/axion"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Cascara",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/cascara"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Chimera",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/chimera"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Clara",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/clara"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Fathom",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/fathom"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Grand Luna",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/grand-luna"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Iris",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/iris"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Supermoon",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/supermoon-1"
+      ]
+    },
+    {
+      "brand": "campfire-audio",
+      "name": "Campfire Audio Trifecta",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.campfireaudio.com/products/trifecta-chrome-sky"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Aeon 2 Closed",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-aeon-2-closed"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Aeon 2 Noire",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-aeon-2-noire-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Aeon 2 Open",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-aeon-2-open-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Aeon Core",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-aeon-core-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio E3",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-e3-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Expanse",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-expanse-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Noire X",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-noire-x-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Noire XO",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-noire-xo-headphones"
+      ]
+    },
+    {
+      "brand": "dan-clark-audio",
+      "name": "Dan Clark Audio Stealth",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/dan-clark-audio-stealth-headphones"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu Alpha 3",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-alpha-3"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu DK3001BD",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-dk3001bd"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu DN242",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-dn242"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu Glacier",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-glacier"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu Kaoru",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-kaoru"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu KIMA 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-kima-2"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu Mortise",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.linsoul.com/products/dunu-mortise"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu SA6 EST",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-sa6-est"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu SA6 MKII",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-sa6-mkii"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu Titan S",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-titan-s"
+      ]
+    },
+    {
+      "brand": "dunu",
+      "name": "Dunu Titan S2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/dunu-titan-s2"
+      ]
+    },
+    {
+      "brand": "final",
+      "name": "Final D7000",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/final-audio-d7000-headphones"
+      ]
+    },
+    {
+      "brand": "final",
+      "name": "Final D8000 Pro",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/final-audio-d8000-pro"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Azurys",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://headphones.com/products/focal-azurys-closed-back-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Bathys",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-bathys-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Bathys MG",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-bathys-mg-wireless-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Celestee",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-celestee-high-end-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Clear",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-clear-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Clear MG",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-clear-mg-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Elex",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-elex-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Hadenys",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://headphones.com/products/focal-hadenys-open-back-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Stellia",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-stellia-headphones"
+      ]
+    },
+    {
+      "brand": "focal",
+      "name": "Focal Utopia 2022",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/focal-utopia-2022-headphones"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado GS1000",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/gs1000"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado GS3000",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/gs3000"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado GW100x",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/gw100x"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado Hemp",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/hemp-classic"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado RS1",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/rs1"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado Signature HP100 SE",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/hp100-se"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado Signature S150",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/s150"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado Signature S550",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/s550"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado Signature S750",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/s750"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado Signature S950",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/s950"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado SR325",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/sr325"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado SR60",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/sr60"
+      ]
+    },
+    {
+      "brand": "grado",
+      "name": "Grado SR80",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gradolabs.com/products/sr80"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Ananda BT",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-ananda-bt-wireless-headphones-2024-edition"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Ananda Nano",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-ananda-nano-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Ananda Stealth",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-ananda"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Ananda Unveiled",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-ananda-unveiled-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Arya Organic",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-arya-organic-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Arya Stealth",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-arya-headphones-stealth-magnets-edition"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Arya Unveiled",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-arya-unveiled-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Audivina",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://headphones.com/products/hifiman-audivina-closed-back-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Edition XS",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-edition-xs-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Edition XV",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-edition-xv-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN HE1000 Stealth",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-he1000-v2-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN HE1000 Unveiled",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-he1000-unveiled-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN HE1000se",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-he1000se"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN HE400se",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-he400se-entry-level-planar-magnetic-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN HE6 Remastered",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-he6-remastered-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN HE600",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-he600-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Sundara",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-sundara-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Sundara Closed-Back",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://headphones.com/products/hifiman-sundara-closed-back-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Susvara",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-susvara-flagship-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Susvara Unveiled",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-susvara-unveiled-headphones"
+      ]
+    },
+    {
+      "brand": "hifiman",
+      "name": "HIFIMAN Svanar",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/hifiman-svanar-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Aether",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-aether"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Airoso",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-airoso"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Altruva",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-altruva"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Ardor",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-ardor"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Astral",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-astral"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Atheia",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-atheia"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Aventus",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-aventus"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Belle",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-belle"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Cadenza",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-cadenza"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Cadenza II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-cadenza-ii"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Canta",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-canta"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Chorus",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-x-b_media-chorus"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Division",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-division"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Ellipse",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-ellipse"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Ember",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kiwi-ears-x-fugumikan-ember"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Etude",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-etude"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Forteza",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-forteza"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Halcyon",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-halcyon"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears KE4",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-ke4"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears KE4 II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-ke4-ii"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Orchestra",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-orchestra"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Orchestra II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-orchestra-ii"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Orchestra Lite",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-orchestra-lite"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Punch",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-x-hbb-punch"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Quartet",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-quartet"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Quintet",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-quintet"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Septet",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-septet"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Serene",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-x-z-reviews-serene"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Spark",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-spark"
+      ]
+    },
+    {
+      "brand": "kiwi-ears",
+      "name": "Kiwi Ears Stardust",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kiwiears.com/products/kiwi-ears-stardust"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ AM16",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-am16"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ AS10 Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-as10-pro"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ AS16 Pro X",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-as16-pro-x"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ AS24 Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-as24-pro"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Axas",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-axas"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Carol",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-carol"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Carol Pro",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-carol-pro"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Castor",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-castor"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Decet",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-decet"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Duet",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-duet"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Duonic",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-duonic"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ EDC Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-edc-pro"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ EDX Lite",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-edx-lite"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ EDX Pro X",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-edx-pro-x"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ EDXS",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-edxs"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ EDZ",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-edz"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Eldar",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-eldar"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Gale",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-gale"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Krila",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-krila"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Merga",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-merga"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Phantom",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-phantom"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Pisces",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-pisces"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ PR2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-pr2"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ PR3",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-pr3"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ PRX",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-prx"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Sonata X",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-sonata-x"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Sora",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-sora"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Symphony",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-symphony"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Vader",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-vader"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Vader Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-vader-pro"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ Vibe X",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-vibe-x"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZAR",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zar"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZAT",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zat"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZS10 Pro 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zs10-pro2"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZSN Pro 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zsn-pro-2"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZSX Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zsx-pro"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZVX",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zvx"
+      ]
+    },
+    {
+      "brand": "kz",
+      "name": "KZ ZVX Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/kz-zvx-pro"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer Astralis",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-astralis"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer Cadenza 4",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-cadenza4"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer DX1",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-dx1"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer Mystic 8",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-mystic-8"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer S08",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-s08"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer S12",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/shuoer-s12"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer S12 Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-s12-pro"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer S12 Ultra",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-s12-ultra"
+      ]
+    },
+    {
+      "brand": "letshuoer",
+      "name": "Letshuoer S15",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/letshuoer-s15"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze 105 AER",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://mezeaudio.com/products/105-aer"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze 105 Silva",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/105-silva"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze 109 Pro",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/109-pro"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze 99 Classics",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/meze-99-classics-walnut-gold-wood-headphones"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze 99 Classics 2nd Gen",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/99-classics-v2-gold"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze 99 Neo",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/99-neo"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Advar",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/advar"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Alba",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/alba"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Arta",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/arta"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Astru",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/astru"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Elite",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/elite"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Elite Tungsten",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/elite-tungsten"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Empyrean II",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/empyrean2"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Liric 2nd Gen",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mezeaudio.com/products/liric"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Poet",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://mezeaudio.com/products/poet"
+      ]
+    },
+    {
+      "brand": "meze",
+      "name": "Meze Strada",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://mezeaudio.com/products/strada"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Aria 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-aria2"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Armature Art 24",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-armature-art-24"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Blessing 3",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-blessing3"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Chu II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-chu-ii"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Chu II DSP",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-chu-ii-dsp"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Chu III",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-chu-iii"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Cosmo",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-cosmo"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Dark Saber",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-dark-saber"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Droplet",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-droplet"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Edge",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-edge"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Harmon",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-harmon"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Horizon",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-horizon"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Illustrious",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-illustrious"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Kadenz",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-kadenz"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Lan II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-lanii"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Marigold",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-marigold"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Meteor",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-meteor"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Old Fashioned",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-old-fashioned"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Para II",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-para-ii"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Pavane",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-pavane"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Pill",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-pill"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Position",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-position"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Psyche",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-psyche"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Pudding",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-pudding"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Quark 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-quark2"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Quarks",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-quarks"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Rays",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-rays"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Solis 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-solis-2"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Space Travel 2",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-space-travel-2"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Space Travel 2 Ultra",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-space-travel-2-ultra"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Starfield 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-starfield-2"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Starfield III",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-starfield-iii"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Ultrasonic",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-ultrasonic"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Voyager",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-voyager"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Accentum Open",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/accentum-open"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Accentum Plus Wireless",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/accentum-plus-1"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Accentum True Wireless",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/accentum-true-wireless-closed-shop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Accentum Wireless",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/accentum-wireless-sonova"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Accentum Wireless SE",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/accentum-wireless-se"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 200 PRO",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 25",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 280 PRO",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 300 PRO",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 400 PRO",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 400S",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-400s-closed-shop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 490 PRO",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 505",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-505"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 550",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-550"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 560S",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-560s-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 569",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-569-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 599",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-599-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 600",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-600-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 620S",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-620-s-closed-shop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 650",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-650-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 660S2",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/sennheiser-hd-660-s-2"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 6XX",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-6xx"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 800 S",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-800-s-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 820",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hd-820-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HDB 630",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/hdb-630"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser IE 100 PRO",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sennheiser.com/en-us/catalog/products/headphones"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser IE 200",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/ie-200-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser IE 600",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/ie-600-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser IE 900",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/ie-900-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Momentum 4 Wireless",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/momentum-4-wireless-closedshop"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Momentum 5 Wireless",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/momentum-5-wireless"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Momentum True Wireless 4",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/momentum-true-wireless-4-refurbished"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Momentum True Wireless 5",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/momentum-true-wireless-5"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EA1000 Fermat",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ea1000-fermat"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EA2000",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ea2000"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EA500 DSP",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ea500-dsp"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EA500 LM",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ea500-lm"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EG280",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-eg280"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EM10",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-em10"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EM6L",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-em6l"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EP5",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Closed-back",
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ep5"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot ET142",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-et142"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EW200",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ew200"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot EW300",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-ew300"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot FLD100",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-fld100"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot SuperMix 4",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-supermix-4"
+      ]
+    },
+    {
+      "brand": "simgot",
+      "name": "Simgot SuperMix 5",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/simgot-supermix-5"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony IER-M500",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/IER-M500/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony IER-M7",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/IER-M7/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony IER-M9",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/IER-M9/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony IER-Z1R",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/IER-Z1R/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony LinkBuds Clip",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/LinkBuds_Clip/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony LinkBuds Fit",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/LinkBuds_Fit/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony LinkBuds Open",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/LinkBuds_Open/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony LinkBuds S",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/LinkBuds_S/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony MDR-CD900ST",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/MDR-CD900ST/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony MDR-M1",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/MDR-M1/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony MDR-MV1",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/MDR-MV1/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony MDR-Z1R",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/MDR-Z1R/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony ULT WEAR",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/ULT_WEAR/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WF-1000XM5",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WF-1000XM5/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WF-1000XM6",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WF-1000XM6/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WF-C510",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WF-C510/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WF-C700N",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WF-C700N/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WF-C710N",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WF-C710N/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-1000XM5",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-1000XM5/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-1000XM6",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-1000XM6/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-CH520",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-CH520/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-CH530",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-CH530/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-CH720N",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-CH720N/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-CH730N",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-CH730N/"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Force",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tanchjim-force"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Nora",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tanchjim-nora"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Ola II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tanchjim-ola-ii"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Revo",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tanchjim-revo"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Soda",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tanchjim-soda"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Fudu Verse II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-fudu-verse-ii"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Li Jing",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-li-jing"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Li Zhi",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-li-zhi"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu NeZha",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-nezha"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu The King Wukong",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-the-king-wukong"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu TianPeng",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-tianpeng"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Wan'er S.G",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-waner-s-g"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Wan'er S.G II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-waner-s-g-ii"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu XuanNv",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-xuannv"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Xuanwu Gate",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-xuanwu-gate"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu XuanWu Gate II",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-xuanwu-gate-ii"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Xue Tao",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-xue-tao"
+      ]
+    },
+    {
+      "brand": "tangzu",
+      "name": "Tangzu Yuan Li",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tangzu-yuan-li"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Cypher",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-cypher"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Hype 4 MKII",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-hype-4-mkii"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Legacy 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-legacy-2"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Legacy 4",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-legacy-4"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Monarch MKII",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-monarch-mkii"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Monarch MKIII",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-monarch-mkiii"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Monarch MKIV",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-monarch-mkiv"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Oracle MKII",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-oracle-mkii"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Origin",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-origin"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Prestige",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-prestige"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio V16 Divinity",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-v16-divinity"
+      ]
+    },
+    {
+      "brand": "thieaudio",
+      "name": "Thieaudio Valhalla",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/thieaudio-valhalla"
+      ]
+    },
+    {
+      "brand": "truthear",
+      "name": "Truthear Hexa",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/truthear-hexa-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "truthear",
+      "name": "Truthear Nova",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/truthear-nova-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "truthear",
+      "name": "Truthear Pure",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/truthear-pure-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "truthear",
+      "name": "Truthear Zero",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/truthear-x-crinacle-zero-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "truthear",
+      "name": "Truthear Zero:Red",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://headphones.com/products/truthear-x-crinacle-zero-red-in-ear-headphones"
+      ]
+    }
+  ]
+}
