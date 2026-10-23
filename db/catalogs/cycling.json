@@ -1,0 +1,2275 @@
+{
+ "about": "CyclingRecs starter catalog (2026-10-23): road, gravel/cyclocross and mountain bikes the makers sell now, from their own sites: trekbikes.com, specialized.com, canyon.com, giant-bicycles.com, cannondale.com, cervelo.com, santacruzbicycles.com, bmc-switzerland.com, pivotcycles.com and yeticycles.com. One entry per model and frame tier, as the maker names it, with the generation when the maker puts one in the name (Trek Domane SL Gen 5, Specialized Tarmac SL9, Canyon Grail CF SLX); the builds of one frame (groupset, wheels, number like 'SL 6' or 'Expert') are merged. E-bikes, framesets sold alone, kids', hybrid/fitness, fat, track and dirt-jump-only bikes and limited paint editions are left out. Columns: shape = category, balance = type (the maker's own category), weight = frame material where the name or page says it; core and surface are blank.",
+ "checked": "2026-10-23",
+ "brands": [
+  {
+   "id": "bmc",
+   "name": "BMC"
+  },
+  {
+   "id": "cannondale",
+   "name": "Cannondale"
+  },
+  {
+   "id": "canyon",
+   "name": "Canyon"
+  },
+  {
+   "id": "cervelo",
+   "name": "Cervélo"
+  },
+  {
+   "id": "giant",
+   "name": "Giant"
+  },
+  {
+   "id": "pivot",
+   "name": "Pivot"
+  },
+  {
+   "id": "santa-cruz",
+   "name": "Santa Cruz"
+  },
+  {
+   "id": "specialized",
+   "name": "Specialized"
+  },
+  {
+   "id": "trek",
+   "name": "Trek"
+  },
+  {
+   "id": "yeti",
+   "name": "Yeti"
+  }
+ ],
+ "products": [
+  {
+   "brand": "bmc",
+   "name": "BMC Fourstroke 01",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/fourstroke-01-three-bikes-bmc-26a-000049"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Fourstroke R 01",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/fourstroke-r-01-one-bikes-bmc-27a-000006",
+    "https://www.bmc-switzerland.com/products/fourstroke-r-01-one-bikes-bmc-26a-000044"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Kaius 01",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/kaius-01-three-bikes-bmc-27a-000074",
+    "https://www.bmc-switzerland.com/products/kaius-01-one-bikes-bmc-27a-000072",
+    "https://www.bmc-switzerland.com/products/kaius-01-two-bikes-bmc-27a-000073"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Roadmachine",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/roadmachine-three-bikes-bmc-27a-000009",
+    "https://www.bmc-switzerland.com/products/roadmachine-two-bikes-bmc-27a-000012",
+    "https://www.bmc-switzerland.com/products/roadmachine-one-bikes-bmc-27a-000008"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Roadmachine 01",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/roadmachine-01-three-bikes-bmc-27a-000014",
+    "https://www.bmc-switzerland.com/products/roadmachine-01-two-bikes-bmc-27a-000015",
+    "https://www.bmc-switzerland.com/products/roadmachine-01-one-bikes-bmc-27a-000016"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Roadmachine 01 X",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/roadmachine-01-x-one-bikes-bmc-24-10626-001"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Roadmachine X",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/roadmachine-x-two-bikes-bmc-24-10607-003",
+    "https://www.bmc-switzerland.com/products/roadmachine-x-three-bikes-bmc-24-10607-001"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Speedmachine 01",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Aero",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/speedmachine-01-two-bikes-bmc-27a-000039",
+    "https://www.bmc-switzerland.com/products/speedmachine-01-one-bikes-bmc-27a-000037",
+    "https://www.bmc-switzerland.com/products/speedmachine-01-three-bikes-bmc-27a-000038"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Teammachine R 01",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/teammachine-r-01-five-bikes-bmc-27a-000043",
+    "https://www.bmc-switzerland.com/products/teammachine-r-01-two-bikes-bmc-27a-000052",
+    "https://www.bmc-switzerland.com/products/teammachine-r-01-four-bikes-bmc-27a-000044"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Teammachine SLR",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/teammachine-slr-three-bikes-bmc-27a-000020",
+    "https://www.bmc-switzerland.com/products/teammachine-slr-one-bikes-bmc-27a-000018",
+    "https://www.bmc-switzerland.com/products/teammachine-slr-three-bikes-bmc-27a-000021"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Teammachine SLR 01",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/teammachine-slr-01-three-bikes-bmc-27a-000034",
+    "https://www.bmc-switzerland.com/products/teammachine-slr-01-one-bikes-bmc-27a-000030",
+    "https://www.bmc-switzerland.com/products/teammachine-slr-01-six-bikes-bmc-27a-000032"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC Twostroke 01",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/twostroke-01-two-bikes-bmc-27a-000055",
+    "https://www.bmc-switzerland.com/products/twostroke-01-one-bikes-bmc-27a-000054",
+    "https://www.bmc-switzerland.com/products/twostroke-01-two-bikes-bmc-24-10515-002"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC URS",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Adventure",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/urs-two-bikes-bmc-27a-000057",
+    "https://www.bmc-switzerland.com/products/urs-one-bikes-bmc-27a-000056",
+    "https://www.bmc-switzerland.com/products/urs-two-bikes-bmc-26a-000043"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC URS 01",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Adventure",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/urs-01-two-bikes-bmc-26a-000040",
+    "https://www.bmc-switzerland.com/products/urs-01-one-bikes-bmc-26a-000039",
+    "https://www.bmc-switzerland.com/products/urs-01-one-bikes-bmc-24-10619-009"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC URS 01 LT",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Adventure",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/urs-01-lt-two-bikes-bmc-27a-000059",
+    "https://www.bmc-switzerland.com/products/urs-01-lt-one-bikes-bmc-27a-000058",
+    "https://www.bmc-switzerland.com/products/urs-01-lt-one-bikes-bmc-26a-000041"
+   ]
+  },
+  {
+   "brand": "bmc",
+   "name": "BMC URS AL",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Adventure",
+   "sources": [
+    "https://www.bmc-switzerland.com/products/urs-al-one-bordeaux-red-gravel-exploration-bikes-bmc-25e-000012"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Bad Habit",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/enduro/bad-habit"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale CAAD14",
+   "shape": "Road",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/race/caad14"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Habit",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/trail-bikes/habit"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Habit HT",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/trail-bikes/habit-ht"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Jekyll",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/trail-bikes/jekyll"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Scalpel",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/cross-country/scalpel"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Scalpel HT",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/cross-country/scalpel-ht"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale SuperSix EVO",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/race/supersix-evo"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale SuperSix EVO CX",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/cyclocross/supersix-evo-cx"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale SuperSix EVO SE",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/gravel/supersix-evo-se"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale SuperSlice",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/race/superslice"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale SuperX",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/gravel/superx"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Synapse",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/endurance/synapse"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Topstone Alloy",
+   "shape": "Gravel",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/gravel/topstone-alloy"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Topstone Carbon",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/road/gravel/topstone-carbon"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Trail",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/mountain/trail-bikes/trail"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Aeroad CF SLX",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Aero",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/aero-bikes/aeroad/cf-slx/aeroad-cf-slx-7-axs/4530.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Aeroad CFR",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Aero",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/aero-bikes/aeroad/cfr/aeroad-cfr-axs/4478.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Endurace AllRoad",
+   "shape": "Road",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/endurance-bikes/endurace/allroad/endurace-allroad/4477.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Endurace CF",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/endurance-bikes/endurace/cf/endurace-cf-6/4426.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Endurace CF SLX",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/endurance-bikes/endurace/cf-slx/endurace-cf-slx-7-axs/4431.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Endurace CFR",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/endurance-bikes/endurace/cfr/endurace-cfr-di2/4434.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Exceed CF",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.canyon.com/en-gb/mountain-bikes/cross-country-bikes/exceed/exceed-cf/exceed-cf-7/4398.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Exceed CFR",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.canyon.com/en-gb/mountain-bikes/cross-country-bikes/exceed/exceed-cfr/exceed-cfr-gravel/4583.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grail CF",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.canyon.com/en-us/gravel-bikes/race/grail/cf/grail-cf-7-speed/4509.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grail CF SLX",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.canyon.com/en-us/gravel-bikes/race/grail/cf-slx/grail-cf-slx-7-di2/4503.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grail CFR",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.canyon.com/en-us/gravel-bikes/race/grail/cfr/grail-cfr-axs/4510.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grand Canyon AL",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.canyon.com/en-gb/mountain-bikes/trail-bikes/grand-canyon/grand-canyon-al/grand-canyon-al-6/4391.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grizl AL",
+   "shape": "Gravel",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Adventure",
+   "sources": [
+    "https://www.canyon.com/en-us/gravel-bikes/adventure/grizl/al/grizl-6/4444.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grizl CF",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Adventure",
+   "sources": [
+    "https://www.canyon.com/en-us/gravel-bikes/adventure/grizl/cf/grizl-cf-6/4141.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Inflite CF SL",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.canyon.com/en-gb/road-bikes/cyclocross-bikes/inflite/cf-sl/inflite-cf-sl-6/3843.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Inflite CF SLX",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.canyon.com/en-gb/road-bikes/cyclocross-bikes/inflite/cf-slx/inflite-cf-slx-7/3844.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Inflite CFR",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.canyon.com/en-gb/road-bikes/cyclocross-bikes/inflite/cfr/inflite-cfr-team/4051.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Lux Trail CF",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.canyon.com/en-us/mountain-bikes/trail-bikes/lux-trail/cf/lux-trail-cf-6/4402.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Lux World Cup CF",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.canyon.com/en-us/mountain-bikes/cross-country-bikes/lux/cfr/lux-world-cup-cf-9/4406.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Neuron AL",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.canyon.com/en-us/mountain-bikes/trail-bikes/neuron/al/neuron-5/4416.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Sender CFR",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Downhill",
+   "sources": [
+    "https://www.canyon.com/en-us/mountain-bikes/downhill-bikes/sender/sender-cfr-cllctv/4447.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Spectral AL",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.canyon.com/en-us/mountain-bikes/trail-bikes/spectral/al/spectral-5/4377.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Spectral CF",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.canyon.com/en-us/mountain-bikes/trail-bikes/spectral/cf/spectral-cf-7/4380.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Speedmax CF",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/triathlon-bikes/speedmax/cf/speedmax-cf-7-di2/4597.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Speedmax CF SLX",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/triathlon-bikes/speedmax/cf-slx/speedmax-cf-slx-7-di2/4518.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Speedmax CFR",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/triathlon-bikes/speedmax/cfr/speedmax-cfr-axs/4524.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Torque AL",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.canyon.com/en-gb/mountain-bikes/enduro-bikes/torque/al/torque-al-7/4321.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Ultimate CF",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/race-bikes/ultimate/cf-sl/ultimate-cf-7-di2/4419.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Ultimate CF SLX",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/race-bikes/ultimate/cf-slx/ultimate-cf-slx-8-axs/4371.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Ultimate CFR",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.canyon.com/en-us/road-bikes/race-bikes/ultimate/cfr/ultimate-cfr-axs/4071.html"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo Caledonia",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/caledonia"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo Caledonia-5",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/caledonia-5"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo P-Series",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/p-series"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo P5",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/p5"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo R5",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/r5"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo R5-CX",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/r5-cx"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo S5",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/s5"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo Soloist",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/soloist"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo Áspero",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/aspero"
+   ]
+  },
+  {
+   "brand": "cervelo",
+   "name": "Cervélo Áspero-5",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.cervelo.com/en-US/bikes/aspero-5"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Anthem Advanced SL",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-anthem-advanced-sl"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Anthem X Advanced SL",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-anthem-x-advanced-sl"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Contend AR",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-contend-ar",
+    "https://www.giant-bicycles.com/us/bikes-contend-ar-2025",
+    "https://www.giant-bicycles.com/us/bikes-contend-ar-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Contend SL",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-contend-sl",
+    "https://www.giant-bicycles.com/us/bikes-contend-sl-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Defy Advanced",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-defy-advanced",
+    "https://www.giant-bicycles.com/us/bikes-defy-advanced-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Defy Advanced Pro",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-defy-advanced-pro-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Defy Advanced SL",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Endurance",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-defy-advanced-sl"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Propel Advanced",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-propel-advanced-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Propel Advanced Pro",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-propel-advanced-pro-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Reign Advanced",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-reign-advanced-2025"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Reign Advanced Pro",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-reign-advanced-pro-2023"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Reign SX",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-reign-sx-2025"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Revolt",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-revolt",
+    "https://www.giant-bicycles.com/us/bikes-revolt-2025"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Revolt Advanced",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-revolt-advanced"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Revolt Advanced Pro",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-revolt-advanced-pro"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Revolt Advanced SL",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-revolt-advanced-sl-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Stance",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-stance"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Talon",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-talon-2025",
+    "https://www.giant-bicycles.com/us/bikes-talon-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant TCR Advanced Pro",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Race",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-tcr-advanced-pro",
+    "https://www.giant-bicycles.com/us/bikes-tcr-advanced-pro-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant TCR Advanced SL",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-tcr-advanced-sl"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant TCX Advanced Pro",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-tcx-advanced-pro-2024"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Trance Advanced",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-trance-advanced-29-2024"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Trance X Advanced",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-trance-x-advanced-2024"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Trinity Advanced SL",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-trinity-advanced-sl-2025"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant XTC Advanced",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-xtc-advanced"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Firebird",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/firebird"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot LES SL",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/les-sl"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Mach 4 SL",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/mach-4-sl"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Phoenix",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Downhill",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/phoenix"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Shadowcat",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/shadowcat"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Switchblade",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/switchblade"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Trailcat LT",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/trailcat-lt"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Trailcat SL",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/trailcat-sl"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Vault",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.pivotcycles.com/en-us/bikes/vault"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz 5010",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/5010-x-0-axs-rsv-2024",
+    "https://www.santacruzbicycles.com/products/5010-x-0-axs-2024",
+    "https://www.santacruzbicycles.com/products/5010-s-2024"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Blur",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/blur-xx-axs-fa-race-rsv-2027",
+    "https://www.santacruzbicycles.com/products/blur-gx-axs-race-rsv-2027",
+    "https://www.santacruzbicycles.com/products/blur-xtr-rsv-2027"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Bronson",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/bronson-deore-2027",
+    "https://www.santacruzbicycles.com/products/bronson-gx-axs-2026",
+    "https://www.santacruzbicycles.com/products/bronson-90-2026"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Chameleon",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/chameleon-d-2023",
+    "https://www.santacruzbicycles.com/products/chameleon-r-2023",
+    "https://www.santacruzbicycles.com/products/chameleon-s-2023"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Highball",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/highball-90-2026",
+    "https://www.santacruzbicycles.com/products/highball-x-0-axs-rsv-2024",
+    "https://www.santacruzbicycles.com/products/highball-s-2024"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Hightower",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/hightower-deore-2027",
+    "https://www.santacruzbicycles.com/products/hightower-gx-axs-2026",
+    "https://www.santacruzbicycles.com/products/hightower-xtr-rsv-2026"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Megatower",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/megatower-90-2026",
+    "https://www.santacruzbicycles.com/products/megatower-xx-axs-rsv-2024",
+    "https://www.santacruzbicycles.com/products/megatower-x-0-axs-rsv-coil-2024"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Nomad",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/nomad-deore-2027",
+    "https://www.santacruzbicycles.com/products/nomad-xt-di2-2027",
+    "https://www.santacruzbicycles.com/products/nomad-x0-axs-rsv-2027"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Stigmata",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.santacruzbicycles.com/products/stigmata-apex-2027",
+    "https://www.santacruzbicycles.com/products/stigmata-force-1x-axs-rsv-2027",
+    "https://www.santacruzbicycles.com/products/stigmata-force-1x-axs-rudy-rsv-2027"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Tallboy",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/tallboy-xx-axs-fa-rsv-2027",
+    "https://www.santacruzbicycles.com/products/tallboy-deore-2027",
+    "https://www.santacruzbicycles.com/products/tallboy-90-2027"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz V10",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Downhill",
+   "sources": [
+    "https://www.santacruzbicycles.com/products/v10-dh-x01-2027",
+    "https://www.santacruzbicycles.com/products/v10-dh-s-2027",
+    "https://www.santacruzbicycles.com/products/v-10-dh-s-2025"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Aethos 2",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4294983",
+    "https://www.specialized.com/us/en/p/4279155",
+    "https://www.specialized.com/us/en/p/4294984"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Allez",
+   "shape": "Road",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4221810",
+    "https://www.specialized.com/us/en/p/4221808",
+    "https://www.specialized.com/us/en/p/4221796"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Chisel",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4221772",
+    "https://www.specialized.com/us/en/p/4221771"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Crux 5",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4294830",
+    "https://www.specialized.com/us/en/p/4312531",
+    "https://www.specialized.com/us/en/p/4294832"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Crux DSW",
+   "shape": "Gravel",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": "Cyclocross",
+   "sources": [
+    "https://www.specialized.com/us/en/p/4295562",
+    "https://www.specialized.com/us/en/p/4221804",
+    "https://www.specialized.com/us/en/p/4221802"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Diverge 3 Alloy",
+   "shape": "Gravel",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4223510"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Diverge 4",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4223513",
+    "https://www.specialized.com/us/en/p/4297824",
+    "https://www.specialized.com/us/en/p/4293758"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Diverge 4 Alloy",
+   "shape": "Gravel",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4223512",
+    "https://www.specialized.com/us/en/p/4223511"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Epic 9",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4274031",
+    "https://www.specialized.com/us/en/p/4274033",
+    "https://www.specialized.com/us/en/p/4274034"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Rockhopper",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4263615",
+    "https://www.specialized.com/us/en/p/4263612",
+    "https://www.specialized.com/us/en/p/4263616"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Roubaix SL8",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4263270",
+    "https://www.specialized.com/us/en/p/4263269",
+    "https://www.specialized.com/us/en/p/4263266"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Aethos 2",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4221563",
+    "https://www.specialized.com/us/en/p/4221562",
+    "https://www.specialized.com/us/en/p/4263246"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Crux 5",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4294828"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Demo 11",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4293955"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Diverge 4",
+   "shape": "Gravel",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4298775"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Epic 9",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4274030"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Roubaix SL8",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4275485",
+    "https://www.specialized.com/us/en/p/4263263",
+    "https://www.specialized.com/us/en/p/4221816"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Stumpjumper 15 EVO",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4263535",
+    "https://www.specialized.com/us/en/p/4291508"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized S-Works Tarmac SL9",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4293533",
+    "https://www.specialized.com/us/en/p/4293532"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Stumpjumper 15",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4221405",
+    "https://www.specialized.com/us/en/p/4221403",
+    "https://www.specialized.com/us/en/p/4221401"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Stumpjumper 15 Alloy",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4257786"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Stumpjumper 15 EVO",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4263534",
+    "https://www.specialized.com/us/en/p/4221482",
+    "https://www.specialized.com/us/en/p/4263533"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Stumpjumper 15 EVO Alloy",
+   "shape": "Mountain",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4263530",
+    "https://www.specialized.com/us/en/p/4263531"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Tarmac SL7",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4221579"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Tarmac SL9",
+   "shape": "Road",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4293535",
+    "https://www.specialized.com/us/en/p/4293530",
+    "https://www.specialized.com/us/en/p/4293534"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Check-OUT SL",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/57828/",
+    "https://www.trekbikes.com/us/en_US/p/57827/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Checkmate SLR",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/46152/",
+    "https://www.trekbikes.com/us/en_US/p/58668/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Checkpoint ALR Gen 3",
+   "shape": "Gravel",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/49946/",
+    "https://www.trekbikes.com/us/en_US/p/49973/",
+    "https://www.trekbikes.com/us/en_US/p/49944/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Checkpoint SL Gen 3",
+   "shape": "Gravel",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/55097/",
+    "https://www.trekbikes.com/us/en_US/p/55098/",
+    "https://www.trekbikes.com/us/en_US/p/47071/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Domane AL Gen 4",
+   "shape": "Road",
+   "weight": "Aluminium",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/80404/",
+    "https://www.trekbikes.com/us/en_US/p/69926/",
+    "https://www.trekbikes.com/us/en_US/p/80164/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Domane SL Gen 4",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/57644/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Domane SL Gen 5",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/79818/",
+    "https://www.trekbikes.com/us/en_US/p/79844/",
+    "https://www.trekbikes.com/us/en_US/p/77555/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Domane SLR Gen 4",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/57892/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Domane SLR Gen 5",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/80163/",
+    "https://www.trekbikes.com/us/en_US/p/79928/",
+    "https://www.trekbikes.com/us/en_US/p/79926/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Fuel EX Gen 7",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/79595/",
+    "https://www.trekbikes.com/us/en_US/p/79594/",
+    "https://www.trekbikes.com/us/en_US/p/79592/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Fuel LX Gen 7",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/81557/",
+    "https://www.trekbikes.com/us/en_US/p/81556/",
+    "https://www.trekbikes.com/us/en_US/p/81554/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Fuel MX Gen 7",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/81565/",
+    "https://www.trekbikes.com/us/en_US/p/81562/",
+    "https://www.trekbikes.com/us/en_US/p/81564/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Madone SL Gen 8",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/57664/",
+    "https://www.trekbikes.com/us/en_US/p/57663/",
+    "https://www.trekbikes.com/us/en_US/p/57653/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Madone SLR Gen 8",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/46151/",
+    "https://www.trekbikes.com/us/en_US/p/64879/",
+    "https://www.trekbikes.com/us/en_US/p/46707/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Marlin Gen 3",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/57365/",
+    "https://www.trekbikes.com/us/en_US/p/57363/",
+    "https://www.trekbikes.com/us/en_US/p/57361/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Procaliber Gen 3",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/76161/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Roscoe Gen 4",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/59872/",
+    "https://www.trekbikes.com/us/en_US/p/59699/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Slash Gen 6",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/52939/",
+    "https://www.trekbikes.com/us/en_US/p/52582/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Speed Concept SLR",
+   "shape": "Road",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Triathlon",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/86500/",
+    "https://www.trekbikes.com/us/en_US/p/86499/",
+    "https://www.trekbikes.com/us/en_US/p/35757/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Supercaliber SL Gen 2",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/56636/",
+    "https://www.trekbikes.com/us/en_US/p/56629/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Supercaliber SLR Gen 2",
+   "shape": "Mountain",
+   "weight": "Carbon",
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/p/58885/",
+    "https://www.trekbikes.com/us/en_US/p/56165/",
+    "https://www.trekbikes.com/us/en_US/p/57334/"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti ARC",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/arc"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti ASR",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/asr"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti ASR LR",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/asr-lr"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti LT",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/lt"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti MT",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/mt"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB115",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Cross-country",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb115"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB120",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb120"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB130",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb130"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB135",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb135"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB140",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Trail",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb140"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB150",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb150"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB160",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Enduro",
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb160"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti SB165",
+   "shape": "Mountain",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://yeticycles.com/en-us/bikes/sb165"
+   ]
+  }
+ ]
+}

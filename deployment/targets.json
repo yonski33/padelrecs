@@ -62,7 +62,8 @@
     "golf": "golfrecs",
     "gaming": "gamingrecs",
     "discgolf": "discgolfrecs",
-    "simracing": "simracingrecs"
+    "simracing": "simracingrecs",
+    "cycling": "cyclingrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

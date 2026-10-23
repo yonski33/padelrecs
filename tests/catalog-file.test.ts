@@ -218,3 +218,21 @@ test("the SimRacingRecs starter catalog: sourced gear without years in five know
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Fanatec ClubSport DD+")?.slug, "fanatec-clubsport-dd-plus");
 });
+
+test("the CyclingRecs starter catalog: sourced bikes without years, one per model and frame tier, known categories, unique URLs", async () => {
+  const catalog = await readCatalog("db/catalogs/cycling.json");
+  const snapshot = catalogSnapshot(catalog, "cyclingrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 10);
+  assert(snapshot.tables.rackets.length >= 170);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const { shapeOf } = await import("../app/art/cycling");
+  for (const r of snapshot.tables.rackets) {
+    assert(r.shape !== null && shapeOf(r.shape) !== "unknown", `${r.name}: category ${r.shape}`);
+    assert(r.weight === null || ["Carbon", "Aluminium"].includes(r.weight), `${r.name}: frame ${r.weight}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: bikes are named by generation, not year`);
+    assert(!/\b(Frameset|Turbo|E-Bike)\b|\+/.test(r.name), `${r.name}: no framesets or e-bikes`);
+  }
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Trek Domane SL Gen 5")?.slug, "trek-domane-sl-gen-5");
+});
