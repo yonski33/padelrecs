@@ -24,6 +24,7 @@ export const discgolf: Niche = {
     wordmark: "discgolfrecs",
     descriptor: "player reviews of disc golf discs",
     footer: "kept by people with one disc too many in the bag. No affiliate links.",
+    analyticsId: "G-83JCDSFL6H",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "disc", many: "discs", One: "Disc", Many: "Discs" },
