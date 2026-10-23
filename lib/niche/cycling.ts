@@ -21,7 +21,7 @@ export const cycling: Niche = {
     wordmark: "cyclingrecs",
     descriptor: "rider reviews of road, gravel and mountain bikes",
     footer: "kept by people who check the weather before anything else. No affiliate links.",
-    // analyticsId: add the GA4 measurement id ("G-…") once the owner creates the property.
+    analyticsId: "G-EENFGQMCKG",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "bike", many: "bikes", One: "Bike", Many: "Bikes" },

@@ -21,7 +21,7 @@ export const audio: Niche = {
     wordmark: "audiorecs",
     descriptor: "listener reviews of headphones, IEMs and earbuds",
     footer: "kept by people who own more cables than they need. No affiliate links.",
-    // analyticsId: add the GA4 measurement id ("G-…") once the owner creates the property.
+    analyticsId: "G-R9ZV757DP4",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },

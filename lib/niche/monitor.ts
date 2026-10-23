@@ -21,7 +21,7 @@ export const monitor: Niche = {
     wordmark: "monitorrecs",
     descriptor: "owner reviews of gaming, ultrawide, office and Mac monitors",
     footer: "kept by people who have opinions about pixel density. No affiliate links.",
-    // analyticsId: add the GA4 measurement id ("G-…") once the owner creates the property.
+    analyticsId: "G-ZSXHEFL9BE",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "monitor", many: "monitors", One: "Monitor", Many: "Monitors" },

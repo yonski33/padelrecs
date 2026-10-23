@@ -20,7 +20,7 @@ export const simracing: Niche = {
     wordmark: "simracingrecs",
     descriptor: "driver reviews of sim racing gear",
     footer: "kept by people whose rig takes up most of the spare room. No affiliate links.",
-    // analyticsId: add the GA4 measurement id ("G-…") once the owner creates the property.
+    analyticsId: "G-K1ENZ4VC5R",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
