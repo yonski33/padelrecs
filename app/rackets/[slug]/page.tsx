@@ -69,7 +69,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
     ...external.map(e => ({ kind: "web" as const, date: e.createdAt, helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/>,
-      score: helpfulnessScore({ text: [e.summary, e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
+      score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   const specs: [string, string | number | null][] = [...(hasYears ? [["Year", r.year] as [string, number]] : []), ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])];
   const addHref = `/add-review?racket=${r.id}`;

@@ -15,6 +15,9 @@ export const externalReviews = catalogSchema.table("external_reviews", {
  id: text("id").primaryKey(), racketId: text("racket_id").notNull().references(() => rackets.id), // Our own words describing the source's experience (shown as "<Site> summary"); excerpt is the source's exact words.
  // At least one of the two is present.
  excerpt: text("excerpt"), summary: text("summary"),
+ // When the source is not in English: its language (ISO 639-1, e.g. "es") and our English translation of the excerpt. The excerpt
+ // itself stays the source's exact words; the site shows the translation, labelled, with the original one click away.
+ sourceLanguage: text("source_language"), excerptTranslation: text("excerpt_translation"),
  // How the source felt overall, judged when the item was moderated; null when nobody judged it.
  sentiment: text("sentiment", { enum: ["positive", "negative", "mixed"] }), sourcePlatform: text("source_platform").notNull(), sourceName: text("source_name").notNull(), sourceUrl: text("source_url").notNull(), sourceDate: text("source_date"), externalRating: integer("external_rating"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull()
 }, t => [index("external_racket_idx").on(t.racketId),index("external_feed_idx").on(t.createdAt),check("external_review_text",sql`${t.excerpt} is not null or ${t.summary} is not null`),check("external_review_sentiment",sql`${t.sentiment} is null or ${t.sentiment} in ('positive','negative','mixed')`)]).enableRLS();

@@ -3,6 +3,7 @@ import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
 import { HelpfulButton } from "./helpful-button";
 import { niche, catalogPath } from "../lib/niche";
+import { languageName } from "../lib/languages";
 import type { ProfileField } from "../lib/niche/types";
 
 type Racket = Catalog["rackets"][number];
@@ -74,6 +75,17 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
   </article>;
 }
 
+/** The source's words: verbatim when they're English; otherwise our English translation, labelled, with the original
+ *  (the exact words) one click away. */
+function SourceQuote({entry: e, bare = false}: {entry: WebReview; bare?: boolean}) {
+  const from = e.sourceLanguage && e.sourceLanguage !== "en" ? languageName(e.sourceLanguage) : null;
+  if (!from || !e.excerptTranslation) return bare ? <p className="note-body">{e.excerpt}</p> : <blockquote className="source-quote">“{e.excerpt}”</blockquote>;
+  return <figure className="source-quote translated">
+    <blockquote className={bare ? "note-body" : undefined}>“{e.excerptTranslation}”</blockquote>
+    <details className="original"><summary>Translated from {from} · original</summary><blockquote lang={e.sourceLanguage!}>“{e.excerpt}”</blockquote></details>
+  </figure>;
+}
+
 export function External({entry: e, data, showRacket = true}: {entry: WebReview; data: Catalog; showRacket?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
   const source = <><SourceIcon platform={e.sourcePlatform}/><b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}</>;
@@ -84,8 +96,8 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
       {e.summary ? <>
         {/* Our summary of the source's experience (written in the third person), then the source's exact words. */}
         <p className="note-body summary">{e.summary}</p>
-        {e.excerpt && <blockquote className="source-quote">“{e.excerpt}”</blockquote>}
-      </> : <p className="note-body">{e.excerpt}</p>}
+        {e.excerpt && <SourceQuote entry={e}/>}
+      </> : <SourceQuote entry={e} bare/>}
       <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}/>
       <div className="cite">
         {/* The source name is the link to the original, so the row keeps room for the vote. */}

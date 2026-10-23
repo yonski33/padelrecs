@@ -1,5 +1,6 @@
 // Rankings for the /rankings pages (up to 10 products per list). Pure functions over the public catalogue, so tests can feed them plain objects.
 // Every number they return is counted from published reviews; nothing is estimated or filled in.
+import { englishQuote, languageName } from "./languages";
 import type { SpecColumn, SpecFilter, Tag, TopList } from "./niche/types";
 
 /** No list ever ranks a product on fewer reviews than this, whatever the niche config says. */
@@ -16,7 +17,7 @@ const QUOTE_MIN = 40, QUOTE_MAX = 220;
 export type Verdict = "positive" | "mixed" | "negative";
 type Product = { id: string; slug: string; name: string; brandId: string; year: number } & Record<SpecColumn, string | null>;
 type PlayerReview = { racketId: string; rating: number; tags: string[]; createdAt: string };
-type WebReview = { id: string; racketId: string; sentiment: Verdict | null; tags: string[]; excerpt: string | null; sourceUrl: string; sourcePlatform: string; sourceName: string; sourceDate?: string | null; createdAt: string; helpful?: number };
+type WebReview = { id: string; racketId: string; sentiment: Verdict | null; tags: string[]; excerpt: string | null; excerptTranslation?: string | null; sourceLanguage?: string | null; sourceUrl: string; sourcePlatform: string; sourceName: string; sourceDate?: string | null; createdAt: string; helpful?: number };
 export type ListInput = { listed: Product[]; reviews: PlayerReview[]; external: WebReview[] };
 
 /** A player review's star rating read as a verdict: 4–5 positive, 3 mixed, 1–2 negative. Web reviews carry their own. */
@@ -46,7 +47,8 @@ export function matchesFilters(product: Product, filters: SpecFilter[] = []) {
 }
 
 export type TagCount = { label: string; count: number };
-export type Quote = { id: string; text: string; url: string; platform: string; source: string };
+/** translatedFrom: the source's language when `text` is our translation of it (shown as "translated from …"). */
+export type Quote = { id: string; text: string; url: string; platform: string; source: string; translatedFrom?: string };
 export type ListEntry = {
   rank: number;
   product: Product;
@@ -73,10 +75,13 @@ type Note = { verdict: Verdict; tags: string[]; createdAt: string };
 const credit = (v: Verdict) => v === "positive" ? 1 : v === "mixed" ? 0.5 : 0;
 
 function pickQuote(web: WebReview[], prefer: string[]): Quote | null {
-  const usable = web.filter(e => e.sentiment === "positive" && e.excerpt && /^https?:\/\//.test(e.sourceUrl) && e.excerpt.trim().length >= QUOTE_MIN && e.excerpt.trim().length <= QUOTE_MAX);
+  // The quote readers see is English: a foreign source's translation, never its original words unlabelled.
+  const text = (e: WebReview) => englishQuote(e)?.trim() ?? "";
+  const usable = web.filter(e => e.sentiment === "positive" && text(e) && /^https?:\/\//.test(e.sourceUrl) && text(e).length >= QUOTE_MIN && text(e).length <= QUOTE_MAX);
   const fit = (e: WebReview) => Number(e.tags.some(t => prefer.includes(t)));
-  const best = usable.sort((a, b) => fit(b) - fit(a) || (b.helpful ?? 0) - (a.helpful ?? 0) || Math.abs(a.excerpt!.length - 120) - Math.abs(b.excerpt!.length - 120) || a.id.localeCompare(b.id))[0];
-  return best ? { id: best.id, text: best.excerpt!.trim(), url: best.sourceUrl, platform: best.sourcePlatform, source: best.sourceName } : null;
+  const best = usable.sort((a, b) => fit(b) - fit(a) || (b.helpful ?? 0) - (a.helpful ?? 0) || Math.abs(text(a).length - 120) - Math.abs(text(b).length - 120) || a.id.localeCompare(b.id))[0];
+  const from = best?.sourceLanguage && best.sourceLanguage !== "en" ? languageName(best.sourceLanguage) ?? undefined : undefined;
+  return best ? { id: best.id, text: text(best), url: best.sourceUrl, platform: best.sourcePlatform, source: best.sourceName, ...(from ? { translatedFrom: from } : {}) } : null;
 }
 
 /** Ranks one list. Returns at most LIST_SIZE entries and never pads: products below the minimums are simply left out. */
