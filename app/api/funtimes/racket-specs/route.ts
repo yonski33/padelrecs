@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
 import { brands, rackets } from "../../../../db/schema";
 import { changeRacketSlug } from "../../../../db/racket-slugs";
-import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../admin/auth";
+import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
 const optionalText=(max:number)=>z.string().trim().max(max).transform(value=>value||null);
 const input=z.object({
  id:z.string().min(1).max(100),name:z.string().trim().min(1).max(260),brandId:z.string().min(1).max(100),year:z.coerce.number().int().min(1980).max(2100),

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { and, eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
 import { reviews } from "../../../../db/schema";
-import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../admin/auth";
+import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
 const status=z.enum(["pending","approved","rejected"]);
 const input=z.object({id:z.string().min(1).max(100),status,expectedStatus:status,returnStatus:status});
 export async function POST(request:Request) {

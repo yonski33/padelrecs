@@ -11,7 +11,7 @@ import {ensureRacket,type CatalogTransaction} from "../db/racket-selection";
 import {catalog,score} from "../db/data";
 import type {getDb} from "../db/index";
 import {allowedAdmin} from "../lib/admin-access";
-import {adminWriteGuard} from "../app/admin/auth";
+import {adminWriteGuard} from "../app/funtimes/auth";
 
 type Database=ReturnType<typeof getDb>;
 async function setup(){
@@ -88,7 +88,7 @@ test("admin authorization uses verified Supabase user IDs, never spoofed Sites h
  const previous={url:process.env.NEXT_PUBLIC_SUPABASE_URL,key:process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY};
  delete process.env.NEXT_PUBLIC_SUPABASE_URL;delete process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
  try{
-  const request=new Request("http://localhost:3000/api/admin/reviews",{method:"POST",headers:{"oai-authenticated-user-id":"owner-id","oai-authenticated-user-email":"owner@example.test",origin:"http://localhost:3000","content-type":"application/x-www-form-urlencoded"},body:"id=anything"});
+  const request=new Request("http://localhost:3000/api/funtimes/reviews",{method:"POST",headers:{"oai-authenticated-user-id":"owner-id","oai-authenticated-user-email":"owner@example.test",origin:"http://localhost:3000","content-type":"application/x-www-form-urlencoded"},body:"id=anything"});
   assert.equal((await adminWriteGuard(request))?.status,403);
  }finally{
   if(previous.url)process.env.NEXT_PUBLIC_SUPABASE_URL=previous.url;
