@@ -53,6 +53,11 @@
       "name": "cyclingrecs",
       "id": "prj_aApAoFBAEJzeISxSvdXDf578Yvmj",
       "domain": "www.cyclingrecs.com"
+    },
+    "audio": {
+      "name": "audiorecs",
+      "id": "prj_3dZsgG3qW5vE673jLVCUNNIAYeKH",
+      "domain": "www.audiorecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
