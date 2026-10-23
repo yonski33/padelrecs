@@ -126,8 +126,8 @@ export const running: Niche = {
   topLists: [
     { slug: "best-running-shoes", label: "Best overall", title: "Best Running Shoes", minReviews: 15,
       intro: "The running shoes runners are most consistently happy with, among shoes enough runners have reviewed." },
-    { slug: "best-racing-shoes", label: "Racing shoes", title: "Best Racing Shoes", minReviews: 10,
-      intro: "The race-day shoes runners are most consistently happy with.", filters: [{ column: "shape", include: ["Racing"] }] },
+    { slug: "best-running-racing-shoes", formerSlugs: ["best-racing-shoes"], label: "Racing shoes", title: "Best Running Racing Shoes", minReviews: 10,
+      intro: "The race-day running shoes runners are most consistently happy with.", filters: [{ column: "shape", include: ["Racing"] }] },
     { slug: "best-max-cushion-running-shoes", label: "Max cushion", title: "Best Max Cushion Running Shoes", minReviews: 10,
       intro: "The softest, highest-stack shoes runners are most consistently happy with.", filters: [{ column: "shape", include: ["Max cushion"] }] },
     { slug: "best-tempo-running-shoes", label: "Tempo shoes", title: "Best Tempo Running Shoes", minReviews: 8,

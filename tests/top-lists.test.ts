@@ -172,9 +172,10 @@ test("title and address follow the agreed pattern", () => {
 test("every niche's lists use bank tags, real spec columns and unique slugs", () => {
   for (const [id, n] of Object.entries(niches)) {
     const lists = n.topLists ?? [];
-    assert.equal(new Set(lists.map(l => l.slug)).size, lists.length, `${id} list slugs`);
+    const all = lists.flatMap(l => [l.slug, ...l.formerSlugs ?? []]);
+    assert.equal(new Set(all).size, all.length, `${id}: list slugs and former slugs must all be different`);
     for (const l of lists) {
-      assert.match(l.slug, /^[a-z0-9-]+$/);
+      for (const slug of [l.slug, ...l.formerSlugs ?? []]) assert.match(slug, /^[a-z0-9-]+$/);
       for (const t of [...l.trait?.tags ?? [], ...l.trait?.against ?? []]) assert(n.tags.some(x => x.label === t), `${id}/${l.slug}: "${t}" is not in the tag bank`);
       for (const f of l.filters ?? []) assert(n.specs.some(s => s.column === f.column), `${id}/${l.slug}: no ${f.column} spec`);
     }
