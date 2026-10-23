@@ -33,7 +33,8 @@ export const movedMonitorBrandSlugs = ["acer", "alienware", "aoc", "benq", "giga
 export const movedMonitorPages = [
   { source: "/monitors", destination: `${MONITORRECS}/gaming-monitors` },
   { source: "/types/monitors", destination: `${MONITORRECS}/gaming-monitors` },
-  { source: "/gear", destination: `${MONITORRECS}/monitors`, query: { key: "shape", value: "Monitor" } },
+  // The catalogue filtered to monitors; the query string carries over, and the category page ignores "shape".
+  { source: "/gear", destination: `${MONITORRECS}/gaming-monitors`, query: { key: "shape", value: "Monitor" } },
   ...movedMonitorSlugs.flatMap(slug => [
     { source: `/gear/${slug}`, destination: `${MONITORRECS}/monitors/${slug}` },
     { source: `/rackets/${slug}`, destination: `${MONITORRECS}/monitors/${slug}` },

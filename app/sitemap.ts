@@ -13,29 +13,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const notesFor = (racketId: string) => [...data.reviews, ...data.external].filter(n => n.racketId === racketId).map(n => n.createdAt);
   const allNotes = [...data.reviews, ...data.external].map(n => n.createdAt);
   // Rankings pages, dated by their newest ranked review. Lists nobody qualifies for yet are left out (they're noindex).
+  // Pages that moved to another Recs site 301 there (GamingRecs monitors), so they are left out even while their rows remain.
+  const moved = new Set((niche.movedAway ?? []).filter(m => !m.query).map(m => m.source));
+  const listed = data.listed.filter(r => !moved.has(`${catalogPath}/${r.slug}`));
+  const listedBrands = data.listedBrands.filter(b => !moved.has(`/brands/${b.slug}`));
   const lists = (niche.topLists ?? []).map(list => ({ list, ...listTotals(rankList(list, data, niche.tags)) })).filter(x => x.updated);
 
   return [
     { url: `${base}/`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 1 },
-    { url: `${base}${catalogPath}`, lastModified: latest(data.listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}${catalogPath}`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/brands`, changeFrequency: "weekly", priority: 0.6 },
     ...(lists.length ? [{ url: `${base}${RANKINGS_PATH}`, lastModified: latest(lists.map(x => x.updated)), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...lists.map(x => ({ url: `${base}${rankingHref(x.list.slug)}`, lastModified: new Date(x.updated), changeFrequency: "weekly" as const, priority: 0.8 })),
     ...(niche.typePages ?? []).map(t => ({
       url: `${base}/${t.slug}`,
-      lastModified: latest(data.listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
+      lastModified: latest(listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...data.listed.map(r => ({
+    ...listed.map(r => ({
       url: `${base}${catalogPath}/${r.slug}`,
       lastModified: latest([r.createdAt, ...notesFor(r.id)]),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     })),
-    ...data.listedBrands.map(b => ({
+    ...listedBrands.map(b => ({
       url: `${base}/brands/${b.slug}`,
-      lastModified: latest(data.listed.filter(r => r.brandId === b.id).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
+      lastModified: latest(listed.filter(r => r.brandId === b.id).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
