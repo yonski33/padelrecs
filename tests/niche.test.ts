@@ -243,3 +243,19 @@ test("simracing: gear named by generation (no years), five category pages that e
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("cycling: bikes named by model and frame tier (no years), road/gravel/mountain pages that each pick a drawing, rider profile, wheel rating icons", async () => {
+  const n = selectNiche("cycling");
+  assert.equal(n.schema, "cyclingrecs");
+  assert.equal(n.productPath, "bikes");
+  assert.equal(n.productYears, false);
+  assert.equal(n.tags.length, 16);
+  assert.deepEqual(n.categories.map(c => c.label), ["Speed & efficiency", "Comfort & fit", "Handling", "Parts & spec", "Value"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["road-bikes", "gravel-bikes", "mountain-bikes"]);
+  const { shapeOf } = await import("../app/art/cycling");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["road", "gravel", "mountain"]);
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
