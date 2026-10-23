@@ -11,11 +11,12 @@ import { simracing } from "./simracing";
 import { cycling } from "./cycling";
 import { audio } from "./audio";
 import { monitor } from "./monitor";
+import { camera } from "./camera";
 
 export type { Niche } from "./types";
 
 /** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor };
+export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera };
 export const DEFAULT_NICHE = "padel";
 
 /** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */

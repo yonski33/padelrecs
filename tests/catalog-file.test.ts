@@ -276,3 +276,23 @@ test("the MonitorRecs starter catalog: the 88 GamingRecs monitors under their ol
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Alienware AW3225QF")?.slug, "alienware-aw3225qf");
 });
+
+test("the CameraRecs starter catalog: sourced mirrorless, compact, vlogging and action cameras, known categories, no years, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/camera.json");
+  const snapshot = catalogSnapshot(catalog, "camerarecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 13);
+  assert(snapshot.tables.rackets.length >= 100);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.camera.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/camera");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: cameras carry generations, not years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one camera`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Sony a7 IV")?.slug, "sony-a7-iv");
+});
