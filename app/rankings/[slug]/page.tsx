@@ -59,7 +59,7 @@ function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList 
         {e.con && <span className="tag neg">{e.con.label}<span className="c">{e.con.count}</span></span>}
       </div>}
       {e.quote && <figure className="top-quote">
-        <blockquote>“{e.quote.text}”</blockquote>
+        <blockquote>“{e.quote.text}”{e.quote.translatedFrom && <span className="translated-note"> (translated from {e.quote.translatedFrom})</span>}</blockquote>
         <figcaption className="cite"><a className="src-link" href={e.quote.url} target="_blank" rel="noopener noreferrer" title={`View the original on ${e.quote.platform}`}>
           <SourceIcon platform={e.quote.platform}/><b>{e.quote.platform}</b>{e.quote.source && e.quote.source !== e.quote.platform && <span>{e.quote.source}</span>}<span className="arr" aria-hidden="true">↗</span>
         </a></figcaption>

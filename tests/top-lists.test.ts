@@ -164,6 +164,14 @@ test("entries carry real tags and a positive verbatim quote with its source", ()
   assert.equal(e.latest, "2026-10-01T00:00:00Z");
 });
 
+test("a translated source is quoted in English and says so; an untranslated foreign quote is never used", () => {
+  const es = { ...web("a", "positive", ["easy power"], "Tiene una potencia increíble y la salida de bola es muy buena para mí."), sourceLanguage: "es", excerptTranslation: "It has incredible power and the ball comes off really well for me." };
+  const raw = { ...web("a", "positive", ["easy power"], "Muy buena pala, la recomiendo a cualquiera que busque potencia y control."), sourceLanguage: "es", excerptTranslation: null };
+  const [e] = rankList(overall, { listed: [product("a")], reviews: [], external: [raw, es, web("a", "mixed", ["head-heavy"]), web("a", "positive", ["good control"]), web("a", "positive", ["forgiving"])] }, tags);
+  assert.equal(e.quote?.text, "It has incredible power and the ball comes off really well for me.");
+  assert.equal(e.quote?.translatedFrom, "Spanish");
+});
+
 test("title and address follow the agreed pattern", () => {
   assert.equal(rankingHref("best-padel-rackets"), "/rankings/best-padel-rackets");
   assert.equal(listTitle({ title: "Best Padel Rackets" }, 2026, 1234), "Best Padel Rackets 2026, Ranked by 1,234 Real Player Reviews");

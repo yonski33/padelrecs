@@ -20,6 +20,9 @@ const candidate = z.object({
   source_date: z.string().nullable().optional(),
   excerpt: z.string().nullable().optional(),
   summary: z.string().nullable().optional(),
+  // A source in another language: its ISO 639-1 code and our English translation of the excerpt (the excerpt stays verbatim).
+  source_language: z.string().regex(/^[a-z]{2}$/).nullable().optional(),
+  excerpt_translation: z.string().nullable().optional(),
   sentiment: z.enum(["positive", "negative", "mixed"]).nullable().optional(),
   tags: z.array(z.string()).default([]),
   status: z.string(),
@@ -47,12 +50,12 @@ export function sameSource(url: string) {
 }
 
 type Row = typeof externalReviews.$inferInsert;
-type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[] };
+type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage: string | null; excerptTranslation: string | null };
 /** A published web review whose candidate the research agent withdrew (its source no longer says what we quote). */
 type Removal = { candidateId: string; id: string };
 export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; removals: Removal[]; skipped: { candidate: Candidate; reason: string }[] };
 
-type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[] };
+type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage?: string | null; excerptTranslation?: string | null };
 export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string; year?: number }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
   const plan: Plan = { rows: [], updates: [], removals: [], skipped: [] };
   const byId = new Map(site.external.map(e => [e.id, e]));
@@ -68,15 +71,19 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     const excerpt = c.excerpt?.trim() && c.excerpt.trim().length >= 20 ? c.excerpt.trim() : null;
     const summary = c.summary?.trim() && c.summary.trim().length >= 30 ? c.summary.trim() : null;
     const sentiment = c.sentiment ?? null;
+    // English sources carry no language; a foreign quote is only shown through its translation, so it needs one.
+    const sourceLanguage = c.source_language && c.source_language !== "en" ? c.source_language : null;
+    const excerptTranslation = sourceLanguage && excerpt && c.excerpt_translation?.trim() ? c.excerpt_translation.trim() : null;
     const live = byId.get(webReviewId(c.id));
     if (live) {
       // Published before: bring the site's text and tags in line with the queue, never anything else.
       const tags = [...new Set(c.tags)].filter(t => tagBank.has(t)).slice(0, 3);
-      if ((excerpt || summary) && (live.excerpt !== excerpt || live.summary !== summary || live.sentiment !== sentiment || JSON.stringify(live.tags) !== JSON.stringify(tags))) plan.updates.push({ candidateId: c.id, id: live.id, excerpt, summary, sentiment, tags });
+      if ((excerpt || summary) && (live.excerpt !== excerpt || live.summary !== summary || live.sentiment !== sentiment || JSON.stringify(live.tags) !== JSON.stringify(tags) || (live.sourceLanguage ?? null) !== sourceLanguage || (live.excerptTranslation ?? null) !== excerptTranslation)) plan.updates.push({ candidateId: c.id, id: live.id, excerpt, summary, sentiment, tags, sourceLanguage, excerptTranslation });
       continue;
     }
     if (c.status !== "approved") continue;
     if (!excerpt && !summary) { skip("needs an exact quote (20+ characters) or a summary (30+ characters)"); continue; }
+    if (sourceLanguage && excerpt && !excerptTranslation) { skip(`a quote in "${sourceLanguage}" needs an English translation (excerpt_translation)`); continue; }
     const wanted = c.racket_name.trim().toLowerCase();
     // Queued under a name that still ended in the model year (PickleballRecs dropped years from names on 2026-10-22).
     const racket = site.rackets.find(r => r.name.toLowerCase() === wanted) ?? site.rackets.find(r => r.year !== undefined && `${r.name} ${r.year}`.toLowerCase() === wanted);
@@ -88,7 +95,7 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     if (quoted.has(key)) { skip("this source is already quoted for this racket on the site"); continue; }
     quoted.add(key);
     plan.rows.push({
-      candidateId: c.id, id: webReviewId(c.id), racketId: racket.id, excerpt, summary, sentiment,
+      candidateId: c.id, id: webReviewId(c.id), racketId: racket.id, excerpt, summary, sentiment, sourceLanguage, excerptTranslation,
       sourcePlatform: c.source_platform, sourceName: c.source_name.trim(), sourceUrl: c.source_url.trim(),
       // Only full dates are shown on the site; a month or year alone would display as the 1st.
       sourceDate: c.source_date && /^\d{4}-\d{2}-\d{2}$/.test(c.source_date) ? c.source_date : null,
@@ -102,7 +109,7 @@ type Database = PgDatabase<PgQueryResultHKT, typeof schema>;
 export async function siteState(db: Pick<Database, "select">) {
   const [r, e] = await Promise.all([
     db.select({ id: rackets.id, name: rackets.name, year: rackets.year }).from(rackets),
-    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags }).from(externalReviews),
+    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags, sourceLanguage: externalReviews.sourceLanguage, excerptTranslation: externalReviews.excerptTranslation }).from(externalReviews),
   ]);
   return { rackets: r, external: e };
 }
@@ -115,7 +122,7 @@ export async function applyImport(db: Database, plan: Plan) {
     const inserted = plan.rows.length ? await tx.insert(externalReviews).values(plan.rows.map(({ candidateId: _, ...row }) => row)).onConflictDoNothing({ target: externalReviews.id }).returning({ id: externalReviews.id }) : [];
     let updated = 0;
     for (const u of plan.updates) {
-      const done = await tx.update(externalReviews).set({ excerpt: u.excerpt, summary: u.summary, sentiment: u.sentiment, tags: u.tags }).where(eq(externalReviews.id, u.id)).returning({ id: externalReviews.id });
+      const done = await tx.update(externalReviews).set({ excerpt: u.excerpt, summary: u.summary, sentiment: u.sentiment, tags: u.tags, sourceLanguage: u.sourceLanguage, excerptTranslation: u.excerptTranslation }).where(eq(externalReviews.id, u.id)).returning({ id: externalReviews.id });
       updated += done.length;
     }
     let removed = 0;

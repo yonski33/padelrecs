@@ -107,3 +107,18 @@ test("YouTube comments under one video are separate sources; the same comment fo
   assert.deepEqual(plan.rows.map(r => r.candidateId), ["y1", "y2"]);
   assert.match(plan.skipped[0].reason, /already quoted/);
 });
+
+test("a Spanish quote is published with its English translation and language; without a translation it waits", () => {
+  const es = (id: string, over: object = {}) => line({ id, source_platform: "YouTube", source_name: "Padel Review", source_url: `https://www.youtube.com/watch?v=abcdefghijk&lc=${id}`,
+    excerpt: "Llevo tres meses con ella y la potencia es increíble, pero en defensa cuesta un poco más.", source_language: "es",
+    excerpt_translation: "I've had it for three months and the power is incredible, but it's a bit harder in defence.", ...over });
+  const q = [es("es1"), es("es2", { excerpt_translation: null }), es("en1", { source_language: "en", excerpt_translation: null })].join("\n") + "\n";
+  const plan = planImport(parseCandidates(q), { rackets: [{ id: "racket-nox", name: "Nox Test 2025" }], external: [] }, niches.padel);
+  assert.deepEqual(plan.rows.map(r => [r.candidateId, r.sourceLanguage, Boolean(r.excerptTranslation)]), [["es1", "es", true], ["en1", null, false]]);
+  assert.equal(plan.rows[0].excerpt, "Llevo tres meses con ella y la potencia es increíble, pero en defensa cuesta un poco más.");
+  assert.match(plan.skipped[0].reason, /needs an English translation/);
+  // A corrected translation updates the live review.
+  const live = { ...plan.rows[0], sourceUrl: plan.rows[0].sourceUrl, tags: plan.rows[0].tags ?? [] } as never;
+  const fixed = planImport(parseCandidates(es("es1", { status: "published", excerpt_translation: "Three months in: incredible power, a bit harder in defence." }) + "\n"), { rackets: [{ id: "racket-nox", name: "Nox Test 2025" }], external: [live] }, niches.padel);
+  assert.deepEqual(fixed.updates.map(u => u.excerptTranslation), ["Three months in: incredible power, a bit harder in defence."]);
+});
