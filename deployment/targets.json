@@ -122,7 +122,8 @@
     "fragrance": "fragrancerecs",
     "coffee": "coffeerecs",
     "climbing": "climbingrecs",
-    "nails": "nailsrecs"
+    "nails": "nailsrecs",
+    "kitchen": "kitchenrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
