@@ -431,3 +431,25 @@ test("coffee: gear named without years, five category pages that each pick a dra
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("climbing: gear named without years, six category pages that each pick a drawing, climber profile, hold rating icons", async () => {
+  const n = selectNiche("climbing");
+  assert.equal(n.schema, "climbingrecs");
+  assert.equal(n.productPath, "gear");
+  assert.equal(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.tags.length, 17);
+  assert.deepEqual(n.categories.map(c => c.label), ["Performance", "Comfort", "Ease of use", "Durability", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Key specs", "Material", "Weight"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["climbing-shoes", "harnesses", "belay-devices", "ropes", "chalk-bags", "crash-pads"]);
+  const { shapeOf } = await import("../app/art/climbing");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["shoe", "harness", "belay", "rope", "chalk", "pad"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /climbing|belay|chalk|crash/, `${list.slug}: niche keyword in the slug`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
