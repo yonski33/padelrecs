@@ -93,6 +93,11 @@
       "name": "climbingrecs",
       "id": "prj_2jtgmV6g50HzXzpeD1EVVyASCw2v",
       "domain": "www.climbingrecs.com"
+    },
+    "nails": {
+      "name": "nailsrecs",
+      "id": "prj_9LiBFMDN1MpFxrWIH4vfU20J1bmo",
+      "domain": "www.nailsrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
