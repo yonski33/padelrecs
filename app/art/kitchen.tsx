@@ -1,6 +1,6 @@
 // KitchenRecs visuals: one simple line drawing per category (an air fryer with its pull-out basket, a countertop oven with
 // its window and knobs, a blender jar on its base, a tilt-head stand mixer over its bowl, a food processor with its feed tube,
-// a multicooker pot with its lid), all in the same 40×64 box as the other niches' product drawings, and the chef's-hat logo.
+// a multicooker pot with its lid), all in the same 40×64 box as the other niches' product drawings, and the cooking-pot logo.
 
 export type Shape = "airfryer" | "oven" | "blender" | "mixer" | "processor" | "multicooker" | "unknown";
 
@@ -76,7 +76,7 @@ export function ProductIcon({ shape, className }: { shape?: string | null; brand
 
 export function LogoIcon({ className }: { className?: string }) {
   return <svg className={className} viewBox="0 0 20 20" aria-hidden="true">
-    <path d="M5.6 12.2C3.7 11.7 2.4 10.1 2.4 8.2C2.4 6 4.1 4.3 6.2 4.3C6.7 2.7 8.2 1.6 10 1.6C11.8 1.6 13.3 2.7 13.8 4.3C15.9 4.3 17.6 6 17.6 8.2C17.6 10.1 16.3 11.7 14.4 12.2V16.6C14.4 17.4 13.8 18 13 18H7C6.2 18 5.6 17.4 5.6 16.6Z" fill="#9a3412"/>
-    <path d="M5.6 14.6H14.4" fill="none" stroke="#f6c453" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M5.2 8.5H14.8A2.2 2.2 0 0 1 17 10.7V14.8A2.2 2.2 0 0 1 14.8 17H5.2A2.2 2.2 0 0 1 3 14.8V10.7A2.2 2.2 0 0 1 5.2 8.5ZM1.8 9.6H3V11.6H1.8A1 1 0 0 1 1.8 9.6ZM17 9.6H18.2A1 1 0 0 1 18.2 11.6H17ZM10 3A1.6 1.6 0 1 1 10 6.2A1.6 1.6 0 1 1 10 3Z" fill="#9a3412"/>
+    <path d="M3 7.2H17" fill="none" stroke="#f6c453" strokeWidth="2" strokeLinecap="round"/>
   </svg>;
 }

@@ -477,7 +477,7 @@ test("nails: products named without years, six category pages that each pick a d
   }
 });
 
-test("kitchen: appliances named without years, six category pages that each pick a drawing, kitchen profile, chef's-hat rating icons", async () => {
+test("kitchen: appliances named without years, six category pages that each pick a drawing, kitchen profile, cooking-pot rating icons", async () => {
   const n = selectNiche("kitchen");
   assert.equal(n.schema, "kitchenrecs");
   assert.equal(n.productPath, "appliances");

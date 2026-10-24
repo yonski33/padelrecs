@@ -1,17 +1,18 @@
 import type { Niche } from "./types";
 
-// Rating icons: a chef's hat, terracotta with a butter-yellow band. Same tile sizes as the other niches (17×14 strip, 20×20 picker);
+// Rating icons: a cooking pot, terracotta with a butter-yellow lid. Same tile sizes as the other niches (17×14 strip, 20×20 picker);
 // the strip tile widens the 20×20 drawing's viewBox so it keeps its shape.
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
-const HAT = "M5.6 12.2C3.7 11.7 2.4 10.1 2.4 8.2C2.4 6 4.1 4.3 6.2 4.3C6.7 2.7 8.2 1.6 10 1.6C11.8 1.6 13.3 2.7 13.8 4.3C15.9 4.3 17.6 6 17.6 8.2C17.6 10.1 16.3 11.7 14.4 12.2V16.6C14.4 17.4 13.8 18 13 18H7C6.2 18 5.6 17.4 5.6 16.6Z";
-const BAND = "M5.6 14.6H14.4";
-const hatIcon = (size: "tile" | "pick", on: boolean) => {
+// Body with its two side handles and the lid knob in the pot colour, the lid in the accent colour.
+const POT = "M5.2 8.5H14.8A2.2 2.2 0 0 1 17 10.7V14.8A2.2 2.2 0 0 1 14.8 17H5.2A2.2 2.2 0 0 1 3 14.8V10.7A2.2 2.2 0 0 1 5.2 8.5ZM1.8 9.6H3V11.6H1.8A1 1 0 0 1 1.8 9.6ZM17 9.6H18.2A1 1 0 0 1 18.2 11.6H17ZM10 3A1.6 1.6 0 1 1 10 6.2A1.6 1.6 0 1 1 10 3Z";
+const LID = "M3 7.2H17";
+const pot = (body: string, lid: string, q: string) =>
+  `<path d=${q}${POT}${q} fill=${q}${body}${q}/><path d=${q}${LID}${q} fill=${q}none${q} stroke=${q}${lid}${q} stroke-width=${q}2${q} stroke-linecap=${q}round${q}/>`;
+const potIcon = (size: "tile" | "pick", on: boolean) => {
   const box = size === "tile" ? "width='17' height='14' viewBox='-2.15 0 24.3 20'" : "viewBox='0 0 20 20'";
-  return svg(on
-    ? `<svg xmlns='http://www.w3.org/2000/svg' ${box}><path d='${HAT}' fill='#9a3412'/><path d='${BAND}' fill='none' stroke='#f6c453' stroke-width='1.8' stroke-linecap='round'/></svg>`
-    : `<svg xmlns='http://www.w3.org/2000/svg' ${box}><path d='${HAT}' fill='#f1e6dd'/></svg>`);
+  return svg(`<svg xmlns='http://www.w3.org/2000/svg' ${box}>${on ? pot("#9a3412", "#f6c453", "'") : pot("#f1e6dd", "#f1e6dd", "'")}</svg>`);
 };
-const ogHat = (hat: string, band: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="${HAT}" fill="${hat}"/><path d="${BAND}" fill="none" stroke="${band}" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const ogPot = (body: string, lid: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">${pot(body, lid, '"')}</svg>`;
 
 export const kitchen: Niche = {
   id: "kitchen",
@@ -31,7 +32,7 @@ export const kitchen: Niche = {
   // Colours are not separate products; regional versions with their own model number are.
   productYears: false,
   productPath: "appliances",
-  scoreUnit: { one: "hat", many: "hats" },
+  scoreUnit: { one: "pot", many: "pots" },
   // White page, terracotta ink, one butter-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
     "--bg": "#ffffff",
@@ -53,10 +54,10 @@ export const kitchen: Niche = {
     "--lime-line": "#f9e2a6",
     "--lime-ink": "#8a5a00",
     "--lime-ink-2": "#6e4700",
-    "--score-on": hatIcon("tile", true),
-    "--score-off": hatIcon("tile", false),
-    "--score-pick-on": hatIcon("pick", true),
-    "--score-pick-off": hatIcon("pick", false),
+    "--score-on": potIcon("tile", true),
+    "--score-off": potIcon("tile", false),
+    "--score-pick-on": potIcon("pick", true),
+    "--score-pick-off": potIcon("pick", false),
   },
   chartColors: ["var(--green)", "#f6c453", "#e5d3c5", "#c2410c", "#f9e2a6", "#94a3b8"],
   og: {
@@ -64,8 +65,8 @@ export const kitchen: Niche = {
     accent: "#f6c453",
     muted: "#f2c3a7",
     text: "#fff7ed",
-    scoreOn: ogHat("#fff7ed", "#f6c453"),
-    scoreOff: ogHat("#b8552c", "#b8552c"),
+    scoreOn: ogPot("#fff7ed", "#f6c453"),
+    scoreOff: ogPot("#b8552c", "#b8552c"),
   },
   ratingWords: { "5": "5 — love it", "4": "4 — really like it", "3": "3 — it’s fine", "2": "2 — disappointed", "1": "1 — regret buying it" },
   // Fixed rating columns, relabelled for appliances: power = cooking or blending results, comfort = ease of use,
