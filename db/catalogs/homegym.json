@@ -1,0 +1,3000 @@
+{
+ "about": "HomeGymRecs starter catalog (2026-10-24): home gym equipment: dumbbells (adjustable and fixed), racks (power racks, half racks, folding and wall-mounted racks, squat stands), benches, barbells, weight plates, machines (functional trainers, all-in-one trainers, cable towers, Smith machines, lat pulldowns, belt squats, leg presses) and cardio machines (rowers, air bikes, exercise bikes, ski ergs, treadmills). Every entry was read on 2026-10-24 from the maker's own store page linked in sources: REP Fitness, Titan Fitness, PowerBlock, Force USA, Ironmaster, Bowflex, Bells of Steel (which also sells Nüobell) and PRx Performance; Concept2 machines are read from REP Fitness, which sells them. Rogue Fitness is not in it yet: roguefitness.com answers automated reads with a CAPTCHA. Sorinex, Eleiko and Marcy were not read. One entry per model as the maker sells it; sizes, heights, depths, lb and kg versions and colours of one model are one entry, while versions sold under their own names stay separate (REP PR-4000 vs PR-5000, Bowflex SelectTech 552 vs 1090, PowerBlock Pro 50 vs Commercial Pro 50, Ironmaster Super Bench vs Super Bench PRO V2). Spec cells the maker's page doesn't state are blank.",
+ "checked": "2026-10-24",
+ "brands": [
+  {
+   "id": "bellsofsteel",
+   "name": "Bells of Steel"
+  },
+  {
+   "id": "bowflex",
+   "name": "Bowflex"
+  },
+  {
+   "id": "concept2",
+   "name": "Concept2"
+  },
+  {
+   "id": "forceusa",
+   "name": "Force USA"
+  },
+  {
+   "id": "ironmaster",
+   "name": "Ironmaster"
+  },
+  {
+   "id": "nuobell",
+   "name": "Nüobell"
+  },
+  {
+   "id": "powerblock",
+   "name": "PowerBlock"
+  },
+  {
+   "id": "prx",
+   "name": "PRx Performance"
+  },
+  {
+   "id": "rep",
+   "name": "REP Fitness"
+  },
+  {
+   "id": "titan",
+   "name": "Titan Fitness"
+  }
+ ],
+ "products": [
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Adjustable Utility Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/adjustable-utility-bench"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel All-Black Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/all-black-bumper-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel All-in-One Trainer",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": "210 lb stack",
+   "core": "2.3×2.3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/all-in-one-trainer"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Arch Nemesis Swiss Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/arch-nemesis-swiss-bar"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Belt Squat Machine",
+   "shape": "Machine",
+   "balance": "Belt squat",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/belt-squat-machine"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Blitz Air Bike",
+   "shape": "Cardio",
+   "balance": "Air bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/blitz-air-bike"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Blitz Air Rower",
+   "shape": "Cardio",
+   "balance": "Rower",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/blitz-air-rower"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Blitz Indoor Cycling Bike",
+   "shape": "Cardio",
+   "balance": "Exercise bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/blitz-spin-bike"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Blitz Max Air Bike",
+   "shape": "Cardio",
+   "balance": "Air bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/blitz-max-air-bike"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Blitz Ski Trainer",
+   "shape": "Cardio",
+   "balance": "Ski erg",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/blitz-ski-trainer"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Buzz-Saw Adjustable Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/buzz-saw-bench"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Calibrated Powerlifting Plates",
+   "shape": "Plates",
+   "balance": "Calibrated plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/calibrated-powerlifiting-plates-kg"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Colored Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/colour-bumper-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Commercial FID Bench",
+   "shape": "Bench",
+   "balance": "FID bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/commercial-weight-bench"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Competition Bumper Plates",
+   "shape": "Plates",
+   "balance": "Competition bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/kg-competition-bumper-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Crumb Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/crumb-bumper-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Curved Squat Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/curved-squat-bar"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Dead Bounce Conflict Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/conflict-bouncers"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Deadlift Bar",
+   "shape": "Barbell",
+   "balance": "Deadlift bar",
+   "surface": null,
+   "core": "29 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/deadlift-bar"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Dreadmill",
+   "shape": "Cardio",
+   "balance": "Treadmill",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/the-dreadmill"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Ergo Rubber Hex Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Rubber hex dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/rubber-hex-dumbbells"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Folding Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "2.3×2.3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/folding-rack"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/functional-trainer"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Hero Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/hero-bench"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Hydra Flat Foot Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "3×3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/hydra-3-x-3-inch-flat-foot-power-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Hydra Four Post Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "3×3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/hydra-four-post-power-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Hydra Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": null,
+   "core": "3×3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/hydra-half-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Hydra Smith Machine",
+   "shape": "Machine",
+   "balance": "Smith machine",
+   "surface": null,
+   "core": "3×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/hydra-squat-stand-smith-machine-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Hydra Squat Stand",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": null,
+   "core": "3×3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/hydra-squat-stand-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Kolossos Smith Functional Trainer",
+   "shape": "Machine",
+   "balance": "Smith machine",
+   "surface": "210 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/kolossos"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Lat Pulldown Low Row Machine",
+   "shape": "Machine",
+   "balance": "Lat pulldown",
+   "surface": "310 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/lat-pulldown-low-row-machine"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Leg Press Hack Squat Machine",
+   "shape": "Machine",
+   "balance": "Leg press",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/leg-press-hack-squat-set"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Light Commercial Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "2.3×2.3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/light-commercial-rack"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Machined Iron Olympic Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/machined-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Manticore Folding Half Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights, 1 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/manticore-folding-half-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Manticore Folding Power Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights, 1 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/manctiore-folding-power-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Manticore Four Post Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "3×3 in uprights, 1 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/manticore-four-post-power-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Manticore Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": null,
+   "core": "3×3 in uprights, 1 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/manticore-half-rack-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Mighty Grip Olympic Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/mighty-grip-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Olympic Weightlifting Barbell",
+   "shape": "Barbell",
+   "balance": "Weightlifting bar",
+   "surface": null,
+   "core": "28 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/olympic-weightlifting-barbell"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Open Trap Bar",
+   "shape": "Barbell",
+   "balance": "Trap bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/open-trap-hex-bar"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Powerlifting Bar",
+   "shape": "Barbell",
+   "balance": "Power bar",
+   "surface": "20 kg",
+   "core": "29 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/powerlifting-bar"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Powerlifting Flat Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/powerlifting-flat-bench"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Roc Foldable 2 Post Cage",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/roc-foldable-two-post-cage-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Roc Foldable 4 Post Cage",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/roc-foldable-four-post-cage-prebuilt"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Squat Stands",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": null,
+   "core": "2.3×2.3 in uprights, 5/8 in holes",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/squat-stands"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Urethane Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/urethane-bumper-plates"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Urethane Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Urethane dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/urethane-dumbbells"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
+   "name": "Bells of Steel Utility Bar",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "15 kg",
+   "core": "28.5 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/multi-purpose-barbell"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex 5.1S",
+   "shape": "Bench",
+   "balance": "FID bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/51s-adjustable-weight-bench"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex C6",
+   "shape": "Cardio",
+   "balance": "Exercise bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/c6-bike"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex Max Trainer M6",
+   "shape": "Cardio",
+   "balance": "Elliptical",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/max-trainer-m6"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex Revolution",
+   "shape": "Machine",
+   "balance": "Home gym",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/revolution-home-gym"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex SelectTech 1090",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "10–90 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/bowflex-results-series-1090-selecttech-dumbbells"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex SelectTech 552",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "5–52.5 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/bowflex-results-series-552-selecttech-dumbbells"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex T16",
+   "shape": "Cardio",
+   "balance": "Treadmill",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/t16-treadmill"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex T6",
+   "shape": "Cardio",
+   "balance": "Treadmill",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/t6-treadmill"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex T9",
+   "shape": "Cardio",
+   "balance": "Treadmill",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/t9-treadmill"
+   ]
+  },
+  {
+   "brand": "bowflex",
+   "name": "Bowflex VeloCore 22",
+   "shape": "Cardio",
+   "balance": "Exercise bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.bowflex.com/products/velocore-bike-22"
+   ]
+  },
+  {
+   "brand": "concept2",
+   "name": "Concept2 BikeErg",
+   "shape": "Cardio",
+   "balance": "Exercise bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/concept2-bike-erg"
+   ]
+  },
+  {
+   "brand": "concept2",
+   "name": "Concept2 RowErg",
+   "shape": "Cardio",
+   "balance": "Rower",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/concept2-row-erg"
+   ]
+  },
+  {
+   "brand": "concept2",
+   "name": "Concept2 SkiErg",
+   "shape": "Cardio",
+   "balance": "Ski erg",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/concept2-ski-erg"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Air Rower",
+   "shape": "Cardio",
+   "balance": "Rower",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/rower"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA AirBike Belt Drive",
+   "shape": "Cardio",
+   "balance": "Air bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/belt-drive-airbike"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Base Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/base-bench"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA C10",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/c10"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA C20",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/c20"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Compact Leg Press & Hack Squat",
+   "shape": "Machine",
+   "balance": "Leg press",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/compact-leg-press-hack-squat"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G1",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g1"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G12",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g12"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G15",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": "289 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g15"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G20 Pro",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": "289 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g20"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G3",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g3"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G4",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g4"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA G6",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": "220 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/g6"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Gunner Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": "28 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/gunner-barbell"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA M10",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/m10"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA M20",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": "3×3 in uprights, 11-gauge steel, 1 in holes",
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/m20"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA MyBench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/mybench"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA MyRack Folding Power Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "2.4×2.4 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/myrack-folding-power-rack"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA MyRack Modular Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "2.4×2.4 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/myrack"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Olympic Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": "28 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/olympic-barbell"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Peak Flat Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/peak-flat-bench"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Pro Grade Colored Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/force-usa-pro-grade-colored-bumper-plates-lbs"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Pro Series Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": "28.5 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/pro-series-barbell"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Pro Series FID Bench",
+   "shape": "Bench",
+   "balance": "FID bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/pro-series-fid-bench"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Rubber Coated Olympic Plates",
+   "shape": "Plates",
+   "balance": "Rubber-coated plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/rubber-coated-olympic-weight-plates-lbs"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Rubber Hex Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Rubber hex dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/rubber-hex-dumbbells"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Ski Trainer",
+   "shape": "Cardio",
+   "balance": "Ski erg",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/ski-trainer"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Sliding Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/sliding-bench"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA Tandem Tower",
+   "shape": "Machine",
+   "balance": "Cable tower",
+   "surface": "200 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/tandem-tower"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA X15 Pro",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": "200 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/x15"
+   ]
+  },
+  {
+   "brand": "forceusa",
+   "name": "Force USA X20 Pro",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.forceusa.com/products/x20"
+   ]
+  },
+  {
+   "brand": "ironmaster",
+   "name": "Ironmaster IM2000",
+   "shape": "Rack",
+   "balance": "Self-spotting rack",
+   "surface": "1000 lb rated",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ironmaster.com/products/im2000-v2-20th-anniversary-edition"
+   ]
+  },
+  {
+   "brand": "ironmaster",
+   "name": "Ironmaster IM3000 Valhalla",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": "200 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ironmaster.com/products/im3000-valhalla-all-in-one-gym"
+   ]
+  },
+  {
+   "brand": "ironmaster",
+   "name": "Ironmaster OB 86 Olympic Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "20 kg",
+   "core": "28 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.ironmaster.com/products/olympic-barbell"
+   ]
+  },
+  {
+   "brand": "ironmaster",
+   "name": "Ironmaster Quick-Lock Adjustable Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "5–75 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ironmaster.com/products/quick-lock-adjustable-dumbbells-75-original"
+   ]
+  },
+  {
+   "brand": "ironmaster",
+   "name": "Ironmaster Super Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ironmaster.com/products/super-bench-adjustable-weightlifting-bench"
+   ]
+  },
+  {
+   "brand": "ironmaster",
+   "name": "Ironmaster Super Bench PRO V2",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ironmaster.com/products/super-bench-pro-v2"
+   ]
+  },
+  {
+   "brand": "nuobell",
+   "name": "Nüobell Adjustable Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "5–50 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/nuobell-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "nuobell",
+   "name": "Nüobell-S Adjustable Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "5–60 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/nuobell-s-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Commercial Pro 100",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "5–100 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/commercial-pro-100-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Commercial Pro 125",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "12.5–125 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/commercial-pro-125-lb-adjustable-dumbbell"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Commercial Pro 175",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "12.5–175 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/commercial-pro-175-lb-adjustable-dumbbell"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Commercial Pro 32",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "4–32 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/commercial-pro-32"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Commercial Pro 50",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "10–50 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/commercial-pro-50"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Elite USA 90",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "up to 90 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/elite-usa-90-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock PowerBench 2.0",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/powerbench-2-adjustable-weight-bench"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Pro 100 EXP",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "up to 100 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/pro-100-exp-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Pro 32",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "4–32 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/pro-32-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Pro 50",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "5–50 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/pro-50-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Sport 24",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": "3–24 lb",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/sport-24-adjustable-dumbbells"
+   ]
+  },
+  {
+   "brand": "powerblock",
+   "name": "PowerBlock Travel Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://powerblock.com/products/travel-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Anchor Weight Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-anchor-weight-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Bright Zinc Midwest Bar",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "45 lb",
+   "core": "28.5 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/bright-zinc-midwest-bar"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Build Limitless Full Cage",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/build-limitless-full-cage"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Build Limitless Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/build-limitless-half-rack"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Build Limitless Half Rack Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": "250 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/build-limitless-half-rack-functional-trainer"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Build Limitless Squat Stand",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/build-limitless-squat-stand"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Build Limitless Wall Mounted Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": "250 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/build-limitless-wall-mounted-functional-trainer"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Build Limitless Wall-Mount Squat Rack",
+   "shape": "Rack",
+   "balance": "Wall-mounted rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/build-limitless-wall-mount-rack"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Cast Iron Olympic Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/cast-iron-plates"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Color Fleck Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-color-fleck-bumper-plates"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Compact Flat Weight Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-compact-flat-weight-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Crumb Rubber Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/crumb-rubber-weights-pairs"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Dakota Power Barbell",
+   "shape": "Barbell",
+   "balance": "Power bar",
+   "surface": "20 kg",
+   "core": "28.5 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/mens-dakota-power-bar"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Elite Competition Bumper Plates",
+   "shape": "Plates",
+   "balance": "Competition bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-elite-competition-bumper-plate-pairs"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Fold-In ONE Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/fold-in-one"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Hex Barbell",
+   "shape": "Barbell",
+   "balance": "Trap bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-hex-bar"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Incline Folding Bench",
+   "shape": "Bench",
+   "balance": "Folding bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/incline-folding-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Mako Olympic Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-mako-olympic-barbell"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Multi Grip Camber Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/multi-grip-camber-bar"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Patriot Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/patriot-bumper-weight-plates"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Prime Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-prime-bumper-plates"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Profile CORE Squat Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/profile-core-squat-rack"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Profile Flat Folding Bench",
+   "shape": "Bench",
+   "balance": "Folding bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/profile-folding-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Profile Folding Full Cage",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/profile-folding-full-cage"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Profile PRO Ark",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": "160 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/profile-pro-weight-stack-functional-trainer"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Profile PRO Sidewinder",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/profile-pro-functional-trainer"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Profile PRO Squat Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": "1000 lb rated",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/profile-pro-bar"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Razortooth Weight Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-razortooth-weight-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Reef Power Barbell",
+   "shape": "Barbell",
+   "balance": "Power bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-reef-power-barbell"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Rubber Hex Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Rubber hex dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-hex-dumbbells"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Stealth Air Bike",
+   "shape": "Cardio",
+   "balance": "Air bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/stealth-air-bike"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Stealth Air Rower Pro",
+   "shape": "Cardio",
+   "balance": "Rower",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/stealth-air-rower"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Stealth Weight Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-stealth-weight-bench"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Thresher Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-thresher-barbell"
+   ]
+  },
+  {
+   "brand": "prx",
+   "name": "PRx Thresher Stainless Steel Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.prxperformance.com/products/prx-thresher-stainless-steel-barbell"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP AB-3000 2.0",
+   "shape": "Bench",
+   "balance": "FID bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/ab-3000-fid-adjustable-bench"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP AB-3100",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/ab-3100-adjustable-weight-bench"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP AB-5200 2.0",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/ab-5200-2-0"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Adonis Cable Tower",
+   "shape": "Machine",
+   "balance": "Cable tower",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/adonis-cable-tower"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Alpine Bar",
+   "shape": "Barbell",
+   "balance": "Weightlifting bar",
+   "surface": "20 kg",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/alpine-weightlifting-bar-20kg"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Altitude Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/altitude-power-rack"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Apollo Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/apollo-rack-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Arcadia Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/arcadia-functional-trainer"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Arcadia Max Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/arcadia-max-functional-trainer"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Ares 2.0",
+   "shape": "Machine",
+   "balance": "All-in-one trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/ares-2-0-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Athena Functional Trainer",
+   "shape": "Machine",
+   "balance": "Rack-mounted functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/athena-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Badlands Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/badlands-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Belt Squat",
+   "shape": "Machine",
+   "balance": "Belt squat",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/belt-squat"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Black Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/black-bumper-plate-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Black Canyon Bar",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "20 kg",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/black-canyon-bar-20kg"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Black Diamond Power Bar",
+   "shape": "Barbell",
+   "balance": "Power bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/black-diamond-power-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP BlackWing Adjustable Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/blackwing-adjustable-bench"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Calibrated Steel Plates",
+   "shape": "Plates",
+   "balance": "Calibrated plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/calibrated-steel-plates-kg"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Cambered Swiss Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/cambered-swiss-multi-grip-barbell"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Color Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/color-bumper-plate-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Colorado Bar",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "20 kg",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/colorado-bar-20kg"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Competition Bumper Plates",
+   "shape": "Plates",
+   "balance": "Competition bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/competition-bumper-plate-pairs-kg"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Delta Basic Bar",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/delta-basic-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Double Black Diamond Power Bar",
+   "shape": "Barbell",
+   "balance": "Power bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/double-black-diamond-power-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Equalizer Iron Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/usa-made-equalizer-iron-plates"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Equalizer Urethane-Coated Plates",
+   "shape": "Plates",
+   "balance": "Urethane-coated plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/urethane-coated-equalizer-plate-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Ergo Hex Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Rubber hex dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/ergo-rubber-hex-dumbbell-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP FB-5000",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/fb-5000-competition-flat-bench"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Glute Ham Developer",
+   "shape": "Machine",
+   "balance": "GHD",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/ghd-glute-ham-developer"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Hades Deadlift Bar",
+   "shape": "Barbell",
+   "balance": "Deadlift bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/hades-deadlift-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Helios Squat Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/helios-squat-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Hex Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Rubber hex dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/rubber-hex-dumbbell-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Nighthawk Adjustable Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/rep-nighthawk-adjustable-bench"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Old School Iron Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/old-school-iron-plate-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Omni Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/omni-rack-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Open Trap Bar",
+   "shape": "Barbell",
+   "balance": "Trap bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/open-trap-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Phantom Adjustable Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/phantom-adjustable-bench"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Pinnacle Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/pinnacle-bumper-plates"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP PR-1100",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/pr-1100-power-rack"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP PR-4000",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/pr-4000-rack-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP PR-4100",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/pr-4100-folding-wall-mount-squat-power-rack"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP PR-5000",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/pr-5000-rack-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP QuickDraw Adjustable Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/quickdraw-adjustable-dumbbell-lb"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Rubber Coated Dumbbells 2.0",
+   "shape": "Dumbbells",
+   "balance": "Rubber-coated dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/rubber-coated-dumbbells-2-0"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Rubber Coated Olympic Plates",
+   "shape": "Plates",
+   "balance": "Rubber-coated plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/rubber-coated-olympic-plate-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Selectorized Lat Pulldown and Low Row 1000 Series",
+   "shape": "Machine",
+   "balance": "Lat pulldown",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/selectorized-lat-pulldown-1000-series"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Selectorized Lat Pulldown and Low Row 4000/5000 Series",
+   "shape": "Machine",
+   "balance": "Lat pulldown",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/4000-5000-series-lat-pulldown"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP SR-4000",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/sr-4000-squat-rack-builder"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Strive Air Bike",
+   "shape": "Cardio",
+   "balance": "Air bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/strive-air-bike-featuring-vpr"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Strive Curved Treadmill",
+   "shape": "Cardio",
+   "balance": "Treadmill",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/rep-strive-series-curved-treadmill"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Teton Training Bar",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "20 kg",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/teton-training-bar-20kg"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Trap Bar",
+   "shape": "Barbell",
+   "balance": "Trap bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/trap-bar"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP Urethane Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Urethane dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/urethane-coated-round-dumbbell-pairs"
+   ]
+  },
+  {
+   "brand": "rep",
+   "name": "REP x Pépin FAST Series Adjustable Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Adjustable dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://repfitness.com/products/rep-x-pepin-fast-series-adjustable-dumbbell"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Belt Squat Machine",
+   "shape": "Machine",
+   "balance": "Belt squat",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/belt-squat-machine"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Calibrated Steel Plates",
+   "shape": "Plates",
+   "balance": "Calibrated plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/calibrated-steel-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Cast Iron Olympic Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/cast-iron-olympic-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Crumb Rubber Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/crumb-rubber-bumper-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Economy Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/lb-economy-black-bumper-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Elite Competition Plates",
+   "shape": "Plates",
+   "balance": "Competition bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/lb-elite-competition-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Elite Series Adjustable FID Bench",
+   "shape": "Bench",
+   "balance": "FID bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/single-post-adjustable-fid-bench"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Elite Series Olympic Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "20 kg",
+   "core": "28 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/elite-series-olympic-barbell"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Elite Series Single Post Flat Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/elite-series-single-post-flat-bench"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan EZ-Grip Color Bumper Plates",
+   "shape": "Plates",
+   "balance": "Bumper plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/ez-grip-color-bumper-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Fan Bike",
+   "shape": "Cardio",
+   "balance": "Air bike",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-fitness-fan-bike"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": "200 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/functional-trainer"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Lat Tower",
+   "shape": "Machine",
+   "balance": "Lat pulldown",
+   "surface": "300 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/lat-tower-10-300-lb-selector"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Leg Press Hack Squat Machine",
+   "shape": "Machine",
+   "balance": "Leg press",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/leg-press-hack-squat-machine"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Nemesis Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": "300 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/nemesis-300-lb-functional-trainer"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Olympic Grip Plates",
+   "shape": "Plates",
+   "balance": "Iron plates",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/lb-black-grip-plates"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Open Trap Bar",
+   "shape": "Barbell",
+   "balance": "Trap bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/open-trap-bar"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Performance Series Adjustable Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/performance-series-adjustable-bench"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Plate-Loaded Cable Tower",
+   "shape": "Machine",
+   "balance": "Cable tower",
+   "surface": null,
+   "core": "3×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/plate-loaded-cable-tower"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Plate-Loaded Functional Trainer",
+   "shape": "Machine",
+   "balance": "Functional trainer",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/plate-loaded-functional-trainer"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Rackable Camber Bar",
+   "shape": "Barbell",
+   "balance": "Specialty bar",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/rackable-camber-bar"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Rackable Hex Trap Bar",
+   "shape": "Barbell",
+   "balance": "Trap bar",
+   "surface": null,
+   "core": "28 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/rackable-hex-trap-bar"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Round Urethane Dumbbells",
+   "shape": "Dumbbells",
+   "balance": "Urethane dumbbells",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/5-lb-120-lb-round-urethane-dumbbells"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Selectorized Cable Tower",
+   "shape": "Machine",
+   "balance": "Cable tower",
+   "surface": "320 lb stack",
+   "core": "3×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/cable-tower-10-320-lb-selector"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan Smith Machine",
+   "shape": "Machine",
+   "balance": "Smith machine",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/smith-machine"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan T-2 Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "2×2 in uprights, 14-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/t2-series-power-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan T-3 Folding Power Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "2×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/t3-series-folding-power-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan T-3 Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": "1000 lb rated",
+   "core": "2×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/t-3-series-half-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan T-3 Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "2×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/t-3-series-power-rack-82-24"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan T-3 Squat Stand",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": null,
+   "core": "2×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/t-3-series-tall-squat-stand"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Adjustable Bench",
+   "shape": "Bench",
+   "balance": "Adjustable bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-adjustable-bench"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Adjustable FID Bench",
+   "shape": "Bench",
+   "balance": "FID bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/max-adjustable-fid-bench"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Cerakote Olympic Barbell",
+   "shape": "Barbell",
+   "balance": "Multipurpose bar",
+   "surface": "20 kg",
+   "core": "28.5 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-cerakote-olympic-barbell"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Deadlift Bar",
+   "shape": "Barbell",
+   "balance": "Deadlift bar",
+   "surface": "20 kg",
+   "core": "28.5 mm shaft",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-deadlift-bar"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": "2000 lb rated",
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-half-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Power Bar",
+   "shape": "Barbell",
+   "balance": "Power bar",
+   "surface": "20 kg",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-power-bar"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-power-rack-90-36"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Single Post Flat Bench",
+   "shape": "Bench",
+   "balance": "Flat bench",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-single-post-flat-bench"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan TITAN Series Squat Stand",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": "1500 lb rated",
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/titan-series-squat-stand"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan X-3 Bolt Down Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": "1650 lb rated",
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/x-3-series-bolt-down-power-rack-80-24"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan X-3 Flat Foot Power Rack",
+   "shape": "Rack",
+   "balance": "Power rack",
+   "surface": null,
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/x3-series-flat-foot-power-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan X-3 Folding Power Rack",
+   "shape": "Rack",
+   "balance": "Folding rack",
+   "surface": null,
+   "core": "3×3 in uprights, 11-gauge steel",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/x3-series-folding-power-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan X-3 Half Rack",
+   "shape": "Rack",
+   "balance": "Half rack",
+   "surface": "1000 lb rated",
+   "core": "3×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/x-3-series-half-rack"
+   ]
+  },
+  {
+   "brand": "titan",
+   "name": "Titan X-3 Squat Stand",
+   "shape": "Rack",
+   "balance": "Squat stand",
+   "surface": null,
+   "core": "3×3 in uprights",
+   "weight": null,
+   "sources": [
+    "https://www.titan.fitness/products/x-3-series-tall-squat-stand"
+   ]
+  }
+ ]
+}

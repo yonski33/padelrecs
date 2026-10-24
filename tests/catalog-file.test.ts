@@ -511,3 +511,30 @@ test("the TableTennisRecs starter catalog: sourced blades, rubbers and pre-assem
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Butterfly Viscaria")?.core, "5W+2ALC");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Butterfly Dignics 09C")?.shape, "Rubber");
 });
+
+test("the HomeGymRecs starter catalog: sourced dumbbells, racks, benches, bars, plates, machines and cardio, known categories, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/homegym.json");
+  const snapshot = catalogSnapshot(catalog, "homegymrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 10);
+  assert(snapshot.tables.rackets.length >= 200);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.homegym.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/homegym");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(r.balance, `${r.name}: no type`);
+    // Heights, depths, lb or kg versions and bundles are one product, never part of the name.
+    assert(!/\b(LB|KG|lb|kg)\b|\d+"|Pre-Selected|Builder|Bundle|Prebuilt/.test(r.name), `${r.name}: not a clean product name`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one product`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Models sold under their own names are separate products.
+  for (const name of ["REP PR-4000", "REP PR-5000", "Bowflex SelectTech 552", "Bowflex SelectTech 1090", "PowerBlock Pro 50", "PowerBlock Commercial Pro 50", "Ironmaster Super Bench", "Ironmaster Super Bench PRO V2", "Concept2 RowErg", "Force USA G3", "Force USA G20 Pro"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "REP PR-4000")?.slug, "rep-pr-4000");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Nüobell Adjustable Dumbbells")?.slug, "nuobell-adjustable-dumbbells");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Bowflex SelectTech 552")?.surface, "5–52.5 lb");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "REP AB-5200 2.0")?.shape, "Bench");
+});
