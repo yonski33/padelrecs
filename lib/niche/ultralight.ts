@@ -21,7 +21,7 @@ export const ultralight: Niche = {
     wordmark: "ultralightrecs",
     descriptor: "hiker reviews of ultralight tents, backpacks, sleeping pads and quilts",
     footer: "kept by people who weigh their toothbrush. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for ultralightrecs.com exists
+    analyticsId: "G-D9N3940RRH",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
