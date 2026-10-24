@@ -21,11 +21,12 @@ import * as climbing from "./climbing";
 import * as nails from "./nails";
 import * as kitchen from "./kitchen";
 import * as snowboard from "./snowboard";
+import * as tabletennis from "./tabletennis";
 
 /** Per-niche drawings: the product icon (shape + brand mark) and the logo, which is also the rating icon. */
 export type Art = {
   ProductIcon: (props: { shape?: string | null; brand?: string | null; className?: string }) => JSX.Element;
   LogoIcon: (props: { className?: string }) => JSX.Element;
 };
-export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard };
+export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis };
 export const art = arts[niche.id];
