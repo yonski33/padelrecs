@@ -392,7 +392,7 @@ test("fragrance: fragrances named by line and concentration (no years), For as t
   assert.equal(n.site.domain, "fragrancerecs.com");
   assert.equal(n.productPath, "fragrances");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-VB88Q9X0X1");
   assert.equal(n.words.one, "fragrance");
   assert.equal(n.tags.length, 16);
   assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Scent:comfortRating", "Longevity:controlRating", "Projection:powerRating", "Versatility:maneuverabilityRating", "Value:forgivenessRating"]);
