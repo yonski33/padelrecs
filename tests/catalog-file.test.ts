@@ -393,7 +393,7 @@ test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices,
   const catalog = await readCatalog("db/catalogs/climbing.json");
   const snapshot = catalogSnapshot(catalog, "climbingrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 10);
-  assert(snapshot.tables.rackets.length >= 240);
+  assert(snapshot.tables.rackets.length >= 249);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.climbing.specs.find(s => s.column === "shape")!.options!;
