@@ -323,7 +323,7 @@ test("camera: cameras named by generation (no years), four category pages that e
   assert.equal(n.schema, "camerarecs");
   assert.equal(n.productPath, "cameras");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-QKXR6JZF5L");
   assert.equal(n.tags.length, 16);
   assert.deepEqual(n.categories.map(c => c.label), ["Image quality", "Autofocus & speed", "Handling & build", "Video & features", "Value"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Sensor", "Resolution", "Mount / lens", "Weight"]);
