@@ -1665,6 +1665,18 @@
    ]
   },
   {
+   "brand": "moza",
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase",
+   "weight": "9 Nm",
+   "core": null,
+   "surface": null,
+   "balance": "Direct drive",
+   "sources": [
+    "https://eu.mozaracing.com/products/r9v2-wheelbase"
+   ]
+  },
+  {
    "brand": "next-level-racing",
    "name": "Next Level Racing F-GT",
    "shape": "Cockpit",
@@ -1899,6 +1911,30 @@
    ]
   },
   {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing GTLite",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Foldable",
+   "sources": [
+    "https://nextlevelracing.com/products/gt-lite/"
+   ]
+  },
+  {
+   "brand": "next-level-racing",
+   "name": "Next Level Racing Victory",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://nextlevelracing.com/news/next-level-racing-introduces-the-victory-simulator-cockpit-the-most-affordable-option-for-an-immersive-gt-sim-racing-experience/"
+   ]
+  },
+  {
    "brand": "playseat",
    "name": "Playseat Challenge X",
    "shape": "Cockpit",
@@ -1920,6 +1956,31 @@
    "balance": null,
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/playseat-trophy-sim-racing-seat"
+   ]
+  },
+  {
+   "brand": "playseat",
+   "name": "Playseat Challenge DD",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Foldable",
+   "sources": [
+    "https://www.playseat.com/products/playseat-challenge-dd-f1-edition"
+   ]
+  },
+  {
+   "brand": "playseat",
+   "name": "Playseat Evolution",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.playseat.com/products/playseat-evolution-actifit",
+    "https://www.playseat.com/products/playseat-evolution-racing-suede"
    ]
   },
   {
@@ -2455,6 +2516,18 @@
    "balance": null,
    "sources": [
     "https://simagic.com/products/zeus-sport-steering-wheel"
+   ]
+  },
+  {
+   "brand": "simagic",
+   "name": "Simagic P-Active",
+   "shape": "Pedals",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "Active",
+   "sources": [
+    "https://simagic.com/products/simagic-p-active-pedal"
    ]
   },
   {
