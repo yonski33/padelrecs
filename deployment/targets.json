@@ -110,7 +110,8 @@
     "ultralight": "ultralightrecs",
     "badminton": "badmintonrecs",
     "fragrance": "fragrancerecs",
-    "coffee": "coffeerecs"
+    "coffee": "coffeerecs",
+    "climbing": "climbingrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

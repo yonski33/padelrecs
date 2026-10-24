@@ -387,3 +387,25 @@ test("the CoffeeRecs starter catalog: sourced machines, grinders, brewers, kettl
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Fellow Stagg [XF]")?.slug, "fellow-stagg-xf");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Mahlkönig X54")?.slug, "mahlkonig-x54");
 });
+
+test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices, ropes, chalk bags and crash pads, known categories, no years, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/climbing.json");
+  const snapshot = catalogSnapshot(catalog, "climbingrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 10);
+  assert(snapshot.tables.rackets.length >= 240);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.climbing.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/climbing");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/(^| )20\d\d( |$)/.test(r.name.replace(/^\S+ /, "")), `${r.name}: gear is named without years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one product`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Petzl GRIGRI +")?.slug, "petzl-grigri-plus");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Edelrid Jul²")?.slug, "edelrid-jul-2");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Mad Rock D2.ONE LV")?.slug, "mad-rock-d2-one-lv");
+});
