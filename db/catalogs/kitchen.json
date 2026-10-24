@@ -1,5 +1,5 @@
 {
-  "about": "KitchenRecs starter catalog (2026-10-24): countertop kitchen appliances only: air fryers (basket, dual-basket and glass), countertop and toaster ovens (air fryer ovens, flip-up ovens, steam ovens), blenders (personal, portable, full-size, high-speed and kitchen systems), stand mixers, food processors and multicookers (electric pressure cookers and multicookers). No microwaves, full-size ovens or ranges, and no coffee gear (espresso machines, grinders and kettles are on CoffeeRecs). Every entry was read on 2026-10-24 from the maker's own page linked in sources: SharkNinja US, Canada and UK (Ninja), Instant Pot, Cosori, Typhur, Chefman, Dreo, Balmuda, Anova, Breville US, Philips UK and Canada, Vitamix US and UK, Blendtec, Nutribullet, KitchenAid UK and Kenwood UK. KitchenAid's US site and the Cuisinart, Hamilton Beach, Oster, Magimix, Ankarsrum, Gourmia, Beast, Smeg and Bosch sites were not readable, so KitchenAid entries are named by line and capacity as KitchenAid UK sells them, and those other brands are not in it yet. One entry per model as the maker sells it, named with the maker's model number where it has one, because the same name covers different machines (Ninja AF101 vs AF161, DZ201 vs DZ401). Capacity sizes of one line are one entry when the maker sells them as one line (Instant Pot Duo 3, 6 or 8 qt); regional versions with their own model number and size are separate entries (Ninja Foodi Dual Zone AF300 in the UK vs DZ201 in the US). Colours are never separate entries. Columns: shape = category, balance = type, surface = capacity as the page states it, core = the model number on the page, weight = power where the page title or description states one wattage; anything else blank. No model years. Added 2026-10-25 from reviews held by the sweep: Vitamix Alta Pro (read from Vitamix US's certified reconditioned page, the only Alta Pro page on vitamix.com), Explorian E510 and E520 (Vitamix UK).",
+  "about": "KitchenRecs starter catalog (2026-10-24): countertop kitchen appliances only: air fryers (basket, dual-basket and glass), countertop and toaster ovens (air fryer ovens, flip-up ovens, steam ovens), blenders (personal, portable, full-size, high-speed and kitchen systems), stand mixers, food processors and multicookers (electric pressure cookers and multicookers). No microwaves, full-size ovens or ranges, and no coffee gear (espresso machines, grinders and kettles are on CoffeeRecs). Every entry was read on 2026-10-24 from the maker's own page linked in sources: SharkNinja US, Canada and UK (Ninja), Instant Pot, Cosori, Typhur, Chefman, Dreo, Balmuda, Anova, Breville US, Philips UK and Canada, Vitamix US, Blendtec, Nutribullet, KitchenAid UK and Kenwood UK. KitchenAid's US site and the Cuisinart, Hamilton Beach, Oster, Magimix, Ankarsrum, Gourmia, Beast, Smeg and Bosch sites were not readable, so KitchenAid entries are named by line and capacity as KitchenAid UK sells them, and those other brands are not in it yet. One entry per model as the maker sells it, named with the maker's model number where it has one, because the same name covers different machines (Ninja AF101 vs AF161, DZ201 vs DZ401). Capacity sizes of one line are one entry when the maker sells them as one line (Instant Pot Duo 3, 6 or 8 qt); regional versions with their own model number and size are separate entries (Ninja Foodi Dual Zone AF300 in the UK vs DZ201 in the US). Colours are never separate entries. Columns: shape = category, balance = type, surface = capacity as the page states it, core = the model number on the page, weight = power where the page title or description states one wattage; anything else blank. No model years. Added 2026-10-25 from reviews held by the sweep: Vitamix Alta Pro (read from Vitamix US's certified reconditioned page, the only Alta Pro page on vitamix.com).",
   "checked": "2026-10-24",
   "brands": [
     {
@@ -2485,30 +2485,6 @@
       "weight": null,
       "sources": [
         "https://www.vitamix.com/us/en_us/products/e320"
-      ]
-    },
-    {
-      "brand": "vitamix",
-      "name": "Vitamix Explorian E510",
-      "shape": "Blender",
-      "balance": "High-speed blender",
-      "surface": "1.4 L",
-      "core": "E510",
-      "weight": null,
-      "sources": [
-        "https://www.vitamix.co.uk/products/explorian-e510"
-      ]
-    },
-    {
-      "brand": "vitamix",
-      "name": "Vitamix Explorian E520",
-      "shape": "Blender",
-      "balance": "High-speed blender",
-      "surface": "2 L",
-      "core": "E520",
-      "weight": null,
-      "sources": [
-        "https://www.vitamix.co.uk/products/explorian-e520"
       ]
     },
     {
