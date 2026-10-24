@@ -482,7 +482,7 @@ test("kitchen: appliances named without years, six category pages that each pick
   assert.equal(n.schema, "kitchenrecs");
   assert.equal(n.productPath, "appliances");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-S1MRX3VYPL");
   assert.equal(n.tags.length, 19);
   for (const tag of ["crispy results", "smooth blends", "easy to clean", "hard to clean", "coating peeled", "loud", "great value"]) assert(n.tags.some(t => t.label === tag), tag);
   assert.deepEqual(n.categories.map(c => c.label), ["Results", "Ease of use", "Cleaning", "Build quality", "Value"]);
