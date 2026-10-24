@@ -499,3 +499,27 @@ test("kitchen: appliances named without years, six category pages that each pick
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("snowboard: boards named with model years, four category pages that each pick a drawing, rider profile, snowflake rating icons", async () => {
+  const n = selectNiche("snowboard");
+  assert.equal(n.schema, "snowboardrecs");
+  assert.equal(n.productPath, "snowboards");
+  assert.notEqual(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.tags.length, 20);
+  for (const tag of ["poppy", "great edge hold", "floats in powder", "catchy", "washes out", "great value"]) assert(n.tags.some(t => t.label === tag), tag);
+  assert.deepEqual(n.categories.map(c => c.label), ["Pop", "Carving", "Playfulness", "Stability", "Forgiveness"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Terrain", "Profile", "Shape", "Flex"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["all-mountain-snowboards", "freestyle-snowboards", "freeride-snowboards", "splitboards"]);
+  const { shapeOf } = await import("../app/art/snowboard");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["allmountain", "freestyle", "freeride", "split"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /snowboard|splitboard/, `${list.slug}: niche keyword in the slug`);
+    assert.equal(list.maxAgeYears, 2, `${list.slug}: keeps to recent model years`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
