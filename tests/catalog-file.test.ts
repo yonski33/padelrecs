@@ -12,9 +12,9 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
   const catalog = await readCatalog("db/catalogs/pickleball.json");
   const snapshot = catalogSnapshot(catalog, "pickleballrecs", "catalog:test", false);
   assert.equal(snapshotSchema(snapshot), "pickleballrecs");
-  assert.equal(snapshot.tables.brands.length, 31);
-  assert.equal(snapshot.tables.rackets.length, 287);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 287, "no two paddles share a URL");
+  assert.equal(snapshot.tables.brands.length, 32);
+  assert.equal(snapshot.tables.rackets.length, 296);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 296, "no two paddles share a URL");
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0, "a catalog never brings reviews");
   assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every value has an https source");
   assert(snapshot.tables.rackets.some(r => r.slug === "crbn1-trufoam-genesis"));
@@ -32,7 +32,7 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
     const counts = await importSnapshot(db, snapshot);
-    assert.deepEqual(counts, { brands: 31, rackets: 287, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(counts, { brands: 32, rackets: 296, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
@@ -56,13 +56,13 @@ test("catalogs without model years keep the year out of names", () => {
   assert.throws(() => catalogSnapshot({ about: "", checked: "2026-10-19", brands: [{ id: "x", name: "X" }], products: [{ brand: "x", name: "X One", shape: null, weight: null, core: null, surface: null, swingWeight: null, sources: ["https://e.com"] }] }, "pickleballrecs", "t"), /needs a model year/);
 });
 
-test("the SkinRecs catalog: 333 sourced face products, no years in names, known types and fragrance values", async () => {
+test("the SkinRecs catalog: 340 sourced face products, no years in names, known types and fragrance values", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/skin.json");
   const snapshot = catalogSnapshot(catalog, "skinrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 42);
-  assert.equal(snapshot.tables.rackets.length, 333);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 333);
+  assert.equal(snapshot.tables.brands.length, 46);
+  assert.equal(snapshot.tables.rackets.length, 340);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 340);
   assert(snapshot.tables.rackets.some(r => r.shape === "Treatment"));
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const types = niches.skin.specs.find(s => s.column === "shape")!.options!;
@@ -92,12 +92,12 @@ test("tennis head sizes pick the frame size", async () => {
   assert.equal(shapeOf(null), "unknown");
 });
 
-test("the TennisRecs catalog: 35 starter rackets plus current and previous generations (348), named by generation, with unique URLs", async () => {
+test("the TennisRecs catalog: 35 starter rackets plus current and previous generations (351), named by generation, with unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/tennis.json");
   const snapshot = catalogSnapshot(catalog, "tennisrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 10);
-  assert.equal(snapshot.tables.rackets.length, 348);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 348);
+  assert.equal(snapshot.tables.rackets.length, 351);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 351);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const { shapeOf } = await import("../app/art/tennis");
   for (const r of snapshot.tables.rackets) {
@@ -165,13 +165,13 @@ test("the GolfRecs starter catalog: sourced drivers named by generation, known c
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
 });
 
-test("the GamingRecs starter catalog: 372 sourced products in four known categories (monitors moved to MonitorRecs), no years in names, unique URLs", async () => {
+test("the GamingRecs starter catalog: 377 sourced products in four known categories (monitors moved to MonitorRecs), no years in names, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/gaming.json");
   const snapshot = catalogSnapshot(catalog, "gamingrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 32);
-  assert.equal(snapshot.tables.rackets.length, 372);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 372);
+  assert.equal(snapshot.tables.brands.length, 34);
+  assert.equal(snapshot.tables.rackets.length, 377);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 377);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.gaming.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf } = await import("../app/art/gaming");

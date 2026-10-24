@@ -1,5 +1,5 @@
 {
-  "about": "GamingRecs starter catalog (2026-10-22): gaming mice, keyboards, headsets and controllers — the current lineup and the previous generation of each line from the major gaming brands. Every value comes from the page linked in sources (the maker's product page where it loads, otherwise RTINGS, a retailer or a reputable review); anything not read there is blank. Columns: shape = category, weight = weight, core = connection, surface = key specs (sensor, switches, drivers or sticks), balance = form factor.",
+  "about": "GamingRecs starter catalog (2026-10-22): gaming mice, keyboards, headsets and controllers — the current lineup and the previous generation of each line from the major gaming brands. Every value comes from the page linked in sources (the maker's product page where it loads, otherwise RTINGS, a retailer or a reputable review); anything not read there is blank. Columns: shape = category, weight = weight, core = connection, surface = key specs (sensor, switches, drivers or sticks), balance = form factor. Added on 2026-10-25 from reviews held as missing products: five products, values from the linked maker or retailer page (MaxGaming for the ATK N9 Pro), blank where it gives none.",
   "checked": "2026-10-22",
   "brands": [
     {"id": "8bitdo", "name": "8BitDo"},
@@ -33,7 +33,9 @@
     {"id": "vaxee", "name": "Vaxee"},
     {"id": "victrix", "name": "Victrix"},
     {"id": "wooting", "name": "Wooting"},
-    {"id": "zowie", "name": "Zowie"}
+    {"id": "zowie", "name": "Zowie"},
+    {"id": "fractal-design", "name": "Fractal Design"},
+    {"id": "atk", "name": "ATK"}
   ],
   "products": [
     {"brand": "asus", "name": "ASUS ROG Gladius III Wireless AimPoint", "shape": "Mouse", "weight": "79 g (without cable and dongle)", "core": "Wireless (2.4 GHz, Bluetooth 5.1) + wired (USB-C)", "surface": "1000 Hz polling", "balance": null, "sources": ["https://rog.asus.com/us/mice-mouse-pads/mice/wireless/rog-gladius-iii-wireless-aimpoint-model/spec/"]},
@@ -407,6 +409,11 @@
     {"brand": "turtle-beach", "name": "Turtle Beach Stealth Ultra II", "shape": "Controller", "weight": "322 g", "core": "Wireless (2.4 GHz, Bluetooth) + wired", "surface": "TMR sticks, up to 8000 Hz wired on PC (1000 Hz wireless)", "balance": "Xbox layout", "sources": ["https://www.turtlebeach.com/products/stealth-ultra-ii-controller"]},
     {"brand": "valve", "name": "Valve Steam Controller", "shape": "Controller", "weight": "292 g", "core": "Wireless (2.4 GHz puck, Bluetooth) + wired (USB-C)", "surface": "TMR sticks", "balance": null, "sources": ["https://en.wikipedia.org/wiki/Steam_Controller_(2nd_generation)"]},
     {"brand": "victrix", "name": "Victrix Pro BFG Reloaded Wireless Controller", "shape": "Controller", "weight": "265 g", "core": "Wireless (USB-A transmitter)", "surface": "Hall effect stick modules and triggers", "balance": "PlayStation layout", "sources": ["https://www.turtlebeach.com/products/victrix-pro-bfg-reloaded-wireless-controller"]},
-    {"brand": "victrix", "name": "Victrix Pro BFG Reloaded Wireless Modular Controller for PC", "shape": "Controller", "weight": "265 g", "core": "Wireless (USB-A transmitter)", "surface": "Hall effect stick modules and triggers", "balance": null, "sources": ["https://www.turtlebeach.com/products/victrix-pro-bfg-reloaded-wireless-modular-controller-pc"]}
+    {"brand": "victrix", "name": "Victrix Pro BFG Reloaded Wireless Modular Controller for PC", "shape": "Controller", "weight": "265 g", "core": "Wireless (USB-A transmitter)", "surface": "Hall effect stick modules and triggers", "balance": null, "sources": ["https://www.turtlebeach.com/products/victrix-pro-bfg-reloaded-wireless-modular-controller-pc"]},
+    {"brand": "fractal-design", "name": "Fractal Design Scape", "shape": "Headset", "weight": null, "core": "Wireless (2.4 GHz, Bluetooth 5.3)", "surface": "Detachable flip-to-mute mic, 24-bit/96 kHz wireless audio", "balance": null, "sources": ["https://www.fractal-design.com/products/headsets/scape-series/scape/light/"]},
+    {"brand": "pulsar", "name": "Pulsar X2N CrazyLight Mini", "shape": "Mouse", "weight": "38 g ±2 g with dot skates / 40 g ±2 g with regular skates", "core": "Wireless", "surface": "XS-1 Flagship Sensor, up to 8000 Hz polling", "balance": "Symmetrical", "sources": ["https://www.pulsar.gg/products/x2n-crazylight-gaming-mouse"]},
+    {"brand": "sony", "name": "Sony INZONE Mouse-A", "shape": "Mouse", "weight": "approx. 48.4 g (excluding cable and dongle)", "core": "Wireless (2.4 GHz dongle) + wired (USB-C)", "surface": "3950IZ sensor (custom PixArt PAW3950), optical switches, up to 8000 Hz polling", "balance": "Symmetrical", "sources": ["https://www.sony.co.uk/gaming-gear/products/inzone-mouse-a/spec"]},
+    {"brand": "atk", "name": "ATK N9 Pro", "shape": "Headset", "weight": "270 g", "core": "Wireless (2.4 GHz, Bluetooth 5.0) + 3.5 mm, USB", "surface": "53 mm drivers", "balance": "Closed-back", "sources": ["https://www.maxgaming.com/en/wireless-headsets/atk-n9-pro-wireless-gaming-headset-black"]},
+    {"brand": "razer", "name": "Razer Viper Mini", "shape": "Mouse", "weight": "61 g", "core": "Wired (Speedflex cable)", "surface": "8500 DPI optical sensor, Razer optical mouse switches", "balance": "Symmetrical", "sources": ["https://www.razer.com/gaming-mice/razer-viper-mini"]}
   ]
 }
