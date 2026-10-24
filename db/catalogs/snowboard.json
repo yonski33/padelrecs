@@ -1,5 +1,5 @@
 {
-  "about": "SnowboardRecs starter catalog: snowboards and splitboards from 14 makers, 2024 to 2027 model years (2024 and 2027 added on 2026-10-24 at the owner's request), one entry per model and model year as evo.com names them, colourways and sizes merged, women's-only models kept under their own names, kids' boards left out. Read on 2026-10-24 from each board's evo.com product page. Category comes from evo's terrain list: Powder, or Freeride listed first, makes a Freeride snowboard; Freestyle listed first a Freestyle snowboard; otherwise All-mountain. Terrain, profile (evo's rocker type, in the maker's own words), shape and flex are as the page states them; blank where the page gives none or gives only sidecut tech. Nitro Team 2026's and Team Pro 2027's terrain come from nitrosnowboards.com, as evo's pages give none. Bindings and boots are not included: Burton and thirtytwo don't give them model years.",
+  "about": "SnowboardRecs starter catalog: snowboards and splitboards from 14 makers, 2024 to 2027 model years (2024 and 2027 added on 2026-10-24 at the owner's request), one entry per model and model year as evo.com names them, colourways and sizes merged, women's-only models kept under their own names, kids' boards left out. Read on 2026-10-24 from each board's evo.com product page. Category comes from evo's terrain list: Powder, or Freeride listed first, makes a Freeride snowboard; Freestyle listed first a Freestyle snowboard; otherwise All-mountain. Terrain, profile (evo's rocker type, in the maker's own words), shape and flex are as the page states them; blank where the page gives none or gives only sidecut tech. Added on 2026-10-25 for reviews held as missing products: Jones Flagship 2013 and 2020 and Lib Tech T. Rice Pro HP C2 2021 from their evo.com pages; Jones Flagship 2024 and Jones Mind Expander 2024 from The Good Ride's reviews (evo's pages for those years now redirect to newer models), with The Good Ride's riding style as terrain and no profile for the Mind Expander, where it and evo disagree. Bindings and boots are not included: Burton and thirtytwo don't give them model years.",
   "checked": "2026-10-24",
   "brands": [
     {
@@ -4987,6 +4987,136 @@
       "balance": "Backcountry",
       "sources": [
         "https://www.evo.com/products/281344-gnu-banked-country-splitboard-2027"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Defenders of Awesome",
+      "year": 2024,
+      "shape": "Freestyle snowboard",
+      "weight": "5.5/10",
+      "core": "True Twin",
+      "surface": "Resort V1 Profile",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://www.evo.com/products/238302-capita-defenders-of-awesome-snowboard-2024"
+      ]
+    },
+    {
+      "brand": "lib-tech",
+      "name": "Lib Tech T. Rice Orca",
+      "year": 2024,
+      "shape": "Freeride snowboard",
+      "weight": "Medium",
+      "core": "Directional",
+      "surface": "Hybrid C2x",
+      "balance": "All-Mountain, Powder",
+      "sources": [
+        "https://www.evo.com/products/239621-lib-tech-t-rice-orca-snowboard-2024"
+      ]
+    },
+    {
+      "brand": "lib-tech",
+      "name": "Lib Tech T. Rice Golden Orca",
+      "year": 2024,
+      "shape": "Freeride snowboard",
+      "weight": "Stiff",
+      "core": "Directional",
+      "surface": "C2X",
+      "balance": "All-Mountain, Powder",
+      "sources": [
+        "https://www.evo.com/products/237930-lib-tech-t-rice-golden-orca-snowboard-2024"
+      ]
+    },
+    {
+      "brand": "lib-tech",
+      "name": "Lib Tech T. Rice Golden Orca",
+      "year": 2027,
+      "shape": "Freeride snowboard",
+      "weight": "Stiff",
+      "core": "Directional",
+      "surface": "C2X",
+      "balance": "All-Mountain, Powder",
+      "sources": [
+        "https://www.evo.com/products/281375-lib-tech-golden-orca-snowboard-2027"
+      ]
+    },
+    {
+      "brand": "lib-tech",
+      "name": "Lib Tech T. Rice Orca Techno Splitboard",
+      "year": 2027,
+      "shape": "Splitboard",
+      "weight": "Stiff",
+      "core": "Directional",
+      "surface": "Orca C2X Directional",
+      "balance": "Backcountry",
+      "sources": [
+        "https://www.evo.com/products/281384-lib-tech-orca-techno-splitboard-2027"
+      ]
+    },
+    {
+      "brand": "jones",
+      "name": "Jones Flagship",
+      "year": 2020,
+      "shape": "All-mountain snowboard",
+      "weight": "8/10",
+      "core": "Directional",
+      "surface": "Directional Rocker",
+      "balance": "All-Mountain, Freeride",
+      "sources": [
+        "https://www.evo.com/products/161595-jones-flagship-snowboard-2020"
+      ]
+    },
+    {
+      "brand": "jones",
+      "name": "Jones Flagship",
+      "year": 2013,
+      "shape": "Freeride snowboard",
+      "weight": "Stiff",
+      "core": null,
+      "surface": "Directional Rocker",
+      "balance": "Freeride",
+      "sources": [
+        "https://www.evo.com/products/56453-jones-flagship-snowboard-2013"
+      ]
+    },
+    {
+      "brand": "lib-tech",
+      "name": "Lib Tech T. Rice Pro HP C2",
+      "year": 2021,
+      "shape": "Freestyle snowboard",
+      "weight": "Medium",
+      "core": "True Twin",
+      "surface": "C2 Technology",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://www.evo.com/products/181648-lib-tech-t-rice-pro-hp-c2-snowboard-2021"
+      ]
+    },
+    {
+      "brand": "jones",
+      "name": "Jones Flagship",
+      "year": 2024,
+      "shape": "Freeride snowboard",
+      "weight": "Medium/Stiff",
+      "core": "Tapered Directional",
+      "surface": "Hybrid Camber",
+      "balance": "Freeride",
+      "sources": [
+        "https://thegoodride.com/snowboard-reviews/jones-flagship-snowboard-review/"
+      ]
+    },
+    {
+      "brand": "jones",
+      "name": "Jones Mind Expander",
+      "year": 2024,
+      "shape": "Freeride snowboard",
+      "weight": "Medium",
+      "core": "Tapered Directional",
+      "surface": null,
+      "balance": "Freeride",
+      "sources": [
+        "https://thegoodride.com/snowboard-reviews/jones-mind-expander-snowboard-review/"
       ]
     }
   ]
