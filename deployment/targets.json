@@ -128,7 +128,8 @@
     "coffee": "coffeerecs",
     "climbing": "climbingrecs",
     "nails": "nailsrecs",
-    "kitchen": "kitchenrecs"
+    "kitchen": "kitchenrecs",
+    "snowboard": "snowboardrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
