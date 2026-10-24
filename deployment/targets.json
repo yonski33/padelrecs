@@ -103,6 +103,11 @@
       "name": "kitchenrecs",
       "id": "prj_mMz2hHtL3hSBq9uTpyTsRV3TkANs",
       "domain": "www.kitchenrecs.com"
+    },
+    "snowboard": {
+      "name": "snowboardrecs.com",
+      "id": "prj_bDLk1MFUNkawCi3ALWhuNlpHMDn9",
+      "domain": "www.snowboardrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
