@@ -22,7 +22,7 @@ export const camera: Niche = {
     wordmark: "camerarecs",
     descriptor: "photographer reviews of mirrorless, compact, vlogging and action cameras",
     footer: "kept by people with more camera bags than cameras. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for camerarecs.com exists
+    analyticsId: "G-QKXR6JZF5L",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "camera", many: "cameras", One: "Camera", Many: "Cameras" },
