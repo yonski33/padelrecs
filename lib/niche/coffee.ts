@@ -20,7 +20,7 @@ export const coffee: Niche = {
     wordmark: "coffeerecs",
     descriptor: "home barista reviews of espresso machines, grinders, brewers, kettles and scales",
     footer: "kept by people who weigh their beans to a tenth of a gram. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for coffeerecs.com exists
+    analyticsId: "G-T3KLFWDEQB",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
