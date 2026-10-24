@@ -25,7 +25,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
       <label>Sort by<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
       <label>Brand<select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
       {hasYears && <label>Year<select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].map(y => <option key={y}>{y}</option>)}</select></label>}
-      {shapeSpec && <label>{shapeSpec.label}<select name="shape" defaultValue={f.shape || ""}><option value="">{`All ${shapeSpec.label.toLowerCase()}s`}</option>{shapes.map(s => <option key={s}>{s}</option>)}</select></label>}
+      {shapeSpec && <label>{shapeSpec.label}<select name="shape" defaultValue={f.shape || ""}><option value="">{`All ${shapeSpec.label.toLowerCase().replace(/([^aeiou])y$/, "$1ie")}s`}</option>{shapes.map(s => <option key={s}>{s}</option>)}</select></label>}
       {f.q && <input type="hidden" name="q" value={f.q}/>}
       <noscript><button>Filter</button></noscript>
       {filtered && <a href={catalogPath}>Reset</a>}
