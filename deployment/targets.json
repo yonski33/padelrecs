@@ -98,6 +98,11 @@
       "name": "nailsrecs",
       "id": "prj_9LiBFMDN1MpFxrWIH4vfU20J1bmo",
       "domain": "www.nailsrecs.com"
+    },
+    "kitchen": {
+      "name": "kitchenrecs",
+      "id": "prj_mMz2hHtL3hSBq9uTpyTsRV3TkANs",
+      "domain": "www.kitchenrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
