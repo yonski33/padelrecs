@@ -486,3 +486,28 @@ test("the SnowboardRecs starter catalog: sourced boards and splitboards with mod
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Burton Custom 2026")?.slug, "burton-custom-2026");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Jones Solution Splitboard 2027")?.shape, "Splitboard");
 });
+
+test("the TableTennisRecs starter catalog: sourced blades, rubbers and pre-assembled rackets, known types, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/tabletennis.json");
+  const snapshot = catalogSnapshot(catalog, "tabletennisrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 11);
+  assert(snapshot.tables.rackets.length >= 200);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const types = niches.tabletennis.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/tabletennis");
+  for (const r of snapshot.tables.rackets) {
+    assert(types.includes(r.shape!), `${r.name}: unknown type ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    // Handle shapes, penhold versions and hardness degrees are one product, never part of the name.
+    assert(!/Penhold|\bCS\b|\bFL\b|Degree|°|\bw\/|Proline/.test(r.name), `${r.name}: not a clean product name`);
+  }
+  for (const t of types) assert(snapshot.tables.rackets.some(r => r.shape === t), `${t}: at least one product`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Versions sold under their own names are separate products.
+  for (const name of ["Butterfly Viscaria", "Butterfly Viscaria Super ALC", "Butterfly Tenergy 05", "Butterfly Tenergy 05 FX", "Butterfly Dignics 09C", "DHS Hurricane 3", "DHS Hurricane 3 Neo", "DHS Hurricane 3 Neo National", "Stiga Cybershape Carbon"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Butterfly Tenergy 05 FX")?.slug, "butterfly-tenergy-05-fx");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Butterfly Viscaria")?.core, "5W+2ALC");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Butterfly Dignics 09C")?.shape, "Rubber");
+});

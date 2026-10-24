@@ -134,7 +134,8 @@
     "climbing": "climbingrecs",
     "nails": "nailsrecs",
     "kitchen": "kitchenrecs",
-    "snowboard": "snowboardrecs"
+    "snowboard": "snowboardrecs",
+    "tabletennis": "tabletennisrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

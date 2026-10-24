@@ -1,0 +1,3069 @@
+{
+ "about": "TableTennisRecs starter catalog (2026-10-24): table tennis blades, rubbers and a few pre-assembled rackets from Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA and Victas. The list was chosen from what MegaSpin, Paddle Palace, TableTennisStore.us and JOOLA currently sell, favouring the models with the most player ratings on Revspin, and every entry was read on 2026-10-24 from the shop page linked in sources. MegaSpin product pages stopped loading part-way (a bot check), so the rest come from Paddle Palace, TableTennisStore.us and joola.com. Yinhe is not sold by any of these shops and is not included yet. One entry per model as the maker names it: handle shapes (flared, straight, anatomic, Chinese and Japanese penhold), sponge thicknesses, hardness degrees and colours are one product; versions sold under their own names stay separate (DHS Hurricane 3, Hurricane 3 Neo, Hurricane 3 National, Hurricane 3 Neo National, Hurricane 3 Provincial and Hurricane 3 Neo Provincial; Tenergy 05, 05 FX and 05 Hard). Columns: shape = type (Blade, Rubber, Pre-assembled racket); balance = the blade's speed class (OFF, ALL+…) as the page or the maker's name states it; core = the blade's plies as the page writes them, or the rubber's surface (Inverted, Short pips, Long pips); surface = the rubber's sponge hardness in the maker's own scale (DHS degrees from the hardness versions on sale) and the thicknesses on sale; weight = the blade's weight as the page states it. Blank where the page gives none. No model years.",
+ "checked": "2026-10-24",
+ "brands": [
+  {
+   "id": "butterfly",
+   "name": "Butterfly"
+  },
+  {
+   "id": "stiga",
+   "name": "Stiga"
+  },
+  {
+   "id": "dhs",
+   "name": "DHS"
+  },
+  {
+   "id": "yasaka",
+   "name": "Yasaka"
+  },
+  {
+   "id": "tibhar",
+   "name": "Tibhar"
+  },
+  {
+   "id": "xiom",
+   "name": "XIOM"
+  },
+  {
+   "id": "donic",
+   "name": "Donic"
+  },
+  {
+   "id": "nittaku",
+   "name": "Nittaku"
+  },
+  {
+   "id": "andro",
+   "name": "Andro"
+  },
+  {
+   "id": "joola",
+   "name": "JOOLA"
+  },
+  {
+   "id": "victas",
+   "name": "Victas"
+  }
+ ],
+ "products": [
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Viscaria",
+   "shape": "Blade",
+   "weight": "86 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-viscaria"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Viscaria Super ALC",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": "5W+2SALC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-viscaria-super-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Timo Boll ALC",
+   "shape": "Blade",
+   "weight": "86 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-timo-boll-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Timo Boll Spirit",
+   "shape": "Blade",
+   "weight": "87 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-tb-spirit"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Timo Boll ZLC",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": "5W+2ZLC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-timo-boll-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Timo Boll ZLF",
+   "shape": "Blade",
+   "weight": "83 g",
+   "core": "5W+2ZLF",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-timo-boll-zlf"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Timo Boll CAF",
+   "shape": "Blade",
+   "weight": "82 g",
+   "core": "3 Wood + 2 CAF",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-timo-boll-caf"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Petr Korbel",
+   "shape": "Blade",
+   "weight": "91 g",
+   "core": "5W",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-pkorbel"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Primorac",
+   "shape": "Blade",
+   "weight": "88 g",
+   "core": "5W",
+   "surface": null,
+   "balance": "OFF-",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-primorac"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Primorac Carbon",
+   "shape": "Blade",
+   "weight": "88 g",
+   "core": "3W+2T5000",
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-prim-carb"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Korbel SK7",
+   "shape": "Blade",
+   "weight": "92 g",
+   "core": "7W",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-korbel-sk7"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly SK7 Classic",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": "7W",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-sk-classic"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly SK Carbon",
+   "shape": "Blade",
+   "weight": "78 g",
+   "core": "3W+2T5000",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-sk-carbon"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Sardius",
+   "shape": "Blade",
+   "weight": "92 g",
+   "core": "3W+2T5000",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-sardius"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Innerforce Layer ZLC",
+   "shape": "Blade",
+   "weight": "87 g",
+   "core": "5W+2ZLC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-innerforce-l-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Innerforce Layer ALC",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-innerforce-l-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Innerforce Layer ALC.S",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-innerforce-l-alcs"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Freitas ALC",
+   "shape": "Blade",
+   "weight": "86 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-freitas-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Harimoto Innerforce Super ZLC",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": "5W+2SZLC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-harimoto-if-super-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Harimoto Innerforce ZLC",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": "5W+2ZLC",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-harimoto-innerforce-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Harimoto Innerforce ALC",
+   "shape": "Blade",
+   "weight": "88 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-harimoto-if-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Harimoto Innerforce Super ALC",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 Wood + 2 Super ALC (Innerfiber)",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-harimoto-if-super-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Revoldia CNF",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": "5W+2CNF",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-revoldia-cnf"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Lin Yun-Ju Super ZLC",
+   "shape": "Blade",
+   "weight": "84 g",
+   "core": "5 plywood + 2 Super ZL Carbon",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-lin-yun-ju-super-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Franziska Innerforce ZLC",
+   "shape": "Blade",
+   "weight": "88 g",
+   "core": "Innerfiber 5 plywood + 2 ZL Carbon",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-franziska-if-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Fan Zhendong ALC",
+   "shape": "Blade",
+   "weight": "87 g",
+   "core": "5W+2ALC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-f-zhendong-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Fan Zhendong Super ALC",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": "5W+2SALC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-f-zhendong-s-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Fan Zhendong Super ZLC",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": "5W+2SZLC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-f-zhendong-s-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Fan Zhendong ZLC",
+   "shape": "Blade",
+   "weight": "86 g",
+   "core": "5W+2ZLC",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-f-zhendong-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Ovtcharov Innerforce ALC",
+   "shape": "Blade",
+   "weight": "91 g",
+   "core": "Innerfiber 5 plywood + 2 Arylate/Carbon",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-ovtcharov-if-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Mizutani Jun Super ZLC",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": "5W+2SZLC",
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-mizutani-super-zlc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Falcima",
+   "shape": "Blade",
+   "weight": "87 g",
+   "core": "5W",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-falcima"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Diode V",
+   "shape": "Blade",
+   "weight": "97 g",
+   "core": "5 Wood plies",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-diode-v"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Outerforce ALC",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 Wood + 2 ALC (Arylate/Carbon)",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-outerforce-alc"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 05",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 36 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-tenergy-05"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 64",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-tenergy-64-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 80",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-tenergy-80-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 05 FX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-tenergy-05-fx-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 64 FX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 32 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-tenergy-64-fx"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 80 FX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 32 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-tenergy-80-fx"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 25",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 36 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-tenergy-25"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 19",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-tenergy-19-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tenergy 05 Hard",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-tenergy-05-hard-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Dignics 05",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-dignics-05-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Dignics 09C",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-dignics-09c-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Dignics 64",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-dignics-64-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Dignics 80",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-dignics-80-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Glayzer",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/butterfly-glayzer-offensive-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/butterfly-glayzer-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Glayzer 09C",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/butterfly-glayzer-09c",
+    "https://www.paddlepalace.com/products/butterfly-glayzer-09c-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Rozena",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-rozena-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Zyre 03",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2.5 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/butterfly-zyre-03-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/butterfly-zyre-03-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Sriver",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.5, 1.7, 1.9, 2.1 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-sriver-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Sriver FX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-sriver-fx-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Sriver EL",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-sriver-el-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Tackiness Chop",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.5, 1.7, 1.9 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/butterfly-tackiness-chop",
+    "https://www.paddlepalace.com/products/butterfly-tackiness-chop-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Bryce HighSpeed",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-bryce-highspeed-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Feint Long III",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "0.5, 1.3 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/butterfly-feint-long-iii-rubber"
+   ]
+  },
+  {
+   "brand": "butterfly",
+   "name": "Butterfly Timo Boll CF 2000",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=b-tb-cf-2000"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Allround Classic",
+   "shape": "Blade",
+   "weight": "76 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-all-classic"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Offensive Classic",
+   "shape": "Blade",
+   "weight": "81 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF-",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-offensive-classic"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Clipper CR WRB",
+   "shape": "Blade",
+   "weight": "87 g",
+   "core": "7w",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-clipper-cr-wrb"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Infinity VPS V",
+   "shape": "Blade",
+   "weight": "83 g",
+   "core": "5w",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-infinity-vps-v-dt"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Cybershape Carbon",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-cybershape-c"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Cybershape Wood",
+   "shape": "Blade",
+   "weight": "80 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF-",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-cybershape-w"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Cybershape Carbon CWT",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-cybershape-c-cwt"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Dynasty Carbon",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-dynasty-carbon"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Dynasty Carbon Xu Xin Edition",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-dynasty-carbon-xu-xin"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Rosewood NCT VII",
+   "shape": "Blade",
+   "weight": "97 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-rosewood-nct-vii"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Intensity NCT",
+   "shape": "Blade",
+   "weight": "82 g",
+   "core": "5w",
+   "surface": null,
+   "balance": "OFF-",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-intensity-nct"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Allround Evolution",
+   "shape": "Blade",
+   "weight": "78 g",
+   "core": null,
+   "surface": null,
+   "balance": "ALL+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-all-ev"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Carbo 7.6 WRB",
+   "shape": "Blade",
+   "weight": "84 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-carbo-76-wrb-cs"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Carbonado 45",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-carbonado-45"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Inspira Hybrid Carbon",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-inspira-hybrid-carbon"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Airoc S",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.7, 1.9 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/stiga-airoc-s-rubber"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Airoc M",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/stiga-airoc-m-rubber"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga DNA Platinum M",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "2.1, 2.3 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/stiga-dna-platinum-m-rubber"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga DNA Platinum H",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "2.1, 2.3 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/stiga-dna-platinum-h-rubber"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Pro Carbon+ Cybershape",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=s-pro-c-plus-cyber"
+   ]
+  },
+  {
+   "brand": "stiga",
+   "name": "Stiga Royal 5-Star Carbon",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=stiga-royal-5"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 301",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hurricane-301"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 301X",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hurricane-301-x"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane Long 5",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hurricane-long-5"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane Long 5X",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hur-long-5x"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane Long 3",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hurricane-long-3"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane Long 5 National",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hur-long-5-nat"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane Hao",
+   "shape": "Blade",
+   "weight": "82 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-hurricane-hao-cs"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Power G7",
+   "shape": "Blade",
+   "weight": "89 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-power-g7"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Fang Bo B2X",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-fang-bo-b2-x"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–41° · 2.15 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/dhs-hurricane-3-rubber"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3 Neo",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–41° · 2.15 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/dhs-hurricane-3-neo-rubber"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3 National",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 40°–42° · 2.2 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/dhs-hurricane-3-national-edition-rubber"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3 Neo National",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 37°–42° · 2.1, 2.15 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/dhs-hurricane-3-neo-national-orange-sponge-37-degree"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3 Provincial",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–40° · 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-h3-p-37"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3 Neo Provincial",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–42° · 2.1, 2.15 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-h3-neo-prov-37"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 8",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–41° · 2.15 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-h-8-37"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 3-50",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 35° · 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=dhs-h3-50-35"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Skyline 3",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 39°–40° · 2.15 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/dhs-skyline-3-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Ma Lin Extra Offensive",
+   "shape": "Blade",
+   "weight": "84 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=y-ma-lin-ex-off"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Sweden Extra",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": "5-ply",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=y-sweden-ex"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Goiabao 5",
+   "shape": "Blade",
+   "weight": "90 g",
+   "core": "5 ply",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=y-goiabao-5"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Ma Lin Carbon",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=y-ma-lin-c"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Ma Lin Soft Carbon",
+   "shape": "Blade",
+   "weight": "83 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=y-ma-lin-sc"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Sweden Classic",
+   "shape": "Blade",
+   "weight": "82 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=yas-sweden"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Extra Offensive 7 Power",
+   "shape": "Blade",
+   "weight": "92 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=y-ex-off-7-power"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Max Carbon 3D",
+   "shape": "Blade",
+   "weight": null,
+   "core": "7w,2c",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-max-carbon-3d-offensive-table-tennis-blade",
+    "https://www.paddlepalace.com/products/yasaka-max-carbon-3d-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Ma Lin Extra Special",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/yasaka-ma-lin-extra-special-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Falck W7",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF-",
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-falck-w7-offensive-table-tennis-blade",
+    "https://www.paddlepalace.com/products/yasaka-falck-w7-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Myth Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 Wood + 2 Carbon (CFNW)",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-myth-carbon",
+    "https://www.paddlepalace.com/products/yasaka-myth-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza 7",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 45-50 · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-7",
+    "https://www.paddlepalace.com/products/yasaka-rakza-7-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza 7 Soft",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/yasaka-rakza-7-soft-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Mark V",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1, 1.5, 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-mark-v",
+    "https://www.paddlepalace.com/products/yasaka-mark-v-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza 9",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 40-45 · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-9-offensive-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-9-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza Z",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-z-offensive-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-z-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza X",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 45-50 · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-x-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-x-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Mark V HPS",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-mark-v-hps",
+    "https://www.paddlepalace.com/products/yasaka-mark-v-hps-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza Z Extra Hard",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Hard · Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-z-extra-hard-offensive-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-z-extra-hard-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza X Soft",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Soft · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-x-soft-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-x-soft-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza XX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium-Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-xx-offensive-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-xx-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Rakza PO",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Short pips",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-rakza-po-short-pips-out-rubber",
+    "https://www.paddlepalace.com/products/yasaka-rakza-po-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Stratus Power Wood",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-stratus-power-wood",
+    "https://www.paddlepalace.com/products/tibhar-stratus-power-wood-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Samsonov Force Pro Black Edition",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/tibhar-samsonov-force-pro-black-edition-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Samsonov Force Pro",
+   "shape": "Blade",
+   "weight": null,
+   "core": "7 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-samsonov-force-pro",
+    "https://www.paddlepalace.com/products/tibhar-samsonov-force-pro-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Stratus Samsonov Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5w,2c/k",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-stratus-samsonov-carbon",
+    "https://www.paddlepalace.com/products/tibhar-stratus-samsonov-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Samsonov Alpha",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-samsonov-alpha",
+    "https://www.paddlepalace.com/products/tibhar-samsonov-alpha-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Emmanuel Lebesson",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/tibhar-e-lebesson-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Samsonov Premium Contact",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-samsonov-premium-contact",
+    "https://www.paddlepalace.com/products/tibhar-samsonov-premium-contact-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Stratus Power Defense",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-stratus-power-defense",
+    "https://www.paddlepalace.com/products/tibhar-stratus-power-defense-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Felix Lebrun Hyper Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5w, 2c/f",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-felix-lebrun-hyper-carbon",
+    "https://www.paddlepalace.com/products/tibhar-felix-lebrun-hyper-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Alexis Lebrun OFF",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/tibhar-alexis-lebrun-off-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution MX-P",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 46.6 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-evolution-mx-p-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-evolution-mx-p-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution MX-S",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-evolution-mx-s-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-evolution-mx-s-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution EL-P",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 43.6 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-evolution-el-p-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-evolution-el-p-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution FX-P",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 41.6 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-evolution-fx-p-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-evolution-fx-p-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution EL-S",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=t-evolution-el-s"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution FX-S",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=t-evolution-fx-s"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Evolution MX-D",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness Med Hard · 1.9, 2, 2.1, 2.2 mm",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=t-evolution-mx-d"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Genius",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium-Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-genius",
+    "https://www.paddlepalace.com/products/tibhar-genius-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Aurus",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 47.5 · 1.7, 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-aurus-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-aurus-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Aurus Soft",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 42.5 · 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-aurus-soft-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-aurus-soft-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Aurus Sound",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 35 · 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-aurus-sound-table-tennis-inverted-rubber",
+    "https://www.paddlepalace.com/products/tibhar-aurus-sound-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Hybrid K3",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-hybrid-k3-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/tibhar-hybrid-k3-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Hybrid MK",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium-Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-hybrid-mk-offensive-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/tibhar-hybrid-mk-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Nimbus",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 45 · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-nimbus"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Quantum X Pro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium‑Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-quantum-x-pro",
+    "https://www.paddlepalace.com/products/tibhar-quantum-x-pro-rubber"
+   ]
+  },
+  {
+   "brand": "tibhar",
+   "name": "Tibhar Grass D.TecS",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Long pips",
+   "surface": "Hardness 47.5 · 0.5, 0.9, 1.2, 1.6 mm, OX",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-grass-d-tecs",
+    "https://www.paddlepalace.com/products/tibhar-grass-d-tecs-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Zetro Quad",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 wood +4 carbon",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-zetro-quad-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Ice Cream AZX",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5w, 1a/c, 1z/c",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-ice-cream-azx-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Extreme S",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-extreme-s-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Fuga",
+   "shape": "Blade",
+   "weight": "80 g",
+   "core": "5 ply",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-fuga-novus-speedwood-koto-5-ply-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Ignito",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-ignito-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM 36.5 ALX",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-36-5-deep-impact-alx-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Hayabusa Zi",
+   "shape": "Blade",
+   "weight": "86 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-hayabusa-zi-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Hugo HAL",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": "5w + 2 Hyper Axylium",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-hugo-hal-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Stradivarius",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-19-stradivarius-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Offensive S",
+   "shape": "Blade",
+   "weight": "81 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-19-offensive-s-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Vega Europe",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-vega-europe-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Vega Pro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-vega-pro-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Vega Asia",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 47.5 · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-vega-asia"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Vega Japan",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-vega-japan-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Vega X",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-vega-x-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Vega Tour",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium-Hard Plus · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-vega-tour-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VII Pro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-omega-vii-pro-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VII Euro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-omega-vii-euro-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VII Tour",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-omega-vii-tour-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VII Asia",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-omega-vii-asia-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VIII Pro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.9 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/omega-8-viii-pro-1"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VIII Euro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.9 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/omega-8-viii-euro"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VIII China",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.9 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/omega-8-viii-china"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Omega VIII Hybrid",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/omega-8-viii-hybrid"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM MUV 9.0 S",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-muv-9-0s-assembled-table-tennis-paddle"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Appelgren Allplay",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/donic-appelgren-allplay",
+    "https://www.paddlepalace.com/products/donic-appelgren-allplay-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Waldner Black Devil Carbon Balsa",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5w,2c",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/donic-waldner-black-devil-cb"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Waldner Legend Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-waldner-legend-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Epox Topspeed",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 All Wood",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/donic-epox-topspeed-table-tennis-blade",
+    "https://www.paddlepalace.com/products/donic-epox-topspeed-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Waldner Allplay",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-wald-all"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Waldner Dotec Carbon",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-wald-dotec-c"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Original True Carbon Inner",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF-",
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-original-true-carbon-i"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Persson Power Allround",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": "5 ply",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-pers-pa"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Waldner Senso Carbon V1",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5w,2c",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/donic-waldner-senso-carbon-v1",
+    "https://www.paddlepalace.com/products/donic-waldner-senso-carbon-v1-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Waldner Senso Ultra Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5w,2c",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/donic-waldner-senso-ultra-carbon",
+    "https://www.paddlepalace.com/products/donic-waldner-senso-ultra-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Baracuda",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-baracuda"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Acuda S2",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-acuda-s2-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Acuda S1",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 47.5 · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-acuda-s1"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Acuda S3",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 47.5 · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-acuda-s3"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Acuda S1 Turbo",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=d-acuda-s1-turbo"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Bluefire M1",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-bluefire-m1-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Bluefire M2",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-bluefire-m2-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Bluefire M3",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-bluefire-m3-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Bluefire M1 Turbo",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-bluefire-m1-turbo-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic BlueGrip C2",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-bluegrip-c2-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Bluestorm Z1 Turbo",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 47.5 · 1.9, 2.1 mm, Max, Max +",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/donic-bluestorm-z1-turbo-inverted-blue-1",
+    "https://www.paddlepalace.com/products/donic-bluestorm-z1-turbo-rubber"
+   ]
+  },
+  {
+   "brand": "donic",
+   "name": "Donic Bluestorm Z2",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/donic-bluestorm-z2-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Acoustic",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-acoustic-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Violin",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-violin-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Septear",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-septear-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Acoustic Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-acoustic-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Acoustic Carbon Inner",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-acoustic-carbon-inner-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Kasumi Basic",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-kasumi-basic-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Miyabi",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-miyabi-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Mima Ito Carbon",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-mima-ito-carbon-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Fastarc G-1",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-fastarc-g-1-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Fastarc S-1",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.4, 1.8, 2 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-fastarc-s-1-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Fastarc C-1",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-fastarc-c-1-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Hammond Z2",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-hammond-z2-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Factive",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.4, 1.8, 2 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-factive-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Flyatt Hard",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-flyatt-hard-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Flyatt Spin",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.8, 2 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-flyatt-spin-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Moristo SP",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Short pips",
+   "surface": "1.4, 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-moristo-sp-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Gauzy SL OFF",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-gauzy-sl-off-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Treiber CI OFF",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-treiber-ci-off-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Treiber FI OFF",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-treiber-fi-off-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Treiber FO OFF/S",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-treiber-fo-off-s-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Novacell OFF/S",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-novacell-offs-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Timber 5 ALL/S",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "ALL",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-timber-5-all-s-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Timber 5 OFF",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-timber-5-off-shakehand-blade"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Rasanter R47",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 47 (Medium-Hard) · 1.7, 2 mm, Ultramax",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=andro-rasanter-r47"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Rasanter R42",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 42 (Medium hardness) · 1.7, 2 mm, Ultramax",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=andro-rasanter-r42"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Rasanter R48",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 48 (Medium-Hard) · 1.7, 2 mm, Ultramax",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=andro-rasanter-r48"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Rasanter R37",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.7, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-rasanter-r37-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Rasanter R53",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.7, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-rasanter-r53-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Hexer Powergrip",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-hexer-powergrip-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Hexer Duro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-hexer-duro-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro Hexer Grip SFX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/andro-hexer-grip-sfx-rubber"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Vyzaryz Hybrid",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/vyzaryz-hybrid-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Vyzaryz Trinity",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/vyzaryz-trinity-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Nobilis PBO-c",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/nobilis-pbo-c-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Vyzaryz Freeze HRD",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/vyzaryz-freeze-hrd-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Zhou Qihao Hyper ARY-C 45",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5+2",
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/joola-zhou-qihao-hyper-ary-c-45-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Hugo Calderano KL-c Inner",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://tabletennisstore.us/products/joola-hugo-calderano-kl-c-inner-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Santoru KL-c Outer",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/santoru-klc-outer-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Dynaryz ACC",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness Medium-Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=j-dynaryz-acc"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Dynaryz AGR",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=j-dynaryz-agr"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Dynaryz ZGR",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=j-dynaryz-zgr"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Dynaryz ZGX",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=j-dynaryz-zgx"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Rhyzer Pro 50",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 50 · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/default.asp?pid=j-rhyzer-pro-50"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Rhyzer Pro 45",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/rhyzer-pro-45-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Dynaryz CMD",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm",
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/dynaryz-cmd-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA White Infinity Carbon",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/joola-white-infinity-carbon-table-tennis-racket"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Hugo Calderano Infinity Carbon",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/joola-hugo-calderano-infinity-carbon-table-tennis-racket"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Red Carbon Pro",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/joola-red-carbon-pro-table-tennis-racket"
+   ]
+  },
+  {
+   "brand": "joola",
+   "name": "JOOLA Carbon X",
+   "shape": "Pre-assembled racket",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://joola.com/products/joola-carbon-x-table-tennis-racket"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas Koji Matsushita",
+   "shape": "Blade",
+   "weight": "85 g",
+   "core": "Five Ply Hard Wood",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://tabletennisstore.us/products/victas-koji-matsushita-modern-defender-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas Liam Pitchford",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://tabletennisstore.us/products/victas-liam-pitchford-offensive-table-tennis-blade"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas Ventus Extra",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/victas-ventus-extra-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas V>15 Extra",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness 47.5 · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/victas-v-15-extra-offensive-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas V>01 Limber",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium · 1.8, 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/victas-v-01-limber"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas Triple Double Extra",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/victas-triple-double-extra-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas Curl P1V",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Long pips",
+   "surface": "0.5, 1, 1.5 mm, OX",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/victas-curl-p1v-long-pips-table-tennis-rubber"
+   ]
+  }
+ ]
+}
