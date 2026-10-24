@@ -108,6 +108,11 @@
       "name": "snowboardrecs.com",
       "id": "prj_bDLk1MFUNkawCi3ALWhuNlpHMDn9",
       "domain": "www.snowboardrecs.com"
+    },
+    "tabletennis": {
+      "name": "tabletennisrecs",
+      "id": "prj_7Uo13SOMcKk4zpdlnG9rzmMLzCVw",
+      "domain": "www.tabletennisrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
