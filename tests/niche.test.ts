@@ -346,7 +346,7 @@ test("ultralight: gear named without years, four category pages that each pick a
   assert.equal(n.schema, "ultralightrecs");
   assert.equal(n.productPath, "gear");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-D9N3940RRH");
   assert.equal(n.tags.length, 16);
   assert.deepEqual(n.categories.map(c => c.label), ["Weight & packability", "Comfort", "Performance", "Durability", "Value"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Capacity / warmth", "Material", "Weight"]);
