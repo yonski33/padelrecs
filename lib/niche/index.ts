@@ -15,11 +15,12 @@ import { camera } from "./camera";
 import { ultralight } from "./ultralight";
 import { badminton } from "./badminton";
 import { fragrance } from "./fragrance";
+import { coffee } from "./coffee";
 
 export type { Niche } from "./types";
 
 /** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance };
+export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee };
 export const DEFAULT_NICHE = "padel";
 
 /** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */

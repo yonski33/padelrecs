@@ -104,7 +104,8 @@
     "camera": "camerarecs",
     "ultralight": "ultralightrecs",
     "badminton": "badmintonrecs",
-    "fragrance": "fragrancerecs"
+    "fragrance": "fragrancerecs",
+    "coffee": "coffeerecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
