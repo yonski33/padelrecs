@@ -10,8 +10,9 @@ import { arts } from "../app/art";
 const dir = `public/niches/${niche.id}`;
 const logo = renderToStaticMarkup(React.createElement(arts[niche.id].LogoIcon)).replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ');
 const png = (svg: string, size: number) => sharp(Buffer.from(svg), { density: 72 * size / 20 }).resize(size, size).png().toBuffer();
-// Home-screen icon: the logo on the share-card background, like padel's.
-const tile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><rect width="180" height="180" fill="${niche.og.background}"/><g transform="translate(30 30) scale(6)">${logo.replace(/^<svg[^>]*>|<\/svg>$/g, "")}</g></svg>`;
+// Home-screen icon: the share card's rating icon on the share-card background, like padel's. The logo itself is drawn
+// in the share-card background colour on most niches, so on that tile it would disappear.
+const tile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><rect width="180" height="180" fill="${niche.og.background}"/><g transform="translate(30 30) scale(6)">${niche.og.scoreOn.replace(/^<svg[^>]*>|<\/svg>$/g, "")}</g></svg>`;
 
 // ICO container holding PNG images (supported by every current browser).
 function ico(images: { size: number; data: Buffer }[]) {
