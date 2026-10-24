@@ -414,7 +414,7 @@ test("the NailsRecs starter catalog: sourced polishes, gels, coats, press-ons, t
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/nails.json");
   const snapshot = catalogSnapshot(catalog, "nailsrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 22);
+  assert.equal(snapshot.tables.brands.length, 23);
   assert(snapshot.tables.rackets.length >= 200);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
