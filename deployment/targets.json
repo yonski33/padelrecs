@@ -83,6 +83,11 @@
       "name": "fragrancerecs",
       "id": "prj_warOYWKbVzayGd94VMbLGrpQxC13",
       "domain": "www.fragrancerecs.com"
+    },
+    "coffee": {
+      "name": "coffeerecs",
+      "id": "prj_gKRPs3RtLVvEVkI4hVu8gNS5vu96",
+      "domain": "www.coffeerecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
