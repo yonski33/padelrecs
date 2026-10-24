@@ -466,7 +466,7 @@ test("the SnowboardRecs starter catalog: sourced boards and splitboards with mod
   const catalog = await readCatalog("db/catalogs/snowboard.json");
   const snapshot = catalogSnapshot(catalog, "snowboardrecs", "catalog:test", true);
   assert.equal(snapshot.tables.brands.length, 14);
-  assert(snapshot.tables.rackets.length >= 200);
+  assert(snapshot.tables.rackets.length >= 350);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.snowboard.specs.find(s => s.column === "shape")!.options!;
@@ -475,14 +475,14 @@ test("the SnowboardRecs starter catalog: sourced boards and splitboards with mod
     assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
     assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
     // Every board carries its model year, and only once.
-    assert.match(r.name, / 20(2[5-7])$/, `${r.name}: boards are named with their model year`);
+    assert.match(r.name, / 202[4-7]$/, `${r.name}: boards are named with their model year (2024–2027)`);
     // evo's " Snowboard" suffix and "- Women's" are dropped ("The Black Snowboard of Death" keeps its own word).
     assert(!/ 20\d\d .*20\d\d$| Snowboard 20\d\d$|Women's|Bindings|Boots/.test(r.name), `${r.name}: not a clean board name`);
   }
   for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one board`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   // Each model year is its own product.
-  for (const name of ["Burton Custom 2025", "Burton Custom 2026", "CAPiTA Defenders of Awesome 2026", "Lib Tech Skunk Ape C2X 2025", "Lib Tech Skunk Ape Camber 2026"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  for (const name of ["Burton Custom 2024", "Burton Custom 2025", "Burton Custom 2026", "Burton Custom 2027", "CAPiTA Defenders of Awesome 2026", "CAPiTA Defenders of Awesome 2027", "Lib Tech Skunk Ape C2X 2025", "Lib Tech Skunk Ape Camber 2026", "Lib Tech Skunk Ape Camber 2027"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Burton Custom 2026")?.slug, "burton-custom-2026");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Jones Solution Splitboard 2027")?.shape, "Splitboard");
 });
