@@ -1,5 +1,5 @@
 {
- "about": "CyclingRecs starter catalog (2026-10-23): road, gravel/cyclocross and mountain bikes the makers sell now, from their own sites: trekbikes.com, specialized.com, canyon.com, giant-bicycles.com, cannondale.com, cervelo.com, santacruzbicycles.com, bmc-switzerland.com, pivotcycles.com and yeticycles.com. One entry per model and frame tier, as the maker names it, with the generation when the maker puts one in the name (Trek Domane SL Gen 5, Specialized Tarmac SL9, Canyon Grail CF SLX); the builds of one frame (groupset, wheels, number like 'SL 6' or 'Expert') are merged. E-bikes, framesets sold alone, kids', hybrid/fitness, fat, track and dirt-jump-only bikes and limited paint editions are left out. Columns: shape = category, balance = type (the maker's own category), weight = frame material where the name or page says it; core and surface are blank. Added 2026-10-25: six previous-generation Specialized bikes that owners still review (Crux 4 and S-Works Crux 4, i.e. the 2022–2026 Crux; Tarmac SL8 and S-Works Tarmac SL8; Epic 8 EVO; Allez Sprint), each sourced from its specialized.com product page; 'Crux 4' is the name Specialized's bike archive uses for the previous Crux.",
+ "about": "CyclingRecs starter catalog (2026-10-23): road, gravel/cyclocross and mountain bikes the makers sell now, from their own sites: trekbikes.com, specialized.com, canyon.com, giant-bicycles.com, cannondale.com, cervelo.com, santacruzbicycles.com, bmc-switzerland.com, pivotcycles.com and yeticycles.com. One entry per model and frame tier, as the maker names it, with the generation when the maker puts one in the name (Trek Domane SL Gen 5, Specialized Tarmac SL9, Canyon Grail CF SLX); the builds of one frame (groupset, wheels, number like 'SL 6' or 'Expert') are merged. E-bikes, framesets sold alone, kids', hybrid/fitness, fat, track and dirt-jump-only bikes and limited paint editions are left out. Columns: shape = category, balance = type (the maker's own category), weight = frame material where the name or page says it; core and surface are blank. Added 2026-10-25: two previous-generation Specialized bikes that owners still review, each with 3 or more held first-hand reviews (the owner's rule): Crux 4 (the 2022–2026 Crux; 'Crux 4' is the name Specialized's bike archive uses) and Tarmac SL8, each sourced from its specialized.com product page.",
  "checked": "2026-10-23",
  "brands": [
   {
@@ -1846,18 +1846,6 @@
   },
   {
    "brand": "specialized",
-   "name": "Specialized S-Works Crux 4",
-   "shape": "Gravel",
-   "weight": null,
-   "core": null,
-   "surface": null,
-   "balance": null,
-   "sources": [
-    "https://www.specialized.com/us/en/s-works-crux/p/199959"
-   ]
-  },
-  {
-   "brand": "specialized",
    "name": "Specialized Tarmac SL8",
    "shape": "Road",
    "weight": null,
@@ -1866,42 +1854,6 @@
    "balance": null,
    "sources": [
     "https://www.specialized.com/us/en/tarmac-sl8-expert-sram-rival-axs/p/216955"
-   ]
-  },
-  {
-   "brand": "specialized",
-   "name": "Specialized S-Works Tarmac SL8",
-   "shape": "Road",
-   "weight": null,
-   "core": null,
-   "surface": null,
-   "balance": null,
-   "sources": [
-    "https://www.specialized.com/us/en/s-works-tarmac-sl8-shimano-dura-ace-di2/p/216953"
-   ]
-  },
-  {
-   "brand": "specialized",
-   "name": "Specialized Epic 8 EVO",
-   "shape": "Mountain",
-   "weight": null,
-   "core": null,
-   "surface": null,
-   "balance": null,
-   "sources": [
-    "https://www.specialized.com/us/en/epic-8-evo-pro-sram-x0-axs-fox-factory/p/220885"
-   ]
-  },
-  {
-   "brand": "specialized",
-   "name": "Specialized Allez Sprint",
-   "shape": "Road",
-   "weight": "Aluminium",
-   "core": null,
-   "surface": null,
-   "balance": null,
-   "sources": [
-    "https://www.specialized.com/us/en/allez-sprint-comp-shimano-105/p/216918"
    ]
   },
   {
