@@ -140,7 +140,8 @@
     "nails": "nailsrecs",
     "kitchen": "kitchenrecs",
     "snowboard": "snowboardrecs",
-    "tabletennis": "tabletennisrecs"
+    "tabletennis": "tabletennisrecs",
+    "homegym": "homegymrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
