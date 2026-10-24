@@ -88,6 +88,11 @@
       "name": "coffeerecs",
       "id": "prj_gKRPs3RtLVvEVkI4hVu8gNS5vu96",
       "domain": "www.coffeerecs.com"
+    },
+    "climbing": {
+      "name": "climbingrecs",
+      "id": "prj_2jtgmV6g50HzXzpeD1EVVyASCw2v",
+      "domain": "www.climbingrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
