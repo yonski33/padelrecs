@@ -1,5 +1,5 @@
 {
- "about": "TableTennisRecs starter catalog (2026-10-24): table tennis blades, rubbers and a few pre-assembled rackets from Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA and Victas. The list was chosen from what MegaSpin, Paddle Palace, TableTennisStore.us and JOOLA currently sell, favouring the models with the most player ratings on Revspin, and every entry was read on 2026-10-24 from the shop page linked in sources. MegaSpin product pages stopped loading part-way (a bot check), so the rest come from Paddle Palace, TableTennisStore.us and joola.com. Yinhe is not sold by any of these shops and is not included yet. One entry per model as the maker names it: handle shapes (flared, straight, anatomic, Chinese and Japanese penhold), sponge thicknesses, hardness degrees and colours are one product; versions sold under their own names stay separate (DHS Hurricane 3, Hurricane 3 Neo, Hurricane 3 National, Hurricane 3 Neo National, Hurricane 3 Provincial and Hurricane 3 Neo Provincial; Tenergy 05, 05 FX and 05 Hard). Columns: shape = type (Blade, Rubber, Pre-assembled racket); balance = the blade's speed class (OFF, ALL+…) as the page or the maker's name states it; core = the blade's plies as the page writes them, or the rubber's surface (Inverted, Short pips, Long pips); surface = the rubber's sponge hardness in the maker's own scale (DHS degrees from the hardness versions on sale) and the thicknesses on sale; weight = the blade's weight as the page states it. Blank where the page gives none. No model years.",
+ "about": "TableTennisRecs starter catalog (2026-10-24): table tennis blades, rubbers and a few pre-assembled rackets from Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA and Victas. The list was chosen from what MegaSpin, Paddle Palace, TableTennisStore.us and JOOLA currently sell, favouring the models with the most player ratings on Revspin, and every entry was read on 2026-10-24 from the shop page linked in sources. MegaSpin product pages stopped loading part-way (a bot check), so the rest come from Paddle Palace, TableTennisStore.us and joola.com. Yinhe is not sold by any of these shops and is not included yet. One entry per model as the maker names it: handle shapes (flared, straight, anatomic, Chinese and Japanese penhold), sponge thicknesses, hardness degrees and colours are one product; versions sold under their own names stay separate (DHS Hurricane 3, Hurricane 3 Neo, Hurricane 3 National, Hurricane 3 Neo National, Hurricane 3 Provincial and Hurricane 3 Neo Provincial; Tenergy 05, 05 FX and 05 Hard). Columns: shape = type (Blade, Rubber, Pre-assembled racket); balance = the blade's speed class (OFF, ALL+…) as the page or the maker's name states it; core = the blade's plies as the page writes them, or the rubber's surface (Inverted, Short pips, Long pips); surface = the rubber's sponge hardness in the maker's own scale (DHS degrees from the hardness versions on sale) and the thicknesses on sale; weight = the blade's weight as the page states it. Blank where the page gives none. No model years. Added 2026-10-25: DHS Hurricane 8-80, after three players' first-hand Reddit reviews (owner rule: three held reviews before a product is added).",
  "checked": "2026-10-24",
  "brands": [
   {
@@ -1214,6 +1214,19 @@
    "balance": null,
    "sources": [
     "https://www.paddlepalace.com/products/dhs-skyline-3-rubber"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 8-80",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–38° · 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/dhs-hurricane-8-80-table-tennis-rubber",
+    "https://www.megaspin.net/store/comparerubber.asp"
    ]
   },
   {
