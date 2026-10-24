@@ -20,7 +20,7 @@ export const badminton: Niche = {
     wordmark: "badmintonrecs",
     descriptor: "player reviews of badminton rackets",
     footer: "kept by people who restring more often than they should. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for badmintonrecs.com exists
+    analyticsId: "G-P4JEKN83JF",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },

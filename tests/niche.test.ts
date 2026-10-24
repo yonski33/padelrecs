@@ -369,7 +369,7 @@ test("badminton: rackets named without years, series as the catalogue shape, sin
   assert.equal(n.site.domain, "badmintonrecs.com");
   assert.equal(n.productPath, "rackets");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-P4JEKN83JF");
   assert.equal(n.words.one, "racket");
   assert.equal(n.tags.length, 16);
   assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Power:powerRating", "Control:controlRating", "Speed:maneuverabilityRating", "Forgiveness:forgivenessRating", "Feel:comfortRating"]);
