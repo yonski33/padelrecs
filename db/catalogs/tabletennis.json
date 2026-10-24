@@ -1,5 +1,5 @@
 {
- "about": "TableTennisRecs starter catalog (2026-10-24): table tennis blades, rubbers and a few pre-assembled rackets from Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA and Victas. The list was chosen from what MegaSpin, Paddle Palace, TableTennisStore.us and JOOLA currently sell, favouring the models with the most player ratings on Revspin, and every entry was read on 2026-10-24 from the shop page linked in sources. MegaSpin product pages stopped loading part-way (a bot check), so the rest come from Paddle Palace, TableTennisStore.us and joola.com. Yinhe is not sold by any of these shops and is not included yet. One entry per model as the maker names it: handle shapes (flared, straight, anatomic, Chinese and Japanese penhold), sponge thicknesses, hardness degrees and colours are one product; versions sold under their own names stay separate (DHS Hurricane 3, Hurricane 3 Neo, Hurricane 3 National, Hurricane 3 Neo National, Hurricane 3 Provincial and Hurricane 3 Neo Provincial; Tenergy 05, 05 FX and 05 Hard). Columns: shape = type (Blade, Rubber, Pre-assembled racket); balance = the blade's speed class (OFF, ALL+…) as the page or the maker's name states it; core = the blade's plies as the page writes them, or the rubber's surface (Inverted, Short pips, Long pips); surface = the rubber's sponge hardness in the maker's own scale (DHS degrees from the hardness versions on sale) and the thicknesses on sale; weight = the blade's weight as the page states it. Blank where the page gives none. No model years.",
+ "about": "TableTennisRecs starter catalog (2026-10-24): table tennis blades, rubbers and a few pre-assembled rackets from Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA and Victas. The list was chosen from what MegaSpin, Paddle Palace, TableTennisStore.us and JOOLA currently sell, favouring the models with the most player ratings on Revspin, and every entry was read on 2026-10-24 from the shop page linked in sources. MegaSpin product pages stopped loading part-way (a bot check), so the rest come from Paddle Palace, TableTennisStore.us and joola.com. Yinhe is not sold by any of these shops and is not included yet. One entry per model as the maker names it: handle shapes (flared, straight, anatomic, Chinese and Japanese penhold), sponge thicknesses, hardness degrees and colours are one product; versions sold under their own names stay separate (DHS Hurricane 3, Hurricane 3 Neo, Hurricane 3 National, Hurricane 3 Neo National, Hurricane 3 Provincial and Hurricane 3 Neo Provincial; Tenergy 05, 05 FX and 05 Hard). Columns: shape = type (Blade, Rubber, Pre-assembled racket); balance = the blade's speed class (OFF, ALL+…) as the page or the maker's name states it; core = the blade's plies as the page writes them, or the rubber's surface (Inverted, Short pips, Long pips); surface = the rubber's sponge hardness in the maker's own scale (DHS degrees from the hardness versions on sale) and the thicknesses on sale; weight = the blade's weight as the page states it. Blank where the page gives none. No model years. Added 2026-10-25 from players' held Reddit reviews: DHS Hurricane 8-80 and Gold Arc 8, Andro NUZN 48 and 55, Stiga Wavy Ultra Fiber Cybershape, Victas Curl P4V, V>15 Sticky and V>20 Double Extra, XIOM Jekyll & Hyde C57.5, Opera Pro and Hibi-O, Tibhar Hybrid MK Pro, Nittaku Super DO Knuckle and Hurricane 3 Neo (Nittaku's own sheet), Yasaka Myth Extra Offensive. Where only MegaSpin's rubber comparison list was readable, only what that list states is filled in.",
  "checked": "2026-10-24",
  "brands": [
   {
@@ -1001,6 +1001,19 @@
    ]
   },
   {
+   "brand": "stiga",
+   "name": "Stiga Wavy Ultra Fiber Cybershape",
+   "shape": "Blade",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": "OFF+",
+   "sources": [
+    "https://tabletennisstore.us/products/stiga-wavy-ultra-fiber-cybershape",
+    "https://www.paddlepalace.com/products/stiga-wavy-ultra-fiber-cybershape-shakehand-blade"
+   ]
+  },
+  {
    "brand": "dhs",
    "name": "DHS Hurricane 301",
    "shape": "Blade",
@@ -1214,6 +1227,31 @@
    "balance": null,
    "sources": [
     "https://www.paddlepalace.com/products/dhs-skyline-3-rubber"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Hurricane 8-80",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 37°–38° · 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/dhs-hurricane-8-80-table-tennis-rubber",
+    "https://www.megaspin.net/store/comparerubber.asp"
+   ]
+  },
+  {
+   "brand": "dhs",
+   "name": "DHS Gold Arc 8",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 47.5, 50",
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/comparerubber.asp"
    ]
   },
   {
@@ -1491,6 +1529,19 @@
    "sources": [
     "https://tabletennisstore.us/products/yasaka-rakza-po-short-pips-out-rubber",
     "https://www.paddlepalace.com/products/yasaka-rakza-po-rubber"
+   ]
+  },
+  {
+   "brand": "yasaka",
+   "name": "Yasaka Myth Extra Offensive",
+   "shape": "Blade",
+   "weight": null,
+   "core": "5 Wood",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://tabletennisstore.us/products/yasaka-myth-extra-offensive",
+    "https://www.paddlepalace.com/products/yasaka-myth-extra-offensive-shakehand-blade"
    ]
   },
   {
@@ -1825,6 +1876,19 @@
    ]
   },
   {
+   "brand": "tibhar",
+   "name": "Tibhar Hybrid MK Pro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/tibhar-hybrid-mk-pro-table-tennis-rubber",
+    "https://www.paddlepalace.com/products/tibhar-hybrid-mk-pro-rubber"
+   ]
+  },
+  {
    "brand": "xiom",
    "name": "XIOM Zetro Quad",
    "shape": "Blade",
@@ -2122,6 +2186,42 @@
    "balance": null,
    "sources": [
     "https://tabletennisstore.us/products/xiom-muv-9-0s-assembled-table-tennis-paddle"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Jekyll & Hyde C57.5",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": "Hardness 57.5 · Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-jekyll-hyde-c57-5"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Opera Pro",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/comparerubber.asp"
+   ]
+  },
+  {
+   "brand": "xiom",
+   "name": "XIOM Hibi-O",
+   "shape": "Blade",
+   "weight": null,
+   "core": "1-ply Kiso Hinoki",
+   "surface": null,
+   "balance": "OFF",
+   "sources": [
+    "https://tabletennisstore.us/products/xiom-hibi-o-japanese-penhold"
    ]
   },
   {
@@ -2586,6 +2686,30 @@
    ]
   },
   {
+   "brand": "nittaku",
+   "name": "Nittaku Super DO Knuckle",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Medium pips",
+   "surface": "0.5, 1.4 mm, OX",
+   "balance": null,
+   "sources": [
+    "https://www.paddlepalace.com/products/nittaku-super-do-knuckle-rubber"
+   ]
+  },
+  {
+   "brand": "nittaku",
+   "name": "Nittaku Hurricane 3 Neo",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/comparerubber.asp"
+   ]
+  },
+  {
    "brand": "andro",
    "name": "Andro Gauzy SL OFF",
    "shape": "Blade",
@@ -2763,6 +2887,32 @@
    "balance": null,
    "sources": [
     "https://www.paddlepalace.com/products/andro-hexer-grip-sfx-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro NUZN 48",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Medium-Hard · 1.9, 2.1 mm",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/andro-nuzn-48",
+    "https://www.paddlepalace.com/products/andro-nuzn-48-rubber"
+   ]
+  },
+  {
+   "brand": "andro",
+   "name": "Andro NUZN 55",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Inverted",
+   "surface": "Hardness Hard · 2 mm, Max",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/andro-nuzn-55",
+    "https://www.paddlepalace.com/products/andro-nuzn-55-rubber"
    ]
   },
   {
@@ -3063,6 +3213,42 @@
    "balance": null,
    "sources": [
     "https://tabletennisstore.us/products/victas-curl-p1v-long-pips-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas Curl P4V",
+   "shape": "Rubber",
+   "weight": null,
+   "core": "Long pips",
+   "surface": "Hardness 20 · 0.5, 1, 1.5 mm, OX",
+   "balance": null,
+   "sources": [
+    "https://tabletennisstore.us/products/victas-curl-p4v-long-pips-table-tennis-rubber"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas V>15 Sticky",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/comparerubber.asp"
+   ]
+  },
+  {
+   "brand": "victas",
+   "name": "Victas V>20 Double Extra",
+   "shape": "Rubber",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://www.megaspin.net/store/comparerubber.asp"
    ]
   }
  ]
