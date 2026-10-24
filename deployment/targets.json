@@ -113,6 +113,11 @@
       "name": "tabletennisrecs",
       "id": "prj_7Uo13SOMcKk4zpdlnG9rzmMLzCVw",
       "domain": "www.tabletennisrecs.com"
+    },
+    "homegym": {
+      "name": "homegymrecs",
+      "id": "prj_K6eufvYVukwYyAFvnk8vZqRBmlDw",
+      "domain": "www.homegymrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
