@@ -178,6 +178,18 @@
   },
   {
    "brand": "bellsofsteel",
+   "name": "Bells of Steel Cable Tower",
+   "shape": "Machine",
+   "balance": "Cable tower",
+   "surface": "Plate-loaded, 110 lb or 210 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/cable-tower"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
    "name": "Bells of Steel Calibrated Powerlifting Plates",
    "shape": "Plates",
    "balance": "Calibrated plates",
