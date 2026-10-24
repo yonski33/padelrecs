@@ -459,7 +459,7 @@ test("nails: products named without years, six category pages that each pick a d
   assert.equal(n.schema, "nailsrecs");
   assert.equal(n.productPath, "products");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-K6TCLCXZX6");
   assert.equal(n.tags.length, 19);
   for (const tag of ["long-lasting", "chips easily", "glossy", "easy to apply", "streaky", "opaque in one coat", "quick drying", "strong smell", "gentle on nails"]) assert(n.tags.some(t => t.label === tag), tag);
   assert.deepEqual(n.categories.map(c => c.label), ["Wear", "Application", "Finish", "Nail health", "Value"]);

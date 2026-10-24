@@ -23,7 +23,7 @@ export const nails: Niche = {
     wordmark: "nailsrecs",
     descriptor: "real reviews of nail polish, gel polish, base and top coats, press-on nails, nail treatments and cuticle oils",
     footer: "kept by people with a drawer full of top coats. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for nailsrecs.com exists
+    analyticsId: "G-K6TCLCXZX6",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
