@@ -30,7 +30,7 @@ export const fragrance: Niche = {
     wordmark: "fragrancerecs",
     descriptor: "real reviews of perfumes and colognes",
     footer: "kept by people with more bottles than days to wear them. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for fragrancerecs.com exists
+    analyticsId: "G-VB88Q9X0X1",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "fragrance", many: "fragrances", One: "Fragrance", Many: "Fragrances" },
