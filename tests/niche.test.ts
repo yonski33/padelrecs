@@ -476,3 +476,26 @@ test("nails: products named without years, six category pages that each pick a d
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("kitchen: appliances named without years, six category pages that each pick a drawing, kitchen profile, chef's-hat rating icons", async () => {
+  const n = selectNiche("kitchen");
+  assert.equal(n.schema, "kitchenrecs");
+  assert.equal(n.productPath, "appliances");
+  assert.equal(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.tags.length, 19);
+  for (const tag of ["crispy results", "smooth blends", "easy to clean", "hard to clean", "coating peeled", "loud", "great value"]) assert(n.tags.some(t => t.label === tag), tag);
+  assert.deepEqual(n.categories.map(c => c.label), ["Results", "Ease of use", "Cleaning", "Build quality", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Capacity", "Model number", "Power"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["air-fryers", "countertop-ovens", "blenders", "stand-mixers", "food-processors", "multicookers"]);
+  const { shapeOf } = await import("../app/art/kitchen");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["airfryer", "oven", "blender", "mixer", "processor", "multicooker"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /air-fryer|oven|blender|mixer|processor|multicooker|kitchen/, `${list.slug}: niche keyword in the slug`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

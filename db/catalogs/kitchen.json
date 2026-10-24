@@ -1,0 +1,2599 @@
+{
+  "about": "KitchenRecs starter catalog (2026-10-24): countertop kitchen appliances only: air fryers (basket, dual-basket and glass), countertop and toaster ovens (air fryer ovens, flip-up ovens, steam ovens), blenders (personal, portable, full-size, high-speed and kitchen systems), stand mixers, food processors and multicookers (electric pressure cookers and multicookers). No microwaves, full-size ovens or ranges, and no coffee gear (espresso machines, grinders and kettles are on CoffeeRecs). Every entry was read on 2026-10-24 from the maker's own page linked in sources: SharkNinja US, Canada and UK (Ninja), Instant Pot, Cosori, Typhur, Chefman, Dreo, Balmuda, Anova, Breville US, Philips UK and Canada, Vitamix US, Blendtec, Nutribullet, KitchenAid UK and Kenwood UK. KitchenAid's US site and the Cuisinart, Hamilton Beach, Oster, Magimix, Ankarsrum, Gourmia, Beast, Smeg and Bosch sites were not readable, so KitchenAid entries are named by line and capacity as KitchenAid UK sells them, and those other brands are not in it yet. One entry per model as the maker sells it, named with the maker's model number where it has one, because the same name covers different machines (Ninja AF101 vs AF161, DZ201 vs DZ401). Capacity sizes of one line are one entry when the maker sells them as one line (Instant Pot Duo 3, 6 or 8 qt); regional versions with their own model number and size are separate entries (Ninja Foodi Dual Zone AF300 in the UK vs DZ201 in the US). Colours are never separate entries. Columns: shape = category, balance = type, surface = capacity as the page states it, core = the model number on the page, weight = power where the page title or description states one wattage; anything else blank. No model years.",
+  "checked": "2026-10-24",
+  "brands": [
+    {
+      "id": "anova",
+      "name": "Anova"
+    },
+    {
+      "id": "balmuda",
+      "name": "Balmuda"
+    },
+    {
+      "id": "blendtec",
+      "name": "Blendtec"
+    },
+    {
+      "id": "breville",
+      "name": "Breville"
+    },
+    {
+      "id": "chefman",
+      "name": "Chefman"
+    },
+    {
+      "id": "cosori",
+      "name": "Cosori"
+    },
+    {
+      "id": "dreo",
+      "name": "Dreo"
+    },
+    {
+      "id": "instant",
+      "name": "Instant"
+    },
+    {
+      "id": "kenwood",
+      "name": "Kenwood"
+    },
+    {
+      "id": "kitchenaid",
+      "name": "KitchenAid"
+    },
+    {
+      "id": "ninja",
+      "name": "Ninja"
+    },
+    {
+      "id": "nutribullet",
+      "name": "Nutribullet"
+    },
+    {
+      "id": "philips",
+      "name": "Philips"
+    },
+    {
+      "id": "typhur",
+      "name": "Typhur"
+    },
+    {
+      "id": "vitamix",
+      "name": "Vitamix"
+    }
+  ],
+  "products": [
+    {
+      "brand": "anova",
+      "name": "Anova Precision Oven 2.0",
+      "shape": "Countertop oven",
+      "balance": "Steam oven",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.anovaculinary.com/products/anova-precision-oven"
+      ]
+    },
+    {
+      "brand": "balmuda",
+      "name": "Balmuda The Toaster Pro",
+      "shape": "Countertop oven",
+      "balance": "Steam toaster oven",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://us.balmuda.com/products/balmuda-the-toaster-pro"
+      ]
+    },
+    {
+      "brand": "blendtec",
+      "name": "Blendtec Classic 575",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": "1560 W",
+      "sources": [
+        "https://www.blendtec.com/products/classic-575"
+      ]
+    },
+    {
+      "brand": "blendtec",
+      "name": "Blendtec Connoisseur 825",
+      "shape": "Blender",
+      "balance": "Commercial blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.blendtec.com/products/connoisseur-825"
+      ]
+    },
+    {
+      "brand": "blendtec",
+      "name": "Blendtec Designer 650",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": "1560 W",
+      "sources": [
+        "https://www.blendtec.com/products/designer-650"
+      ]
+    },
+    {
+      "brand": "blendtec",
+      "name": "Blendtec Professional 800",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": "1800 W",
+      "sources": [
+        "https://www.blendtec.com/products/professional-800"
+      ]
+    },
+    {
+      "brand": "blendtec",
+      "name": "Blendtec Total Blender Classic",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": "1560 W",
+      "sources": [
+        "https://www.blendtec.com/products/total-blender-classic"
+      ]
+    },
+    {
+      "brand": "blendtec",
+      "name": "Blendtec Zakarian Pro",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": "1800 W",
+      "sources": [
+        "https://www.blendtec.com/products/zakarian-pro-blender"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Bakery Chef BEM825",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "BEM825",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/mixers/bem825.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Compact Smart Oven BOV650",
+      "shape": "Countertop oven",
+      "balance": "Toaster oven",
+      "surface": null,
+      "core": "BOV650",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov650.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Fast Slow GO BPR680",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": null,
+      "core": "BPR680",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/cookers/bpr680.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Fast Slow Pro BPR700",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": null,
+      "core": "BPR700",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/cookers/bpr700.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Fresh & Furious BBL620",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "BBL620",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/blenders/bbl620.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Hemisphere Control BBL605",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "BBL605",
+      "weight": "750 W",
+      "sources": [
+        "https://www.breville.com/us/en/products/blenders/bbl605.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Joule Oven Air Fryer Pro BOV950",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "BOV950",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov950.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Mini Smart Oven BOV450",
+      "shape": "Countertop oven",
+      "balance": "Toaster oven",
+      "surface": null,
+      "core": "BOV450",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov450.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Q BBL820",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": "BBL820",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/blenders/bbl820.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Scraper Mixer Pro BEM800",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "BEM800",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/mixers/bem800.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Smart Oven Air Fryer BOV860",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "BOV860",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov860.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Smart Oven Air Fryer Pro BOV900",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "BOV900",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov900.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Smart Oven BOV800",
+      "shape": "Countertop oven",
+      "balance": "Toaster oven",
+      "surface": null,
+      "core": "BOV800",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov800.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Smart Oven Pro BOV845",
+      "shape": "Countertop oven",
+      "balance": "Toaster oven",
+      "surface": null,
+      "core": "BOV845",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/ovens/bov845.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Sous Chef 12 BFP660",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "BFP660",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/food-processors/bfp660.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Sous Chef 16 Pro BFP800",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "BFP800",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/food-processors/bfp800.html"
+      ]
+    },
+    {
+      "brand": "breville",
+      "name": "Breville Super Q BBL920",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": "BBL920",
+      "weight": null,
+      "sources": [
+        "https://www.breville.com/us/en/products/blenders/bbl920.html"
+      ]
+    },
+    {
+      "brand": "chefman",
+      "name": "Chefman 6-Qt 13-in-1 Multicooker",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.chefman.com/products/6-quart-13-in-1-multicooker"
+      ]
+    },
+    {
+      "brand": "chefman",
+      "name": "Chefman ExacTemp Oven + Air Fryer",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.chefman.com/products/exactemp-chefman-oven-air-fryer"
+      ]
+    },
+    {
+      "brand": "chefman",
+      "name": "Chefman Obliterator 48 oz Blender",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": "48 oz",
+      "core": null,
+      "weight": "1380 W",
+      "sources": [
+        "https://www.chefman.com/products/obliterator-48oz-power-blender-concrete"
+      ]
+    },
+    {
+      "brand": "chefman",
+      "name": "Chefman Toast-Air Touch",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.chefman.com/products/toast-air-touch-air-fryer-oven"
+      ]
+    },
+    {
+      "brand": "chefman",
+      "name": "Chefman TurboFry 9-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "9 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.chefman.com/products/turbofry-9-quart-digital-air-fryer"
+      ]
+    },
+    {
+      "brand": "chefman",
+      "name": "Chefman TurboFry Touch 6-Qt Dual-Window",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.chefman.com/products/turbofry-touch-dual-window-air-fryer"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori 13-Qt Air Fryer Oven",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": "13 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/13-quart-air-fryer-oven"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori 6-Qt Pressure Cooker",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/6-0-quart-pressure-cooker"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori Dual Blaze 6.8-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6.8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/dual-blaze-air-fryer"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori Iconic 6.5-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6.5 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/iconic-air-fryer"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori Lite 2.1-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "2.1 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/lite-2-1-quart-mini-air-fryer"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori Pro LE 5-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "5 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/pro-le-5-0-quart-air-fryer"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori Smart Air Fryer Toaster Oven CS130",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": "30 L",
+      "core": "CS130",
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/smart-air-fryer-toaster-oven-cs130-ao"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori TurboBlaze 6-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/turboblaze-air-fryer"
+      ]
+    },
+    {
+      "brand": "cosori",
+      "name": "Cosori TwinFry 9-Qt",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "9 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://cosori.com/products/cosori-twinfry-9-quart-double-air-fryer"
+      ]
+    },
+    {
+      "brand": "dreo",
+      "name": "Dreo ChefMaker Combi Fryer",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://dreo.com/products/dreo-chefmaker-combi-fryer"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Omni Plus",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": "18 L",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-omni-plus-18l-air-fryer-toaster-oven"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Duo",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "3, 6 or 8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-duo-6qt-multi-use-pressure-cooker",
+        "https://instantpot.com/products/instant-pot-duo-8qt-multi-use-pressure-cooker",
+        "https://instantpot.com/products/instant-pot-duo-mini-3qt-multi-use-pressure-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Duo Crisp",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker and air fryer",
+      "surface": "6 or 8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-duo-crisp-air-fryer-6qt-multi-use-pressure-cooker",
+        "https://instantpot.com/products/instant-pot-duo-crisp-air-fryer-8qt-multi-use-pressure-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Duo Crisp with Ultimate Lid",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker and air fryer",
+      "surface": "6.5 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-duo-crisp-6-5qt-ultimate-lid-smart-multi-cooker-and-air-fryer"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Duo Plus",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "3, 6 or 8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-duo-plus-6qt-multi-use-pressure-cooker-whisper-quiet",
+        "https://instantpot.com/products/instant-pot-duo-plus-8qt-multi-use-pressure-cooker-whisper-quiet",
+        "https://instantpot.com/products/instant-pot-duo-plus-3qt-mini-multi-use-pressure-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Pro",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "6 or 8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-pro-6qt-multi-use-pressure-cooker",
+        "https://instantpot.com/products/instant-pot-pro-8qt-multi-use-pressure-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Pro Crisp",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker and air fryer",
+      "surface": "8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-pro-crisp-air-fryer-8qt-multi-use-pressure-cooker-and-air-fryer"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Pro Max",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-pro-max-6qt-multi-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Pro Plus",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-pro-plus-6qt-smart-multi-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Rio",
+      "shape": "Multicooker",
+      "balance": "Multicooker",
+      "surface": "4 or 6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-rio-6qt-multi-cooker",
+        "https://instantpot.com/products/instant-pot-4qt-rio-mini-multi-cooker-black"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Rio Wide",
+      "shape": "Multicooker",
+      "balance": "Multicooker",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-rio-wide-multi-cooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Pot Rio Wide Plus",
+      "shape": "Multicooker",
+      "balance": "Multicooker",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-rio-wide-plus-multicooker"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Stand Mixer Pro 7.4-Qt",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": "7.4 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-7-4-quart-stand-mixer-pro-series-silver"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex 6-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-6qt-air-fryer"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex 9-Qt VersaZone",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "9 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-9qt-air-fryer-with-versazone-technology"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Mini 4-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "4 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-4qt-vortex-mini-air-fryer-black"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Plus 10-Qt Air Fryer Oven",
+      "shape": "Countertop oven",
+      "balance": "Air fryer oven",
+      "surface": "10 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-plus-10qt-air-fryer-oven"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Plus 4-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "4 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-plus-4qt-air-fryer"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Plus 6-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-vortex-plus-6qt-air-fryer"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Plus 6-Qt ClearCook",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-plus-6qt-clearcook-air-fryer",
+        "https://instantpot.com/products/instant-pot-vortex-plus-6qt-stainless-steel-air-fryer-with-clearcook-and-odorerase"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Plus Dual 8-Qt",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "8 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-plus-dual-8qt-stainless-steel-air-fryer-with-clearcook"
+      ]
+    },
+    {
+      "brand": "instant",
+      "name": "Instant Vortex Slim 6-Qt",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6 qt",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://instantpot.com/products/instant-pot-vortex-slim-6qt-air-fryer"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Blend-X Fresh",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "BLP41",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/blenders-blend-x-fresh-blender-blp41.a0ct/BLP41.A0CT.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Chef",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KVC3100",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-chef-kitchen-machine-e-mixer-chef-kvc3100s/KVC3100S.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Chef XL",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KVL4100",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-chef-kitchen-machine-e-mixer-chef-xl-kvl4100w/KVL4100W.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Cooking Chef XL",
+      "shape": "Stand mixer",
+      "balance": "Cooking stand mixer",
+      "surface": null,
+      "core": "KCL96",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-cooking-chef-xl-kitchen-machine-e-cooking-mixer-cooking-chef-stand-mixer-kcl96.004dg/KCL96.004DG.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Go Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KZM35",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-go-kenwood-go-stand-mixer-storm-blue-kzm35.000gy/KZM35.000GY.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood kMix Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KMX754, KMX751",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-kmix-stand-mixers-kmix-stand-mixer-black-kmx754abk/KMX754ABK.html",
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-kmix-stand-mixers-kmix-sleek-black-stand-mixer-kmx751abk/KMX751ABK.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood MultiPro Compact",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "FDP31",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/multipro-compact-food-processors-multipro-compact-fdp31.170gy-food-processor-e-blender/FDP31.170GY.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood MultiPro Express",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "FDP65",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/multipro-express-food-processor-multipro-express-fdp65.860wh-4-in-1-white-food-processor-with-direct-serve/FDP65.860WH.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood MultiPro Go",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "FDP23",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/multipro-go-multipro-go-food-processor-storm-blue-fdp23.130gy/FDP23.130GY.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood MultiPro OneTouch",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "FDM73",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/multipro-onetouch-multipro-onetouch-food-processor-and-blender-fdm73.850ss/FDM73.850SS.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood MultiPro XL Weigh",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": "FDM72",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/multipro-xl-weigh-the-autograph-collection-multipro-xl-weigh-black-food-processor-fdm72a.990bk/FDM72A.990BK.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Titanium Chef Baker",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KVC65, KVC85",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/chef-baker-titanium-chef-baker-white-kvc65.001wh/KVC65.001WH.html",
+        "https://www.kenwoodworld.com/en-gb/p/chef-baker-the-autograph-collection-titanium-chef-baker-black-kvc85.004bk/KVC85.004BK.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Titanium Chef Baker XL",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KVL85",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/chef-baker-titanium-chef-baker-xl-silver-kvl85.004si/KVL85.004SI.html"
+      ]
+    },
+    {
+      "brand": "kenwood",
+      "name": "Kenwood Titanium Chef Patissier XL",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": null,
+      "core": "KWL90",
+      "weight": null,
+      "sources": [
+        "https://www.kenwoodworld.com/en-gb/p/kenwood-chef-patissier-xl-kitchen-machine-e-mixer-titanium-chef-patissier-xl-kwl90.004si/KWL90.004SI.html"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid 1.7 L Food Processor",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": "1.7 L",
+      "core": "5KFP0719",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/food-processors/859711696060/food-processor-1-7-l-5kfp0719-almond-cream"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid 2.1 L Food Processor",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": "2.1 L",
+      "core": "5KFP0921",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/food-processors/859711686730/food-processor-2-1-l-5kfp0921-matte-black"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid 3.1 L Food Processor",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": "3.1 L",
+      "core": "5KFP1319",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/food-processors/859711686870/food-processor-3-1l-5kfp1319-matte-black"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid 6.6 L Bowl-Lift Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Bowl-lift stand mixer",
+      "surface": "6.6 L",
+      "core": "5KSM70",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/mixers/large/859711657300/mixer-66-l-heavy-duty-5ksm70jpx-contour-silver"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid Artisan 5.6 L Bowl-Lift Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Bowl-lift stand mixer",
+      "surface": "5.6 L",
+      "core": "5KSM60",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/mixers/large/859711689310/mixer-bowl-lift-5-6l-artisan-5ksm60spx-matte-black"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid Artisan Plus Tilt-Head Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": "4.7 L",
+      "core": "5KSM50",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/mixers/medium/859711729530/mixer-tilt-head-4-7l-artisan-plus-5ksm50pkv-cast-iron-black"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid Artisan Tilt-Head Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": "4.7 L",
+      "core": "5KSM125, 5KSM175",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/mixers/medium/859701315000/mixer-tilt-head-4-7l-artisan-5ksm125-almond-cream",
+        "https://www.kitchenaid.co.uk/mixers/medium/859701515000/mixer-tilt-head-4-7l-artisan-with-extra-accessories-5ksm175-almond-cream"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid Classic Tilt-Head Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Tilt-head stand mixer",
+      "surface": "4.3 L",
+      "core": "5K45SS",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/mixers/medium/859700415020/mixer-tilt-head-4-3l-classic-5k45ss-onyx-black"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid Heavy Duty 5.2 L Bowl-Lift Stand Mixer",
+      "shape": "Stand mixer",
+      "balance": "Bowl-lift stand mixer",
+      "surface": "5.2 L",
+      "core": "5KSM55",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/mixers/large/859711645240/mixer-bowl-lift-5-2l-heavy-duty-5ksm55sxx-onyx-black"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid K400 Blender",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "5KSB4026",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/blenders/859711686800/blender-k400-artisan-5ksb4026-almond-cream"
+      ]
+    },
+    {
+      "brand": "kitchenaid",
+      "name": "KitchenAid Pure Power Blender",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "5KSB2071",
+      "weight": null,
+      "sources": [
+        "https://www.kitchenaid.co.uk/blenders/859711730120/pure-power-blender-with-glass-jar-5ksb2071-matte-black"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Magic Bullet",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/m/magic-bullet/blenders/original-magic-bullet/"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja 2-in-1 Blender BN750",
+      "shape": "Blender",
+      "balance": "Full-size blender with personal cups",
+      "surface": null,
+      "core": "BN750UK",
+      "weight": "1200 W",
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-2-in-1-blender-with-auto-iq-bn750uk/BN750UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja 3-in-1 Food Processor BN800",
+      "shape": "Food processor",
+      "balance": "Food processor with blender jug",
+      "surface": null,
+      "core": "BN800UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-3-in-1-food-processor-with-auto-iq-bn800uk/BN800UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Air Fryer AF101",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "AF101C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-air-fryer/AF101C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Air Fryer AF110",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "4.7 L",
+      "core": "AF110UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-air-fryer-4.7l-af110uk/AF110UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Air Fryer Pro AF141",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "AF141C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-air-fryer-pro-4-in-1/AF141C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Air Fryer Pro XL AF181",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6.5 qt",
+      "core": "AF181",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-air-fryer-pro-xl-6-in-1/AF181.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Blast BC151",
+      "shape": "Blender",
+      "balance": "Portable blender",
+      "surface": null,
+      "core": "BC151",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-blast-portable-blender-black/BC151BK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Blast Max BC251",
+      "shape": "Blender",
+      "balance": "Portable blender",
+      "surface": null,
+      "core": "BC251",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-blast-max-cordless-portable-blender-cool-grey/BC251GY.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja BlendBoss DB351",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": "26 oz",
+      "core": "DB351",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-blendboss-tumbler-blender-with-26oz-travel-tumbler-removable-straw-blue-raspberry/DB351BL.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Combi SFP701",
+      "shape": "Multicooker",
+      "balance": "Multicooker oven",
+      "surface": null,
+      "core": "SFP701",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-combi-all-in-one-multicooker-oven-and-air-fryer/SFP701.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Crispi DualZone DD101",
+      "shape": "Air fryer",
+      "balance": "Glass air fryer",
+      "surface": null,
+      "core": "DD101",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-crispi-dualzone-glass-countertop-air-fryer-in-cyberspace/DD101BL1.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Crispi FN101",
+      "shape": "Air fryer",
+      "balance": "Glass air fryer",
+      "surface": null,
+      "core": "FN101",
+      "weight": "1500 W",
+      "sources": [
+        "https://www.sharkninja.com/ninja-crispi-4-in-1-portable-glass-air-fryer-cooking-system/FN101GY.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Crispi Pro AS101",
+      "shape": "Air fryer",
+      "balance": "Glass air fryer",
+      "surface": null,
+      "core": "AS101",
+      "weight": "1800 W",
+      "sources": [
+        "https://www.sharkninja.com/ninja-crispi-pro-6-in-1-glass-countertop-air-fryer-cyberspace/AS101CY.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja CrushBoss 3-in-1 LB401",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "LB401",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-crushboss-3-in-1-blender-tumbler-food-processor-onyx/LB401BK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja CrushBoss LB201",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "LB201",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-crushboss-blender-onyx/LB201BK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Detect Duo TB301",
+      "shape": "Blender",
+      "balance": "Full-size blender with personal cups",
+      "surface": null,
+      "core": "TB301",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-detect-duo-power-blender-smoothie-maker-with-blendsense/TB301.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Detect Power Blender & Processor TB400",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "TB400C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-detect-power-blender-food-processor-set-with-blendsense-technology/TB400C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Detect Power Blender Pro TB201",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "TB201",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-detect-power-blender-pro/TB201.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Double Oven DCT401",
+      "shape": "Countertop oven",
+      "balance": "Double countertop oven",
+      "surface": null,
+      "core": "DCT401C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-dct401c-12-in-1-double-oven-with-flexdoor/DCT401C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Double Stack Pro XL Countertop Oven DCT651",
+      "shape": "Countertop oven",
+      "balance": "Double countertop oven",
+      "surface": null,
+      "core": "DCT651",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-double-stack-xl-countertop-oven-air-fryer-with-pro-cook-system/DCT651.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Double Stack SL300",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "7.6 L",
+      "core": "SL300UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-double-stack-2-drawer-air-fryer-7-6l-sl300uk/SL300UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Double Stack XL Countertop Oven DCT601",
+      "shape": "Countertop oven",
+      "balance": "Double countertop oven",
+      "surface": null,
+      "core": "DCT601",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-double-stack-xl-countertop-oven-air-fryer/DCT601.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Double Stack XL SL400",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "9.5 L",
+      "core": "SL400UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-double-stack-xl-9-5l-air-fryer-sl400uk/SL400UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja DoubleStack SL201",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "8 qt",
+      "core": "SL201",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-doublestack-8-qt-2-basket-air-fryer/SL201.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja DoubleStack SL451",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "SL451",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-doublestack-2-basket-10-qt-air-fryer-with-smart-thermometer/SL451.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja DoubleStack XL SL401",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "10 qt",
+      "core": "SL401",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-doublestack-xl-2-basket-10-qt-air-fryer/SL401.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja DualZone DZ801",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "8 qt",
+      "core": "DZ801",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-dualzone-8-qt-dual-air-fryer-in-grey/DZ801.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja DualZone DZ901",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "10 qt",
+      "core": "DZ901",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-dualzone-10-qt-6-in-1-dual-air-fryer-in-grey/DZ901.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja DualZone Pro DZ950",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "10 qt",
+      "core": "DZ950",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-dualzone-pro-10-qt-dual-air-fryer/DZ950.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Flip Toaster Oven SP151",
+      "shape": "Countertop oven",
+      "balance": "Flip-up air fryer oven",
+      "surface": null,
+      "core": "SP151",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-flip-toaster-oven-air-fryer/SP151.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi 9-in-1 Multi-Cooker OP350",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker and air fryer",
+      "surface": "6 L",
+      "core": "OP350UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-foodi-9-in-1-multi-cooker-6l-op350uk/OP350UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Digital Air Fry Oven SP101",
+      "shape": "Countertop oven",
+      "balance": "Flip-up air fryer oven",
+      "surface": null,
+      "core": "SP101C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-foodi-8-in-1-digital-air-fry-oven/SP101C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Dual Zone AF300",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "AF300UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-foodi-dual-zone-air-fryer-af300uk/AF300UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi DualZone DZ201",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "8 qt",
+      "core": "DZ201C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-foodi-6-in-1-8-qt.-2-basket-air-fryer-with-dualzone-technology/DZ201C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Everyday PossibleCooker Pro MC1101",
+      "shape": "Multicooker",
+      "balance": "Multicooker",
+      "surface": "6.5 qt",
+      "core": "MC1101",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-10-in-1-everyday-possiblecooker-pro-6.5-qt/MC1101.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi FlexBasket DZ071",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "DZ071",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-foodi-flexbasket-air-fryer-with-7qt-megazone/DZ071.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi FlexDrawer AF500",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "10.4 L",
+      "core": "AF500UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-foodi-flexdrawer-air-fryer-10.4l/AF500UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi MAX Dual Zone AF400",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": "9.5 L",
+      "core": "AF400UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-foodi-max-dual-zone-air-fryer-af400uk/AF400UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi MAX Dual Zone Smart Cook AF451",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "AF451UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-foodi-max-dual-zone-air-fryer-with-smart-cook-system-af451uk/AF451UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Multifunction Oven DT200",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "DT200UK",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.co.uk/ninja-foodi-10-in-1-multifunction-oven-dt200uk/DT200UK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi PossibleCooker Pro MC1001",
+      "shape": "Multicooker",
+      "balance": "Multicooker",
+      "surface": "8.5 qt",
+      "core": "MC1001",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-14-in-1-possiblecooker-pro-8.5-qt/MC1001.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Power Blender & Processor System SS351",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "SS351C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-foodi-power-blender-processor-system-with-smoothie-bowl-maker-and-nutrient-extractor/SS351C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Power Blender Ultimate System SS401",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "SS401",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-foodi-power-blender-ultimate-system/SS401.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi Smoothie Bowl Maker SS101",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": "SS101C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-foodi-power-nutri-duo-smoothie-bowl-maker-and-personal-blender/SS101C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Foodi XL Pro Air Fry Oven DT201",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "DT201C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-foodi-10-in-1-xl-pro-air-fry-oven/DT201C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja French Door Premier FO101",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "FO101",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-french-door-premier-air-fryer-convection-oven-toaster-stainless-steel/FO101.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja HyperHeat Pressure Cooker PC201",
+      "shape": "Multicooker",
+      "balance": "Pressure cooker",
+      "surface": "6.5 qt",
+      "core": "PC201",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-hyperheat-6.5-qt-pressure-cooker-with-simpliserve-pot--blue-macaron/PC201.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja MultiPot XL MZ1001",
+      "shape": "Multicooker",
+      "balance": "Dual multicooker",
+      "surface": null,
+      "core": "MZ1001",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-multipot-xl-multicooker/MZ1001BR.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja PossibleCooker Pro Plus MC2001",
+      "shape": "Multicooker",
+      "balance": "Multicooker",
+      "surface": "8.5 qt",
+      "core": "MC2001",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-9-in-1-possiblecooker-pro-plus-8.5-qt-blue-macaron/MC2001.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Prestige Pro XL DT551",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "DT551",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-prestige-smart-xl-air-fryer-countertop-oven-pro-cook/DT551.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Prestige Smart XL DT501",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": "DT501",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-prestige-smart-xl-air-fryer-countertop-oven/DT501.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Professional Blender BL660",
+      "shape": "Blender",
+      "balance": "Full-size blender with personal cups",
+      "surface": null,
+      "core": "BL660C",
+      "weight": "1100 W",
+      "sources": [
+        "https://www.sharkninja.ca/ninja-professional-personal-blender-with-nutri-ninja-cups/BL660C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Professional Food Processor BN600",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": "9 cups",
+      "core": "BN600C",
+      "weight": "850 W",
+      "sources": [
+        "https://www.sharkninja.ca/ninja-professional-food-processor-9-cup-850w/BN600C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Professional Plus Blender BN701",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "BN701C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-professional-plus-blender-with-auto-iq/BN701C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Professional Plus Blender Duo BN751",
+      "shape": "Blender",
+      "balance": "Full-size blender with personal cups",
+      "surface": null,
+      "core": "BN751C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-professional-plus-personal-blender-duo-with-auto-iq-nutri-ninja-cups/BN751C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Professional Plus Kitchen System BN801",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "BN801C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-professional-plus-kitchen-system-with-auto-iq/BN801C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Supra Kitchen System BL780",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "BL780C",
+      "weight": "1200 W",
+      "sources": [
+        "https://www.sharkninja.ca/ninja-supra-kitchen-system/BL780C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja TotalCrush 3-in-1 IQ801",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": "IQ801",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-totalcrush-3-in-1-blender-tumbler-food-processor-in-metallic-black/IQ801BK.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja TotalCrush IQ601",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": "IQ601",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.com/ninja-totalcrush-high-powered-blender-in-velvet-tide/IQ601BL.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja TWISTi SS150",
+      "shape": "Blender",
+      "balance": "Full-size blender with personal cups",
+      "surface": null,
+      "core": "SS150C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/ninja-twisti-high-speed-blender-duo-3-preset-auto-iq-programs-ss150c/SS150C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Nutri Ninja Auto-iQ BL481",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": "BL481C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/nutri-ninja-auto-iq/BL481C.html"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Nutri Ninja Pro BL450",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": "BL450C",
+      "weight": null,
+      "sources": [
+        "https://www.sharkninja.ca/nutri-ninja-pro/BL450C.html"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet 600",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": "600 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-600/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Blender",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": null,
+      "weight": "1200 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-blender/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet CrispLite Vision Air Fryer",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/specialty/nutribullet-crisplite-vision-air-fryer/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Flex",
+      "shape": "Blender",
+      "balance": "Portable blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-flex/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Flip",
+      "shape": "Blender",
+      "balance": "Portable blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-flip/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Limitless Food Processor",
+      "shape": "Food processor",
+      "balance": "Food processor",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/kitchen-systems/nutribullet-limitless-food-processor/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Portable Blender",
+      "shape": "Blender",
+      "balance": "Portable blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-portable-blender/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Pro 900",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": "900 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-pro/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Pro+",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": "1200 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-pro-plus/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet RX",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": "1700 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-rx/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet SmartSense Blender",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": null,
+      "weight": "1400 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-smartsense/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Triple Prep System",
+      "shape": "Blender",
+      "balance": "Kitchen system",
+      "surface": null,
+      "core": null,
+      "weight": "1500 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-triple-prep-system/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Turbo",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": "1000 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-turbo/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Ultra",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": "1200 W",
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-ultra/"
+      ]
+    },
+    {
+      "brand": "nutribullet",
+      "name": "Nutribullet Ultra Plus",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.nutribullet.com/shop/blenders/nutribullet-ultra-plus/"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips 7000 Series High-Speed Blender HR3760",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": "HR3760/00",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HR3760_00/7000-series-high-speed-blender"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 1000 Series FlexDrawer NA150",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "NA150/09",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA150_09/1000-series-dual-basket-airfryer"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 1000 Series NA130",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6.2 L",
+      "core": "NA130/00",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA130_00/1000-series-airfryer-1000-series-62-l"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 2000 Series NA230",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6.2 L",
+      "core": "NA230/09",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA230_09/2000-series-airfryer-2000-series-62l"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 3000 Series Dual Basket NA350",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "NA350/00",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA350_00/3000-series-dual-basket-airfryer"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 3000 Series NA332",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "6.2 L",
+      "core": "NA332/09",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA332_09/3000-series-airfryer-6.2l"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 3000 Series NA342",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "7.2 L",
+      "core": "NA342/09",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA342_09/3000-series-airfryer-7.2l"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 4000 Series Stacked Dual Basket NA460",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "NA460/09",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA460_09/philips-airfryer-4000-series-stacked-dual-basket"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 5000 Series Dual Basket with Steam NA555",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "NA555/09",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA555_09/5000-series"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 5000 Series Megabasket NA565",
+      "shape": "Air fryer",
+      "balance": "Dual-basket air fryer",
+      "surface": null,
+      "core": "NA565/92",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/NA565_92/philips-airfryer-5000-series-megabasket-with-steam"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 5000 Series XXL Connected HD9285",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9285/96",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HD9285_96/airfryer-5000-series-xxl-connected"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Airfryer 7000 Series Combi HD9875",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": "8.3 L",
+      "core": "HD9875/90",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HD9875_90/airfryer-7000-series-xxl-connected"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Essential Airfryer HD9252",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9252/90",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HD9252_90/essential-airfryer"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Essential Airfryer XL Connected HD9280",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9280/91",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HD9280_91/essential-airfryer-xl"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Essential Airfryer XL HD9270",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9270/91",
+      "weight": null,
+      "sources": [
+        "https://www.philips.ca/c-p/HD9270_91/essential-airfryer-xl"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Premium Airfryer XXL HD9650",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9650/96",
+      "weight": null,
+      "sources": [
+        "https://www.philips.ca/c-p/HD9650_96/premium-airfryer-xxl"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Premium Airfryer XXL HD9870",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9870/20",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HD9870_20/premium-airfryer-xxl"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Viva Collection Airfryer HD9220",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": "HD9220/20",
+      "weight": null,
+      "sources": [
+        "https://www.philips.co.uk/c-p/HD9220_20/viva-collection-airfryer-with-rapid-air-technology"
+      ]
+    },
+    {
+      "brand": "typhur",
+      "name": "Typhur Dome",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://typhur.com/products/dome-original-air-fryer"
+      ]
+    },
+    {
+      "brand": "typhur",
+      "name": "Typhur Dome 2",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://typhur.com/products/dome-air-fryer"
+      ]
+    },
+    {
+      "brand": "typhur",
+      "name": "Typhur Sync Air Fryer",
+      "shape": "Air fryer",
+      "balance": "Basket air fryer",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://typhur.com/products/sync-air-fryer"
+      ]
+    },
+    {
+      "brand": "typhur",
+      "name": "Typhur Sync Oven",
+      "shape": "Countertop oven",
+      "balance": "Air fryer toaster oven",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://typhur.com/products/sync-oven"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix 5200",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/5200-standard-getting-started"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix 5300",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/5300"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix 7500",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/7500"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent A2300",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/a2300"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent A2500",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/a2500"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent A3500",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/a3500"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent X2",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/ascent-x2"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent X3",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/ascent-x3"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent X4",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/ascent-x4"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Ascent X5",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/ascent-x5"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Explorian E310",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/e310"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Explorian E320",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/e320"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Nano",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/nano"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix ONE",
+      "shape": "Blender",
+      "balance": "Full-size blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/vitamix-onetm"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Professional Series 750",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/professional-series-750"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Propel 410",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/propel-series-410"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Propel 510",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/propel-series-510"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Propel 750",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/propel-series-750"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix S55",
+      "shape": "Blender",
+      "balance": "Personal blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/s55"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix Venturist V1200",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/certified-reconditioned-v1200"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix VX1",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/vx1"
+      ]
+    },
+    {
+      "brand": "vitamix",
+      "name": "Vitamix VX3",
+      "shape": "Blender",
+      "balance": "High-speed blender",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.vitamix.com/us/en_us/products/vx3"
+      ]
+    }
+  ]
+}

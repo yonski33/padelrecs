@@ -433,3 +433,30 @@ test("the NailsRecs starter catalog: sourced polishes, gels, coats, press-ons, t
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Aprés Gel-X Tips")?.slug, "apres-gel-x-tips");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Sally Hansen Good. Kind. Pure.")?.slug, "sally-hansen-good-kind-pure");
 });
+
+test("the KitchenRecs starter catalog: sourced air fryers, ovens, blenders, mixers, processors and multicookers, known categories, no years, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/kitchen.json");
+  const snapshot = catalogSnapshot(catalog, "kitchenrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 15);
+  assert(snapshot.tables.rackets.length >= 200);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.kitchen.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/kitchen");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    // "Philips Airfryer 2000 Series" is a line name, not a year; a year would end the name.
+    assert(!/ (19|20)\d\d$/.test(r.name), `${r.name}: appliances are named without years`);
+    // Out of scope: microwaves and coffee gear (CoffeeRecs).
+    assert(!/microwave|espresso|grinder|kettle/i.test(r.name), `${r.name}: not a KitchenRecs product`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one product`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Look-alike Ninja air fryers are separate products, told apart by model number.
+  for (const name of ["Ninja Air Fryer AF101", "Ninja Foodi DualZone DZ201", "Ninja Foodi Dual Zone AF300", "Ninja DualZone DZ801"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Ninja Foodi DualZone DZ201")?.slug, "ninja-foodi-dualzone-dz201");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Nutribullet Pro+")?.slug, "nutribullet-pro");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Instant Pot Duo")?.surface, "3, 6 or 8 qt");
+});
