@@ -437,7 +437,7 @@ test("climbing: gear named without years, six category pages that each pick a dr
   assert.equal(n.schema, "climbingrecs");
   assert.equal(n.productPath, "gear");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-LDTENY2PVS");
   assert.equal(n.tags.length, 17);
   assert.deepEqual(n.categories.map(c => c.label), ["Performance", "Comfort", "Ease of use", "Durability", "Value"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Key specs", "Material", "Weight"]);

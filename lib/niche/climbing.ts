@@ -22,7 +22,7 @@ export const climbing: Niche = {
     wordmark: "climbingrecs",
     descriptor: "climber reviews of climbing shoes, harnesses, belay devices, ropes, chalk bags and crash pads",
     footer: "kept by people who know their shoe size in three brands. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for climbingrecs.com exists
+    analyticsId: "G-LDTENY2PVS",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
