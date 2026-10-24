@@ -453,3 +453,26 @@ test("climbing: gear named without years, six category pages that each pick a dr
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("nails: products named without years, six category pages that each pick a drawing, nails profile, nail rating icons", async () => {
+  const n = selectNiche("nails");
+  assert.equal(n.schema, "nailsrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.tags.length, 19);
+  for (const tag of ["long-lasting", "chips easily", "glossy", "easy to apply", "streaky", "opaque in one coat", "quick drying", "strong smell", "gentle on nails"]) assert(n.tags.some(t => t.label === tag), tag);
+  assert.deepEqual(n.categories.map(c => c.label), ["Wear", "Application", "Finish", "Nail health", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Key specs", "Formula", "Size"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["nail-polish", "gel-polish", "base-and-top-coats", "press-on-nails", "nail-treatments", "cuticle-oils"]);
+  const { shapeOf } = await import("../app/art/nails");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["polish", "gel", "coat", "press", "treatment", "oil"]);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /nail|cuticle|press-on/, `${list.slug}: niche keyword in the slug`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

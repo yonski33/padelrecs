@@ -409,3 +409,27 @@ test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices,
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Edelrid Jul²")?.slug, "edelrid-jul-2");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Mad Rock D2.ONE LV")?.slug, "mad-rock-d2-one-lv");
 });
+
+test("the NailsRecs starter catalog: sourced polishes, gels, coats, press-ons, treatments and cuticle oils, known categories, no shades or years, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/nails.json");
+  const snapshot = catalogSnapshot(catalog, "nailsrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 22);
+  assert(snapshot.tables.rackets.length >= 200);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.nails.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/nails");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/(^| )20\d\d( |$)/.test(r.name), `${r.name}: nail products are named without years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one product`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Shades are covered by their line: no "Big Apple Red" or "Bubble Bath" entries.
+  assert(!snapshot.tables.rackets.some(r => /Big Apple Red|Bubble Bath|Funny Bunny/.test(r.name)));
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "OPI xPRESS/ON")?.slug, "opi-xpress-on");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Aprés Gel-X Tips")?.slug, "apres-gel-x-tips");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Sally Hansen Good. Kind. Pure.")?.slug, "sally-hansen-good-kind-pure");
+});
