@@ -22,7 +22,7 @@ export const kitchen: Niche = {
     wordmark: "kitchenrecs",
     descriptor: "real reviews of air fryers, countertop ovens, blenders, stand mixers, food processors and multicookers",
     footer: "kept by people whose counters are running out of room. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property for kitchenrecs.com exists
+    analyticsId: "G-S1MRX3VYPL",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "appliance", many: "appliances", One: "Appliance", Many: "Appliances" },
