@@ -439,7 +439,7 @@ test("the KitchenRecs starter catalog: sourced air fryers, ovens, blenders, mixe
   const catalog = await readCatalog("db/catalogs/kitchen.json");
   const snapshot = catalogSnapshot(catalog, "kitchenrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 15);
-  assert(snapshot.tables.rackets.length >= 200);
+  assert(snapshot.tables.rackets.length >= 213);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.kitchen.specs.find(s => s.column === "shape")!.options!;
