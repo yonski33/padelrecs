@@ -116,7 +116,8 @@
     "badminton": "badmintonrecs",
     "fragrance": "fragrancerecs",
     "coffee": "coffeerecs",
-    "climbing": "climbingrecs"
+    "climbing": "climbingrecs",
+    "nails": "nailsrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
