@@ -505,7 +505,7 @@ test("snowboard: boards named with model years, four category pages that each pi
   assert.equal(n.schema, "snowboardrecs");
   assert.equal(n.productPath, "snowboards");
   assert.notEqual(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-7EGLY6ZMS1");
   assert.equal(n.tags.length, 20);
   for (const tag of ["poppy", "great edge hold", "floats in powder", "catchy", "washes out", "great value"]) assert(n.tags.some(t => t.label === tag), tag);
   assert.deepEqual(n.categories.map(c => c.label), ["Pop", "Carving", "Playfulness", "Stability", "Forgiveness"]);
@@ -529,7 +529,7 @@ test("tabletennis: equipment named without years, three type pages that each pic
   assert.equal(n.schema, "tabletennisrecs");
   assert.equal(n.productPath, "equipment");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-VLT8WJNTN2");
   assert.equal(n.tags.length, 21);
   for (const tag of ["spinny", "great control", "too fast", "loses grip fast", "high throw", "great value"]) assert(n.tags.some(t => t.label === tag), tag);
   assert.deepEqual(n.categories.map(c => c.label), ["Speed", "Spin", "Control", "Forgiveness", "Feel"]);
@@ -553,7 +553,7 @@ test("homegym: equipment named without years, seven category pages that each pic
   assert.equal(n.schema, "homegymrecs");
   assert.equal(n.productPath, "equipment");
   assert.equal(n.productYears, false);
-  assert.equal(n.site.analyticsId, undefined);
+  assert.equal(n.site.analyticsId, "G-FJCY7164W9");
   assert.equal(n.tags.length, 21);
   for (const tag of ["solid build", "stable", "quick to adjust", "wobbly", "needs a tall ceiling", "great value"]) assert(n.tags.some(t => t.label === tag), tag);
   assert.deepEqual(n.categories.map(c => c.label), ["Build quality", "Ease of use", "Space", "Stability", "Value"]);

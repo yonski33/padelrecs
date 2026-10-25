@@ -23,7 +23,7 @@ export const tabletennis: Niche = {
     wordmark: "tabletennisrecs",
     descriptor: "player reviews of table tennis blades, rubbers and rackets",
     footer: "kept by people who own more rubbers than blades. No affiliate links.",
-    // analyticsId: set once the GA property for tabletennisrecs.com exists.
+    analyticsId: "G-VLT8WJNTN2",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },

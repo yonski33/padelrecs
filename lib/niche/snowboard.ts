@@ -21,7 +21,7 @@ export const snowboard: Niche = {
     wordmark: "snowboardrecs",
     descriptor: "rider reviews of all-mountain, freestyle and freeride snowboards and splitboards",
     footer: "kept by people who check the snow report before the weather report. No affiliate links.",
-    // analyticsId: set once the GA property for snowboardrecs.com exists.
+    analyticsId: "G-7EGLY6ZMS1",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "board", many: "boards", One: "Board", Many: "Boards" },

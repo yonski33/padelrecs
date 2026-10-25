@@ -20,7 +20,7 @@ export const homegym: Niche = {
     wordmark: "homegymrecs",
     descriptor: "real reviews of adjustable dumbbells, power racks, benches, barbells, plates, cable machines and cardio gear",
     footer: "kept by people who train in garages, spare rooms and basements. No affiliate links.",
-    // analyticsId: "G-XXXXXXXXXX", // add once the GA4 property exists
+    analyticsId: "G-FJCY7164W9",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "item", many: "items", One: "Item", Many: "Items" },
