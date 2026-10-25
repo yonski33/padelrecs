@@ -116,5 +116,5 @@ export default async function Home({ searchParams }: {
     {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
     {items.length > show && <LoadMore href={query({ source, type: type?.slug, show: show + PAGE })}/>}
     {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
-  </div><Sidebar data={data}/></div></main>;
+  </div><Sidebar data={data} minYear={oldest}/></div></main>;
 }
