@@ -88,12 +88,12 @@ test("an offer is the first matching result with its live price and tagged link"
 test("no match or no price means no offer", async () => {
   resetAmazonToken();
   const unrelated = { searchResult: { items: [searchHit.searchResult.items[0]] } };
-  assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({ "/catalog/v1/searchItems": unrelated })), null);
-  assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({ "/catalog/v1/searchItems": { errors: [{ code: "NoResults" }] } })), null);
+  assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({ "/catalog/v1/searchItems": unrelated }), () => {}), null);
+  assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({ "/catalog/v1/searchItems": { errors: [{ code: "NoResults" }] } }), () => {}), null);
   // Found, but Amazon lists no offer: not buyable there now.
   assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({
     "/catalog/v1/searchItems": searchHit, "/catalog/v1/getItems": { itemsResult: { items: [{ asin: "B01MSSDEPK", offersV2: { listings: [] } }] } },
-  })), null);
+  }), () => {}), null);
 });
 
 test("throttling and outages throw, so they are never cached as 'not on Amazon'", async () => {

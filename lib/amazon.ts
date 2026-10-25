@@ -113,19 +113,26 @@ export function listingPrice(item: Item): string | null {
  * The live Amazon offer for one catalogue product, or null when it is not on Amazon (no matching result, or no price
  * listed, which means it cannot be bought there right now). Throws AmazonUnavailable when Amazon could not answer.
  */
-export async function findAmazonOffer(product: { name: string; brand: string }, settings: AmazonSettings, credentials: AmazonCredentials, fetcher: Fetch = fetch): Promise<AmazonOffer | null> {
+export async function findAmazonOffer(product: { name: string; brand: string }, settings: AmazonSettings, credentials: AmazonCredentials, fetcher: Fetch = fetch, log: (message: string) => void = console.info): Promise<AmazonOffer | null> {
   const marketplace = settings.marketplace ?? DEFAULT_MARKETPLACE;
   const found = await call("/catalog/v1/searchItems", {
     keywords: product.name.trim(), searchIndex: settings.searchIndex, itemCount: 5, resources: ["itemInfo.title", "itemInfo.byLineInfo"],
   }, credentials, marketplace, fetcher);
   const match = (found.searchResult?.items ?? []).find(item => item.asin && isAsin(item.asin) && item.itemInfo?.title?.displayValue
     && matchesProduct(product, { title: item.itemInfo.title.displayValue, brand: item.itemInfo.byLineInfo?.brand?.displayValue }));
-  if (!match?.asin) return null;
+  if (!match?.asin) {
+    const titles = (found.searchResult?.items ?? []).map(item => `${item.asin} "${item.itemInfo?.title?.displayValue ?? ""}"`);
+    log(`[amazon] No matching result for ${product.name}${titles.length ? `; Amazon returned ${titles.join(", ")}` : found.errors?.[0]?.code ? ` (${found.errors[0].code})` : "; Amazon returned nothing"}`);
+    return null;
+  }
   const details = await call("/catalog/v1/getItems", {
     itemIds: [match.asin], resources: ["itemInfo.title", "offersV2.listings.price", "offersV2.listings.availability"],
   }, credentials, marketplace, fetcher);
   const item = details.itemsResult?.items?.find(i => i.asin === match.asin);
   const price = item && listingPrice(item);
-  if (!price) return null;
+  if (!price) {
+    log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
+    return null;
+  }
   return { asin: match.asin, title: item.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace) };
 }
