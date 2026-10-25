@@ -11,7 +11,8 @@ export type ListItem = { key: string; kind: "players" | "web"; date: string; hel
  * Racket-page review list. Source tabs and sorting switch instantly in the browser; the links stay real
  * (shareable, crawlable, and working without JavaScript) and the address bar follows along.
  */
-export default function ReviewList({ slug, addHref, items, initialSource, initialSort }: { slug: string; addHref: string; items: ListItem[]; initialSource: Source; initialSort: Sort }) {
+/** `addButton`, when given, sits beside the "Reviews" title (product pages whose scorecard button is Amazon's). */
+export default function ReviewList({ slug, addHref, addButton, items, initialSource, initialSort }: { slug: string; addHref: string; addButton?: ReactNode; items: ListItem[]; initialSource: Source; initialSort: Sort }) {
   const [source, setSource] = useState<Source>(initialSource);
   const [sort, setSort] = useState<Sort>(initialSort);
   const link = (src: Source, srt: Sort) => {
@@ -35,7 +36,10 @@ export default function ReviewList({ slug, addHref, items, initialSource, initia
 
   return <>
     <div className="feed-heading">
-      <h2 className="feed-title">Reviews</h2>
+      <div className="feed-title-row">
+        <h2 className="feed-title">Reviews</h2>
+        {addButton}
+      </div>
       <nav className="source-nav" aria-label="Review sources">
         {tabs.map(([value, label]) => <a key={value} href={link(value, sort)} onClick={e => go(e, value, sort)} aria-current={source === value ? "page" : undefined}>{label}<span className="source-count">{count(value)}</span></a>)}
       </nav>
