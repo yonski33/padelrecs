@@ -86,6 +86,9 @@ export type Niche = {
   people: Words;
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
+  /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
+   *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
+  feedMaxAgeYears?: number;
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */

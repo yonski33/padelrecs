@@ -20,6 +20,8 @@ export const padel: Niche = {
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
+  feedMaxAgeYears: 1,
   productPath: "rackets",
   scoreUnit: { one: "ball", many: "balls" },
   // White page, court green, one ball-yellow accent.
@@ -105,20 +107,20 @@ export const padel: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
-  // /rankings pages (lib/top-lists.ts). Model years are real here, so lists keep to the last three (maxAgeYears 2). Tags come from the bank above. The catalogue has no player-level field, so the
+  // /rankings pages (lib/top-lists.ts). Model years are real here, so lists keep to the current and previous model year (maxAgeYears 1: 2025–2026 in 2026; owner decision 2026-10-25, so the site doesn't look outdated). Tags come from the bank above. The catalogue has no player-level field, so the
   // fourth list is "most forgiving" from review tags rather than "best for intermediate players".
   topLists: [
-    { slug: "best-padel-rackets", label: "Best overall", title: "Best Padel Rackets", minReviews: 15, maxAgeYears: 2,
+    { slug: "best-padel-rackets", label: "Best overall", title: "Best Padel Rackets", minReviews: 15, maxAgeYears: 1,
       intro: "The rackets players are most consistently happy with, among rackets enough players have reviewed." },
-    { slug: "best-power-padel-rackets", label: "Best for power", title: "Best Padel Rackets for Power", minReviews: 12, maxAgeYears: 2,
+    { slug: "best-power-padel-rackets", label: "Best for power", title: "Best Padel Rackets for Power", minReviews: 12, maxAgeYears: 1,
       intro: "Rackets players keep describing as powerful (easy power, big smashes).",
       trait: { tags: ["easy power", "great on smashes"], minShare: 0.2, noun: "power or smashes" },
       filters: [{ column: "shape", exclude: ["Round"] }, { column: "balance", exclude: ["Low"] }] },
-    { slug: "best-control-padel-rackets", label: "Best for control", title: "Best Padel Rackets for Control", minReviews: 12, maxAgeYears: 2,
+    { slug: "best-control-padel-rackets", label: "Best for control", title: "Best Padel Rackets for Control", minReviews: 12, maxAgeYears: 1,
       intro: "Rackets players praise for control, placement and defence.",
       trait: { tags: ["good control", "great in defence"], minShare: 0.2, against: ["head-heavy"], noun: "control or defence" },
       filters: [{ column: "shape", exclude: ["Diamond"] }] },
-    { slug: "most-forgiving-padel-rackets", label: "Most forgiving", title: "Most Forgiving Padel Rackets", minReviews: 12, maxAgeYears: 2,
+    { slug: "most-forgiving-padel-rackets", label: "Most forgiving", title: "Most Forgiving Padel Rackets", minReviews: 12, maxAgeYears: 1,
       intro: "Rackets players call forgiving or arm-friendly, without many complaints about a small sweet spot.",
       trait: { tags: ["forgiving", "arm-friendly"], minShare: 0.2, against: ["small sweet spot", "demanding"], noun: "forgiveness or comfort" },
       filters: [{ column: "shape", exclude: ["Diamond"] }] },

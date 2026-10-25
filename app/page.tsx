@@ -37,8 +37,13 @@ function dayLabel(iso: string, now: Date) {
 export default async function Home({ searchParams }: {
   searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[] }>;
 }) {
-  const [data, params] = await Promise.all([catalog(), searchParams]);
+  const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
+  // Niches with feedMaxAgeYears (padel) keep older models off the front page: feed, popular strip and sidebar.
+  const oldest = niche.feedMaxAgeYears === undefined ? -Infinity : now.getUTCFullYear() - niche.feedMaxAgeYears;
+  const yearOf = new Map(all.rackets.map(r => [r.id, r.year]));
+  const current = <T extends { racketId: string }>(list: T[]) => list.filter(x => (yearOf.get(x.racketId) ?? Infinity) >= oldest);
+  const data = Number.isFinite(oldest) ? { ...all, reviews: current(all.reviews), external: current(all.external) } : all;
   const source = params.source === "players" || params.source === "web" ? params.source : "all";
   // How many notes to show: 24 at first, 24 more per "Load more" click (kept in the URL so it's linkable and crawlable).
   const requested = Number(Array.isArray(params.show) ? params.show[0] : params.show);
