@@ -24,6 +24,7 @@ export const running: Niche = {
   },
   words: { one: "shoe", many: "shoes", One: "Shoe", Many: "Shoes" },
   people: { one: "runner", many: "runners", One: "Runner", Many: "Runners" },
+  recentMonths: 24,
   // Makers number versions (Pegasus 42, Ghost 17), so names carry the version instead of a year.
   productYears: false,
   productPath: "shoes",

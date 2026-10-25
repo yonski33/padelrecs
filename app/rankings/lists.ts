@@ -1,9 +1,9 @@
 import { cache } from "react";
 import { catalog } from "../../db/data";
 import { niche } from "../../lib/niche";
-import { rankList, listTotals, rankingHref } from "../../lib/top-lists";
+import { rankList, listTotals, rankingHref, withNicheWindow } from "../../lib/top-lists";
 
-export const topLists = niche.topLists ?? [];
+export const topLists = withNicheWindow(niche.topLists ?? [], niche.recentMonths);
 export const listHref = rankingHref;
 
 /** Every configured list ranked from one catalogue read, shared by a page and its metadata. */

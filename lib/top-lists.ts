@@ -31,6 +31,17 @@ export const TRAIT_LIST_LIKED_WEIGHT = 0.5;
  *  A web review is dated by its source; a player review by when it was submitted. Lists can set their own (reviewYears). */
 export const REVIEW_YEARS = 3;
 
+/** How many months of reviews a list counts: its own reviewMonths or reviewYears, else REVIEW_YEARS. */
+export const reviewWindowMonths = (list: Pick<TopList, "reviewMonths" | "reviewYears">) =>
+  list.reviewMonths ?? (list.reviewYears ?? REVIEW_YEARS) * 12;
+
+/** A niche's lists with its recentMonths window filled in where a list doesn't set its own. */
+export const withNicheWindow = <L extends TopList>(lists: readonly L[], months?: number): L[] =>
+  lists.map(l => months === undefined || l.reviewMonths !== undefined || l.reviewYears !== undefined ? l : { ...l, reviewMonths: months });
+
+/** "12 months", "2 years", "30 months". */
+export const windowLabel = (months: number) => months % 12 === 0 && months > 12 ? `${months / 12} years` : `${months} months`;
+
 /** How many more positive reviews (mixed = half) a product has than an average product with as many reviews would have.
  *  It is a count, so it grows with both how liked and how much discussed a product is: 33 of 43 beats 15 of 17. */
 export const aboveAverage = (score: number, n: number, average: number) => score - average * n;
@@ -92,7 +103,7 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
 
   const notes = new Map<string, Note[]>();
   const add = (id: string, n: Note) => { const l = notes.get(id); if (l) l.push(n); else notes.set(id, [n]); };
-  const since = new Date(now); since.setUTCFullYear(since.getUTCFullYear() - (list.reviewYears ?? REVIEW_YEARS));
+  const since = new Date(now); since.setUTCMonth(since.getUTCMonth() - reviewWindowMonths(list));
   const recent = (date: string) => Date.parse(date) >= since.getTime();
   for (const r of data.reviews) if (recent(r.createdAt)) add(r.racketId, { verdict: ratingVerdict(r.rating), tags: r.tags, createdAt: r.createdAt });
   // Web reviews nobody judged have no verdict, so they don't count.

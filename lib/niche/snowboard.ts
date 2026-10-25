@@ -26,6 +26,7 @@ export const snowboard: Niche = {
   },
   words: { one: "board", many: "boards", One: "Board", Many: "Boards" },
   people: { one: "rider", many: "riders", One: "Rider", Many: "Riders" },
+  recentMonths: 24,
   // Makers update boards every season and retailers sell them by model year ("Burton Custom 2026"), so names carry the year, as on PadelRecs.
   // Colourways and sizes (including wides) are one product; women's-only models keep their own names (Feelgood, Yeasayer, Twin Sister).
   productYears: true,

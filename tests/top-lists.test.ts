@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { rankList, aboveAverage, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, type ListInput, type Verdict } from "../lib/top-lists";
+import { rankList, aboveAverage, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, reviewWindowMonths, withNicheWindow, windowLabel, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 
 const tags = niches.padel.tags;
@@ -189,4 +189,20 @@ test("every niche's lists use bank tags, real spec columns and unique slugs", ()
     }
   }
   assert.equal(niches.padel.topLists?.length, 4);
+});
+
+test("review windows: a niche's recentMonths fills in lists that don't set their own", () => {
+  const base = { slug: "best", label: "Best", title: "Best", intro: "" } as TopList;
+  assert.equal(reviewWindowMonths(base), 36);
+  assert.equal(reviewWindowMonths({ ...base, reviewYears: 5 }), 60);
+  const [plain, own] = withNicheWindow([base, { ...base, slug: "own", reviewYears: 5 }], 12);
+  assert.equal(reviewWindowMonths(plain), 12);
+  assert.equal(reviewWindowMonths(own), 60);
+  assert.equal(windowLabel(12), "12 months");
+  assert.equal(windowLabel(24), "2 years");
+  // A 2-year-old web review counts in a 36-month list but not in a 12-month one: it's dated by its source.
+  const data = { listed: [product("a")], reviews: [], external: Array.from({ length: 20 }, () => web("a", "positive", [], null, "2026-10-01T00:00:00Z", "2024-10-01")) } as unknown as ListInput;
+  const now = new Date("2026-10-26T00:00:00Z");
+  assert.equal(rankList({ ...base, reviewMonths: 36 }, data, tags, now).length, 1);
+  assert.equal(rankList({ ...base, reviewMonths: 12 }, data, tags, now).length, 0);
 });

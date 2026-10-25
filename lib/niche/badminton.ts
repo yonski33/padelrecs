@@ -25,6 +25,7 @@ export const badminton: Niche = {
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  recentMonths: 36,
   // Makers name models by line and number (Astrox 99 Pro, Thruster Ryuga II Pro, Axforce 100), not years.
   productYears: false,
   productPath: "rackets",

@@ -25,6 +25,7 @@ export const homegym: Niche = {
   },
   words: { one: "item", many: "items", One: "Item", Many: "Items" },
   people: { one: "owner", many: "owners", One: "Owner", Many: "Owners" },
+  recentMonths: 36,
   // Makers name home gym gear by line and model (REP PR-4000 vs PR-5000, Bowflex SelectTech 552 vs 1090, PowerBlock Pro 50
   // vs Commercial Pro 50), not by year. Heights, depths, lb or kg versions and colours of one model are one product.
   productYears: false,

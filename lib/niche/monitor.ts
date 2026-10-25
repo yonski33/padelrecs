@@ -26,6 +26,7 @@ export const monitor: Niche = {
   },
   words: { one: "monitor", many: "monitors", One: "Monitor", Many: "Monitors" },
   people: { one: "owner", many: "owners", One: "Owner", Many: "Owners" },
+  recentMonths: 12,
   // Makers name each model by its model number (AW3225QF, PG32UCDM3, U2725QE), so no years.
   productYears: false,
   productPath: "monitors",

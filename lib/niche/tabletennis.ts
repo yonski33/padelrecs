@@ -28,6 +28,7 @@ export const tabletennis: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  recentMonths: 36,
   // Makers name blades and rubbers by line and version (Viscaria, Tenergy 05 FX, Dignics 09C, Hurricane 3 Neo), not by year.
   // Handle shapes (flared, straight, anatomic, penhold), sponge thicknesses, hardness degrees and colours are one product;
   // versions sold under their own names stay separate (Hurricane 3 vs Hurricane 3 Neo vs Hurricane 3 National).

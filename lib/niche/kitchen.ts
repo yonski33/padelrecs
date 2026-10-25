@@ -28,6 +28,7 @@ export const kitchen: Niche = {
   },
   words: { one: "appliance", many: "appliances", One: "Appliance", Many: "Appliances" },
   people: { one: "owner", many: "owners", One: "Owner", Many: "Owners" },
+  recentMonths: 36,
   // Makers name countertop appliances by line and model number (Ninja AF101, DZ201; Breville BOV900; Vitamix 5200, A3500), not by year.
   // Colours are not separate products; regional versions with their own model number are.
   productYears: false,

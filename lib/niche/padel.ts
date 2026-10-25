@@ -20,6 +20,7 @@ export const padel: Niche = {
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  recentMonths: 24,
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

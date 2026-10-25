@@ -29,6 +29,7 @@ export const discgolf: Niche = {
   },
   words: { one: "disc", many: "discs", One: "Disc", Many: "Discs" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  recentMonths: 36,
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",

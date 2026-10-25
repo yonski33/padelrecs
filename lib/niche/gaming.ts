@@ -30,6 +30,7 @@ export const gaming: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "gamer", many: "gamers", One: "Gamer", Many: "Gamers" },
+  recentMonths: 12,
   // Makers name each generation (V3, X2, Gen 2), so names carry the generation instead of a year.
   productYears: false,
   productPath: "gear",

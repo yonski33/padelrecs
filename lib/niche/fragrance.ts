@@ -35,6 +35,7 @@ export const fragrance: Niche = {
   },
   words: { one: "fragrance", many: "fragrances", One: "Fragrance", Many: "Fragrances" },
   people: { one: "wearer", many: "wearers", One: "Wearer", Many: "Wearers" },
+  recentMonths: 36,
   // Fragrances are named by line and concentration (Sauvage Eau de Parfum, Sauvage Elixir), not years.
   productYears: false,
   productPath: "fragrances",

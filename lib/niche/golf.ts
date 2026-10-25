@@ -24,6 +24,7 @@ export const golf: Niche = {
   },
   words: { one: "driver", many: "drivers", One: "Driver", Many: "Drivers" },
   people: { one: "golfer", many: "golfers", One: "Golfer", Many: "Golfers" },
+  recentMonths: 24,
   // Makers name each generation (Qi35, Qi4D, G440), so names carry the generation instead of a year.
   productYears: false,
   productPath: "drivers",

@@ -28,6 +28,7 @@ export const nails: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "user", many: "users", One: "User", Many: "Users" },
+  recentMonths: 36,
   // Makers name nail products by line and formula (Nail Lacquer, Infinite Shine, GelColor, Gel Couture, Miracle Gel), not by year.
   // Shades are not separate products: one entry covers every shade of its formula.
   productYears: false,
