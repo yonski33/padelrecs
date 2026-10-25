@@ -1,14 +1,15 @@
 /**
  * Amazon affiliate offers for product pages, through Amazon's Creators API (PA-API 5's replacement), the same client
  * RedRecs uses: a Login with Amazon token, searchItems to find the ASIN, getItems with OffersV2 for the live price.
- * Only niches with `amazon` in their config ask for offers. A product gets a link only when a search result really is
- * that product (matchesProduct) and Amazon lists a price for it; anything else means no link.
+ * Only niches with `amazon` in their config show Amazon links, and then every product page has one: to the product's
+ * Amazon page when a search result really is that product (matchesProduct), otherwise to an Amazon search for its name,
+ * as RedRecs does. The price is shown only when Amazon lists one for the matched item.
  *
  * Server-only. Credentials are read from the environment by name and never leave this module:
  * AMAZON_CREATORS_API_CREDENTIAL_ID, AMAZON_CREATORS_API_CREDENTIAL_SECRET and AMAZON_PA_API_PARTNER_TAG (the associate tag).
  */
 
-export type AmazonOffer = { asin: string; title: string; price: string; url: string };
+export type AmazonOffer = { asin: string; title: string; price: string | null; url: string };
 export type AmazonCredentials = { id: string; secret: string; partnerTag: string };
 export type AmazonSettings = { searchIndex: string; marketplace?: string };
 type Fetch = typeof fetch;
@@ -28,6 +29,14 @@ export function amazonCredentials(env: Record<string, string | undefined> = proc
 /** The affiliate link RedRecs uses: the product's detail page carrying the associate tag. */
 export function amazonLink(asin: string, partnerTag: string, marketplace = DEFAULT_MARKETPLACE) {
   const url = new URL(`https://${marketplace}/dp/${asin}`);
+  url.searchParams.set("tag", partnerTag);
+  return url.toString();
+}
+
+/** RedRecs' fallback when no ASIN is known: an Amazon search for the product name, carrying the associate tag. */
+export function amazonSearchLink(name: string, partnerTag: string, marketplace = DEFAULT_MARKETPLACE) {
+  const url = new URL(`https://${marketplace}/s`);
+  url.searchParams.set("k", name.trim());
   url.searchParams.set("tag", partnerTag);
   return url.toString();
 }
@@ -110,8 +119,8 @@ export function listingPrice(item: Item): string | null {
 }
 
 /**
- * The live Amazon offer for one catalogue product, or null when it is not on Amazon (no matching result, or no price
- * listed, which means it cannot be bought there right now). Throws AmazonUnavailable when Amazon could not answer.
+ * The catalogue product on Amazon with its live price (null when Amazon lists none), or null when no search result is
+ * that product. Throws AmazonUnavailable when Amazon could not answer.
  */
 export async function findAmazonOffer(product: { name: string; brand: string }, settings: AmazonSettings, credentials: AmazonCredentials, fetcher: Fetch = fetch, log: (message: string) => void = console.info): Promise<AmazonOffer | null> {
   const marketplace = settings.marketplace ?? DEFAULT_MARKETPLACE;
@@ -129,10 +138,7 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
     itemIds: [match.asin], resources: ["itemInfo.title", "offersV2.listings.price", "offersV2.listings.availability"],
   }, credentials, marketplace, fetcher);
   const item = details.itemsResult?.items?.find(i => i.asin === match.asin);
-  const price = item && listingPrice(item);
-  if (!price) {
-    log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
-    return null;
-  }
-  return { asin: match.asin, title: item.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace) };
+  const price = item ? listingPrice(item) : null;
+  if (!price) log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
+  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace) };
 }
