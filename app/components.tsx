@@ -182,7 +182,7 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
 
   return <aside className="database-sidebar">
     <section className="week">
-      <h2>So far <small>all time</small></h2>
+      <h2 className="sr-only">In numbers</h2>
       <dl>
         <dt>{count(totalReviews)}</dt><dd>{totalReviews === 1 ? "review" : "reviews"}</dd>
         <dt>{count(talkedAbout)}</dt><dd>{talkedAbout === 1 ? w.one : w.many} talked about</dd>
