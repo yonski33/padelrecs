@@ -106,7 +106,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
 
   return <main>
-    {niche.amazon && <p className="affiliate-note">Quick note: Some links are <a href="/affiliate-disclosure">affiliate links</a>. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
+    {niche.amazon && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
