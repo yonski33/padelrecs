@@ -17,7 +17,11 @@ const cachedOffer = unstable_cache(
 
 /** The Amazon offer for a product page, or null: niche without Amazon links, no credentials, no match, or Amazon unreachable. */
 export async function amazonOffer(product: { name: string; brand: string | undefined }): Promise<AmazonOffer | null> {
-  if (!niche.amazon || !product.brand || !amazonCredentials()) return null;
+  if (!niche.amazon || !product.brand) return null;
+  if (!amazonCredentials()) {
+    console.warn("[amazon] Amazon links are on but AMAZON_CREATORS_API_CREDENTIAL_ID, AMAZON_CREATORS_API_CREDENTIAL_SECRET or AMAZON_PA_API_PARTNER_TAG is not set");
+    return null;
+  }
   try {
     return await cachedOffer(product.name, product.brand);
   } catch (error) {
