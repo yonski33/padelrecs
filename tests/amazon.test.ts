@@ -10,9 +10,10 @@ const hydrating = { name: "CeraVe Hydrating Facial Cleanser", brand: "CeraVe" };
 test("only SkinRecs turns Amazon links on", () => {
   assert.deepEqual(Object.values(niches).filter(n => n.amazon).map(n => n.id), ["skin"]);
   assert.equal(niches.skin.amazon?.searchIndex, "Beauty");
-  // The site no longer promises there are none.
-  assert.doesNotMatch(niches.skin.site.footer, /affiliate/i);
-  assert.doesNotMatch(JSON.stringify(niches.skin.copy.about), /affiliate/i);
+  // The site no longer promises there are none, and says how Amazon links work.
+  assert.doesNotMatch(niches.skin.site.footer, /no affiliate/i);
+  assert.doesNotMatch(JSON.stringify(niches.skin.copy.about), /no (ads, )?affiliate/i);
+  assert.match(JSON.stringify(niches.skin.copy.about), /commission/);
 });
 
 test("credentials come from the environment and all three are needed", () => {
