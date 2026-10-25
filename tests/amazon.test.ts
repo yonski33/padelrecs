@@ -7,13 +7,17 @@ const credentials = { id: "test-id", secret: "test-secret", partnerTag: "skinrec
 const settings = { searchIndex: "Beauty" };
 const hydrating = { name: "CeraVe Hydrating Facial Cleanser", brand: "CeraVe" };
 
-test("only SkinRecs turns Amazon links on", () => {
-  assert.deepEqual(Object.values(niches).filter(n => n.amazon).map(n => n.id), ["skin"]);
+test("only SkinRecs and SimRacingRecs turn Amazon links on", () => {
+  const on = Object.values(niches).filter(n => n.amazon);
+  assert.deepEqual(on.map(n => n.id).sort(), ["simracing", "skin"]);
   assert.equal(niches.skin.amazon?.searchIndex, "Beauty");
-  // The site no longer promises there are none, and says how Amazon links work.
-  assert.doesNotMatch(niches.skin.site.footer, /no affiliate/i);
-  assert.doesNotMatch(JSON.stringify(niches.skin.copy.about), /no (ads, )?affiliate/i);
-  assert.match(JSON.stringify(niches.skin.copy.about), /commission/);
+  assert.equal(niches.simracing.amazon?.searchIndex, "VideoGames");
+  for (const n of on) {
+    // These sites no longer promise there are none, and say how Amazon links work.
+    assert.doesNotMatch(n.site.footer, /no affiliate/i, n.id);
+    assert.doesNotMatch(JSON.stringify(n.copy.about), /no (ads, )?affiliate/i, n.id);
+    assert.match(JSON.stringify(n.copy.about), /commission/, n.id);
+  }
 });
 
 test("credentials come from the environment and all three are needed", () => {
