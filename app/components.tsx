@@ -160,12 +160,13 @@ export function activity(data: Catalog, sinceMs: number) {
     .filter(x => x.racket).sort((a, b) => b.count - a.count || a.racket.name.localeCompare(b.racket.name));
 }
 
-export function Sidebar({data, minYear = -Infinity}: {data: Catalog; minYear?: number}) {
+/** `data` is what the home feed shows (recent reviews); `all` is the whole catalogue, for the running totals. */
+export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog; all?: Catalog; minYear?: number}) {
   const now = Date.now();
-  const weekAgo = now - 7 * DAY;
-  const weekPlayers = data.reviews.filter(r => Date.parse(r.createdAt) >= weekAgo).length;
-  const weekWeb = data.external.filter(e => Date.parse(e.createdAt) >= weekAgo).length;
-  const weekRackets = activity(data, weekAgo).length;
+  // Running totals rather than "this week" (owner decision 2026-10-26): a quiet week shouldn't make a site look empty.
+  const totalReviews = all.reviews.length + all.external.length;
+  const talkedAbout = new Set([...all.reviews, ...all.external].map(n => n.racketId)).size;
+  const count = (n: number) => n.toLocaleString("en-US");
 
   const recent = activity(data, now - 30 * DAY);
   const discussed = (recent.length >= 3 ? recent : activity(data, 0)).slice(0, 5);
@@ -181,21 +182,12 @@ export function Sidebar({data, minYear = -Infinity}: {data: Catalog; minYear?: n
 
   return <aside className="database-sidebar">
     <section className="week">
-      {weekPlayers + weekWeb > 0 ? <>
-        <h2>This week <small>last 7 days</small></h2>
-        <dl>
-          <dt>{weekPlayers + weekWeb}</dt><dd>new {weekPlayers + weekWeb === 1 ? "review" : "reviews"}</dd>
-          <dt>{weekRackets}</dt><dd>{weekRackets === 1 ? w.one : w.many} talked about</dd>
-          <dt>{data.rackets.length}</dt><dd>{`${w.many} in the database`}</dd>
-        </dl>
-      </> : <>
-        <h2>So far</h2>
-        <dl>
-          <dt>{data.reviews.length}</dt><dd>{`reviews from ${niche.people.many}`}</dd>
-          <dt>{data.external.length}</dt><dd>quoted from around the web</dd>
-          <dt>{data.rackets.length}</dt><dd>{`${w.many} in the database`}</dd>
-        </dl>
-      </>}
+      <h2>So far <small>all time</small></h2>
+      <dl>
+        <dt>{count(totalReviews)}</dt><dd>{totalReviews === 1 ? "review" : "reviews"}</dd>
+        <dt>{count(talkedAbout)}</dt><dd>{talkedAbout === 1 ? w.one : w.many} talked about</dd>
+        <dt>{count(all.rackets.length)}</dt><dd>{`${w.many} in the database`}</dd>
+      </dl>
     </section>
 
     {discussed.length > 0 && <section>
