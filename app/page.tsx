@@ -21,19 +21,6 @@ export const metadata: Metadata = {
   openGraph: { title: homeTitle, description: homeDescription, url: "/", type: "website" },
 };
 
-// "Today", "Yesterday", a weekday within the last week, otherwise the full date (UTC, like the stored timestamps).
-function dayLabel(iso: string, now: Date) {
-  const day = iso.slice(0, 10);
-  const today = now.toISOString().slice(0, 10);
-  const diff = Math.round((Date.parse(today) - Date.parse(day)) / DAY);
-  const date = new Date(day + "T00:00:00Z");
-  const short = date.toLocaleDateString("en-GB", {weekday: "short", day: "numeric", month: "short", timeZone: "UTC"});
-  if (diff === 0) return { title: "Today", sub: short };
-  if (diff === 1) return { title: "Yesterday", sub: short };
-  if (diff > 1 && diff < 7) return { title: date.toLocaleDateString("en-GB", {weekday: "long", timeZone: "UTC"}), sub: date.toLocaleDateString("en-GB", {day: "numeric", month: "short", timeZone: "UTC"}) };
-  return { title: date.toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}), sub: "" };
-}
-
 export default async function Home({ searchParams }: {
   searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[] }>;
 }) {
@@ -91,7 +78,6 @@ export default async function Home({ searchParams }: {
     </a></li>; })}</ol>
   </section>;
 
-  let lastDay = "";
   return <main className="home"><div className="columns"><div>
     <div className="feed-heading">
       <div>
@@ -108,16 +94,10 @@ export default async function Home({ searchParams }: {
       <a href={query({ source })} aria-current={!type ? "page" : undefined}>All</a>
       {niche.typePages.map(t => <a key={t.slug} href={query({ source, type: t.slug })} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</a>)}
     </ChipRow>}
-    {items.slice(0, show).map((item, index) => {
-      const day = item.date.slice(0, 10);
-      const label = day !== lastDay ? dayLabel(item.date, now) : null;
-      lastDay = day;
-      return <Fragment key={item.key}>
-        {label && <h2 className="day">{label.title}{label.sub && <span>{label.sub}</span>}</h2>}
-        {item.node}
-        {index === 3 && strip}
-      </Fragment>;
-    })}
+    {items.slice(0, show).map((item, index) => <Fragment key={item.key}>
+      {item.node}
+      {index === 3 && strip}
+    </Fragment>)}
     {items.length > 0 && items.length < 4 && strip}
     {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
     {items.length > show && <LoadMore href={query({ source, type: type?.slug, show: show + PAGE })}/>}
