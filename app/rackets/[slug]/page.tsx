@@ -145,7 +145,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </>}
           <WebSplit entries={external}/>
         </>}
-        {/* Niches with Amazon links put the Amazon button here; adding a review stays in the header and the review list. */}
+        {/* Niches with Amazon links put the Amazon button here; adding a review moves to the Reviews heading. */}
         {amazon
           ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon{amazon.price && <span className="price">{amazon.price}</span>}</a>
           : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
@@ -183,7 +183,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList slug={r.slug} addHref={addHref} items={items} initialSource={source} initialSort={sort}/>
+        <ReviewList slug={r.slug} addHref={addHref} addButton={amazon ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSource={source} initialSort={sort}/>
       </div>
 
       <aside className="database-sidebar">

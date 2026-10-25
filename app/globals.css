@@ -159,6 +159,8 @@ button:disabled { opacity: .6; cursor: progress; }
 
 .feed-heading { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 6px; }
 .feed-title { margin: 0; font-size: 26px; }
+.feed-title-row { display: flex; align-items: center; gap: 16px; }
+.feed-title-row .add-review { min-height: 34px; padding: 0 14px; font-size: 13.5px; }
 .feed-sub { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-3); }
 
 .source-nav { display: inline-flex; padding: 3px; background: var(--tint); border-radius: 999px; font-size: 13.5px; }
@@ -539,6 +541,7 @@ summary { cursor: pointer; font-weight: 600; }
   .columns { gap: 36px; }
   .feed-heading { flex-direction: column; align-items: stretch; }
   .feed-title { font-size: 23px; }
+  .feed-title-row { justify-content: space-between; }
   .source-nav { width: 100%; }
   .source-nav a { flex: 1 1 auto; text-align: center; padding: 8px 10px; }
   .source-count { display: none; }
