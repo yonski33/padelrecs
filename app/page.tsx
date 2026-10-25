@@ -64,7 +64,6 @@ export default async function Home({ searchParams }: {
     ...(source !== "players" ? external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
   ]);
 
-  const weekNotes = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now.getTime() - 7 * DAY).length;
 
   // Popular strip: most notes this week, or this month when the week is quiet. Hidden if there's nothing to rank.
   const week = activity(data, now.getTime() - 7 * DAY);
@@ -82,7 +81,7 @@ export default async function Home({ searchParams }: {
     <div className="feed-heading">
       <div>
         <h1 className="feed-title">{`Latest ${niche.people.one} reviews`}</h1>
-        <p className="feed-sub">{weekNotes > 0 ? `${weekNotes} new this week, from ${niche.people.many} and from around the web.` : `From ${niche.people.many}, and from around the web with the source linked.`}</p>
+        <p className="feed-sub">{`From ${niche.people.many}, and from around the web with the source linked.`}</p>
       </div>
       <nav className="source-nav" aria-label="Review sources">
         {sources.map(item => <a key={item.value} href={item.href} aria-current={source === item.value ? "page" : undefined}>
