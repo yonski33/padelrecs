@@ -160,7 +160,7 @@ export function activity(data: Catalog, sinceMs: number) {
     .filter(x => x.racket).sort((a, b) => b.count - a.count || a.racket.name.localeCompare(b.racket.name));
 }
 
-export function Sidebar({data}: {data: Catalog}) {
+export function Sidebar({data, minYear = -Infinity}: {data: Catalog; minYear?: number}) {
   const now = Date.now();
   const weekAgo = now - 7 * DAY;
   const weekPlayers = data.reviews.filter(r => Date.parse(r.createdAt) >= weekAgo).length;
@@ -172,8 +172,10 @@ export function Sidebar({data}: {data: Catalog}) {
   const discussedLabel = recent.length >= 3 ? "30 days" : "all time";
 
   const notesFor = (id: string) => data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
-  const recentlyAdded = [...data.listed].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
-  const lonely = data.listed.map(r => ({ racket: r, count: notesFor(r.id) })).filter(x => x.count <= 2)
+  // Racket suggestions skip models older than minYear (padel's feedMaxAgeYears); brand counts still cover every racket.
+  const suggestable = data.listed.filter(r => r.year >= minYear);
+  const recentlyAdded = [...suggestable].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
+  const lonely = suggestable.map(r => ({ racket: r, count: notesFor(r.id) })).filter(x => x.count <= 2)
     .sort((a, b) => a.count - b.count || b.racket.createdAt.localeCompare(a.racket.createdAt)).slice(0, 3);
   const notes = (n: number) => n === 0 ? "no reviews yet" : `${n} ${n === 1 ? "review" : "reviews"}`;
 
