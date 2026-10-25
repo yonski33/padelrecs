@@ -45,5 +45,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     { url: `${base}/add-review`, changeFrequency: "monthly", priority: 0.4 },
     { url: `${base}/about`, changeFrequency: "yearly", priority: 0.3 },
+    ...(niche.amazon ? [{ url: `${base}/affiliate-disclosure`, changeFrequency: "yearly" as const, priority: 0.2 }] : []),
   ];
 }

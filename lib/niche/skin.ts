@@ -188,7 +188,7 @@ export const skin: Niche = {
         "A product that works for one person won’t work for everyone. Knowing someone’s skin type, what they were trying to fix and how long they used it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings." },
+        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings. Product pages link to Amazon, and SkinRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "Not medical advice", body: "Reviews describe personal experiences, not dermatological advice. Patch-test new products, and talk to a dermatologist or doctor about persistent skin problems, allergies or prescription treatments." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about products you’ve actually used and be specific about your skin and what changed." },
         { heading: "Your privacy", body: "An alias is optional, and so are skin type, concern and age range. If you leave an email address, it is stored privately with your submission and never included in public reviews." },

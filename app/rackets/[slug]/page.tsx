@@ -37,7 +37,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     notFound();
   }
   const brand = data.brands.find(b => b.id === r.brandId);
-  // Only niches with Amazon links (SkinRecs) have one: the product on Amazon, or an Amazon search for it. Price when known.
+  // Only niches with Amazon links (SkinRecs) have one: the product on Amazon, or an Amazon search for it. Prices are not shown.
   const amazon = await amazonButton({ name: r.name, brand: brand?.name });
   const { model } = racketParts(r, data);
   const s = score(data, r.id);
@@ -106,6 +106,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
 
   return <main>
+    {niche.amazon && <p className="affiliate-note">Quick note: Some links are <a href="/affiliate-disclosure">affiliate links</a>. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
@@ -147,7 +148,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </>}
         {/* Niches with Amazon links put the Amazon button here; adding a review moves to the Reviews heading. */}
         {amazon
-          ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon{amazon.price && <span className="price">{amazon.price}</span>}</a>
+          ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
           : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
         <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
       </aside>
