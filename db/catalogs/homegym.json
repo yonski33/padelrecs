@@ -801,6 +801,18 @@
    ]
   },
   {
+   "brand": "concept2",
+   "name": "Concept2 StrengthErg",
+   "shape": "Machine",
+   "balance": "Air-resistance strength trainer",
+   "surface": null,
+   "core": "Aluminum",
+   "weight": "90 lb",
+   "sources": [
+    "https://www.concept2.com/ergs/strengtherg"
+   ]
+  },
+  {
    "brand": "forceusa",
    "name": "Force USA Air Rower",
    "shape": "Cardio",
