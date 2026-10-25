@@ -239,6 +239,12 @@ test("simracing: gear named by generation (no years), five category pages that e
   assert.deepEqual(n.typePages?.map(t => t.slug), ["wheelbases", "wheels", "pedals", "cockpits", "shifters-handbrakes"]);
   const { shapeOf } = await import("../app/art/simracing");
   assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["wheelbase", "wheel", "pedals", "cockpit", "shifter"]);
+  assert.equal(n.topLists?.length, 6);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /sim-racing/, `${list.slug}: niche keyword in the slug`);
+    assert.match(list.title, /Sim Racing/, `${list.slug}: niche keyword in the title`);
+    for (const f of list.filters ?? []) for (const shape of f.include ?? []) assert(n.shapeFilter.includes(shape), `${list.slug}: unknown category ${shape}`);
+  }
   for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
