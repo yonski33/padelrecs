@@ -114,8 +114,9 @@ export type Niche = {
   /** Rankings pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
   topLists?: TopList[];
   /** Amazon affiliate links with the live price on product pages (lib/amazon.ts), searched in this Amazon category
-   *  ("Beauty"). Niches without it show no Amazon links. */
-  amazon?: { searchIndex: string; marketplace?: string };
+   *  ("Beauty"). Niches without it show no Amazon links. `disclosure` is the Amazon Associates statement, shown in the
+   *  footer on every page; `note` sits under the button: `link` always, `price` when it shows Amazon's price. */
+  amazon?: { searchIndex: string; marketplace?: string; disclosure: string; note: { link: string; price: string } };
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */
   examples: { brand: string; model: string; year: number; search: string };

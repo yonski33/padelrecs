@@ -27,6 +27,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         <a href={catalogPath}>{`All ${niche.words.many}`}</a>
         <a href="/brands">Brands</a>
       </nav>
+      {niche.amazon && <p className="footer-disclosure">{niche.amazon.disclosure}</p>}
     </div></footer>
     {process.env.VERCEL_ENV === "production" && niche.site.analyticsId && <Analytics id={niche.site.analyticsId}/>}
   </body></html>;

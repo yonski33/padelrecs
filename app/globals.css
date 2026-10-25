@@ -720,6 +720,15 @@ summary { cursor: pointer; font-weight: 600; }
 /* Amazon button in the product scorecard (niches with `amazon` in their config), with the live price when known. */
 .button.amazon { gap: 10px; }
 .button.amazon .price { padding-left: 10px; border-left: 1px solid rgba(255,255,255,.35); font-weight: 700; }
+/* The button with its affiliate note underneath, in the button's place; the note wraps to the button's width. */
+.scorecard .buy { grid-row: 1 / span 2; grid-column: 3; display: grid; gap: 6px; width: min-content; }
+.scorecard .buy .button { grid-row: auto; grid-column: auto; white-space: nowrap; }
+.scorecard .amazon-note { font-size: 12px; color: var(--ink-3); text-align: center; }
+.site-footer .footer-disclosure { flex-basis: 100%; margin: 0; font-size: 12.5px; }
+@media (max-width: 680px) {
+  .scorecard .buy { grid-row: auto; grid-column: 1 / -1; width: auto; margin-top: 10px; }
+  .scorecard .buy .button { margin-top: 0; }
+}
 
 /* ---------- Rankings menu ---------- */
 

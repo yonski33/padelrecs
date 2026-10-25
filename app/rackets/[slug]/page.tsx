@@ -147,7 +147,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </>}
         {/* Niches with Amazon links put the Amazon button here; adding a review moves to the Reviews heading. */}
         {amazon
-          ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon{amazon.price && <span className="price">{amazon.price}</span>}</a>
+          ? <div className="buy">
+              <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon{amazon.price && <span className="price">{amazon.price}</span>}</a>
+              {niche.amazon && <p className="amazon-note">{amazon.price ? `${niche.amazon.note.link} ${niche.amazon.note.price}` : niche.amazon.note.link}</p>}
+            </div>
           : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
         <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
       </aside>

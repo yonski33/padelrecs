@@ -10,9 +10,18 @@ const hydrating = { name: "CeraVe Hydrating Facial Cleanser", brand: "CeraVe" };
 test("only SkinRecs turns Amazon links on", () => {
   assert.deepEqual(Object.values(niches).filter(n => n.amazon).map(n => n.id), ["skin"]);
   assert.equal(niches.skin.amazon?.searchIndex, "Beauty");
-  // The site no longer promises there are none.
-  assert.doesNotMatch(niches.skin.site.footer, /affiliate/i);
-  assert.doesNotMatch(JSON.stringify(niches.skin.copy.about), /affiliate/i);
+});
+
+test("SkinRecs discloses its Amazon links; other niches say nothing about Amazon", () => {
+  const statement = "As an Amazon Associate I earn from qualifying purchases.";
+  assert.equal(niches.skin.amazon?.disclosure, statement);
+  const promotions = niches.skin.copy.about.sections.find(s => s.heading === "People, not promotions");
+  assert.ok(promotions?.body.includes(statement));
+  assert.match(promotions!.body, /affiliate links/);
+  assert.match(niches.skin.amazon!.note.link, /affiliate link/i);
+  assert.match(niches.skin.amazon!.note.price, /Amazon.*may change/);
+  for (const n of Object.values(niches).filter(n => n.id !== "skin"))
+    assert.doesNotMatch(JSON.stringify(n.copy.about), /Amazon Associate/, n.id);
 });
 
 test("credentials come from the environment and all three are needed", () => {

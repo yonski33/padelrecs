@@ -1,5 +1,8 @@
 import type { Niche } from "./types";
 
+// Amazon's required statement, in the footer and on the About page.
+const amazonDisclosure = "As an Amazon Associate I earn from qualifying purchases.";
+
 // Rating icons: a small peach drop outlined in plum. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
 const dropTile = "M7 1.2C9.6 4.4 11.4 6.8 11.4 9C11.4 11.5 9.4 13.2 7 13.2C4.6 13.2 2.6 11.5 2.6 9C2.6 6.8 4.4 4.4 7 1.2Z";
@@ -32,7 +35,7 @@ export const skin: Niche = {
   people: { one: "user", many: "users", One: "User", Many: "Users" },
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "Beauty" },
+  amazon: { searchIndex: "Beauty", disclosure: amazonDisclosure, note: { link: "Affiliate link.", price: "Price from Amazon, may change." } },
   scoreUnit: { one: "drop", many: "drops" },
   // White page, soft berry, one peach accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -188,7 +191,7 @@ export const skin: Niche = {
         "A product that works for one person won’t work for everyone. Knowing someone’s skin type, what they were trying to fix and how long they used it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings." },
+        { heading: "People, not promotions", body: `No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings. The View on Amazon buttons on product pages are affiliate links: ${amazonDisclosure} That never changes a rating or where a product ranks.` },
         { heading: "Not medical advice", body: "Reviews describe personal experiences, not dermatological advice. Patch-test new products, and talk to a dermatologist or doctor about persistent skin problems, allergies or prescription treatments." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about products you’ve actually used and be specific about your skin and what changed." },
         { heading: "Your privacy", body: "An alias is optional, and so are skin type, concern and age range. If you leave an email address, it is stored privately with your submission and never included in public reviews." },
