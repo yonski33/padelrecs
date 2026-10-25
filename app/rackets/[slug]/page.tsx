@@ -11,6 +11,7 @@ import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
 import { niche, catalogPath, hasYears, typePageFor } from "../../../lib/niche";
+import { amazonOffer } from "../../../lib/amazon-offer";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -36,6 +37,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     notFound();
   }
   const brand = data.brands.find(b => b.id === r.brandId);
+  // Only niches with Amazon links (SkinRecs) ask; a product Amazon does not sell shows nothing.
+  const offer = await amazonOffer({ name: r.name, brand: brand?.name });
   const { model } = racketParts(r, data);
   const s = score(data, r.id);
   const reviews = data.reviews.filter(x => x.racketId === r.id);
@@ -120,6 +123,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
+        {offer && <div className="buy">
+          <span className="price"><small>Amazon price</small>{offer.price}</span>
+          <a className="button ghost" href={offer.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+        </div>}
         {tagged.length >= 2 && <div className="says">
           <h3>{`What ${niche.people.many} keep saying `}<span>· from {tagged.length} reviews</span></h3>
           <TagList tags={topTags} counts={tagCounts}/>
