@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { AmazonUnavailable, amazonCredentials, amazonLink, findAmazonOffer, isAsin, matchesProduct, resetAmazonToken } from "../lib/amazon";
+import { AmazonUnavailable, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer, isAsin, matchesProduct, resetAmazonToken } from "../lib/amazon";
 
 const credentials = { id: "test-id", secret: "test-secret", partnerTag: "skinrecs-20" };
 const settings = { searchIndex: "Beauty" };
@@ -24,6 +24,7 @@ test("credentials come from the environment and all three are needed", () => {
 
 test("links go to the product page with the associate tag", () => {
   assert.equal(amazonLink("B01MSSDEPK", "skinrecs-20"), "https://www.amazon.com/dp/B01MSSDEPK?tag=skinrecs-20");
+  assert.equal(amazonSearchLink(" CeraVe Hydrating Facial Cleanser ", "skinrecs-20"), "https://www.amazon.com/s?k=CeraVe+Hydrating+Facial+Cleanser&tag=skinrecs-20");
   assert.ok(isAsin("B01MSSDEPK"));
   assert.ok(!isAsin("b01mssdepk"));
   assert.ok(!isAsin("B01MSSDEP"));
@@ -85,15 +86,15 @@ test("an offer is the first matching result with its live price and tagged link"
   assert.deepEqual(calls[1].body.itemIds, ["B01MSSDEPK"]);
 });
 
-test("no match or no price means no offer", async () => {
+test("no match means no product link; a match without a price keeps its link without a price", async () => {
   resetAmazonToken();
   const unrelated = { searchResult: { items: [searchHit.searchResult.items[0]] } };
   assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({ "/catalog/v1/searchItems": unrelated }), () => {}), null);
   assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({ "/catalog/v1/searchItems": { errors: [{ code: "NoResults" }] } }), () => {}), null);
-  // Found, but Amazon lists no offer: not buyable there now.
-  assert.equal(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({
+  // Found, but Amazon lists no price right now.
+  assert.deepEqual(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({
     "/catalog/v1/searchItems": searchHit, "/catalog/v1/getItems": { itemsResult: { items: [{ asin: "B01MSSDEPK", offersV2: { listings: [] } }] } },
-  }), () => {}), null);
+  }), () => {}), { asin: "B01MSSDEPK", title: "CeraVe Hydrating Facial Cleanser, 16 oz", price: null, url: "https://www.amazon.com/dp/B01MSSDEPK?tag=skinrecs-20" });
 });
 
 test("throttling and outages throw, so they are never cached as 'not on Amazon'", async () => {
