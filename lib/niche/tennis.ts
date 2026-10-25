@@ -21,6 +21,7 @@ export const tennis: Niche = {
   },
   words: { one: "racket", many: "rackets", One: "Racket", Many: "Rackets" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  recentMonths: 24,
   // Makers name generations (Wilson V10, Babolat Gen9), not years, so names carry the maker's generation instead of a year.
   productYears: false,
   productPath: "rackets",

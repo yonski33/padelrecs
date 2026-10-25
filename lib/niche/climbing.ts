@@ -27,6 +27,7 @@ export const climbing: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "climber", many: "climbers", One: "Climber", Many: "Climbers" },
+  recentMonths: 36,
   // Makers name gear by model, version and volume (Instinct VSR LV, Shaman 2S, Drone 2 HV, GRIGRI+, Mega Jul), not by year.
   productYears: false,
   productPath: "gear",

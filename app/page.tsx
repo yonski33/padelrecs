@@ -43,7 +43,13 @@ export default async function Home({ searchParams }: {
   const oldest = niche.feedMaxAgeYears === undefined ? -Infinity : now.getUTCFullYear() - niche.feedMaxAgeYears;
   const yearOf = new Map(all.rackets.map(r => [r.id, r.year]));
   const current = <T extends { racketId: string }>(list: T[]) => list.filter(x => (yearOf.get(x.racketId) ?? Infinity) >= oldest);
-  const data = Number.isFinite(oldest) ? { ...all, reviews: current(all.reviews), external: current(all.external) } : all;
+  // Web reviews are dated by their source (an old Reddit thread quoted today is old), and niches with recentMonths only
+  // show reviews from that window on the front page; older ones stay on product and brand pages.
+  const since = new Date(now); if (niche.recentMonths !== undefined) since.setUTCMonth(since.getUTCMonth() - niche.recentMonths);
+  const fresh = (date: string) => niche.recentMonths === undefined || Date.parse(date) >= since.getTime();
+  const webIn = all.external.map(e => ({ ...e, createdAt: e.sourceDate || e.createdAt })).filter(e => fresh(e.createdAt));
+  const reviewsIn = all.reviews.filter(r => fresh(r.createdAt));
+  const data = { ...all, reviews: current(reviewsIn), external: current(webIn) };
   const source = params.source === "players" || params.source === "web" ? params.source : "all";
   // How many notes to show: 24 at first, 24 more per "Load more" click (kept in the URL so it's linkable and crawlable).
   const requested = Number(Array.isArray(params.show) ? params.show[0] : params.show);

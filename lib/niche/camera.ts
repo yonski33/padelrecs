@@ -27,6 +27,7 @@ export const camera: Niche = {
   },
   words: { one: "camera", many: "cameras", One: "Camera", Many: "Cameras" },
   people: { one: "photographer", many: "photographers", One: "Photographer", Many: "Photographers" },
+  recentMonths: 12,
   // Makers put the generation in the name (a7 IV, EOS R6 Mark III, X100VI, Z6III), so no years.
   productYears: false,
   productPath: "cameras",

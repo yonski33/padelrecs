@@ -30,6 +30,7 @@ export const skin: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "user", many: "users", One: "User", Many: "Users" },
+  recentMonths: 36,
   productYears: false,
   productPath: "products",
   amazon: { searchIndex: "Beauty" },

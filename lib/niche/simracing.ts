@@ -25,6 +25,7 @@ export const simracing: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "driver", many: "drivers", One: "Driver", Many: "Drivers" },
+  recentMonths: 24,
   // Makers name each generation (R9 V3, CSL DD, Simucube 3), so names carry the generation instead of a year.
   productYears: false,
   productPath: "gear",

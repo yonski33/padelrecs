@@ -25,6 +25,7 @@ export const coffee: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "home barista", many: "home baristas", One: "Home barista", Many: "Home baristas" },
+  recentMonths: 36,
   // Makers name gear by model and generation (Barista Express Impress, Encore ESP Pro, Ode Gen 2, GO 2.0), not by year.
   productYears: false,
   productPath: "gear",

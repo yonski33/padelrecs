@@ -26,6 +26,7 @@ export const ultralight: Niche = {
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
   people: { one: "hiker", many: "hikers", One: "Hiker", Many: "Hikers" },
+  recentMonths: 36,
   // Makers name models without years (X-Mid Pro 2, NeoAir XLite NXT, Arc Haul Ultra), so no years.
   productYears: false,
   productPath: "gear",

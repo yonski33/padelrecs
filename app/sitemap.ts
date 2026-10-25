@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
 import { catalogPath, niche } from "../lib/niche";
-import { rankList, listTotals, RANKINGS_PATH, rankingHref } from "../lib/top-lists";
+import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow } from "../lib/top-lists";
 
 // Built per request from the public catalog, so new rackets and brands appear without a deploy.
 export const dynamic = "force-dynamic";
@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const moved = new Set((niche.movedAway ?? []).filter(m => !m.query).map(m => m.source));
   const listed = data.listed.filter(r => !moved.has(`${catalogPath}/${r.slug}`));
   const listedBrands = data.listedBrands.filter(b => !moved.has(`/brands/${b.slug}`));
-  const lists = (niche.topLists ?? []).map(list => ({ list, ...listTotals(rankList(list, data, niche.tags)) })).filter(x => x.updated);
+  const lists = withNicheWindow(niche.topLists ?? [], niche.recentMonths).map(list => ({ list, ...listTotals(rankList(list, data, niche.tags)) })).filter(x => x.updated);
 
   return [
     { url: `${base}/`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 1 },

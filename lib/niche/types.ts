@@ -62,8 +62,10 @@ export type TopList = {
   /** Only list models from the last this many model years (2 in 2026 → 2024–2026). Only for niches whose products carry
    *  real years (productYears): elsewhere every product has the same placeholder year. */
   maxAgeYears?: number;
-  /** Only reviews from the last this many years count (default REVIEW_YEARS in lib/top-lists.ts). */
+  /** Only reviews from the last this many years count (default: the niche's recentMonths, else REVIEW_YEARS in lib/top-lists.ts). */
   reviewYears?: number;
+  /** Same as reviewYears, in months; set from the niche's recentMonths when a list sets neither. */
+  reviewMonths?: number;
   /** Published reviews with a verdict a product needs before it can be listed (never below 5). */
   minReviews?: number;
 };
@@ -89,6 +91,11 @@ export type Niche = {
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
   feedMaxAgeYears?: number;
+  /** Owner decision 2026-10-25, so old Reddit threads don't make a site look outdated: the home feed, its counts, the
+   *  popular strip and the sidebar only show reviews from the last this many months, and ranking lists only count those
+   *  (unless a list sets reviewYears). Web reviews are dated by their source, not by when we quoted them; older reviews
+   *  stay on product and brand pages and in search. 12 for fast-moving tech, 24 for sports gear, 36 for slow-moving lines. */
+  recentMonths?: number;
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */

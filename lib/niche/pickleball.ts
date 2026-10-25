@@ -30,6 +30,7 @@ export const pickleball: Niche = {
   },
   words: { one: "paddle", many: "paddles", One: "Paddle", Many: "Paddles" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  recentMonths: 24,
   // Makers update paddles by name (Vatic Pro Prism → Prism Flash, Prism V7), not by year, so names carry no model year.
   // The year column still holds the year the maker first listed the paddle.
   productYears: false,

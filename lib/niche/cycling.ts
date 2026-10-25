@@ -26,6 +26,7 @@ export const cycling: Niche = {
   },
   words: { one: "bike", many: "bikes", One: "Bike", Many: "Bikes" },
   people: { one: "rider", many: "riders", One: "Rider", Many: "Riders" },
+  recentMonths: 24,
   // One product per model and frame tier; makers that name generations put them in the name (Trek Domane SL Gen 5, Tarmac SL9).
   productYears: false,
   productPath: "bikes",
