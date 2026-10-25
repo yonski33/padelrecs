@@ -123,10 +123,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
-        {amazon && <div className="buy">
-          {amazon.price && <span className="price"><small>Amazon price</small>{amazon.price}</span>}
-          <a className="button ghost" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
-        </div>}
         {tagged.length >= 2 && <div className="says">
           <h3>{`What ${niche.people.many} keep saying `}<span>· from {tagged.length} reviews</span></h3>
           <TagList tags={topTags} counts={tagCounts}/>
@@ -149,7 +145,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </>}
           <WebSplit entries={external}/>
         </>}
-        <a className="button" href={addHref}><PlusIcon/>Add your review</a>
+        {/* Niches with Amazon links put the Amazon button here; adding a review stays in the header and the review list. */}
+        {amazon
+          ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View on Amazon{amazon.price && <span className="price">{amazon.price}</span>}</a>
+          : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
         <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
       </aside>
     </section>

@@ -714,11 +714,9 @@ summary { cursor: pointer; font-weight: 600; }
 .slug-field small code { margin-right: 8px; font-size: 12px; }
 @media (max-width: 680px) { .slug-input { flex-direction: column; } .slug-input span { padding: 6px 13px; } }
 .scorecard .web-split { grid-column: 1 / -1; }
-/* Amazon price and affiliate link on product pages (niches with `amazon` in their config). */
-.buy { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
-.buy .price { display: grid; font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
-.buy .price small { font-family: var(--sans); font-size: 11.5px; font-weight: 500; letter-spacing: 0; color: var(--ink-3); }
-.buy .button { width: auto; margin: 0; }
+/* Amazon button in the product scorecard (niches with `amazon` in their config), with the live price when known. */
+.button.amazon { gap: 10px; }
+.button.amazon .price { padding-left: 10px; border-left: 1px solid rgba(255,255,255,.35); font-weight: 700; }
 
 /* ---------- Rankings menu ---------- */
 
