@@ -19,7 +19,7 @@ export const simracing: Niche = {
     domain: "simracingrecs.com",
     wordmark: "simracingrecs",
     descriptor: "driver reviews of sim racing gear",
-    footer: "kept by people whose rig takes up most of the spare room. No affiliate links.",
+    footer: "kept by people whose rig takes up most of the spare room.",
     analyticsId: "G-K1ENZ4VC5R",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -28,6 +28,8 @@ export const simracing: Niche = {
   // Makers name each generation (R9 V3, CSL DD, Simucube 3), so names carry the generation instead of a year.
   productYears: false,
   productPath: "gear",
+  // Wheels, pedals and cockpits are sold under Video Games accessories on Amazon.
+  amazon: { searchIndex: "VideoGames" },
   scoreUnit: { one: "wheel", many: "wheels" },
   // White page, deep asphalt slate, one signal-red accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -188,7 +190,7 @@ export const simracing: Niche = {
         "A wheelbase or pedal set that suits one driver won’t suit everyone. Knowing which sims someone races, on which platform, what it’s mounted to and what they upgraded from often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Drivers, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from driver submissions, and external comments stay separate from those ratings." },
+        { heading: "Drivers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from driver submissions, and external comments stay separate from those ratings. Gear pages link to Amazon, and SimRacingRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "SimRacingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own published specifications." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually raced on and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

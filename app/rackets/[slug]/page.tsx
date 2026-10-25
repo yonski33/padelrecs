@@ -37,7 +37,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     notFound();
   }
   const brand = data.brands.find(b => b.id === r.brandId);
-  // Only niches with Amazon links (SkinRecs) have one: the product on Amazon, or an Amazon search for it. Prices are not shown.
+  // Only niches with Amazon links (SkinRecs, SimRacingRecs) have one: the product on Amazon, or an Amazon search for it. Prices are not shown.
   const amazon = await amazonButton({ name: r.name, brand: brand?.name });
   const { model } = racketParts(r, data);
   const s = score(data, r.id);
