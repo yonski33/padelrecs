@@ -1,5 +1,6 @@
 import { siteOrigin } from "../../../lib/site-url";
-import { niche } from "../../../lib/niche";
+import { niche, catalogPath } from "../../../lib/niche";
+import { after } from "next/server";
 import { z } from "zod";
 import { and, eq, gte, isNotNull } from "drizzle-orm";
 import { database } from "../../../db/data";
@@ -10,6 +11,7 @@ import { profileChoice } from "../../../lib/review-options";
 import { issueFormToken, checkFormToken } from "../../../lib/form-token";
 import { spamScore, normalizeEmail } from "../../../lib/review-spam";
 import { clientIp, createLimiter } from "../../../lib/rate-limit";
+import { notifyNewReview } from "../../../lib/review-notify";
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===null?undefined:v,rating.optional());
 const input=z.object({
@@ -42,6 +44,7 @@ export async function POST(request:Request){
  const spam=spamScore(parsed.data);if(spam.spam)return dropped(`content: ${spam.reasons.join(", ")}`);
  try {
   const db=await database(),value=parsed.data;
+  let product:{name:string,slug:string,isNew?:boolean};
   if(value.email){
    // Gmail ignores dots and +tags, so compare normalised inboxes rather than the typed address.
    const since=new Date(Date.now()-24*60*60_000).toISOString(),inbox=normalizeEmail(value.email);
@@ -50,15 +53,22 @@ export async function POST(request:Request){
   }
   const review={id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,status:"pending" as const,createdAt:new Date().toISOString()};
   if(value.racketMode==="existing") {
-   const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
+   const [racket]=await db.select({id:rackets.id,name:rackets.name,slug:rackets.slug}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return Response.json({error:`Choose a listed ${niche.words.one} or select New ${niche.words.one}.`},{status:400});
    await db.insert(reviews).values({...review,racketId:racket.id});
+   product={name:racket.name,slug:racket.slug};
   } else {
-   await db.transaction(async tx=>{
+   product=await db.transaction(async tx=>{
     const racketId=await ensureRacket(tx,value,review.createdAt);
     await tx.insert(reviews).values({...review,racketId});
+    const [racket]=await tx.select({name:rackets.name,slug:rackets.slug,createdAt:rackets.createdAt}).from(rackets).where(eq(rackets.id,racketId));
+    return {name:racket.name,slug:racket.slug,isNew:racket.createdAt===review.createdAt};
    });
   }
+  // Emails the owner (lib/review-notify.ts) once the response is sent; reached only by saved reviews that passed every
+  // spam check above, and a failed send is only logged.
+  const origin=siteOrigin(request.url),saved={id:review.id,rating:review.rating,reviewText:review.reviewText,alias:review.alias,email:review.email,product:{name:product.name,slug:product.slug},newProduct:!!product.isNew};
+  after(()=>notifyNewReview(niche.site,origin,catalogPath,saved));
   return accepted();
  }catch(error){console.error("Review save failed",error);return Response.json({error:"Could not save the review. Please try again."},{status:500});}
 }
