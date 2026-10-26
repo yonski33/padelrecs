@@ -6,18 +6,28 @@
 import { readFile } from "node:fs/promises";
 import readline from "node:readline";
 
-function ask(question, hidden = false) {
- return new Promise(resolve => {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout, terminal: true });
-  if (hidden) { process.stdout.write(question); rl._writeToOutput = () => {}; }
-  rl.question(hidden ? "" : question, answer => { rl.close(); if (hidden) process.stdout.write("\n"); resolve(answer.trim()); });
- });
+// One reader for every question (a new one per question can swallow input meant for the next). Prompts end in a
+// newline because some terminal panels only show a line once it is complete; hidden answers are not echoed.
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout, terminal: true });
+let muted = false;
+const write = rl._writeToOutput.bind(rl);
+rl._writeToOutput = text => { if (!muted) write(text); };
+const lines = rl[Symbol.asyncIterator]();
+async function ask(question, hidden = false) {
+ console.log(hidden ? `${question} (typing is hidden; paste it and press Enter)` : question);
+ muted = hidden;
+ const { value = "" } = await lines.next();
+ muted = false;
+ if (hidden) console.log("  received");
+ return value.trim();
 }
 
+console.log("Sets RESEND_API_KEY and CONTACT_TO on every Recs Vercel project.");
 const { vercelProjects } = JSON.parse(await readFile(new URL("../deployment/targets.json", import.meta.url), "utf8"));
-const token = await ask("Vercel access token: ", true);
-const resendKey = await ask("Resend API key: ", true);
-const contactTo = (await ask("Contact inbox [hello@redrecs.com]: ")) || "hello@redrecs.com";
+const token = await ask("Vercel access token:", true);
+const resendKey = await ask("Resend API key:", true);
+const contactTo = (await ask("Contact inbox (press Enter for hello@redrecs.com):")) || "hello@redrecs.com";
+rl.close();
 if (!token || !resendKey) { console.error("Both the Vercel token and the Resend key are required."); process.exit(1); }
 
 const vars = [
