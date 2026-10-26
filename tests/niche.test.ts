@@ -347,19 +347,19 @@ test("camera: cameras named by generation (no years), four category pages that e
   }
 });
 
-test("ultralight: gear named without years, four category pages that each pick a drawing, hiker profile, tent rating icons", async () => {
+test("ultralight: gear named without years, eight category pages that each pick a drawing, hiker profile, tent rating icons", async () => {
   const n = selectNiche("ultralight");
   assert.equal(n.schema, "ultralightrecs");
   assert.equal(n.productPath, "gear");
   assert.equal(n.productYears, false);
   assert.equal(n.site.analyticsId, "G-D9N3940RRH");
-  assert.equal(n.tags.length, 16);
+  assert.equal(n.tags.length, 22);
   assert.deepEqual(n.categories.map(c => c.label), ["Weight & packability", "Comfort", "Performance", "Durability", "Value"]);
-  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Capacity / warmth", "Material", "Weight"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Capacity / warmth / size", "Material", "Weight"]);
   assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
-  assert.deepEqual(n.typePages?.map(t => t.slug), ["tents", "backpacks", "sleeping-pads", "quilts"]);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["tents", "backpacks", "sleeping-pads", "quilts", "cook-kits", "water-filters", "trekking-poles", "rain-jackets"]);
   const { shapeOf } = await import("../app/art/ultralight");
-  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["shelter", "backpack", "pad", "quilt"]);
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["shelter", "backpack", "pad", "quilt", "cook", "filter", "poles", "jacket"]);
   for (const list of n.topLists ?? []) {
     assert.match(list.slug, /ultralight|trekking-pole|freestanding/, `${list.slug}: niche keyword in the slug`);
     for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
