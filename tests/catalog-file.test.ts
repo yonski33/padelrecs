@@ -259,7 +259,7 @@ test("the MonitorRecs starter catalog: the 88 GamingRecs monitors under their ol
   const { movedMonitorSlugs } = await import("../lib/niche/gaming-moved");
   const catalog = await readCatalog("db/catalogs/monitor.json");
   const snapshot = catalogSnapshot(catalog, "monitorrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 12);
+  assert.equal(snapshot.tables.brands.length, 13);
   assert(snapshot.tables.rackets.length >= 150);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
