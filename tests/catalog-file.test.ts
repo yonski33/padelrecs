@@ -301,7 +301,7 @@ test("the UltralightRecs starter catalog: sourced tents, packs, pads and quilts,
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/ultralight.json");
   const snapshot = catalogSnapshot(catalog, "ultralightrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 26);
+  assert.equal(snapshot.tables.brands.length, 28);
   assert(snapshot.tables.rackets.length >= 190);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
