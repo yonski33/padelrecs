@@ -23,7 +23,7 @@ export function contactSpam(value: ContactInput) {
 }
 
 /** The Resend payload for one message. `to` is the CONTACT_TO address (comma-separated for several). */
-export function contactEmail(site: { name: string; domain: string }, to: string, value: ContactInput) {
+export function contactEmail(site: { name: string; domain: string }, to: string, value: ContactInput): ContactEmail {
  return {
   from: `${site.name} Contact <${CONTACT_FROM_ADDRESS}>`,
   to: to.split(",").map(a => a.trim()).filter(Boolean),
@@ -32,7 +32,8 @@ export function contactEmail(site: { name: string; domain: string }, to: string,
   text: [`From: ${value.name} <${value.email}>`, `Site: ${site.domain}`, `Subject: ${value.subject}`, "", value.message].join("\n"),
  };
 }
-export type ContactEmail = ReturnType<typeof contactEmail>;
+/** What sendWithResend posts; the contact form and the new-review notice (lib/review-notify.ts) both build one. */
+export type ContactEmail = { from: string; to: string[]; reply_to?: string; subject: string; text: string };
 
 /** Sends through Resend's HTTP API (no SDK needed). Throws with Resend's message when it refuses. */
 export async function sendWithResend(email: ContactEmail, apiKey: string, fetcher: typeof fetch = fetch) {
