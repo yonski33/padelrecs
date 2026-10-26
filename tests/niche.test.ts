@@ -89,7 +89,7 @@ test("migrations rewrite to any niche schema and leave padel untouched", async (
     for (const statement of migrationSql("testrecs")) await engine.exec(statement);
     const tables = await engine.query<{ schemaname: string; tablename: string; rowsecurity: boolean }>("select schemaname, tablename, rowsecurity from pg_tables where schemaname in ('padelrecs','testrecs') order by 1, 2");
     const of = (schema: string) => tables.rows.filter(r => r.schemaname === schema).map(r => r.tablename);
-    assert.equal(of("testrecs").length, 6);
+    assert.equal(of("testrecs").length, 7);
     assert.deepEqual(of("testrecs"), of("padelrecs"));
     assert(tables.rows.every(r => r.rowsecurity));
     // Foreign keys stay inside their own schema.
