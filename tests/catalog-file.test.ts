@@ -392,7 +392,7 @@ test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices,
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/climbing.json");
   const snapshot = catalogSnapshot(catalog, "climbingrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 10);
+  assert.equal(snapshot.tables.brands.length, 14);
   assert(snapshot.tables.rackets.length >= 240);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
@@ -408,6 +408,7 @@ test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices,
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Petzl GRIGRI +")?.slug, "petzl-grigri-plus");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Edelrid Jul²")?.slug, "edelrid-jul-2");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Mad Rock D2.ONE LV")?.slug, "mad-rock-d2-one-lv");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "La Sportiva TC Pro")?.slug, "la-sportiva-tc-pro", "held-review additions import with clean URLs");
 });
 
 test("the NailsRecs starter catalog: sourced polishes, gels, coats, press-ons, treatments and cuticle oils, known categories, no shades or years, unique URLs", async () => {
