@@ -32,6 +32,6 @@ const config:NextConfig={
  async headers(){
   const cdn=[{key:"Vercel-CDN-Cache-Control",value:"max-age=60, stale-while-revalidate=600"}];
   const missing=[{type:"header" as const,key:"rsc"}];
-  return ["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).map(t=>`/${t.slug}`)].map(source=>({source,headers:cdn,missing}));
+  return ["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).map(t=>`/${t.slug}`)].map(source=>({source,headers:cdn,missing}));
  }};
 export default config;
