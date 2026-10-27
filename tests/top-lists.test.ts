@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { rankList, aboveAverage, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, reviewWindowMonths, withNicheWindow, windowLabel, type ListInput, type Verdict } from "../lib/top-lists";
+import { rankList, aboveAverage, likedScore, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, reviewWindowMonths, withNicheWindow, windowLabel, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 
 const tags = niches.padel.tags;
@@ -41,6 +41,21 @@ test("more discussion wins: 33 positive of 43 ranks above 15 of 17 (the Pickleba
     ...many(50, () => web("meh", "positive")), ...many(40, () => web("meh", "negative")),
   ] };
   assert.deepEqual(rankList(overall, data, tags, NOW).map(e => e.product.id), ["vsol", "vapor", "prism"]);
+});
+
+test("more positive reviews rank higher: share × log2(1 + reviews) (the DiscGolfRecs putters case)", () => {
+  // [id, positive, mixed, negative, expected score]
+  const putters = [["watt", 51, 5, 3, 5.36], ["a2", 31, 1, 0, 4.96], ["tempo", 32, 6, 0, 4.87], ["proxy", 22, 0, 0, 4.52], ["praxis", 16, 0, 0, 4.09]] as const;
+  const data: ListInput = { listed: putters.map(([id]) => product(id)), reviews: [], external: putters.flatMap(([id, pos, mix, neg]) => [
+    ...many(pos, () => web(id, "positive")), ...many(mix, () => web(id, "mixed")), ...many(neg, () => web(id, "negative")),
+  ]) };
+  const ranked = rankList(overall, data, tags, NOW);
+  assert.deepEqual(ranked.map(e => e.product.id), ["watt", "a2", "tempo", "proxy", "praxis"]);
+  for (const [i, [, pos, mix, neg, score]] of putters.entries()) {
+    assert(Math.abs(ranked[i].rankScore - score) < 0.01, `${ranked[i].product.id}: ${ranked[i].rankScore} vs ${score}`);
+    assert.equal(likedScore((pos + mix / 2) / (pos + mix + neg), pos + mix + neg), ranked[i].rankScore);
+  }
+  assert.equal(likedScore(1, 0), 0);
 });
 
 test("old reviews and old models stay out", () => {
