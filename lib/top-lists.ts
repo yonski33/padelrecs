@@ -46,6 +46,10 @@ export const windowLabel = (months: number) => months % 12 === 0 && months > 12 
  *  It is a count, so it grows with both how liked and how much discussed a product is: 33 of 43 beats 15 of 17. */
 export const aboveAverage = (score: number, n: number, average: number) => score - average * n;
 
+/** What lists without a trait are ordered by: positive share (mixed = half) × log2(1 + reviews). Being liked counts most,
+ *  and every doubling of reviews adds one share's worth, so 51 positive of 59 (5.36) ranks above 31 of 32 (4.96). */
+export const likedScore = (positiveShare: number, n: number) => n > 0 ? positiveShare * Math.log2(1 + n) : 0;
+
 const firstWord = (v: string) => v.trim().toLowerCase().split(/[^a-z]+/)[0] ?? "";
 export function matchesFilters(product: Product, filters: SpecFilter[] = []) {
   return filters.every(f => {
@@ -70,7 +74,7 @@ export type ListEntry = {
   positiveShare: number;
   /** Positive reviews above what an average product with this many reviews would have (aboveAverage). */
   aboveAverage: number;
-  /** What the list is ordered by: `aboveAverage`; on trait lists, trait mentions above average plus
+  /** What the list is ordered by: `likedScore`; on trait lists, trait mentions above average plus
    *  TRAIT_LIST_LIKED_WEIGHT × `aboveAverage` when that is positive. Not shown. */
   rankScore: number;
   /** Positive or mixed reviews carrying at least one of the list's trait tags (0 on lists without a trait). A negative
@@ -136,7 +140,7 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
       aboveAverage: liked, traitReviews,
       // Trait lists are about the trait: mentions lead, and being liked more than average adds TRAIT_LIST_LIKED_WEIGHT of it.
       // Being liked less never subtracts: the MIN_POSITIVE_SHARE floor already keeps disliked products out.
-      rankScore: trait ? aboveAverage(traitReviews, n, traitAverage) + TRAIT_LIST_LIKED_WEIGHT * Math.max(0, liked) : liked,
+      rankScore: trait ? aboveAverage(traitReviews, n, traitAverage) + TRAIT_LIST_LIKED_WEIGHT * Math.max(0, liked) : likedScore((positive + mixed / 2) / n, n),
       pros: ranked("pos").slice(0, 3), con: ranked("neg")[0] ?? null,
       quote: pickQuote(data.external.filter(e => e.racketId === product.id), trait?.tags ?? []),
       latest: own.reduce((a, x) => x.createdAt > a ? x.createdAt : a, ""),
