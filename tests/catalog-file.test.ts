@@ -476,7 +476,7 @@ test("the SnowboardRecs starter catalog: sourced boards and splitboards with mod
     assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
     assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
     // Every board carries its model year, and only once.
-    assert.match(r.name, / 20(2[5-7])$/, `${r.name}: boards are named with their model year`);
+    assert.match(r.name, / 20(1\d|2[0-7])$/, `${r.name}: boards are named with their model year`);
     // evo's " Snowboard" suffix and "- Women's" are dropped ("The Black Snowboard of Death" keeps its own word).
     assert(!/ 20\d\d .*20\d\d$| Snowboard 20\d\d$|Women's|Bindings|Boots/.test(r.name), `${r.name}: not a clean board name`);
   }
