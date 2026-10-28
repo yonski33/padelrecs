@@ -10,7 +10,6 @@ type Racket = Catalog["rackets"][number];
 type PlayerReview = Catalog["reviews"][number];
 type WebReview = Catalog["external"][number];
 
-const DAY = 86_400_000;
 const w = niche.words;
 
 export function Stars({rating}: {rating:number}) { return <Score rating={rating}/>; }
@@ -162,15 +161,13 @@ export function activity(data: Catalog, sinceMs: number) {
 
 /** `data` is what the home feed shows (recent reviews); `all` is the whole catalogue, for the running totals. */
 export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog; all?: Catalog; minYear?: number}) {
-  const now = Date.now();
   // Running totals rather than "this week" (owner decision 2026-10-26): a quiet week shouldn't make a site look empty.
   const totalReviews = all.reviews.length + all.external.length;
   const talkedAbout = new Set([...all.reviews, ...all.external].map(n => n.racketId)).size;
   const count = (n: number) => n.toLocaleString("en-US");
 
-  const recent = activity(data, now - 30 * DAY);
-  const discussed = (recent.length >= 3 ? recent : activity(data, 0)).slice(0, 5);
-  const discussedLabel = recent.length >= 3 ? "30 days" : "all time";
+  // All-time counts (owner decision 2026-10-28): a 30-day window thins out as fewer new reviews come in.
+  const discussed = activity(all, 0).slice(0, 5);
 
   const notesFor = (id: string) => data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
   // Racket suggestions skip models older than minYear (padel's feedMaxAgeYears); brand counts still cover every racket.
@@ -191,7 +188,7 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
     </section>
 
     {discussed.length > 0 && <section>
-      <h2>Most discussed <small>{discussedLabel}</small></h2>
+      <h2>Most discussed <small>all time</small></h2>
       <ol className="rank">{discussed.map(({racket, count}) => <li key={racket.id}><a href={`${catalogPath}/${racket.slug}`}>
         <span className="nm">{racket.name}</span><span className="ct">{count}</span>
         <span className="bar"><i style={{width: `${Math.round(count / discussed[0].count * 100)}%`}}/></span>
