@@ -188,7 +188,7 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
     </section>
 
     {discussed.length > 0 && <section>
-      <h2>Most discussed <small>all time</small></h2>
+      <h2>Most discussed</h2>
       <ol className="rank">{discussed.map(({racket, count}) => <li key={racket.id}><a href={`${catalogPath}/${racket.slug}`}>
         <span className="nm">{racket.name}</span><span className="ct">{count}</span>
         <span className="bar"><i style={{width: `${Math.round(count / discussed[0].count * 100)}%`}}/></span>
