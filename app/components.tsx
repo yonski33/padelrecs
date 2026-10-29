@@ -29,9 +29,22 @@ export function racketParts(racket: Racket, data: Catalog) {
   return { brand, model };
 }
 
-function RacketHeading({racket, data}: {racket: Racket; data: Catalog}) {
+// Where review cards show the product's category (categoryPaths niches). "brandline": muted text after the brand,
+// "Monarch · Budgeting app" (owner trial, 2026-10-30). "pill": the outlined CategoryPill beside the name. Flip to restore.
+const CATEGORY_STYLE: "brandline" | "pill" = "brandline";
+
+function RacketHeading({racket, data, showCategory = true}: {racket: Racket; data: Catalog; showCategory?: boolean}) {
   const { brand, model } = racketParts(racket, data);
-  return <a className="racket-link" href={productHref(racket)}>{brand && <span className="brand">{brand}</span>}<span className="model">{model}</span></a>;
+  const category = showCategory && CATEGORY_STYLE === "brandline" && niche.categoryPaths ? categoryPill(racket.shape)?.label : undefined;
+  return <a className="racket-link" href={productHref(racket)}>
+    {(brand || category) && <span className="brand">{brand}{brand && category && <span className="sep" aria-hidden="true"> · </span>}{category && <><span className="sr-only">, category: </span>{category}</>}</span>}
+    <span className="model">{model}</span>
+  </a>;
+}
+
+/** The card heading: product name, plus the category pill when CATEGORY_STYLE is "pill". */
+function CardHeading({racket, data, showCategory}: {racket: Racket; data: Catalog; showCategory: boolean}) {
+  return <div className="note-title"><RacketHeading racket={racket} data={data} showCategory={showCategory}/>{showCategory && CATEGORY_STYLE === "pill" && <CategoryPill shape={racket.shape}/>}</div>;
 }
 
 /** The product's category as a small text pill beside its name ("Budgeting app", "IEM"), linking to the type page, so a
@@ -60,14 +73,15 @@ function profileLabel(field: ProfileField, value: string) {
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 
-export function Review({review: r, data, showRacket = true}: {review: PlayerReview; data: Catalog; showRacket?: boolean}) {
+/** showCategory: false on a feed already filtered to one type, where every card would repeat it. */
+export function Review({review: r, data, showRacket = true, showCategory = true}: {review: PlayerReview; data: Catalog; showRacket?: boolean; showCategory?: boolean}) {
   const racket = data.rackets.find(x => x.id === r.racketId)!;
   const details = [r.playerLevel && profileLabel("playerLevel", r.playerLevel), r.playingSide && profileLabel("playingSide", r.playingSide), r.playingStyle && !showRacket ? profileLabel("playingStyle", r.playingStyle) : null, r.timeWithRacket && profileLabel("timeWithRacket", r.timeWithRacket)].filter(Boolean);
   const scores = categories.filter(([, key]) => r[key] != null);
   return <article className={showRacket ? "note" : "note compact"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     <header className="note-head">
-      {showRacket && <div className="note-title"><RacketHeading racket={racket} data={data}/><CategoryPill shape={racket.shape}/></div>}
+      {showRacket && <CardHeading racket={racket} data={data} showCategory={showCategory}/>}
       <Score rating={r.rating}/>
     </header>
     <p className="note-body">{r.reviewText}</p>
@@ -93,12 +107,12 @@ function SourceQuote({entry: e, bare = false}: {entry: WebReview; bare?: boolean
   </figure>;
 }
 
-export function External({entry: e, data, showRacket = true}: {entry: WebReview; data: Catalog; showRacket?: boolean}) {
+export function External({entry: e, data, showRacket = true, showCategory = true}: {entry: WebReview; data: Catalog; showRacket?: boolean; showCategory?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
   const source = <><SourceIcon platform={e.sourcePlatform}/><b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}</>;
   return <article className={showRacket ? "note ext" : "note compact ext"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
-    {showRacket && <header className="note-head"><div className="note-title"><RacketHeading racket={racket} data={data}/><CategoryPill shape={racket.shape}/></div></header>}
+    {showRacket && <header className="note-head"><CardHeading racket={racket} data={data} showCategory={showCategory}/></header>}
     <div className="quote" style={showRacket ? undefined : {marginTop: 0}}>
       {e.summary ? <>
         {/* Our summary of the source's experience (written in the third person), then the source's exact words. */}
