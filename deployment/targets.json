@@ -158,7 +158,8 @@
     "tabletennis": "tabletennisrecs",
     "homegym": "homegymrecs",
     "money": "moneyrecs",
-    "software": "softwarerecs"
+    "software": "softwarerecs",
+    "hosting": "hostingrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
