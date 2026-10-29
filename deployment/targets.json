@@ -118,6 +118,11 @@
       "name": "homegymrecs",
       "id": "prj_K6eufvYVukwYyAFvnk8vZqRBmlDw",
       "domain": "www.homegymrecs.com"
+    },
+    "money": {
+      "name": "moneyrecs",
+      "id": "prj_6V6jiyqgM2p0KzDa3ulSm7hJTnno",
+      "domain": "www.moneyrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
