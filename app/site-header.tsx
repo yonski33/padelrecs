@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
 import { ChipRow } from "./chip-row";
 import { LogoIcon, PlusIcon } from "./icons";
-import { niche, catalogPath } from "../lib/niche";
+import { niche, catalogPath, catalogLabel } from "../lib/niche";
 import { RANKINGS_PATH, rankingHref } from "../lib/top-lists";
 
 // Kept short: "Add a review" is the button above, and About and Brands live in the footer.
 const links = [
   ["/", `${niche.people.One} reviews`],
-  [catalogPath, niche.words.Many],
+  [catalogPath, catalogLabel],
 ] as const;
 
 const topLists = niche.topLists ?? [];

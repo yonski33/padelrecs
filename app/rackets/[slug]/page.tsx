@@ -10,7 +10,7 @@ import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../c
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
-import { niche, catalogPath, productHref, hasYears, typePageFor } from "../../../lib/niche";
+import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 
@@ -102,7 +102,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
       ...[
-        { name: niche.words.Many, item: `${base}${catalogPath}` },
+        { name: catalogLabel, item: `${base}${catalogPath}` },
         ...(typePage ? [{ name: typePage.label, item: `${base}/${typePage.slug}` }] : []),
         ...(brand ? [{ name: brand.name, item: `${base}/brands/${brand.slug}` }] : []),
         { name: r.name, item: url },
@@ -122,7 +122,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
       <div className="profile-info">
         <div className="titleblock">
-          <div className="crumbs"><a href={catalogPath}>{niche.words.Many}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+          <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
           {brand && <span className="brandline">{brand.name}</span>}
           <h1>{model}</h1>
           {r.description && <p className="description">{r.description}</p>}
