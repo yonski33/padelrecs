@@ -123,8 +123,8 @@ export type Niche = {
   movedAway?: { source: string; destination: string; query?: { key: string; value: string } }[];
   /** Rankings pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
   topLists?: TopList[];
-  /** Amazon affiliate links with the live price on product pages (lib/amazon.ts), searched in this Amazon category
-   *  ("Beauty"). Niches without it show no Amazon links. */
+  /** Amazon affiliate links on product pages (lib/amazon.ts), searched in this Amazon category ("Beauty"). They appear
+   *  once the deployment also has the Amazon variables (lib/amazon-offer.ts amazonLinksOn; scripts/set-amazon-env.mjs). */
   amazon?: { searchIndex: string; marketplace?: string };
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */

@@ -19,7 +19,7 @@ export const badminton: Niche = {
     domain: "badmintonrecs.com",
     wordmark: "badmintonrecs",
     descriptor: "player reviews of badminton rackets",
-    footer: "kept by people who restring more often than they should. No affiliate links.",
+    footer: "kept by people who restring more often than they should.",
     analyticsId: "G-P4JEKN83JF",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -29,6 +29,7 @@ export const badminton: Niche = {
   // Makers name models by line and number (Astrox 99 Pro, Thruster Ryuga II Pro, Axforce 100), not years.
   productYears: false,
   productPath: "rackets",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "shuttle", many: "shuttles" },
   // White page, deep crimson, one cork-amber accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -181,7 +182,7 @@ export const badminton: Niche = {
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, whether they play singles or doubles, their strings and their time with a racket often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from player submissions, and external comments stay separate from those ratings." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Racket pages link to Amazon, and BadmintonRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "BadmintonRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and racket specifications come from the manufacturers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

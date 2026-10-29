@@ -20,7 +20,7 @@ export const ultralight: Niche = {
     domain: "ultralightrecs.com",
     wordmark: "ultralightrecs",
     descriptor: "hiker reviews of ultralight tents, packs, pads, quilts and trail gear",
-    footer: "kept by people who weigh their toothbrush. No affiliate links.",
+    footer: "kept by people who weigh their toothbrush.",
     analyticsId: "G-D9N3940RRH",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -30,6 +30,7 @@ export const ultralight: Niche = {
   // Makers name models without years (X-Mid Pro 2, NeoAir XLite NXT, Arc Haul Ultra), so no years.
   productYears: false,
   productPath: "gear",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "tent", many: "tents" },
   // White page, trail-brown ink, one sky-blue accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is a lighter sky blue so it stays readable on the brown panels; the logo and rating icons use #38bdf8.
@@ -214,7 +215,7 @@ export const ultralight: Niche = {
         "Gear that suits one hiker won’t suit everyone. Knowing where someone hikes, in what weather, with what base weight and what they carried before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Hikers, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from hiker submissions, and external comments stay separate from those ratings." },
+        { heading: "Hikers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from hiker submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and UltralightRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "UltralightRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

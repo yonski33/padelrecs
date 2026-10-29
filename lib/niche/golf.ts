@@ -18,7 +18,7 @@ export const golf: Niche = {
     domain: "golfrecs.com",
     wordmark: "golfrecs",
     descriptor: "golfer reviews of drivers",
-    footer: "kept by people who spend too long at the range. No affiliate links.",
+    footer: "kept by people who spend too long at the range.",
     analyticsId: "G-8Y0MW4Y4QZ",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -28,6 +28,7 @@ export const golf: Niche = {
   // Makers name each generation (Qi35, Qi4D, G440), so names carry the generation instead of a year.
   productYears: false,
   productPath: "drivers",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, fairway green, one sand-gold accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -179,7 +180,7 @@ export const golf: Niche = {
         "A driver that works for one golfer won’t work for everyone. Knowing someone’s swing speed, handicap, usual miss and how long they’ve played it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Golfers, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from golfer submissions, and external comments stay separate from those ratings." },
+        { heading: "Golfers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from golfer submissions, and external comments stay separate from those ratings. Driver pages link to Amazon, and GolfRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "GolfRecs is new. Golfer submissions are moderated before publication, web reviews link to their sources, and driver specifications come from published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about drivers you’ve actually hit and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

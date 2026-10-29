@@ -20,7 +20,7 @@ export const cycling: Niche = {
     domain: "cyclingrecs.com",
     wordmark: "cyclingrecs",
     descriptor: "rider reviews of road, gravel and mountain bikes",
-    footer: "kept by people who check the weather before anything else. No affiliate links.",
+    footer: "kept by people who check the weather before anything else.",
     analyticsId: "G-EENFGQMCKG",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -30,6 +30,7 @@ export const cycling: Niche = {
   // One product per model and frame tier; makers that name generations put them in the name (Trek Domane SL Gen 5, Tarmac SL9).
   productYears: false,
   productPath: "bikes",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "wheel", many: "wheels" },
   // White page, deep road navy, one maillot-jaune yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -173,7 +174,7 @@ export const cycling: Niche = {
         "A bike that suits one rider won’t suit everyone. Knowing where someone rides, how far, which build they have and what they rode before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from rider submissions, and external comments stay separate from those ratings." },
+        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from rider submissions, and external comments stay separate from those ratings. Bike pages link to Amazon, and CyclingRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "CyclingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and bike details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about a bike you’ve actually ridden and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

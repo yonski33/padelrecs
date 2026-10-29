@@ -21,7 +21,7 @@ export const camera: Niche = {
     domain: "camerarecs.com",
     wordmark: "camerarecs",
     descriptor: "photographer reviews of mirrorless, compact, vlogging and action cameras",
-    footer: "kept by people with more camera bags than cameras. No affiliate links.",
+    footer: "kept by people with more camera bags than cameras.",
     analyticsId: "G-QKXR6JZF5L",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -31,6 +31,7 @@ export const camera: Niche = {
   // Makers put the generation in the name (a7 IV, EOS R6 Mark III, X100VI, Z6III), so no years.
   productYears: false,
   productPath: "cameras",
+  amazon: { searchIndex: "Electronics" },
   scoreUnit: { one: "camera", many: "cameras" },
   // White page, charcoal ink, one rose accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is a lighter rose so it stays readable on the charcoal panels; the logo and rating icons use #f43f5e.
@@ -196,7 +197,7 @@ export const camera: Niche = {
         "A camera that suits one photographer won’t suit everyone. Knowing what someone shoots, which lenses they use and what they had before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Photographers, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from photographer submissions, and external comments stay separate from those ratings." },
+        { heading: "Photographers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from photographer submissions, and external comments stay separate from those ratings. Camera pages link to Amazon, and CameraRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "CameraRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about cameras you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

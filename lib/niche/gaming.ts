@@ -24,7 +24,7 @@ export const gaming: Niche = {
     domain: "gamingrecs.com",
     wordmark: "gamingrecs",
     descriptor: "gamer reviews of gaming gear",
-    footer: "kept by people with too many mice in a drawer. No affiliate links.",
+    footer: "kept by people with too many mice in a drawer.",
     analyticsId: "G-K7QZDNJ41D",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -34,6 +34,7 @@ export const gaming: Niche = {
   // Makers name each generation (V3, X2, Gen 2), so names carry the generation instead of a year.
   productYears: false,
   productPath: "gear",
+  amazon: { searchIndex: "VideoGames" },
   scoreUnit: { one: "key", many: "keys" },
   // White page, deep violet, one lime accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -186,7 +187,7 @@ export const gaming: Niche = {
         "A mouse or headset that suits one person won’t suit everyone. Knowing what someone plays, on which platform and how long they’ve used it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Gamers, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from gamer submissions, and external comments stay separate from those ratings." },
+        { heading: "Gamers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from gamer submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and GamingRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "GamingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ and reviewers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

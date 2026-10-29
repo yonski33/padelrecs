@@ -18,17 +18,22 @@ const cachedOffer = unstable_cache(
 export type AmazonButton = { url: string; price: string | null };
 
 /**
+ * Whether this site shows Amazon links: its niche config has `amazon` and the deployment has the associate tag.
+ * The affiliate note, footer link and disclosure page follow this too, so a site whose Vercel project has no Amazon
+ * variables yet never says it has affiliate links. scripts/set-amazon-env.mjs sets the variables.
+ */
+export function amazonLinksOn(env: Record<string, string | undefined> = process.env) {
+  return Boolean(niche.amazon && env.AMAZON_PA_API_PARTNER_TAG);
+}
+
+/**
  * The Amazon button for a product page, on niches with Amazon links: the matched product's page with its price, or,
  * when there is no match, no price or Amazon cannot be reached, its page or a tagged Amazon search without a price.
  * Null only on niches without Amazon links or when the associate tag is not set.
  */
 export async function amazonButton(product: { name: string; brand: string | undefined }): Promise<AmazonButton | null> {
-  if (!niche.amazon) return null;
   const partnerTag = process.env.AMAZON_PA_API_PARTNER_TAG;
-  if (!partnerTag) {
-    console.warn("[amazon] Amazon links are on but AMAZON_PA_API_PARTNER_TAG is not set");
-    return null;
-  }
+  if (!niche.amazon || !partnerTag) return null;
   const search = { url: amazonSearchLink(product.name, partnerTag, niche.amazon.marketplace), price: null };
   if (!amazonCredentials()) {
     console.warn("[amazon] AMAZON_CREATORS_API_CREDENTIAL_ID or AMAZON_CREATORS_API_CREDENTIAL_SECRET is not set; using search links without prices");

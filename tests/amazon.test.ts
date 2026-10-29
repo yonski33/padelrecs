@@ -1,23 +1,32 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
+import { amazonLinksOn } from "../lib/amazon-offer";
+import targets from "../deployment/targets.json";
 import { AmazonUnavailable, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer, isAsin, matchesProduct, resetAmazonToken } from "../lib/amazon";
 
 const credentials = { id: "test-id", secret: "test-secret", partnerTag: "skinrecs-20" };
 const settings = { searchIndex: "Beauty" };
 const hydrating = { name: "CeraVe Hydrating Facial Cleanser", brand: "CeraVe" };
 
-test("only SkinRecs and SimRacingRecs turn Amazon links on", () => {
-  const on = Object.values(niches).filter(n => n.amazon);
-  assert.deepEqual(on.map(n => n.id).sort(), ["simracing", "skin"]);
+test("every Recs site with a Vercel project has Amazon links configured, and none says it has no affiliate links", () => {
+  const sites = Object.keys(targets.vercelProjects);
+  for (const id of sites) assert.ok(niches[id]?.amazon?.searchIndex, `${id} has no amazon config`);
   assert.equal(niches.skin.amazon?.searchIndex, "Beauty");
   assert.equal(niches.simracing.amazon?.searchIndex, "VideoGames");
-  for (const n of on) {
+  for (const n of Object.values(niches).filter(n => n.amazon)) {
     // These sites no longer promise there are none, and say how Amazon links work.
     assert.doesNotMatch(n.site.footer, /no affiliate/i, n.id);
     assert.doesNotMatch(JSON.stringify(n.copy.about), /no (ads, )?affiliate/i, n.id);
     assert.match(JSON.stringify(n.copy.about), /commission/, n.id);
   }
+});
+
+test("Amazon links, the affiliate note and the disclosure page wait for the associate tag", () => {
+  // The test run is padel, which now has amazon config: on only once the deployment has a tag.
+  assert.equal(amazonLinksOn({}), false);
+  assert.equal(amazonLinksOn({ AMAZON_PA_API_PARTNER_TAG: "" }), false);
+  assert.equal(amazonLinksOn({ AMAZON_PA_API_PARTNER_TAG: "padelrecs-20" }), true);
 });
 
 test("credentials come from the environment and all three are needed", () => {
