@@ -197,6 +197,8 @@ a.cat-pill:hover { background: var(--lime-wash); border-color: var(--lime-line);
 .racket-link { color: var(--ink); line-height: 1.2; }
 .racket-link:hover { color: var(--green); }
 .racket-link .brand { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink-3); margin-bottom: 1px; }
+/* The category after the brand ("Panasonic · Mirrorless"): same grey text on a faint neutral highlight, no border. */
+.racket-link .brand .cat { padding: 1px 6px; border-radius: 4px; background: #eef0f3; }
 .racket-link .model { font-family: var(--display); font-size: 19.5px; font-weight: 650; letter-spacing: -0.018em; }
 .racket-link:hover .model { text-decoration: underline; text-decoration-color: var(--lime); text-decoration-thickness: 3px; text-underline-offset: 3px; }
 

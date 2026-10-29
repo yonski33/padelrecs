@@ -4,6 +4,7 @@ import { TagList } from "./tags";
 import { HelpfulButton } from "./helpful-button";
 import { niche, catalogPath, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
+import { repeatsBrand } from "../lib/brand-name";
 import type { ProfileField } from "../lib/niche/types";
 
 type Racket = Catalog["rackets"][number];
@@ -29,15 +30,20 @@ export function racketParts(racket: Racket, data: Catalog) {
   return { brand, model };
 }
 
-// Where review cards show the product's category (categoryPaths niches). "brandline": muted text after the brand,
-// "Monarch · Budgeting app" (owner trial, 2026-10-30). "pill": the outlined CategoryPill beside the name. Flip to restore.
+// Where review cards show the product's category (categoryPaths niches). "brandline" (owner choice, 2026-10-30): in the
+// muted line above the name, "Panasonic · Mirrorless", on a faint grey highlight. "pill": the outlined CategoryPill
+// beside the name. Flip to restore.
 const CATEGORY_STYLE: "brandline" | "pill" = "brandline";
 
 function RacketHeading({racket, data, showCategory = true}: {racket: Racket; data: Catalog; showCategory?: boolean}) {
-  const { brand, model } = racketParts(racket, data);
+  const parts = racketParts(racket, data);
   const category = showCategory && CATEGORY_STYLE === "brandline" && niche.categoryPaths ? categoryPill(racket.shape)?.label : undefined;
+  // When the name already says the brand (Monarch, YNAB, Mullvad VPN), the line shows only the category and the heading the
+  // full name, so the brand isn't said twice.
+  const nameHasBrand = !!category && !!parts.brand && repeatsBrand(racket.name, parts.brand);
+  const brand = nameHasBrand ? "" : parts.brand, model = nameHasBrand ? racket.name : parts.model;
   return <a className="racket-link" href={productHref(racket)}>
-    {(brand || category) && <span className="brand">{brand}{brand && category && <span className="sep" aria-hidden="true"> · </span>}{category && <><span className="sr-only">, category: </span>{category}</>}</span>}
+    {(brand || category) && <span className="brand">{brand}{brand && category && <span className="sep" aria-hidden="true"> · </span>}{category && <span className="cat"><span className="sr-only">{brand ? ", category: " : "Category: "}</span>{category}</span>}</span>}
     <span className="model">{model}</span>
   </a>;
 }
