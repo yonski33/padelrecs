@@ -1,0 +1,1482 @@
+{
+ "about": "MoneyRecs starter catalog (2026-10-29): US credit cards (travel rewards, cash back, starter and credit-builder, business), high-yield savings and cash accounts, checking and online banks, brokerages and investing apps, robo-advisors, budgeting apps, tax software and money transfer services. Every entry links to the provider's own product page in sources, read on 2026-10-29. Fees, rates and minimums are filled only where that page states them on that date (APY cells carry their 'as of' date); other cells are blank. Rates, fees and terms change; the provider's page is the reference. Pages behind a bot check were not read and those products are left out for now (SoFi Checking and Savings, Chime, Public). Discover's bank accounts now redirect to Capital One 360 and are not listed separately.",
+ "checked": "2026-10-29",
+ "brands": [
+  {
+   "id": "acorns",
+   "name": "Acorns"
+  },
+  {
+   "id": "ally",
+   "name": "Ally"
+  },
+  {
+   "id": "amex",
+   "name": "American Express"
+  },
+  {
+   "id": "apple",
+   "name": "Apple"
+  },
+  {
+   "id": "axos",
+   "name": "Axos Bank"
+  },
+  {
+   "id": "barclays",
+   "name": "Barclays"
+  },
+  {
+   "id": "betterment",
+   "name": "Betterment"
+  },
+  {
+   "id": "bilt",
+   "name": "Bilt"
+  },
+  {
+   "id": "bofa",
+   "name": "Bank of America"
+  },
+  {
+   "id": "capitalone",
+   "name": "Capital One"
+  },
+  {
+   "id": "cashapp",
+   "name": "Cash App"
+  },
+  {
+   "id": "chase",
+   "name": "Chase"
+  },
+  {
+   "id": "cit",
+   "name": "CIT Bank"
+  },
+  {
+   "id": "citi",
+   "name": "Citi"
+  },
+  {
+   "id": "copilot",
+   "name": "Copilot Money"
+  },
+  {
+   "id": "discover",
+   "name": "Discover"
+  },
+  {
+   "id": "etrade",
+   "name": "E*TRADE"
+  },
+  {
+   "id": "everydollar",
+   "name": "EveryDollar"
+  },
+  {
+   "id": "fidelity",
+   "name": "Fidelity"
+  },
+  {
+   "id": "freetaxusa",
+   "name": "FreeTaxUSA"
+  },
+  {
+   "id": "hrblock",
+   "name": "H&R Block"
+  },
+  {
+   "id": "ibkr",
+   "name": "Interactive Brokers"
+  },
+  {
+   "id": "intuit",
+   "name": "TurboTax"
+  },
+  {
+   "id": "m1",
+   "name": "M1"
+  },
+  {
+   "id": "marcus",
+   "name": "Marcus by Goldman Sachs"
+  },
+  {
+   "id": "merrill",
+   "name": "Merrill"
+  },
+  {
+   "id": "monarch",
+   "name": "Monarch"
+  },
+  {
+   "id": "ofx",
+   "name": "OFX"
+  },
+  {
+   "id": "pocketguard",
+   "name": "PocketGuard"
+  },
+  {
+   "id": "quicken",
+   "name": "Quicken"
+  },
+  {
+   "id": "remitly",
+   "name": "Remitly"
+  },
+  {
+   "id": "revolut",
+   "name": "Revolut"
+  },
+  {
+   "id": "robinhood",
+   "name": "Robinhood"
+  },
+  {
+   "id": "rocketmoney",
+   "name": "Rocket Money"
+  },
+  {
+   "id": "schwab",
+   "name": "Charles Schwab"
+  },
+  {
+   "id": "sofi",
+   "name": "SoFi"
+  },
+  {
+   "id": "synchrony",
+   "name": "Synchrony"
+  },
+  {
+   "id": "taxact",
+   "name": "TaxAct"
+  },
+  {
+   "id": "taxslayer",
+   "name": "TaxSlayer"
+  },
+  {
+   "id": "tiller",
+   "name": "Tiller"
+  },
+  {
+   "id": "usbank",
+   "name": "U.S. Bank"
+  },
+  {
+   "id": "vanguard",
+   "name": "Vanguard"
+  },
+  {
+   "id": "wealthfront",
+   "name": "Wealthfront"
+  },
+  {
+   "id": "webull",
+   "name": "Webull"
+  },
+  {
+   "id": "wellsfargo",
+   "name": "Wells Fargo"
+  },
+  {
+   "id": "westernunion",
+   "name": "Western Union"
+  },
+  {
+   "id": "wise",
+   "name": "Wise"
+  },
+  {
+   "id": "worldremit",
+   "name": "WorldRemit"
+  },
+  {
+   "id": "xoom",
+   "name": "Xoom"
+  },
+  {
+   "id": "ynab",
+   "name": "YNAB"
+  }
+ ],
+ "products": [
+  {
+   "brand": "chase",
+   "name": "Chase Sapphire Preferred",
+   "shape": "Travel rewards card",
+   "balance": "Travel rewards credit card",
+   "weight": "$95 annual fee",
+   "surface": "5x points on Chase Travel, 3x on dining",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Chase Sapphire Reserve",
+   "shape": "Travel rewards card",
+   "balance": "Premium travel rewards credit card",
+   "weight": "$795 annual fee",
+   "surface": "8x points on Chase Travel, 4x on flights and hotels booked direct, 3x on dining",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "American Express Gold Card",
+   "shape": "Travel rewards card",
+   "balance": "Travel rewards charge card",
+   "weight": "$325 annual fee",
+   "surface": "4x points at restaurants worldwide (up to $50K a year) and at U.S. supermarkets (up to $25K a year)",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/card/gold-card/"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "The Platinum Card from American Express",
+   "shape": "Travel rewards card",
+   "balance": "Premium travel rewards charge card",
+   "weight": "$895 annual fee",
+   "surface": "5x points on flights booked directly with airlines or Amex Travel (up to $500K a year) and on prepaid hotels via Amex Travel",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/card/platinum/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Venture X",
+   "shape": "Travel rewards card",
+   "balance": "Premium travel rewards credit card",
+   "weight": "$395 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/venture-x/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Venture",
+   "shape": "Travel rewards card",
+   "balance": "Travel rewards credit card",
+   "weight": "$95 annual fee",
+   "surface": "2x miles on every purchase, 5x on hotels, vacation rentals and rental cars through Capital One Travel",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/venture/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One VentureOne",
+   "shape": "Travel rewards card",
+   "balance": "Travel rewards credit card",
+   "weight": "$0 annual fee",
+   "surface": "1.25 miles per dollar on every purchase, 5 miles on hotels, vacation rentals and rental cars through Capital One Travel",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/ventureone/"
+   ]
+  },
+  {
+   "brand": "citi",
+   "name": "Citi Strata Premier",
+   "shape": "Travel rewards card",
+   "balance": "Travel rewards credit card",
+   "weight": "$95 annual fee",
+   "surface": "10x points on hotels, car rentals and attractions via cititravel.com; 3x on air travel, other hotels, restaurants, supermarkets, gas and EV charging",
+   "core": null,
+   "description": "Fees and rates as stated on citi.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.citi.com/credit-cards/citi-strata-premier-credit-card"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "United Explorer Card",
+   "shape": "Travel rewards card",
+   "balance": "Airline credit card",
+   "weight": "$0 intro annual fee for the first year, then $150",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/travel-credit-cards/united/united-explorer"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "Delta SkyMiles Gold American Express Card",
+   "shape": "Travel rewards card",
+   "balance": "Airline credit card",
+   "weight": "$0 annual fee the first year, then $150",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-gold-american-express-card/"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Southwest Rapid Rewards Plus Credit Card",
+   "shape": "Travel rewards card",
+   "balance": "Airline credit card",
+   "weight": "$99 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/travel-credit-cards/southwest/plus"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Marriott Bonvoy Boundless",
+   "shape": "Travel rewards card",
+   "balance": "Hotel credit card",
+   "weight": "$95 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/travel-credit-cards/marriott-bonvoy/boundless"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "World of Hyatt Credit Card",
+   "shape": "Travel rewards card",
+   "balance": "Hotel credit card",
+   "weight": "$95 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/travel-credit-cards/world-of-hyatt-credit-card"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "Hilton Honors American Express Card",
+   "shape": "Travel rewards card",
+   "balance": "Hotel credit card",
+   "weight": "No annual fee",
+   "surface": "7x points at Hilton hotels and resorts; 5x on U.S. dining, U.S. supermarkets and U.S. gas",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/card/hilton-honors/"
+   ]
+  },
+  {
+   "brand": "wellsfargo",
+   "name": "Wells Fargo Autograph Journey",
+   "shape": "Travel rewards card",
+   "balance": "Travel rewards credit card",
+   "weight": "$95 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.wellsfargo.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.wellsfargo.com/autograph-journey-visa-credit-card/"
+   ]
+  },
+  {
+   "brand": "bilt",
+   "name": "Bilt Card",
+   "shape": "Travel rewards card",
+   "balance": "Rent and travel rewards credit card",
+   "weight": "Three cards: Blue $0, Obsidian $95, Palladium $495 annual fee",
+   "surface": "Up to 1.25x points on rent and mortgage payments",
+   "core": null,
+   "description": "Fees and rates as stated on biltrewards.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.biltrewards.com/card"
+   ]
+  },
+  {
+   "brand": "citi",
+   "name": "Citi Double Cash",
+   "shape": "Cash-back card",
+   "balance": "Flat-rate cash-back credit card",
+   "weight": "No annual fee",
+   "surface": "2% cash back on purchases: 1% when you buy, 1% as you pay",
+   "core": null,
+   "description": "Fees and rates as stated on citi.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.citi.com/credit-cards/citi-double-cash-credit-card"
+   ]
+  },
+  {
+   "brand": "wellsfargo",
+   "name": "Wells Fargo Active Cash",
+   "shape": "Cash-back card",
+   "balance": "Flat-rate cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 2% cash rewards on purchases; 0% intro APR for 12 months on purchases and qualifying balance transfers",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.wellsfargo.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.wellsfargo.com/active-cash-credit-card/"
+   ]
+  },
+  {
+   "brand": "wellsfargo",
+   "name": "Wells Fargo Autograph",
+   "shape": "Cash-back card",
+   "balance": "Rewards credit card",
+   "weight": "$0 annual fee",
+   "surface": "3x points on restaurants, travel, gas and transit, streaming and phone plans",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.wellsfargo.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.wellsfargo.com/autograph-visa-credit-card/"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Chase Freedom Unlimited",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "1.5% or more on all purchases",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/cash-back-credit-cards/freedom/unlimited"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Chase Freedom Flex",
+   "shape": "Cash-back card",
+   "balance": "Rotating-category cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "5% cash back on up to $1,500 in rotating categories each quarter you activate",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/cash-back-credit-cards/freedom/flex"
+   ]
+  },
+  {
+   "brand": "discover",
+   "name": "Discover it Cash Back",
+   "shape": "Cash-back card",
+   "balance": "Rotating-category cash-back credit card",
+   "weight": null,
+   "surface": "5% cash back in quarterly categories when you activate, up to the quarterly maximum; 1% on all other purchases",
+   "core": null,
+   "description": "Fees and rates as stated on discover.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.discover.com/credit-cards/cash-back/it-card.html"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Savor",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 3% cash back at grocery stores, on dining, entertainment and popular streaming services",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/savor/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Quicksilver",
+   "shape": "Cash-back card",
+   "balance": "Flat-rate cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 1.5% cash back on every purchase",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/quicksilver/"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "Blue Cash Preferred Card",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": "$0 intro annual fee the first year, then $95",
+   "surface": "6% cash back at U.S. supermarkets (up to $6,000 a year, then 1%) and on select U.S. streaming; 3% on transit and U.S. gas",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "Blue Cash Everyday Card",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": null,
+   "surface": "3% cash back at U.S. supermarkets, on U.S. online retail and at U.S. gas stations (each up to $6,000 a year, then 1%)",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/card/blue-cash-everyday/"
+   ]
+  },
+  {
+   "brand": "citi",
+   "name": "Citi Custom Cash",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: citi.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.citi.com/credit-cards/citi-custom-cash-credit-card"
+   ]
+  },
+  {
+   "brand": "bofa",
+   "name": "Bank of America Customized Cash Rewards",
+   "shape": "Cash-back card",
+   "balance": "Choose-your-category cash-back credit card",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: bankofamerica.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.bankofamerica.com/credit-cards/products/cash-back-credit-card/"
+   ]
+  },
+  {
+   "brand": "fidelity",
+   "name": "Fidelity Rewards Visa Signature",
+   "shape": "Cash-back card",
+   "balance": "Flat-rate cash-back credit card",
+   "weight": "No annual fee",
+   "surface": "Unlimited 2% cash back when deposited into an eligible Fidelity account",
+   "core": null,
+   "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.fidelity.com/spend-save/visa-signature-card"
+   ]
+  },
+  {
+   "brand": "usbank",
+   "name": "U.S. Bank Cash+ Visa Signature",
+   "shape": "Cash-back card",
+   "balance": "Choose-your-category cash-back credit card",
+   "weight": "No annual fee",
+   "surface": "5% cash back on your first $2,000 in combined purchases each quarter in two categories you choose; 2% on one everyday category",
+   "core": null,
+   "description": "Fees and rates as stated on usbank.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.usbank.com/credit-cards/cash-plus-visa-signature-credit-card.html"
+   ]
+  },
+  {
+   "brand": "apple",
+   "name": "Apple Card",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": "No annual, over-the-limit, foreign-transaction or late fees",
+   "surface": "3% Daily Cash at Apple",
+   "core": null,
+   "description": "Fees and rates as stated on apple.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.apple.com/apple-card/"
+   ]
+  },
+  {
+   "brand": "discover",
+   "name": "Discover it Secured",
+   "shape": "Starter card",
+   "balance": "Secured credit card",
+   "weight": "No annual fee",
+   "surface": "5% cash back in quarterly categories when you activate; 1% on all other purchases",
+   "core": "Refundable deposit as low as $49",
+   "description": "Fees and rates as stated on discover.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.discover.com/credit-cards/secured/"
+   ]
+  },
+  {
+   "brand": "discover",
+   "name": "Discover it Student Cash Back",
+   "shape": "Starter card",
+   "balance": "Student credit card",
+   "weight": "No annual fee",
+   "surface": "5% cash back in quarterly categories when you activate; 1% on all other purchases",
+   "core": null,
+   "description": "Fees and rates as stated on discover.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.discover.com/credit-cards/student/it-card.html"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Platinum Secured",
+   "shape": "Starter card",
+   "balance": "Secured credit card",
+   "weight": "$0 annual fee",
+   "surface": null,
+   "core": "$49, $99 or $200 minimum refundable deposit",
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/platinum-secured/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Quicksilver Secured",
+   "shape": "Starter card",
+   "balance": "Secured credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 1.5% cash back on every purchase",
+   "core": "$200 minimum refundable deposit",
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/quicksilver-secured/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Platinum",
+   "shape": "Starter card",
+   "balance": "Credit card for fair credit",
+   "weight": "$0 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/platinum/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Savor Student",
+   "shape": "Starter card",
+   "balance": "Student credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 3% cash back at grocery stores and on dining",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/savor-student/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Quicksilver Student",
+   "shape": "Starter card",
+   "balance": "Student credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 1.5% cash back on every purchase",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/quicksilver-student/"
+   ]
+  },
+  {
+   "brand": "bofa",
+   "name": "BankAmericard Secured",
+   "shape": "Starter card",
+   "balance": "Secured credit card",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: bankofamerica.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.bankofamerica.com/credit-cards/products/secured-credit-card/"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Ink Business Preferred",
+   "shape": "Business card",
+   "balance": "Business travel rewards credit card",
+   "weight": "$95 annual fee",
+   "surface": "3x points on the first $150,000 a year in combined purchases in select business categories",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/business-credit-cards/ink/business-preferred"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Ink Business Unlimited",
+   "shape": "Business card",
+   "balance": "Business cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "Unlimited 1.5% cash back on every purchase; 0% intro APR for 12 months on purchases",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/business-credit-cards/ink/unlimited"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Ink Business Cash",
+   "shape": "Business card",
+   "balance": "Business cash-back credit card",
+   "weight": "$0 annual fee",
+   "surface": "5% cash back on business essentials on up to $25K combined spend; 0% intro APR for 12 months on purchases",
+   "core": null,
+   "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://creditcards.chase.com/business-credit-cards/ink/cash"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "The Business Platinum Card from American Express",
+   "shape": "Business card",
+   "balance": "Premium business charge card",
+   "weight": "$895 annual fee",
+   "surface": "2x points on eligible purchases in key business categories or of $5K or more",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-platinum-credit-card-amex/"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "American Express Business Gold Card",
+   "shape": "Business card",
+   "balance": "Business rewards card",
+   "weight": "$375 annual fee",
+   "surface": "4x points on your top 2 eligible categories each month (first $150,000 a year); 3x on flights and prepaid hotels on AmexTravel.com",
+   "core": null,
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-gold-card-amex/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Spark Cash Plus",
+   "shape": "Business card",
+   "balance": "Business cash-back charge card",
+   "weight": "$150 annual fee, refunded each year you spend at least $150,000",
+   "surface": "Unlimited 2% cash back on every purchase",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/small-business/credit-cards/spark-cash-plus/"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One Venture X Business",
+   "shape": "Business card",
+   "balance": "Business travel rewards card",
+   "weight": "$395 annual fee",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/small-business/credit-cards/venture-x-business/"
+   ]
+  },
+  {
+   "brand": "ally",
+   "name": "Ally Savings Account",
+   "shape": "Savings",
+   "balance": "Online high-yield savings account",
+   "weight": "No monthly maintenance fees",
+   "surface": null,
+   "core": "No minimum balance",
+   "description": "Fees and rates as stated on ally.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.ally.com/bank/online-savings-account/"
+   ]
+  },
+  {
+   "brand": "marcus",
+   "name": "Marcus Online Savings Account",
+   "shape": "Savings",
+   "balance": "Online high-yield savings account",
+   "weight": "No fees",
+   "surface": "3.50% APY as of 2026-10-29",
+   "core": "No minimum deposit",
+   "description": "Fees and rates as stated on marcus.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.marcus.com/us/en/savings/high-yield-savings"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One 360 Performance Savings",
+   "shape": "Savings",
+   "balance": "Online high-yield savings account",
+   "weight": "No fees to open or keep the account",
+   "surface": null,
+   "core": "No minimum balance",
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
+   ]
+  },
+  {
+   "brand": "amex",
+   "name": "American Express High Yield Savings",
+   "shape": "Savings",
+   "balance": "Online high-yield savings account",
+   "weight": "No monthly fees",
+   "surface": null,
+   "core": "No minimum balance",
+   "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.americanexpress.com/en-us/banking/online-savings/account/"
+   ]
+  },
+  {
+   "brand": "synchrony",
+   "name": "Synchrony High Yield Savings",
+   "shape": "Savings",
+   "balance": "Online high-yield savings account",
+   "weight": "No monthly fees",
+   "surface": null,
+   "core": "No minimum deposit or balance",
+   "description": "Fees and rates as stated on synchronybank.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.synchronybank.com/banking/high-yield-savings/"
+   ]
+  },
+  {
+   "brand": "barclays",
+   "name": "Barclays Tiered Savings",
+   "shape": "Savings",
+   "balance": "Online tiered savings account",
+   "weight": "No monthly fees",
+   "surface": "Up to 3.65% APY as of 2026-10-29",
+   "core": null,
+   "description": "Fees and rates as stated on banking.barclaysus.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://banking.barclaysus.com/"
+   ]
+  },
+  {
+   "brand": "cit",
+   "name": "CIT Platinum Savings",
+   "shape": "Savings",
+   "balance": "Online tiered savings account",
+   "weight": "No account opening or monthly service fees",
+   "surface": "3.75% APY on balances of $5,000 or more, 0.25% below, as of 2026-10-29",
+   "core": "$100 to open",
+   "description": "Fees and rates as stated on cit.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.cit.com/cit-bank/platinum-savings"
+   ]
+  },
+  {
+   "brand": "wealthfront",
+   "name": "Wealthfront Cash Account",
+   "shape": "Savings",
+   "balance": "Cash account (program banks)",
+   "weight": "Zero account fees",
+   "surface": "3.55% base APY as of 2026-10-01",
+   "core": null,
+   "description": "Fees and rates as stated on wealthfront.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.wealthfront.com/cash"
+   ]
+  },
+  {
+   "brand": "betterment",
+   "name": "Betterment Cash Reserve",
+   "shape": "Savings",
+   "balance": "Cash account (program banks)",
+   "weight": "No fees",
+   "surface": "3.50% APY (variable) as of 2026-10-29",
+   "core": "No minimums",
+   "description": "Fees and rates as stated on betterment.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.betterment.com/cash-reserve"
+   ]
+  },
+  {
+   "brand": "capitalone",
+   "name": "Capital One 360 Checking",
+   "shape": "Checking",
+   "balance": "Online checking account",
+   "weight": "No monthly fees, no overdraft fees",
+   "surface": null,
+   "core": "No minimum balance to open or keep",
+   "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/bank/checking-accounts/online-checking-account/"
+   ]
+  },
+  {
+   "brand": "ally",
+   "name": "Ally Spending Account",
+   "shape": "Checking",
+   "balance": "Online checking account",
+   "weight": "No monthly maintenance or overdraft fees",
+   "surface": null,
+   "core": "No minimum balance",
+   "description": "Fees and rates as stated on ally.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.ally.com/bank/interest-checking-account/"
+   ]
+  },
+  {
+   "brand": "schwab",
+   "name": "Schwab Bank Investor Checking",
+   "shape": "Checking",
+   "balance": "Checking account linked to a brokerage account",
+   "weight": "No monthly service fees or overdraft fees",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on schwab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.schwab.com/checking"
+   ]
+  },
+  {
+   "brand": "fidelity",
+   "name": "Fidelity Cash Management Account",
+   "shape": "Checking",
+   "balance": "Cash management account",
+   "weight": "No account, ATM or foreign debit transaction fees",
+   "surface": null,
+   "core": "No minimum to open",
+   "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.fidelity.com/spend-save/fidelity-cash-management-account/overview"
+   ]
+  },
+  {
+   "brand": "axos",
+   "name": "Axos Rewards Checking",
+   "shape": "Checking",
+   "balance": "Online checking account",
+   "weight": "No monthly maintenance, balance, opening or overdraft fees",
+   "surface": "Up to 1.00% APY as of 2026-10-29",
+   "core": null,
+   "description": "Fees and rates as stated on axosbank.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.axosbank.com/personal/bank/checking-accounts/rewards-checking"
+   ]
+  },
+  {
+   "brand": "chase",
+   "name": "Chase Total Checking",
+   "shape": "Checking",
+   "balance": "Bank checking account",
+   "weight": "$15 monthly service fee, or $0 with qualifying electronic deposits of $500+ or another listed option",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.chase.com/personal/checking/total-checking"
+   ]
+  },
+  {
+   "brand": "revolut",
+   "name": "Revolut",
+   "shape": "Money transfer",
+   "balance": "Multi-currency account with card",
+   "weight": "Standard plan $0.00/month; exchange fair-usage limits and fees depend on the plan",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on revolut.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.revolut.com/en-US/our-pricing-plans/"
+   ]
+  },
+  {
+   "brand": "fidelity",
+   "name": "Fidelity Brokerage Account",
+   "shape": "Brokerage",
+   "balance": "Brokerage account",
+   "weight": "$0 commission for online US stock and ETF trades",
+   "surface": null,
+   "core": "No minimum to open",
+   "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.fidelity.com/trading/the-fidelity-account"
+   ]
+  },
+  {
+   "brand": "schwab",
+   "name": "Schwab One Brokerage Account",
+   "shape": "Brokerage",
+   "balance": "Brokerage account",
+   "weight": "$0 online equity trades for listed stocks and ETFs; $0 opening and maintenance fees",
+   "surface": null,
+   "core": "No account minimum",
+   "description": "Fees and rates as stated on schwab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.schwab.com/brokerage"
+   ]
+  },
+  {
+   "brand": "vanguard",
+   "name": "Vanguard Brokerage Account",
+   "shape": "Brokerage",
+   "balance": "Brokerage account",
+   "weight": "No fee to open an account",
+   "surface": null,
+   "core": "$0 to open",
+   "description": "Fees and rates as stated on investor.vanguard.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://investor.vanguard.com/accounts-plans/brokerage-accounts"
+   ]
+  },
+  {
+   "brand": "robinhood",
+   "name": "Robinhood",
+   "shape": "Brokerage",
+   "balance": "Investing app and brokerage",
+   "weight": "Commission-free stock trading; Gold subscription $5/month",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on robinhood.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://robinhood.com/us/en/"
+   ]
+  },
+  {
+   "brand": "ibkr",
+   "name": "Interactive Brokers",
+   "shape": "Brokerage",
+   "balance": "Brokerage account",
+   "weight": "$0 commissions on US stocks and ETFs with IBKR Lite",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on interactivebrokers.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php"
+   ]
+  },
+  {
+   "brand": "etrade",
+   "name": "E*TRADE",
+   "shape": "Brokerage",
+   "balance": "Brokerage account",
+   "weight": "$0 commissions for online US-listed stock, ETF, mutual fund and options trades (exclusions apply)",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on us.etrade.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://us.etrade.com/what-we-offer/investment-choices/stocks"
+   ]
+  },
+  {
+   "brand": "merrill",
+   "name": "Merrill Edge Self-Directed",
+   "shape": "Brokerage",
+   "balance": "Brokerage account",
+   "weight": "$0 online stock, ETF and option trades; no annual account fees (options contract and other fees may apply)",
+   "surface": null,
+   "core": "No balance minimums",
+   "description": "Fees and rates as stated on merrilledge.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.merrilledge.com/investing/merrill-self-directed-trading"
+   ]
+  },
+  {
+   "brand": "webull",
+   "name": "Webull",
+   "shape": "Brokerage",
+   "balance": "Investing app and brokerage",
+   "weight": "$0 commissions on U.S. stocks, ETFs and options for self-directed accounts",
+   "surface": null,
+   "core": "No deposit minimums",
+   "description": "Fees and rates as stated on webull.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.webull.com/pricing"
+   ]
+  },
+  {
+   "brand": "sofi",
+   "name": "SoFi Active Investing",
+   "shape": "Brokerage",
+   "balance": "Investing app and brokerage",
+   "weight": "No commissions on online stock trades",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on sofi.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.sofi.com/invest/"
+   ]
+  },
+  {
+   "brand": "m1",
+   "name": "M1",
+   "shape": "Brokerage",
+   "balance": "Investing app and brokerage",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: m1.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://m1.com/invest/"
+   ]
+  },
+  {
+   "brand": "betterment",
+   "name": "Betterment Investing",
+   "shape": "Robo-advisor",
+   "balance": "Robo-advisor",
+   "weight": "$5/month, or 0.25% a year with $24K+ balance or $200+ monthly recurring deposit",
+   "surface": null,
+   "core": "No minimum balance",
+   "description": "Fees and rates as stated on betterment.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.betterment.com/pricing"
+   ]
+  },
+  {
+   "brand": "wealthfront",
+   "name": "Wealthfront Automated Investing",
+   "shape": "Robo-advisor",
+   "balance": "Robo-advisor",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: wealthfront.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.wealthfront.com/investing"
+   ]
+  },
+  {
+   "brand": "schwab",
+   "name": "Schwab Intelligent Portfolios",
+   "shape": "Robo-advisor",
+   "balance": "Robo-advisor",
+   "weight": "No advisory fee and no commissions",
+   "surface": null,
+   "core": "Invest with as little as $5,000",
+   "description": "Fees and rates as stated on schwab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.schwab.com/intelligent-portfolios"
+   ]
+  },
+  {
+   "brand": "vanguard",
+   "name": "Vanguard Digital Advisor",
+   "shape": "Robo-advisor",
+   "balance": "Robo-advisor",
+   "weight": "$0 advisory fees for the first 90 days; about $15–$16 a year per $10K in an all-index portfolio after that",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on investor.vanguard.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://investor.vanguard.com/advice/digital-advisor"
+   ]
+  },
+  {
+   "brand": "fidelity",
+   "name": "Fidelity Go",
+   "shape": "Robo-advisor",
+   "balance": "Robo-advisor",
+   "weight": "$0 advisory fees under $25,000; 0.35% for accounts of $25,000 and above",
+   "surface": null,
+   "core": "No minimum to open; invests from $10",
+   "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.fidelity.com/managed-accounts/fidelity-go/overview"
+   ]
+  },
+  {
+   "brand": "acorns",
+   "name": "Acorns",
+   "shape": "Robo-advisor",
+   "balance": "Round-up investing app",
+   "weight": "Bronze $4/mo, Silver $8/mo, Gold $12/mo",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on acorns.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.acorns.com/pricing/"
+   ]
+  },
+  {
+   "brand": "ynab",
+   "name": "YNAB",
+   "shape": "Budgeting app",
+   "balance": "Budgeting app",
+   "weight": "$109 a year (annual plan)",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on ynab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.ynab.com/pricing"
+   ]
+  },
+  {
+   "brand": "monarch",
+   "name": "Monarch",
+   "shape": "Budgeting app",
+   "balance": "Budgeting and net-worth app",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: monarch.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.monarch.com/pricing"
+   ]
+  },
+  {
+   "brand": "copilot",
+   "name": "Copilot Money",
+   "shape": "Budgeting app",
+   "balance": "Budgeting app",
+   "weight": "$109 billed yearly (shown as a limited-time offer)",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on copilot.money on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.copilot.money/"
+   ]
+  },
+  {
+   "brand": "rocketmoney",
+   "name": "Rocket Money",
+   "shape": "Budgeting app",
+   "balance": "Budgeting and subscription app",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: rocketmoney.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.rocketmoney.com/"
+   ]
+  },
+  {
+   "brand": "everydollar",
+   "name": "EveryDollar",
+   "shape": "Budgeting app",
+   "balance": "Zero-based budgeting app",
+   "weight": "Free version; premium $79.99 a year or $17.99 a month",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on ramseysolutions.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.ramseysolutions.com/ramseyplus/everydollar"
+   ]
+  },
+  {
+   "brand": "quicken",
+   "name": "Quicken Simplifi",
+   "shape": "Budgeting app",
+   "balance": "Budgeting app",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: quicken.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.quicken.com/products/simplifi/"
+   ]
+  },
+  {
+   "brand": "pocketguard",
+   "name": "PocketGuard",
+   "shape": "Budgeting app",
+   "balance": "Budgeting app",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: pocketguard.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://pocketguard.com/"
+   ]
+  },
+  {
+   "brand": "tiller",
+   "name": "Tiller",
+   "shape": "Budgeting app",
+   "balance": "Spreadsheet budgeting service",
+   "weight": "$99 a year after a 30-day free trial",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on tiller.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://tiller.com/pricing/"
+   ]
+  },
+  {
+   "brand": "intuit",
+   "name": "TurboTax Online",
+   "shape": "Tax software",
+   "balance": "Online tax software",
+   "weight": "Free Edition $0 federal + $0 state for simple Form 1040 returns only; paid editions for other returns",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on turbotax.intuit.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://turbotax.intuit.com/personal-taxes/online/"
+   ]
+  },
+  {
+   "brand": "freetaxusa",
+   "name": "FreeTaxUSA",
+   "shape": "Tax software",
+   "balance": "Online tax software",
+   "weight": "Federal $0; state $15.99",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on freetaxusa.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.freetaxusa.com/"
+   ]
+  },
+  {
+   "brand": "hrblock",
+   "name": "H&R Block Online",
+   "shape": "Tax software",
+   "balance": "Online tax software",
+   "weight": "Free Online $0 + $0 per state (simple returns); Deluxe $65 + $49 per state; Premium $105 + $49 per state",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on hrblock.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.hrblock.com/online-tax-filing/"
+   ]
+  },
+  {
+   "brand": "taxact",
+   "name": "TaxAct",
+   "shape": "Tax software",
+   "balance": "Online tax software",
+   "weight": "Free federal $0.00 for W-2 or unemployment returns; Deluxe $59.99, Premier $99.99, Self-Employed $109.99, state additional",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on taxact.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.taxact.com/"
+   ]
+  },
+  {
+   "brand": "cashapp",
+   "name": "Cash App Taxes",
+   "shape": "Tax software",
+   "balance": "Online tax software",
+   "weight": "Free federal and state filing",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on cash.app on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://cash.app/taxes"
+   ]
+  },
+  {
+   "brand": "taxslayer",
+   "name": "TaxSlayer",
+   "shape": "Tax software",
+   "balance": "Online tax software",
+   "weight": "Classic $44.99, Premium $64.99, state additional; free for simple returns",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on taxslayer.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.taxslayer.com/"
+   ]
+  },
+  {
+   "brand": "wise",
+   "name": "Wise",
+   "shape": "Money transfer",
+   "balance": "International transfers and multi-currency account",
+   "weight": "Mid-market exchange rate plus a fee shown upfront",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on wise.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://wise.com/us/pricing/"
+   ]
+  },
+  {
+   "brand": "remitly",
+   "name": "Remitly",
+   "shape": "Money transfer",
+   "balance": "International money transfer",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: remitly.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.remitly.com/us/en"
+   ]
+  },
+  {
+   "brand": "ofx",
+   "name": "OFX",
+   "shape": "Money transfer",
+   "balance": "International money transfer",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: ofx.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.ofx.com/en-us/"
+   ]
+  },
+  {
+   "brand": "westernunion",
+   "name": "Western Union",
+   "shape": "Money transfer",
+   "balance": "International money transfer",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: westernunion.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.westernunion.com/us/en/home.html"
+   ]
+  },
+  {
+   "brand": "xoom",
+   "name": "Xoom",
+   "shape": "Money transfer",
+   "balance": "International money transfer (PayPal)",
+   "weight": null,
+   "surface": null,
+   "core": null,
+   "description": "Official page: xoom.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.xoom.com/"
+   ]
+  },
+  {
+   "brand": "worldremit",
+   "name": "WorldRemit",
+   "shape": "Money transfer",
+   "balance": "International money transfer",
+   "weight": "Fees and exchange rates shown upfront",
+   "surface": null,
+   "core": null,
+   "description": "Fees and rates as stated on worldremit.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.worldremit.com/en-us"
+   ]
+  }
+ ]
+}
