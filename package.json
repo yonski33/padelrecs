@@ -16,6 +16,7 @@
     "db:migrate": "tsx --env-file-if-exists=.env.local scripts/migrate.ts",
     "db:seed": "tsx --env-file-if-exists=.env.local scripts/seed.ts",
     "db:import": "tsx --env-file-if-exists=.env.local scripts/import-data.ts",
+    "db:sync-links": "tsx --env-file-if-exists=.env.local scripts/sync-product-links.ts",
     "db:verify": "tsx --env-file-if-exists=.env.local scripts/verify-data.ts",
     "db:check-export": "tsx --env-file-if-exists=.env.local scripts/check-export.ts",
     "db:export": "tsx --env-file-if-exists=.env.local scripts/export-data.ts",

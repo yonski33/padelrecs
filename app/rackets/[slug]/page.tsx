@@ -12,6 +12,7 @@ import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
 import { niche, catalogPath, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
+import { websiteButton } from "../../../lib/product-links";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -39,6 +40,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const brand = data.brands.find(b => b.id === r.brandId);
   // Only niches with Amazon links (SkinRecs, SimRacingRecs) have one: the product on Amazon, or an Amazon search for it. Prices are not shown.
   const amazon = await amazonButton({ name: r.name, brand: brand?.name });
+  // Niches with `website` links (SoftwareRecs) link to the product's own site instead; an affiliate link only when the data has one.
+  const site = websiteButton(r);
+  const shopButton = amazon || site;
   const { model } = racketParts(r, data);
   const s = score(data, r.id);
   const reviews = data.reviews.filter(x => x.racketId === r.id);
@@ -106,7 +110,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
 
   return <main>
-    {amazon && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
+    {(amazon || site?.affiliate) && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
@@ -146,9 +150,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </>}
           <WebSplit entries={external}/>
         </>}
-        {/* Niches with Amazon links put the Amazon button here; adding a review moves to the Reviews heading. */}
+        {/* Niches with Amazon or website links put that button here; adding a review moves to the Reviews heading. */}
         {amazon
           ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
+          : site
+          ? <a className="button visit-site" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
           : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
         <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
       </aside>
@@ -184,7 +190,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList slug={r.slug} addHref={addHref} addButton={amazon ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSource={source} initialSort={sort}/>
+        <ReviewList slug={r.slug} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSource={source} initialSort={sort}/>
       </div>
 
       <aside className="database-sidebar">
