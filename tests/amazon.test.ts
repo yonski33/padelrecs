@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import targets from "../deployment/targets.json";
-import { AmazonUnavailable, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer, isAsin, matchesProduct, resetAmazonToken } from "../lib/amazon";
+import { AmazonUnavailable, affiliateTag, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer, isAsin, matchesProduct, resetAmazonToken } from "../lib/amazon";
 
 const credentials = { id: "test-id", secret: "test-secret", partnerTag: "skinrecs-20" };
 const settings = { searchIndex: "Beauty" };
@@ -27,6 +27,16 @@ test("Amazon links, the affiliate note and the disclosure page wait for the asso
   assert.equal(amazonLinksOn({}), false);
   assert.equal(amazonLinksOn({ AMAZON_PA_API_PARTNER_TAG: "" }), false);
   assert.equal(amazonLinksOn({ AMAZON_PA_API_PARTNER_TAG: "padelrecs-20" }), true);
+  assert.equal(amazonLinksOn({ AMAZON_AFFILIATE_TAG: "recssite-20" }), true);
+});
+
+test("links carry AMAZON_AFFILIATE_TAG when set; the API keeps the partner tag", () => {
+  const env = { AMAZON_CREATORS_API_CREDENTIAL_ID: "a", AMAZON_CREATORS_API_CREDENTIAL_SECRET: "b", AMAZON_PA_API_PARTNER_TAG: "c-20" };
+  assert.equal(affiliateTag(env), "c-20");
+  assert.equal(affiliateTag({ ...env, AMAZON_AFFILIATE_TAG: " recssite-20 " }), "recssite-20");
+  assert.equal(affiliateTag({ ...env, AMAZON_AFFILIATE_TAG: "" }), "c-20");
+  assert.equal(amazonCredentials({ ...env, AMAZON_AFFILIATE_TAG: "recssite-20" })?.partnerTag, "c-20");
+  assert.equal(affiliateTag({}), "");
 });
 
 test("credentials come from the environment and all three are needed", () => {
