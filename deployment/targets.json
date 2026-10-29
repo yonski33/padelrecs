@@ -147,7 +147,8 @@
     "snowboard": "snowboardrecs",
     "tabletennis": "tabletennisrecs",
     "homegym": "homegymrecs",
-    "money": "moneyrecs"
+    "money": "moneyrecs",
+    "software": "softwarerecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

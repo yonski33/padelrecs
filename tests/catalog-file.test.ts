@@ -563,3 +563,25 @@ test("the MoneyRecs starter catalog: every category, official https sources, dat
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Chase Sapphire Preferred")?.weight, "$95 annual fee");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Marcus Online Savings Account")?.surface, "3.50% APY as of 2026-10-29");
 });
+
+test("the SoftwareRecs catalog: sourced tools in all fourteen categories, each with its official https website", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/software.json");
+  const snapshot = catalogSnapshot(catalog, "softwarerecs", "catalog:test", false);
+  const categories = niches.software.specs.find(s => s.column === "shape")!.options!;
+  assert.equal(snapshot.tables.rackets.length, 135);
+  assert.deepEqual(new Set(catalog.products.map(p => p.shape)), new Set(categories), "every category has tools and no tool is outside them");
+  assert(catalog.products.every(p => p.website && p.sources.every(s => s.startsWith("https://"))), "every tool links to its own site");
+  assert(catalog.products.every(p => !p.affiliateUrl), "no affiliate links yet");
+  const pricing = niches.software.specs.find(s => s.column === "balance")!.options!;
+  assert(catalog.products.every(p => p.balance == null || pricing.includes(p.balance)), "pricing is a model, never a price");
+  assert(catalog.products.every(p => p.surface == null || ["Yes", "No"].includes(p.surface)));
+  assert(catalog.products.every(p => p.weight == null || p.shape!.startsWith("AI")), "AI model only on AI tools");
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 135);
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: catalog.brands.length, rackets: 135, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});

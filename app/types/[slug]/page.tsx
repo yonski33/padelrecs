@@ -14,9 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const t = pageFor((await params).slug);
   if (!t) return {};
   const title = `${t.label} – ${niche.people.One} Reviews and Ratings`;
-  const description = `${t.intro}: real ${niche.people.one} reviews and ratings of every ${t.shape.toLowerCase()} on ${niche.site.name}, plus opinions from around the web.`;
+  const description = `${t.intro}: real ${niche.people.one} reviews and ratings of every ${lowerWords(t.shape)} on ${niche.site.name}, plus opinions from around the web.`;
   return { title, description, alternates: { canonical: `/${t.slug}` }, openGraph: { title, description, url: `/${t.slug}`, type: "website" } };
 }
+
+// "Cleanser" → "cleanser", but acronyms stay as they are: "AI assistant", "CRM", "VPN".
+const lowerWords = (text: string) => text.replace(/\b[A-Z](?=[a-z])/g, c => c.toLowerCase());
 
 export default async function TypePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ brand?: string; sort?: string }> }) {
   const [{ slug }, f, data] = await Promise.all([params, searchParams, catalog()]);
