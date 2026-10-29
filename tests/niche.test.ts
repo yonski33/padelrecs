@@ -577,3 +577,29 @@ test("homegym: equipment named without years, seven category pages that each pic
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("money: products without years at /products, eleven category pages that each pick a drawing, no Amazon, a not-financial-advice notice", async () => {
+  const n = selectNiche("money");
+  assert.equal(n.schema, "moneyrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.amazon, undefined, "no affiliate links until real ones exist");
+  assert.match(n.site.notice ?? "", /not financial advice/);
+  assert.match(n.site.notice ?? "", /Rates, fees and terms change/);
+  for (const text of [n.copy.about.sections.map(s => s.body).join(" "), n.copy.about.paragraphs.join(" "), JSON.stringify(n.seo.addReview)]) assert(!/amazon|commission when you buy|affiliate link/i.test(text), "no Amazon or affiliate wording");
+  assert.deepEqual(n.categories.map(c => c.label), ["Value", "Fees", "App & website", "Customer service", "Reliability"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Fees", "Rates & rewards", "Minimum"]);
+  assert.deepEqual(n.shapeFilter, ["Travel rewards card", "Cash-back card", "Starter card", "Business card", "Savings", "Checking", "Brokerage", "Robo-advisor", "Budgeting app", "Tax software", "Money transfer"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["travel-cards", "cash-back-cards", "starter-cards", "business-cards", "savings", "checking", "brokerages", "robo-advisors", "budgeting-apps", "tax-software", "money-transfer"]);
+  assert.equal(n.rowDetail?.column, "balance", "catalogue rows show the type, never a rate");
+  const { shapeOf } = await import("../app/art/money");
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["card", "card", "card", "card", "savings", "bank", "brokerage", "robo", "budget", "tax", "transfer"]);
+  for (const list of n.topLists ?? []) {
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

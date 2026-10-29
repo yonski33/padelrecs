@@ -81,9 +81,9 @@ export type Niche = {
     descriptor: string;  // under the logo
     footer: string;      // after "<domain> — "
     analyticsId?: string;
-    /** An extra line in the footer on every page, e.g. "Not financial advice." */
-    footerNote?: string;
     adminLoginHint: string;
+    /** A line shown in the footer of every page, e.g. MoneyRecs' "not financial advice" notice. */
+    notice?: string;
   };
   words: Words;
   /** Who writes reviews: "player" / "players" on sports sites, "user" / "users" on SkinRecs. */
