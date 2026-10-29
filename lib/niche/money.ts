@@ -33,7 +33,8 @@ export const money: Niche = {
   // Financial products are named by the provider's product name, not by year.
   productYears: false,
   productPath: "products",
-  // No Amazon (or any affiliate) links on MoneyRecs: product pages link to the provider's own site.
+  // No Amazon (or any affiliate) links on MoneyRecs: product pages link to the provider's own site ("Visit site", lib/product-links.ts).
+  website: {},
   scoreUnit: { one: "coin", many: "coins" },
   // White page, navy ink, one gold accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

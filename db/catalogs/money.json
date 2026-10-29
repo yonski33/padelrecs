@@ -1,5 +1,5 @@
 {
- "about": "MoneyRecs starter catalog (2026-10-29): US credit cards (travel rewards, cash back, starter and credit-builder, business), high-yield savings and cash accounts, checking and online banks, brokerages and investing apps, robo-advisors, budgeting apps, tax software and money transfer services. Every entry links to the provider's own product page in sources, read on 2026-10-29. Fees, rates and minimums are filled only where that page states them on that date (APY cells carry their 'as of' date); other cells are blank. Rates, fees and terms change; the provider's page is the reference. Pages behind a bot check were not read and those products are left out for now (SoFi Checking and Savings, Chime, Public). Discover's bank accounts now redirect to Capital One 360 and are not listed separately.",
+ "about": "MoneyRecs starter catalog (2026-10-29): US credit cards (travel rewards, cash back, starter and credit-builder, business), high-yield savings and cash accounts, checking and online banks, brokerages and investing apps, robo-advisors, budgeting apps, tax software and money transfer services. Every entry links to the provider's own product page in sources (also its Visit site link), read on 2026-10-29. Fees, rates and minimums are filled only where that page states them on that date (APY cells carry their 'as of' date); other cells are blank. Rates, fees and terms change; the provider's page is the reference. Pages behind a bot check were not read and those products are left out for now (SoFi Checking and Savings, Chime, Public). Discover's bank accounts now redirect to Capital One 360 and are not listed separately.",
  "checked": "2026-10-29",
  "brands": [
   {
@@ -215,7 +215,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred"
   },
   {
    "brand": "chase",
@@ -228,7 +229,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve"
   },
   {
    "brand": "amex",
@@ -241,7 +243,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/card/gold-card/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/card/gold-card/"
   },
   {
    "brand": "amex",
@@ -254,7 +257,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/card/platinum/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/card/platinum/"
   },
   {
    "brand": "capitalone",
@@ -267,7 +271,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/venture-x/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/venture-x/"
   },
   {
    "brand": "capitalone",
@@ -280,7 +285,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/venture/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/venture/"
   },
   {
    "brand": "capitalone",
@@ -293,7 +299,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/ventureone/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/ventureone/"
   },
   {
    "brand": "citi",
@@ -306,7 +313,8 @@
    "description": "Fees and rates as stated on citi.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.citi.com/credit-cards/citi-strata-premier-credit-card"
-   ]
+   ],
+   "website": "https://www.citi.com/credit-cards/citi-strata-premier-credit-card"
   },
   {
    "brand": "chase",
@@ -319,7 +327,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/travel-credit-cards/united/united-explorer"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/travel-credit-cards/united/united-explorer"
   },
   {
    "brand": "amex",
@@ -332,7 +341,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-gold-american-express-card/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-gold-american-express-card/"
   },
   {
    "brand": "chase",
@@ -345,7 +355,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/travel-credit-cards/southwest/plus"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/travel-credit-cards/southwest/plus"
   },
   {
    "brand": "chase",
@@ -358,7 +369,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/travel-credit-cards/marriott-bonvoy/boundless"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/travel-credit-cards/marriott-bonvoy/boundless"
   },
   {
    "brand": "chase",
@@ -371,7 +383,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/travel-credit-cards/world-of-hyatt-credit-card"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/travel-credit-cards/world-of-hyatt-credit-card"
   },
   {
    "brand": "amex",
@@ -384,7 +397,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/card/hilton-honors/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/card/hilton-honors/"
   },
   {
    "brand": "wellsfargo",
@@ -397,7 +411,8 @@
    "description": "Fees and rates as stated on creditcards.wellsfargo.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.wellsfargo.com/autograph-journey-visa-credit-card/"
-   ]
+   ],
+   "website": "https://creditcards.wellsfargo.com/autograph-journey-visa-credit-card/"
   },
   {
    "brand": "bilt",
@@ -410,7 +425,8 @@
    "description": "Fees and rates as stated on biltrewards.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.biltrewards.com/card"
-   ]
+   ],
+   "website": "https://www.biltrewards.com/card"
   },
   {
    "brand": "citi",
@@ -423,7 +439,8 @@
    "description": "Fees and rates as stated on citi.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.citi.com/credit-cards/citi-double-cash-credit-card"
-   ]
+   ],
+   "website": "https://www.citi.com/credit-cards/citi-double-cash-credit-card"
   },
   {
    "brand": "wellsfargo",
@@ -436,7 +453,8 @@
    "description": "Fees and rates as stated on creditcards.wellsfargo.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.wellsfargo.com/active-cash-credit-card/"
-   ]
+   ],
+   "website": "https://creditcards.wellsfargo.com/active-cash-credit-card/"
   },
   {
    "brand": "wellsfargo",
@@ -449,7 +467,8 @@
    "description": "Fees and rates as stated on creditcards.wellsfargo.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.wellsfargo.com/autograph-visa-credit-card/"
-   ]
+   ],
+   "website": "https://creditcards.wellsfargo.com/autograph-visa-credit-card/"
   },
   {
    "brand": "chase",
@@ -462,7 +481,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/cash-back-credit-cards/freedom/unlimited"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/cash-back-credit-cards/freedom/unlimited"
   },
   {
    "brand": "chase",
@@ -475,7 +495,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/cash-back-credit-cards/freedom/flex"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/cash-back-credit-cards/freedom/flex"
   },
   {
    "brand": "discover",
@@ -488,7 +509,8 @@
    "description": "Fees and rates as stated on discover.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.discover.com/credit-cards/cash-back/it-card.html"
-   ]
+   ],
+   "website": "https://www.discover.com/credit-cards/cash-back/it-card.html"
   },
   {
    "brand": "capitalone",
@@ -501,7 +523,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/savor/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/savor/"
   },
   {
    "brand": "capitalone",
@@ -514,7 +537,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/quicksilver/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/quicksilver/"
   },
   {
    "brand": "amex",
@@ -527,7 +551,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/"
   },
   {
    "brand": "amex",
@@ -540,7 +565,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/card/blue-cash-everyday/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-everyday/"
   },
   {
    "brand": "citi",
@@ -553,7 +579,8 @@
    "description": "Official page: citi.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.citi.com/credit-cards/citi-custom-cash-credit-card"
-   ]
+   ],
+   "website": "https://www.citi.com/credit-cards/citi-custom-cash-credit-card"
   },
   {
    "brand": "bofa",
@@ -566,7 +593,8 @@
    "description": "Official page: bankofamerica.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.bankofamerica.com/credit-cards/products/cash-back-credit-card/"
-   ]
+   ],
+   "website": "https://www.bankofamerica.com/credit-cards/products/cash-back-credit-card/"
   },
   {
    "brand": "fidelity",
@@ -579,7 +607,8 @@
    "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.fidelity.com/spend-save/visa-signature-card"
-   ]
+   ],
+   "website": "https://www.fidelity.com/spend-save/visa-signature-card"
   },
   {
    "brand": "usbank",
@@ -592,7 +621,8 @@
    "description": "Fees and rates as stated on usbank.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.usbank.com/credit-cards/cash-plus-visa-signature-credit-card.html"
-   ]
+   ],
+   "website": "https://www.usbank.com/credit-cards/cash-plus-visa-signature-credit-card.html"
   },
   {
    "brand": "apple",
@@ -605,7 +635,8 @@
    "description": "Fees and rates as stated on apple.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.apple.com/apple-card/"
-   ]
+   ],
+   "website": "https://www.apple.com/apple-card/"
   },
   {
    "brand": "discover",
@@ -618,7 +649,8 @@
    "description": "Fees and rates as stated on discover.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.discover.com/credit-cards/secured/"
-   ]
+   ],
+   "website": "https://www.discover.com/credit-cards/secured/"
   },
   {
    "brand": "discover",
@@ -631,7 +663,8 @@
    "description": "Fees and rates as stated on discover.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.discover.com/credit-cards/student/it-card.html"
-   ]
+   ],
+   "website": "https://www.discover.com/credit-cards/student/it-card.html"
   },
   {
    "brand": "capitalone",
@@ -644,7 +677,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/platinum-secured/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/platinum-secured/"
   },
   {
    "brand": "capitalone",
@@ -657,7 +691,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/quicksilver-secured/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/quicksilver-secured/"
   },
   {
    "brand": "capitalone",
@@ -670,7 +705,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/platinum/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/platinum/"
   },
   {
    "brand": "capitalone",
@@ -683,7 +719,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/savor-student/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/savor-student/"
   },
   {
    "brand": "capitalone",
@@ -696,7 +733,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/credit-cards/quicksilver-student/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/credit-cards/quicksilver-student/"
   },
   {
    "brand": "bofa",
@@ -709,7 +747,8 @@
    "description": "Official page: bankofamerica.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.bankofamerica.com/credit-cards/products/secured-credit-card/"
-   ]
+   ],
+   "website": "https://www.bankofamerica.com/credit-cards/products/secured-credit-card/"
   },
   {
    "brand": "chase",
@@ -722,7 +761,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/business-credit-cards/ink/business-preferred"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/business-credit-cards/ink/business-preferred"
   },
   {
    "brand": "chase",
@@ -735,7 +775,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/business-credit-cards/ink/unlimited"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/business-credit-cards/ink/unlimited"
   },
   {
    "brand": "chase",
@@ -748,7 +789,8 @@
    "description": "Fees and rates as stated on creditcards.chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://creditcards.chase.com/business-credit-cards/ink/cash"
-   ]
+   ],
+   "website": "https://creditcards.chase.com/business-credit-cards/ink/cash"
   },
   {
    "brand": "amex",
@@ -761,7 +803,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-platinum-credit-card-amex/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-platinum-credit-card-amex/"
   },
   {
    "brand": "amex",
@@ -774,7 +817,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-gold-card-amex/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-gold-card-amex/"
   },
   {
    "brand": "capitalone",
@@ -787,7 +831,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/small-business/credit-cards/spark-cash-plus/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/small-business/credit-cards/spark-cash-plus/"
   },
   {
    "brand": "capitalone",
@@ -800,7 +845,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/small-business/credit-cards/venture-x-business/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/small-business/credit-cards/venture-x-business/"
   },
   {
    "brand": "ally",
@@ -813,7 +859,8 @@
    "description": "Fees and rates as stated on ally.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.ally.com/bank/online-savings-account/"
-   ]
+   ],
+   "website": "https://www.ally.com/bank/online-savings-account/"
   },
   {
    "brand": "marcus",
@@ -826,7 +873,8 @@
    "description": "Fees and rates as stated on marcus.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.marcus.com/us/en/savings/high-yield-savings"
-   ]
+   ],
+   "website": "https://www.marcus.com/us/en/savings/high-yield-savings"
   },
   {
    "brand": "capitalone",
@@ -839,7 +887,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
   },
   {
    "brand": "amex",
@@ -852,7 +901,8 @@
    "description": "Fees and rates as stated on americanexpress.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.americanexpress.com/en-us/banking/online-savings/account/"
-   ]
+   ],
+   "website": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
   },
   {
    "brand": "synchrony",
@@ -865,7 +915,8 @@
    "description": "Fees and rates as stated on synchronybank.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.synchronybank.com/banking/high-yield-savings/"
-   ]
+   ],
+   "website": "https://www.synchronybank.com/banking/high-yield-savings/"
   },
   {
    "brand": "barclays",
@@ -878,7 +929,8 @@
    "description": "Fees and rates as stated on banking.barclaysus.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://banking.barclaysus.com/"
-   ]
+   ],
+   "website": "https://banking.barclaysus.com/"
   },
   {
    "brand": "cit",
@@ -891,7 +943,8 @@
    "description": "Fees and rates as stated on cit.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.cit.com/cit-bank/platinum-savings"
-   ]
+   ],
+   "website": "https://www.cit.com/cit-bank/platinum-savings"
   },
   {
    "brand": "wealthfront",
@@ -904,7 +957,8 @@
    "description": "Fees and rates as stated on wealthfront.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.wealthfront.com/cash"
-   ]
+   ],
+   "website": "https://www.wealthfront.com/cash"
   },
   {
    "brand": "betterment",
@@ -917,7 +971,8 @@
    "description": "Fees and rates as stated on betterment.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.betterment.com/cash-reserve"
-   ]
+   ],
+   "website": "https://www.betterment.com/cash-reserve"
   },
   {
    "brand": "capitalone",
@@ -930,7 +985,8 @@
    "description": "Fees and rates as stated on capitalone.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.capitalone.com/bank/checking-accounts/online-checking-account/"
-   ]
+   ],
+   "website": "https://www.capitalone.com/bank/checking-accounts/online-checking-account/"
   },
   {
    "brand": "ally",
@@ -943,7 +999,8 @@
    "description": "Fees and rates as stated on ally.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.ally.com/bank/interest-checking-account/"
-   ]
+   ],
+   "website": "https://www.ally.com/bank/interest-checking-account/"
   },
   {
    "brand": "schwab",
@@ -956,7 +1013,8 @@
    "description": "Fees and rates as stated on schwab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.schwab.com/checking"
-   ]
+   ],
+   "website": "https://www.schwab.com/checking"
   },
   {
    "brand": "fidelity",
@@ -969,7 +1027,8 @@
    "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.fidelity.com/spend-save/fidelity-cash-management-account/overview"
-   ]
+   ],
+   "website": "https://www.fidelity.com/spend-save/fidelity-cash-management-account/overview"
   },
   {
    "brand": "axos",
@@ -982,7 +1041,8 @@
    "description": "Fees and rates as stated on axosbank.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.axosbank.com/personal/bank/checking-accounts/rewards-checking"
-   ]
+   ],
+   "website": "https://www.axosbank.com/personal/bank/checking-accounts/rewards-checking"
   },
   {
    "brand": "chase",
@@ -995,7 +1055,8 @@
    "description": "Fees and rates as stated on chase.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.chase.com/personal/checking/total-checking"
-   ]
+   ],
+   "website": "https://www.chase.com/personal/checking/total-checking"
   },
   {
    "brand": "revolut",
@@ -1008,7 +1069,8 @@
    "description": "Fees and rates as stated on revolut.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.revolut.com/en-US/our-pricing-plans/"
-   ]
+   ],
+   "website": "https://www.revolut.com/en-US/our-pricing-plans/"
   },
   {
    "brand": "fidelity",
@@ -1021,7 +1083,8 @@
    "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.fidelity.com/trading/the-fidelity-account"
-   ]
+   ],
+   "website": "https://www.fidelity.com/trading/the-fidelity-account"
   },
   {
    "brand": "schwab",
@@ -1034,7 +1097,8 @@
    "description": "Fees and rates as stated on schwab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.schwab.com/brokerage"
-   ]
+   ],
+   "website": "https://www.schwab.com/brokerage"
   },
   {
    "brand": "vanguard",
@@ -1047,7 +1111,8 @@
    "description": "Fees and rates as stated on investor.vanguard.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://investor.vanguard.com/accounts-plans/brokerage-accounts"
-   ]
+   ],
+   "website": "https://investor.vanguard.com/accounts-plans/brokerage-accounts"
   },
   {
    "brand": "robinhood",
@@ -1060,7 +1125,8 @@
    "description": "Fees and rates as stated on robinhood.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://robinhood.com/us/en/"
-   ]
+   ],
+   "website": "https://robinhood.com/us/en/"
   },
   {
    "brand": "ibkr",
@@ -1073,7 +1139,8 @@
    "description": "Fees and rates as stated on interactivebrokers.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php"
-   ]
+   ],
+   "website": "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php"
   },
   {
    "brand": "etrade",
@@ -1086,7 +1153,8 @@
    "description": "Fees and rates as stated on us.etrade.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://us.etrade.com/what-we-offer/investment-choices/stocks"
-   ]
+   ],
+   "website": "https://us.etrade.com/what-we-offer/investment-choices/stocks"
   },
   {
    "brand": "merrill",
@@ -1099,7 +1167,8 @@
    "description": "Fees and rates as stated on merrilledge.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.merrilledge.com/investing/merrill-self-directed-trading"
-   ]
+   ],
+   "website": "https://www.merrilledge.com/investing/merrill-self-directed-trading"
   },
   {
    "brand": "webull",
@@ -1112,7 +1181,8 @@
    "description": "Fees and rates as stated on webull.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.webull.com/pricing"
-   ]
+   ],
+   "website": "https://www.webull.com/pricing"
   },
   {
    "brand": "sofi",
@@ -1125,7 +1195,8 @@
    "description": "Fees and rates as stated on sofi.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.sofi.com/invest/"
-   ]
+   ],
+   "website": "https://www.sofi.com/invest/"
   },
   {
    "brand": "m1",
@@ -1138,7 +1209,8 @@
    "description": "Official page: m1.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://m1.com/invest/"
-   ]
+   ],
+   "website": "https://m1.com/invest/"
   },
   {
    "brand": "betterment",
@@ -1151,7 +1223,8 @@
    "description": "Fees and rates as stated on betterment.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.betterment.com/pricing"
-   ]
+   ],
+   "website": "https://www.betterment.com/pricing"
   },
   {
    "brand": "wealthfront",
@@ -1164,7 +1237,8 @@
    "description": "Official page: wealthfront.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.wealthfront.com/investing"
-   ]
+   ],
+   "website": "https://www.wealthfront.com/investing"
   },
   {
    "brand": "schwab",
@@ -1177,7 +1251,8 @@
    "description": "Fees and rates as stated on schwab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.schwab.com/intelligent-portfolios"
-   ]
+   ],
+   "website": "https://www.schwab.com/intelligent-portfolios"
   },
   {
    "brand": "vanguard",
@@ -1190,7 +1265,8 @@
    "description": "Fees and rates as stated on investor.vanguard.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://investor.vanguard.com/advice/digital-advisor"
-   ]
+   ],
+   "website": "https://investor.vanguard.com/advice/digital-advisor"
   },
   {
    "brand": "fidelity",
@@ -1203,7 +1279,8 @@
    "description": "Fees and rates as stated on fidelity.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.fidelity.com/managed-accounts/fidelity-go/overview"
-   ]
+   ],
+   "website": "https://www.fidelity.com/managed-accounts/fidelity-go/overview"
   },
   {
    "brand": "acorns",
@@ -1216,7 +1293,8 @@
    "description": "Fees and rates as stated on acorns.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.acorns.com/pricing/"
-   ]
+   ],
+   "website": "https://www.acorns.com/pricing/"
   },
   {
    "brand": "ynab",
@@ -1229,7 +1307,8 @@
    "description": "Fees and rates as stated on ynab.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.ynab.com/pricing"
-   ]
+   ],
+   "website": "https://www.ynab.com/pricing"
   },
   {
    "brand": "monarch",
@@ -1242,7 +1321,8 @@
    "description": "Official page: monarch.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.monarch.com/pricing"
-   ]
+   ],
+   "website": "https://www.monarch.com/pricing"
   },
   {
    "brand": "copilot",
@@ -1255,7 +1335,8 @@
    "description": "Fees and rates as stated on copilot.money on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.copilot.money/"
-   ]
+   ],
+   "website": "https://www.copilot.money/"
   },
   {
    "brand": "rocketmoney",
@@ -1268,7 +1349,8 @@
    "description": "Official page: rocketmoney.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.rocketmoney.com/"
-   ]
+   ],
+   "website": "https://www.rocketmoney.com/"
   },
   {
    "brand": "everydollar",
@@ -1281,7 +1363,8 @@
    "description": "Fees and rates as stated on ramseysolutions.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.ramseysolutions.com/ramseyplus/everydollar"
-   ]
+   ],
+   "website": "https://www.ramseysolutions.com/ramseyplus/everydollar"
   },
   {
    "brand": "quicken",
@@ -1294,7 +1377,8 @@
    "description": "Official page: quicken.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.quicken.com/products/simplifi/"
-   ]
+   ],
+   "website": "https://www.quicken.com/products/simplifi/"
   },
   {
    "brand": "pocketguard",
@@ -1307,7 +1391,8 @@
    "description": "Official page: pocketguard.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://pocketguard.com/"
-   ]
+   ],
+   "website": "https://pocketguard.com/"
   },
   {
    "brand": "tiller",
@@ -1320,7 +1405,8 @@
    "description": "Fees and rates as stated on tiller.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://tiller.com/pricing/"
-   ]
+   ],
+   "website": "https://tiller.com/pricing/"
   },
   {
    "brand": "intuit",
@@ -1333,7 +1419,8 @@
    "description": "Fees and rates as stated on turbotax.intuit.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://turbotax.intuit.com/personal-taxes/online/"
-   ]
+   ],
+   "website": "https://turbotax.intuit.com/personal-taxes/online/"
   },
   {
    "brand": "freetaxusa",
@@ -1346,7 +1433,8 @@
    "description": "Fees and rates as stated on freetaxusa.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.freetaxusa.com/"
-   ]
+   ],
+   "website": "https://www.freetaxusa.com/"
   },
   {
    "brand": "hrblock",
@@ -1359,7 +1447,8 @@
    "description": "Fees and rates as stated on hrblock.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.hrblock.com/online-tax-filing/"
-   ]
+   ],
+   "website": "https://www.hrblock.com/online-tax-filing/"
   },
   {
    "brand": "taxact",
@@ -1372,7 +1461,8 @@
    "description": "Fees and rates as stated on taxact.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.taxact.com/"
-   ]
+   ],
+   "website": "https://www.taxact.com/"
   },
   {
    "brand": "cashapp",
@@ -1385,7 +1475,8 @@
    "description": "Fees and rates as stated on cash.app on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://cash.app/taxes"
-   ]
+   ],
+   "website": "https://cash.app/taxes"
   },
   {
    "brand": "taxslayer",
@@ -1398,7 +1489,8 @@
    "description": "Fees and rates as stated on taxslayer.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.taxslayer.com/"
-   ]
+   ],
+   "website": "https://www.taxslayer.com/"
   },
   {
    "brand": "wise",
@@ -1411,7 +1503,8 @@
    "description": "Fees and rates as stated on wise.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://wise.com/us/pricing/"
-   ]
+   ],
+   "website": "https://wise.com/us/pricing/"
   },
   {
    "brand": "remitly",
@@ -1424,7 +1517,8 @@
    "description": "Official page: remitly.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.remitly.com/us/en"
-   ]
+   ],
+   "website": "https://www.remitly.com/us/en"
   },
   {
    "brand": "ofx",
@@ -1437,7 +1531,8 @@
    "description": "Official page: ofx.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.ofx.com/en-us/"
-   ]
+   ],
+   "website": "https://www.ofx.com/en-us/"
   },
   {
    "brand": "westernunion",
@@ -1450,7 +1545,8 @@
    "description": "Official page: westernunion.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.westernunion.com/us/en/home.html"
-   ]
+   ],
+   "website": "https://www.westernunion.com/us/en/home.html"
   },
   {
    "brand": "xoom",
@@ -1463,7 +1559,8 @@
    "description": "Official page: xoom.com (checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.xoom.com/"
-   ]
+   ],
+   "website": "https://www.xoom.com/"
   },
   {
    "brand": "worldremit",
@@ -1476,7 +1573,8 @@
    "description": "Fees and rates as stated on worldremit.com on 2026-10-29. Rates, fees and terms change; check the provider's site before you apply or open an account.",
    "sources": [
     "https://www.worldremit.com/en-us"
-   ]
+   ],
+   "website": "https://www.worldremit.com/en-us"
   }
  ]
 }
