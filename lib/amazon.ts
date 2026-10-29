@@ -7,6 +7,8 @@
  *
  * Server-only. Credentials are read from the environment by name and never leave this module:
  * AMAZON_CREATORS_API_CREDENTIAL_ID, AMAZON_CREATORS_API_CREDENTIAL_SECRET and AMAZON_PA_API_PARTNER_TAG (the associate tag).
+ * AMAZON_AFFILIATE_TAG, when set, replaces the associate tag in the links visitors click (and only there), so clicks
+ * from the Recs sites show up under their own tracking ID; API calls keep the partner tag.
  */
 
 export type AmazonOffer = { asin: string; title: string; price: string | null; url: string };
@@ -24,6 +26,11 @@ export const isAsin = (value: string) => /^[A-Z0-9]{10}$/.test(value);
 export function amazonCredentials(env: Record<string, string | undefined> = process.env): AmazonCredentials | null {
   const id = env.AMAZON_CREATORS_API_CREDENTIAL_ID, secret = env.AMAZON_CREATORS_API_CREDENTIAL_SECRET, partnerTag = env.AMAZON_PA_API_PARTNER_TAG;
   return id && secret && partnerTag ? { id, secret, partnerTag } : null;
+}
+
+/** The tag the links visitors click carry: AMAZON_AFFILIATE_TAG when set, otherwise the API's AMAZON_PA_API_PARTNER_TAG. */
+export function affiliateTag(env: Record<string, string | undefined> = process.env) {
+  return env.AMAZON_AFFILIATE_TAG?.trim() || env.AMAZON_PA_API_PARTNER_TAG?.trim() || "";
 }
 
 /** The affiliate link RedRecs uses: the product's detail page carrying the associate tag. */

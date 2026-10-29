@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { envBody, isAssociateTag, keyStates, planProject, tagFor, tagOverrideKey } from "../lib/amazon-env";
+import { AMAZON_KEYS, LINK_TAG_KEY, envBody, isAssociateTag, keyStates, planProject, tagFor, tagOverrideKey } from "../lib/amazon-env";
 
 const all = (target: string[]) => [
   { id: "1", key: "AMAZON_CREATORS_API_CREDENTIAL_ID", target },
@@ -52,4 +52,15 @@ test("credentials are sent as sensitive variables, the public tag as encrypted",
     { key: "AMAZON_CREATORS_API_CREDENTIAL_SECRET", value: "s", type: "sensitive", target: ["production", "preview"] });
   assert.deepEqual(envBody({ kind: "update", key: "AMAZON_PA_API_PARTNER_TAG", envId: "3", targets: ["production"] }, "t-20"),
     { value: "t-20", type: "encrypted", target: ["production"] });
+});
+
+test("the link tag is added only when asked for, and on its own leaves the API variables alone", () => {
+  const both = ["production", "preview"];
+  assert.deepEqual(planProject(all(both)), []);
+  assert.deepEqual(planProject(all(both), false, [...AMAZON_KEYS, LINK_TAG_KEY]).map(s => [s.kind, s.key, s.targets]),
+    [["create", "AMAZON_AFFILIATE_TAG", ["production", "preview"]]]);
+  const withLink = [...all(both), { id: "4", key: LINK_TAG_KEY, target: both }];
+  assert.deepEqual(planProject(withLink, true, [LINK_TAG_KEY]).map(s => [s.kind, s.key, s.targets]),
+    [["update", "AMAZON_AFFILIATE_TAG", ["production", "preview"]]]);
+  assert.equal(envBody({ kind: "create", key: LINK_TAG_KEY, targets: ["production"] }, "recssite-20").type, "encrypted");
 });
