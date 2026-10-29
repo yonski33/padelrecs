@@ -283,6 +283,7 @@ button:disabled { opacity: .6; cursor: progress; }
 .site-footer form { display: inline; }
 .footer-line { display: inline-flex; align-items: center; gap: 8px; }
 .footer-line svg { width: 16px; height: 16px; }
+.site-footer .footer-notice { display: block; margin: 14px auto 0; font-size: 12.5px; line-height: 1.5; color: var(--ink-3); }
 /* Affiliate note at the top of product pages on niches with Amazon links. */
 .affiliate-note { margin: 20px 0 0; padding: 12px 16px; background: var(--tint); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-3); }
 

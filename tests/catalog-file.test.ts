@@ -539,3 +539,27 @@ test("the HomeGymRecs starter catalog: sourced dumbbells, racks, benches, bars, 
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Bowflex SelectTech 552")?.surface, "5–52.5 lb");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "REP AB-5200 2.0")?.shape, "Bench");
 });
+
+test("the MoneyRecs starter catalog: every category, official https sources, dated rate cells and the rates-change note on every product", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/money.json");
+  const snapshot = catalogSnapshot(catalog, "moneyrecs", "catalog:test", false);
+  assert(snapshot.tables.rackets.length >= 90);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.money.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/money");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(r.balance, `${r.name}: no type`);
+    assert.match(r.description ?? "", new RegExp(`${catalog.checked}.*Rates, fees and terms change; check the provider's site`), `${r.name}: checked date and rates note`);
+    // An APY is only ever shown with the date it was stated for.
+    if (/APY/.test(r.surface ?? "")) assert.match(r.surface!, /as of \d{4}-\d{2}-\d{2}/, `${r.name}: APY without a date`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 5, `${c}: at least five products`);
+  assert(catalog.products.every(p => p.sources.length === 1 && p.sources[0].startsWith("https://")));
+  for (const name of ["Chase Sapphire Preferred", "American Express Gold Card", "Capital One Venture X", "Citi Double Cash", "Wells Fargo Active Cash", "Discover it Secured", "Ink Business Preferred", "Marcus Online Savings Account", "Fidelity Brokerage Account", "YNAB", "FreeTaxUSA", "Wise", "Revolut"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Chase Sapphire Preferred")?.weight, "$95 annual fee");
+  assert.equal(snapshot.tables.rackets.find(r => r.name === "Marcus Online Savings Account")?.surface, "3.50% APY as of 2026-10-29");
+});

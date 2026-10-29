@@ -146,7 +146,8 @@
     "kitchen": "kitchenrecs",
     "snowboard": "snowboardrecs",
     "tabletennis": "tabletennisrecs",
-    "homegym": "homegymrecs"
+    "homegym": "homegymrecs",
+    "money": "moneyrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
