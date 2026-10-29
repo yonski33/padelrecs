@@ -5,6 +5,7 @@ import { parseSnapshot, snapshotSource, type Snapshot } from "./transfer";
 
 // A niche's researched starter catalog (db/catalogs/<niche>.json): brands and products with the sources each value came from.
 const text = z.string().trim().min(1).nullable();
+const https = z.string().url().regex(/^https:\/\//, "must be an https:// address");
 const file = z.object({
   about: z.string(), checked: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   // Catalogs first imported with years in their names (pickleball): ids keep "<name> <year>" so re-imports match the rows already there.
@@ -19,6 +20,9 @@ const file = z.object({
     slug: z.string().regex(/^[a-z0-9-]+$/).optional(),
     // Only for a product renamed after its first import: the id it was imported with, so a re-import still matches it.
     id: z.string().regex(/^[a-z0-9-]+$/).optional(),
+    // Niches with `website` links (lib/product-links.ts): the product's official site, read from the vendor, and later an
+    // affiliate link that replaces it on the button. scripts/sync-product-links.ts copies both onto products already imported.
+    website: https.optional(), affiliateUrl: https.optional(),
   }).strict()),
 }).strict();
 export type CatalogFile = z.infer<typeof file>;
@@ -40,7 +44,8 @@ export function catalogSnapshot(catalog: CatalogFile, schema: string, origin: st
         const name = withYears ? `${p.name} ${year}` : p.name, slug = p.slug ?? slugify(name);
         const id = p.id ?? (catalog.idsWithYear && !withYears ? slugify(`${p.name} ${year}`) : slug);
         if (!catalog.brands.some(b => b.id === p.brand)) throw new Error(`Unknown brand "${p.brand}" for ${name}`);
-        return { id, brand_id: p.brand, name, slug, year, image_url: null, shape: p.shape, weight: p.weight, balance: p.balance ?? p.swingWeight ?? null, surface: p.surface, core: p.core, description: p.description ?? null, created_at: createdAt };
+        return { id, brand_id: p.brand, name, slug, year, image_url: null, shape: p.shape, weight: p.weight, balance: p.balance ?? p.swingWeight ?? null, surface: p.surface, core: p.core, description: p.description ?? null,
+          ...(p.website ? { website_url: p.website } : {}), ...(p.affiliateUrl ? { affiliate_url: p.affiliateUrl } : {}), created_at: createdAt };
       }),
       reviews: [], external_reviews: [],
     },

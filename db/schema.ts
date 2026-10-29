@@ -6,7 +6,10 @@ import { niche } from "../lib/niche";
 export const catalogSchema = pgSchema(niche.schema);
 export const brands = catalogSchema.table("brands", { id: text("id").primaryKey(), name: text("name").notNull(), slug: text("slug").notNull().unique() }).enableRLS();
 export const rackets = catalogSchema.table("rackets", {
- id: text("id").primaryKey(), brandId: text("brand_id").notNull().references(() => brands.id), name: text("name").notNull(), slug: text("slug").notNull().unique(), year: integer("year").notNull(), imageUrl: text("image_url"), shape: text("shape"), weight: text("weight"), balance: text("balance"), surface: text("surface"), core: text("core"), description: text("description"), createdAt: text("created_at").notNull()
+ id: text("id").primaryKey(), brandId: text("brand_id").notNull().references(() => brands.id), name: text("name").notNull(), slug: text("slug").notNull().unique(), year: integer("year").notNull(), imageUrl: text("image_url"), shape: text("shape"), weight: text("weight"), balance: text("balance"), surface: text("surface"), core: text("core"), description: text("description"),
+  // The product's official website (software, financial products) and, once the site has one, an affiliate link that
+  // replaces it on the "Visit site" button. See lib/product-links.ts.
+  websiteUrl: text("website_url"), affiliateUrl: text("affiliate_url"), createdAt: text("created_at").notNull()
 }, table => [index("rackets_brand_idx").on(table.brandId)]).enableRLS();
 export const reviews = catalogSchema.table("reviews", {
  id: text("id").primaryKey(), racketId: text("racket_id").notNull().references(() => rackets.id), rating: integer("rating").notNull(), powerRating: integer("power_rating"), controlRating: integer("control_rating"), maneuverabilityRating: integer("maneuverability_rating"), comfortRating: integer("comfort_rating"), forgivenessRating: integer("forgiveness_rating"), playerLevel: text("player_level"), playingSide: text("playing_side"), playingStyle: text("playing_style"), timeWithRacket: text("time_with_racket"), reviewText: text("review_text").notNull(), alias: text("alias"), email: text("email"), status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull()

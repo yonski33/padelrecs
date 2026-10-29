@@ -128,6 +128,13 @@ export type Niche = {
   /** Amazon affiliate links on product pages (lib/amazon.ts), searched in this Amazon category ("Beauty"). They appear
    *  once the deployment also has the Amazon variables (lib/amazon-offer.ts amazonLinksOn; scripts/set-amazon-env.mjs). */
   amazon?: { searchIndex: string; marketplace?: string };
+  /** Product pages link to the product's own website ("Visit site") instead of Amazon (SoftwareRecs, MoneyRecs). Each product's
+   *  website_url, or its affiliate_url when it has one, is the link (lib/product-links.ts); products without either show
+   *  "Add your review" there as usual. Pick this or `amazon`, not both. */
+  website?: { label?: string };
+  /** A short note under the spec strip on every product page, e.g. "Rates, fees and terms change; check the issuer's site.
+   *  Checked {checked}." {checked} becomes the date the product's details were read (its catalog `checked` date). */
+  specsNote?: string;
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */
   examples: { brand: string; model: string; year: number; search: string };
