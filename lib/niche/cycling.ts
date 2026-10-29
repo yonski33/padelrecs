@@ -104,9 +104,9 @@ export const cycling: Niche = {
   shapeFilter: ["Road", "Gravel", "Mountain"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   typePages: [
-    { shape: "Road", slug: "road-bikes", label: "Road bikes", intro: "Race, aero, endurance and triathlon road bikes" },
-    { shape: "Gravel", slug: "gravel-bikes", label: "Gravel bikes", intro: "Gravel race, adventure and cyclocross bikes" },
-    { shape: "Mountain", slug: "mountain-bikes", label: "Mountain bikes", intro: "Cross-country, trail, enduro and downhill bikes, full suspension and hardtail" },
+    { shape: "Road", slug: "road-bikes", label: "Road bikes", seoLabel: "Road Bikes", intro: "Race, aero, endurance and triathlon road bikes" },
+    { shape: "Gravel", slug: "gravel-bikes", label: "Gravel bikes", seoLabel: "Gravel Bikes", intro: "Gravel race, adventure and cyclocross bikes" },
+    { shape: "Mountain", slug: "mountain-bikes", label: "Mountain bikes", seoLabel: "Mountain Bikes", intro: "Cross-country, trail, enduro and downhill bikes, full suspension and hardtail" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

@@ -107,9 +107,9 @@ export const audio: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Headphones", slug: "headphones", label: "Headphones", intro: "Over-ear and on-ear headphones, wired and wireless, open-back and closed-back" },
-    { shape: "IEMs", slug: "iems", label: "IEMs", one: "IEM", intro: "Wired in-ear monitors, from budget single dynamics to multi-driver hybrids" },
-    { shape: "Earbuds", slug: "earbuds", label: "Earbuds", intro: "True wireless earbuds, with and without noise cancelling" },
+    { shape: "Headphones", slug: "headphones", label: "Headphones", seoLabel: "Headphones", intro: "Over-ear and on-ear headphones, wired and wireless, open-back and closed-back" },
+    { shape: "IEMs", slug: "iems", label: "IEMs", seoLabel: "IEMs", one: "IEM", intro: "Wired in-ear monitors, from budget single dynamics to multi-driver hybrids" },
+    { shape: "Earbuds", slug: "earbuds", label: "Earbuds", seoLabel: "Earbuds", intro: "True wireless earbuds, with and without noise cancelling" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

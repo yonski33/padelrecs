@@ -97,11 +97,11 @@ export const golf: Niche = {
   ],
   shapeFilter: ["Low spin", "Max forgiveness", "Draw", "Lightweight", "Mini driver"],
   typePages: [
-    { shape: "Low spin", slug: "low-spin-drivers", label: "Low spin", intro: "Lower-spinning drivers for faster swings and players fighting a high ball flight" },
-    { shape: "Max forgiveness", slug: "forgiving-drivers", label: "Max forgiveness", intro: "The most stable, highest-MOI heads for keeping mishits in play" },
-    { shape: "Draw", slug: "draw-drivers", label: "Draw", intro: "Draw-biased drivers that help straighten a slice" },
-    { shape: "Lightweight", slug: "lightweight-drivers", label: "Lightweight", intro: "Lighter builds for moderate swing speeds" },
-    { shape: "Mini driver", slug: "mini-drivers", label: "Mini drivers", intro: "Smaller-headed drivers that sit between a driver and a 3-wood" },
+    { shape: "Low spin", slug: "low-spin-drivers", label: "Low spin", seoLabel: "Low Spin Drivers", intro: "Lower-spinning drivers for faster swings and players fighting a high ball flight" },
+    { shape: "Max forgiveness", slug: "forgiving-drivers", label: "Max forgiveness", seoLabel: "Forgiving Drivers", intro: "The most stable, highest-MOI heads for keeping mishits in play" },
+    { shape: "Draw", slug: "draw-drivers", label: "Draw", seoLabel: "Draw Drivers", intro: "Draw-biased drivers that help straighten a slice" },
+    { shape: "Lightweight", slug: "lightweight-drivers", label: "Lightweight", seoLabel: "Lightweight Drivers", intro: "Lighter builds for moderate swing speeds" },
+    { shape: "Mini driver", slug: "mini-drivers", label: "Mini drivers", seoLabel: "Mini Drivers", intro: "Smaller-headed drivers that sit between a driver and a 3-wood" },
   ],
   rowDetail: { column: "weight", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

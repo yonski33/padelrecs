@@ -113,9 +113,9 @@ export const tabletennis: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Blade", slug: "blades", label: "Blades", intro: "Table tennis blades: all-wood and carbon, from allround to the fastest offensive blades" },
-    { shape: "Rubber", slug: "rubbers", label: "Rubbers", intro: "Inverted, short-pips and long-pips rubbers: tensioned European and Japanese rubbers and tacky Chinese ones" },
-    { shape: "Pre-assembled racket", slug: "pre-assembled-rackets", label: "Pre-assembled rackets", intro: "Ready-made rackets with the rubbers already glued on, for starting out or a step up" },
+    { shape: "Blade", slug: "blades", label: "Blades", seoLabel: "Table Tennis Blades", intro: "Table tennis blades: all-wood and carbon, from allround to the fastest offensive blades" },
+    { shape: "Rubber", slug: "rubbers", label: "Rubbers", seoLabel: "Table Tennis Rubbers", intro: "Inverted, short-pips and long-pips rubbers: tensioned European and Japanese rubbers and tacky Chinese ones" },
+    { shape: "Pre-assembled racket", slug: "pre-assembled-rackets", label: "Pre-assembled rackets", seoLabel: "Pre-Assembled Table Tennis Rackets", intro: "Ready-made rackets with the rubbers already glued on, for starting out or a step up" },
   ],
   rowDetail: { column: "core", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

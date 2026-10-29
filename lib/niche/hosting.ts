@@ -106,16 +106,16 @@ export const hosting: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Shared hosting", slug: "shared-hosting", label: "Shared", intro: "Shared web hosting with cPanel or the host's own panel" },
-    { shape: "Managed WordPress", slug: "wordpress-hosting", label: "WordPress", intro: "Managed WordPress hosting", one: "WordPress host" },
-    { shape: "VPS hosting", slug: "vps-hosting", label: "VPS", intro: "VPS and cloud server providers", one: "VPS" },
-    { shape: "Cloud platform", slug: "cloud-hosting", label: "Cloud", intro: "Cloud platforms and app hosting (PaaS)", one: "Cloud" },
-    { shape: "Static & frontend hosting", slug: "static-hosting", label: "Static", intro: "Static site and frontend hosting with Git deploys", one: "Static hosting" },
-    { shape: "Managed cloud", slug: "managed-cloud", label: "Managed cloud", intro: "Managed cloud hosting and server control panels for your own servers" },
-    { shape: "Dedicated server", slug: "dedicated-servers", label: "Dedicated", intro: "Dedicated and bare metal server providers" },
-    { shape: "Website builder", slug: "website-builders", label: "Builders", intro: "Website builders and hosted site and store platforms", one: "Builder" },
-    { shape: "Domain registrar", slug: "domain-registrars", label: "Domains", intro: "Domain name registrars", one: "Registrar" },
-    { shape: "Email hosting", slug: "email-hosting", label: "Email", intro: "Email hosting for your own domain" },
+    { shape: "Shared hosting", slug: "shared-hosting", label: "Shared", seoLabel: "Shared Hosting", intro: "Shared web hosting with cPanel or the host's own panel" },
+    { shape: "Managed WordPress", slug: "wordpress-hosting", label: "WordPress", seoLabel: "WordPress Hosting", intro: "Managed WordPress hosting", one: "WordPress host" },
+    { shape: "VPS hosting", slug: "vps-hosting", label: "VPS", seoLabel: "VPS Hosting", intro: "VPS and cloud server providers", one: "VPS" },
+    { shape: "Cloud platform", slug: "cloud-hosting", label: "Cloud", seoLabel: "Cloud Hosting", intro: "Cloud platforms and app hosting (PaaS)", one: "Cloud" },
+    { shape: "Static & frontend hosting", slug: "static-hosting", label: "Static", seoLabel: "Static Site Hosting", intro: "Static site and frontend hosting with Git deploys", one: "Static hosting" },
+    { shape: "Managed cloud", slug: "managed-cloud", label: "Managed cloud", seoLabel: "Managed Cloud Hosting", intro: "Managed cloud hosting and server control panels for your own servers" },
+    { shape: "Dedicated server", slug: "dedicated-servers", label: "Dedicated", seoLabel: "Dedicated Servers", intro: "Dedicated and bare metal server providers" },
+    { shape: "Website builder", slug: "website-builders", label: "Builders", seoLabel: "Website Builders", intro: "Website builders and hosted site and store platforms", one: "Builder" },
+    { shape: "Domain registrar", slug: "domain-registrars", label: "Domains", seoLabel: "Domain Registrars", intro: "Domain name registrars", one: "Registrar" },
+    { shape: "Email hosting", slug: "email-hosting", label: "Email", seoLabel: "Email Hosting", intro: "Email hosting for your own domain" },
   ],
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [

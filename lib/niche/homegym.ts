@@ -111,13 +111,13 @@ export const homegym: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Dumbbells", slug: "dumbbells", label: "Dumbbells", intro: "Adjustable dumbbells and fixed hex, rubber-coated and urethane dumbbells" },
-    { shape: "Rack", slug: "racks", label: "Racks", intro: "Power racks, half racks, folding and wall-mounted racks and squat stands" },
-    { shape: "Bench", slug: "benches", label: "Benches", intro: "Flat, adjustable, FID and folding weight benches" },
-    { shape: "Barbell", slug: "barbells", label: "Barbells", intro: "Multipurpose, power, weightlifting, deadlift, trap and specialty bars" },
-    { shape: "Plates", slug: "plates", label: "Plates", intro: "Bumper, competition, iron, urethane and calibrated plates" },
-    { shape: "Machine", slug: "machines", label: "Machines", intro: "Functional trainers, all-in-one trainers, cable towers, Smith machines, lat pulldowns, belt squats and leg presses" },
-    { shape: "Cardio", slug: "cardio", label: "Cardio", intro: "Rowers, air bikes, exercise bikes, ski ergs and treadmills" },
+    { shape: "Dumbbells", slug: "dumbbells", label: "Dumbbells", seoLabel: "Dumbbells", intro: "Adjustable dumbbells and fixed hex, rubber-coated and urethane dumbbells" },
+    { shape: "Rack", slug: "racks", label: "Racks", seoLabel: "Power Racks", intro: "Power racks, half racks, folding and wall-mounted racks and squat stands" },
+    { shape: "Bench", slug: "benches", label: "Benches", seoLabel: "Weight Benches", intro: "Flat, adjustable, FID and folding weight benches" },
+    { shape: "Barbell", slug: "barbells", label: "Barbells", seoLabel: "Barbells", intro: "Multipurpose, power, weightlifting, deadlift, trap and specialty bars" },
+    { shape: "Plates", slug: "plates", label: "Plates", seoLabel: "Weight Plates", intro: "Bumper, competition, iron, urethane and calibrated plates" },
+    { shape: "Machine", slug: "machines", label: "Machines", seoLabel: "Home Gym Machines", intro: "Functional trainers, all-in-one trainers, cable towers, Smith machines, lat pulldowns, belt squats and leg presses" },
+    { shape: "Cardio", slug: "cardio", label: "Cardio", seoLabel: "Home Cardio Machines", intro: "Rowers, air bikes, exercise bikes, ski ergs and treadmills" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

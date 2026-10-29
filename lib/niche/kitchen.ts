@@ -111,12 +111,12 @@ export const kitchen: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Air fryer", slug: "air-fryers", label: "Air fryers", intro: "Basket, dual-basket, stacked and glass air fryers" },
-    { shape: "Countertop oven", slug: "countertop-ovens", label: "Countertop ovens", intro: "Toaster ovens, air fryer ovens, flip-up and double ovens and steam ovens" },
-    { shape: "Blender", slug: "blenders", label: "Blenders", intro: "Personal, portable, full-size and high-speed blenders and blender kitchen systems" },
-    { shape: "Stand mixer", slug: "stand-mixers", label: "Stand mixers", intro: "Tilt-head and bowl-lift stand mixers and kitchen machines" },
-    { shape: "Food processor", slug: "food-processors", label: "Food processors", intro: "Food processors from compact to 16-cup" },
-    { shape: "Multicooker", slug: "multicookers", label: "Multicookers", intro: "Electric pressure cookers, multicookers and pressure cooker–air fryer combos" },
+    { shape: "Air fryer", slug: "air-fryers", label: "Air fryers", seoLabel: "Air Fryers", intro: "Basket, dual-basket, stacked and glass air fryers" },
+    { shape: "Countertop oven", slug: "countertop-ovens", label: "Countertop ovens", seoLabel: "Countertop Ovens", intro: "Toaster ovens, air fryer ovens, flip-up and double ovens and steam ovens" },
+    { shape: "Blender", slug: "blenders", label: "Blenders", seoLabel: "Blenders", intro: "Personal, portable, full-size and high-speed blenders and blender kitchen systems" },
+    { shape: "Stand mixer", slug: "stand-mixers", label: "Stand mixers", seoLabel: "Stand Mixers", intro: "Tilt-head and bowl-lift stand mixers and kitchen machines" },
+    { shape: "Food processor", slug: "food-processors", label: "Food processors", seoLabel: "Food Processors", intro: "Food processors from compact to 16-cup" },
+    { shape: "Multicooker", slug: "multicookers", label: "Multicookers", seoLabel: "Multicookers", intro: "Electric pressure cookers, multicookers and pressure cooker–air fryer combos" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

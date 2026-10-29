@@ -110,12 +110,12 @@ export const climbing: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Climbing shoe", slug: "climbing-shoes", label: "Shoes", intro: "Climbing shoes for bouldering, sport, trad and the gym: velcro, lace-up and slippers, flat to aggressive" },
-    { shape: "Harness", slug: "harnesses", label: "Harnesses", intro: "Climbing harnesses for the gym, sport, trad, alpine and kids" },
-    { shape: "Belay device", slug: "belay-devices", label: "Belay devices", intro: "Tube and guide-mode belay devices, assisted-braking devices like the GRIGRI, figure 8s and belay assists" },
-    { shape: "Rope", slug: "ropes", label: "Ropes", intro: "Dynamic single, half and twin climbing ropes, dry-treated and not" },
-    { shape: "Chalk bag", slug: "chalk-bags", label: "Chalk bags", intro: "Chalk bags and bouldering chalk buckets" },
-    { shape: "Crash pad", slug: "crash-pads", label: "Crash pads", intro: "Bouldering crash pads, from sit-start pads to highball pads" },
+    { shape: "Climbing shoe", slug: "climbing-shoes", label: "Shoes", seoLabel: "Climbing Shoes", intro: "Climbing shoes for bouldering, sport, trad and the gym: velcro, lace-up and slippers, flat to aggressive" },
+    { shape: "Harness", slug: "harnesses", label: "Harnesses", seoLabel: "Climbing Harnesses", intro: "Climbing harnesses for the gym, sport, trad, alpine and kids" },
+    { shape: "Belay device", slug: "belay-devices", label: "Belay devices", seoLabel: "Belay Devices", intro: "Tube and guide-mode belay devices, assisted-braking devices like the GRIGRI, figure 8s and belay assists" },
+    { shape: "Rope", slug: "ropes", label: "Ropes", seoLabel: "Climbing Ropes", intro: "Dynamic single, half and twin climbing ropes, dry-treated and not" },
+    { shape: "Chalk bag", slug: "chalk-bags", label: "Chalk bags", seoLabel: "Chalk Bags", intro: "Chalk bags and bouldering chalk buckets" },
+    { shape: "Crash pad", slug: "crash-pads", label: "Crash pads", seoLabel: "Crash Pads", intro: "Bouldering crash pads, from sit-start pads to highball pads" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

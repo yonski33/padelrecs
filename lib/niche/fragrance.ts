@@ -113,9 +113,9 @@ export const fragrance: Niche = {
   shapeFilter: FRAGRANCE_FOR,
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   typePages: [
-    { shape: "Men", slug: "mens-fragrances", label: "For men", intro: "Colognes and fragrances sold for men" },
-    { shape: "Women", slug: "womens-fragrances", label: "For women", intro: "Perfumes and fragrances sold for women" },
-    { shape: "Unisex", slug: "unisex-fragrances", label: "Unisex", intro: "Fragrances sold for everyone" },
+    { shape: "Men", slug: "mens-fragrances", label: "For men", seoLabel: "Men's Fragrances", intro: "Colognes and fragrances sold for men" },
+    { shape: "Women", slug: "womens-fragrances", label: "For women", seoLabel: "Women's Fragrances", intro: "Perfumes and fragrances sold for women" },
+    { shape: "Unisex", slug: "unisex-fragrances", label: "Unisex", seoLabel: "Unisex Fragrances", intro: "Fragrances sold for everyone" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

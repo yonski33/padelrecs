@@ -109,10 +109,10 @@ export const gaming: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Mouse", slug: "mice", label: "Mice", intro: "Gaming mice, wired and wireless, symmetrical and ergonomic" },
-    { shape: "Keyboard", slug: "keyboards", label: "Keyboards", intro: "Mechanical, optical and Hall effect gaming keyboards" },
-    { shape: "Headset", slug: "headsets", label: "Headsets", intro: "Gaming headsets and earbuds, open and closed-back" },
-    { shape: "Controller", slug: "controllers", label: "Controllers", intro: "Gamepads for PC, PlayStation, Xbox and Switch" },
+    { shape: "Mouse", slug: "mice", label: "Mice", seoLabel: "Gaming Mice", intro: "Gaming mice, wired and wireless, symmetrical and ergonomic" },
+    { shape: "Keyboard", slug: "keyboards", label: "Keyboards", seoLabel: "Gaming Keyboards", intro: "Mechanical, optical and Hall effect gaming keyboards" },
+    { shape: "Headset", slug: "headsets", label: "Headsets", seoLabel: "Gaming Headsets", intro: "Gaming headsets and earbuds, open and closed-back" },
+    { shape: "Controller", slug: "controllers", label: "Controllers", seoLabel: "Game Controllers", intro: "Gamepads for PC, PlayStation, Xbox and Switch" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Monitors moved to MonitorRecs (2026-10-23): their old pages 301 there.

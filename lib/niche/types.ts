@@ -123,6 +123,9 @@ export type Niche = {
     shape: string; slug: string; label: string; intro: string;
     /** Short singular label for the category pill on review cards ("IEM"). Defaults to `shape`. */
     one?: string;
+    /** Plural keyword phrase for search: the hub's title ("Best Mirrorless Cameras – …"), H1, description and share image,
+     *  where `label` is short menu text ("Mirrorless"). Defaults to `label`. */
+    seoLabel?: string;
   }[];
   /** Product pages live under their type page, /<type slug>/<product slug> (SoftwareRecs /vpns/mullvad-vpn), instead of
    *  /<productPath>/<slug>. Needs typePages. Old /<productPath>/<slug> and /rackets/<slug> addresses 301 there (proxy.ts);

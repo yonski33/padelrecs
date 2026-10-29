@@ -97,12 +97,12 @@ export const running: Niche = {
   ],
   shapeFilter: ["Daily trainer", "Max cushion", "Stability", "Tempo", "Racing", "Trail"],
   typePages: [
-    { shape: "Daily trainer", slug: "daily-trainers", label: "Daily trainers", intro: "Everyday shoes for easy and steady miles" },
-    { shape: "Max cushion", slug: "max-cushion", label: "Max cushion", intro: "The softest, highest-stack shoes for long and recovery runs" },
-    { shape: "Stability", slug: "stability", label: "Stability", intro: "Supportive shoes for runners who overpronate" },
-    { shape: "Tempo", slug: "tempo", label: "Tempo", intro: "Light, bouncy shoes for workouts and uptempo runs" },
-    { shape: "Racing", slug: "racing", label: "Racing", intro: "Plated race-day super shoes and racing flats" },
-    { shape: "Trail", slug: "trail", label: "Trail", intro: "Trail and off-road shoes" },
+    { shape: "Daily trainer", slug: "daily-trainers", label: "Daily trainers", seoLabel: "Daily Trainer Running Shoes", intro: "Everyday shoes for easy and steady miles" },
+    { shape: "Max cushion", slug: "max-cushion", label: "Max cushion", seoLabel: "Max Cushion Running Shoes", intro: "The softest, highest-stack shoes for long and recovery runs" },
+    { shape: "Stability", slug: "stability", label: "Stability", seoLabel: "Stability Running Shoes", intro: "Supportive shoes for runners who overpronate" },
+    { shape: "Tempo", slug: "tempo", label: "Tempo", seoLabel: "Tempo Running Shoes", intro: "Light, bouncy shoes for workouts and uptempo runs" },
+    { shape: "Racing", slug: "racing", label: "Racing", seoLabel: "Racing Shoes", intro: "Plated race-day super shoes and racing flats" },
+    { shape: "Trail", slug: "trail", label: "Trail", seoLabel: "Trail Running Shoes", intro: "Trail and off-road shoes" },
   ],
   rowDetail: { column: "core", suffix: " drop" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
