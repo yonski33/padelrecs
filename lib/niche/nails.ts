@@ -109,6 +109,8 @@ export const nails: Niche = {
   ],
   shapeFilter: ["Nail polish", "Gel polish", "Base & top coat", "Press-on nails", "Nail treatment", "Cuticle oil"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Nail polish", slug: "nail-polish", label: "Nail polish", intro: "Regular, long-wear and quick-dry nail polish lines, from drugstore to indie" },
     { shape: "Gel polish", slug: "gel-polish", label: "Gel", intro: "Soak-off and at-home gel polish, builder gels, soft gel extensions and dip powder" },

@@ -106,6 +106,8 @@ export const gaming: Niche = {
   ],
   shapeFilter: ["Mouse", "Keyboard", "Headset", "Controller"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Mouse", slug: "mice", label: "Mice", intro: "Gaming mice, wired and wireless, symmetrical and ergonomic" },
     { shape: "Keyboard", slug: "keyboards", label: "Keyboards", intro: "Mechanical, optical and Hall effect gaming keyboards" },

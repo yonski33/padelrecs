@@ -49,4 +49,11 @@ export const hasYears = niche.productYears !== false;
 export const catalogPath = `/${niche.productPath}`;
 /** The browse page for a product's shape, when this niche has them (SkinRecs: Cleanser → /cleansers). */
 export const typePageFor = (shape: string | null | undefined) => shape ? niche.typePages?.find(t => t.shape.toLowerCase() === shape.toLowerCase()) : undefined;
-export const productHref = (slug: string) => `${catalogPath}/${slug}`;
+/** A product's address: under its type page on niches with categoryPaths (/vpns/mullvad-vpn), else /<productPath>/<slug>. */
+export const productHref = (product: { slug: string; shape?: string | null }) => productPathIn(niche, product);
+export function productPathIn(n: Niche, product: { slug: string; shape?: string | null }) {
+  const type = n.categoryPaths && product.shape ? n.typePages?.find(t => t.shape.toLowerCase() === product.shape!.toLowerCase()) : undefined;
+  return type ? `/${type.slug}/${product.slug}` : `/${n.productPath}/${product.slug}`;
+}
+/** The pill on review cards: the type page's short singular label ("Budgeting app", "IEM"), when the niche has type pages. */
+export const categoryPill = (shape: string | null | undefined) => { const t = typePageFor(shape); return t ? { label: t.one ?? t.shape, href: `/${t.slug}` } : undefined; };

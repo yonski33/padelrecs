@@ -107,6 +107,8 @@ export const climbing: Niche = {
   ],
   shapeFilter: ["Climbing shoe", "Harness", "Belay device", "Rope", "Chalk bag", "Crash pad"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Climbing shoe", slug: "climbing-shoes", label: "Shoes", intro: "Climbing shoes for bouldering, sport, trad and the gym: velcro, lace-up and slippers, flat to aggressive" },
     { shape: "Harness", slug: "harnesses", label: "Harnesses", intro: "Climbing harnesses for the gym, sport, trad, alpine and kids" },

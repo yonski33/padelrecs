@@ -106,6 +106,8 @@ export const ultralight: Niche = {
   ],
   shapeFilter: ["Shelter", "Backpack", "Sleeping pad", "Quilt & bag", "Cook kit", "Water filter", "Trekking poles", "Rain jacket"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Shelter", slug: "tents", label: "Tents & shelters", intro: "Ultralight tents, pyramids and tarps: trekking-pole, semi-freestanding and freestanding" },
     { shape: "Backpack", slug: "backpacks", label: "Backpacks", intro: "Ultralight backpacking packs, from frameless to framed packs for long carries" },

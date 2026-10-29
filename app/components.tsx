@@ -2,7 +2,7 @@ import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
 import { HelpfulButton } from "./helpful-button";
-import { niche, catalogPath } from "../lib/niche";
+import { niche, catalogPath, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
 import type { ProfileField } from "../lib/niche/types";
 
@@ -31,11 +31,19 @@ export function racketParts(racket: Racket, data: Catalog) {
 
 function RacketHeading({racket, data}: {racket: Racket; data: Catalog}) {
   const { brand, model } = racketParts(racket, data);
-  return <a className="racket-link" href={`${catalogPath}/${racket.slug}`}>{brand && <span className="brand">{brand}</span>}<span className="model">{model}</span></a>;
+  return <a className="racket-link" href={productHref(racket)}>{brand && <span className="brand">{brand}</span>}<span className="model">{model}</span></a>;
+}
+
+/** The product's category as a small text pill beside its name ("Budgeting app", "IEM"), linking to the type page, so a
+ *  visitor knows what an unfamiliar product is. Only on niches whose product pages live under their type (categoryPaths). */
+export function CategoryPill({shape}: {shape: string | null | undefined}) {
+  const c = niche.categoryPaths ? categoryPill(shape) : undefined;
+  if (!c) return null;
+  return <a className="cat-pill" href={c.href}><span className="sr-only">Category: </span>{c.label}</a>;
 }
 
 function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
-  return <a className="thumb" href={`${catalogPath}/${racket.slug}`} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
+  return <a className="thumb" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
 }
 
 function Avatar({alias}: {alias: string | null}) {
@@ -59,7 +67,7 @@ export function Review({review: r, data, showRacket = true}: {review: PlayerRevi
   return <article className={showRacket ? "note" : "note compact"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     <header className="note-head">
-      {showRacket && <RacketHeading racket={racket} data={data}/>}
+      {showRacket && <div className="note-title"><RacketHeading racket={racket} data={data}/><CategoryPill shape={racket.shape}/></div>}
       <Score rating={r.rating}/>
     </header>
     <p className="note-body">{r.reviewText}</p>
@@ -90,7 +98,7 @@ export function External({entry: e, data, showRacket = true}: {entry: WebReview;
   const source = <><SourceIcon platform={e.sourcePlatform}/><b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}</>;
   return <article className={showRacket ? "note ext" : "note compact ext"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
-    {showRacket && <header className="note-head"><RacketHeading racket={racket} data={data}/></header>}
+    {showRacket && <header className="note-head"><div className="note-title"><RacketHeading racket={racket} data={data}/><CategoryPill shape={racket.shape}/></div></header>}
     <div className="quote" style={showRacket ? undefined : {marginTop: 0}}>
       {e.summary ? <>
         {/* Our summary of the source's experience (written in the third person), then the source's exact words. */}
@@ -141,7 +149,7 @@ export function RacketRow({racket: r, brand, average, count, web = 0, positive =
   // Right column: the user rating when there is one, and the web picture (share positive once there are enough judged reviews).
   return <article className="racket-row">
     <Thumb racket={r} brand={brand}/>
-    <div><h2><a href={`${catalogPath}/${r.slug}`}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
+    <div><h2><a href={productHref(r)}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">
       {average && <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></>}
       {web > 0 && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive · </>}{webReviewsLine(web)}</span>}
@@ -189,7 +197,7 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
 
     {discussed.length > 0 && <section>
       <h2>Most discussed</h2>
-      <ol className="rank">{discussed.map(({racket, count}) => <li key={racket.id}><a href={`${catalogPath}/${racket.slug}`}>
+      <ol className="rank">{discussed.map(({racket, count}) => <li key={racket.id}><a href={productHref(racket)}>
         <span className="nm">{racket.name}</span><span className="ct">{count}</span>
         <span className="bar"><i style={{width: `${Math.round(count / discussed[0].count * 100)}%`}}/></span>
       </a></li>)}</ol>
@@ -206,7 +214,7 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
 
     {recentlyAdded.length > 0 && <section>
       <h2>Recently added</h2>
-      <ul className="mini">{recentlyAdded.map(r => <li key={r.id}><a href={`${catalogPath}/${r.slug}`}>
+      <ul className="mini">{recentlyAdded.map(r => <li key={r.id}><a href={productHref(r)}>
         <ProductIcon shape={r.shape} brand={racketParts(r, data).brand}/><span className="nm">{r.name}<span className="mt">{notes(notesFor(r.id))}</span></span><span className="end">{shortDate(r.createdAt)}</span>
       </a></li>)}</ul>
     </section>}

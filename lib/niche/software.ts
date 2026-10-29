@@ -106,6 +106,8 @@ export const software: Niche = {
   ],
   shapeFilter: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN", "Web hosting"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "AI assistant", slug: "ai-assistants", label: "AI assistants", intro: "AI chat assistants and AI search" },
     { shape: "AI coding tool", slug: "ai-coding-tools", label: "AI coding", intro: "AI code editors, coding agents and code assistants" },

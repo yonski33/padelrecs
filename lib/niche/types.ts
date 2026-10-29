@@ -116,7 +116,15 @@ export type Niche = {
   /** Shapes always offered in the catalogue filter, even before any product uses them. */
   shapeFilter: string[];
   /** Optional top-level browse pages per shape (SkinRecs: /cleansers, /sunscreens…) with a menu row under the header. */
-  typePages?: { shape: string; slug: string; label: string; intro: string }[];
+  typePages?: {
+    shape: string; slug: string; label: string; intro: string;
+    /** Short singular label for the category pill on review cards ("IEM"). Defaults to `shape`. */
+    one?: string;
+  }[];
+  /** Product pages live under their type page, /<type slug>/<product slug> (SoftwareRecs /vpns/mullvad-vpn), instead of
+   *  /<productPath>/<slug>. Needs typePages. Old /<productPath>/<slug> and /rackets/<slug> addresses 301 there (proxy.ts);
+   *  a product whose shape has no type page keeps the generic address. */
+  categoryPaths?: boolean;
   /** Extra detail on product rows in the catalogue, after the shape. */
   rowDetail?: { column: SpecColumn; suffix: string };
   tags: Tag[];

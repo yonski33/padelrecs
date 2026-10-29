@@ -10,7 +10,7 @@ import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../c
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
 import ReviewList, { type ListItem } from "./review-list";
-import { niche, catalogPath, hasYears, typePageFor } from "../../../lib/niche";
+import { niche, catalogPath, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 
@@ -27,7 +27,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const r = data.rackets.find(x => x.slug === slug);
   if (!r) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
   const { title, description } = niche.seo.product(r.name);
-  return { title: { absolute: title }, description, alternates: { canonical: `${catalogPath}/${r.slug}` }, openGraph: { title, description, url: `${catalogPath}/${r.slug}`, type: "website" } };
+  return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
 }
 
 export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]; sort?: string | string[]}>}) {
@@ -36,7 +36,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   if (!r) {
     // Renamed rackets: old addresses redirect permanently so links and search rankings carry over.
     const moved = await redirectedSlug(await database(), slug);
-    if (moved) permanentRedirect(`${catalogPath}/${moved}`);
+    if (moved) permanentRedirect(productHref(data.rackets.find(x => x.slug === moved) ?? { slug: moved }));
     notFound();
   }
   const brand = data.brands.find(b => b.id === r.brandId);
@@ -86,7 +86,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const tagCounts = new Map<string, number>();
   for (const t of tagged.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
   const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
-  const url = `${base}${catalogPath}/${r.slug}`;
+  const url = `${base}${productHref(r)}`;
   const typePage = typePageFor(r.shape);
   // Structured data for Google: product + player ratings (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
@@ -193,13 +193,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList slug={r.slug} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSource={source} initialSort={sort}/>
+        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSource={source} initialSort={sort}/>
       </div>
 
       <aside className="database-sidebar">
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
-          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={`${catalogPath}/${x.slug}`}>
+          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
             <ProductIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : webReviewsLine(sc.web)}</span></span>
             {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>

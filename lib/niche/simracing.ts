@@ -102,6 +102,8 @@ export const simracing: Niche = {
   ],
   shapeFilter: ["Wheelbase", "Wheel", "Pedals", "Cockpit", "Shifter / handbrake"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Wheelbase", slug: "wheelbases", label: "Wheelbases", intro: "Direct drive, belt and gear wheelbases, and complete wheel sets" },
     { shape: "Wheel", slug: "wheels", label: "Wheels", intro: "Formula, GT, round and rally steering wheels and rims" },

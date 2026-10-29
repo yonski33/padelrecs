@@ -3,7 +3,7 @@ import {Fragment, useEffect, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
 import {LogoIcon} from "../icons";
 import {MAX_TAGS, TAGS} from "../../lib/tags";
-import { niche, catalogPath, hasYears } from "../../lib/niche";
+import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
 
 // The API (app/api/reviews/route.ts) accepts exactly these niche option values.
 const {words: w, scoreUnit, profile, ratingWords, form: {prompts, tips}} = niche;
@@ -29,7 +29,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
  },[]);
  const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState("");
  const [tags,setTags]=useState<string[]>([]);
- const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string}>(null);
+ const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string,shape?:string|null}>(null);
  const textarea=useRef<HTMLTextAreaElement>(null);
 
  async function submit(event:React.FormEvent<HTMLFormElement>){
@@ -47,7 +47,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
    const result=await response.json() as {error?:string};
    if(!response.ok)throw new Error(result.error||"Could not save your review.");
    const picked=rackets.find(r=>r.id===values.racketId);
-   setDone({alias:values.alias?.trim()||"",racket:picked?.name||[values.brandName,values.modelName,values.year].filter(Boolean).join(" "),slug:picked?.slug});
+   setDone({alias:values.alias?.trim()||"",racket:picked?.name||[values.brandName,values.modelName,values.year].filter(Boolean).join(" "),slug:picked?.slug,shape:picked?.shape});
    window.scrollTo({top:0,behavior:"smooth"});
   }catch(e){setError(e instanceof Error?e.message:"Could not save your review. Please try again.");}
   finally{setBusy(false);}
@@ -63,7 +63,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   <LogoIcon/>
   <h1>Nice one{done.alias?`, ${done.alias}`:""}.</h1>
   <p>Your review of the {done.racket||w.one} is in the queue. It goes live after a quick check, and the next person deciding will thank you.</p>
-  <div className="row">{done.slug&&<a className="button" href={`${catalogPath}/${done.slug}`}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">{`Review another ${w.one}`}</a></div>
+  <div className="row">{done.slug&&<a className="button" href={productHref({slug:done.slug,shape:done.shape})}>See the {done.racket} page</a>}<a className="button ghost" href="/add-review">{`Review another ${w.one}`}</a></div>
  </div>;
 
  return <div className="review-page">

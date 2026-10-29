@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
-import { catalogPath, niche } from "../lib/niche";
+import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow } from "../lib/top-lists";
 
@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     })),
     ...listed.map(r => ({
-      url: `${base}${catalogPath}/${r.slug}`,
+      url: `${base}${productHref(r)}`,
       lastModified: latest([r.createdAt, ...notesFor(r.id)]),
       changeFrequency: "weekly" as const,
       priority: 0.9,

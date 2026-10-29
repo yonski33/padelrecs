@@ -97,6 +97,8 @@ export const skin: Niche = {
   ],
   shapeFilter: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Cleanser", slug: "cleansers", label: "Cleansers", intro: "Gel, foam, cream and oil cleansers" },
     { shape: "Toner", slug: "toners", label: "Toners", intro: "Hydrating and exfoliating toners and pads" },

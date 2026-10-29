@@ -15,7 +15,10 @@ const config:NextConfig={
   const icons=["favicon.ico","icon.svg","apple-icon.png"].map(file=>({source:`/${file}`,destination:`/niches/${niche.id}/${file}`}));
   // Type browse pages (SkinRecs /cleansers…) live in app/types/[slug]; only the configured slugs are mapped, so nothing else is caught.
   const types=(niche.typePages??[]).map(t=>({source:`/${t.slug}`,destination:`/types/${t.slug}`}));
-  return products==="/rackets"?[...icons,...types]:[...icons,...types,{source:products,destination:"/rackets"},{source:`${products}/:path*`,destination:"/rackets/:path*"}];
+  // categoryPaths niches serve product pages (and their share images) under the type page: /vpns/mullvad-vpn → app/rackets/[slug].
+  // :path+ needs a segment, so /vpns itself stays the type page above. proxy.ts answers the old addresses with a 301.
+  const categories=niche.categoryPaths?(niche.typePages??[]).map(t=>({source:`/${t.slug}/:path+`,destination:"/rackets/:path+"})):[];
+  return products==="/rackets"?[...icons,...types,...categories]:[...icons,...types,...categories,{source:products,destination:"/rackets"},{source:`${products}/:path*`,destination:"/rackets/:path*"}];
  },
  async redirects(){
   const types=niche.typePages?.length?[{source:"/types/:slug",destination:"/:slug",permanent:true}]:[];
@@ -24,7 +27,9 @@ const config:NextConfig={
   // Pages that moved to another Recs site: 301 to the absolute address there (lib/niche/<niche>.ts movedAway). Listed first
   // so they win over the generic /rackets and /types redirects.
   const moved=(niche.movedAway??[]).map(m=>({source:m.source,destination:m.destination,statusCode:301 as const,...(m.query?{has:[{type:"query" as const,key:m.query.key,value:m.query.value}]}:{})}));
-  return products==="/rackets"?[...moved,...types,...rankings]:[...moved,...types,...rankings,{source:"/rackets",destination:products,permanent:true},{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}];
+  return products==="/rackets"?[...moved,...types,...rankings]:[...moved,...types,...rankings,{source:"/rackets",destination:products,permanent:true},
+   // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
+   ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },
  turbopack:{root},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
  // Public pages look the same for everyone: Vercel's CDN may serve a copy up to a minute old and refresh it in the background.
@@ -32,6 +37,6 @@ const config:NextConfig={
  async headers(){
   const cdn=[{key:"Vercel-CDN-Cache-Control",value:"max-age=60, stale-while-revalidate=600"}];
   const missing=[{type:"header" as const,key:"rsc"}];
-  return ["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).map(t=>`/${t.slug}`)].map(source=>({source,headers:cdn,missing}));
+  return ["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}));
  }};
 export default config;

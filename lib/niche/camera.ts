@@ -106,6 +106,8 @@ export const camera: Niche = {
   ],
   shapeFilter: ["Mirrorless", "Compact", "Vlogging", "Action & 360"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Mirrorless", slug: "mirrorless-cameras", label: "Mirrorless", intro: "Interchangeable-lens mirrorless cameras, from APS-C and Micro Four Thirds to full-frame and medium format" },
     { shape: "Compact", slug: "compact-cameras", label: "Compact", intro: "Fixed-lens compacts: premium large-sensor cameras, travel zooms and tough cameras" },
