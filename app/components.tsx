@@ -37,7 +37,7 @@ function RacketHeading({racket, data, showCategory = true}: {racket: Racket; dat
   const { brand, model } = racketParts(racket, data);
   const category = showCategory && CATEGORY_STYLE === "brandline" && niche.categoryPaths ? categoryPill(racket.shape)?.label : undefined;
   return <a className="racket-link" href={productHref(racket)}>
-    {(brand || category) && <span className="brand">{brand}{brand && category && <span className="sep" aria-hidden="true"> · </span>}{category && <span className="cat"><span className="sr-only">, category: </span>{category}</span>}</span>}
+    {(brand || category) && <span className="brand">{brand}{brand && category && <span className="sep" aria-hidden="true"> · </span>}{category && <><span className="sr-only">, category: </span>{category}</>}</span>}
     <span className="model">{model}</span>
   </a>;
 }
