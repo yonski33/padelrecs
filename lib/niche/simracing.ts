@@ -105,11 +105,11 @@ export const simracing: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Wheelbase", slug: "wheelbases", label: "Wheelbases", intro: "Direct drive, belt and gear wheelbases, and complete wheel sets" },
-    { shape: "Wheel", slug: "wheels", label: "Wheels", intro: "Formula, GT, round and rally steering wheels and rims" },
-    { shape: "Pedals", slug: "pedals", label: "Pedals", intro: "Load cell, hydraulic and active pedal sets" },
-    { shape: "Cockpit", slug: "cockpits", label: "Cockpits", intro: "Aluminium profile rigs, tube cockpits and wheel stands" },
-    { shape: "Shifter / handbrake", slug: "shifters-handbrakes", label: "Shifters & handbrakes", intro: "H-pattern and sequential shifters and handbrakes" },
+    { shape: "Wheelbase", slug: "wheelbases", label: "Wheelbases", seoLabel: "Sim Racing Wheelbases", intro: "Direct drive, belt and gear wheelbases, and complete wheel sets" },
+    { shape: "Wheel", slug: "wheels", label: "Wheels", seoLabel: "Sim Racing Wheels", intro: "Formula, GT, round and rally steering wheels and rims" },
+    { shape: "Pedals", slug: "pedals", label: "Pedals", seoLabel: "Sim Racing Pedals", intro: "Load cell, hydraulic and active pedal sets" },
+    { shape: "Cockpit", slug: "cockpits", label: "Cockpits", seoLabel: "Sim Racing Cockpits", intro: "Aluminium profile rigs, tube cockpits and wheel stands" },
+    { shape: "Shifter / handbrake", slug: "shifters-handbrakes", label: "Shifters & handbrakes", seoLabel: "Sim Racing Shifters & Handbrakes", intro: "H-pattern and sequential shifters and handbrakes" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

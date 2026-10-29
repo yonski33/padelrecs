@@ -107,11 +107,11 @@ export const coffee: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Espresso machine", slug: "espresso-machines", label: "Espresso machines", intro: "Home espresso machines: single boiler, heat exchanger, dual boiler, thermoblock and manual lever" },
-    { shape: "Grinder", slug: "grinders", label: "Grinders", intro: "Electric and hand coffee grinders for espresso, pour-over and everything in between" },
-    { shape: "Brewer", slug: "brewers", label: "Brewers", intro: "Pour-over drippers, AeroPress and immersion brewers, French presses and drip coffee makers" },
-    { shape: "Kettle", slug: "kettles", label: "Kettles", intro: "Gooseneck and electric kettles for pour-over and tea" },
-    { shape: "Scale", slug: "scales", label: "Scales", intro: "Espresso and brew scales with timers" },
+    { shape: "Espresso machine", slug: "espresso-machines", label: "Espresso machines", seoLabel: "Espresso Machines", intro: "Home espresso machines: single boiler, heat exchanger, dual boiler, thermoblock and manual lever" },
+    { shape: "Grinder", slug: "grinders", label: "Grinders", seoLabel: "Coffee Grinders", intro: "Electric and hand coffee grinders for espresso, pour-over and everything in between" },
+    { shape: "Brewer", slug: "brewers", label: "Brewers", seoLabel: "Coffee Brewers", intro: "Pour-over drippers, AeroPress and immersion brewers, French presses and drip coffee makers" },
+    { shape: "Kettle", slug: "kettles", label: "Kettles", seoLabel: "Pour-Over Kettles", intro: "Gooseneck and electric kettles for pour-over and tea" },
+    { shape: "Scale", slug: "scales", label: "Scales", seoLabel: "Coffee Scales", intro: "Espresso and brew scales with timers" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

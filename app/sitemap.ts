@@ -44,7 +44,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
-    { url: `${base}/add-review`, changeFrequency: "monthly", priority: 0.4 },
     { url: `${base}/about`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/contact`, changeFrequency: "yearly", priority: 0.2 },
     ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, changeFrequency: "yearly" as const, priority: 0.2 }] : []),

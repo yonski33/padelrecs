@@ -104,11 +104,11 @@ export const monitor: Niche = {
   shapeFilter: ["Gaming", "Ultrawide", "Productivity", "Mac & creator", "Portable"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   typePages: [
-    { shape: "Gaming", slug: "gaming-monitors", label: "Gaming", intro: "High-refresh OLED, IPS, VA and TN gaming monitors, from 24\" esports panels to 32\" 4K" },
-    { shape: "Ultrawide", slug: "ultrawide-monitors", label: "Ultrawide", intro: "21:9 and 32:9 ultrawide and super ultrawide monitors, for gaming and for work" },
-    { shape: "Productivity", slug: "productivity-monitors", label: "Productivity", intro: "Office and work monitors: sharp text, USB-C docking, good stands" },
-    { shape: "Mac & creator", slug: "mac-monitors", label: "Mac & creator", intro: "4K, 5K and 6K monitors for Macs, photo and video work, with accurate colour" },
-    { shape: "Portable", slug: "portable-monitors", label: "Portable", intro: "Portable USB-C monitors for laptops, travel and a second screen anywhere" },
+    { shape: "Gaming", slug: "gaming-monitors", label: "Gaming", seoLabel: "Gaming Monitors", intro: "High-refresh OLED, IPS, VA and TN gaming monitors, from 24\" esports panels to 32\" 4K" },
+    { shape: "Ultrawide", slug: "ultrawide-monitors", label: "Ultrawide", seoLabel: "Ultrawide Monitors", intro: "21:9 and 32:9 ultrawide and super ultrawide monitors, for gaming and for work" },
+    { shape: "Productivity", slug: "productivity-monitors", label: "Productivity", seoLabel: "Productivity Monitors", intro: "Office and work monitors: sharp text, USB-C docking, good stands" },
+    { shape: "Mac & creator", slug: "mac-monitors", label: "Mac & creator", seoLabel: "Monitors for Mac & Creators", intro: "4K, 5K and 6K monitors for Macs, photo and video work, with accurate colour" },
+    { shape: "Portable", slug: "portable-monitors", label: "Portable", seoLabel: "Portable Monitors", intro: "Portable USB-C monitors for laptops, travel and a second screen anywhere" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews. The first five, quality control,

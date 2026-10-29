@@ -109,10 +109,10 @@ export const camera: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Mirrorless", slug: "mirrorless-cameras", label: "Mirrorless", intro: "Interchangeable-lens mirrorless cameras, from APS-C and Micro Four Thirds to full-frame and medium format" },
-    { shape: "Compact", slug: "compact-cameras", label: "Compact", intro: "Fixed-lens compacts: premium large-sensor cameras, travel zooms and tough cameras" },
-    { shape: "Vlogging", slug: "vlogging-cameras", label: "Vlogging", intro: "Cameras made for vlogging and creators, including gimbal cameras like the Osmo Pocket" },
-    { shape: "Action & 360", slug: "action-cameras", label: "Action & 360", intro: "Action cameras and 360° cameras from GoPro, DJI and Insta360" },
+    { shape: "Mirrorless", slug: "mirrorless-cameras", label: "Mirrorless", seoLabel: "Mirrorless Cameras", intro: "Interchangeable-lens mirrorless cameras, from APS-C and Micro Four Thirds to full-frame and medium format" },
+    { shape: "Compact", slug: "compact-cameras", label: "Compact", seoLabel: "Compact Cameras", intro: "Fixed-lens compacts: premium large-sensor cameras, travel zooms and tough cameras" },
+    { shape: "Vlogging", slug: "vlogging-cameras", label: "Vlogging", seoLabel: "Vlogging Cameras", intro: "Cameras made for vlogging and creators, including gimbal cameras like the Osmo Pocket" },
+    { shape: "Action & 360", slug: "action-cameras", label: "Action & 360", seoLabel: "Action & 360 Cameras", intro: "Action cameras and 360° cameras from GoPro, DJI and Insta360" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

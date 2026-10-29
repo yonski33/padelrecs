@@ -105,10 +105,10 @@ export const discgolf: Niche = {
   shapeFilter: ["Distance driver", "Fairway driver", "Midrange", "Putter"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   typePages: [
-    { shape: "Distance driver", slug: "distance-drivers", label: "Distance drivers", intro: "Wide-rimmed, fast drivers for maximum distance" },
-    { shape: "Fairway driver", slug: "fairway-drivers", label: "Fairway drivers", intro: "Control drivers for accurate tee shots and shaping lines" },
-    { shape: "Midrange", slug: "midranges", label: "Midranges", intro: "Mids for straight shots, upshots and holding a line" },
-    { shape: "Putter", slug: "putters", label: "Putters", intro: "Putters and approach discs for the short game" },
+    { shape: "Distance driver", slug: "distance-drivers", label: "Distance drivers", seoLabel: "Distance Drivers", intro: "Wide-rimmed, fast drivers for maximum distance" },
+    { shape: "Fairway driver", slug: "fairway-drivers", label: "Fairway drivers", seoLabel: "Fairway Drivers", intro: "Control drivers for accurate tee shots and shaping lines" },
+    { shape: "Midrange", slug: "midranges", label: "Midranges", seoLabel: "Midrange Discs", intro: "Mids for straight shots, upshots and holding a line" },
+    { shape: "Putter", slug: "putters", label: "Putters", seoLabel: "Disc Golf Putters", intro: "Putters and approach discs for the short game" },
   ],
   rowDetail: { column: "weight", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

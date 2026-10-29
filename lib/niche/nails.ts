@@ -112,12 +112,12 @@ export const nails: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Nail polish", slug: "nail-polish", label: "Nail polish", intro: "Regular, long-wear and quick-dry nail polish lines, from drugstore to indie" },
-    { shape: "Gel polish", slug: "gel-polish", label: "Gel", intro: "Soak-off and at-home gel polish, builder gels, soft gel extensions and dip powder" },
-    { shape: "Base & top coat", slug: "base-and-top-coats", label: "Base & top coats", intro: "Base coats, top coats, quick-dry and matte top coats, gel base and no-wipe top coats, primers and ridge fillers" },
-    { shape: "Press-on nails", slug: "press-on-nails", label: "Press-ons", intro: "Press-on nails with glue or adhesive tabs, reusable press-ons and nail strips" },
-    { shape: "Nail treatment", slug: "nail-treatments", label: "Treatments", intro: "Nail strengtheners, hardeners, growth treatments and repair serums" },
-    { shape: "Cuticle oil", slug: "cuticle-oils", label: "Cuticle oils", intro: "Cuticle oils, oil pens, roll-ons and cuticle balms" },
+    { shape: "Nail polish", slug: "nail-polish", label: "Nail polish", seoLabel: "Nail Polishes", intro: "Regular, long-wear and quick-dry nail polish lines, from drugstore to indie" },
+    { shape: "Gel polish", slug: "gel-polish", label: "Gel", seoLabel: "Gel Polishes", intro: "Soak-off and at-home gel polish, builder gels, soft gel extensions and dip powder" },
+    { shape: "Base & top coat", slug: "base-and-top-coats", label: "Base & top coats", seoLabel: "Base & Top Coats", intro: "Base coats, top coats, quick-dry and matte top coats, gel base and no-wipe top coats, primers and ridge fillers" },
+    { shape: "Press-on nails", slug: "press-on-nails", label: "Press-ons", seoLabel: "Press-On Nails", intro: "Press-on nails with glue or adhesive tabs, reusable press-ons and nail strips" },
+    { shape: "Nail treatment", slug: "nail-treatments", label: "Treatments", seoLabel: "Nail Treatments", intro: "Nail strengtheners, hardeners, growth treatments and repair serums" },
+    { shape: "Cuticle oil", slug: "cuticle-oils", label: "Cuticle oils", seoLabel: "Cuticle Oils", intro: "Cuticle oils, oil pens, roll-ons and cuticle balms" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

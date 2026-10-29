@@ -108,10 +108,10 @@ export const snowboard: Niche = {
   shapeFilter: ["All-mountain snowboard", "Freestyle snowboard", "Freeride snowboard", "Splitboard"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   typePages: [
-    { shape: "All-mountain snowboard", slug: "all-mountain-snowboards", label: "All-mountain", intro: "Boards for riding the whole mountain, from groomers to side hits" },
-    { shape: "Freestyle snowboard", slug: "freestyle-snowboards", label: "Freestyle & park", intro: "Twins and park boards for jumps, rails, butters and riding switch" },
-    { shape: "Freeride snowboard", slug: "freeride-snowboards", label: "Freeride & powder", intro: "Directional, tapered and powder boards for steeps, trees and deep days" },
-    { shape: "Splitboard", slug: "splitboards", label: "Splitboards", intro: "Splitboards for touring up and riding down in the backcountry" },
+    { shape: "All-mountain snowboard", slug: "all-mountain-snowboards", label: "All-mountain", seoLabel: "All-Mountain Snowboards", intro: "Boards for riding the whole mountain, from groomers to side hits" },
+    { shape: "Freestyle snowboard", slug: "freestyle-snowboards", label: "Freestyle & park", seoLabel: "Freestyle & Park Snowboards", intro: "Twins and park boards for jumps, rails, butters and riding switch" },
+    { shape: "Freeride snowboard", slug: "freeride-snowboards", label: "Freeride & powder", seoLabel: "Freeride & Powder Snowboards", intro: "Directional, tapered and powder boards for steeps, trees and deep days" },
+    { shape: "Splitboard", slug: "splitboards", label: "Splitboards", seoLabel: "Splitboards", intro: "Splitboards for touring up and riding down in the backcountry" },
   ],
   rowDetail: { column: "surface", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.

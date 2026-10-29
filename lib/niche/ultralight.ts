@@ -109,14 +109,14 @@ export const ultralight: Niche = {
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
-    { shape: "Shelter", slug: "tents", label: "Tents & shelters", intro: "Ultralight tents, pyramids and tarps: trekking-pole, semi-freestanding and freestanding" },
-    { shape: "Backpack", slug: "backpacks", label: "Backpacks", intro: "Ultralight backpacking packs, from frameless to framed packs for long carries" },
-    { shape: "Sleeping pad", slug: "sleeping-pads", label: "Sleeping pads", intro: "Insulated air pads, foam pads and self-inflating pads for backpacking" },
-    { shape: "Quilt & bag", slug: "quilts", label: "Quilts & bags", intro: "Down and synthetic backpacking quilts and ultralight sleeping bags" },
-    { shape: "Cook kit", slug: "cook-kits", label: "Cook kits", intro: "Backpacking stoves, titanium pots and integrated cook systems" },
-    { shape: "Water filter", slug: "water-filters", label: "Water filters", intro: "Squeeze, gravity and bottle water filters for the trail" },
-    { shape: "Trekking poles", slug: "trekking-poles", label: "Trekking poles", intro: "Carbon, aluminum and folding trekking poles" },
-    { shape: "Rain jacket", slug: "rain-jackets", label: "Rain jackets", intro: "Ultralight waterproof rain jackets for backpacking" },
+    { shape: "Shelter", slug: "tents", label: "Tents & shelters", seoLabel: "Ultralight Tents & Shelters", intro: "Ultralight tents, pyramids and tarps: trekking-pole, semi-freestanding and freestanding" },
+    { shape: "Backpack", slug: "backpacks", label: "Backpacks", seoLabel: "Ultralight Backpacks", intro: "Ultralight backpacking packs, from frameless to framed packs for long carries" },
+    { shape: "Sleeping pad", slug: "sleeping-pads", label: "Sleeping pads", seoLabel: "Sleeping Pads", intro: "Insulated air pads, foam pads and self-inflating pads for backpacking" },
+    { shape: "Quilt & bag", slug: "quilts", label: "Quilts & bags", seoLabel: "Backpacking Quilts & Sleeping Bags", intro: "Down and synthetic backpacking quilts and ultralight sleeping bags" },
+    { shape: "Cook kit", slug: "cook-kits", label: "Cook kits", seoLabel: "Backpacking Cook Kits", intro: "Backpacking stoves, titanium pots and integrated cook systems" },
+    { shape: "Water filter", slug: "water-filters", label: "Water filters", seoLabel: "Backpacking Water Filters", intro: "Squeeze, gravity and bottle water filters for the trail" },
+    { shape: "Trekking poles", slug: "trekking-poles", label: "Trekking poles", seoLabel: "Trekking Poles", intro: "Carbon, aluminum and folding trekking poles" },
+    { shape: "Rain jacket", slug: "rain-jackets", label: "Rain jackets", seoLabel: "Rain Jackets", intro: "Ultralight waterproof rain jackets for backpacking" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
