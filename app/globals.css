@@ -106,6 +106,8 @@ button:disabled { opacity: .6; cursor: progress; }
 .chips a { flex: none; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 13.5px; font-weight: 500; color: var(--ink-2); white-space: nowrap; transition: border-color .15s, background .15s, color .15s; }
 .chips a:hover { border-color: var(--green-line); color: var(--ink); }
 .chips a[aria-current="page"] { background: var(--green); border-color: var(--green); color: var(--on-green); }
+/* The type of the product page being viewed (categoryPaths niches). */
+.chips a[aria-current="true"] { background: var(--green-wash); border-color: var(--green); color: var(--green-ink); }
 .type-filter { margin: -4px 0 14px; }
 .main-nav a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 3px; border-radius: 3px 3px 0 0; background: var(--green); }
 
@@ -188,6 +190,10 @@ button:disabled { opacity: .6; cursor: progress; }
 
 .note-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 14px; }
 .note-head .balls { align-self: center; }
+/* Product name plus its category pill (components.tsx CategoryPill). Theme tokens, so it follows each site's palette. */
+.note-title { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; min-width: 0; }
+.cat-pill { display: inline-flex; align-items: center; padding: 1px 9px; border: 1px solid var(--green-line); border-radius: 999px; background: var(--green-wash); color: var(--green-ink); font-size: 12px; font-weight: 600; line-height: 1.5; white-space: nowrap; transition: background .15s, border-color .15s; }
+a.cat-pill:hover { background: var(--lime-wash); border-color: var(--lime-line); color: var(--lime-ink-2); }
 .racket-link { color: var(--ink); line-height: 1.2; }
 .racket-link:hover { color: var(--green); }
 .racket-link .brand { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink-3); margin-bottom: 1px; }

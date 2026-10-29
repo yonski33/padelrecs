@@ -107,6 +107,8 @@ export const homegym: Niche = {
   ],
   shapeFilter: ["Dumbbells", "Rack", "Bench", "Barbell", "Plates", "Machine", "Cardio"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Dumbbells", slug: "dumbbells", label: "Dumbbells", intro: "Adjustable dumbbells and fixed hex, rubber-coated and urethane dumbbells" },
     { shape: "Rack", slug: "racks", label: "Racks", intro: "Power racks, half racks, folding and wall-mounted racks and squat stands" },

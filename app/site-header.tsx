@@ -37,6 +37,7 @@ function TopMenu({ pathname }: { pathname: string }) {
 export function SiteHeader() {
   const pathname = usePathname();
   const onAddPage = pathname.startsWith("/add-review");
+  const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
   return (
     <header className="site-header">
       <div className="wrap header-top">
@@ -49,7 +50,8 @@ export function SiteHeader() {
       </div>
       <nav className="wrap main-nav" aria-label="Main navigation">
         {links.map(([href, label]) => {
-          const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+          // On categoryPaths niches a product page (/vpns/mullvad-vpn) still belongs under the catalogue link.
+          const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`) || (href === catalogPath && !!inTypePath);
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
           return href === catalogPath && topLists.length ? [link, <TopMenu key="rankings" pathname={pathname}/>] : link;
         })}
@@ -57,7 +59,7 @@ export function SiteHeader() {
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
       {niche.typePages && pathname !== "/" && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
         <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
-        {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : undefined}>{t.label}</a>)}
+        {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : inTypePath === t ? "true" : undefined}>{t.label}</a>)}
       </ChipRow>}
     </header>
   );

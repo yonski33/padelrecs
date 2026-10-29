@@ -5,14 +5,16 @@ import { CONTACT_FROM_ADDRESS, sendWithResend, type ContactEmail } from "./conta
 // write to the database directly and never come through here. Only reviews that passed the spam checks are reported.
 export type NewReview = {
  id: string; rating: number; reviewText: string; alias?: string | null; email?: string | null;
- product: { name: string; slug: string }; newProduct: boolean;
+ product: { name: string; slug: string; shape?: string | null }; newProduct: boolean;
 };
 type Site = { name: string; domain: string };
+/** The product page address on this site (lib/niche productHref), e.g. "/vpns/mullvad-vpn". */
+type ProductHref = (product: { slug: string; shape?: string | null }) => string;
 const oneLine = (text: string) => text.replace(/[\r\n\t]+/g, " ").trim();
 
-export function reviewEmail(site: Site, to: string, origin: string, catalogPath: string, review: NewReview) {
+export function reviewEmail(site: Site, to: string, origin: string, productHref: ProductHref, review: NewReview) {
  const product = oneLine(review.product.name);
- const productUrl = `${origin}${catalogPath}/${encodeURIComponent(review.product.slug)}`;
+ const productUrl = `${origin}${productHref({ ...review.product, slug: encodeURIComponent(review.product.slug) })}`;
  const moderateUrl = `${origin}/funtimes?status=pending`;
  const editUrl = `${origin}/funtimes/edit-review?type=player&id=${encodeURIComponent(review.id)}`;
  const reviewer = review.alias ? oneLine(review.alias) : "anonymous";
@@ -35,11 +37,11 @@ export function reviewEmail(site: Site, to: string, origin: string, catalogPath:
 }
 
 /** Sends the notification; never throws, so a Resend problem can't affect the saved review. Skipped when the env is unset. */
-export async function notifyNewReview(site: Site, origin: string, catalogPath: string, review: NewReview, {
+export async function notifyNewReview(site: Site, origin: string, productHref: ProductHref, review: NewReview, {
  send = sendWithResend, env = () => ({ apiKey: process.env.RESEND_API_KEY, to: process.env.CONTACT_TO }),
 }: { send?: (email: ContactEmail, apiKey: string) => Promise<unknown>; env?: () => { apiKey?: string; to?: string } } = {}) {
  const { apiKey, to } = env();
  if (!apiKey || !to) return "skipped";
- try { await send(reviewEmail(site, to, origin, catalogPath, review), apiKey); return "sent"; }
+ try { await send(reviewEmail(site, to, origin, productHref, review), apiKey); return "sent"; }
  catch (error) { console.error(`Review notification failed for ${review.id}: ${error instanceof Error ? error.message : error}`); return "failed"; }
 }

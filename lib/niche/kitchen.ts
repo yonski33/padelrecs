@@ -108,6 +108,8 @@ export const kitchen: Niche = {
   ],
   shapeFilter: ["Air fryer", "Countertop oven", "Blender", "Stand mixer", "Food processor", "Multicooker"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Air fryer", slug: "air-fryers", label: "Air fryers", intro: "Basket, dual-basket, stacked and glass air fryers" },
     { shape: "Countertop oven", slug: "countertop-ovens", label: "Countertop ovens", intro: "Toaster ovens, air fryer ovens, flip-up and double ovens and steam ovens" },

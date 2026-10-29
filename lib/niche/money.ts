@@ -111,6 +111,8 @@ export const money: Niche = {
   ],
   shapeFilter: ["Travel rewards card", "Cash-back card", "Starter card", "Business card", "Savings", "Checking", "Brokerage", "Robo-advisor", "Budgeting app", "Tax software", "Money transfer"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Travel rewards card", slug: "travel-cards", label: "Travel cards", intro: "Travel rewards, airline and hotel credit cards" },
     { shape: "Cash-back card", slug: "cash-back-cards", label: "Cash-back cards", intro: "Flat-rate, category and rotating cash-back credit cards" },

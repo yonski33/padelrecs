@@ -110,6 +110,8 @@ export const tabletennis: Niche = {
   shapeFilter: ["Blade", "Rubber", "Pre-assembled racket"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   // Not plain /rackets: on sites whose catalogue lives elsewhere that address redirects to the catalogue (next.config.ts).
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Blade", slug: "blades", label: "Blades", intro: "Table tennis blades: all-wood and carbon, from allround to the fastest offensive blades" },
     { shape: "Rubber", slug: "rubbers", label: "Rubbers", intro: "Inverted, short-pips and long-pips rubbers: tensioned European and Japanese rubbers and tacky Chinese ones" },

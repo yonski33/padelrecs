@@ -1,6 +1,6 @@
 import type { rackets } from "../../db/schema";
 import SlugField from "./slug-field";
-import { niche, catalogPath, hasYears } from "../../lib/niche";
+import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
 const w = niche.words;
 
 type Racket = typeof rackets.$inferSelect;
@@ -16,10 +16,10 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
   {racketId && !selected && <p role="alert" className="form-error">{`${w.One} not found. Choose a ${w.one} from the list.`}</p>}
   {selected ? <form action="/api/funtimes/racket-specs" method="post" className="review-form" key={selected.id}>
    <input type="hidden" name="id" value={selected.id}/>
-   <p className="small"><a href={`${catalogPath}/${selected.slug}`} target="_blank" rel="noopener noreferrer">{`View ${w.one} page ↗`}</a></p>
+   <p className="small"><a href={productHref(selected)} target="_blank" rel="noopener noreferrer">{`View ${w.one} page ↗`}</a></p>
    <p className="small muted">{`Name, brand, year and specifications are shared by all reviews of this ${w.one}.`}</p>
    <label className="field">{`${w.One} name`}<input name="name" required maxLength={260} defaultValue={selected.name}/></label>
-   <SlugField initial={selected.slug} oldSlugs={oldSlugs}/>
+   <SlugField initial={selected.slug} oldSlugs={oldSlugs} shape={selected.shape}/>
    <div className="form-grid">
     <label className="field">Brand<select name="brandId" required defaultValue={selected.brandId}>{brands.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
     {hasYears ? <label className="field">Year<input name="year" type="number" required min={1980} max={2100} defaultValue={selected.year}/></label> : <input type="hidden" name="year" value={selected.year}/>}

@@ -104,6 +104,8 @@ export const coffee: Niche = {
   ],
   shapeFilter: ["Espresso machine", "Grinder", "Brewer", "Kettle", "Scale"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Espresso machine", slug: "espresso-machines", label: "Espresso machines", intro: "Home espresso machines: single boiler, heat exchanger, dual boiler, thermoblock and manual lever" },
     { shape: "Grinder", slug: "grinders", label: "Grinders", intro: "Electric and hand coffee grinders for espresso, pour-over and everything in between" },

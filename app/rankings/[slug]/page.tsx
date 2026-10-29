@@ -34,7 +34,7 @@ const pct = (n: number, total: number) => `${n / total * 100}%`;
 const modelName = (name: string, brand: string) => brand && name.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? name.slice(brand.length + 1) : name;
 
 function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList }) {
-  const href = productHref(e.product.slug);
+  const href = productHref(e.product);
   const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
   const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
   return <li className="top-entry">
@@ -101,7 +101,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   const title = listTitle(list, currentYear(), reviews, people.One);
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     { "@type": "ItemList", name: title, url, numberOfItems: entries.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
-      itemListElement: entries.map(e => ({ "@type": "ListItem", position: e.rank, name: e.product.name, url: `${base()}${productHref(e.product.slug)}` })) },
+      itemListElement: entries.map(e => ({ "@type": "ListItem", position: e.rank, name: e.product.name, url: `${base()}${productHref(e.product)}` })) },
     { "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Rankings", item: `${base()}${RANKINGS_PATH}` },
       { "@type": "ListItem", position: 2, name: list.label, item: url },

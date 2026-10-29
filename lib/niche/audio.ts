@@ -104,9 +104,11 @@ export const audio: Niche = {
   ],
   shapeFilter: ["Headphones", "IEMs", "Earbuds"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
+  // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
+  categoryPaths: true,
   typePages: [
     { shape: "Headphones", slug: "headphones", label: "Headphones", intro: "Over-ear and on-ear headphones, wired and wireless, open-back and closed-back" },
-    { shape: "IEMs", slug: "iems", label: "IEMs", intro: "Wired in-ear monitors, from budget single dynamics to multi-driver hybrids" },
+    { shape: "IEMs", slug: "iems", label: "IEMs", one: "IEM", intro: "Wired in-ear monitors, from budget single dynamics to multi-driver hybrids" },
     { shape: "Earbuds", slug: "earbuds", label: "Earbuds", intro: "True wireless earbuds, with and without noise cancelling" },
   ],
   rowDetail: { column: "balance", suffix: "" },

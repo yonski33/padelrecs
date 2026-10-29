@@ -1,6 +1,6 @@
 "use client";
 import { useState, type MouseEvent, type ReactNode } from "react";
-import { niche, catalogPath } from "../../../lib/niche";
+import { niche } from "../../../lib/niche";
 import { helpfulRank } from "../../../lib/review-order";
 
 type Source = "all" | "players" | "web";
@@ -12,7 +12,7 @@ export type ListItem = { key: string; kind: "players" | "web"; date: string; hel
  * (shareable, crawlable, and working without JavaScript) and the address bar follows along.
  */
 /** `addButton`, when given, sits beside the "Reviews" title (product pages whose scorecard button is Amazon's). */
-export default function ReviewList({ slug, addHref, addButton, items, initialSource, initialSort }: { slug: string; addHref: string; addButton?: ReactNode; items: ListItem[]; initialSource: Source; initialSort: Sort }) {
+export default function ReviewList({ href, addHref, addButton, items, initialSource, initialSort }: { href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; initialSource: Source; initialSort: Sort }) {
   const [source, setSource] = useState<Source>(initialSource);
   const [sort, setSort] = useState<Sort>(initialSort);
   const link = (src: Source, srt: Sort) => {
@@ -20,7 +20,7 @@ export default function ReviewList({ slug, addHref, addButton, items, initialSou
     if (src !== "all") q.set("source", src);
     if (srt !== "newest") q.set("sort", srt);
     const qs = q.toString();
-    return `${catalogPath}/${slug}${qs ? `?${qs}` : ""}`;
+    return `${href}${qs ? `?${qs}` : ""}`;
   };
   function go(event: MouseEvent<HTMLAnchorElement>, src: Source, srt: Sort) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return; // let "open in new tab" work
