@@ -11,8 +11,8 @@ const hydrating = { name: "CeraVe Hydrating Facial Cleanser", brand: "CeraVe" };
 
 test("every Recs site with a Vercel project has Amazon links configured, and none says it has no affiliate links", () => {
   // Sites that link to the product's own website instead of Amazon (the `website` niche option, #162), with no Amazon or commission
-  // wording until real affiliate links exist. MoneyRecs is listed by id until it sets `website`.
-  const linksToWebsite = (id: string) => "website" in niches[id] || id === "money";
+  // wording until real affiliate links exist.
+  const linksToWebsite = (id: string) => Boolean(niches[id].website);
   const withoutAmazon = Object.keys(targets.vercelProjects).filter(linksToWebsite);
   const sites = Object.keys(targets.vercelProjects).filter(id => !linksToWebsite(id));
   for (const id of sites) assert.ok(niches[id]?.amazon?.searchIndex, `${id} has no amazon config`);

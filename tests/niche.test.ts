@@ -586,6 +586,8 @@ test("money: products without years at /products, eleven category pages that eac
   assert.equal(n.amazon, undefined, "no affiliate links until real ones exist");
   assert.match(n.site.notice ?? "", /not financial advice/);
   assert.match(n.site.notice ?? "", /Rates, fees and terms change/);
+  assert.deepEqual(n.website, {}, "Visit site links to the provider");
+  assert.equal(n.specsNote, undefined, "the rates note and checked date are in each product's description");
   for (const text of [n.copy.about.sections.map(s => s.body).join(" "), n.copy.about.paragraphs.join(" "), JSON.stringify(n.seo.addReview)]) assert(!/amazon|commission when you buy|affiliate link/i.test(text), "no Amazon or affiliate wording");
   assert.deepEqual(n.categories.map(c => c.label), ["Value", "Fees", "App & website", "Customer service", "Reliability"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Fees", "Rates & rewards", "Minimum"]);

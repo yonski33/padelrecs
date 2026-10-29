@@ -559,6 +559,8 @@ test("the MoneyRecs starter catalog: every category, official https sources, dat
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 5, `${c}: at least five products`);
   assert(catalog.products.every(p => p.sources.length === 1 && p.sources[0].startsWith("https://")));
+  // Visit site goes to the same official page the facts were read from; no affiliate links yet.
+  assert(catalog.products.every(p => p.website === p.sources[0] && p.affiliateUrl === undefined));
   for (const name of ["Chase Sapphire Preferred", "American Express Gold Card", "Capital One Venture X", "Citi Double Cash", "Wells Fargo Active Cash", "Discover it Secured", "Ink Business Preferred", "Marcus Online Savings Account", "Fidelity Brokerage Account", "YNAB", "FreeTaxUSA", "Wise", "Revolut"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Chase Sapphire Preferred")?.weight, "$95 annual fee");
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Marcus Online Savings Account")?.surface, "3.50% APY as of 2026-10-29");
