@@ -1,0 +1,1836 @@
+{
+  "about": "HostingRecs starter catalog (2026-10-30): web hosts, cloud and VPS providers, static hosting, server panels, dedicated servers, website builders, domain registrars and email hosting in 10 categories. Every website link and every filled value was read on 2026-10-30 from the provider's own pages listed in sources, fetched directly or, where the site blocks scripts, in a browser. Free plan is Yes only where the provider's page states a free plan or free tier, No only where its pricing page lists paid plans or a trial only; blank means not checked. Prices are left out because they change too often and renewals differ from intro prices.",
+  "checked": "2026-10-30",
+  "brands": [
+    {
+      "id": "akamai",
+      "name": "Akamai"
+    },
+    {
+      "id": "amazon-web-services",
+      "name": "Amazon Web Services"
+    },
+    {
+      "id": "automattic",
+      "name": "Automattic"
+    },
+    {
+      "id": "bluehost",
+      "name": "Bluehost"
+    },
+    {
+      "id": "buyvm",
+      "name": "BuyVM"
+    },
+    {
+      "id": "carrd",
+      "name": "Carrd"
+    },
+    {
+      "id": "chemicloud",
+      "name": "ChemiCloud"
+    },
+    {
+      "id": "cherry-servers",
+      "name": "Cherry Servers"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare"
+    },
+    {
+      "id": "contabo",
+      "name": "Contabo"
+    },
+    {
+      "id": "coolify",
+      "name": "Coolify"
+    },
+    {
+      "id": "delicious-brains",
+      "name": "Delicious Brains"
+    },
+    {
+      "id": "deno",
+      "name": "Deno"
+    },
+    {
+      "id": "digitalocean",
+      "name": "DigitalOcean"
+    },
+    {
+      "id": "dreamhost",
+      "name": "DreamHost"
+    },
+    {
+      "id": "dynadot",
+      "name": "Dynadot"
+    },
+    {
+      "id": "fastcomet",
+      "name": "FastComet"
+    },
+    {
+      "id": "fastmail",
+      "name": "Fastmail"
+    },
+    {
+      "id": "fly-io",
+      "name": "Fly.io"
+    },
+    {
+      "id": "flywheel",
+      "name": "Flywheel"
+    },
+    {
+      "id": "framer",
+      "name": "Framer"
+    },
+    {
+      "id": "gandi",
+      "name": "Gandi"
+    },
+    {
+      "id": "ghost",
+      "name": "Ghost"
+    },
+    {
+      "id": "github",
+      "name": "GitHub"
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab"
+    },
+    {
+      "id": "godaddy",
+      "name": "GoDaddy"
+    },
+    {
+      "id": "google",
+      "name": "Google"
+    },
+    {
+      "id": "greengeeks",
+      "name": "GreenGeeks"
+    },
+    {
+      "id": "gridpane",
+      "name": "GridPane"
+    },
+    {
+      "id": "hetzner",
+      "name": "Hetzner"
+    },
+    {
+      "id": "hivelocity",
+      "name": "Hivelocity"
+    },
+    {
+      "id": "hostarmada",
+      "name": "HostArmada"
+    },
+    {
+      "id": "hostgator",
+      "name": "HostGator"
+    },
+    {
+      "id": "hosting-com",
+      "name": "Hosting.com"
+    },
+    {
+      "id": "hostinger",
+      "name": "Hostinger"
+    },
+    {
+      "id": "hostwinds",
+      "name": "Hostwinds"
+    },
+    {
+      "id": "hover",
+      "name": "Hover"
+    },
+    {
+      "id": "infomaniak",
+      "name": "Infomaniak"
+    },
+    {
+      "id": "inmotion-hosting",
+      "name": "InMotion Hosting"
+    },
+    {
+      "id": "ionos",
+      "name": "IONOS"
+    },
+    {
+      "id": "kamatera",
+      "name": "Kamatera"
+    },
+    {
+      "id": "kinsta",
+      "name": "Kinsta"
+    },
+    {
+      "id": "koyeb",
+      "name": "Koyeb"
+    },
+    {
+      "id": "krystal",
+      "name": "Krystal"
+    },
+    {
+      "id": "laravel",
+      "name": "Laravel"
+    },
+    {
+      "id": "leaseweb",
+      "name": "Leaseweb"
+    },
+    {
+      "id": "liquid-web",
+      "name": "Liquid Web"
+    },
+    {
+      "id": "mailbox-org",
+      "name": "mailbox.org"
+    },
+    {
+      "id": "mddhosting",
+      "name": "MDDHosting"
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft"
+    },
+    {
+      "id": "migadu",
+      "name": "Migadu"
+    },
+    {
+      "id": "name-com",
+      "name": "Name.com"
+    },
+    {
+      "id": "namecheap",
+      "name": "Namecheap"
+    },
+    {
+      "id": "namesilo",
+      "name": "NameSilo"
+    },
+    {
+      "id": "neocities",
+      "name": "Neocities"
+    },
+    {
+      "id": "netcup",
+      "name": "netcup"
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify"
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle"
+    },
+    {
+      "id": "ovhcloud",
+      "name": "OVHcloud"
+    },
+    {
+      "id": "pantheon",
+      "name": "Pantheon"
+    },
+    {
+      "id": "phoenixnap",
+      "name": "phoenixNAP"
+    },
+    {
+      "id": "ploi",
+      "name": "Ploi"
+    },
+    {
+      "id": "porkbun",
+      "name": "Porkbun"
+    },
+    {
+      "id": "pressable",
+      "name": "Pressable"
+    },
+    {
+      "id": "proton",
+      "name": "Proton"
+    },
+    {
+      "id": "purelymail",
+      "name": "Purelymail"
+    },
+    {
+      "id": "racknerd",
+      "name": "RackNerd"
+    },
+    {
+      "id": "railway",
+      "name": "Railway"
+    },
+    {
+      "id": "render",
+      "name": "Render"
+    },
+    {
+      "id": "rocket-net",
+      "name": "Rocket.net"
+    },
+    {
+      "id": "runcloud",
+      "name": "RunCloud"
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce"
+    },
+    {
+      "id": "scalahosting",
+      "name": "ScalaHosting"
+    },
+    {
+      "id": "scaleway",
+      "name": "Scaleway"
+    },
+    {
+      "id": "servebolt",
+      "name": "Servebolt"
+    },
+    {
+      "id": "serverpilot",
+      "name": "ServerPilot"
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify"
+    },
+    {
+      "id": "siteground",
+      "name": "SiteGround"
+    },
+    {
+      "id": "spaceship",
+      "name": "Spaceship"
+    },
+    {
+      "id": "square",
+      "name": "Square"
+    },
+    {
+      "id": "squarespace",
+      "name": "Squarespace"
+    },
+    {
+      "id": "surge",
+      "name": "Surge"
+    },
+    {
+      "id": "tuta",
+      "name": "Tuta"
+    },
+    {
+      "id": "upcloud",
+      "name": "UpCloud"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel"
+    },
+    {
+      "id": "vultr",
+      "name": "Vultr"
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow"
+    },
+    {
+      "id": "wix",
+      "name": "Wix"
+    },
+    {
+      "id": "wp-engine",
+      "name": "WP Engine"
+    },
+    {
+      "id": "wpx",
+      "name": "WPX"
+    },
+    {
+      "id": "zoho",
+      "name": "Zoho"
+    }
+  ],
+  "products": [
+    {
+      "brand": "hostinger",
+      "name": "Hostinger",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hostinger.com/web-hosting",
+      "sources": [
+        "https://www.hostinger.com/web-hosting"
+      ]
+    },
+    {
+      "brand": "bluehost",
+      "name": "Bluehost",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.bluehost.com/",
+      "sources": [
+        "https://www.bluehost.com/"
+      ]
+    },
+    {
+      "brand": "siteground",
+      "name": "SiteGround",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.siteground.com/",
+      "sources": [
+        "https://www.siteground.com/"
+      ]
+    },
+    {
+      "brand": "hostgator",
+      "name": "HostGator",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hostgator.com/",
+      "sources": [
+        "https://www.hostgator.com/"
+      ]
+    },
+    {
+      "brand": "hosting-com",
+      "name": "Hosting.com",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://hosting.com/",
+      "sources": [
+        "https://hosting.com/",
+        "https://www.a2hosting.com/"
+      ]
+    },
+    {
+      "brand": "dreamhost",
+      "name": "DreamHost",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.dreamhost.com/",
+      "sources": [
+        "https://www.dreamhost.com/"
+      ]
+    },
+    {
+      "brand": "inmotion-hosting",
+      "name": "InMotion Hosting",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.inmotionhosting.com/",
+      "sources": [
+        "https://www.inmotionhosting.com/"
+      ]
+    },
+    {
+      "brand": "greengeeks",
+      "name": "GreenGeeks",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.greengeeks.com/",
+      "sources": [
+        "https://www.greengeeks.com/"
+      ]
+    },
+    {
+      "brand": "ionos",
+      "name": "IONOS Web Hosting",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.ionos.com/hosting/web-hosting",
+      "sources": [
+        "https://www.ionos.com/hosting/web-hosting"
+      ]
+    },
+    {
+      "brand": "scalahosting",
+      "name": "ScalaHosting",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.scalahosting.com/",
+      "sources": [
+        "https://www.scalahosting.com/"
+      ]
+    },
+    {
+      "brand": "fastcomet",
+      "name": "FastComet",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.fastcomet.com/",
+      "sources": [
+        "https://www.fastcomet.com/"
+      ]
+    },
+    {
+      "brand": "chemicloud",
+      "name": "ChemiCloud",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://chemicloud.com/",
+      "sources": [
+        "https://chemicloud.com/"
+      ]
+    },
+    {
+      "brand": "hostarmada",
+      "name": "HostArmada",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hostarmada.com/",
+      "sources": [
+        "https://www.hostarmada.com/"
+      ]
+    },
+    {
+      "brand": "mddhosting",
+      "name": "MDDHosting",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.mddhosting.com/",
+      "sources": [
+        "https://www.mddhosting.com/"
+      ]
+    },
+    {
+      "brand": "krystal",
+      "name": "Krystal",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://krystal.io/",
+      "sources": [
+        "https://krystal.io/"
+      ]
+    },
+    {
+      "brand": "namecheap",
+      "name": "Namecheap Hosting",
+      "shape": "Shared hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.namecheap.com/hosting/shared/",
+      "sources": [
+        "https://www.namecheap.com/hosting/shared/"
+      ]
+    },
+    {
+      "brand": "wp-engine",
+      "name": "WP Engine",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://wpengine.com/",
+      "sources": [
+        "https://wpengine.com/"
+      ]
+    },
+    {
+      "brand": "kinsta",
+      "name": "Kinsta",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://kinsta.com/",
+      "sources": [
+        "https://kinsta.com/"
+      ]
+    },
+    {
+      "brand": "flywheel",
+      "name": "Flywheel",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://getflywheel.com/",
+      "sources": [
+        "https://getflywheel.com/"
+      ]
+    },
+    {
+      "brand": "pressable",
+      "name": "Pressable",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://pressable.com/",
+      "sources": [
+        "https://pressable.com/"
+      ]
+    },
+    {
+      "brand": "rocket-net",
+      "name": "Rocket.net",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://rocket.net/",
+      "sources": [
+        "https://rocket.net/"
+      ]
+    },
+    {
+      "brand": "automattic",
+      "name": "WordPress.com",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://wordpress.com/",
+      "sources": [
+        "https://wordpress.com/",
+        "https://wordpress.com/pricing/"
+      ]
+    },
+    {
+      "brand": "pantheon",
+      "name": "Pantheon",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://pantheon.io/",
+      "sources": [
+        "https://pantheon.io/"
+      ]
+    },
+    {
+      "brand": "wpx",
+      "name": "WPX Hosting",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://wpx.net/",
+      "sources": [
+        "https://wpx.net/"
+      ]
+    },
+    {
+      "brand": "servebolt",
+      "name": "Servebolt",
+      "shape": "Managed WordPress",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://servebolt.com/",
+      "sources": [
+        "https://servebolt.com/"
+      ]
+    },
+    {
+      "brand": "hetzner",
+      "name": "Hetzner Cloud",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hetzner.com/cloud/",
+      "sources": [
+        "https://www.hetzner.com/cloud/"
+      ]
+    },
+    {
+      "brand": "vultr",
+      "name": "Vultr",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.vultr.com/",
+      "sources": [
+        "https://www.vultr.com/",
+        "https://docs.vultr.com/"
+      ]
+    },
+    {
+      "brand": "akamai",
+      "name": "Linode",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.linode.com/",
+      "sources": [
+        "https://www.linode.com/"
+      ]
+    },
+    {
+      "brand": "contabo",
+      "name": "Contabo",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://contabo.com/en/",
+      "sources": [
+        "https://contabo.com/en/"
+      ]
+    },
+    {
+      "brand": "ovhcloud",
+      "name": "OVHcloud VPS",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.ovhcloud.com/en/vps/",
+      "sources": [
+        "https://www.ovhcloud.com/en/vps/"
+      ]
+    },
+    {
+      "brand": "hostinger",
+      "name": "Hostinger VPS",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hostinger.com/vps-hosting",
+      "sources": [
+        "https://www.hostinger.com/vps-hosting"
+      ]
+    },
+    {
+      "brand": "hostwinds",
+      "name": "Hostwinds",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hostwinds.com/",
+      "sources": [
+        "https://www.hostwinds.com/"
+      ]
+    },
+    {
+      "brand": "racknerd",
+      "name": "RackNerd",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.racknerd.com/",
+      "sources": [
+        "https://www.racknerd.com/"
+      ]
+    },
+    {
+      "brand": "buyvm",
+      "name": "BuyVM",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://buyvm.net/",
+      "sources": [
+        "https://buyvm.net/"
+      ]
+    },
+    {
+      "brand": "upcloud",
+      "name": "UpCloud",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://upcloud.com/",
+      "sources": [
+        "https://upcloud.com/"
+      ]
+    },
+    {
+      "brand": "kamatera",
+      "name": "Kamatera",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.kamatera.com/",
+      "sources": [
+        "https://www.kamatera.com/"
+      ]
+    },
+    {
+      "brand": "netcup",
+      "name": "netcup",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.netcup.com/en",
+      "sources": [
+        "https://www.netcup.com/en"
+      ]
+    },
+    {
+      "brand": "scaleway",
+      "name": "Scaleway",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.scaleway.com/en/",
+      "sources": [
+        "https://www.scaleway.com/en/"
+      ]
+    },
+    {
+      "brand": "ionos",
+      "name": "IONOS VPS",
+      "shape": "VPS hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.ionos.com/servers/vps",
+      "sources": [
+        "https://www.ionos.com/servers/vps"
+      ]
+    },
+    {
+      "brand": "digitalocean",
+      "name": "DigitalOcean",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.digitalocean.com/",
+      "sources": [
+        "https://www.digitalocean.com/"
+      ]
+    },
+    {
+      "brand": "amazon-web-services",
+      "name": "Amazon Lightsail",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://aws.amazon.com/lightsail/",
+      "sources": [
+        "https://aws.amazon.com/lightsail/"
+      ]
+    },
+    {
+      "brand": "amazon-web-services",
+      "name": "Amazon EC2",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://aws.amazon.com/ec2/",
+      "sources": [
+        "https://aws.amazon.com/ec2/"
+      ]
+    },
+    {
+      "brand": "google",
+      "name": "Google Cloud",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://cloud.google.com/",
+      "sources": [
+        "https://cloud.google.com/",
+        "https://cloud.google.com/free"
+      ]
+    },
+    {
+      "brand": "microsoft",
+      "name": "Microsoft Azure",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://azure.microsoft.com/en-us",
+      "sources": [
+        "https://azure.microsoft.com/en-us",
+        "https://azure.microsoft.com/en-us/pricing/free-services"
+      ]
+    },
+    {
+      "brand": "oracle",
+      "name": "Oracle Cloud",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.oracle.com/cloud/",
+      "sources": [
+        "https://www.oracle.com/cloud/",
+        "https://www.oracle.com/cloud/free/"
+      ]
+    },
+    {
+      "brand": "render",
+      "name": "Render",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://render.com/",
+      "sources": [
+        "https://render.com/",
+        "https://render.com/pricing"
+      ]
+    },
+    {
+      "brand": "railway",
+      "name": "Railway",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://railway.com/",
+      "sources": [
+        "https://railway.com/",
+        "https://railway.com/pricing"
+      ]
+    },
+    {
+      "brand": "fly-io",
+      "name": "Fly.io",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://fly.io/",
+      "sources": [
+        "https://fly.io/"
+      ]
+    },
+    {
+      "brand": "salesforce",
+      "name": "Heroku",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.heroku.com/",
+      "sources": [
+        "https://www.heroku.com/"
+      ]
+    },
+    {
+      "brand": "koyeb",
+      "name": "Koyeb",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.koyeb.com/",
+      "sources": [
+        "https://www.koyeb.com/",
+        "https://www.koyeb.com/pricing"
+      ]
+    },
+    {
+      "brand": "google",
+      "name": "Google Cloud Run",
+      "shape": "Cloud platform",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://cloud.google.com/run",
+      "sources": [
+        "https://cloud.google.com/run",
+        "https://cloud.google.com/run/pricing"
+      ]
+    },
+    {
+      "brand": "vercel",
+      "name": "Vercel",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://vercel.com/",
+      "sources": [
+        "https://vercel.com/",
+        "https://vercel.com/pricing"
+      ]
+    },
+    {
+      "brand": "netlify",
+      "name": "Netlify",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.netlify.com/",
+      "sources": [
+        "https://www.netlify.com/",
+        "https://www.netlify.com/pricing/"
+      ]
+    },
+    {
+      "brand": "cloudflare",
+      "name": "Cloudflare Pages",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.cloudflare.com/products/pages/",
+      "sources": [
+        "https://www.cloudflare.com/products/pages/"
+      ]
+    },
+    {
+      "brand": "github",
+      "name": "GitHub Pages",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://pages.github.com/",
+      "sources": [
+        "https://pages.github.com/"
+      ]
+    },
+    {
+      "brand": "google",
+      "name": "Firebase Hosting",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://firebase.google.com/products/hosting",
+      "sources": [
+        "https://firebase.google.com/products/hosting",
+        "https://firebase.google.com/pricing"
+      ]
+    },
+    {
+      "brand": "amazon-web-services",
+      "name": "AWS Amplify",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://aws.amazon.com/amplify/",
+      "sources": [
+        "https://aws.amazon.com/amplify/"
+      ]
+    },
+    {
+      "brand": "microsoft",
+      "name": "Azure Static Web Apps",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://azure.microsoft.com/en-us/products/app-service/static",
+      "sources": [
+        "https://azure.microsoft.com/en-us/products/app-service/static",
+        "https://azure.microsoft.com/en-us/pricing/details/app-service/static/"
+      ]
+    },
+    {
+      "brand": "gitlab",
+      "name": "GitLab Pages",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://docs.gitlab.com/user/project/pages/",
+      "sources": [
+        "https://docs.gitlab.com/user/project/pages/",
+        "https://about.gitlab.com/pricing/"
+      ]
+    },
+    {
+      "brand": "neocities",
+      "name": "Neocities",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://neocities.org/",
+      "sources": [
+        "https://neocities.org/"
+      ]
+    },
+    {
+      "brand": "surge",
+      "name": "Surge",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://surge.sh/",
+      "sources": [
+        "https://surge.sh/",
+        "https://surge.sh/pricing"
+      ]
+    },
+    {
+      "brand": "deno",
+      "name": "Deno Deploy",
+      "shape": "Static & frontend hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://deno.com/deploy",
+      "sources": [
+        "https://deno.com/deploy",
+        "https://deno.com/deploy/pricing"
+      ]
+    },
+    {
+      "brand": "digitalocean",
+      "name": "Cloudways",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.cloudways.com/en/",
+      "sources": [
+        "https://www.cloudways.com/en/"
+      ]
+    },
+    {
+      "brand": "runcloud",
+      "name": "RunCloud",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://runcloud.io/",
+      "sources": [
+        "https://runcloud.io/"
+      ]
+    },
+    {
+      "brand": "serverpilot",
+      "name": "ServerPilot",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://serverpilot.io/",
+      "sources": [
+        "https://serverpilot.io/",
+        "https://serverpilot.io/pricing/"
+      ]
+    },
+    {
+      "brand": "ploi",
+      "name": "Ploi",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://ploi.io/",
+      "sources": [
+        "https://ploi.io/",
+        "https://ploi.io/pricing"
+      ]
+    },
+    {
+      "brand": "laravel",
+      "name": "Laravel Forge",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://laravel.com/forge",
+      "sources": [
+        "https://laravel.com/forge",
+        "https://forge.laravel.com/pricing"
+      ]
+    },
+    {
+      "brand": "delicious-brains",
+      "name": "SpinupWP",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://spinupwp.com/",
+      "sources": [
+        "https://spinupwp.com/",
+        "https://spinupwp.com/pricing/"
+      ]
+    },
+    {
+      "brand": "gridpane",
+      "name": "GridPane",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://gridpane.com/",
+      "sources": [
+        "https://gridpane.com/",
+        "https://gridpane.com/pricing/"
+      ]
+    },
+    {
+      "brand": "coolify",
+      "name": "Coolify",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://coolify.io/",
+      "sources": [
+        "https://coolify.io/",
+        "https://coolify.io/pricing/"
+      ]
+    },
+    {
+      "brand": "laravel",
+      "name": "Laravel Cloud",
+      "shape": "Managed cloud",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://laravel.com/cloud",
+      "sources": [
+        "https://laravel.com/cloud",
+        "https://cloud.laravel.com/pricing"
+      ]
+    },
+    {
+      "brand": "hetzner",
+      "name": "Hetzner Dedicated Servers",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hetzner.com/dedicated-rootserver/",
+      "sources": [
+        "https://www.hetzner.com/dedicated-rootserver/"
+      ]
+    },
+    {
+      "brand": "hetzner",
+      "name": "Hetzner Server Auction",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hetzner.com/sb/",
+      "sources": [
+        "https://www.hetzner.com/sb/"
+      ]
+    },
+    {
+      "brand": "ovhcloud",
+      "name": "OVHcloud Bare Metal",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.ovhcloud.com/en/bare-metal/",
+      "sources": [
+        "https://www.ovhcloud.com/en/bare-metal/"
+      ]
+    },
+    {
+      "brand": "ovhcloud",
+      "name": "Kimsufi",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.kimsufi.com/en/",
+      "sources": [
+        "https://www.kimsufi.com/en/"
+      ]
+    },
+    {
+      "brand": "liquid-web",
+      "name": "Liquid Web",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.liquidweb.com/",
+      "sources": [
+        "https://www.liquidweb.com/"
+      ]
+    },
+    {
+      "brand": "hivelocity",
+      "name": "Hivelocity",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hivelocity.net/",
+      "sources": [
+        "https://www.hivelocity.net/"
+      ]
+    },
+    {
+      "brand": "leaseweb",
+      "name": "Leaseweb",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.leaseweb.com/en/",
+      "sources": [
+        "https://www.leaseweb.com/en/"
+      ]
+    },
+    {
+      "brand": "phoenixnap",
+      "name": "phoenixNAP",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://phoenixnap.com/",
+      "sources": [
+        "https://phoenixnap.com/"
+      ]
+    },
+    {
+      "brand": "cherry-servers",
+      "name": "Cherry Servers",
+      "shape": "Dedicated server",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.cherryservers.com/",
+      "sources": [
+        "https://www.cherryservers.com/"
+      ]
+    },
+    {
+      "brand": "squarespace",
+      "name": "Squarespace",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://www.squarespace.com/",
+      "sources": [
+        "https://www.squarespace.com/",
+        "https://www.squarespace.com/pricing"
+      ]
+    },
+    {
+      "brand": "wix",
+      "name": "Wix",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.wix.com/",
+      "sources": [
+        "https://www.wix.com/",
+        "https://www.wix.com/plans"
+      ]
+    },
+    {
+      "brand": "webflow",
+      "name": "Webflow",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://webflow.com/",
+      "sources": [
+        "https://webflow.com/",
+        "https://webflow.com/pricing"
+      ]
+    },
+    {
+      "brand": "shopify",
+      "name": "Shopify",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://www.shopify.com/",
+      "sources": [
+        "https://www.shopify.com/",
+        "https://www.shopify.com/pricing"
+      ]
+    },
+    {
+      "brand": "framer",
+      "name": "Framer",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.framer.com/",
+      "sources": [
+        "https://www.framer.com/",
+        "https://www.framer.com/pricing"
+      ]
+    },
+    {
+      "brand": "carrd",
+      "name": "Carrd",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://carrd.com/",
+      "sources": [
+        "https://carrd.com/"
+      ]
+    },
+    {
+      "brand": "ghost",
+      "name": "Ghost(Pro)",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://ghost.org/pricing/",
+      "sources": [
+        "https://ghost.org/pricing/"
+      ]
+    },
+    {
+      "brand": "square",
+      "name": "Square Online",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://squareup.com/us/en/online-store",
+      "sources": [
+        "https://squareup.com/us/en/online-store"
+      ]
+    },
+    {
+      "brand": "hostinger",
+      "name": "Hostinger Website Builder",
+      "shape": "Website builder",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hostinger.com/website-builder",
+      "sources": [
+        "https://www.hostinger.com/website-builder"
+      ]
+    },
+    {
+      "brand": "cloudflare",
+      "name": "Cloudflare Registrar",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.cloudflare.com/domains/",
+      "sources": [
+        "https://www.cloudflare.com/domains/"
+      ]
+    },
+    {
+      "brand": "porkbun",
+      "name": "Porkbun",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://porkbun.com/",
+      "sources": [
+        "https://porkbun.com/"
+      ]
+    },
+    {
+      "brand": "namecheap",
+      "name": "Namecheap",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.namecheap.com/",
+      "sources": [
+        "https://www.namecheap.com/"
+      ]
+    },
+    {
+      "brand": "spaceship",
+      "name": "Spaceship",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.spaceship.com/",
+      "sources": [
+        "https://www.spaceship.com/"
+      ]
+    },
+    {
+      "brand": "godaddy",
+      "name": "GoDaddy",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.godaddy.com/",
+      "sources": [
+        "https://www.godaddy.com/"
+      ]
+    },
+    {
+      "brand": "dynadot",
+      "name": "Dynadot",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.dynadot.com/",
+      "sources": [
+        "https://www.dynadot.com/"
+      ]
+    },
+    {
+      "brand": "gandi",
+      "name": "Gandi",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.gandi.net/en",
+      "sources": [
+        "https://www.gandi.net/en"
+      ]
+    },
+    {
+      "brand": "hover",
+      "name": "Hover",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.hover.com/",
+      "sources": [
+        "https://www.hover.com/"
+      ]
+    },
+    {
+      "brand": "name-com",
+      "name": "Name.com",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.name.com/",
+      "sources": [
+        "https://www.name.com/"
+      ]
+    },
+    {
+      "brand": "namesilo",
+      "name": "NameSilo",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.namesilo.com/",
+      "sources": [
+        "https://www.namesilo.com/"
+      ]
+    },
+    {
+      "brand": "squarespace",
+      "name": "Squarespace Domains",
+      "shape": "Domain registrar",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://domains.squarespace.com/",
+      "sources": [
+        "https://domains.squarespace.com/"
+      ]
+    },
+    {
+      "brand": "google",
+      "name": "Google Workspace",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://workspace.google.com/",
+      "sources": [
+        "https://workspace.google.com/"
+      ]
+    },
+    {
+      "brand": "microsoft",
+      "name": "Microsoft 365",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.microsoft.com/en-us/microsoft-365/business",
+      "sources": [
+        "https://www.microsoft.com/en-us/microsoft-365/business"
+      ]
+    },
+    {
+      "brand": "zoho",
+      "name": "Zoho Mail",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://www.zoho.com/mail/",
+      "sources": [
+        "https://www.zoho.com/mail/",
+        "https://www.zoho.com/mail/zohomail-pricing.html"
+      ]
+    },
+    {
+      "brand": "fastmail",
+      "name": "Fastmail",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://www.fastmail.com/",
+      "sources": [
+        "https://www.fastmail.com/",
+        "https://www.fastmail.com/pricing/"
+      ]
+    },
+    {
+      "brand": "proton",
+      "name": "Proton Mail",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://proton.me/mail",
+      "sources": [
+        "https://proton.me/mail",
+        "https://proton.me/mail/pricing"
+      ]
+    },
+    {
+      "brand": "migadu",
+      "name": "Migadu",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": "No",
+      "core": null,
+      "weight": null,
+      "website": "https://www.migadu.com/",
+      "sources": [
+        "https://www.migadu.com/",
+        "https://www.migadu.com/pricing/"
+      ]
+    },
+    {
+      "brand": "purelymail",
+      "name": "Purelymail",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://purelymail.com/",
+      "sources": [
+        "https://purelymail.com/"
+      ]
+    },
+    {
+      "brand": "mailbox-org",
+      "name": "mailbox.org",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://mailbox.org/en/",
+      "sources": [
+        "https://mailbox.org/en/"
+      ]
+    },
+    {
+      "brand": "tuta",
+      "name": "Tuta",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": "Yes",
+      "core": null,
+      "weight": null,
+      "website": "https://tuta.com/",
+      "sources": [
+        "https://tuta.com/",
+        "https://tuta.com/pricing"
+      ]
+    },
+    {
+      "brand": "infomaniak",
+      "name": "Infomaniak Service Mail",
+      "shape": "Email hosting",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "website": "https://www.infomaniak.com/en/ksuite/service-mail",
+      "sources": [
+        "https://www.infomaniak.com/en/ksuite/service-mail"
+      ]
+    }
+  ]
+}

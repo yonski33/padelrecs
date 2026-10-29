@@ -42,6 +42,6 @@ export default async function TypePage({ params, searchParams }: { params: Promi
       {(f.brand || f.sort) && <a href={`/${t.slug}`}>Reset</a>}
     </AutoSubmitForm>
     <div className="directory">{results.map(({ r, s }) => <RacketRow key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} average={s.average} count={s.count} web={s.web} positive={positiveShare(s)} details={niche.rowDetail && r[niche.rowDetail.column] ? `${r[niche.rowDetail.column]}${niche.rowDetail.suffix}` : ""}/>)}</div>
-    {!results.length && <p className="empty-feed">{`No ${t.label.toLowerCase()} from this brand yet. `}<a href={`/${t.slug}`}>Show all {t.label.toLowerCase()}</a></p>}
+    {!results.length && <p className="empty-feed">{`No ${lowerWords(t.label)} from this brand yet. `}<a href={`/${t.slug}`}>Show all {lowerWords(t.label)}</a></p>}
   </main>;
 }

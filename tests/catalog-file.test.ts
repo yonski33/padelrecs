@@ -587,3 +587,24 @@ test("the SoftwareRecs catalog: sourced tools in all fourteen categories, each w
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: catalog.brands.length, rackets: 135, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("hosting catalog: 110 services in all ten categories, each linking to the provider's own site, free plan only as Yes or No", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/hosting.json");
+  const snapshot = catalogSnapshot(catalog, "hostingrecs", "catalog:test", false);
+  const categories = niches.hosting.specs.find(s => s.column === "shape")!.options!;
+  assert.equal(snapshot.tables.rackets.length, 110);
+  assert.deepEqual(new Set(catalog.products.map(p => p.shape)), new Set(categories), "every category has services and none is outside them");
+  for (const c of categories) assert(catalog.products.filter(p => p.shape === c).length >= 8, `${c}: at least eight services`);
+  assert(catalog.products.every(p => p.website?.startsWith("https://") && p.sources[0] === p.website && p.sources.every(s => s.startsWith("https://"))), "every service links to its own site");
+  assert(catalog.products.every(p => !p.affiliateUrl), "no affiliate links yet");
+  assert(catalog.products.every(p => p.surface == null || ["Yes", "No"].includes(p.surface)));
+  assert(catalog.products.every(p => p.balance == null && p.core == null && p.weight == null), "no prices or other unchecked facts");
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 110);
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: catalog.brands.length, rackets: 110, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});

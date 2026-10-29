@@ -634,3 +634,33 @@ test("software: tools named without years, fourteen category pages that each pic
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("hosting: services named without years, ten category pages with product URLs under them, website links instead of Amazon", async () => {
+  const n = selectNiche("hosting");
+  assert.equal(n.schema, "hostingrecs");
+  assert.equal(n.productPath, "services");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon, undefined, "no Amazon links or Amazon wording on HostingRecs");
+  assert.deepEqual(n.website, { label: "Visit site" });
+  assert(!JSON.stringify(n).toLowerCase().includes("amazon"), "no Amazon wording anywhere in the config");
+  assert(!/commission|affiliate link/i.test(JSON.stringify(n.copy)), "no affiliate wording until real affiliate links exist");
+  assert.deepEqual(n.categories.map(c => c.label), ["Performance", "Ease of use", "Reliability", "Support", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Free plan"]);
+  // The owner's approved category URLs (2026-10-30).
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["shared-hosting", "wordpress-hosting", "vps-hosting", "cloud-hosting", "static-hosting", "managed-cloud", "dedicated-servers", "website-builders", "domain-registrars", "email-hosting"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/hosting");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 10, "and no two share one");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /hosting|servers|builders|registrars/, `${list.slug}: niche keyword in the slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
