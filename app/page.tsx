@@ -60,8 +60,8 @@ export default async function Home({ searchParams }: {
     { value: "web", label: "From around the web", count: external.length, href: query({ source: "web", type: type?.slug }) },
   ];
   const items = spreadByProduct([
-    ...(source !== "web" ? reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <Review review={r} data={data}/> })) : []),
-    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data}/> })) : []),
+    ...(source !== "web" ? reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <Review review={r} data={data} showCategory={!type}/> })) : []),
+    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data} showCategory={!type}/> })) : []),
   ]);
 
 
