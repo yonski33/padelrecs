@@ -29,7 +29,7 @@ export const fragrance: Niche = {
     domain: "fragrancerecs.com",
     wordmark: "fragrancerecs",
     descriptor: "real reviews of perfumes and colognes",
-    footer: "kept by people with more bottles than days to wear them. No affiliate links.",
+    footer: "kept by people with more bottles than days to wear them.",
     analyticsId: "G-VB88Q9X0X1",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -39,6 +39,7 @@ export const fragrance: Niche = {
   // Fragrances are named by line and concentration (Sauvage Eau de Parfum, Sauvage Elixir), not years.
   productYears: false,
   productPath: "fragrances",
+  amazon: { searchIndex: "Beauty" },
   scoreUnit: { one: "bottle", many: "bottles" },
   // White page, deep violet, one champagne-gold accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -209,7 +210,7 @@ export const fragrance: Niche = {
         "A fragrance that works on one person won’t work on everyone. Skin, climate, the concentration and how someone wears it often tell you more than a score on its own.",
       ],
       sections: [
-        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from user submissions, and quotes from around the web stay separate from those ratings." },
+        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings. Fragrance pages link to Amazon, and FragranceRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "Concentrations are separate", body: "An Eau de Toilette, Eau de Parfum, Parfum and Elixir of the same line smell and wear differently, so each has its own page. Catalogue details come from a maker’s or retailer’s page and stay blank where that page doesn’t say." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about fragrances you’ve actually worn and say which concentration you have." },
         { heading: "Your privacy", body: "An alias is optional, and so are experience, occasion and climate. If you leave an email address, it is stored privately with your submission and never included in public reviews." },

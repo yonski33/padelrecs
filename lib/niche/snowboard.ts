@@ -20,7 +20,7 @@ export const snowboard: Niche = {
     domain: "snowboardrecs.com",
     wordmark: "snowboardrecs",
     descriptor: "rider reviews of all-mountain, freestyle and freeride snowboards and splitboards",
-    footer: "kept by people who check the snow report before the weather report. No affiliate links.",
+    footer: "kept by people who check the snow report before the weather report.",
     analyticsId: "G-7EGLY6ZMS1",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -31,6 +31,7 @@ export const snowboard: Niche = {
   // Colourways and sizes (including wides) are one product; women's-only models keep their own names (Feelgood, Yeasayer, Twin Sister).
   productYears: true,
   productPath: "snowboards",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "snowflake", many: "snowflakes" },
   // White page, glacier-blue ink, one coral accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -207,7 +208,7 @@ export const snowboard: Niche = {
         "A board that is perfect for one rider is a handful for another. Knowing someone's level, where they ride, their size and what they rode before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from rider submissions, and external comments stay separate from those ratings." },
+        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from rider submissions, and external comments stay separate from those ratings. Board pages link to Amazon, and SnowboardRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "SnowboardRecs is new. Submissions are moderated before publication, web reviews link to their sources, and board details come from the shop and maker pages linked for each board." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about boards you have actually ridden and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

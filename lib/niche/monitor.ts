@@ -20,7 +20,7 @@ export const monitor: Niche = {
     domain: "monitorrecs.com",
     wordmark: "monitorrecs",
     descriptor: "owner reviews of gaming, ultrawide, office and Mac monitors",
-    footer: "kept by people who have opinions about pixel density. No affiliate links.",
+    footer: "kept by people who have opinions about pixel density.",
     analyticsId: "G-ZSXHEFL9BE",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -30,6 +30,7 @@ export const monitor: Niche = {
   // Makers name each model by its model number (AW3225QF, PG32UCDM3, U2725QE), so no years.
   productYears: false,
   productPath: "monitors",
+  amazon: { searchIndex: "Computers" },
   scoreUnit: { one: "screen", many: "screens" },
   // White page, deep slate, one cyan accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -193,7 +194,7 @@ export const monitor: Niche = {
         "A monitor that suits one person won’t suit everyone. Knowing what someone uses it for, what it’s connected to and what they had before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from owner submissions, and external comments stay separate from those ratings." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from owner submissions, and external comments stay separate from those ratings. Monitor pages link to Amazon, and MonitorRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "MonitorRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about monitors you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

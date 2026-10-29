@@ -23,7 +23,7 @@ export const discgolf: Niche = {
     domain: "discgolfrecs.com",
     wordmark: "discgolfrecs",
     descriptor: "player reviews of disc golf discs",
-    footer: "kept by people with one disc too many in the bag. No affiliate links.",
+    footer: "kept by people with one disc too many in the bag.",
     analyticsId: "G-83JCDSFL6H",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -33,6 +33,7 @@ export const discgolf: Niche = {
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "disc", many: "discs" },
   // White page, deep pine green, one disc-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -186,7 +187,7 @@ export const discgolf: Niche = {
         "A disc that flies one way for one player can fly very differently for another. Knowing someone’s arm speed, throwing hand, the plastic they threw and how beat in it is often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from player submissions, and external comments stay separate from those ratings." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Disc pages link to Amazon, and DiscGolfRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "DiscGolfRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and disc details come from the makers’ published flight numbers and PDGA specifications." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about discs you’ve actually thrown, and say which plastic and weight you threw." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

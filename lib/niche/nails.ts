@@ -22,7 +22,7 @@ export const nails: Niche = {
     domain: "nailsrecs.com",
     wordmark: "nailsrecs",
     descriptor: "real reviews of nail polish, gel polish, base and top coats, press-on nails, nail treatments and cuticle oils",
-    footer: "kept by people with a drawer full of top coats. No affiliate links.",
+    footer: "kept by people with a drawer full of top coats.",
     analyticsId: "G-K6TCLCXZX6",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -33,6 +33,7 @@ export const nails: Niche = {
   // Shades are not separate products: one entry covers every shade of its formula.
   productYears: false,
   productPath: "products",
+  amazon: { searchIndex: "Beauty" },
   scoreUnit: { one: "nail", many: "nails" },
   // White page, wine-lacquer ink, one ballet-pink accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is the pink, readable on the wine panels; the logo and rating icons use the same #f7a1c4.
@@ -206,7 +207,7 @@ export const nails: Niche = {
         "A polish that lasts a week on one person chips in a day on someone else. Knowing someone’s natural nails, how they apply it and what they used before often tells you more than a swatch or a score on its own.",
       ],
       sections: [
-        { heading: "Users, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from user submissions, and external comments stay separate from those ratings." },
+        { heading: "Users, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and NailsRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "NailsRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about products you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

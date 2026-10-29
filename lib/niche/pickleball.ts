@@ -24,7 +24,7 @@ export const pickleball: Niche = {
     domain: "pickleballrecs.com",
     wordmark: "pickleballrecs",
     descriptor: "player reviews of pickleball paddles",
-    footer: "kept by people who own too many paddles. No affiliate links.",
+    footer: "kept by people who own too many paddles.",
     analyticsId: "G-2W4S5QT9CZ",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -35,6 +35,7 @@ export const pickleball: Niche = {
   // The year column still holds the year the maker first listed the paddle.
   productYears: false,
   productPath: "paddles",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -178,7 +179,7 @@ export const pickleball: Niche = {
         "A paddle that works for one player won’t work for everyone. Knowing someone’s level, whether they play singles or doubles, and how long they’ve used a paddle often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from player submissions, and external comments stay separate from those ratings." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Paddle pages link to Amazon, and PickleballRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "PickleballRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and paddle specifications come from the manufacturers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about paddles you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

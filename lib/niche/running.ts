@@ -18,7 +18,7 @@ export const running: Niche = {
     domain: "runningrecs.com",
     wordmark: "runningrecs",
     descriptor: "runner reviews of running shoes",
-    footer: "kept by people who own too many running shoes. No affiliate links.",
+    footer: "kept by people who own too many running shoes.",
     analyticsId: "G-VFQHV30LZX",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -28,6 +28,7 @@ export const running: Niche = {
   // Makers number versions (Pegasus 42, Ghost 17), so names carry the version instead of a year.
   productYears: false,
   productPath: "shoes",
+  amazon: { searchIndex: "Fashion" },
   scoreUnit: { one: "shoe", many: "shoes" },
   // White page, track-side teal, one amber accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -187,7 +188,7 @@ export const running: Niche = {
         "A shoe that works for one runner won’t work for everyone. Knowing someone’s mileage, gait, foot shape and how far they’ve gone in a pair often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Runners, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from runner submissions, and external comments stay separate from those ratings." },
+        { heading: "Runners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from runner submissions, and external comments stay separate from those ratings. Shoe pages link to Amazon, and RunningRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "RunningRecs is new. Runner submissions are moderated before publication, web reviews link to their sources, and shoe specifications come from the brands’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about shoes you’ve actually run in and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

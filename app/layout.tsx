@@ -7,6 +7,7 @@ import { SiteHeader } from "./site-header";
 import { LogoIcon } from "./icons";
 import { Analytics } from "./analytics";
 import { niche, catalogPath } from "../lib/niche";
+import { amazonLinksOn } from "../lib/amazon-offer";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
@@ -26,7 +27,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         <a href="/about">About this project</a>
         <a href={catalogPath}>{`All ${niche.words.many}`}</a>
         <a href="/brands">Brands</a>
-        {niche.amazon && <a href="/affiliate-disclosure">Affiliate disclosure</a>}
+        {amazonLinksOn() && <a href="/affiliate-disclosure">Affiliate disclosure</a>}
         <a href="/contact">Contact</a>
       </nav>
     </div></footer>

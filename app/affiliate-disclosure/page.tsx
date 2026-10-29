@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche } from "../../lib/niche";
+import { amazonLinksOn } from "../../lib/amazon-offer";
 
-// Only niches with Amazon links (lib/niche, `amazon`) have affiliate links to disclose; elsewhere this address is a 404.
+// Only sites showing Amazon links (amazonLinksOn: niche config plus the associate tag) have affiliate links to disclose;
+// elsewhere this address is a 404.
 const site = niche.site.name;
-export const metadata: Metadata = niche.amazon
-  ? { title: "Affiliate Disclosure", description: `How ${site} uses affiliate links, and what they never change.`, alternates: { canonical: "/affiliate-disclosure" } }
-  : { robots: { index: false } };
+export function generateMetadata(): Metadata {
+  return amazonLinksOn()
+    ? { title: "Affiliate Disclosure", description: `How ${site} uses affiliate links, and what they never change.`, alternates: { canonical: "/affiliate-disclosure" } }
+    : { robots: { index: false } };
+}
 
 const UPDATED = "October 25, 2026";
 
 export default function AffiliateDisclosure() {
-  if (!niche.amazon) notFound();
+  if (!amazonLinksOn()) notFound();
   return <main className="narrow prose">
     <p className="eyebrow">Affiliate disclosure</p>
     <h1>How {site} makes money</h1>

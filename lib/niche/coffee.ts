@@ -19,7 +19,7 @@ export const coffee: Niche = {
     domain: "coffeerecs.com",
     wordmark: "coffeerecs",
     descriptor: "home barista reviews of espresso machines, grinders, brewers, kettles and scales",
-    footer: "kept by people who weigh their beans to a tenth of a gram. No affiliate links.",
+    footer: "kept by people who weigh their beans to a tenth of a gram.",
     analyticsId: "G-T3KLFWDEQB",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -29,6 +29,7 @@ export const coffee: Niche = {
   // Makers name gear by model and generation (Barista Express Impress, Encore ESP Pro, Ode Gen 2, GO 2.0), not by year.
   productYears: false,
   productPath: "gear",
+  amazon: { searchIndex: "HomeAndKitchen" },
   scoreUnit: { one: "bean", many: "beans" },
   // White page, dark-roast ink, one crema accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is the crema orange, readable on the dark-roast panels; the logo and rating icons use the same #f0a35e.
@@ -197,7 +198,7 @@ export const coffee: Niche = {
         "Gear that suits one person won’t suit everyone. Knowing what someone drinks, what grinder or machine they pair it with and what they used before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Home baristas, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from home barista submissions, and external comments stay separate from those ratings." },
+        { heading: "Home baristas, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from home barista submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and CoffeeRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "CoffeeRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ and retailers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

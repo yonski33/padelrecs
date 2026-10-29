@@ -15,7 +15,7 @@ export const tennis: Niche = {
     domain: "tennisrecs.com",
     wordmark: "tennisrecs",
     descriptor: "player reviews of tennis rackets",
-    footer: "kept by people who own too many rackets. No affiliate links.",
+    footer: "kept by people who own too many rackets.",
     analyticsId: "G-QZ7FQ1NSY3",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -25,6 +25,7 @@ export const tennis: Niche = {
   // Makers name generations (Wilson V10, Babolat Gen9), not years, so names carry the maker's generation instead of a year.
   productYears: false,
   productPath: "rackets",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, clay-court terracotta, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -175,7 +176,7 @@ export const tennis: Niche = {
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, backhand, strings and time with a racket often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from player submissions, and external comments stay separate from those ratings." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Racket pages link to Amazon, and TennisRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "TennisRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and racket specifications come from the manufacturers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

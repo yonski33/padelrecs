@@ -22,7 +22,7 @@ export const tabletennis: Niche = {
     domain: "tabletennisrecs.com",
     wordmark: "tabletennisrecs",
     descriptor: "player reviews of table tennis blades, rubbers and rackets",
-    footer: "kept by people who own more rubbers than blades. No affiliate links.",
+    footer: "kept by people who own more rubbers than blades.",
     analyticsId: "G-VLT8WJNTN2",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -34,6 +34,7 @@ export const tabletennis: Niche = {
   // versions sold under their own names stay separate (Hurricane 3 vs Hurricane 3 Neo vs Hurricane 3 National).
   productYears: false,
   productPath: "equipment",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, table blue, one ball-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -206,7 +207,7 @@ export const tabletennis: Niche = {
         "A setup that works for one player won’t work for everyone. Knowing someone’s level, grip and style, what the rubber was paired with and how long they played it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from player submissions, and external comments stay separate from those ratings." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and TableTennisRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "TableTennisRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and specifications come from the shop pages linked for each product." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about equipment you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

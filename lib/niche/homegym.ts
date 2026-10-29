@@ -19,7 +19,7 @@ export const homegym: Niche = {
     domain: "homegymrecs.com",
     wordmark: "homegymrecs",
     descriptor: "real reviews of adjustable dumbbells, power racks, benches, barbells, plates, cable machines and cardio gear",
-    footer: "kept by people who train in garages, spare rooms and basements. No affiliate links.",
+    footer: "kept by people who train in garages, spare rooms and basements.",
     analyticsId: "G-FJCY7164W9",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -30,6 +30,7 @@ export const homegym: Niche = {
   // vs Commercial Pro 50), not by year. Heights, depths, lb or kg versions and colours of one model are one product.
   productYears: false,
   productPath: "equipment",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "plate", many: "plates" },
   // White page, charcoal ink, one plate-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
@@ -209,7 +210,7 @@ export const homegym: Niche = {
         "A rack that is perfect in a garage with a 9-foot ceiling won’t fit a basement, and dumbbells that are fine for curls may be slow to change between supersets. Knowing where someone trains, how they train and what they had before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from owner submissions, and external comments stay separate from those ratings." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from owner submissions, and external comments stay separate from those ratings. Item pages link to Amazon, and HomeGymRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "HomeGymRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about equipment you actually own or have used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

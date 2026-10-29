@@ -20,7 +20,7 @@ export const audio: Niche = {
     domain: "audiorecs.com",
     wordmark: "audiorecs",
     descriptor: "listener reviews of headphones, IEMs and earbuds",
-    footer: "kept by people who own more cables than they need. No affiliate links.",
+    footer: "kept by people who own more cables than they need.",
     analyticsId: "G-R9ZV757DP4",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -30,6 +30,7 @@ export const audio: Niche = {
   // Makers put the generation in the name (Sony WH-1000XM6, AirPods Pro 3, Sennheiser Momentum 4), so no years.
   productYears: false,
   productPath: "gear",
+  amazon: { searchIndex: "Electronics" },
   scoreUnit: { one: "pair", many: "pairs" },
   // White page, deep ink, one violet accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is a lighter violet so it stays readable on the ink panels; the logo and rating icons use #7c3aed.
@@ -185,7 +186,7 @@ export const audio: Niche = {
         "A pair that suits one listener won’t suit everyone. Knowing what someone listens to, what they drive them with, which tips or pads they use and what they had before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Listeners, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from listener submissions, and external comments stay separate from those ratings." },
+        { heading: "Listeners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from listener submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and AudioRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "AudioRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about headphones you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

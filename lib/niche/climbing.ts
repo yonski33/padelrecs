@@ -21,7 +21,7 @@ export const climbing: Niche = {
     domain: "climbingrecs.com",
     wordmark: "climbingrecs",
     descriptor: "climber reviews of climbing shoes, harnesses, belay devices, ropes, chalk bags and crash pads",
-    footer: "kept by people who know their shoe size in three brands. No affiliate links.",
+    footer: "kept by people who know their shoe size in three brands.",
     analyticsId: "G-LDTENY2PVS",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -31,6 +31,7 @@ export const climbing: Niche = {
   // Makers name gear by model, version and volume (Instinct VSR LV, Shaman 2S, Drone 2 HV, GRIGRI+, Mega Jul), not by year.
   productYears: false,
   productPath: "gear",
+  amazon: { searchIndex: "SportsAndOutdoors" },
   scoreUnit: { one: "hold", many: "holds" },
   // White page, petrol-blue ink, one rope-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is the rope orange, readable on the petrol panels; the logo and rating icons use the same #fb8c3c.
@@ -202,7 +203,7 @@ export const climbing: Niche = {
         "Gear that suits one climber won’t suit everyone. Knowing someone’s foot shape and size, what they climb and what they used before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Climbers, not promotions", body: "No sponsored rankings. No paid placements. No ads, affiliate links or sales. Ratings come from climber submissions, and external comments stay separate from those ratings." },
+        { heading: "Climbers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from climber submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and ClimbingRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
         { heading: "A work in progress", body: "ClimbingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },
