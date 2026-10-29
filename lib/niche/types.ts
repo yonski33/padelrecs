@@ -86,6 +86,9 @@ export type Niche = {
     notice?: string;
   };
   words: Words;
+  /** Name of the catalogue in the menu, breadcrumbs and its page heading when it should differ from words.Many: HomeGymRecs
+   *  says "Equipment" there (its /equipment path) and "products" in counts and sentences. Defaults to words.Many. */
+  navLabel?: string;
   /** Who writes reviews: "player" / "players" on sports sites, "user" / "users" on SkinRecs. */
   people: Words;
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */

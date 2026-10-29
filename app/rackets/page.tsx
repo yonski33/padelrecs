@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
-import { niche, catalogPath, hasYears } from "../../lib/niche";
+import { niche, catalogPath, catalogLabel, hasYears } from "../../lib/niche";
 import { catalog, score } from "../../db/data";
 import { matchingRackets } from "../../lib/racket-search";
 import { SORTS, parseSort, sortProducts, positiveShare } from "../../lib/product-sort";
@@ -20,7 +20,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
   const shapes = [...new Set([...niche.shapeFilter, ...data.listed.map(r => r.shape).filter((s): s is string => !!s)])].sort();
   const filtered = !!(f.q || f.brand || f.year || f.shape || f.sort);
   return <main>
-    <div className="page-title"><h1>{w.Many}</h1><p>{`Find a ${w.one}. Read what ${niche.people.many} think.`}</p></div>
+    <div className="page-title"><h1>{catalogLabel}</h1><p>{`Find a ${w.one}. Read what ${niche.people.many} think.`}</p></div>
     <AutoSubmitForm className="filters" action={catalogPath}>
       <label>Sort by<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
       <label>Brand<select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>

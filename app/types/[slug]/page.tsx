@@ -5,7 +5,7 @@ import { catalog, score } from "../../../db/data";
 import { RacketRow } from "../../components";
 import { AutoSubmitForm } from "../../auto-submit";
 import { SORTS, parseSort, sortProducts, positiveShare } from "../../../lib/product-sort";
-import { niche, catalogPath } from "../../../lib/niche";
+import { niche, catalogPath, catalogLabel } from "../../../lib/niche";
 
 // Served at /<slug> (next.config.ts rewrites only the configured slugs here). One page per product type, e.g. SkinRecs /cleansers.
 const pageFor = (slug: string) => niche.typePages?.find(t => t.slug === slug);
@@ -33,7 +33,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const results = sortProducts(scored.filter(x => !f.brand || x.r.brandId === f.brand), sort);
   const reviewTotal = scored.reduce((n, x) => n + x.s.count + x.s.web, 0);
   return <main>
-    <p className="breadcrumb"><a href={catalogPath}>{niche.words.Many}</a> / {t.label}</p>
+    <p className="breadcrumb"><a href={catalogPath}>{catalogLabel}</a> / {t.label}</p>
     <div className="page-title"><h1>{t.label}</h1><p>{`${t.intro}. ${ofType.length} ${ofType.length === 1 ? niche.words.one : niche.words.many} · ${reviewTotal} reviews.`}</p></div>
     <AutoSubmitForm className="filters" action={`/${t.slug}`}>
       <label>Sort by<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>

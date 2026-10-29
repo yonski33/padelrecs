@@ -48,6 +48,8 @@ export const niche = selectNiche(process.env.NICHE);
 export const hasYears = niche.productYears !== false;
 
 export const catalogPath = `/${niche.productPath}`;
+/** The catalogue's name in the menu, breadcrumbs and heading ("Equipment" on HomeGymRecs, else words.Many). */
+export const catalogLabel = niche.navLabel ?? niche.words.Many;
 /** The browse page for a product's shape, when this niche has them (SkinRecs: Cleanser → /cleansers). */
 export const typePageFor = (shape: string | null | undefined) => shape ? niche.typePages?.find(t => t.shape.toLowerCase() === shape.toLowerCase()) : undefined;
 /** A product's address: under its type page on niches with categoryPaths (/vpns/mullvad-vpn), else /<productPath>/<slug>. */

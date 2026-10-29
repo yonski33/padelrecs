@@ -23,7 +23,8 @@ export const homegym: Niche = {
     analyticsId: "G-FJCY7164W9",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
-  words: { one: "item", many: "items", One: "Item", Many: "Items" },
+  words: { one: "product", many: "products", One: "Product", Many: "Products" },
+  navLabel: "Equipment",
   people: { one: "owner", many: "owners", One: "Owner", Many: "Owners" },
   recentMonths: 36,
   // Makers name home gym gear by line and model (REP PR-4000 vs PR-5000, Bowflex SelectTech 552 vs 1090, PowerBlock Pro 50
