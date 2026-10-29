@@ -30,7 +30,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         {amazonLinksOn() && <a href="/affiliate-disclosure">Affiliate disclosure</a>}
         <a href="/contact">Contact</a>
       </nav>
-    </div></footer>
+    </div>{niche.site.footerNote && <p className="footer-note wrap">{niche.site.footerNote}</p>}</footer>
     {process.env.VERCEL_ENV === "production" && niche.site.analyticsId && <Analytics id={niche.site.analyticsId}/>}
   </body></html>;
 }

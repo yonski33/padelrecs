@@ -16,6 +16,8 @@ import { websiteButton } from "../../../lib/product-links";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
+// "2026-10-29T12:00:00Z" → "October 29, 2026", for niche.specsNote.
+const checkedDate = (iso: string) => new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
 const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)}%` : "0%";
 // One catalog read per request, shared by the page and its metadata.
 const catalog = cache(() => loadCatalog());
@@ -128,6 +130,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
+        {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}
         {tagged.length >= 2 && <div className="says">
           <h3>{`What ${niche.people.many} keep saying `}<span>· from {tagged.length} reviews</span></h3>
           <TagList tags={topTags} counts={tagCounts}/>

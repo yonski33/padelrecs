@@ -81,6 +81,8 @@ export type Niche = {
     descriptor: string;  // under the logo
     footer: string;      // after "<domain> — "
     analyticsId?: string;
+    /** An extra line in the footer on every page, e.g. "Not financial advice." */
+    footerNote?: string;
     adminLoginHint: string;
   };
   words: Words;
@@ -130,6 +132,9 @@ export type Niche = {
    *  website_url, or its affiliate_url when it has one, is the link (lib/product-links.ts); products without either show
    *  "Add your review" there as usual. Pick this or `amazon`, not both. */
   website?: { label?: string };
+  /** A short note under the spec strip on every product page, e.g. "Rates, fees and terms change; check the issuer's site.
+   *  Checked {checked}." {checked} becomes the date the product's details were read (its catalog `checked` date). */
+  specsNote?: string;
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */
   examples: { brand: string; model: string; year: number; search: string };
