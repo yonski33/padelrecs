@@ -11,7 +11,13 @@ const hydrating = { name: "CeraVe Hydrating Facial Cleanser", brand: "CeraVe" };
 
 test("every Recs site with a Vercel project has Amazon links configured, and none says it has no affiliate links", () => {
   const sites = Object.keys(targets.vercelProjects);
-  for (const id of sites) assert.ok(niches[id]?.amazon?.searchIndex, `${id} has no amazon config`);
+  // Sites that link to each product's own website (SoftwareRecs, MoneyRecs) have no Amazon links and say nothing about them.
+  for (const id of sites) {
+    if (niches[id]?.website || id === "money") {
+      assert.equal(niches[id].amazon, undefined, `${id} links to product websites, not Amazon`);
+      assert.doesNotMatch(JSON.stringify(niches[id].copy.about), /amazon|commission/i, id);
+    } else assert.ok(niches[id]?.amazon?.searchIndex, `${id} has no amazon config`);
+  }
   assert.equal(niches.skin.amazon?.searchIndex, "Beauty");
   assert.equal(niches.simracing.amazon?.searchIndex, "VideoGames");
   for (const n of Object.values(niches).filter(n => n.amazon)) {
