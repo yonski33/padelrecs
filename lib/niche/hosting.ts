@@ -143,6 +143,8 @@ export const hosting: Niche = {
     { label: "email delivery problems", tone: "neg" },
     { label: "best for beginners", tone: "neutral" },
     { label: "best for developers", tone: "neutral" },
+    // Added 2026-10-30 for the reviews that moved from SoftwareRecs.
+    { label: "expensive", tone: "neg" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough services in it have reviews.
   topLists: [

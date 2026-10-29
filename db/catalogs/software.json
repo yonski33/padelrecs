@@ -1,5 +1,5 @@
 {
- "about": "SoftwareRecs starter catalog (2026-10-29): software, AI tools and online services in 14 categories. Every website link and every filled value was read on 2026-10-29 from the vendor's own pages listed in sources, fetched directly or, where the site only renders in a browser, in a browser; blank values are ones the vendor's pages did not state clearly. Pricing is the model only (Free, Freemium, Subscription, Pay as you go), never a price, because prices change too often. AI model is the model family the vendor says the tool runs on. Sites behind robot checks (Kit, ActiveCampaign, Vultr, Sage) are left out rather than worked around, as is OpenAI's Sora, which OpenAI has discontinued. Renamed products use the vendor's current name: Devin Desktop (formerly Windsurf) and Mistral Vibe (formerly Le Chat).",
+ "about": "SoftwareRecs starter catalog (2026-10-29): software, AI tools and online services in 13 categories. Every website link and every filled value was read on 2026-10-29 from the vendor's own pages listed in sources, fetched directly or, where the site only renders in a browser, in a browser; blank values are ones the vendor's pages did not state clearly. Pricing is the model only (Free, Freemium, Subscription, Pay as you go), never a price, because prices change too often. AI model is the model family the vendor says the tool runs on. Sites behind robot checks (Kit, ActiveCampaign, Vultr, Sage) are left out rather than worked around, as is OpenAI's Sora, which OpenAI has discontinued. Renamed products use the vendor's current name: Devin Desktop (formerly Windsurf) and Mistral Vibe (formerly Le Chat).",
  "checked": "2026-10-29",
  "brands": [
   {
@@ -17,10 +17,6 @@
   {
    "id": "airvpn",
    "name": "AirVPN"
-  },
-  {
-   "id": "akamai",
-   "name": "Akamai"
   },
   {
    "id": "anthropic",
@@ -79,10 +75,6 @@
    "name": "Blackmagic Design"
   },
   {
-   "id": "bluehost",
-   "name": "Bluehost"
-  },
-  {
    "id": "brevo",
    "name": "Brevo"
   },
@@ -119,10 +111,6 @@
    "name": "Close"
   },
   {
-   "id": "cloudflare",
-   "name": "Cloudflare"
-  },
-  {
    "id": "cognition",
    "name": "Cognition"
   },
@@ -145,10 +133,6 @@
   {
    "id": "descript",
    "name": "Descript"
-  },
-  {
-   "id": "digitalocean",
-   "name": "DigitalOcean"
   },
   {
    "id": "elevenlabs",
@@ -177,10 +161,6 @@
   {
    "id": "fireflies",
    "name": "Fireflies.ai"
-  },
-  {
-   "id": "flyio",
-   "name": "Fly.io"
   },
   {
    "id": "folk",
@@ -223,16 +203,8 @@
    "name": "Granola"
   },
   {
-   "id": "hetzner",
-   "name": "Hetzner"
-  },
-  {
    "id": "heygen",
    "name": "HeyGen"
-  },
-  {
-   "id": "hostinger",
-   "name": "Hostinger"
   },
   {
    "id": "hubspot",
@@ -269,10 +241,6 @@
   {
    "id": "keeper",
    "name": "Keeper Security"
-  },
-  {
-   "id": "kinsta",
-   "name": "Kinsta"
   },
   {
    "id": "klaviyo",
@@ -339,10 +307,6 @@
    "name": "Mullvad"
   },
   {
-   "id": "netlify",
-   "name": "Netlify"
-  },
-  {
    "id": "nordsec",
    "name": "Nord Security"
   },
@@ -361,10 +325,6 @@
   {
    "id": "otter",
    "name": "Otter.ai"
-  },
-  {
-   "id": "ovhcloud",
-   "name": "OVHcloud"
   },
   {
    "id": "penpot",
@@ -395,10 +355,6 @@
    "name": "Read AI"
   },
   {
-   "id": "render",
-   "name": "Render"
-  },
-  {
    "id": "replit",
    "name": "Replit"
   },
@@ -413,10 +369,6 @@
   {
    "id": "shopify",
    "name": "Shopify"
-  },
-  {
-   "id": "siteground",
-   "name": "SiteGround"
   },
   {
    "id": "sketch",
@@ -2091,185 +2043,6 @@
     "https://windscribe.com/",
     "https://windscribe.com/upgrade",
     "https://windscribe.com/download"
-   ]
-  },
-  {
-   "brand": "bluehost",
-   "name": "Bluehost",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.bluehost.com/",
-   "sources": [
-    "https://www.bluehost.com/"
-   ]
-  },
-  {
-   "brand": "cloudflare",
-   "name": "Cloudflare",
-   "shape": "Web hosting",
-   "balance": "Freemium",
-   "surface": "Yes",
-   "core": null,
-   "weight": null,
-   "website": "https://www.cloudflare.com/",
-   "sources": [
-    "https://www.cloudflare.com/",
-    "https://www.cloudflare.com/plans/",
-    "https://www.cloudflare.com/products/pages/"
-   ]
-  },
-  {
-   "brand": "digitalocean",
-   "name": "DigitalOcean",
-   "shape": "Web hosting",
-   "balance": "Pay as you go",
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.digitalocean.com/",
-   "sources": [
-    "https://www.digitalocean.com/",
-    "https://www.digitalocean.com/pricing"
-   ]
-  },
-  {
-   "brand": "flyio",
-   "name": "Fly.io",
-   "shape": "Web hosting",
-   "balance": "Pay as you go",
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://fly.io/",
-   "sources": [
-    "https://fly.io/",
-    "https://fly.io/pricing/"
-   ]
-  },
-  {
-   "brand": "hetzner",
-   "name": "Hetzner Cloud",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.hetzner.com/cloud/",
-   "sources": [
-    "https://www.hetzner.com/cloud/"
-   ]
-  },
-  {
-   "brand": "hostinger",
-   "name": "Hostinger",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.hostinger.com/",
-   "sources": [
-    "https://www.hostinger.com/",
-    "https://www.hostinger.com/web-hosting"
-   ]
-  },
-  {
-   "brand": "kinsta",
-   "name": "Kinsta",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://kinsta.com/",
-   "sources": [
-    "https://kinsta.com/",
-    "https://kinsta.com/pricing/"
-   ]
-  },
-  {
-   "brand": "akamai",
-   "name": "Linode",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.linode.com/",
-   "sources": [
-    "https://www.linode.com/"
-   ]
-  },
-  {
-   "brand": "netlify",
-   "name": "Netlify",
-   "shape": "Web hosting",
-   "balance": "Freemium",
-   "surface": "Yes",
-   "core": null,
-   "weight": null,
-   "website": "https://www.netlify.com/",
-   "sources": [
-    "https://www.netlify.com/",
-    "https://www.netlify.com/pricing/"
-   ]
-  },
-  {
-   "brand": "ovhcloud",
-   "name": "OVHcloud VPS",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.ovhcloud.com/en/vps/",
-   "sources": [
-    "https://www.ovhcloud.com/en/vps/"
-   ]
-  },
-  {
-   "brand": "render",
-   "name": "Render",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://render.com/",
-   "sources": [
-    "https://render.com/",
-    "https://render.com/pricing"
-   ]
-  },
-  {
-   "brand": "siteground",
-   "name": "SiteGround",
-   "shape": "Web hosting",
-   "balance": null,
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://www.siteground.com/",
-   "sources": [
-    "https://world.siteground.com/",
-    "https://world.siteground.com/web-hosting.htm"
-   ]
-  },
-  {
-   "brand": "vercel",
-   "name": "Vercel",
-   "shape": "Web hosting",
-   "balance": "Pay as you go",
-   "surface": null,
-   "core": null,
-   "weight": null,
-   "website": "https://vercel.com/",
-   "sources": [
-    "https://vercel.com/",
-    "https://vercel.com/pricing"
    ]
   },
   {

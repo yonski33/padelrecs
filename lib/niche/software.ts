@@ -1,4 +1,5 @@
 import type { Niche } from "./types";
+import { movedHostPages } from "./software-moved";
 
 // Rating icons: a rounded app tile with a smaller tile inside it, indigo with a mint centre. Same tile sizes as the other
 // niches (17×14 strip, 20×20 picker); the strip tile widens the 20×20 drawing's viewBox so the tile stays square.
@@ -18,7 +19,7 @@ export const software: Niche = {
     name: "SoftwareRecs",
     domain: "softwarerecs.com",
     wordmark: "softwarerecs",
-    descriptor: "real reviews of AI assistants, coding tools, password managers, VPNs, web hosts and the apps people work in",
+    descriptor: "real reviews of AI assistants, coding tools, password managers, VPNs and the apps people work in",
     footer: "kept by people who use these tools every day.",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
@@ -98,13 +99,15 @@ export const software: Niche = {
   // Columns are shared: shape = category, balance = pricing model, surface = whether there is a free plan, core = platforms,
   // weight = the AI model family the vendor says it runs on. Prices themselves change too often to keep, so they are left out.
   specs: [
-    { column: "shape", label: "Category", max: 100, placeholder: "e.g. Password manager", options: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN", "Web hosting"] },
+    { column: "shape", label: "Category", max: 100, placeholder: "e.g. Password manager", options: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN"] },
     { column: "balance", label: "Pricing", max: 120, placeholder: "e.g. Subscription, Freemium, One-time purchase or Pay as you go", options: ["Free", "Freemium", "Subscription", "One-time purchase", "Pay as you go"] },
     { column: "surface", label: "Free plan", max: 60, placeholder: "Yes or No", options: ["Yes", "No"] },
     { column: "core", label: "Platforms", max: 120, placeholder: "e.g. Web, Windows, Mac, iOS, Android, Linux" },
     { column: "weight", label: "AI model", max: 80, placeholder: "e.g. OpenAI GPT models" },
   ],
-  shapeFilter: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN", "Web hosting"],
+  // Web hosting moved to HostingRecs (2026-10-30): its old pages 301 there.
+  movedAway: movedHostPages,
+  shapeFilter: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
@@ -122,7 +125,6 @@ export const software: Niche = {
     { shape: "CRM", slug: "crm", label: "CRM", seoLabel: "CRM Software", intro: "CRMs and sales tools" },
     { shape: "Accounting", slug: "accounting", label: "Accounting", seoLabel: "Accounting Software", intro: "Accounting, bookkeeping and invoicing software" },
     { shape: "VPN", slug: "vpns", label: "VPNs", seoLabel: "VPNs", intro: "Consumer VPN services" },
-    { shape: "Web hosting", slug: "web-hosting", label: "Hosting", seoLabel: "Web Hosting", intro: "Web hosting, cloud servers and hosting platforms" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
@@ -170,8 +172,6 @@ export const software: Niche = {
       intro: "The accounting and invoicing tools users are most consistently happy with.", filters: [{ column: "shape", include: ["Accounting"] }] },
     { slug: "best-vpn-services", label: "VPNs", title: "Best VPN Services", minReviews: 5,
       intro: "The VPNs users are most consistently happy with.", filters: [{ column: "shape", include: ["VPN"] }] },
-    { slug: "best-web-hosting-software", label: "Web hosting", title: "Best Web Hosting", minReviews: 5,
-      intro: "The web hosts and cloud servers users are most consistently happy with.", filters: [{ column: "shape", include: ["Web hosting"] }] },
     { slug: "best-free-software-tools", label: "Best free plans", title: "Software Tools With the Best Free Plans", minReviews: 5,
       intro: "The tools users most often say have a good free plan.", trait: { tags: ["good free plan"], minShare: 0.2, against: ["usage limits"], noun: "the free plan" } },
   ],
@@ -182,9 +182,9 @@ export const software: Niche = {
     tips: ["What you used before and why you switched", "What you use it for, how often, and on which plan", "What it does well and where it falls short", "Bugs, outages, limits or support you ran into", "Whether it's worth the price for you"],
   },
   seo: {
-    homeTitle: "SoftwareRecs – Real Reviews of AI Tools, Password Managers, VPNs, Web Hosts and Work Apps",
-    homeDescription: "Browse real user reviews of AI assistants, AI coding tools, note-taking apps, project management tools, password managers, website builders, email marketing, CRM, accounting software, VPNs and web hosting, plus opinions collected from Reddit, YouTube and forums. Compare ChatGPT, Claude, Cursor, Notion, 1Password, Shopify and more.",
-    layoutDescription: "Real experiences with software and AI tools — assistants, coding tools, notes, project management, password managers, website builders, VPNs and hosting — plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeTitle: "SoftwareRecs – Real Reviews of AI Tools, Password Managers, VPNs and Work Apps",
+    homeDescription: "Browse real user reviews of AI assistants, AI coding tools, note-taking apps, project management tools, password managers, website builders, email marketing, CRM, accounting software and VPNs, plus opinions collected from Reddit, YouTube and forums. Compare ChatGPT, Claude, Cursor, Notion, 1Password, Shopify and more.",
+    layoutDescription: "Real experiences with software and AI tools — assistants, coding tools, notes, project management, password managers, website builders and VPNs — plus opinions from Reddit, YouTube and forums with the source linked.",
     titleTemplate: "%s | SoftwareRecs",
     catalog: { title: "All Software and AI Tools – Reviews and Ratings", description: "Every AI tool, app and online service on SoftwareRecs with user ratings. Filter by category and brand, then read what users say." },
     brands: { title: "Software Companies", description: "Browse software by company — OpenAI, Anthropic, Google, Notion, 1Password, Shopify, Proton and more — and read real reviews of each tool." },
@@ -192,7 +192,7 @@ export const software: Niche = {
     product: name => ({ title: `${name} Reviews | SoftwareRecs`, description: `Read real user experiences with ${name}. Ratings for features, ease of use, reliability, speed and value, plus opinions from around the web.` }),
     productNotFound: "Tool not found | SoftwareRecs",
     productCategory: "Software",
-    addReview: { title: "Add a Software Review", description: "Use an AI assistant, a notes app, a password manager, a VPN or a web host? Share how it works for you in about two minutes. No account needed." },
+    addReview: { title: "Add a Software Review", description: "Use an AI assistant, a notes app, a password manager or a VPN? Share how it works for you in about two minutes. No account needed." },
     about: { title: "About", description: "Why SoftwareRecs exists: honest opinions about software are buried under affiliate lists. SoftwareRecs collects first-hand experiences and lets users add their own." },
     ogAlt: "SoftwareRecs – real reviews of software and AI tools",
     ogProductAlt: "Software reviews on SoftwareRecs",
@@ -217,7 +217,7 @@ export const software: Niche = {
     about: {
       heading: "Why SoftwareRecs exists",
       paragraphs: [
-        "Search for the best VPN, web host or AI tool and most of what you find is a ranked list that pays per signup. SoftwareRecs collects first-hand experiences from Reddit, YouTube and forums instead, and lets users add their own.",
+        "Search for the best VPN, password manager or AI tool and most of what you find is a ranked list that pays per signup. SoftwareRecs collects first-hand experiences from Reddit, YouTube and forums instead, and lets users add their own.",
         "A tool that is perfect for a solo freelancer can be painful for a 200-person company, and a free plan that is fine for notes may not survive a team. Knowing how someone uses a tool, on which plan and for how long often tells you more than a score on its own.",
       ],
       sections: [

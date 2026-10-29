@@ -606,7 +606,7 @@ test("money: products without years at /products, eleven category pages that eac
   }
 });
 
-test("software: tools named without years, fourteen category pages that each pick a drawing, website links instead of Amazon", async () => {
+test("software: tools named without years, thirteen category pages that each pick a drawing, website links instead of Amazon", async () => {
   const n = selectNiche("software");
   assert.equal(n.schema, "softwarerecs");
   assert.equal(n.productPath, "tools");
@@ -618,13 +618,13 @@ test("software: tools named without years, fourteen category pages that each pic
   assert(!/commission|affiliate link/i.test(JSON.stringify(n.copy)), "no affiliate wording until real affiliate links exist");
   assert.deepEqual(n.categories.map(c => c.label), ["Features", "Ease of use", "Reliability", "Speed", "Value"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Pricing", "Free plan", "Platforms", "AI model"]);
-  assert.equal(n.typePages?.length, 14);
+  assert.equal(n.typePages?.length, 13);
   assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
   assert.deepEqual(n.specs[0].options, n.shapeFilter);
   const { shapeOf } = await import("../app/art/software");
   const drawings = n.shapeFilter.map(s => shapeOf(s));
   assert(!drawings.includes("unknown"), "every category has a drawing");
-  assert.equal(new Set(drawings).size, 14, "and no two share one");
+  assert.equal(new Set(drawings).size, 13, "and no two share one");
   for (const list of n.topLists ?? []) {
     assert.match(list.slug, /software|ai-tools|apps|managers|builders|vpn/, `${list.slug}: niche keyword in the slug`);
     assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
@@ -670,4 +670,29 @@ test("HomeGymRecs names its catalogue Equipment and counts products; other niche
   assert.equal(homegym.navLabel, "Equipment");
   assert.deepEqual(homegym.words, { one: "product", many: "products", One: "Product", Many: "Products" });
   assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id), ["homegym"]);
+});
+
+test("software: every moved web host page 301s to the same service on HostingRecs", async () => {
+  const { movedHostSlugs, movedHostBrandSlugs } = await import("../lib/niche/software-moved");
+  const n = selectNiche("software"), hosting = selectNiche("hosting");
+  const moved = new Map((n.movedAway ?? []).filter(m => !m.query).map(m => [m.source, m.destination]));
+  assert.equal(Object.keys(movedHostSlugs).length, 12);
+  for (const [slug, type] of Object.entries(movedHostSlugs)) {
+    assert(hosting.typePages!.some(t => t.slug === type), `${type} is a HostingRecs category`);
+    for (const base of ["/web-hosting", "/tools", "/rackets"]) assert.equal(moved.get(`${base}/${slug}`), `https://www.hostingrecs.com/${type}/${slug}`);
+  }
+  assert.equal(moved.get("/web-hosting/cloudflare"), "https://www.hostingrecs.com/brands/cloudflare");
+  for (const slug of movedHostBrandSlugs) assert.equal(moved.get(`/brands/${slug}`), `https://www.hostingrecs.com/brands/${slug}`);
+  assert.equal(moved.get("/web-hosting"), "https://www.hostingrecs.com/");
+  assert.equal(moved.get("/rankings/best-web-hosting-software"), "https://www.hostingrecs.com/rankings");
+  assert(!n.typePages?.some(t => t.slug === "web-hosting"));
+  assert(!n.shapeFilter.includes("Web hosting"));
+  // Every moved service exists on HostingRecs under the same slug, and no host stays on SoftwareRecs.
+  const { readCatalog, catalogSnapshot } = await import("../db/catalog-file");
+  const hostSlugs = new Set(catalogSnapshot(await readCatalog("db/catalogs/hosting.json"), "hostingrecs", "t", false).tables.rackets.map(r => r.slug));
+  for (const slug of Object.keys(movedHostSlugs)) assert(hostSlugs.has(slug), `${slug} on HostingRecs`);
+  const software = await readCatalog("db/catalogs/software.json");
+  assert(!software.products.some(p => p.shape === "Web hosting"));
+  const softwareBrandSlugs = catalogSnapshot(software, "softwarerecs", "t", false).tables.brands.map(b => b.slug);
+  assert(!softwareBrandSlugs.some(s => movedHostBrandSlugs.includes(s)));
 });

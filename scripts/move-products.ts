@@ -13,12 +13,15 @@ import { assertSchemaName } from "../db/migrations";
 //   NICHE=monitor npx tsx --env-file-if-exists=.env.local scripts/move-products.ts --from gaming --shape Monitor --remove [--apply]
 //     Checks that every row is here unchanged, then deletes the products and their rows from the other schema (and brands
 //     left with no products there). Run it only once the other site redirects those pages.
+//   --drop <id> (repeatable): a product of that category with no match here (SoftwareRecs "Cloudflare" → HostingRecs, 2026-10-30).
+//     It is not copied; --remove deletes it from the other schema with its rows (the other site redirects its page).
 // Without --apply nothing is written. With --apply both schemas are exported to backups/ first.
 const arg = (name: string) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : undefined; };
 const from = niches[arg("--from") ?? ""], shape = arg("--shape"), apply = process.argv.includes("--apply");
 const mode = process.argv.includes("--copy") ? "copy" : process.argv.includes("--remove") ? "remove" : null;
 if (!from || !shape || !mode || from.id === niche.id) throw new Error("Usage: NICHE=<to> … scripts/move-products.ts --from <niche> --shape <Category> --copy|--remove [--tag old=new …] [--apply]");
 const tagMap = new Map(process.argv.flatMap((a, i) => process.argv[i - 1] === "--tag" ? [a.split("=") as [string, string]] : []));
+const drop = new Set(process.argv.filter((_, i) => process.argv[i - 1] === "--drop"));
 const src = assertSchemaName(assertNicheSchema(from)), dst = assertSchemaName(assertNicheSchema(niche));
 const bank = new Set(niche.tags.map(t => t.label));
 const retag = (tags: string[]) => tags.map(t => tagMap.get(t) ?? t);
@@ -44,8 +47,16 @@ try {
     const votes = (await sql<Row[]>`select * from ${sql(schema)}.review_votes order by review_type, review_id, voter`).filter(v => reviewIds.includes(`${v.review_type}:${v.review_id}`));
     return { rackets, reviews, external, redirects, votes };
   };
-  const moving = await load(src);
-  const counts = (d: Awaited<ReturnType<typeof load>>) => ({ products: d.rackets.length, reviews: d.reviews.length, webReviews: d.external.length, votes: d.votes.length, slugRedirects: d.redirects.length });
+  const all = await load(src);
+  const unknownDrops = [...drop].filter(id => !all.rackets.some(r => r.id === id));
+  if (unknownDrops.length) throw new Error(`--drop: no ${shape} product with id ${unknownDrops.join(", ")} in "${src}"`);
+  // Dropped products and everything attached to them are left out of the copy and its checks; --remove deletes them too.
+  const keep = (rows: Row[]) => rows.filter(r => !drop.has(r.racket_id as string));
+  const dropped = { rackets: all.rackets.filter(r => drop.has(r.id as string)), reviews: all.reviews.filter(r => drop.has(r.racket_id as string)), external: all.external.filter(r => drop.has(r.racket_id as string)) };
+  const droppedIds = new Set([...dropped.reviews.map(r => `player:${r.id}`), ...dropped.external.map(r => `web:${r.id}`)]);
+  const moving = { rackets: all.rackets.filter(r => !drop.has(r.id as string)), reviews: keep(all.reviews), external: keep(all.external), redirects: keep(all.redirects), votes: all.votes.filter(v => !droppedIds.has(`${v.review_type}:${v.review_id}`)) };
+  if (drop.size) console.log(`Dropped (not copied${mode === "remove" ? ", deleted below" : ""}):`, dropped.rackets.map(r => r.name).join(", "), { reviews: dropped.reviews.length, webReviews: dropped.external.length });
+  const counts = (d: { rackets: Row[]; reviews: Row[]; external: Row[]; redirects: Row[]; votes: Row[] }) => ({ products: d.rackets.length, reviews: d.reviews.length, webReviews: d.external.length, votes: d.votes.length, slugRedirects: d.redirects.length });
   console.log(`${from.site.name} (schema "${src}") ${shape} rows:`, counts(moving));
 
   const catalog = catalogSnapshot(await readCatalog(`db/catalogs/${niche.id}.json`), dst, `catalog:db/catalogs/${niche.id}.json`, false);
@@ -104,16 +115,16 @@ try {
     if (problems.length) throw new Error(`Copied, but these differ in "${dst}": ${problems.slice(0, 10).join("; ")}`);
     console.log(`Copied and verified. ${niche.site.name} now has`, counts(here), `(moved rows; all products: ${(await sql`select count(*)::int as n from ${sql(dst)}.rackets`)[0].n})`);
   } else {
-    const ids = moving.rackets.map(r => r.id as string);
+    const ids = all.rackets.map(r => r.id as string);
     await sql.begin(async tx => {
-      for (const v of moving.votes) await tx`delete from ${tx(src)}.review_votes where review_type = ${v.review_type as string} and review_id = ${v.review_id as string} and voter = ${v.voter as string}`;
+      for (const v of all.votes) await tx`delete from ${tx(src)}.review_votes where review_type = ${v.review_type as string} and review_id = ${v.review_id as string} and voter = ${v.voter as string}`;
       if (ids.length) {
         await tx`delete from ${tx(src)}.external_reviews where racket_id in ${tx(ids)}`;
         await tx`delete from ${tx(src)}.reviews where racket_id in ${tx(ids)}`;
         await tx`delete from ${tx(src)}.racket_slug_redirects where racket_id in ${tx(ids)}`;
         await tx`delete from ${tx(src)}.rackets where id in ${tx(ids)}`;
       }
-      const brandIds = [...new Set(moving.rackets.map(r => r.brand_id as string))];
+      const brandIds = [...new Set(all.rackets.map(r => r.brand_id as string))];
       if (brandIds.length) await tx`delete from ${tx(src)}.brands b where b.id in ${tx(brandIds)} and not exists (select 1 from ${tx(src)}.rackets r where r.brand_id = b.id)`;
     });
     const left = await load(src);
