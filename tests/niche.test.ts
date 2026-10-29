@@ -603,3 +603,32 @@ test("money: products without years at /products, eleven category pages that eac
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("software: tools named without years, fourteen category pages that each pick a drawing, website links instead of Amazon", async () => {
+  const n = selectNiche("software");
+  assert.equal(n.schema, "softwarerecs");
+  assert.equal(n.productPath, "tools");
+  assert.equal(n.productYears, false);
+  assert.equal(n.recentMonths, 12);
+  assert.equal(n.amazon, undefined, "no Amazon links or Amazon wording on SoftwareRecs");
+  assert.deepEqual(n.website, { label: "Visit site" });
+  assert(!JSON.stringify(n).toLowerCase().includes("amazon"), "no Amazon wording anywhere in the config");
+  assert(!/commission|affiliate link/i.test(JSON.stringify(n.copy)), "no affiliate wording until real affiliate links exist");
+  assert.deepEqual(n.categories.map(c => c.label), ["Features", "Ease of use", "Reliability", "Speed", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Pricing", "Free plan", "Platforms", "AI model"]);
+  assert.equal(n.typePages?.length, 14);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/software");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 14, "and no two share one");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /software|ai-tools|apps|managers|builders|vpn/, `${list.slug}: niche keyword in the slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+    for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

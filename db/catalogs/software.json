@@ -1,0 +1,2402 @@
+{
+ "about": "SoftwareRecs starter catalog (2026-10-29): software, AI tools and online services in 14 categories. Every website link and every filled value was read on 2026-10-29 from the vendor's own pages listed in sources, fetched directly or, where the site only renders in a browser, in a browser; blank values are ones the vendor's pages did not state clearly. Pricing is the model only (Free, Freemium, Subscription, Pay as you go), never a price, because prices change too often. AI model is the model family the vendor says the tool runs on. Sites behind robot checks (Kit, ActiveCampaign, Vultr, Sage) are left out rather than worked around, as is OpenAI's Sora, which OpenAI has discontinued. Renamed products use the vendor's current name: Devin Desktop (formerly Windsurf) and Mistral Vibe (formerly Le Chat).",
+ "checked": "2026-10-29",
+ "brands": [
+  {
+   "id": "1password",
+   "name": "1Password"
+  },
+  {
+   "id": "adobe",
+   "name": "Adobe"
+  },
+  {
+   "id": "affinity",
+   "name": "Affinity"
+  },
+  {
+   "id": "airvpn",
+   "name": "AirVPN"
+  },
+  {
+   "id": "akamai",
+   "name": "Akamai"
+  },
+  {
+   "id": "anthropic",
+   "name": "Anthropic"
+  },
+  {
+   "id": "anysphere",
+   "name": "Cursor"
+  },
+  {
+   "id": "anytype",
+   "name": "Anytype"
+  },
+  {
+   "id": "apple",
+   "name": "Apple"
+  },
+  {
+   "id": "asana",
+   "name": "Asana"
+  },
+  {
+   "id": "atlassian",
+   "name": "Atlassian"
+  },
+  {
+   "id": "attio",
+   "name": "Attio"
+  },
+  {
+   "id": "automattic",
+   "name": "Automattic"
+  },
+  {
+   "id": "basecamp",
+   "name": "37signals"
+  },
+  {
+   "id": "bear",
+   "name": "Bear"
+  },
+  {
+   "id": "beehiiv",
+   "name": "beehiiv"
+  },
+  {
+   "id": "bigcommerce",
+   "name": "BigCommerce"
+  },
+  {
+   "id": "bitwarden",
+   "name": "Bitwarden"
+  },
+  {
+   "id": "blackmagic",
+   "name": "Blackmagic Design"
+  },
+  {
+   "id": "bluehost",
+   "name": "Bluehost"
+  },
+  {
+   "id": "brevo",
+   "name": "Brevo"
+  },
+  {
+   "id": "buttondown",
+   "name": "Buttondown"
+  },
+  {
+   "id": "bytedance",
+   "name": "CapCut"
+  },
+  {
+   "id": "canva",
+   "name": "Canva"
+  },
+  {
+   "id": "capacities",
+   "name": "Capacities"
+  },
+  {
+   "id": "carrd",
+   "name": "Carrd"
+  },
+  {
+   "id": "clickup",
+   "name": "ClickUp"
+  },
+  {
+   "id": "cline",
+   "name": "Cline"
+  },
+  {
+   "id": "close",
+   "name": "Close"
+  },
+  {
+   "id": "cloudflare",
+   "name": "Cloudflare"
+  },
+  {
+   "id": "cognition",
+   "name": "Cognition"
+  },
+  {
+   "id": "craft",
+   "name": "Craft"
+  },
+  {
+   "id": "culturedcode",
+   "name": "Cultured Code"
+  },
+  {
+   "id": "dashlane",
+   "name": "Dashlane"
+  },
+  {
+   "id": "deepseek",
+   "name": "DeepSeek"
+  },
+  {
+   "id": "descript",
+   "name": "Descript"
+  },
+  {
+   "id": "digitalocean",
+   "name": "DigitalOcean"
+  },
+  {
+   "id": "elevenlabs",
+   "name": "ElevenLabs"
+  },
+  {
+   "id": "enpass",
+   "name": "Enpass"
+  },
+  {
+   "id": "evernote",
+   "name": "Evernote"
+  },
+  {
+   "id": "expressvpn",
+   "name": "ExpressVPN"
+  },
+  {
+   "id": "fathom",
+   "name": "Fathom"
+  },
+  {
+   "id": "figma",
+   "name": "Figma"
+  },
+  {
+   "id": "fireflies",
+   "name": "Fireflies.ai"
+  },
+  {
+   "id": "flyio",
+   "name": "Fly.io"
+  },
+  {
+   "id": "folk",
+   "name": "folk"
+  },
+  {
+   "id": "framer",
+   "name": "Framer"
+  },
+  {
+   "id": "freeagent",
+   "name": "FreeAgent"
+  },
+  {
+   "id": "freshbooks",
+   "name": "FreshBooks"
+  },
+  {
+   "id": "freshworks",
+   "name": "Freshworks"
+  },
+  {
+   "id": "ghost",
+   "name": "Ghost"
+  },
+  {
+   "id": "github",
+   "name": "GitHub"
+  },
+  {
+   "id": "google",
+   "name": "Google"
+  },
+  {
+   "id": "grammarly",
+   "name": "Grammarly"
+  },
+  {
+   "id": "granola",
+   "name": "Granola"
+  },
+  {
+   "id": "hetzner",
+   "name": "Hetzner"
+  },
+  {
+   "id": "heygen",
+   "name": "HeyGen"
+  },
+  {
+   "id": "hostinger",
+   "name": "Hostinger"
+  },
+  {
+   "id": "hubspot",
+   "name": "HubSpot"
+  },
+  {
+   "id": "ideogram",
+   "name": "Ideogram"
+  },
+  {
+   "id": "intuit",
+   "name": "Intuit"
+  },
+  {
+   "id": "invoiceninja",
+   "name": "Invoice Ninja"
+  },
+  {
+   "id": "ivpn",
+   "name": "IVPN"
+  },
+  {
+   "id": "jasper",
+   "name": "Jasper"
+  },
+  {
+   "id": "joplin",
+   "name": "Joplin"
+  },
+  {
+   "id": "keepassxc",
+   "name": "KeePassXC"
+  },
+  {
+   "id": "keeper",
+   "name": "Keeper Security"
+  },
+  {
+   "id": "kinsta",
+   "name": "Kinsta"
+  },
+  {
+   "id": "klaviyo",
+   "name": "Klaviyo"
+  },
+  {
+   "id": "krea",
+   "name": "Krea"
+  },
+  {
+   "id": "kuaishou",
+   "name": "Kling AI"
+  },
+  {
+   "id": "lastpass",
+   "name": "LastPass"
+  },
+  {
+   "id": "leonardo",
+   "name": "Leonardo.Ai"
+  },
+  {
+   "id": "linear",
+   "name": "Linear"
+  },
+  {
+   "id": "logseq",
+   "name": "Logseq"
+  },
+  {
+   "id": "lovable",
+   "name": "Lovable"
+  },
+  {
+   "id": "mailchimp",
+   "name": "Intuit Mailchimp"
+  },
+  {
+   "id": "mailerlite",
+   "name": "MailerLite"
+  },
+  {
+   "id": "meta",
+   "name": "Meta"
+  },
+  {
+   "id": "microsoft",
+   "name": "Microsoft"
+  },
+  {
+   "id": "midjourney",
+   "name": "Midjourney"
+  },
+  {
+   "id": "mistral",
+   "name": "Mistral AI"
+  },
+  {
+   "id": "monday",
+   "name": "monday.com"
+  },
+  {
+   "id": "mullvad",
+   "name": "Mullvad"
+  },
+  {
+   "id": "netlify",
+   "name": "Netlify"
+  },
+  {
+   "id": "nordsec",
+   "name": "Nord Security"
+  },
+  {
+   "id": "notion",
+   "name": "Notion"
+  },
+  {
+   "id": "obsidian",
+   "name": "Obsidian"
+  },
+  {
+   "id": "openai",
+   "name": "OpenAI"
+  },
+  {
+   "id": "otter",
+   "name": "Otter.ai"
+  },
+  {
+   "id": "ovhcloud",
+   "name": "OVHcloud"
+  },
+  {
+   "id": "penpot",
+   "name": "Penpot"
+  },
+  {
+   "id": "perplexity",
+   "name": "Perplexity"
+  },
+  {
+   "id": "pia",
+   "name": "Private Internet Access"
+  },
+  {
+   "id": "pipedrive",
+   "name": "Pipedrive"
+  },
+  {
+   "id": "proton",
+   "name": "Proton"
+  },
+  {
+   "id": "quillbot",
+   "name": "QuillBot"
+  },
+  {
+   "id": "readai",
+   "name": "Read AI"
+  },
+  {
+   "id": "render",
+   "name": "Render"
+  },
+  {
+   "id": "replit",
+   "name": "Replit"
+  },
+  {
+   "id": "runway",
+   "name": "Runway"
+  },
+  {
+   "id": "salesforce",
+   "name": "Salesforce"
+  },
+  {
+   "id": "shopify",
+   "name": "Shopify"
+  },
+  {
+   "id": "siteground",
+   "name": "SiteGround"
+  },
+  {
+   "id": "sketch",
+   "name": "Sketch"
+  },
+  {
+   "id": "spacexsi",
+   "name": "SpaceXSI"
+  },
+  {
+   "id": "squarespace",
+   "name": "Squarespace"
+  },
+  {
+   "id": "stackblitz",
+   "name": "StackBlitz"
+  },
+  {
+   "id": "substack",
+   "name": "Substack"
+  },
+  {
+   "id": "suno",
+   "name": "Suno"
+  },
+  {
+   "id": "surfshark",
+   "name": "Surfshark"
+  },
+  {
+   "id": "ticktick",
+   "name": "TickTick"
+  },
+  {
+   "id": "tldv",
+   "name": "tl;dv"
+  },
+  {
+   "id": "todoist",
+   "name": "Doist"
+  },
+  {
+   "id": "vercel",
+   "name": "Vercel"
+  },
+  {
+   "id": "wave",
+   "name": "Wave"
+  },
+  {
+   "id": "webflow",
+   "name": "Webflow"
+  },
+  {
+   "id": "windscribe",
+   "name": "Windscribe"
+  },
+  {
+   "id": "wix",
+   "name": "Wix"
+  },
+  {
+   "id": "wrike",
+   "name": "Wrike"
+  },
+  {
+   "id": "xero",
+   "name": "Xero"
+  },
+  {
+   "id": "zed",
+   "name": "Zed"
+  },
+  {
+   "id": "zoho",
+   "name": "Zoho"
+  }
+ ],
+ "products": [
+  {
+   "brand": "openai",
+   "name": "ChatGPT",
+   "shape": "AI assistant",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, iOS, Android",
+   "weight": "OpenAI GPT models",
+   "website": "https://chatgpt.com/",
+   "sources": [
+    "https://chatgpt.com/",
+    "https://chatgpt.com/pricing/"
+   ]
+  },
+  {
+   "brand": "anthropic",
+   "name": "Claude",
+   "shape": "AI assistant",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, Windows, Mac, iOS, Android",
+   "weight": "Anthropic Claude models",
+   "website": "https://claude.ai/",
+   "sources": [
+    "https://claude.com/pricing",
+    "https://claude.com/download"
+   ]
+  },
+  {
+   "brand": "deepseek",
+   "name": "DeepSeek",
+   "shape": "AI assistant",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.deepseek.com/",
+   "sources": [
+    "https://www.deepseek.com/"
+   ]
+  },
+  {
+   "brand": "google",
+   "name": "Gemini",
+   "shape": "AI assistant",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": "Google Gemini models",
+   "website": "https://gemini.google.com/",
+   "sources": [
+    "https://gemini.google.com/",
+    "https://gemini.google/subscriptions/",
+    "https://gemini.google/overview/"
+   ]
+  },
+  {
+   "brand": "spacexsi",
+   "name": "Grok",
+   "shape": "AI assistant",
+   "balance": null,
+   "surface": null,
+   "core": "Web, iOS, Android",
+   "weight": "xAI Grok models",
+   "website": "https://grok.com/",
+   "sources": [
+    "https://grok.com/",
+    "https://x.ai/grok"
+   ]
+  },
+  {
+   "brand": "meta",
+   "name": "Meta AI",
+   "shape": "AI assistant",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.meta.ai/",
+   "sources": [
+    "https://www.meta.ai/"
+   ]
+  },
+  {
+   "brand": "microsoft",
+   "name": "Microsoft Copilot",
+   "shape": "AI assistant",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://copilot.microsoft.com/",
+   "sources": [
+    "https://copilot.microsoft.com/",
+    "https://www.microsoft.com/en-us/copilot/solutions/individuals",
+    "https://www.microsoft.com/en-us/microsoft-365/copilot/download-copilot-app"
+   ]
+  },
+  {
+   "brand": "mistral",
+   "name": "Mistral Vibe",
+   "shape": "AI assistant",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, iOS, Android",
+   "weight": "Mistral models",
+   "website": "https://mistral.ai/products/vibe/",
+   "description": "Formerly Le Chat.",
+   "sources": [
+    "https://mistral.ai/products/vibe/",
+    "https://mistral.ai/pricing/"
+   ]
+  },
+  {
+   "brand": "perplexity",
+   "name": "Perplexity",
+   "shape": "AI assistant",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.perplexity.ai/",
+   "sources": [
+    "https://www.perplexity.ai/",
+    "https://www.perplexity.ai/pro"
+   ]
+  },
+  {
+   "brand": "stackblitz",
+   "name": "Bolt",
+   "shape": "AI coding tool",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web",
+   "weight": null,
+   "website": "https://bolt.new/",
+   "sources": [
+    "https://bolt.new/",
+    "https://bolt.new/pricing"
+   ]
+  },
+  {
+   "brand": "anthropic",
+   "name": "Claude Code",
+   "shape": "AI coding tool",
+   "balance": "Subscription",
+   "surface": null,
+   "core": "Web, Windows, Mac, Linux",
+   "weight": "Anthropic Claude models",
+   "website": "https://claude.com/product/claude-code",
+   "sources": [
+    "https://claude.com/product/claude-code",
+    "https://claude.com/pricing"
+   ]
+  },
+  {
+   "brand": "cline",
+   "name": "Cline",
+   "shape": "AI coding tool",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, Linux",
+   "weight": null,
+   "website": "https://cline.bot/",
+   "sources": [
+    "https://cline.bot/",
+    "https://cline.bot/pricing"
+   ]
+  },
+  {
+   "brand": "openai",
+   "name": "Codex",
+   "shape": "AI coding tool",
+   "balance": "Subscription",
+   "surface": null,
+   "core": null,
+   "weight": "OpenAI GPT models",
+   "website": "https://openai.com/codex/",
+   "sources": [
+    "https://openai.com/codex/"
+   ]
+  },
+  {
+   "brand": "anysphere",
+   "name": "Cursor",
+   "shape": "AI coding tool",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, Windows, Mac, Linux",
+   "weight": "Choice of GPT, Claude, Gemini and Grok models",
+   "website": "https://cursor.com/",
+   "sources": [
+    "https://cursor.com/",
+    "https://cursor.com/pricing",
+    "https://cursor.com/download"
+   ]
+  },
+  {
+   "brand": "cognition",
+   "name": "Devin Desktop",
+   "shape": "AI coding tool",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, Linux",
+   "weight": "Choice of Claude, GPT, Gemini and Grok models",
+   "website": "https://devin.ai/desktop",
+   "description": "Formerly Windsurf.",
+   "sources": [
+    "https://devin.ai/desktop",
+    "https://devin.ai/pricing",
+    "https://devin.ai/download"
+   ]
+  },
+  {
+   "brand": "github",
+   "name": "GitHub Copilot",
+   "shape": "AI coding tool",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": "Choice of Claude and GPT models",
+   "website": "https://github.com/features/copilot",
+   "sources": [
+    "https://github.com/features/copilot",
+    "https://github.com/features/copilot/plans"
+   ]
+  },
+  {
+   "brand": "lovable",
+   "name": "Lovable",
+   "shape": "AI coding tool",
+   "balance": null,
+   "surface": "Yes",
+   "core": "Web",
+   "weight": null,
+   "website": "https://lovable.dev/",
+   "sources": [
+    "https://lovable.dev/",
+    "https://lovable.dev/pricing"
+   ]
+  },
+  {
+   "brand": "replit",
+   "name": "Replit",
+   "shape": "AI coding tool",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://replit.com/",
+   "sources": [
+    "https://replit.com/",
+    "https://replit.com/pricing"
+   ]
+  },
+  {
+   "brand": "zed",
+   "name": "Zed",
+   "shape": "AI coding tool",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, Linux",
+   "weight": "Choice of Claude and GPT models, or your own",
+   "website": "https://zed.dev/",
+   "sources": [
+    "https://zed.dev/",
+    "https://zed.dev/pricing",
+    "https://zed.dev/download"
+   ]
+  },
+  {
+   "brand": "vercel",
+   "name": "v0",
+   "shape": "AI coding tool",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web",
+   "weight": null,
+   "website": "https://v0.app/",
+   "sources": [
+    "https://v0.app/",
+    "https://v0.app/pricing"
+   ]
+  },
+  {
+   "brand": "adobe",
+   "name": "Adobe Firefly",
+   "shape": "AI image & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.adobe.com/products/firefly.html",
+   "sources": [
+    "https://www.adobe.com/products/firefly.html"
+   ]
+  },
+  {
+   "brand": "elevenlabs",
+   "name": "ElevenLabs",
+   "shape": "AI image & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://elevenlabs.io/",
+   "sources": [
+    "https://elevenlabs.io/",
+    "https://elevenlabs.io/pricing"
+   ]
+  },
+  {
+   "brand": "heygen",
+   "name": "HeyGen",
+   "shape": "AI image & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.heygen.com/",
+   "sources": [
+    "https://www.heygen.com/",
+    "https://www.heygen.com/pricing"
+   ]
+  },
+  {
+   "brand": "ideogram",
+   "name": "Ideogram",
+   "shape": "AI image & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://ideogram.ai/",
+   "sources": [
+    "https://ideogram.ai/",
+    "https://ideogram.ai/pricing/"
+   ]
+  },
+  {
+   "brand": "kuaishou",
+   "name": "Kling AI",
+   "shape": "AI image & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://kling.ai/",
+   "sources": [
+    "https://kling.ai/",
+    "https://kling.ai/app/"
+   ]
+  },
+  {
+   "brand": "krea",
+   "name": "Krea",
+   "shape": "AI image & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.krea.ai/",
+   "sources": [
+    "https://www.krea.ai/",
+    "https://www.krea.ai/pricing"
+   ]
+  },
+  {
+   "brand": "leonardo",
+   "name": "Leonardo.Ai",
+   "shape": "AI image & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://leonardo.ai/",
+   "sources": [
+    "https://leonardo.ai/",
+    "https://leonardo.ai/pricing"
+   ]
+  },
+  {
+   "brand": "midjourney",
+   "name": "Midjourney",
+   "shape": "AI image & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.midjourney.com/",
+   "sources": [
+    "https://www.midjourney.com/"
+   ]
+  },
+  {
+   "brand": "runway",
+   "name": "Runway",
+   "shape": "AI image & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://runway.com/",
+   "sources": [
+    "https://runway.com/",
+    "https://runway.com/pricing"
+   ]
+  },
+  {
+   "brand": "suno",
+   "name": "Suno",
+   "shape": "AI image & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://suno.com/",
+   "sources": [
+    "https://suno.com/",
+    "https://suno.com/pricing"
+   ]
+  },
+  {
+   "brand": "fathom",
+   "name": "Fathom",
+   "shape": "AI writing & notes",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.fathom.ai/",
+   "sources": [
+    "https://www.fathom.ai/",
+    "https://www.fathom.ai/pricing"
+   ]
+  },
+  {
+   "brand": "fireflies",
+   "name": "Fireflies",
+   "shape": "AI writing & notes",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://fireflies.ai/",
+   "sources": [
+    "https://fireflies.ai/",
+    "https://fireflies.ai/pricing"
+   ]
+  },
+  {
+   "brand": "grammarly",
+   "name": "Grammarly",
+   "shape": "AI writing & notes",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, iOS, Android",
+   "weight": null,
+   "website": "https://www.grammarly.com/",
+   "sources": [
+    "https://www.grammarly.com/",
+    "https://www.grammarly.com/plans",
+    "https://www.grammarly.com/desktop"
+   ]
+  },
+  {
+   "brand": "granola",
+   "name": "Granola",
+   "shape": "AI writing & notes",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.granola.ai/",
+   "sources": [
+    "https://www.granola.ai/",
+    "https://www.granola.ai/pricing"
+   ]
+  },
+  {
+   "brand": "jasper",
+   "name": "Jasper",
+   "shape": "AI writing & notes",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.jasper.ai/",
+   "sources": [
+    "https://www.jasper.ai/",
+    "https://www.jasper.ai/pricing"
+   ]
+  },
+  {
+   "brand": "otter",
+   "name": "Otter",
+   "shape": "AI writing & notes",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://otter.ai/",
+   "sources": [
+    "https://otter.ai/",
+    "https://otter.ai/pricing"
+   ]
+  },
+  {
+   "brand": "quillbot",
+   "name": "QuillBot",
+   "shape": "AI writing & notes",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://quillbot.com/",
+   "sources": [
+    "https://quillbot.com/",
+    "https://quillbot.com/upgrade"
+   ]
+  },
+  {
+   "brand": "readai",
+   "name": "Read AI",
+   "shape": "AI writing & notes",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.read.ai/",
+   "sources": [
+    "https://www.read.ai/",
+    "https://www.read.ai/plans-pricing"
+   ]
+  },
+  {
+   "brand": "tldv",
+   "name": "tl;dv",
+   "shape": "AI writing & notes",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://tldv.io/",
+   "sources": [
+    "https://tldv.io/",
+    "https://tldv.io/app/pricing/"
+   ]
+  },
+  {
+   "brand": "freeagent",
+   "name": "FreeAgent",
+   "shape": "Accounting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.freeagent.com/",
+   "sources": [
+    "https://www.freeagent.com/",
+    "https://www.freeagent.com/pricing/"
+   ]
+  },
+  {
+   "brand": "freshbooks",
+   "name": "FreshBooks",
+   "shape": "Accounting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.freshbooks.com/",
+   "sources": [
+    "https://www.freshbooks.com/",
+    "https://www.freshbooks.com/pricing"
+   ]
+  },
+  {
+   "brand": "invoiceninja",
+   "name": "Invoice Ninja",
+   "shape": "Accounting",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://invoiceninja.com/",
+   "sources": [
+    "https://invoiceninja.com/",
+    "https://invoiceninja.com/pricing-plans/"
+   ]
+  },
+  {
+   "brand": "intuit",
+   "name": "QuickBooks Online",
+   "shape": "Accounting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://quickbooks.intuit.com/",
+   "sources": [
+    "https://quickbooks.intuit.com/"
+   ]
+  },
+  {
+   "brand": "wave",
+   "name": "Wave",
+   "shape": "Accounting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.waveapps.com/",
+   "sources": [
+    "https://www.waveapps.com/",
+    "https://www.waveapps.com/pricing"
+   ]
+  },
+  {
+   "brand": "xero",
+   "name": "Xero",
+   "shape": "Accounting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.xero.com/",
+   "sources": [
+    "https://www.xero.com/",
+    "https://www.xero.com/us/pricing-plans/"
+   ]
+  },
+  {
+   "brand": "zoho",
+   "name": "Zoho Books",
+   "shape": "Accounting",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.zoho.com/books/",
+   "sources": [
+    "https://www.zoho.com/books/",
+    "https://www.zoho.com/books/pricing/"
+   ]
+  },
+  {
+   "brand": "attio",
+   "name": "Attio",
+   "shape": "CRM",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://attio.com/",
+   "sources": [
+    "https://attio.com/",
+    "https://attio.com/pricing"
+   ]
+  },
+  {
+   "brand": "close",
+   "name": "Close",
+   "shape": "CRM",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://close.com/",
+   "sources": [
+    "https://close.com/",
+    "https://close.com/pricing"
+   ]
+  },
+  {
+   "brand": "freshworks",
+   "name": "Freshsales",
+   "shape": "CRM",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.freshworks.com/crm/sales/",
+   "sources": [
+    "https://www.freshworks.com/crm/sales/",
+    "https://www.freshworks.com/crm/pricing/"
+   ]
+  },
+  {
+   "brand": "hubspot",
+   "name": "HubSpot CRM",
+   "shape": "CRM",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.hubspot.com/products/crm",
+   "sources": [
+    "https://www.hubspot.com/products/crm",
+    "https://www.hubspot.com/pricing/crm"
+   ]
+  },
+  {
+   "brand": "pipedrive",
+   "name": "Pipedrive",
+   "shape": "CRM",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.pipedrive.com/",
+   "sources": [
+    "https://www.pipedrive.com/"
+   ]
+  },
+  {
+   "brand": "salesforce",
+   "name": "Salesforce Sales Cloud",
+   "shape": "CRM",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.salesforce.com/sales/",
+   "sources": [
+    "https://www.salesforce.com/sales/",
+    "https://www.salesforce.com/sales/pricing/"
+   ]
+  },
+  {
+   "brand": "zoho",
+   "name": "Zoho CRM",
+   "shape": "CRM",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.zoho.com/crm/",
+   "sources": [
+    "https://www.zoho.com/crm/",
+    "https://www.zoho.com/crm/zohocrm-pricing.html"
+   ]
+  },
+  {
+   "brand": "folk",
+   "name": "folk",
+   "shape": "CRM",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.folk.app/",
+   "sources": [
+    "https://www.folk.app/",
+    "https://www.folk.app/pricing"
+   ]
+  },
+  {
+   "brand": "adobe",
+   "name": "Adobe Photoshop",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.adobe.com/products/photoshop.html",
+   "sources": [
+    "https://www.adobe.com/products/photoshop.html"
+   ]
+  },
+  {
+   "brand": "adobe",
+   "name": "Adobe Premiere Pro",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.adobe.com/products/premiere.html",
+   "sources": [
+    "https://www.adobe.com/products/premiere.html"
+   ]
+  },
+  {
+   "brand": "affinity",
+   "name": "Affinity",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.affinity.studio/",
+   "sources": [
+    "https://www.affinity.studio/"
+   ]
+  },
+  {
+   "brand": "canva",
+   "name": "Canva",
+   "shape": "Design & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, iOS, Android",
+   "weight": null,
+   "website": "https://www.canva.com/",
+   "sources": [
+    "https://www.canva.com/",
+    "https://www.canva.com/pricing/"
+   ]
+  },
+  {
+   "brand": "bytedance",
+   "name": "CapCut",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.capcut.com/",
+   "sources": [
+    "https://www.capcut.com/",
+    "https://www.capcut.com/pricing"
+   ]
+  },
+  {
+   "brand": "blackmagic",
+   "name": "DaVinci Resolve",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.blackmagicdesign.com/products/davinciresolve",
+   "sources": [
+    "https://www.blackmagicdesign.com/products/davinciresolve",
+    "https://www.blackmagicdesign.com/products/davinciresolve/studio"
+   ]
+  },
+  {
+   "brand": "descript",
+   "name": "Descript",
+   "shape": "Design & video",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.descript.com/",
+   "sources": [
+    "https://www.descript.com/",
+    "https://www.descript.com/pricing"
+   ]
+  },
+  {
+   "brand": "figma",
+   "name": "Figma",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": "Web, Windows, Mac, iOS, Android",
+   "weight": null,
+   "website": "https://www.figma.com/",
+   "sources": [
+    "https://www.figma.com/",
+    "https://www.figma.com/pricing/",
+    "https://www.figma.com/downloads/"
+   ]
+  },
+  {
+   "brand": "apple",
+   "name": "Final Cut Pro",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.apple.com/final-cut-pro/",
+   "sources": [
+    "https://www.apple.com/final-cut-pro/"
+   ]
+  },
+  {
+   "brand": "penpot",
+   "name": "Penpot",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://penpot.app/",
+   "sources": [
+    "https://penpot.app/",
+    "https://penpot.app/pricing"
+   ]
+  },
+  {
+   "brand": "sketch",
+   "name": "Sketch",
+   "shape": "Design & video",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.sketch.com/",
+   "sources": [
+    "https://www.sketch.com/",
+    "https://www.sketch.com/pricing/"
+   ]
+  },
+  {
+   "brand": "brevo",
+   "name": "Brevo",
+   "shape": "Email marketing",
+   "balance": null,
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.brevo.com/",
+   "sources": [
+    "https://www.brevo.com/",
+    "https://www.brevo.com/pricing/"
+   ]
+  },
+  {
+   "brand": "buttondown",
+   "name": "Buttondown",
+   "shape": "Email marketing",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://buttondown.com/",
+   "sources": [
+    "https://buttondown.com/",
+    "https://buttondown.com/pricing"
+   ]
+  },
+  {
+   "brand": "ghost",
+   "name": "Ghost",
+   "shape": "Email marketing",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://ghost.org/",
+   "sources": [
+    "https://ghost.org/",
+    "https://ghost.org/pricing/"
+   ]
+  },
+  {
+   "brand": "klaviyo",
+   "name": "Klaviyo",
+   "shape": "Email marketing",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.klaviyo.com/",
+   "sources": [
+    "https://www.klaviyo.com/",
+    "https://www.klaviyo.com/pricing"
+   ]
+  },
+  {
+   "brand": "mailchimp",
+   "name": "Mailchimp",
+   "shape": "Email marketing",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://mailchimp.com/",
+   "sources": [
+    "https://mailchimp.com/",
+    "https://mailchimp.com/pricing/marketing/"
+   ]
+  },
+  {
+   "brand": "mailerlite",
+   "name": "MailerLite",
+   "shape": "Email marketing",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.mailerlite.com/",
+   "sources": [
+    "https://www.mailerlite.com/",
+    "https://www.mailerlite.com/pricing"
+   ]
+  },
+  {
+   "brand": "substack",
+   "name": "Substack",
+   "shape": "Email marketing",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://substack.com/",
+   "sources": [
+    "https://substack.com/",
+    "https://substack.com/going-paid"
+   ]
+  },
+  {
+   "brand": "beehiiv",
+   "name": "beehiiv",
+   "shape": "Email marketing",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.beehiiv.com/",
+   "sources": [
+    "https://www.beehiiv.com/",
+    "https://www.beehiiv.com/pricing"
+   ]
+  },
+  {
+   "brand": "anytype",
+   "name": "Anytype",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://anytype.io/",
+   "sources": [
+    "https://anytype.io/",
+    "https://anytype.io/pricing/"
+   ]
+  },
+  {
+   "brand": "bear",
+   "name": "Bear",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://bear.app/",
+   "sources": [
+    "https://bear.app/"
+   ]
+  },
+  {
+   "brand": "capacities",
+   "name": "Capacities",
+   "shape": "Notes app",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://capacities.io/",
+   "sources": [
+    "https://capacities.io/",
+    "https://capacities.io/pricing"
+   ]
+  },
+  {
+   "brand": "craft",
+   "name": "Craft",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.craft.do/",
+   "sources": [
+    "https://www.craft.do/",
+    "https://www.craft.do/pricing"
+   ]
+  },
+  {
+   "brand": "evernote",
+   "name": "Evernote",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android",
+   "weight": null,
+   "website": "https://evernote.com/",
+   "sources": [
+    "https://evernote.com/",
+    "https://evernote.com/compare-plans",
+    "https://evernote.com/download"
+   ]
+  },
+  {
+   "brand": "google",
+   "name": "Google Keep",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://workspace.google.com/products/keep/",
+   "sources": [
+    "https://workspace.google.com/products/keep/"
+   ]
+  },
+  {
+   "brand": "joplin",
+   "name": "Joplin",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://joplinapp.org/",
+   "sources": [
+    "https://joplinapp.org/",
+    "https://joplinapp.org/plans/",
+    "https://joplinapp.org/download/"
+   ]
+  },
+  {
+   "brand": "logseq",
+   "name": "Logseq",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://logseq.com/",
+   "sources": [
+    "https://logseq.com/",
+    "https://github.com/logseq/logseq/releases"
+   ]
+  },
+  {
+   "brand": "notion",
+   "name": "Notion",
+   "shape": "Notes app",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, Windows, Mac",
+   "weight": null,
+   "website": "https://www.notion.com/",
+   "sources": [
+    "https://www.notion.com/",
+    "https://www.notion.com/pricing",
+    "https://www.notion.com/desktop"
+   ]
+  },
+  {
+   "brand": "obsidian",
+   "name": "Obsidian",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://obsidian.md/",
+   "sources": [
+    "https://obsidian.md/",
+    "https://obsidian.md/pricing",
+    "https://obsidian.md/download"
+   ]
+  },
+  {
+   "brand": "microsoft",
+   "name": "OneNote",
+   "shape": "Notes app",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://onenote.cloud.microsoft/",
+   "sources": [
+    "https://onenote.cloud.microsoft/",
+    "https://www.microsoft.com/en-us/microsoft-365/onenote/digital-note-taking-app"
+   ]
+  },
+  {
+   "brand": "1password",
+   "name": "1Password",
+   "shape": "Password manager",
+   "balance": null,
+   "surface": null,
+   "core": "Web, Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://1password.com/",
+   "sources": [
+    "https://1password.com/",
+    "https://1password.com/pricing",
+    "https://1password.com/downloads/mac"
+   ]
+  },
+  {
+   "brand": "bitwarden",
+   "name": "Bitwarden",
+   "shape": "Password manager",
+   "balance": null,
+   "surface": null,
+   "core": "Web, Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://bitwarden.com/",
+   "sources": [
+    "https://bitwarden.com/",
+    "https://bitwarden.com/pricing/",
+    "https://bitwarden.com/download/"
+   ]
+  },
+  {
+   "brand": "dashlane",
+   "name": "Dashlane",
+   "shape": "Password manager",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.dashlane.com/",
+   "sources": [
+    "https://www.dashlane.com/",
+    "https://www.dashlane.com/pricing"
+   ]
+  },
+  {
+   "brand": "enpass",
+   "name": "Enpass",
+   "shape": "Password manager",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://www.enpass.io/",
+   "sources": [
+    "https://www.enpass.io/",
+    "https://www.enpass.io/pricing/",
+    "https://www.enpass.io/downloads/"
+   ]
+  },
+  {
+   "brand": "keepassxc",
+   "name": "KeePassXC",
+   "shape": "Password manager",
+   "balance": "Free",
+   "surface": null,
+   "core": "Windows, Mac, Linux",
+   "weight": null,
+   "website": "https://keepassxc.org/",
+   "sources": [
+    "https://keepassxc.org/",
+    "https://keepassxc.org/download/"
+   ]
+  },
+  {
+   "brand": "keeper",
+   "name": "Keeper",
+   "shape": "Password manager",
+   "balance": null,
+   "surface": null,
+   "core": "Web, Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://www.keepersecurity.com/",
+   "sources": [
+    "https://www.keepersecurity.com/",
+    "https://www.keepersecurity.com/pricing/personal-and-family.html",
+    "https://www.keepersecurity.com/download.html"
+   ]
+  },
+  {
+   "brand": "lastpass",
+   "name": "LastPass",
+   "shape": "Password manager",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.lastpass.com/",
+   "sources": [
+    "https://www.lastpass.com/",
+    "https://www.lastpass.com/pricing"
+   ]
+  },
+  {
+   "brand": "nordsec",
+   "name": "NordPass",
+   "shape": "Password manager",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://nordpass.com/",
+   "sources": [
+    "https://nordpass.com/",
+    "https://nordpass.com/pricing/"
+   ]
+  },
+  {
+   "brand": "proton",
+   "name": "Proton Pass",
+   "shape": "Password manager",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://proton.me/pass",
+   "sources": [
+    "https://proton.me/pass",
+    "https://proton.me/pass/pricing",
+    "https://proton.me/pass/download"
+   ]
+  },
+  {
+   "brand": "asana",
+   "name": "Asana",
+   "shape": "Project management",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, Windows, Mac, iOS, Android",
+   "weight": null,
+   "website": "https://asana.com/",
+   "sources": [
+    "https://asana.com/",
+    "https://asana.com/pricing",
+    "https://asana.com/download"
+   ]
+  },
+  {
+   "brand": "basecamp",
+   "name": "Basecamp",
+   "shape": "Project management",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://basecamp.com/",
+   "sources": [
+    "https://basecamp.com/",
+    "https://basecamp.com/pricing"
+   ]
+  },
+  {
+   "brand": "clickup",
+   "name": "ClickUp",
+   "shape": "Project management",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://clickup.com/",
+   "sources": [
+    "https://clickup.com/",
+    "https://clickup.com/pricing",
+    "https://clickup.com/download"
+   ]
+  },
+  {
+   "brand": "atlassian",
+   "name": "Jira",
+   "shape": "Project management",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.atlassian.com/software/jira",
+   "sources": [
+    "https://www.atlassian.com/software/jira",
+    "https://www.atlassian.com/software/jira/pricing"
+   ]
+  },
+  {
+   "brand": "linear",
+   "name": "Linear",
+   "shape": "Project management",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, Windows, Mac, iOS, Android",
+   "weight": null,
+   "website": "https://linear.app/",
+   "sources": [
+    "https://linear.app/",
+    "https://linear.app/pricing",
+    "https://linear.app/download"
+   ]
+  },
+  {
+   "brand": "culturedcode",
+   "name": "Things 3",
+   "shape": "Project management",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://culturedcode.com/things/",
+   "sources": [
+    "https://culturedcode.com/things/"
+   ]
+  },
+  {
+   "brand": "ticktick",
+   "name": "TickTick",
+   "shape": "Project management",
+   "balance": null,
+   "surface": null,
+   "core": "Web, Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://ticktick.com/",
+   "sources": [
+    "https://ticktick.com/",
+    "https://ticktick.com/about/upgrade",
+    "https://ticktick.com/download"
+   ]
+  },
+  {
+   "brand": "todoist",
+   "name": "Todoist",
+   "shape": "Project management",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://www.todoist.com/",
+   "sources": [
+    "https://www.todoist.com/",
+    "https://www.todoist.com/pricing",
+    "https://www.todoist.com/downloads"
+   ]
+  },
+  {
+   "brand": "atlassian",
+   "name": "Trello",
+   "shape": "Project management",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://trello.com/",
+   "sources": [
+    "https://trello.com/",
+    "https://trello.com/pricing",
+    "https://trello.com/platforms"
+   ]
+  },
+  {
+   "brand": "wrike",
+   "name": "Wrike",
+   "shape": "Project management",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.wrike.com/",
+   "sources": [
+    "https://www.wrike.com/",
+    "https://www.wrike.com/price/"
+   ]
+  },
+  {
+   "brand": "monday",
+   "name": "monday work management",
+   "shape": "Project management",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://monday.com/",
+   "sources": [
+    "https://monday.com/",
+    "https://monday.com/pricing"
+   ]
+  },
+  {
+   "brand": "airvpn",
+   "name": "AirVPN",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://airvpn.org/",
+   "sources": [
+    "https://airvpn.org/"
+   ]
+  },
+  {
+   "brand": "expressvpn",
+   "name": "ExpressVPN",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.expressvpn.com/",
+   "sources": [
+    "https://www.expressvpn.com/",
+    "https://www.expressvpn.com/pricing",
+    "https://www.expressvpn.com/vpn-download"
+   ]
+  },
+  {
+   "brand": "ivpn",
+   "name": "IVPN",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://www.ivpn.net/",
+   "sources": [
+    "https://www.ivpn.net/",
+    "https://www.ivpn.net/en/pricing/",
+    "https://www.ivpn.net/en/apps/"
+   ]
+  },
+  {
+   "brand": "mullvad",
+   "name": "Mullvad VPN",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://mullvad.net/en",
+   "sources": [
+    "https://mullvad.net/en",
+    "https://mullvad.net/en/pricing",
+    "https://mullvad.net/en/download/vpn/macos"
+   ]
+  },
+  {
+   "brand": "nordsec",
+   "name": "NordVPN",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://nordvpn.com/",
+   "sources": [
+    "https://nordvpn.com/",
+    "https://nordvpn.com/download/"
+   ]
+  },
+  {
+   "brand": "pia",
+   "name": "Private Internet Access",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://www.privateinternetaccess.com/",
+   "sources": [
+    "https://www.privateinternetaccess.com/",
+    "https://www.privateinternetaccess.com/download"
+   ]
+  },
+  {
+   "brand": "proton",
+   "name": "Proton VPN",
+   "shape": "VPN",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://protonvpn.com/",
+   "sources": [
+    "https://protonvpn.com/",
+    "https://protonvpn.com/pricing",
+    "https://protonvpn.com/download"
+   ]
+  },
+  {
+   "brand": "surfshark",
+   "name": "Surfshark",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://surfshark.com/",
+   "sources": [
+    "https://surfshark.com/",
+    "https://surfshark.com/pricing",
+    "https://surfshark.com/download"
+   ]
+  },
+  {
+   "brand": "windscribe",
+   "name": "Windscribe",
+   "shape": "VPN",
+   "balance": null,
+   "surface": null,
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://windscribe.com/",
+   "sources": [
+    "https://windscribe.com/",
+    "https://windscribe.com/upgrade",
+    "https://windscribe.com/download"
+   ]
+  },
+  {
+   "brand": "bluehost",
+   "name": "Bluehost",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.bluehost.com/",
+   "sources": [
+    "https://www.bluehost.com/"
+   ]
+  },
+  {
+   "brand": "cloudflare",
+   "name": "Cloudflare",
+   "shape": "Web hosting",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.cloudflare.com/",
+   "sources": [
+    "https://www.cloudflare.com/",
+    "https://www.cloudflare.com/plans/",
+    "https://www.cloudflare.com/products/pages/"
+   ]
+  },
+  {
+   "brand": "digitalocean",
+   "name": "DigitalOcean",
+   "shape": "Web hosting",
+   "balance": "Pay as you go",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.digitalocean.com/",
+   "sources": [
+    "https://www.digitalocean.com/",
+    "https://www.digitalocean.com/pricing"
+   ]
+  },
+  {
+   "brand": "flyio",
+   "name": "Fly.io",
+   "shape": "Web hosting",
+   "balance": "Pay as you go",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://fly.io/",
+   "sources": [
+    "https://fly.io/",
+    "https://fly.io/pricing/"
+   ]
+  },
+  {
+   "brand": "hetzner",
+   "name": "Hetzner Cloud",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.hetzner.com/cloud/",
+   "sources": [
+    "https://www.hetzner.com/cloud/"
+   ]
+  },
+  {
+   "brand": "hostinger",
+   "name": "Hostinger",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.hostinger.com/",
+   "sources": [
+    "https://www.hostinger.com/",
+    "https://www.hostinger.com/web-hosting"
+   ]
+  },
+  {
+   "brand": "kinsta",
+   "name": "Kinsta",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://kinsta.com/",
+   "sources": [
+    "https://kinsta.com/",
+    "https://kinsta.com/pricing/"
+   ]
+  },
+  {
+   "brand": "akamai",
+   "name": "Linode",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.linode.com/",
+   "sources": [
+    "https://www.linode.com/"
+   ]
+  },
+  {
+   "brand": "netlify",
+   "name": "Netlify",
+   "shape": "Web hosting",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.netlify.com/",
+   "sources": [
+    "https://www.netlify.com/",
+    "https://www.netlify.com/pricing/"
+   ]
+  },
+  {
+   "brand": "ovhcloud",
+   "name": "OVHcloud VPS",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.ovhcloud.com/en/vps/",
+   "sources": [
+    "https://www.ovhcloud.com/en/vps/"
+   ]
+  },
+  {
+   "brand": "render",
+   "name": "Render",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://render.com/",
+   "sources": [
+    "https://render.com/",
+    "https://render.com/pricing"
+   ]
+  },
+  {
+   "brand": "siteground",
+   "name": "SiteGround",
+   "shape": "Web hosting",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.siteground.com/",
+   "sources": [
+    "https://world.siteground.com/",
+    "https://world.siteground.com/web-hosting.htm"
+   ]
+  },
+  {
+   "brand": "vercel",
+   "name": "Vercel",
+   "shape": "Web hosting",
+   "balance": "Pay as you go",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://vercel.com/",
+   "sources": [
+    "https://vercel.com/",
+    "https://vercel.com/pricing"
+   ]
+  },
+  {
+   "brand": "bigcommerce",
+   "name": "BigCommerce",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.bigcommerce.com/",
+   "sources": [
+    "https://www.bigcommerce.com/",
+    "https://www.bigcommerce.com/pricing/"
+   ]
+  },
+  {
+   "brand": "carrd",
+   "name": "Carrd",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://carrd.com/",
+   "sources": [
+    "https://carrd.com/",
+    "https://carrd.com/pro"
+   ]
+  },
+  {
+   "brand": "framer",
+   "name": "Framer",
+   "shape": "Website builder",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://www.framer.com/",
+   "sources": [
+    "https://www.framer.com/",
+    "https://www.framer.com/pricing"
+   ]
+  },
+  {
+   "brand": "shopify",
+   "name": "Shopify",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.shopify.com/",
+   "sources": [
+    "https://www.shopify.com/",
+    "https://www.shopify.com/pricing"
+   ]
+  },
+  {
+   "brand": "squarespace",
+   "name": "Squarespace",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.squarespace.com/",
+   "sources": [
+    "https://www.squarespace.com/",
+    "https://www.squarespace.com/pricing"
+   ]
+  },
+  {
+   "brand": "webflow",
+   "name": "Webflow",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://webflow.com/",
+   "sources": [
+    "https://webflow.com/",
+    "https://webflow.com/pricing"
+   ]
+  },
+  {
+   "brand": "wix",
+   "name": "Wix",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.wix.com/",
+   "sources": [
+    "https://www.wix.com/",
+    "https://www.wix.com/plans"
+   ]
+  },
+  {
+   "brand": "automattic",
+   "name": "WooCommerce",
+   "shape": "Website builder",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://woocommerce.com/",
+   "sources": [
+    "https://woocommerce.com/",
+    "https://woocommerce.com/pricing/"
+   ]
+  },
+  {
+   "brand": "automattic",
+   "name": "WordPress.com",
+   "shape": "Website builder",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": null,
+   "weight": null,
+   "website": "https://wordpress.com/",
+   "sources": [
+    "https://wordpress.com/",
+    "https://wordpress.com/pricing/"
+   ]
+  }
+ ]
+}

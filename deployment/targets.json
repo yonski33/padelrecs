@@ -123,6 +123,11 @@
       "name": "moneyrecs",
       "id": "prj_6V6jiyqgM2p0KzDa3ulSm7hJTnno",
       "domain": "www.moneyrecs.com"
+    },
+    "software": {
+      "name": "softwarerecs",
+      "id": "prj_XvVmzVd19VEh0L8QEjV2tXlNbTPu",
+      "domain": "www.softwarerecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
@@ -152,7 +157,8 @@
     "snowboard": "snowboardrecs",
     "tabletennis": "tabletennisrecs",
     "homegym": "homegymrecs",
-    "money": "moneyrecs"
+    "money": "moneyrecs",
+    "software": "softwarerecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
