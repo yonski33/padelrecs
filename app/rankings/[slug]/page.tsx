@@ -9,6 +9,7 @@ import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
 import { rankedLists, topLists, listHref, longDate, currentYear, type RankedList } from "../lists";
+import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -33,7 +34,7 @@ const pct = (n: number, total: number) => `${n / total * 100}%`;
 // "Bullpadel Vertex 05 2026" under a "Bullpadel" line reads as "Vertex 05 2026", like the rest of the site.
 const modelName = (name: string, brand: string) => brand && name.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? name.slice(brand.length + 1) : name;
 
-function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList }) {
+function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product);
   const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
   const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
@@ -44,6 +45,8 @@ function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList 
       <div className="top-head">
         <h2><a className="racket-link" href={href}>{brand && <span className="brand">{brand}</span>}<span className="model">{modelName(e.product.name, brand)}</span></a></h2>
       </div>
+      {/* Niches with Amazon links: a quiet text link under the name, the same Amazon page as the product page's button. */}
+      {amazon && <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>}
       <div className="top-split">
         <div className="stack" role="img" aria-label={label}>
           {parts.map(([s, n]) => n ? <i key={s} className={`s-${s}`} style={{ width: pct(n, e.reviews) }}/> : null)}
@@ -71,7 +74,7 @@ function Entry({ e, brand, list }: { e: ListEntry; brand: string; list: TopList 
 
 const quoted = (tags: string[]) => tags.map(t => `“${t}”`).join(tags.length > 2 ? ", " : " or ").replace(/, (“[^”]+”)$/, " or $1");
 
-function Method({ list, count }: { list: TopList; count: number }) {
+function Method({ list, count, affiliate }: { list: TopList; count: number; affiliate: boolean }) {
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
   const filters = (list.filters ?? []).flatMap(f => {
     const spec = niche.specs.find(s => s.column === f.column)?.label.toLowerCase() ?? f.column;
@@ -86,7 +89,9 @@ function Method({ list, count }: { list: TopList; count: number }) {
       {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews are positive or mixed and tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. The order is led by how many positive or mixed reviews use those tags, counted the same way (above the site average for that many reviews); a ${w.one} liked more than average gets a smaller bonus (${TRAIT_LIST_LIKED_WEIGHT === 0.5 ? "half" : `${TRAIT_LIST_LIKED_WEIGHT}×`} of its positive reviews above average), and one liked less loses nothing beyond the ${Math.round(MIN_POSITIVE_SHARE * 100)}% minimum.`}</li>}
       {list.maxAgeYears !== undefined && <li>{`Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
       <li>{`A ${w.one} needs at least ${min} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
-      <li>{`The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
+      <li>{affiliate
+        ? `The list re-ranks itself as new reviews are published. There are no sponsored placements or paid rankings. The Amazon links are affiliate links and never change the order.`
+        : `The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
     </ul>
   </section>;
 }
@@ -97,6 +102,8 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   if (!found) notFound();
   const { list, entries, reviews, updated } = found;
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
+  const affiliate = amazonLinksOn();
+  const amazon = affiliate ? await Promise.all(entries.map(e => amazonButton({ name: e.product.name, brand: brandOf(e.product.brandId) || undefined }))) : [];
   const url = `${base()}${listHref(list.slug)}`;
   const title = listTitle(list, currentYear(), reviews, people.One);
   const jsonLd = { "@context": "https://schema.org", "@graph": [
@@ -109,6 +116,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   ] };
 
   return <main className="top-page">
+    {affiliate && entries.length > 0 && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
     <div className="page-title">
@@ -120,8 +128,8 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       {topLists.map(l => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
     </nav>
     {entries.length
-      ? <ol className="top-list">{entries.map(e => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list}/>)}</ol>
+      ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
       : <p className="empty-feed">{`No ${w.one} has enough reviews for this list yet. It fills in as reviews are published.`}</p>}
-    <Method list={list} count={entries.length}/>
+    <Method list={list} count={entries.length} affiliate={affiliate}/>
   </main>;
 }
