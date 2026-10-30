@@ -41,3 +41,58 @@ export const movedMonitorPages = [
   ]),
   ...movedMonitorBrandSlugs.map(slug => ({ source: `/brands/${slug}`, destination: `${MONITORRECS}/brands/${slug}` })),
 ];
+
+// Keyboards left GamingRecs for their own site, KeyboardRecs, on 2026-10-30. Same idea: slugs are unchanged, and KeyboardRecs
+// files each keyboard under its own category page (/rapid-trigger-keyboards/wooting-80he).
+export const KEYBOARDRECS = "https://www.keyboardrecs.com";
+
+/** Every keyboard GamingRecs had, by its category page on KeyboardRecs. */
+export const movedKeyboardSlugs: Record<string, string[]> = {
+  "rapid-trigger-keyboards": [
+    "asus-rog-azoth-96-he", "asus-rog-azoth-96-he-lite", "asus-rog-falcata", "asus-rog-falchion-ace-75-he",
+    "asus-rog-falchion-ace-hfx", "corsair-clipper-pro-mini-60", "corsair-k70-pro-tkl", "corsair-vanguard-pro-96",
+    "drunkdeer-a75-pro", "drunkdeer-a75-ultra", "drunkdeer-g75", "ducky-one-x-mini-wireless", "ducky-one-x-wireless",
+    "endgame-gear-kb65he", "endgame-gear-kb65he-8k", "glorious-gmmk-3-he", "glorious-gmmk-3-pro-he",
+    "glorious-gmmk-3-pro-he-wireless", "hyperx-origins-2-pro-65", "keychron-k2-he", "keychron-k6-he", "keychron-k8-he",
+    "keychron-q1-he", "keychron-q1-he-8k", "keychron-q3-he-8k", "keychron-q5-he-8k", "lemokey-l1-he", "lemokey-p1-he",
+    "logitech-g-pro-x-tkl-rapid", "logitech-g-pro-x2-rapid", "logitech-g512-x-75", "logitech-g512-x-98",
+    "logitech-g515-rapid-tkl", "pulsar-pcmk-2-he-tkl", "pulsar-pcmk-3-he-60", "pulsar-pcmk-3-he-tkl",
+    "razer-huntsman-v3-he-magnetic-mini-65-8khz", "razer-huntsman-v3-he-magnetic-tenkeyless-8khz", "razer-huntsman-v3-pro",
+    "razer-huntsman-v3-pro-8khz", "razer-huntsman-v3-pro-low-profile-tenkeyless-8khz", "razer-huntsman-v3-pro-mini",
+    "razer-huntsman-v3-pro-mini-8khz", "razer-huntsman-v3-pro-tenkeyless", "razer-huntsman-v3-pro-tenkeyless-8khz",
+    "razer-huntsman-v3-tenkeyless-8khz", "steelseries-apex-pro-gen-3", "steelseries-apex-pro-mini",
+    "steelseries-apex-pro-mini-gen-3", "steelseries-apex-pro-mini-wireless", "steelseries-apex-pro-tkl-2023",
+    "steelseries-apex-pro-tkl-gen-3", "steelseries-apex-pro-tkl-wireless-2023", "steelseries-apex-pro-tkl-wireless-gen-3",
+    "wooting-60he", "wooting-60he-v2", "wooting-80he", "wooting-80he-plus", "wooting-two-he",
+  ],
+  "mechanical-keyboards": [
+    "asus-rog-azoth-extreme", "asus-rog-falchion-nx", "asus-rog-strix-morph-96-wireless",
+    "asus-rog-strix-scope-ii-96-rx-wireless", "corsair-k100-rgb", "corsair-k65-plus-wireless", "corsair-k65-pro-mini",
+    "corsair-k70-core-tkl", "corsair-k70-core-tkl-wireless", "corsair-k70-rgb-pro", "corsair-vanguard-96",
+    "corsair-vanguard-96-wireless", "ducky-one-3-pro-100", "ducky-one-3-rgb-100", "glorious-gmmk-3-pro",
+    "glorious-gmmk-eternal-96", "hyperx-alloy-origins-core", "hyperx-alloy-rise-75", "hyperx-origins-2-1800",
+    "hyperx-origins-2-65", "logitech-g-pro-x-60", "logitech-g-pro-x-tkl-lightspeed", "logitech-g316-x-75",
+    "razer-blackwidow-v4", "razer-blackwidow-v4-75", "razer-blackwidow-v4-pro", "razer-blackwidow-v4-pro-75",
+    "razer-blackwidow-v4-tenkeyless-hyperspeed", "razer-reclusa-x-mini-65", "steelseries-apex-9-mini",
+    "steelseries-apex-9-tkl",
+  ],
+  "low-profile-keyboards": [
+    "corsair-k100-air-wireless", "corsair-vanguard-air-99-wireless", "logitech-g515-lightspeed-tkl", "logitech-g515-tkl",
+    "logitech-g915-x-lightspeed", "logitech-g915-x-lightspeed-tkl", "logitech-g915-x-wired",
+    "razer-blackwidow-v4-low-profile-hyperspeed", "razer-blackwidow-v4-low-profile-tenkeyless-hyperspeed",
+  ],
+};
+
+/** Brands GamingRecs only had for their keyboards; their brand pages move too. ASUS, Corsair, Logitech, Razer and the
+ *  other gear makers keep their mice, headsets and controllers here. */
+export const movedKeyboardBrandSlugs = ["drunkdeer", "ducky", "keychron", "lemokey", "wooting"];
+
+export const movedKeyboardPages = [
+  // The category, its old address and the catalogue filtered to keyboards; KeyboardRecs' home lists every category.
+  { source: "/keyboards", destination: `${KEYBOARDRECS}/` },
+  { source: "/types/keyboards", destination: `${KEYBOARDRECS}/` },
+  { source: "/gear", destination: `${KEYBOARDRECS}/`, query: { key: "shape", value: "Keyboard" } },
+  ...Object.entries(movedKeyboardSlugs).flatMap(([type, slugs]) => slugs.flatMap(slug =>
+    ["/keyboards", "/gear", "/rackets"].map(base => ({ source: `${base}/${slug}`, destination: `${KEYBOARDRECS}/${type}/${slug}` })))),
+  ...movedKeyboardBrandSlugs.map(slug => ({ source: `/brands/${slug}`, destination: `${KEYBOARDRECS}/brands/${slug}` })),
+];

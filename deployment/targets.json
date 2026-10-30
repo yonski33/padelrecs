@@ -164,7 +164,8 @@
     "homegym": "homegymrecs",
     "money": "moneyrecs",
     "software": "softwarerecs",
-    "hosting": "hostingrecs"
+    "hosting": "hostingrecs",
+    "keyboard": "keyboardrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

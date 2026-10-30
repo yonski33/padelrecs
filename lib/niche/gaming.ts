@@ -1,5 +1,5 @@
 import type { Niche } from "./types";
-import { movedMonitorPages } from "./gaming-moved";
+import { movedMonitorPages, movedKeyboardPages } from "./gaming-moved";
 
 // Rating icons: a keycap seen from the front, violet with a lime top face. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -98,25 +98,24 @@ export const gaming: Niche = {
   },
   // Columns are shared: shape = category, weight = weight, core = connection, surface = key specs, balance = form factor.
   specs: [
-    { column: "shape", label: "Category", max: 100, placeholder: "e.g. Mouse", options: ["Mouse", "Keyboard", "Headset", "Controller"] },
+    { column: "shape", label: "Category", max: 100, placeholder: "e.g. Mouse", options: ["Mouse", "Headset", "Controller"] },
     { column: "weight", label: "Weight", max: 120, placeholder: "e.g. 60 g" },
     { column: "core", label: "Connection", max: 200, placeholder: "e.g. Wireless (2.4 GHz, Bluetooth)" },
     { column: "surface", label: "Key specs", max: 200, placeholder: "e.g. HERO 2 sensor, 8000 Hz polling" },
     { column: "balance", label: "Form factor", max: 120, placeholder: "e.g. Symmetrical" },
   ],
-  shapeFilter: ["Mouse", "Keyboard", "Headset", "Controller"],
+  shapeFilter: ["Mouse", "Headset", "Controller"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
   typePages: [
     { shape: "Mouse", slug: "mice", label: "Mice", seoLabel: "Gaming Mice", intro: "Gaming mice, wired and wireless, symmetrical and ergonomic" },
-    { shape: "Keyboard", slug: "keyboards", label: "Keyboards", seoLabel: "Gaming Keyboards", intro: "Mechanical, optical and Hall effect gaming keyboards" },
     { shape: "Headset", slug: "headsets", label: "Headsets", seoLabel: "Gaming Headsets", intro: "Gaming headsets and earbuds, open and closed-back" },
     { shape: "Controller", slug: "controllers", label: "Controllers", seoLabel: "Game Controllers", intro: "Gamepads for PC, PlayStation, Xbox and Switch" },
   ],
   rowDetail: { column: "balance", suffix: "" },
-  // Monitors moved to MonitorRecs (2026-10-23): their old pages 301 there.
-  movedAway: movedMonitorPages,
+  // Monitors moved to MonitorRecs (2026-10-23) and keyboards to KeyboardRecs (2026-10-30): their old pages 301 there.
+  movedAway: [...movedMonitorPages, ...movedKeyboardPages],
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [
     { label: "great performance", tone: "pos" },
@@ -135,8 +134,8 @@ export const gaming: Niche = {
     { label: "short battery life", tone: "neg" },
     { label: "wireless", tone: "neutral" },
   ],
-  // /rankings pages (lib/top-lists.ts): one list per category with enough reviews. Mice and keyboards don't have enough
-  // reviewed products yet; add their lists here (shape "Mouse" / "Keyboard") once they do.
+  // /rankings pages (lib/top-lists.ts): one list per category with enough reviews. Mice don't have enough
+  // reviewed products yet; add their list here (shape "Mouse") once they do.
   topLists: [
     { slug: "best-gaming-controllers", label: "Controllers", title: "Best Gaming Controllers", minReviews: 8,
       intro: "The controllers gamers are most consistently happy with.", filters: [{ column: "shape", include: ["Controller"] }] },
@@ -151,16 +150,16 @@ export const gaming: Niche = {
   },
   seo: {
     homeTitle: "GamingRecs – Real Gamer Reviews of Gaming Gear",
-    homeDescription: "Browse real reviews of gaming mice, keyboards, headsets and controllers from gamers, plus opinions collected from Reddit, YouTube, retailers and forums. Compare Logitech, Razer, SteelSeries, Corsair, ASUS, Sony and more.",
-    layoutDescription: "Real gamer experiences with mice, keyboards, headsets and controllers, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real reviews of gaming mice, headsets and controllers from gamers, plus opinions collected from Reddit, YouTube, retailers and forums. Compare Logitech, Razer, SteelSeries, Corsair, ASUS, Sony and more.",
+    layoutDescription: "Real gamer experiences with mice, headsets and controllers, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | GamingRecs",
-    catalog: { title: "All Gaming Gear – Gamer Reviews and Ratings", description: "Every mouse, keyboard, headset and controller on GamingRecs with community ratings. Filter by brand and category, then read what gamers say." },
+    catalog: { title: "All Gaming Gear – Gamer Reviews and Ratings", description: "Every mouse, headset and controller on GamingRecs with community ratings. Filter by brand and category, then read what gamers say." },
     brands: { title: "Gaming Gear Brands", description: "Browse gaming gear by brand — Logitech, Razer, SteelSeries, Corsair, ASUS, HyperX, Sony and more — and read real gamer reviews of each product." },
     brand: brand => ({ title: `${brand} Gaming Gear – Gamer Reviews`, description: `Real gamer reviews of ${brand} gear: ratings, strengths and weaknesses for every ${brand} product on GamingRecs.` }),
     product: name => ({ title: `${name} Reviews | GamingRecs`, description: `Read real gamer experiences with the ${name}. Ratings for performance, comfort, build quality and value, plus opinions from around the web.` }),
     productNotFound: "Product not found | GamingRecs",
     productCategory: "Gaming gear",
-    addReview: { title: "Add a Gaming Gear Review", description: "Used a gaming mouse, keyboard, headset or controller? Share how it held up in about two minutes. No account needed." },
+    addReview: { title: "Add a Gaming Gear Review", description: "Used a gaming mouse, headset or controller? Share how it held up in about two minutes. No account needed." },
     about: { title: "About", description: "Why GamingRecs exists: gaming gear opinions are scattered across Reddit, YouTube, retailers and forums. GamingRecs collects them and lets gamers add their own." },
     ogAlt: "GamingRecs – real gamer reviews of gaming gear",
     ogProductAlt: "Gaming gear reviews on GamingRecs",

@@ -165,13 +165,13 @@ test("the GolfRecs starter catalog: sourced drivers named by generation, known c
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
 });
 
-test("the GamingRecs starter catalog: 372 sourced products in four known categories (monitors moved to MonitorRecs), no years in names, unique URLs", async () => {
+test("the GamingRecs starter catalog: 273 sourced products in three known categories (monitors and keyboards moved away), no years in names, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/gaming.json");
   const snapshot = catalogSnapshot(catalog, "gamingrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 32);
-  assert.equal(snapshot.tables.rackets.length, 372);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 372);
+  assert.equal(snapshot.tables.brands.length, 27);
+  assert.equal(snapshot.tables.rackets.length, 273);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 273);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.gaming.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf } = await import("../app/art/gaming");
@@ -182,7 +182,34 @@ test("the GamingRecs starter catalog: 372 sourced products in four known categor
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 80, `${c}: at least 80 products`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+});
+
+test("the KeyboardRecs catalog: the 99 GamingRecs keyboards under their old ids and URLs plus sourced boards, kits, switches and keycaps", async () => {
+  const { niches } = await import("../lib/niche");
+  const { movedKeyboardSlugs } = await import("../lib/niche/gaming-moved");
+  const catalog = await readCatalog("db/catalogs/keyboard.json");
+  const snapshot = catalogSnapshot(catalog, "keyboardrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 27);
+  assert.equal(snapshot.tables.rackets.length, 200);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 200);
+  assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
+  const categories = niches.keyboard.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf } = await import("../app/art/keyboard");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(shapeOf(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: keyboards carry generations, not years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.some(r => r.shape === c), `${c}: at least one product`);
+  // Every moved keyboard keeps its GamingRecs slug, under the category its 301 points to.
+  const bySlug = new Map(snapshot.tables.rackets.map(r => [r.slug, r]));
+  const moved = Object.entries(movedKeyboardSlugs).flatMap(([type, slugs]) => slugs.map(slug => [type, slug] as const));
+  assert.equal(moved.length, 99);
+  for (const [type, slug] of moved) assert.equal(niches.keyboard.typePages!.find(t => t.shape === bySlug.get(slug)?.shape)?.slug, type, slug);
   assert.equal(snapshot.tables.rackets.find(r => r.name === "Wooting 80HE+")?.slug, "wooting-80he-plus");
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Versions are separate products, never merged.
+  for (const name of ["Keychron Q1 HE", "Keychron Q1 HE 8K", "Keychron Q1 Pro", "Keychron Q1 Max", "Keychron V1", "Keychron V1 Max"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
 });
 
 test("the DiscGolfRecs starter catalog: sourced molds without years, known types, flight numbers in speed / glide / turn / fade, unique URLs", async () => {

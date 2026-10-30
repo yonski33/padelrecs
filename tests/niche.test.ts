@@ -196,7 +196,7 @@ test("golf: drivers named by generation (no years), handicap hints, swing speed,
   }
 });
 
-test("gaming: gear named by generation (no years), four category pages that each pick a drawing, gamer profile, keycap rating icons", async () => {
+test("gaming: gear named by generation (no years), three category pages that each pick a drawing, gamer profile, keycap rating icons", async () => {
   const n = selectNiche("gaming");
   assert.equal(n.schema, "gamingrecs");
   assert.equal(n.productPath, "gear");
@@ -204,9 +204,9 @@ test("gaming: gear named by generation (no years), four category pages that each
   assert.deepEqual(n.categories.map(c => `${c.label}:${c.column}`), ["Performance:powerRating", "Comfort:comfortRating", "Build quality:controlRating", "Software & features:maneuverabilityRating", "Value:forgivenessRating"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Weight", "Connection", "Key specs", "Form factor"]);
   assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
-  assert.deepEqual(n.typePages?.map(t => t.slug), ["mice", "keyboards", "headsets", "controllers"]);
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["mice", "headsets", "controllers"]);
   const { shapeOf } = await import("../app/art/gaming");
-  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["mouse", "keyboard", "headset", "controller"]);
+  assert.deepEqual(n.shapeFilter.map(s => shapeOf(s)), ["mouse", "headset", "controller"]);
   for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
@@ -322,6 +322,55 @@ test("gaming: every moved monitor page 301s to the same page on MonitorRecs", as
   const gaming = await readCatalog("db/catalogs/gaming.json");
   assert(!gaming.brands.some(b => movedMonitorBrandSlugs.includes(b.id)));
   assert(!gaming.products.some(p => p.shape === "Monitor"));
+});
+
+test("gaming: every moved keyboard page 301s to the same keyboard on KeyboardRecs", async () => {
+  const { movedKeyboardSlugs, movedKeyboardBrandSlugs } = await import("../lib/niche/gaming-moved");
+  const n = selectNiche("gaming"), keyboard = selectNiche("keyboard");
+  const moved = new Map((n.movedAway ?? []).filter(m => !m.query).map(m => [m.source, m.destination]));
+  for (const [type, slugs] of Object.entries(movedKeyboardSlugs)) {
+    assert(keyboard.typePages!.some(t => t.slug === type), `${type} is a KeyboardRecs category`);
+    for (const slug of slugs) for (const base of ["/keyboards", "/gear", "/rackets"]) assert.equal(moved.get(`${base}/${slug}`), `https://www.keyboardrecs.com/${type}/${slug}`);
+  }
+  for (const slug of movedKeyboardBrandSlugs) assert.equal(moved.get(`/brands/${slug}`), `https://www.keyboardrecs.com/brands/${slug}`);
+  assert.equal(moved.get("/keyboards"), "https://www.keyboardrecs.com/");
+  assert.equal(moved.get("/types/keyboards"), "https://www.keyboardrecs.com/");
+  assert(n.movedAway!.some(m => m.source === "/gear" && m.query?.value === "Keyboard"));
+  assert(!n.typePages?.some(t => t.slug === "keyboards"));
+  assert(!n.shapeFilter.includes("Keyboard"));
+  // Monitor redirects are still there.
+  assert.equal(moved.get("/monitors"), "https://www.monitorrecs.com/gaming-monitors");
+  const { readCatalog } = await import("../db/catalog-file");
+  const gaming = await readCatalog("db/catalogs/gaming.json");
+  assert(!gaming.brands.some(b => movedKeyboardBrandSlugs.includes(b.id)));
+  assert(!gaming.products.some(p => p.shape === "Keyboard"));
+});
+
+test("keyboard: products named by generation (no years), seven category pages with product URLs under them, keycap rating icons", async () => {
+  const n = selectNiche("keyboard");
+  assert.equal(n.schema, "keyboardrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.deepEqual(n.categories.map(c => c.label), ["Typing feel", "Sound", "Build quality", "Software & features", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Weight", "Connection", "Switches", "Layout"]);
+  // The owner's approved category URLs (2026-10-30).
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["rapid-trigger-keyboards", "mechanical-keyboards", "low-profile-keyboards", "keyboard-kits", "ergonomic-keyboards", "switches", "keycaps"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/keyboard");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 7, "and no two share one");
+  // The moved GamingRecs reviews keep their tags: GamingRecs' bank is the start of this one.
+  assert.deepEqual(n.tags.slice(0, selectNiche("gaming").tags.length), selectNiche("gaming").tags);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /keyboard|switches/, `${list.slug}: niche keyword in the slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
 });
 
 test("camera: cameras named by generation (no years), four category pages that each pick a drawing, photographer profile, camera rating icons", async () => {
