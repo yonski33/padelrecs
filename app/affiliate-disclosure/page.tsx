@@ -23,7 +23,7 @@ export default function AffiliateDisclosure() {
     <p>{`Some links on ${site} are affiliate links. If you follow one and buy something, ${site} may earn a small commission. You pay the same price either way.`}</p>
 
     <h2>How it works</h2>
-    <p>{`Each ${niche.words.one} page has a "View price on Amazon" button, and each ranking list has a "See on Amazon" link under every ${niche.words.one}. They go to that ${niche.words.one} on Amazon when we can find it there, or to an Amazon search for its name when we can't. Those links carry our Amazon Associates tag, so Amazon can tell the visit came from ${site}. Commissions help pay for hosting and for keeping the catalog up to date.`}</p>
+    <p>{`Each ${niche.words.one} page has a "View price on Amazon" button, and each ranking list has a "Check price on Amazon" link under every ${niche.words.one}. They go to that ${niche.words.one} on Amazon when we can find it there, or to an Amazon search for its name when we can't. Those links carry our Amazon Associates tag, so Amazon can tell the visit came from ${site}. Commissions help pay for hosting and for keeping the catalog up to date.`}</p>
 
     <h2>What affiliate links never change</h2>
     <p>{`Ratings come only from ${niche.people.one} reviews, and quotes from around the web are kept separate from them. Rankings are worked out from those reviews. No brand or retailer pays to be listed, rated or ranked, and every ${niche.words.one} gets the same Amazon button whether its reviews are glowing or harsh.`}</p>
