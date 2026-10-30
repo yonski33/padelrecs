@@ -20,6 +20,7 @@ export const hosting: Niche = {
     wordmark: "hostingrecs",
     descriptor: "real reviews of web hosts, VPS and cloud providers, website builders, domain registrars and email hosting",
     footer: "kept by people who run their own sites and servers.",
+    analyticsId: "G-88989JZ1SS",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "service", many: "services", One: "Service", Many: "Services" },
