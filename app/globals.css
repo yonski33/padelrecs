@@ -760,6 +760,8 @@ summary { cursor: pointer; font-weight: 600; }
 .top-rank { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--green); letter-spacing: -0.03em; padding-top: 4px; font-variant-numeric: tabular-nums; }
 .top-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .top-head h2 { font-size: inherit; }
+.top-amazon { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.top-amazon:hover { color: var(--ink-2); text-decoration-color: currentColor; }
 .top-split { margin-top: 12px; max-width: 460px; }
 .top-split .stack i { background: var(--c); }
 .top-split .legend .top-count { font-weight: 600; color: var(--ink-2); }
