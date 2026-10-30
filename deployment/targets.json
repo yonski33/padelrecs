@@ -133,6 +133,11 @@
       "name": "hostingrecs",
       "id": "prj_GmEFozMfxNQc00FApIfB7RVmvMBQ",
       "domain": "www.hostingrecs.com"
+    },
+    "keyboard": {
+      "name": "keyboardrecs",
+      "id": "prj_HMADdDyaiYQyup0Za7tWE151oTwj",
+      "domain": "www.keyboardrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
