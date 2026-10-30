@@ -46,7 +46,7 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
         <h2><a className="racket-link" href={href}>{brand && <span className="brand">{brand}</span>}<span className="model">{modelName(e.product.name, brand)}</span></a></h2>
       </div>
       {/* Niches with Amazon links: a quiet text link under the name, the same Amazon page as the product page's button. */}
-      {amazon && <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>}
+      {amazon && <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">See on Amazon<span aria-hidden="true"> ↗</span></a>}
       <div className="top-split">
         <div className="stack" role="img" aria-label={label}>
           {parts.map(([s, n]) => n ? <i key={s} className={`s-${s}`} style={{ width: pct(n, e.reviews) }}/> : null)}
