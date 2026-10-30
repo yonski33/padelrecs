@@ -1,5 +1,5 @@
 {
-  "about": "PickleballRecs starter catalog. Every value was read on the linked maker page (or, where noted, Pickleball Central) on the checked date and approved by the owner on 2026-10-19. Blank = not published. Products sold in several shapes are one entry per shape. Model year = maker's wording/URL, otherwise the year the maker's shop listed the product; Franklin gives none, 2025 used with the owner's OK. Swing weight is on each maker's own scale. Columns: core = core thickness, balance = swing weight. Expansion (owner chose current + popular brands, 2026-10-20): 2024–2026 performance paddles from the brands above plus Vatic Pro, Gearbox, Proton, Bread & Butter, 11SIX24, Volair, Diadem, ProKennex, Holbrook and Ronbus; colour, signature, limited, demo and blemished listings merged or left out, beginner/budget models left out. Model year = the year the maker shop first listed the product. Expansion rows record shape and core thickness only where the product title states them; their other columns are blank because they were not recorded, not because they are unpublished. Batch 2 (owner asked for the brands r/Pickleball discusses most, 2026-10-20): Spartus, RPM, Luzz, Pakle, Pickleball Apes, FLiK, Neonic, Enhance, Helios and Pickle Poppers, plus Engage Axiom and the older but still popular Vatic Pro Prism (2023); same rules as the expansion. Batch 3 (2026-10-20): Friday and Honolulu from Pickleball Central pages, which give no model year, so 2026 (the current model year) is used with the owner OK, as for Franklin; Aireo from its own shop, with listing years. Since 2026-10-22 names and URLs carry no year (makers update paddles by name, not by year); \"year\" stays as the year the product was first listed, and ids keep the year they were first imported with (idsWithYear) so a re-import matches the existing rows. On 2026-10-23 the owner renamed Vatic Pro Prism to Vatic Pro Prism Flash (the base Prism model its reviews are about); its \"id\" keeps the original import id.",
+  "about": "PickleballRecs starter catalog. Every value was read on the linked maker page (or, where noted, Pickleball Central) on the checked date and approved by the owner on 2026-10-19. Blank = not published. Products sold in several shapes are one entry per shape. Model year = maker's wording/URL, otherwise the year the maker's shop listed the product; Franklin gives none, 2025 used with the owner's OK. Swing weight is on each maker's own scale. Columns: core = core thickness, balance = swing weight. Expansion (owner chose current + popular brands, 2026-10-20): 2024–2026 performance paddles from the brands above plus Vatic Pro, Gearbox, Proton, Bread & Butter, 11SIX24, Volair, Diadem, ProKennex, Holbrook and Ronbus; colour, signature, limited, demo and blemished listings merged or left out, beginner/budget models left out. Model year = the year the maker shop first listed the product. Expansion rows record shape and core thickness only where the product title states them; their other columns are blank because they were not recorded, not because they are unpublished. Batch 2 (owner asked for the brands r/Pickleball discusses most, 2026-10-20): Spartus, RPM, Luzz, Pakle, Pickleball Apes, FLiK, Neonic, Enhance, Helios and Pickle Poppers, plus Engage Axiom and the older but still popular Vatic Pro Prism (2023); same rules as the expansion. Batch 3 (2026-10-20): Friday and Honolulu from Pickleball Central pages, which give no model year, so 2026 (the current model year) is used with the owner OK, as for Franklin; Aireo from its own shop, with listing years. Since 2026-10-22 names and URLs carry no year (makers update paddles by name, not by year); \"year\" stays as the year the product was first listed, and ids keep the year they were first imported with (idsWithYear) so a re-import matches the existing rows. On 2026-10-23 the owner renamed Vatic Pro Prism to Vatic Pro Prism Flash (the base Prism model its reviews are about); its \"id\" keeps the original import id. Added on 2026-10-25 from reviews held as missing products (8 paddles): values from the linked page only (maker pages, Pickleball Central, and the Pickleheads and Matt's Pickleball reviews where the maker page is gone), blank where it gives none. Model year = the year the page or review dates the product; Honolulu J2NF and Selkirk Vanguard Power Air Invikta show no year, so 2026 is used as for the other Pickleball Central rows.",
   "checked": "2026-10-19",
   "idsWithYear": true,
   "brands": [
@@ -33,7 +33,8 @@
     { "id": "pickle-poppers", "name": "Pickle Poppers" },
     { "id": "friday", "name": "Friday" },
     { "id": "honolulu", "name": "Honolulu" },
-    { "id": "aireo", "name": "Aireo" }
+    { "id": "aireo", "name": "Aireo" },
+    { "id": "element-6", "name": "Element 6" }
   ],
   "products": [
     { "brand": "joola", "name": "Joola Perseus Pro V", "year": 2026, "shape": "Elongated", "weight": "16 mm: 8.1 oz · 14 mm: 7.9 oz", "core": "16 or 14 mm", "surface": "Carbon friction surface", "swingWeight": null,
@@ -647,6 +648,22 @@
     { "brand": "aireo", "name": "Aireo Falcon Pro-O16", "year": 2025, "shape": null, "weight": null, "core": "16 mm", "surface": null, "swingWeight": null,
       "sources": ["https://www.aireo-sports.com/products/falcon-pro-016"] },
     { "brand": "aireo", "name": "Aireo Falcon Pro-L16", "year": 2025, "shape": null, "weight": null, "core": "16 mm", "surface": null, "swingWeight": null,
-      "sources": ["https://www.aireo-sports.com/products/falcon-pro-l16-1"] }
+      "sources": ["https://www.aireo-sports.com/products/falcon-pro-l16-1"] },
+    { "brand": "gearbox", "name": "Gearbox Pro Power Elongated", "year": 2024, "shape": "Elongated", "weight": "8 oz", "core": "14 mm", "surface": "Toray T700 raw carbon fiber", "swingWeight": null,
+      "sources": ["https://www.pickleheads.com/pickleball-gear/gearbox-pro-power-review"] },
+    { "brand": "joola", "name": "Joola Perseus 3", "year": 2024, "shape": null, "weight": null, "core": "14 or 16 mm", "surface": null, "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/blog/review-of-joola-gen-3-pickleball-paddles-/"] },
+    { "brand": "honolulu", "name": "Honolulu J2NF", "year": 2026, "shape": "Hybrid", "weight": "8.0–8.3 oz", "core": "16 mm", "surface": "Carbon fiber / fiberglass / carbon fiber", "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/honolulu-sword-shield-j2nf-pickleball-paddle/"] },
+    { "brand": "11six24", "name": "11SIX24 Hurache-X Alpha Pro Power", "year": 2025, "shape": "Elongated", "weight": null, "core": "16 mm", "surface": "FCC face", "swingWeight": null,
+      "sources": ["https://11six24.com/products/hurache-x-alpha-pro-power"] },
+    { "brand": "selkirk", "name": "Selkirk Vanguard Power Air Invikta", "year": 2026, "shape": "Invikta", "weight": "7.7–8.1 oz", "core": "0.5 in", "surface": "Fiberglass and carbon fiber blend", "swingWeight": null,
+      "sources": ["https://pickleballcentral.com/selkirk-vanguard-power-air-invikta-paddle"] },
+    { "brand": "joola", "name": "Joola Perseus Mod TA-15", "year": 2024, "shape": "Elongated", "weight": "8 oz", "core": "14 or 16 mm", "surface": "Raw carbon fiber", "swingWeight": null,
+      "sources": ["https://www.pickleheads.com/pickleball-gear/joola-perseus-mod-ta-15-pro-player-paddle-review"] },
+    { "brand": "joola", "name": "Joola Perseus 3S", "year": 2024, "shape": "Elongated", "weight": null, "core": "14 or 16 mm", "surface": "Charged Carbon Surface", "swingWeight": null,
+      "sources": ["https://joola.com.au/products/ben-johns-perseus-3s-14mm-pickleball-paddle"] },
+    { "brand": "element-6", "name": "Element 6 Surtr", "year": 2025, "shape": null, "weight": "8.15 oz ±0.1 oz", "core": "16 mm", "surface": "T700 carbon face", "swingWeight": null,
+      "sources": ["https://e6pickleball.com/product/pre-sale-pro-series-16mm-surtr-pre-sale/", "https://mattspickleball.substack.com/p/foam-wars-gen-35-surprises-and-the"] }
   ]
 }
