@@ -26,6 +26,7 @@ export const climbing: Niche = {
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
+  navLabel: "Gear",
   people: { one: "climber", many: "climbers", One: "Climber", Many: "Climbers" },
   recentMonths: 36,
   // Makers name gear by model, version and volume (Instinct VSR LV, Shaman 2S, Drone 2 HV, GRIGRI+, Mega Jul), not by year.

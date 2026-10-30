@@ -25,6 +25,7 @@ export const audio: Niche = {
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
+  navLabel: "Headphones",
   people: { one: "listener", many: "listeners", One: "Listener", Many: "Listeners" },
   recentMonths: 12,
   // Makers put the generation in the name (Sony WH-1000XM6, AirPods Pro 3, Sennheiser Momentum 4), so no years.
