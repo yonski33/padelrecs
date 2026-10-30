@@ -21,6 +21,7 @@ export const software: Niche = {
     wordmark: "softwarerecs",
     descriptor: "real reviews of AI assistants, coding tools, password managers, VPNs and the apps people work in",
     footer: "kept by people who use these tools every day.",
+    analyticsId: "G-B98RNX7JE8",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "tool", many: "tools", One: "Tool", Many: "Tools" },

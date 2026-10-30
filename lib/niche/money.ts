@@ -21,7 +21,7 @@ export const money: Niche = {
     wordmark: "moneyrecs",
     descriptor: "real experiences with credit cards, banks, brokerages, budgeting apps, tax software and money transfers",
     footer: "kept by people who read the fine print.",
-    // analyticsId: "G-…", (add once the GA4 property exists)
+    analyticsId: "G-WZWZ18PDKG",
     adminLoginHint: "Use the email and password for your Recs admin account.",
     // YMYL: every page says this in the footer. Product pages also carry the provider's page and the date in their description.
     notice: "MoneyRecs shares people’s own experiences with financial products. It is not financial advice, and nothing here is a recommendation for your situation. Rates, fees and terms change; check the provider’s site before you apply or open an account.",
