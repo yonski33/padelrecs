@@ -25,6 +25,7 @@ export const ultralight: Niche = {
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
+  navLabel: "Gear",
   people: { one: "hiker", many: "hikers", One: "Hiker", Many: "Hikers" },
   recentMonths: 36,
   // Makers name models without years (X-Mid Pro 2, NeoAir XLite NXT, Arc Haul Ultra), so no years.

@@ -714,11 +714,13 @@ test("hosting: services named without years, ten category pages with product URL
   }
 });
 
-test("HomeGymRecs names its catalogue Equipment and KeyboardRecs Keyboards; other niches keep words.Many", () => {
+test("custom catalogue names: Equipment, Keyboards, Gear and Headphones; other niches keep words.Many", () => {
   const { homegym } = niches;
   assert.equal(homegym.navLabel, "Equipment");
   assert.deepEqual(homegym.words, { one: "product", many: "products", One: "Product", Many: "Products" });
-  assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id), ["homegym", "keyboard"]);
+  assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id).sort(), ["audio", "climbing", "coffee", "homegym", "keyboard", "ultralight"]);
+  for (const id of ["ultralight", "climbing", "coffee"] as const) assert.equal(niches[id].navLabel, "Gear");
+  assert.equal(niches.audio.navLabel, "Headphones");
   assert.equal(niches.keyboard.navLabel, "Keyboards");
   assert.equal(niches.keyboard.people.many, "owners");
 });
