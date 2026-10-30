@@ -27,6 +27,8 @@ export const tabletennis: Niche = {
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
+  // The catalogue holds blades and rubbers (not only rackets), so the menu says Equipment, matching its /equipment path.
+  navLabel: "Equipment",
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
   recentMonths: 36,
   // Makers name blades and rubbers by line and version (Viscaria, Tenergy 05 FX, Dignics 09C, Hurricane 3 Neo), not by year.
