@@ -25,11 +25,12 @@ import { homegym } from "./homegym";
 import { money } from "./money";
 import { software } from "./software";
 import { hosting } from "./hosting";
+import { keyboard } from "./keyboard";
 
 export type { Niche } from "./types";
 
 /** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting };
+export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard };
 export const DEFAULT_NICHE = "padel";
 
 /** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */
