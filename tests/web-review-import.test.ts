@@ -6,7 +6,7 @@ import { migrationSql } from "../db/migrations";
 import { importSnapshot, parseSnapshot } from "../db/transfer";
 import { fixture } from "./fixture";
 import { niches } from "../lib/niche";
-import { parseCandidates, planImport, siteState, applyImport, markPublished, webReviewId } from "../db/web-review-import";
+import { parseCandidates, planImport, siteState, applyImport, markPublished, webReviewId, sameSource } from "../db/web-review-import";
 import { catalog } from "../db/data";
 import type { getDb } from "../db/index";
 
@@ -121,4 +121,11 @@ test("a Spanish quote is published with its English translation and language; wi
   const live = { ...plan.rows[0], sourceUrl: plan.rows[0].sourceUrl, tags: plan.rows[0].tags ?? [] } as never;
   const fixed = planImport(parseCandidates(es("es1", { status: "published", excerpt_translation: "Three months in: incredible power, a bit harder in defence." }) + "\n"), { rackets: [{ id: "racket-nox", name: "Nox Test 2025" }], external: [live] }, niches.padel);
   assert.deepEqual(fixed.updates.map(u => u.excerptTranslation), ["Three months in: incredible power, a bit harder in defence."]);
+});
+
+test("forum posts behind index.php?… stay separate sources; ordinary pages still drop tracking queries", () => {
+  const bc = "https://www.badmintoncentral.com/forums/index.php?threads/victor-drivex-12.192506/post-";
+  assert.notEqual(sameSource(`${bc}2892345`), sameSource(`${bc}2893106`));
+  assert.equal(sameSource(`${bc}2892345`), sameSource(`${bc.replace("www.", "")}2892345/#post-2892345`));
+  assert.equal(sameSource("https://www.reddit.com/r/badminton/comments/abc/x/def/?utm_source=share"), sameSource("https://old.reddit.com/r/badminton/comments/abc/x/def"));
 });
