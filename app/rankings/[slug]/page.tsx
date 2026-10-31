@@ -10,6 +10,7 @@ import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
 import { rankedLists, listHref, longDate, currentYear, modelName, type RankedList } from "../lists";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
+import { websiteButton } from "../../../lib/product-links";
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const pct = (n: number, total: number) => `${n / total * 100}%`;
 
 function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
-  const href = productHref(e.product);
+  const href = productHref(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
   const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
   const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
   return <li className="top-entry">
@@ -43,8 +44,11 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
       <div className="top-head">
         <h2><a className="racket-link" href={href}>{brand && <span className="brand">{brand}</span>}<span className="model">{modelName(e.product.name, brand)}</span></a></h2>
       </div>
-      {/* Niches with Amazon links: a quiet text link under the name, the same Amazon page as the product page's button. */}
-      {amazon && <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>}
+      {/* A quiet text link under the name, the same place the product page's button goes: Amazon on niches with Amazon links,
+          otherwise the product's own site on niches with website links (software, hosting, money). */}
+      {amazon
+        ? <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
+        : site && <a className="top-amazon" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
       <div className="top-split">
         <div className="stack" role="img" aria-label={label}>
           {parts.map(([s, n]) => n ? <i key={s} className={`s-${s}`} style={{ width: pct(n, e.reviews) }}/> : null)}
