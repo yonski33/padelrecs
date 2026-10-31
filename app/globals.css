@@ -759,6 +759,8 @@ summary { cursor: pointer; font-weight: 600; }
 .top-page { max-width: 860px; padding-bottom: 40px; }
 .top-page .page-title h1 { font-size: 32px; max-width: 30ch; text-wrap: balance; }
 .top-updated { margin-top: 10px !important; font-size: 13px !important; color: var(--ink-3) !important; }
+.top-updated b { font-weight: 600; color: var(--ink-2); }
+.top-page .page-title .top-updated + p { margin-top: 10px; }
 .top-list { list-style: none; margin: 0; padding: 0; counter-reset: none; }
 .top-entry { display: grid; grid-template-columns: 40px 52px minmax(0, 1fr); column-gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .top-rank { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--green); letter-spacing: -0.03em; padding-top: 4px; font-variant-numeric: tabular-nums; }

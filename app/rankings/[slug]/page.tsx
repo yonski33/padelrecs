@@ -65,7 +65,7 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
           <SourceIcon platform={e.quote.platform}/><b>{e.quote.platform}</b>{e.quote.source && e.quote.source !== e.quote.platform && <span>{e.quote.source}</span>}<span className="arr" aria-hidden="true">↗</span>
         </a></figcaption>
       </figure>}
-      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of the ${e.product.name} →`}</a>
+      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of ${/^the /i.test(e.product.name) ? "" : "the "}${e.product.name} →`}</a>
     </div>
   </li>;
 }
@@ -118,9 +118,10 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
     <div className="page-title">
-      <h1>{title}</h1>
+      {/* A short heading; the review count sits in the line under it. The full title stays the browser/search title and the ItemList name. */}
+      <h1>{`${list.title} ${currentYear()}`}</h1>
+      {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
       <p>{list.intro}</p>
-      {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
     {entries.length
       ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
