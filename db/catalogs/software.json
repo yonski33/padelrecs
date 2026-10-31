@@ -359,6 +359,10 @@
    "name": "Replit"
   },
   {
+   "id": "roboform",
+   "name": "RoboForm"
+  },
+  {
    "id": "runway",
    "name": "Runway"
   },
@@ -1753,6 +1757,33 @@
     "https://proton.me/pass",
     "https://proton.me/pass/pricing",
     "https://proton.me/pass/download"
+   ]
+  },
+  {
+   "brand": "roboform",
+   "name": "RoboForm",
+   "shape": "Password manager",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Windows, Mac, iOS, Android, Linux",
+   "weight": null,
+   "website": "https://www.roboform.com/",
+   "sources": [
+    "https://www.roboform.com/",
+    "https://www.roboform.com/download"
+   ]
+  },
+  {
+   "brand": "apple",
+   "name": "Apple Passwords",
+   "shape": "Password manager",
+   "balance": "Free",
+   "surface": null,
+   "core": "Mac, iOS, iPadOS, Windows",
+   "weight": null,
+   "website": "https://support.apple.com/en-us/120758",
+   "sources": [
+    "https://support.apple.com/en-us/120758"
    ]
   },
   {

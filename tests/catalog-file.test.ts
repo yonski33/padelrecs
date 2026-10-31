@@ -598,7 +598,7 @@ test("the SoftwareRecs catalog: sourced tools in all thirteen categories (web ho
   const catalog = await readCatalog("db/catalogs/software.json");
   const snapshot = catalogSnapshot(catalog, "softwarerecs", "catalog:test", false);
   const categories = niches.software.specs.find(s => s.column === "shape")!.options!;
-  assert.equal(snapshot.tables.rackets.length, 122);
+  assert.equal(snapshot.tables.rackets.length, 124);
   assert.deepEqual(new Set(catalog.products.map(p => p.shape)), new Set(categories), "every category has tools and no tool is outside them");
   assert(catalog.products.every(p => p.website && p.sources.every(s => s.startsWith("https://"))), "every tool links to its own site");
   assert(catalog.products.every(p => !p.affiliateUrl), "no affiliate links yet");
@@ -606,12 +606,12 @@ test("the SoftwareRecs catalog: sourced tools in all thirteen categories (web ho
   assert(catalog.products.every(p => p.balance == null || pricing.includes(p.balance)), "pricing is a model, never a price");
   assert(catalog.products.every(p => p.surface == null || ["Yes", "No"].includes(p.surface)));
   assert(catalog.products.every(p => p.weight == null || p.shape!.startsWith("AI")), "AI model only on AI tools");
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 122);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 124);
   const engine = new PGlite();
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: catalog.brands.length, rackets: 122, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: catalog.brands.length, rackets: 124, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
