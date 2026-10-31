@@ -108,6 +108,18 @@ test("YouTube comments under one video are separate sources; the same comment fo
   assert.match(plan.skipped[0].reason, /already quoted/);
 });
 
+test("forum posts on an index.php?threads/... page are separate sources; the same post found twice is one", () => {
+  const fp = (id: string, url: string) => line({ id, source_platform: "Forum", source_name: "Padel Forum", source_url: url });
+  const q = [
+    fp("f1", "https://www.forum.example/forums/index.php?threads/nox-test.123/post-1001"),
+    fp("f2", "https://forum.example/forums/index.php?threads/nox-test.123/post-1002"),
+    fp("f3", "https://forum.example/forums/index.php?threads/nox-test.123/post-1001&utm_source=x"),
+  ].join("\n") + "\n";
+  const plan = planImport(parseCandidates(q), { rackets: [{ id: "racket-nox", name: "Nox Test 2025" }], external: [] }, niches.padel);
+  assert.deepEqual(plan.rows.map(r => r.candidateId), ["f1", "f2"]);
+  assert.match(plan.skipped[0].reason, /already quoted/);
+});
+
 test("a Spanish quote is published with its English translation and language; without a translation it waits", () => {
   const es = (id: string, over: object = {}) => line({ id, source_platform: "YouTube", source_name: "Padel Review", source_url: `https://www.youtube.com/watch?v=abcdefghijk&lc=${id}`,
     excerpt: "Llevo tres meses con ella y la potencia es increíble, pero en defensa cuesta un poco más.", source_language: "es",
