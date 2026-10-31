@@ -8,9 +8,8 @@ import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, wi
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
-import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
+import { rankedLists, listHref, longDate, currentYear, modelName, type RankedList } from "../lists";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
-import { ChipRow } from "../../chip-row";
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -32,8 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const pct = (n: number, total: number) => `${n / total * 100}%`;
-// "Bullpadel Vertex 05 2026" under a "Bullpadel" line reads as "Vertex 05 2026", like the rest of the site.
-const modelName = (name: string, brand: string) => brand && name.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? name.slice(brand.length + 1) : name;
 
 function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product);
@@ -68,7 +65,7 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
           <SourceIcon platform={e.quote.platform}/><b>{e.quote.platform}</b>{e.quote.source && e.quote.source !== e.quote.platform && <span>{e.quote.source}</span>}<span className="arr" aria-hidden="true">↗</span>
         </a></figcaption>
       </figure>}
-      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of the ${e.product.name} →`}</a>
+      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of ${/^the /i.test(e.product.name) ? "" : "the "}${e.product.name} →`}</a>
     </div>
   </li>;
 }
@@ -121,13 +118,11 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
     <div className="page-title">
-      <h1>{title}</h1>
+      {/* A short heading; the review count sits in the line under it. The full title stays the browser/search title and the ItemList name. */}
+      <h1>{`${list.title} ${currentYear()}`}</h1>
+      {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
       <p>{list.intro}</p>
-      {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
-    <ChipRow className="top-tabs" label="Rankings">
-      {lists.filter(l => l.entries.length || l.list.slug === list.slug).map(({ list: l }) => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
-    </ChipRow>
     {entries.length
       ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
       : <p className="empty-feed">{`No ${w.one} has enough reviews for this list yet. It fills in as reviews are published.`}</p>}

@@ -39,6 +39,7 @@ function TopMenu({ pathname, ranked }: { pathname: string; ranked: string[] }) {
 export function SiteHeader({ ranked }: { ranked: string[] }) {
   const pathname = usePathname();
   const onAddPage = pathname.startsWith("/add-review");
+  const inRankings = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
   return (
     <header className="site-header">
@@ -58,8 +59,13 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           return href === catalogPath && topLists.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
         })}
       </nav>
+      {/* On Rankings pages the row lists the rankings, so a chip there opens a ranking, not a product-type page. */}
+      {inRankings && topLists.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">
+        <a href={RANKINGS_PATH} aria-current={pathname === RANKINGS_PATH ? "page" : undefined}>All rankings</a>
+        {topLists.filter(l => ranked.includes(l.slug) || pathname === rankingHref(l.slug)).map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
+      </ChipRow>}
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
-      {niche.typePages && pathname !== "/" && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
+      {niche.typePages && pathname !== "/" && !inRankings && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
         <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
         {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : inTypePath === t ? "true" : undefined}>{t.label}</a>)}
       </ChipRow>}
