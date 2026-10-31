@@ -170,7 +170,8 @@
     "money": "moneyrecs",
     "software": "softwarerecs",
     "hosting": "hostingrecs",
-    "keyboard": "keyboardrecs"
+    "keyboard": "keyboardrecs",
+    "travelgear": "travelgearrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
