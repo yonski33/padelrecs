@@ -635,3 +635,30 @@ test("hosting catalog: 110 services in all ten categories, each linking to the p
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: catalog.brands.length, rackets: 110, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the TravelGearRecs catalog: 197 sourced products in all five categories, sizes and generations kept apart, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/travelgear.json");
+  const snapshot = catalogSnapshot(catalog, "travelgearrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 37);
+  assert.equal(snapshot.tables.rackets.length, 197);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 197);
+  const categories = niches.travelgear.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/travelgear");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: travel gear carries sizes and generations, not years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 20, `${c}: at least twenty products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert(catalog.products.every(p => p.balance == null || (p.shape === "Rolling luggage" && ["Carry-on", "Checked"].includes(p.balance))), "size class only on luggage");
+  // Sizes and generations are separate products, never merged.
+  for (const name of ["Peak Design Travel Backpack 45L", "Peak Design Travel Backpack 30L", "Aer Travel Pack 3", "Aer Travel Pack 4 35L", "Away The Carry-On", "Away The Carry-On 3", "GORUCK GR1 21L", "GORUCK GR1 26L"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 37, rackets: 197, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});

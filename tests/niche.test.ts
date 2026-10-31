@@ -718,8 +718,8 @@ test("custom catalogue names: Equipment, Keyboards, Gear and Headphones; other n
   const { homegym } = niches;
   assert.equal(homegym.navLabel, "Equipment");
   assert.deepEqual(homegym.words, { one: "product", many: "products", One: "Product", Many: "Products" });
-  assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id).sort(), ["audio", "climbing", "coffee", "homegym", "keyboard", "tabletennis", "ultralight"]);
-  for (const id of ["ultralight", "climbing", "coffee"] as const) assert.equal(niches[id].navLabel, "Gear");
+  assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id).sort(), ["audio", "climbing", "coffee", "homegym", "keyboard", "tabletennis", "travelgear", "ultralight"]);
+  for (const id of ["ultralight", "climbing", "coffee", "travelgear"] as const) assert.equal(niches[id].navLabel, "Gear");
   assert.equal(niches.audio.navLabel, "Headphones");
   assert.equal(niches.keyboard.navLabel, "Keyboards");
   assert.equal(niches.keyboard.people.many, "owners");
@@ -748,4 +748,31 @@ test("software: every moved web host page 301s to the same service on HostingRec
   assert(!software.products.some(p => p.shape === "Web hosting"));
   const softwareBrandSlugs = catalogSnapshot(software, "softwarerecs", "t", false).tables.brands.map(b => b.slug);
   assert(!softwareBrandSlugs.some(s => movedHostBrandSlugs.includes(s)));
+});
+
+test("travelgear: products named by size and generation (no years), five category pages with product URLs under them, luggage-tag rating icons", async () => {
+  const n = selectNiche("travelgear");
+  assert.equal(n.schema, "travelgearrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "Luggage");
+  assert.deepEqual(n.categories.map(c => c.label), ["Organization & packing", "Comfort & carry", "Build & durability", "Travel-friendly", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Capacity", "Weight", "Material", "Size class"]);
+  // The owner's approved category URLs (2026-10-31).
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["travel-backpacks", "luggage", "packing-cubes", "daypacks-and-slings", "travel-accessories"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/travelgear");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 5, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /travel|luggage|packing/, `${list.slug}: niche keyword in the slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
 });

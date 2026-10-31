@@ -1,0 +1,2520 @@
+{
+  "about": "TravelGearRecs catalog (2026-10-31, approved by the owner): travel backpacks, rolling luggage, packing cubes, daypacks and slings, and travel accessories. Each exact name and URL was read on the maker's own store or product page. Sizes and generations are separate products (Travel Backpack 45L vs 30L, The Carry-On vs The Carry-On 3); fabric and colour editions are folded into the base product; packing cubes, pouches and adapters sold in several sizes on one page are one product. Columns: shape = category, core = capacity (only where the maker's name states it), balance = size class for luggage (from the name), weight and surface (material) not read. Blank = not read.",
+  "checked": "2026-10-31",
+  "brands": [
+    {
+      "id": "able-carry",
+      "name": "Able Carry"
+    },
+    {
+      "id": "aer",
+      "name": "Aer"
+    },
+    {
+      "id": "apple",
+      "name": "Apple"
+    },
+    {
+      "id": "away",
+      "name": "Away"
+    },
+    {
+      "id": "beis",
+      "name": "BÉIS"
+    },
+    {
+      "id": "bellroy",
+      "name": "Bellroy"
+    },
+    {
+      "id": "briggs-riley",
+      "name": "Briggs & Riley"
+    },
+    {
+      "id": "cabeau",
+      "name": "Cabeau"
+    },
+    {
+      "id": "cabinzero",
+      "name": "CabinZero"
+    },
+    {
+      "id": "calpak",
+      "name": "CALPAK"
+    },
+    {
+      "id": "chipolo",
+      "name": "Chipolo"
+    },
+    {
+      "id": "cotopaxi",
+      "name": "Cotopaxi"
+    },
+    {
+      "id": "db",
+      "name": "Db"
+    },
+    {
+      "id": "decathlon",
+      "name": "Decathlon"
+    },
+    {
+      "id": "eagle-creek",
+      "name": "Eagle Creek"
+    },
+    {
+      "id": "fjallraven",
+      "name": "Fjällräven"
+    },
+    {
+      "id": "goruck",
+      "name": "GORUCK"
+    },
+    {
+      "id": "july",
+      "name": "July"
+    },
+    {
+      "id": "knog",
+      "name": "Knog"
+    },
+    {
+      "id": "lululemon",
+      "name": "lululemon"
+    },
+    {
+      "id": "manta-sleep",
+      "name": "Manta Sleep"
+    },
+    {
+      "id": "matador",
+      "name": "Matador"
+    },
+    {
+      "id": "minaal",
+      "name": "Minaal"
+    },
+    {
+      "id": "monos",
+      "name": "Monos"
+    },
+    {
+      "id": "nomatic",
+      "name": "Nomatic"
+    },
+    {
+      "id": "osprey",
+      "name": "Osprey"
+    },
+    {
+      "id": "patagonia",
+      "name": "Patagonia"
+    },
+    {
+      "id": "peak-design",
+      "name": "Peak Design"
+    },
+    {
+      "id": "pebblebee",
+      "name": "Pebblebee"
+    },
+    {
+      "id": "rimowa",
+      "name": "Rimowa"
+    },
+    {
+      "id": "samsonite",
+      "name": "Samsonite"
+    },
+    {
+      "id": "thule",
+      "name": "Thule"
+    },
+    {
+      "id": "tom-bihn",
+      "name": "Tom Bihn"
+    },
+    {
+      "id": "tortuga",
+      "name": "Tortuga"
+    },
+    {
+      "id": "travelpro",
+      "name": "Travelpro"
+    },
+    {
+      "id": "tropicfeel",
+      "name": "Tropicfeel"
+    },
+    {
+      "id": "trtl",
+      "name": "Trtl"
+    }
+  ],
+  "products": [
+    {
+      "brand": "able-carry",
+      "name": "Able Carry Max Backpack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ablecarry.com/products/max-backpack-earth-green-32l"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Flight Pack 3",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/flight-pack"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Travel Pack 3",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/travel-pack-3"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Travel Pack 3 Small",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/travel-pack-3-small"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Travel Pack 4 28L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "28 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/travel-pack-4-28l"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Travel Pack 4 35L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "35 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/travel-pack-4-35l"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Lite Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/lite-travel-pack"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Transit Travel Pack Pro",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/transit-travel-pack-pro"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Venture Travel Pack 26L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "26 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/venture-travel-pack"
+      ]
+    },
+    {
+      "brand": "beis",
+      "name": "BÉIS The Travel Backpack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://beistravel.com/products/the-backpack-in-black"
+      ]
+    },
+    {
+      "brand": "cabinzero",
+      "name": "CabinZero Classic Backpack 36L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "36 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cabinzero.com/products/classic-cabin-backpack-36l"
+      ]
+    },
+    {
+      "brand": "cabinzero",
+      "name": "CabinZero Classic Backpack 44L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "44 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cabinzero.com/products/classic-cabin-backpack-44l"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Allpa 28L Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "28 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/allpa-28l-travel-pack-5"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Allpa 35L Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "35 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/allpa-35l-travel-pack-7"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Allpa 42L Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "42 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/allpa-42l-travel-pack-6"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Allpa Mini 20L Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "20 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/allpa-mini-20l-travel-pack-2"
+      ]
+    },
+    {
+      "brand": "db",
+      "name": "Db Ramverk Pro Backpack 26L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "26 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://dbjourney.com/products/ramverk-pro-backpack-26l-black-out"
+      ]
+    },
+    {
+      "brand": "db",
+      "name": "Db Ramverk Pro Backpack 32L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "32 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://dbjourney.com/products/ramverk-pro-backpack-32l-black-out"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Tour Travel Pack 40L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "40 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/tour-travel-pack-40l"
+      ]
+    },
+    {
+      "brand": "decathlon",
+      "name": "Forclaz Travel 500 Organiser 40L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "40 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.decathlon.co.uk/p/40-l-travel-backpack-travel-500-organiser-black/338564/c382c382m8735937"
+      ]
+    },
+    {
+      "brand": "goruck",
+      "name": "GORUCK GR1 21L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "21 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.goruck.com/products/gr1-usa"
+      ]
+    },
+    {
+      "brand": "goruck",
+      "name": "GORUCK GR1 26L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "26 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.goruck.com/products/gr1-usa"
+      ]
+    },
+    {
+      "brand": "goruck",
+      "name": "GORUCK GR2 34L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "34 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.goruck.com/products/gr2"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador 18L Personal Item Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "18 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/18l-personal-item-travel-pack-garnet-drip-orange"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador 30L Carry-On Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "30 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/30l-carry-on-travel-pack-garnet-drip-orange"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador 35L Global Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "35 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/35l-global-travel-pack-garnet-drip-orange"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador 45L Global Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "45 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/45l-global-travel-pack-garnet-drip-orange"
+      ]
+    },
+    {
+      "brand": "minaal",
+      "name": "Minaal Carry-on 2.0",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.minaal.com/products/carry-on-bag-2"
+      ]
+    },
+    {
+      "brand": "minaal",
+      "name": "Minaal Carry-on 3.0",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.minaal.com/products/carry-on-bag-3"
+      ]
+    },
+    {
+      "brand": "nomatic",
+      "name": "Nomatic Navigator Travel Backpack 32L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "32 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nomatic.com/products/navigator-travel-backpack-32l"
+      ]
+    },
+    {
+      "brand": "nomatic",
+      "name": "Nomatic Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nomatic.com/products/the-nomatic-travel-pack"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Fairview 40 Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/fairviewtm-40-travel-pack"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Fairview 55 Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/fairviewtm-55-travel-pack"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Farpoint 40 Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/farpointtm-40-travel-pack-1"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Farpoint 55 Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/farpointtm-55-travel-pack"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Farpoint Trek 55 Travel Backpack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/farpointtm-trek-55-travel-backpack"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Sojourn Porter 30L Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "30 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/sojourn-portertm-30l-travel-pack"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Sojourn Porter 46L Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "46 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/sojourn-portertm-46l-travel-pack"
+      ]
+    },
+    {
+      "brand": "patagonia",
+      "name": "Patagonia Black Hole Micro MLC Backpack 22L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "22 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.patagonia.com/product/black-hole-micro-mlc-carry-on-backpack-22-liters/49260.html"
+      ]
+    },
+    {
+      "brand": "patagonia",
+      "name": "Patagonia Black Hole Mini MLC Pack 30L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "30 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.patagonia.com/product/black-hole-mini-mlc-convertible-carry-on-backpack-30-liters/49266.html"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Travel Backpack 20L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "20 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/travel-backpack"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Travel Backpack 30L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "30 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/travel-backpack"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Travel Backpack 45L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "45 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/travel-backpack"
+      ]
+    },
+    {
+      "brand": "thule",
+      "name": "Thule Aion Travel Backpack 28L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "28 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.thule.com/en-us/backpacks/backpacking-travel-backpacks/thule-aion-travel-backpack-28l-_-3204721"
+      ]
+    },
+    {
+      "brand": "thule",
+      "name": "Thule Aion Travel Backpack 40L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "40 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.thule.com/en-us/backpacks/backpacking-travel-backpacks/thule-aion-travel-backpack-40l-_-3204724"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Aeronaut 30",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/aeronaut-30"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Aeronaut 45",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/aeronaut-45"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Synik 30",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/synik-30"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Techonaut 30",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/techonaut-30"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Tri-Star",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/tri-star"
+      ]
+    },
+    {
+      "brand": "tortuga",
+      "name": "Tortuga Lite Backpack 40L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "40 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://tortugabackpacks.com/products/travel-backpack-lite-40l"
+      ]
+    },
+    {
+      "brand": "tortuga",
+      "name": "Tortuga Pro Backpack 34L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "34 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://tortugabackpacks.com/products/travel-backpack-34l"
+      ]
+    },
+    {
+      "brand": "tortuga",
+      "name": "Tortuga Pro Backpack 40L",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": "40 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://tortugabackpacks.com/products/travel-backpack-40l"
+      ]
+    },
+    {
+      "brand": "tropicfeel",
+      "name": "Tropicfeel Shell Backpack 1.0",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.tropicfeel.com/products/shell-1-backpack"
+      ]
+    },
+    {
+      "brand": "tropicfeel",
+      "name": "Tropicfeel Shell Travel Pack",
+      "shape": "Travel backpack",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.tropicfeel.com/products/shell-travel-pack-all-black"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://aersf.com/products/carry-on"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Carry-On Max",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://aersf.com/products/carry-on-max"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Bigger Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.awaytravel.com/products/bigger-carry-on"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Bigger Carry-On 3",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.awaytravel.com/products/bigger-carry-on-3"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.awaytravel.com/products/carry-on"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Carry-On 3",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.awaytravel.com/products/the-carry-on-3"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Carry-On Flex 3",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.awaytravel.com/products/the-carry-on-flex-3"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Large",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://www.awaytravel.com/products/large"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Large 3",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://www.awaytravel.com/products/the-large-3"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Medium",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://www.awaytravel.com/products/medium"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Medium 3",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://www.awaytravel.com/products/the-medium-3"
+      ]
+    },
+    {
+      "brand": "briggs-riley",
+      "name": "Briggs & Riley Baseline Essential 22\" 2-Wheel Expandable Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.briggs-riley.com/products/essential-2-wheel-carry-on"
+      ]
+    },
+    {
+      "brand": "briggs-riley",
+      "name": "Briggs & Riley Baseline Essential 22\" Carry-On Expandable Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.briggs-riley.com/products/essential-carry-on-spinner"
+      ]
+    },
+    {
+      "brand": "briggs-riley",
+      "name": "Briggs & Riley Baseline Global 21\" Carry-On Expandable Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.briggs-riley.com/products/global-carry-on-spinner"
+      ]
+    },
+    {
+      "brand": "briggs-riley",
+      "name": "Briggs & Riley Sympatico Essential 22\" Carry-On Expandable Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.briggs-riley.com/products/essential-carry-on-expandable-spinner"
+      ]
+    },
+    {
+      "brand": "beis",
+      "name": "BÉIS The Carry-On Roller",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://beistravel.com/products/the-carry-on-roller-in-glossy-mint"
+      ]
+    },
+    {
+      "brand": "beis",
+      "name": "BÉIS The Medium Check-In Roller",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://beistravel.com/products/the-medium-check-in-roller-in-glossy-mint"
+      ]
+    },
+    {
+      "brand": "beis",
+      "name": "BÉIS The Small Carry-On Roller",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://beistravel.com/products/the-small-carry-on-roller-in-maple"
+      ]
+    },
+    {
+      "brand": "calpak",
+      "name": "CALPAK Ambeur Carry-On Luggage",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.calpaktravel.com/products/ambeur-carry-on-luggage"
+      ]
+    },
+    {
+      "brand": "calpak",
+      "name": "CALPAK Evry Carry-On Luggage",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.calpaktravel.com/products/evry-carry-on-luggage"
+      ]
+    },
+    {
+      "brand": "calpak",
+      "name": "CALPAK Hue Carry-On Luggage",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.calpaktravel.com/products/hue-carry-on-luggage"
+      ]
+    },
+    {
+      "brand": "db",
+      "name": "Db Ramverk Carry-on",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://dbjourney.com/products/ramverk-carry-on-black-out"
+      ]
+    },
+    {
+      "brand": "db",
+      "name": "Db Ramverk Front-access Carry-on",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://dbjourney.com/products/ramverk-front-access-carry-on-black-out"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Tarmac 22\"/36L Carry-On Luggage",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": "36 L",
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.eaglecreek.com/products/tarmac-carry-on"
+      ]
+    },
+    {
+      "brand": "july",
+      "name": "July Carry On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://july.com/us/luggage/carry-on/"
+      ]
+    },
+    {
+      "brand": "july",
+      "name": "July Carry On Light",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://july.com/us/luggage/carry-on-light/"
+      ]
+    },
+    {
+      "brand": "july",
+      "name": "July Carry On Pro",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://july.com/us/luggage/carry-on-pro/"
+      ]
+    },
+    {
+      "brand": "july",
+      "name": "July Checked",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://july.com/us/luggage/checked/"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://monos.com/products/carry-on"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Carry-On Plus",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://monos.com/products/carry-on-plus"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Carry-On Pro",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://monos.com/products/carry-on-pro"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Check-In Large",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://monos.com/products/check-in-large"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Check-In Medium",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Checked",
+      "sources": [
+        "https://monos.com/products/check-in-medium"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Expandable Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://monos.com/products/expandable-carry-on"
+      ]
+    },
+    {
+      "brand": "nomatic",
+      "name": "Nomatic Method Luggage Carry-On",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.nomatic.com/products/method-luggage-carry-on"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Ozone Hardside Carry-On Luggage 22\"/34L",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": "34 L",
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.osprey.com/ozone-hardside-carry-on-luggage"
+      ]
+    },
+    {
+      "brand": "rimowa",
+      "name": "Rimowa Essential Cabin",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.rimowa.com/us/en/luggage/colour/black/cabin/83253191.html"
+      ]
+    },
+    {
+      "brand": "rimowa",
+      "name": "Rimowa Original Cabin",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.rimowa.com/us/en/luggage/colour/silver/cabin/92653004.html"
+      ]
+    },
+    {
+      "brand": "samsonite",
+      "name": "Samsonite C-Lite Spinner 55cm",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.samsonite.co.uk/c-lite-spinner-55cm-chili-red/159481-1198.html"
+      ]
+    },
+    {
+      "brand": "samsonite",
+      "name": "Samsonite Proxis Spinner Expandable 55cm",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.samsonite.co.uk/proxis-spinner-expandable-length-40cm-55cm-black/158191-1041.html"
+      ]
+    },
+    {
+      "brand": "thule",
+      "name": "Thule Aion Carry On Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.thule.com/en-us/luggage/carry-on-luggage/thule-aion-carry-on-spinner-_-3204720"
+      ]
+    },
+    {
+      "brand": "thule",
+      "name": "Thule Subterra 2 Carry-On Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.thule.com/en-us/luggage/carry-on-luggage/thule-subterra-carry-on-spinner-_-3205626"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Crew Classic Carry-On Rollaboard",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/crew™-classic-carry-on-rollaboard"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Crew Classic Carry-On Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/crew™-classic-carry-on-expandable-spinner"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Maxlite 5 International Carry-On Rollaboard",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/maxlite®-5-international-expandable-carry-on-rollaboard®"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Maxlite 5 International Carry-On Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/maxlite®-5-international-expandable-carry-on-spinner"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Maxlite Air V2 Carry-On Hardside Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/maxlite®-air-v2-carry-on-hardside-spinner"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Platinum Elite Carry-On Hardside Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/platinum-elite-hardside-carry-on-expandable-luggage-hardside-spinner-suitcase"
+      ]
+    },
+    {
+      "brand": "travelpro",
+      "name": "Travelpro Platinum Elite Compact Carry-On Hardside Spinner",
+      "shape": "Rolling luggage",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Carry-on",
+      "sources": [
+        "https://www.travelpro.com/products/platinum-elite-hardside-compact-carry-on-expandable-luggage-spinner-suitcase"
+      ]
+    },
+    {
+      "brand": "able-carry",
+      "name": "Able Carry Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ablecarry.com/products/cube-medium"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/packing-cube"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Packing Cube Small",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/packing-cube-small"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away Compression Packing Cubes",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.awaytravel.com/products/compression-packing-cubes"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away Insider Packing Cubes (Set of 6)",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.awaytravel.com/products/packing-cubes-six"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Lite Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/lite-packing-cube"
+      ]
+    },
+    {
+      "brand": "beis",
+      "name": "BÉIS The Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://beistravel.com/products/the-packing-cube-medium-in-plum"
+      ]
+    },
+    {
+      "brand": "cabinzero",
+      "name": "CabinZero Classic Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cabinzero.com/products/classic-packing-cube-medium"
+      ]
+    },
+    {
+      "brand": "calpak",
+      "name": "CALPAK Compression Packing Cubes",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.calpaktravel.com/products/medium-compression-packing-cubes"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Cubo Expandable Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/cubo-6l-expandable-packing-cube"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Isolate Clean/Dirty Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-isolate-clean-dirty-cube-m"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Isolate Compression Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-isolate-compression-cube-m"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Isolate Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-isolate-cube-m"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Reveal Expansion Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-reveal-expansion-cube-m"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Reveal Garment Folder",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-reveal-garment-folder-m"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Reveal Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-reveal-cube-m"
+      ]
+    },
+    {
+      "brand": "minaal",
+      "name": "Minaal Packing Cubes",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.minaal.com/products/packing-cubes-3-0"
+      ]
+    },
+    {
+      "brand": "monos",
+      "name": "Monos Compressible Packing Cubes",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://monos.com/products/packing-cubes"
+      ]
+    },
+    {
+      "brand": "nomatic",
+      "name": "Nomatic Compression Packing Cubes",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nomatic.com/products/packing-cubes"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Daylite Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/daylitetm-packing-cube-medium"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Ultralight Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/ultralight-packing-cube-large-ukpackcubelgs23-489"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/packing-cube"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Ultralight Packing Cube",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/ultralight-packing-cube"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Aeronaut 45 Packing Cubes",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/packing-cube-aeronaut-45"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Packing Cube Shoulder Bag",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/packing-cube-shoulder-bag"
+      ]
+    },
+    {
+      "brand": "tortuga",
+      "name": "Tortuga Compression Cubes (Set of 2)",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://tortugabackpacks.com/products/compression-cubes-set-of-2"
+      ]
+    },
+    {
+      "brand": "tortuga",
+      "name": "Tortuga Packing Cubes (Set of 3)",
+      "shape": "Packing cubes",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://tortugabackpacks.com/products/packing-cubes-set-of-3"
+      ]
+    },
+    {
+      "brand": "able-carry",
+      "name": "Able Carry Core Sling",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ablecarry.com/products/core-sling"
+      ]
+    },
+    {
+      "brand": "able-carry",
+      "name": "Able Carry Daybreaker 2",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ablecarry.com/products/daybreaker-2-ripstop-black-v"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer City Sling 3",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/city-sling-3"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Day Pack 3",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/day-pack-3"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Day Sling 3",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/day-sling-3-ultra"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Day Sling 4",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/day-sling-4"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Day Sling 4 Max",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/day-sling-4-max"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Travel Sling 2",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/travel-sling-2"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Lite Daypack",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/lite-daypack"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Lite Sling",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/lite-sling"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Sling Mini",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/sling-mini"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Venture Sling 6L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "6 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/venture-sling-6l"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Venture Sling 9L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "9 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/venture-sling"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Batac 16L Daypack",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "16 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/batac-16l-pack-del-dia"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Batac 24L Daypack",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "24 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/batac-24l-daypack-del-dia"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Luzon 24L Daypack",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "24 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/luzon-24l-daypack-del-dia"
+      ]
+    },
+    {
+      "brand": "fjallraven",
+      "name": "Fjällräven Kånken",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.fjallraven.com/us/en-us/bags-gear/kanken/kanken-bags/kanken/"
+      ]
+    },
+    {
+      "brand": "lululemon",
+      "name": "lululemon Everywhere Belt Bag 1L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "1 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.lululemon.com/p/everywhere-belt-bag/p2c308toaw"
+      ]
+    },
+    {
+      "brand": "lululemon",
+      "name": "lululemon Everywhere Belt Bag Large 2L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "2 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.lululemon.com/p/everywhere-belt-bag-large/y6a8u335ag"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador 18L Packable Backpack",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "18 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/18l-packable-backpack"
+      ]
+    },
+    {
+      "brand": "minaal",
+      "name": "Minaal Daily 3.0",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.minaal.com/products/daily-3-0-bag"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Daylite Plus",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/daylite-plus-dayltpluss21-795"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Daylite Sling",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/daylitetm-sling-6"
+      ]
+    },
+    {
+      "brand": "patagonia",
+      "name": "Patagonia Black Hole Pack 25L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "25 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.patagonia.com/product/black-hole-pack-25-liters/49298.html"
+      ]
+    },
+    {
+      "brand": "patagonia",
+      "name": "Patagonia Black Hole Pack 32L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "32 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.patagonia.com/product/black-hole-pack-32-liters/49302.html"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Everyday Backpack 20L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "20 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/everyday-backpack"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Everyday Backpack 30L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "30 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/everyday-backpack"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Everyday Sling 10L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "10 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/everyday-sling"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Everyday Sling 3L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "3 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/everyday-sling"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Everyday Sling 6L",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": "6 L",
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/everyday-sling"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Daylight Backpack",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/daylight-backpack"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Side Effect",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/side-effect"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Synapse 19",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/synapse-19"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Synapse 25",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/synapse-25"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Synik 22",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/synik-22"
+      ]
+    },
+    {
+      "brand": "tortuga",
+      "name": "Tortuga Travel Sling",
+      "shape": "Daypack or sling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://tortugabackpacks.com/products/travel-sling"
+      ]
+    },
+    {
+      "brand": "aer",
+      "name": "Aer Dopp Kit 3",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://aersf.com/products/dopp-kit-3"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirTag",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airtag/"
+      ]
+    },
+    {
+      "brand": "apple",
+      "name": "Apple AirTag (2nd generation)",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.apple.com/airtag/"
+      ]
+    },
+    {
+      "brand": "away",
+      "name": "Away The Hanging Toiletry Bag",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.awaytravel.com/products/original-hanging-toiletry-bag"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Hanging Toiletry Kit",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/hanging-toiletry-kit"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Toiletry Kit",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/toiletry-kit"
+      ]
+    },
+    {
+      "brand": "bellroy",
+      "name": "Bellroy Toiletry Kit Plus",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bellroy.com/products/toiletry-kit-plus"
+      ]
+    },
+    {
+      "brand": "cabeau",
+      "name": "Cabeau Evolution Classic Neck Pillow",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cabeau.com/products/evolution-classic-cabeau-pillow"
+      ]
+    },
+    {
+      "brand": "cabeau",
+      "name": "Cabeau Evolution S3 Neck Pillow",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cabeau.com/products/evolution-s3-neck-pillow"
+      ]
+    },
+    {
+      "brand": "calpak",
+      "name": "CALPAK Luka Hanging Toiletry Bag",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.calpaktravel.com/products/luka-hanging-toiletry-bag"
+      ]
+    },
+    {
+      "brand": "chipolo",
+      "name": "Chipolo ONE Spot",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://chipolo.net/en-us/products/chipolo-one-spot"
+      ]
+    },
+    {
+      "brand": "cotopaxi",
+      "name": "Cotopaxi Tasra Hanging Toiletry Kit",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cotopaxi.com/products/tasra-hanging-toiletry-kit-del-dia"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Exhale Neck Pillow",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/exhale-neck-pillow"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Global Travel Adapter Micro",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/global-travel-adapter-micro"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Global Travel Adapter USB 30W",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/global-travel-adapter-usb-30w"
+      ]
+    },
+    {
+      "brand": "eagle-creek",
+      "name": "Eagle Creek Pack-It Hanging Toiletry Bag",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/pack-it-hanging-toiletry-bag"
+      ]
+    },
+    {
+      "brand": "knog",
+      "name": "Knog Scout Travel Smart Luggage Tag",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eaglecreek.com/products/scout-travel-smart-luggage-tag"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta PRO Sleep Mask",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-sleep-mask-pro"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta Sleep Mask",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-sleep-mask"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador Blackout Travel Pillow",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/blackout-travel-pillow"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador FlatPak Zipper Toiletry Case",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/flatpak-zipper-toiletry-case-orange"
+      ]
+    },
+    {
+      "brand": "matador",
+      "name": "Matador Global Travel Adapter",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.matadorup.com/products/global-travel-adapter-orange"
+      ]
+    },
+    {
+      "brand": "osprey",
+      "name": "Osprey Daylite Hanging Toiletry Kit",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.osprey.com/daylite-hanging-toiletry-kit-dayhangtoilkits23-550"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Small Wash Pouch",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/wash-pouch"
+      ]
+    },
+    {
+      "brand": "peak-design",
+      "name": "Peak Design Wash Pouch",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.peakdesign.com/products/wash-pouch"
+      ]
+    },
+    {
+      "brand": "pebblebee",
+      "name": "Pebblebee Clip 5",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://pebblebee.com/products/clip-5"
+      ]
+    },
+    {
+      "brand": "tom-bihn",
+      "name": "Tom Bihn Clear 3D Organizer Cube",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tombihn.com/products/3d-organizer-cube-clear"
+      ]
+    },
+    {
+      "brand": "trtl",
+      "name": "Trtl Pillow Plus",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://trtltravel.com/products/trtl-pillow-plus"
+      ]
+    },
+    {
+      "brand": "trtl",
+      "name": "Trtl Travel Pillow",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://trtltravel.com/products/trtl-travel-pillow"
+      ]
+    },
+    {
+      "brand": "trtl",
+      "name": "Trtl Travel Pillow 2.0",
+      "shape": "Travel accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://trtltravel.com/products/trtl-travel-pillow-2-0"
+      ]
+    }
+  ]
+}
