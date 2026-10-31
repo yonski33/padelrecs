@@ -15,6 +15,8 @@ export const rankedLists = cache(async () => {
   });
   return { data, lists };
 });
+/** Slugs of the lists that rank at least one product. Empty lists stay reachable (noindex) but aren't linked. */
+export const rankedSlugs = async () => topLists.length ? (await rankedLists()).lists.filter(l => l.entries.length).map(l => l.list.slug) : [];
 export type RankedList = Awaited<ReturnType<typeof rankedLists>>["lists"][number];
 
 /** "22 October 2026", from a stored ISO timestamp. */

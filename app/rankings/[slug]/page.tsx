@@ -8,7 +8,7 @@ import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, wi
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
-import { rankedLists, topLists, listHref, longDate, currentYear, type RankedList } from "../lists";
+import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { ChipRow } from "../../chip-row";
 
@@ -126,7 +126,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
     <ChipRow className="top-tabs" label="Rankings">
-      {topLists.map(l => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
+      {lists.filter(l => l.entries.length || l.list.slug === list.slug).map(({ list: l }) => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
     </ChipRow>
     {entries.length
       ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>

@@ -18,23 +18,25 @@ const topLists = niche.topLists ?? [];
 
 /** "Rankings" with its lists in a dropdown. The label links to the rankings index, so it works without the menu (and on phones,
  *  where the nav scrolls sideways and has no room for a dropdown). */
-function TopMenu({ pathname }: { pathname: string }) {
+function TopMenu({ pathname, ranked }: { pathname: string; ranked: string[] }) {
+  const shown = topLists.filter(l => ranked.includes(l.slug));
   const [open, setOpen] = useState(false);
   const active = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   return <div className={`nav-menu${open ? " open" : ""}`} onMouseLeave={() => setOpen(false)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
     onKeyDown={e => { if (e.key === "Escape") setOpen(false); }}>
     <a href={RANKINGS_PATH} aria-current={active ? "page" : undefined}>Rankings</a>
-    <button type="button" className="nav-caret" aria-expanded={open} aria-controls="rankings-menu" aria-label="Show the rankings" onClick={() => setOpen(o => !o)}>
+    {shown.length > 0 && <button type="button" className="nav-caret" aria-expanded={open} aria-controls="rankings-menu" aria-label="Show the rankings" onClick={() => setOpen(o => !o)}>
       <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-    </button>
+    </button>}
     <div className="nav-sub" id="rankings-menu">
-      {topLists.map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
+      {shown.map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
       <a href={RANKINGS_PATH} className="nav-sub-all">All lists</a>
     </div>
   </div>;
 }
 
-export function SiteHeader() {
+/** `ranked`: slugs of the rankings lists that rank at least one product; empty lists are left out of the menu. */
+export function SiteHeader({ ranked }: { ranked: string[] }) {
   const pathname = usePathname();
   const onAddPage = pathname.startsWith("/add-review");
   const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
@@ -53,7 +55,7 @@ export function SiteHeader() {
           // On categoryPaths niches a product page (/vpns/mullvad-vpn) still belongs under the catalogue link.
           const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`) || (href === catalogPath && !!inTypePath);
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
-          return href === catalogPath && topLists.length ? [link, <TopMenu key="rankings" pathname={pathname}/>] : link;
+          return href === catalogPath && topLists.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
         })}
       </nav>
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}

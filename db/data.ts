@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getDb } from "./index";
 import { brands, rackets, reviews, externalReviews } from "./schema";
 import { eq, ne, desc } from "drizzle-orm";
@@ -21,7 +22,8 @@ export function publicCatalogItems<R extends RacketRef, B extends BrandRef>(allB
  return { brands: visibleBrands, rackets: visibleRackets };
 }
 
-export async function catalog(connection?:ReturnType<typeof getDb>) {
+// Cached per request: the layout reads it for the header's rankings menu, and so does the page.
+export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  const db = connection ?? await database();
  const [allBrands, allRackets, publicReviews, external, unapproved, votes] = await Promise.all([
  db.select().from(brands), db.select().from(rackets),
@@ -38,7 +40,7 @@ export async function catalog(connection?:ReturnType<typeof getDb>) {
  return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands,
   reviews: publicReviews.map(r => ({ ...r, helpful: votes.get(`player:${r.id}`) ?? 0 })),
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
-}
+});
 export type Catalog = Awaited<ReturnType<typeof catalog>>;
 export function score(data: Catalog, id: string) {
  const rs = data.reviews.filter(r => r.racketId === id), web = data.external.filter(e => e.racketId === id);
