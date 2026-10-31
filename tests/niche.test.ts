@@ -750,7 +750,7 @@ test("software: every moved web host page 301s to the same service on HostingRec
   assert(!softwareBrandSlugs.some(s => movedHostBrandSlugs.includes(s)));
 });
 
-test("travelgear: products named by size and generation (no years), five category pages with product URLs under them, luggage-tag rating icons", async () => {
+test("travelgear: products named by size and generation (no years), five category pages with product URLs under them, suitcase rating icons", async () => {
   const n = selectNiche("travelgear");
   assert.equal(n.schema, "travelgearrecs");
   assert.equal(n.productPath, "products");
