@@ -41,12 +41,15 @@ export function parseCandidates(jsonl: string): Candidate[] {
 export const webReviewId = (candidateId: string) => `research-${candidateId}`;
 
 /** Same page regardless of tracking parameters, mobile/old hosts, fragments or a trailing slash. A YouTube comment is its video
- *  plus its comment id (…/watch?v=<video>&lc=<comment>), so two comments under one video stay two sources. */
+ *  plus its comment id (…/watch?v=<video>&lc=<comment>), so two comments under one video stay two sources. On a forum script page
+ *  (…/index.php?threads/<thread>/post-<id>) the query is the page itself, so it is kept, minus tracking parameters. */
 export function sameSource(url: string) {
   const u = new URL(url);
   const host = u.hostname.toLowerCase().replace(/^(www|m|old|new|np)\./, "");
-  const youtube = host === "youtube.com" ? ["v", "lc"].map(k => u.searchParams.get(k) ? `${k}=${u.searchParams.get(k)}` : "").filter(Boolean).join("&") : "";
-  return `${host}${u.pathname.replace(/\/+$/, "")}${youtube ? `?${youtube}` : ""}`;
+  const query = host === "youtube.com"
+    ? ["v", "lc"].map(k => u.searchParams.get(k) ? `${k}=${u.searchParams.get(k)}` : "").filter(Boolean).join("&")
+    : u.pathname.endsWith(".php") ? u.search.slice(1).split("&").filter(p => p && !/^(utm_\w+|fbclid|gclid)=/i.test(p)).join("&") : "";
+  return `${host}${u.pathname.replace(/\/+$/, "")}${query ? `?${query}` : ""}`;
 }
 
 type Row = typeof externalReviews.$inferInsert;
