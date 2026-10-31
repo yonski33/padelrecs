@@ -24,10 +24,16 @@ const config:NextConfig={
   const types=niche.typePages?.length?[{source:"/types/:slug",destination:"/:slug",permanent:true}]:[];
   // Renamed ranking lists: each former slug answers with a 301 to the current one (lib/niche/<niche>.ts formerSlugs).
   const rankings=(niche.topLists??[]).flatMap(l=>(l.formerSlugs??[]).map(old=>({source:`/rankings/${old}`,destination:`/rankings/${l.slug}`,statusCode:301 as const})));
+  // A "last season" list's slug carries its model year (best-padel-rackets-{year}) and moves on each January: the three
+  // years before it 301 to this year's page.
+  const seasons=(niche.topLists??[]).filter(l=>l.modelYearsBack!==undefined&&l.slug.includes("{year}")).flatMap(l=>{
+   const year=new Date().getUTCFullYear()-l.modelYearsBack!;
+   return [1,2,3].map(n=>({source:`/rankings/${l.slug.replaceAll("{year}",String(year-n))}`,destination:`/rankings/${l.slug.replaceAll("{year}",String(year))}`,statusCode:301 as const}));
+  });
   // Pages that moved to another Recs site: 301 to the absolute address there (lib/niche/<niche>.ts movedAway). Listed first
   // so they win over the generic /rackets and /types redirects.
   const moved=(niche.movedAway??[]).map(m=>({source:m.source,destination:m.destination,statusCode:301 as const,...(m.query?{has:[{type:"query" as const,key:m.query.key,value:m.query.value}]}:{})}));
-  return products==="/rackets"?[...moved,...types,...rankings]:[...moved,...types,...rankings,{source:"/rackets",destination:products,permanent:true},
+  return products==="/rackets"?[...moved,...types,...rankings,...seasons]:[...moved,...types,...rankings,...seasons,{source:"/rackets",destination:products,permanent:true},
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },

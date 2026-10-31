@@ -40,6 +40,20 @@ export const reviewWindowMonths = (list: Pick<TopList, "reviewMonths" | "reviewY
 export const withNicheWindow = <L extends TopList>(lists: readonly L[], months?: number): L[] =>
   lists.map(l => months === undefined || l.reviewMonths !== undefined || l.reviewYears !== undefined ? l : { ...l, reviewMonths: months });
 
+/** The one model year a "last season" list (modelYearsBack) covers; undefined for other lists. */
+export const listModelYear = (list: Pick<TopList, "modelYearsBack">, now = new Date()) =>
+  list.modelYearsBack === undefined ? undefined : now.getUTCFullYear() - list.modelYearsBack;
+/** The year a list's title carries: its model year on a "last season" list, else the current year. */
+export const listYear = (list: Pick<TopList, "modelYearsBack">, now = new Date()) => listModelYear(list, now) ?? now.getUTCFullYear();
+/** Fills `{year}` in a "last season" list's slug, label, title and intro, so "best-padel-rackets-{year}" is
+ *  best-padel-rackets-2025 in 2026 and moves on by itself each January. Other lists pass through unchanged. */
+export const withModelYears = <L extends TopList>(lists: readonly L[], now = new Date()): L[] => lists.map(l => {
+  const year = listModelYear(l, now);
+  if (year === undefined) return l;
+  const fill = (s: string) => s.replaceAll("{year}", String(year));
+  return { ...l, slug: fill(l.slug), label: fill(l.label), title: fill(l.title), intro: fill(l.intro) };
+});
+
 /** "12 months", "2 years", "30 months". */
 export const windowLabel = (months: number) => months % 12 === 0 && months > 12 ? `${months / 12} years` : `${months} months`;
 
@@ -115,6 +129,8 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
   for (const e of data.external) if (e.sentiment && recent(e.sourceDate || e.createdAt)) add(e.racketId, { verdict: e.sentiment, tags: e.tags, createdAt: e.createdAt });
   // Model years: with maxAgeYears 2 in 2026, only 2024–2026 models are listed.
   const oldest = list.maxAgeYears === undefined ? -Infinity : now.getUTCFullYear() - list.maxAgeYears;
+  // A "last season" list (modelYearsBack 1 in 2026) takes 2025 models only.
+  const only = listModelYear(list, now);
   const everything = [...notes.values()].flat();
   const average = everything.length ? everything.reduce((a, x) => a + credit(x.verdict), 0) / everything.length : 0;
   const carrying = (own: Note[], list: string[]) => own.filter(x => x.tags.some(t => list.includes(t))).length;
@@ -122,7 +138,7 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
   // How often reviews mention the trait across the whole site: the starting point for each product's trait share.
   const traitAverage = trait && everything.length ? liking(everything, trait.tags) / everything.length : 0;
 
-  const scored = data.listed.filter(p => p.year >= oldest && matchesFilters(p, list.filters)).flatMap(product => {
+  const scored = data.listed.filter(p => p.year >= oldest && (only === undefined || p.year === only) && matchesFilters(p, list.filters)).flatMap(product => {
     const own = notes.get(product.id) ?? [];
     const n = own.length;
     if (n < minReviews) return [];

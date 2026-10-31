@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, TRAIT_LIST_LIKED_WEIGHT, RANKINGS_PATH, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, TRAIT_LIST_LIKED_WEIGHT, RANKINGS_PATH, listYear, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
@@ -25,7 +25,7 @@ function description(r: RankedList) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const found = await find((await params).slug);
   if (!found) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
-  const title = listTitle(found.list, currentYear(), found.reviews, people.One), desc = description(found), url = listHref(found.list.slug);
+  const title = listTitle(found.list, listYear(found.list), found.reviews, people.One), desc = description(found), url = listHref(found.list.slug);
   // An empty list has nothing worth indexing yet.
   return { title: { absolute: title }, description: desc, alternates: { canonical: url }, openGraph: { title, description: desc, url, type: "website" },
     ...(found.entries.length ? {} : { robots: { index: false } }) };
@@ -89,7 +89,10 @@ function Method({ list, count, affiliate }: { list: TopList; count: number; affi
       <li>{`Two kinds of published review count: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web, each linked to its source. Each one is read as positive, mixed or negative. A ${people.one} review's star rating decides it (4–5 positive, 3 mixed, 1–2 negative); quoted comments are judged when they are moderated, and ones nobody has judged yet don't count. Only reviews from the last ${windowLabel(reviewWindowMonths(list))} count, and a quoted comment is dated by when it was written, not when we quoted it.`}</li>
       <li>{`The order rewards ${w.many} that are both well liked and widely discussed: we count how many more positive reviews a ${w.one} has than an average ${w.one} with the same number of reviews would have. A ${w.one} with 33 positive reviews out of 43 therefore ranks above one with 15 out of 17, which is why the order doesn't always follow the share of positive reviews.`}</li>
       {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews are positive or mixed and tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. The order is led by how many positive or mixed reviews use those tags, counted the same way (above the site average for that many reviews); a ${w.one} liked more than average gets a smaller bonus (${TRAIT_LIST_LIKED_WEIGHT === 0.5 ? "half" : `${TRAIT_LIST_LIKED_WEIGHT}×`} of its positive reviews above average), and one liked less loses nothing beyond the ${Math.round(MIN_POSITIVE_SHARE * 100)}% minimum.`}</li>}
-      {list.maxAgeYears !== undefined && <li>{`Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
+      {list.modelYearsBack !== undefined && <li>{`Only ${listYear(list)} models are listed: last season's ${w.many}, kept apart from this year's so each list compares like with like.`}</li>}
+      {list.maxAgeYears !== undefined && <li>{list.maxAgeYears === 0
+        ? `Only ${currentYear()} models are listed, so last season's ${w.many} don't crowd out this year's.`
+        : `Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
       <li>{`A ${w.one} needs at least ${min} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
       <li>{affiliate
         ? `The list re-ranks itself as new reviews are published. There are no sponsored placements or paid rankings. The Amazon links are affiliate links and never change the order.`
@@ -107,7 +110,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   const affiliate = amazonLinksOn();
   const amazon = affiliate ? await Promise.all(entries.map(e => amazonButton({ name: e.product.name, brand: brandOf(e.product.brandId) || undefined }))) : [];
   const url = `${base()}${listHref(list.slug)}`;
-  const title = listTitle(list, currentYear(), reviews, people.One);
+  const title = listTitle(list, listYear(list), reviews, people.One);
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     { "@type": "ItemList", name: title, url, numberOfItems: entries.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
       itemListElement: entries.map(e => ({ "@type": "ListItem", position: e.rank, name: e.product.name, url: `${base()}${productHref(e.product)}` })) },
@@ -123,7 +126,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
     <div className="page-title">
       {/* A short heading; the review count sits in the line under it. The full title stays the browser/search title and the ItemList name. */}
-      <h1>{`${list.title} ${currentYear()}`}</h1>
+      <h1>{`${list.title} ${listYear(list)}`}</h1>
       {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
       <p>{list.intro}</p>
     </div>

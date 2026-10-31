@@ -6,7 +6,7 @@ import { RacketSearch } from "./racket-search";
 import { ChipRow } from "./chip-row";
 import { LogoIcon, PlusIcon } from "./icons";
 import { niche, catalogPath, catalogLabel } from "../lib/niche";
-import { RANKINGS_PATH, rankingHref } from "../lib/top-lists";
+import { RANKINGS_PATH, rankingHref, withModelYears } from "../lib/top-lists";
 
 // Kept short: "Add a review" is the button above, and About and Brands live in the footer.
 const links = [
@@ -14,7 +14,7 @@ const links = [
   [catalogPath, catalogLabel],
 ] as const;
 
-const topLists = niche.topLists ?? [];
+const topLists = withModelYears(niche.topLists ?? []);
 
 /** "Rankings" with its lists in a dropdown. The label links to the rankings index, so it works without the menu (and on phones,
  *  where the nav scrolls sideways and has no room for a dropdown). */
