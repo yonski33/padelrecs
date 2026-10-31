@@ -176,7 +176,8 @@
     "software": "softwarerecs",
     "hosting": "hostingrecs",
     "keyboard": "keyboardrecs",
-    "travelgear": "travelgearrecs"
+    "travelgear": "travelgearrecs",
+    "babygear": "babygearrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
