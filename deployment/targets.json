@@ -143,6 +143,11 @@
       "name": "travelgearrecs",
       "id": "prj_FOx4s5uWCexlUZShZSb7p7sAgW8A",
       "domain": "www.travelgearrecs.com"
+    },
+    "babygear": {
+      "name": "babygearrecs",
+      "id": "prj_aiMgD688iDKdcl3UrAS9hxx5QqDs",
+      "domain": "www.babygearrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
