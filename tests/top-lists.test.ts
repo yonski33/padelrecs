@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { niches } from "../lib/niche";
-import { rankList, aboveAverage, likedScore, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, reviewWindowMonths, withNicheWindow, windowLabel, type ListInput, type Verdict } from "../lib/top-lists";
+import { rankList, aboveAverage, likedScore, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, reviewWindowMonths, withNicheWindow, withModelYears, listYear, windowLabel, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 
 const tags = niches.padel.tags;
@@ -67,6 +67,23 @@ test("old reviews and old models stay out", () => {
   assert.deepEqual(rankList(overall, data, tags, NOW).map(e => e.product.id), ["new", "old"]);
   assert.deepEqual(rankList({ ...overall, maxAgeYears: 2 }, data, tags, NOW).map(e => e.product.id), ["new"]);
   assert.deepEqual(rankList({ ...overall, reviewYears: 6 }, data, tags, NOW).map(e => e.product.id).sort(), ["new", "old", "stale"]);
+});
+
+test("this season's list and last season's list split models by year, and last season's rolls over each January", () => {
+  const data: ListInput = { listed: [product("y26", {}, 2026), product("y25", {}, 2025), product("y24", {}, 2024)], reviews: [], external: [
+    ...many(8, () => web("y26", "positive")), ...many(8, () => web("y25", "positive")), ...many(8, () => web("y24", "positive")),
+  ] };
+  assert.deepEqual(rankList({ ...overall, maxAgeYears: 0 }, data, tags, NOW).map(e => e.product.id), ["y26"]);
+  const lastSeason: TopList = { ...overall, slug: "best-{year}", label: "Best of {year}", intro: "The {year} ones.", modelYearsBack: 1 };
+  assert.deepEqual(rankList(lastSeason, data, tags, NOW).map(e => e.product.id), ["y25"]);
+  const [filled] = withModelYears([lastSeason], NOW);
+  assert.equal(filled.slug, "best-2025");
+  assert.equal(filled.label, "Best of 2025");
+  assert.equal(filled.intro, "The 2025 ones.");
+  assert.equal(listYear(filled, NOW), 2025);
+  assert.equal(listYear(overall, NOW), 2026);
+  assert.equal(withModelYears([lastSeason], new Date("2027-01-05T00:00:00Z"))[0].slug, "best-2026");
+  assert.equal(withModelYears([overall], NOW)[0], overall);
 });
 
 test("mixed counts as half, and lists leave out products most reviewers aren't happy with", () => {
@@ -194,7 +211,8 @@ test("title and address follow the agreed pattern", () => {
 
 test("every niche's lists use bank tags, real spec columns and unique slugs", () => {
   for (const [id, n] of Object.entries(niches)) {
-    const lists = n.topLists ?? [];
+    // {year} in a last-season list's slug is filled in before the slug is used.
+    const lists = withModelYears(n.topLists ?? []);
     const all = lists.flatMap(l => [l.slug, ...l.formerSlugs ?? []]);
     assert.equal(new Set(all).size, all.length, `${id}: list slugs and former slugs must all be different`);
     for (const l of lists) {
@@ -203,7 +221,7 @@ test("every niche's lists use bank tags, real spec columns and unique slugs", ()
       for (const f of l.filters ?? []) assert(n.specs.some(s => s.column === f.column), `${id}/${l.slug}: no ${f.column} spec`);
     }
   }
-  assert.equal(niches.padel.topLists?.length, 4);
+  assert.equal(niches.padel.topLists?.length, 5);
 });
 
 test("review windows: a niche's recentMonths fills in lists that don't set their own", () => {

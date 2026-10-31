@@ -62,6 +62,10 @@ export type TopList = {
   /** Only list models from the last this many model years (2 in 2026 → 2024–2026). Only for niches whose products carry
    *  real years (productYears): elsewhere every product has the same placeholder year. */
   maxAgeYears?: number;
+  /** Only list models from exactly one model year, counted back from the current one (1 in 2026 → only 2025 models): a
+   *  "last season" list. `{year}` in slug, label, title or intro becomes that model year (withModelYears in lib/top-lists.ts),
+   *  and the page's year is that model year, not the current one. Only for niches with real product years. */
+  modelYearsBack?: number;
   /** Only reviews from the last this many years count (default: the niche's recentMonths, else REVIEW_YEARS in lib/top-lists.ts). */
   reviewYears?: number;
   /** Same as reviewYears, in months; set from the niche's recentMonths when a list sets neither. */

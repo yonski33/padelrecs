@@ -9,12 +9,14 @@ async function configFor(niche: string | undefined) {
   finally { if (before === undefined) delete process.env.NICHE; else process.env.NICHE = before; }
 }
 
-test("padel serves /rackets with no redirects; only icons are mapped", async () => {
+test("padel serves /rackets with no redirects but last season's ranking slugs; only icons are mapped", async () => {
   const config = await configFor(undefined);
   assert.equal(config.env.NICHE, "padel");
   const icons = (niche: string) => ["favicon.ico", "icon.svg", "apple-icon.png"].map(file => ({ source: `/${file}`, destination: `/niches/${niche}/${file}` }));
   assert.deepEqual(await config.rewrites(), icons("padel"));
-  assert.deepEqual(await config.redirects(), []);
+  // Only the moving "best of last season" ranking: the three slugs before this year's 301 to it.
+  const last = new Date().getUTCFullYear() - 1;
+  assert.deepEqual(await config.redirects(), [1, 2, 3].map(n => ({ source: `/rankings/best-padel-rackets-${last - n}`, destination: `/rankings/best-padel-rackets-${last}`, statusCode: 301 })));
   const cached = (await config.headers()).map((h: { source: string }) => h.source);
   assert(cached.includes("/rackets") && cached.includes("/rackets/:slug*"));
 });
