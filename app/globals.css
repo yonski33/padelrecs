@@ -103,6 +103,10 @@ button:disabled { opacity: .6; cursor: progress; }
 .type-nav { border-top: 1px solid var(--line); }
 .chips { display: flex; gap: 6px; padding: 9px 0; overflow-x: auto; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
+/* Fade an edge while more chips are hidden past it (ChipRow sets the classes), so the row reads as scrollable. */
+.chips.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent); }
+.chips.fade-l { -webkit-mask-image: linear-gradient(to right, transparent, #000 44px); mask-image: linear-gradient(to right, transparent, #000 44px); }
+.chips.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 44px, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(to right, transparent, #000 44px, #000 calc(100% - 44px), transparent); }
 .chips a { flex: none; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 13.5px; font-weight: 500; color: var(--ink-2); white-space: nowrap; transition: border-color .15s, background .15s, color .15s; }
 .chips a:hover { border-color: var(--green-line); color: var(--ink); }
 .chips a[aria-current="page"] { background: var(--green); border-color: var(--green); color: var(--on-green); }
