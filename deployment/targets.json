@@ -138,6 +138,11 @@
       "name": "keyboardrecs",
       "id": "prj_HMADdDyaiYQyup0Za7tWE151oTwj",
       "domain": "www.keyboardrecs.com"
+    },
+    "travelgear": {
+      "name": "travelgearrecs",
+      "id": "prj_FOx4s5uWCexlUZShZSb7p7sAgW8A",
+      "domain": "www.travelgearrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
