@@ -539,7 +539,8 @@ summary { cursor: pointer; font-weight: 600; }
   h1 { font-size: 26px; }
 
   .header-top { flex-wrap: wrap; gap: 12px; padding-top: 12px; padding-bottom: 10px; }
-  .descriptor { font-size: 12px; }
+  /* The tagline is too long for a phone header: it was cut off and pushed "Add" onto its own row. Hidden, not removed, so it stays in the page. */
+  .descriptor { display: none; }
   .header-add { min-height: 36px; padding: 0 13px; font-size: 13.5px; }
   .header-add .long { display: none; }
   .search { order: 3; flex-basis: 100%; max-width: none; }
