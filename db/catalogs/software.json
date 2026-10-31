@@ -1774,6 +1774,19 @@
    ]
   },
   {
+   "brand": "apple",
+   "name": "Apple Passwords",
+   "shape": "Password manager",
+   "balance": "Free",
+   "surface": null,
+   "core": "Mac, iOS, iPadOS, Windows",
+   "weight": null,
+   "website": "https://support.apple.com/en-us/120758",
+   "sources": [
+    "https://support.apple.com/en-us/120758"
+   ]
+  },
+  {
    "brand": "asana",
    "name": "Asana",
    "shape": "Project management",
