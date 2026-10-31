@@ -8,6 +8,7 @@ import { LogoIcon } from "./icons";
 import { Analytics } from "./analytics";
 import { niche, catalogPath } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
+import { rankedSlugs } from "./rankings/lists";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
@@ -17,9 +18,10 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
   icons: { icon: [{ url: `/niches/${niche.id}/favicon.ico`, sizes: "48x48", type: "image/x-icon" }, { url: `/niches/${niche.id}/icon.svg`, sizes: "any", type: "image/svg+xml" }], apple: [{ url: `/niches/${niche.id}/apple-icon.png`, sizes: "180x180", type: "image/png" }] },
   twitter: { card: "summary_large_image" } };
 
-export default function Layout({children}: {children: React.ReactNode}) {
+export default async function Layout({children}: {children: React.ReactNode}) {
+  const ranked = await rankedSlugs();
   return <html lang="en" className={`${display.variable} ${sans.variable}`} style={niche.theme as CSSProperties}><body>
-    <SiteHeader/>
+    <SiteHeader ranked={ranked}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">
       <span className="footer-line"><LogoIcon/>{`${niche.site.domain} — ${niche.site.footer}`}</span>

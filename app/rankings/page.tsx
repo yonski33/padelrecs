@@ -13,7 +13,7 @@ const heading = `${category} Rankings`;
 
 export async function generateMetadata(): Promise<Metadata> {
   if (!niche.topLists?.length) return { robots: { index: false } };
-  const { lists } = await rankedLists();
+  const lists = (await rankedLists()).lists.filter(l => l.entries.length);
   const title = `${heading} ${currentYear()}, Based on Real ${people.One} Reviews`;
   const description = `${lists.map(l => l.list.label).join(", ")}: ${w.many} ranked by what ${people.many} actually say, from published first-hand reviews. Updated as new reviews come in.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website" } };
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function TopListsIndex() {
   if (!niche.topLists?.length) notFound();
-  const { lists } = await rankedLists();
+  const lists = (await rankedLists()).lists.filter(l => l.entries.length);
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
   return <main className="top-page">
     <div className="page-title">
@@ -29,15 +29,14 @@ export default async function TopListsIndex() {
       <p>{`${w.Many} ranked by what ${people.many} say about them in published reviews. No sponsored placements; every number is counted from reviews you can read.`}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time></p>}
     </div>
+    {!lists.length && <p className="empty-feed">{`No list has enough reviews to rank any ${w.many} yet. They fill in as reviews are published.`}</p>}
     <div className="top-index">
       {lists.map(({ list, entries, reviews }) => <a key={list.slug} className="top-card" href={listHref(list.slug)}>
         <span className="eyebrow">{list.label}</span>
         <h2>{listTitle(list, currentYear(), reviews, people.One)}</h2>
         <p>{list.intro}</p>
-        {entries.length > 0
-          ? <ol>{entries.slice(0, 3).map(e => <li key={e.product.id}>{e.product.name}</li>)}</ol>
-          : <p className="muted">{`Not enough reviews to rank any ${w.many} yet.`}</p>}
-        <span className="top-card-more">{entries.length ? `See all ${entries.length} →` : "See the list →"}</span>
+        <ol>{entries.slice(0, 3).map(e => <li key={e.product.id}>{e.product.name}</li>)}</ol>
+        <span className="top-card-more">{`See all ${entries.length} →`}</span>
       </a>)}
     </div>
   </main>;
