@@ -10,6 +10,7 @@ import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
 import { rankedLists, topLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
+import { ChipRow } from "../../chip-row";
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -124,9 +125,9 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       <p>{list.intro}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
-    <nav className="chips top-tabs" aria-label="Rankings">
+    <ChipRow className="top-tabs" label="Rankings">
       {topLists.map(l => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
-    </nav>
+    </ChipRow>
     {entries.length
       ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
       : <p className="empty-feed">{`No ${w.one} has enough reviews for this list yet. It fills in as reviews are published.`}</p>}
