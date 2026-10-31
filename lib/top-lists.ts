@@ -15,7 +15,8 @@ export const rankingHref = (slug: string) => `${RANKINGS_PATH}/${slug}`;
 const QUOTE_MIN = 40, QUOTE_MAX = 220;
 
 export type Verdict = "positive" | "mixed" | "negative";
-type Product = { id: string; slug: string; name: string; brandId: string; year: number } & Record<SpecColumn, string | null>;
+// websiteUrl/affiliateUrl: the "Visit site" link on niches with website links (lib/product-links.ts).
+type Product = { id: string; slug: string; name: string; brandId: string; year: number; websiteUrl?: string | null; affiliateUrl?: string | null } & Record<SpecColumn, string | null>;
 type PlayerReview = { racketId: string; rating: number; tags: string[]; createdAt: string };
 type WebReview = { id: string; racketId: string; sentiment: Verdict | null; tags: string[]; excerpt: string | null; excerptTranslation?: string | null; sourceLanguage?: string | null; sourceUrl: string; sourcePlatform: string; sourceName: string; sourceDate?: string | null; createdAt: string; helpful?: number };
 export type ListInput = { listed: Product[]; reviews: PlayerReview[]; external: WebReview[] };
