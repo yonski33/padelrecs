@@ -60,9 +60,11 @@ export function ProductIcon({ shape, className }: { shape?: string | null; brand
 
 export function LogoIcon({ className }: { className?: string }) {
   return <svg className={className} viewBox="0 0 20 20" aria-hidden="true">
-    <path d="M2 6.6a2 2 0 0 1 .7-1.5l3.4-2.7a2 2 0 0 1 1.2-.4H16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7.3a2 2 0 0 1-1.2-.4l-3.4-2.7A2 2 0 0 1 2 13.4z" fill="#1d3557"/>
-    <circle cx="6.2" cy="10" r="1.7" fill="#f28c28"/>
-    <rect x="10" y="7.6" width="5.4" height="1.6" rx=".8" fill="#f28c28" fillOpacity=".55"/>
-    <rect x="10" y="10.8" width="3.6" height="1.6" rx=".8" fill="#f28c28" fillOpacity=".55"/>
+    <path d="M7.8 6V4.2a1 1 0 0 1 1-1h2.4a1 1 0 0 1 1 1V6" fill="none" stroke="#1d3557" strokeWidth="1.5"/>
+    <rect x="3.5" y="6" width="13" height="10.5" rx="2.4" fill="#1d3557"/>
+    <rect x="6.3" y="8" width="1.4" height="6.5" rx=".7" fill="#f28c28" fillOpacity=".75"/>
+    <rect x="12.3" y="8" width="1.4" height="6.5" rx=".7" fill="#f28c28" fillOpacity=".75"/>
+    <circle cx="6.5" cy="18" r="1.1" fill="#1d3557"/>
+    <circle cx="13.5" cy="18" r="1.1" fill="#1d3557"/>
   </svg>;
 }

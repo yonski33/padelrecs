@@ -1,11 +1,10 @@
 import type { Niche } from "./types";
 
-// Rating icons: a luggage tag lying on its side (a pointed tag with an eyelet), deep navy with an orange eyelet. Same tile sizes as
-// the other niches (17×14 strip, 20×20 picker); the strip icon widens the 20×20 drawing's viewBox so the tag keeps its shape.
+// Rating icons: a suitcase (body, carry handle, two straps, two wheels), deep navy with orange straps. Same tile sizes as
+// the other niches (17×14 strip, 20×20 picker); the strip icon widens the 20×20 drawing's viewBox so the suitcase keeps its shape.
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
-const tagPath = "M2 6.6a2 2 0 0 1 .7-1.5l3.4-2.7a2 2 0 0 1 1.2-.4H16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7.3a2 2 0 0 1-1.2-.4l-3.4-2.7A2 2 0 0 1 2 13.4z";
-const tag = (fill: string, eyelet: string, q: string) =>
-  `<path d=${q}${tagPath}${q} fill=${q}${fill}${q}/><circle cx=${q}6.2${q} cy=${q}10${q} r=${q}1.7${q} fill=${q}${eyelet}${q}/><rect x=${q}10${q} y=${q}7.6${q} width=${q}5.4${q} height=${q}1.6${q} rx=${q}.8${q} fill=${q}${eyelet}${q} fill-opacity=${q}.55${q}/><rect x=${q}10${q} y=${q}10.8${q} width=${q}3.6${q} height=${q}1.6${q} rx=${q}.8${q} fill=${q}${eyelet}${q} fill-opacity=${q}.55${q}/>`;
+const tag = (fill: string, strap: string, q: string) =>
+  `<path d=${q}M7.8 6V4.2a1 1 0 0 1 1-1h2.4a1 1 0 0 1 1 1V6${q} fill=${q}none${q} stroke=${q}${fill}${q} stroke-width=${q}1.5${q}/><rect x=${q}3.5${q} y=${q}6${q} width=${q}13${q} height=${q}10.5${q} rx=${q}2.4${q} fill=${q}${fill}${q}/><rect x=${q}6.3${q} y=${q}8${q} width=${q}1.4${q} height=${q}6.5${q} rx=${q}.7${q} fill=${q}${strap}${q} fill-opacity=${q}.75${q}/><rect x=${q}12.3${q} y=${q}8${q} width=${q}1.4${q} height=${q}6.5${q} rx=${q}.7${q} fill=${q}${strap}${q} fill-opacity=${q}.75${q}/><circle cx=${q}6.5${q} cy=${q}18${q} r=${q}1.1${q} fill=${q}${fill}${q}/><circle cx=${q}13.5${q} cy=${q}18${q} r=${q}1.1${q} fill=${q}${fill}${q}/>`;
 const tagIcon = (size: "tile" | "pick", on: boolean) => {
   const box = size === "tile" ? "width='17' height='14' viewBox='-2.15 0 24.3 20'" : "viewBox='0 0 20 20'";
   return svg(`<svg xmlns='http://www.w3.org/2000/svg' ${box}>${on ? tag("#1d3557", "#f28c28", "'") : tag("#e7e3da", "#ffffff", "'")}</svg>`);
@@ -31,8 +30,8 @@ export const travelgear: Niche = {
   productYears: false,
   productPath: "products",
   amazon: { searchIndex: "Luggage" },
-  scoreUnit: { one: "tag", many: "tags" },
-  // Warm sand-white page, deep navy ink, one luggage-tag orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
+  scoreUnit: { one: "suitcase", many: "suitcases" },
+  // Warm sand-white page, deep navy ink, one orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
     "--bg": "#fdfcf9",
     "--surface": "#ffffff",
