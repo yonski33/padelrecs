@@ -19,6 +19,9 @@ export const rankedLists = cache(async () => {
 export const rankedSlugs = async () => topLists.length ? (await rankedLists()).lists.filter(l => l.entries.length).map(l => l.list.slug) : [];
 export type RankedList = Awaited<ReturnType<typeof rankedLists>>["lists"][number];
 
+// "Bullpadel Vertex 05 2026" under a "Bullpadel" line reads as "Vertex 05 2026", like the rest of the site.
+export const modelName = (name: string, brand: string) => brand && name.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? name.slice(brand.length + 1) : name;
+
 /** "22 October 2026", from a stored ISO timestamp. */
 export const longDate = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 export const currentYear = () => new Date().getUTCFullYear();

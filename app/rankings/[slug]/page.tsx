@@ -8,9 +8,8 @@ import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, wi
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
-import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
+import { rankedLists, listHref, longDate, currentYear, modelName, type RankedList } from "../lists";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
-import { ChipRow } from "../../chip-row";
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -32,8 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const pct = (n: number, total: number) => `${n / total * 100}%`;
-// "Bullpadel Vertex 05 2026" under a "Bullpadel" line reads as "Vertex 05 2026", like the rest of the site.
-const modelName = (name: string, brand: string) => brand && name.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? name.slice(brand.length + 1) : name;
 
 function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product);
@@ -125,9 +122,6 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       <p>{list.intro}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
-    <ChipRow className="top-tabs" label="Rankings">
-      {lists.filter(l => l.entries.length || l.list.slug === list.slug).map(({ list: l }) => <a key={l.slug} href={listHref(l.slug)} aria-current={l.slug === list.slug ? "page" : undefined}>{l.label}</a>)}
-    </ChipRow>
     {entries.length
       ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
       : <p className="empty-feed">{`No ${w.one} has enough reviews for this list yet. It fills in as reviews are published.`}</p>}
