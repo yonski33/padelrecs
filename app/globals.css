@@ -780,10 +780,14 @@ summary { cursor: pointer; font-weight: 600; }
 .top-method h2 { margin-bottom: 8px; }
 .top-method ul { margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
 .top-method li + li { margin-top: 6px; }
-.top-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.top-index { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 .top-card { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); transition: border-color .15s, background .15s; }
 .top-card:hover { border-color: var(--green-line); background: var(--tint); color: var(--ink); }
-.top-card { gap: 14px; }
+/* One list per row: name and link on the left, the top products on the right. Stacks on phones. */
+.top-card { display: grid; grid-template-columns: 210px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 28px; row-gap: 10px; align-items: start; }
+.top-card-lead { grid-column: 2; grid-row: 1; }
+.top-card-rest { grid-column: 2; grid-row: 2; }
+.top-card-more { grid-column: 1; grid-row: 2; align-self: end; }
 .top-card h2 { font-size: 21px; letter-spacing: -0.015em; }
 .top-card-meta { margin: 2px 0 0; font-size: 13px; color: var(--ink-3); }
 .top-card-lead { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: var(--tint); }
@@ -796,11 +800,11 @@ summary { cursor: pointer; font-weight: 600; }
 .top-card-rest { margin: 0; padding: 0 4px 0 22px; font-size: 14px; color: var(--ink-2); }
 .top-card-rest li { padding: 3px 0; }
 .top-card-rest li > span:first-child { margin-right: 8px; }
-.top-card-more { margin-top: auto; font-size: 13.5px; font-weight: 600; color: var(--green); }
+.top-card-more { font-size: 13.5px; font-weight: 600; color: var(--green); }
 @media (max-width: 680px) {
   .top-page .page-title h1 { font-size: 25px; }
   .top-entry { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; }
   .top-thumb { display: none; }
   .top-rank { font-size: 24px; }
-  .top-index { grid-template-columns: minmax(0, 1fr); }
+  .top-card { display: flex; flex-direction: column; gap: 14px; }
 }
