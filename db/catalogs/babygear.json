@@ -1,0 +1,3112 @@
+{
+  "about": "BabyGearRecs catalog (2026-11-01, approved by the owner): strollers, car seats, baby carriers and wraps, high chairs, cribs/bassinets/play yards, baby monitors, breast pumps and bottles, bouncers and swings. Each exact name and URL was read on the maker's own site or store. Generations are separate products (Vista V2 vs V3, Doona vs Doona X, PIPA rx vs PIPA aire rx); fabric, colour and retailer editions are folded into the base product; older generations are in only where the maker's site still names them (UPPAbaby's manuals page). Columns: shape = category; core (child limits), weight, surface (folded size) and balance (notable features) not read. Blank = not read.",
+  "checked": "2026-11-01",
+  "brands": [
+    {
+      "id": "artipoppe",
+      "name": "Artipoppe"
+    },
+    {
+      "id": "babybjorn",
+      "name": "BabyBjörn"
+    },
+    {
+      "id": "babyletto",
+      "name": "Babyletto"
+    },
+    {
+      "id": "bob-gear",
+      "name": "BOB Gear"
+    },
+    {
+      "id": "britax",
+      "name": "Britax"
+    },
+    {
+      "id": "bugaboo",
+      "name": "Bugaboo"
+    },
+    {
+      "id": "chicco",
+      "name": "Chicco"
+    },
+    {
+      "id": "clek",
+      "name": "Clek"
+    },
+    {
+      "id": "colugo",
+      "name": "Colugo"
+    },
+    {
+      "id": "comotomo",
+      "name": "Comotomo"
+    },
+    {
+      "id": "cybex",
+      "name": "Cybex"
+    },
+    {
+      "id": "doona",
+      "name": "Doona"
+    },
+    {
+      "id": "dr-browns",
+      "name": "Dr. Brown's"
+    },
+    {
+      "id": "elvie",
+      "name": "Elvie"
+    },
+    {
+      "id": "ergobaby",
+      "name": "Ergobaby"
+    },
+    {
+      "id": "eufy",
+      "name": "eufy"
+    },
+    {
+      "id": "evenflo",
+      "name": "Evenflo"
+    },
+    {
+      "id": "graco",
+      "name": "Graco"
+    },
+    {
+      "id": "haakaa",
+      "name": "Haakaa"
+    },
+    {
+      "id": "halo",
+      "name": "Halo"
+    },
+    {
+      "id": "happiest-baby",
+      "name": "Happiest Baby"
+    },
+    {
+      "id": "ikea",
+      "name": "IKEA"
+    },
+    {
+      "id": "infant-optics",
+      "name": "Infant Optics"
+    },
+    {
+      "id": "joovy",
+      "name": "Joovy"
+    },
+    {
+      "id": "lalo",
+      "name": "Lalo"
+    },
+    {
+      "id": "lansinoh",
+      "name": "Lansinoh"
+    },
+    {
+      "id": "maxi-cosi",
+      "name": "Maxi-Cosi"
+    },
+    {
+      "id": "medela",
+      "name": "Medela"
+    },
+    {
+      "id": "miku",
+      "name": "Miku"
+    },
+    {
+      "id": "momcozy",
+      "name": "Momcozy"
+    },
+    {
+      "id": "nanit",
+      "name": "Nanit"
+    },
+    {
+      "id": "nuna",
+      "name": "Nuna"
+    },
+    {
+      "id": "owlet",
+      "name": "Owlet"
+    },
+    {
+      "id": "solly-baby",
+      "name": "Solly Baby"
+    },
+    {
+      "id": "spectra",
+      "name": "Spectra"
+    },
+    {
+      "id": "stokke",
+      "name": "Stokke"
+    },
+    {
+      "id": "uppababy",
+      "name": "UPPAbaby"
+    },
+    {
+      "id": "willow",
+      "name": "Willow"
+    }
+  ],
+  "products": [
+    {
+      "brand": "artipoppe",
+      "name": "Artipoppe Zeitgeist Baby Carrier",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.artipoppe.com/baby-carrier/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Baby Carrier Free",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-carriers/baby-carrier-free/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Baby Carrier Harmony",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-carriers/baby-carrier-harmony/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Baby Carrier Hold",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-carriers/baby-carrier-hold/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Baby Carrier Mini",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-carriers/baby-carrier-mini/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Baby Carrier One",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-carriers/baby-carrier-one/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Bouncer Balance Soft",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-bouncers/bouncer-balance-soft/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Bouncer Bliss",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-bouncers/bouncer-bliss/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Cradle",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-cradle-and-travel-crib/baby-cradle/"
+      ]
+    },
+    {
+      "brand": "babybjorn",
+      "name": "BabyBjörn Travel Crib Light",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babybjorn.com/products/baby-cradle-and-travel-crib/travel-crib-light/"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Gelato 4-in-1 Convertible Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/gelato-4-in-1-convertible-crib-with-toddler-bed-conversion-kit"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Gelato 4-in-1 Convertible Mini Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/gelato-4-in-1-convertible-mini-crib"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Hudson 3-in-1 Convertible Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/hudson-3-in-1-convertible-crib-with-toddler-bed-conversion-kit"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Lolly 3-in-1 Convertible Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/lolly-3-in-1-convertible-crib-with-toddler-bed-conversion-kit"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Modo 3-in-1 Convertible Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/modo-3-in-1-convertible-crib-with-toddler-bed-conversion-kit"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Origami Mini Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/origami-mini-crib"
+      ]
+    },
+    {
+      "brand": "babyletto",
+      "name": "Babyletto Sprout 4-in-1 Convertible Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyletto.com/products/sprout-4-in-1-convertible-crib-with-toddler-bed-conversion-kit"
+      ]
+    },
+    {
+      "brand": "bob-gear",
+      "name": "BOB Gear Alterrain Pro",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bobgear.com/single-strollers"
+      ]
+    },
+    {
+      "brand": "bob-gear",
+      "name": "BOB Gear Rambler",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bobgear.com/revolution-rambler-blaze-jogging-strollers"
+      ]
+    },
+    {
+      "brand": "bob-gear",
+      "name": "BOB Gear Revolution Flex 3.0",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bobgear.com/single-strollers"
+      ]
+    },
+    {
+      "brand": "bob-gear",
+      "name": "BOB Gear Revolution Flex 3.0 Duallie",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bobgear.com/duallie-strollers/revolution-flex-30-duallie"
+      ]
+    },
+    {
+      "brand": "bob-gear",
+      "name": "BOB Gear Wayfinder",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bobgear.com/single-strollers"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Boulevard ClickTight",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/britax-boulevard-clicktight-anti-rebound-bar-convertible-car-seat-us"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Brook+",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/strollers/brook-plus-stroller"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Cypress",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/cypress-clicktight-infant-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Galaxy360 Slim",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/galaxy360-slim-rotating-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Grove",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/strollers/grove-stroller"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Grow With You ClickTight",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/britax-grow-with-you-clicktight-harness-2-booster-car-seat-spark"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Marathon ClickTight",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/britax-marathon-clicktight-anti-rebound-bar-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax One4Life ClickTight",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/one4life-clicktight-all-in-one-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax One4Life Slim",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/one4life-slim-all-in-one-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Poplar",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/poplar-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Poplar S",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/poplar-s-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "britax",
+      "name": "Britax Willow S",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.britax.com/shop/car-seats/willow-s-clicktight-infant-car-seat"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Butterfly 2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/strollers/bugaboo-butterfly/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Donkey 6",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/bugaboo-donkey-6/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Dragonfly Plus",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/bugaboo-dragonfly-future-city-stroller/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Fox 5 Renew",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/bugaboo-fox-5-ultimate-all-terrain-stroller/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Giraffe",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/high-chair/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Kangaroo",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/strollers/bugaboo-kangaroo/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Turtle Air Shield by Nuna",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/car-seat/bugaboo-turtle-air-shield-by-nuna-car-seat-400016MI.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Activ3",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/strollers/jogging/activ3-jogging-stroller---eclipse/05079373150070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Bravo",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/strollers/full-size/bravo-quick-fold-stroller---black/06079631950070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Close to You Bedside Bassinet",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/on-sale/close-to-you-bedside-bassinet---oat/00079642610070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Corso Flex",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/strollers/corso-flex-convertible-stroller---legend/08087008180070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Fit360",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/car-seats/fit360-cleartex-rotating-convertible-car-seat---oat/00087216610070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Fit3x",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/car-seats/all-in-one/fit3x-cleartex-ultra-slim-all-in-one-car-seat---black/06087179950070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco KeyFit 30",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/car-seats/infant/keyfit-30-infant-car-seat/79679.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco KeyFit 35",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/car-seats/infant/keyfit-35-infant-car-seat/79625.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco KidFit",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/car-seats/booster/kidfit-cleartex-plus-2-in-1-belt-positioning-booster-car-seat---drift/00079627120070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Liteway",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/strollers/lightweight/liteway-stroller---arctic/04079562180070.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Lullaby Playard",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/playards/lullaby-portable-playard/79753.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco LullaGo Anywhere",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/bassinets/lullago-bassinets/lullago-anywhere-le-portable-bassinet/79687.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco OneFit",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/car-seats/chicco-onefit-all-in-one-car-seat/"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Polly",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/on-sale/polly-high-chair---taupe/00079756100070.html"
+      ]
+    },
+    {
+      "brand": "clek",
+      "name": "Clek Fllo",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.clekinc.com/products/fllo"
+      ]
+    },
+    {
+      "brand": "clek",
+      "name": "Clek Foonf",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.clekinc.com/products/foonf"
+      ]
+    },
+    {
+      "brand": "clek",
+      "name": "Clek Liing",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.clekinc.com/products/liing"
+      ]
+    },
+    {
+      "brand": "clek",
+      "name": "Clek Liingo",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.clekinc.com/products/liingo"
+      ]
+    },
+    {
+      "brand": "clek",
+      "name": "Clek Oobr",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.clekinc.com/products/oobr"
+      ]
+    },
+    {
+      "brand": "colugo",
+      "name": "Colugo The Baby Carrier",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.colugo.com/products/the-carrier"
+      ]
+    },
+    {
+      "brand": "colugo",
+      "name": "Colugo The Baby Carrier 2",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.colugo.com/products/the-baby-carrier-2"
+      ]
+    },
+    {
+      "brand": "colugo",
+      "name": "Colugo The Compact Stroller+",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.colugo.com/products/the-compact-stroller-plus"
+      ]
+    },
+    {
+      "brand": "comotomo",
+      "name": "Comotomo Baby Bottle",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://comotomo.com/products/baby-bottle-2"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Aton G",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/cs-go-aton-g.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Aton G Swivel",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/cs-go-aton-g-swivel.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Balios S Lux",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/st-go-balios-s-lux.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Beezy",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/st-go-beezy.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Cloud G",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/cs-go-cloud-g.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Cloud T",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/cs-pl-cloud-t-sensorsafe-3.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Eezy S Twist+2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/st-go-eezy-s-twist-plus-2.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Eternis S",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/cs-go-eternis-s.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Gazelle S",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/st-go-gazelle-s.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Libelle",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/st-go-libelle-6.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Orfeo",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/st-go-orfeo.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Sirona S",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/us/p/cs-go-sirona-s-sensorsafe-3.html"
+      ]
+    },
+    {
+      "brand": "doona",
+      "name": "Doona Car Seat & Stroller",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.doona.com/en-us/car-seat-stroller/collections/doona-ocean-blue"
+      ]
+    },
+    {
+      "brand": "doona",
+      "name": "Doona X Car Seat & Stroller",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.doona.com/en-us/car-seat-stroller/collections/doona-x-ocean-blue"
+      ]
+    },
+    {
+      "brand": "dr-browns",
+      "name": "Dr. Brown's Customflow Double Electric Breast Pump",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.drbrownsbaby.com/products/customflow-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "dr-browns",
+      "name": "Dr. Brown's Natural Flow Anti-Colic Options+ Narrow",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.drbrownsbaby.com/products/dr-browns-natural-flow-anti-colic-options-baby-bottle-8oz-250ml"
+      ]
+    },
+    {
+      "brand": "dr-browns",
+      "name": "Dr. Brown's Natural Flow Anti-Colic Options+ Wide-Neck",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.drbrownsbaby.com/products/dr-browns-anti-colic-options-wide-neck-baby-bottle-9oz-270ml"
+      ]
+    },
+    {
+      "brand": "dr-browns",
+      "name": "Dr. Brown's Silicone Baby Bottle",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.drbrownsbaby.com/products/silicone-baby-bottle-9oz"
+      ]
+    },
+    {
+      "brand": "elvie",
+      "name": "Elvie Curve",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.elvie.com/products/elvie-curve"
+      ]
+    },
+    {
+      "brand": "elvie",
+      "name": "Elvie Pump",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.elvie.com/products/elvie-pump"
+      ]
+    },
+    {
+      "brand": "elvie",
+      "name": "Elvie Stride",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.elvie.com/products/elvie-stride"
+      ]
+    },
+    {
+      "brand": "elvie",
+      "name": "Elvie Stride 2",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.elvie.com/products/elvie-stride-2"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Aerloom",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/aerloom-baby-carrier"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Aura Baby Wrap",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/the-aura-baby-wrap"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Embrace",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/embrace-newborn-carrier"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Evolve 3-in-1 Bouncer",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/3-in-1-evolve-bouncer"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Metro 3",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/metro-3-compact-stroller"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Omni Classic",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/omni-classic-baby-carrier"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Omni Deluxe",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/omni-deluxe-baby-carrier"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Omni Lite",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/en-us/products/omni-lite-baby-carrier"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "eufy Baby Monitor C10",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eufy.com/products/e6310121"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "eufy Baby Monitor E21",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eufy.com/products/e8354121"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo All4Stages Slim",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/all4stages-slim-4-in-1-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Hummingbird",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/hummingbird-ultra-lightweight-stroller"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo LiteMax NXT",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/litemax-nxt-infant-car-seat-with-sensory-soothe"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Pivot Xpand NXT",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/pivot-xpand-nxt-stroller"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Revolve180 LiteMax NXT",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/revolve180-litemax-nxt-rotating-car-seat-core"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Revolve360",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/revolve360-rotational-all-in-one-car-seat-2025"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Revolve360 Extend",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/gold-revolve360-extend"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Revolve360 Slim",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/revolve360-slim-rotational-car-seat-core"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Shyft DualRide",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/shyft-dualride-car-seat-stroller-combo-core"
+      ]
+    },
+    {
+      "brand": "evenflo",
+      "name": "Evenflo Tribute LX",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.evenflo.com/products/tribute-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco 4Ever DLX 4-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/4ever-dlx-4-in-1-car-seat/SAP_2215505.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco 4Ever Extend2Fit 4-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/4ever-all-in-one-car-seats/4ever-extend2fit-4-in-1-car-seat/SAP_2223808.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Blossom 6-in-1",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/high-chairs/blossom-6-in-1-convertible-high-chair/SAP_1927621.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Contender Slim",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/convertible-car-seats/contender-slim-convertible-car-seat/SAP_2223684.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco DreamMore Bedside Bassinet",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/bassinets/graco-dreammore-bedside-bassinet/SAP_2210661.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco EasyTurn 360",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/rotating-car-seats/easyturn-360-2-in-1-rotating-convertible-car-seat/SAP_2216077.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco EveryStep Slim 6-in-1",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/high-chairs/everystep-slim-6-in-1-highchair/SAP_2184835.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Extend2Fit 3-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/extend2fit-3-in-1-car-seat/SAP_2215452.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Extend2Fit Convertible",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/convertible-car-seats/extend2fit-convertible-car-seat/SAP_2216092.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco FastAction Jogger LX",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/strollers/jogging-strollers/fastaction-jogger-lx-stroller/SAP_2115427.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Modes Nest2Grow",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/strollers/full-size-strollers/modes-nest2grow-stroller/SAP_2156208.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Modes Pramette",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/strollers/full-size-strollers/modes-pramette-stroller/SAP_2173541.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Pack 'n Play Close2Baby Bassinet Playard",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/pack-n-play-playards/newborn-bassinet-changer-pack-n-play-playards/pack-n-play-close2baby-bassinet-playard/SAP_2140068.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Pack 'n Play Day2Dream Travel Bassinet Playard",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/pack-n-play-playards/newborn-bassinet-changer-pack-n-play-playards/pack-n-play-day2dream-travel-bassinet-playard/SAP_2137836.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Pack 'n Play On the Go Playard",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/pack-n-play-playards/pack-n-play-on-the-go-playard/SAP_2188287.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Pack 'n Play Portable Playard",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/pack-n-play-playards/classic-pack-n-play-playards/pack-n-play-portable-playard/SAP_2156183.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Ready2Grow 2.0",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/strollers/double-strollers/ready2grow-2.0-double-stroller/SAP_2140042.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Ready2Jet",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/strollers/compact-lightweight-strollers/ready2jet-stroller/SAP_2209064.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Simple Sway Swing",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/swings-and-jumpers/simple-sway-swing/SAP_2156174.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Slim Snacker",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/high-chairs/slim-snacker-highchair/SAP_1927570.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Slim Spaces Compact Swing",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/swings-and-jumpers/swings/slim-spaces-compact-baby-swing-/SAP_2231532.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SlimFit 3-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/slimfit-3-in-1-car-seat/SAP_2215455.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SlimFit3 LX 3-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/slimfit3-lx-3-in-1-car-seat/SAP_2215325.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SmartSense Soothing Bassinet",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/bassinets/smartsense-soothing-bassinet/SAP_2203031.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SmartSense Soothing Swing",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/swings-and-jumpers/smartsense-soothing-baby-swing/SAP_2184836.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SnugRide Lite LX",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/infant-car-seats/snugride-lite-lx-infant-car-seat/SAP_2110186.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SnugRide SnugFit DLX",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/infant-car-seats/snugride-snugfit-dlx-infant-car-seat/SAP_2156211.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SnugRide SnugFit LX",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/infant-car-seats/snugride-snugfit-lx-infant-car-seat/SAP_2120492.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco SnugRide Turn & Slide",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/infant-car-seats/snugride-turn-slide-rotating-infant-car-seat/SAP_2284663.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Soothe My Way Swing",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/swings-and-jumpers/swings/soothe-my-way-swing-with-removable-rocker/SAP_2137842.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Table2Table LX 6-in-1",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/home-and-gear/high-chairs/table2table-lx-6-in-1-highchair/SAP_2220974.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Tranzitions 3-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/harness-booster-car-seats/tranzitions-3-in-1-harness-booster/SAP_2217738.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco TriRide 3-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/triride-3-in-1-car-seat/SAP_2215745.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco TurboBooster 2.0 Backless",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/belt-positioning-booster-car-seats/turbobooster-2.0-backless-booster/SAP_2184500.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco TurboBooster 2.0 Highback",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/belt-positioning-booster-car-seats/turbobooster-2.0-highback-booster/SAP_2184597.html"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Turn2Me 3-in-1",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/car-seats/toddler-car-seats/all-in-one-car-seats/turn2me-3-in-1-rotating-car-seat/SAP_2215451.html"
+      ]
+    },
+    {
+      "brand": "haakaa",
+      "name": "Haakaa Ladybug",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.haakaa.co.nz/products/e-ladybug-wearable-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "haakaa",
+      "name": "Haakaa Silicone Breast Pump",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.haakaa.co.nz/products/gen-2-silicone-manual-breast-pump-spillguard-insert"
+      ]
+    },
+    {
+      "brand": "halo",
+      "name": "Halo BassiNest Connected Swivel Sleeper 3.0",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.halosleep.com/products/bassinest-connected-swivel-sleeper-3-0-smart-bassinet"
+      ]
+    },
+    {
+      "brand": "halo",
+      "name": "Halo BassiNest Swivel Sleeper 4.0",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.halosleep.com/products/bassinest-4-0-signature"
+      ]
+    },
+    {
+      "brand": "happiest-baby",
+      "name": "Happiest Baby SNOO",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.happiestbaby.com/products/snoo-smart-bassinet"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA ANTILOP",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/antilop-high-chair-with-tray-white-white-s39597517/"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA GULLIVER Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/gulliver-crib-white-80248525/"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA SNIGLAR Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/sniglar-crib-beech-50248541/"
+      ]
+    },
+    {
+      "brand": "infant-optics",
+      "name": "Infant Optics DXR-8",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.infantoptics.com/product/dxr-8"
+      ]
+    },
+    {
+      "brand": "infant-optics",
+      "name": "Infant Optics DXR-8 PRO",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.infantoptics.com/product/dxr-8-pro"
+      ]
+    },
+    {
+      "brand": "infant-optics",
+      "name": "Infant Optics DXR-8 PRO SS",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.infantoptics.com/product/dxr-8-pro-ss"
+      ]
+    },
+    {
+      "brand": "joovy",
+      "name": "Joovy Room²",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.joovy.com/products/room-largest-playard-portable-playpen-black"
+      ]
+    },
+    {
+      "brand": "lalo",
+      "name": "Lalo The Chair II",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.meetlalo.com/products/the-chair-ii"
+      ]
+    },
+    {
+      "brand": "lansinoh",
+      "name": "Lansinoh Baby Bottles",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.lansinoh.com/products/baby-bottles-5oz"
+      ]
+    },
+    {
+      "brand": "lansinoh",
+      "name": "Lansinoh Signature Comfort Double Electric Breast Pump",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.lansinoh.com/products/signature-comfort-breast-pump"
+      ]
+    },
+    {
+      "brand": "maxi-cosi",
+      "name": "Maxi-Cosi Mico Pro",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://maxicosi.com/products/mico-pro-infant-car-seat-ic418"
+      ]
+    },
+    {
+      "brand": "maxi-cosi",
+      "name": "Maxi-Cosi Minla 6-in-1",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://maxicosi.com/products/minla-6-in-1-high-chair-hc258"
+      ]
+    },
+    {
+      "brand": "maxi-cosi",
+      "name": "Maxi-Cosi Peri 180",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://maxicosi.com/products/peri-180-rotating-infant-car-seat-ic397"
+      ]
+    },
+    {
+      "brand": "maxi-cosi",
+      "name": "Maxi-Cosi Pria All-in-One",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://maxicosi.com/products/pria-all-in-one-convertible-car-seat-cc414"
+      ]
+    },
+    {
+      "brand": "maxi-cosi",
+      "name": "Maxi-Cosi Pria Max",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://maxicosi.com/products/pria-max-all-in-one-convertible-car-seat-cc416"
+      ]
+    },
+    {
+      "brand": "maxi-cosi",
+      "name": "Maxi-Cosi Tayla Max",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://maxicosi.com/products/tayla-max-modular-stroller-cv451"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Freestyle Hands-free",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/hands-free-electric/freestyle-hands-free-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Harmony Manual Breast Pump",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/manual/harmony-manual-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Pump In Style Hands-free",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/hands-free-electric/pump-in-style-hands-free-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Pump In Style Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/classic-electric/pump-in-style-pro-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Sonata Smart",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/classic-electric/sonata-smart-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Symphony PLUS",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/symphony-and-sets/symphony-plus-breast-pump"
+      ]
+    },
+    {
+      "brand": "miku",
+      "name": "Miku Pro",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mikucare.com/products/miku-pro-smart-baby-monitor-with-stand"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy Air 1",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/momcozy-air-1-ultra-slim-breast-pump"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy M5",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/m5-smart-wearable-breast-pump-upgraded-with-app-control"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy M9",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/momcozy-mobile-flow-hands-free-breast-pump"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy S12 Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/s12-pro-quick-wearable-breast-pump"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy S9 Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/momcozy-s9-pro-wearable-breast-pump"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy V1 Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/v1-pro-hospital-grade-wearable-breast-pump"
+      ]
+    },
+    {
+      "brand": "nanit",
+      "name": "Nanit Pro",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nanit.com/products/smart-baby-monitor"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna AACE",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/aace-high-back-booster-seat"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna BRYN",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/bryn-highchair"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna COVE aire go",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/cove-aire-go"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna CUDL clik",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/cudl-clik-baby-carrier"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna CUDL luxe",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/cudl-luxe-baby-carrier"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna DEMI next",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/demi-next-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna EXEC next",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/exec-next-all-in-one-car-seat"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna LEAF grow",
+      "shape": "Bouncer or swing",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/leaf-grow-baby-seat-and-rocker"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna MIXX next",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/mixx-next-compact-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna PAAL",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/paal-playard"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna PIPA aire",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/pipa-aire-car-seat"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna PIPA aire rx",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/pipa-aire-rx"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna PIPA rx",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/pipa-rx-infant-car-seat-with-relx-base"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna PIPA urbn",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/pipa-urbn"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna RAVA next",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/rava-next-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna REVV maxx",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/revv-maxx-convertible-car-seat"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna SENA aire",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/sena-aire-play-yard-zip-off-bassinet"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna SWIV",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/swiv-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna TAVO next",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/tavo-next-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna TRIV lx",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/triv-lx-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna TRIV next",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/triv-next-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna TRVL",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/trvl-easy-fold-compact-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna TRVL dubl",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/trvl-dubl-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna TRVL lx",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/trvl-lx-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna VIAA cabn",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/viaa-cabn-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna ZAAZ",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/zaaz-easy-clean-high-chair"
+      ]
+    },
+    {
+      "brand": "owlet",
+      "name": "Owlet BabySat",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://owletcare.com/products/fda-cleared-babysat"
+      ]
+    },
+    {
+      "brand": "owlet",
+      "name": "Owlet Dream Duo (Gen 3)",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://owletcare.com/products/dream-duo-3"
+      ]
+    },
+    {
+      "brand": "owlet",
+      "name": "Owlet Dream Sight (Gen 3)",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://owletcare.com/products/dream-sight"
+      ]
+    },
+    {
+      "brand": "owlet",
+      "name": "Owlet Dream Sock",
+      "shape": "Baby monitor",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://owletcare.com/products/owlet-dream-sock"
+      ]
+    },
+    {
+      "brand": "solly-baby",
+      "name": "Solly Baby Soft Buckle Carrier",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://sollybaby.com/products/sage-chequer-soft-baby-carrier"
+      ]
+    },
+    {
+      "brand": "solly-baby",
+      "name": "Solly Baby Wrap",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://sollybaby.com/products/baby-wrap-carrier-blush-floret"
+      ]
+    },
+    {
+      "brand": "spectra",
+      "name": "Spectra 9 Plus",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.spectrababyusa.com/products/spectra-9-plus-premier-portable-rechargeable-breast-pump"
+      ]
+    },
+    {
+      "brand": "spectra",
+      "name": "Spectra S1 Plus",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.spectrababyusa.com/products/spectra-s1-plus-premier-rechargeable-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "spectra",
+      "name": "Spectra S2 Plus",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.spectrababyusa.com/products/spectra-s2-plus-premier-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "spectra",
+      "name": "Spectra Synergy Gold",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.spectrababyusa.com/products/spectra-sg-synergy-gold-double-adjustable-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Clikk",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/high-chairs/clikk-highchairs/5521.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Limas Carrier",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/baby-carrier/carriers-for-newborn-and-toddlers/6254.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Limas Carrier Flex",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/baby-carrier/carriers-for-newborn-and-toddlers/6256.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Nomi",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/high-chairs/nomi-highchairs/NM01.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Sleepi Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/nursery/stokke-sleepi/5916.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Sleepi Mini",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/nursery/stokke-sleepi/6006.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Snoozi",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/nursery/6437.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Steps",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/high-chairs/stokke-steps/stokke-steps-highchair.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke Tripp Trapp",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/high-chairs/tripp-trapp/stokke-tripp-trapp-highchair.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke YOYO connect",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/strollers/yoyo-double-stroller.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke YOYO3",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/strollers/yoyo-strollers/yoyo3-stroller-usca.html"
+      ]
+    },
+    {
+      "brand": "stokke",
+      "name": "Stokke YOYO5",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stokke.com/USA/en-us/strollers/yoyo-strollers/yoyo5-stroller-usca.html"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Alta V2",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/car-seats/booster/alta-v2/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Aria V2",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/car-seats/infant/aria-v2/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Cruz V2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Cruz V3",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/full-size/cruz-v3/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby G-Luxe",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/lightweight/g-luxe/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Knox",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Kona",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/full-size/kona/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Mesa Max",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Mesa V2",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Mesa V3",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/car-seats/infant/mesa-v3/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Minu Duo",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/lightweight/minu-duo/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Minu V2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Minu V3",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/lightweight/minu-v3/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Remi V2",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Ridge V2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/full-size/ridge-v2/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Rove",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/car-seats/convertible/rove/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Vista V2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/support/manuals/"
+      ]
+    },
+    {
+      "brand": "uppababy",
+      "name": "UPPAbaby Vista V3",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://uppababy.com/strollers/full-size/vista-v3/"
+      ]
+    },
+    {
+      "brand": "willow",
+      "name": "Willow 360",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.onewillow.com/products/willow-pump-360"
+      ]
+    },
+    {
+      "brand": "willow",
+      "name": "Willow Go",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.onewillow.com/products/willow-go-pump-kit"
+      ]
+    },
+    {
+      "brand": "willow",
+      "name": "Willow Sync",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.onewillow.com/products/willow-sync-breast-pump"
+      ]
+    }
+  ]
+}
