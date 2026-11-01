@@ -182,7 +182,8 @@
     "hosting": "hostingrecs",
     "keyboard": "keyboardrecs",
     "travelgear": "travelgearrecs",
-    "babygear": "babygearrecs"
+    "babygear": "babygearrecs",
+    "sleep": "sleeprecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

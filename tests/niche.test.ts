@@ -718,8 +718,8 @@ test("custom catalogue names: Equipment, Keyboards, Gear and Headphones; other n
   const { homegym } = niches;
   assert.equal(homegym.navLabel, "Equipment");
   assert.deepEqual(homegym.words, { one: "product", many: "products", One: "Product", Many: "Products" });
-  assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id).sort(), ["audio", "babygear", "climbing", "coffee", "homegym", "keyboard", "tabletennis", "travelgear", "ultralight"]);
-  for (const id of ["ultralight", "climbing", "coffee", "travelgear", "babygear"] as const) assert.equal(niches[id].navLabel, "Gear");
+  assert.deepEqual(Object.values(niches).filter(n => n.navLabel).map(n => n.id).sort(), ["audio", "babygear", "climbing", "coffee", "homegym", "keyboard", "sleep", "tabletennis", "travelgear", "ultralight"]);
+  for (const id of ["ultralight", "climbing", "coffee", "travelgear", "babygear", "sleep"] as const) assert.equal(niches[id].navLabel, "Gear");
   assert.equal(niches.audio.navLabel, "Headphones");
   assert.equal(niches.keyboard.navLabel, "Keyboards");
   assert.equal(niches.keyboard.people.many, "owners");
@@ -797,6 +797,35 @@ test("babygear: products named by generation (no years), eight category pages wi
   assert.equal(new Set(drawings).size, 8, "and no two share one");
   assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
   assert.equal(n.tags.length, 65);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
+
+test("sleep: products named by model and tier (no years), seven category pages with product URLs under them, moon rating icons", async () => {
+  const n = selectNiche("sleep");
+  assert.equal(n.schema, "sleeprecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "HomeAndKitchen");
+  assert.match(n.site.notice ?? "", /not medical advice/);
+  assert.deepEqual(n.categories.map(c => c.label), ["Comfort", "Support", "Temperature", "Durability", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Firmness", "Height", "Notable features"]);
+  // The owner's approved category URLs (2026-11-01).
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["mattresses", "mattress-toppers", "pillows", "sheets-and-bedding", "weighted-blankets", "sleep-accessories", "bed-cooling"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/sleep");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 7, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  assert.equal(n.tags.length, 80);
   for (const list of n.topLists ?? []) {
     assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
     assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
