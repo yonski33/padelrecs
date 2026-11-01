@@ -806,7 +806,7 @@ test("babygear: products named by generation (no years), eight category pages wi
   }
 });
 
-test("sleep: products named by model and tier (no years), seven category pages with product URLs under them, moon rating icons", async () => {
+test("sleep: products named by model and tier (no years), seven category pages with product URLs under them, bed rating icons", async () => {
   const n = selectNiche("sleep");
   assert.equal(n.schema, "sleeprecs");
   assert.equal(n.productPath, "products");
