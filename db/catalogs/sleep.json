@@ -1,5 +1,5 @@
 {
-  "about": "SleepRecs catalog (2026-11-01, approved by the owner): mattresses, mattress toppers, pillows, sheets and bedding, weighted blankets, sleep accessories (sound machines, sunrise alarms, masks, earplugs, sleep earbuds) and bed cooling. Each exact name and URL was read on the maker's own site or store; Helix and Birch (helixsleep.com product pages are bot-checked) are named from helixsleep.com's own sitemap. Models, tiers and separately sold foam/hybrid versions are separate products (Midnight vs Midnight Luxe, Casper Original vs Original Hybrid, ProAdapt vs LuxeAdapt); firmness, height, size, colour and cover editions are folded into the base product; older generations are in only where the maker's site still names them (Eight Sleep Pod 3-5 on its compare page). Columns: shape = category; core (type), weight (firmness options), surface (height) and balance (notable features) not read. Blank = not read.",
+  "about": "SleepRecs catalog (2026-11-01, approved by the owner): mattresses, mattress toppers, pillows, sheets and bedding, weighted blankets, sleep accessories (sound machines, sunrise alarms, masks, earplugs, sleep earbuds) and bed cooling. Each exact name and URL was read on the maker's own site or store; Helix and Birch (helixsleep.com product pages are bot-checked) are named from helixsleep.com's own sitemap. Models, tiers and separately sold foam/hybrid versions are separate products (Midnight vs Midnight Luxe, Casper Original vs Original Hybrid, ProAdapt vs LuxeAdapt); firmness, height, size, colour and cover editions are folded into the base product; Purple Restore, RestorePlus and RestorePremier (Cool Touch folded in) were added 2026-11-01; older generations are in only where the maker's site still names them (Eight Sleep Pod 3-5 on its compare page). Columns: shape = category; core (type), weight (firmness options), surface (height) and balance (notable features) not read. Blank = not read.",
   "checked": "2026-11-01",
   "brands": [
     {
@@ -2170,6 +2170,42 @@
       "balance": null,
       "sources": [
         "https://purple.com/mattresses/rejuvenate-premier"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Restore",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/restore"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple RestorePlus",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/restore-plus"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple RestorePremier",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/restore-premier"
       ]
     },
     {
