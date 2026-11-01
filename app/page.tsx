@@ -37,7 +37,6 @@ export default async function Home({ searchParams }: {
   const webIn = all.external.map(e => ({ ...e, createdAt: e.sourceDate || e.createdAt })).filter(e => fresh(e.createdAt));
   const reviewsIn = all.reviews.filter(r => fresh(r.createdAt));
   const data = { ...all, reviews: current(reviewsIn), external: current(webIn) };
-  const source = params.source === "players" || params.source === "web" ? params.source : "all";
   // How many notes to show: 24 at first, 24 more per "Load more" click (kept in the URL so it's linkable and crawlable).
   const requested = Number(Array.isArray(params.show) ? params.show[0] : params.show);
   const show = Number.isFinite(requested) ? Math.min(2400, Math.max(PAGE, Math.ceil(requested / PAGE) * PAGE)) : PAGE;
@@ -47,21 +46,15 @@ export default async function Home({ searchParams }: {
   const shapeOf = new Map(data.rackets.map(r => [r.id, r.shape?.toLowerCase()]));
   const ofType = <T extends { racketId: string }>(list: T[]) => type ? list.filter(x => shapeOf.get(x.racketId) === type.shape.toLowerCase()) : list;
   const reviews = ofType(data.reviews), external = ofType(data.external);
-  const query = (next: { source?: string; type?: string; show?: number }) => {
+  const query = (next: { type?: string; show?: number }) => {
     const q = new URLSearchParams();
-    if (next.source && next.source !== "all") q.set("source", next.source);
     if (next.type) q.set("type", next.type);
     if (next.show) q.set("show", String(next.show));
     return q.size ? `/?${q}` : "/";
   };
-  const sources = [
-    { value: "all", label: "All", count: reviews.length + external.length, href: query({ type: type?.slug }) },
-    { value: "players", label: `From ${niche.people.many}`, count: reviews.length, href: query({ source: "players", type: type?.slug }) },
-    { value: "web", label: "From around the web", count: external.length, href: query({ source: "web", type: type?.slug }) },
-  ];
   const items = spreadByProduct([
-    ...(source !== "web" ? reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <Review review={r} data={data} showCategory={!type}/> })) : []),
-    ...(source !== "players" ? external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data} showCategory={!type}/> })) : []),
+    ...reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <Review review={r} data={data} showCategory={!type}/> })),
+    ...external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data} showCategory={!type}/> })),
   ]);
 
 
@@ -83,23 +76,18 @@ export default async function Home({ searchParams }: {
         <h1 className="feed-title">{`Latest ${niche.people.one} reviews`}</h1>
         <p className="feed-sub">{`From ${niche.people.many}, and from around the web with the source linked.`}</p>
       </div>
-      <nav className="source-nav" aria-label="Review sources">
-        {sources.map(item => <a key={item.value} href={item.href} aria-current={source === item.value ? "page" : undefined}>
-          {item.label}{item.value !== "all" && <span className="source-count">{item.count.toLocaleString("en-US")}</span>}
-        </a>)}
-      </nav>
     </div>
     {niche.typePages && <ChipRow className="type-filter" label={`Filter reviews by ${niche.words.one} type`}>
-      <a href={query({ source })} aria-current={!type ? "page" : undefined}>All</a>
-      {niche.typePages.map(t => <a key={t.slug} href={query({ source, type: t.slug })} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</a>)}
+      <a href={query({})} aria-current={!type ? "page" : undefined}>All</a>
+      {niche.typePages.map(t => <a key={t.slug} href={query({ type: t.slug })} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</a>)}
     </ChipRow>}
     {items.slice(0, show).map((item, index) => <Fragment key={item.key}>
       {item.node}
       {index === 3 && strip}
     </Fragment>)}
     {items.length > 0 && items.length < 4 && strip}
-    {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : source === "web" ? "Nothing quoted from around the web yet." : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
-    {items.length > show && <LoadMore href={query({ source, type: type?.slug, show: show + PAGE })}/>}
+    {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
+    {items.length > show && <LoadMore href={query({ type: type?.slug, show: show + PAGE })}/>}
     {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
   </div><Sidebar data={data} all={all} minYear={oldest}/></div></main>;
 }

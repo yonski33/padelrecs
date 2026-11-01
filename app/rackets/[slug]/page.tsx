@@ -30,7 +30,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
 }
 
-export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{source?: string | string[]; sort?: string | string[]}>}) {
+export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]}>}) {
   const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
   const r = data.rackets.find(r => r.slug === slug);
   if (!r) {
@@ -49,7 +49,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const s = score(data, r.id);
   const reviews = data.reviews.filter(x => x.racketId === r.id);
   const external = data.external.filter(e => e.racketId === r.id);
-  const source = query.source === "players" || query.source === "web" ? query.source : "all";
   const sort = query.sort === "helpful" ? "helpful" : "newest";
 
   const cats = categories.map(([label, key]) => {
@@ -73,7 +72,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const platforms = [...external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
 
   const terms = nicheTerms(niche);
-  // Every review is rendered once on the server; filtering by source and sorting happen instantly in ReviewList.
+  // Every review is rendered once on the server; sorting happens instantly in ReviewList.
   const items: ListItem[] = [
     ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
@@ -193,7 +192,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSource={source} initialSort={sort}/>
+        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSort={sort}/>
       </div>
 
       <aside className="database-sidebar">
