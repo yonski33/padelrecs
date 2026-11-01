@@ -29,11 +29,12 @@ import * as hosting from "./hosting";
 import * as keyboard from "./keyboard";
 import * as travelgear from "./travelgear";
 import * as babygear from "./babygear";
+import * as sleep from "./sleep";
 
 /** Per-niche drawings: the product icon (shape + brand mark) and the logo, which is also the rating icon. */
 export type Art = {
   ProductIcon: (props: { shape?: string | null; brand?: string | null; className?: string }) => JSX.Element;
   LogoIcon: (props: { className?: string }) => JSX.Element;
 };
-export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear };
+export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear, sleep };
 export const art = arts[niche.id];

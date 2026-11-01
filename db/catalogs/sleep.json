@@ -1,0 +1,3004 @@
+{
+  "about": "SleepRecs catalog (2026-11-01, approved by the owner): mattresses, mattress toppers, pillows, sheets and bedding, weighted blankets, sleep accessories (sound machines, sunrise alarms, masks, earplugs, sleep earbuds) and bed cooling. Each exact name and URL was read on the maker's own site or store; Helix and Birch (helixsleep.com product pages are bot-checked) are named from helixsleep.com's own sitemap. Models, tiers and separately sold foam/hybrid versions are separate products (Midnight vs Midnight Luxe, Casper Original vs Original Hybrid, ProAdapt vs LuxeAdapt); firmness, height, size, colour and cover editions are folded into the base product; older generations are in only where the maker's site still names them (Eight Sleep Pod 3-5 on its compare page). Columns: shape = category; core (type), weight (firmness options), surface (height) and balance (notable features) not read. Blank = not read.",
+  "checked": "2026-11-01",
+  "brands": [
+    {
+      "id": "avocado",
+      "name": "Avocado"
+    },
+    {
+      "id": "bear",
+      "name": "Bear"
+    },
+    {
+      "id": "bearaby",
+      "name": "Bearaby"
+    },
+    {
+      "id": "bedjet",
+      "name": "BedJet"
+    },
+    {
+      "id": "birch",
+      "name": "Birch"
+    },
+    {
+      "id": "boll-branch",
+      "name": "Boll & Branch"
+    },
+    {
+      "id": "brooklinen",
+      "name": "Brooklinen"
+    },
+    {
+      "id": "brooklyn-bedding",
+      "name": "Brooklyn Bedding"
+    },
+    {
+      "id": "buffy",
+      "name": "Buffy"
+    },
+    {
+      "id": "casper",
+      "name": "Casper"
+    },
+    {
+      "id": "coop-sleep-goods",
+      "name": "Coop Sleep Goods"
+    },
+    {
+      "id": "cozy-earth",
+      "name": "Cozy Earth"
+    },
+    {
+      "id": "dreamcloud",
+      "name": "DreamCloud"
+    },
+    {
+      "id": "eight-sleep",
+      "name": "Eight Sleep"
+    },
+    {
+      "id": "ghostbed",
+      "name": "GhostBed"
+    },
+    {
+      "id": "gravity",
+      "name": "Gravity"
+    },
+    {
+      "id": "hatch",
+      "name": "Hatch"
+    },
+    {
+      "id": "helix",
+      "name": "Helix"
+    },
+    {
+      "id": "ikea",
+      "name": "IKEA"
+    },
+    {
+      "id": "latex-for-less",
+      "name": "Latex For Less"
+    },
+    {
+      "id": "leesa",
+      "name": "Leesa"
+    },
+    {
+      "id": "loftie",
+      "name": "Loftie"
+    },
+    {
+      "id": "loop",
+      "name": "Loop"
+    },
+    {
+      "id": "macks",
+      "name": "Mack's"
+    },
+    {
+      "id": "manta-sleep",
+      "name": "Manta Sleep"
+    },
+    {
+      "id": "nectar",
+      "name": "Nectar"
+    },
+    {
+      "id": "nolah",
+      "name": "Nolah"
+    },
+    {
+      "id": "ozlo",
+      "name": "Ozlo"
+    },
+    {
+      "id": "parachute",
+      "name": "Parachute"
+    },
+    {
+      "id": "pillow-cube",
+      "name": "Pillow Cube"
+    },
+    {
+      "id": "plank",
+      "name": "Plank"
+    },
+    {
+      "id": "purple",
+      "name": "Purple"
+    },
+    {
+      "id": "quince",
+      "name": "Quince"
+    },
+    {
+      "id": "saatva",
+      "name": "Saatva"
+    },
+    {
+      "id": "sealy",
+      "name": "Sealy"
+    },
+    {
+      "id": "sleep-number",
+      "name": "Sleep Number"
+    },
+    {
+      "id": "sleepme",
+      "name": "Sleepme"
+    },
+    {
+      "id": "snooz",
+      "name": "SNOOZ"
+    },
+    {
+      "id": "soundcore",
+      "name": "Soundcore"
+    },
+    {
+      "id": "stearns-foster",
+      "name": "Stearns & Foster"
+    },
+    {
+      "id": "tempur-pedic",
+      "name": "Tempur-Pedic"
+    },
+    {
+      "id": "tuft-needle",
+      "name": "Tuft & Needle"
+    },
+    {
+      "id": "winkbeds",
+      "name": "WinkBeds"
+    },
+    {
+      "id": "yogasleep",
+      "name": "Yogasleep"
+    }
+  ],
+  "products": [
+    {
+      "brand": "avocado",
+      "name": "Avocado Eco Organic",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/best-organic-affordable-mattress-eco-organic"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Eco Organic Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/affordable-eco-organic-topper"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Green",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/green-natural-organic-mattress"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Green Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/green-pillow"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Latex",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/organic-latex-foam-mattress"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Luxury Organic",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/natural-organic-luxury-plush-mattress"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Molded Latex Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/molded-organic-latex-pillow"
+      ]
+    },
+    {
+      "brand": "avocado",
+      "name": "Avocado Vegan",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.avocadogreenmattress.com/products/avocado-vegan-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Elite Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/elite-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Elite Ultra Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/elite-ultra-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Natural",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/bear-natural-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Original",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/bear-original-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Original Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/bear-original-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Pro Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/pro-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "bear",
+      "name": "Bear Pro Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bearmattress.com/products/bear-pro-topper"
+      ]
+    },
+    {
+      "brand": "bearaby",
+      "name": "Bearaby Cotton Napper",
+      "shape": "Weighted blanket",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bearaby.com/products/the-napper"
+      ]
+    },
+    {
+      "brand": "bearaby",
+      "name": "Bearaby Tree Napper",
+      "shape": "Weighted blanket",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bearaby.com/products/tree-napper"
+      ]
+    },
+    {
+      "brand": "bearaby",
+      "name": "Bearaby Velvet Napper",
+      "shape": "Weighted blanket",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bearaby.com/products/velvet-napper"
+      ]
+    },
+    {
+      "brand": "bedjet",
+      "name": "BedJet 3",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bedjet.com/products/bedjet-3-climate-comfort-system-with-biorhythm-sleep-technology"
+      ]
+    },
+    {
+      "brand": "birch",
+      "name": "Birch Elite Natural",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/birch-elite-natural-mattress"
+      ]
+    },
+    {
+      "brand": "birch",
+      "name": "Birch Luxe Natural",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/birch-luxe-natural-mattress"
+      ]
+    },
+    {
+      "brand": "birch",
+      "name": "Birch Natural",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/birch-natural-mattress"
+      ]
+    },
+    {
+      "brand": "birch",
+      "name": "Birch Plush Organic Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/birch-plush-organic-mattress-topper"
+      ]
+    },
+    {
+      "brand": "boll-branch",
+      "name": "Boll & Branch Percale Hemmed Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bollandbranch.com/products/percale-hemmed-sheet-set"
+      ]
+    },
+    {
+      "brand": "boll-branch",
+      "name": "Boll & Branch Signature Hemmed Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bollandbranch.com/products/signature-hemmed-sheet-set"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Brushed Flannel Core Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/flannel-core-sheet-set"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Classic Percale Core Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/classic-core-sheet-set"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Down Alternative Comforter",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/down-alternative-comforter"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Down Alternative Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/mattress-pad"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Down Alternative Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/down-alternative-pillow"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Down Comforter",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/down-comforter"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Down Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/down-pillow"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Luxe Sateen Core Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/luxe-core-sheet-set"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Marlow Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/marlow-pillow"
+      ]
+    },
+    {
+      "brand": "brooklinen",
+      "name": "Brooklinen Washed European Linen Core Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklinen.com/products/washed-linen-core-sheet-set"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding 3\" Latex Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/3-talalay-latex-topper"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding Aurora Luxe Cooling",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/aurora"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding CopperFlex",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/copperflex-hybrid-12"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding Signature Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/signature-hybrid"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding Spartan",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/brooklyn-spartan-hybrid"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding ThermoBalance",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/thermobalance"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding Titan Plus Elite",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/titan-elite"
+      ]
+    },
+    {
+      "brand": "brooklyn-bedding",
+      "name": "Brooklyn Bedding Titan Plus Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/titan-luxe-hybrid"
+      ]
+    },
+    {
+      "brand": "buffy",
+      "name": "Buffy Breeze Comforter",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://buffy.co/products/breeze-comforter"
+      ]
+    },
+    {
+      "brand": "buffy",
+      "name": "Buffy Breeze Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://buffy.co/products/breeze-sheets"
+      ]
+    },
+    {
+      "brand": "buffy",
+      "name": "Buffy Cloud Comforter",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://buffy.co/products/cooling-cloud-comforter"
+      ]
+    },
+    {
+      "brand": "buffy",
+      "name": "Buffy Cloud Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://buffy.co/products/cloud-tencel-lyocell-pillow"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Cloud One",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/casper-cloud-one-foam"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Dream",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/casper-dream-hybrid"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Dream Max",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/casper-dream-max-hybrid"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Element",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/element-v1"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Foam Pillow with Snow Technology",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/foam-snow-pillow"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Hybrid Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/hybrid-pillow"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Hyperlite Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/hyperlite-sheet-set"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/mattress-topper-3"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Original",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/original-foam-v1"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Original Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/original-hybrid-v1"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Original Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/pillows"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Sateen Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/sateen-sheet-set-v2"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Snow",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/casper-snow-v3"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Snow Max",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/casper-snow-max-hybrid-v3"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper The One",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/casper-one-foam"
+      ]
+    },
+    {
+      "brand": "casper",
+      "name": "Casper Weighted Blanket",
+      "shape": "Weighted blanket",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://casper.com/products/weighted-blanket"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Cool+ Adjustable Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/the-eden-cool"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Cool+ Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/cool-mattress-topper"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Copper+ Adjustable Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/copper-adjustable-pillow"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Eden Adjustable Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/the-eden-pillow"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Latex Adjustable Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/adjustable-latex-pillow"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Original Adjustable Body Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/the-original-body-pillow"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Original Adjustable Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/the-original-pillow"
+      ]
+    },
+    {
+      "brand": "coop-sleep-goods",
+      "name": "Coop Original Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.coophomegoods.com/products/retreat-mattress-topper"
+      ]
+    },
+    {
+      "brand": "cozy-earth",
+      "name": "Cozy Earth Bamboo Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cozyearth.com/products/bamboo-sheet-set"
+      ]
+    },
+    {
+      "brand": "cozy-earth",
+      "name": "Cozy Earth Bamboo Viscose Comforter",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://cozyearth.com/products/comforter"
+      ]
+    },
+    {
+      "brand": "dreamcloud",
+      "name": "DreamCloud Classic Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.dreamcloudsleep.com/mattress"
+      ]
+    },
+    {
+      "brand": "dreamcloud",
+      "name": "DreamCloud Classic Memory Foam",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.dreamcloudsleep.com/mattresses/memory-foam-mattress"
+      ]
+    },
+    {
+      "brand": "dreamcloud",
+      "name": "DreamCloud Luxe Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.dreamcloudsleep.com/mattresses/luxe-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "dreamcloud",
+      "name": "DreamCloud Premier Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.dreamcloudsleep.com/mattresses/premier-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "dreamcloud",
+      "name": "DreamCloud Ultra Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.dreamcloudsleep.com/mattresses/ultra-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "eight-sleep",
+      "name": "Eight Sleep Pod 3",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eightsleep.com/pod-compare/"
+      ]
+    },
+    {
+      "brand": "eight-sleep",
+      "name": "Eight Sleep Pod 4",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eightsleep.com/pod-compare/"
+      ]
+    },
+    {
+      "brand": "eight-sleep",
+      "name": "Eight Sleep Pod 5",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eightsleep.com/pod-compare/"
+      ]
+    },
+    {
+      "brand": "eight-sleep",
+      "name": "Eight Sleep Pod 6",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eightsleep.com/product/pod-cover/"
+      ]
+    },
+    {
+      "brand": "ghostbed",
+      "name": "GhostBed Luxe Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ghostbed.com/products/luxe-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "ghostbed",
+      "name": "GhostBed Natural",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ghostbed.com/products/ghostbed-natural-mattress"
+      ]
+    },
+    {
+      "brand": "ghostbed",
+      "name": "GhostBed Signature Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ghostbed.com/products/signature-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "gravity",
+      "name": "Gravity Cooling Weighted Blanket",
+      "shape": "Weighted blanket",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gravityblankets.com/products/gravity-cooling-weighted-blanket"
+      ]
+    },
+    {
+      "brand": "gravity",
+      "name": "Gravity Original Weighted Blanket",
+      "shape": "Weighted blanket",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://gravityblankets.com/products/gravity-blanket"
+      ]
+    },
+    {
+      "brand": "hatch",
+      "name": "Hatch Restore 3",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.hatch.co/restore"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Dawn",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/dawn"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Dawn Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/dawn-luxe"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Dusk",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/dusk"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Dusk Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/dusk-luxe"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Midnight",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/midnight"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Midnight Elite",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/midnight-elite"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Midnight Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/midnight-luxe"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Moonlight",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/moonlight"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Plus",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/plus"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Plus Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/helix-plus-luxe"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Sunset",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/sunset"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Sunset Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/sunset-luxe"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Twilight",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/twilight"
+      ]
+    },
+    {
+      "brand": "helix",
+      "name": "Helix Twilight Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://helixsleep.com/products/twilight-luxe"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA VALEVÅG",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/valevag-pocket-spring-mattress-medium-firm-white-50511857/"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA VESTERÖY",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/vesteroey-pocket-spring-mattress-firm-white-80645006/"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA VÅGSTRANDA",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/vagstranda-pocket-spring-mattress-medium-firm-white-30511877/"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA ÅKREHAMN",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/akrehamn-foam-mattress-firm-white-10592841/"
+      ]
+    },
+    {
+      "brand": "ikea",
+      "name": "IKEA ÅSBYGDA",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ikea.com/us/en/p/asbygda-foam-mattress-firm-white-10481503/"
+      ]
+    },
+    {
+      "brand": "latex-for-less",
+      "name": "Latex For Less Hybrid Latex Mattress",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://latexforless.com/products/hybrid-latex-mattress"
+      ]
+    },
+    {
+      "brand": "latex-for-less",
+      "name": "Latex For Less Natural Latex Mattress",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://latexforless.com/products/natural-latex-mattress"
+      ]
+    },
+    {
+      "brand": "latex-for-less",
+      "name": "Latex For Less Natural Latex Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://latexforless.com/products/latex-topper"
+      ]
+    },
+    {
+      "brand": "latex-for-less",
+      "name": "Latex For Less Organic Latex Mattress",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://latexforless.com/products/organic-latex-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Legend Chill",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/legend-chill-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Legend Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/leesa-legend-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Original",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/leesa-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Original Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/original-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Sapira Chill",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/sapira-chill-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Sapira Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/leesa-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "leesa",
+      "name": "Leesa Studio",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.leesa.com/products/studio-mattress"
+      ]
+    },
+    {
+      "brand": "loftie",
+      "name": "Loftie Clock",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://byloftie.com/products/loftie"
+      ]
+    },
+    {
+      "brand": "loftie",
+      "name": "Loftie Lamp",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://byloftie.com/products/loftie-lamp"
+      ]
+    },
+    {
+      "brand": "loop",
+      "name": "Loop Dream",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.loopearplugs.com/products/dream"
+      ]
+    },
+    {
+      "brand": "loop",
+      "name": "Loop Engage 2",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.loopearplugs.com/products/engage"
+      ]
+    },
+    {
+      "brand": "loop",
+      "name": "Loop Quiet 2",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.loopearplugs.com/products/quiet"
+      ]
+    },
+    {
+      "brand": "macks",
+      "name": "Mack's Pillow Soft Silicone Putty Ear Plugs",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.macksearplugs.com/product/pillow-soft-silicone-earplugs/"
+      ]
+    },
+    {
+      "brand": "macks",
+      "name": "Mack's Ultra Soft Foam Ear Plugs",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.macksearplugs.com/product/ultra-soft-foam-ear-plugs/"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta COOL Sleep Mask",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-cool-mask"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta PRO Sleep Mask",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-sleep-mask-pro"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta SILK Sleep Mask",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-silk-mask"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta Sleep Mask",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-sleep-mask"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta Sleep Mask SOUND 2.0",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-sleep-mask-sound-2-0-bluetooth"
+      ]
+    },
+    {
+      "brand": "manta-sleep",
+      "name": "Manta SOUND Sleep Mask",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://mantasleep.com/products/manta-sleep-mask-sound"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Classic Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Classic Memory Foam",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Luxe Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/luxe-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Luxe Memory Foam",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/luxe-memory-foam-mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Premier Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/premier-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Premier Memory Foam",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/premier-memory-foam-mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Ultra Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/ultra-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "nectar",
+      "name": "Nectar Ultra Memory Foam",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.nectarsleep.com/mattresses/ultra-memory-foam-mattress"
+      ]
+    },
+    {
+      "brand": "nolah",
+      "name": "Nolah Evolution",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nolahsleep.com/products/nolah-evolution-15"
+      ]
+    },
+    {
+      "brand": "nolah",
+      "name": "Nolah Natural",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nolahsleep.com/products/nolah-natural-11"
+      ]
+    },
+    {
+      "brand": "nolah",
+      "name": "Nolah Original",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nolahsleep.com/products/nolah-original-10"
+      ]
+    },
+    {
+      "brand": "nolah",
+      "name": "Nolah Signature",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nolahsleep.com/products/nolah-signature-12"
+      ]
+    },
+    {
+      "brand": "ozlo",
+      "name": "Ozlo Sleepbuds",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ozlosleep.com/products/ozlo-sleepbuds-copy-1"
+      ]
+    },
+    {
+      "brand": "ozlo",
+      "name": "Ozlo Sleepbuds 2",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ozlosleep.com/products/sleepbuds"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Brushed Cotton Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/brushed-cotton-sheet-set-white-f-q"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Down Alternative Duvet Insert",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/down-alternative-duvet"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Down Alternative Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/down-alternative-pillow"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Down Duvet Insert",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/down-duvet"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Down Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/down-pillow"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Linen Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/linen-sheet-set-white-f-q"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Percale Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/percale-sheet-set-white-tw-xl"
+      ]
+    },
+    {
+      "brand": "parachute",
+      "name": "Parachute Sateen Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.parachutehome.com/products/sateen-sheet-set-white-f-q"
+      ]
+    },
+    {
+      "brand": "pillow-cube",
+      "name": "Pillow Cube Ice Cube",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://pillowcube.com/products/ice-cube-original"
+      ]
+    },
+    {
+      "brand": "pillow-cube",
+      "name": "Pillow Cube Side Cube",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://pillowcube.com/products/side-cube-original"
+      ]
+    },
+    {
+      "brand": "plank",
+      "name": "Plank Firm",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/plank"
+      ]
+    },
+    {
+      "brand": "plank",
+      "name": "Plank Firm Luxe",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.brooklynbedding.com/products/plank-hybrid"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Cloud Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/pillows/cloud"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Freeform Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/pillows/free-form"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple GridCloud Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/pillows/grid-cloud"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Harmony Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/pillows/harmony"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Mattress",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/purple-bed"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/pillows/purple-pillow"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple Rejuvenate",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/rejuvenate"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple RejuvenatePlus",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/rejuvenate-plus"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple RejuvenatePremier",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/rejuvenate-premier"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple SoftStretch Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/sheets/soft-stretch"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "Purple TwinCloud Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/pillows/twin-cloud"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "PurpleFlex",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/purple-flex"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "PurplePlus",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/plus"
+      ]
+    },
+    {
+      "brand": "purple",
+      "name": "PurpleRenew",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://purple.com/mattresses/renew"
+      ]
+    },
+    {
+      "brand": "quince",
+      "name": "Quince Bamboo Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.quince.com/home/bamboo-sheets"
+      ]
+    },
+    {
+      "brand": "quince",
+      "name": "Quince Luxe Down Featherbed Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.quince.com/home/luxe-down-featherbed-mattress-topper"
+      ]
+    },
+    {
+      "brand": "quince",
+      "name": "Quince Mulberry Silk Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.quince.com/home/mulberry-silk-sheet-set"
+      ]
+    },
+    {
+      "brand": "quince",
+      "name": "Quince Organic Crisp Percale Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.quince.com/home/classic-organic-percale-sheet-set"
+      ]
+    },
+    {
+      "brand": "quince",
+      "name": "Quince Signature Giza Cotton Sateen Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.quince.com/home/giza-cotton-sateen-sheet-set"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Classic",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/saatva-classic"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Contour5",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/saatva-contour5"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Graphite Memory Foam Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/bedding/graphite-memory-foam-mattress-topper"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva HD",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/saatva-hd"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Latex Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/saatva-latex-hybrid"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Latex Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/bedding/the-saatva-pillow"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Loom & Leaf",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/loom-and-leaf"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Memory Foam Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/memory-foam-hybrid"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Natural Latex Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/bedding/latex-mattress-topper"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Percale Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/bedding/percale-sheet-set"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Rx",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/saatva-rx"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Signature Sateen Sheet Set",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/bedding/sateen-cotton-sheet-set"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Solaire",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/solaire"
+      ]
+    },
+    {
+      "brand": "saatva",
+      "name": "Saatva Zenhaven",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.saatva.com/mattresses/zenhaven"
+      ]
+    },
+    {
+      "brand": "sealy",
+      "name": "Cocoon by Sealy Chill",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sealy.com/mattresses/cocoon-chill-collection/"
+      ]
+    },
+    {
+      "brand": "sleep-number",
+      "name": "Sleep Number Climate",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sleepnumber.com/collections/mattresses-climate-collection/QT8"
+      ]
+    },
+    {
+      "brand": "sleep-number",
+      "name": "Sleep Number ComfortMode",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sleepnumber.com/collections/mattresses-comfortmode-collection/QCM10"
+      ]
+    },
+    {
+      "brand": "sleep-number",
+      "name": "Sleep Number ComfortNext",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sleepnumber.com/collections/mattresses-comfortnext-collection/QCN12"
+      ]
+    },
+    {
+      "brand": "sleepme",
+      "name": "Chilipad 2.0",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://sleep.me/product/chilipad"
+      ]
+    },
+    {
+      "brand": "sleepme",
+      "name": "Chilipad Cube",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://sleep.me/product/chilipad-cube"
+      ]
+    },
+    {
+      "brand": "sleepme",
+      "name": "Chilipad Dock Pro",
+      "shape": "Bed cooling",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://sleep.me/product-comparison"
+      ]
+    },
+    {
+      "brand": "snooz",
+      "name": "SNOOZ Go 2",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://getsnooz.com/products/snooz-go-2"
+      ]
+    },
+    {
+      "brand": "snooz",
+      "name": "SNOOZ Original",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://getsnooz.com/products/snooz-white-noise-machine"
+      ]
+    },
+    {
+      "brand": "snooz",
+      "name": "SNOOZ Pro",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://getsnooz.com/products/snooz-pro-white-noise-machine"
+      ]
+    },
+    {
+      "brand": "soundcore",
+      "name": "Soundcore Sleep A20",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.soundcore.com/products/sleep-a20-sleeping-earbuds"
+      ]
+    },
+    {
+      "brand": "soundcore",
+      "name": "Soundcore Sleep A30",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.soundcore.com/products/d1301-sleep-a30-smart-anc-earbuds-for-sleeping"
+      ]
+    },
+    {
+      "brand": "stearns-foster",
+      "name": "Stearns & Foster Estate",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stearnsandfoster.com/mattresses/estate-collection/"
+      ]
+    },
+    {
+      "brand": "stearns-foster",
+      "name": "Stearns & Foster Lux Estate Elite",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stearnsandfoster.com/mattresses/lux-estate-elite/"
+      ]
+    },
+    {
+      "brand": "stearns-foster",
+      "name": "Stearns & Foster Reserve",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.stearnsandfoster.com/mattresses/reserve-collection/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Adapt",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-mattresses/adapt-collection/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Adapt Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/other-products/tempur-toppers/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Cloud",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-mattresses/tempur-cloud-mattress/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Cloud Adjustable Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-pillows/tempur-cloud-adjustable-pillow/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Cloud Dual Cooling Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-pillows/tempur-cloud-dual-cooling/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Cloud Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-pillows/tempur-cloud-essential-pillow/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Cloud Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/other-products/tempur-cloud-3-inch-topper/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-LuxeAdapt",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-mattresses/adapt-collection/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-LuxeBreeze",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-mattresses/breeze-collection/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-Neck Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-pillows/tempur-neck-pillow/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "Tempur-Pedic Symphony Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-pillows/symphony-pillow/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-ProAdapt",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-mattresses/adapt-collection/"
+      ]
+    },
+    {
+      "brand": "tempur-pedic",
+      "name": "TEMPUR-ProBreeze",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tempurpedic.com/shop-mattresses/breeze-collection/"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Down Alternative Duvet Insert",
+      "shape": "Sheets & bedding",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/down-alternative-duvet"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Mattress Topper",
+      "shape": "Mattress topper",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/mattress-topper"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Mint",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/mint-mattress"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Mint Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Mint Luxe Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/mint-luxe-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Original",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/original-mattress"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Original Foam Pillow",
+      "shape": "Pillow",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/foam-pillow"
+      ]
+    },
+    {
+      "brand": "tuft-needle",
+      "name": "T&N Original Hybrid",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.tuftandneedle.com/products/original-hybrid-mattress"
+      ]
+    },
+    {
+      "brand": "winkbeds",
+      "name": "WinkBed",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.winkbeds.com/products/the-luxury-firm-winkbed"
+      ]
+    },
+    {
+      "brand": "winkbeds",
+      "name": "WinkBed EcoCloud",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.winkbeds.com/products/the-ecocloud"
+      ]
+    },
+    {
+      "brand": "winkbeds",
+      "name": "WinkBed GravityLux",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.winkbeds.com/products/the-gravitylux-medium"
+      ]
+    },
+    {
+      "brand": "winkbeds",
+      "name": "WinkBed Plus",
+      "shape": "Mattress",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.winkbeds.com/products/the-plus-winkbed"
+      ]
+    },
+    {
+      "brand": "yogasleep",
+      "name": "Yogasleep Dohm Classic",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://yogasleep.com/products/dohmclassic"
+      ]
+    },
+    {
+      "brand": "yogasleep",
+      "name": "Yogasleep Dohm Nova",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://yogasleep.com/products/dohm-nova-sound-machine-and-night-light"
+      ]
+    },
+    {
+      "brand": "yogasleep",
+      "name": "Yogasleep Dohm Uno",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://yogasleep.com/products/dohm-uno"
+      ]
+    },
+    {
+      "brand": "yogasleep",
+      "name": "Yogasleep Hushh",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://yogasleep.com/products/hushh"
+      ]
+    },
+    {
+      "brand": "yogasleep",
+      "name": "Yogasleep Rohm",
+      "shape": "Sleep accessory",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://yogasleep.com/products/rohm"
+      ]
+    }
+  ]
+}
