@@ -148,6 +148,11 @@
       "name": "babygearrecs",
       "id": "prj_aiMgD688iDKdcl3UrAS9hxx5QqDs",
       "domain": "www.babygearrecs.com"
+    },
+    "sleep": {
+      "name": "sleeprecs",
+      "id": "prj_lV1ssdrm8Ph6GDJEy6VBNO7Uj72R",
+      "domain": "www.sleeprecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
