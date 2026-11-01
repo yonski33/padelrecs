@@ -1,15 +1,16 @@
 import type { Niche } from "./types";
 
-// Rating icons: a crescent moon with a small star, night blue with a lavender star. Same tile sizes as the other niches
-// (17×14 strip, 20×20 picker); the strip icon widens the 20×20 drawing's viewBox so the moon keeps its shape.
+// Rating icons: a bed seen from the side (headboard, mattress, foot post), night blue with a lavender pillow. Same tile sizes
+// as the other niches (17×14 strip, 20×20 picker); the strip icon widens the 20×20 drawing's viewBox so the bed keeps its shape.
+// The owner chose the bed over a crescent moon on 2026-11-01.
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
-const moon = (fill: string, star: string, q: string) =>
-  `<path d=${q}M12.6 2.6a7.6 7.6 0 1 0 4.8 12.2A6.2 6.2 0 0 1 12.6 2.6z${q} fill=${q}${fill}${q}/><circle cx=${q}15.6${q} cy=${q}5.4${q} r=${q}1.3${q} fill=${q}${star}${q}/>`;
-const moonIcon = (size: "tile" | "pick", on: boolean) => {
+const bed = (fill: string, pillow: string, q: string) =>
+  `<rect x=${q}1.5${q} y=${q}5${q} width=${q}2.4${q} height=${q}11.5${q} rx=${q}1${q} fill=${q}${fill}${q}/><rect x=${q}5${q} y=${q}8${q} width=${q}5${q} height=${q}2.6${q} rx=${q}1.3${q} fill=${q}${pillow}${q}/><rect x=${q}1.5${q} y=${q}11${q} width=${q}17${q} height=${q}3.2${q} rx=${q}1${q} fill=${q}${fill}${q}/><rect x=${q}16.6${q} y=${q}11${q} width=${q}1.9${q} height=${q}5.5${q} rx=${q}.8${q} fill=${q}${fill}${q}/>`;
+const bedIcon = (size: "tile" | "pick", on: boolean) => {
   const box = size === "tile" ? "width='17' height='14' viewBox='-2.15 0 24.3 20'" : "viewBox='0 0 20 20'";
-  return svg(`<svg xmlns='http://www.w3.org/2000/svg' ${box}>${on ? moon("#2e3a63", "#b7a8e3", "'") : moon("#e6e3dc", "#ffffff", "'")}</svg>`);
+  return svg(`<svg xmlns='http://www.w3.org/2000/svg' ${box}>${on ? bed("#2e3a63", "#b7a8e3", "'") : bed("#e6e3dc", "#ffffff", "'")}</svg>`);
 };
-const ogMoon = (fill: string, star: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">${moon(fill, star, '"')}</svg>`;
+const ogBed = (fill: string, pillow: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">${bed(fill, pillow, '"')}</svg>`;
 
 export const sleep: Niche = {
   id: "sleep",
@@ -32,7 +33,7 @@ export const sleep: Niche = {
   productYears: false,
   productPath: "products",
   amazon: { searchIndex: "HomeAndKitchen" },
-  scoreUnit: { one: "moon", many: "moons" },
+  scoreUnit: { one: "bed", many: "beds" },
   // Warm cream page, night-blue ink and primary, one muted lavender accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
     "--bg": "#fbf8f3",
@@ -54,10 +55,10 @@ export const sleep: Niche = {
     "--lime-line": "#dcd3f3",
     "--lime-ink": "#5b4a9c",
     "--lime-ink-2": "#45387a",
-    "--score-on": moonIcon("tile", true),
-    "--score-off": moonIcon("tile", false),
-    "--score-pick-on": moonIcon("pick", true),
-    "--score-pick-off": moonIcon("pick", false),
+    "--score-on": bedIcon("tile", true),
+    "--score-off": bedIcon("tile", false),
+    "--score-pick-on": bedIcon("pick", true),
+    "--score-pick-off": bedIcon("pick", false),
   },
   chartColors: ["var(--green)", "var(--lime)", "#d9d3c6", "#dcd3f3", "#8a92b0", "#c2c8de"],
   og: {
@@ -65,8 +66,8 @@ export const sleep: Niche = {
     accent: "#b7a8e3",
     muted: "#c2c8de",
     text: "#ffffff",
-    scoreOn: ogMoon("#ffffff", "#b7a8e3"),
-    scoreOff: ogMoon("#4a5682", "#2e3a63"),
+    scoreOn: ogBed("#ffffff", "#b7a8e3"),
+    scoreOff: ogBed("#4a5682", "#2e3a63"),
   },
   ratingWords: { "5": "5 — love it", "4": "4 — really like it", "3": "3 — it’s fine", "2": "2 — not for me", "1": "1 — regret buying it" },
   // Fixed rating columns, relabelled for sleep: power = comfort, comfort = support, control = temperature,

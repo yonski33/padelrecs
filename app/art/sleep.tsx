@@ -1,5 +1,5 @@
 // SleepRecs visuals: one simple line drawing per category (mattress, topper, pillow, sheets, weighted blanket, sleep
-// accessory, bed cooling), all in the same 40×64 box as the other niches' product drawings, and the crescent-moon logo.
+// accessory, bed cooling), all in the same 40×64 box as the other niches' product drawings, and the bed logo.
 
 export type Shape = "mattress" | "topper" | "pillow" | "sheets" | "blanket" | "accessory" | "cooling" | "unknown";
 
@@ -65,7 +65,9 @@ export function ProductIcon({ shape, className }: { shape?: string | null; brand
 
 export function LogoIcon({ className }: { className?: string }) {
   return <svg className={className} viewBox="0 0 20 20" aria-hidden="true">
-    <path d="M12.6 2.6a7.6 7.6 0 1 0 4.8 12.2A6.2 6.2 0 0 1 12.6 2.6z" fill="#2e3a63"/>
-    <circle cx="15.6" cy="5.4" r="1.3" fill="#b7a8e3"/>
+    <rect x="1.5" y="5" width="2.4" height="11.5" rx="1" fill="#2e3a63"/>
+    <rect x="5" y="8" width="5" height="2.6" rx="1.3" fill="#b7a8e3"/>
+    <rect x="1.5" y="11" width="17" height="3.2" rx="1" fill="#2e3a63"/>
+    <rect x="16.6" y="11" width="1.9" height="5.5" rx=".8" fill="#2e3a63"/>
   </svg>;
 }
