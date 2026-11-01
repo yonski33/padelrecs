@@ -65,13 +65,15 @@ export const aboveAverage = (score: number, n: number, average: number) => score
  *  and every doubling of reviews adds one share's worth, so 51 positive of 59 (5.36) ranks above 31 of 32 (4.96). */
 export const likedScore = (positiveShare: number, n: number) => n > 0 ? positiveShare * Math.log2(1 + n) : 0;
 
-const firstWord = (v: string) => v.trim().toLowerCase().split(/[^a-z]+/)[0] ?? "";
+const words = (v: string) => v.trim().toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+/** A filter value matches a spec that is the same phrase or starts with it as whole words ("Round" matches "Round (control)").
+ *  Only the first word used to count, so "Baby carrier" also took in every "Baby monitor". */
+const startsWithPhrase = (value: string, phrase: string) => { const v = words(value), p = words(phrase); return v === p || v.startsWith(`${p} `); };
 export function matchesFilters(product: Product, filters: SpecFilter[] = []) {
   return filters.every(f => {
     const value = product[f.column];
-    const word = value ? firstWord(value) : null;
-    if (f.include && (!word || !f.include.some(x => firstWord(x) === word))) return false;
-    if (f.exclude && word && f.exclude.some(x => firstWord(x) === word)) return false;
+    if (f.include && (!value || !f.include.some(x => startsWithPhrase(value, x)))) return false;
+    if (f.exclude && value && f.exclude.some(x => startsWithPhrase(value, x))) return false;
     return true;
   });
 }

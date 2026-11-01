@@ -3,9 +3,9 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche } from "../../lib/niche";
-import { RANKINGS_PATH } from "../../lib/top-lists";
+import { RANKINGS_PATH, listYear } from "../../lib/top-lists";
 import { ProductIcon } from "../icons";
-import { rankedLists, listHref, longDate, currentYear, modelName } from "./lists";
+import { rankedLists, listHref, longDate, currentYear } from "./lists";
 
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
@@ -25,8 +25,6 @@ export default async function TopListsIndex() {
   const { data, lists: all } = await rankedLists();
   const lists = all.filter(l => l.entries.length);
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
-  // With the review count, so a #2 with a higher share but fewer reviews still reads as fairly placed.
-  const share = (e: { positiveShare: number; reviews: number }) => `${Math.round(e.positiveShare * 100)}% positive · ${e.reviews} reviews`;
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
   return <main className="top-page">
     <div className="page-title">
@@ -36,23 +34,16 @@ export default async function TopListsIndex() {
     </div>
     {!lists.length && <p className="empty-feed">{`No list has enough reviews to rank any ${w.many} yet. They fill in as reviews are published.`}</p>}
     <div className="top-index">
-      {/* A short card: the list's name, the winner up front, two runners-up. The long SEO title stays on the list page. */}
+      {/* One short row per list: its title and size, no products, so the ranking itself is what the click shows. */}
       {lists.map(({ list, entries, reviews }) => {
-        const [lead, ...rest] = entries, brand = brandOf(lead.product.brandId);
+        const lead = entries[0];
         return <a key={list.slug} className="top-card" href={listHref(list.slug)}>
-          <div>
-            <h2>{list.label}</h2>
-            <p className="top-card-meta">{`${reviews} reviews · ${entries.length} ranked`}</p>
-          </div>
-          <div className="top-card-lead">
-            <span className="top-card-rank" aria-label="Rank 1">1</span>
-            <span className="thumb" aria-hidden="true"><ProductIcon shape={lead.product.shape} brand={brand}/></span>
-            <span className="top-card-name">{brand && <span className="brand">{brand}</span>}<b>{modelName(lead.product.name, brand)}</b><span className="top-card-share">{share(lead)}</span></span>
-          </div>
-          {rest.length > 0 && <ol className="top-card-rest" start={2}>
-            {rest.slice(0, 2).map(e => <li key={e.product.id}><span>{e.product.name}</span><span className="top-card-share">{share(e)}</span></li>)}
-          </ol>}
-          <span className="top-card-more">{`See the ranking${entries.length > 3 ? ` (${entries.length})` : ""} →`}</span>
+          <span className="thumb" aria-hidden="true"><ProductIcon shape={lead.product.shape} brand={brandOf(lead.product.brandId)}/></span>
+          <span className="top-card-text">
+            <h2>{`${list.title} ${listYear(list)}`}</h2>
+            <span className="top-card-meta">{`Based on ${reviews} reviews · ${entries.length} ranked`}</span>
+          </span>
+          <span className="top-card-more">See the ranking <span className="arrow" aria-hidden="true">→</span></span>
         </a>;
       })}
     </div>

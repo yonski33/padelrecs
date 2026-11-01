@@ -173,12 +173,16 @@ test("on trait lists being liked is a bonus, never a penalty", () => {
   assert(ranked[0].aboveAverage < 0 && ranked[1].aboveAverage > 0);
 });
 
-test("spec filters compare first words; include drops blanks, exclude keeps them", () => {
+test("spec filters match whole leading words; include drops blanks, exclude keeps them", () => {
   assert(matchesFilters(product("a", { balance: "High (~26 cm)" }), [{ column: "balance", include: ["High"] }]));
   assert(!matchesFilters(product("a"), [{ column: "balance", include: ["High"] }]));
   assert(matchesFilters(product("a"), [{ column: "shape", exclude: ["Round"] }]));
   assert(!matchesFilters(product("a", { shape: "round" }), [{ column: "shape", exclude: ["Round"] }]));
   assert(!matchesFilters(product("a", { balance: "Low/Medium" }), [{ column: "balance", exclude: ["Low"] }]));
+  // Two-word categories that share a first word stay apart (a sock monitor was ranked as a baby carrier).
+  assert(matchesFilters(product("a", { shape: "Baby carrier" }), [{ column: "shape", include: ["Baby carrier"] }]));
+  assert(!matchesFilters(product("a", { shape: "Baby monitor" }), [{ column: "shape", include: ["Baby carrier"] }]));
+  assert(!matchesFilters(product("a", { shape: "Highlight" }), [{ column: "shape", include: ["High"] }]));
 });
 
 test("entries carry real tags and a positive verbatim quote with its source", () => {
