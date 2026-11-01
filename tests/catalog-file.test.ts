@@ -689,13 +689,13 @@ test("the BabyGearRecs catalog: 246 sourced products in all eight categories, ge
   } finally { await engine.close(); }
 });
 
-test("the SleepRecs catalog: 235 sourced products in all seven categories, tiers and versions kept apart, unique URLs", async () => {
+test("the SleepRecs catalog: 238 sourced products in all seven categories, tiers and versions kept apart, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/sleep.json");
   const snapshot = catalogSnapshot(catalog, "sleeprecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 44);
-  assert.equal(snapshot.tables.rackets.length, 235);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 235);
+  assert.equal(snapshot.tables.rackets.length, 238);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 238);
   const categories = niches.sleep.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/sleep");
   for (const r of snapshot.tables.rackets) {
@@ -706,11 +706,11 @@ test("the SleepRecs catalog: 235 sourced products in all seven categories, tiers
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 6, `${c}: at least six products`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
   // Tiers, foam/hybrid versions and generations are separate products, never merged.
-  for (const name of ["Helix Midnight", "Helix Midnight Luxe", "Helix Midnight Elite", "Casper Original", "Casper Original Hybrid", "TEMPUR-ProAdapt", "TEMPUR-LuxeAdapt", "Purple Mattress", "PurplePlus", "Nectar Classic Memory Foam", "Nectar Classic Hybrid", "Ozlo Sleepbuds", "Ozlo Sleepbuds 2", "Eight Sleep Pod 4", "Eight Sleep Pod 5"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  for (const name of ["Helix Midnight", "Helix Midnight Luxe", "Helix Midnight Elite", "Casper Original", "Casper Original Hybrid", "TEMPUR-ProAdapt", "TEMPUR-LuxeAdapt", "Purple Mattress", "PurplePlus", "Nectar Classic Memory Foam", "Nectar Classic Hybrid", "Ozlo Sleepbuds", "Ozlo Sleepbuds 2", "Eight Sleep Pod 4", "Eight Sleep Pod 5", "Purple Restore", "Purple RestorePlus", "Purple RestorePremier", "Purple Rejuvenate"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
   const engine = new PGlite();
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 44, rackets: 235, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 44, rackets: 238, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
