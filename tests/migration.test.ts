@@ -37,7 +37,7 @@ test("PostgreSQL import preserves all values, pending status and long text; publ
   assert.deepEqual(await verifySnapshot(portable,snapshot),{brands:1,rackets:1,reviews:2,externalReviews:1});
   const publicData=await catalog(portable);
   assert.equal(publicData.reviews.length,1);assert.equal(publicData.reviews[0].id,"approved-review");
-  assert.equal(score(publicData,"racket-nox").average,"4.0");
+  assert.equal(score(publicData,"racket-nox").count,1);assert.equal(score(publicData,"racket-nox").positive,1);assert.equal(score(publicData,"racket-nox").average,null); // one rating: below MIN_RATINGS
   assert(!JSON.stringify(publicData).includes("private@example.test"));
   assert(!JSON.stringify(publicData).includes("pending@example.test"));
   assert(publicData.reviews[0].reviewText.length>20000);assert(publicData.external[0].excerpt!.length>20000);

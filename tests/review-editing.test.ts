@@ -27,7 +27,7 @@ test("player and web edits preserve identity and dates, update public data, and 
   const [saved]=await db.select().from(reviews).where(eq(reviews.id,player.id));
   assert.equal(saved.id,player.id);assert.equal(saved.createdAt,player.createdAt);assert.equal(saved.status,"approved");
   assert.equal(saved.racketId,"move-target");assert.equal(saved.rating,5);assert.equal(saved.powerRating,null);assert.equal(saved.comfortRating,3);assert(saved.reviewText.length>20000);
-  const visible=await catalog(portable);assert.equal(score(visible,"move-target").average,"5.0");assert(!JSON.stringify(visible).includes("updated-private@example.test"));
+  const visible=await catalog(portable);assert.equal(score(visible,"move-target").count,1);assert.equal(score(visible,"move-target").positive,1);assert(!JSON.stringify(visible).includes("updated-private@example.test"));
   assert.equal(await saveReviewEdit(portable,edit),"stale");
   const invalidTarget=reviewEditInput.parse({...fields(saved),type:"player",revision:reviewRevision(saved),racketId:"missing-racket"});
   assert.equal(await saveReviewEdit(portable,invalidTarget),"invalid");

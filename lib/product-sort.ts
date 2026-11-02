@@ -1,6 +1,6 @@
 // Catalogue ordering for the products and type pages. Shares only rank a product once enough people weighed in,
 // so one glowing comment can't put a product on top; products below the minimum follow, in the same order.
-export const MIN_JUDGED = 5;   // web reviews with a sentiment before "% positive" counts
+export const MIN_JUDGED = 5;   // user ratings plus web reviews with a sentiment before "% positive" counts
 
 export const SORTS = [
   { value: "discussed", label: "Most discussed" },
@@ -14,7 +14,7 @@ export const parseSort = (v: string | undefined): SortKey => v === "rated" ? "po
 type Stats = { count: number; average: string | null; web: number; judged: number; positive: number };
 type Item = { r: { name: string; createdAt: string }; s: Stats };
 
-/** Share of positive web reviews (0–100), or null below MIN_JUDGED. */
+/** Share of positive reviews, user and web (0–100), or null below MIN_JUDGED. */
 export const positiveShare = (s: Stats) => s.judged >= MIN_JUDGED ? Math.round(s.positive / s.judged * 100) : null;
 
 const total = (s: Stats) => s.count + s.web;
