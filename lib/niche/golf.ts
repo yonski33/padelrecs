@@ -1,14 +1,16 @@
 import type { Niche } from "./types";
 
-// Rating icons: a solid fairway-green golf ball on a sand-gold tee (a white ball read too close to the pale-grey empty one). Same tile sizes as padel (17×14 strip, 20×20 picker).
+// Rating icons: a driver head, fairway-green head with a sand-gold line on a grey shaft (a golf ball read either too pale or oddly green). Same tile sizes as padel (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
-const ball = "M8.5 1.2a4.6 4.6 0 1 1 0 9.2a4.6 4.6 0 1 1 0-9.2z";
-const tee = "M5.6 10.6h5.8l-1.8 1.3v1.6h-2.2v-1.6z";
-const ballTile = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'><path d='${tee}' fill='#d9a441'/><path d='${ball}' fill='#166534' stroke='#14532d' stroke-width='1.1'/></svg>`);
-const ballTileOff = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'><path d='${tee}' fill='#dfe6e1'/><path d='${ball}' fill='#dfe6e1'/></svg>`);
-const ballPick = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'><path d='${tee}' fill='#d9a441'/><path d='${ball}' fill='#166534' stroke='#14532d' stroke-width='1.2'/></g></svg>`);
-const ballPickOff = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'><path d='${tee}' fill='#dfe6e1'/><path d='${ball}' fill='#dfe6e1'/></g></svg>`);
-const ogBall = (fill: string, stroke: string, teeFill: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g transform="translate(1.5 3)"><path d="${tee}" fill="${teeFill}"/><path d="${ball}" fill="${fill}" stroke="${stroke}" stroke-width="1.2"/></g></svg>`;
+const shaft = "M12.6 0.8L9.2 8.2";
+const head = "M9.6 7.4c-2.6-0.6-6.6 0.2-7.6 2.6c-0.4 1.4 0.8 2.6 3 2.6c3 0 5.6-1.6 5.6-3.6c0-0.8-0.4-1.4-1-1.6z";
+const sole = "M3.4 10.6c1.6 0.4 4 0 5.6-1";
+const club = (headFill: string, shaftColor: string, lineColor: string, w: string) => `<path d='${shaft}' stroke='${shaftColor}' stroke-width='${w}' stroke-linecap='round'/><path d='${head}' fill='${headFill}'/><path d='${sole}' stroke='${lineColor}' stroke-width='1' fill='none' stroke-linecap='round'/>`;
+const clubTile = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'>${club("#166534", "#4b5563", "#d9a441", "1.4")}</svg>`);
+const clubTileOff = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'>${club("#dfe6e1", "#dfe6e1", "#dfe6e1", "1.4")}</svg>`);
+const clubPick = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'>${club("#166534", "#4b5563", "#d9a441", "1.5")}</g></svg>`);
+const clubPickOff = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'>${club("#dfe6e1", "#dfe6e1", "#dfe6e1", "1.5")}</g></svg>`);
+const ogClub = (headFill: string, shaftColor: string, lineColor: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g transform="translate(1.5 3)">${club(headFill, shaftColor, lineColor, "1.5").replace(/'/g, '"')}</g></svg>`;
 
 export const golf: Niche = {
   id: "golf",
@@ -29,7 +31,7 @@ export const golf: Niche = {
   productYears: false,
   productPath: "drivers",
   amazon: { searchIndex: "SportsAndOutdoors" },
-  scoreUnit: { one: "ball", many: "balls" },
+  scoreUnit: { one: "club", many: "clubs" },
   // White page, fairway green, one sand-gold accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
     "--bg": "#ffffff",
@@ -51,10 +53,10 @@ export const golf: Niche = {
     "--lime-line": "#e8c57a",
     "--lime-ink": "#5c3f06",
     "--lime-ink-2": "#473004",
-    "--score-on": ballTile,
-    "--score-off": ballTileOff,
-    "--score-pick-on": ballPick,
-    "--score-pick-off": ballPickOff,
+    "--score-on": clubTile,
+    "--score-off": clubTileOff,
+    "--score-pick-on": clubPick,
+    "--score-pick-off": clubPickOff,
   },
   chartColors: ["var(--green)", "var(--lime)", "#cfe2d5", "#a3cfb0", "#f0dcae", "#b8c8bd"],
   og: {
@@ -62,8 +64,8 @@ export const golf: Niche = {
     accent: "#d9a441",
     muted: "#a3cfb0",
     text: "#e8f6ec",
-    scoreOn: ogBall("#ffffff", "#0b3a1d", "#d9a441"),
-    scoreOff: ogBall("#3f8a5a", "#3f8a5a", "#3f8a5a"),
+    scoreOn: ogClub("#ffffff", "#e8f6ec", "#d9a441"),
+    scoreOff: ogClub("#3f8a5a", "#3f8a5a", "#3f8a5a"),
   },
   ratingWords: { "5": "5 — loved it", "4": "4 — really liked it", "3": "3 — it’s fine", "2": "2 — not for me", "1": "1 — regret buying it" },
   // Fixed rating columns, relabelled: power = distance, control = accuracy, forgiveness = forgiveness, comfort = feel & sound, maneuverability = looks at address.
