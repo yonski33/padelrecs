@@ -1,12 +1,12 @@
 import type { Niche } from "./types";
 
-// Rating icons: a white golf ball on a sand-gold tee, outlined in fairway green. Same tile sizes as padel (17×14 strip, 20×20 picker).
+// Rating icons: a solid fairway-green golf ball on a sand-gold tee (a white ball read too close to the pale-grey empty one). Same tile sizes as padel (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
 const ball = "M8.5 1.2a4.6 4.6 0 1 1 0 9.2a4.6 4.6 0 1 1 0-9.2z";
 const tee = "M5.6 10.6h5.8l-1.8 1.3v1.6h-2.2v-1.6z";
-const ballTile = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'><path d='${tee}' fill='#d9a441'/><path d='${ball}' fill='#ffffff' stroke='#14532d' stroke-width='1.1'/></svg>`);
+const ballTile = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'><path d='${tee}' fill='#d9a441'/><path d='${ball}' fill='#166534' stroke='#14532d' stroke-width='1.1'/></svg>`);
 const ballTileOff = svg(`<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'><path d='${tee}' fill='#dfe6e1'/><path d='${ball}' fill='#dfe6e1'/></svg>`);
-const ballPick = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'><path d='${tee}' fill='#d9a441'/><path d='${ball}' fill='#ffffff' stroke='#14532d' stroke-width='1.2'/></g></svg>`);
+const ballPick = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'><path d='${tee}' fill='#d9a441'/><path d='${ball}' fill='#166534' stroke='#14532d' stroke-width='1.2'/></g></svg>`);
 const ballPickOff = svg(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><g transform='translate(1.5 3)'><path d='${tee}' fill='#dfe6e1'/><path d='${ball}' fill='#dfe6e1'/></g></svg>`);
 const ogBall = (fill: string, stroke: string, teeFill: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g transform="translate(1.5 3)"><path d="${tee}" fill="${teeFill}"/><path d="${ball}" fill="${fill}" stroke="${stroke}" stroke-width="1.2"/></g></svg>`;
 
