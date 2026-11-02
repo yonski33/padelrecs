@@ -44,9 +44,9 @@ export function ProductIcon({ shape, className }: { shape?: string | null; brand
 export function LogoIcon({ className }: { className?: string }) {
   return <svg className={className} viewBox="0 0 20 20" aria-hidden="true">
     <g transform="translate(1.5 3)">
-      <path d="M5.6 10.6h5.8l-1.8 1.3v1.6h-2.2v-1.6z" fill="#d9a441"/>
-      <path d="M8.5 1.2a4.6 4.6 0 1 1 0 9.2a4.6 4.6 0 1 1 0-9.2z" fill="#ffffff" stroke="#0b3a1d" strokeWidth="1.3"/>
-      <path d="M6.6 4.4h.01M9.2 3.8h.01M10.6 6h.01M7.6 6.8h.01M9.6 8.2h.01" stroke="#0b3a1d" strokeOpacity=".55" strokeWidth="1.1" strokeLinecap="round"/>
+      <path d="M12.6 0.8L9.2 8.2" stroke="#4b5563" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M9.6 7.4c-2.6-0.6-6.6 0.2-7.6 2.6c-0.4 1.4 0.8 2.6 3 2.6c3 0 5.6-1.6 5.6-3.6c0-0.8-0.4-1.4-1-1.6z" fill="#166534"/>
+      <path d="M3.4 10.6c1.6 0.4 4 0 5.6-1" stroke="#d9a441" strokeWidth=".9" fill="none" strokeLinecap="round"/>
     </g>
   </svg>;
 }
