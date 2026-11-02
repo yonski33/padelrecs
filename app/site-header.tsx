@@ -41,6 +41,8 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   const onAddPage = pathname.startsWith("/add-review");
   const inRankings = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
+  // On a product page the review form opens with that product chosen (app/add-review matches the path to a product).
+  const addHref = pathname === "/" ? "/add-review" : `/add-review?from=${encodeURIComponent(pathname)}`;
   return (
     <header className="site-header">
       <div className="wrap header-top">
@@ -49,7 +51,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           <span className="logo-text"><span className="wordmark">{niche.site.wordmark}<span>.com</span></span><span className="descriptor">{niche.site.descriptor}</span></span>
         </a>
         <RacketSearch/>
-        {!onAddPage && <a className="button header-add" href="/add-review"><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
+        {!onAddPage && <a className="button header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
       </div>
       <nav className="wrap main-nav" aria-label="Main navigation">
         {links.map(([href, label]) => {
