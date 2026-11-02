@@ -103,10 +103,6 @@
    "name": "Carrd"
   },
   {
-   "id": "checkr",
-   "name": "Checkr"
-  },
-  {
    "id": "clickup",
    "name": "ClickUp"
   },
@@ -199,10 +195,6 @@
    "name": "GitHub"
   },
   {
-   "id": "goodhire",
-   "name": "GoodHire"
-  },
-  {
    "id": "google",
    "name": "Google"
   },
@@ -217,10 +209,6 @@
   {
    "id": "heygen",
    "name": "HeyGen"
-  },
-  {
-   "id": "hireright",
-   "name": "HireRight"
   },
   {
    "id": "hubspot",
@@ -2346,45 +2334,6 @@
    ]
   },
   {
-   "brand": "checkr",
-   "name": "Checkr",
-   "shape": "Background check",
-   "balance": null,
-   "surface": null,
-   "core": "Web",
-   "weight": null,
-   "website": "https://checkr.com/",
-   "sources": [
-    "https://checkr.com/"
-   ]
-  },
-  {
-   "brand": "goodhire",
-   "name": "GoodHire",
-   "shape": "Background check",
-   "balance": null,
-   "surface": null,
-   "core": "Web",
-   "weight": null,
-   "website": "https://www.goodhire.com/",
-   "sources": [
-    "https://www.goodhire.com/"
-   ]
-  },
-  {
-   "brand": "hireright",
-   "name": "HireRight",
-   "shape": "Background check",
-   "balance": null,
-   "surface": null,
-   "core": "Web",
-   "weight": null,
-   "website": "https://www.hireright.com/",
-   "sources": [
-    "https://www.hireright.com/"
-   ]
-  },
-  {
    "brand": "whitepages",
    "name": "Whitepages",
    "shape": "Phone lookup",
@@ -2421,6 +2370,45 @@
    "website": "https://www.truecaller.com/",
    "sources": [
     "https://www.truecaller.com/"
+   ]
+  },
+  {
+   "brand": "spokeo",
+   "name": "Spokeo Reverse Phone Lookup",
+   "shape": "Phone lookup",
+   "balance": "Subscription",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.spokeo.com/reverse-phone-lookup",
+   "sources": [
+    "https://www.spokeo.com/reverse-phone-lookup"
+   ]
+  },
+  {
+   "brand": "intelius",
+   "name": "Intelius Reverse Phone Lookup",
+   "shape": "Phone lookup",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.intelius.com/reverse-phone-lookup/",
+   "sources": [
+    "https://www.intelius.com/reverse-phone-lookup/"
+   ]
+  },
+  {
+   "brand": "truthfinder",
+   "name": "TruthFinder Reverse Phone Lookup",
+   "shape": "Phone lookup",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.truthfinder.com/reverse-phone-lookup/",
+   "sources": [
+    "https://www.truthfinder.com/reverse-phone-lookup/"
    ]
   }
  ]
