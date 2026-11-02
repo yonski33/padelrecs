@@ -24,6 +24,7 @@ export const keyboard: Niche = {
     wordmark: "keyboardrecs",
     descriptor: "real reviews of mechanical, rapid trigger and ergonomic keyboards, kits, switches and keycaps",
     footer: "kept by people with more keyboards than hands.",
+    analyticsId: "G-ECQZPCLEYF",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },

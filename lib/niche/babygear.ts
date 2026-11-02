@@ -20,6 +20,7 @@ export const babygear: Niche = {
     wordmark: "babygearrecs",
     descriptor: "real reviews of strollers, car seats, baby carriers, high chairs, cribs and bassinets, baby monitors and breast pumps",
     footer: "kept by parents who have folded more strollers one-handed than they can count.",
+    analyticsId: "G-8TSR4R21TY",
     adminLoginHint: "Use the email and password for your Recs admin account.",
     notice: "Parents’ experiences, not safety advice. Check car seat fit and installation with the manual or a certified child passenger safety technician.",
   },

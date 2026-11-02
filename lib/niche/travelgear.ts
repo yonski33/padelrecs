@@ -20,6 +20,7 @@ export const travelgear: Niche = {
     wordmark: "travelgearrecs",
     descriptor: "real reviews of travel backpacks, carry-on and checked luggage, packing cubes, daypacks, slings and travel accessories",
     footer: "kept by people who live out of one bag more often than they should.",
+    analyticsId: "G-D4J02DB978",
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "product", many: "products", One: "Product", Many: "Products" },
