@@ -32,7 +32,7 @@ export function contactEmail(site: { name: string; domain: string }, to: string,
   text: [`From: ${value.name} <${value.email}>`, `Site: ${site.domain}`, `Subject: ${value.subject}`, "", value.message].join("\n"),
  };
 }
-/** What sendWithResend posts; the contact form and the new-review notice (lib/review-notify.ts) both build one. */
+/** What sendWithResend posts; the contact form and the daily review digest (lib/review-digest.ts) both build one. */
 export type ContactEmail = { from: string; to: string[]; reply_to?: string; subject: string; text: string };
 
 /** Sends through Resend's HTTP API (no SDK needed). Throws with Resend's message when it refuses. */
