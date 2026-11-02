@@ -145,7 +145,8 @@ export function SentimentBadge({sentiment}: {sentiment: keyof typeof sentimentLa
 }
 
 /** Positive / mixed / negative share of a racket's web reviews, once there are enough judged ones to mean something. */
-export function WebSplit({entries, min = 3}: {entries: {sentiment: keyof typeof sentimentLabel | null}[]; min?: number}) {
+/** `period`, when given, names the window the entries were cut to (e.g. "last 12 months"). */
+export function WebSplit({entries, min = 3, period}: {entries: {sentiment: keyof typeof sentimentLabel | null}[]; min?: number; period?: string}) {
   const judged = entries.flatMap(e => e.sentiment ? [e.sentiment] : []);
   if (judged.length < min) return null;
   const parts = (["positive", "mixed", "negative"] as const).map(s => ({ s, n: judged.filter(x => x === s).length })).filter(x => x.n > 0);
@@ -154,7 +155,7 @@ export function WebSplit({entries, min = 3}: {entries: {sentiment: keyof typeof 
   let left = 100 - floors.reduce((a, b) => a + b, 0);
   raw.map((r, i) => [r - floors[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (left > 0) { floors[i]++; left--; } });
   return <div className="web-split">
-    <div className="lbl">Around the web <span>· {judged.length} comments</span></div>
+    <div className="lbl">Around the web <span>· {judged.length} comments{period ? ` from the ${period}` : ""}</span></div>
     <div className="stack" role="img" aria-label={parts.map((x, i) => `${floors[i]}% ${sentimentLabel[x.s].toLowerCase()}`).join(", ")}>
       {parts.map(x => <i key={x.s} className={`s-${x.s}`} style={{width: `${x.n / judged.length * 100}%`}}/>)}
     </div>
