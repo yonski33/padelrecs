@@ -13,6 +13,7 @@ import ReviewList, { type ListItem } from "./review-list";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
+import { ratingVerdict } from "../../../lib/top-lists";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -55,7 +56,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const since = new Date(); if (niche.recentMonths !== undefined) since.setUTCMonth(since.getUTCMonth() - niche.recentMonths);
   const older = (e: {sourceDate: string | null; createdAt: string}) => niche.recentMonths !== undefined && Date.parse(webDate(e)) < since.getTime();
   const recentWeb = external.filter(e => !older(e));
-  const webPeriod = niche.recentMonths === undefined ? undefined : `last ${niche.recentMonths} months`;
+  // The sentiment bar counts user reviews too, by their stars (4–5 positive, 3 mixed, 1–2 negative), like the rankings.
+  const verdicts = [...reviews.filter(x => !older({ sourceDate: null, createdAt: x.createdAt })).map(x => ({ sentiment: ratingVerdict(x.rating) })), ...recentWeb];
   const sort = query.sort === "helpful" ? "helpful" : "newest";
 
   const cats = categories.map(([label, key]) => {
@@ -148,16 +150,15 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <div className="big">{s.average}<small>/ 5</small></div>
           <Score rating={Number(s.average)} size="lg"/>
           <p><b>{s.count}</b>{` ${niche.people.one} `}{s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
-          <WebSplit entries={recentWeb} period={webPeriod}/>
+          <WebSplit entries={verdicts} label="What reviewers say" noun=""/>
         </> : <>
-          {external.length ? <>
-            <div className="no-score">{external.length} {external.length === 1 ? "review" : "reviews"}</div>
-            <p>Quoted from around the web</p>
+          {reviews.length + external.length ? <>
+            <div className="no-score">{reviews.length + external.length} {reviews.length + external.length === 1 ? "review" : "reviews"}</div>
           </> : <>
             <div className="no-score">Be the first to review it</div>
             <p>{`${niche.copy.ui.triedIt} Tell others how it went.`}</p>
           </>}
-          <WebSplit entries={recentWeb} period={webPeriod}/>
+          <WebSplit entries={verdicts} label="What reviewers say" noun=""/>
         </>}
         {/* Niches with Amazon or website links put that button here; adding a review moves to the Reviews heading. */}
         {amazon

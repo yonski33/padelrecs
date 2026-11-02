@@ -1,7 +1,6 @@
 import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
-import { HelpfulButton } from "./helpful-button";
 import { niche, catalogPath, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
 import { repeatsBrand } from "../lib/brand-name";
@@ -97,7 +96,6 @@ export function Review({review: r, data, showRacket = true, showCategory = true}
       <Avatar alias={r.alias}/>
       <span className="who"><b>{r.alias || "anonymous"}</b>{details.map(d => <span key={d}><span className="dot">·</span>{d}</span>)}</span>
       <time dateTime={r.createdAt}>{shortDate(r.createdAt)}</time>
-      <HelpfulButton type="player" id={r.id} count={r.helpful}/>
     </footer>
   </article>;
 }
@@ -145,8 +143,9 @@ export function SentimentBadge({sentiment}: {sentiment: keyof typeof sentimentLa
 }
 
 /** Positive / mixed / negative share of a racket's web reviews, once there are enough judged ones to mean something. */
-/** `period`, when given, names the window the entries were cut to (e.g. "last 12 months"). */
-export function WebSplit({entries, min = 3, period}: {entries: {sentiment: keyof typeof sentimentLabel | null}[]; min?: number; period?: string}) {
+/** `period`, when given, names the window the entries were cut to (e.g. "last 12 months"). An empty `noun` hides the
+ *  count and period (the product page already states its review total). */
+export function WebSplit({entries, min = 3, period, label = "Around the web", noun = "comments"}: {entries: {sentiment: keyof typeof sentimentLabel | null}[]; min?: number; period?: string; label?: string; noun?: string}) {
   const judged = entries.flatMap(e => e.sentiment ? [e.sentiment] : []);
   if (judged.length < min) return null;
   const parts = (["positive", "mixed", "negative"] as const).map(s => ({ s, n: judged.filter(x => x === s).length })).filter(x => x.n > 0);
@@ -155,7 +154,7 @@ export function WebSplit({entries, min = 3, period}: {entries: {sentiment: keyof
   let left = 100 - floors.reduce((a, b) => a + b, 0);
   raw.map((r, i) => [r - floors[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (left > 0) { floors[i]++; left--; } });
   return <div className="web-split">
-    <div className="lbl">Around the web <span>· {judged.length} comments{period ? ` from the ${period}` : ""}</span></div>
+    <div className="lbl">{label}{noun && <span> · {judged.length} {noun}{period ? ` from the ${period}` : ""}</span>}</div>
     <div className="stack" role="img" aria-label={parts.map((x, i) => `${floors[i]}% ${sentimentLabel[x.s].toLowerCase()}`).join(", ")}>
       {parts.map(x => <i key={x.s} className={`s-${x.s}`} style={{width: `${x.n / judged.length * 100}%`}}/>)}
     </div>
@@ -167,13 +166,13 @@ export function WebSplit({entries, min = 3, period}: {entries: {sentiment: keyof
 export const webReviewsLine = (web: number) => web ? `${web} ${web === 1 ? "review" : "reviews"} from the web` : "";
 
 export function RacketRow({racket: r, brand, average, count, web = 0, positive = null, details}: {racket: Racket; brand?: string | null; average: string | null; count: number; web?: number; positive?: number | null; details: string}) {
-  // Right column: the user rating when there is one, and the web picture (share positive once there are enough judged reviews).
+  // Right column: the star average once there are enough user ratings, and the share positive (user and web reviews) once enough are judged.
   return <article className="racket-row">
     <Thumb racket={r} brand={brand}/>
     <div><h2><a href={productHref(r)}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">
       {average && <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></>}
-      {web > 0 && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive · </>}{webReviewsLine(web)}</span>}
+      {(web > 0 || positive !== null) && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive{web > 0 ? " · " : ""}</>}{webReviewsLine(web)}</span>}
     </div>
   </article>;
 }

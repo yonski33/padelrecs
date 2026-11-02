@@ -42,9 +42,13 @@ export const catalog = cache(async function catalog(connection?:ReturnType<typeo
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
 });
 export type Catalog = Awaited<ReturnType<typeof catalog>>;
+/** The star average shows only from this many user ratings; below it one or two ratings would read as the verdict. */
+export const MIN_RATINGS = 3;
+/** User ratings and judged web reviews together: a user review counts as positive at 4–5 stars, like the rankings
+ *  (lib/top-lists.ts ratingVerdict). The star average stays user-only, and only from MIN_RATINGS ratings. */
 export function score(data: Catalog, id: string) {
  const rs = data.reviews.filter(r => r.racketId === id), web = data.external.filter(e => e.racketId === id);
- const judged = web.filter(e => e.sentiment).length, positive = web.filter(e => e.sentiment === "positive").length;
- return {count: rs.length, average: rs.length ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive};
+ const judged = rs.length + web.filter(e => e.sentiment).length, positive = rs.filter(r => r.rating >= 4).length + web.filter(e => e.sentiment === "positive").length;
+ return {count: rs.length, average: rs.length >= MIN_RATINGS ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive};
 }
 export type Score = ReturnType<typeof score>;
