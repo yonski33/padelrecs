@@ -63,6 +63,10 @@
    "name": "beehiiv"
   },
   {
+   "id": "beenverified",
+   "name": "BeenVerified"
+  },
+  {
    "id": "bigcommerce",
    "name": "BigCommerce"
   },
@@ -215,6 +219,14 @@
    "name": "Ideogram"
   },
   {
+   "id": "instant-checkmate",
+   "name": "Instant Checkmate"
+  },
+  {
+   "id": "intelius",
+   "name": "Intelius"
+  },
+  {
    "id": "intuit",
    "name": "Intuit"
   },
@@ -315,6 +327,10 @@
    "name": "Notion"
   },
   {
+   "id": "numlookup",
+   "name": "NumLookup"
+  },
+  {
    "id": "obsidian",
    "name": "Obsidian"
   },
@@ -329,6 +345,10 @@
   {
    "id": "penpot",
    "name": "Penpot"
+  },
+  {
+   "id": "peoplelooker",
+   "name": "PeopleLooker"
   },
   {
    "id": "perplexity",
@@ -383,6 +403,10 @@
    "name": "SpaceXSI"
   },
   {
+   "id": "spokeo",
+   "name": "Spokeo"
+  },
+  {
    "id": "squarespace",
    "name": "Squarespace"
   },
@@ -415,6 +439,18 @@
    "name": "Doist"
   },
   {
+   "id": "truecaller",
+   "name": "Truecaller"
+  },
+  {
+   "id": "truthfinder",
+   "name": "TruthFinder"
+  },
+  {
+   "id": "us-search",
+   "name": "US Search"
+  },
+  {
    "id": "vercel",
    "name": "Vercel"
   },
@@ -425,6 +461,10 @@
   {
    "id": "webflow",
    "name": "Webflow"
+  },
+  {
+   "id": "whitepages",
+   "name": "Whitepages"
   },
   {
    "id": "windscribe",
@@ -2200,6 +2240,175 @@
    "sources": [
     "https://wordpress.com/",
     "https://wordpress.com/pricing/"
+   ]
+  },
+  {
+   "brand": "beenverified",
+   "name": "BeenVerified",
+   "shape": "Background check",
+   "balance": "Subscription",
+   "surface": "No",
+   "core": "Web, iOS, Android",
+   "weight": null,
+   "website": "https://www.beenverified.com/",
+   "sources": [
+    "https://www.beenverified.com/"
+   ]
+  },
+  {
+   "brand": "spokeo",
+   "name": "Spokeo",
+   "shape": "Background check",
+   "balance": "Subscription",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.spokeo.com/",
+   "sources": [
+    "https://www.spokeo.com/"
+   ]
+  },
+  {
+   "brand": "truthfinder",
+   "name": "TruthFinder",
+   "shape": "Background check",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.truthfinder.com/",
+   "sources": [
+    "https://www.truthfinder.com/"
+   ]
+  },
+  {
+   "brand": "intelius",
+   "name": "Intelius",
+   "shape": "Background check",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.intelius.com/",
+   "sources": [
+    "https://www.intelius.com/"
+   ]
+  },
+  {
+   "brand": "instant-checkmate",
+   "name": "Instant Checkmate",
+   "shape": "Background check",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.instantcheckmate.com/",
+   "sources": [
+    "https://www.instantcheckmate.com/"
+   ]
+  },
+  {
+   "brand": "us-search",
+   "name": "US Search",
+   "shape": "Background check",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.ussearch.com/",
+   "sources": [
+    "https://www.ussearch.com/"
+   ]
+  },
+  {
+   "brand": "peoplelooker",
+   "name": "PeopleLooker",
+   "shape": "Background check",
+   "balance": "Subscription",
+   "surface": null,
+   "core": "Web",
+   "weight": null,
+   "website": "https://www.peoplelooker.com/",
+   "sources": [
+    "https://www.peoplelooker.com/"
+   ]
+  },
+  {
+   "brand": "whitepages",
+   "name": "Whitepages",
+   "shape": "Phone lookup",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web, iOS, Android",
+   "weight": null,
+   "website": "https://www.whitepages.com/",
+   "sources": [
+    "https://www.whitepages.com/"
+   ]
+  },
+  {
+   "brand": "numlookup",
+   "name": "NumLookup",
+   "shape": "Phone lookup",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Web",
+   "weight": null,
+   "website": "https://numlookup.com/",
+   "sources": [
+    "https://numlookup.com/"
+   ]
+  },
+  {
+   "brand": "truecaller",
+   "name": "Truecaller",
+   "shape": "Phone lookup",
+   "balance": "Freemium",
+   "surface": "Yes",
+   "core": "Android, iOS",
+   "weight": null,
+   "website": "https://www.truecaller.com/",
+   "sources": [
+    "https://www.truecaller.com/"
+   ]
+  },
+  {
+   "brand": "spokeo",
+   "name": "Spokeo Reverse Phone Lookup",
+   "shape": "Phone lookup",
+   "balance": "Subscription",
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.spokeo.com/reverse-phone-lookup",
+   "sources": [
+    "https://www.spokeo.com/reverse-phone-lookup"
+   ]
+  },
+  {
+   "brand": "intelius",
+   "name": "Intelius Reverse Phone Lookup",
+   "shape": "Phone lookup",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.intelius.com/reverse-phone-lookup/",
+   "sources": [
+    "https://www.intelius.com/reverse-phone-lookup/"
+   ]
+  },
+  {
+   "brand": "truthfinder",
+   "name": "TruthFinder Reverse Phone Lookup",
+   "shape": "Phone lookup",
+   "balance": null,
+   "surface": null,
+   "core": null,
+   "weight": null,
+   "website": "https://www.truthfinder.com/reverse-phone-lookup/",
+   "sources": [
+    "https://www.truthfinder.com/reverse-phone-lookup/"
    ]
   }
  ]

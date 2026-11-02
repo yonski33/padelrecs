@@ -655,7 +655,7 @@ test("money: products without years at /products, eleven category pages that eac
   }
 });
 
-test("software: tools named without years, thirteen category pages that each pick a drawing, website links instead of Amazon", async () => {
+test("software: tools named without years, fifteen category pages that each pick a drawing, website links instead of Amazon", async () => {
   const n = selectNiche("software");
   assert.equal(n.schema, "softwarerecs");
   assert.equal(n.productPath, "tools");
@@ -667,15 +667,15 @@ test("software: tools named without years, thirteen category pages that each pic
   assert(!/commission|affiliate link/i.test(JSON.stringify(n.copy)), "no affiliate wording until real affiliate links exist");
   assert.deepEqual(n.categories.map(c => c.label), ["Features", "Ease of use", "Reliability", "Speed", "Value"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Pricing", "Free plan", "Platforms", "AI model"]);
-  assert.equal(n.typePages?.length, 13);
+  assert.equal(n.typePages?.length, 15);
   assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
   assert.deepEqual(n.specs[0].options, n.shapeFilter);
   const { shapeOf } = await import("../app/art/software");
   const drawings = n.shapeFilter.map(s => shapeOf(s));
   assert(!drawings.includes("unknown"), "every category has a drawing");
-  assert.equal(new Set(drawings).size, 13, "and no two share one");
+  assert.equal(new Set(drawings).size, 15, "and no two share one");
   for (const list of n.topLists ?? []) {
-    assert.match(list.slug, /software|ai-tools|apps|managers|builders|vpn/, `${list.slug}: niche keyword in the slug`);
+    assert.match(list.slug, /software|ai-tools|apps|managers|builders|vpn|background-check|phone-lookup/, `${list.slug}: niche keyword in the slug`);
     assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
     for (const tag of [...list.trait?.tags ?? [], ...list.trait?.against ?? []]) assert(n.tags.some(t => t.label === tag), `${list.slug}: unknown tag ${tag}`);
   }

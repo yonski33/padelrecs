@@ -1,8 +1,8 @@
 // SoftwareRecs visuals: one simple line drawing per category (a chat bubble, code brackets, a picture with a play button,
 // a page with a sparkle, a notebook, a kanban board, a padlock, a browser window, a pen nib, an envelope, a contact card,
-// a receipt, a shield, a server stack), all in the same 40×64 box as the other niches' product drawings, and the prompt logo.
+// a receipt, a shield, a server stack, a person with a magnifier, a phone), all in the same 40×64 box as the other niches' product drawings, and the prompt logo.
 
-export type Shape = "assistant" | "coding" | "media" | "writing" | "notes" | "projects" | "password" | "website" | "design" | "email" | "crm" | "accounting" | "vpn" | "hosting" | "unknown";
+export type Shape = "assistant" | "coding" | "media" | "writing" | "notes" | "projects" | "password" | "website" | "design" | "email" | "crm" | "accounting" | "vpn" | "hosting" | "people" | "phone" | "unknown";
 
 // The catalog's "Category" field picks the drawing; anything unrecognised is drawn as a plain tile.
 export function shapeOf(category?: string | null): Shape {
@@ -21,6 +21,8 @@ export function shapeOf(category?: string | null): Shape {
   if (s.includes("accounting")) return "accounting";
   if (s.includes("vpn")) return "vpn";
   if (s.includes("hosting")) return "hosting";
+  if (s.includes("background")) return "people";
+  if (s.includes("phone")) return "phone";
   return "unknown";
 }
 
@@ -123,6 +125,20 @@ export function ProductIcon({ shape, className }: { shape?: string | null; brand
         <path d={`M9 ${y + 6}h.01M14 ${y + 6}h.01`} {...line} strokeWidth={2.6}/>
         <path d={`M22 ${y + 6}h9`} {...line} {...faint}/>
       </g>)}
+    </>}
+    {kind === "people" && <>
+      <circle cx="18" cy="24" r="7" {...soft}/>
+      <circle cx="18" cy="24" r="7" {...line}/>
+      <path d="M6 48a12 12 0 0 1 24 0" {...line}/>
+      <circle cx="28" cy="38" r="6" {...line} {...faint}/>
+      <path d="M32.5 42.5L37 47" {...line}/>
+    </>}
+    {kind === "phone" && <>
+      <rect x="9" y="8" width="22" height="48" rx="4" {...soft}/>
+      <rect x="9" y="8" width="22" height="48" rx="4" {...line}/>
+      <path d="M17 14h6" {...line} {...faint}/>
+      <circle cx="20" cy="30" r="4" {...line}/>
+      <path d="M12 49a8 8 0 0 1 16 0" {...line} {...faint}/>
     </>}
     {kind === "unknown" && <rect x="8" y="20" width="24" height="24" rx="4" {...line}/>}
   </svg>;

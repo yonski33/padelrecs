@@ -100,7 +100,7 @@ export const software: Niche = {
   // Columns are shared: shape = category, balance = pricing model, surface = whether there is a free plan, core = platforms,
   // weight = the AI model family the vendor says it runs on. Prices themselves change too often to keep, so they are left out.
   specs: [
-    { column: "shape", label: "Category", max: 100, placeholder: "e.g. Password manager", options: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN"] },
+    { column: "shape", label: "Category", max: 100, placeholder: "e.g. Password manager", options: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN", "Background check", "Phone lookup"] },
     { column: "balance", label: "Pricing", max: 120, placeholder: "e.g. Subscription, Freemium, One-time purchase or Pay as you go", options: ["Free", "Freemium", "Subscription", "One-time purchase", "Pay as you go"] },
     { column: "surface", label: "Free plan", max: 60, placeholder: "Yes or No", options: ["Yes", "No"] },
     { column: "core", label: "Platforms", max: 120, placeholder: "e.g. Web, Windows, Mac, iOS, Android, Linux" },
@@ -108,7 +108,7 @@ export const software: Niche = {
   ],
   // Web hosting moved to HostingRecs (2026-10-30): its old pages 301 there.
   movedAway: movedHostPages,
-  shapeFilter: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN"],
+  shapeFilter: ["AI assistant", "AI coding tool", "AI image & video", "AI writing & notes", "Notes app", "Project management", "Password manager", "Website builder", "Design & video", "Email marketing", "CRM", "Accounting", "VPN", "Background check", "Phone lookup"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
@@ -126,6 +126,8 @@ export const software: Niche = {
     { shape: "CRM", slug: "crm", label: "CRM", seoLabel: "CRM Software", intro: "CRMs and sales tools" },
     { shape: "Accounting", slug: "accounting", label: "Accounting", seoLabel: "Accounting Software", intro: "Accounting, bookkeeping and invoicing software" },
     { shape: "VPN", slug: "vpns", label: "VPNs", seoLabel: "VPNs", intro: "Consumer VPN services" },
+    { shape: "Background check", slug: "background-checks", label: "Background checks", seoLabel: "Background Check Services", intro: "People-search and background check services. Results are not FCRA consumer reports and can't be used for employment, tenant or credit decisions" },
+    { shape: "Phone lookup", slug: "reverse-phone-lookup", label: "Phone lookup", seoLabel: "Reverse Phone Lookup Services", intro: "Reverse phone lookup and caller ID services. Results are not FCRA consumer reports and can't be used for employment, tenant or credit decisions" },
   ],
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
@@ -173,6 +175,10 @@ export const software: Niche = {
       intro: "The accounting and invoicing tools users are most consistently happy with.", filters: [{ column: "shape", include: ["Accounting"] }] },
     { slug: "best-vpn-services", label: "VPNs", title: "Best VPN Services", minReviews: 5,
       intro: "The VPNs users are most consistently happy with.", filters: [{ column: "shape", include: ["VPN"] }] },
+    { slug: "best-background-check-services", label: "Background checks", title: "Best Background Check Services", minReviews: 5,
+      intro: "The people-search and background check services users are most consistently happy with. These are not FCRA consumer reports and can't be used for employment, tenant or credit decisions.", filters: [{ column: "shape", include: ["Background check"] }] },
+    { slug: "best-reverse-phone-lookup", label: "Phone lookup", title: "Best Reverse Phone Lookup Services", minReviews: 5,
+      intro: "The reverse phone lookup services users are most consistently happy with. These are not FCRA consumer reports and can't be used for employment, tenant or credit decisions.", filters: [{ column: "shape", include: ["Phone lookup"] }] },
     { slug: "best-free-software-tools", label: "Best free plans", title: "Software Tools With the Best Free Plans", minReviews: 5,
       intro: "The tools users most often say have a good free plan.", trait: { tags: ["good free plan"], minShare: 0.2, against: ["usage limits"], noun: "the free plan" } },
   ],
