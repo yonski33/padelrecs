@@ -21,6 +21,7 @@ export const sleep: Niche = {
     wordmark: "sleeprecs",
     descriptor: "real reviews of mattresses, mattress toppers, pillows, sheets, weighted blankets, sleep masks, earplugs and bed cooling",
     footer: "kept by sleepers who have returned more mattresses than they care to admit.",
+    analyticsId: "G-34H12YPZM4",
     adminLoginHint: "Use the email and password for your Recs admin account.",
     notice: "Sleepers’ experiences, not medical advice. For ongoing pain or sleep problems, talk to a doctor.",
   },
