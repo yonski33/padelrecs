@@ -4,7 +4,7 @@ import { niche } from "../../../lib/niche";
 import { helpfulRank } from "../../../lib/review-order";
 
 type Sort = "newest" | "helpful";
-export type ListItem = { key: string; kind: "players" | "web"; date: string; helpful: number; score: number; node: ReactNode };
+export type ListItem = { key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; node: ReactNode };
 
 /**
  * Racket-page review list. Sorting switches instantly in the browser; the links stay real
@@ -26,7 +26,9 @@ export default function ReviewList({ href, addHref, addButton, items, initialSor
     window.history.replaceState(window.history.state, "", link(srt));
   }
 
-  const shown = [...items].sort((a, b) => (sort === "helpful" ? helpfulRank(b) - helpfulRank(a) : 0) || b.date.localeCompare(a.date));
+  // Older web reviews (outside the niche's recentMonths window) always come after the recent ones, under a note.
+  const shown = [...items].sort((a, b) => Number(!!a.older) - Number(!!b.older) || (sort === "helpful" ? helpfulRank(b) - helpfulRank(a) : 0) || b.date.localeCompare(a.date));
+  const firstOlder = shown.findIndex(i => i.older);
 
   return <>
     <div className="feed-heading">
@@ -37,7 +39,10 @@ export default function ReviewList({ href, addHref, addButton, items, initialSor
     </div>
     {shown.length > 1 && <p className="sort-links">Sort: {(["newest", "helpful"] as const).map(v =>
       <a key={v} href={link(v)} onClick={e => go(e, v)} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</a>)}</p>}
-    {shown.map(i => <div key={i.key}>{i.node}</div>)}
+    {shown.map((i, n) => <div key={i.key}>
+      {n === firstOlder && <p className="older-note">{`Older than ${niche.recentMonths} months. These may describe an earlier version.`}</p>}
+      {i.node}
+    </div>)}
     {shown.length === 0 && <p className="empty-feed">{`No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
   </>;
 }

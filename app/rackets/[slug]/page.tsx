@@ -49,6 +49,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const s = score(data, r.id);
   const reviews = data.reviews.filter(x => x.racketId === r.id);
   const external = data.external.filter(e => e.racketId === r.id);
+  // Web reviews are dated by their source. Niches with recentMonths (software, hosting, money) change fast, so the web
+  // picture counts only that window; older web reviews stay listed, after the recent ones, marked as older.
+  const webDate = (e: {sourceDate: string | null; createdAt: string}) => e.sourceDate || e.createdAt;
+  const since = new Date(); if (niche.recentMonths !== undefined) since.setUTCMonth(since.getUTCMonth() - niche.recentMonths);
+  const older = (e: {sourceDate: string | null; createdAt: string}) => niche.recentMonths !== undefined && Date.parse(webDate(e)) < since.getTime();
+  const recentWeb = external.filter(e => !older(e));
+  const webPeriod = niche.recentMonths === undefined ? undefined : `last ${niche.recentMonths} months`;
   const sort = query.sort === "helpful" ? "helpful" : "newest";
 
   const cats = categories.map(([label, key]) => {
@@ -76,7 +83,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const items: ListItem[] = [
     ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, date: e.createdAt, helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/>,
+    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   const specs: [string, string | number | null][] = [...(hasYears ? [["Year", r.year] as [string, number]] : []), ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])];
@@ -141,7 +148,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <div className="big">{s.average}<small>/ 5</small></div>
           <Score rating={Number(s.average)} size="lg"/>
           <p><b>{s.count}</b>{` ${niche.people.one} `}{s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
-          <WebSplit entries={external}/>
+          <WebSplit entries={recentWeb} period={webPeriod}/>
         </> : <>
           {external.length ? <>
             <div className="no-score">{external.length} {external.length === 1 ? "review" : "reviews"}</div>
@@ -150,7 +157,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             <div className="no-score">Be the first to review it</div>
             <p>{`${niche.copy.ui.triedIt} Tell others how it went.`}</p>
           </>}
-          <WebSplit entries={external}/>
+          <WebSplit entries={recentWeb} period={webPeriod}/>
         </>}
         {/* Niches with Amazon or website links put that button here; adding a review moves to the Reviews heading. */}
         {amazon

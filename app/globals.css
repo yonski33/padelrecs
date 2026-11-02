@@ -711,6 +711,7 @@ summary { cursor: pointer; font-weight: 600; }
 }
 .sort-links { display: flex; align-items: center; gap: 4px 14px; margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
 .sort-links a { color: var(--ink-2); font-weight: 500; }
+.older-note { margin: 22px 0 4px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink-3); }
 .sort-links a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--lime); text-decoration-thickness: 3px; text-underline-offset: 4px; }
 
 /* Admin: page address field */
