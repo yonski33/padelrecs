@@ -19,9 +19,22 @@ const input=z.object({
  reviewText:z.string().trim().min(20),tags:tagsInput,alias:z.string().trim().max(50).optional(),email:z.union([z.literal(""),z.string().trim().email().max(254)]).optional()
 }).and(racketSelection);
 const noStore={"Cache-Control":"no-store"};
+type Valid=z.infer<typeof input>;
+const reviewRow=(value:Valid,status:"pending"|"rejected")=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,status,createdAt:new Date().toISOString()});
 // Spam is answered exactly like a saved review, so a bot learns nothing from the response; only the server log says why.
 const accepted=()=>Response.json({status:"pending"},{status:201,headers:noStore});
 function dropped(reason:string){console.warn(`Review dropped (${reason})`);return accepted();}
+// A flagged submission that is still a valid review of a listed product is kept as "rejected", so the owner sees it in the
+// admin area and can approve a false positive. New products are never created for it, and a failed save is only logged.
+async function rejected(reason:string,value:Valid){
+ console.warn(`Review rejected (${reason})`);
+ if(value.racketMode==="existing")try{
+  const db=await database();
+  const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
+  if(racket)await db.insert(reviews).values({...reviewRow(value,"rejected"),racketId:racket.id});
+ }catch(error){console.error("Rejected review save failed",error);}
+ return accepted();
+}
 // Per server instance (lib/rate-limit.ts): a person posts a handful of reviews at most.
 const perIpBurst=createLimiter({limit:5,windowMs:10*60_000}),perIpDay=createLimiter({limit:20,windowMs:24*60*60_000});
 const EMAIL_DAILY_LIMIT=3;
@@ -34,21 +47,25 @@ export async function POST(request:Request){
  let body;try{const raw=await request.text();body=JSON.parse(raw);}catch{return Response.json({error:"Invalid review submission."},{status:400});}
  if(!body||typeof body!=="object")return Response.json({error:"Invalid review submission."},{status:400});
  // Honeypot: the "website" field is hidden from people (review-form.tsx), so only a bot fills it.
- if(typeof body.website==="string"&&body.website.trim())return dropped("honeypot");
- const token=checkFormToken(body.formToken);if(token!=="ok")return dropped(`form-token-${token}`);
+ const honeypot=typeof body.website==="string"&&!!body.website.trim();
+ const token=checkFormToken(body.formToken);
+ // Floods are dropped outright: keeping every one would only fill the table.
  const ip=clientIp(request);
  if(!perIpBurst.hit(ip)||!perIpDay.hit(ip))return dropped("ip-rate-limit");
- const parsed=input.safeParse({racketMode:"existing",...body});if(!parsed.success)return Response.json({error:`Check the ${niche.words.one} details (brand, model and year for a new ${niche.words.one}), rating, email, and review text (at least 20 characters).`},{status:400});
- const spam=spamScore(parsed.data);if(spam.spam)return dropped(`content: ${spam.reasons.join(", ")}`);
+ const parsed=input.safeParse({racketMode:"existing",...body});
+ if(!parsed.success)return honeypot||token!=="ok"?dropped(honeypot?"honeypot":`form-token-${token}`):Response.json({error:`Check the ${niche.words.one} details (brand, model and year for a new ${niche.words.one}), rating, email, and review text (at least 20 characters).`},{status:400});
+ if(honeypot)return rejected("honeypot",parsed.data);
+ if(token!=="ok")return rejected(`form-token-${token}`,parsed.data);
+ const spam=spamScore(parsed.data);if(spam.spam)return rejected(`content: ${spam.reasons.join(", ")}`,parsed.data);
  try {
   const db=await database(),value=parsed.data;
   if(value.email){
    // Gmail ignores dots and +tags, so compare normalised inboxes rather than the typed address.
    const since=new Date(Date.now()-24*60*60_000).toISOString(),inbox=normalizeEmail(value.email);
    const recent=await db.select({email:reviews.email}).from(reviews).where(and(isNotNull(reviews.email),gte(reviews.createdAt,since)));
-   if(recent.filter(r=>r.email&&normalizeEmail(r.email)===inbox).length>=EMAIL_DAILY_LIMIT)return dropped("email-rate-limit");
+   if(recent.filter(r=>r.email&&normalizeEmail(r.email)===inbox).length>=EMAIL_DAILY_LIMIT)return rejected("email-rate-limit",value);
   }
-  const review={id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,status:"pending" as const,createdAt:new Date().toISOString()};
+  const review=reviewRow(value,"pending");
   if(value.racketMode==="existing") {
    const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return Response.json({error:`Choose a listed ${niche.words.one} or select New ${niche.words.one}.`},{status:400});
