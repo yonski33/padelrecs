@@ -76,10 +76,10 @@ test("login throttle backs off exponentially after the free attempts and resets 
 });
 
 const post = (body: object, ip = "203.0.113.9") => POST(new Request("http://localhost:3000/api/reviews", {method: "POST", headers: {"content-type": "application/json", "x-real-ip": ip}, body: JSON.stringify(body)}));
-test("bots get the normal success response without reaching the database", async () => {
+test("bots get the normal success response, even when saving the rejected copy fails", async () => {
  const valid = {racketId: "racket-nox", rating: "4", ...real[0]};
  const old = issueFormToken(Date.now() - 60_000);
- // Each of these returns before database() is called; a call would fail here (no DATABASE_URL) with a 500.
+ // Valid flagged reviews are kept as "rejected"; there is no DATABASE_URL here, so that save fails and must stay invisible.
  for (const [why, body, ip] of [
   ["honeypot", {...valid, website: "http://spam.example", formToken: old}, "203.0.113.1"],
   ["no token", valid, "203.0.113.2"],
