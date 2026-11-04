@@ -534,6 +534,18 @@ summary { cursor: pointer; font-weight: 600; }
 }
 
 @media (max-width: 680px) {
+  /* Product page: the verdict sits right under the name, and the shop button stays at the bottom of the screen. */
+  .profile > .profile-art, .profile-info > .titleblock { order: 0; }
+  .profile > .scorecard { order: 1; }
+  .profile-info > :not(.titleblock) { order: 2; }
+  .profile > .scorecard .button.amazon, .profile > .scorecard .button.visit-site { display: none; }
+  main > .buy-bar { display: flex; align-items: center; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -4px 16px rgba(0,0,0,.06); }
+  .buy-bar .buy-name { flex: 1; min-width: 0; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .buy-bar .button { flex: none; width: auto; margin: 0; }
+  main:has(.buy-bar) { padding-bottom: 72px; }
+  .says-row { flex-direction: column; gap: 4px; }
+}
+@media (max-width: 680px) {
   :root { --gutter: 16px; }
   h1 { font-size: 26px; }
 
@@ -656,9 +668,21 @@ summary { cursor: pointer; font-weight: 600; }
 .tag.neutral { background: var(--tint); color: var(--ink-2); }
 .tag .c { opacity: .65; margin-left: 4px; font-variant-numeric: tabular-nums; }
 .says { margin-top: 16px; }
-.says h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
-.says h3 span { font-weight: 400; color: var(--ink-3); }
+.says h2 { margin: 0 0 8px; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--ink-2); }
 .says .tags { margin-top: 0; }
+.says-row { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+.says-label { flex: none; width: 104px; font-size: 12.5px; color: var(--ink-3); }
+a.tag { text-decoration: none; cursor: pointer; }
+a.tag:hover { filter: brightness(.96); }
+a.tag.on { outline: 2px solid currentColor; outline-offset: 1px; }
+.tag-filter { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
+.tag-filter a { margin-left: 6px; font-weight: 600; }
+.show-more { display: block; width: 100%; margin: 20px 0 0; text-align: center; }
+.quote-toggle { margin-top: 6px; font-size: 13px; }
+.quote-toggle summary { cursor: pointer; color: var(--ink-3); width: fit-content; }
+.quote-toggle summary:hover { color: var(--ink-2); }
+.affiliate-note.foot { margin-top: 32px; }
+.buy-bar { display: none; }
 
 .chip-picker { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip-picker button, .chip-picker label span {

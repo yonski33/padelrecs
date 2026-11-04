@@ -9,8 +9,9 @@ import { database } from "../../../db/data";
 import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
-import { TagList } from "../../tags";
-import ReviewList, { type ListItem } from "./review-list";
+import Link from "next/link";
+import ReviewList, { PAGE, reviewsHref, type ListItem } from "./review-list";
+import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
@@ -24,15 +25,39 @@ const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)
 // One catalog read per request, shared by the page and its metadata.
 const catalog = cache(() => loadCatalog());
 
+type Data = Awaited<ReturnType<typeof loadCatalog>>;
+/** Counts behind the page's verdict, title and description: every review, the sentiment split, and tags by how often
+ *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. */
+function summary(data: Data, id: string) {
+  const reviews = data.reviews.filter(x => x.racketId === id), external = data.external.filter(e => e.racketId === id);
+  const tagCounts = new Map<string, number>();
+  for (const t of [...reviews, ...external].flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  const byCount = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
+  const judged = [...reviews.map(x => ratingVerdict(x.rating)), ...external.map(e => e.sentiment)].filter(Boolean);
+  const positive = judged.length >= 3 ? Math.round(judged.filter(v => v === "positive").length / judged.length * 100) : null;
+  return { total: reviews.length + external.length, tagCounts, positive,
+    loved: byCount.filter(t => tagTone(t) === "pos"), complaints: byCount.filter(t => tagTone(t) === "neg"), other: byCount.filter(t => tagTone(t) === "neutral") };
+}
+
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const [{slug}, data] = await Promise.all([params, catalog()]);
   const r = data.rackets.find(x => x.slug === slug);
   if (!r) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
-  const { title, description } = niche.seo.product(r.name);
+  const name = displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name);
+  const base = niche.seo.product(name), sum = summary(data, r.id);
+  // With enough reviews, the search snippet says what the page knows: how many, how positive, what people praise and
+  // complain about. Below that, the niche's generic wording.
+  const rich = sum.total >= 5 && sum.positive !== null;
+  const title = rich ? base.title.replace(" Reviews |", ` Reviews ${new Date().getUTCFullYear()}: ${sum.total.toLocaleString("en-US")} Real Reviews |`) : base.title;
+  const description = rich
+    ? [`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
+       sum.loved.length ? `Loved for: ${sum.loved.slice(0, 3).join(", ")}.` : "",
+       sum.complaints.length ? `Most common complaint: ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ")
+    : base.description;
   return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
 }
 
-export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]}>}) {
+export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]; tag?: string | string[]; show?: string | string[]}>}) {
   const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
   const r = data.rackets.find(r => r.slug === slug);
   if (!r) {
@@ -59,7 +84,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const recentWeb = external.filter(e => !older(e));
   // The sentiment bar counts user reviews too, by their stars (4–5 positive, 3 mixed, 1–2 negative), like the rankings.
   const verdicts = [...reviews.filter(x => !older({ sourceDate: null, createdAt: x.createdAt })).map(x => ({ sentiment: ratingVerdict(x.rating) })), ...recentWeb];
-  const sort = query.sort === "helpful" ? "helpful" : "newest";
+  // "Most helpful" (our helpfulness score, plus votes) is the default; "Newest" on request.
+  const sort = query.sort === "newest" ? "newest" : "helpful";
+  const sum = summary(data, r.id);
+  const tag = typeof query.tag === "string" && sum.tagCounts.has(query.tag) ? query.tag : undefined;
+  const show = Math.min(Math.max(PAGE, Math.ceil((Number(query.show) || PAGE) / PAGE) * PAGE), 2000);
 
   const cats = categories.map(([label, key]) => {
     const vals = reviews.flatMap(x => x[key] == null ? [] : [x[key]!]);
@@ -82,33 +111,34 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const platforms = [...external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
 
   const terms = nicheTerms(niche);
-  // Every review is rendered once on the server; sorting happens instantly in ReviewList.
+  // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, node: <Review review={x} data={data} showRacket={false}/>,
+    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, node: () => <Review review={x} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, node: <External entry={e} data={data} showRacket={false}/>,
+    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, node: () => <External entry={e} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
-  const specs: [string, string | number | null][] = [...(hasYears ? [["Year", r.year] as [string, number]] : []), ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])];
+  // Specs we don't know yet are left out rather than shown as "—".
+  const specs = ([...(hasYears ? [["Year", r.year] as [string, number]] : []), ...niche.specs.map(spec => [spec.label, r[spec.column]] as [string, string | null])] as [string, string | number | null][]).filter(([, v]) => v);
   const addHref = `/add-review?racket=${r.id}`;
-  const tagged = [...reviews, ...external].filter(x => x.tags.length);
-  const tagCounts = new Map<string, number>();
-  for (const t of tagged.flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
   const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
   const url = `${base}${productHref(r)}`;
   const typePage = typePageFor(r.shape);
-  // Structured data for Google: product + player ratings (web quotes never count), and breadcrumbs.
+  // Structured data for Google: the product on every page (name, brand, category), its user ratings once there are
+  // MIN_RATINGS of them (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
-    ...(s.average ? [{
-      "@type": "Product", name: r.name, url, image: `${url}/opengraph-image`, category: niche.seo.productCategory,
-      description: r.description || `${niche.people.One} reviews and ratings of the ${r.name}.`,
+    {
+      "@type": "Product", name: displayName(r.name, brand?.name), url, image: `${url}/opengraph-image`, category: typePage?.label ?? niche.seo.productCategory,
+      description: r.description || `${niche.people.One} reviews and ratings of the ${displayName(r.name, brand?.name)}.`,
       ...(brand ? { brand: { "@type": "Brand", name: brand.name } } : {}),
+      ...(s.average ? {
       aggregateRating: { "@type": "AggregateRating", ratingValue: s.average, ratingCount: s.count, reviewCount: s.count, bestRating: 5, worstRating: 1 },
       review: reviews.slice(0, 10).map(x => ({
         "@type": "Review", author: { "@type": "Person", name: x.alias || `Anonymous ${niche.people.one}` }, datePublished: x.createdAt.slice(0, 10), reviewBody: x.reviewText,
         reviewRating: { "@type": "Rating", ratingValue: x.rating, bestRating: 5, worstRating: 1 },
       })),
-    }] : []),
+      } : {}),
+    },
     { "@type": "BreadcrumbList", itemListElement: [
       ...[
         { name: catalogLabel, item: `${base}${catalogPath}` },
@@ -118,10 +148,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       ].map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })),
     ] },
   ] };
-  const topTags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8).map(([t]) => t);
+  // What reviewers praise and complain about, most mentioned first; each tag filters the reviews below.
+  const tagRows = [["Loved for", sum.loved.slice(0, 6)], ["Complaints", sum.complaints.slice(0, 4)], ["Also mentioned", sum.other.slice(0, 3)]] as const;
+  const tagLink = (t: string) => <Link key={t} className={`tag ${tagTone(t)}${t === tag ? " on" : ""}`} href={`${reviewsHref(productHref(r), { sort, tag: t === tag ? undefined : t })}#reviews`}>{t}<span className="c">{sum.tagCounts.get(t)}</span></Link>;
+  const affiliate = !!(amazon || site?.affiliate);
 
   return <main>
-    {(amazon || site?.affiliate) && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
@@ -139,9 +171,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
         {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}
-        {tagged.length >= 2 && <div className="says">
-          <h3>{`What ${niche.people.many} keep saying `}<span>· from {tagged.length} reviews</span></h3>
-          <TagList tags={topTags} counts={tagCounts}/>
+        {sum.tagCounts.size > 0 && <div className="says">
+          <h2>{`What ${niche.people.many} keep saying`}</h2>
+          {tagRows.filter(([, ts]) => ts.length).map(([label, ts]) => <div key={label} className="says-row"><span className="says-label">{label}</span><div className="tags">{ts.map(tagLink)}</div></div>)}
         </div>}
       </div>
 
@@ -200,7 +232,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} initialSort={sort}/>
+        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}/>
       </div>
 
       <aside className="database-sidebar">
@@ -224,5 +256,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </section>
       </aside>
     </div>
+    {affiliate && <p className="affiliate-note foot">Some links are affiliate links: we may earn a small commission, at no cost to you.</p>}
+    {/* Phones: the shop button stays in reach at the bottom of the screen. */}
+    {shopButton && <div className="buy-bar">
+      <span className="buy-name">{displayName(r.name, brand?.name)}</span>
+      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
+    </div>}
   </main>;
 }
