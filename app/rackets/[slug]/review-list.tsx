@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { niche } from "../../../lib/niche";
 import { helpfulRank } from "../../../lib/review-order";
+import { tagTone } from "../../../lib/tags";
 
 export type Sort = "newest" | "helpful";
 export type ListItem = { key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; tags: string[]; node: () => ReactNode };
@@ -23,7 +24,7 @@ export function reviewsHref(href: string, { sort, tag, show }: { sort: Sort; tag
  * used to send all of them). Sort, tag filter and "Show more" are real links, so they work without JavaScript and keep
  * the scroll position.
  */
-export default function ReviewList({ href, addHref, addButton, items, sort, tag, show }: { href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number }) {
+export default function ReviewList({ href, addHref, addButton, items, sort, tag, show, filterTags = [] }: { href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; filterTags?: [string, number][] }) {
   const matching = tag ? items.filter(i => i.tags.includes(tag)) : items;
   // Older web reviews (outside the niche's recentMonths window) always come after the recent ones, under a note.
   const ordered = [...matching].sort((a, b) => Number(!!a.older) - Number(!!b.older) || (sort === "helpful" ? helpfulRank(b) - helpfulRank(a) : 0) || b.date.localeCompare(a.date));
@@ -38,7 +39,12 @@ export default function ReviewList({ href, addHref, addButton, items, sort, tag,
         {addButton}
       </div>
     </div>
-    {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span> <Link href={`${reviewsHref(href, { sort })}#reviews`} scroll={false}>Show all</Link></p>}
+    {filterTags.length > 1 && <div className="filter-row" role="group" aria-label="Filter reviews by topic">
+      <span className="filter-label">Filter:</span>
+      <Link className={`chip${tag ? "" : " on"}`} href={reviewsHref(href, { sort })} scroll={false} aria-current={tag ? undefined : "true"}>All</Link>
+      {filterTags.map(([t, n]) => <Link key={t} className={`chip tone-${tagTone(t)}${t === tag ? " on" : ""}`} href={reviewsHref(href, { sort, tag: t === tag ? undefined : t })} scroll={false} aria-current={t === tag ? "true" : undefined}>{t}<span className="c">{n}</span></Link>)}
+    </div>}
+    {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span></p>}
     {matching.length > 1 && <p className="sort-links">Sort: {(["helpful", "newest"] as const).map(v =>
       <Link key={v} href={reviewsHref(href, { sort: v, tag })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</p>}
     {shown.map((i, n) => <div key={i.key}>
