@@ -675,8 +675,8 @@ summary { cursor: pointer; font-weight: 600; }
 a.tag { text-decoration: none; cursor: pointer; }
 a.tag:hover { filter: brightness(.95); }
 a.tag.on { box-shadow: 0 0 0 2px currentColor; }
-.review-list > .says { margin: 28px 0 18px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
-.says-hint { margin-left: 8px; font-weight: 400; color: var(--ink-3); }
+
+
 .tag-filter { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
 .tag-filter a { margin-left: 6px; font-weight: 600; }
 .show-more { display: block; width: 100%; margin: 20px 0 0; text-align: center; }

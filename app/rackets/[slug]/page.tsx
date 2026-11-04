@@ -9,8 +9,7 @@ import { database } from "../../../db/data";
 import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
-import Link from "next/link";
-import ReviewList, { PAGE, reviewsHref, type ListItem } from "./review-list";
+import ReviewList, { PAGE, type ListItem } from "./review-list";
 import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
@@ -148,12 +147,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       ].map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })),
     ] },
   ] };
-  // What reviewers praise and complain about, most mentioned first, right above the reviews: each tag filters them.
+  // What reviewers praise and complain about, most mentioned first: a summary under the specs, above the verdict.
   const tagRows = [["Loved for", sum.loved.slice(0, 6)], ["Complaints", sum.complaints.slice(0, 4)], ["Also mentioned", sum.other.slice(0, 3)]] as const;
-  const tagLink = (t: string) => <Link key={t} className={`tag ${tagTone(t)}${t === tag ? " on" : ""}`} href={reviewsHref(productHref(r), { sort, tag: t === tag ? undefined : t })} scroll={false} aria-current={t === tag ? "true" : undefined}>{t}<span className="c">{sum.tagCounts.get(t)}</span></Link>;
+  const tagChip = (t: string) => <span key={t} className={`tag ${tagTone(t)}`}>{t}<span className="c">{sum.tagCounts.get(t)}</span></span>;
   const says = sum.tagCounts.size > 0 && <div className="says">
-    <h2>{`What ${niche.people.many} keep saying`}<span className="says-hint">Tap a topic to see those reviews</span></h2>
-    {tagRows.filter(([, ts]) => ts.length).map(([label, ts]) => <div key={label} className="says-row"><span className="says-label">{label}</span><div className="tags">{ts.map(tagLink)}</div></div>)}
+    <h2>{`What ${niche.people.many} keep saying`}</h2>
+    {tagRows.filter(([, ts]) => ts.length).map(([label, ts]) => <div key={label} className="says-row"><span className="says-label">{label}</span><div className="tags">{ts.map(tagChip)}</div></div>)}
   </div>;
   const affiliate = !!(amazon || site?.affiliate);
 
@@ -175,6 +174,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
         {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}
+        {says}
       </div>
 
       <aside className="scorecard">
@@ -232,7 +232,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show} intro={says}/>
+        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}/>
       </div>
 
       <aside className="database-sidebar">
