@@ -180,7 +180,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   </div>;
   const affiliate = !!(amazon || site?.affiliate);
   // Shown right under every affiliate button (FTC: next to the link; Amazon Associates wording on Amazon niches).
-  const affLine = amazon ? "As an Amazon Associate we earn from qualifying purchases." : "Affiliate link: we may earn a commission, at no cost to you.";
+  const affLine = amazon ? "As an Amazon Associate we earn from qualifying purchases, at no cost to you." : "Affiliate link: we may earn a commission, at no cost to you.";
 
 
   return <main>
