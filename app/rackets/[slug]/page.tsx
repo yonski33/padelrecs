@@ -179,11 +179,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     {tagRows.filter(([, ts]) => ts.length).map(([label, ts]) => <div key={label} className="says-row"><span className="says-label">{label}</span><div className="tags">{ts.map(tagChip)}</div></div>)}
   </div>;
   const affiliate = !!(amazon || site?.affiliate);
-  // Shown right under every affiliate button (FTC: next to the link; Amazon Associates wording on Amazon niches).
-  const affLine = amazon ? "As an Amazon Associate we earn from qualifying purchases, at no cost to you." : "Affiliate link: we may earn a commission, at no cost to you.";
 
 
   return <main>
+    {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
+    {affiliate && <p className="affiliate-slim">{amazon ? "As an Amazon Associate we earn from qualifying purchases, at no cost to you." : "Some links are affiliate links: we may earn a commission, at no cost to you."}</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
@@ -222,9 +222,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </>}
         {/* Niches with Amazon or website links put that button here; adding a review moves to the Reviews heading. */}
         {amazon
-          ? <div className="shop"><a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a><small className="aff-line">{affLine}</small></div>
+          ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
           : site
-          ? <div className="shop"><a className="button visit-site" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>{site.affiliate && <small className="aff-line">{affLine}</small>}</div>
+          ? <a className="button visit-site" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
           : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
         <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
       </aside>
@@ -291,7 +291,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     {affiliate && <p className="affiliate-note foot">Some links are affiliate links: we may earn a small commission, at no cost to you.</p>}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
     {shopButton && <div className="buy-bar">
-      <span className="buy-text"><span className="buy-name">{displayName(r.name, brand?.name)}</span>{affiliate && <small className="aff-line">Affiliate link: we may earn a commission</small>}</span>
+      <span className="buy-name">{displayName(r.name, brand?.name)}</span>
       <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
     </div>}
   </main>;
