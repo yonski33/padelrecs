@@ -183,7 +183,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
   return <main>
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
-    {affiliate && <p className="affiliate-slim">Some links are affiliate links: we may earn a small commission, at no cost to you.</p>}
+    {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
       <div className="profile-art">
