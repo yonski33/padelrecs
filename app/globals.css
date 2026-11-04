@@ -544,7 +544,6 @@ summary { cursor: pointer; font-weight: 600; }
   .buy-bar .button { flex: none; width: auto; margin: 0; }
   main:has(.buy-bar) { padding-bottom: 72px; }
   .says-row { flex-direction: column; gap: 4px; }
-  .filter-row { flex-wrap: nowrap; overflow-x: auto; margin-left: -16px; margin-right: -16px; padding: 0 16px 4px; scrollbar-width: none; }
 }
 @media (max-width: 680px) {
   :root { --gutter: 16px; }
@@ -673,14 +672,11 @@ summary { cursor: pointer; font-weight: 600; }
 .says .tags { margin-top: 0; }
 .says-row { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
 .says-label { flex: none; width: 104px; font-size: 12.5px; color: var(--ink-3); }
-.filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 12px 0 0; }
-.filter-label { font-size: 13px; color: var(--ink-3); margin-right: 2px; }
-.filter-row .chip { font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); text-decoration: none; white-space: nowrap; }
-.filter-row .chip .c { opacity: .6; margin-left: 4px; font-variant-numeric: tabular-nums; }
-.filter-row .chip.tone-pos { border-color: #c9d8ec; }
-.filter-row .chip.tone-neg { border-color: #efd2b6; }
-.filter-row .chip:hover { background: var(--tint); }
-.filter-row .chip.on { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+a.tag { text-decoration: none; cursor: pointer; }
+a.tag:hover { filter: brightness(.95); }
+a.tag.on { box-shadow: 0 0 0 2px currentColor; }
+.review-list > .says { margin: 28px 0 18px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.says-hint { margin-left: 8px; font-weight: 400; color: var(--ink-3); }
 .tag-filter { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
 .tag-filter a { margin-left: 6px; font-weight: 600; }
 .show-more { display: block; width: 100%; margin: 20px 0 0; text-align: center; }
