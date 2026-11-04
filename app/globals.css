@@ -703,7 +703,6 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .quote-toggle { margin-top: 6px; font-size: 13px; }
 .quote-toggle summary { cursor: pointer; color: var(--ink-3); width: fit-content; }
 .quote-toggle summary:hover { color: var(--ink-2); }
-.affiliate-note.foot { margin-top: 32px; }
 .buy-bar { display: none; }
 
 .chip-picker { display: flex; flex-wrap: wrap; gap: 6px; }

@@ -288,7 +288,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </section>
       </aside>
     </div>
-    {affiliate && <p className="affiliate-note foot">Some links are affiliate links: we may earn a small commission, at no cost to you.</p>}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
     {shopButton && <div className="buy-bar">
       <span className="buy-name">{displayName(r.name, brand?.name)}</span>
