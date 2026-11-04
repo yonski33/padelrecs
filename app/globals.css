@@ -677,6 +677,15 @@ a.tag:hover { filter: brightness(.95); }
 a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 
 
+.placings { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 10px 0 0; }
+.placing { display: inline-flex; align-items: baseline; gap: 4px; padding: 3px 10px; border-radius: 999px; background: var(--green-wash); color: var(--green-ink); font-size: 13px; text-decoration: none; }
+.placing b { font-weight: 700; }
+.placing:hover { background: var(--tint); }
+.faq { margin: 40px 0 0; }
+.faq h2 { margin: 0 0 8px; font-size: 22px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 12px 0; }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 15px; }
+.faq details p { margin: 8px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); max-width: 70ch; }
 .tag-filter { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
 .tag-filter a { margin-left: 6px; font-weight: 600; }
 .quote-toggle { margin-top: 6px; font-size: 13px; }

@@ -14,7 +14,8 @@ import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
-import { ratingVerdict } from "../../../lib/top-lists";
+import { ratingVerdict, listYear } from "../../../lib/top-lists";
+import { rankedLists, listHref } from "../../rankings/lists";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -123,6 +124,28 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
   const url = `${base}${productHref(r)}`;
   const typePage = typePageFor(r.shape);
+  // Where it ranks: every list it's on, best placing first (shown under the name, and in the FAQ).
+  const placings = (await rankedLists()).lists.flatMap(l => {
+    const e = l.entries.find(x => x.product.id === r.id);
+    return e ? [{ rank: e.rank, title: `${l.list.title} ${listYear(l.list)}`, href: listHref(l.list.slug) }] : [];
+  }).sort((a, b) => a.rank - b.rank);
+
+  // Common questions, answered only from the counts and summaries on this page. Shown at the foot of the reviews and
+  // given to Google as FAQPage data.
+  const name = displayName(r.name, brand?.name);
+  const judged = verdicts.filter(v => v.sentiment).length;
+  const share = (k: "positive" | "mixed" | "negative") => judged ? Math.round(verdicts.filter(v => v.sentiment === k).length / judged * 100) : 0;
+  const mention = (t: string) => `${t} (${sum.tagCounts.get(t)} ${sum.tagCounts.get(t) === 1 ? "review" : "reviews"})`;
+  const example = (t: string, want: "positive" | "negative") => external
+    .filter(e => e.summary && e.tags.includes(t) && e.sentiment === want)
+    .sort((a, b) => (b.helpful ?? 0) - (a.helpful ?? 0) || Math.abs(a.summary!.length - 110) - Math.abs(b.summary!.length - 110))[0]?.summary ?? null;
+  const list = (ts: readonly string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
+  const faq: { q: string; a: string }[] = [];
+  if (judged >= 5) faq.push({ q: `Is ${name} worth it?`, a: [`Of the ${judged.toLocaleString("en-US")} reviews with a clear verdict, ${share("positive")}% are positive, ${share("mixed")}% mixed and ${share("negative")}% negative.`,
+    sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
+  if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
+  if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
+  if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Structured data for Google: the product on every page (name, brand, category), its user ratings once there are
   // MIN_RATINGS of them (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
@@ -138,6 +161,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       })),
       } : {}),
     },
+    ...(faq.length >= 2 ? [{ "@type": "FAQPage", mainEntity: faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
       ...[
         { name: catalogLabel, item: `${base}${catalogPath}` },
@@ -156,6 +180,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   </div>;
   const affiliate = !!(amazon || site?.affiliate);
 
+
   return <main>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
@@ -168,6 +193,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <div className="titleblock">
           <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
           <h1>{displayName(r.name, brand?.name)}</h1>
+          {placings.length > 0 && <p className="placings">{placings.slice(0, 2).map(p => <a key={p.href} href={p.href} className="placing"><b>#{p.rank}</b> in {p.title}</a>)}</p>}
           {r.description && <p className="description">{r.description}</p>}
         </div>
         <dl className="spec-strip">
@@ -233,6 +259,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div>}
 
         <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}/>
+        {faq.length >= 2 && <section className="faq" id="faq">
+          <h2>{`Common questions about ${name}`}</h2>
+          {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+        </section>}
       </div>
 
       <aside className="database-sidebar">
