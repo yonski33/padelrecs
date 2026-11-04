@@ -47,7 +47,7 @@ export default function ReviewList({ href, addHref, addButton, items, sort, tag,
       {n === firstOlder && <p className="older-note">{`Older than ${niche.recentMonths} months. These may describe an earlier version.`}</p>}
       {i.node()}
     </div>)}
-    {left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, show: show + PAGE })} scroll={false}>{`Show more reviews (${left} left)`}</Link></div>}
+    {left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, show: show + PAGE })} scroll={false}>Show more reviews</Link></div>}
     {items.length === 0 && <p className="empty-feed">{`No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
   </section>;
 }

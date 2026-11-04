@@ -109,6 +109,15 @@ function SourceQuote({entry: e, bare = false}: {entry: WebReview; bare?: boolean
   </figure>;
 }
 
+/** Summaries are written about "the reviewer"; on a review card that's implied, so the lead word goes:
+ *  "Reviewer says Mooncat lasts" → "Mooncat lasts", "Reviewer loves" → "Loves". "Reviewer with long nails…" keeps it. */
+export function plainSummary(text: string) {
+  const said = text.match(/^(?:The )?[Rr]eviewer (?:says|said|notes|reports|writes|thinks|feels)(?: that)? (\S)/);
+  if (said) return said[1].toUpperCase() + text.slice(said[0].length);
+  const verb = text.match(/^(?:The )?[Rr]eviewer (?!with\b|who\b|whose\b|and\b|on\b|in\b|from\b)([a-z])/);
+  return verb ? verb[1].toUpperCase() + text.slice(verb[0].length) : text;
+}
+
 export function External({entry: e, data, showRacket = true, showCategory = true}: {entry: WebReview; data: Catalog; showRacket?: boolean; showCategory?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
   const source = <><SourceIcon platform={e.sourcePlatform}/><b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}</>;
@@ -118,7 +127,7 @@ export function External({entry: e, data, showRacket = true, showCategory = true
     <div className="quote" style={showRacket ? undefined : {marginTop: 0}}>
       {e.summary ? <>
         {/* Our summary of the source's experience (written in the third person), then the source's exact words. */}
-        <p className="note-body summary">{e.summary}</p>
+        <p className="note-body summary">{plainSummary(e.summary)}</p>
         {/* The summary is what readers scan; the source's exact words are one click away (and still in the page). */}
         {e.excerpt && <details className="quote-toggle"><summary>Show quote</summary><SourceQuote entry={e}/></details>}
       </> : <SourceQuote entry={e} bare/>}
