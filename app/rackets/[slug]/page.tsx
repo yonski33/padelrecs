@@ -108,6 +108,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const siblings = data.rackets.filter(x => x.brandId === r.brandId && x.id !== r.id)
     .sort((a, b) => Number(racketParts(b, data).model.toLowerCase().startsWith(firstWord)) - Number(racketParts(a, data).model.toLowerCase().startsWith(firstWord)) || b.year - a.year)
     .slice(0, 5);
+  // Alternatives: the most-reviewed other products of the same type, with how positive their reviews are, so a visitor
+  // weighing this one sees what else people talk about. Only products with a few judged reviews.
+  const similar = data.listed.filter(x => x.id !== r.id && x.shape === r.shape)
+    .map(x => ({ x, sc: score(data, x.id) })).filter(({ sc }) => sc.judged >= 5)
+    .sort((a, b) => (b.sc.count + b.sc.web) - (a.sc.count + a.sc.web)).slice(0, 4);
   const platforms = [...external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
 
   const terms = nicheTerms(niche);
@@ -270,6 +275,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </div>
 
       <aside className="database-sidebar">
+        {similar.length > 0 && <section>
+          <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
+          <ul className="mini">{similar.map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a href={productHref(x)}>
+            <ProductIcon shape={x.shape} brand={b}/><span className="nm">{displayName(x.name, b)}<span className="mt">{`${Math.round(sc.positive / sc.judged * 100)}% positive · ${sc.count + sc.web} reviews`}</span></span>
+          </a></li>; })}</ul>
+        </section>}
+
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
           <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>

@@ -296,10 +296,10 @@ a.cat-pill:hover { background: var(--lime-wash); border-color: var(--lime-line);
 
 /* ---------- Racket profile ---------- */
 
-.profile { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 32px; align-items: start; padding: 28px 0; }
-.profile-art { display: grid; place-items: center; height: 188px; border-radius: 16px; background: var(--green); color: var(--lime); position: relative; overflow: hidden; }
+.profile { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 28px; align-items: start; padding: 28px 0; }
+.profile-art { display: grid; place-items: center; height: 140px; border-radius: 16px; background: var(--green); color: var(--lime); position: relative; overflow: hidden; }
 .profile-art::before { content: ""; position: absolute; left: 0; right: 0; top: 62%; height: 2px; background: rgba(255,255,255,.14); }
-.profile-art svg { width: 70px; height: 112px; position: relative; transform: rotate(-8deg); }
+.profile-art svg { width: 52px; height: 84px; position: relative; transform: rotate(-8deg); }
 .profile-art small { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--on-green-muted); }
 .crumbs { font-size: 13px; color: var(--ink-3); margin-bottom: 10px; }
 .crumbs a { color: var(--ink-2); }
@@ -527,8 +527,8 @@ summary { cursor: pointer; font-weight: 600; }
   .database-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
   .database-sidebar > section + section { margin-top: 0; }
   .strip ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .profile { grid-template-columns: 120px minmax(0, 1fr); }
-  .profile-art { height: 160px; }
+  .profile { grid-template-columns: 104px minmax(0, 1fr); }
+  .profile-art { height: 128px; }
   .scorecard { padding: 20px; }
   .review-page { grid-template-columns: 1fr; gap: 0; }
   .tips { position: static; margin-top: 10px; }
