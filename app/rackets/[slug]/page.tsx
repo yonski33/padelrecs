@@ -49,7 +49,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   // complain about. Below that, the niche's generic wording.
   const rich = sum.total >= 5 && sum.positive !== null;
   const title = rich ? base.title.replace(" Reviews |", ` Reviews ${new Date().getUTCFullYear()}: ${sum.total.toLocaleString("en-US")} Real Reviews |`) : base.title;
-  const description = rich
+  const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
     ? [`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
        sum.loved.length ? `Loved for: ${sum.loved.slice(0, 3).join(", ")}.` : "",
        sum.complaints.length ? `Most common complaint: ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ")
@@ -198,6 +198,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {placings.length > 0 && <p className="placings">{placings.slice(0, 2).map(p => <a key={p.href} href={p.href} className="placing"><b>#{p.rank}</b> in {p.title}</a>)}</p>}
           {r.description && <p className="description">{r.description}</p>}
         </div>
+        {/* "In short": a 2–3 sentence summary written from the product's reviews (review_summary), checked against its tag counts. */}
+        {r.reviewSummary && <div className="tldr"><input type="checkbox" id="tldr-more" className="tldr-toggle"/><p><span className="tldr-label">In short</span>{r.reviewSummary}</p><label htmlFor="tldr-more" className="tldr-more">more</label></div>}
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
