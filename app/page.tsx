@@ -99,13 +99,13 @@ export default async function Home({ searchParams }: {
     </section>}
     {picks.length > 0 && <section className="picks" aria-label="Top picks">
       <h2>Top picks</h2>
-      {/* The rankings page's row style, two columns: the list and its #1, so it reads at a glance. */}
+      {/* The rankings page's row style, two columns. No product names (owner choice): the ranking is what the click shows. */}
       <div className="picks-grid">{picks.map(({ list, entries, reviews }) => { const lead = entries[0], b = brandName(lead.product.brandId);
         return <a key={list.slug} className="top-card" href={listHref(list.slug)}>
           <span className="thumb" aria-hidden="true"><ProductIcon shape={lead.product.shape} brand={b}/></span>
           <span className="top-card-text">
             <span className="pick-title">{`${list.title} ${listYear(list)}`}</span>
-            <span className="top-card-meta">{`#1 ${displayName(lead.product.name, b)} · ${reviews.toLocaleString("en-US")} reviews`}</span>
+            <span className="top-card-meta">{`Based on ${reviews.toLocaleString("en-US")} reviews · ${entries.length} ranked`}</span>
           </span>
         </a>; })}</div>
     </section>}
