@@ -229,6 +229,16 @@ a.cat-pill:hover { background: var(--lime-wash); border-color: var(--lime-line);
 
 /* ---------- Popular strip ---------- */
 
+.intro { margin: 8px 0 22px; }
+.intro h1 { margin: 0; font-size: 30px; letter-spacing: -0.02em; line-height: 1.15; }
+.intro p { margin: 8px 0 0; font-size: 15px; color: var(--ink-2); max-width: 62ch; }
+.picks { margin: 0 0 28px; }
+.picks h2 { margin: 0 0 10px; font-size: 18px; }
+.picks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.picks .top-card { padding: 12px 14px; gap: 12px; }
+.picks .thumb { width: 40px; height: 40px; }
+.pick-title { display: block; font-weight: 700; font-size: 15px; line-height: 1.3; }
+.picks .top-card-meta { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ink-3); }
 .strip { margin: 26px 0 4px; padding: 16px 18px 18px; background: var(--green); color: var(--on-green); border-radius: 14px; }
 .strip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
 .strip h2 { color: #fff; font-size: 17px; }
@@ -534,6 +544,10 @@ summary { cursor: pointer; font-weight: 600; }
   .tips { position: static; margin-top: 10px; }
 }
 
+@media (max-width: 680px) {
+  .intro h1 { font-size: 24px; }
+  .picks-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 680px) {
   .profile > .profile-info > .tldr { order: 0; max-width: none; margin-top: 0; }
   .tldr p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }

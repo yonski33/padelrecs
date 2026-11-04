@@ -1,7 +1,7 @@
 import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
-import { niche, catalogPath, productHref, categoryPill } from "../lib/niche";
+import { niche, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
 import { displayName } from "../lib/brand-name";
 import type { ProfileField } from "../lib/niche/types";
@@ -196,10 +196,10 @@ export function activity(data: Catalog, sinceMs: number) {
 }
 
 /** `data` is what the home feed shows (recent reviews); `all` is the whole catalogue, for the running totals. */
+const brandsPath = "/brands";
 export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog; all?: Catalog; minYear?: number}) {
   // Running totals rather than "this week" (owner decision 2026-10-26): a quiet week shouldn't make a site look empty.
   const totalReviews = all.reviews.length + all.external.length;
-  const talkedAbout = new Set([...all.reviews, ...all.external].map(n => n.racketId)).size;
   const count = (n: number) => n.toLocaleString("en-US");
 
   // All-time counts (owner decision 2026-10-28): a 30-day window thins out as fewer new reviews come in.
@@ -209,8 +209,9 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
   // Racket suggestions skip models older than minYear (padel's feedMaxAgeYears); brand counts still cover every racket.
   const suggestable = data.listed.filter(r => r.year >= minYear);
   const recentlyAdded = [...suggestable].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
-  const lonely = suggestable.map(r => ({ racket: r, count: notesFor(r.id) })).filter(x => x.count <= 2)
-    .sort((a, b) => a.count - b.count || b.racket.createdAt.localeCompare(a.racket.createdAt)).slice(0, 3);
+  const topBrands = data.listedBrands.map(b => ({ b, count: data.listed.filter(r => r.brandId === b.id).length,
+    reviews: [...data.reviews, ...data.external].filter(n => data.listed.find(r => r.id === n.racketId)?.brandId === b.id).length }))
+    .sort((a, b) => b.reviews - a.reviews).slice(0, 8);
   const notes = (n: number) => n === 0 ? "no reviews yet" : `${n} ${n === 1 ? "review" : "reviews"}`;
 
   return <aside className="database-sidebar">
@@ -218,7 +219,6 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
       <h2 className="sr-only">In numbers</h2>
       <dl>
         <dt>{count(totalReviews)}</dt><dd>{totalReviews === 1 ? "review" : "reviews"}</dd>
-        <dt>{count(talkedAbout)}</dt><dd>{talkedAbout === 1 ? w.one : w.many} talked about</dd>
         <dt>{count(all.rackets.length)}</dt><dd>{`${w.many} in the database`}</dd>
       </dl>
     </section>
@@ -233,11 +233,10 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
 
     <section>
       <h2>Browse by brand</h2>
-      <div className="chip-links">{data.listedBrands.map(b => {
-        const count = data.listed.filter(r => r.brandId === b.id).length;
-        return <a key={b.id} href={`/brands/${b.slug}`}>{b.name} <span>{count}</span></a>;
-      })}</div>
-      <a className="more-link" href={catalogPath}>{`All ${w.many} →`}</a>
+      {/* The eight most-reviewed brands; the full list is one click away. */}
+      <div className="chip-links">{topBrands.map(({ b, count }) =>
+        <a key={b.id} href={`/brands/${b.slug}`}>{b.name} <span>{count}</span></a>)}</div>
+      <a className="more-link" href={brandsPath}>All brands →</a>
     </section>
 
     {recentlyAdded.length > 0 && <section>
@@ -247,12 +246,5 @@ export function Sidebar({data, all = data, minYear = -Infinity}: {data: Catalog;
       </a></li>)}</ul>
     </section>}
 
-    {lonely.length > 0 && <section>
-      <h2>{`Lonely ${w.many}`}</h2>
-      <p className="side-note">{`Hardly any reviews yet. ${niche.copy.ui.triedOne} Keep it company.`}</p>
-      <ul className="mini">{lonely.map(({racket, count}) => <li key={racket.id}><a href={`/add-review?racket=${racket.id}`}>
-        <ProductIcon shape={racket.shape} brand={racketParts(racket, data).brand}/><span className="nm">{racket.name}<span className="mt">{notes(count)}</span></span><span className="end">+ add</span>
-      </a></li>)}</ul>
-    </section>}
   </aside>;
 }
