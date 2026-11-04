@@ -8,7 +8,7 @@ import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
 import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
-import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
+import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, type ListItem } from "./review-list";
 import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
@@ -151,6 +151,15 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
+  // Where the reviews come from (this used to be two sidebar boxes): web quotes by platform, and how user reviews count.
+  if (external.length || reviews.length) {
+    const plats = platforms.map(([p]) => p), list2 = (ts: string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
+    faq.push({ q: `Where do these ${name} reviews come from?`, a: [
+      external.length ? `${external.length.toLocaleString("en-US")} are quotes from discussions on ${list2(plats)}, each linked to the original post.` : "",
+      reviews.length ? `${reviews.length.toLocaleString("en-US")} ${reviews.length === 1 ? "was" : "were"} written by ${niche.people.many} here.` : "",
+      `${niche.people.One} reviews are checked for spam before they appear, and only they count toward the star rating; quotes never do.`,
+    ].filter(Boolean).join(" ") });
+  }
   // Structured data for Google: the product on every page (name, brand, category), its user ratings once there are
   // MIN_RATINGS of them (web quotes never count), and breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
@@ -289,17 +298,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>
         </section>}
-
-        {platforms.length > 0 && <section>
-          <h2>Quotes come from</h2>
-          <ul className="mini">{platforms.map(([p, n]) => <li key={p}><span className="row"><span className="src"><SourceIcon platform={p}/></span><span className="nm">{p}</span><span className="end">{n}</span></span></li>)}</ul>
-          <p className="side-note" style={{marginTop: 8}}>{`Quoted opinions never count toward the ${niche.people.one} rating.`}</p>
-        </section>}
-
-        <section>
-          <h2>About these ratings</h2>
-          <p className="side-note">{`Only approved ${niche.people.one} reviews count toward the average. Every ${niche.people.one} review is checked for spam before it appears.`}</p>
-        </section>
       </aside>
     </div>
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
