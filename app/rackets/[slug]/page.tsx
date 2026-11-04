@@ -6,6 +6,7 @@ import { catalog as loadCatalog, score } from "../../../db/data";
 import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
+import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon, SourceIcon } from "../../icons";
 import { TagList } from "../../tags";
@@ -131,8 +132,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="profile-info">
         <div className="titleblock">
           <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
-          {brand && <span className="brandline">{brand.name}</span>}
-          <h1>{model}</h1>
+          <h1>{displayName(r.name, brand?.name)}</h1>
           {r.description && <p className="description">{r.description}</p>}
         </div>
         <dl className="spec-strip">

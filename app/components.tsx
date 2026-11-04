@@ -3,7 +3,7 @@ import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
 import { niche, catalogPath, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
-import { repeatsBrand } from "../lib/brand-name";
+import { displayName } from "../lib/brand-name";
 import type { ProfileField } from "../lib/niche/types";
 
 type Racket = Catalog["rackets"][number];
@@ -37,12 +37,10 @@ const CATEGORY_STYLE: "brandline" | "pill" = "brandline";
 function RacketHeading({racket, data, showCategory = true}: {racket: Racket; data: Catalog; showCategory?: boolean}) {
   const parts = racketParts(racket, data);
   const category = showCategory && CATEGORY_STYLE === "brandline" && niche.categoryPaths ? categoryPill(racket.shape)?.label : undefined;
-  // When the name already says the brand (Monarch, YNAB, Mullvad VPN), the line shows only the category and the heading the
-  // full name, so the brand isn't said twice.
-  const nameHasBrand = !!category && !!parts.brand && repeatsBrand(racket.name, parts.brand);
-  const brand = nameHasBrand ? "" : parts.brand, model = nameHasBrand ? racket.name : parts.model;
+  // The heading carries the full name with its brand; the small line above shows only the category, when there is one.
+  const model = displayName(racket.name, parts.brand);
   return <a className="racket-link" href={productHref(racket)}>
-    {(brand || category) && <span className="brand">{brand}{brand && category && <span className="sep" aria-hidden="true"> · </span>}{category && <span className="cat"><span className="sr-only">{brand ? ", category: " : "Category: "}</span>{category}</span>}</span>}
+    {category && <span className="brand"><span className="cat"><span className="sr-only">Category: </span>{category}</span></span>}
     <span className="model">{model}</span>
   </a>;
 }
