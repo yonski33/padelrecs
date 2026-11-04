@@ -8,7 +8,8 @@ import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, wi
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon, SourceIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
-import { rankedLists, listHref, longDate, currentYear, modelName, type RankedList } from "../lists";
+import { displayName } from "../../../lib/brand-name";
+import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 
@@ -42,7 +43,7 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
     <a className="thumb top-thumb" href={href} aria-hidden="true" tabIndex={-1}><ProductIcon shape={e.product.shape} brand={brand}/></a>
     <div className="top-body">
       <div className="top-head">
-        <h2><a className="racket-link" href={href}>{brand && <span className="brand">{brand}</span>}<span className="model">{modelName(e.product.name, brand)}</span></a></h2>
+        <h2><a className="racket-link" href={href}><span className="model">{displayName(e.product.name, brand)}</span></a></h2>
       </div>
       {/* A quiet text link under the name, the same place the product page's button goes: Amazon on niches with Amazon links,
           otherwise the product's own site on niches with website links (software, hosting, money). */}

@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { spreadByProduct } from "../lib/review-order";
 import type { Metadata } from "next";
 import { catalog } from "../db/data";
+import { displayName } from "../lib/brand-name";
 import { Review, External, Sidebar, activity, racketParts } from "./components";
 import { ProductIcon } from "./icons";
 import { LoadMore } from "./load-more";
@@ -65,8 +66,8 @@ export default async function Home({ searchParams }: {
   const popularLabel = week.length >= 2 ? "this week" : "this month";
   const strip = popular.length >= 2 && <section className="strip" aria-label={`Popular ${popularLabel}`}>
     <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new reviews</span></div>
-    <ol>{popular.map(({racket, count}) => { const {brand, model} = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
-      <ProductIcon shape={racket.shape} brand={brand}/><span className="nm">{model}</span><span className="br">{brand}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
+    <ol>{popular.map(({racket, count}) => { const {brand} = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
+      <ProductIcon shape={racket.shape} brand={brand}/><span className="nm">{displayName(racket.name, brand)}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
     </a></li>; })}</ol>
   </section>;
 
