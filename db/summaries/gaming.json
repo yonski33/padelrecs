@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "flydigi-vader-5-pro",
+    "summary": "Most reviewers love how the Vader 5 Pro plays: smooth sticks with adjustable tension, plenty of extra buttons and a comfortable, solid feel, often preferred over the GameSir G7 Pro by larger hands. The main complaints are quality control (loose tension rings, stick faults, failing paddles) and clunky software with Steam and connection quirks."
+  },
+  {
+    "slug": "logitech-g-pro-x2-superstrike",
+    "summary": "Most reviewers rave about the haptic clicks, which feel fast and easy to spam. The downsides are a front-heavy weight balance, a Superlight shape that does not suit every hand, weak stock skates and side buttons, and a price many find high. Best for those who fit the shape and mainly want the click feel."
+  },
+  {
+    "slug": "gamesir-cyclone-2",
+    "summary": "Most reviewers find the Cyclone 2 a great-value controller with a comfortable Xbox-like shape, accurate sticks, clicky buttons and good software. The weak spot is the D-pad and stiff face buttons for some, plus quality control problems such as faulty triggers or sticks on some units."
+  },
+  {
+    "slug": "gamesir-g7-pro",
+    "summary": "Most reviewers like the G7 Pro's responsive TMR sticks, solid build and easy software for a modest price. The main complaint is its small shape, which cramps larger hands, along with a poor D-pad and right-trigger faults on some units. Suits small to medium hands best."
+  },
+  {
+    "slug": "lamzu-maya-x",
+    "summary": "Most reviewers love the Maya X's light, comfortable shape, grippy coating and light clicks. The main complaints are quality control, such as an off-feeling sensor, scroll wheel faults and click grinding on some units, and battery life that several find short."
+  },
+  {
+    "slug": "flydigi-apex-5",
+    "summary": "Fans praise the Apex 5's premium feel, fast response and adaptive triggers, but a large share of reviewers report hardware failures, mainly stick drift, grinding or squeaking and back paddles breaking early. Software and firmware are also criticised, and experiences are split, with some owners having no problems at all."
+  },
+  {
+    "slug": "logitech-g305-lightspeed",
+    "summary": "Most reviewers love the G305's shape, clicks and low price, and many keep returning to it. The main complaint is double-clicking that develops after months to a few years, though the switches can be replaced. It also feels heavy and dated next to modern lightweight mice, and the shape is uncomfortable for some."
+  },
+  {
+    "slug": "razer-viper-v4-pro",
+    "summary": "Most reviewers love the Viper V4 Pro's very light weight, balance, coating and tracking, and many prefer it to the Logitech Superstrike. Downsides are very loud clicks, a shape that does not suit everyone, and some quality control issues such as creaking shells and rough skates."
+  },
+  {
+    "slug": "razer-viper-v3-pro",
+    "summary": "Most reviewers find the Viper V3 Pro well built, comfortable and accurate, especially for claw grip. The main complaints are quality control and durability, mostly scroll wheel and click faults and tracking glitches on some units, plus a shape that causes hand discomfort for some."
+  },
+  {
+    "slug": "audeze-maxwell",
+    "summary": "Most reviewers rate the Maxwell's sound as outstanding for a wireless gaming headset, with great battery life. The main downsides are drivers or ear cups failing after months to a couple of years, and a heavy build that gets uncomfortable in long sessions. Many add a strap or pads."
+  },
+  {
+    "slug": "logitech-g-pro-x-superlight-2",
+    "summary": "Reviewers who like the Superlight 2 praise its sensor, safe shape and responsive clicks, though some find the clicks heavy. The main complaints are durability and quality control, including coating that yellows, scroll wheel faults and creaking, along with a price many feel is high."
+  },
+  {
+    "slug": "logitech-g-pro-x-superlight",
+    "summary": "Many reviewers still love the original Superlight's shape, weight and battery, and some units last for years. The main complaint by far is wear: double-clicking buttons, scroll wheel faults and mushy side buttons, often after a year or two. The shape also does not suit everyone."
+  },
+  {
+    "slug": "asus-rog-kithara",
+    "summary": "Most reviewers love the Kithara's open-back planar sound and wide soundstage, often rating it highly for shooters and for the price. Downsides are that it is wired, leaks sound, often needs a DAC or amp for enough volume, and has a weak mic. A few found it uncomfortable or had units fail."
+  },
+  {
+    "slug": "logitech-g-pro-x3-superstrike",
+    "summary": "Reviewers moving from the X2 mostly say the X3 Superstrike fixes the weight balance while keeping the fast haptic clicks. Downsides are the price, mediocre stock skates, and some units with button play, scroll wheel faults or poor battery life. A few found the haptics weaker than the X2's."
+  },
+  {
+    "slug": "razer-deathadder-v3-hyperspeed",
+    "summary": "Most reviewers like the DeathAdder V3 HyperSpeed's comfortable ergonomic shape, light weight, solid feel and fair price. The main complaint is quality control on some units, such as rattling or wobbling main clicks, switch grind and sticky clicks. A few find the shape uncomfortable."
+  },
+  {
+    "slug": "logitech-g-pro-x-superlight-2c",
+    "summary": "Most reviewers like the Superlight 2c's compact shape for fingertip and claw grips, with good clicks and low weight. It suits smaller hands best, as some find it too small or slippery, and a few report quality control problems like muddy skates and click issues. Priced high for some."
+  },
+  {
+    "slug": "gamesir-g7-pro-8k-pc",
+    "summary": "Most reviewers love the G7 Pro 8K's responsive TMR sticks, mechanical buttons and easy software, often calling it a great PC controller for the price. The main complaints are a small shape that cramps some hands and a poor D-pad, with a few units failing to exceed 1000Hz wired."
+  },
+  {
+    "slug": "audeze-maxwell-2",
+    "summary": "Most reviewers rate the Maxwell 2's sound as superb, with a good mic and long battery life. The main complaint is quality control: background hiss, crinkling or popping noises, and some going through several units. It is also heavy and uncomfortable for many."
+  },
+  {
+    "slug": "hyperx-cloud-iii-s-wireless",
+    "summary": "Most reviewers find the Cloud III S Wireless comfortable and good value, with decent sound, a good mic and long battery life. Some found the sound too bass-heavy, hollow or weak for locating footsteps, and a few had comfort or glitch problems. A solid budget wireless pick."
+  },
+  {
+    "slug": "logitech-g-astro-a50-gen-5",
+    "summary": "Reviewers who like the A50 Gen 5 praise its comfort, sound and especially its mic. Complaints are scattered, with weak sidetone, a mic arm that stops holding, annoying base station docking and some connection dropouts, and the price is high for some."
+  }
+]

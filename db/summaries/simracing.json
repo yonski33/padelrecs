@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "logitech-pro-racing-wheel",
+    "summary": "Most owners love the detailed, strong direct drive feel, especially with TrueForce, along with the build and simple plug and play setup on console and PC. The main downside is a thin ecosystem with few rims and accessories, plus a bulky base. A few reported disconnects, software frustration or slow support."
+  },
+  {
+    "slug": "logitech-g29",
+    "summary": "Widely seen as a good, durable-enough first wheel at a fair price, with many owners using it for years. Common complaints are noisy, clunky gear-driven force feedback and weak force, plus pedals or shells failing for some. Many who moved to direct drive describe it as a toy by comparison."
+  },
+  {
+    "slug": "playseat-trophy",
+    "summary": "Most owners find it surprisingly rigid, comfortable and easy to move, suiting small spaces and direct drive bases. The pedal tray can flex with stiff load cells, adding accessories is awkward, and adjustment is limited. A few had seat fabric tear or back discomfort."
+  },
+  {
+    "slug": "heusinkveld-sprint",
+    "summary": "Most owners praise the solid build, easy-to-use software and consistent brake feel, and see a clear step up from Fanatec, Thrustmaster and Logitech pedals. The stock elastomer brake draws repeated complaints, with many swapping to springs. Some found them pricey or limited by the brake's maximum force."
+  },
+  {
+    "slug": "logitech-rs50",
+    "summary": "Most owners see a big upgrade from G29 or G923 wheels, with detailed, strong force feedback, solid build and TrueForce, plus easy console and PC use. Complaints include disconnects or failures in some units, flex on weaker stands, a limited rim ecosystem and clipping for a few."
+  },
+  {
+    "slug": "simagic-alpha-mini",
+    "summary": "Most owners praise the solid build, detailed force feedback and plenty of strength, a big step up from Logitech, Thrustmaster or Fanatec bases. Downsides are software that takes fiddling, and a body that runs hot in long sessions for some. A few had disconnects or other faults."
+  },
+  {
+    "slug": "moza-r5",
+    "summary": "Most owners found strong, detailed force feedback and good value, a big step from Logitech and Thrustmaster wheels. The bundled pedals are often called weak, and some outgrew the 5 Nm. A few hit software crashes, disconnects or overheating on long sessions."
+  },
+  {
+    "slug": "next-level-racing-wheel-stand-2-0",
+    "summary": "Most owners call it very rigid and solid, handling strong direct drive bases with little movement. The main downsides are its weight, which makes folding and moving a chore, and some flex or creaking at the pedal deck or shifter arm. The chair is often the weak link."
+  },
+  {
+    "slug": "thrustmaster-t-lcm",
+    "summary": "Most owners see good value and a big brake feel improvement over standard Logitech or Thrustmaster pedals, especially with spring or elastomer upgrades. Stock springs are often called weak, and some later moved to Heusinkveld or VRS. A few had load cell failures or squeaks."
+  },
+  {
+    "slug": "logitech-g923",
+    "summary": "A friendly starter wheel at a sale price, easy to set up and popular on console. Common complaints are noise and gear-driven clunkiness, and a brake pedal many found very stiff. TrueForce divides opinion, and most who tried direct drive called it a big jump."
+  },
+  {
+    "slug": "simagic-gt-neo",
+    "summary": "Most owners see great value, with a solid, comfortable rim with plenty of controls that feels sturdier than rivals like the MOZA KS or Fanatec McLaren. The hard rubber grips are a common complaint, often fixed with overgrips. A few reported disconnects, creaks or grip wear."
+  },
+  {
+    "slug": "simagic-p1000",
+    "summary": "Most owners like the brake feel, adjustability and modular upgrades such as springs, hydraulics and haptics. The brake elastomers can drift or feel inconsistent, and some had load cell or bolt failures. A few could not get a comfortable pedal position."
+  },
+  {
+    "slug": "sim-lab-gt1-evo",
+    "summary": "Most owners call it very rigid and well built for the price, holding up under strong direct drive bases and stiff pedals. Downsides are mostly a wobbly shifter arm and some wheel deck flex that needed extra bracing. Easy to expand."
+  },
+  {
+    "slug": "thrustmaster-t598",
+    "summary": "Many owners like the price and the direct drive feel, especially on PS5 or coming from a G29. The big downside is repeated disconnects and power supply or cable failures, with repairs or replacements. Reliability puts several off the brand."
+  },
+  {
+    "slug": "fanatec-csl-dd-8-nm",
+    "summary": "Most owners found a big jump in strong, detailed force feedback over Logitech or Thrustmaster wheels, particularly with the boost kit for the full 8 Nm. Downsides are a plastic quick release with play, some disconnects or heat issues, and poor customer service. Seen as good value for a first direct drive."
+  },
+  {
+    "slug": "simagic-alpha-evo-pro",
+    "summary": "Most owners found strong, detailed force feedback and a clear upgrade from Fanatec, MOZA or Logitech bases, with software they like. A minority found the feel robotic or less detailed than rivals, and a few reported noise, bugs or faulty units."
+  },
+  {
+    "slug": "sim-lab-p1x-pro",
+    "summary": "Most owners find it very rigid and well finished, a big step up from Playseat or tube rigs. The angled uprights are the recurring gripe, making adjustments and mounting accessories awkward, though some like the easier entry. A few retailer-edition units arrived with missing parts."
+  },
+  {
+    "slug": "simagic-alpha-ultimate",
+    "summary": "Owners describe strong, smooth and detailed force feedback with more torque than most need, plus solid build and good value for the power. A few found the software lacking or preferred a Simucube or Logitech base."
+  },
+  {
+    "slug": "fanatec-clubsport-pedals-v3",
+    "summary": "Most owners found a big step up from Logitech or entry Thrustmaster pedals, especially once the brake performance kit was added. Several later moved to Heusinkveld or similar and said the V3s then felt toy-like. A few reported broken load cells, squeaks or limited pedal spacing."
+  },
+  {
+    "slug": "logitech-g920",
+    "summary": "A decent, entry-level wheel that plenty of owners used happily for years, especially on Xbox. Many describe the gear-driven force feedback as notchy, clunky and weak, and the pedals and shifter are the usual weak spots. Several moved to direct drive."
+  }
+]

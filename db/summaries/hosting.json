@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "godaddy",
+    "summary": "Most reviewers report poor support, constant upsells and fees that pile up, plus steep renewals and some DNS or hosting outages. Domains held for resale at high prices come up repeatedly. A fair number call it reliable and fine as a registrar, but weak for hosting and email."
+  },
+  {
+    "slug": "hetzner-cloud",
+    "summary": "Most reviewers praise low prices, solid uptime and good performance, often after leaving AWS, DigitalOcean or OVH. The main complaints are the recent price increases, which many say weaken the advantage, and support some find slow. A few had accounts blocked or deleted after failed payments or verification trouble."
+  },
+  {
+    "slug": "contabo",
+    "summary": "Cheap for the specs, and some reviewers run it for years without trouble. Many others report outages, sometimes lasting days, slow or templated support, and slower real-world performance than advertised from overselling. Happier users tend to run side projects or non-critical services on it."
+  },
+  {
+    "slug": "wix",
+    "summary": "Easy to build with and fine for small sites, but many reviewers complain about unexpected renewal charges, refunds refused after cancelling, and big price rises. Support is another frequent complaint, with bots and runarounds, and some find sites slow or glitchy."
+  },
+  {
+    "slug": "namecheap",
+    "summary": "Long-time customers often call it reliable for domains, with cheap first-year prices and many TLDs. The main complaints are renewal prices that have climbed and support that is hit or miss, with some accounts or domains locked over fraud checks. Some say it is fine for domains but would not host there."
+  },
+  {
+    "slug": "porkbun",
+    "summary": "Broadly liked as a domain registrar for low, predictable renewal prices, an easy interface and simple transfers, often after leaving GoDaddy or Namecheap. The main complaint is support, which a minority find slow or unhelpful on complex issues, plus a few account lockouts. Paid email and hosting extras get less praise."
+  },
+  {
+    "slug": "bluehost",
+    "summary": "Most reviewers describe poor support, from scripted replies and agents who cannot fix problems to staff accidentally breaking live sites. Many also hit steep renewal prices, outages, slow sites, constant upsells and unexpected or hard-to-cancel charges. A few had good support or no problems."
+  },
+  {
+    "slug": "proton-mail",
+    "summary": "Most reviewers find it reliable for email with a custom domain, an easy switch from Gmail or Google Workspace, and good spam filtering. Complaints include weak body-text search, occasional outages, slow support and development, and constant prompts to upgrade. A few report mail from Proton addresses landing in spam."
+  },
+  {
+    "slug": "squarespace",
+    "summary": "Reviewers are split. Many find it easy to use and stable for simple sites and small shops, but the most common complaint is support, often bots and slow replies, especially over domain renewals and failed payments after the Google Domains move. Rising prices and a few payment holds also come up."
+  },
+  {
+    "slug": "fastmail",
+    "summary": "Reviewers consistently describe it as reliable, fast and easy to use, with simple migration from Gmail or Google Workspace and strong spam filtering. Many have used it for a decade or more and say support is human and helpful. Minor complaints include a clunky calendar and limited calendar sharing outside Fastmail."
+  },
+  {
+    "slug": "vercel",
+    "summary": "Reviewers praise how easy it is to deploy, especially Next.js, and many pay little for small or moderate sites. The main complaint is unexpected bills from traffic spikes, bots, image optimisation or edge requests, sometimes hundreds or thousands of dollars, with mixed results getting them reduced. Per-seat costs also sting small teams."
+  },
+  {
+    "slug": "digitalocean",
+    "summary": "Most reviewers find it reliable, cheap and simple, often running droplets for years without problems. The main complaint is support, with new accounts auto-blocked or suspended and a few accounts and data deleted after failed payments, often with little explanation. Some are frustrated by blocked outbound email ports."
+  },
+  {
+    "slug": "siteground",
+    "summary": "Reviewers often praise fast sites and knowledgeable support, but the most common complaint is renewal prices that jump sharply after the intro period. Some long-time customers say support has declined, with AI chat replacing humans, and a few hit inode or CPU limits."
+  },
+  {
+    "slug": "wp-engine",
+    "summary": "Reviewers are split. Some, especially agencies, praise reliable hosting, strong backups and staging, and helpful support. The more common complaint is that support has declined in recent years, along with repeated upsells over traffic or bandwidth overages and a high price. Some also report slowdowns and 502 errors."
+  },
+  {
+    "slug": "hostinger",
+    "summary": "Generally praised as cheap, easy and reliable for small WordPress and client sites, with a simple panel. The main complaint is support that is mostly AI chat and hard to get past to a human, followed by renewal prices rising well above the first term. A few report suspensions or resource-limit throttling."
+  },
+  {
+    "slug": "cloudways",
+    "summary": "Reviewers split but lean positive. Many praise responsive chat support, reliability and easy server management for agencies and WordPress developers. Complaints include slow performance on small plans, especially in the WordPress admin, support that falls short on harder issues, and a markup over the underlying server price. A few had servers deleted over overdue invoices."
+  },
+  {
+    "slug": "hetzner-dedicated-servers",
+    "summary": "Most reviewers describe very reliable servers, fast hardware support and strong value. The main complaint is the recent price increases, with some saying certain models now cost several times more, plus high setup fees outside auction servers. A few had accounts cancelled over payment or verification problems, and some mention weak DDoS protection."
+  },
+  {
+    "slug": "cloudflare-registrar",
+    "summary": "Reviewers overwhelmingly like it for at-cost domain pricing with no renewal markups, a clean dashboard and easy transfers, often from GoDaddy or Namecheap. The main drawback is support, which a few describe as slow or absent, along with a limited TLD list and occasional payment failures."
+  },
+  {
+    "slug": "cloudflare-pages",
+    "summary": "Reviewers praise a generous free tier, very fast static hosting and easy deploys from GitHub, often after leaving Vercel or Netlify. The frustrations are mostly with server-side frameworks, especially Next.js, where runtime limits, missing Node features and build failures sent some back to Vercel."
+  },
+  {
+    "slug": "google-workspace",
+    "summary": "Admins and small teams mostly find it easy to manage and reliable, with strong spam filtering, and often prefer it to Microsoft 365. The main complaints are price increases, bundled AI features customers did not ask for, and support that is hard to reach, especially for smaller customers."
+  }
+]
