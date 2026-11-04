@@ -1,0 +1,1 @@
+ALTER TABLE "padelrecs"."rackets" ADD COLUMN "review_summary" text;
