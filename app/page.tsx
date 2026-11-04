@@ -99,11 +99,15 @@ export default async function Home({ searchParams }: {
     </section>}
     {picks.length > 0 && <section className="picks" aria-label="Top picks">
       <h2>Top picks</h2>
-      <div className="picks-grid">{picks.map(({ list, entries }) => <a key={list.slug} className="pick" href={listHref(list.slug)}>
-        <span className="pick-title">{`${list.title} ${listYear(list)}`}</span>
-        <ol>{entries.slice(0, 3).map(e => <li key={e.product.id}>{displayName(e.product.name, brandName(e.product.brandId))}</li>)}</ol>
-        <span className="pick-more">See the ranking →</span>
-      </a>)}</div>
+      {/* The rankings page's row style, two columns: the list and its #1, so it reads at a glance. */}
+      <div className="picks-grid">{picks.map(({ list, entries, reviews }) => { const lead = entries[0], b = brandName(lead.product.brandId);
+        return <a key={list.slug} className="top-card" href={listHref(list.slug)}>
+          <span className="thumb" aria-hidden="true"><ProductIcon shape={lead.product.shape} brand={b}/></span>
+          <span className="top-card-text">
+            <span className="pick-title">{`${list.title} ${listYear(list)}`}</span>
+            <span className="top-card-meta">{`#1 ${displayName(lead.product.name, b)} · ${reviews.toLocaleString("en-US")} reviews`}</span>
+          </span>
+        </a>; })}</div>
     </section>}
     <div className="feed-heading">
       <div>
