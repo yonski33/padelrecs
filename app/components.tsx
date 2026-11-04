@@ -119,7 +119,8 @@ export function External({entry: e, data, showRacket = true, showCategory = true
       {e.summary ? <>
         {/* Our summary of the source's experience (written in the third person), then the source's exact words. */}
         <p className="note-body summary">{e.summary}</p>
-        {e.excerpt && <SourceQuote entry={e}/>}
+        {/* The summary is what readers scan; the source's exact words are one click away (and still in the page). */}
+        {e.excerpt && <details className="quote-toggle"><summary>Show quote</summary><SourceQuote entry={e}/></details>}
       </> : <SourceQuote entry={e} bare/>}
       <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}/>
       <div className="cite">
