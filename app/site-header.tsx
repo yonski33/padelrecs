@@ -51,7 +51,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           <span className="logo-text"><span className="wordmark">{niche.site.wordmark}<span>.com</span></span><span className="descriptor">{niche.site.descriptor}</span></span>
         </a>
         <RacketSearch/>
-        {!onAddPage && <a className="button header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
+        {!onAddPage && <a className="button ghost header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
       </div>
       <nav className="wrap main-nav" aria-label="Main navigation">
         {links.map(([href, label]) => {

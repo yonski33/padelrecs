@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
@@ -28,6 +29,12 @@ const pct = (n: number, total: number) => total ? `${Math.round(n / total * 100)
 const catalog = cache(() => loadCatalog());
 
 type Data = Awaited<ReturnType<typeof loadCatalog>>;
+/** A sidebar row's photo, or the drawing when the product has none. */
+function SideArt({ x, brand }: { x: Parameters<typeof shopPhoto>[0] & Parameters<typeof amazonPhoto>[0] & { shape: string | null }; brand?: string | null }) {
+  const photo = shopPhoto(x) ?? amazonPhoto(x)?.image;
+  return photo ? <img className="sug-photo" src={photo} alt="" loading="lazy"/> : <ProductIcon shape={x.shape} brand={brand}/>;
+}
+
 /** Counts behind the page's verdict, title and description: every review, the sentiment split, and tags by how often
  *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. */
 function summary(data: Data, id: string) {
@@ -191,11 +198,20 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     ] },
   ] };
   // What reviewers praise and complain about, most mentioned first: a summary under the specs, above the verdict.
-  const tagRows = [["Loved for", sum.loved.slice(0, 6)], ["Complaints", sum.complaints.slice(0, 4)], ["Also mentioned", sum.other.slice(0, 3)]] as const;
-  const tagChip = (t: string) => <span key={t} className={`tag ${tagTone(t)}`}>{t}<span className="c">{sum.tagCounts.get(t)}</span></span>;
+  // The product at a glance: what people praise and complain about, with bars so the big themes stand out. Each row opens
+  // the reviews that mention it.
+  const sideTags = [["Loved for", "pos", sum.loved.slice(0, 5)], ["Complaints", "neg", sum.complaints.slice(0, 5)]] as const;
+  const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => sum.tagCounts.get(t) ?? 0)));
+  const tagHref = (t: string) => `${productHref(r)}?tag=${encodeURIComponent(t)}#reviews`;
   const says = sum.tagCounts.size > 0 && <div className="says">
     <h2>{`What ${niche.people.many} keep saying`}</h2>
-    {tagRows.filter(([, ts]) => ts.length).map(([label, ts]) => <div key={label} className="says-row"><span className="says-label">{label}</span><div className="tags">{ts.map(tagChip)}</div></div>)}
+    <div className="says-cards">
+      {sideTags.filter(([, , ts]) => ts.length).map(([label, tone, ts]) => <section key={label} className={`says-card ${tone}`}>
+        <h3>{label}</h3>
+        <ul>{ts.map(t => { const n = sum.tagCounts.get(t) ?? 0; return <li key={t}><a href={tagHref(t)}><span className="says-name">{t}</span><span className="says-bar"><i style={{ width: `${Math.max(6, n / topCount * 100)}%` }}/></span><span className="says-n">{n}</span></a></li>; })}</ul>
+      </section>)}
+    </div>
+    {sum.other.length > 0 && <p className="says-also">Also mentioned: {sum.other.slice(0, 3).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
   </div>;
   const affiliate = !!(amazon || site?.affiliate);
 
@@ -218,16 +234,19 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <div className="titleblock">
           <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
           <h1>{displayName(r.name, brand?.name)}</h1>
+          {sum.total > 0 && <p className="verdict-line">{sum.positive !== null && <b>{sum.positive}% positive</b>}<a href="#reviews">{`${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`}</a>{amazon
+            ? <a className="button amazon top-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
+            : site && <a className="button visit-site top-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>}</p>}
           {placings.length > 0 && <p className="placings">{placings.slice(0, 2).map(p => <a key={p.href} href={p.href} className="placing"><b>#{p.rank}</b> in {p.title}</a>)}</p>}
           {r.description && <p className="description">{r.description}</p>}
         </div>
         {/* "In short" (kept, owner choice 2026-11-05); the summary itself opens by naming who is speaking ("Most players…"). A 2–3 sentence summary written from the product's reviews (review_summary), checked against its tag counts. */}
         {r.reviewSummary && <div className="tldr"><input type="checkbox" id="tldr-more" className="tldr-toggle"/><p><span className="tldr-label">In short</span>{r.reviewSummary}</p><label htmlFor="tldr-more" className="tldr-more">more</label></div>}
+        {says}
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
         {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}
-        {says}
       </div>
 
       <aside className="scorecard">
@@ -238,20 +257,15 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <WebSplit entries={verdicts} label="What reviewers say" noun=""/>
         </> : <>
           {reviews.length + external.length ? <>
-            <div className="no-score">{reviews.length + external.length} {reviews.length + external.length === 1 ? "review" : "reviews"}</div>
           </> : <>
             <div className="no-score">Be the first to review it</div>
             <p>{`${niche.copy.ui.triedIt} Tell others how it went.`}</p>
           </>}
           <WebSplit entries={verdicts} label="What reviewers say" noun=""/>
         </>}
-        {/* Niches with Amazon or website links put that button here; adding a review moves to the Reviews heading. */}
-        {amazon
-          ? <a className="button amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
-          : site
-          ? <a className="button visit-site" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
-          : <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
-        <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>
+        {/* The shop button sits by the title, and on phones in the sticky bar; adding a review is at the Reviews heading. */}
+        {!amazon && !site && <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
+        {!amazon && !site && <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>}
       </aside>
     </section>
 
@@ -296,14 +310,14 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {similar.length > 0 && <section>
           <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
           <ul className="mini">{similar.map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a href={productHref(x)}>
-            <ProductIcon shape={x.shape} brand={b}/><span className="nm">{displayName(x.name, b)}<span className="mt">{`${Math.round(sc.positive / sc.judged * 100)}% positive · ${sc.count + sc.web} reviews`}</span></span>
+            <SideArt x={x} brand={b}/><span className="nm">{displayName(x.name, b)}<span className="mt">{`${Math.round(sc.positive / sc.judged * 100)}% positive · ${sc.count + sc.web} reviews`}</span></span>
           </a></li>; })}</ul>
         </section>}
 
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
           <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
-            <ProductIcon shape={x.shape} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : webReviewsLine(sc.web)}</span></span>
+            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : webReviewsLine(sc.web)}</span></span>
             {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
           </a></li>; })}</ul>
         </section>}
