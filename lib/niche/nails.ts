@@ -33,7 +33,7 @@ export const nails: Niche = {
   // Shades are not separate products: one entry covers every shade of its formula.
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "Beauty" },
+  amazon: { searchIndex: "Beauty", photos: true },
   scoreUnit: { one: "nail", many: "nails" },
   // White page, wine-lacquer ink, one ballet-pink accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is the pink, readable on the wine panels; the logo and rating icons use the same #f7a1c4.

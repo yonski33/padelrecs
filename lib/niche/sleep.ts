@@ -33,7 +33,7 @@ export const sleep: Niche = {
   // Makers name each model and tier (Midnight vs Midnight Luxe, ProAdapt vs LuxeAdapt, Pod 4 vs Pod 5), so names carry it.
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "HomeAndKitchen" },
+  amazon: { searchIndex: "HomeAndKitchen", photos: true },
   scoreUnit: { one: "bed", many: "beds" },
   // Warm cream page, night-blue ink and primary, one muted lavender accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

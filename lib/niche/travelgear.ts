@@ -30,7 +30,7 @@ export const travelgear: Niche = {
   // Makers name each generation and size (Travel Pack 3 vs 4, The Carry-On vs The Carry-On 3, 30L vs 45L), so names carry them instead of a year.
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "Luggage" },
+  amazon: { searchIndex: "Luggage", photos: true },
   scoreUnit: { one: "suitcase", many: "suitcases" },
   // Warm sand-white page, deep navy ink, one orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
