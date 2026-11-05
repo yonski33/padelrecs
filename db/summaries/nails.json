@@ -38,5 +38,173 @@
   {
     "slug": "sally-hansen-insta-dri-top-coat",
     "summary": "Most reviewers rely on Sally Hansen Insta-Dri for fast drying at a low price, and many say it doesn't shrink their polish. The main complaint is chipping or cracking, sometimes within a day, and some find it less glossy than pricier top coats. Results over magnetic polish are mixed, and a few report bubbles."
+  },
+  {
+    "slug": "seche-vite-dry-fast-top-coat",
+    "summary": "Seche Vite is loved for drying within minutes with a deep, glossy finish, and many reviewers get a week or more of wear at a low price. The common downsides are shrinkage and pulling back at the tips, a strong smell, and a formula that turns gloopy partway down the bottle. It works best applied over still-wet polish with the tips capped, and some find it lifts or shrinks regardless."
+  },
+  {
+    "slug": "opi-nail-lacquer",
+    "summary": "Reviews of OPI Nail Lacquer are split. Fans find the cremes and reds reliable and glossy, and some get a week or more of wear. The most common complaint is streaky, uneven application in lighter shades, notably Bubble Bath, followed by quick chipping, a thick or gloopy formula and slow drying. Many also dislike the brush, and quality seems to vary by shade."
+  },
+  {
+    "slug": "essie-nail-polish",
+    "summary": "Essie Nail Polish gets a mixed response. Some find it easy to apply with a nice brush, glossy, and lasting a week or more, and the creme shades are often praised. The biggest complaint is chipping, with a number of reviewers saying it chips within days or fails to dry on them. Pale and sheer shades can be streaky, and some bottles turn thick or gloopy. Results seem to depend on the person and the shade."
+  },
+  {
+    "slug": "sally-hansen-insta-dri",
+    "summary": "Sally Hansen Insta-Dri is mainly praised for drying very fast, often in one thin coat, at a good price. The main complaint is a formula that turns thick and gloopy, or dries out in the bottle, and the wide brush bothers some. Wear is mixed, with some getting a week or more and others seeing chips within days. It suits quick manicures applied in thin coats."
+  },
+  {
+    "slug": "sally-hansen-miracle-gel",
+    "summary": "Sally Hansen Miracle Gel is mostly liked for lasting well, often a week or more without a UV lamp, with a glossy finish, easy application and fairly quick drying. Downsides include chipping or peeling for some, a thick formula, and a few shades that are sheer or need several coats. A handful report it never fully dries. It works best in thin coats with its matching top coat."
+  },
+  {
+    "slug": "seche-vive-instant-gel-effect-top-coat",
+    "summary": "Seche Vive Instant Gel Effect Top Coat is liked for drying quickly, a plump gel-like shine and a week or so of wear. Many say it shrinks less than Seche Vite, though a few still see shrinkage. The main downsides are a strong smell from the fumes, thickening that needs thinner, and disturbing magnetic polishes. A few reported lifting or a reaction to its ingredients."
+  },
+  {
+    "slug": "orly-nail-lacquer",
+    "summary": "ORLY Nail Lacquer is well liked for an easy-to-apply formula, a comfortable paddle brush and big bottles, with cremes singled out and many saying it wears well. The downsides are mostly from a minority: chipping or flaking for some, a thin or sheer formula in lighter colors needing extra coats, and a few cases of thick formula or strong smell. Many prefer it to OPI."
+  },
+  {
+    "slug": "opi-nail-envy-nail-strengthener",
+    "summary": "OPI Nail Envy Nail Strengthener is credited by most reviewers with strengthening weak, thin or peeling nails, often used as a base coat. The main complaint is that for some it made nails peel, turn brittle or flimsy, with several blaming a newer formula. Results seem to vary by person, and a few find it pricey. It suits weak or peeling nails, with a trial period to see how nails respond."
+  },
+  {
+    "slug": "olive-june-nail-polish",
+    "summary": "Olive & June Nail Polish divides reviewers. Fans get a week or more without chipping, with a glossy, gel-like look and a brush many love. Others find it chips within days, streaky in lighter shades, or thick and gloopy, and some say it dries slowly. Pastels often need three coats. A few reported peeling or damaged nails. Prep seems to matter a lot."
+  },
+  {
+    "slug": "essie-gel-couture",
+    "summary": "Essie Gel Couture is mainly loved for lasting a week to two weeks with a glossy, plump finish, easy application and fairly quick drying. The main downsides are shrinkage, especially in thick coats or as the bottle ages, plus thickness, sheer shades needing several coats, and for some nail damage or staining. A few see it chip early. Thin coats help."
+  },
+  {
+    "slug": "kiss-impress-press-on-manicure",
+    "summary": "Most reviewers get a week or two from these sticky-tab press-ons, a few up to a month, with natural looks and no nail damage. Some find they lift or pop off within days, especially with constant handwashing, and a few add nail glue for extra hold. Hair can catch on them."
+  },
+  {
+    "slug": "holo-taco-glossy-taco",
+    "summary": "Most reviewers love this top coat for its high gloss, fast drying and lack of shrinkage, and many call it a favorite. The main downside is that the formula gets thick and goopy, often around halfway through the bottle, so it needs thinner. A few report peeling or slow drying."
+  },
+  {
+    "slug": "essie-good-to-go-top-coat",
+    "summary": "Most reviewers praise this top coat for drying fast, a glossy finish and little shrinkage, with manicures commonly lasting about a week. Many prefer it to Seche Vite because it stays less gloopy. A few still saw shrinkage, stringiness or stickiness."
+  },
+  {
+    "slug": "manucurist-green-flash",
+    "summary": "Reviewers are split on this LED-cured polish. Many get a week or more of wear, quick drying, gentle removal in about a minute and no nail damage. A sizable group report chipping within days, peeling, or polish that stays soft and never fully cures, with lamp strength and thin layers mattering."
+  },
+  {
+    "slug": "essie-expressie",
+    "summary": "Most reviewers like how fast this polish dries and enjoy the colors. The brush divides opinion: some find it easy to use, others dislike the angled shape. A number report peeling, chipping within a couple of days or staining, and some find the formula thin or sheer."
+  },
+  {
+    "slug": "olive-june-press-on-nails",
+    "summary": "Many reviewers found these press-ons painful, with pressure or throbbing and some hard removal, and a few removed them within hours. Others find them comfortable and long-lasting, up to two weeks, and good looking. Fit depends on nail shape: the strong curve suits curved beds, while flat nails saw lifting."
+  },
+  {
+    "slug": "holo-taco-peely-base",
+    "summary": "Mainly valued as a peel-off base that comes off in one piece without much nail damage, which suits frequent polish changes. Wear time varies widely, from a day to around five days, and some get longer. A few reviewers saw early lifting or peeled nails, and some find it thin."
+  },
+  {
+    "slug": "essie-speed-setter-fast-dry-top-coat",
+    "summary": "Reviewers mostly love how fast this top coat dries, with many getting a week or more of wear, and several prefer it to Seche Vite and Sally Hansen options. Little shrinkage is reported. A few say it gets gummy partway through the bottle or does not hold up to heavy manual work."
+  },
+  {
+    "slug": "mooncat-getting-even-nail-primer",
+    "summary": "Most reviewers love this ridge-filling, tinted base for smoothing nails, blurring the nail line and getting a week or two of wear. Many find it gentle, especially after peeling with other bases, and it dries fast. A few say it does not last as long as hoped, and one saw nail damage."
+  },
+  {
+    "slug": "holo-taco-smoothing-base",
+    "summary": "The most common complaint is peeling nails after repeated use, which many reviewers blame on PVB. Others like it a lot, getting a week or more of wear and smooth, ridge-free nails. Results seem to depend on the individual nail chemistry, and a few found it slow to dry."
+  },
+  {
+    "slug": "essie-strong-start-base-coat",
+    "summary": "Most reviewers like this PVB-free base for being gentle, helping with peeling and giving about a week or more of wear. Many call it their go-to. A few report that it did not help, with polish coming off quickly or their nails still peeling."
+  },
+  {
+    "slug": "mooncat-hardcore-base-coat",
+    "summary": "Most reviewers find this PVB-free base gentle and strengthening, with several saying peeling stopped after switching to it. Many get long wear. A few had peeling or nail damage anyway, and some note it is pricey."
+  },
+  {
+    "slug": "dazzle-dry-base-coat",
+    "summary": "Most reviewers say this base makes polish last much longer, commonly a week to two weeks, and dry fast. The main downside is dryness: a number of reviewers saw nails peel, especially with repeated back-to-back use. Some also credit it with less staining."
+  },
+  {
+    "slug": "opi-repair-mode-bond-building-nail-serum",
+    "summary": "Many reviewers say this serum strengthened weak, peeling or damaged nails quickly. A notable group, though, report nails lifting from the nail bed, worse ridges or dryness after a week or so of use, so results are split. It suits some people for peeling and gel damage."
+  },
+  {
+    "slug": "opi-natural-nail-base-coat",
+    "summary": "The main complaint is peeling nails, which many reviewers blame on PVB in this base. Others have used it for years with no problems and get about a week of wear without staining. Whether it causes peeling seems to depend on the person."
+  },
+  {
+    "slug": "sally-hansen-miracle-gel-top-coat",
+    "summary": "Most reviewers like this top coat for its shine, minimal shrinkage and long wear, with some getting one to two weeks. It works well over magnetics and chrome. A couple of reviewers saw cracking or chipping within days, and it dries slower than quick-dry options."
+  },
+  {
+    "slug": "holo-taco-long-lasting-base",
+    "summary": "Reviewers are split. Some get manicures that last a week or two and like it for nail art and magnetic polish. The biggest complaint is peeling and damaged nails, and a few say it lifts off or turns gloopy partway through the bottle."
+  },
+  {
+    "slug": "opi-infinite-shine",
+    "summary": "Reviews are mixed. A few get a week or two of wear without chipping, but more say it chips within days and lasts no longer than regular OPI. Many see little difference in shine, and some find the formula thick, streaky or gummy. Best suited to those who already like the system."
+  },
+  {
+    "slug": "orly-breathable-treatment-color",
+    "summary": "Most reviewers love it. It is a thin, creamy formula that dries quickly, often covers in one or two coats, and many wear it without a base or top coat. Some find it too thin or streaky, and a few report chipping at the tips or slow drying with metallics and in humid weather."
+  },
+  {
+    "slug": "sally-hansen-hard-as-nails",
+    "summary": "Most reviewers like it as a cheap base coat that helps polish last and nails grow without breaking. Others say it made their nails brittle or peely, or that the hardener did nothing, and a nail tech advises against it. The colors, especially blacks and pastels, also get praise."
+  },
+  {
+    "slug": "dazzle-dry-top-coat",
+    "summary": "Most reviewers praise how fast it hardens, often within minutes, and how long manicures last, commonly a week or more. Others find the finish dull, cloudy or prone to bubbles and shrinkage. Some call the system pricey."
+  },
+  {
+    "slug": "manucurist-green-nail-polish",
+    "summary": "Most reviewers like it. The thin formula dries quickly, lasts longer than ordinary polish for many, and is seen as gentle on nails. Some need two coats for opacity, and a couple find the smell strong enough to give up on it."
+  },
+  {
+    "slug": "cnd-solaroil",
+    "summary": "Most reviewers like it as a cuticle oil, crediting it with stronger nails, less peeling and faster growth. The main complaint is the strong scent, especially after a reformulation. A few find it pricey, and one reported repeated nail infections."
+  },
+  {
+    "slug": "orly-gelfx-builder-in-a-bottle",
+    "summary": "Most reviewers find it easy to use, even as beginners, and report long wear, from several weeks up to months. It is thick like a heavy polish and shaping takes practice. Soak-off was hard for one reviewer, and another had constant lifting."
+  },
+  {
+    "slug": "sally-hansen-xtreme-wear",
+    "summary": "Reviews are mixed. Many like the colors and report about five or six days of wear, and some find it good for marbling. Others struggle with application, finding it too thin or too thick, needing several coats, streaky, slow to dry or quick to chip. The smell is strong for some."
+  },
+  {
+    "slug": "holo-taco-nail-oil-pen",
+    "summary": "Reviewers like it. It is a convenient, mess-free way to apply cuticle oil, absorbs quickly and can be refilled, including with jojoba. A couple of reviewers had one that leaked or broke after months."
+  },
+  {
+    "slug": "sally-hansen-dries-instantly-top-coat",
+    "summary": "Most reviewers love how fast it dries, often within a few minutes, and report shiny results that last up to about two weeks. Several prefer the clear bottle. A couple found it cracked their polish, and one noted the small brush."
+  },
+  {
+    "slug": "deborah-lippmann-nail-lacquer",
+    "summary": "Most reviewers rate the formula highly, calling it easy to apply, long-lasting and glossy, with standout glitters. Some found their bottles streaky or quick to chip, disliked the brush, or felt it was not worth the price."
+  },
+  {
+    "slug": "opi-top-coat",
+    "summary": "Most reviewers dislike it. The main complaint is that it takes a very long time to dry and dents or leaves imprints. Others found it thick, stringy or prone to bubbling. A couple like its durability and ease of application, for example over magnetic polish."
+  },
+  {
+    "slug": "kiss-colorfx-by-impress",
+    "summary": "Most reviewers like these press-ons, reporting about one to three weeks of wear, easy application and removal, and good value. Some dislike the exposed sticky edge, and one reported an allergic reaction. The short size loosened after several days for one reviewer."
+  },
+  {
+    "slug": "olive-june-gel-polish",
+    "summary": "Reviewers, many of them beginners, find it easy to use and get good results, with wear of around one to two weeks. Some shades are sheer, and one reviewer got poor results curing it in different lamps."
+  },
+  {
+    "slug": "opi-xpress-on",
+    "summary": "Mostly positive on durability, with several reviewers getting two weeks or more and some even on rough, hard-working hands. Results are uneven, though: a few found the curve too strong, the tips splitting early, or the look better in the box than on."
   }
 ]

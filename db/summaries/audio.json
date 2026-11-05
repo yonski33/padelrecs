@@ -1,0 +1,634 @@
+[
+  {
+    "slug": "hifiman-sundara",
+    "summary": "Most reviewers love the Sundara's sound: detailed, balanced and a clear step up from cheaper headphones, with many calling it good value. The main complaint is durability, with many reporting dead or buzzing drivers, broken plastic headband mounts or tearing pads. Some also find it uncomfortable, citing heat, clamp or non-swivelling cups."
+  },
+  {
+    "slug": "moondrop-chu-ii",
+    "summary": "Most reviewers like the Chu II as a small, comfortable, cheap IEM with clean, balanced sound that beats its price. The main complaint is durability: many report clogged filters, oxidised nozzles, peeling paint or a side going quiet within months, especially in humid climates. Some find the bass thin or the sound boring, and a few find the treble sharp."
+  },
+  {
+    "slug": "hifiman-edition-xs",
+    "summary": "Most reviewers see the Edition XS as outstanding value, with a wide, open soundstage and good detail, and many find it comfortable. The main complaint is build and quality control, including rattling or dying drivers and peeling pads or headband. Some find the treble bright or sharp, and a few say the fit is loose on small heads."
+  },
+  {
+    "slug": "truthear-hexa",
+    "summary": "Reviewers who like the Hexa praise its clean, detailed, neutral sound for the price. The main downsides are fit, as the large nozzle and pointed shell are uncomfortable for many, and a bright treble that some find sharp or sibilant. Many also find the bass light, so it suits neutral tastes and EQ better than bassy music."
+  },
+  {
+    "slug": "hifiman-arya-stealth",
+    "summary": "Most reviewers praise the Arya Stealth for its huge soundstage, imaging, detail and value, and many find it comfortable for long sessions. The recurring downsides are quality control, with several reporting dead or failing drivers, and treble some find bright or sibilant, often fixed with EQ or velour pads. Fit can be tight on small heads."
+  },
+  {
+    "slug": "meze-109-pro",
+    "summary": "Most reviewers love the 109 Pro for its comfort, solid build and warm, punchy, fun sound, and several say it suits rock and metal. Drawbacks are few: some find the treble a touch bright or sharp, and a few find it too warm or muddy. A few report defects or pad problems."
+  },
+  {
+    "slug": "kiwi-ears-astral",
+    "summary": "Most reviewers like the Astral for clean, detailed sound and sharp imaging, and many use it for competitive gaming. The main downside is fit, as the large shell and nozzle hurt some ears after a few hours and the stock tips are disliked. Some find the treble bright or spicy, and a few find the bass light."
+  },
+  {
+    "slug": "letshuoer-s12-pro",
+    "summary": "Reviewers who like the S12 Pro praise its clear, detailed, energetic sound, which many say improves with EQ. The most common complaint is fit, as the short, angled nozzle is hard to seal and uncomfortable for some. Treble is the other issue, with several finding it sharp, sibilant or fatiguing, and some find the soundstage narrow."
+  },
+  {
+    "slug": "focal-bathys",
+    "summary": "Most reviewers rate the Bathys highly for clear, detailed sound, especially in USB DAC mode, and many prefer it to rival wireless headphones. The main complaint is durability, with peeling pads and snapped headbands reported often. Noise cancelling is seen as decent but behind Sony or Bose, and some find it uncomfortable on top of the head."
+  },
+  {
+    "slug": "hifiman-arya-organic",
+    "summary": "Most reviewers are impressed by the Arya Organic's resolution, big soundstage and value for the money, and many call it their endgame open-back. The main caveat is a bright, energetic treble that some find sibilant or fatiguing, which many tame with EQ. The result also depends a lot on the amp and source."
+  },
+  {
+    "slug": "letshuoer-s12",
+    "summary": "Most reviewers like the S12 as an affordable planar with a small shell and a lively, technical sound that responds well to EQ and tip changes. The main caveats are treble, which some find bright or fatiguing, and fit, as a few find it uncomfortable. A few report cracked enclosures or wear."
+  },
+  {
+    "slug": "letshuoer-s08",
+    "summary": "Reviewers are fairly positive on the S08's warm, bassy, relaxed sound, and several call it a favourite. The main downside is reliability, with many reporting a channel going quiet or dying, plus condensation problems. Fit is hit and miss: some find it small and snug, others find it too big or tip-sensitive."
+  },
+  {
+    "slug": "audeze-lcd-x",
+    "summary": "Reviewers mostly love the LCD-X for deep, fast, punchy bass and detailed, smooth sound, and many say it shines with EQ. The main downside is weight and clamp, which leaves many with a sore head or neck after an hour or so, though some wear it all day without trouble. A few report dead drivers or worn headbands."
+  },
+  {
+    "slug": "moondrop-old-fashioned",
+    "summary": "Most reviewers find the Old Fashioned a very cheap, light, comfortable open-back on-ear with a clear, open sound. The main downside is thin bass and little sub-bass, which many fix with a bass-shelf EQ. A few find the headband or pads uncomfortable, especially with glasses, and Koss fans are split on whether it beats their old favourites."
+  },
+  {
+    "slug": "meze-alba",
+    "summary": "Reviewers praise the Alba overwhelmingly for comfort: tiny, light and easy to wear for hours. Most also like its clean, safe, slightly V-shaped sound, though some find it thin or bass-light, or a bit sharp. Downsides include chipping paint and occasional failures, and a few think it is pricey for the sound."
+  },
+  {
+    "slug": "7hz-zero-2",
+    "summary": "Most reviewers find the Zero:2 a cheap, balanced and natural-sounding IEM that is hard to beat for the money, and many use it as a first set. Bass impressions split, with some finding it too light. The main weak spot is the cable and build, and the pointed shell hurts some ears after an hour or so."
+  },
+  {
+    "slug": "moondrop-meteor",
+    "summary": "Most reviewers like the Meteor for smooth, detailed, sibilance-free sound with clear vocals, and many find it comfortable despite its size. Bass is split: some find it lacking and fix it with EQ, others call it clean and punchy. A number question the price, and a few find it boring or awkward with the stock cable or tips."
+  },
+  {
+    "slug": "kz-prx",
+    "summary": "Most reviewers find the PRX a surprisingly good, cheap way into planar sound, with strong clarity, separation and speed for the price. It benefits from a decent DAC, and some note it is hard to drive or want EQ and a better cable. A few report quality-control problems, and a few find it bright or not that different from other budget sets."
+  },
+  {
+    "slug": "meze-99-classics",
+    "summary": "Most reviewers like the 99 Classics for warm, bass-forward, fun sound, a comfortable fit and a beautiful build. Some find the bass too much or muddy, or the sound veiled and lacking clarity, and a few note a narrow soundstage. A few find them uncomfortable, and a few report flaking pads or failing drivers."
+  },
+  {
+    "slug": "focal-elex",
+    "summary": "Most reviewers love the Elex's sound: detailed, dynamic and engaging, with punchy bass and a smooth midrange, often compared favourably with the HD600. The main downside is reliability, with many reporting snapped headbands, dead drivers, or rattling and clipping on loud bass. Others have had years of trouble-free use."
+  },
+  {
+    "slug": "kz-edc-pro",
+    "summary": "Most reviewers find the KZ EDC Pro surprisingly good for its very low cost, with clean, tight bass, clear mids and a V-shaped, Harman-like sound. The main downside is sharp, harsh treble that some tame with EQ or tips. A few report one side failing, and some say a revised version sounds worse."
+  },
+  {
+    "slug": "letshuoer-s12-ultra",
+    "summary": "Most owners are very happy with the S12 Ultra: detailed planar sound with solid, fast bass, treble that stays smooth rather than shrill, and a small, comfortable shell. Soundstage is not its strong point, and a few found it flat or underwhelming. Scattered reports of driver flex and clicking on insertion."
+  },
+  {
+    "slug": "beyerdynamic-dt-900-pro-x",
+    "summary": "Reviewers like the clear, detailed sound with imaging that suits competitive gaming, and many wear it all day, though comfort splits and some find the clamp painful. The most repeated complaint is durability: headband material peeling, cups loosening and a dead side after months to a few years. Bass is just right for some and lacking for others."
+  },
+  {
+    "slug": "kz-zvx",
+    "summary": "Many reviewers like the ZVX for its clear, technical, V-shaped sound at a very low cost. The big downside is build: peeling paint, nozzle filters coming loose, and one side going quiet or becoming unbalanced within days or months. A few also find the treble sharp."
+  },
+  {
+    "slug": "moondrop-lan-ii",
+    "summary": "Reviewers like the Lan II for its detailed, energetic sound with clear vocals and good imaging, in a tiny metal shell that many find very comfortable. The main downsides are treble that can turn sharp or bright and bass that some find light. A few had fit trouble, and a few had one side go quiet."
+  },
+  {
+    "slug": "moondrop-chu-iii",
+    "summary": "Most reviewers find the Chu III a smooth, relaxed, warm-leaning set that is less fatiguing than the Chu II, in a small, comfortable metal shell that is good value. The stock cable and tips draw frequent criticism. Some could not get a good seal with the tiny shell, and a few hear it as little different from the Chu II."
+  },
+  {
+    "slug": "truthear-zero-red",
+    "summary": "Fit is the dominant complaint: the wide nozzle hurts or will not stay in for many reviewers, even with different tips. Those who get along with it like the neutral tuning with a bass boost and good value. Some find the treble bright or harsh, or the bass muddy."
+  },
+  {
+    "slug": "focal-bathys-mg",
+    "summary": "Reviewers rate it among the best-sounding wireless headphones, with detailed, spacious sound and plush, comfortable large cups, and a clear step up from the original Bathys. Wired USB mode is especially praised. Downsides are build and finish problems for a few, noise cancelling that is good but not class-leading, and a price some question."
+  },
+  {
+    "slug": "hifiman-ananda-nano",
+    "summary": "Reviewers praise the detailed, open, wide planar sound with good bass and treble extension, and often see it as strong value that responds well to EQ. Comfort is a weak point for some, a few report driver rattling or failure, and the open back leaks sound. A few hear the treble as spicy."
+  },
+  {
+    "slug": "hifiman-susvara",
+    "summary": "Owners treat it as an endgame headphone, with exceptional detail, imaging, wide staging, natural timbre and deep, fast bass. It needs a strong amp and can sound dull or anemic on the wrong one. It may not wow right away, and a few find their ears touching the pads or got units with defects."
+  },
+  {
+    "slug": "audeze-lcd-2",
+    "summary": "Reviewers love the rich, detailed sound, with strong instrument separation and appealing vocals. The main drawback is that it is heavy and clamps, so many cannot wear it for long sessions. A few report build problems such as cracked wood near the connector or driver failure."
+  },
+  {
+    "slug": "focal-celestee",
+    "summary": "Reviewers like the warm-leaning, detailed, punchy Focal sound with satisfying bass. Several find the soundstage narrow, though others call that overblown. A number of owners report the headband failing or paint flaking, and a few had comfort or seal problems."
+  },
+  {
+    "slug": "focal-hadenys",
+    "summary": "Most reviewers like its natural, balanced sound with HD 6XX-like tuning and fuller bass, in a light, stylish build. The main downsides are fit, as the small cups touch ears for some and the headband feels thin, and durability issues such as worn pads and cracked joints. Replacement pads can be slow to get."
+  },
+  {
+    "slug": "hifiman-he1000se",
+    "summary": "Reviewers mainly praise the tall, wide soundstage and strong separation, and many prefer it to the HD 800 S. The highs can be bright or harsh, so many say it becomes excellent with EQ. A few raised build quality and QC concerns."
+  },
+  {
+    "slug": "sennheiser-hd-6xx",
+    "summary": "Reviewers love it as warm, natural and comfortable, with excellent mids and vocals, strong value and a tough build. It scales well with good amps and EQ. A couple found the clamp too strong at first and the stage intimate, and one hears grating highs with some vocals."
+  },
+  {
+    "slug": "focal-stellia",
+    "summary": "Reviewers like its detailed, immersive, dynamic closed-back sound with fun bass, and note it is easy to drive. Downsides are build and finish, such as a snapped headband and stained leather, plus comfort complaints. Some find it pricey, and a few hear dipped mids."
+  },
+  {
+    "slug": "hifiman-edition-xv",
+    "summary": "Most reviewers like its detailed, airy sound with strong, tight bass, smooth treble and good comfort, often calling it an upgrade over the Sundara. Downsides are pad glue failing or sticky pads, and a crinkling noise on some units. A few found it underwhelming or too bright."
+  },
+  {
+    "slug": "sony-wf-1000xm6",
+    "summary": "Noise cancelling is the standout, with many calling it the best they have tried, alongside good sound, a wide soundstage and long battery life. Fit is the main snag, as some find the buds fall out or the foam tips uncomfortable. A few report defects or dropouts, and the mic gets mixed comments."
+  },
+  {
+    "slug": "bowers-wilkins-pi8",
+    "summary": "Most reviewers love its sound quality, calling it clear, spacious and the best they have owned in earbuds, with good comfort. Downsides are scattered, with some reporting connection issues, static or charging problems, and a few finding the bass light. A few preferred rivals such as the Technics AZ100."
+  },
+  {
+    "slug": "dunu-kima-2",
+    "summary": "Reviewers like its warm-neutral, natural tuning with standout vocals, smooth non-harsh treble and balanced bass, and see it as good value. A few find the treble bright or rolled off and use EQ. The small flat shells do not fit everyone."
+  },
+  {
+    "slug": "7hz-divine",
+    "summary": "Reviewers who get along with it like its clear, detailed planar sound with good bass. Reliability is the main concern, as many report one side going quiet or imbalanced within weeks, often blamed on moisture. The wide body and deep nozzle also make fit hard for some."
+  },
+  {
+    "slug": "audio-technica-ath-m40x",
+    "summary": "Reviewers like its fairly neutral, clear sound and see it as good value, and some wear it comfortably for hours. The main downside is durability, especially hinges that break or lose tension, plus worn pads and cracked cups. Several also find the pads shallow or the fit uncomfortable."
+  },
+  {
+    "slug": "kiwi-ears-aether",
+    "summary": "Reviewers praise its detailed, fast planar sound with a wide soundstage and good imaging, which suits metal and gaming. Fit is the main issue: the large shell and nozzle will not stay in for some, though tips such as Dunu S&S helped a few. A few find it boring, bright or light on bass."
+  },
+  {
+    "slug": "kz-duonic",
+    "summary": "Reviewers find the Duonic very good for its very low cost, with clean, crisp, detailed sound and a good soundstage, and several rate it well for gaming. Many say the bass is lighter and more controlled than the marketing suggests. A few mention a short nozzle that will not stay in, and one reports metallic popping."
+  },
+  {
+    "slug": "moondrop-aria-2",
+    "summary": "Most reviewers like the smooth, warm-neutral sound and find it comfortable, with a decent soundstage and a good accessory set. The main complaint is paint chipping and other build problems, with a few reports of a side cutting out or loose connectors. A few struggle with the fit or weight."
+  },
+  {
+    "slug": "moondrop-chu-ii-dsp",
+    "summary": "Many reviewers like the clear, balanced sound, comfortable fit and value. The big issue is the USB-C DSP version's reliability: hiss, static, cutting out, weak call audio and trouble with some phones, laptops or the Moondrop app. Some cables also failed, and a few wanted punchier bass."
+  },
+  {
+    "slug": "moondrop-blessing-3",
+    "summary": "Most reviewers praise its detailed, clear, bright-neutral sound, often with good sub-bass. Opinions on bass split, with several finding stock bass lacking and using EQ. The big shell and nozzle bother some, and a few report cables, drivers or one channel failing. Treble-sensitive listeners may tire of it."
+  },
+  {
+    "slug": "audeze-lcd-2-classic",
+    "summary": "Most reviewers love the warm, relaxed sound with deep, rumbling bass, and find the plush pads comfortable despite the weight. It takes EQ well. Downsides are wear on pads and leather, cable and driver problems, and some find it dark or muddy without EQ."
+  },
+  {
+    "slug": "audio-technica-ath-m50x",
+    "summary": "Many reviewers have used it for years and like the fun, bassy sound and value. The main complaint is durability: headbands crack and plastic hinges break after several years. Some find the clamp tiring, and a number hear bright, harsh treble or weak sub-bass."
+  },
+  {
+    "slug": "sennheiser-hd-800-s",
+    "summary": "Most reviewers love its expansive soundstage, imaging and long-session comfort. The common complaint is bass that feels thin or lacking, which EQ only partly fixes. Some also hear treble peaks. It works best with a good amp and suits some genres, especially classical, vocals and gaming, better than others."
+  },
+  {
+    "slug": "kz-castor",
+    "summary": "Most reviewers find it a fun, bass-forward set for very little money, with tuning switches that let them shape the bass. Opinions on bass strength are mixed, and some find the treble sharp. A few struggle with the chunky shell fit, and some report channel problems or oxidation."
+  },
+  {
+    "slug": "sennheiser-hd-600",
+    "summary": "Most reviewers love its natural, smooth mids and find it easy to listen to for long sessions, and many keep coming back to it for years. The main complaint is a strong clamp that bothers a good number of people. A few find the bass light or the sound dull."
+  },
+  {
+    "slug": "meze-105-aer",
+    "summary": "Reviewers almost uniformly like it: warm, smooth and non-fatiguing, with satisfying bass and very comfortable fit, and it is often called good value. Complaints are rare, with a couple of people finding the treble fatiguing or hazy, and one finding the V-shape too much."
+  },
+  {
+    "slug": "meze-empyrean-ii",
+    "summary": "Reviewers praise it as very comfortable, warm and smooth while still detailed, and many need little or no EQ. Some find the bass lacking for electronic music, though others rate the bass highly. A few find the soundstage narrower than rivals or trim treble peaks with EQ."
+  },
+  {
+    "slug": "focal-clear",
+    "summary": "Many reviewers love the original Clear for its natural mids, engaging dynamics and punchy bass, and it is often called a long-term keeper. The most repeated concern is build quality, including creaks, rattles and failures, plus costly pads. Some hear a metallic timbre or find it less impressive than rivals."
+  },
+  {
+    "slug": "simgot-ew300",
+    "summary": "Most reviewers like it as a detailed, comfortable all-rounder at a low price, with swappable nozzles to tune the sound. Some find the treble sharp or sibilant and others want more bass. A few report one side going quiet from moisture or loose parts, and fit needs good tips."
+  },
+  {
+    "slug": "hifiman-he400se",
+    "summary": "Most reviewers see it as a great-value entry planar, with surprisingly punchy bass and good detail, often improved by EQ. Downsides are build problems such as driver rattle, broken headbands and dead channels, and a bright treble that bothers some. A few find it heavy or thin on weak sources."
+  },
+  {
+    "slug": "focal-clear-mg",
+    "summary": "Most reviewers like its punchy, vocal-friendly sound and comfortable fit, and many have used it for years without trouble. The main complaint is build quality: disintegrating or tearing pads, a creaking headband and a few early failures. A few find the treble dark or the price hard to justify."
+  },
+  {
+    "slug": "apple-airpods-pro-3",
+    "summary": "Most reviewers rave about the noise cancelling, and many find the new tips fit securely and comfortably. Fit is the main problem for some, who feel pressure or looseness. Sound opinions are split: some enjoy the punchy V-shaped tuning, others find music a step back from the Pro 2."
+  },
+  {
+    "slug": "kz-pr2",
+    "summary": "Most reviewers are impressed by its detail, clarity and imaging for a very low price. Treble is the main variable: some find it bright or piercing and use EQ, while others hear no harshness. Bass is on the light side, and it works best with a decent source. A few units had defects."
+  },
+  {
+    "slug": "moondrop-kadenz",
+    "summary": "Many reviewers like the detailed, vocal-forward sound, good soundstage and refined bass. The most repeated complaints are reliability issues, such as a side going quiet from clogged nozzles or failing cable connections, and heavy metal shells that bother some. Treble can be sharp and fit is tip dependent."
+  },
+  {
+    "slug": "sennheiser-hd-650",
+    "summary": "Most reviewers love its warm, smooth midrange and relaxed, comfortable sound, and many have kept theirs for years. A few find it dull or veiled, with modest bass or a small stage, and some find the fit hot or tight. It benefits from a decent amp."
+  },
+  {
+    "slug": "dan-clark-audio-e3",
+    "summary": "Most reviewers find this closed-back balanced, detailed and non-fatiguing, with punchy bass and a surprising sense of space. Comfort is mostly praised, but some find the cups hot or clampy. A few hear bright or intense treble, and it likes a capable amp."
+  },
+  {
+    "slug": "dan-clark-audio-noire-x",
+    "summary": "Most reviewers find it very comfortable for long sessions, with clear, detailed sound and punchy bass. The main complaint is treble or upper mids that sound sharp or shouty to some, especially treble-sensitive listeners. Bass is thin without EQ for a few, and it likes a stronger amp."
+  },
+  {
+    "slug": "hifiman-he1000-stealth",
+    "summary": "Most reviewers rate it highly for detail, a large soundstage and linear, hefty bass, and many say it takes EQ well. Treble is the main caveat, with some finding it bright, spicy or sibilant. A few report channel imbalance or buzzing, and some did not think it worth its price."
+  },
+  {
+    "slug": "meze-99-neo",
+    "summary": "Most reviewers enjoy it for its strong, fun bass and easy-to-drive comfort. The main complaint is that the bass can overwhelm the mids and sound muddy, which led some to return it. Fit is hit or miss, with some finding the pads too big or small, and a few report durability problems."
+  },
+  {
+    "slug": "beyerdynamic-dt-770-pro",
+    "summary": "Many reviewers have used it for years and find it comfortable and good value for gaming and music. The main complaint is durability, especially cracked or broken plastic parts at the headband and cables. Some hear bright treble or lacking bass, and the higher-impedance versions favour a stronger source."
+  },
+  {
+    "slug": "kiwi-ears-cadenza",
+    "summary": "Many reviewers are impressed by its detail and all-round sound for the low price, and some have used it for thousands of hours. A fair number find the bass light and the sound thin or tinny. Fit needs the right tips, and a few units lost sound on one side."
+  },
+  {
+    "slug": "audio-technica-ath-ad700x",
+    "summary": "The Audio-Technica ATH-AD700X is mostly praised for a wide soundstage, clean sound and good positional imaging in games, plus comfort over long sessions. The most repeated downside is very light bass. Some found the soundstage overhyped, and a few mention the long attached cable."
+  },
+  {
+    "slug": "hifiman-sundara-closed-back",
+    "summary": "The HIFIMAN Sundara Closed-Back is liked mostly as good value, with fast bass and plenty of detail for a closed-back. Many say the stock tuning is odd and works best with EQ. A few found it disappointing, and it wants a decent amp."
+  },
+  {
+    "slug": "kz-am16",
+    "summary": "The KZ AM16 is praised as a budget set with strong bass in the bass version and good clarity and detail, often better with a little EQ. Build is the recurring weak spot: messy glue, a poor stock cable and uneven units. The short nozzle is uncomfortable for some."
+  },
+  {
+    "slug": "thieaudio-monarch-mkiv",
+    "summary": "The Thieaudio Monarch MKIV is widely loved for detailed, clean sound with a wide stage and strong bass. Its large shells are the main complaint, causing ear pain or hot spots in long sessions for many. Some find it a little bright or sterile, but plenty fit it fine."
+  },
+  {
+    "slug": "7hz-diablo",
+    "summary": "The 7Hz Diablo is a bass-focused IEM that most reviewers love for big, punchy, well-controlled bass and a warm sound, great for metal, EDM and hip-hop. Some find it too bass-heavy or muddy without EQ, and a few report tip fitting or filter and moisture problems."
+  },
+  {
+    "slug": "dan-clark-audio-aeon-2-noire",
+    "summary": "The Dan Clark Audio Aeon 2 Noire is mainly loved for exceptional comfort, a wide stage and a smooth, detailed sound. Complaints are split: some find it lacking in dynamics or harsh in the treble, and a few report channel imbalance failures. Suits relaxed listening."
+  },
+  {
+    "slug": "letshuoer-astralis",
+    "summary": "The Letshuoer Astralis is liked by most reviewers as a warm, fun planar with strong bass, smooth treble and a good stage. A few note it is less technical than some rivals. Isolated reports of a failing driver and uncomfortable pressure on the ears, and it benefits from some power."
+  },
+  {
+    "slug": "bowers-wilkins-px8",
+    "summary": "The Bowers & Wilkins PX8 is mostly liked for its premium build, punchy and detailed sound, and enjoyable day-to-day listening. Opinions on tuning split, with some finding it muddy, flat or lacking bass. Several report durability faults such as repeat replacements and peeling leather."
+  },
+  {
+    "slug": "hifiman-ananda-stealth",
+    "summary": "The HIFIMAN Ananda Stealth is liked for its wide soundstage, detail and comfort, and several call it good value. A little bright, and some find the tuning fatiguing or sibilant without EQ. It is on the heavy side, and some worry about HIFIMAN quality control."
+  },
+  {
+    "slug": "sennheiser-ie-600",
+    "summary": "The Sennheiser IE 600 is mostly loved for its small, comfortable shells and a clear, exciting V-leaning sound with good bass and detail. The main downside is reliability, with failed units, loose connectors and QC complaints. Some find the treble slightly bright, and a few the mids too forward."
+  },
+  {
+    "slug": "audio-technica-ath-r70xa",
+    "summary": "The Audio-Technica ATH-R70xa is liked for its light weight, wide stage and imaging, with many calling it a favourite at its level. Comfort splits: some find it very comfortable, while several find it clamping or awkward in headband design. A few report build faults."
+  },
+  {
+    "slug": "moondrop-pill",
+    "summary": "The Moondrop Pill is an open-ear clip earphone liked for comfort, a secure fit and good sound for the money. The main complaint is Bluetooth: buds that stay connected in the case. Others dislike the bulky case that opens in a pocket, and some find it not loud enough."
+  },
+  {
+    "slug": "audio-technica-ath-r50x",
+    "summary": "The Audio-Technica ATH-R50x is mostly liked as a light, comfortable open-back with good bass for the type, a roomy stage and good value. A few find it thin or treble-heavy. The shallow, small pads are the main complaint, and several swap to larger ones."
+  },
+  {
+    "slug": "kiwi-ears-orchestra-lite",
+    "summary": "The Kiwi Ears Orchestra Lite gets mixed but mostly warm reactions, with praise for vocals and use in gaming. The main complaints are comfort and the sealed, unvented shell: large and heavy, building pressure and tiring in long sessions. A few find the bass light."
+  },
+  {
+    "slug": "kiwi-ears-quintet",
+    "summary": "The Kiwi Ears Quintet is liked for clean, detailed sound with good imaging, solid bass and strong value. The main caveat is treble: some find it sibilant or painful, so it suits those not treble-sensitive. A few mention a painful fit or a lean male-vocal presentation."
+  },
+  {
+    "slug": "meze-elite",
+    "summary": "The Meze Elite is mostly loved for refined, detailed sound with a large stage, comfort and standout build. It is easy to drive. Some feel its technical performance trails similar-priced rivals, and the price is a doubt. A few note it scratches easily."
+  },
+  {
+    "slug": "simgot-supermix-4",
+    "summary": "The Simgot SuperMix 4 is mainly praised for gaming, where footsteps and positioning stand out, and for being light and efficient. Treble is the main complaint, with some finding it sibilant or thin, and music can sound lean. A few report loose connectors or failures."
+  },
+  {
+    "slug": "7hz-salnotes-zero",
+    "summary": "The 7Hz Salnotes Zero is liked as a cheap, clear set with clean separation and a comfortable shape. Many find the bass light and the sound dry or bright, which some tire of. A few report faults such as a dead channel or hiss."
+  },
+  {
+    "slug": "focal-azurys",
+    "summary": "The Focal Azurys splits opinion. Fans find it natural, relaxed and the best closed-back they own, with excellent build. Many others found the clamp uncomfortable, the sound bloated or muddy, and the price too high for the gap over cheaper rivals."
+  },
+  {
+    "slug": "sennheiser-hd-560s",
+    "summary": "The Sennheiser HD 560S is mostly liked as a neutral, clear open-back with a good stage, easy to drive and good value, especially with EQ. Some find it bright, thin or lacking bass, and a few find the treble harsh. Build and the stiff cable draw complaints."
+  },
+  {
+    "slug": "dunu-dk3001bd",
+    "summary": "The Dunu DK3001BD is loved by most for its detail, airy treble, deep sub-bass and wide stage. The main downside is the treble, which some find harsh or thin, and tips or an impedance adapter often help. Suited to treble lovers. The shells are large."
+  },
+  {
+    "slug": "kiwi-ears-belle",
+    "summary": "The Kiwi Ears Belle is liked as a cheap, comfortable and easy-to-drive IEM with good bass and a surprisingly open stage. A few found the shell too big, and some wanted more treble or struggled with directional cues in games. Often chosen as a first IEM."
+  },
+  {
+    "slug": "kiwi-ears-cadenza-ii",
+    "summary": "The Kiwi Ears Cadenza II is liked by many as an inexpensive, clear and fairly neutral first IEM. The main complaint is treble, with some finding it bright, shouty or grating, and others thin with little bass. A few report channel failures."
+  },
+  {
+    "slug": "kiwi-ears-quartet",
+    "summary": "The Kiwi Ears Quartet is mostly loved as a comfortable, good-value all-rounder with satisfying bass and a balanced sound. A few find it slightly overpriced, sibilant, bloated or hazy in the mids. One reports a crooked socket."
+  },
+  {
+    "slug": "7hz-timeless",
+    "summary": "The 7Hz Timeless is a planar IEM that most owners love for its detail, punchy bass and musical sound. The main drawbacks are bright, sometimes painful treble and a shallow fit that several could not wear for long. A few reported a channel failing."
+  },
+  {
+    "slug": "apple-airpods-pro-2",
+    "summary": "The AirPods Pro 2 are well liked as an easy everyday earbud, with strong noise cancelling, good sound and a good mic for calls. The main complaint is fit, as they slip out for some, especially during workouts. A couple of owners also hit durability problems such as cracked tips or crackling."
+  },
+  {
+    "slug": "dunu-sa6-mkii",
+    "summary": "The Dunu SA6 MKII is a warm, relaxed and detailed IEM that most owners find very comfortable and keep using for years. The biggest criticism is value, with some feeling cheaper sets match it, and a few find the sound too warm or bass-light. A couple had comfort or channel balance problems."
+  },
+  {
+    "slug": "sennheiser-hd-660s2",
+    "summary": "The Sennheiser HD 660S2 is an open-back that most owners love for its warm, vocal-focused and forgiving sound and all-day comfort. A few found it short on bass or the tuning not to their taste, and it sounds weak from a phone or basic dongle, so amping matters."
+  },
+  {
+    "slug": "sony-wf-1000xm5",
+    "summary": "The Sony WF-1000XM5 earn praise for strong noise cancelling, good sound and solid battery life. The main complaint is comfort, as they feel big and heavy and some found them painful or prone to falling out, though foam tips helped a few. Call quality in noise and a few mic or earbud failures also came up."
+  },
+  {
+    "slug": "7hz-timeless-ii",
+    "summary": "The 7Hz Timeless II is a planar IEM that most reviewers enjoy for its detail, clarity, wide stage and punchy bass. Treble is the main caveat, as some find it peaky or sizzly, and bass can depend on the amp. A few received units with defects."
+  },
+  {
+    "slug": "beyerdynamic-dt-990-pro",
+    "summary": "The Beyerdynamic DT 990 PRO is an open-back that many enjoy for its punchy, open sound and comfort, particularly for gaming. Durability is the clearest weakness, with drivers dying, plastic parts snapping and pads wearing out. Some find it too bright, and the cable draws complaints."
+  },
+  {
+    "slug": "dunu-glacier",
+    "summary": "The Dunu Glacier is a V-shaped IEM that most owners rave about for deep, punchy bass, a very large soundstage and good detail. The shells are chunky and heavy, so fit is hit and miss, and one needed a connector swap. Vocals can get crowded in busy tracks."
+  },
+  {
+    "slug": "focal-utopia-2022",
+    "summary": "The Focal Utopia 2022 is a flagship headphone that most owners find detailed, smooth and exciting, an improvement on the brighter original. It is easy to drive and many pair it with tube amps. A few find the highs shrill or the sound congested or clinical, and some note the high price."
+  },
+  {
+    "slug": "sennheiser-ie-200",
+    "summary": "The Sennheiser IE 200 is best known for comfort, being small and light enough that several sleep on their side with it. Sound is good and slightly bright, though treble bothered some. Weak points are the poor stock cable and a few durability failures."
+  },
+  {
+    "slug": "tangzu-waner-s-g-ii",
+    "summary": "The Tangzu Wan'er S.G II is a well-liked budget IEM with clean bass, strong vocals, a wide stage and generous accessories. Most reviewers enjoyed it, including as a first IEM. The stock cable draws repeated complaints, and a few want more fine detail or hear some brightness."
+  },
+  {
+    "slug": "grado-sr325",
+    "summary": "The Grado SR325 is an energetic, detailed headphone that many owners love, especially for rock. Comfort is the most common complaint, with the stock pads, glasses and loose fit causing trouble, and many swap pads. A few were disappointed coming from other headphones."
+  },
+  {
+    "slug": "kz-zvx-pro",
+    "summary": "The KZ ZVX Pro is a budget IEM that most owners find a great value, with more detail and imaging than expected and a fun V-shaped sound. Treble is a little much for some, and a couple had channel or loudness problems. It is seen as clearly better than the original ZVX."
+  },
+  {
+    "slug": "letshuoer-cadenza-4",
+    "summary": "The Letshuoer Cadenza 4 is an IEM that most owners find detailed and comfortable, with clear vocals, a wide stage and good imaging. It tunes fairly neutral, so some find bass lean and treble cold or shouty. Seen as good value."
+  },
+  {
+    "slug": "dan-clark-audio-stealth",
+    "summary": "The Dan Clark Audio Stealth is a closed-back that many owners praise for clean, precise tonality, deep bass and build. Seal matters, as glasses can thin the bass and add brightness. Clamp force and a hotspot on the head bother several, and some feel it is not a big step over cheaper options."
+  },
+  {
+    "slug": "dunu-titan-s2",
+    "summary": "The Dunu Titan S2 is an IEM most owners love, with energetic, detailed sound, good bass and vocals, and a solid build with plenty of accessories. It benefits from a good source and volume. A couple find the upper mids intense or experience ear discomfort after a few hours."
+  },
+  {
+    "slug": "grado-hemp",
+    "summary": "The Grado Hemp is a warmer, more forgiving Grado that most owners praise for its bass, balance and lack of sharp highs. Comfort is the main complaint, as the stock pads bother several and many swap them. One owner reported mold, and a couple prefer other Grados."
+  },
+  {
+    "slug": "kz-vader",
+    "summary": "The KZ Vader is a budget IEM that most reviewers like, describing a warm, balanced sound with a bass lift and some technical ability. Opinions on bass differ, as one finds it lacking and another needs a stronger source. A few were unhappy, and one reported a channel imbalance."
+  },
+  {
+    "slug": "moondrop-cosmo",
+    "summary": "The Moondrop Cosmo is a planar headphone that most owners find resolving, smooth and natural, especially after a pad swap. Comfort and build are the weak points, as it is heavy, the stock pads and headband draw complaints, and plastic parts cracked for some. It also wants a strong amp."
+  },
+  {
+    "slug": "dunu-titan-s",
+    "summary": "The Dunu Titan S is a budget IEM that most owners love for its value, with smooth, vocal-forward sound and a good stage. Treble leans sharp or bright for several. A couple had durability issues such as chipping paint, and a few find male vocals thin."
+  },
+  {
+    "slug": "kz-decet",
+    "summary": "The KZ Decet is a bass-heavy budget IEM that most owners love for its strong, refined low end and low price. It is large and unvented, so pressure and discomfort bother some. A couple were let down by weak sub-bass, and it may need EQ or a good source."
+  },
+  {
+    "slug": "beyerdynamic-dt-770-pro-x",
+    "summary": "The Beyerdynamic DT 770 PRO X is a closed-back that most owners like, with good bass and a full, balanced sound used for gaming, movies and music. A few find the highs harsh, and a few were underwhelmed or had ear pain."
+  },
+  {
+    "slug": "sennheiser-hdb-630",
+    "summary": "The Sennheiser HDB 630 is a wireless noise cancelling headphone that many owners enjoy for its detailed, bassy sound. Criticisms are about build and comfort, as the pads run hot and wear, and some feel it should be built better for the price. A few found the treble shouty."
+  },
+  {
+    "slug": "simgot-em6l",
+    "summary": "Most owners praise the Simgot EM6L as a detailed, well-imaged IEM that is especially good for competitive gaming, with extended treble that stays non-fatiguing. Bass is the weaker point for some, who find it light or a bit muddy, and vocals can sound odd. Fit is fine once suitable tips are found."
+  },
+  {
+    "slug": "7hz-g1",
+    "summary": "The 7Hz G1 is a cheap, bass-leaning IEM that many find impressive for the money and good for gaming. The main complaint is treble that some find sharp or harsh, and a few report one channel fading or dropping in volume over time. Mic issues were mentioned too."
+  },
+  {
+    "slug": "7hz-salnotes-dioko",
+    "summary": "The 7Hz Salnotes Dioko is detailed and technical, with a bright tuning that several owners find too treble-heavy or sibilant. Build and consistency complaints are common: loose grating, filter problems, one side going quiet. The large shells are a poor fit for smaller ears."
+  },
+  {
+    "slug": "beyerdynamic-dt-700-pro-x",
+    "summary": "Reviews of the Beyerdynamic DT 700 PRO X lean positive: a balanced closed-back with punchy bass that suits gaming and music. Opinions are split on the sound, with a few finding it dull, muffled or tiring. Comfort and build complaints appear, and worn pads affect the seal."
+  },
+  {
+    "slug": "moondrop-edge",
+    "summary": "The Moondrop Edge is a comfortable, good-value Bluetooth headphone with long battery life and roomy cups. Stock tuning divides opinion, with some finding bass lacking or the sound a bit sharp, though EQ helps. Some hit build or connection problems, and ANC is described as decent rather than great."
+  },
+  {
+    "slug": "7hz-legato",
+    "summary": "The 7Hz Legato is a bass-heavy IEM that most owners love, with deep, physical bass that beats other sets they own. The main downside is muddiness that can overpower the mids and vocals, and tip choice helps. It is best for bassheads."
+  },
+  {
+    "slug": "apple-airpods-max",
+    "summary": "The Apple AirPods Max is valued for strong noise cancelling, transparency mode, premium build and easy Apple integration. Sound is clean but not special to some. Downsides include weight, no EQ, a poor case, and several owners whose units stopped charging or connecting after a few years."
+  },
+  {
+    "slug": "audeze-lcd-4",
+    "summary": "The Audeze LCD-4 is widely loved for exceptional bass, detail and a lifelike, smooth sound, and many call it an endgame headphone. It is very heavy, which makes it hard to get comfortable for some. A few report channel failures or unit variation."
+  },
+  {
+    "slug": "audio-technica-ath-m50xbt2",
+    "summary": "The Audio-Technica ATH-M50xBT2 is a clear-sounding Bluetooth headphone with stable connection and very long battery life. Reviews are mixed on details: stock pads can be uncomfortable, the wired jack is proprietary, and a few had hinge breaks or were disappointed by the sound. It does not offer real noise cancelling."
+  },
+  {
+    "slug": "kiwi-ears-etude",
+    "summary": "The Kiwi Ears Etude is an energetic, fun IEM with strong lows and clear detail, and most owners are happy with it. Its bone-conduction driver is audible for some, though one could not hear it. The shells are large for some ears, and a few had minor issues like reverb in vocals."
+  },
+  {
+    "slug": "kz-pr3",
+    "summary": "The KZ PR3 is a cheap IEM that sounds good once tamed, but it is bright, with treble several owners find too much without EQ. A couple report one side failing. Some like its build and value."
+  },
+  {
+    "slug": "meze-strada",
+    "summary": "The Meze Strada is a very comfortable, intimate closed-back with a vocal-forward sound that takes EQ well. It is not bassy, with reserved mid-bass. A few thought it thin or tinny until the cable was fully seated, and the pads can rub on glasses."
+  },
+  {
+    "slug": "thieaudio-monarch-mkiii",
+    "summary": "The Thieaudio Monarch MKIII is praised for detail, resolution and punchy, energetic sound. Some find it too bassy or treble-forward with some sibilance. The large shells fit some well but get rough after a while for others, and a couple find it slow for metal."
+  },
+  {
+    "slug": "truthear-pure",
+    "summary": "The Truthear Pure is a warm, bass-rich IEM that many love as a fun set. Some find it muddy, boomy or boring, and a few find it bulky for long wear. Opinions on bass vary, so it suits those who want warmth."
+  },
+  {
+    "slug": "audeze-lcd-2-closed-back",
+    "summary": "The Audeze LCD-2 Closed-Back is known for punchy, present bass and a sturdy, beautiful build, and many find it comfortable despite the weight. Isolation is poor, the pads run hot, and a few found the sound underwhelming next to open-backs. One driver failed after years."
+  },
+  {
+    "slug": "audio-technica-ath-ad900x",
+    "summary": "The Audio-Technica ATH-AD900X is an open, light headphone that some enjoy for its airy sound. Comfort complaints centre on the headband and pads, and several find the bass light. A few report cracking plastic or cable failure."
+  },
+  {
+    "slug": "kiwi-ears-ke4",
+    "summary": "The Kiwi Ears KE4 is liked for detail, low-end extension and soundstage, and many consider it great value. Fit is the main issue, with shells too big for some ear canals and tips that fall off. One found it thin and muddy."
+  },
+  {
+    "slug": "kz-edx-pro-x",
+    "summary": "The KZ EDX Pro X is an ultra-budget IEM that many use as a first set. It has a V-shaped, bass-heavy sound, and some find the treble harsh. A couple arrived defective, and opinions on sound are mixed."
+  },
+  {
+    "slug": "meze-liric-2nd-gen",
+    "summary": "The Meze Liric 2nd Gen is a closed-back that most owners love, citing detail, good seal and easy driving. Fit is the main complaint, with pads too small for large ears or a loose fit. A few found it narrow or shrill, and one heard low-end distortion."
+  },
+  {
+    "slug": "audeze-lcd-xc",
+    "summary": "Reviews of the Audeze LCD-XC are mixed. Fans like the open-sounding soundstage and strong technical performance for a closed-back. Weight and headband comfort draw complaints, and several found the bass or tonality lacking, often fixed with EQ. One arrived dead."
+  },
+  {
+    "slug": "audeze-mm-100",
+    "summary": "The Audeze MM-100 is liked for comfort, balanced sound and imaging, and several compare it favourably to the Sundara. It is easy to drive and takes EQ well. A few find the mids shouty or the fit tight, and some call it hard to recommend new."
+  },
+  {
+    "slug": "kz-gale",
+    "summary": "The KZ Gale is a very cheap IEM, often a first set, and is liked for balanced sound and gaming use. Some find it a little bright. A few report mic leakage or hiss."
+  },
+  {
+    "slug": "kz-vader-pro",
+    "summary": "The KZ Vader Pro is a cheap IEM that most owners find good for the price, with clarity, detail and punchy bass. Soundstage opinions differ, and a few find it bright. Reviews are largely positive."
+  },
+  {
+    "slug": "kz-vibe-x",
+    "summary": "The KZ Vibe X is a fun, boomy IEM whose vibration driver some enjoy. Quality control is the main issue, with several units arriving defective or rattling. Others find the vibration gimmicky or the bass tuning lacking in sub-bass."
+  },
+  {
+    "slug": "kz-zsn-pro-2",
+    "summary": "Most reviewers like the KZ ZSN Pro 2, praising its wide soundstage and separation, with decent bass that is not boomy and good results for gaming. Not everyone agrees: a few find some songs sound off or want EQ, and one missed bass thump for rock and metal."
+  },
+  {
+    "slug": "audio-technica-ath-adx5000",
+    "summary": "Owners mostly love the ATH-ADX5000 for its light, comfortable fit and airy, sparkling open sound that works across genres, including electronic. Downsides are few: one owner found it felt cheap, squeaked and needed a driver replaced, and another noticed bass receding on a weak dongle DAC."
+  },
+  {
+    "slug": "audio-technica-ath-e40",
+    "summary": "Fit is the main sticking point on the ATH-E40: many reviewers found the shape awkward, the stock tips poor at sealing or the earpieces prone to falling out, and several disliked the non-standard cable and memory wires. Those who get it working like the balanced, clear, neutral sound and sturdy build, including on stage."
+  },
+  {
+    "slug": "audio-technica-ath-wp900",
+    "summary": "Most reviewers enjoy the ATH-WP900 as a fun, V-shaped closed-back with airy clarity and strong bass, and it is light. Common downsides are a plasticky build, a dip in the mids, and highs that can turn harsh or fatiguing at higher volume, enough that one returned it."
+  },
+  {
+    "slug": "campfire-audio-andromeda-emerald-sea",
+    "summary": "The Emerald Sea is a warm, relaxed IEM with a good soundstage and clarity for some, but its warmth is the main divide. Several reviewers found the bass bleeding into muddy mids, and some hit harsh treble or tip and fit problems, while others fixed it with tips or EQ."
+  },
+  {
+    "slug": "dan-clark-audio-expanse",
+    "summary": "Reviewers mostly find the Dan Clark Audio Expanse detailed, balanced and very comfortable, with huge but light cups. It can sound clean but unexciting on some amps and better on a tube amp, and a few preferred the Stealth or other flagships. One reviewer hated it."
+  },
+  {
+    "slug": "kiwi-ears-orchestra-ii",
+    "summary": "Most reviewers are happy with the Kiwi Ears Orchestra II, an all-balanced-armature set praised for detail, instrument separation and tight, controlled bass. A few find it a bit boring or only a sidegrade over the Orchestra Lite, and one struggled to get a seal; tip choice matters."
+  },
+  {
+    "slug": "sennheiser-momentum-true-wireless-4",
+    "summary": "Reviewers like the sound, secure fit and noise cancelling of the Momentum True Wireless 4, but durability is the main concern. Several reported earbuds or charging cases dying or needing repair after about a year, and a couple found the sound veiled or quiet. Touch-only controls drew a mild complaint."
+  },
+  {
+    "slug": "7hz-elua-ultra",
+    "summary": "Most reviewers like the 7Hz Elua Ultra, citing a fun, well-tuned sound with enough bass, good separation, comfortable fit and good isolation. A few found it underwhelming or boring, and results depend on the source, with one finding it weak through an Apple dongle, and inline-mic cables bled system audio."
+  },
+  {
+    "slug": "7hz-sonus",
+    "summary": "Opinions on the 7Hz Sonus are split. Fans like the clean sound, strong treble, wide soundstage and good gaming use, but a few found it harsh, fatiguing over time, or with a nasal midrange, and one thought it felt cheap. Bass is on the light side."
+  },
+  {
+    "slug": "audio-technica-ath-ad500x",
+    "summary": "Most reviewers love the ATH-AD500X for all-day comfort, a light clamp that suits glasses, and spacious, detailed sound for the money. Many use it for gaming, though one found it off for FPS. Durability is a minor worry, with a frayed cable and a broken headrest part reported."
+  },
+  {
+    "slug": "audio-technica-ath-twx9",
+    "summary": "Reviewers praise the sound of the ATH-TWX9, calling it spacious and well separated, with a secure fit for narrow ears. Downsides are reliability, with several reporting charging problems or battery failure, plus weak noise cancelling, wind noise, a confusing mix of controls and a dongle reconnect loop."
+  },
+  {
+    "slug": "beyerdynamic-dt-880-pro",
+    "summary": "Reviewers find the DT 880 PRO comfortable, durable and open-sounding with good imaging, though stock it leans bright and flat with limited bass. EQ and a good amp help a lot. A few found it less sibilant than expected, and one lost the cable."
+  },
+  {
+    "slug": "bose-quietcomfort-ultra-headphones-2nd-gen",
+    "summary": "Most reviewers praise the comfort and noise cancelling of the Bose QuietComfort Ultra Headphones (2nd Gen), with crisp sound that improves with EQ. Downsides vary: some found them uncomfortable or on-ear-like on bigger ears, a few called the sound muddy, and one reported uneven ANC and buzzing."
+  },
+  {
+    "slug": "campfire-audio-clara",
+    "summary": "Reviewers are enthusiastic about the Campfire Audio Clara, praising its textured bass, natural midrange, detail and a live, musical presentation. The fit can take time and tip tuning to get right and may tire after a couple of hours, and its cost makes some question the value against cheaper sets."
+  },
+  {
+    "slug": "grado-gw100x",
+    "summary": "Most reviewers love the open, wide-soundstage sound of the Grado GW100x, calling it among the best Bluetooth sound they have heard, and better still wired. As an open-back it leaks and suits quiet use, not travel. Comfort needed new pads for one, and one found the build plasticky."
+  },
+  {
+    "slug": "kiwi-ears-septet",
+    "summary": "Most reviewers like the open-back Kiwi Ears Septet for its wide soundstage, resolution and exciting, bass-capable sound, and some find it very comfortable. Tuning is the risk: one found it ear-splitting, another thin, and it benefits from EQ and plenty of power. Stock tips did not seal for one."
+  },
+  {
+    "slug": "kz-zar",
+    "summary": "Reviewers mostly like the KZ ZAR, describing it as a punchy, bass-heavy IEM that suits EDM and bassheads, and some call it their favourite. A couple were less impressed, finding the bass lacking next to other KZ sets, and one found it slightly bright."
+  },
+  {
+    "slug": "moondrop-para-ii",
+    "summary": "Reviewers find the Moondrop Para II detailed, airy and spacious, with a solid, light build. Stock bass is clean but lacks impact, so many add EQ, and some notice bright treble or occasional sibilance. It fits best on larger heads, and pad swaps help comfort and tuning."
+  }
+]

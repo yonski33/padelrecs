@@ -1,0 +1,190 @@
+[
+  {
+    "slug": "niche-zero",
+    "summary": "Most reviewers love the Niche Zero for its simple, quiet single-dose workflow, low retention and full-bodied espresso, especially with medium to dark roasts. Some report heavy static when new that usually fades, and a few see shot-to-shot drift or too many fines. Light roast filter is where several found it falls short."
+  },
+  {
+    "slug": "fellow-ode-gen-2",
+    "summary": "The Ode Gen 2 is mostly praised as a quiet, fast, consistent filter grinder with low retention, a big step up from an Encore. The main downside is mess: retention, clogging and static grow for many owners, and some units jam or need burr realignment. Several note it is not meant for espresso."
+  },
+  {
+    "slug": "1zpresso-zp6-special",
+    "summary": "A hand grinder for filter coffee, valued for clarity, flavour separation and tea-like light roast cups. The most repeated drawback is thin body and limited sweetness, which some find hollow or too clinical, and it takes time to dial in. Best suited to washed light roasts, often as a second grinder."
+  },
+  {
+    "slug": "decent-de1",
+    "summary": "Owners praise the Decent DE1 for easy, repeatable shots with profiling and stop-at-weight, fast heat-up and strong steam. The main complaint is noisy pumps, which some tolerate and a few found grating. A few felt the cup lacked body or found the software and tablet fiddly. Suits tinkerers, though some use it simply."
+  },
+  {
+    "slug": "breville-bambino-plus",
+    "summary": "Reviewers like the Bambino Plus as a compact, easy, great-value machine with near-instant heat-up and automatic milk steaming that works well. The main downside is inconsistent shots, especially with lighter roasts, and it often needs blank shots to settle. Medium to dark roasts do best, and a few report breakdowns."
+  },
+  {
+    "slug": "turin-df54",
+    "summary": "Many owners get years of trouble-free, good-value espresso grinding from the Turin DF54. The big caveat is clogging, which a notable group hit from the start or after months, along with static and mess. Experiences seem to vary a lot between units, and several returned or replaced it."
+  },
+  {
+    "slug": "breville-barista-express",
+    "summary": "The Barista Express is seen as a sturdy, good-value all-in-one that many owners run daily for years. The most common complaint is the built-in grinder, which many call inconsistent, so a separate grinder is a frequent upgrade. Some units develop failures such as the grinder, steam wand or leaks, and learning to dial in takes work."
+  },
+  {
+    "slug": "1zpresso-k-ultra",
+    "summary": "A hand grinder mainly used for pour-over and filter, where reviewers praise clean, sweet, balanced cups, easy outside dial adjustment and a well-built body with a magnetic catch cup. Many prefer it to the ZP6 and K6. Drawbacks are static at finer settings, a few bearing and rust failures, and a high price. A few never got good results."
+  },
+  {
+    "slug": "la-marzocco-linea-micra",
+    "summary": "Owners find the Linea Micra consistent, solid and quick to heat, with powerful steam and an easy workflow. The most repeated gripe is low cup clearance and a short wand, and some miss flow control or brew by weight at its price. A few had faults, but most report years without trouble."
+  },
+  {
+    "slug": "baratza-encore",
+    "summary": "The Baratza Encore is a long-lived, good-value electric grinder that many use for years for drip and pour-over. Common drawbacks are loud grinding and the plastic burr holder breaking, though parts are cheap and support is liked. Grind consistency can slip, and most find it too coarse or choking for espresso."
+  },
+  {
+    "slug": "hario-switch",
+    "summary": "The Hario Switch is widely liked as a forgiving, easy dripper that gives consistent cups and lets owners mix immersion and pour-over. Downsides are the fragile glass and plastic parts, preheating, and stalling with some light roasts. A few felt it was no better than a dialed-in V60 or added one variable too many."
+  },
+  {
+    "slug": "timemore-crystal-eye-b75",
+    "summary": "A cheap, forgiving flat-bottom dripper that many reviewers find easy and consistent, with sweet, rounder cups and fast drawdown. The main downside is that the fast flow can give thin, hollow or sour cups unless the grind is finer, and the small size limits dose. A few never got a good cup."
+  },
+  {
+    "slug": "fellow-aiden",
+    "summary": "The Fellow Aiden is liked for coffee that rivals careful pour-over, easy single cups or batches, and customisable profiles. The main concern is reliability: many report plastic parts failing, add-water errors or app glitches, with support seen as slow or unhelpful, especially for resold or non-US units. Many others use it for a year or more without problems."
+  },
+  {
+    "slug": "cafelat-robot",
+    "summary": "The Cafelat Robot wins fans as a simple, solid, low-maintenance manual espresso maker that gives great, repeatable shots with no heat-up or electronics. Owners say it takes some practice and physical effort, and a few find light roasts hard to get hot enough or tiring for several drinks. Many prefer it to pricier machines."
+  },
+  {
+    "slug": "baratza-encore-esp",
+    "summary": "The Baratza Encore ESP is an easy, good-value grinder that many pair successfully with a Bambino. The main complaint is reliability: cracking burr holders, a loosening knob and units breaking, along with retention and mess and drifting grind consistency. Experience is split, with some owners trouble-free for years and others replacing it."
+  },
+  {
+    "slug": "hario-v60",
+    "summary": "The Hario V60 is a cheap, durable dripper that devoted users stick with for years for bright, clear cups. The main complaint is that it is finicky and technique-sensitive, so results can be inconsistent and many find other drippers more forgiving. Best for those who enjoy the practice."
+  },
+  {
+    "slug": "turin-df64-gen-2",
+    "summary": "Reviewers describe the Turin DF64 Gen 2 as a solid, heavy, good-value grinder that does espresso and filter well and many run trouble-free for years. Common drawbacks are loud grinding, a failure-prone power switch and static or mess for some. A minority report inconsistent shots or clogging."
+  },
+  {
+    "slug": "1zpresso-j-ultra",
+    "summary": "A hand grinder built for espresso, praised for consistent grinds, very fine adjustment, quiet use and low retention, often compared with pricey electrics. The downside is the effort and time of hand grinding, especially with light roasts. Some saw knobs falling off or the grip wrap wearing, and several found it weaker for pour-over."
+  },
+  {
+    "slug": "breville-bambino",
+    "summary": "The Bambino is liked as a compact, affordable starter machine with very fast heat-up and easy use, best paired with a good grinder. Limits are no temperature control, so lighter roasts often taste sour, and a small drip tray, light body and basic steaming. Medium to dark roasts suit it best."
+  },
+  {
+    "slug": "timemore-sculptor-064s",
+    "summary": "Reviewers like the Timemore Sculptor 064S as a compact, quiet espresso grinder with low retention and good flavour, often a step up from entry grinders. Common nitpicks are beans sticking or popcorning in the hopper and a sensitive stepless dial that makes dialing in tricky. A few reported power switch faults or retention that was not low."
+  },
+  {
+    "slug": "breville-barista-pro",
+    "summary": "Most owners find the Barista Pro easy to live with, quick to heat up and capable of good espresso, often for years. The built-in grinder is the main complaint, with inconsistent shots, large steps and retention, so many add a separate grinder. Steam power and build draw some criticism. It suits beginners."
+  },
+  {
+    "slug": "fellow-stagg-ekg-pro",
+    "summary": "Many owners enjoy the controlled pour, looks and scheduling. Complaints are frequent though: the displayed temperature sticks or jumps, firmware and app updates stall, and the plastic lid cracks or comes apart. Some call it overpriced and slow for general use. Best suited to pour-over fans who accept some reliability risk."
+  },
+  {
+    "slug": "eureka-mignon-specialita",
+    "summary": "Most owners find the Specialita a solid, quiet, well-built espresso grinder that lasts for years, fine for medium and darker roasts. The main complaints are inconsistent shots, burr alignment problems, difficulty grinding fine enough for lighter roasts, and growing retention. Adjustment is fiddly for big changes."
+  },
+  {
+    "slug": "breville-dual-boiler",
+    "summary": "Most owners love the Dual Boiler for its features and value, with brewing and steaming at once, PID control and pre-infusion, and many run it happily for years. The main downside is reliability: a good number report internal leaks, failed boilers or electronics, and some found the build cheap inside."
+  },
+  {
+    "slug": "breville-smart-grinder-pro",
+    "summary": "Many owners are happy with it for the price and its ease of use, and some run it for years without trouble. The main complaint is inconsistency, with fines, clumping, retention and imprecise settings, especially for espresso and light roasts. A few report the feed gear failing or jamming with oily beans."
+  },
+  {
+    "slug": "lelit-bianca-v3",
+    "summary": "Owners are very happy with the Bianca V3, praising consistent shots, solid build, strong steam and the flow and pre-infusion control, often after years of use. Downsides are few: some had leaks or a failed part, and a couple find the steam wet. It suits people stepping up from entry-level machines."
+  },
+  {
+    "slug": "ecm-synchronika-ii",
+    "summary": "Owners are consistently enthusiastic about the Synchronika II. They praise the tank-like build, quick heat-up of only several minutes, easy maintenance and good steam, and many chose it over a Micra with no regrets. Reviews contain almost no real complaints, only a minor note about steam running short on large milk volumes."
+  },
+  {
+    "slug": "1zpresso-x-ultra",
+    "summary": "Most owners love the X-Ultra as a well-built hand grinder, especially for pour-over, with clean cups and easy dial adjustments. Grinding larger amounts by hand gets tiresome, and a few find the magnetic catch cup awkward. One owner found it inconsistent, and another saw it as overpriced."
+  },
+  {
+    "slug": "rancilio-silvia",
+    "summary": "Owners praise the Silvia as a tank-like, simple machine that keeps going for ten years or more with basic maintenance, makes great espresso and steams well. It rewards learning its quirks. Downsides are few: it is a single boiler with a small tank and noisy pump, and one frame rusted."
+  },
+  {
+    "slug": "fellow-opus-2",
+    "summary": "Owners are impressed by the Opus 2 for the price, noting very low retention, fast and quiet grinding and good results from espresso to pour-over. A few found dialing in new beans takes some wasted shots, and one received it with off calibration. Plastic build does not bother those who mention it."
+  },
+  {
+    "slug": "lelit-mara-x",
+    "summary": "Most owners love the Mara X for its all-metal build, stable temperature for a heat exchanger and consistent espresso, often as an upgrade from a Barista Express or Bambino. It takes a while to heat up. A few had problems: one needed several costly repairs and another found it loud."
+  },
+  {
+    "slug": "baratza-sette-270",
+    "summary": "Many owners consider the Sette 270 a fast, capable grinder that lasts for years, but its noise is the clear downside, with several calling it extremely loud and some getting rid of it for that reason. A few also dislike the awkward grind adjustment and mention inconsistency or retention."
+  },
+  {
+    "slug": "fellow-espresso-series-1",
+    "summary": "Most owners like the Series 1 for its build, shot profiles, quick heat-up and strong steam, and see it as a good machine to grow with. Downsides include a learning curve with the digital interface, broken or inaccurate volumetric dosing, some software bugs, and high water use. One unit arrived defective."
+  },
+  {
+    "slug": "varia-vs3",
+    "summary": "Opinions are mixed. Some owners are very happy with the small stepless VS3, its flow and taste for the price. Others report mess from static and retention, grind-setting drift or inconsistency, and units that stalled or failed within a couple of years."
+  },
+  {
+    "slug": "baratza-encore-esp-pro",
+    "summary": "Opinions are mixed. Several owners enjoy it paired with an entry-level machine, finding it quiet, stepless and fine enough for espresso. Others report clogging, retention, hopper feed stalls and trouble dialing in, and a couple received units that failed or needed replacing."
+  },
+  {
+    "slug": "breville-barista-touch",
+    "summary": "Owners like the Barista Touch for its ease of use, good milk drinks and simple saved drinks, and many use it daily for years. The main complaint is durability, especially the built-in grinder wearing out or breaking after several years. Shot consistency and temperature stability get some criticism."
+  },
+  {
+    "slug": "baratza-virtuoso",
+    "summary": "Opinions are mixed. Some owners love the Virtuoso+ for medium to dark roasts and filter methods, find it easy to clean, and say it lasts for years. Others report inconsistent grounds, a narrow usable range, slow grinding or feeding problems, and noise."
+  },
+  {
+    "slug": "breville-barista-express-impress",
+    "summary": "Most owners like it, finding the built-in grinder and tamping tool easy to use, and many make good coffee once dialed in. The main complaint is inconsistency, such as randomly wrong grinds, limits with lighter roasts, and some frustration with the built-in tamper."
+  },
+  {
+    "slug": "comandante-c40-mk4",
+    "summary": "Owners are consistently positive, calling the C40 MK4 a well-built, reliable hand grinder for filter and AeroPress, with repeatable results and a click system that is easy once learned. It is slow, and one owner found espresso bright and acidic. Some use it for Turkish coffee."
+  },
+  {
+    "slug": "eureka-mignon-libra",
+    "summary": "Most owners love the grind-by-weight convenience, finding it easy to use and accurate, with years of daily use in some cases. Downsides include failures, with one motor part weakening and one owner dumping it over espresso-setting problems, plus an annoying error code and dosing slightly off for some."
+  },
+  {
+    "slug": "kalita-wave-185",
+    "summary": "Most owners enjoy the Kalita Wave 185 as a forgiving brewer that gives a balanced, sweet cup and is simple to use, in glass, ceramic or stainless. A few had problems with stalling, slow drawdowns or muddy, bitter cups, mostly with the stainless or Mino versions."
+  },
+  {
+    "slug": "profitec-drive",
+    "summary": "Owners are very happy with the Drive, praising consistent temperature, strong steam, flow control and the ability to schedule it, and many chose it over a Micra with no regrets. Heating takes around 20 minutes, and a couple dislike the E61 workflow when entertaining or the long descaling."
+  },
+  {
+    "slug": "eureka-mignon-zero",
+    "summary": "Most owners are happy with the Mignon Zero, praising its build, ease of use, low retention and value. A couple of owners had trouble, though, with inconsistent shots needing burr alignment, or found it messy and complicated to use."
+  },
+  {
+    "slug": "niche-duo",
+    "summary": "Opinions are mixed. Several owners love its quality and find both the espresso and filter burr sets work well, with tasty espresso. The recurring complaint is that swapping burr sets is inconvenient, and some report heavy retention and wish it were quieter."
+  },
+  {
+    "slug": "profitec-move",
+    "summary": "Owners are happy with the Move, praising its build, temperature stability and ease of use, often as an upgrade from a Barista Express. It heats in about ten minutes and can steam while pulling. The stock steam wand feels a bit underpowered for some, fixed by a different tip, and one noted slight shot variation."
+  },
+  {
+    "slug": "varia-vs6",
+    "summary": "Owners mostly love the VS6 for its heavy, premium build, quiet grinding, low retention and range across espresso and filter. Some drawbacks come up, such as hopper threads, beans sticking, proprietary burrs, and a couple of units arriving broken, but happy owners outnumber the complaints."
+  },
+  {
+    "slug": "wacaco-picopresso",
+    "summary": "Owners are impressed by the Picopresso, saying it makes genuinely good espresso for its price and is highly portable for travel, camping or the office. The workflow is somewhat cumbersome, and one owner found the lack of pressure control left shots worse than a Flair."
+  }
+]

@@ -1,0 +1,622 @@
+[
+  {
+    "slug": "creed-aventus",
+    "summary": "Widely loved for its smoky pineapple scent and the compliments it earns, and a regular pick for dates, work and special occasions. Performance is the divide: many report it fading to a skin scent within a few hours, especially from recent batches, while others get a full day. Many also question the high price."
+  },
+  {
+    "slug": "creed-green-irish-tweed",
+    "summary": "A fresh, green, clean fougère that fans call a favorite and a classic, popular in warm weather and easy to wear. The main complaint is that it fades fast or hardly projects, and several say recent batches are weaker than older ones. Some feel it is not worth the price, and a few find it dated."
+  },
+  {
+    "slug": "dior-homme-intense",
+    "summary": "A powdery, creamy iris scent that reviewers find elegant and dressy, best for dates, evenings and special occasions, and it brings compliments. The main downside is staying power and projection, with several saying recent bottles are weaker than older ones. Those who dislike iris find it powdery, feminine or old-fashioned."
+  },
+  {
+    "slug": "creed-silver-mountain-water",
+    "summary": "A crisp, clean, tea-like freshness that reviewers love for warm days and the office, with frequent compliments. The main complaint is poor staying power, with many getting only a few hours and a soft skin scent, which they find hard to justify at the price. A few find it inky or bland."
+  },
+  {
+    "slug": "french-avenue-liquid-brun",
+    "summary": "A warm, sweet vanilla and cinnamon gourmand often compared to Parfums de Marly Althair, mostly worn in cold weather. Fans praise the compliments, longevity and price. Some get weak projection or short wear, and others find it too sweet, synthetic or harsh in the opening, which can improve with rest."
+  },
+  {
+    "slug": "ariana-grande-cloud-eau-de-parfum",
+    "summary": "A sweet, airy gourmand that most owners love for the many compliments and low price. The main letdown is staying power, with many getting only a few hours, though some report it lasting a day or more. A fair number find it synthetic, plasticky or headache-inducing."
+  },
+  {
+    "slug": "afnan-turathi-blue",
+    "summary": "Most reviewers get a bright grapefruit citrus that dries down musky and woody, with long wear, compliments and strong value for a budget blue. The opening can smell harsh or synthetic until the bottle has rested for a couple of months. Some get short wear or weak projection, and a few dislike the musky base."
+  },
+  {
+    "slug": "armaf-club-de-nuit-sillage",
+    "summary": "A fresh, metallic citrus in the Silver Mountain Water mould that most reviewers find strong and long-lasting, with plenty of compliments for the price. The opening is often sharp or synthetic and tends to soften with rest. A few get weak wear, and some dislike the metallic edge."
+  },
+  {
+    "slug": "creed-viking",
+    "summary": "A spicy, minty barbershop fougère that fans call a standout Creed, with sweet warm woods in the drydown. It divides people, and some find it old-fashioned or hard to wear. Longevity is mixed, with some getting a full day and others a few hours, and it leans toward cooler weather."
+  },
+  {
+    "slug": "lattafa-khamrah",
+    "summary": "A very sweet, boozy cinnamon and apple-pie style gourmand that most reviewers love for compliments, strong projection and a low price. It suits cold weather and nights out. The main complaint is that it is too sweet, cloying or feminine for some, and a few find it cheap-smelling or gone quickly."
+  },
+  {
+    "slug": "le-labo-another-13",
+    "summary": "A clean, musky skin scent that most reviewers love, with frequent compliments and good staying power on many. Projection varies a lot, with some finding it soft and close and others finding it loud. A fair number find it metallic, chemical or simply cannot smell it on their skin."
+  },
+  {
+    "slug": "armaf-odyssey-mega",
+    "summary": "A clean, soapy, lightly sweet scent often compared to YSL Y, liked as an easy office or daily pick. Performance is the split: some get many hours and days on clothes, while many get only a few hours and modest projection. Scent is generally well liked at the price."
+  },
+  {
+    "slug": "armaf-club-de-nuit-milestone",
+    "summary": "A salty, fruity melon aquatic that many reviewers say resembles Creed Millésime Impérial while lasting longer. It is praised for longevity, compliments and price, and suits hot weather. The opening can smell odd or metallic and needs time for some, and a few find it too feminine or never warm to it."
+  },
+  {
+    "slug": "armaf-club-de-nuit-iconic",
+    "summary": "A Bleu de Chanel style blue that most reviewers find long-lasting, versatile and good value, with regular compliments. The opening is often harsh or synthetic until the bottle has rested. Some get weak projection or little staying power, and a few blame their batch."
+  },
+  {
+    "slug": "parfums-de-marly-layton",
+    "summary": "A sweet apple, vanilla and spice scent with strong projection that earns many compliments and works across seasons. The main objection is a medicinal menthol opening that some compare to Vicks, which others find fades into a lovely drydown. A few get weak staying power or say recent batches are weaker."
+  },
+  {
+    "slug": "parfums-de-marly-delina",
+    "summary": "A tart rhubarb, lychee and rose scent that has devoted fans and a reputation for compliments. Reviewers are split, though, and a lot find it too sour, sweet, synthetic or generic for the price. Several note it smells very different on different skin."
+  },
+  {
+    "slug": "armani-stronger-with-you-intensely",
+    "summary": "A warm, sweet vanilla and chestnut scent that reviewers love for cold weather and regular compliments, with good projection. Some find it too sweet. A number say it fades within hours, and several say recent batches are weaker than older bottles."
+  },
+  {
+    "slug": "armaf-odyssey-mandarin-sky",
+    "summary": "A sweet mandarin that dries down to caramel, liked mostly for compliments and decent staying power, especially in cooler weather. Some find it synthetic, headache-inducing or too sweet, and a few get little projection. It often improves after a few weeks of rest."
+  },
+  {
+    "slug": "creed-royal-oud",
+    "summary": "A restrained, dry woody take on oud with cedar, sandalwood and spice, which many reviewers call their favorite Creed. It suits cooler weather and special occasions. The main complaints are modest staying power and a steep price, and a few find it sickly, cloying or irritating on their skin."
+  },
+  {
+    "slug": "creed-millesime-imperial",
+    "summary": "A fresh, salty, fruity citrus with a clean, summery feel that many call their favorite Creed. By far the main complaint is poor performance, with many getting only a couple of hours and little projection, though some get a full day. A few find it musty or melony."
+  },
+  {
+    "slug": "lattafa-qaed-al-fursan",
+    "summary": "Qaed Al Fursan is loved for a sweet, fruity pineapple scent that dries down woody, and several reviewers call it great for the money. The main complaint is staying power: many say it fades fast and projects little, though a couple find it lasts well."
+  },
+  {
+    "slug": "lattafa-the-kingdom-men",
+    "summary": "The Kingdom Men is a sweet, honey and vanilla scent with a minty opening that many compare to Le Male Elixir. Most reviewers report strong longevity, good projection and plenty of compliments. A few find it chemical, dated or weak, and some say it is too heavy for winter."
+  },
+  {
+    "slug": "dior-sauvage-eau-de-toilette",
+    "summary": "Sauvage Eau de Toilette is a fresh, peppery and ambroxan scent that many reviewers reach for daily and get compliments on, especially from women. Longevity splits opinion: some get hours of performance, while others find it fades fast, particularly in newer reformulated bottles."
+  },
+  {
+    "slug": "dior-miss-dior-eau-de-parfum",
+    "summary": "Miss Dior Eau de Parfum is a soft, creamy vanilla, amber and sandalwood scent that most reviewers love, with several finding it long lasting and suitable for the office. Several note that the formula has changed over the years and disagree on which version is best, mostly over a newer patchouli note."
+  },
+  {
+    "slug": "chanel-coco-mademoiselle-eau-de-parfum",
+    "summary": "Coco Mademoiselle Eau de Parfum is a long-time signature for many reviewers, who praise its strong staying power and a clean patchouli dry down. A few find it harsh, too intense or unpleasant, and one long-time wearer feels the current version has weakened."
+  },
+  {
+    "slug": "yves-saint-laurent-black-opium-eau-de-parfum",
+    "summary": "Black Opium Eau de Parfum is a warm coffee and vanilla scent that most reviewers love, often wearing it for years and repurchasing. Several mention compliments and its cosy winter feel. A few find it does not suit their skin or no longer appeal to them."
+  },
+  {
+    "slug": "tom-ford-ombre-leather-eau-de-parfum",
+    "summary": "Ombré Leather Eau de Parfum is a leather scent that many reviewers describe as very long lasting and potent, and several keep repurchasing it. It suits cooler weather and bedtime wear. A few find it synthetic at first, not to their taste or changed by skin chemistry."
+  },
+  {
+    "slug": "xerjoff-erba-pura",
+    "summary": "Erba Pura is a fruity, amber scent that many reviewers call a compliment magnet and a favourite, with big presence. It also divides people sharply: several find it chemical, harsh or headache inducing, and a few say it smells nasty on skin despite being great on paper."
+  },
+  {
+    "slug": "yves-saint-laurent-la-nuit-de-lhomme-eau-de-toilette",
+    "summary": "La Nuit de L'Homme Eau de Toilette is a smooth, spicy scent that many reviewers treat as a signature or all-time favourite, especially for evenings, date nights and cooler weather. The main complaint is longevity, with several saying newer batches fade quickly or are weaker than older bottles."
+  },
+  {
+    "slug": "viktor-rolf-flowerbomb-eau-de-parfum",
+    "summary": "Flowerbomb Eau de Parfum is a sweet floral patchouli scent that many reviewers have worn for years and consider a favourite, with some getting compliments. Some find it sweet and dusty or no longer enjoyable, and a couple say newer bottles seem weaker than older ones."
+  },
+  {
+    "slug": "parfums-de-marly-pegasus",
+    "summary": "Pegasus divides reviewers, but more like it than not. Fans describe a clean, soapy and powdery scent with an almond note that is elegant and office friendly, and a few say it lasts well. Others find the bitter almond or sweetness unpleasant and sold or shelved it."
+  },
+  {
+    "slug": "carolina-herrera-very-good-girl-eau-de-parfum",
+    "summary": "Very Good Girl Eau de Parfum is a warm, sensual lychee and rose scent that many reviewers call a favourite, with several reporting strong, long lasting wear. Longevity is not consistent though, as a few say it disappears on their skin, and a couple find it too strong or simply disliked it."
+  },
+  {
+    "slug": "tom-ford-noir-extreme-eau-de-parfum",
+    "summary": "Noir Extreme Eau de Parfum is a sweet, cosy scent that many reviewers love as a fall and winter signature, with several repurchasing and a few noting compliments. The most common complaint is that it fades quickly on some skin, and a few find it too sweet or regret buying it."
+  },
+  {
+    "slug": "azzaro-chrome-eau-de-parfum",
+    "summary": "Chrome Eau de Parfum is a fresh, easy to wear scent that many reviewers use for summer, the gym or after a shower, and some get compliments. Performance is the main complaint, with several saying it fades within a few hours and projects weakly. A few find it underwhelming or unpleasant on skin."
+  },
+  {
+    "slug": "dior-jadore-eau-de-parfum",
+    "summary": "J'adore Eau de Parfum is a classy white floral that most reviewers like, with several calling it a signature they never tire of and a few mentioning good longevity. A few find it too sharp, mature or like rose hairspray, and some needed time to warm to it."
+  },
+  {
+    "slug": "versace-crystal-noir-eau-de-parfum",
+    "summary": "Crystal Noir Eau de Parfum is a sultry, coconut-tinged scent that most reviewers love, with several wearing it as a signature for years and some getting stopped for compliments. A few find it smells off on their skin, or go nose blind to it quickly."
+  },
+  {
+    "slug": "burberry-hero-eau-de-toilette",
+    "summary": "Hero Eau de Toilette is a crisp cedar and pepper cologne that many reviewers like as an inoffensive daily or office scent, wearable year round and lighter than the Eau de Parfum. The main downside is performance, with several saying it fades fast. A few find it generic or cheap smelling."
+  },
+  {
+    "slug": "burberry-goddess-eau-de-parfum-intense",
+    "summary": "Goddess Eau de Parfum Intense is a powerful vanilla and patchouli scent that many reviewers love, some preferring it to the original, and it suits cooler weather. Opinion is split on the dry down: a few find it medicinal, smoky, masculine or too patchouli heavy, and it can open differently on skin than on paper."
+  },
+  {
+    "slug": "mugler-alien-goddess-eau-de-parfum",
+    "summary": "Alien Goddess Eau de Parfum is a coconut-led, vacation-like scent that many reviewers love as a favourite, with several getting compliments. It is polarizing: a good number find the coconut overwhelming, or get headaches, nausea or an unpleasant smell from it, and one says it is hard to detect."
+  },
+  {
+    "slug": "chanel-coco-mademoiselle-eau-de-parfum-intense",
+    "summary": "Coco Mademoiselle Eau de Parfum Intense is described by many reviewers as rounder, richer and longer lasting than the regular Eau de Parfum, and several prefer it. Some find it too subtle to smell, and a few dislike a lemony note or a patchouli that turns skanky."
+  },
+  {
+    "slug": "jean-paul-gaultier-ultra-male",
+    "summary": "Ultra Male is a very sweet candy pear scent that many reviewers praise for strong longevity and projection, and several get compliments from women. It suits night outs. A couple of reviewers find it fades within hours, or prefer cheaper alternatives, and some say it smells much like 9PM."
+  },
+  {
+    "slug": "parfums-de-marly-althair",
+    "summary": "Althaïr is a sweet vanilla gourmand with cinnamon and a hint of tobacco that many reviewers rate as a favourite, best in fall, winter and on date nights. Some find it too sweet, feminine or like baked car vinyl, and a couple get a headache from it."
+  },
+  {
+    "slug": "valentino-donna-born-in-roma-eau-de-parfum",
+    "summary": "Donna Born in Roma Eau de Parfum is a blackcurrant, jasmine and amber scent that most reviewers love, often mentioning compliments from strangers and easy daily or office wear. A couple find the dry down unpleasant or a bit cheap, and one says a bitter green note took over."
+  },
+  {
+    "slug": "byredo-blanche",
+    "summary": "Most reviewers get a crisp clean-laundry, starched-shirt scent that works for everyday wear and feels best in spring and summer. It divides people, though: a good number smell soap, cleaning products or air freshener instead, and a few say it does not last long."
+  },
+  {
+    "slug": "mugler-alien-eau-de-parfum",
+    "summary": "Mostly loved, and a frequent source of compliments, including from strangers. It is a strong, confident jasmine scent that some wear to work and others favour in colder months. A few find it synthetic, overly sweet or sour on their skin, and some say newer bottles are weaker than older ones."
+  },
+  {
+    "slug": "parfums-de-marly-valaya",
+    "summary": "A polarising clean white floral. Fans report strong lasting power, good projection and plenty of compliments. Many others find it sharp and aldehydic, like cleaning product or disinfectant, and some get headaches or nausea from it. Worth testing on skin before committing."
+  },
+  {
+    "slug": "rasasi-hawas",
+    "summary": "Most reviewers find it a fresh, fruity, aquatic scent that suits summer and everyday wear, with strong longevity and frequent compliments. It is also described as safe for the office. A few find it synthetic or youthful, and one says the reformulation does not last as long."
+  },
+  {
+    "slug": "dolce-gabbana-devotion-eau-de-parfum",
+    "summary": "Most reviewers love it as a bright lemon and citrus gourmand that dries down creamy and cake-like, wearable in sunny weather or cold air. A noticeable minority get something off on their skin, such as cleaner, urine or burnt notes, or find it cloying and synthetic. Smells different on different people."
+  },
+  {
+    "slug": "kilian-angels-share",
+    "summary": "Mostly loved as a sweet, warm cinnamon and cognac gourmand, best in cold weather, with good longevity. It can be strong enough that overspraying brings headaches, and a few find it dusty, sickeningly sweet or hard on their own skin. Several rank it among their favourites."
+  },
+  {
+    "slug": "burberry-hero-eau-de-parfum",
+    "summary": "Most reviewers like it as a woody amber that is easy to wear daily and especially good in cooler months, with several naming it the best of the Hero line. The main downside is that it does not last or project as long as hoped for some. A few find the dry down unpleasant."
+  },
+  {
+    "slug": "ariana-grande-cloud-pink-eau-de-parfum",
+    "summary": "Most reviewers love it as a sweet, fruity take on Cloud, and several say it lasts longer and smells smoother than the original. The main complaint is that it is too close to Cloud, or to a cheaper body spray scent, for some. A few say it turned to alcohol over time."
+  },
+  {
+    "slug": "armani-code-eau-de-toilette",
+    "summary": "Many reviewers love it as a versatile, fresh, spicy scent with anise and soft leather, and some get plenty of compliments. The main complaint is weak projection and fading fast, though several report good longevity. The older bottles and the newer formula are often compared, and some prefer the old."
+  },
+  {
+    "slug": "armani-stronger-with-you-parfum",
+    "summary": "Most reviewers love it as the less sweet, spicy, leathery member of the line, with strong projection, long lasting power and compliments. The main downside is that it fades quickly on some skin. A few get smoky, barbecue or clove notes they dislike."
+  },
+  {
+    "slug": "lattafa-yara",
+    "summary": "A sweet, fruity vanilla and powdery gourmand that fans find affordable, pretty and good for compliments. It splits opinion: a fair number find it synthetic, cheap-smelling or just bad on their skin. Sweetness is the main thing to weigh."
+  },
+  {
+    "slug": "chanel-allure-homme-sport-eau-extreme",
+    "summary": "Mostly well liked as a versatile, bright and sweet scent with a creamy dry down, good for the office and much of the year, though some find it too strong in summer heat. A few find it too sweet or creamy, and longevity is mixed with a few saying newer batches are weaker."
+  },
+  {
+    "slug": "carolina-herrera-la-bomba-eau-de-parfum",
+    "summary": "A divisive fruity floral built around dragon fruit and vanilla. Fans find it bold and summery, and a few say it grew on them after settling. Many others find it medicinal, like cough syrup, cloying or headache-inducing, and some washed it off."
+  },
+  {
+    "slug": "montblanc-explorer-eau-de-parfum",
+    "summary": "Many reviewers like it as an affordable alternative to Aventus that draws compliments and works for daily wear. The clear downside is performance: many say it fades quickly or projects weakly, going to a skin scent within an hour or so. A few find it generic or harsh."
+  },
+  {
+    "slug": "armani-acqua-di-gio-elixir",
+    "summary": "Many reviewers love its green, woody, violet-leaf character and see it as a darker, date-night take on the line. Longevity is split: several get all-day performance, while others lose it within hours. A few call it not much better than the Parfum for the price."
+  },
+  {
+    "slug": "calvin-klein-ck-one-eau-de-toilette",
+    "summary": "A fresh, clean, citrusy classic that most reviewers love for its good value, easy all-occasion wear and compliments, especially in warm weather. It is light, so a few find it fades quickly or smells generic or synthetic. Many wear it for nostalgia."
+  },
+  {
+    "slug": "parfums-de-marly-delina-exclusif",
+    "summary": "Mostly loved as a soft, creamy rose with a sweet vanilla base that lasts and projects strongly, and gets compliments. That strength can be too much for some, and a handful get nausea, headaches or odd smells on their skin. Often favoured in cooler weather."
+  },
+  {
+    "slug": "armaf-club-de-nuit-woman",
+    "summary": "Mostly liked as an affordable, strong and long-lasting scent that many find very close to Coco Mademoiselle. Some say it is not a true match or smells different on them, and a few find it cheap, harsh or too masculine. Light application is enough for most."
+  },
+  {
+    "slug": "prada-paradigme-eau-de-parfum",
+    "summary": "Most reviewers rate it as a safe, clean amber and balsam scent that gets plenty of compliments and works almost anywhere, including the office. Some find the longevity or projection lacking, and a few find it too sweet, sharp or generic. Many prefer it to the Parfum."
+  },
+  {
+    "slug": "burberry-her-elixir-de-parfum",
+    "summary": "Mostly liked as a sweet, berry and vanilla scent that lasts long and suits winter better than summer. It divides people: several find it cheap, synthetic, plastic or like cough syrup. A few say it needed weeks or months to settle into something good."
+  },
+  {
+    "slug": "ariana-grande-r-e-m-eau-de-parfum",
+    "summary": "Mostly loved as a sweet, comforting gourmand lavender, popular as a bedtime scent and for fall and winter, with some compliments and decent lasting power. A few find it powdery, nauseating or too masculine, and fans of Cloud may not click with it."
+  },
+  {
+    "slug": "yves-saint-laurent-myslf-eau-de-parfum",
+    "summary": "Most reviewers like it as a fresh, lavender and floral crowd pleaser that draws compliments and works as a daily scent, with summer a highlight. Performance varies: some get all-day wear, others find it weak or short-lived. A few find it soapy or uninteresting."
+  },
+  {
+    "slug": "burberry-her-eau-de-parfum",
+    "summary": "A sweet strawberry and berry fragrance that fans love, with some reporting all-day wear. It splits opinion: several find it cheap, plastic, synthetic or too sweet, and some say it fades fast or barely projects on them. Many prefer it to the Elixir."
+  },
+  {
+    "slug": "armani-stronger-with-you-absolutely",
+    "summary": "A rich, sweet, boozy scent with rum, vanilla and caramel that most reviewers love, especially for cold weather. Many report long-lasting performance, strong projection and plenty of compliments. Some find it weak or short-lived on their skin, particularly in recent batches, and a few find it too sweet or dislike the smoky note."
+  },
+  {
+    "slug": "lattafa-khamrah-qahwa",
+    "summary": "A sweet, warm gourmand with coffee, cinnamon, dates and vanilla that most reviewers love, mainly for fall and winter. Many describe very strong projection and longevity, lasting days on clothes, and it draws compliments. Some find it too sweet, nuclear or headache-inducing, and a few say it turns synthetic or smells off on them."
+  },
+  {
+    "slug": "dior-homme-sport-eau-de-toilette",
+    "summary": "A fresh, lemony citrus with a spicy, woody side that most reviewers find easy to wear, especially at work and in warm weather. Many get compliments and consider it versatile. The main downsides are that some find the lemon harsh or synthetic, some find it fades quickly, and a few dislike how it smells on their skin."
+  },
+  {
+    "slug": "carolina-herrera-good-girl-blush-eau-de-parfum",
+    "summary": "A pretty, sweet and creamy floral with a fluffy vanilla and almond side that many reviewers love, often naming it their favourite of the Good Girl line. Opinions are split, though: a good number find it too sweet, nauseating or headache-inducing, and several dislike the awkward heel-shaped bottle."
+  },
+  {
+    "slug": "dior-homme-parfum",
+    "summary": "Reviews mostly concern the 2025 version, and opinions are split. Fans praise an iris opening that settles into a warm amber drydown, with good longevity and a more wearable feel. Others find it generic, like Ultra Male or Armani Code, and a downgrade from the earlier version, with some calling it synthetic or cheap-smelling in the drydown."
+  },
+  {
+    "slug": "amouage-interlude-man",
+    "summary": "A smoky, spicy incense scent with an oregano-like edge that most fans find unique, with very strong projection and long lasting power; a spray or two is often enough. It is polarizing, with several needing a few wears to warm to it and others finding the smoke or oregano repulsive. A few batches are reported as weak."
+  },
+  {
+    "slug": "ariana-grande-mod-vanilla-eau-de-parfum",
+    "summary": "A light, clean and sweet vanilla that many reviewers love, often preferring it to Cloud, with several saying it lasts well and draws compliments. Performance is inconsistent though: a fair number find it faint or fading on their skin. Some smell something cheap, soapy or plastic, and a few dislike the awkward bottle."
+  },
+  {
+    "slug": "armaf-club-de-nuit-intense-man-eau-de-parfum",
+    "summary": "A fruity, smoky, vanilla-tinged scent that many reviewers say is very close to Creed Aventus, praised for compliments, longevity and value. Performance is inconsistent though: a good number report it fading within a few hours, especially in some batches. A few find the opening harsh, synthetic or like cleaner."
+  },
+  {
+    "slug": "armaf-odyssey-homme",
+    "summary": "A sweet, spicy vanilla-amber scent, described by some as like cola or root beer, that many reviewers enjoy as an inexpensive cold-weather pick with good longevity and compliments. Performance varies, with several reporting it fades within a few hours, though some say it improves after maceration. Others find it too sweet, synthetic or feminine."
+  },
+  {
+    "slug": "armani-acqua-di-gio-profumo",
+    "summary": "A smoky, incense-tinged aquatic that many reviewers adore, naming it a signature scent that draws plenty of compliments and often lasts many hours. The main complaint is weak or short performance on some bottles, with several saying newer batches are weaker than older ones. A few find it dated or unremarkable."
+  },
+  {
+    "slug": "azzaro-the-most-wanted-eau-de-parfum-intense",
+    "summary": "A sweet, toffee-and-vanilla scent that many reviewers love, especially in cool weather, with plenty of compliments, often from women. Many report strong projection and long wear. The main complaint is that some find it fades within a few hours or becomes a skin scent, and a few get headaches or find it too sweet."
+  },
+  {
+    "slug": "creed-original-vetiver",
+    "summary": "A clean, fresh and soapy citrus-vetiver that most reviewers love, often naming it their favourite Creed. It is easy to wear at work or in any season, especially summer. The main downside is short staying power, with many reporting it fades within a few hours, and a few find it simple or not for them."
+  },
+  {
+    "slug": "dior-hypnotic-poison-eau-de-toilette",
+    "summary": "A sweet almond-vanilla scent, with root beer and licorice touches, that its fans have worn for years as a signature. It divides opinion sharply, as many other reviewers smell Play-Doh, plastic or baby powder instead, and some who once loved it now find it too heavy or powdery. Those who like it call it versatile."
+  },
+  {
+    "slug": "carolina-herrera-good-girl-eau-de-parfum",
+    "summary": "A warm, sweet white-floral with jasmine and coffee notes that gets compliments and suits evenings or date nights. Reviewers are split: fans find it long-lasting and loved, while others find it loud for the office, and a good number dislike it on their skin, with headaches or nausea. The heavy bottle also draws grumbles."
+  },
+  {
+    "slug": "chanel-bleu-de-chanel-parfum",
+    "summary": "A richer, smoother and woodier take on Bleu de Chanel that many reviewers prefer to the EDP and EDT. Most find it long-lasting and versatile for work or outings. The main downside is that some find it fades within a couple of hours or sits close to the skin, with weak projection."
+  },
+  {
+    "slug": "chanel-bleu-de-chanel-lexclusif",
+    "summary": "A darker, richer and more resinous take on the Bleu de Chanel formula with amber and woods, which many reviewers find long-lasting and best for fall and winter. The main complaint is value: several feel it is too similar to the EDP or Parfum to justify the price. Some dislike the amber, powdery or sour notes."
+  },
+  {
+    "slug": "versace-dylan-blue-pour-homme-eau-de-toilette",
+    "summary": "A fresh, slightly sweet aquatic that most reviewers love as a compliment magnet, versatile, good value and often lasting many hours for an EDT. The main downside is that some find it fades quickly, particularly in heat, and a few find it sweet, boring or like cheap shampoo."
+  },
+  {
+    "slug": "parfums-de-marly-herod",
+    "summary": "A warm, sweet tobacco and vanilla scent that fans love as a cold-weather signature. The main complaint is performance, as many report it fading within a couple of hours with modest projection. Some also find it synthetic in recent batches, and a few smell burnt tires, Vaseline or flat rum."
+  },
+  {
+    "slug": "al-haramain-laventure",
+    "summary": "A fruity pineapple-and-lemon scent that many reviewers find close to Creed Aventus, with compliments and some reporting it lasts a full day. Performance is inconsistent though: a good number say it fades within a few hours or is weak, while several say it improves with maceration. Some smell lemon cleaner and nothing like Aventus."
+  },
+  {
+    "slug": "armani-my-way-eau-de-parfum",
+    "summary": "A sweet, floral scent with orange blossom, jasmine and tuberose that many reviewers love, often describing a bubblegum or creamy sweetness and finding it classy and wearable in any season. It is fairly strong, so a couple of sprays is enough. Some find it too sweet or flowery, causing headaches, and a few say it fades or smells like grandma."
+  },
+  {
+    "slug": "armani-acqua-di-gio-eau-de-parfum",
+    "summary": "A fresh, citrusy aquatic with green mandarin, smoky woods and salty notes that many reviewers find long-lasting and good for compliments, particularly in hot weather. The main complaint is that some find it fades within a couple of hours or turns into a skin scent. A few dislike the dry down as metallic, earthy or off."
+  },
+  {
+    "slug": "parfums-de-marly-percival",
+    "summary": "A clean, bright shower-gel fresh scent that most reviewers love as a versatile, work-friendly pick for warm weather, with compliments and decent staying power for many. Some find it generic, like a body wash, and a few report it fades quickly or find it nauseating. A few feel the price is steep."
+  },
+  {
+    "slug": "azzaro-forever-wanted-elixir",
+    "summary": "A raspberry opening that dries down to a soft, sweet leather with cardamom and lavender, which most fans find addictive. The main complaint is performance, as many say it fades within a few hours or the projection drops quickly, though others get 8 hours or more. A few find the leather takes over or feel it is feminine."
+  },
+  {
+    "slug": "mugler-angel-eau-de-parfum",
+    "summary": "Mugler Angel Eau de Parfum is sharply divided. Fans find it irresistible, a sweet caramel and chocolate scent that draws compliments and projects strongly. Many others get a heavy patchouli that turns harsh, dirty or nauseating on their skin. Worth sampling on skin before buying."
+  },
+  {
+    "slug": "jo-malone-london-wood-sage-sea-salt",
+    "summary": "Jo Malone London Wood Sage & Sea Salt is a clean, fresh, green scent that most reviewers love, often as a favourite or layering piece. The main complaint is staying power: many get only a few hours and some far less, and it projects softly. Suits those who want something inoffensive and calm, even for the office."
+  },
+  {
+    "slug": "creed-aventus-for-her",
+    "summary": "Creed Aventus for Her is a fresh, fruity, musky scent that many reviewers rank among their favourites, with a unisex, slightly smoky feel and good longevity. Some who sampled it found it nice but unremarkable for the price, and a few found it too manly, powdery or sour on skin."
+  },
+  {
+    "slug": "parfums-de-marly-haltane",
+    "summary": "Parfums de Marly Haltane is a warm woody, spicy scent with praline, leather and a soft oud, and reviewers mostly love it, especially in cold weather. Many report compliments and long wear. It is too heavy for hot climates, and a few found it just okay. Worn by men and women."
+  },
+  {
+    "slug": "armani-code-eau-de-parfum",
+    "summary": "Armani Code Eau de Parfum is a smooth, vanilla-leaning scent that most reviewers like, with plenty of compliments, especially from women, and good staying power for many. Projection is the weak spot for some, and a few find it powdery or synthetic. Reviewers compare it closely to Code Profumo."
+  },
+  {
+    "slug": "jean-paul-gaultier-le-male-elixir",
+    "summary": "Jean Paul Gaultier Le Male Elixir is a sweet, honeyed, strong scent that wins many compliments and lasts a long time. Many treat it as an occasion or date night fragrance because it can be overpowering. Several reviewers found it too sweet, cloying or basic, so those sensitive to sweetness may want to sample first."
+  },
+  {
+    "slug": "ariana-grande-thank-u-next-eau-de-parfum",
+    "summary": "Ariana Grande Thank U, Next Eau de Parfum is a light, sweet raspberry and coconut scent that many reviewers adore as an everyday favourite. Opinions on longevity split: some say it lasts all day, others that it fades within a couple of hours. A fair number of people smell pickles in it, which puts them off."
+  },
+  {
+    "slug": "chanel-allure-homme-sport-eau-de-toilette",
+    "summary": "Chanel Allure Homme Sport Eau de Toilette is a fresh summer scent with a creamy vanilla touch that most reviewers love, and it is office-safe and often preferred over the Eau Extrême flanker. Its weakness is staying power, with several reporting it fades quickly and projects little."
+  },
+  {
+    "slug": "tom-ford-tuscan-leather-eau-de-parfum",
+    "summary": "Tom Ford Tuscan Leather Eau de Parfum is a strong leather scent that most reviewers adore, with many calling it a signature or holy grail, and it draws compliments, lasts many hours and suits both men and women. It is not for everyone, as a few found it nauseating or disliked the leather."
+  },
+  {
+    "slug": "juliette-has-a-gun-not-a-perfume",
+    "summary": "Juliette Has a Gun Not a Perfume is a clean, light, skin-like musky scent that most reviewers love, and it often earns compliments and fits the office. It is very understated, so a few smell almost nothing, and some find it metallic, chemical or gasoline-like."
+  },
+  {
+    "slug": "versace-eros-flame-eau-de-parfum",
+    "summary": "Versace Eros Flame Eau de Parfum is an orange-forward scent that reviewers mostly love, calling it a versatile daily or summer pick that earns compliments, and good value. A few found it boring, too orange or simply wrong on their skin, and some felt too old for it."
+  },
+  {
+    "slug": "tom-ford-soleil-blanc-eau-de-parfum",
+    "summary": "Tom Ford Soleil Blanc Eau de Parfum is a sunscreen-like, warm summer scent that many reviewers love and reach for in hot weather, even those who dislike other Tom Fords. It divides opinion: a few find it nauseating, and a couple report light projection or poor staying power."
+  },
+  {
+    "slug": "chanel-bleu-de-chanel-eau-de-toilette",
+    "summary": "Chanel Bleu de Chanel Eau de Toilette is the fresh, versatile version that many reviewers prefer to the Eau de Parfum, and it is especially good in summer heat. The main complaint is staying power: several get only a few hours and say it performs weakly."
+  },
+  {
+    "slug": "armani-acqua-di-gio-eau-de-parfum-intense",
+    "summary": "Armani Acqua di Giò Eau de Parfum Intense is mostly well liked, with many reviewers reporting plenty of compliments and long wear that suits work and nights out. It is not universal: a few get a short-lived scent, and some smell musk, resin or generic shower gel on their skin."
+  },
+  {
+    "slug": "versace-eros-energy-eau-de-parfum",
+    "summary": "Versace Eros Energy Eau de Parfum is a bright, sweet lemon and citrus scent that most reviewers like, with regular compliments, decent longevity and good value. It works year round despite its summer-fresh feel. A few found the citrus overwhelming or it fading quickly."
+  },
+  {
+    "slug": "carolina-herrera-bad-boy-cobalt-eau-de-parfum",
+    "summary": "Carolina Herrera Bad Boy Cobalt Eau de Parfum is mostly liked, with many calling it a favourite or signature, a safe all-year scent that suits warmer days. Reviewers have mixed views on the opening and dry down, and a few find it sour, cheap-smelling or quick to nose-blind to."
+  },
+  {
+    "slug": "byredo-gypsy-water",
+    "summary": "Byredo Gypsy Water is a lemony, incense-touched scent that reviewers love, especially in warm weather. The clear downside is staying power, with many saying it fades fast and wishing it lasted longer. It suits those happy with a soft, low-projection scent."
+  },
+  {
+    "slug": "dior-sauvage-parfum",
+    "summary": "Dior Sauvage Parfum is almost universally liked among reviewers, who praise its compliments, long wear and easy office-friendly character. Many prefer it to the Eau de Toilette, Eau de Parfum and Bleu de Chanel. Only one reviewer disliked it."
+  },
+  {
+    "slug": "dior-miss-dior-blooming-bouquet-eau-de-toilette",
+    "summary": "Dior Miss Dior Blooming Bouquet Eau de Toilette is a light, soft, fresh and peony-leaning floral that reviewers love, often as an all-time favourite. The consistent downside is performance, with many saying it has little staying power or sillage."
+  },
+  {
+    "slug": "chanel-gabrielle-chanel-eau-de-parfum",
+    "summary": "Chanel Gabrielle Chanel Eau de Parfum is a bright, clean citrus and white floral that most reviewers enjoy, especially in warm weather and at work, and it earns compliments. A few find it too sweet or simply not special enough for the price, and one gets little lasting power."
+  },
+  {
+    "slug": "jean-paul-gaultier-le-male-le-parfum",
+    "summary": "Jean Paul Gaultier Le Male Le Parfum is a smooth, powdery vanilla and iris scent that reviewers mostly love, and it earns lots of compliments, including from older women. Its main downside is longevity, with some saying it turns into a skin scent. A few found it too strong or powdery."
+  },
+  {
+    "slug": "lancome-la-vie-est-belle-eau-de-parfum",
+    "summary": "Lancôme La Vie est Belle Eau de Parfum is a compliment magnet that many reviewers wear as an everyday signature scent, with good staying power. It is sweet and powdery, which some find sickly or headache-inducing, and a couple dislike it outright."
+  },
+  {
+    "slug": "armani-stronger-with-you-powerfully",
+    "summary": "Armani Stronger With You Powerfully is a sweet cherry-led gourmand that most reviewers rate as one of the best in the Stronger With You line. Many report good staying power and say it suits any season. A couple found it weak, and one thought it smells like the rest of the line."
+  },
+  {
+    "slug": "armaf-club-de-nuit-intense-man-eau-de-toilette",
+    "summary": "Most reviewers find it long-lasting and a reliable compliment getter, with a smoky, fruity dry down. The opening is the sticking point: many call it harsh lemon, like a cleaner, though it often calms within minutes or after the bottle rests. Some get weak or short-lived performance, and batches seem to vary."
+  },
+  {
+    "slug": "tom-ford-black-orchid-eau-de-parfum",
+    "summary": "A dark, rich, bold scent that splits reviewers. Many love it as a strong, long-lasting evening and cold-weather fragrance that earns compliments, and a few say it grows on them. A fair number find it overwhelming or nauseating, with sickly sweet, powdery or off-putting notes, so it suits special occasions more than the office."
+  },
+  {
+    "slug": "dior-homme-eau-de-toilette",
+    "summary": "Most reviewers like it as a clean, woody, easy daily scent that works across seasons and at the office, with decent longevity. The main drawbacks are modest projection, a close scent bubble, and some reports of it fading. A few find it boring or generic, though others call it classy rather than basic."
+  },
+  {
+    "slug": "tom-ford-oud-wood-eau-de-parfum",
+    "summary": "Reviewers love the smooth, woody, vanilla-tinged scent and often call it elegant, easy to wear and safe for work. The big complaint is performance: many say it fades within a few hours or barely projects, though some get all-day wear. A few find it synthetic, light, or not worth the money."
+  },
+  {
+    "slug": "xerjoff-naxos",
+    "summary": "A warm, sweet blend of honey, lavender and tobacco that most reviewers love, praising its compliments, strong presence and long wear, especially in cooler weather. A minority find it too sweet or medicinal, with cough drop or itch-cream impressions, and a few think it overhyped and overpriced. Some say batches and age change its strength."
+  },
+  {
+    "slug": "billie-eilish-eilish-eau-de-parfum",
+    "summary": "A sweet, warm gourmand vanilla with spice that most reviewers enjoy, especially in colder months, and it draws plenty of compliments. Many report it lasting well, particularly on clothes, though a few find it fades quickly. It can turn medicinal, eucalyptus-like or spicy on some skin, so a sample first is wise."
+  },
+  {
+    "slug": "creed-absolu-aventus",
+    "summary": "Most reviewers love this richer, spicier, softer take on the Aventus style, praising its compliments and often strong longevity, and it suits fall and winter. Performance is not consistent, though: some find it a close-to-skin scent that fades, and several say the cost is not justified. The spice puts a few people off."
+  },
+  {
+    "slug": "dior-sauvage-elixir",
+    "summary": "A very strong, long-lasting scent that many reviewers say earns lots of compliments, with one or two sprays often enough. That power is also the downside, as several find it overwhelming or headache-inducing, and it suits cold weather best. It is divisive in character (licorice, celery), and some report newer batches as weaker."
+  },
+  {
+    "slug": "azzaro-the-most-wanted-parfum",
+    "summary": "A sweet, boozy, vanilla and toffee scent that many reviewers love, with frequent compliments and good longevity, suited to cooler weather and evenings. The main complaints are soft projection and lasting power that varies from person to person. Some find the sweetness cloying, synthetic or grape-soda-like, and heat makes it heavier."
+  },
+  {
+    "slug": "armaf-club-de-nuit-untold",
+    "summary": "A sweet, amber-saffron scent often compared to Baccarat Rouge 540, which many reviewers say lasts very long, projects loudly and earns compliments. Performance is not consistent, though: a good number get weak projection or fading, and some find the opening synthetic. Several say it improves after resting."
+  },
+  {
+    "slug": "creed-himalaya",
+    "summary": "Most reviewers like it as a fresh, clean, versatile scent with citrus, woods and musk that suits the office and works in most seasons. The main complaint is longevity, with a number saying it turns into a skin scent quickly, though others get most of a day. A few find it basic or reminiscent of body spray, and some say older bottles were better."
+  },
+  {
+    "slug": "armani-stronger-with-you-eau-de-toilette",
+    "summary": "A warm, sweet, spicy scent that reviewers say draws compliments more than almost anything else, with strong projection and long wear, especially in fall and winter. The main downsides are the sweetness, which a few find too much, and performance that is weak or short-lived for some. Two sprays can be enough."
+  },
+  {
+    "slug": "afnan-supremacy-not-only-intense",
+    "summary": "A fruity, mossy Aventus-style scent that most reviewers say is a long-lasting, strong-projecting compliment getter, heavy for hot days. Batches seem inconsistent, however, with a good number reporting weak performance or fading within hours. The blackcurrant sweetness and oakmoss divide opinion, and some say it improves with time."
+  },
+  {
+    "slug": "armani-acqua-di-gio-eau-de-toilette",
+    "summary": "A clean, fresh classic that many reviewers have worn for years, loved for its summery scent and compliments. By far the main complaint is longevity, with many saying it fades within a few hours or less, though some get most of a day. Several note newer bottles differ from older ones, in either direction."
+  },
+  {
+    "slug": "afnan-9pm",
+    "summary": "A very sweet vanilla and lavender scent in the Ultra Male style that many reviewers find strong, long-lasting and good for compliments at a low price. Many others find it synthetic, cheap, or bubblegum-sweet, and some say it is too youthful or loud. Batches vary, and some bottles fade quickly."
+  },
+  {
+    "slug": "le-labo-santal-33",
+    "summary": "A woody, creamy sandalwood scent that many reviewers say draws compliments, lasts most of the day and suits many occasions. It is skin-dependent, though: a large share smell dill pickle, salty or sour notes on themselves and dislike it. Reviewers often suggest sampling before buying."
+  },
+  {
+    "slug": "burberry-goddess-eau-de-parfum",
+    "summary": "A warm, comforting vanilla with lavender and ginger that most reviewers enjoy, with versatile wear from cozy fall to summer. The opening is the weak spot for some, who find it sharp, perfumey or irritating, while the dry down wins people over. A few get weak staying power, and it can be too sweet or spicy in heat."
+  },
+  {
+    "slug": "armani-acqua-di-gio-parfum",
+    "summary": "A fresh, lightly smoky and incense-tinged scent that many reviewers find long-lasting, versatile and good for the office, often comparing it to Profumo. Performance is not consistent, with some bottles soft or fading within hours, and reviewers note differences between 2023 and 2024 batches. A few find it grandpa-like or powdery."
+  },
+  {
+    "slug": "chanel-bleu-de-chanel-eau-de-parfum",
+    "summary": "Most reviewers praise it as a clean, refined and very versatile all-season scent that is safe for work. The main complaint is staying power: a number find it fades quickly or sits close to skin, and a few say newer batches are weaker. Others report solid all-day wear, and a couple dislike a fishy or powdery note."
+  },
+  {
+    "slug": "lattafa-eclaire",
+    "summary": "A sweet, creamy vanilla-caramel dessert scent, often compared to Bianco Latte, that many reviewers say earns compliments and lasts a long time at a low price. The opening can be harsh or plasticky and it needs time to settle, and some find it synthetic or too sweet. A few call it feminine."
+  },
+  {
+    "slug": "armani-code-parfum",
+    "summary": "A soft, powdery iris scent that most reviewers find clean, classy and easy to wear year-round, including at the office, with good compliments and lasting power. The main downside is modest projection, and some report it fading or sitting very close to skin. A few find the powder or wood-tar note unappealing."
+  },
+  {
+    "slug": "armani-acqua-di-gio-profondo-eau-de-parfum",
+    "summary": "A fresh citrus and aquatic scent that many reviewers say draws compliments and suits spring and summer, with versatile wear. The main complaint is longevity, with a good number saying it fades within a few hours, though some get most of a day. A few find it synthetic, eggy or smelling off, and batches seem to differ."
+  },
+  {
+    "slug": "lattafa-asad",
+    "summary": "A peppery, spicy scent with some vanilla that many reviewers say resembles Sauvage Elixir, with compliments, strong projection and good value. The opening is harsh for many and often improves after minutes or time. Longevity is uneven, with some getting 8 hours and others only a few, and a few find it cheap or chemical."
+  },
+  {
+    "slug": "prada-paradoxe-eau-de-parfum",
+    "summary": "Most reviewers love Prada Paradoxe, and it comes up as a compliment getter with strong projection. The main downside is skin chemistry: a few find it turns sweaty, alcohol-like or powdery on them even though they like it on others, so testing on skin first makes sense."
+  },
+  {
+    "slug": "viktor-rolf-spicebomb-extreme-eau-de-parfum",
+    "summary": "Most reviewers love Spicebomb Extreme as a warm winter scent with strong projection, long wear and compliments. The main downside is that it can be too loud, and on a few people the spice reads as plain cumin or medicinal."
+  },
+  {
+    "slug": "le-labo-the-noir-29",
+    "summary": "Reviewers are almost uniformly enthusiastic, with many calling it an all-time favourite. It lasts a long time on skin, so a spray or two goes a long way, and it draws compliments. A lone mixed review says it would suit a candle better."
+  },
+  {
+    "slug": "parfums-de-marly-greenley",
+    "summary": "Most reviewers like Greenley as a fresh, green, slightly sweet scent that some compare to high-end shower gel, and several rate the opening highly. Downsides are mixed: a few find it generic after the opening, chemical or soapy, or not worth the price."
+  },
+  {
+    "slug": "dior-jadore-lor",
+    "summary": "Most reviewers love J'adore L'Or as a warm, luxurious white floral with a honey feel, and some call it a favourite. The few critics find it too sweet or too feminine, though one still praises its lasting power."
+  },
+  {
+    "slug": "yves-saint-laurent-y-eau-de-parfum",
+    "summary": "Most reviewers rate Y Eau de Parfum highly as a fresh, sweet everyday scent that gets plenty of compliments and performs strongly. The main downside is sweetness: a couple find the green apple cloying or too fruity over time."
+  },
+  {
+    "slug": "jean-paul-gaultier-le-beau-le-parfum",
+    "summary": "Most reviewers say it earns compliments, often from strangers, and some count it among their favourite designer scents. The coconut gives a summery, beachy feel. Downsides are few: one finds it too sweet and cloying, and another wishes it projected more."
+  },
+  {
+    "slug": "viktor-rolf-spicebomb-eau-de-toilette",
+    "summary": "Most reviewers like Spicebomb as a warm cold-weather scent that draws compliments, and some call it a favourite. Downsides are mixed: a couple find it overpowering or sharp, one says the sillage and performance are poor, and another simply did not like it."
+  },
+  {
+    "slug": "bvlgari-man-in-black-eau-de-parfum",
+    "summary": "Most reviewers love how it smells, calling it cozy, and several name it a favourite or former signature. The main downside is performance, which a few find average. One disliked it for a burnt chemical smell."
+  },
+  {
+    "slug": "yves-saint-laurent-libre-eau-de-parfum-intense",
+    "summary": "Most reviewers love Libre Intense as a warm, vanilla-forward scent that suits cold weather and earns compliments, and one finds it unusually long lasting. A couple dislike it outright, and one suspects a newer bottle is weaker than before."
+  },
+  {
+    "slug": "yves-saint-laurent-mon-paris-eau-de-parfum",
+    "summary": "Reviewers mostly love Mon Paris, with many saying it gets them asked what they are wearing, and a few find it long lasting. The only criticism is one reviewer who found it peppery on their skin."
+  },
+  {
+    "slug": "burberry-hero-parfum",
+    "summary": "Most reviewers praise Hero Parfum as a rich, woody, cedary scent that lasts well and suits fall and winter. Some call it more refined than other versions. One reviewer who loved it now gets migraines from it."
+  },
+  {
+    "slug": "parfums-de-marly-layton-exclusif",
+    "summary": "Most reviewers love it as a darker, richer, more mature take on Layton, with oud and animalic notes. One says a few sprays last into the next day. A couple dislike it, one describing a menthol, hospital smell."
+  },
+  {
+    "slug": "dior-sauvage-extrait",
+    "summary": "Reviewers lean positive but are split. Fans like the darker woods, oud and incense feel, and say it lasts all day and projects strongly. Critics find it too strong, animalic or leathery, and tiring. It is seen as quite distinct from other Sauvage versions."
+  },
+  {
+    "slug": "dior-miss-dior-parfum",
+    "summary": "Most reviewers who tried it love Miss Dior Parfum, with several calling it their favourite of the Miss Dior line. A few do not like it, and one found the patchouli in the drydown heavy."
+  },
+  {
+    "slug": "chanel-chance-eau-tendre-eau-de-toilette",
+    "summary": "Most reviewers like it as a light, fresh floral that works for the office, spring and summer, and several prefer it to the EDP. It draws some compliments. The main downside is that it can fade quickly on some skin, though others get several hours."
+  },
+  {
+    "slug": "chanel-chance-eau-tendre-eau-de-parfum",
+    "summary": "Opinions are divided. Fans find it a bright, rosy scent with good lasting power, while several others say it fades quickly or is inconsistent. Some find it powdery, mature or sweeter than the toilette version."
+  },
+  {
+    "slug": "chanel-n-5-eau-de-parfum",
+    "summary": "Many reviewers disliked it at first but warmed to it as it developed, calling the drydown warm, creamy and skin-like. A few find the opening off-putting, and one finds it a bit heavy. It seems to reward giving it time."
+  },
+  {
+    "slug": "prada-paradoxe-intense-eau-de-parfum",
+    "summary": "Most reviewers love Paradoxe Intense, with some calling it a favourite and one noting compliments from men. Downsides are a couple of strong dislikes, one of whom finds it cloyingly sweet with no lasting power on them."
+  },
+  {
+    "slug": "azzaro-chrome-parfum",
+    "summary": "Most reviewers like Chrome Parfum, praising it as an easy office scent that lasts around a day and draws compliments. Some say it grew on them, particularly the dry down. One reviewer found it unpleasant, comparing it to old cigarettes in stale beer."
+  }
+]

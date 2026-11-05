@@ -1,0 +1,346 @@
+[
+  {
+    "slug": "alienware-aw3423dwf",
+    "summary": "The Alienware AW3423DWF is liked for its deep-black QD-OLED ultrawide picture, strong HDR and fair price, and plenty of owners report no burn-in after years. The biggest complaints are software and firmware quirks, especially washed-out or clipping HDR modes, and quality-control issues such as coil whine and marks. Burn-in and text fringing hit some owners."
+  },
+  {
+    "slug": "alienware-aw3926qw",
+    "summary": "The Alienware AW3926QW is praised for sharp text and a vivid, glossy 5K2K OLED picture that works for both coding and games. The main downside is quality control: edge dimming, uneven uniformity with a green tint at the sides, and gaps in the casing, with some units failing early. Experiences vary a lot by unit, and many owners see no problems."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg32ucwmg",
+    "summary": "The ASUS ROG Strix OLED XG32UCWMG draws praise for its true-black glossy coating, deep blacks and bright HDR. The dominant complaint is firmware and software: updates that fail or hang, aggressive ABL dimming, flicker and black screens, and input quirks. Quality-control issues such as banding, uneven uniformity and dead pixels also come up."
+  },
+  {
+    "slug": "msi-mpg-321urx-qd-oled",
+    "summary": "The MSI MPG 321URX is liked for its stunning picture, strong HDR, handy KVM and good value among 32-inch 4K OLEDs. The biggest complaint is quality control: random shut-offs, lines on screen, wake problems and unwanted pixel-care cycles. Black screens over HDMI and flaky software also come up, and cable swaps or DisplayPort often helped. Many owners report no problems."
+  },
+  {
+    "slug": "alienware-aw3225qf",
+    "summary": "Most owners of the Alienware AW3225QF love the picture: deep blacks, strong colour and HDR, and 4K text that many call sharp, with lots reporting no burn-in after long daily use. The main downsides are black-screen flashes and flicker, clunky or buggy software and firmware, and a screen that scratches and smudges easily. Some got eye strain or text fringing."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg32ucdm",
+    "summary": "The ASUS ROG Swift OLED PG32UCDM is liked for gorgeous colour and strong HDR, and many owners report no burn-in after thousands of hours, including heavy office use. Complaints are spread out: software and firmware quirks, random black screens or flicker, and occasional failed units. Some find full-screen HDR dim."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg32ucdm3",
+    "summary": "The ASUS ROG Swift OLED PG32UCDM3 is widely praised for vivid colour, good blacks even in lit rooms and strong HDR, with many saying text looks fine. The main complaint is quality control, especially units arriving cracked or damaged from thin packaging, plus the odd display defect. Some notice text fringing or find the stand large and the price high."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg27ucdmg",
+    "summary": "The ASUS ROG Strix OLED XG27UCDMG is loved for sharp 4K text on a small screen, vivid QD-OLED colour and good value, especially from discounts and open-box buys. The most common problems are software annoyances, mainly failing firmware updates, frequent pixel cleaning and a touchy proximity sensor, plus a coating that micro-scratches easily. Many report no burn-in."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg27acdng",
+    "summary": "The ASUS ROG Strix OLED XG27ACDNG wins praise for vivid colour, deep blacks, strong HDR and fast 360Hz motion, and several call its text clear. The main complaints are software and settings quirks such as VRR or G-Sync flicker and black screens, plus connection problems like dropping from 360Hz to 180Hz. A few got faulty units."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg27aqdmg",
+    "summary": "The ASUS ROG Strix OLED XG27AQDMG has a glossy WOLED screen with true blacks that happy owners like, and several report no burn-in after thousands of hours. Quality control is the main worry though: grey banding, dead pixels and failures, along with image retention or burn-in for a good number, and text fringing that bothers some."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg27ucdm",
+    "summary": "The ASUS ROG Swift OLED PG27UCDM is praised for very sharp text at 4K on a small screen, rich colour and smooth motion, and many report no burn-in after long use. Downsides are scattered: a coating that scratches easily, a proximity sensor that can blank the screen, and eye strain or headaches for some owners. A few wished it were larger or brighter."
+  },
+  {
+    "slug": "gigabyte-mo27q28g",
+    "summary": "The Gigabyte MO27Q28G has a matte WOLED screen with good blacks and HDR that owners like, especially in bright rooms and for the price. The overwhelming complaint is grey banding and uneven greys, which shows in dark-mode apps and sometimes games and often improves little with pixel cleaning, so many returned it. Others barely notice it in games."
+  },
+  {
+    "slug": "lg-ultragear-39gx950b-b",
+    "summary": "The LG UltraGear 39GX950B is praised for brightness, strong HDR and sharp 5K2K text, and many owners say its light matte coating is better than expected and handles bright rooms well. Others missed the glossy look, finding colours duller or a bit grainy. Quality-control reports include banding, uniformity problems, edge dimming and early failures."
+  },
+  {
+    "slug": "dell-ultrasharp-u4025qw",
+    "summary": "The Dell UltraSharp U4025QW is liked mainly for crisp text and lots of workspace, plus a handy KVM and Thunderbolt hub, especially with Macs. The main snags are connection limits, such as many Macs not reaching 120Hz, and the high price. Gaming motion divides opinion, so it suits work more than serious play."
+  },
+  {
+    "slug": "alienware-aw2725df",
+    "summary": "Most owners of the Alienware AW2725DF praise the vivid, glossy QD-OLED picture and very fast 360Hz motion, and several report no burn-in after years of heavy use. The most common complaints are quality-control problems such as VRR flicker, black screens and early failures, plus text fringing that makes it a weak pick for productivity. A few also got eye strain."
+  },
+  {
+    "slug": "alienware-aw3425dw",
+    "summary": "The Alienware AW3425DW is mostly loved for its rich, immersive QD-OLED ultrawide picture and quick response, and several owners say text looks fine. The most common complaint is text fringing that bothers some, especially for work, followed by VRR flicker and a few early burn-in reports. Some found the screen small or got eye strain."
+  },
+  {
+    "slug": "aoc-q27g3xmn",
+    "summary": "The AOC Q27G3XMN is a budget mini-LED monitor valued for bright HDR, deep blacks for the price and low cost compared with OLED. HDR results are inconsistent though, as a fair number found it washed out, dull or green-tinted and needed lots of tweaking. Other complaints include black smearing, VRR flicker and blooming, plus a few defective units."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg27aqwmg",
+    "summary": "The ASUS ROG Strix OLED XG27AQWMG is liked for its bright, glossy tandem WOLED picture, strong blacks and responsive feel. By far the main complaint is grey banding and a dirty-screen effect that varies from unit to unit: some see it only in dark-mode apps, others returned units over it. Many say it is not visible in games."
+  },
+  {
+    "slug": "lg-ultragear-45gx950a-b",
+    "summary": "The LG UltraGear 45GX950A-B wins people over with its size, curve and immersion, plus a bright, good-looking 5K2K picture. Complaints are scattered: DisplayPort and signal problems, flicker or failures, coil whine, and a matte coating or text fringing that some disliked. The aggressive curve and large size put off a few, and it is pricey."
+  },
+  {
+    "slug": "samsung-odyssey-neo-g9-57",
+    "summary": "The Samsung Odyssey Neo G9 57\" is loved for its huge, sharp workspace that replaces several monitors, and many long-term owners call it the best they have used for work and sim games. The main downsides are reliability and connections: dead units, black screens, DisplayPort 2.1 problems and signal dropouts. Some say it runs hot, and it is very big."
+  },
+  {
+    "slug": "msi-mpg-322urx-qd-oled",
+    "summary": "Most owners are delighted by the vivid 4K picture, punchy HDR and sharp text, and several report no burn-in after long use. The main downsides are reliability: a handful had dead units, lost DisplayPort signal, flicker or a failed firmware update. A good fit for a powerful GPU, with some quality-control risk."
+  },
+  {
+    "slug": "msi-mpg-274urdfw-e16m",
+    "summary": "Mini-LED screen whose bright, punchy HDR is the main draw, and many owners are happy with it for consoles, laptops and work. Complaints are mostly about local dimming looking washed out or blooming on the desktop, plus uniformity flaws such as dust under the screen, edge darkening and tints. Needs some tweaking of settings per content type."
+  },
+  {
+    "slug": "gigabyte-aorus-fo27q3",
+    "summary": "A 1440p QD-OLED that several owners like for uniform, sharp-looking picture and smooth motion, with some reporting no burn-in after long use. Downsides are scattered: software and setting quirks (always-on DSC, pixel cleaning, colour modes), occasional VRR flicker, and a number of faulty units with black-outs, stuck test modes or dropped signal."
+  },
+  {
+    "slug": "lg-ultragear-27gx790a-b",
+    "summary": "A fast 1440p OLED that many owners find very smooth, with good blacks and clear text for the price. Downsides are signal and unit problems: dropouts or refresh-rate drops over DisplayPort, some flicker, and grey lines on a few units. Several also found default colours and brightness dull until they changed settings."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g8-g85sd",
+    "summary": "Ultrawide OLED that most owners like for deep blacks, strong HDR and a matte coating that cuts reflections, often at a good price. The main downsides are hardware faults: coil whine, flicker, and vertical bars or lines appearing on a few units. One heavy-use owner also saw burn-in."
+  },
+  {
+    "slug": "gigabyte-mo32u24",
+    "summary": "Most owners are very happy with this 4K QD-OLED, praising vivid colour, strong HDR, sharp text and a coating that keeps blacks deep. The main complaint is quality control: a few units arrived with bent panels, flickering lines or scan-line artifacts, and one owner found blacks raised in a bright room."
+  },
+  {
+    "slug": "lg-ultragear-34gs95qe-b",
+    "summary": "Curved ultrawide OLED that many owners love for the picture, with several reporting thousands of hours and no visible burn-in. The main downsides are text fringing that bothers some, especially for work, and HDMI or connection trouble. A few found the strong curve or banding a problem."
+  },
+  {
+    "slug": "lg-ultrawide-40wp95c-w",
+    "summary": "Large curved 5K2K IPS monitor that owners, especially on Macs, praise for crisp text and the roomy workspace, with one-cable Thunderbolt a plus. The main downsides are reliability, with flickering, image retention, tints and dead units reported, and some feel the brightness and price fall short."
+  },
+  {
+    "slug": "msi-mpg-271qr-qd-oled-x50",
+    "summary": "Very fast 1440p QD-OLED that competitive players like for clear motion, and several are happy with the picture and text after fixing dim or washed colours in settings. Complaints include spots on the panel on a few units, brightness that some find low, and software gaps such as sRGB mode and pixel refresh."
+  },
+  {
+    "slug": "lg-ultragear-27gx704a-b",
+    "summary": "Glossy 1440p WOLED that many find great for games, with good colour and motion. Reviews are split on the downsides: HDR often looks washed out, text and colour fringing bothers some, and VRR flicker and vertical banding appear for some, though banding often faded after pixel cleaning."
+  },
+  {
+    "slug": "msi-mag-271qpx-qd-oled-e2",
+    "summary": "Most owners are very pleased with this budget-friendly QD-OLED, praising contrast, colour and smooth motion, with no text fringing issues and no burn-in reported. Downsides are scattered: some VRR flicker, a few dim or washed-out impressions, HDR detection trouble and eye strain for a couple of owners."
+  },
+  {
+    "slug": "msi-mag-274qrf-qd-e2",
+    "summary": "Budget quantum-dot IPS that owners like for rich colour, a sturdy stand and the price. The main problem is backlight bleed, reported by many, along with dead or stuck pixels and units needing several returns. Fine for those who tolerate some glow, but panel luck matters."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g9-g95sd",
+    "summary": "Super-ultrawide OLED with vibrant colour and deep blacks that owners find immersive. Its main weakness is connections: black screens, signal loss and detection problems, especially over DisplayPort, with HDMI sometimes working better. Slow software and awkward port placement also come up, and some units failed or showed artifacts."
+  },
+  {
+    "slug": "asus-rog-strix-xg27aqngv",
+    "summary": "Fast 1440p LCD with Pulsar motion blur reduction that owners like for clear motion in competitive games. The main downsides are reliability, with several units overheating and shutting down with Pulsar on, plus dead pixels, coil whine and some software quirks. Some feel it does not match an OLED or justify the cost."
+  },
+  {
+    "slug": "msi-mpg-341cqpx-qd-oled",
+    "summary": "Ultrawide QD-OLED that many owners find beautiful, with excellent blacks and colour and strong immersion for gaming. The most repeated complaint is text fringing, which matters for coding. Others mention dim or crushed dark scenes, VRR flicker, coil whine and a few faulty units."
+  },
+  {
+    "slug": "gigabyte-aorus-fo27q2",
+    "summary": "1440p QD-OLED that many owners love for the picture and motion, with several reporting long heavy use and no burn-in. The most common complaints are software and colour handling, such as yellow HDR whites, limited colour options and firmware problems. A few units had burn-in, bricking or uniformity faults."
+  },
+  {
+    "slug": "lg-ultragear-32gx870a-b",
+    "summary": "4K matte OLED that owners praise for crisp text, rich colour and very little glare, with several picking it over the glossy sibling. Downsides are some unit faults such as random shut-offs, flicker and light patterns, plus a fan hum and slow wake for a few. Matte looks slightly grainy on white backgrounds."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g6-g60sf",
+    "summary": "Fast matte OLED with great colour and clear motion that many owners enjoy, with no glare in bright rooms. The main complaint is durability, with the joystick or power button breaking within days or weeks on several units. The matte coating also looks grainy to some, and a few had eye strain."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg32uqwms",
+    "summary": "Glossy 4K OLED that most owners are happy with, praising colour, clear text and good value, and many report little or no gray banding. Downsides are minor and scattered: black crush in HDR for some, a fixed pixel shift, a few with coil whine, tints or flicker."
+  },
+  {
+    "slug": "dell-s2725qs",
+    "summary": "4K office monitor that many owners find solid for work, with crisp text, good build and speakers at a modest price. Downsides are mixed: some had reliability failures or artifacts, connection quirks such as dropping to 60Hz or no signal, and a few disliked the tint, motion blur or default calibration."
+  },
+  {
+    "slug": "dell-ultrasharp-u3225qe",
+    "summary": "Productivity monitor that satisfied owners like for single-cable Thunderbolt and bright screen. Quality control is the main concern: several units had defects, coil whine, odd tints, grey strips or a strong chemical smell. Experiences vary, and some found the 120Hz and contrast gains underwhelming."
+  },
+  {
+    "slug": "lg-ultrawide-34wk95u-w",
+    "summary": "5K2K ultrawide that owners, mostly on Macs, love for pixel density, sharp text and single-cable Thunderbolt for productivity. The main downside is longevity: many report flickering, vertical lines and image retention appearing after months or years. Software, speakers and reflections also draw complaints."
+  },
+  {
+    "slug": "alienware-aw3426dw",
+    "summary": "Most owners love the QD-OLED picture, crisp text from the RGB-stripe panel and bright HDR, and many call it great for gaming and work. Downsides are uneven unit quality (nicks, dead pixels, uniformity), VRR flicker for some, and HDR that needs tweaking to look right. A good fit for gamers on a mid-range GPU."
+  },
+  {
+    "slug": "gigabyte-mo27q28gr",
+    "summary": "Grey banding and dirty screen effect dominate the reviews. Many owners see it in dark scenes and dark-mode apps, though far fewer notice it in games, and some units improve with pixel cleaning and use. Others get none at all. When the panel is clean, owners praise the bright HDR and glossy image."
+  },
+  {
+    "slug": "alienware-aw3423dw",
+    "summary": "The first-generation QD-OLED ultrawide is still loved for its picture, but burn-in is the main worry. Several owners got taskbar burn-in within a couple of years, usually fixed quickly under warranty, while many others report years of heavy use with none. Some also mention a loud fan, text fringing and a scratch-prone coating."
+  },
+  {
+    "slug": "gigabyte-aorus-fo32u2p",
+    "summary": "Most owners enjoy the vibrant QD-OLED picture and the solid build and stand, and many report thousands of hours with no burn-in. The coating scratches or streaks when cleaned for several owners, and some find HDR dim or weak. A few hit black screens, firmware trouble or text fringing."
+  },
+  {
+    "slug": "lg-ultragear-32gs95ue-b",
+    "summary": "Most owners like the large 4K picture, smooth high refresh rates and the matte coating, which is easy to clean and handles reflections. Some find it dim or soft next to an LG TV, and a few report burn-in, fan noise or uniformity problems. The matte finish suits many but is a dealbreaker for a few."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg27aqdm",
+    "summary": "Owners praise the OLED blacks, HDR and motion, and many report years of use with no burn-in. The main complaints are firmware and VRR trouble (flicker, glitches after updates, HDR that works only some of the time) and image retention in several units, some within weeks. Experiences vary a lot between units."
+  },
+  {
+    "slug": "lg-ultragear-27gx700a-b",
+    "summary": "Many owners like the brightness, HDR and fast motion for the price. The main complaint is grey banding and dirty screen effect, which varies by unit: some see none, some find it fades with use, and a few returned theirs. VRR flicker bothers a few."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg27aqdmgr",
+    "summary": "Most owners are happy with the deep blacks, bright glossy picture and the value, and several call it great for a first OLED. The downsides are unit problems: some arrived cracked, a few have banding or coil whine, and several had firmware updates fail or brick the monitor. Some also dislike VRR behaviour."
+  },
+  {
+    "slug": "lg-ultragear-27gr95qe-b",
+    "summary": "Owners praise the contrast and motion, and many report years of heavy use with no burn-in. The main downsides are reliability, with several units shutting off or failing, plus dimness or auto-dimming, text fringing and VRR flicker. The matte coating splits opinion, with a few finding it grainy."
+  },
+  {
+    "slug": "alienware-aw2725q",
+    "summary": "Owners like the sharp 4K text, vibrant colour and strong value helped by Dell's warranty. The main complaint is reliability: several units went black or died after months of use, some owners are on a replacement, and a few report fan buzz. HDR black lift needs tweaking for some."
+  },
+  {
+    "slug": "aoc-agon-ag276qzd2",
+    "summary": "A well-liked budget QD-OLED. Most owners praise the value, glossy coating and excellent SDR picture. The clear weak spot is HDR, which many find dull, washed out or broken, even after firmware updates. Text fringing is noticeable for some."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg27aqwp-w",
+    "summary": "Owners love the picture, HDR brightness and very fast motion. The main complaint is grey banding and dirty screen effect on some units, which often settles after pixel refreshes and use, though a few returned theirs. A few units died or arrived dead, and some find it expensive."
+  },
+  {
+    "slug": "msi-mpg-341cqr-qd-oled-x36",
+    "summary": "Owners praise the sharp, fringe-free text from the RGB-stripe panel, plus brightness and smooth high refresh. Some units have problems, including lines after pixel refresh, dead pixels, banding and early failures. The AI dimming sensor annoys a few."
+  },
+  {
+    "slug": "msi-mpg-272urx-qd-oled",
+    "summary": "Owners like the sharp 4K picture on a 27-inch panel, good HDR, deep blacks and the built-in KVM, and many report a year of use without trouble. Some units have defects such as flecks, flashing or vertical bands, and a few have USB-C or cable detection problems. It is not the brightest, so it suits dimmer rooms."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg32ucds",
+    "summary": "Most owners are delighted with the colour, deep blacks and the value of a 32-inch 4K OLED, often as a first OLED. Complaints are scattered: HDR or oversaturated SDR for some, text fringing, and a few faulty units with stuck pixels or early failure."
+  },
+  {
+    "slug": "dell-s3225qc",
+    "summary": "Seen as a great-value 32-inch 4K 120Hz QD-OLED, with a lovely picture and surprisingly decent speakers. The most common problems are signal drops and flicker over HDMI or USB-C at high refresh rates, plus coil whine on some units."
+  },
+  {
+    "slug": "dell-ultrasharp-u5226kw",
+    "summary": "Owners love the huge, very sharp 52-inch workspace and the image quality for IPS. The big problem is connectivity: many report black screens, failure to wake from sleep, missing video on some ports or unpowered rear USB ports, even on the latest firmware. Some find the KVM awkward or the screen too large."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g8-g81sf",
+    "summary": "The matte coating defines the reviews: some barely notice it, while others find it grainy and returned the monitor. Owners who get used to it praise the 4K sharpness and picture. Several report broken control or power buttons, and a few saw burn-in or black screens."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg27aqdp",
+    "summary": "Owners like the very fast motion at its top refresh rate, the matte finish and the picture, and several report thousands of hours with little or no burn-in. Downsides vary by unit: black screens and cable bandwidth trouble at the highest refresh rate, VRR flicker, and a few units with residue lines or uneven brightness."
+  },
+  {
+    "slug": "dell-ultrasharp-u2725qe",
+    "summary": "Owners like the IPS Black contrast, accurate colour, 120Hz and the Thunderbolt hub with KVM. The most common complaint is coil whine, especially at lower brightness or in standby, which sent several back. Some also found uneven backlight, vignetting or a tint, and unit-to-unit differences."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg34wcdn",
+    "summary": "Owners praise the very smooth motion, crisp text from the RGB-stripe panel, strong HDR and the anti-reflection coating. Downsides are a high price for some, 1440p at this size feeling less sharp than 4K, and scattered unit faults such as dead pixels, tint, banding or blackouts."
+  },
+  {
+    "slug": "gigabyte-aorus-fo32u2",
+    "summary": "Owners praise the glossy QD-OLED picture, and several report thousands of hours with no visible burn-in. Complaints are spread across reliability: random black screens or shutdowns, a coating that scratches, firmware problems, and a few cases of burn-in or lines. Experiences vary between units."
+  },
+  {
+    "slug": "asus-proart-pa27jcv",
+    "summary": "Reviewers who calibrate it praise accurate colour that matches prints, and it suits photo and editing work. Backlight bleed is the most common complaint, followed by faults like dead subpixels, a lost picture or failing ports. A few returned it over the grainy matte coating."
+  },
+  {
+    "slug": "msi-mpg-491cqp-qd-oled",
+    "summary": "Most owners are very happy, praising clear text for work, strong gaming and good value for such a wide screen. Downsides are Panel Protect popups that interrupt work calls, easy smudging and a need for a deep desk and a capable GPU. A couple report no burn-in so far."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg32ucdp",
+    "summary": "Owners like the sharp 4K image, deep blacks and fast feel in games. Reliability is the weak spot: several report black screens, flicker or going black, and some find HDR or dark-on-white text disappointing. Experiences vary, with others using it for months without trouble."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g8-g80sd",
+    "summary": "Most owners are very happy, with clear text, good picture next to IPS and no burn-in after a year or more of heavy use. The semi-matte coating handles reflections and is easy to clean, though it can wash out in a bright room. A couple found text fringing or reliability worse than expected."
+  },
+  {
+    "slug": "acer-predator-x34-x5",
+    "summary": "Most owners love the colour, brightness and smoothness for the price, and call it a good first ultrawide. Common nitpicks are few and low-placed inputs, a limited KVM and refresh prompts. A few report occasional blanking, G-Sync flicker, text fringing, and one saw burn-in."
+  },
+  {
+    "slug": "lg-ultrawide-38wr85qc-w",
+    "summary": "Owners praise the picture, crisp text, smooth refresh and the KVM, and use it happily for work and gaming. The main complaint is coil whine or buzzing at lower brightness, reported by several. A few hit other issues, such as pixelated text over USB-C on a Mac, bleed or a faulty panel."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g5-g50sf",
+    "summary": "Many owners find the picture and colours great for the money and a clear step up from LCD. The common downsides are low brightness in bright rooms and a disliked matte finish. A few report screen blackouts over DisplayPort or a firmware bug affecting pixel shift."
+  },
+  {
+    "slug": "asus-proart-pa279crv",
+    "summary": "The most frequent complaint by far is a green or yellow-green tint that calibration does not always fix, and several returned it. Others report dead pixels, failing inputs or brightness faults. A couple of owners are happy, with prints that match the screen once energy saving is off."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg34wcdm",
+    "summary": "Owners enjoy the colour, blacks and ultrawide immersion for work and gaming, and the matte coating helps some. HDR is criticised by several, and a few report reliability trouble such as banding, units dying, burn-in or flicker with G-Sync. Experiences are mixed."
+  },
+  {
+    "slug": "lg-ultragear-27gx790b-b",
+    "summary": "Owners like the responsive, high-refresh feel and the low-reflection matte coating, and some see minimal banding. The main problem is panel quality: several report grainy grey screens, mura or banding, and one unit died. LG replaced at least one with a clean panel."
+  },
+  {
+    "slug": "lg-ultragear-45gs96qb-b",
+    "summary": "Owners find gaming very immersive with the strong curve, and one reports no burn-in after a year of work and play. Text sharpness is the main drawback: pixels and low density bother several. Some saw banding or streaks at first that pixel cleaning fixed, and HDR looked dark to one."
+  },
+  {
+    "slug": "alienware-aw2726dm",
+    "summary": "Many owners are impressed by the colour and contrast and call it a big upgrade from older IPS or 1080p screens. The main complaint is flicker or brief blackouts every few minutes, which led several to return it. It can look dim in a bright room, and one found HDR washed out."
+  },
+  {
+    "slug": "lg-ultragear-52g930b-b",
+    "summary": "Owners are happy, especially those moving from 49-inch ultrawides or the Neo G9. They praise the extra height for work and gaming, good blacks for a non-OLED, and no ghosting. The only caveats are a curve that takes getting used to and some missing OLED contrast."
+  },
+  {
+    "slug": "alienware-aw2525hm",
+    "summary": "Owners find it fast and smooth, a big upgrade for competitive games with a sharp image. Quality control is the main worry: dead or stuck pixels, a broken joystick and marked bezels were reported, and the stand drew criticism. IPS glow varies, noticeable for some and absent for others."
+  },
+  {
+    "slug": "apple-studio-display-xdr",
+    "summary": "Owners praise crisp text, brightness and picture quality, especially for desktop work. The main downsides are connection problems, mostly on Windows or with some Thunderbolt laptops where HDR or full resolution would not work, and a price many feel is steep. Mac and text-focused users seem happiest."
+  },
+  {
+    "slug": "dell-s3225qs",
+    "summary": "Owners find it good value for a large 4K screen, with crisp text and decent contrast, and several are happy for work or PS5. As a VA panel it brings drawbacks: some see smearing, hazy greys, weaker blacks than expected or washed-out colour, and one returned it. Opinions are split."
+  },
+  {
+    "slug": "gigabyte-aorus-fo27q5p",
+    "summary": "Owners who run it at its top refresh rate find it very smooth and some call it perfect for competitive play. Connection trouble is the main complaint: DisplayPort links dropping, black screens when alt-tabbing and cable sensitivity. A few also report banding or flashing pixels."
+  },
+  {
+    "slug": "lg-ultragear-27gs75q-b",
+    "summary": "Owners like the smooth gaming and solid build for the money. Backlight bleed in the corners or along the edge is the most common complaint, and quality seems inconsistent. A few also found it dim, with colour shift by viewing angle, or limited refresh over HDMI with a laptop."
+  },
+  {
+    "slug": "benq-mobiuz-ex321ux",
+    "summary": "Most owners like it for bright HDR, strong contrast and everyday use for work and gaming, including the KVM. Downsides are some blooming, HDR that needs calibration, manual switching and limited Mac support. A couple found the mini-LED dimming and firmware inferior to OLED."
+  },
+  {
+    "slug": "msi-mpg-322ur-qd-oled-x24",
+    "summary": "Most owners are impressed by the colour, blacks and sharpness, and report it as a big upgrade from older screens. Some firmware problems appear, such as random black screens after an update and a missing OSD setting. A couple returned it, for reasons including the performance cost of 4K."
+  },
+  {
+    "slug": "ktc-m27p6s",
+    "summary": "Owners praise the bright HDR, tight local dimming and glossy panel, with some saying it rivals OLED in games. The main complaint is quirky firmware, notably a Black Equalize setting that resets after restart or wake. A couple also noticed blooming or odd dimming on console."
+  },
+  {
+    "slug": "msi-mpg-271qrx-qd-oled",
+    "summary": "Owners praise the colours, blacks and very smooth high refresh rates, often as a big jump over LCD. Text fringing splits opinion, with some not noticing it and one bothered a lot. A few reported glitches such as flashing, stutter at the top refresh rate or banding on grey."
+  }
+]
