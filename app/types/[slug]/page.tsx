@@ -2,11 +2,11 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { catalog as loadCatalog, score } from "../../../db/data";
+import { catalog as loadCatalog, score, topTags } from "../../../db/data";
 import { pageFor, seoName, hubTitle, hubDescription, productsOfType } from "../../../lib/type-pages";
-import { RacketRow } from "../../components";
+import { ProductCard, Directory, parseShow } from "../../components";
 import { AutoSubmitForm } from "../../auto-submit";
-import { SORTS, parseSort, sortProducts, positiveShare } from "../../../lib/product-sort";
+import { SORTS, parseSort, sortProducts } from "../../../lib/product-sort";
 import { niche, catalogPath, catalogLabel } from "../../../lib/niche";
 
 // Served at /<slug> (next.config.ts rewrites only the configured slugs here). One page per product type, e.g. SkinRecs /cleansers.
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // "Cleanser" → "cleanser", but acronyms stay as they are: "AI assistant", "CRM", "VPN".
 const lowerWords = (text: string) => text.replace(/\b[A-Z](?=[a-z])/g, c => c.toLowerCase());
 
-export default async function TypePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ brand?: string; sort?: string }> }) {
+export default async function TypePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ brand?: string; sort?: string; show?: string }> }) {
   const [{ slug }, f, data] = await Promise.all([params, searchParams, catalog()]);
   const t = pageFor(slug);
   if (!t) notFound();
@@ -35,16 +35,19 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const sort = parseSort(f.sort);
   const results = sortProducts(scored.filter(x => !f.brand || x.r.brandId === f.brand), sort);
   const reviewTotal = scored.reduce((n, x) => n + x.s.count + x.s.web, 0);
+  const tags = topTags(data), show = parseShow(f.show);
+  const moreHref = (n: number) => { const q = new URLSearchParams(Object.entries({ ...f, show: String(n) }).filter(([, v]) => v) as [string, string][]); return `/${t.slug}?${q}`; };
   return <main>
     <p className="breadcrumb"><a href={catalogPath}>{catalogLabel}</a> / {t.label}</p>
     <div className="page-title"><h1>{seoName(t)}</h1><p>{`${t.intro}. ${ofType.length} ${ofType.length === 1 ? niche.words.one : niche.words.many} · ${reviewTotal} reviews.`}</p></div>
-    <AutoSubmitForm className="filters" action={`/${t.slug}`}>
-      <label>Sort by<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
-      {brands.length > 1 && <label>Brand<select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>}
+    <AutoSubmitForm className="pills" action={`/${t.slug}`}>
+      {brands.length > 1 && <label className={f.brand ? "pill on" : "pill"}><span className="sr-only">Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>}
+      {(f.brand || f.sort) && <a className="pills-clear" href={`/${t.slug}`}>Clear</a>}
+      <p className="pills-count">{`${results.length} ${results.length === 1 ? niche.words.one : niche.words.many}`}</p>
+      <label className="pills-sort">Sort:<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
       <noscript><button>Filter</button></noscript>
-      {(f.brand || f.sort) && <a href={`/${t.slug}`}>Reset</a>}
     </AutoSubmitForm>
-    <div className="directory">{results.map(({ r, s }) => <RacketRow key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} average={s.average} count={s.count} web={s.web} positive={positiveShare(s)} details={niche.rowDetail && r[niche.rowDetail.column] ? `${r[niche.rowDetail.column]}${niche.rowDetail.suffix}` : ""}/>)}</div>
+    <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} tags={tags.get(r.id)} details={niche.rowDetail && r[niche.rowDetail.column] ? `${r[niche.rowDetail.column]}${niche.rowDetail.suffix}` : ""}/>)}/>
     {!results.length && (f.brand
       ? <p className="empty-feed">{`No ${lowerWords(seoName(t))} from this brand yet. `}<a href={`/${t.slug}`}>Show all {lowerWords(seoName(t))}</a></p>
       : <p className="empty-feed">{`No ${lowerWords(seoName(t))} reviewed here yet. `}<a href="/add-review">Add a review →</a></p>)}
