@@ -34,7 +34,7 @@ export const gaming: Niche = {
   // Makers name each generation (V3, X2, Gen 2), so names carry the generation instead of a year.
   productYears: false,
   productPath: "gear",
-  amazon: { searchIndex: "VideoGames" },
+  amazon: { searchIndex: "VideoGames", photos: true },
   scoreUnit: { one: "key", many: "keys" },
   // White page, deep violet, one lime accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

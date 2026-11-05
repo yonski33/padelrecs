@@ -35,7 +35,7 @@ export const keyboard: Niche = {
   // Makers name each generation (V2, Mk3, Max, HE 8K), so names carry the generation instead of a year.
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "Computers" },
+  amazon: { searchIndex: "Computers", photos: true },
   scoreUnit: { one: "key", many: "keys" },
   // White page, graphite ink, one red-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

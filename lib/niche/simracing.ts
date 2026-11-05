@@ -30,7 +30,7 @@ export const simracing: Niche = {
   productYears: false,
   productPath: "gear",
   // Wheels, pedals and cockpits are sold under Video Games accessories on Amazon.
-  amazon: { searchIndex: "VideoGames" },
+  amazon: { searchIndex: "VideoGames", photos: true },
   scoreUnit: { one: "wheel", many: "wheels" },
   // White page, deep asphalt slate, one signal-red accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
