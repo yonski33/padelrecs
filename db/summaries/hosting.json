@@ -78,5 +78,121 @@
   {
     "slug": "google-workspace",
     "summary": "Admins and small teams mostly find it easy to manage and reliable, with strong spam filtering, and often prefer it to Microsoft 365. The main complaints are price increases, bundled AI features customers did not ask for, and support that is hard to reach, especially for smaller customers."
+  },
+  {
+    "slug": "namecheap-hosting",
+    "summary": "Namecheap Hosting is praised by some for cheap, no-frills cPanel hosting with friendly support, but more reviewers report poor support, slowness and outages, including a datacenter outage that took many sites and mailboxes down for hours. It suits hobby or low-stakes sites better than email-dependent businesses."
+  },
+  {
+    "slug": "railway",
+    "summary": "Railway is loved for being very easy to deploy to, with simple pricing that suits side projects and small production apps. The main downsides are outages and a security incident that leaked environment variables, which left some users with abused API keys, long deploy blocks and little communication from support."
+  },
+  {
+    "slug": "kinsta",
+    "summary": "Kinsta is a managed WordPress host that most reviewers praise for excellent, fast support, speed and reliability, often after moving from WP Engine. The downsides are cost and resource limits, mainly few PHP workers, paid add-ons and visit counts that include bots. Agencies running many client sites feature heavily."
+  },
+  {
+    "slug": "netlify",
+    "summary": "Netlify is easy to use and was praised for a generous free plan, with git-push deploys that just work for static and Next.js sites. The main downsides are billing surprises, especially the credit-based pricing where frequent deploys use up the allowance, plus support that was slow or silent after account suspensions."
+  },
+  {
+    "slug": "ovhcloud-vps",
+    "summary": "OVHcloud VPS is liked for stable uptime and low prices, with many users running servers for years without trouble. The main complaints are renewal price rises, older and slow CPUs on newer plans, and slow or unhelpful support, including account bans and cancellations that dragged on."
+  },
+  {
+    "slug": "netcup",
+    "summary": "netcup is praised for strong performance and reliability at low prices, particularly its root servers, with many long-term customers happy. The main downside is slow or unhelpful support and account handling, including long verification, hard-to-cancel contracts and minimum terms. A few reported network outages."
+  },
+  {
+    "slug": "vultr",
+    "summary": "Vultr is mostly praised for reliable, fast VPS performance and quick support, with many long-term users. The main complaint is poor support in some cases, such as suspensions, lockouts and unexplained actions, with some network problems and price increases pushing a few users to Hetzner."
+  },
+  {
+    "slug": "linode",
+    "summary": "Akamai Linode is praised above all for reliability, with many reviewers running servers for a decade or more, plus good support, simple pricing and an easy dashboard. Downsides are a major outage in mid 2025, a price rise after the Akamai purchase, and a few account bans at signup."
+  },
+  {
+    "slug": "render",
+    "summary": "Render is easy to deploy to and praised for a free plan and predictable pricing, which suits hobby projects and small apps. The main downsides are slow free-tier spin-downs and cold starts, free-tier suspensions with little warning, and costs that add up across many services."
+  },
+  {
+    "slug": "hostinger-vps",
+    "summary": "Hostinger VPS draws praise for easy management and a low entry price, and many users run Docker projects without trouble. The main complaints are CPU throttling and steal under load, slower performance than expected, and renewal prices that are much higher than the intro rate. Support was often described as unhelpful."
+  },
+  {
+    "slug": "ovhcloud-bare-metal",
+    "summary": "OVHcloud Bare Metal is liked for reliable dedicated servers at good prices, with several users running them for many years. The main downsides are slow or poor support, long delivery waits and cancellation trouble, with a few outages and slow hardware on cheaper ranges."
+  },
+  {
+    "slug": "zoho-mail",
+    "summary": "Zoho Mail is mostly praised as cheap, trouble-free custom-domain email, with a useful free plan and smooth moves from Google or GoDaddy. A few found setup and account management complicated, and some mentioned weak spam filtering or occasional IMAP hiccups."
+  },
+  {
+    "slug": "racknerd",
+    "summary": "RackNerd is a budget VPS provider that most reviewers find very good value, with long stretches of reliable uptime for small personal projects and mail servers. Downsides are a few cases of slow speeds, outages and unhelpful support, plus no built-in backups or firewall."
+  },
+  {
+    "slug": "hetzner-server-auction",
+    "summary": "Hetzner Server Auction is loved for dedicated servers at very low prices compared with cloud providers, and long-term users report few problems apart from occasional drive failures. The main downside is price increases on existing servers, though most found the recent adjustment small."
+  },
+  {
+    "slug": "dreamhost",
+    "summary": "DreamHost is mostly praised for reliable shared and VPS hosting with helpful support, and many users have stayed for years. Downsides are few: some slowness on managed WordPress plans, a long outage for one customer, and price rises on VPS."
+  },
+  {
+    "slug": "ionos-vps",
+    "summary": "Most reviewers find IONOS VPS very cheap and stable, with several reporting years of use without problems. The main downsides are price increases, hard-to-cancel contracts and some reports of overprovisioned, slow hosts. It suits small or throwaway projects well."
+  },
+  {
+    "slug": "hosting-com",
+    "summary": "Most reviewers, many of them long-time customers from the A2 Hosting days, praise its helpful support and steady uptime. Complaints centre on renewal price increases and support that has become more AI-driven since the takeover, with a few reporting outages or slow patching."
+  },
+  {
+    "slug": "spaceship",
+    "summary": "Reviews are mostly about its domain registrar side, where most reviewers find it cheap, simple and trouble-free, including bulk transfers from other registrars. Several report quick, friendly refunds. A few had bad experiences with domain handling and support, and one finds the dashboard weak."
+  },
+  {
+    "slug": "ionos-web-hosting",
+    "summary": "Experiences split sharply. Several long-time users find it dependable and keep it for years, while a larger group reports poor support, billing errors or charges they never ordered, and some outages. Those who stay tend to be happy; those who hit billing problems struggle to resolve them."
+  },
+  {
+    "slug": "fly-io",
+    "summary": "Most reviewers find Fly.io easy to deploy to and cheap, with several running small apps on the free allowance without trouble. The main downsides are past outages and a more hands-on setup for databases and linked services. It suits small apps and developers comfortable with the terminal."
+  },
+  {
+    "slug": "namesilo",
+    "summary": "Most reviewers have used NameSilo for years without problems and like its pricing and free WHOIS privacy. Complaints are mixed: poor support, renewal price rises, higher costs without funds on deposit, and a dated interface. It suits people who want a no-frills registrar."
+  },
+  {
+    "slug": "hostgator",
+    "summary": "Opinion is split, but the main complaint is poor support, with several long-time customers saying it declined over the years. Others report price rises, upselling and a few outages. Some customers have had stable hosting for years and found support helpful."
+  },
+  {
+    "slug": "inmotion-hosting",
+    "summary": "Most reviewers find InMotion reliable with helpful, easy-to-reach support, and some move up to its VPS as sites grow. Downsides are a recent decline in support access for one long-time customer and a steep renewal increase for another."
+  },
+  {
+    "slug": "oracle-cloud",
+    "summary": "Most reviewers run small servers on its generous free tier and report stable, trouble-free use, some for years. The main risk is that free instances can be hard to obtain, flagged idle or removed without warning. It suits hobby projects, not anything critical."
+  },
+  {
+    "slug": "flywheel",
+    "summary": "Most reviewers, including several long-term customers, praise its support and easy dashboard for WordPress sites, with backups and staging included. Downsides are fewer features than WP Engine, and one report of slower speeds after the acquisition. It suits agencies and freelancers managing client sites."
+  },
+  {
+    "slug": "rocket-net",
+    "summary": "Most reviewers praise its fast load times and support that connects them to a real person quickly. Several switched from WP Engine, Kinsta or Bluehost and stayed. Downsides are a higher cost and one report that it struggled with a heavier plugin-based site."
+  },
+  {
+    "slug": "dynadot",
+    "summary": "Reviewers consistently like Dynadot as a registrar: simple interface, fair pricing, no upselling and easy transfers. Several have kept domains there for years. No clear downsides appeared in the reviews."
+  },
+  {
+    "slug": "gandi",
+    "summary": "Most reviewers are long-time customers who left or are leaving over domain renewal prices that rose sharply after the company changed hands. Some also dislike mailboxes becoming a paid extra. Those who stayed still credit the reliable service and clean tools."
+  },
+  {
+    "slug": "pressable",
+    "summary": "Most reviewers find Pressable rock solid for WordPress, with several running client or WooCommerce sites there for years and moving over from WP Engine or Kinsta. Support is described as supportive. One reviewer found it poor, citing unsupported plugins and paid upgrades."
   }
 ]

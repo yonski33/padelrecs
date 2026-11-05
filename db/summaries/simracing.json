@@ -78,5 +78,265 @@
   {
     "slug": "logitech-g920",
     "summary": "A decent, entry-level wheel that plenty of owners used happily for years, especially on Xbox. Many describe the gear-driven force feedback as notchy, clunky and weak, and the pedals and shifter are the usual weak spots. Several moved to direct drive."
+  },
+  {
+    "slug": "fanatec-gran-turismo-dd-pro",
+    "summary": "Most owners rate it a strong, satisfying first direct drive, often as a big jump from a G29 or belt-drive wheel, and many report years without problems. Downsides are scattered: a few found it numb or lacking next to pricier or stronger bases, and a couple hit quality control or noise issues."
+  },
+  {
+    "slug": "moza-hbp-handbrake",
+    "summary": "Most owners find it sturdy, nicely built and easy to adjust, and several call it good value and set-and-forget. The main complaints are software: updates that left it disconnected or unusable. A few found the springs too soft or the feel mushy, and one reported it going floppy within a year."
+  },
+  {
+    "slug": "playseat-challenge-x",
+    "summary": "A folding rig that suits people short on space and is easy to set up, but flex is the main complaint, especially with stronger direct-drive bases. Many owners reinforce or tighten it to make it work. A few returned it over flex or faulty locking arms, and pedal mounting can be awkward."
+  },
+  {
+    "slug": "thrustmaster-t150",
+    "summary": "A budget entry wheel that many liked as a first wheel, with working force feedback and decent value, and some used it for years. Durability is the main weakness: broken clamps, slipping belts, dead force feedback or failed paddles. Reviewers also mention noise, a cheap-feeling plastic rim and slack in the centre."
+  },
+  {
+    "slug": "asetek-forte-pedals",
+    "summary": "Very stiff pedals with short brake travel that people either love or return. Fans praise the solid, mostly metal build and a firm, consistent brake once dialed in, while others found the brake imprecise or too heavy and gave up on them. Setup takes effort and options are limited."
+  },
+  {
+    "slug": "asetek-la-prima-pedals",
+    "summary": "The brake is the highlight: stiff, short travel, and many say it becomes consistent once they learn to brake by pressure. The main complaint is ergonomics, with pedals sitting close together and little adjustment, which bothers people with large feet. A few reported disconnects or odd readings."
+  },
+  {
+    "slug": "simagic-alpha-evo-sport",
+    "summary": "Most owners are very happy with this 9 Nm direct drive, praising detailed, strong feedback that beats Moza and belt-drive bases they tried. Some run out of torque and upgrade, and a few found it weak, numb or cogging at low speed. Software gets a mild complaint."
+  },
+  {
+    "slug": "simagic-alpha-evo",
+    "summary": "Highly rated 12 Nm direct drive, described as smooth, strong and detailed, with enough torque that owners rarely feel the need for more. Several prefer it to Moza and Fanatec bases. A few found the step from cheaper bases less dramatic than hyped, and some noise was mentioned, though others say it is silent."
+  },
+  {
+    "slug": "thrustmaster-t818",
+    "summary": "Most owners are impressed, finding it a big step up from G29, T300 and TS-XW wheels, with strong, detailed and quiet force feedback. The recurring downside is reliability: power supply failures, grinding or knocking noises and repairs. Some had firmware hiccups, though others report a year or more without problems."
+  },
+  {
+    "slug": "gt-omega-prime",
+    "summary": "Owners describe a very rigid, solid rig with no flex even under strong direct-drive bases, and several call it great value. The pedal plate is the weakest point and some replaced or drilled it, though newer versions are said to be better. The black finish scratches easily and assembly can be fiddly."
+  },
+  {
+    "slug": "trak-racer-tr80s",
+    "summary": "Many owners find the frame rigid with little or no flex and good for the price. The main complaint is quality control and documentation: missing parts, wrong manuals, confusing packaging and unhelpful support. Assembly is long, and the stock pedal plate and wheel deck draw complaints from some."
+  },
+  {
+    "slug": "fanatec-csl-elite-pedals-v2",
+    "summary": "A well-made load cell set that many found a good upgrade from G29 pedals, with a brake that can be tuned to feel right using elastomers. Some found the brake too firm or fiddly to get consistent, and the throttle and clutch feel light. A few switched to rival pedals they found better."
+  },
+  {
+    "slug": "gt-omega-prime-lite",
+    "summary": "Most owners find it sturdy with no flex, even with strong bases and load cell pedals. The main complaint is quality control: several received untapped parts, though GT Omega usually sent replacements. A couple noticed flex, creaking or squeaks at the wheel deck, and the pedal plate disappointed some."
+  },
+  {
+    "slug": "heusinkveld-ultimate-plus",
+    "summary": "Owners are mostly very happy, praising a solid, durable build and a brake with good modulation, often after trying Sprints, Fanatec or other sets. The default firm braking force takes getting used to. Some who tried active pedals preferred those, and a couple of owners never got them set up to their liking."
+  },
+  {
+    "slug": "moza-ks",
+    "summary": "A wheel valued for its price and comfort, with a clear step up from Moza's entry wheels. The main complaint is quality control: rattling buttons, failing paddles, creaks and a shell that shifted under load. Experiences split, with some owners having no issues after about two years while others returned theirs."
+  },
+  {
+    "slug": "next-level-racing-gtlite-pro",
+    "summary": "Reviewers find the seat comfortable and adjustable, better than the plain GTLite, and it copes with mid-power direct drive bases. Folding is a hassle, so it suits those who rarely fold it. Quality control problems appear, such as wrong parts and a seat peg that does not fit, and some see flex under bigger bases."
+  },
+  {
+    "slug": "moza-sr-p-pedals",
+    "summary": "Seen as entry-level load cell pedals that work well once tuned with the accessory spring and rubber kits, and some owners used them for years without trouble. Complaints include a brake deadzone, flex in the sheet-metal frame, broken springs or wires and annoying software. Several upgraded away to better pedals."
+  },
+  {
+    "slug": "simagic-alpha",
+    "summary": "Owners are very happy, describing a smooth, powerful and detailed 15 Nm base that beats Moza, Fanatec and Thrustmaster bases they came from, and it is quiet and runs cool. A couple were less impressed than expected, and one older unit developed a resonance noise after about four years."
+  },
+  {
+    "slug": "simagic-p1000i",
+    "summary": "Owners praise the inverted pedal layout for comfort, especially those with knee pain, along with strong clutch and haptics. Opinions on the brake and throttle split: some find the feel great and consistent, others cannot dial it in or find the throttle soft. Problems include a leaking hydraulic brake, haptic buzzing and software issues."
+  },
+  {
+    "slug": "logitech-rs-h-shifter",
+    "summary": "Most reviewers like the feel, calling it premium with a firm, committed throw and metal where it matters. Downsides include stiff springs that some find hard to use, short throws that cause missed gears, rattling noise, and one early failure. One buyer called it a plastic toy, but most disagree."
+  },
+  {
+    "slug": "thrustmaster-tmx",
+    "summary": "A budget starter wheel that several owners got years of use from, and a big step up from a controller. Reviewers often moved on to direct drive and found the jump large. Durability is the main downside, with loosening belts, slipping gears and clamp breakage, and the included pedals are widely replaced."
+  },
+  {
+    "slug": "moza-r12-v2",
+    "summary": "Most owners are happy, noting a big jump in detail over entry bases and wheels like the G29 or TX, no overheating and useful software including SimHub support. Some were not satisfied, finding Simagic bases better in software and feel, or returning it over clicking noises. Several have no urge to upgrade."
+  },
+  {
+    "slug": "thrustmaster-ferrari-sf1000-edition-wheel-add-on",
+    "summary": "Reviewers split on the SF1000. Some find it plug and play, and like its rocker shifters. Wear is the main complaint, with grips and the screen failing early, and the stock paddles are loud. Getting telemetry onto the screen proved a struggle for several."
+  },
+  {
+    "slug": "thrustmaster-t248",
+    "summary": "A common first wheel that many are happy with, some for years without problems, and it offers good force feedback tuning. Compared with direct drive it feels plasticky and toy-like, and the shifters and gear resistance are loud. Several outgrew it and moved to a budget direct drive base."
+  },
+  {
+    "slug": "thrustmaster-t300rs",
+    "summary": "Well liked and long-lived, with several reviewers using it for years and preferring its force feedback to Logitech wheels. Direct drive is clearly sharper, and a few found it weak, fading or overheating after a year or more. Works with the wider Thrustmaster pedals and shifter on console."
+  },
+  {
+    "slug": "thrustmaster-t300rs-gt-edition",
+    "summary": "Mostly praised as smooth and detailed, a big step up from Logitech or the TMX, and quieter than a G923. Often bought used, it suits those wanting a good value wheel. Several reviewers hit faults though, including a dying brake pedal, a limited throttle, a soft paddle and centre drift."
+  },
+  {
+    "slug": "thrustmaster-t-gt-ii",
+    "summary": "Most reviewers are very happy, often stepping up from a Logitech or T300 and noticing better road feel and strength, especially with T-LCM pedals. Downsides are a wobbling shaft on one unit, some parts fading or corroding over time, and base vibration that takes getting used to. Opinions differ on how it compares with a Fanatec DD Pro."
+  },
+  {
+    "slug": "fanatec-clubsport-dd",
+    "summary": "Reviewers who upgraded from a CSL DD or CSL Elite call it a big jump, with strong, detailed force feedback and no clipping worries. Some find it enough for good. A couple of reports of early failure and poor customer service temper this."
+  },
+  {
+    "slug": "fanatec-clubsport-gt-cockpit",
+    "summary": "Rigid, very adjustable and easy to set up, with most reporting no flex even with strong bases. Knees can hit the wheelbase mount, which hurts heel-and-toe with three pedals, and the shifter bracket flexes. A few wish they had a profile rig, as it is harder to expand."
+  },
+  {
+    "slug": "fanatec-clubsport-shifter-sq-v1-5",
+    "summary": "Handy for switching between sequential and H-pattern, and those comparing it with the Thrustmaster TH8A preferred its feel between shifts. Reliability splits opinion: some have used it for years without trouble, while others report mis-shifts, a broken shaft and RMAs. Shaft play is also mentioned."
+  },
+  {
+    "slug": "gt-omega-titan",
+    "summary": "A sturdy, comfortable rig that most users run with direct drive bases without noticeable flex, and it is narrow and easy to wheel around. Flex does show at the shifter mount or wheel deck for some. Quality control and missing parts frustrated a couple of buyers, and adjustability and accessory mounting are limited."
+  },
+  {
+    "slug": "moza-r9-v3",
+    "summary": "Reviewers upgrading from Logitech G-series wheels find it far more responsive and detailed, and several are extremely happy. It is strong, even more than some casual racers need. A few found the step up from other bases marginal, and the need for a hub to use Moza wheels on other bases annoyed one."
+  },
+  {
+    "slug": "next-level-racing-gtracer-2-0",
+    "summary": "A well-liked starter cockpit that reviewers find rigid, even with MOZA bases up to an R12, and it has a very adjustable seat. It is light and easy to assemble. Downsides are an awkward wheelbase bracket and a heavy pedal tray that makes some pedals hard to fit. Some outgrew it for a profile rig."
+  },
+  {
+    "slug": "sim-lab-gt1-pro",
+    "summary": "Reviewers find it solid and quick to build, a clear step up from rigs like the Playseat Trophy, and sturdy enough for hard rally shifting. A few had loose uprights, untapped holes or brackets that did not fit their wheelbase, and the included seat was too narrow for one."
+  },
+  {
+    "slug": "sim-lab-p1x-ultimate",
+    "summary": "Owners are very happy: it is rigid, comfortable for long sessions, and straight uprights give plenty of mounting options. Quality control was sloppy for a couple, such as an off-centre tapped profile fixed by a replacement, and one pedal deck slid under heavy braking until screwed down. Shipping and missing instructions drew a note."
+  },
+  {
+    "slug": "simagic-p500",
+    "summary": "Many like it as a well-built, plug-in load cell upgrade from G29 pedals, with easy setup and adjustable springs or elastomers. Brake consistency is the doubt, with a few finding it inconsistent or needing a lot of force. One unit's haptics froze until power cycled, and one reviewer hated it."
+  },
+  {
+    "slug": "simucube-activepedal-pro",
+    "summary": "Mostly praised for a smooth, refined brake feel and good software, and some who tried several active pedals preferred it. Not everyone sees a big gain: some coming from MOZA's mBooster noticed little difference, one found it still grainy, and another could not match their braking muscle memory."
+  },
+  {
+    "slug": "fanatec-csl-cockpit-v1-5",
+    "summary": "Reviewers find it surprisingly rigid for a budget rig, holding up even with strong direct drive bases, and good value when discounted. Adjustment is cumbersome and the stock seat sits very low and is not comfortable for long stints. Pedal height can need modification, and a heavy seat caused a little flex."
+  },
+  {
+    "slug": "gt-omega-prime-lite-r",
+    "summary": "Seen as good value and solid, running bases from 8 Nm up to around 12 Nm with little concern about flex. The pedal plate is the weak point, with several reviewers having trouble mounting pedals or replacing it, and the stock seat is criticised. A little bolt loosening appeared under strong force."
+  },
+  {
+    "slug": "heusinkveld-handbrake",
+    "summary": "Reviewers praise its solid build and customisable software, and see it as better than a Moza handbrake that cracked. It is compact and works well for rallycross. A few downsides: a rattle on one new unit, and one reviewer found it stubby and overpriced."
+  },
+  {
+    "slug": "simagic-fx-pro",
+    "summary": "Several owners call it a great, sturdy and feature-rich GT or formula wheel, but creaking is the main complaint, even at modest force feedback. One saw flex too, and a replacement was worse. The lack of SimHub support and its Simagic-only compatibility put off some."
+  },
+  {
+    "slug": "thrustmaster-ferrari-f1-wheel-add-on",
+    "summary": "Liked for its many buttons, rotaries and rocker paddles, which several prefer to other Thrustmaster rims. Materials are plastic and some find it cheap or flimsy, with a poor shifter feel. A few had faults, including a broken switch, loose buttons and a unit no longer detected."
+  },
+  {
+    "slug": "thrustmaster-tx-racing-wheel-leather-edition",
+    "summary": "Several loved it as a first wheel, with good leather and smoother feel than a G29, and it is a good buy used. Quality control is the main worry: force feedback cutting out mid-race, units that would not turn on, and one that stopped short of full rotation."
+  },
+  {
+    "slug": "moza-r3",
+    "summary": "Most reviewers coming from Logitech or Thrustmaster wheels find this small direct-drive base a big, smooth step up in detail, and many call it good value and plenty for casual or console racing. The main downside is limited strength, so some owners upgraded within a year or wished they had bought a stronger base. A few reported early failures or build problems."
+  },
+  {
+    "slug": "simucube-2-pro",
+    "summary": "Most owners rate this base among the best for smooth, detailed force feedback, and many who moved up from Fanatec, Logitech or Thrustmaster gear say they expect it to be their last. Several report years of trouble-free use and easy software with shared profiles. A few found it filtered, rubbery or noisy, and one had a faulty power supply replaced."
+  },
+  {
+    "slug": "simagic-p2000",
+    "summary": "Most owners love the hydraulic brake feel, with controllable trail braking, wide adjustability and a sturdy build, and many report years of use without problems. The main downside is leaking: some had the brake or throttle cylinder fail after a year or two, with limited repair options, and a few advise against them for that reason."
+  },
+  {
+    "slug": "simagic-ds-8x",
+    "summary": "Most owners love this combined H-pattern and sequential shifter, calling it solid, realistic and better than the MOZA, Fanatec or Thrustmaster shifters they used before. Sequential mode is considered fine but less satisfying than H-pattern, and a few find it noisy or clicky. A few reported failures such as a flexing interconnect, a sheared lever or skipped gears."
+  },
+  {
+    "slug": "moza-mbooster-active-pedal",
+    "summary": "Most owners find this active brake pedal excellent once tuned, praising realistic, precise brake feel, easy on-the-fly changes and better control than the load-cell or hydraulic pedals they had before. It is big, needs patience to dial in, and a few found it dull, slow to react or noisy, with some returns."
+  },
+  {
+    "slug": "next-level-racing-wheel-stand-lite-2-0",
+    "summary": "Most owners find this foldable stand sturdy and stable for entry-level and mid-strength direct-drive bases with load-cell pedals, and like how easily it rolls out and stores away. The main downside is some front-to-back flex or wobble, more noticeable with stronger bases, plus bolts that need retightening now and then."
+  },
+  {
+    "slug": "fanatec-clubsport-dd-plus",
+    "summary": "Most owners praise strong, detailed force feedback, a clear step up from the CSL DD and from belt or gear wheels, and many are happy for the long term. The main downside is Fanatec software and firmware, with several reporting confusing updates, drivers needing restarts, or updates that broke the base. Third-party wheel and console support is awkward for some."
+  },
+  {
+    "slug": "moza-crp2-pedals",
+    "summary": "Opinions are split. Some like the load-cell brake feel, the range of settings and the upgrade from entry-level pedals. Several struggle with ergonomics, finding them too upright with little angle adjustment, and weak stock throttle springs or hard-to-tune elastomers. A few reported wear in the throttle or dead and faulty units."
+  },
+  {
+    "slug": "asetek-invicta-direct-drive-wheelbase",
+    "summary": "Most owners praise very detailed, smooth force feedback and excellent build quality, with a convenient passthrough quick release and good support, and many moved up from Fanatec, MOZA or Simagic bases. Complaints are few: some trouble with RaceHub firmware updates or connection drops, and a couple of reports of noise or disappointing texture."
+  },
+  {
+    "slug": "asetek-la-prima-direct-drive-wheelbase",
+    "summary": "Most owners find it detailed and strong, smooth with no cogging, and well built, a big jump from G29, Thrustmaster or Fanatec gear, with quick and helpful support. Problems are rare: a couple of software recognition or power-loss issues, and the base needs Asetek's front mount for some setups."
+  },
+  {
+    "slug": "logitech-pro-racing-pedals",
+    "summary": "Most owners find the load-cell brake a big upgrade over G29 and G923 pedals, with easier trail braking, more consistent laps and quick elastomer and spring adjustment. There is a learning curve, and a few criticised the long throttle throw or limited adjustment. Build is called rock solid by some, while a couple noticed side-to-side wobble."
+  },
+  {
+    "slug": "gt-omega-art",
+    "summary": "Most see it as a good-value starter cockpit that works well with belt-driven and lighter direct-drive wheels. The main downside is flex: the pedal deck and wheel deck bend or shake with stronger direct-drive bases and heavy load-cell pedals, and some owners reinforced it or moved to an aluminium rig. A few run strong bases without trouble."
+  },
+  {
+    "slug": "next-level-racing-f-gt",
+    "summary": "Opinions are mixed. Many owners were happy for years as a beginner rig, sturdy enough for entry-level direct drive, especially with the reinforcement kit. The stock seat is often called uncomfortable, getting in and out is awkward, and stronger bases or load-cell braking can flex it. Some moved to aluminium rigs."
+  },
+  {
+    "slug": "next-level-racing-f-gt-lite",
+    "summary": "Most owners find it rigid, comfortable enough and easy to set up, working well with load-cell pedals and mid-strength bases. Downsides are some flex with heavier braking or stronger direct drive, folding it often being a hassle, and a seat that tires some people on longer sessions."
+  },
+  {
+    "slug": "simucube-2-sport",
+    "summary": "Most owners are very happy, noting fast response and detail that helps catch slides, and a clear upgrade over Fanatec, MOZA or Simagic bases. It works with many wheels. A few reported noises, heat, vibration or error messages, and the settings can feel daunting at first."
+  },
+  {
+    "slug": "moza-hgp-shifter",
+    "summary": "Opinions are split. Fans like the all-metal build, clicky feel and reasonable price, and some have used it for years. The main downside is durability: many report it failing within a year or two, with mis-shifts, lost stiffness or broken parts. Some also find it loud or too light, and several swapped to a Simagic DS-8X."
+  },
+  {
+    "slug": "sim-lab-xp1",
+    "summary": "Most owners love the build quality, wide adjustability and smooth brake feel, often after moving from Logitech, Fanatec, Simjack or Simagic pedals. They are tall, so a plate that lowers them is recommended, and several found the brake or throttle notchy or squeaky until greased. A few had minor issues like calibration or fitment."
+  },
+  {
+    "slug": "asetek-forte-direct-drive-wheelbase",
+    "summary": "Most owners praise detailed, smooth force feedback, high build quality, easy software and a solid quick release, with plenty of headroom and good support. Downsides are scattered: mounting that needed new holes drilled, and a few cases of harsh vibrations, cogging or random shutoffs."
+  },
+  {
+    "slug": "logitech-rs-pedals",
+    "summary": "Most owners find the load-cell brake a big upgrade over G29, G920, G923 and T300 pedals, with more natural modulation, fewer lockups and good value. Some find the brake stiff or soggy, a few call it clacky, and there were scattered mounting fit problems and a report of unresponsive or wobbly pedals."
+  },
+  {
+    "slug": "thrustmaster-th8a",
+    "summary": "Opinions are mixed. Many owners find it reliable and solid, with some using it for years in rally and other racing without issues. The common criticism is that it lacks mechanical feel and resistance, with a so-so sequential mode, and several moved to an SHH or Simagic DS-8X. A few units failed or died quickly."
+  },
+  {
+    "slug": "moza-ks-pro",
+    "summary": "Many owners like the solid build, buttons and quiet operation, and it works well with MOZA bases and some other brands. The main downside is grip ergonomics: several reported hand discomfort or pain from the grip shape, which tape helped for some, and one returned it. A few units creaked or had faults."
+  },
+  {
+    "slug": "fanatec-csl-pedals-lc",
+    "summary": "Opinions are mixed. Many see the load cell as a big upgrade over G29, G920 and potentiometer pedals, with fewer lockups and good value. Many others find the brake too stiff with little travel and not very adjustable, and moved on to V3 or other pedals."
   }
 ]
