@@ -11,11 +11,13 @@ const cachedOffer = unstable_cache(
     if (!settings || !credentials) return null;
     return findAmazonOffer({ name, brand }, settings, credentials);
   },
-  ["amazon-offer", niche.id],
+  ["amazon-offer-v2", niche.id],
   { revalidate: 12 * 60 * 60, tags: ["amazon-offers"] },
 );
 
-export type AmazonButton = { url: string; price: string | null };
+/** `image`: Amazon's own image address, on niches with amazon.photos. Amazon's terms: served from Amazon, the address kept
+ *  under 24 hours (the 12-hour cache above), not altered beyond resizing, and it must link to the Amazon product page. */
+export type AmazonButton = { url: string; price: string | null; image?: string | null };
 
 /**
  * Whether this site shows Amazon links: its niche config has `amazon` and the deployment has a tag for links
@@ -37,7 +39,7 @@ export async function amazonButton(product: { name: string; brand: string | unde
   const tag = affiliateTag();
   if (!niche.amazon || !tag) return null;
   const marketplace = niche.amazon.marketplace;
-  const search = { url: amazonSearchLink(product.name, tag, marketplace), price: null };
+  const search: AmazonButton = { url: amazonSearchLink(product.name, tag, marketplace), price: null };
   if (!amazonCredentials()) {
     console.warn("[amazon] AMAZON_CREATORS_API_CREDENTIAL_ID or AMAZON_CREATORS_API_CREDENTIAL_SECRET is not set; using search links without prices");
     return search;
@@ -45,7 +47,7 @@ export async function amazonButton(product: { name: string; brand: string | unde
   if (!product.brand) return search;
   try {
     const offer = await cachedOffer(product.name, product.brand);
-    return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price } : search;
+    return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null } : search;
   } catch (error) {
     console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`);
     return search;
