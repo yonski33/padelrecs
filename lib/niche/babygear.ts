@@ -32,7 +32,7 @@ export const babygear: Niche = {
   // Makers name each generation (Vista V2 vs V3, Doona vs Doona X, PIPA rx vs PIPA aire rx), so names carry it instead of a year.
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "Baby" },
+  amazon: { searchIndex: "Baby", photos: true },
   scoreUnit: { one: "rattle", many: "rattles" },
   // Warm off-white page, soft charcoal ink, deep sage primary, one apricot accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
