@@ -1,43 +1,43 @@
 [
   {
     "slug": "1password",
-    "summary": "Most reviewers praise 1Password for a polished, easy interface, reliable sync across many platforms and strong features such as SSH and developer tools. The main complaint is bugs, especially a flaky Safari extension and Android autofill that misses. Some also object to rising prices and the loss of local or iCloud sync."
+    "summary": "Most users praise 1Password for a polished, easy interface, reliable sync across many platforms and strong features such as SSH and developer tools. The main complaint is bugs, especially a flaky Safari extension and Android autofill that misses. Some also object to rising prices and the loss of local or iCloud sync."
   },
   {
     "slug": "bitwarden",
-    "summary": "Bitwarden is widely liked as a reliable, low-cost option with a free plan that covers most needs and easy imports from other managers. The most common complaint is inconsistent autofill, especially on Android and in some browsers, along with a dated look. Some paying users were unhappy when the premium price doubled."
+    "summary": "Users widely like Bitwarden as a reliable, low-cost option with a free plan that covers most needs and easy imports from other managers. The most common complaint is inconsistent autofill, especially on Android and in some browsers, along with a dated look. Some paying users were unhappy when the premium price doubled."
   },
   {
     "slug": "claude",
-    "summary": "Most reviewers find Claude strong for coding, writing and analysis, often preferring it to ChatGPT for accuracy and a more direct tone. The dominant complaint is usage limits, with many saying the cheaper plans run out quickly and heavier use needs a pricier tier. Some also report it making things up."
+    "summary": "Most users find Claude strong for coding, writing and analysis, often preferring it to ChatGPT for accuracy and a more direct tone. The dominant complaint is usage limits, with many saying the cheaper plans run out quickly and heavier use needs a pricier tier. Some also report it making things up."
   },
   {
     "slug": "proton-vpn",
-    "summary": "Proton VPN is mostly described as fast and dependable, with a usable free plan and good speeds on nearby servers. The most common complaint is bugs, mainly dropped or stalled connections after switching networks. Some also see speeds that vary by server or protocol, and a few were unhappy with support."
+    "summary": "Users mostly describe Proton VPN as fast and dependable, with a usable free plan and good speeds on nearby servers. The most common complaint is bugs, mainly dropped or stalled connections after switching networks. Some also see speeds that vary by server or protocol, and a few were unhappy with support."
   },
   {
     "slug": "chatgpt",
-    "summary": "Reviewers see ChatGPT as a capable all-rounder, praised for coding, everyday troubleshooting and acting as a coach for health, fitness and diet. The biggest drawback is confidently wrong answers, followed by content restrictions and some bugs or slowdowns. Several also hit usage limits on paid plans."
+    "summary": "Users see ChatGPT as a capable all-rounder, praised for coding, everyday troubleshooting and acting as a coach for health, fitness and diet. The biggest drawback is confidently wrong answers, followed by content restrictions and some bugs or slowdowns. Several also hit usage limits on paid plans."
   },
   {
     "slug": "gemini",
-    "summary": "Gemini gets credit for accuracy, speed and strong image and research tools, and some reviewers who switched from ChatGPT prefer it, helped by Google integration and a generous free plan. The main complaint is hallucination, with several describing confident wrong answers and invented document contents. Some also find coding unreliable."
+    "summary": "Gemini gets credit for accuracy, speed and strong image and research tools, and some users who switched from ChatGPT prefer it, helped by Google integration and a generous free plan. The main complaint is hallucination, with several describing confident wrong answers and invented document contents. Some also find coding unreliable."
   },
   {
     "slug": "proton-pass",
-    "summary": "Proton Pass is liked for a clean interface, reliable everyday use, email aliases and a usable free plan, and many came from Bitwarden or 1Password. The main downsides are missing features such as folders and some advanced options, plus autofill that misses on some sites or on Android. Best suited to those who want simplicity."
+    "summary": "Users like Proton Pass for a clean interface, reliable everyday use, email aliases and a usable free plan, and many came from Bitwarden or 1Password. The main downsides are missing features such as folders and some advanced options, plus autofill that misses on some sites or on Android. Best suited to those who want simplicity."
   },
   {
     "slug": "nordvpn",
-    "summary": "Many reviewers find NordVPN reliable and often fast, and easy to set up, including for family and streaming. The main complaint is bugs, especially the app showing connected with no internet, disconnects and freezing. Some find speeds poor or streaming and some sites blocked, and a few had support or renewal problems."
+    "summary": "Many users find NordVPN reliable and often fast, and easy to set up, including for family and streaming. The main complaint is bugs, especially the app showing connected with no internet, disconnects and freezing. Some find speeds poor or streaming and some sites blocked, and a few had support or renewal problems."
   },
   {
     "slug": "mullvad-vpn",
-    "summary": "Mullvad is mostly praised as a simple, reliable and fast VPN with a flat price and no email signup, and several say it works well even in China. Downsides are occasional connection drops, especially on Windows, and sites such as streaming services and Reddit blocking its servers. Several left after it dropped port forwarding."
+    "summary": "Users mostly praise Mullvad as a simple, reliable and fast VPN with a flat price and no email signup, and several say it works well even in China. Downsides are occasional connection drops, especially on Windows, and sites such as streaming services and Reddit blocking its servers. Several left after it dropped port forwarding."
   },
   {
     "slug": "nordpass",
-    "summary": "NordPass is generally liked as easy to use and reliable, with a clean look, decent value and good autofill for many on Apple devices. The main complaints are bugs and slowness, including autofill problems, a sluggish browser extension and being asked to unlock too often. Some also miss features such as MFA code filling on personal plans."
+    "summary": "Users generally like NordPass as easy to use and reliable, with a clean look, decent value and good autofill for many on Apple devices. The main complaints are bugs and slowness, including autofill problems, a sluggish browser extension and being asked to unlock too often. Some also miss features such as MFA code filling on personal plans."
   },
   {
     "slug": "dashlane",
@@ -49,22 +49,22 @@
   },
   {
     "slug": "keeper",
-    "summary": "Keeper gets credit for being easy to use, reliable and well suited to teams and shared folders. Complaints are mixed: bugs such as hit-or-miss autofill and browser integration, a high price and upsells, and cancelling being awkward. Opinions are split between those who find it worth the cost and those who moved to 1Password."
+    "summary": "Users give Keeper credit for being easy to use, reliable and well suited to teams and shared folders. Complaints are mixed: bugs such as hit-or-miss autofill and browser integration, a high price and upsells, and cancelling being awkward. Opinions are split between those who find it worth the cost and those who moved to 1Password."
   },
   {
     "slug": "surfshark",
-    "summary": "Surfshark gets mixed reviews. Some find it a cheap, steady option for streaming and torrenting, and like features such as bypass and multi-hop. The main complaint is bugs, mainly dropped connections, failed connections and split tunnelling that did not work. Some also report slow speeds and constant captchas."
+    "summary": "Customers give Surfshark mixed reviews. Some find it a cheap, steady option for streaming and torrenting, and like features such as bypass and multi-hop. The main complaint is bugs, mainly dropped connections, failed connections and split tunnelling that did not work. Some also report slow speeds and constant captchas."
   },
   {
     "slug": "lastpass",
-    "summary": "Most reviewers here are people who left LastPass. The main complaints are bugs, with flaky autofill, a troublesome extension and broken exports, and poor support. Many also cite the 2022 breach and its handling, and the free tier being limited to one device type. A few still find it works fine for them."
+    "summary": "Most users here are people who left LastPass. The main complaints are bugs, with flaky autofill, a troublesome extension and broken exports, and poor support. Many also cite the 2022 breach and its handling, and the free tier being limited to one device type. A few still find it works fine for them."
   },
   {
     "slug": "enpass",
-    "summary": "Enpass is mostly liked by reviewers who want to keep their data in their own cloud or locally, with customizable items, a lifetime option and a clean interface. The main complaints are bugs, such as the browser connection and Android autofill, and a sense that development has stalled. A few hit export problems."
+    "summary": "Enpass is mostly liked by users who want to keep their data in their own cloud or locally, with customizable items, a lifetime option and a clean interface. The main complaints are bugs, such as the browser connection and Android autofill, and a sense that development has stalled. A few hit export problems."
   },
   {
     "slug": "windscribe",
-    "summary": "Windscribe is mostly liked as good value, with useful extras such as split tunnelling, port forwarding and an ad blocker, and some use it where other VPNs are blocked. The free plan has a monthly data cap, and a couple of reviewers found it slower than Proton VPN. Reviews are limited, so this is a rough picture."
+    "summary": "Users mostly like Windscribe as good value, with useful extras such as split tunnelling, port forwarding and an ad blocker, and some use it where other VPNs are blocked. The free plan has a monthly data cap, and a couple of users found it slower than Proton VPN. Reviews are limited, so this is a rough picture."
   }
 ]

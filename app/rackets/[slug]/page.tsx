@@ -212,8 +212,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {placings.length > 0 && <p className="placings">{placings.slice(0, 2).map(p => <a key={p.href} href={p.href} className="placing"><b>#{p.rank}</b> in {p.title}</a>)}</p>}
           {r.description && <p className="description">{r.description}</p>}
         </div>
-        {/* "In short": a 2–3 sentence summary written from the product's reviews (review_summary), checked against its tag counts. */}
-        {r.reviewSummary && <div className="tldr"><input type="checkbox" id="tldr-more" className="tldr-toggle"/><p><span className="tldr-label">In short</span>{r.reviewSummary}</p><label htmlFor="tldr-more" className="tldr-more">more</label></div>}
+        {/* No label (owner choice, 2026-11-05): the summary opens by naming who is speaking ("Most players…"). A 2–3 sentence summary written from the product's reviews (review_summary), checked against its tag counts. */}
+        {r.reviewSummary && <div className="tldr"><input type="checkbox" id="tldr-more" className="tldr-toggle"/><p>{r.reviewSummary}</p><label htmlFor="tldr-more" className="tldr-more">more</label></div>}
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
