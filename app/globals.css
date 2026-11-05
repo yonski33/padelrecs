@@ -844,6 +844,6 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 }
 
 /* Reviews 21-50 are in the HTML (indexed) but hidden until "Show more" is clicked; no JavaScript. */
-.more-toggle, .more-hidden { display: none; }
+.review-list input.more-toggle, .more-hidden { display: none; }
 .more-toggle:checked ~ .more-hidden { display: block; }
 .more-toggle:checked ~ .load-more.first { display: none; }
