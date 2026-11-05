@@ -19,6 +19,7 @@ import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 import { ratingVerdict, listYear } from "../../../lib/top-lists";
 import { rankedLists, listHref } from "../../rankings/lists";
+import { similarProducts, tagProfiles } from "../../../lib/similar";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -119,14 +120,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const distMax = Math.max(1, ...dist.map(d => d.count));
 
   const firstWord = model.split(" ")[0]?.toLowerCase();
-  const siblings = data.rackets.filter(x => x.brandId === r.brandId && x.id !== r.id)
+  const siblings = data.listed.filter(x => x.brandId === r.brandId && x.id !== r.id)
     .sort((a, b) => Number(racketParts(b, data).model.toLowerCase().startsWith(firstWord)) - Number(racketParts(a, data).model.toLowerCase().startsWith(firstWord)) || b.year - a.year)
     .slice(0, 5);
-  // Alternatives: the most-reviewed other products of the same type, with how positive their reviews are, so a visitor
-  // weighing this one sees what else people talk about. Only products with a few judged reviews.
-  const similar = data.listed.filter(x => x.id !== r.id && x.shape === r.shape)
-    .map(x => ({ x, sc: score(data, x.id) })).filter(({ sc }) => sc.judged >= 5)
-    .sort((a, b) => (b.sc.count + b.sc.web) - (a.sc.count + a.sc.web)).slice(0, 4);
+  // Alternatives: what reviewers describe most like this one, with how positive their reviews are. Only products with a few judged reviews.
+  const similar = similarProducts(r, data.listed.filter(x => score(data, x.id).judged >= 5), tagProfiles([...data.reviews, ...data.external]))
+    .map(x => ({ x, sc: score(data, x.id) }));
   const platforms = [...external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
 
   const terms = nicheTerms(niche);
