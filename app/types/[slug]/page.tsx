@@ -7,7 +7,9 @@ import { pageFor, seoName, hubTitle, hubDescription, productsOfType } from "../.
 import { ProductCard, Directory, parseShow } from "../../components";
 import { AutoSubmitForm } from "../../auto-submit";
 import { SORTS, parseSort, sortProducts } from "../../../lib/product-sort";
-import { niche, catalogPath, catalogLabel } from "../../../lib/niche";
+import { niche, catalogPath, catalogLabel, productHref } from "../../../lib/niche";
+import { displayName } from "../../../lib/brand-name";
+import { listJsonLd, catalogCrumb } from "../../../lib/catalogue-seo";
 
 // Served at /<slug> (next.config.ts rewrites only the configured slugs here). One page per product type, e.g. SkinRecs /cleansers.
 // One catalog read per request, shared by the page and its metadata.
@@ -37,7 +39,9 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const reviewTotal = scored.reduce((n, x) => n + x.s.count + x.s.web, 0);
   const tags = topTags(data), show = parseShow(f.show);
   const moreHref = (n: number) => { const q = new URLSearchParams(Object.entries({ ...f, show: String(n) }).filter(([, v]) => v) as [string, string][]); return `/${t.slug}?${q}`; };
+  const jsonLd = listJsonLd([catalogCrumb, { name: t.label, path: `/${t.slug}` }], results.map(({ r }) => ({ name: displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name), href: productHref(r) })));
   return <main>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/>
     <p className="breadcrumb"><a href={catalogPath}>{catalogLabel}</a> / {t.label}</p>
     <div className="page-title"><h1>{seoName(t)}</h1><p>{`${t.intro}. ${ofType.length} ${ofType.length === 1 ? niche.words.one : niche.words.many} · ${reviewTotal} reviews.`}</p></div>
     <AutoSubmitForm className="pills" action={`/${t.slug}`}>
