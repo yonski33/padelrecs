@@ -844,6 +844,49 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 }
 
 /* Reviews 21-50 are in the HTML (indexed) but hidden until "Show more" is clicked; no JavaScript. */
-.review-list input.more-toggle, .more-hidden { display: none; }
+.review-list input.more-toggle, .directory-list input.more-toggle, .more-hidden { display: none; }
 .more-toggle:checked ~ .more-hidden { display: block; }
 .more-toggle:checked ~ .load-more.first { display: none; }
+
+/* Catalogue and type pages: pill filters, inline sort, product card grid. */
+.pills { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 4px 0 18px; }
+.pill select, .pills-sort select { width: auto; min-height: 0; margin: 0; border: 0; background-color: transparent; box-shadow: none; font: inherit; color: inherit; cursor: pointer; field-sizing: content; }
+.pill { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 14px; font-weight: 600; color: var(--ink-2); transition: border-color .15s; }
+.pill:hover { border-color: var(--ink-3); }
+.pill select { max-width: 170px; padding: 8px 30px 8px 14px; background-position: right 12px center; border-radius: 999px; }
+.pill.on { background: var(--green); border-color: var(--green); color: #fff; }
+.pill.on select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E"); }
+.pill.on select option { color: var(--ink); }
+.pills-clear { font-size: 13.5px; padding: 0 4px; }
+.pills-count { margin: 0 0 0 auto; font-size: 13.5px; color: var(--ink-3); }
+.pills-sort { display: inline-flex; align-items: center; gap: 2px; font-size: 13.5px; color: var(--ink-3); }
+.pills-sort select { padding: 4px 22px 4px 4px; background-position: right 4px center; font-weight: 600; color: var(--ink); }
+
+.product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.more-hidden .product-grid { margin-top: 16px; }
+.product-card { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.product-card:hover { border-color: var(--ink-3); box-shadow: 0 6px 18px rgba(0, 0, 0, .06); transform: translateY(-2px); }
+.pc-art { display: flex; align-items: center; justify-content: center; height: 90px; background: var(--tint); }
+.pc-art svg { width: 40px; height: 64px; }
+.pc-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px; }
+.product-card h2 { margin: 0; font-size: 16.5px; line-height: 1.3; }
+.product-card h2 a { color: var(--ink); }
+.product-card h2 a::after { content: ""; position: absolute; inset: 0; }
+.pc-details { margin: 3px 0 0; font-size: 13px; color: var(--ink-3); }
+.pc-said { margin: 8px 0 0; font-size: 13.5px; color: var(--ink-2); }
+.pc-said + .pc-said { margin-top: 2px; }
+.pc-said span { display: inline-block; min-width: 72px; font-size: 12px; font-weight: 600; color: var(--ink-3); }
+.pc-foot { margin: auto 0 0; padding-top: 12px; font-size: 13px; color: var(--ink-3); }
+@media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .pills { flex-wrap: nowrap; overflow-x: auto; margin-left: -16px; margin-right: -16px; padding: 2px 16px; scrollbar-width: none; }
+  .pills::-webkit-scrollbar { display: none; }
+  .pill { flex: none; }
+  .pills-count { display: none; }
+  .pills-sort { flex: none; margin-left: 4px; }
+  .product-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .product-card { flex-direction: row; }
+  .pc-art { flex: none; width: 84px; height: auto; }
+  .pc-art svg { width: 36px; height: 56px; }
+  .pc-body { padding: 12px 14px; }
+}

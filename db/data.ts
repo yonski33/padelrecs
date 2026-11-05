@@ -4,6 +4,7 @@ import { brands, rackets, reviews, externalReviews } from "./schema";
 import { eq, ne, desc } from "drizzle-orm";
 import { voteCounts } from "./votes";
 import { isRecent, webDate, MIN_RECENT } from "../lib/recent";
+import { tagTone } from "../lib/tags";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -56,3 +57,23 @@ export function score(data: Catalog, id: string) {
  return {count: rs.length, average: rs.length >= MIN_RATINGS ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive};
 }
 export type Score = ReturnType<typeof score>;
+
+/** Each product's most-mentioned praise and complaint, for catalogue rows: the same reviews as its score (the recent
+ *  window, or every review when too few are recent), and only tags at least two reviews share. One pass over the catalog. */
+export function topTags(data: Catalog) {
+ const byProduct = new Map<string, { recent: { tags: string[] }[]; all: { tags: string[] }[]; judged: number }>();
+ const add = (id: string, x: { tags: string[] }, recent: boolean, judged: boolean) => {
+  const p = byProduct.get(id) ?? { recent: [], all: [], judged: 0 }; byProduct.set(id, p);
+  p.all.push(x); if (recent) { p.recent.push(x); if (judged) p.judged++; }
+ };
+ for (const r of data.reviews) add(r.racketId, r, isRecent(r.createdAt), true);
+ for (const e of data.external) add(e.racketId, e, isRecent(webDate(e)), !!e.sentiment);
+ const top = new Map<string, { loved?: string; complaint?: string }>();
+ for (const [id, p] of byProduct) {
+  const counts = new Map<string, number>();
+  for (const t of (p.judged >= MIN_RECENT ? p.recent : p.all).flatMap(x => x.tags)) counts.set(t, (counts.get(t) ?? 0) + 1);
+  const best = (tone: string) => [...counts].filter(([t, n]) => n >= 2 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0];
+  top.set(id, { loved: best("pos"), complaint: best("neg") });
+ }
+ return top;
+}

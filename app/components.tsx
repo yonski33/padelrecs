@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { TagList } from "./tags";
@@ -177,12 +178,44 @@ export function RacketRow({racket: r, brand, average, count, web = 0, positive =
   // Right column: the star average once there are enough user ratings, and the share positive (user and web reviews) once enough are judged.
   return <article className="racket-row">
     <Thumb racket={r} brand={brand}/>
-    <div><h2><a href={productHref(r)}>{r.name}</a></h2>{details && <p className="small muted">{details}</p>}</div>
+    <div><h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">
       {average && <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></>}
-      {(web > 0 || positive !== null) && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive{web > 0 ? " · " : ""}</>}{webReviewsLine(web)}</span>}
+      {(web > 0 || positive !== null) && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive{web > 0 ? " · " : ""}</>}{web > 0 && `${web} ${web === 1 ? "review" : "reviews"}`}</span>}
     </div>
   </article>;
+}
+
+/** A product in the catalogue and type-page grid: art, name, what people praise and complain about, and how many reviews. */
+export function ProductCard({racket: r, brand, count, web = 0, details, tags}: {racket: Racket; brand?: string | null; count: number; web?: number; details: string; tags?: {loved?: string; complaint?: string}}) {
+  const total = count + web;
+  return <article className="product-card">
+    <div className="pc-art" aria-hidden="true"><ProductIcon shape={r.shape} brand={brand}/></div>
+    <div className="pc-body">
+      <h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>
+      {details && <p className="pc-details">{details}</p>}
+      {tags?.loved && <p className="pc-said"><span>Loved</span>{tags.loved}</p>}
+      {tags?.complaint && <p className="pc-said"><span>Complaint</span>{tags.complaint}</p>}
+      {total > 0 && <p className="pc-foot">{`${total.toLocaleString("en-US")} ${total === 1 ? "review" : "reviews"}`}</p>}
+    </div>
+  </article>;
+}
+
+/** Catalogue rows shown at first, and rows in the HTML: the rest of those open with "Show more" (no JavaScript), so the
+ *  page stays short while search engines still see them; later rows are real ?show= links. */
+export const ROWS_SHOWN = 30, ROWS_IN_HTML = 50;
+export const parseShow = (v: string | undefined) => Math.min(Math.max(ROWS_SHOWN, Math.ceil((Number(v) || ROWS_SHOWN) / ROWS_SHOWN) * ROWS_SHOWN), 3000);
+export function Directory({rows, show, moreHref}: {rows: ReactNode[]; show: number; moreHref: (show: number) => string}) {
+  const shown = rows.slice(0, show), hidden = show < ROWS_IN_HTML ? rows.slice(show, ROWS_IN_HTML) : [];
+  const more = rows.length > shown.length + hidden.length && <div className="load-more"><a className="button ghost" href={moreHref(Math.max(show, ROWS_IN_HTML) + ROWS_SHOWN)}>Show more</a></div>;
+  return <div className="directory-list">
+    <div className="product-grid">{shown}</div>
+    {hidden.length > 0 ? <>
+      <input type="checkbox" id="more-rows" className="more-toggle"/>
+      <div className="more-hidden"><div className="product-grid">{hidden}</div>{more}</div>
+      <div className="load-more first"><label htmlFor="more-rows" className="button ghost">Show more</label></div>
+    </> : more}
+  </div>;
 }
 
 /** Notes (player + web) per racket since a cutoff, most first. */
