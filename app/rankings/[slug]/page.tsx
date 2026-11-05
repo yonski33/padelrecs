@@ -1,6 +1,7 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
 // so a list re-ranks itself as soon as new reviews are published.
 export const dynamic = "force-dynamic";
+import { shopPhoto } from "../../../lib/shop-photos";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
@@ -35,12 +36,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const pct = (n: number, total: number) => `${n / total * 100}%`;
 
 function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
-  const href = productHref(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
+  const href = productHref(e.product), own = shopPhoto(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
   const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
   const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
   return <li className="top-entry">
     <span className="top-rank" aria-label={`Rank ${e.rank}`}>{e.rank}</span>
-    {amazon?.image
+    {own ? <a className="thumb top-thumb own" href={href} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a> : amazon?.image
       ? <a className="thumb top-thumb photo" href={amazon.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazon.image} alt={`${displayName(e.product.name, brand)} on Amazon`} loading="lazy"/></a>
       : <a className="thumb top-thumb" href={href} aria-hidden="true" tabIndex={-1}><ProductIcon shape={e.product.shape} brand={brand}/></a>}
     <div className="top-body">

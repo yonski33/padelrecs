@@ -876,6 +876,14 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .thumb.photo { background: #fff; border: 1px solid var(--line); padding: 3px; }
 .thumb.photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .thumb.photo:hover, .top-card:hover .thumb.photo { background: #fff; transform: none; } /* Amazon allows resizing only */
+/* Photos we host: a shop's white background melts into the tint */
+.pc-art.own { height: 130px; padding: 8px; }
+/* Drawings stay level with photos in the same grid */
+@media (min-width: 641px) { .product-grid:has(.pc-art.own) .pc-art, .product-grid:has(.pc-art.photo) .pc-art { height: 130px; } }
+.profile-art.own { background: var(--tint); padding: 10px; }
+.profile-art.own::before { display: none; }
+.own img { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.thumb.own { padding: 3px; }
 .pc-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px; }
 .product-card h2 { margin: 0; font-size: 16.5px; line-height: 1.3; }
 .product-card h2 a { color: var(--ink); }
@@ -896,6 +904,7 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
   .product-card { flex-direction: row; }
   .pc-art { flex: none; width: 84px; height: auto; }
   .pc-art svg { width: 36px; height: 56px; }
+  .pc-art.own { height: auto; padding: 6px; }
   .pc-art.photo { height: auto; border-bottom: 0; border-right: 1px solid var(--line); padding: 6px; }
   .pc-body { padding: 12px 14px; }
 }
