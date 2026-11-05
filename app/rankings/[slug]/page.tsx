@@ -5,12 +5,13 @@ import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, TRAIT_LIST_LIKED_WEIGHT, RANKINGS_PATH, listYear, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, TRAIT_LIST_LIKED_WEIGHT, RANKINGS_PATH, listYear, MIN_LIST_ENTRIES, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
-import { ProductIcon, SourceIcon } from "../../icons";
+import { ProductIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
 import { displayName } from "../../../lib/brand-name";
 import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
+import { listLine } from "../../../lib/list-lines";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 
@@ -19,7 +20,6 @@ const find = async (slug: string) => (await rankedLists()).lists.find(x => x.lis
 const base = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
 
 function description(r: RankedList) {
-  if (!r.entries.length) return `${r.list.intro} Not enough ${people.one} reviews yet to rank any ${w.many}.`;
   const names = r.entries.slice(0, 3).map(e => e.product.name).join(", ");
   return `${r.list.intro} Ranked from ${r.reviews.toLocaleString("en-US")} first-hand reviews: ${names}…`;
 }
@@ -28,17 +28,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const found = await find((await params).slug);
   if (!found) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
   const title = listTitle(found.list, listYear(found.list), found.reviews, people.One), desc = description(found), url = listHref(found.list.slug);
-  // An empty list has nothing worth indexing yet.
-  return { title: { absolute: title }, description: desc, alternates: { canonical: url }, openGraph: { title, description: desc, url, type: "website" },
-    ...(found.entries.length ? {} : { robots: { index: false } }) };
+  return { title: { absolute: title }, description: desc, alternates: { canonical: url }, openGraph: { title, description: desc, url, type: "website" } };
 }
 
 const pct = (n: number, total: number) => `${n / total * 100}%`;
+const withThe = (name: string) => `${/^the /i.test(name) ? "" : "the "}${name}`;
 
 function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product), own = shopPhoto(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
   const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
-  const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
+  const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", "), line = listLine(e.product);
   return <li className="top-entry">
     <span className="top-rank" aria-label={`Rank ${e.rank}`}>{e.rank}</span>
     {own ? <a className="thumb top-thumb own" href={href} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a> : amazon?.image && !photoHidden(e.product)
@@ -53,27 +52,19 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
       {amazon
         ? <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
         : site && <a className="top-amazon" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
+      {line && <p className="top-line">{line}</p>}
       <div className="top-split">
         <div className="stack" role="img" aria-label={label}>
           {parts.map(([s, n]) => n ? <i key={s} className={`s-${s}`} style={{ width: pct(n, e.reviews) }}/> : null)}
         </div>
-        <div className="legend">
-          {parts.map(([s, n]) => <span key={s} className={`s-${s}`}>{n} {s}</span>)}
-          <span className="top-count">{e.reviews} reviews</span>
-        </div>
+        <p className="top-stat" title={label}><b>{e.positive} positive</b> out of {e.reviews} reviews</p>
         {list.trait && <p className="top-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       </div>
       {(e.pros.length > 0 || e.con) && <div className="tags">
         {e.pros.map(t => <span key={t.label} className={`tag ${tagTone(t.label)}`}>{t.label}<span className="c">{t.count}</span></span>)}
         {e.con && <span className="tag neg">{e.con.label}<span className="c">{e.con.count}</span></span>}
       </div>}
-      {e.quote && <figure className="top-quote">
-        <blockquote>“{e.quote.text}”{e.quote.translatedFrom && <span className="translated-note"> (translated from {e.quote.translatedFrom})</span>}</blockquote>
-        <figcaption className="cite"><a className="src-link" href={e.quote.url} target="_blank" rel="noopener noreferrer" title={`View the original on ${e.quote.platform}`}>
-          <SourceIcon platform={e.quote.platform}/><b>{e.quote.platform}</b>{e.quote.source && e.quote.source !== e.quote.platform && <span>{e.quote.source}</span>}<span className="arr" aria-hidden="true">↗</span>
-        </a></figcaption>
-      </figure>}
-      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of ${/^the /i.test(e.product.name) ? "" : "the "}${e.product.name} →`}</a>
+      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of ${withThe(e.product.name)} →`}</a>
     </div>
   </li>;
 }
@@ -97,7 +88,8 @@ function Method({ list, count, affiliate }: { list: TopList; count: number; affi
       {list.maxAgeYears !== undefined && <li>{list.maxAgeYears === 0
         ? `Only ${currentYear()} models are listed, so last season's ${w.many} don't crowd out this year's.`
         : `Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
-      <li>{`A ${w.one} needs at least ${min} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${count === 1 ? w.one : w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`}`}</li>
+      <li>{`A ${w.one} needs at least ${min} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`} A list with fewer than ${MIN_LIST_ENTRIES} isn't shown until more qualify.`}</li>
+      <li>{`The line under each ${w.one} is a short summary of what its reviews say, not our own opinion.`}</li>
       <li>{affiliate
         ? `The list re-ranks itself as new reviews are published. There are no sponsored placements or paid rankings. The Amazon links are affiliate links and never change the order.`
         : `The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
@@ -110,6 +102,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   const found = lists.find(x => x.list.slug === slug);
   if (!found) notFound();
   const { list, entries, reviews, updated } = found;
+  const related = lists.filter(l => l !== found).slice(0, 6);
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
   const affiliate = amazonLinksOn();
   const amazon = affiliate ? await Promise.all(entries.map(e => amazonButton({ name: e.product.name, brand: brandOf(e.product.brandId) || undefined }))) : [];
@@ -125,18 +118,20 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   ] };
 
   return <main className="top-page">
-    {affiliate && entries.length > 0 && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
+    {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
     <div className="page-title">
       {/* A short heading; the review count sits in the line under it. The full title stays the browser/search title and the ItemList name. */}
       <h1>{`${list.title} ${listYear(list)}`}</h1>
-      {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
       <p>{list.intro}</p>
+      {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
-    {entries.length
-      ? <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
-      : <p className="empty-feed">{`No ${w.one} has enough reviews for this list yet. It fills in as reviews are published.`}</p>}
+    <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
+    {related.length > 0 && <section className="top-related" aria-labelledby="more-lists">
+      <h2 id="more-lists">More rankings</h2>
+      <div>{related.map(r => <a key={r.list.slug} href={listHref(r.list.slug)}><b>{`${r.list.title} ${listYear(r.list)}`}</b><span>{`${r.entries.length} ranked from ${r.reviews.toLocaleString("en-US")} reviews`}</span></a>)}</div>
+    </section>}
     <Method list={list} count={entries.length} affiliate={affiliate}/>
   </main>;
 }

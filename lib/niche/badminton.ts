@@ -122,7 +122,7 @@ export const badminton: Niche = {
   // /rankings pages (lib/top-lists.ts). Lists go by review tags: balance and flex are written too many ways to filter on.
   topLists: [
     { slug: "best-badminton-rackets", label: "Best overall", title: "Best Badminton Rackets", minReviews: 10,
-      intro: "The rackets players are most consistently happy with, among rackets enough players have reviewed." },
+      intro: "The rackets players are most consistently happy with." },
     { slug: "best-power-badminton-rackets", label: "Best for power", title: "Best Badminton Rackets for Power", minReviews: 8,
       intro: "Rackets players keep describing as powerful, on smashes and clears.",
       trait: { tags: ["easy power", "steep smashes"], minShare: 0.15, against: ["underpowered"], noun: "power or smashes" } },

@@ -122,7 +122,7 @@ export const pickleball: Niche = {
   // and older models like the 2023 Prism are still current. Paddle shapes are too sparsely filled in to filter on, so lists go by review tags.
   topLists: [
     { slug: "best-pickleball-paddles", label: "Best overall", title: "Best Pickleball Paddles", minReviews: 12,
-      intro: "The paddles players are most consistently happy with, among paddles enough players have reviewed." },
+      intro: "The paddles players are most consistently happy with." },
     { slug: "best-power-pickleball-paddles", label: "Best for power", title: "Best Pickleball Paddles for Power", minReviews: 10,
       intro: "Paddles players keep describing as powerful: easy power and pop.",
       trait: { tags: ["easy power", "great pop"], minShare: 0.2, noun: "power or pop" } },

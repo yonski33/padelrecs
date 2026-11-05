@@ -116,7 +116,7 @@ export const tennis: Niche = {
   // /rankings pages (lib/top-lists.ts). Lists go by review tags; head sizes are written too many ways to filter on.
   topLists: [
     { slug: "best-tennis-rackets", label: "Best overall", title: "Best Tennis Rackets", minReviews: 10,
-      intro: "The rackets players are most consistently happy with, among rackets enough players have reviewed." },
+      intro: "The rackets players are most consistently happy with." },
     { slug: "best-power-tennis-rackets", label: "Best for power", title: "Best Tennis Rackets for Power", minReviews: 8,
       intro: "Rackets players keep describing as powerful, on groundstrokes and serve.",
       trait: { tags: ["easy power", "great on serve"], minShare: 0.15, against: ["underpowered"], noun: "power or serve" } },

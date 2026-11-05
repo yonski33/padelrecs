@@ -140,7 +140,7 @@ export const snowboard: Niche = {
   // /rankings pages (lib/top-lists.ts). Model years are real here, so lists keep to the last three (maxAgeYears 2). Each appears once enough boards in it have reviews.
   topLists: [
     { slug: "best-snowboards", label: "Best overall", title: "Best Snowboards", minReviews: 8, maxAgeYears: 2,
-      intro: "The boards riders are most consistently happy with, among boards enough riders have reviewed." },
+      intro: "The boards riders are most consistently happy with." },
     { slug: "best-all-mountain-snowboards", label: "All-mountain", title: "Best All-Mountain Snowboards", minReviews: 5, maxAgeYears: 2,
       intro: "The all-mountain boards riders are most consistently happy with.", filters: [{ column: "shape", include: ["All-mountain snowboard"] }] },
     { slug: "best-freestyle-snowboards", label: "Freestyle & park", title: "Best Freestyle and Park Snowboards", minReviews: 5, maxAgeYears: 2,

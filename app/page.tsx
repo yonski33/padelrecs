@@ -83,7 +83,7 @@ export default async function Home({ searchParams }: {
   const platforms = [...all.external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([p]) => p).slice(0, 3);
   const fromWhere = [`${niche.people.many}`, ...platforms].map((x, i, a) => i === a.length - 1 && a.length > 1 ? `and ${x}` : x).join(a2(platforms.length));
   // Top picks: each ranking list with its top three, the most useful thing on the site for someone deciding what to buy.
-  const picks = type ? [] : (await rankedLists()).lists.filter(l => l.entries.length >= 3).slice(0, 6);
+  const picks = type ? [] : (await rankedLists()).lists.slice(0, 6);
   const brandName = (id: string) => all.brands.find(b => b.id === id)?.name;
   const base = (process.env.SITE_URL || `https://www.${niche.site.domain}`).replace(/\/$/, "");
   const jsonLd = { "@context": "https://schema.org", "@graph": [

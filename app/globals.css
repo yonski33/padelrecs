@@ -818,24 +818,31 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .top-page .page-title h1 { font-size: 32px; max-width: 30ch; text-wrap: balance; }
 .top-updated { margin-top: 10px !important; font-size: 13px !important; color: var(--ink-3) !important; }
 .top-updated b { font-weight: 600; color: var(--ink-2); }
-.top-page .page-title .top-updated + p { margin-top: 10px; }
 .top-list { list-style: none; margin: 0; padding: 0; counter-reset: none; }
-.top-entry { display: grid; grid-template-columns: 40px 52px minmax(0, 1fr); column-gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.top-entry { display: grid; grid-template-columns: 40px 52px minmax(0, 1fr); column-gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .top-rank { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--green); letter-spacing: -0.03em; padding-top: 4px; font-variant-numeric: tabular-nums; }
 .top-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .top-head h2 { font-size: inherit; }
 .top-amazon { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .top-amazon:hover { color: var(--ink-2); text-decoration-color: currentColor; }
-.top-split { margin-top: 12px; max-width: 460px; }
+.top-split { margin-top: 8px; max-width: 460px; }
 .top-split .stack i { background: var(--c); }
 .top-split .legend .top-count { font-weight: 600; color: var(--ink-2); }
 .top-split .legend .top-count::before { display: none; }
 .top-trait { margin: 6px 0 0; font-size: 13px; font-weight: 600; color: var(--green-ink); }
-.top-body > .tags { margin-top: 12px; }
-.top-quote { margin: 14px 0 0; max-width: var(--measure); }
-.top-quote blockquote { margin: 0; padding: 2px 0 2px 12px; border-left: 3px solid var(--lime-line); font-style: italic; font-size: 15px; line-height: 1.55; color: var(--ink-2); overflow-wrap: anywhere; }
-.top-quote .cite { margin-top: 6px; }
-.top-more { display: inline-block; margin-top: 12px; font-size: 13.5px; font-weight: 600; }
+.top-body > .tags { margin-top: 8px; }
+.top-more { display: inline-block; margin-top: 8px; font-size: 13.5px; font-weight: 600; }
+.top-line { margin: 6px 0 0; max-width: var(--measure); font-size: 16px; line-height: 1.5; color: var(--ink); }
+.top-stat { margin: 4px 0 0; font-size: 13px; color: var(--ink-3); }
+.top-stat b { font-weight: 600; color: var(--ink-2); }
+.top-related { margin-top: 32px; }
+.top-related h2 { margin-bottom: 12px; }
+.top-related > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.top-related a { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); }
+.top-related a:hover { border-color: var(--green-line); background: var(--tint); color: var(--ink); }
+.top-related b { font-weight: 600; font-size: 14.5px; }
+.top-related span { font-size: 12.5px; color: var(--ink-3); }
+@media (max-width: 680px) { .top-related > div { grid-template-columns: minmax(0, 1fr); } }
 .top-method { margin-top: 36px; padding: 20px 22px; background: var(--tint); border-radius: 14px; }
 .top-method h2 { margin-bottom: 8px; }
 .top-method ul { margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
@@ -855,8 +862,8 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 @media (prefers-reduced-motion: reduce) { .top-card .thumb, .top-card-more .arrow { transition: none; } .top-card:hover .thumb, .top-card:hover .top-card-more .arrow { transform: none; } }
 @media (max-width: 680px) {
   .top-page .page-title h1 { font-size: 25px; }
-  .top-entry { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; }
-  .top-thumb { display: none; }
+  .top-entry { grid-template-columns: 24px 44px minmax(0, 1fr); column-gap: 10px; }
+  .top-thumb.thumb { width: 44px; height: 52px; }
   .top-rank { font-size: 24px; }
   .top-card { grid-template-columns: auto minmax(0, 1fr); row-gap: 8px; padding: 16px; }
   .top-card .thumb { width: 40px; height: 48px; grid-row: span 2; align-self: start; }

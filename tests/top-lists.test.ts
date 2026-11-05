@@ -185,7 +185,7 @@ test("spec filters match whole leading words; include drops blanks, exclude keep
   assert(!matchesFilters(product("a", { shape: "Highlight" }), [{ column: "shape", include: ["High"] }]));
 });
 
-test("entries carry real tags and a positive verbatim quote with its source", () => {
+test("entries carry real tags", () => {
   const long = "x".repeat(400);
   const data: ListInput = { listed: [product("a")], reviews: [], external: [
     web("a", "positive", ["easy power", "forgiving"], "Lots of easy power and the sweet spot is huge, really happy with it."),
@@ -195,17 +195,7 @@ test("entries carry real tags and a positive verbatim quote with its source", ()
   const [e] = rankList(overall, data, tags);
   assert.deepEqual(e.pros, [{ label: "easy power", count: 2 }, { label: "forgiving", count: 1 }, { label: "good control", count: 1 }]);
   assert.deepEqual(e.con, { label: "head-heavy", count: 2 });
-  assert.equal(e.quote?.text, "Lots of easy power and the sweet spot is huge, really happy with it.");
-  assert.equal(e.quote?.url, "https://www.reddit.com/r/padel/x");
   assert.equal(e.latest, "2026-10-01T00:00:00Z");
-});
-
-test("a translated source is quoted in English and says so; an untranslated foreign quote is never used", () => {
-  const es = { ...web("a", "positive", ["easy power"], "Tiene una potencia increíble y la salida de bola es muy buena para mí."), sourceLanguage: "es", excerptTranslation: "It has incredible power and the ball comes off really well for me." };
-  const raw = { ...web("a", "positive", ["easy power"], "Muy buena pala, la recomiendo a cualquiera que busque potencia y control."), sourceLanguage: "es", excerptTranslation: null };
-  const [e] = rankList(overall, { listed: [product("a")], reviews: [], external: [raw, es, web("a", "mixed", ["head-heavy"]), web("a", "positive", ["good control"]), web("a", "positive", ["forgiving"])] }, tags);
-  assert.equal(e.quote?.text, "It has incredible power and the ball comes off really well for me.");
-  assert.equal(e.quote?.translatedFrom, "Spanish");
 });
 
 test("title and address follow the agreed pattern", () => {

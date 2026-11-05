@@ -1,18 +1,17 @@
 // Rankings for the /rankings pages (up to 10 products per list). Pure functions over the public catalogue, so tests can feed them plain objects.
 // Every number they return is counted from published reviews; nothing is estimated or filled in.
-import { englishQuote, languageName } from "./languages";
 import type { SpecColumn, SpecFilter, Tag, TopList } from "./niche/types";
 
 /** No list ever ranks a product on fewer reviews than this, whatever the niche config says. */
 export const MIN_LIST_REVIEWS = 5;
 export const LIST_SIZE = 10;
+/** A list shorter than this isn't shown anywhere: a "best" page with two products looks thin. It comes back by itself once enough qualify. */
+export const MIN_LIST_ENTRIES = 5;
 /** A "best" list never includes a product most reviewers aren't happy with: positive share (mixed = half) of at least this. */
 export const MIN_POSITIVE_SHARE = 0.6;
 /** Where the lists live: /rankings is the index, /rankings/<slug> one list. Slugs carry the full phrase ("best-padel-rackets"). */
 export const RANKINGS_PATH = "/rankings";
 export const rankingHref = (slug: string) => `${RANKINGS_PATH}/${slug}`;
-/** Quotes shown on a list are the source's exact words, so they are picked, never shortened. */
-const QUOTE_MIN = 40, QUOTE_MAX = 220;
 
 export type Verdict = "positive" | "mixed" | "negative";
 // websiteUrl/affiliateUrl: the "Visit site" link on niches with website links (lib/product-links.ts).
@@ -80,7 +79,6 @@ export function matchesFilters(product: Product, filters: SpecFilter[] = []) {
 
 export type TagCount = { label: string; count: number };
 /** translatedFrom: the source's language when `text` is our translation of it (shown as "translated from …"). */
-export type Quote = { id: string; text: string; url: string; platform: string; source: string; translatedFrom?: string };
 export type ListEntry = {
   rank: number;
   product: Product;
@@ -99,22 +97,11 @@ export type ListEntry = {
   traitReviews: number;
   pros: TagCount[];
   con: TagCount | null;
-  quote: Quote | null;
   latest: string;
 };
 
 type Note = { verdict: Verdict; tags: string[]; createdAt: string };
 const credit = (v: Verdict) => v === "positive" ? 1 : v === "mixed" ? 0.5 : 0;
-
-function pickQuote(web: WebReview[], prefer: string[]): Quote | null {
-  // The quote readers see is English: a foreign source's translation, never its original words unlabelled.
-  const text = (e: WebReview) => englishQuote(e)?.trim() ?? "";
-  const usable = web.filter(e => e.sentiment === "positive" && text(e) && /^https?:\/\//.test(e.sourceUrl) && text(e).length >= QUOTE_MIN && text(e).length <= QUOTE_MAX);
-  const fit = (e: WebReview) => Number(e.tags.some(t => prefer.includes(t)));
-  const best = usable.sort((a, b) => fit(b) - fit(a) || (b.helpful ?? 0) - (a.helpful ?? 0) || Math.abs(text(a).length - 120) - Math.abs(text(b).length - 120) || a.id.localeCompare(b.id))[0];
-  const from = best?.sourceLanguage && best.sourceLanguage !== "en" ? languageName(best.sourceLanguage) ?? undefined : undefined;
-  return best ? { id: best.id, text: text(best), url: best.sourceUrl, platform: best.sourcePlatform, source: best.sourceName, ...(from ? { translatedFrom: from } : {}) } : null;
-}
 
 /** Ranks one list. Returns at most LIST_SIZE entries and never pads: products below the minimums are simply left out. */
 export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], now = new Date()): ListEntry[] {
@@ -161,7 +148,6 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
       // Being liked less never subtracts: the MIN_POSITIVE_SHARE floor already keeps disliked products out.
       rankScore: trait ? aboveAverage(traitReviews, n, traitAverage) + TRAIT_LIST_LIKED_WEIGHT * Math.max(0, liked) : likedScore((positive + mixed / 2) / n, n),
       pros: ranked("pos").slice(0, 3), con: ranked("neg")[0] ?? null,
-      quote: pickQuote(data.external.filter(e => e.racketId === product.id), trait?.tags ?? []),
       latest: own.reduce((a, x) => x.createdAt > a ? x.createdAt : a, ""),
     }];
   });
