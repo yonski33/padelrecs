@@ -7,7 +7,8 @@ import { connect } from "./connection";
 // Finds each reviewed product's Amazon ASIN and photo through SerpApi, most reviewed first, one search per product. The
 // Amazon API throttles a search per product after about 20 calls (owner choice 2026-11-05: SerpApi instead).
 // A dry run prints the matches and saves nothing. A product with no match is stamped so a later run skips it for a while.
-// Usage: NICHE=skin npm run -s db:fill-amazon-photos -- [--limit 20] [--apply]
+// Usage: NICHE=skin npm run -s db:fill-amazon-photos -- [--limit 20] [--apply] [--retry --brand Breville]
+// --retry ignores the wait after a miss; --brand limits the run to one brand.
 const RETRY_NO_MATCH_MS = 30 * 24 * 60 * 60 * 1000, PAUSE_MS = 1500;
 type Result = { asin?: string; title?: string; thumbnail?: string; sponsored?: boolean };
 
@@ -34,7 +35,9 @@ export function isOtherVersion(product: { name: string; brand: string }, title: 
 
 function modelOnly(product: { name: string; brand: string }, title: string) {
   const brand = new Set(words(product.brand)), model = words(product.name).filter(w => !brand.has(w)), found = words(title);
-  return model.length > 0 && found[0] === model[0] && model.every(w => found.includes(w));
+  // Some listings open with a model code instead: "BES878BSS Barista Pro Espresso Machine".
+  const opening = /\d/.test(found[0] ?? "") && found[0].length >= 5 && !model.includes(found[0]) ? found[1] : found[0];
+  return model.length > 0 && opening === model[0] && model.every(w => found.some(f => f === w || (/\d/.test(w) && f.startsWith(w))));
 }
 
 /**
@@ -64,13 +67,16 @@ async function main() {
   if (!key) throw new Error("Set SERPAPI_API_KEY in .env.local");
   if (!niche.amazon) throw new Error(`${niche.id} has no Amazon links`);
   const apply = process.argv.includes("--apply"), limitAt = process.argv.indexOf("--limit"), limit = limitAt > 0 ? Number(process.argv[limitAt + 1]) : Infinity;
+  const retry = process.argv.includes("--retry"), brandAt = process.argv.indexOf("--brand"), onlyBrand = brandAt > 0 ? process.argv[brandAt + 1].toLowerCase() : null;
   const { client, db } = connect();
   const [allBrands, products, userRows, webRows] = await Promise.all([db.select().from(brands),
     db.select({ id: rackets.id, name: rackets.name, brandId: rackets.brandId, checkedAt: rackets.amazonCheckedAt }).from(rackets).where(isNull(rackets.amazonImage)),
     db.select({ id: reviews.racketId }).from(reviews).where(and(eq(reviews.status, "approved"))), db.select({ id: externalReviews.racketId }).from(externalReviews)]);
   const counts = new Map<string, number>();
   for (const { id } of [...userRows, ...webRows]) counts.set(id, (counts.get(id) ?? 0) + 1);
-  const todo = products.filter(p => counts.has(p.id) && (!p.checkedAt || Date.now() - Date.parse(p.checkedAt) >= RETRY_NO_MATCH_MS))
+  const brandOf = (id: string) => allBrands.find(b => b.id === id)?.name ?? "";
+  const todo = products.filter(p => counts.has(p.id) && (retry || !p.checkedAt || Date.now() - Date.parse(p.checkedAt) >= RETRY_NO_MATCH_MS))
+    .filter(p => !onlyBrand || brandOf(p.brandId).toLowerCase() === onlyBrand)
     .sort((a, b) => counts.get(b.id)! - counts.get(a.id)!).slice(0, limit);
   let matched = 0;
   for (const p of todo) {
