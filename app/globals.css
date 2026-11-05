@@ -890,3 +890,10 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
   .pc-art svg { width: 36px; height: 56px; }
   .pc-body { padding: 12px 14px; }
 }
+
+.best-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: -4px 0 16px; font-size: 14px; }
+.best-links span { color: var(--ink-3); }
+.best-links a { font-weight: 600; }
+.browse { display: grid; gap: 18px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
+.browse h2 { margin: 0 0 8px; font-size: 15px; }
+.browse p { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; font-size: 14px; }
