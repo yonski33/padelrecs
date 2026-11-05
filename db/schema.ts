@@ -34,6 +34,11 @@ export const racketSlugRedirects = catalogSchema.table("racket_slug_redirects", 
 }, t => [index("racket_slug_redirects_racket_idx").on(t.racketId)]).enableRLS();
 // Contact-form messages (app/api/contact). Saved before the email is sent, so a Resend failure loses nothing; status says
 // what happened to the email. Written only by the server; like every table here it is not exposed through the Data API.
+/** Photos uploaded in the admin area, base64 webp. A table of its own so catalog reads don't carry them. */
+export const productPhotos = catalogSchema.table("product_photos", {
+  racketId: text("racket_id").primaryKey().references(() => rackets.id, { onDelete: "cascade" }), data: text("data").notNull(), updatedAt: text("updated_at").notNull()
+}).enableRLS();
+
 export const contactMessages = catalogSchema.table("contact_messages", {
  id: text("id").primaryKey(), name: text("name").notNull(), email: text("email").notNull(), subject: text("subject").notNull(), message: text("message").notNull(), status: text("status", { enum: ["pending", "sent", "failed", "spam"] }).notNull().default("pending"), error: text("error"), createdAt: text("created_at").notNull()
 }, t => [index("contact_messages_created_idx").on(t.createdAt), check("contact_message_status", sql`${t.status} in ('pending','sent','failed','spam')`)]).enableRLS();

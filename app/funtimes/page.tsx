@@ -24,6 +24,8 @@ const messages: Record<string,string> = {
  invalid:`Please check all fields. A web review needs an existing ${w.one} or a new brand, model and year (1980–2100), an excerpt of at least 20 characters or a summary of at least 30, source details, and a valid HTTP or HTTPS source link.`,
  missing:"That review no longer exists.",
  stale:"This review changed since the page loaded. Check its current status and try again.",
+ "photo-saved":`${w.One} photo saved. The public pages have been updated.`,
+ "photo-invalid":"That photo couldn't be used. Choose a JPG, PNG or WebP image under 4 MB.",
  "spec-saved":`${w.One} specs saved. The public ${w.one} page has been updated.`,
  "spec-invalid":`Check the ${w.one} name, brand, year (1980–2100), and field lengths.`,
  "spec-missing":`That ${w.one} no longer exists. Choose another ${w.one}.`,

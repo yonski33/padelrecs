@@ -1,11 +1,14 @@
 import type { rackets } from "../../db/schema";
 import SlugField from "./slug-field";
+import { amazonPhoto } from "../../lib/amazon-photos";
+import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
 const w = niche.words;
 
 type Racket = typeof rackets.$inferSelect;
 export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string,oldSlugs?:string[]}) {
  const selected=models.find(r=>r.id===racketId);
+ const photo=selected?(shopPhoto(selected)||amazonPhoto(selected)?.image):null;
  return <div className="narrow">
   <h2 className="admin-heading">{`Edit ${w.one} details`}</h2>
   <form action="/funtimes" method="get" className="spec-selector">
@@ -14,6 +17,16 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
    <button type="submit">{`Open ${w.one}`}</button>
   </form>
   {racketId && !selected && <p role="alert" className="form-error">{`${w.One} not found. Choose a ${w.one} from the list.`}</p>}
+  {selected && <form action="/api/funtimes/racket-photo" method="post" encType="multipart/form-data" className="review-form admin-photo" key={`photo-${selected.id}`}>
+   <input type="hidden" name="id" value={selected.id}/>
+   {photo ? <img src={photo} alt=""/> : <p className="small muted">{photoHidden(selected)?"Showing the drawing.":"No photo yet."}</p>}
+   <label className="field">{`${w.One} photo`}<input name="photo" type="file" accept="image/jpeg,image/png,image/webp"/><small>JPG, PNG or WebP under 4 MB. It replaces the current photo everywhere on the site.</small></label>
+   <div className="admin-actions">
+    <button type="submit" name="action" value="upload">Upload photo</button>
+    {!photoHidden(selected)&&photo&&<button type="submit" name="action" value="remove">Remove photo</button>}
+    {selected.imageUrl&&<button type="submit" name="action" value="default">Use default photo</button>}
+   </div>
+  </form>}
   {selected ? <form action="/api/funtimes/racket-specs" method="post" className="review-form" key={selected.id}>
    <input type="hidden" name="id" value={selected.id}/>
    <p className="small"><a href={productHref(selected)} target="_blank" rel="noopener noreferrer">{`View ${w.one} page ↗`}</a></p>
