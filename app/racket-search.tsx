@@ -102,7 +102,7 @@ export function RacketSearch() {
         {matches.map((racket, index) => <li key={racket.slug} role="presentation">
           <a className="sug-item" id={`racket-search-option-${index}`} role="option" aria-selected={index === active}
             tabIndex={-1} href={productHref(racket)} onMouseEnter={() => setActive(index)}>
-            <ProductIcon shape={racket.shape} brand={racket.brand}/>
+            {racket.photo ? <img className="sug-photo" src={racket.photo} alt="" loading="lazy"/> : <ProductIcon shape={racket.shape} brand={racket.brand}/>}
             <span className="nm">{highlight(racket.name, typed)}{racket.shape && <span className="mt">{racket.shape}</span>}</span>
             <span className="ct">{noteCount(racket.notes)}</span>
           </a>
