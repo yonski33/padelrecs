@@ -370,5 +370,69 @@
   {
     "slug": "nikon-z30",
     "summary": "Owners enjoy the Nikon Z30 as a small, light camera for travel and hiking that also does good vlogging video. The missing viewfinder bothers some, and a few reported battery problems, overheating in long 4K video or missed focus."
+  },
+  {
+    "slug": "leica-sl3",
+    "summary": "Photographers praise the SL3 for image quality, especially with SL lenses, and for its dials, menus and handling. Complaints centre on reliability, with several reporting freezing or failures, plus slow autofocus and short battery life. Some find it fine for landscapes and portraits but not for fast action."
+  },
+  {
+    "slug": "gopro-mission-1",
+    "summary": "Users praise the cleaner low-light footage and dynamic range compared with earlier GoPro Hero models. A couple find it heavier than a Hero and GP-Log2 harder to grade."
+  },
+  {
+    "slug": "om-system-om-3",
+    "summary": "Photographers like the OM-3 as a small travel and everyday camera with compact lenses. Several say it also handles wildlife and landscapes well, with no complaints in the reviews."
+  },
+  {
+    "slug": "sony-a6600",
+    "summary": "Photographers like the a6600 as a small, packable camera for travel and family use. A couple rate its autofocus above that of Fujifilm bodies."
+  },
+  {
+    "slug": "leica-sl3-s",
+    "summary": "Photographers praise the SL3-S for autofocus, several for sports and action, and say it improved with firmware. A couple also like its build and handling."
+  },
+  {
+    "slug": "sony-a7s-iii",
+    "summary": "Photographers like the a7S III for video, with 4K and S-Log3 grading praised, and a couple report it never overheats. Several also use it for stills and find it capable."
+  },
+  {
+    "slug": "panasonic-lumix-g9",
+    "summary": "Photographers value the G9's build, with weather sealing, a big grip and a camera that survived a lake drop. A couple found its continuous autofocus poor for wildlife."
+  },
+  {
+    "slug": "leica-q3-monochrom",
+    "summary": "Owners praise the Q3 Monochrom for low-light performance and clean high-ISO files, and for sharp, tonal black and white images. No complaints appear in the reviews."
+  },
+  {
+    "slug": "om-system-om-1",
+    "summary": "Photographers praise the OM-1 for standing up to bad weather, including downpours and sandstorms. Several moved to it for birds and wildlife, and none report complaints."
+  },
+  {
+    "slug": "sony-zv-e10",
+    "summary": "Users treat the ZV-E10 as a video-first camera that also takes good photos at a fair price. A couple miss stabilisation, especially when walking."
+  },
+  {
+    "slug": "canon-eos-r1",
+    "summary": "Photographers praise the R1 for autofocus, high-ISO performance and handling. Two had focusing glitches with Action Priority that stopped once it was switched off."
+  },
+  {
+    "slug": "canon-eos-r6-v",
+    "summary": "Users like the R6 V for video, as a nimble body for B-roll and travel that handled long 4K shooting without overheating. A couple find the controls clunky."
+  },
+  {
+    "slug": "canon-powershot-v10",
+    "summary": "Several owners had a V10 stop powering on, some after a firmware update. Those who got on with it like its discreet size and vertical 1080p video, though 4K is limited by battery and heat."
+  },
+  {
+    "slug": "dji-osmo-action-5-pro",
+    "summary": "Users are consistently happy with the Action 5 Pro, and several favour it over Insta360 and GoPro alternatives. Colour and optical quality are singled out."
+  },
+  {
+    "slug": "panasonic-lumix-s5",
+    "summary": "Photographers praise the S5's image quality, with colours and RAW files singled out, but opinions on its autofocus are split."
+  },
+  {
+    "slug": "sony-a7r-ii",
+    "summary": "Several photographers keep the a7R II as a compact, capable travel camera. Two found it unsuited, as too slow for action and too heavy with its lenses."
   }
 ]

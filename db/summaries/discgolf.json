@@ -1046,5 +1046,397 @@
   {
     "slug": "westside-shield",
     "summary": "Most players putt with the Shield and love its tacky feel that grips the chains. It wears quickly but keeps its stability, and several use it for approaches too. One finds the feel off for their putting grip."
+  },
+  {
+    "slug": "kastaplast-rask",
+    "summary": "Players mostly keep the Rask for wind and scrambles. It is described as very overstable and strong on forehands, and several say nothing else flies like it."
+  },
+  {
+    "slug": "latitude-64-honor",
+    "summary": "Players call the Honor a dependable overstable driver, closer to a Firebird than a PD and holding up well in wind. A few say it works both backhand and forehand."
+  },
+  {
+    "slug": "mvp-energy",
+    "summary": "Players find the Energy extremely overstable, with little glide and a quick fade. Some like it as a utility disc, while others call it too much."
+  },
+  {
+    "slug": "prodigy-feedback",
+    "summary": "Players mostly like the Feedback as a straight, glidey fairway driver. A few find it beefier or fading harder than expected, so stability varies by person."
+  },
+  {
+    "slug": "prodigy-pa-1",
+    "summary": "Players mostly use the PA-1 as a putter and several keep it for years. A few say the plastic beats in and gets flippy with use."
+  },
+  {
+    "slug": "westside-world",
+    "summary": "Players count on the World as a long, dependable driver, and a few like it in headwinds. One found the TP version a meathook, so plastic matters."
+  },
+  {
+    "slug": "discmania-function",
+    "summary": "Players see the Function as a flippy fairway driver for hyzer flips, rollers and S-curves. Several say it is less understable than its numbers suggest and finishes with a gentle fade."
+  },
+  {
+    "slug": "discmania-p3x",
+    "summary": "Players like the P3x as a line-holding, accurate throwing putter. Several say it needs a break-in period to reach its sweet spot."
+  },
+  {
+    "slug": "discmania-premier-fd",
+    "summary": "Players find the Premier FD more stable than a typical fairway driver, with good glide. A few say it needs extra power to fly well and beats in fairly quickly."
+  },
+  {
+    "slug": "discraft-challenger",
+    "summary": "Players find the Challenger a comfortable stable putter that putts cleanly. Pro D versions are reported to beat in quickly."
+  },
+  {
+    "slug": "discraft-cigarra",
+    "summary": "Players like the Cigarra as a glidey, overstable fairway driver with a dependable fade. Some use it for forehands, and a few say it needs power or a bit of anhyzer to turn."
+  },
+  {
+    "slug": "discraft-crank",
+    "summary": "Players use the Crank as a solid distance driver, with several praising it on forehands. Stability varies by plastic, from very overstable to easier to turn over."
+  },
+  {
+    "slug": "discraft-predator",
+    "summary": "Players use the Predator for drives needing a strong late fade. It is called glidey and more overstable than a Raptor, though one says it handles torque less well."
+  },
+  {
+    "slug": "discraft-venom",
+    "summary": "Players mostly compare the Venom to the Force. It is described as similar but a bit more stable, with a flatter top and slightly smaller rim."
+  },
+  {
+    "slug": "dynamic-discs-convict",
+    "summary": "Players like the Convict as a controllable, versatile driver with a dependable fade. It is described as less stable than a Thunderbird and decent in wind."
+  },
+  {
+    "slug": "dynamic-discs-enforcer",
+    "summary": "Players see the Enforcer as a very overstable driver, popular for headwinds and forehands. Several say it fades hard with strong low-speed stability."
+  },
+  {
+    "slug": "innova-firefly",
+    "summary": "Players mostly use the Firefly as a putter, and several say its deeper shape suits putting. One calls it too deep, so feel is personal."
+  },
+  {
+    "slug": "innova-wahoo",
+    "summary": "Players split on the Wahoo. Some find it gets very flippy quickly, while one found an unusually overstable copy and others like it for distance or water carries."
+  },
+  {
+    "slug": "latitude-64-dagger",
+    "summary": "Players like the Dagger as a deep, glidey putter with a pleasant rounded edge. A few also drive with it and say it is overstable."
+  },
+  {
+    "slug": "latitude-64-ruby",
+    "summary": "Players describe the Ruby as very understable, turning a long way with little fade. Several use Opto versions for approaches, jump putts and low-power turnovers."
+  },
+  {
+    "slug": "latitude-64-spike",
+    "summary": "Players mostly like the Spike as a straight to understable putter. A couple note soft ones turn over once beat in."
+  },
+  {
+    "slug": "mvp-teleport",
+    "summary": "Players say the Teleport flies more stable than its numbers, with a hard fade and long hang time. A few praise the grip, and some find it fights out of flex shots."
+  },
+  {
+    "slug": "prodigy-h3-v2",
+    "summary": "Players like the H3 V2 as a straight, controllable driver, with several praising it on forehands. Stability seems to vary by plastic and weight."
+  },
+  {
+    "slug": "prodigy-p-model-us",
+    "summary": "Players use the P Model US as a putter and like its grip and clean release. Several have stuck with it for years."
+  },
+  {
+    "slug": "thought-space-athletics-synapse",
+    "summary": "Players find the Synapse more overstable than rated, which suits strong headwinds. Several say it lacks glide and distance."
+  },
+  {
+    "slug": "latitude-64-jade",
+    "summary": "Players who throw the Jade mostly love it, with several calling it a favourite or go-to. A couple find it turns over easily."
+  },
+  {
+    "slug": "latitude-64-musket",
+    "summary": "Players call the Musket a favourite driver that flies far and fairly straight, a good hyzer-flip disc. Stability shifts a little between plastics and runs."
+  },
+  {
+    "slug": "axiom-wrath",
+    "summary": "Players describe the Wrath as a beefy, overstable disc that works for forehand and backhand. Stability varies a lot between runs and plastics, from very overstable to flippy."
+  },
+  {
+    "slug": "discmania-dd1",
+    "summary": "Players say the DD1 is a long, easy-flying driver, with several reaching their farthest throws with it. Horizon ones get flippy, while Premier and Q-Line feel straighter."
+  },
+  {
+    "slug": "discraft-sled",
+    "summary": "Players find the Sled flies straight with a little turn and comes back at the end, handy for short forehands and approaches. Several say it does not go as far as a Zone SS."
+  },
+  {
+    "slug": "discraft-zeus",
+    "summary": "Players say Zeus stability varies a lot between runs and plastics, from flippy to stupidly overstable, and a few gave up on it for that reason. Those who like it use it as a long max-distance disc."
+  },
+  {
+    "slug": "dynamic-discs-evidence",
+    "summary": "Players love the Evidence, with several naming it a favourite mid. It flies straight to slightly understable, good for turnovers and hyzer flips."
+  },
+  {
+    "slug": "innova-arachnid",
+    "summary": "Players find the Arachnid a glidey, versatile mid that goes farther than its speed suggests. It turns over easily, and a few wish it were more stable or find it touchy in wind."
+  },
+  {
+    "slug": "innova-charger",
+    "summary": "Players use the Charger as a reliable max-distance driver that handles headwinds well off a hyzer. Star runs feel more stable and GStar more understable."
+  },
+  {
+    "slug": "innova-stingray",
+    "summary": "Players who throw the Stingray love it for its low, shallow feel and very understable flight, a go-to for flip-ups and shorter shots."
+  },
+  {
+    "slug": "latitude-64-keystone",
+    "summary": "Players like the Keystone's feel and use it for upshots, longer putts and turnover approaches. Several used to putt with it but moved to other putters."
+  },
+  {
+    "slug": "latitude-64-stiletto",
+    "summary": "Players describe the Stiletto as extremely overstable with a wide rim, a disc for particular shots. A couple note that runs differ, with a softer first run and a Gold Line that turns over."
+  },
+  {
+    "slug": "mvp-stasis",
+    "summary": "Players like the Stasis as a dependable approach putter that drops slowly where aimed. Some call it a beefier, glidier Berg."
+  },
+  {
+    "slug": "prodigy-d4",
+    "summary": "Players describe the D4 as an understable, glidey driver that throws far, with several using it for hyzer flips that come back. It can be very flippy."
+  },
+  {
+    "slug": "prodigy-f5",
+    "summary": "Players like the F5 as a workable fairway for tight woods, flip-ups and turnovers, with a few calling it straight and accurate. Flight varies by plastic and run."
+  },
+  {
+    "slug": "prodigy-p-model-s",
+    "summary": "Players praise the P Model S as a grippy, glidey putter that flies straight with a little fade, and several switched to it from other putters."
+  },
+  {
+    "slug": "streamline-boost",
+    "summary": "Players use the Boost mainly as an overstable forehand disc, several swapping it in for a PD or Wraith, and it turns more workable after a few hits. Stability differs between runs."
+  },
+  {
+    "slug": "westside-boatman",
+    "summary": "Players like the Boatman as a straight-flying driver with a reliable fade, and several throw it forehand. It beats in to a hyzer-flip distance disc."
+  },
+  {
+    "slug": "westside-gatekeeper",
+    "summary": "Players describe the Gatekeeper as a straight, pure-flying mid on the stable side of neutral, often compared to a Buzzz, and several love it."
+  },
+  {
+    "slug": "westside-giant",
+    "summary": "Players describe the Giant as a dependable overstable driver that several make a go-to. A few find it inconsistent between runs and plastics."
+  },
+  {
+    "slug": "axiom-trance",
+    "summary": "Players say the Trance flies more overstable than its numbers suggest, straight with a fade, and most like it. A couple expected more turn."
+  },
+  {
+    "slug": "discmania-enigma",
+    "summary": "Players love the Enigma as a straight distance driver with a solid fade that holds up in wind. Reports on stability are mixed, with some wanting it more stable and one unable to hyzer-flip it."
+  },
+  {
+    "slug": "discmania-tactic",
+    "summary": "Players love the Tactic as a short, fading approach disc, with skip shots, forehand rollers and anhyzer shots of about 100 feet mentioned."
+  },
+  {
+    "slug": "discmania-td",
+    "summary": "Players say the TD flies more stable than its numbers at first but beats in into a better disc, and S-Line ones are well liked. Beat-in ones flip to straight or slight anhyzer."
+  },
+  {
+    "slug": "dynamic-discs-evader",
+    "summary": "Players like the Evader as a reliable slow fairway that holds up in a headwind and finishes with dependable fade. Several call it a favourite."
+  },
+  {
+    "slug": "dynamic-discs-truth",
+    "summary": "Players love the Truth as a straight, versatile midrange that gets surprising distance. A couple note it has plenty of glide."
+  },
+  {
+    "slug": "axiom-panic",
+    "summary": "Players mostly describe the Panic as an overstable, far-flying driver they trust in open courses. A couple find it a touch too overstable or note that feel varies between discs and plastics."
+  },
+  {
+    "slug": "discmania-drop",
+    "summary": "Players use the Drop as an upshot, approach and utility mid, with more stability than a Tempo and plenty of glide. A couple overthrew upshots because the glide is sneaky."
+  },
+  {
+    "slug": "discmania-p1",
+    "summary": "Players like the P1 as a shallow, predictable putter with plastic they prefer, including a gummy one for rain and cold. One finds it better for throwing than for putting."
+  },
+  {
+    "slug": "discraft-roach",
+    "summary": "Players rate the Roach as a great putter, and several say it clicked right away or glided better than what they used before."
+  },
+  {
+    "slug": "dynamic-discs-bounty",
+    "summary": "Players love the Bounty as an easy, flippy mid that flies straight or left. A couple say windy conditions limit how often they throw it."
+  },
+  {
+    "slug": "dynamic-discs-getaway",
+    "summary": "Players love the Getaway as a long, straight driver with a reliable fade and lots of glide. A few compare it to a Thunderbird that goes farther."
+  },
+  {
+    "slug": "innova-ape",
+    "summary": "Players describe the Ape as a very overstable, fun driver that holds a fade in wind and on sharp finishes. One found it turned over on them."
+  },
+  {
+    "slug": "innova-cobra",
+    "summary": "Players see the Cobra as a beginner-friendly disc that glides easily and flies far with little power. Some end up swapping it for similar discs such as the Roc or Buzzz."
+  },
+  {
+    "slug": "innova-kc-aviar",
+    "summary": "Players like the KC Aviar for putting, for its stiff feel, bead and glide. A few note trade-offs, such as slipping in hand, awkward feel in cold wet weather, or off-centre putts being punished."
+  },
+  {
+    "slug": "innova-lynx",
+    "summary": "Players like the Lynx as an understable, versatile disc that turns over easily, good for slower arms, with stability varying by plastic. One could not get a consistent shape out of it."
+  },
+  {
+    "slug": "innova-viper",
+    "summary": "Players report that the Viper flies quite differently by plastic: Champion and old CE ones are overstable, while DX ones are flippier than the numbers suggest and beat in."
+  },
+  {
+    "slug": "kastaplast-impa",
+    "summary": "Players use the Impa as a flippy distance driver and roller that suits lower arm speeds. One finds it too flippy past 300 ft."
+  },
+  {
+    "slug": "kastaplast-tuff",
+    "summary": "Players like the Tuff as a glidey putter that is slightly less stable than a Reko, good for long putts and for driving."
+  },
+  {
+    "slug": "latitude-64-fire",
+    "summary": "Players call the Fire a solid overstable mid that starts straight and fades dependably, handy for flex shots and power throws."
+  },
+  {
+    "slug": "latitude-64-fury",
+    "summary": "Players treat the Fury as a flippy, beginner-friendly disc that stays in the bag for years. One finds it a little too flippy."
+  },
+  {
+    "slug": "latitude-64-gladiator",
+    "summary": "Players find the Gladiator very overstable, often a meathook, which earns it a place in headwinds. A couple say it can stand up or give a bit of turn in light wind."
+  },
+  {
+    "slug": "latitude-64-hope",
+    "summary": "Players like the Hope as a straight, accurate putter, with several praising the Sense plastic, though one finds it slow to beat in."
+  },
+  {
+    "slug": "prodigy-f7",
+    "summary": "Players describe the F7 as a fairway with decent turn that works for hyzer flips without being extremely flippy."
+  },
+  {
+    "slug": "prodigy-f9",
+    "summary": "Players agree the F9 is very flippy. Fans use it as a go-to understable fairway, while a couple find it unthrowable or unpredictable."
+  },
+  {
+    "slug": "prodigy-m1",
+    "summary": "Players describe older M1s as beefy and overstable, while newer runs seem to come out straighter or even understable."
+  },
+  {
+    "slug": "prodigy-pa-4",
+    "summary": "Players like the PA-4 as a straight, accurate putter, with several loving it in softer plastics."
+  },
+  {
+    "slug": "streamline-shift",
+    "summary": "Players see the Shift as a very understable driver, great for hyzer flips, rollers and long turnovers, including on forehand."
+  },
+  {
+    "slug": "westside-fortress",
+    "summary": "Players rate the Fortress as a very overstable wind disc, though one found two that turned over in a big headwind."
+  },
+  {
+    "slug": "westside-longbowman",
+    "summary": "Players use the Longbowman as a straight driver with a dependable fade that is not overly overstable, with some naming it a favourite in its speed class."
+  },
+  {
+    "slug": "dynamic-discs-warrant",
+    "summary": "Players find the Dynamic Discs Warrant clearly understable: thrown flat it turns, which suits anhyzers and controlled turnovers. One preferred a disc that flies flat off a flat release."
+  },
+  {
+    "slug": "innova-alien",
+    "summary": "Players like the Innova Alien for its comfortable feel and for how well it holds a line, whether straight, hyzer or anhyzer. A few use it for forehands and approaches."
+  },
+  {
+    "slug": "innova-animal",
+    "summary": "Some players bag the Innova Animal as a low-glide approach disc that drops out of the air, though opinions on putting with it are split."
+  },
+  {
+    "slug": "innova-katana",
+    "summary": "Players who throw the Innova Katana often name it a favourite driver for distance, and it gets more understable as it beats in."
+  },
+  {
+    "slug": "innova-panther",
+    "summary": "Players often started with the Innova Panther and kept it for years, calling it easy to learn to throw and to shape shots with."
+  },
+  {
+    "slug": "innova-viking",
+    "summary": "Players like the Innova Viking for straight, low-gliding shots on tight or wooded holes, with distance close to bigger drivers. A couple found DX plastic weaker or quick to turn over."
+  },
+  {
+    "slug": "innova-xero",
+    "summary": "Players mostly use the Innova Xero for putts and short approaches, where it flies very straight. A few found it too floaty or too straight and went back to something else."
+  },
+  {
+    "slug": "kastaplast-krut",
+    "summary": "Players find the Kastaplast Krut less overstable than its numbers suggest, more like a beat-in Destroyer, and it holds up in headwinds."
+  },
+  {
+    "slug": "latitude-64-peak",
+    "summary": "Players who putt with the Latitude 64 Peak like it, and a couple praise how grippy certain plastics feel."
+  },
+  {
+    "slug": "latitude-64-pioneer",
+    "summary": "Players find the Latitude 64 Pioneer overstable, often comparing it to a Firebird. Stability seems to vary somewhat between plastics."
+  },
+  {
+    "slug": "mvp-motion",
+    "summary": "Players describe the MVP Motion as an overstable control driver, more so than a Fireball for some, and several call it a dependable bag staple. Stability varies with plastic."
+  },
+  {
+    "slug": "mvp-relativity",
+    "summary": "Players use the MVP Relativity as a long-distance driver, and it turns understable once beaten in. Several use it as a go-to bomber, including forehand."
+  },
+  {
+    "slug": "mvp-terra",
+    "summary": "Players like the MVP Terra as a stable but not extreme driver that works backhand and forehand and resists turning over. One found it falls out of the air with no glide."
+  },
+  {
+    "slug": "prodigy-fx-2",
+    "summary": "Players like the Prodigy FX-2 as a beefy, overstable fairway driver, often compared to a Firebird. Several found its rim uncomfortable or hard on the hand."
+  },
+  {
+    "slug": "prodigy-m3",
+    "summary": "Players find the Prodigy M3 a very straight midrange that holds its line, with comparisons to a Buzzz."
+  },
+  {
+    "slug": "streamline-turbulence",
+    "summary": "Players speak warmly of the Streamline Turbulence as a stable, controllable disc that finishes overstable. Some use it for forehands and approaches."
+  },
+  {
+    "slug": "westside-sling",
+    "summary": "Players mostly like the Westside Sling as a straight, low-turn midrange, and a few prefer it to a Buzzz. One disliked it."
+  },
+  {
+    "slug": "westside-sorcerer",
+    "summary": "Many players find the Westside Sorcerer more understable than its numbers, good for hyzer flips and glide. One said it turned into a roller."
+  },
+  {
+    "slug": "westside-swan-2",
+    "summary": "Players use the Westside Swan 2 mainly for putts and approaches, where it flies straight, and find it more understable than an Aviar."
+  },
+  {
+    "slug": "axiom-defy",
+    "summary": "Players describe the Axiom Defy as a beefy, flat overstable distance driver with a flight and feel close to a Wraith."
+  },
+  {
+    "slug": "discraft-drive",
+    "summary": "Players praise the Discraft Drive, especially for forehand, and several see it as a slept-on alternative to a Wraith or Grace."
+  },
+  {
+    "slug": "discraft-nuke-ss",
+    "summary": "Players find the Discraft Nuke SS very understable and flippy, and it can turn into a roller as arm speed grows or the disc beats in. Some grow into it over time."
+  },
+  {
+    "slug": "dynamic-discs-emac-judge",
+    "summary": "Players who putt with the Dynamic Discs EMac Judge like it, with a few praising its glide and straight flight."
   }
 ]

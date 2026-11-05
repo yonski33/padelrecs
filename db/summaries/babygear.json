@@ -162,5 +162,205 @@
   {
     "slug": "uppababy-mesa-v2",
     "summary": "Most parents love the UPPAbaby Mesa V2, finding it easy to use and carry, with an insert that fits newborns well and a simple click into stroller or car. Some babies disliked it, one turning red, and one found a convertible more comfortable. Suits families who want an infant seat for stroller use and road trips."
+  },
+  {
+    "slug": "willow-360",
+    "summary": "Parents who pump mostly found the Willow 360 uncomfortable and fiddly to latch, empty and clean, and a few regret buying it. One said it emptied better than other pumps when it worked."
+  },
+  {
+    "slug": "britax-poplar-s",
+    "summary": "Parents mostly pick the Poplar S because it fits small cars and still leaves front-seat room. One found legroom tight in a small hatchback."
+  },
+  {
+    "slug": "bugaboo-fox-5-renew",
+    "summary": "Parents describe the Fox 5 Renew as sturdy and smooth, including on snow and off-road walks, with a handle that adjusts for different heights. One found babywearing easier for naps."
+  },
+  {
+    "slug": "chicco-polly",
+    "summary": "Parents of small babies mostly found the Polly a poor fit: the tray sits too high, the footrest is out of reach and the baby slouches or fusses. A few also found it hard to clean."
+  },
+  {
+    "slug": "cybex-libelle",
+    "summary": "Parents like the Libelle for being very small, light and easy to fold, which suits travel and tight spaces. Downsides mentioned are a small basket, no recline and awkward use in airports."
+  },
+  {
+    "slug": "elvie-curve",
+    "summary": "Parents mostly use the Elvie Curve as a passive milk catcher that works decently, and some found it beat a Haakaa. It collects modest amounts, and one baby was fussy with suction."
+  },
+  {
+    "slug": "eufy-baby-monitor-e21",
+    "summary": "Parents mostly praise the E21 for a clear picture, a reliable app and good battery, and say it travels well. One had a unit overheat and later send constant false cry alerts."
+  },
+  {
+    "slug": "evenflo-pivot-xpand-nxt",
+    "summary": "Parents like that the Pivot Xpand combines car seat, bassinet and toddler seat in one system. Several found it heavy and bulky, taking up much of a trunk."
+  },
+  {
+    "slug": "graco-contender-slim",
+    "summary": "Parents mostly use the Contender Slim as a travel seat, since it needs no base and works on planes. Some felt it was cheap or awkward to adjust and install."
+  },
+  {
+    "slug": "graco-slim-snacker",
+    "summary": "Parents like that the Slim Snacker folds away compactly, but several found a small baby sits too far back with feet well short of the footrest. Some also found it hard to clean."
+  },
+  {
+    "slug": "graco-slimfit3-lx-3-in-1",
+    "summary": "Parents say the SlimFit3 LX fits small cars well, including three across and rear-facing with room left for tall front-seat riders. No complaints came up."
+  },
+  {
+    "slug": "ikea-sniglar-crib",
+    "summary": "Parents describe the Sniglar as sturdy and good value, and say standard crib mattresses fit snugly, including cheap IKEA ones. One uses it for a tall toddler who has never climbed out."
+  },
+  {
+    "slug": "maxi-cosi-pria-all-in-one",
+    "summary": "Parents mostly found the Pria All-in-One too big for smaller vehicles, especially rear-facing. A few also reported hard installation or covers that wore quickly."
+  },
+  {
+    "slug": "maxi-cosi-pria-max",
+    "summary": "Parents find the Pria Max comfortable and well featured, but several call it big and bulky, especially for travel or smaller cars."
+  },
+  {
+    "slug": "medela-pump-in-style-hands-free",
+    "summary": "Parents mostly found the Pump In Style hands-free less hands-free than expected, with a carried motor or plug-in machine and weaker suction. Several stopped using it."
+  },
+  {
+    "slug": "momcozy-air-1",
+    "summary": "Parents mostly like the Air 1 as a comfortable, discreet wearable pump with good output. Some find it better on the go than as a primary pump."
+  },
+  {
+    "slug": "momcozy-v1-pro",
+    "summary": "Parents mostly like the V1 Pro, especially as a quiet on-the-go pump that empties well. One got inflammation after relying on it alone."
+  },
+  {
+    "slug": "nuna-cudl-clik",
+    "summary": "Parents often find the CUDL clik comfortable to wear, but several say it did not suit their baby, citing leg position, head support or posture."
+  },
+  {
+    "slug": "nuna-leaf-grow",
+    "summary": "Parents like that the LEAF grow is sturdy and lasts to a high weight. Some found newborns looked uncomfortable or sank in with little support."
+  },
+  {
+    "slug": "stokke-limas-carrier",
+    "summary": "Parents mostly love the Limas for its adjustable fit and easy buckle. One found it uncomfortable once the baby neared 25 lbs."
+  },
+  {
+    "slug": "stokke-nomi",
+    "summary": "Parents love the Nomi for being easy to clean, slim and adjustable without tools, and it grows with the child. The main downside mentioned is its high price."
+  },
+  {
+    "slug": "stokke-steps",
+    "summary": "Parents love the Steps for how easy it is to clean, and they like that it adjusts and grows into a regular chair. Small gripes were tray suction cups and legs people trip on."
+  },
+  {
+    "slug": "uppababy-minu-v3",
+    "summary": "Parents see the Minu V3 as compact and great for travel and errands, though some say it is not heavy duty enough for daily miles. One returned theirs over wheel noise."
+  },
+  {
+    "slug": "uppababy-vista-v3",
+    "summary": "Parents use the Vista V3 as a daily stroller, praising its smooth, stable ride and big basket. A couple found it bulky and awkward to fold."
+  },
+  {
+    "slug": "clek-fllo",
+    "summary": "Parents describe the Clek Fllo as sturdy and slim enough to fit small cars, even two side by side, and many keep kids rear-facing for years. It is heavy and awkward to move, and a few find it hard to clean."
+  },
+  {
+    "slug": "graco-4ever-dlx-4-in-1",
+    "summary": "Parents mostly find the Graco 4Ever DLX comfortable for toddlers rear-facing for a long time and quick to reinstall. It is big and awkward to move or fly with, and cleaning gets mixed reactions."
+  },
+  {
+    "slug": "infant-optics-dxr-8-pro",
+    "summary": "Owners praise the Infant Optics DXR-8 PRO for a reliable connection without WiFi, good range and a clear night picture. Several take it on trips and it sets up quickly, and no consistent complaint comes up."
+  },
+  {
+    "slug": "medela-harmony-manual-breast-pump",
+    "summary": "Users find the Medela Harmony hand pump compact, quiet and easy to carry, and several say it empties them faster than their electric pumps. It works well as a backup or for nights and trips."
+  },
+  {
+    "slug": "babyletto-hudson-3-in-1-convertible-crib",
+    "summary": "Parents find the Babyletto Hudson solid, easy to assemble and long-lasting, with several reusing it for a second baby or as a toddler bed."
+  },
+  {
+    "slug": "britax-poplar",
+    "summary": "Parents like the Britax Poplar for its easy installation, good fit in small back seats and long rear-facing use. No real complaints come up."
+  },
+  {
+    "slug": "clek-foonf",
+    "summary": "Parents call the Clek Foonf solid and narrow enough to fit tight back seats. It is very heavy, and the first install takes time, though it gets easier."
+  },
+  {
+    "slug": "evenflo-revolve360",
+    "summary": "Parents love the rotating seat of the Evenflo Revolve360, which makes loading a child easy, even in small cars. A couple note it is large rear-facing or hard to line up when switching cars."
+  },
+  {
+    "slug": "graco-modes-pramette",
+    "summary": "Parents see the Graco Modes Pramette as affordable and durable, with a bassinet that becomes a seat and a car seat that clicks in. A few find it heavy or bulky, and one disliked the fold."
+  },
+  {
+    "slug": "momcozy-m9",
+    "summary": "Users mostly like the Momcozy M9 for strong suction, app control and few parts to wash. A few report early failures, charging problems or poor customer service."
+  },
+  {
+    "slug": "momcozy-s9-pro",
+    "summary": "Users find the Momcozy S9 Pro handy for multitasking and easy to clean, but fit matters. Several report leaks, weak pull or early failure, and a firmer bra helps."
+  },
+  {
+    "slug": "nuna-pipa-rx",
+    "summary": "Parents find the Nuna PIPA rx easy to install, light to carry and simple to buckle, and it clicks onto several strollers with adapters. One reported a poor fit for a small baby."
+  },
+  {
+    "slug": "nuna-trvl-lx",
+    "summary": "Parents love the Nuna TRVL lx for its light weight, quick one-handed fold and compact size, and it suits travel and tight spaces. It will not fit an overhead bin."
+  },
+  {
+    "slug": "dr-browns-natural-flow-anti-colic-options-narrow",
+    "summary": "Parents are split on these Dr. Brown's bottles. Some rely on them for preemies or a better latch, while several found them prone to leaking."
+  },
+  {
+    "slug": "dr-browns-natural-flow-anti-colic-options-wide-neck",
+    "summary": "Parents who like these Dr. Brown's wide-neck bottles often chose them on a lactation consultant's advice. Some find the many parts annoying to clean and a few mention leaking."
+  },
+  {
+    "slug": "ergobaby-evolve-3-in-1-bouncer",
+    "summary": "Parents mostly like the Ergobaby bouncer for the hands-free breaks it gives and for adjusting as a baby grows. Some babies lose interest, and one wished for automatic bouncing."
+  },
+  {
+    "slug": "evenflo-shyft-dualride",
+    "summary": "Parents like the Evenflo Shyft DualRide for its detachable wheels, tall handle and plush seat, and several chose it over a Doona. A couple find it heavy or short on storage."
+  },
+  {
+    "slug": "graco-extend2fit-3-in-1",
+    "summary": "Parents like the Graco Extend2Fit for keeping tall kids rear-facing longer and for fitting in smaller cars. Several call it comfortable and long-lasting, and no clear downsides come up."
+  },
+  {
+    "slug": "maxi-cosi-minla-6-in-1",
+    "summary": "Parents like the Maxi-Cosi Minla's recline, compact fold and padding, but many find it hard to clean, with a couple saying babies slouch or it slides around. Two find it easy to wash."
+  },
+  {
+    "slug": "britax-marathon-clicktight",
+    "summary": "Parents praise the Britax Marathon ClickTight for a foolproof, tight install. It is large and heavy, awkward to move between cars or carry on a plane."
+  },
+  {
+    "slug": "bugaboo-giraffe",
+    "summary": "Parents like the Bugaboo Giraffe for being easy to adjust and clean, and several still use it for toddlers. One was nearly done with it by 15 months."
+  },
+  {
+    "slug": "elvie-pump",
+    "summary": "Many users report lower output from the Elvie Pump than from a Spectra, and a few had app or power failures. Some find it comfortable, portable and easy to clean."
+  },
+  {
+    "slug": "graco-modes-nest2grow",
+    "summary": "Parents like the Graco Modes Nest2Grow as an affordable travel system with a bassinet that becomes a seat and a smooth ride. One found it a little bulky."
+  },
+  {
+    "slug": "medela-sonata-smart",
+    "summary": "Owners who exclusively pump say the Medela Sonata is strong, reliable and rechargeable. A couple note it is big and bulky."
+  },
+  {
+    "slug": "uppababy-knox",
+    "summary": "Parents find the UPPAbaby Knox big and heavy, hard to fit in smaller cars or alongside other seats, and a few preferred other seats."
+  },
+  {
+    "slug": "uppababy-remi-v2",
+    "summary": "Parents like the UPPAbaby Remi V2 for easy setup and its bassinet, but a couple returned units whose central latch would not lock."
   }
 ]
