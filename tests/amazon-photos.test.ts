@@ -61,3 +61,9 @@ test("a model code anywhere in the title is enough", () => {
   assert.ok(pickResult(rog, [result("ROG Swift 32 4K OLED Gaming Monitor (PG32UCDM)")]));
   assert.equal(pickResult(rog, [result("ROG Swift 32 4K OLED Gaming Monitor (PG32UCDP)")]), null);
 });
+
+test("a listing may open with who it's for", () => {
+  const shoe = { name: "ASICS Superblast 2", brand: "ASICS" };
+  assert.ok(pickResult(shoe, [result("Unisex SUPERBLAST 2 Running Shoes")]));
+  assert.equal(pickResult(shoe, [result("Unisex SUPERBLAST 3 Running Shoes")]), null);
+});

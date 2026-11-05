@@ -33,8 +33,12 @@ export function isOtherVersion(product: { name: string; brand: string }, title: 
   return last >= 0 && Boolean(next) && VARIANT.test(next) && !own.has(next);
 }
 
+const AUDIENCE = new Set(["unisex", "men", "mens", "women", "womens", "s", "kids", "boys", "girls", "youth", "adult"]);
+
 function modelOnly(product: { name: string; brand: string }, title: string) {
-  const brand = new Set(words(product.brand)), model = words(product.name).filter(w => !brand.has(w)), found = words(title);
+  const brand = new Set(words(product.brand)), model = words(product.name).filter(w => !brand.has(w));
+  // "Unisex SUPERBLAST 2 Running Shoes", "Mens Adizero Evo Sl M": shoe and clothing listings open with who they're for.
+  const all = words(title), start = all.findIndex(w => !AUDIENCE.has(w)), found = start > 0 ? all.slice(start) : all;
   // A model code is distinctive enough alone: "ROG Swift 32 4K OLED Gaming Monitor (PG32UCDM)".
   const codes = model.filter(w => /\d/.test(w) && /[a-z]/.test(w) && w.length >= 5);
   if (codes.length && codes.every(w => found.includes(w))) return true;
