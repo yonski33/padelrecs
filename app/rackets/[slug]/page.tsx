@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
 import type { Metadata } from "next";
@@ -199,12 +200,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const affiliate = !!(amazon || site?.affiliate);
 
 
+  const own = shopPhoto(r);
   return <main>
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
     {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <section className="profile">
-      {amazon?.image
+      {own ? <div className="profile-art own"><img src={own} alt={displayName(r.name, brand?.name)}/></div> : amazon?.image
         // Amazon's terms: the photo is served by Amazon, unaltered, and links to its product page.
         ? <a className="profile-art photo" href={amazon.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazon.image} alt={displayName(r.name, brand?.name)}/></a>
         : <div className="profile-art">
