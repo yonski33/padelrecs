@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { amazonPhoto } from "../lib/amazon-photos";
-import { largerImage, pickResult } from "../scripts/fill-amazon-photos";
+import { isAccessory, isOtherVersion, largerImage, pickResult } from "../scripts/fill-amazon-photos";
 import { niche } from "../lib/niche";
 
 const env = { AMAZON_AFFILIATE_TAG: "test-20" };
@@ -32,4 +32,20 @@ test("sponsored results and sets are skipped, and a single beats a pack", () => 
 
 test("a thumbnail's size token is swapped for the larger image", () => {
   assert.equal(largerImage("https://m.media-amazon.com/images/I/a._AC_UL320_.jpg"), "https://m.media-amazon.com/images/I/a._SL500_.jpg");
+});
+
+test("third-party parts are refused unless the product itself is that kind of thing", () => {
+  const profitec = { name: "Profitec Drive", brand: "Profitec" }, niche = { name: "Niche Zero", brand: "Niche" };
+  assert.ok(isAccessory(profitec, "Countertop Coffee Mat for Profitec Drive, Silicone"));
+  assert.ok(isAccessory(niche, "Silicone Retention Bellow Compatible with Niche Zero"));
+  assert.ok(!isAccessory({ name: "Baratza Encore", brand: "Baratza" }, "Encore Coffee Grinder ZCG485BLK, Black"));
+  assert.ok(!isAccessory({ name: "AeroPress Filter Cap", brand: "AeroPress" }, "Filter Cap for coffee presses"));
+});
+
+test("the word after the model marks another version", () => {
+  assert.ok(isOtherVersion({ name: "Focal Clear", brand: "Focal" }, "Clear MG Wired Openback Headphones"));
+  assert.ok(isOtherVersion({ name: "Kiwi Ears Cadenza", brand: "Kiwi Ears" }, "Kiwi Ears Cadenza II 10mm Titanium Driver"));
+  assert.ok(isOtherVersion({ name: "Bose QuietComfort Ultra Earbuds", brand: "Bose" }, "QuietComfort Ultra Earbuds (2nd Gen) - Wireless"));
+  assert.ok(!isOtherVersion({ name: "Kiwi Ears Cadenza II", brand: "Kiwi Ears" }, "Kiwi Ears Cadenza II 10mm Titanium Driver"));
+  assert.ok(!isOtherVersion({ name: "Sony WH-1000XM5", brand: "Sony" }, "WH-1000XM5 Premium Noise Cancelling Headphones"));
 });

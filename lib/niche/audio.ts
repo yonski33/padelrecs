@@ -31,7 +31,7 @@ export const audio: Niche = {
   // Makers put the generation in the name (Sony WH-1000XM6, AirPods Pro 3, Sennheiser Momentum 4), so no years.
   productYears: false,
   productPath: "gear",
-  amazon: { searchIndex: "Electronics" },
+  amazon: { searchIndex: "Electronics", photos: true },
   scoreUnit: { one: "pair", many: "pairs" },
   // White page, deep ink, one violet accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is a lighter violet so it stays readable on the ink panels; the logo and rating icons use #7c3aed.
