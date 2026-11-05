@@ -48,7 +48,7 @@ async function main() {
   const apply = process.argv.includes("--apply"), limitAt = process.argv.indexOf("--limit"), limit = limitAt > 0 ? Number(process.argv[limitAt + 1]) : Infinity;
   const { client, db } = connect();
   const [allBrands, products, userRows, webRows] = await Promise.all([db.select().from(brands),
-    db.select({ id: rackets.id, name: rackets.name, brandId: rackets.brandId, checkedAt: rackets.amazonCheckedAt }).from(rackets).where(isNull(rackets.amazonAsin)),
+    db.select({ id: rackets.id, name: rackets.name, brandId: rackets.brandId, checkedAt: rackets.amazonCheckedAt }).from(rackets).where(isNull(rackets.amazonImage)),
     db.select({ id: reviews.racketId }).from(reviews).where(and(eq(reviews.status, "approved"))), db.select({ id: externalReviews.racketId }).from(externalReviews)]);
   const counts = new Map<string, number>();
   for (const { id } of [...userRows, ...webRows]) counts.set(id, (counts.get(id) ?? 0) + 1);
