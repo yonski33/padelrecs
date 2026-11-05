@@ -32,7 +32,7 @@ export const climbing: Niche = {
   // Makers name gear by model, version and volume (Instinct VSR LV, Shaman 2S, Drone 2 HV, GRIGRI+, Mega Jul), not by year.
   productYears: false,
   productPath: "gear",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "hold", many: "holds" },
   // White page, petrol-blue ink, one rope-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is the rope orange, readable on the petrol panels; the logo and rating icons use the same #fb8c3c.

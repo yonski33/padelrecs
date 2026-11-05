@@ -36,7 +36,7 @@ export const tabletennis: Niche = {
   // versions sold under their own names stay separate (Hurricane 3 vs Hurricane 3 Neo vs Hurricane 3 National).
   productYears: false,
   productPath: "equipment",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, table blue, one ball-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

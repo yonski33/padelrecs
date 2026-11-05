@@ -29,7 +29,7 @@ export const badminton: Niche = {
   // Makers name models by line and number (Astrox 99 Pro, Thruster Ryuga II Pro, Axforce 100), not years.
   productYears: false,
   productPath: "rackets",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "shuttle", many: "shuttles" },
   // White page, deep crimson, one cork-amber accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
