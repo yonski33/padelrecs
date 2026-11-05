@@ -67,3 +67,15 @@ test("an item Amazon no longer returns loses its image; throttling ends the run 
   assert.match(done.stopped ?? "", /429/);
   assert.equal(throttled.updates.length, 0);
 });
+
+test("a throttled call waits and tries again, so one 429 doesn't end the run", async () => {
+  resetAmazonToken();
+  const { db, updates } = fakeDb([{ id: 1, name: "P", brandId: 1, asin, checkedAt: hoursAgo(12) }]);
+  let tries = 0;
+  const { fetcher } = fakeAmazon((_, body) => ++tries === 1 ? new Response("{}", { status: 429 }) : imageReply(body.itemIds));
+  const done = await refreshAmazonPhotos(db, settings, credentials, options(fetcher));
+  assert.equal(done.stopped, null);
+  assert.equal(done.refreshed, 1);
+  assert.equal(tries, 2);
+  assert.equal(updates[0].amazonImage, `https://m.media-amazon.com/${asin}.jpg`);
+});
