@@ -166,21 +166,19 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       `${niche.people.One} reviews are checked for spam before they appear, and only they count toward the star rating; quotes never do.`,
     ].filter(Boolean).join(" ") });
   }
-  // Structured data for Google: the product on every page (name, brand, category), its user ratings once there are
-  // MIN_RATINGS of them (web quotes never count), and breadcrumbs.
+  // Structured data for Google: the product once it has MIN_RATINGS user ratings, since Google rejects a Product with no
+  // rating, review or offer, and web quotes can't fill in (its rules want ratings collected on this site). Plus breadcrumbs.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
-    {
+    ...(s.average ? [{
       "@type": "Product", name: displayName(r.name, brand?.name), url, image: `${url}/opengraph-image`, category: typePage?.label ?? niche.seo.productCategory,
       description: r.description || `${niche.people.One} reviews and ratings of the ${displayName(r.name, brand?.name)}.`,
       ...(brand ? { brand: { "@type": "Brand", name: brand.name } } : {}),
-      ...(s.average ? {
       aggregateRating: { "@type": "AggregateRating", ratingValue: s.average, ratingCount: s.count, reviewCount: s.count, bestRating: 5, worstRating: 1 },
       review: reviews.slice(0, 10).map(x => ({
         "@type": "Review", author: { "@type": "Person", name: x.alias || `Anonymous ${niche.people.one}` }, datePublished: x.createdAt.slice(0, 10), reviewBody: x.reviewText,
         reviewRating: { "@type": "Rating", ratingValue: x.rating, bestRating: 5, worstRating: 1 },
       })),
-      } : {}),
-    },
+    }] : []),
     ...(faq.length >= 2 ? [{ "@type": "FAQPage", mainEntity: faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
       ...[
