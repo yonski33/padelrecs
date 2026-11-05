@@ -11,7 +11,7 @@
  * from the Recs sites show up under their own tracking ID; API calls keep the partner tag.
  */
 
-export type AmazonOffer = { asin: string; title: string; price: string | null; url: string };
+export type AmazonOffer = { asin: string; title: string; price: string | null; url: string; image: string | null };
 export type AmazonCredentials = { id: string; secret: string; partnerTag: string };
 export type AmazonSettings = { searchIndex: string; marketplace?: string };
 type Fetch = typeof fetch;
@@ -100,6 +100,7 @@ type Item = {
   asin?: string;
   itemInfo?: { title?: { displayValue?: string }; byLineInfo?: { brand?: { displayValue?: string } } };
   offersV2?: { listings?: { price?: { money?: { amount?: number; currency?: string; displayAmount?: string } } }[] };
+  images?: { primary?: { large?: { url?: string } } };
 };
 type ApiResponse = { searchResult?: { items?: Item[] }; itemsResult?: { items?: Item[] }; errors?: { code?: string; message?: string }[] };
 
@@ -142,10 +143,10 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
     return null;
   }
   const details = await call("/catalog/v1/getItems", {
-    itemIds: [match.asin], resources: ["itemInfo.title", "offersV2.listings.price", "offersV2.listings.availability"],
+    itemIds: [match.asin], resources: ["itemInfo.title", "offersV2.listings.price", "offersV2.listings.availability", "images.primary.large"],
   }, credentials, marketplace, fetcher);
   const item = details.itemsResult?.items?.find(i => i.asin === match.asin);
   const price = item ? listingPrice(item) : null;
   if (!price) log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
-  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace) };
+  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace), image: item?.images?.primary?.large?.url ?? null };
 }

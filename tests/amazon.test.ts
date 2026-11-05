@@ -109,9 +109,9 @@ test("an offer is the first matching result with its live price and tagged link"
   const calls: Call[] = [];
   const offer = await findAmazonOffer(hydrating, settings, credentials, stubAmazon({
     "/catalog/v1/searchItems": searchHit,
-    "/catalog/v1/getItems": { itemsResult: { items: [{ asin: "B01MSSDEPK", itemInfo: { title: { displayValue: "CeraVe Hydrating Facial Cleanser, 16 oz" } }, offersV2: { listings: [{ price: { money: { amount: 15.99, currency: "USD", displayAmount: "$15.99" } } }] } }] } },
+    "/catalog/v1/getItems": { itemsResult: { items: [{ asin: "B01MSSDEPK", itemInfo: { title: { displayValue: "CeraVe Hydrating Facial Cleanser, 16 oz" } }, offersV2: { listings: [{ price: { money: { amount: 15.99, currency: "USD", displayAmount: "$15.99" } } }] }, images: { primary: { large: { url: "https://m.media-amazon.com/images/I/x.jpg" } } } }] } },
   }, calls));
-  assert.deepEqual(offer, { asin: "B01MSSDEPK", title: "CeraVe Hydrating Facial Cleanser, 16 oz", price: "$15.99", url: "https://www.amazon.com/dp/B01MSSDEPK?tag=skinrecs-20" });
+  assert.deepEqual(offer, { asin: "B01MSSDEPK", title: "CeraVe Hydrating Facial Cleanser, 16 oz", price: "$15.99", url: "https://www.amazon.com/dp/B01MSSDEPK?tag=skinrecs-20", image: "https://m.media-amazon.com/images/I/x.jpg" });
   assert.equal(calls[0].body.keywords, "CeraVe Hydrating Facial Cleanser");
   assert.equal(calls[0].body.searchIndex, "Beauty");
   assert.equal(calls[0].body.partnerTag, "skinrecs-20");
@@ -126,7 +126,7 @@ test("no match means no product link; a match without a price keeps its link wit
   // Found, but Amazon lists no price right now.
   assert.deepEqual(await findAmazonOffer(hydrating, settings, credentials, stubAmazon({
     "/catalog/v1/searchItems": searchHit, "/catalog/v1/getItems": { itemsResult: { items: [{ asin: "B01MSSDEPK", offersV2: { listings: [] } }] } },
-  }), () => {}), { asin: "B01MSSDEPK", title: "CeraVe Hydrating Facial Cleanser, 16 oz", price: null, url: "https://www.amazon.com/dp/B01MSSDEPK?tag=skinrecs-20" });
+  }), () => {}), { asin: "B01MSSDEPK", title: "CeraVe Hydrating Facial Cleanser, 16 oz", price: null, url: "https://www.amazon.com/dp/B01MSSDEPK?tag=skinrecs-20", image: null });
 });
 
 test("throttling and outages throw, so they are never cached as 'not on Amazon'", async () => {
