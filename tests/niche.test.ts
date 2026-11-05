@@ -471,7 +471,7 @@ test("coffee: gear named without years, five category pages that each pick a dra
   assert.equal(n.productPath, "gear");
   assert.equal(n.productYears, false);
   assert.equal(n.site.analyticsId, "G-T3KLFWDEQB");
-  assert.equal(n.tags.length, 16);
+  assert.equal(n.tags.length, 17);
   assert.deepEqual(n.categories.map(c => c.label), ["Coffee quality", "Ease of use", "Consistency", "Build quality", "Value"]);
   assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Key specs", "Material", "Weight"]);
   assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);

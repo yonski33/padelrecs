@@ -133,6 +133,8 @@ export const coffee: Niche = {
     { label: "durability issues", tone: "neg" },
     { label: "overpriced", tone: "neg" },
     { label: "learning curve", tone: "neutral" },
+    // Cup quality from any brew method; "great espresso" is for espresso only (2026-11-05: filter grinders carried it).
+    { label: "great taste", tone: "pos" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
   topLists: [
