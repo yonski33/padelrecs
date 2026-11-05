@@ -842,3 +842,8 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
   .top-card h2 { font-size: 18px; }
   .top-card-more { grid-column: 2; }
 }
+
+/* Reviews 21-50 are in the HTML (indexed) but hidden until "Show more" is clicked; no JavaScript. */
+.review-list input.more-toggle, .more-hidden { display: none; }
+.more-toggle:checked ~ .more-hidden { display: block; }
+.more-toggle:checked ~ .load-more.first { display: none; }
