@@ -49,3 +49,9 @@ test("the word after the model marks another version", () => {
   assert.ok(!isOtherVersion({ name: "Kiwi Ears Cadenza II", brand: "Kiwi Ears" }, "Kiwi Ears Cadenza II 10mm Titanium Driver"));
   assert.ok(!isOtherVersion({ name: "Sony WH-1000XM5", brand: "Sony" }, "WH-1000XM5 Premium Noise Cancelling Headphones"));
 });
+
+test("a listing may open with a model code before the model", () => {
+  const code = result("BES878BSS Barista Pro Espresso Machine, Brushed Stainless Steel");
+  assert.equal(pickResult({ name: "Breville Barista Pro", brand: "Breville" }, [code])?.asin, "B00T038XZM");
+  assert.equal(pickResult({ name: "Breville Barista Express", brand: "Breville" }, [code]), null);
+});
