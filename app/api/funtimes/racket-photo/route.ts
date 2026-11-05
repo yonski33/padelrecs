@@ -1,7 +1,7 @@
-import sharp from "sharp";
 import { eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
 import { productPhotos, rackets } from "../../../../db/schema";
+import { preparePhoto } from "../../../../lib/photo-background";
 import { NO_PHOTO, UPLOAD_PATH } from "../../../../lib/shop-photos";
 import { adminWriteGuard, adminRedirect } from "../../../funtimes/auth";
 
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
    return back("photo-saved");
   }
   if (!(file instanceof File) || !file.size || file.size > MAX_BYTES) return back("photo-invalid");
-  const webp = await sharp(Buffer.from(await file.arrayBuffer())).rotate().resize({ width: 640, height: 640, fit: "inside", withoutEnlargement: true }).webp({ quality: 82 }).toBuffer().catch(() => null);
+  const webp = await preparePhoto(Buffer.from(await file.arrayBuffer())).catch(() => null);
   if (!webp) return back("photo-invalid");
   const data = webp.toString("base64");
   await db.insert(productPhotos).values({ racketId: id, data, updatedAt: now }).onConflictDoUpdate({ target: productPhotos.racketId, set: { data, updatedAt: now } });
