@@ -22,7 +22,7 @@ export function isAccessory(product: { name: string; brand: string }, title: str
   return Boolean(word && !own.has(word)) || title.toLowerCase().includes(`for ${product.brand.toLowerCase()}`);
 }
 
-const VARIANT = /^(ii|iii|iv|2|3|4|5|pro|plus|ultra|max|mini|nano|lite|mg|s2|impress|esp)$/;
+const VARIANT = /^(ii|iii|iv|2|3|4|5|pro|plus|ultra|max|mini|nano|lite|mg|s2|impress|esp|mark|monochrom)$/;
 
 /** "Focal Clear MG" isn't the Focal Clear, nor "Cadenza II" the Cadenza: the word after the model marks another version. */
 export function isOtherVersion(product: { name: string; brand: string }, title: string) {

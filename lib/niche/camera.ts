@@ -31,7 +31,7 @@ export const camera: Niche = {
   // Makers put the generation in the name (a7 IV, EOS R6 Mark III, X100VI, Z6III), so no years.
   productYears: false,
   productPath: "cameras",
-  amazon: { searchIndex: "Electronics" },
+  amazon: { searchIndex: "Electronics", photos: true },
   scoreUnit: { one: "camera", many: "cameras" },
   // White page, charcoal ink, one rose accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is a lighter rose so it stays readable on the charcoal panels; the logo and rating icons use #f43f5e.
