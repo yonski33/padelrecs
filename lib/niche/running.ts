@@ -28,7 +28,7 @@ export const running: Niche = {
   // Makers number versions (Pegasus 42, Ghost 17), so names carry the version instead of a year.
   productYears: false,
   productPath: "shoes",
-  amazon: { searchIndex: "Fashion" },
+  amazon: { searchIndex: "Fashion", photos: true },
   scoreUnit: { one: "shoe", many: "shoes" },
   // White page, track-side teal, one amber accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

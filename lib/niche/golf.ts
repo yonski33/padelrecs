@@ -30,7 +30,7 @@ export const golf: Niche = {
   // Makers name each generation (Qi35, Qi4D, G440), so names carry the generation instead of a year.
   productYears: false,
   productPath: "drivers",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "club", many: "clubs" },
   // White page, fairway green, one sand-gold accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

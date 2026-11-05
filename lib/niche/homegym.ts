@@ -31,7 +31,7 @@ export const homegym: Niche = {
   // vs Commercial Pro 50), not by year. Heights, depths, lb or kg versions and colours of one model are one product.
   productYears: false,
   productPath: "equipment",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "plate", many: "plates" },
   // White page, charcoal ink, one plate-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
