@@ -3,6 +3,7 @@ import { getDb } from "./index";
 import { brands, rackets, reviews, externalReviews } from "./schema";
 import { eq, ne, desc } from "drizzle-orm";
 import { voteCounts } from "./votes";
+import { isRecent, webDate, MIN_RECENT } from "../lib/recent";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -48,7 +49,10 @@ export const MIN_RATINGS = 3;
  *  (lib/top-lists.ts ratingVerdict). The star average stays user-only, and only from MIN_RATINGS ratings. */
 export function score(data: Catalog, id: string) {
  const rs = data.reviews.filter(r => r.racketId === id), web = data.external.filter(e => e.racketId === id);
- const judged = rs.length + web.filter(e => e.sentiment).length, positive = rs.filter(r => r.rating >= 4).length + web.filter(e => e.sentiment === "positive").length;
+ // "% positive" counts the niche's recent window (lib/recent.ts), or every review when too few are recent.
+ const recentRs = rs.filter(r => isRecent(r.createdAt)), recentWeb = web.filter(e => isRecent(webDate(e)));
+ const [jr, jw] = recentRs.length + recentWeb.filter(e => e.sentiment).length >= MIN_RECENT ? [recentRs, recentWeb] : [rs, web];
+ const judged = jr.length + jw.filter(e => e.sentiment).length, positive = jr.filter(r => r.rating >= 4).length + jw.filter(e => e.sentiment === "positive").length;
  return {count: rs.length, average: rs.length >= MIN_RATINGS ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive};
 }
 export type Score = ReturnType<typeof score>;
