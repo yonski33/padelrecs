@@ -39,7 +39,7 @@ export const fragrance: Niche = {
   // Fragrances are named by line and concentration (Sauvage Eau de Parfum, Sauvage Elixir), not years.
   productYears: false,
   productPath: "fragrances",
-  amazon: { searchIndex: "Beauty" },
+  amazon: { searchIndex: "Beauty", photos: true },
   scoreUnit: { one: "bottle", many: "bottles" },
   // White page, deep violet, one champagne-gold accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

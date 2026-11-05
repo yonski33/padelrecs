@@ -15,7 +15,7 @@ type Result = { asin?: string; title?: string; thumbnail?: string; sponsored?: b
 /** SerpApi's thumbnail is about 320px; the same image exists larger under Amazon's size token. */
 export const largerImage = (url: string) => url.replace(/\._[A-Z0-9_,]+_\.(jpg|png)$/i, "._SL500_.$1");
 
-const ACCESSORY = /\b(compatible|replacements?|liners?|mats?|covers?|lids?|trays?|stones?|bellows?|filters?|caps?|parts?|sealers?|mounts?|holders?|tamping|gaskets?|pads?|attachments?)\b/i;
+const ACCESSORY = /\b(compatible|replacements?|liners?|mats?|covers?|lids?|trays?|stones?|bellows?|filters?|caps?|parts?|sealers?|mounts?|holders?|tamping|gaskets?|pads?|attachments?|samples?|sampler|vials?|inspired|charging|baseplate)\b/i;
 
 /** Third-party parts name the product they fit ("Silicone Mat for Profitec Drive"), so a match alone isn't enough. */
 export function isAccessory(product: { name: string; brand: string }, title: string) {
