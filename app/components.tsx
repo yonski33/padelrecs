@@ -5,6 +5,7 @@ import { TagList } from "./tags";
 import { niche, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
 import { displayName } from "../lib/brand-name";
+import { amazonPhoto } from "../lib/amazon-photos";
 import type { ProfileField } from "../lib/niche/types";
 
 type Racket = Catalog["rackets"][number];
@@ -60,6 +61,8 @@ export function CategoryPill({shape}: {shape: string | null | undefined}) {
 }
 
 function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
+  const photo = amazonPhoto(racket);
+  if (photo) return <a className="thumb photo" href={photo.url} target="_blank" rel="sponsored nofollow noopener"><img src={photo.image} alt={`${displayName(racket.name, brand)} on Amazon`} loading="lazy"/></a>;
   return <a className="thumb" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
 }
 
@@ -188,9 +191,12 @@ export function RacketRow({racket: r, brand, average, count, web = 0, positive =
 
 /** A product in the catalogue and type-page grid: art, name, what people praise and complain about, and how many reviews. */
 export function ProductCard({racket: r, brand, count, web = 0, details, tags}: {racket: Racket; brand?: string | null; count: number; web?: number; details: string; tags?: {loved?: string; complaint?: string}}) {
-  const total = count + web;
+  const total = count + web, photo = amazonPhoto(r);
   return <article className="product-card">
-    <div className="pc-art" aria-hidden="true"><ProductIcon shape={r.shape} brand={brand}/></div>
+    {photo
+      // Amazon's terms: the photo links to Amazon. The name and the rest of the card go to our page.
+      ? <a className="pc-art photo" href={photo.url} target="_blank" rel="sponsored nofollow noopener"><img src={photo.image} alt={`${displayName(r.name, brand)} on Amazon`} loading="lazy"/></a>
+      : <div className="pc-art" aria-hidden="true"><ProductIcon shape={r.shape} brand={brand}/></div>}
     <div className="pc-body">
       <h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>
       {details && <p className="pc-details">{details}</p>}

@@ -118,6 +118,21 @@ async function call(path: string, body: Record<string, unknown>, credentials: Am
   return data;
 }
 
+/** The ASIN of the Amazon item that really is this product, or null. One search call, for the photo job. */
+export async function findAmazonAsin(product: { name: string; brand: string }, settings: AmazonSettings, credentials: AmazonCredentials, fetcher: Fetch = fetch) {
+  const found = await call("/catalog/v1/searchItems", {
+    keywords: product.name.trim(), searchIndex: settings.searchIndex, itemCount: 5, resources: ["itemInfo.title", "itemInfo.byLineInfo"],
+  }, credentials, settings.marketplace ?? DEFAULT_MARKETPLACE, fetcher);
+  return (found.searchResult?.items ?? []).find(item => item.asin && isAsin(item.asin) && item.itemInfo?.title?.displayValue
+    && matchesProduct(product, { title: item.itemInfo.title.displayValue, brand: item.itemInfo.byLineInfo?.brand?.displayValue }))?.asin ?? null;
+}
+
+/** Up to 10 ASINs' primary images, by ASIN. An item with no image is left out. */
+export async function amazonImages(asins: string[], settings: AmazonSettings, credentials: AmazonCredentials, fetcher: Fetch = fetch) {
+  const details = await call("/catalog/v1/getItems", { itemIds: asins, resources: ["images.primary.large"] }, credentials, settings.marketplace ?? DEFAULT_MARKETPLACE, fetcher);
+  return new Map((details.itemsResult?.items ?? []).flatMap(i => i.asin && i.images?.primary?.large?.url ? [[i.asin, i.images.primary.large.url] as const] : []));
+}
+
 /** Display price of the first listing, as Amazon formats it ("$15.99"). */
 export function listingPrice(item: Item): string | null {
   const money = item.offersV2?.listings?.[0]?.price?.money;
