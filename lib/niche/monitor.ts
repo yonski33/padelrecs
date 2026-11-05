@@ -30,7 +30,7 @@ export const monitor: Niche = {
   // Makers name each model by its model number (AW3225QF, PG32UCDM3, U2725QE), so no years.
   productYears: false,
   productPath: "monitors",
-  amazon: { searchIndex: "Computers" },
+  amazon: { searchIndex: "Computers", photos: true },
   scoreUnit: { one: "screen", many: "screens" },
   // White page, deep slate, one cyan accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

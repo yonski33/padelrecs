@@ -55,3 +55,9 @@ test("a listing may open with a model code before the model", () => {
   assert.equal(pickResult({ name: "Breville Barista Pro", brand: "Breville" }, [code])?.asin, "B00T038XZM");
   assert.equal(pickResult({ name: "Breville Barista Express", brand: "Breville" }, [code]), null);
 });
+
+test("a model code anywhere in the title is enough", () => {
+  const rog = { name: "ASUS ROG Swift OLED PG32UCDM", brand: "ASUS" };
+  assert.ok(pickResult(rog, [result("ROG Swift 32 4K OLED Gaming Monitor (PG32UCDM)")]));
+  assert.equal(pickResult(rog, [result("ROG Swift 32 4K OLED Gaming Monitor (PG32UCDP)")]), null);
+});

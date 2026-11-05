@@ -35,6 +35,9 @@ export function isOtherVersion(product: { name: string; brand: string }, title: 
 
 function modelOnly(product: { name: string; brand: string }, title: string) {
   const brand = new Set(words(product.brand)), model = words(product.name).filter(w => !brand.has(w)), found = words(title);
+  // A model code is distinctive enough alone: "ROG Swift 32 4K OLED Gaming Monitor (PG32UCDM)".
+  const codes = model.filter(w => /\d/.test(w) && /[a-z]/.test(w) && w.length >= 5);
+  if (codes.length && codes.every(w => found.includes(w))) return true;
   // Some listings open with a model code instead: "BES878BSS Barista Pro Espresso Machine".
   const opening = /\d/.test(found[0] ?? "") && found[0].length >= 5 && !model.includes(found[0]) ? found[1] : found[0];
   return model.length > 0 && opening === model[0] && model.every(w => found.some(f => f === w || (/\d/.test(w) && f.startsWith(w))));
