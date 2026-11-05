@@ -14,6 +14,24 @@ type Result = { asin?: string; title?: string; thumbnail?: string; sponsored?: b
 /** SerpApi's thumbnail is about 320px; the same image exists larger under Amazon's size token. */
 export const largerImage = (url: string) => url.replace(/\._[A-Z0-9_,]+_\.(jpg|png)$/i, "._SL500_.$1");
 
+const ACCESSORY = /\b(compatible|replacements?|liners?|mats?|covers?|lids?|trays?|stones?|bellows?|filters?|caps?|parts?|sealers?|mounts?|holders?|tamping|gaskets?|pads?|attachments?)\b/i;
+
+/** Third-party parts name the product they fit ("Silicone Mat for Profitec Drive"), so a match alone isn't enough. */
+export function isAccessory(product: { name: string; brand: string }, title: string) {
+  const own = new Set(words(product.name)), word = ACCESSORY.exec(title)?.[0].toLowerCase();
+  return Boolean(word && !own.has(word)) || title.toLowerCase().includes(`for ${product.brand.toLowerCase()}`);
+}
+
+const VARIANT = /^(ii|iii|iv|2|3|4|5|pro|plus|ultra|max|mini|nano|lite|mg|s2|impress|esp)$/;
+
+/** "Focal Clear MG" isn't the Focal Clear, nor "Cadenza II" the Cadenza: the word after the model marks another version. */
+export function isOtherVersion(product: { name: string; brand: string }, title: string) {
+  const own = new Set(words(product.name)), brand = new Set(words(product.brand)), found = words(title), model = [...own].filter(w => !brand.has(w));
+  if (/\b2nd gen/i.test(title) && !/\b2nd gen/i.test(product.name)) return true;
+  const last = Math.max(...model.map(w => found.indexOf(w))), next = found[last + 1];
+  return last >= 0 && Boolean(next) && VARIANT.test(next) && !own.has(next);
+}
+
 function modelOnly(product: { name: string; brand: string }, title: string) {
   const brand = new Set(words(product.brand)), model = words(product.name).filter(w => !brand.has(w)), found = words(title);
   return model.length > 0 && found[0] === model[0] && model.every(w => found.includes(w));
@@ -26,7 +44,7 @@ function modelOnly(product: { name: string; brand: string }, title: string) {
  */
 export function pickResult(product: { name: string; brand: string }, results: Result[]) {
   const usable = results.filter(r => !r.sponsored && r.asin && isAsin(r.asin) && r.thumbnail && r.title).slice(0, 10)
-    .filter(r => matchesProduct(product, { title: r.title! }) || modelOnly(product, r.title!));
+    .filter(r => !isAccessory(product, r.title!) && !isOtherVersion(product, r.title!) && (matchesProduct(product, { title: r.title! }) || modelOnly(product, r.title!)));
   const bundle = /\b(set|bundle|kit|duo|trio|pack of|\d+[- ]pack)\b/i;
   return usable.find(r => !bundle.test(r.title!)) ?? usable.find(r => !/\b(set|bundle|kit)\b/i.test(r.title!)) ?? null;
 }
@@ -48,7 +66,7 @@ async function main() {
   const apply = process.argv.includes("--apply"), limitAt = process.argv.indexOf("--limit"), limit = limitAt > 0 ? Number(process.argv[limitAt + 1]) : Infinity;
   const { client, db } = connect();
   const [allBrands, products, userRows, webRows] = await Promise.all([db.select().from(brands),
-    db.select({ id: rackets.id, name: rackets.name, brandId: rackets.brandId, checkedAt: rackets.amazonCheckedAt }).from(rackets).where(isNull(rackets.amazonAsin)),
+    db.select({ id: rackets.id, name: rackets.name, brandId: rackets.brandId, checkedAt: rackets.amazonCheckedAt }).from(rackets).where(isNull(rackets.amazonImage)),
     db.select({ id: reviews.racketId }).from(reviews).where(and(eq(reviews.status, "approved"))), db.select({ id: externalReviews.racketId }).from(externalReviews)]);
   const counts = new Map<string, number>();
   for (const { id } of [...userRows, ...webRows]) counts.set(id, (counts.get(id) ?? 0) + 1);

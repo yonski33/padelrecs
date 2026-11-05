@@ -33,7 +33,7 @@ export const kitchen: Niche = {
   // Colours are not separate products; regional versions with their own model number are.
   productYears: false,
   productPath: "appliances",
-  amazon: { searchIndex: "HomeAndKitchen" },
+  amazon: { searchIndex: "HomeAndKitchen", photos: true },
   scoreUnit: { one: "pot", many: "pots" },
   // White page, terracotta ink, one butter-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

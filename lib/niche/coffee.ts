@@ -30,7 +30,7 @@ export const coffee: Niche = {
   // Makers name gear by model and generation (Barista Express Impress, Encore ESP Pro, Ode Gen 2, GO 2.0), not by year.
   productYears: false,
   productPath: "gear",
-  amazon: { searchIndex: "HomeAndKitchen" },
+  amazon: { searchIndex: "HomeAndKitchen", photos: true },
   scoreUnit: { one: "bean", many: "beans" },
   // White page, dark-roast ink, one crema accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is the crema orange, readable on the dark-roast panels; the logo and rating icons use the same #f0a35e.
