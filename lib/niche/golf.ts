@@ -128,7 +128,7 @@ export const golf: Niche = {
   // /rankings pages (lib/top-lists.ts). Few drivers have many reviews yet, so the minimums are lower than on other sites.
   topLists: [
     { slug: "best-golf-drivers", label: "Best overall", title: "Best Golf Drivers", minReviews: 8,
-      intro: "The drivers golfers are most consistently happy with, among drivers enough golfers have reviewed." },
+      intro: "The drivers golfers are most consistently happy with." },
     { slug: "most-forgiving-golf-drivers", label: "Most forgiving", title: "Most Forgiving Golf Drivers", minReviews: 6,
       intro: "Drivers golfers call forgiving and straight.",
       trait: { tags: ["forgiving", "straight"], minShare: 0.2, against: ["small sweet spot"], noun: "forgiveness or accuracy" } },

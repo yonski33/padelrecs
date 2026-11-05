@@ -127,7 +127,7 @@ export const running: Niche = {
   // /rankings pages (lib/top-lists.ts): overall, then one list per shoe category that has enough reviews.
   topLists: [
     { slug: "best-running-shoes", label: "Best overall", title: "Best Running Shoes", minReviews: 15,
-      intro: "The running shoes runners are most consistently happy with, among shoes enough runners have reviewed." },
+      intro: "The running shoes runners are most consistently happy with." },
     { slug: "best-running-racing-shoes", formerSlugs: ["best-racing-shoes"], label: "Racing shoes", title: "Best Running Racing Shoes", minReviews: 10,
       intro: "The race-day running shoes runners are most consistently happy with.", filters: [{ column: "shape", include: ["Racing"] }] },
     { slug: "best-max-cushion-running-shoes", label: "Max cushion", title: "Best Max Cushion Running Shoes", minReviews: 10,

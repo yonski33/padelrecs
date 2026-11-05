@@ -58,11 +58,11 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           // On categoryPaths niches a product page (/vpns/mullvad-vpn) still belongs under the catalogue link.
           const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`) || (href === catalogPath && !!inTypePath);
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
-          return href === catalogPath && topLists.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
+          return href === catalogPath && ranked.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
         })}
       </nav>
       {/* On Rankings pages the row lists the rankings, so a chip there opens a ranking, not a product-type page. */}
-      {inRankings && topLists.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">
+      {inRankings && ranked.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">
         <a href={RANKINGS_PATH} aria-current={pathname === RANKINGS_PATH ? "page" : undefined}>All rankings</a>
         {topLists.filter(l => ranked.includes(l.slug) || pathname === rankingHref(l.slug)).map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
       </ChipRow>}

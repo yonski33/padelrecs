@@ -147,9 +147,9 @@ export const tabletennis: Niche = {
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
   topLists: [
     { slug: "best-table-tennis-blades", label: "Blades", title: "Best Table Tennis Blades", minReviews: 5,
-      intro: "The blades players are most consistently happy with, among blades enough players have reviewed.", filters: [{ column: "shape", include: ["Blade"] }] },
+      intro: "The blades players are most consistently happy with.", filters: [{ column: "shape", include: ["Blade"] }] },
     { slug: "best-table-tennis-rubbers", label: "Rubbers", title: "Best Table Tennis Rubbers", minReviews: 5,
-      intro: "The rubbers players are most consistently happy with, among rubbers enough players have reviewed.", filters: [{ column: "shape", include: ["Rubber"] }] },
+      intro: "The rubbers players are most consistently happy with.", filters: [{ column: "shape", include: ["Rubber"] }] },
     { slug: "best-spin-table-tennis-rubbers", label: "Spinniest rubbers", title: "Best Table Tennis Rubbers for Spin", minReviews: 5,
       intro: "Rubbers players most often call spinny or great for looping.", filters: [{ column: "shape", include: ["Rubber"] }],
       trait: { tags: ["spinny", "great for looping"], minShare: 0.25, noun: "spin or looping" } },

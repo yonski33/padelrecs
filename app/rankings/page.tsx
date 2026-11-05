@@ -13,17 +13,16 @@ const category = niche.seo.productCategory.replace(/\b\w/g, c => c.toUpperCase()
 const heading = `${category} Rankings`;
 
 export async function generateMetadata(): Promise<Metadata> {
-  if (!niche.topLists?.length) return { robots: { index: false } };
-  const lists = (await rankedLists()).lists.filter(l => l.entries.length);
+  const { lists } = await rankedLists();
+  if (!lists.length) return { robots: { index: false } };
   const title = `${heading} ${currentYear()}, Based on Real ${people.One} Reviews`;
   const description = `${lists.map(l => l.list.label).join(", ")}: ${w.many} ranked by what ${people.many} actually say, from published first-hand reviews. Updated as new reviews come in.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website" } };
 }
 
 export default async function TopListsIndex() {
-  if (!niche.topLists?.length) notFound();
-  const { data, lists: all } = await rankedLists();
-  const lists = all.filter(l => l.entries.length);
+  const { data, lists } = await rankedLists();
+  if (!lists.length) notFound();
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
   return <main className="top-page">
@@ -32,7 +31,6 @@ export default async function TopListsIndex() {
       <p>{`${w.Many} ranked by what ${people.many} say about them in published reviews. No sponsored placements; every number is counted from reviews you can read.`}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time></p>}
     </div>
-    {!lists.length && <p className="empty-feed">{`No list has enough reviews to rank any ${w.many} yet. They fill in as reviews are published.`}</p>}
     <div className="top-index">
       {/* One short row per list: its title and size, no products, so the ranking itself is what the click shows. */}
       {lists.map(({ list, entries, reviews }) => {
