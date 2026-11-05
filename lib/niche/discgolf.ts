@@ -33,7 +33,7 @@ export const discgolf: Niche = {
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "disc", many: "discs" },
   // White page, deep pine green, one disc-orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
