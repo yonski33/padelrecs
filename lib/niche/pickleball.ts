@@ -119,10 +119,12 @@ export const pickleball: Niche = {
     { label: "soft", tone: "neutral" },
   ],
   finder: {
-    title: "Pickleball Paddle Finder",
+    title: "Pickleball Paddle Quiz",
+    heading: "Which pickleball paddle is right for you?",
     description: "Answer five quick questions and get the pickleball paddles whose real player reviews best match how you play.",
-    intro: "Five quick questions, then the paddles whose reviews best match how you play.",
-    navLabel: "Paddle finder",
+    intro: "Answer 5 quick questions and see what real players recommend.",
+    navLabel: "Paddle quiz",
+    invite: "Not sure which paddle to choose?",
     maxAgeYears: 2,
     questions: [
       { id: "style", question: "What do you want most from a paddle?", options: [

@@ -963,3 +963,6 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .finder-summary p { margin: 4px 0 0; font-size: 14px; color: var(--ink-3); }
 .finder-summary .finder-link { margin-top: 6px; }
 @media (max-width: 680px) { .finder-card { padding: 16px; } }
+.finder-invite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; margin: 0 0 18px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--tint); color: var(--ink); font-size: 15px; }
+.finder-invite:hover { border-color: var(--green-line); color: var(--ink); }
+.finder-invite b { font-weight: 600; color: var(--green); }

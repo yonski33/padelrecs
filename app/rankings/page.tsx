@@ -6,6 +6,7 @@ import { niche } from "../../lib/niche";
 import { RANKINGS_PATH, listYear } from "../../lib/top-lists";
 import { ProductIcon } from "../icons";
 import { rankedLists, listHref, longDate, currentYear } from "./lists";
+import { FinderInvite } from "../finder/invite";
 
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
@@ -31,6 +32,7 @@ export default async function TopListsIndex() {
       <p>{`${w.Many} ranked by what ${people.many} say about them in published reviews. No sponsored placements; every number is counted from reviews you can read.`}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time></p>}
     </div>
+    <FinderInvite/>
     <div className="top-index">
       {/* One short row per list: its title and size, no products, so the ranking itself is what the click shows. */}
       {lists.map(({ list, entries, reviews }) => {

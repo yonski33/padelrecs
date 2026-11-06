@@ -9,6 +9,7 @@ import { matchingRackets } from "../../lib/racket-search";
 import { SORTS, parseSort, sortProducts } from "../../lib/product-sort";
 import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
+import { FinderInvite } from "../finder/invite";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -43,6 +44,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/>
     <div className="page-title"><h1>{catalogKeyword}</h1><p>{`${data.listed.length.toLocaleString("en-US")} ${w.many}, compared by what ${niche.people.many} actually say.`}</p></div>
     {best.length > 0 && <p className="best-links"><span>Top picks:</span>{best.map(l => <a key={l.list.slug} href={listHref(l.list.slug)}>{l.list.title}</a>)}</p>}
+    <FinderInvite/>
     <AutoSubmitForm className="pills" action={catalogPath}>
       <label className={f.brand ? "pill on" : "pill"}><span className="sr-only">Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
       {hasYears && <label className={f.year ? "pill on" : "pill"}><span className="sr-only">Year</span><select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].map(y => <option key={y}>{y}</option>)}</select></label>}

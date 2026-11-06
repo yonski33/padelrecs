@@ -135,10 +135,12 @@ export const gaming: Niche = {
     { label: "wireless", tone: "neutral" },
   ],
   finder: {
-    title: "Gaming Gear Finder",
+    title: "Gaming Gear Quiz",
+    heading: "Which gaming gear is right for you?",
     description: "Pick a mouse, headset or controller, answer a few quick questions and get the gear whose real gamer reviews best match you.",
-    intro: "Pick what you need, answer a few quick questions, and see what gamers report.",
-    navLabel: "Gear finder",
+    intro: "Pick what you need, answer a few quick questions and see what real gamers recommend.",
+    navLabel: "Gear quiz",
+    invite: "Not sure which gear to choose?",
     minReviews: 10,
     rankWeight: 0.3,
     questions: [

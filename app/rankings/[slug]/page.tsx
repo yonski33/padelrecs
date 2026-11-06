@@ -14,6 +14,7 @@ import { rankedLists, listHref, longDate, currentYear, type RankedList } from ".
 import { listLine } from "../../../lib/list-lines";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
+import { FinderInvite } from "../../finder/invite";
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -128,6 +129,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
     </div>
     <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
+    <FinderInvite/>
     {related.length > 0 && <section className="top-related" aria-labelledby="more-lists">
       <h2 id="more-lists">More rankings</h2>
       <div>{related.map(r => <a key={r.list.slug} href={listHref(r.list.slug)}><b>{`${r.list.title} ${listYear(r.list)}`}</b><span>{`${r.entries.length} ranked from ${r.reviews.toLocaleString("en-US")} reviews`}</span></a>)}</div>

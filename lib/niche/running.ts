@@ -125,10 +125,12 @@ export const running: Niche = {
     { label: "soft", tone: "neutral" },
   ],
   finder: {
-    title: "Running Shoe Finder",
+    title: "Running Shoe Quiz",
+    heading: "Which running shoes are right for you?",
     description: "Answer five quick questions and get the running shoes whose real runner reviews best match how you run.",
-    intro: "Five quick questions, then the shoes whose reviews best match how you run.",
-    navLabel: "Shoe finder",
+    intro: "Answer 5 quick questions and see what real runners recommend.",
+    navLabel: "Shoe quiz",
+    invite: "Not sure which shoes to choose?",
     minReviews: 10,
     rankWeight: 0.3,
     questions: [
