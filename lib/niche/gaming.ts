@@ -134,6 +134,44 @@ export const gaming: Niche = {
     { label: "short battery life", tone: "neg" },
     { label: "wireless", tone: "neutral" },
   ],
+  finder: {
+    title: "Gaming Gear Finder",
+    description: "Pick a mouse, headset or controller, answer a few quick questions and get the gear whose real gamer reviews best match you.",
+    intro: "Pick what you need, answer a few quick questions, and see what gamers report.",
+    navLabel: "Gear finder",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Mouse", shapes: ["Mouse"] },
+        { label: "Headset", shapes: ["Headset"] },
+        { label: "Controller", shapes: ["Controller"] },
+      ] },
+      { id: "light", question: "Do you want a very light mouse?", onlyIf: { question: "type", labels: ["Mouse"] }, options: [
+        { label: "Yes", want: ["lightweight"], weight: 1.5 },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "sound", question: "How much does sound quality matter?", onlyIf: { question: "type", labels: ["Headset"] }, options: [
+        { label: "A lot", want: ["great sound"], weight: 1.5 },
+        { label: "Not much" },
+      ] },
+      { id: "wireless", question: "Do you want it wireless?", options: [
+        { label: "Yes", want: ["wireless"], avoid: ["connection issues", "short battery life"] },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "comfort", question: "Do you play for long sessions?", options: [
+        { label: "Yes", hint: "Comfort matters most", want: ["comfortable"], avoid: ["uncomfortable"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Performance", want: ["great performance"], weight: 1.5 },
+        { label: "Lasting well", want: ["solid build"], avoid: ["durability issues", "quality control issues"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Good software", want: ["good software"], avoid: ["bad software"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts): one list per category with enough reviews. Mice don't have enough
   // reviewed products yet; add their list here (shape "Mouse") once they do.
   topLists: [

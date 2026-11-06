@@ -130,6 +130,44 @@ export const discgolf: Niche = {
     { label: "understable", tone: "neutral" },
     { label: "overstable", tone: "neutral" },
   ],
+  finder: {
+    title: "Disc Golf Disc Finder",
+    description: "Answer five quick questions and get the discs whose real player reviews best match how you throw.",
+    intro: "Five quick questions, then the discs whose reviews best match how you throw.",
+    navLabel: "Disc finder",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What kind of disc are you looking for?", options: [
+        { label: "Distance driver", shapes: ["Distance driver"] },
+        { label: "Fairway driver", shapes: ["Fairway driver"] },
+        { label: "Midrange", shapes: ["Midrange"] },
+        { label: "Putter", shapes: ["Putter"] },
+      ] },
+      { id: "level", question: "What's your level?", options: [
+        { label: "Beginner", hint: "Still learning your throw", want: ["beginner-friendly"], avoid: ["too overstable"], weight: 2 },
+        { label: "Intermediate", hint: "Regular rounds, solid form", want: ["accurate"], weight: 0.75 },
+        { label: "Advanced", hint: "Tournaments or big arm" },
+      ] },
+      { id: "flight", question: "How do you want it to fly?", options: [
+        { label: "Straight", want: ["holds lines", "accurate"], weight: 1.5 },
+        { label: "A reliable fade", hint: "Overstable, finishes left for right-handers", want: ["reliable fade", "overstable"], weight: 1.5 },
+        { label: "Turning over", hint: "Understable, easy to shape", want: ["understable"], avoid: ["too overstable"], weight: 1.5 },
+        { label: "No preference" },
+      ] },
+      { id: "throw", question: "How do you mostly throw?", options: [
+        { label: "Backhand" },
+        { label: "Forehand", want: ["good for forehands"], weight: 1.5 },
+      ] },
+      { id: "priority", question: "What matters most to you?", options: [
+        { label: "Distance", want: ["long", "lots of glide"] },
+        { label: "Grip", want: ["great grip"], avoid: ["slippery"], weight: 1.5 },
+        { label: "Handling wind", want: ["good in wind"], weight: 1.5 },
+        { label: "Lasting well", avoid: ["beats in fast", "inconsistent between runs"], weight: 2 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts): one list per disc type. Few discs have many reviews yet, so the minimums are low.
   topLists: [
     { slug: "best-disc-golf-distance-drivers", formerSlugs: ["best-distance-drivers"], label: "Distance drivers", title: "Best Disc Golf Distance Drivers", minReviews: 6,
