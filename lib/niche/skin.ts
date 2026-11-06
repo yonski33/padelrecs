@@ -130,6 +130,56 @@ export const skin: Niche = {
     { label: "rich texture", tone: "neutral" },
     { label: "fragrance-free", tone: "neutral" },
   ],
+  finder: {
+    title: "Skincare Finder",
+    description: "Pick a product type, answer a few quick questions and get the skincare products whose real user reviews best match your skin.",
+    intro: "Pick a product type, answer a few quick questions, and see what people with skin like yours report.",
+    navLabel: "Skincare finder",
+    // More reviews than the rankings ask for: there are plenty here, and a handful of happy users shouldn't top the list.
+    minReviews: 10,
+    // Tags are thin on many skincare reviews, so what people liked most counts for more here than on the sports sites.
+    rankWeight: 0.3,
+    notes: ["Skin reacts differently from person to person, so treat these as a starting point, not medical advice. If you have a skin condition, ask a dermatologist."],
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Moisturizer", shapes: ["Moisturizer"] },
+        { label: "Sunscreen", shapes: ["Sunscreen"] },
+        { label: "Serum", shapes: ["Serum"] },
+        { label: "Cleanser", shapes: ["Cleanser"] },
+        { label: "Toner", shapes: ["Toner"] },
+        { label: "Exfoliant", shapes: ["Exfoliant"] },
+        { label: "Treatment", hint: "Spot and targeted treatments", shapes: ["Treatment"] },
+      ] },
+      { id: "skin", question: "What's your skin type?", options: [
+        { label: "Oily", want: ["lightweight", "absorbs quickly"], avoid: ["greasy", "rich texture"], weight: 1.5 },
+        { label: "Dry", want: ["hydrating", "rich texture"], weight: 1.5 },
+        { label: "Combination", want: ["lightweight", "hydrating"], avoid: ["greasy"] },
+        { label: "Normal or not sure" },
+      ] },
+      { id: "sensitive", question: "Is your skin sensitive?", options: [
+        { label: "Yes", hint: "It reacts easily", want: ["gentle"], avoid: ["irritating", "stinging", "strong scent"], weight: 2, must: true },
+        { label: "No" },
+      ] },
+      { id: "breakouts", question: "Do you get breakouts?", options: [
+        { label: "Yes", want: ["cleared breakouts"], avoid: ["broke me out"], weight: 2 },
+        { label: "No" },
+      ] },
+      { id: "cast", question: "How much does white cast matter to you?", onlyIf: { question: "type", labels: ["Sunscreen"] }, options: [
+        { label: "A lot", hint: "It has to disappear", want: ["no white cast"], weight: 1.5 },
+        { label: "Not much" },
+      ] },
+      { id: "makeup", question: "Do you wear makeup over it?", onlyIf: { question: "type", labels: ["Sunscreen", "Moisturizer"] }, options: [
+        { label: "Yes", avoid: ["pills under makeup"], weight: 3 },
+        { label: "No" },
+      ] },
+      { id: "goal", question: "What matters most to you?", onlyIf: { question: "type", labels: ["Serum", "Treatment", "Exfoliant", "Toner"] }, options: [
+        { label: "Hydration", want: ["hydrating"] },
+        { label: "Evening skin tone", want: ["evened skin tone"], weight: 1.5 },
+        { label: "Good value", want: ["great value"] },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts). Skincare formulas change slowly, so reviews from the last 5 years count (reviewYears).
   // One list per product type that has enough reviews, plus two by skin concern.
   topLists: [

@@ -49,7 +49,7 @@ export default async function FinderPage() {
       <h2>How the matching works</h2>
       <ul>
         <li>{`Your answers are matched against ${reviews.toLocaleString("en-US")} published reviews of ${pool.length} ${w.many}. A ${w.one} scores higher the more of its reviews describe what you asked for, compared with how many it has in total.`}</li>
-        <li>{`Only ${w.many} with at least ${Math.max(MIN_LIST_REVIEWS, finder.minReviews ?? MIN_LIST_REVIEWS)} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), can be suggested${finder.maxAgeYears === undefined ? "" : `, from the last ${finder.maxAgeYears + 1} model years`}.`}</li>
+        <li>{`Only ${w.many} with at least ${Math.max(MIN_LIST_REVIEWS, finder.minReviews ?? MIN_LIST_REVIEWS)} reviews, at least ${Math.round((finder.minPositive ?? MIN_POSITIVE_SHARE) * 100)}% of them positive (mixed counting as half), can be suggested${finder.maxAgeYears === undefined ? "" : `, from the last ${finder.maxAgeYears + 1} model years`}.`}</li>
         {finder.notes?.map(n => <li key={n}>{n}</li>)}
         <li>{`These are matches from what ${people.many} report, not personal advice. There are no sponsored placements${affiliate ? ", and affiliate links never change the results" : ""}.`}</li>
       </ul>
