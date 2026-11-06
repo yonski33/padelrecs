@@ -5,6 +5,7 @@ import {database} from "../../../db/data";
 import {reviews,externalReviews,rackets} from "../../../db/schema";
 import {reviewRevision} from "../../../db/review-editing";
 import RacketEditSelector from "../racket-edit-selector";
+import DeleteWebReview from "../delete-web-review";
 import {TagCheckboxes} from "../../tags";
 import {niche} from "../../../lib/niche";
 const {profile}=niche;
@@ -47,5 +48,7 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
   <p className="small muted">Saving updates this published web review immediately.</p>
  </>:null}
  <button type="submit">Save changes</button>
- </form></main>;
+ </form>
+ {external&&<div className="admin-actions"><DeleteWebReview id={external.id}/></div>}
+ </main>;
 }

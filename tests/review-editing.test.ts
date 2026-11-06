@@ -6,11 +6,13 @@ import {drizzle} from "drizzle-orm/pglite";
 import {eq} from "drizzle-orm";
 import {fixture} from "./fixture";
 import {parseSnapshot,importSnapshot} from "../db/transfer";
-import {reviews,externalReviews,rackets} from "../db/schema";
-import {reviewEditInput,reviewRevision,saveReviewEdit} from "../db/review-editing";
+import {reviews,externalReviews,rackets,reviewVotes} from "../db/schema";
+import {reviewEditInput,reviewRevision,saveReviewEdit,deleteWebReview} from "../db/review-editing";
 import {catalog,score} from "../db/data";
 import type {getDb} from "../db/index";
 import {POST} from "../app/api/funtimes/edit-review/route";
+import {POST as DELETE_WEB} from "../app/api/funtimes/delete-web-review/route";
+import {planImport,webReviewId} from "../db/web-review-import";
 
 const fields=(row:object)=>Object.fromEntries(Object.entries(row).map(([key,value])=>[key,value??""]));
 test("player and web edits preserve identity and dates, update public data, and reject stale forms",async()=>{
@@ -66,4 +68,30 @@ test("web reviews need an excerpt or a summary, and blanks become null", () => {
  assert.equal(reviewEditInput.safeParse({...base,excerpt:"",summary:""}).success,false);
  assert.equal(reviewEditInput.safeParse({...base,excerpt:"too short",summary:""}).success,false);
  assert.equal(reviewEditInput.safeParse({...base,excerpt:"A quote that is long enough to show.",summary:""}).success,true);
+});
+
+test("deleting a web review removes it and only its votes, and publishing does not bring it back",async()=>{
+ const engine=new PGlite();
+ try{
+  for(const statement of migrationSql("padelrecs"))await engine.exec(statement);
+  const db=drizzle(engine),portable=db as unknown as ReturnType<typeof getDb>;
+  await importSnapshot(portable,parseSnapshot(fixture));
+  const [web]=await db.select().from(externalReviews);
+  const [player]=await db.select().from(reviews);
+  await db.delete(reviewVotes);
+  const at="2026-11-07T00:00:00.000Z";
+  await db.insert(reviewVotes).values([{reviewType:"web",reviewId:web.id,voter:"a",createdAt:at},{reviewType:"player",reviewId:player.id,voter:"a",createdAt:at}]);
+  assert.equal(await deleteWebReview(portable,web.id),"deleted");
+  assert.equal((await db.select().from(externalReviews).where(eq(externalReviews.id,web.id))).length,0);
+  assert.deepEqual((await db.select().from(reviewVotes)).map(v=>v.reviewType),["player"]);
+  assert.equal(await deleteWebReview(portable,web.id),"missing");
+  const [racket]=await db.select().from(rackets);
+  const published={id:"gone",racket_name:racket.name,source_platform:"Reddit",source_name:"r/padel",source_url:"https://example.com/gone",excerpt:"A quote that is long enough to show.",tags:[],status:"published"};
+  const plan=planImport([published],{rackets:[racket],external:[]},{sourcePlatforms:["Reddit"],tags:[]} as never);
+  assert.equal(plan.rows.length,0);assert.equal(webReviewId("gone"),"research-gone");
+ }finally{await engine.close();}
+});
+test("anonymous users cannot delete web reviews",async()=>{
+ const response=await DELETE_WEB(new Request("https://www.padelrecs.com/api/funtimes/delete-web-review",{method:"POST",headers:{origin:"https://www.padelrecs.com","content-type":"application/x-www-form-urlencoded"},body:"id=approved-review"}));
+ assert.equal(response.status,403);
 });
