@@ -13,5 +13,5 @@ test("every site's lines belong to a real site and stay short", () => {
 test("a product without a line falls back to its summary's first sentence", () => {
   assert.equal(listLine({ slug: "nope", reviewSummary: "First one. Second one." }, "padel"), "First one.");
   assert.equal(listLine({ slug: "nope", reviewSummary: null }, "padel"), null);
-  assert(listLine({ slug: "siux-fenix-pro-6-2026" }, "padel")?.startsWith("Praised for"));
+  assert(listLine({ slug: "siux-fenix-pro-6-2026" }, "padel")?.startsWith("Easy power"));
 });
