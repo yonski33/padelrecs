@@ -65,7 +65,7 @@ export function CategoryPill({shape}: {shape: string | null | undefined}) {
 function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
   const own = shopPhoto(racket), photo = amazonPhoto(racket);
   if (own) return <a className="thumb own" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a>;
-  if (photo) return <a className="thumb photo" href={photo.url} target="_blank" rel="sponsored nofollow noopener"><img src={photo.image} alt={`${displayName(racket.name, brand)} on Amazon`} loading="lazy"/></a>;
+  if (photo) return <a className="thumb photo" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt="" loading="lazy"/></a>;
   return <a className="thumb" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
 }
 
@@ -198,8 +198,7 @@ export function ProductCard({racket: r, brand, count, web = 0, details, tags}: {
   const total = count + web, own = shopPhoto(r), photo = amazonPhoto(r);
   return <article className="product-card">
     {own ? <div className="pc-art own" aria-hidden="true"><img src={own} alt="" loading="lazy"/></div> : photo
-      // Amazon's terms: the photo links to Amazon. The name and the rest of the card go to our page.
-      ? <a className="pc-art photo" href={photo.url} target="_blank" rel="sponsored nofollow noopener"><img src={photo.image} alt={`${displayName(r.name, brand)} on Amazon`} loading="lazy"/></a>
+      ? <a className="pc-art photo" href={productHref(r)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt="" loading="lazy"/></a>
       : <div className="pc-art" aria-hidden="true"><ProductIcon shape={r.shape} brand={brand}/></div>}
     <div className="pc-body">
       <h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>
