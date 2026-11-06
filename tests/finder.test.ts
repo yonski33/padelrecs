@@ -27,6 +27,12 @@ test("answers lead the order, and share beats a small sample", () => {
   assert.deepEqual(matchFinder(pool, [{ label: "Soft", want: ["soft"] }], [], 2).map(m => m.product.id), ["big", "small"]);
 });
 
+test("between close matches the better-reviewed product wins, but a clearly better fit still leads", () => {
+  const soft = { label: "Soft", want: ["soft"] };
+  assert.equal(matchFinder([entry("thin", 6, { soft: 3 }), entry("known", 60, { soft: 20 })], [soft], [], 1)[0].product.id, "known");
+  assert.equal(matchFinder([entry("fit", 20, { soft: 15 }), entry("famous", 200, { soft: 5 })], [{ ...soft, weight: 2 }], [], 1)[0].product.id, "fit");
+});
+
 test("avoid tags count against a product, and the top worry is shown", () => {
   const pool = [entry("hard", 20, { forgiving: 8, demanding: 8 }), entry("easy", 20, { forgiving: 8 })];
   const [first, second] = matchFinder(pool, [{ label: "Beginner", want: ["forgiving"], avoid: ["demanding"] }], ["demanding"]);
