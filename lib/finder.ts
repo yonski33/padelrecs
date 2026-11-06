@@ -1,23 +1,27 @@
 // The product finder (/finder): a few one-tap questions, then the products whose reviews best match the answers.
 // Pure functions over the public catalogue like lib/top-lists.ts, so tests can feed them plain objects. Every number shown
 // is counted from published reviews; nothing is estimated.
-import type { Finder, FinderOption } from "./niche/types";
-import { likedScore, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, ratingVerdict, type ListInput, type Verdict } from "./top-lists";
+import type { Finder, FinderOption, Tag, TopList } from "./niche/types";
+import { likedScore, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, rankList, ratingVerdict, type ListInput, type Verdict } from "./top-lists";
 
 /** How many products a finder shows. */
 export const FINDER_RESULTS = 3;
-/** A "must" answer only narrows the pool when at least this many products have that many mentions; otherwise it just counts extra. */
+/** Mentions a product needs to pass a "must" answer. Without enough such products, the answer just counts extra. */
 export const MUST_MENTIONS = 2;
 /** Pulls a share toward zero when a product has few reviews, so 2 of 5 can't outrank 30 of 100. */
 const SMOOTHING = 8;
 /** How much the rankings' score (lib/top-lists.ts likedScore) adds to a match. */
 const RANK_WEIGHT = 0.12;
+/** What first place on the ranking an answer stands for adds to a match; each place down takes a tenth off. */
+const LIST_WEIGHT = 0.6;
 
 export type FinderProduct = {
   id: string; reviews: number; positive: number; mixed: number; negative: number;
   /** Mentions in positive or mixed reviews for good tags; in any review for the rest. */
   tags: Record<string, number>;
   shape: string | null;
+  /** Place on each ranking an answer can stand for (see FinderOption.list). */
+  lists?: Record<string, number>;
 };
 export type Reason = { tag: string; count: number };
 export type FinderMatch<P> = { product: P; score: number; reasons: Reason[]; watch: Reason | null };
@@ -43,6 +47,17 @@ export function finderPool(finder: Pick<Finder, "minReviews" | "minPositive" | "
   });
 }
 
+/** Adds each product's place on the rankings the answers stand for. */
+export function withRankings<P extends FinderProduct>(pool: P[], finder: Pick<Finder, "questions">, lists: readonly TopList[], data: ListInput, tags: readonly Tag[], now = new Date()): P[] {
+  const places = new Map<string, Record<string, number>>();
+  for (const slug of new Set(finder.questions.flatMap(q => q.options.flatMap(o => o.list ?? [])))) {
+    const list = lists.find(l => l.slug === slug);
+    if (!list) throw new Error(`Finder answer points at unknown ranking ${slug}`);
+    rankList(list, data, tags, now).forEach((entry, i) => places.set(entry.product.id, { ...places.get(entry.product.id), [slug]: i + 1 }));
+  }
+  return pool.map(p => ({ ...p, lists: places.get(p.id) ?? {} }));
+}
+
 /** Shapes match from the start of the value, so "98" also takes "98 sq in (632 cm²)". */
 export const fitsShape = (shape: string | null, shapes: string[]) => !!shape && shapes.some(s => shape.startsWith(s));
 const share = (count: number, reviews: number) => count / (reviews + SMOOTHING);
@@ -51,14 +66,21 @@ const mentions = (p: FinderProduct, tags: string[] = []) => tags.reduce((a, t) =
 /** The best matches for the chosen options. Options without tags ("No preference") change nothing. */
 export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOption[], negativeTags: readonly string[], count = FINDER_RESULTS, rankWeight = RANK_WEIGHT): FinderMatch<P>[] {
   let candidates = pool;
-  // A chosen shape comes first: it's a plain fact about the product, where tags are a matter of degree.
+  // An answer that stands for a ranking sorts products into a group, and everything outside it is out for good: someone asking
+  // for power never gets a control racket, even if that leaves fewer than `count`. Later answers narrow inside the group.
+  for (const o of chosen) if (o.list) {
+    const kept = candidates.filter(p => p.lists?.[o.list!]);
+    if (kept.length) candidates = kept;
+  }
+  const enough = chosen.some(o => o.list) ? 1 : count;
+  // A chosen shape comes next: it's a plain fact about the product, where tags are a matter of degree.
   for (const o of chosen) if (o.shapes) {
     const kept = candidates.filter(p => fitsShape(p.shape, o.shapes!));
-    if (kept.length >= count) candidates = kept;
+    if (kept.length >= enough) candidates = kept;
   }
   for (const o of chosen) if (o.must) {
     const kept = candidates.filter(p => mentions(p, o.want) >= MUST_MENTIONS);
-    if (kept.length >= count) candidates = kept;
+    if (kept.length >= enough) candidates = kept;
   }
   const scored = candidates.map(product => {
     const liked = (product.positive + product.mixed / 2) / product.reviews;
@@ -75,7 +97,11 @@ export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOp
     // that ranks higher beats one that fits about as well. Stronger than this and the same few products show up for everyone.
     // A product nobody describes the way you asked gets no such help, however well it ranks.
     const relevant = !wanted.length || wanted.some(tag => (product.tags[tag] ?? 0) > 0);
-    return { product, score: fit + (relevant ? rankWeight * likedScore(liked, product.reviews) : 0), reasons, watch };
+    const placed = chosen.reduce((a, o) => {
+      const place = o.list ? product.lists?.[o.list] : undefined;
+      return a + (place ? LIST_WEIGHT * Math.max(0, 1 - (place - 1) / 10) : 0);
+    }, 0);
+    return { product, score: fit + placed + (relevant ? rankWeight * likedScore(liked, product.reviews) : 0), reasons, watch };
   });
   return scored.sort((a, b) => b.score - a.score || b.product.reviews - a.product.reviews || a.product.id.localeCompare(b.product.id)).slice(0, count);
 }

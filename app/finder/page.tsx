@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { catalog } from "../../db/data";
 import { niche, productHref } from "../../lib/niche";
-import { finderPool } from "../../lib/finder";
+import { finderPool, withRankings } from "../../lib/finder";
+import { topLists } from "../rankings/lists";
 import { MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE } from "../../lib/top-lists";
 import { listLine } from "../../lib/list-lines";
 import { displayName } from "../../lib/brand-name";
@@ -25,7 +26,7 @@ export default async function FinderPage() {
   if (!finder) notFound();
   const data = await catalog();
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
-  const pool = finderPool(finder, data, good);
+  const pool = withRankings(finderPool(finder, data, good), finder, topLists, data, niche.tags);
   if (!pool.length) notFound();
   const byId = new Map(data.listed.map(p => [p.id, p]));
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
@@ -50,6 +51,7 @@ export default async function FinderPage() {
       <ul>
         <li>{`Your answers are matched against ${reviews.toLocaleString("en-US")} published reviews of ${pool.length} ${w.many}. A ${w.one} scores higher the more of its reviews describe what you asked for, compared with how many it has in total.`}</li>
         <li>{`Only ${w.many} with at least ${Math.max(MIN_LIST_REVIEWS, finder.minReviews ?? MIN_LIST_REVIEWS)} reviews, at least ${Math.round((finder.minPositive ?? MIN_POSITIVE_SHARE) * 100)}% of them positive (mixed counting as half), can be suggested${finder.maxAgeYears === undefined ? "" : finder.maxAgeYears === 0 ? `, from this year's models` : `, from the last ${finder.maxAgeYears + 1} model years`}.`}</li>
+        {finder.questions.some(q => q.options.some(o => o.list)) && <li>{`Some answers sort ${w.many} into groups using our rankings: pick one and only ${w.many} on that ranking are suggested, in its order, even if that means fewer results.`}</li>}
         {finder.notes?.map(n => <li key={n}>{n}</li>)}
         <li>{`These are matches from what ${people.many} report, not personal advice. There are no sponsored placements${affiliate ? ", and affiliate links never change the results" : ""}.`}</li>
       </ul>

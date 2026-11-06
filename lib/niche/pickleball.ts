@@ -125,12 +125,14 @@ export const pickleball: Niche = {
     intro: "Answer 5 quick questions and see what real players recommend.",
     navLabel: "Paddle quiz",
     invite: "Not sure which paddle to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
     maxAgeYears: 2,
     questions: [
       { id: "style", question: "What do you want most from a paddle?", options: [
-        { label: "Power", hint: "Drives and put-aways", want: ["easy power", "great pop"], weight: 1.5 },
-        { label: "Control", hint: "Placement and touch", want: ["good control", "great for dinks"], avoid: ["hard to control"], weight: 1.5 },
-        { label: "Spin", hint: "Serves and topspin drives", want: ["lots of spin"], avoid: ["low spin"], weight: 1.5 },
+        { label: "Power", hint: "Drives and put-aways", want: ["easy power", "great pop"], weight: 1.5, list: "best-power-pickleball-paddles" },
+        { label: "Control", hint: "Placement and touch", want: ["good control", "great for dinks"], avoid: ["hard to control"], weight: 1.5, list: "best-control-pickleball-paddles" },
+        { label: "Spin", hint: "Serves and topspin drives", want: ["lots of spin"], avoid: ["low spin"], weight: 1.5, list: "best-spin-pickleball-paddles" },
         { label: "A bit of everything", want: ["good control", "easy power"] },
       ] },
       { id: "level", question: "What's your level?", options: [

@@ -117,11 +117,13 @@ export const padel: Niche = {
     navLabel: "Racket quiz",
     invite: "Not sure which racket to choose?",
     notes: ["If you pick a shape, only rackets of that shape are suggested, so rackets whose shape we don't have on file are left out.", "Side of the court isn't something reviews tell us, so that answer is a rule of thumb: left-side players tend to finish points, so we lean toward power and smashes; right-side players tend to build them, so we lean toward control and defence."],
+    minReviews: 10,
+    rankWeight: 0.3,
     maxAgeYears: 0,
     questions: [
       { id: "style", question: "What do you want most from a racket?", options: [
-        { label: "Control", hint: "Placement and consistency", want: ["good control", "great in defence"], avoid: ["head-heavy"], weight: 1.5 },
-        { label: "Power", hint: "Hitting through the ball", want: ["easy power", "great on smashes"], weight: 1.5 },
+        { label: "Control", hint: "Placement and consistency", want: ["good control", "great in defence"], avoid: ["head-heavy"], weight: 1.5, list: "best-control-padel-rackets" },
+        { label: "Power", hint: "Hitting through the ball", want: ["easy power", "great on smashes"], weight: 1.5, list: "best-power-padel-rackets" },
         { label: "A balance of both", hint: "A bit of everything", want: ["good control", "easy power"] },
       ] },
       { id: "shape", question: "Which shape do you prefer?", options: [
