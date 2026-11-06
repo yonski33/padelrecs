@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
+import { sourceLabel } from "../lib/source-label";
 import { TagList } from "./tags";
 import { niche, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
@@ -126,7 +127,8 @@ export function plainSummary(text: string) {
 
 export function External({entry: e, data, showRacket = true, showCategory = true}: {entry: WebReview; data: Catalog; showRacket?: boolean; showCategory?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
-  const source = <><SourceIcon platform={e.sourcePlatform}/><b>{e.sourcePlatform}</b>{e.sourceName && e.sourceName !== e.sourcePlatform && <span>{e.sourceName}</span>}</>;
+  const label = sourceLabel(e);
+  const source = <><SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{label.name && <span>{label.name}</span>}</>;
   return <article className={showRacket ? "note ext" : "note compact ext"}>
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     {showRacket && <header className="note-head"><CardHeading racket={racket} data={data} showCategory={showCategory}/></header>}
