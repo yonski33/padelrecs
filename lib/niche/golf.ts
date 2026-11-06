@@ -125,6 +125,40 @@ export const golf: Niche = {
     { label: "durability issues", tone: "neg" },
     { label: "adjustable", tone: "neutral" },
   ],
+  finder: {
+    title: "Golf Driver Finder",
+    description: "Answer five quick questions and get the drivers whose real golfer reviews best match your game.",
+    intro: "Five quick questions, then the drivers whose reviews best match your game.",
+    navLabel: "Driver finder",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "goal", question: "What do you want most from a driver?", options: [
+        { label: "Hit it straighter", want: ["straight", "forgiving"], weight: 1.5 },
+        { label: "Hit it longer", want: ["long"], weight: 1.5 },
+        { label: "A bit of both", want: ["long", "straight"] },
+      ] },
+      { id: "miss", question: "What's your usual problem off the tee?", options: [
+        { label: "A slice", want: ["straight"], avoid: ["slice bias"], weight: 1.5 },
+        { label: "Low shots", hint: "It's hard to get it in the air", want: ["easy launch"], avoid: ["hard to launch"], weight: 1.5 },
+        { label: "Too much spin", hint: "Shots balloon and lose distance", want: ["low spin"], avoid: ["too much spin"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+      { id: "level", question: "What's your handicap?", options: [
+        { label: "20 or higher", hint: "Or no handicap yet", want: ["forgiving", "easy launch"], avoid: ["small sweet spot", "hard to launch"], weight: 2 },
+        { label: "10 to 19", want: ["forgiving"], avoid: ["small sweet spot"], weight: 0.75 },
+        { label: "Under 10" },
+      ] },
+      { id: "feel", question: "How much do feel and sound matter?", options: [
+        { label: "A lot", want: ["great feel", "great sound"], avoid: ["harsh feel", "loud"] },
+        { label: "Not much" },
+      ] },
+      { id: "adjust", question: "Do you want to adjust the loft and settings?", options: [
+        { label: "Yes", want: ["adjustable"] },
+        { label: "Doesn't matter" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts). Few drivers have many reviews yet, so the minimums are lower than on other sites.
   topLists: [
     { slug: "best-golf-drivers", label: "Best overall", title: "Best Golf Drivers", minReviews: 8,

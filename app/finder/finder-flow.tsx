@@ -77,7 +77,6 @@ export function FinderFlow({ cards, negativeTags }: { cards: FinderCard[]; negat
   if (done) return <section className="finder-results" aria-live="polite">
     <div className="finder-summary">
       <h2>{`Your best ${matches.length === 1 ? "match" : "matches"}`}</h2>
-      <p>{given.filter(o => o.want || o.avoid || o.shapes).map(o => o.label).join(" · ") || "No preferences"}</p>
       {offShape && <p>{`Not enough ${niche.words.many} of that kind qualify yet, so these are the closest matches overall.`}</p>}
       <button type="button" className="finder-link" onClick={restart}>Start again</button>
     </div>

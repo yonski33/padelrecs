@@ -124,6 +124,42 @@ export const running: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  finder: {
+    title: "Running Shoe Finder",
+    description: "Answer five quick questions and get the running shoes whose real runner reviews best match how you run.",
+    intro: "Five quick questions, then the shoes whose reviews best match how you run.",
+    navLabel: "Shoe finder",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "use", question: "What are the shoes for?", options: [
+        { label: "Everyday runs", shapes: ["Daily trainer", "Stability"] },
+        { label: "Long or easy runs", hint: "Maximum cushioning", shapes: ["Max cushion"] },
+        { label: "Speed sessions", hint: "Tempo and intervals", shapes: ["Tempo"] },
+        { label: "Racing", shapes: ["Racing"] },
+        { label: "Trails", shapes: ["Trail"] },
+      ] },
+      { id: "feel", question: "How do you like the ride to feel?", options: [
+        { label: "Soft and cushioned", want: ["soft", "great cushioning"], avoid: ["firm"] },
+        { label: "Firm and responsive", want: ["firm", "responsive"], avoid: ["soft"] },
+        { label: "No preference" },
+      ] },
+      { id: "support", question: "Do you want extra stability?", options: [
+        { label: "Yes", hint: "I want a steady, supportive shoe", want: ["stable"], avoid: ["unstable"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "feet", question: "Do you have wide feet?", options: [
+        { label: "Yes", avoid: ["narrow fit"], weight: 3 },
+        { label: "No" },
+      ] },
+      { id: "priority", question: "What matters most to you?", options: [
+        { label: "Lasting a long time", want: ["durable"], avoid: ["wears out fast"], weight: 1.5 },
+        { label: "Feeling fast", want: ["fast", "responsive"], avoid: ["heavy"], weight: 1.5 },
+        { label: "A comfortable fit", want: ["comfortable fit"], avoid: ["blisters", "heel slip"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts): overall, then one list per shoe category that has enough reviews.
   topLists: [
     { slug: "best-running-shoes", label: "Best overall", title: "Best Running Shoes", minReviews: 15,
