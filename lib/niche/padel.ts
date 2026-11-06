@@ -123,10 +123,8 @@ export const padel: Niche = {
         { label: "A balance of both", hint: "A bit of everything", want: ["good control", "easy power"] },
       ] },
       { id: "shape", question: "Which shape do you prefer?", options: [
-        { label: "Round", hint: "Usually easier to control", shapes: ["Round"] },
-        { label: "Teardrop", hint: "Usually between round and diamond", shapes: ["Teardrop"] },
+        { label: "Round, teardrop or hybrid", hint: "Usually easier to control", shapes: ["Round", "Teardrop", "Hybrid"] },
         { label: "Diamond", hint: "Usually more power", shapes: ["Diamond"] },
-        { label: "Hybrid", hint: "Mixes shapes", shapes: ["Hybrid"] },
         { label: "Don't mind" },
       ] },
       { id: "level", question: "What's your level?", options: [
