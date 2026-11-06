@@ -41,7 +41,7 @@ export default async function FinderPage() {
   const reviews = pool.reduce((a, p) => a + p.reviews, 0);
   return <main className="top-page finder-page">
     <div className="page-title">
-      <h1>{finder.title}</h1>
+      <h1>{finder.heading}</h1>
       <p>{finder.intro}</p>
     </div>
     <FinderFlow cards={cards} negativeTags={bad}/>

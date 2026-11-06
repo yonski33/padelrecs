@@ -114,10 +114,12 @@ export const tennis: Niche = {
     { label: "soft", tone: "neutral" },
   ],
   finder: {
-    title: "Tennis Racket Finder",
+    title: "Tennis Racket Quiz",
+    heading: "Which tennis racket is right for you?",
     description: "Answer six quick questions and get the tennis rackets whose real player reviews best match how you play.",
-    intro: "Six quick questions, then the rackets whose reviews best match how you play.",
-    navLabel: "Racket finder",
+    intro: "Answer 6 quick questions and see what real players recommend.",
+    navLabel: "Racket quiz",
+    invite: "Not sure which racket to choose?",
     notes: ["If you pick a head size, only rackets of that size are suggested."],
     questions: [
       { id: "style", question: "What do you want most from a racket?", options: [

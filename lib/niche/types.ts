@@ -84,6 +84,10 @@ export type FinderQuestion = { id: string; question: string; options: FinderOpti
   onlyIf?: { question: string; labels: string[] } };
 export type Finder = {
   title: string; description: string; intro: string; navLabel: string;
+  /** The page heading, a question to the visitor. `title` stays the name used in search results. */
+  heading: string;
+  /** Opens the link to the quiz on the home, catalogue and rankings pages. */
+  invite: string;
   /** Lines added to "How the matching works", for rules of thumb that don't come from reviews. */
   notes?: string[];
   minReviews?: number;

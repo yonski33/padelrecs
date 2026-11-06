@@ -11,6 +11,7 @@ import { ChipRow } from "./chip-row";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
+import { FinderInvite } from "./finder/invite";
 
 const DAY = 86_400_000;
 /** Separator for "users, Reddit, YouTube and forums": commas, the last item already carries "and". */
@@ -97,6 +98,7 @@ export default async function Home({ searchParams }: {
       <h1>{headline}</h1>
       <p>{`${total.toLocaleString("en-US")} reviews from ${fromWhere}, ranked by what people actually say.`}</p>
     </section>}
+    {!type && <FinderInvite/>}
     {picks.length > 0 && <section className="picks" aria-label="Top picks">
       <h2>Top picks</h2>
       {/* The rankings page's row style, two columns. No product names (owner choice): the ranking is what the click shows. */}

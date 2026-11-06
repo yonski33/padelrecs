@@ -126,10 +126,12 @@ export const golf: Niche = {
     { label: "adjustable", tone: "neutral" },
   ],
   finder: {
-    title: "Golf Driver Finder",
+    title: "Golf Driver Quiz",
+    heading: "Which driver is right for you?",
     description: "Answer five quick questions and get the drivers whose real golfer reviews best match your game.",
-    intro: "Five quick questions, then the drivers whose reviews best match your game.",
-    navLabel: "Driver finder",
+    intro: "Answer 5 quick questions and see what real golfers recommend.",
+    navLabel: "Driver quiz",
+    invite: "Not sure which driver to choose?",
     minReviews: 10,
     rankWeight: 0.3,
     questions: [
