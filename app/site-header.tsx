@@ -61,7 +61,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
           return href === catalogPath && ranked.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
         })}
-        {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}>{finderLink[1]}</a>}
+        {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}><span className="nav-long">{finderLink[1]}</span><span className="nav-short">Finder quiz</span></a>}
       </nav>
       {/* On Rankings pages the row lists the rankings, so a chip there opens a ranking, not a product-type page. */}
       {inRankings && ranked.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">

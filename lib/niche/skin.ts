@@ -131,11 +131,11 @@ export const skin: Niche = {
     { label: "fragrance-free", tone: "neutral" },
   ],
   finder: {
-    title: "Skincare Quiz",
+    title: "Skincare Finder Quiz",
     heading: "Which skincare products are right for you?",
     description: "Pick a product type, answer a few quick questions and get the skincare products whose real user reviews best match your skin.",
     intro: "Pick a product type, answer a few quick questions and see what real users recommend.",
-    navLabel: "Skincare quiz",
+    navLabel: "Find Your Skincare",
     invite: "Not sure which product to choose?",
     // More reviews than the rankings ask for: there are plenty here, and a handful of happy users shouldn't top the list.
     minReviews: 10,
