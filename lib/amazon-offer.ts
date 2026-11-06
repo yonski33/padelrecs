@@ -16,7 +16,7 @@ const cachedOffer = unstable_cache(
 );
 
 /** `image`: Amazon's own image address, on niches with amazon.photos. Amazon's terms: served from Amazon, the address kept
- *  under 24 hours (the 12-hour cache above), not altered beyond resizing, and it must link to the Amazon product page. */
+ *  under 24 hours (the 12-hour cache above), not altered beyond resizing, and it links to the Amazon product page. List pages link theirs to our product page instead (owner's decision, 2026-11-07; see lib/amazon-photos.ts). */
 export type AmazonButton = { url: string; price: string | null; image?: string | null };
 
 /**

@@ -42,7 +42,7 @@ function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: 
   return <li className="top-entry">
     <span className="top-rank" aria-label={`Rank ${e.rank}`}>{e.rank}</span>
     {own ? <a className="thumb top-thumb own" href={href} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a> : amazon?.image && !photoHidden(e.product)
-      ? <a className="thumb top-thumb photo" href={amazon.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazon.image} alt={`${displayName(e.product.name, brand)} on Amazon`} loading="lazy"/></a>
+      ? <a className="thumb top-thumb photo" href={href} aria-hidden="true" tabIndex={-1}><img src={amazon.image} alt="" loading="lazy"/></a>
       : <a className="thumb top-thumb" href={href} aria-hidden="true" tabIndex={-1}><ProductIcon shape={e.product.shape} brand={brand}/></a>}
     <div className="top-body">
       <div className="top-head">

@@ -18,8 +18,8 @@ function Result({ match, rank }: { match: FinderMatch<FinderCard>; rank: number 
   const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
   return <li className="top-entry">
     <span className="top-rank" aria-label={`Match ${rank}`}>{rank}</span>
-    {c.own ? <a className="thumb top-thumb own" href={c.href} aria-hidden="true" tabIndex={-1}><img src={c.own} alt="" loading="lazy"/></a> : c.amazonImage && c.amazonUrl
-      ? <a className="thumb top-thumb photo" href={c.amazonUrl} target="_blank" rel="sponsored nofollow noopener"><img src={c.amazonImage} alt={`${c.name} on Amazon`} loading="lazy"/></a>
+    {c.own ? <a className="thumb top-thumb own" href={c.href} aria-hidden="true" tabIndex={-1}><img src={c.own} alt="" loading="lazy"/></a> : c.amazonImage
+      ? <a className="thumb top-thumb photo" href={c.href} aria-hidden="true" tabIndex={-1}><img src={c.amazonImage} alt="" loading="lazy"/></a>
       : <a className="thumb top-thumb" href={c.href} aria-hidden="true" tabIndex={-1}><ProductIcon shape={c.shape} brand={c.brand}/></a>}
     <div className="top-body">
       <div className="top-head"><h2><a className="racket-link" href={c.href}><span className="model">{c.name}</span></a></h2></div>
