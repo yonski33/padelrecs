@@ -78,7 +78,9 @@ export type TopList = {
  *  like "No preference", changes nothing. `must` narrows the pool to products with those mentions when enough have them. */
 export type FinderOption = { label: string; hint?: string; want?: string[]; avoid?: string[]; weight?: number; must?: boolean;
   /** Only products whose shape column starts with one of these, when enough of them qualify. */
-  shapes?: string[] };
+  shapes?: string[];
+  /** A ranking (top list slug) this answer stands for: only products on it, higher on it first, when enough of them qualify. */
+  list?: string };
 export type FinderQuestion = { id: string; question: string; options: FinderOption[];
   /** Only asked after one of these answers to an earlier question, for questions that fit one category. */
   onlyIf?: { question: string; labels: string[] } };

@@ -136,8 +136,8 @@ export const golf: Niche = {
     rankWeight: 0.3,
     questions: [
       { id: "goal", question: "What do you want most from a driver?", options: [
-        { label: "Hit it straighter", want: ["straight", "forgiving"], weight: 1.5 },
-        { label: "Hit it longer", want: ["long"], weight: 1.5 },
+        { label: "Hit it straighter", want: ["straight", "forgiving"], weight: 1.5, list: "most-forgiving-golf-drivers" },
+        { label: "Hit it longer", want: ["long"], weight: 1.5, list: "longest-golf-drivers" },
         { label: "A bit of both", want: ["long", "straight"] },
       ] },
       { id: "miss", question: "What's your usual problem off the tee?", options: [

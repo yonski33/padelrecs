@@ -91,3 +91,34 @@ test("every finder only uses tags from its niche's bank", () => {
     for (const o of niche.finder?.questions.flatMap(q => q.options) ?? []) for (const t of [...(o.want ?? []), ...(o.avoid ?? [])]) assert(bank.has(t), `${id}: ${t}`);
   }
 });
+
+const racket = (id: string, reviews: number, tags: Record<string, number>, place?: number, shape = "Teardrop"): FinderProduct =>
+  ({ ...entry(id, reviews, tags), shape, lists: place ? { power: place } : {} });
+const power = { label: "Power", want: ["easy power"], weight: 1.5, list: "power" };
+const ids = (matches: { product: FinderProduct }[]) => matches.map(m => m.product.id);
+
+test("an answer tied to a ranking never brings back a product outside it, even with fewer results", () => {
+  const pool = [racket("ctrl", 59, { "easy power": 30 }), racket("a", 26, { "easy power": 9 }, 1), racket("b", 40, { "easy power": 9 }, 2)];
+  assert.deepEqual(ids(matchFinder(pool, [power], [])), ["a", "b"]);
+});
+
+test("the ranking's order beats a small lead in share of mentions", () => {
+  const pool = [racket("second", 20, { "easy power": 8 }, 2), racket("first", 40, { "easy power": 12 }, 1), racket("third", 30, { "easy power": 7 }, 3)];
+  assert.equal(matchFinder(pool, [power], [])[0].product.id, "first");
+});
+
+test("other answers narrow inside the group, and the group stays when none of it fits", () => {
+  const pool = [racket("diamond", 30, { "easy power": 9 }, 1, "Diamond"), racket("hybrid", 30, { "easy power": 9 }, 2, "Hybrid"), racket("round", 30, { "easy power": 9 }, undefined, "Round")];
+  const shaped = (shapes: string[]) => ids(matchFinder(pool, [power, { label: "Shape", shapes }], []));
+  assert.deepEqual(shaped(["Hybrid"]), ["hybrid"]);
+  assert.deepEqual(shaped(["Round"]), ["diamond", "hybrid"]);
+});
+
+test("an empty ranking removes nothing", () => {
+  assert.equal(matchFinder([racket("a", 30, { "easy power": 9 }), racket("b", 30, { "easy power": 8 })], [power], []).length, 2);
+});
+
+test("every answer tied to a ranking points at a ranking that exists", () => {
+  for (const n of Object.values(niches)) for (const q of n.finder?.questions ?? []) for (const o of q.options)
+    if (o.list) assert.ok(n.topLists?.some(l => l.slug === o.list), `${o.label} -> ${o.list}`);
+});

@@ -121,11 +121,13 @@ export const tennis: Niche = {
     navLabel: "Racket quiz",
     invite: "Not sure which racket to choose?",
     notes: ["If you pick a head size, only rackets of that size are suggested."],
+    minReviews: 8,
+    rankWeight: 0.3,
     questions: [
       { id: "style", question: "What do you want most from a racket?", options: [
-        { label: "Power", hint: "Free depth and pace", want: ["easy power", "great on serve"], avoid: ["underpowered"], weight: 1.5 },
-        { label: "Control", hint: "Placement and precision", want: ["good control", "stable"], weight: 1.5 },
-        { label: "Spin", hint: "Heavy topspin", want: ["great spin"], weight: 1.5 },
+        { label: "Power", hint: "Free depth and pace", want: ["easy power", "great on serve"], avoid: ["underpowered"], weight: 1.5, list: "best-power-tennis-rackets" },
+        { label: "Control", hint: "Placement and precision", want: ["good control", "stable"], weight: 1.5, list: "best-control-tennis-rackets" },
+        { label: "Spin", hint: "Heavy topspin", want: ["great spin"], weight: 1.5, list: "best-spin-tennis-rackets" },
         { label: "A bit of everything", want: ["good control", "easy power"] },
       ] },
       { id: "head", question: "Which head size do you prefer?", options: [
