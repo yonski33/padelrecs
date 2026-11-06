@@ -115,7 +115,7 @@ export const padel: Niche = {
     intro: "Six quick questions, then the rackets whose reviews best match how you play.",
     navLabel: "Racket finder",
     notes: ["If you pick a shape, only rackets of that shape are suggested, so rackets whose shape we don't have on file are left out.", "Side of the court isn't something reviews tell us, so that answer is a rule of thumb: left-side players tend to finish points, so we lean toward power and smashes; right-side players tend to build them, so we lean toward control and defence."],
-    maxAgeYears: 1,
+    maxAgeYears: 0,
     questions: [
       { id: "style", question: "What do you want most from a racket?", options: [
         { label: "Control", hint: "Placement and consistency", want: ["good control", "great in defence"], avoid: ["head-heavy"], weight: 1.5 },
@@ -123,10 +123,8 @@ export const padel: Niche = {
         { label: "A balance of both", hint: "A bit of everything", want: ["good control", "easy power"] },
       ] },
       { id: "shape", question: "Which shape do you prefer?", options: [
-        { label: "Round", hint: "Usually easier to control", shapes: ["Round"] },
-        { label: "Teardrop", hint: "Usually between round and diamond", shapes: ["Teardrop"] },
+        { label: "Round, teardrop or hybrid", hint: "Usually easier to control", shapes: ["Round", "Teardrop", "Hybrid"] },
         { label: "Diamond", hint: "Usually more power", shapes: ["Diamond"] },
-        { label: "Hybrid", hint: "Mixes shapes", shapes: ["Hybrid"] },
         { label: "Don't mind" },
       ] },
       { id: "level", question: "What's your level?", options: [
