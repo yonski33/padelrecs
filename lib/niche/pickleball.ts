@@ -35,7 +35,7 @@ export const pickleball: Niche = {
   // The year column still holds the year the maker first listed the paddle.
   productYears: false,
   productPath: "paddles",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

@@ -31,7 +31,7 @@ export const ultralight: Niche = {
   // Makers name models without years (X-Mid Pro 2, NeoAir XLite NXT, Arc Haul Ultra), so no years.
   productYears: false,
   productPath: "gear",
-  amazon: { searchIndex: "SportsAndOutdoors" },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "tent", many: "tents" },
   // White page, trail-brown ink, one sky-blue accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   // --lime is a lighter sky blue so it stays readable on the brown panels; the logo and rating icons use #38bdf8.
