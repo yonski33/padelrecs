@@ -110,11 +110,11 @@ export const padel: Niche = {
     { label: "soft", tone: "neutral" },
   ],
   finder: {
-    title: "Padel Racket Quiz",
+    title: "Padel Racket Finder Quiz",
     heading: "Which padel racket is right for you?",
     description: "Answer six quick questions and get the padel rackets whose real player reviews best match how you play.",
     intro: "Answer 6 quick questions and see what real players recommend.",
-    navLabel: "Racket quiz",
+    navLabel: "Find Your Racket",
     invite: "Not sure which racket to choose?",
     notes: ["If you pick a shape, only rackets of that shape are suggested, so rackets whose shape we don't have on file are left out.", "Side of the court isn't something reviews tell us, so that answer is a rule of thumb: left-side players tend to finish points, so we lean toward power and smashes; right-side players tend to build them, so we lean toward control and defence."],
     minReviews: 10,

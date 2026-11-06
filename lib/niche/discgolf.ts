@@ -131,11 +131,11 @@ export const discgolf: Niche = {
     { label: "overstable", tone: "neutral" },
   ],
   finder: {
-    title: "Disc Golf Disc Quiz",
+    title: "Disc Golf Disc Finder Quiz",
     heading: "Which disc is right for you?",
     description: "Answer five quick questions and get the discs whose real player reviews best match how you throw.",
     intro: "Answer 5 quick questions and see what real players recommend.",
-    navLabel: "Disc quiz",
+    navLabel: "Find Your Disc",
     invite: "Not sure which disc to choose?",
     minReviews: 10,
     rankWeight: 0.3,

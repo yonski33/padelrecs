@@ -132,11 +132,11 @@ export const simracing: Niche = {
     { label: "console compatible", tone: "neutral" },
   ],
   finder: {
-    title: "Sim Racing Gear Quiz",
+    title: "Sim Racing Gear Finder Quiz",
     heading: "Which sim racing gear is right for you?",
     description: "Pick a wheelbase, pedals or cockpit, answer a few quick questions and get the gear whose real driver reviews best match your setup.",
     intro: "Pick what you need, answer a few quick questions and see what real drivers recommend.",
-    navLabel: "Gear quiz",
+    navLabel: "Find Your Sim Gear",
     invite: "Not sure which gear to choose?",
     minReviews: 10,
     rankWeight: 0.3,

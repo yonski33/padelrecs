@@ -95,6 +95,8 @@ button:disabled { opacity: .6; cursor: progress; }
 .header-add { margin-left: auto; }
 
 .main-nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.nav-short { display: none; }
+@media (max-width: 680px) { .nav-long { display: none; } .nav-short { display: inline; } }
 .main-nav::-webkit-scrollbar { display: none; }
 .main-nav a { position: relative; padding: 8px 12px 11px; font-size: 14.5px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
 .main-nav a:first-child { margin-left: -12px; }
@@ -957,7 +959,7 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .finder-options b { display: block; font-size: 16px; font-weight: 600; }
 .finder-options span { display: block; margin-top: 2px; font-size: 13.5px; color: var(--ink-3); }
 .finder-link { margin-top: 14px; padding: 0; border: 0; background: none; color: var(--green); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
-.finder-link:hover { color: var(--green-ink); }
+.finder-link:hover { border-color: transparent; background: none; color: var(--green-ink); text-decoration: underline; }
 .finder-summary { margin: 8px 0 4px; }
 .finder-summary h2 { font-size: 22px; }
 .finder-summary p { margin: 4px 0 0; font-size: 14px; color: var(--ink-3); }
