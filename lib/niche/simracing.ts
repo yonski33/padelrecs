@@ -131,6 +131,44 @@ export const simracing: Niche = {
     { label: "overpriced", tone: "neg" },
     { label: "console compatible", tone: "neutral" },
   ],
+  finder: {
+    title: "Sim Racing Gear Finder",
+    description: "Pick a wheelbase, pedals or cockpit, answer a few quick questions and get the gear whose real driver reviews best match your setup.",
+    intro: "Pick what you need, answer a few quick questions, and see what drivers report.",
+    navLabel: "Gear finder",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Wheelbase", shapes: ["Wheelbase"] },
+        { label: "Pedals", shapes: ["Pedals"] },
+        { label: "Cockpit", shapes: ["Cockpit"] },
+      ] },
+      { id: "ffb", question: "What do you want most from force feedback?", onlyIf: { question: "type", labels: ["Wheelbase"] }, options: [
+        { label: "Detail", hint: "Feeling the road and the grip", want: ["detailed force feedback"], weight: 1.5 },
+        { label: "Strength", hint: "Heavy, powerful force", want: ["strong force feedback"], weight: 1.5 },
+        { label: "Both", want: ["detailed force feedback", "strong force feedback"] },
+      ] },
+      { id: "console", question: "Do you race on a console?", onlyIf: { question: "type", labels: ["Wheelbase"] }, options: [
+        { label: "Yes", want: ["console compatible"], weight: 2, must: true },
+        { label: "No, on PC" },
+      ] },
+      { id: "brake", question: "How much does brake feel matter?", onlyIf: { question: "type", labels: ["Pedals"] }, options: [
+        { label: "A lot", want: ["great brake feel"], weight: 2 },
+        { label: "Not much" },
+      ] },
+      { id: "rig", question: "Will it hold a strong direct drive wheelbase?", onlyIf: { question: "type", labels: ["Cockpit"] }, options: [
+        { label: "Yes", hint: "It needs to stay rigid", want: ["rigid"], avoid: ["flex"], weight: 2 },
+        { label: "No" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Reliability", want: ["solid build"], avoid: ["durability issues", "quality control issues"], weight: 1.5 },
+        { label: "Easy setup", want: ["easy setup"], avoid: ["bad software"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-sim-racing-wheelbases", label: "Wheelbases", title: "Best Sim Racing Wheelbases", minReviews: 10,
       intro: "The wheelbases and wheel sets sim racers are most consistently happy with.", filters: [{ column: "shape", include: ["Wheelbase"] }] },
