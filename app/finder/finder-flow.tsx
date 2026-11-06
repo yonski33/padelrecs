@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { niche } from "../../lib/niche";
-import { decodeAnswers, encodeAnswers, fitsShape, matchFinder, type FinderMatch, type FinderProduct } from "../../lib/finder";
+import { decodeAnswers, encodeAnswers, fitsShape, matchFinder, visibleQuestions, type FinderMatch, type FinderProduct } from "../../lib/finder";
 import { ProductIcon } from "../icons";
 
 export type FinderCard = FinderProduct & {
@@ -49,12 +49,15 @@ export function FinderFlow({ cards, negativeTags }: { cards: FinderCard[]; negat
   // A shared link carries the answers (?a=01210), so it opens straight on the results.
   useEffect(() => {
     const saved = decodeAnswers(new URLSearchParams(window.location.search).get("a"), finder);
-    if (saved.every(a => a !== null)) { setAnswers(saved); setStep(questions.length); }
-  }, [finder, questions.length]);
-  const done = step >= questions.length;
-  const matches = useMemo(() => done
-    ? matchFinder(cards, answers.flatMap((a, i) => a === null ? [] : [questions[i].options[a]]), negativeTags) : [], [done, cards, answers, questions, negativeTags]);
-  const shapes = answers.flatMap((a, i) => a === null ? [] : questions[i].options[a].shapes ?? []);
+    const shown = visibleQuestions(finder, saved);
+    if (shown.every(i => saved[i] !== null)) { setAnswers(saved); setStep(shown.length); }
+  }, [finder]);
+  // Which questions apply depends on the answers so far; `step` counts through these.
+  const shown = useMemo(() => visibleQuestions(finder, answers), [finder, answers]);
+  const done = step >= shown.length;
+  const given = useMemo(() => shown.flatMap(i => answers[i] === null ? [] : [questions[i].options[answers[i]!]]), [shown, answers, questions]);
+  const matches = useMemo(() => done ? matchFinder(cards, given, negativeTags, undefined, finder.rankWeight) : [], [done, cards, given, negativeTags, finder.rankWeight]);
+  const shapes = given.flatMap(o => o.shapes ?? []);
   const offShape = shapes.length > 0 && matches.some(m => !fitsShape(m.product.shape, shapes));
   const remember = (next: (number | null)[], finished: boolean) => {
     const url = new URL(window.location.href);
@@ -62,30 +65,35 @@ export function FinderFlow({ cards, negativeTags }: { cards: FinderCard[]; negat
     window.history.replaceState(null, "", url);
   };
   const choose = (option: number) => {
-    const next = answers.map((a, i) => i === step ? option : a);
-    setAnswers(next); setStep(step + 1); remember(next, step + 1 >= questions.length);
+    const current = shown[step];
+    const picked = answers.map((a, i) => i === current ? option : a);
+    // A changed answer can retire later questions, so their old answers go too.
+    const applies = visibleQuestions(finder, picked);
+    const next = picked.map((a, i) => applies.includes(i) ? a : null);
+    setAnswers(next); setStep(step + 1); remember(next, step + 1 >= applies.length);
   };
   const restart = () => { const blank = questions.map(() => null); setAnswers(blank); setStep(0); remember(blank, false); };
 
   if (done) return <section className="finder-results" aria-live="polite">
     <div className="finder-summary">
       <h2>{`Your best ${matches.length === 1 ? "match" : "matches"}`}</h2>
-      <p>{answers.flatMap((a, i) => a === null || !(questions[i].options[a].want || questions[i].options[a].shapes) ? [] : [questions[i].options[a].label]).join(" · ") || "No preferences"}</p>
+      <p>{given.filter(o => o.want || o.avoid || o.shapes).map(o => o.label).join(" · ") || "No preferences"}</p>
       {offShape && <p>{`Not enough ${niche.words.many} of that kind qualify yet, so these are the closest matches overall.`}</p>}
       <button type="button" className="finder-link" onClick={restart}>Start again</button>
     </div>
     <ol className="top-list">{matches.map((m, i) => <Result key={m.product.id} match={m} rank={i + 1}/>)}</ol>
   </section>;
 
-  const q = questions[step];
+  const q = questions[shown[step]];
   return <section className="finder-card" aria-live="polite">
-    <div className="finder-progress" role="progressbar" aria-valuemin={1} aria-valuemax={questions.length} aria-valuenow={step + 1} aria-label={`Question ${step + 1} of ${questions.length}`}>
-      {questions.map((x, i) => <i key={x.id} className={i <= step ? "on" : undefined}/>)}
+    <div className="finder-progress" role="progressbar" aria-valuemin={1} aria-valuemax={shown.length} aria-valuenow={step + 1} aria-label={`Question ${step + 1} of ${shown.length}`}>
+      {shown.map((x, i) => <i key={x} className={i <= step ? "on" : undefined}/>)}
     </div>
-    <p className="finder-count">{`Question ${step + 1} of ${questions.length}`}</p>
+    {/* The total isn't known until the first answer on finders with follow-up questions. */}
+    <p className="finder-count">{step === 0 && questions.some(x => x.onlyIf) ? "Question 1" : `Question ${step + 1} of ${shown.length}`}</p>
     <h2>{q.question}</h2>
     <div className="finder-options">
-      {q.options.map((o, i) => <button key={o.label} type="button" aria-pressed={answers[step] === i} onClick={() => choose(i)}>
+      {q.options.map((o, i) => <button key={o.label} type="button" aria-pressed={answers[shown[step]] === i} onClick={() => choose(i)}>
         <b>{o.label}</b>{o.hint && <span>{o.hint}</span>}
       </button>)}
     </div>

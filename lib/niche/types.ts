@@ -79,12 +79,18 @@ export type TopList = {
 export type FinderOption = { label: string; hint?: string; want?: string[]; avoid?: string[]; weight?: number; must?: boolean;
   /** Only products whose shape column starts with one of these, when enough of them qualify. */
   shapes?: string[] };
-export type FinderQuestion = { id: string; question: string; options: FinderOption[] };
+export type FinderQuestion = { id: string; question: string; options: FinderOption[];
+  /** Only asked after one of these answers to an earlier question, for questions that fit one category. */
+  onlyIf?: { question: string; labels: string[] } };
 export type Finder = {
   title: string; description: string; intro: string; navLabel: string;
   /** Lines added to "How the matching works", for rules of thumb that don't come from reviews. */
   notes?: string[];
   minReviews?: number;
+  /** Positive share (mixed = half) a product needs, when stricter than the rankings' bar. */
+  minPositive?: number;
+  /** How much a product's rankings score counts next to the answers (default in lib/finder.ts). */
+  rankWeight?: number;
   /** Only models from the last this many years, on niches with model years. */
   maxAgeYears?: number;
   questions: FinderQuestion[];
