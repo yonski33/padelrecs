@@ -73,7 +73,9 @@ export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOp
       .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))[0] ?? null;
     // The answers lead; being liked and widely reviewed decides between close matches, so a well-reviewed product beats a
     // thinly reviewed one that fits about as well. Stronger than this and the same few products show up for everyone.
-    return { product, score: fit + 0.2 * liked + REVIEW_WEIGHT * Math.log2(1 + product.reviews), reasons, watch };
+    // A product nobody describes the way you asked gets no such help, however many reviews it has.
+    const relevant = !wanted.length || wanted.some(tag => (product.tags[tag] ?? 0) > 0);
+    return { product, score: fit + 0.2 * liked + (relevant ? REVIEW_WEIGHT * Math.log2(1 + product.reviews) : 0), reasons, watch };
   });
   return scored.sort((a, b) => b.score - a.score || b.product.reviews - a.product.reviews || a.product.id.localeCompare(b.product.id)).slice(0, count);
 }
