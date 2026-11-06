@@ -109,6 +109,47 @@ export const padel: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  finder: {
+    title: "Padel Racket Finder",
+    description: "Answer six quick questions and get the padel rackets whose real player reviews best match how you play.",
+    intro: "Six quick questions, then the rackets whose reviews best match how you play.",
+    navLabel: "Racket finder",
+    notes: ["If you pick a shape, only rackets of that shape are suggested, so rackets whose shape we don't have on file are left out.", "Side of the court isn't something reviews tell us, so that answer is a rule of thumb: left-side players tend to finish points, so we lean toward power and smashes; right-side players tend to build them, so we lean toward control and defence."],
+    maxAgeYears: 1,
+    questions: [
+      { id: "style", question: "What do you want most from a racket?", options: [
+        { label: "Control", hint: "Placement and consistency", want: ["good control", "great in defence"], avoid: ["head-heavy"], weight: 1.5 },
+        { label: "Power", hint: "Hitting through the ball", want: ["easy power", "great on smashes"], weight: 1.5 },
+        { label: "A balance of both", hint: "A bit of everything", want: ["good control", "easy power"] },
+      ] },
+      { id: "shape", question: "Which shape do you prefer?", options: [
+        { label: "Round", hint: "Usually easier to control", shapes: ["Round"] },
+        { label: "Teardrop", hint: "Usually between round and diamond", shapes: ["Teardrop"] },
+        { label: "Diamond", hint: "Usually more power", shapes: ["Diamond"] },
+        { label: "Hybrid", hint: "Mixes shapes", shapes: ["Hybrid"] },
+        { label: "Don't mind" },
+      ] },
+      { id: "level", question: "What's your level?", options: [
+        { label: "Beginner", hint: "Playing under a year or so", want: ["forgiving"], avoid: ["demanding", "small sweet spot"], weight: 2 },
+        { label: "Intermediate", hint: "Regular games, solid basics", want: ["forgiving"], avoid: ["demanding"], weight: 0.75 },
+        { label: "Advanced", hint: "Competitive, clean technique" },
+      ] },
+      { id: "side", question: "Which side do you usually play?", options: [
+        { label: "Left", want: ["great on smashes", "easy power"], weight: 0.5 },
+        { label: "Right", want: ["good control", "great in defence"], weight: 0.5 },
+        { label: "Both or not sure" },
+      ] },
+      { id: "arm", question: "Do you get arm or elbow pain?", options: [
+        { label: "Yes", want: ["arm-friendly"], avoid: ["vibrates on mishits"], weight: 2, must: true },
+        { label: "No" },
+      ] },
+      { id: "feel", question: "How do you like the racket to feel?", options: [
+        { label: "Soft", want: ["soft"], avoid: ["firm"], weight: 0.75 },
+        { label: "Firm", want: ["firm"], avoid: ["soft"], weight: 0.75 },
+        { label: "No preference" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts). Model years are real here, so lists keep to the current and previous model year (maxAgeYears 1: 2025–2026 in 2026; owner decision 2026-10-25, so the site doesn't look outdated). Tags come from the bank above. The catalogue has no player-level field, so the
   // fourth list is "most forgiving" from review tags rather than "best for intermediate players".
   topLists: [

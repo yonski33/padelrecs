@@ -13,6 +13,7 @@ const links = [
   ["/", `${niche.people.One} reviews`],
   [catalogPath, catalogLabel],
 ] as const;
+const finderLink = niche.finder ? ["/finder", niche.finder.navLabel] as const : null;
 
 const topLists = withModelYears(niche.topLists ?? []);
 
@@ -60,6 +61,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
           return href === catalogPath && ranked.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
         })}
+        {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}>{finderLink[1]}</a>}
       </nav>
       {/* On Rankings pages the row lists the rankings, so a chip there opens a ranking, not a product-type page. */}
       {inRankings && ranked.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">

@@ -74,6 +74,22 @@ export type TopList = {
   minReviews?: number;
 };
 
+/** One answer on the finder (/finder). `want` tags count for a product and `avoid` tags against it; an option with neither,
+ *  like "No preference", changes nothing. `must` narrows the pool to products with those mentions when enough have them. */
+export type FinderOption = { label: string; hint?: string; want?: string[]; avoid?: string[]; weight?: number; must?: boolean;
+  /** Only products whose shape column starts with one of these, when enough of them qualify. */
+  shapes?: string[] };
+export type FinderQuestion = { id: string; question: string; options: FinderOption[] };
+export type Finder = {
+  title: string; description: string; intro: string; navLabel: string;
+  /** Lines added to "How the matching works", for rules of thumb that don't come from reviews. */
+  notes?: string[];
+  minReviews?: number;
+  /** Only models from the last this many years, on niches with model years. */
+  maxAgeYears?: number;
+  questions: FinderQuestion[];
+};
+
 export type Niche = {
   id: string;
   /** Postgres schema holding this niche's tables, inside the shared Supabase project. */
@@ -143,6 +159,8 @@ export type Niche = {
   movedAway?: { source: string; destination: string; query?: { key: string; value: string } }[];
   /** Rankings pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
   topLists?: TopList[];
+  /** The product finder at /finder (lib/finder.ts). Niches without one have no such page. */
+  finder?: Finder;
   /** Amazon affiliate links on product pages (lib/amazon.ts), searched in this Amazon category ("Beauty"). They appear
    *  once the deployment also has the Amazon variables (lib/amazon-offer.ts amazonLinksOn; scripts/set-amazon-env.mjs). */
   amazon?: { searchIndex: string; marketplace?: string; /** Show Amazon's product photo on product pages, where Amazon matches the product. */ photos?: boolean };

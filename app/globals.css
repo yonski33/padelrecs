@@ -942,3 +942,24 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .browse { display: grid; gap: 18px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
 .browse h2 { margin: 0 0 8px; font-size: 15px; }
 .browse p { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; font-size: 14px; }
+
+/* Product finder (/finder) */
+.finder-card { max-width: 560px; margin: 8px 0 28px; padding: 22px; border: 1px solid var(--line); border-radius: 14px; }
+.finder-card h2 { margin: 2px 0 16px; font-size: 22px; }
+.finder-progress { display: flex; gap: 5px; margin-bottom: 14px; }
+.finder-progress i { flex: 1; height: 4px; border-radius: 2px; background: var(--line); }
+.finder-progress i.on { background: var(--green); }
+.finder-count { margin: 0; font-size: 13px; color: var(--ink-3); }
+.finder-options { display: grid; gap: 8px; }
+.finder-options button { display: block; width: 100%; padding: 13px 16px; border: 1px solid var(--line); border-radius: 10px; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.finder-options button:hover { border-color: var(--green-line); background: var(--tint); }
+.finder-options button[aria-pressed="true"] { border-color: var(--green); background: var(--green-wash); }
+.finder-options b { display: block; font-size: 16px; font-weight: 600; }
+.finder-options span { display: block; margin-top: 2px; font-size: 13.5px; color: var(--ink-3); }
+.finder-link { margin-top: 14px; padding: 0; border: 0; background: none; color: var(--green); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.finder-link:hover { color: var(--green-ink); }
+.finder-summary { margin: 8px 0 4px; }
+.finder-summary h2 { font-size: 22px; }
+.finder-summary p { margin: 4px 0 0; font-size: 14px; color: var(--ink-3); }
+.finder-summary .finder-link { margin-top: 6px; }
+@media (max-width: 680px) { .finder-card { padding: 16px; } }
