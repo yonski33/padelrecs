@@ -1,11 +1,11 @@
 {
-  "claude": "Praised for strong coding, writing and analysis; many find usage limits run out quickly on cheaper plans.",
-  "enpass": "Liked for keeping data in a private cloud or locally; some find bugs and a sense development has stalled.",
-  "gemini": "Praised for accuracy, speed and strong research tools; several report confident wrong answers.",
-  "keepassxc": "Liked as a reliable, local, private manager with no subscription; some find manual syncing painful.",
-  "keeper": "Valued as easy to use and well suited to teams; many find bugs, a high price and upsells.",
-  "mullvad-vpn": "Praised as simple, reliable and fast with a flat price; several left after port forwarding was dropped.",
-  "nordpass": "Liked as easy to use and reliable with a clean look; many find bugs and slowness.",
-  "proton-pass": "Liked for a clean interface, email aliases and a usable free plan; some miss features like folders.",
-  "windscribe": "Liked as good value with useful extras like split tunnelling; some find the free plan data cap limiting."
+  "claude": "Often preferred to ChatGPT for accuracy and a direct tone; usage limits are the dominant complaint.",
+  "enpass": "Data stays local or in the owner's cloud, with a lifetime option; bugs and stalled work worry some.",
+  "gemini": "Strong image and research tools and a generous free plan; several describe confident wrong answers.",
+  "keepassxc": "Local, private and subscription-free for people leaving cloud services; syncing is manual.",
+  "keeper": "Easy and reliable for teams and shared folders, but the high price and upsells split opinion.",
+  "mullvad-vpn": "Flat price and no email signup, and some say it works in China; streaming sites and Reddit block it.",
+  "nordpass": "Clean, easy and reliable with good Apple autofill, though a sluggish extension asks to unlock often.",
+  "proton-pass": "Email aliases and a usable free plan for those leaving Bitwarden or 1Password; folders are missing.",
+  "windscribe": "Good value with split tunnelling, port forwarding and ad blocking; a couple found Proton faster."
 }
