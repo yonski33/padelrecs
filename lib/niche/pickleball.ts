@@ -118,6 +118,40 @@ export const pickleball: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  finder: {
+    title: "Pickleball Paddle Finder",
+    description: "Answer five quick questions and get the pickleball paddles whose real player reviews best match how you play.",
+    intro: "Five quick questions, then the paddles whose reviews best match how you play.",
+    navLabel: "Paddle finder",
+    maxAgeYears: 2,
+    questions: [
+      { id: "style", question: "What do you want most from a paddle?", options: [
+        { label: "Power", hint: "Drives and put-aways", want: ["easy power", "great pop"], weight: 1.5 },
+        { label: "Control", hint: "Placement and touch", want: ["good control", "great for dinks"], avoid: ["hard to control"], weight: 1.5 },
+        { label: "Spin", hint: "Serves and topspin drives", want: ["lots of spin"], avoid: ["low spin"], weight: 1.5 },
+        { label: "A bit of everything", want: ["good control", "easy power"] },
+      ] },
+      { id: "level", question: "What's your level?", options: [
+        { label: "Beginner", hint: "Still learning the game", want: ["forgiving"], avoid: ["hard to control", "small sweet spot"], weight: 2 },
+        { label: "Intermediate", hint: "Regular games, solid basics", want: ["forgiving"], avoid: ["hard to control"], weight: 0.75 },
+        { label: "Advanced", hint: "Tournaments or high-level rec play" },
+      ] },
+      { id: "game", question: "Where do you win most of your points?", options: [
+        { label: "At the kitchen", hint: "Dinks and quick hands battles", want: ["great for dinks", "fast hands"], weight: 0.75 },
+        { label: "From the baseline", hint: "Drives and deep returns", want: ["great pop", "easy power"], weight: 0.75 },
+        { label: "A mix of both" },
+      ] },
+      { id: "feel", question: "How do you like the paddle to feel?", options: [
+        { label: "Soft", want: ["soft"], avoid: ["firm"], weight: 0.75 },
+        { label: "Firm", want: ["firm"], avoid: ["soft"], weight: 0.75 },
+        { label: "No preference" },
+      ] },
+      { id: "lasting", question: "Is long-term durability a priority?", options: [
+        { label: "Yes", hint: "I want it to last", avoid: ["durability issues", "delamination", "dead spots"], weight: 2 },
+        { label: "Not really" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts). No model-year cutoff: paddles are updated by name (Prism Flash, V7…), not by year,
   // and older models like the 2023 Prism are still current. Paddle shapes are too sparsely filled in to filter on, so lists go by review tags.
   topLists: [

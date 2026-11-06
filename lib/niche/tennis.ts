@@ -113,6 +113,45 @@ export const tennis: Niche = {
     { label: "crisp", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  finder: {
+    title: "Tennis Racket Finder",
+    description: "Answer six quick questions and get the tennis rackets whose real player reviews best match how you play.",
+    intro: "Six quick questions, then the rackets whose reviews best match how you play.",
+    navLabel: "Racket finder",
+    notes: ["If you pick a head size, only rackets of that size are suggested."],
+    questions: [
+      { id: "style", question: "What do you want most from a racket?", options: [
+        { label: "Power", hint: "Free depth and pace", want: ["easy power", "great on serve"], avoid: ["underpowered"], weight: 1.5 },
+        { label: "Control", hint: "Placement and precision", want: ["good control", "stable"], weight: 1.5 },
+        { label: "Spin", hint: "Heavy topspin", want: ["great spin"], weight: 1.5 },
+        { label: "A bit of everything", want: ["good control", "easy power"] },
+      ] },
+      { id: "head", question: "Which head size do you prefer?", options: [
+        { label: "95 to 98 sq in", hint: "Usually more control", shapes: ["95", "97", "98"] },
+        { label: "99 sq in or larger", hint: "Usually more power and forgiveness", shapes: ["99", "100", "102", "103", "104", "105", "107", "110"] },
+        { label: "Don't mind" },
+      ] },
+      { id: "level", question: "What's your level?", options: [
+        { label: "Beginner", hint: "Still building your strokes", want: ["forgiving", "maneuverable"], avoid: ["hard to swing", "small sweet spot"], weight: 2 },
+        { label: "Intermediate", hint: "Regular matches, solid basics", want: ["forgiving"], avoid: ["hard to swing"], weight: 0.75 },
+        { label: "Advanced", hint: "Competitive, full swings" },
+      ] },
+      { id: "arm", question: "Do you get arm or elbow pain?", options: [
+        { label: "Yes", want: ["arm-friendly"], avoid: ["harsh on the arm"], weight: 2, must: true },
+        { label: "No" },
+      ] },
+      { id: "swing", question: "Which matters more to you?", options: [
+        { label: "Quick and easy to swing", want: ["maneuverable"], avoid: ["hard to swing"], weight: 0.75 },
+        { label: "Solid against big hitters", want: ["stable"], avoid: ["unstable vs heavy balls"], weight: 0.75 },
+        { label: "Neither in particular" },
+      ] },
+      { id: "feel", question: "How do you like the racket to feel?", options: [
+        { label: "Soft", want: ["soft"], avoid: ["crisp"], weight: 0.75 },
+        { label: "Crisp", want: ["crisp"], avoid: ["soft"], weight: 0.75 },
+        { label: "No preference" },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts). Lists go by review tags; head sizes are written too many ways to filter on.
   topLists: [
     { slug: "best-tennis-rackets", label: "Best overall", title: "Best Tennis Rackets", minReviews: 10,
