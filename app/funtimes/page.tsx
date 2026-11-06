@@ -6,6 +6,7 @@ import { isAdmin } from "./auth";
 import { getCurrentUser } from "../../lib/supabase/auth";
 import RacketPicker from "../racket-picker";
 import RacketSpecs from "./racket-specs";
+import DeleteWebReview from "./delete-web-review";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
@@ -20,6 +21,7 @@ const messages: Record<string,string> = {
  pending:"Review moved back to pending and hidden from the public feed.",
  web:"Web review published.",
  "edit-saved":"Review updated.",
+ "web-deleted":"Web review deleted. It leaves the public pages within about a minute.",
  "edit-invalid":"Could not open the review editor. Please try again.",
  invalid:`Please check all fields. A web review needs an existing ${w.one} or a new brand, model and year (1980–2100), an excerpt of at least 20 characters or a summary of at least 30, source details, and a valid HTTP or HTTPS source link.`,
  missing:"That review no longer exists.",
@@ -64,7 +66,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <label className="field">Source date <span className="muted">(optional)</span><input name="sourceDate" type="date"/><small>Leave blank if the original publication date is unknown.</small></label>
  <TagCheckboxes/>
  <p className="small muted">Web excerpts appear with their source below the text. They have no star rating and do not affect {niche.people.one} averages.</p><button type="submit">Publish web review</button></form>
- <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3>{e.summary&&<p className="review-text"><b>Summary:</b> {e.summary}</p>}{e.excerpt&&<p className="review-text">“{e.excerpt}”</p>}<TagList tags={e.tags}/><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/funtimes/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p></article>) : <p className="muted">No web reviews added yet.</p>}
+ <h2 className="admin-heading">Published web reviews</h2>{external.length ? external.slice(0,20).map(e=><article className="review" key={e.id}><h3>{models.find(r=>r.id===e.racketId)?.name}</h3>{e.summary&&<p className="review-text"><b>Summary:</b> {e.summary}</p>}{e.excerpt&&<p className="review-text">“{e.excerpt}”</p>}<TagList tags={e.tags}/><div className="review-meta">{e.sourcePlatform} · {e.sourceName}</div><div className="byline"><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a><span>Added {date(e.createdAt)}</span></div><p><a href={`/funtimes/edit-review?type=web&id=${encodeURIComponent(e.id)}`}>Edit review</a></p><div className="admin-actions"><DeleteWebReview id={e.id} page={page}/></div></article>) : <p className="muted">No web reviews added yet.</p>}
  <div className="admin-pagination">{page>1&&<a href={`/funtimes?tab=web&page=${page-1}`}>← Newer</a>}{external.length>20&&<a href={`/funtimes?tab=web&page=${page+1}`}>Older →</a>}</div>
  </div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/funtimes?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>

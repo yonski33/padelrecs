@@ -1,8 +1,8 @@
 import {createHash} from "node:crypto";
-import {eq} from "drizzle-orm";
+import {and,eq} from "drizzle-orm";
 import {z} from "zod";
 import type {getDb} from "./index";
-import {reviews,externalReviews,rackets} from "./schema";
+import {reviews,externalReviews,rackets,reviewVotes} from "./schema";
 import {tagsInput} from "../lib/tags";
 import {profileChoice,sourcePlatform,webExcerpt,webSummary,webSentiment,hasWebText} from "../lib/review-options";
 
@@ -40,5 +40,15 @@ export async function saveReviewEdit(db:ReturnType<typeof getDb>,value:ReviewEdi
    await tx.update(externalReviews).set({racketId:value.racketId,excerpt:value.excerpt,summary:value.summary,sentiment:value.sentiment,sourcePlatform:value.sourcePlatform,sourceName:value.sourceName,sourceUrl:value.sourceUrl,sourceDate:value.sourceDate||null,tags:value.tags}).where(eq(externalReviews.id,value.id));
   }
   return "saved";
+ });
+}
+
+/** Deletes a published web review and its helpful votes. A research review stays gone: the publisher only inserts candidates still
+ *  marked approved, and a published candidate with no live row is skipped. */
+export async function deleteWebReview(db:ReturnType<typeof getDb>,id:string){
+ return db.transaction(async tx=>{
+  await tx.delete(reviewVotes).where(and(eq(reviewVotes.reviewType,"web"),eq(reviewVotes.reviewId,id)));
+  const removed=await tx.delete(externalReviews).where(eq(externalReviews.id,id)).returning({id:externalReviews.id});
+  return removed.length?"deleted":"missing";
  });
 }
