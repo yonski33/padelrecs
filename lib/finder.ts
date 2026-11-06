@@ -10,6 +10,8 @@ export const FINDER_RESULTS = 3;
 export const MUST_MENTIONS = 2;
 /** Pulls a share toward zero when a product has few reviews, so 2 of 5 can't outrank 30 of 100. */
 const SMOOTHING = 8;
+/** How much each doubling of reviews adds to a match. */
+const REVIEW_WEIGHT = 0.07;
 
 export type FinderProduct = {
   id: string; reviews: number; positive: number; mixed: number; negative: number;
@@ -69,8 +71,9 @@ export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOp
       .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag)).slice(0, 3);
     const watch = negativeTags.map(tag => ({ tag, count: product.tags[tag] ?? 0 })).filter(r => r.count > 1)
       .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))[0] ?? null;
-    // Being liked and widely reviewed only breaks near-ties: the answers lead.
-    return { product, score: fit + 0.2 * liked + 0.01 * Math.log2(1 + product.reviews), reasons, watch };
+    // The answers lead; being liked and widely reviewed decides between close matches, so a well-reviewed product beats a
+    // thinly reviewed one that fits about as well. Stronger than this and the same few products show up for everyone.
+    return { product, score: fit + 0.2 * liked + REVIEW_WEIGHT * Math.log2(1 + product.reviews), reasons, watch };
   });
   return scored.sort((a, b) => b.score - a.score || b.product.reviews - a.product.reviews || a.product.id.localeCompare(b.product.id)).slice(0, count);
 }
