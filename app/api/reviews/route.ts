@@ -4,6 +4,7 @@ import { z } from "zod";
 import { and, eq, gte, isNotNull } from "drizzle-orm";
 import { database } from "../../../db/data";
 import { racketSelection, ensureRacket } from "../../../db/racket-selection";
+import { variantInput, reviewVariant } from "../../../db/review-variant";
 import { reviews, rackets } from "../../../db/schema";
 import { tagsInput } from "../../../lib/tags";
 import { profileChoice } from "../../../lib/review-options";
@@ -16,11 +17,13 @@ const input=z.object({
  rating,
  powerRating:optionalRating,controlRating:optionalRating,maneuverabilityRating:optionalRating,comfortRating:optionalRating,forgivenessRating:optionalRating,
  playerLevel:profileChoice("playerLevel").optional(),playingSide:profileChoice("playingSide").optional(),playingStyle:profileChoice("playingStyle").optional(),timeWithRacket:profileChoice("timeWithRacket").optional(),
- reviewText:z.string().trim().min(20),tags:tagsInput,alias:z.string().trim().max(50).optional(),email:z.union([z.literal(""),z.string().trim().email().max(254)]).optional()
+ reviewText:z.string().trim().min(20),tags:tagsInput,alias:z.string().trim().max(50).optional(),email:z.union([z.literal(""),z.string().trim().email().max(254)]).optional(),
+ // Niches with variants (DiscGolfRecs: the plastic): stored only when it is one of the chosen product's variants (reviewVariant).
+ variant:variantInput
 }).and(racketSelection);
 const noStore={"Cache-Control":"no-store"};
 type Valid=z.infer<typeof input>;
-const reviewRow=(value:Valid,status:"pending"|"rejected")=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,status,createdAt:new Date().toISOString()});
+const reviewRow=(value:Valid,status:"pending"|"rejected",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,variant,status,createdAt:new Date().toISOString()});
 // Spam is answered exactly like a saved review, so a bot learns nothing from the response; only the server log says why.
 const accepted=()=>Response.json({status:"pending"},{status:201,headers:noStore});
 function dropped(reason:string){console.warn(`Review dropped (${reason})`);return accepted();}
@@ -31,7 +34,7 @@ async function rejected(reason:string,value:Valid){
  if(value.racketMode==="existing")try{
   const db=await database();
   const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
-  if(racket)await db.insert(reviews).values({...reviewRow(value,"rejected"),racketId:racket.id});
+  if(racket)await db.insert(reviews).values({...reviewRow(value,"rejected",await reviewVariant(db,niche,racket.id,value.variant)),racketId:racket.id});
  }catch(error){console.error("Rejected review save failed",error);}
  return accepted();
 }
@@ -69,7 +72,7 @@ export async function POST(request:Request){
   if(value.racketMode==="existing") {
    const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return Response.json({error:`Choose a listed ${niche.words.one} or select New ${niche.words.one}.`},{status:400});
-   await db.insert(reviews).values({...review,racketId:racket.id});
+   await db.insert(reviews).values({...review,racketId:racket.id,variant:await reviewVariant(db,niche,racket.id,value.variant)});
   } else {
    await db.transaction(async tx=>{
     const racketId=await ensureRacket(tx,value,review.createdAt);

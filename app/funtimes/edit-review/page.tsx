@@ -8,6 +8,7 @@ import RacketEditSelector from "../racket-edit-selector";
 import DeleteWebReview from "../delete-web-review";
 import {TagCheckboxes} from "../../tags";
 import {niche} from "../../../lib/niche";
+import {productVariants} from "../../../lib/variants";
 const {profile}=niche;
 export const dynamic="force-dynamic";
 export const metadata={title:"Edit review",robots:{index:false,follow:false}};
@@ -20,7 +21,9 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
  const [player]=web?[]:await db.select().from(reviews).where(eq(reviews.id,q.id));
  const [external]=web?await db.select().from(externalReviews).where(eq(externalReviews.id,q.id)):[];
  const selected=player||external;if(!selected)notFound();
- const models=await db.select({id:rackets.id,name:rackets.name}).from(rackets).orderBy(rackets.name);
+ const models=await db.select({id:rackets.id,name:rackets.name,core:rackets.core}).from(rackets).orderBy(rackets.name);
+ // Niches with variants (DiscGolfRecs plastics): each product's list, so the optional picker follows the selected product.
+ const variants=niche.variants?Object.fromEntries(models.map(m=>[m.id,productVariants(m.core)]).filter(([,v])=>v.length)):undefined;
  const back=web?"/funtimes?tab=web":`/funtimes?status=${player!.status}`;
  return <main className="narrow"><div className="page-title"><h1>Edit {web?"web review":`${niche.people.one} submission`}</h1></div>
  <p><a href={back}>← Back to reviews</a></p>
@@ -28,7 +31,7 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
  <form action="/api/funtimes/edit-review" method="post" className="review-form">
  <input type="hidden" name="type" value={web?"web":"player"}/><input type="hidden" name="id" value={selected.id}/><input type="hidden" name="revision" value={reviewRevision(selected)}/>
  <input type="hidden" name="returnStatus" value={player?.status||"pending"}/>
- <RacketEditSelector key={selected.id} models={models} racketId={selected.racketId}/>
+ <RacketEditSelector key={selected.id} models={models.map(({id,name})=>({id,name}))} racketId={selected.racketId} variants={variants} variant={selected.variant}/>
  {player?<>
   <p className="small muted">Status: {player.status}. Saving keeps this moderation status.</p>
   <label className="field">Overall rating<select name="rating" required defaultValue={player.rating}>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>

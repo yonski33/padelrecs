@@ -3,10 +3,12 @@ import { useMemo, useState } from "react";
 import { matchingRackets } from "../../lib/racket-search";
 import { ProductIcon } from "../icons";
 import { niche, hasYears } from "../../lib/niche";
+import VariantSelect from "../variant-select";
 
 const { words: w, examples: ex } = niche;
 
-export type FieldRacket = { id: string; name: string; slug: string; shape: string | null; brand?: string };
+/** variants: the product's variants on niches with niche.variants (DiscGolfRecs plastics), for the optional picker. */
+export type FieldRacket = { id: string; name: string; slug: string; shape: string | null; brand?: string; variants?: string[] };
 
 const norm = (s: string) => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 const tokens = (s: string) => norm(s).split(" ").filter(Boolean).map(t => /^\d+$/.test(t) ? String(Number(t)) : t);
@@ -112,6 +114,9 @@ export default function RacketField({ rackets, brands, initialRacket }: { racket
       {hasYears && !parts.year && <p className="help">Add the year — it tells this season’s model apart from last one’s.</p>}
       {forceNew && <button type="button" className="text-button" onClick={() => setForceNew(false)}>← Back to suggestions</button>}
     </div>}
+
+    {/* Niches with variants: which one (DiscGolfRecs: the plastic), from the picked product's list; a new product has none. */}
+    {selected && <VariantSelect key={selected.id} options={selected.variants}/>}
 
     {!selected && !isNew && <p className="help">Pick it from the list as you type. Not in there? Keep typing the full name and we’ll add it.</p>}
   </div>;

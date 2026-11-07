@@ -1,0 +1,1 @@
+ALTER TABLE "padelrecs"."reviews" ADD COLUMN "variant" text;
