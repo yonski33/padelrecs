@@ -29,7 +29,7 @@ export const catalog = cache(async function catalog(connection?:ReturnType<typeo
  const db = connection ?? await database();
  const [allBrands, allRackets, publicReviews, external, unapproved, votes] = await Promise.all([
  db.select().from(brands), db.select().from(rackets),
- db.select({id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, reviewText: reviews.reviewText, alias: reviews.alias, playerLevel: reviews.playerLevel, playingSide: reviews.playingSide, playingStyle: reviews.playingStyle, timeWithRacket: reviews.timeWithRacket, createdAt: reviews.createdAt, powerRating: reviews.powerRating, controlRating: reviews.controlRating, maneuverabilityRating: reviews.maneuverabilityRating, comfortRating: reviews.comfortRating, forgivenessRating: reviews.forgivenessRating, tags: reviews.tags}).from(reviews).where(eq(reviews.status, "approved")).orderBy(desc(reviews.createdAt)),
+ db.select({id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, reviewText: reviews.reviewText, alias: reviews.alias, playerLevel: reviews.playerLevel, playingSide: reviews.playingSide, playingStyle: reviews.playingStyle, timeWithRacket: reviews.timeWithRacket, createdAt: reviews.createdAt, powerRating: reviews.powerRating, controlRating: reviews.controlRating, maneuverabilityRating: reviews.maneuverabilityRating, comfortRating: reviews.comfortRating, forgivenessRating: reviews.forgivenessRating, variant: reviews.variant, tags: reviews.tags}).from(reviews).where(eq(reviews.status, "approved")).orderBy(desc(reviews.createdAt)),
  db.select().from(externalReviews).orderBy(desc(externalReviews.createdAt)),
  db.select({racketId: reviews.racketId, createdAt: reviews.createdAt}).from(reviews).where(ne(reviews.status, "approved")),
  voteCounts(db)]);

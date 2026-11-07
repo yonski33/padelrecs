@@ -96,6 +96,8 @@ export function Review({review: r, data, showRacket = true, showCategory = true}
     </header>
     <p className="note-body">{r.reviewText}</p>
     <TagList tags={r.tags}/>
+    {/* Niches with variants: the one the player used (DiscGolfRecs: "Plastic: Star"). */}
+    {niche.variants && r.variant && <p className="variant-label">{niche.variants.label}: <b>{r.variant}</b></p>}
     {!showRacket && scores.length > 0 && <div className="subscores-line">{scores.map(([label, key]) => <span key={key}>{label}<b>{r[key]}</b></span>)}</div>}
     <footer className="note-foot">
       <Avatar alias={r.alias}/>

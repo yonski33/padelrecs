@@ -39,9 +39,9 @@ function SideArt({ x, brand }: { x: Parameters<typeof shopPhoto>[0] & Parameters
 
 /** Counts behind the page's verdict, title and description: every review, the sentiment split, and tags by how often
  *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. With `variant`
- *  (niche.variants), the same counts for the web reviews of that one variant: the "By plastic" table. */
+ *  (niche.variants), the same counts for the player and web reviews of that one variant: the "By plastic" table. */
 function summary(data: Data, id: string, variant?: string) {
-  const allReviews = variant ? [] : data.reviews.filter(x => x.racketId === id), allExternal = data.external.filter(e => e.racketId === id && (!variant || e.variant === variant));
+  const allReviews = data.reviews.filter(x => x.racketId === id && (!variant || x.variant === variant)), allExternal = data.external.filter(e => e.racketId === id && (!variant || e.variant === variant));
   // Tags and "% positive" count the niche's recent window (lib/recent.ts), or every review when too few are recent;
   // the total is always every review.
   const recentReviews = allReviews.filter(x => isRecent(x.createdAt)), recentExternal = allExternal.filter(e => isRecent(webDate(e)));
@@ -105,9 +105,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const sort = query.sort === "newest" ? "newest" : "helpful";
   const sum = summary(data, r.id);
   const tag = typeof query.tag === "string" && sum.tagCounts.has(query.tag) ? query.tag : undefined;
-  // Niches with variants (DiscGolfRecs plastics): how many web reviews name each one, most first. Empty elsewhere, and on
+  // Niches with variants (DiscGolfRecs plastics): how many player and web reviews name each one, most first. Empty elsewhere, and on
   // products none of whose reviews name one, so nothing below shows.
-  const variants = niche.variants ? variantCounts(external) : [];
+  const variants = niche.variants ? variantCounts([...reviews, ...external]) : [];
   const asked = query[variantParam], wanted = typeof asked === "string" ? asked.toLowerCase() : undefined;
   const variant = wanted ? variants.find(([v]) => v.toLowerCase() === wanted)?.[0] : undefined;
   const show = Math.min(Math.max(PAGE, Math.ceil((Number(query.show) || PAGE) / PAGE) * PAGE), 2000);
@@ -138,7 +138,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, node: () => <Review review={x} data={data} showRacket={false}/>,
+    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Review review={x} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
     ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <External entry={e} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
@@ -220,7 +220,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     {sum.other.length > 0 && <p className="says-also">Also mentioned: {sum.other.slice(0, 3).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
   </div>;
   // Variants compared (DiscGolfRecs "By plastic"): only variants with 3+ reviews, and only when at least two qualify. The
-  // positive share and the tags are counted like the headline's (summary()), over that variant's web reviews.
+  // positive share and the tags are counted like the headline's (summary()), over that variant's player and web reviews.
   const variantHref = (v: string) => `${productHref(r)}?${variantParam}=${encodeURIComponent(v)}#reviews`;
   const variantRows = variants.filter(([, n]) => n >= 3).map(([v, n]) => { const vs = summary(data, r.id, v);
     return { v, n, positive: vs.positive, tags: [...vs.tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 2).map(([t]) => t) }; });

@@ -13,6 +13,8 @@ import type {getDb} from "../db/index";
 import {POST} from "../app/api/funtimes/edit-review/route";
 import {POST as DELETE_WEB} from "../app/api/funtimes/delete-web-review/route";
 import {planImport,webReviewId} from "../db/web-review-import";
+import {reviewVariant,variantInput} from "../db/review-variant";
+import {niches} from "../lib/niche";
 
 const fields=(row:object)=>Object.fromEntries(Object.entries(row).map(([key,value])=>[key,value??""]));
 test("player and web edits preserve identity and dates, update public data, and reject stale forms",async()=>{
@@ -94,4 +96,47 @@ test("deleting a web review removes it and only its votes, and publishing does n
 test("anonymous users cannot delete web reviews",async()=>{
  const response=await DELETE_WEB(new Request("https://www.padelrecs.com/api/funtimes/delete-web-review",{method:"POST",headers:{origin:"https://www.padelrecs.com","content-type":"application/x-www-form-urlencoded"},body:"id=approved-review"}));
  assert.equal(response.status,403);
+});
+
+test("a review's plastic is stored only when the niche has variants and the chosen product lists it",async()=>{
+ const engine=new PGlite();
+ try{
+  for(const statement of migrationSql("padelrecs"))await engine.exec(statement);
+  const db=drizzle(engine),portable=db as unknown as ReturnType<typeof getDb>;
+  await importSnapshot(portable,parseSnapshot(fixture));
+  await engine.exec(`UPDATE "padelrecs"."rackets" SET "core" = 'Star, GStar, Metal Flake Champion, DX' WHERE "id" = 'racket-nox'`);
+  // The forms post "" for "Not sure / other"; that, and a missing field, are no variant.
+  assert.equal(variantInput.parse(""),undefined);assert.equal(variantInput.parse("  "),undefined);assert.equal(variantInput.parse(undefined),undefined);assert.equal(variantInput.parse(" Star "),"Star");
+  assert.equal(variantInput.safeParse("x".repeat(101)).success,false);
+  // A valid plastic is stored in the catalogue's spelling; unknown, other or blank is null; so is any plastic on a missing product.
+  assert.equal(await reviewVariant(portable,niches.discgolf,"racket-nox","gstar"),"GStar");
+  assert.equal(await reviewVariant(portable,niches.discgolf,"racket-nox","metal  flake champion"),"Metal Flake Champion");
+  assert.equal(await reviewVariant(portable,niches.discgolf,"racket-nox","Opto"),null);
+  assert.equal(await reviewVariant(portable,niches.discgolf,"racket-nox",undefined),null);
+  assert.equal(await reviewVariant(portable,niches.discgolf,"racket-nox",""),null);
+  assert.equal(await reviewVariant(portable,niches.discgolf,"missing-racket","Star"),null);
+  // A niche without variants never stores one, even when the product's core happens to match.
+  assert.equal(niches.padel.variants,undefined);
+  assert.equal(await reviewVariant(portable,niches.padel,"racket-nox","Star"),null);
+
+  // Admin edits: the same check, for player and web reviews.
+  const stored=async()=>[(await db.select().from(reviews).where(eq(reviews.id,"approved-review")))[0],(await db.select().from(externalReviews))[0]] as const;
+  const edit=async(variant:string,niche:typeof niches.padel)=>{
+   const [player,web]=await stored();
+   assert.equal(await saveReviewEdit(portable,reviewEditInput.parse({...fields(player),type:"player",revision:reviewRevision(player),variant}),niche),"saved");
+   assert.equal(await saveReviewEdit(portable,reviewEditInput.parse({...fields(web),type:"web",revision:reviewRevision(web),variant}),niche),"saved");
+   const [p,w]=await stored();return [p.variant,w.variant];
+  };
+  assert.deepEqual(await edit("star",niches.discgolf),["Star","Star"]);
+  assert.deepEqual(await edit("DX",niches.discgolf),["DX","DX"]);
+  assert.deepEqual(await edit("Opto",niches.discgolf),[null,null]);
+  await edit("Star",niches.discgolf);
+  assert.deepEqual(await edit("",niches.discgolf),[null,null]);
+  assert.deepEqual(await edit("Star",niches.padel),[null,null]);
+  // Player reviews carry their plastic into the public catalogue (product-page chips, filter and "By plastic").
+  await edit("GStar",niches.discgolf);
+  const visible=await catalog(portable);
+  assert.equal(visible.reviews.find(r=>r.id==="approved-review")!.variant,"GStar");
+  assert(!visible.reviews.some(r=>r.id==="pending-review"));
+ }finally{await engine.close();}
 });
