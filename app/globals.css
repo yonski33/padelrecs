@@ -722,10 +722,16 @@ summary { cursor: pointer; font-weight: 600; }
 .by-variant .tags-cell .tag { white-space: nowrap; }
 .by-variant .none { color: var(--ink-3); }
 .variant-filter { margin: 4px 0 0; }
+/* Plastic chips wrap onto extra rows instead of scrolling sideways: a disc has at most about a dozen plastics, so every
+   one and its count stays visible and a mouse needs no sideways scroll. */
+.variant-filter .chips { flex-wrap: wrap; overflow: visible; }
+.variant-filter .chips.fade-l, .variant-filter .chips.fade-r { -webkit-mask-image: none; mask-image: none; }
 .chips a .c { margin-left: 3px; opacity: .65; font-variant-numeric: tabular-nums; }
 .racket-field .variant-field { margin: 16px 0 0; }
-.variant-label { margin: 8px 0 0; font-size: 12.5px; color: var(--ink-3); }
-.variant-label b { color: var(--ink-2); font-weight: 600; }
+/* The plastic sits in the tag row but reads as a fact, not a tag: outlined, neutral, after a thin divider. */
+.variant-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; padding: 1px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: var(--bg, #fff); margin-left: 4px; position: relative; }
+.variant-pill::before { content: ""; position: absolute; left: -7px; top: 3px; bottom: 3px; border-left: 1px solid var(--line); }
+.variant-pill::after { content: ""; order: -1; width: 7px; height: 7px; border: 1.5px solid var(--ink-3); border-radius: 50%; }
 @media (max-width: 680px) { .by-variant { padding: 10px 12px 8px; } .by-variant table { font-size: 13.5px; } .by-variant th, .by-variant td { padding-right: 6px; } }
 .verdict-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 10px 0 0; font-size: 16px; color: var(--ink-2); }
 .verdict-line b { font-size: 18px; color: var(--green); }
