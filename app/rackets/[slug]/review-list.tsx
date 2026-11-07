@@ -2,20 +2,28 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { niche } from "../../../lib/niche";
 import { helpfulRank } from "../../../lib/review-order";
+import { ChipRow } from "../../chip-row";
 
 export type Sort = "newest" | "helpful";
-export type ListItem = { key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; tags: string[]; node: () => ReactNode };
+export type ListItem = { key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; tags: string[]; variant?: string | null; node: () => ReactNode };
 /** Reviews shown at first, and added by each "Show more". The page stays short; the rest are a click away. */
 export const PAGE = 20;
 /** Reviews in the page's HTML on first load: PAGE visible, the rest behind a no-JS "Show more" toggle, so search engines
  *  index more review text without the page growing with every review (owner choice, 2026-11-05). */
 export const IN_HTML = 50;
 
-/** The product page's review address for a sort, tag filter and length. "Most helpful" is the default, so it has no parameter. */
-export function reviewsHref(href: string, { sort, tag, show }: { sort: Sort; tag?: string; show?: number }) {
+/** Query parameter for the variant filter on niches with variants: "plastic" on DiscGolfRecs. */
+export const variantParam = niche.variants?.label.toLowerCase() ?? "variant";
+/** Product variants with their review counts, most first, for the filter chips (niche.variants). */
+export type Variants = { label: string; plural: string; counts: [string, number][] };
+
+/** The product page's review address for a sort, tag filter, variant and length. "Most helpful" is the default, so it has no parameter.
+ *  These addresses all share the product page's canonical URL (generateMetadata), so filtered views add no pages to the index. */
+export function reviewsHref(href: string, { sort, tag, variant, show }: { sort: Sort; tag?: string; variant?: string; show?: number }) {
   const q = new URLSearchParams();
   if (sort !== "helpful") q.set("sort", sort);
   if (tag) q.set("tag", tag);
+  if (variant) q.set(variantParam, variant);
   if (show && show > PAGE) q.set("show", String(show));
   const qs = q.toString();
   return `${href}${qs ? `?${qs}` : ""}`;
@@ -26,8 +34,9 @@ export function reviewsHref(href: string, { sort, tag, show }: { sort: Sort; tag
  * reviews used to send all of them). Sort, tag filter and "Show more" are real links, so they work without JavaScript and keep
  * the scroll position.
  */
-export default function ReviewList({ href, addHref, addButton, items, sort, tag, show, intro }: { href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; intro?: ReactNode }) {
-  const matching = tag ? items.filter(i => i.tags.includes(tag)) : items;
+export default function ReviewList({ href, addHref, addButton, items, sort, tag, show, intro, variants, variant }: { href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; intro?: ReactNode; variants?: Variants; variant?: string }) {
+  // Filters run over every review before paging, so "Show more" pages through the filtered list, not the loaded page.
+  const matching = items.filter(i => (!tag || i.tags.includes(tag)) && (!variant || i.variant === variant));
   // Older web reviews (outside the niche's recentMonths window) always come after the recent ones, under a note.
   const ordered = [...matching].sort((a, b) => Number(!!a.older) - Number(!!b.older) || (sort === "helpful" ? helpfulRank(b) - helpfulRank(a) : 0) || b.date.localeCompare(a.date));
   const shown = ordered.slice(0, show);
@@ -39,7 +48,7 @@ export default function ReviewList({ href, addHref, addButton, items, sort, tag,
     {n === firstOlder && <p className="older-note">{`Older than ${niche.recentMonths} months. These may describe an earlier version.`}</p>}
     {i.node()}
   </div>;
-  const moreLink = left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, show: Math.max(show, IN_HTML) + PAGE })} scroll={false}>Show more reviews</Link></div>;
+  const moreLink = left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, variant, show: Math.max(show, IN_HTML) + PAGE })} scroll={false}>Show more reviews</Link></div>;
 
   return <section id="reviews" className="review-list">
     {/* The page's "what people say" tags sit here, right above the reviews they filter. */}
@@ -50,9 +59,14 @@ export default function ReviewList({ href, addHref, addButton, items, sort, tag,
         {addButton}
       </div>
     </div>
-    {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span> <Link href={reviewsHref(href, { sort })} scroll={false}>Show all</Link></p>}
+    {/* Niches with variants (DiscGolfRecs plastics), once a review on this product names one: one chip per variant. */}
+    {variants && <ChipRow className="variant-filter" label={`Filter reviews by ${variants.label.toLowerCase()}`}>
+      <Link href={reviewsHref(href, { sort })} scroll={false} aria-current={!variant ? "page" : undefined}>All <span className="c">{items.length}</span></Link>
+      {variants.counts.map(([v, n]) => <Link key={v} href={reviewsHref(href, { sort, variant: v })} scroll={false} aria-current={variant === v ? "page" : undefined}>{v} <span className="c">{n}</span></Link>)}
+    </ChipRow>}
+    {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span>{variant && ` in ${variant}`} <Link href={reviewsHref(href, { sort, variant })} scroll={false}>Show all</Link></p>}
     {matching.length > 1 && <p className="sort-links">Sort: {(["helpful", "newest"] as const).map(v =>
-      <Link key={v} href={reviewsHref(href, { sort: v, tag })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</p>}
+      <Link key={v} href={reviewsHref(href, { sort: v, tag, variant })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</p>}
     {shown.map(card)}
     {hidden.length > 0 ? <>
       <input type="checkbox" id="more-reviews" className="more-toggle"/>

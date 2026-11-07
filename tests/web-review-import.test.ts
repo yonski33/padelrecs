@@ -134,3 +134,42 @@ test("a Spanish quote is published with its English translation and language; wi
   const fixed = planImport(parseCandidates(es("es1", { status: "published", excerpt_translation: "Three months in: incredible power, a bit harder in defence." }) + "\n"), { rackets: [{ id: "racket-nox", name: "Nox Test 2025" }], external: [live] }, niches.padel);
   assert.deepEqual(fixed.updates.map(u => u.excerptTranslation), ["Three months in: incredible power, a bit harder in defence."]);
 });
+
+test("a disc's plastic is kept only when the niche has variants and the mold lists it, in the catalogue's spelling", () => {
+  const disc = (id: string, variant?: string | null) => line({ id, racket_name: "Innova Wraith", tags: ["long"], source_url: `https://example.com/${id}`, ...(variant === undefined ? {} : { variant }) });
+  const q = [disc("v1", "star"), disc("v2", " gstar "), disc("v3", "Opto"), disc("v4", null), disc("v5"), disc("v6", "metal  flake champion")].join("\n") + "\n";
+  const site = { rackets: [{ id: "wraith", name: "Innova Wraith", core: "Star, GStar, Champion, Metal Flake Champion, DX" }], external: [] };
+  const plan = planImport(parseCandidates(q), site, niches.discgolf);
+  assert.deepEqual(plan.rows.map(r => [r.candidateId, r.variant]), [["v1", "Star"], ["v2", "GStar"], ["v3", null], ["v4", null], ["v5", null], ["v6", "Metal Flake Champion"]]);
+  // Niches without variants never store one, even when the product's core spec happens to match.
+  const padel = planImport(parseCandidates(line({ variant: "EVA" }) + "\n"), { rackets: [{ id: "racket-nox", name: "Nox Test 2025", core: "EVA" }], external: [] }, niches.padel);
+  assert.equal(padel.rows[0].variant, null);
+  assert.equal(niches.padel.variants, undefined);
+  assert.deepEqual(niches.discgolf.variants, { label: "Plastic", plural: "plastics" });
+});
+
+test("a plastic added, corrected or removed in the queue updates the live web review", async () => {
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    await importSnapshot(db, parseSnapshot(fixture));
+    await engine.exec(`UPDATE "padelrecs"."rackets" SET "core" = 'Star, GStar, DX' WHERE "id" = 'racket-nox'`);
+    const first = planImport(parseCandidates(line({ tags: ["long"] }) + "\n"), await siteState(db), niches.discgolf);
+    assert.deepEqual(await applyImport(db, first), { inserted: 1, updated: 0, removed: 0 });
+    const stored = async () => (await catalog(db)).external.find(e => e.id === webReviewId("c1"))!.variant;
+    assert.equal(await stored(), null);
+    // A backfill that adds the plastic to an already-published item updates it in place, in the catalogue's spelling.
+    const added = planImport(parseCandidates(line({ status: "published", tags: ["long"], variant: "gstar" }) + "\n"), await siteState(db), niches.discgolf);
+    assert.deepEqual(added.updates.map(u => [u.candidateId, u.variant]), [["c1", "GStar"]]);
+    assert.deepEqual(await applyImport(db, added), { inserted: 0, updated: 1, removed: 0 });
+    assert.equal(await stored(), "GStar");
+    // Unchanged: nothing to do.
+    assert.equal(planImport(parseCandidates(line({ status: "published", tags: ["long"], variant: "GStar" }) + "\n"), await siteState(db), niches.discgolf).updates.length, 0);
+    // A plastic the mold doesn't list clears it.
+    const cleared = planImport(parseCandidates(line({ status: "published", tags: ["long"], variant: "Opto" }) + "\n"), await siteState(db), niches.discgolf);
+    assert.deepEqual(cleared.updates.map(u => u.variant), [null]);
+    await applyImport(db, cleared);
+    assert.equal(await stored(), null);
+  } finally { await engine.close(); }
+});

@@ -183,6 +183,10 @@ export type Niche = {
   /** A short note under the spec strip on every product page, e.g. "Rates, fees and terms change; check the issuer's site.
    *  Checked {checked}." {checked} becomes the date the product's details were read (its catalog `checked` date). */
   specsNote?: string;
+  /** Web reviews can name the variant of the product the source used (DiscGolfRecs: the plastic a disc was thrown in), so
+   *  one product page per model still lets readers filter and compare variants. A product's allowed variants are its `core`
+   *  spec, comma-separated ("Star, GStar, Champion, DX"); lib/variants.ts. Niches without it never store or show variants. */
+  variants?: { label: string; plural: string };
   sourcePlatforms: string[];
   /** Example names for placeholders: brand, model, year, search hint. */
   examples: { brand: string; model: string; year: number; search: string };

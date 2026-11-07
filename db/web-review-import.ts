@@ -5,6 +5,7 @@ import type { PgDatabase, PgQueryResultHKT } from "drizzle-orm/pg-core";
 import type * as schema from "./schema";
 import type { Niche } from "../lib/niche/types";
 import type { Sentiment } from "../lib/review-options";
+import { matchVariant } from "../lib/variants";
 
 /**
  * Publishing approved candidates from the research agent's queue (research-agent/data/candidates.jsonl) as web reviews.
@@ -24,6 +25,9 @@ const candidate = z.object({
   source_language: z.string().regex(/^[a-z]{2}$/).nullable().optional(),
   excerpt_translation: z.string().nullable().optional(),
   sentiment: z.enum(["positive", "negative", "mixed"]).nullable().optional(),
+  // The product variant the source used, on niches with variants (DiscGolfRecs: the plastic). Kept only when it is one of the
+  // product's variants (lib/variants.ts), else stored as null.
+  variant: z.string().nullable().optional(),
   tags: z.array(z.string()).default([]),
   status: z.string(),
 }).passthrough();
@@ -53,17 +57,18 @@ export function sameSource(url: string) {
 }
 
 type Row = typeof externalReviews.$inferInsert;
-type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage: string | null; excerptTranslation: string | null };
+type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage: string | null; excerptTranslation: string | null; variant: string | null };
 /** A published web review whose candidate the research agent withdrew (its source no longer says what we quote). */
 type Removal = { candidateId: string; id: string };
 export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; removals: Removal[]; skipped: { candidate: Candidate; reason: string }[] };
 
-type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage?: string | null; excerptTranslation?: string | null };
-export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string; year?: number }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags">, now = new Date()): Plan {
+type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage?: string | null; excerptTranslation?: string | null; variant?: string | null };
+export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string; year?: number; core?: string | null }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags" | "variants">, now = new Date()): Plan {
   const plan: Plan = { rows: [], updates: [], removals: [], skipped: [] };
   const byId = new Map(site.external.map(e => [e.id, e]));
   const quoted = new Set(site.external.map(e => `${e.racketId}|${sameSource(e.sourceUrl)}`));
   const tagBank = new Set(niche.tags.map(t => t.label));
+  const coreOf = new Map(site.rackets.map(r => [r.id, r.core ?? null]));
   for (const c of candidates) {
     if (c.status === "withdrawn") {
       if (byId.has(webReviewId(c.id))) plan.removals.push({ candidateId: c.id, id: webReviewId(c.id) });
@@ -81,7 +86,8 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     if (live) {
       // Published before: bring the site's text and tags in line with the queue, never anything else.
       const tags = [...new Set(c.tags)].filter(t => tagBank.has(t)).slice(0, 3);
-      if ((excerpt || summary) && (live.excerpt !== excerpt || live.summary !== summary || live.sentiment !== sentiment || JSON.stringify(live.tags) !== JSON.stringify(tags) || (live.sourceLanguage ?? null) !== sourceLanguage || (live.excerptTranslation ?? null) !== excerptTranslation)) plan.updates.push({ candidateId: c.id, id: live.id, excerpt, summary, sentiment, tags, sourceLanguage, excerptTranslation });
+      const variant = matchVariant(niche, coreOf.get(live.racketId), c.variant);
+      if ((excerpt || summary) && (live.excerpt !== excerpt || live.summary !== summary || live.sentiment !== sentiment || JSON.stringify(live.tags) !== JSON.stringify(tags) || (live.sourceLanguage ?? null) !== sourceLanguage || (live.excerptTranslation ?? null) !== excerptTranslation || (live.variant ?? null) !== variant)) plan.updates.push({ candidateId: c.id, id: live.id, excerpt, summary, sentiment, tags, sourceLanguage, excerptTranslation, variant });
       continue;
     }
     if (c.status !== "approved") continue;
@@ -99,6 +105,7 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     quoted.add(key);
     plan.rows.push({
       candidateId: c.id, id: webReviewId(c.id), racketId: racket.id, excerpt, summary, sentiment, sourceLanguage, excerptTranslation,
+      variant: matchVariant(niche, racket.core, c.variant),
       sourcePlatform: c.source_platform, sourceName: c.source_name.trim(), sourceUrl: c.source_url.trim(),
       // Only full dates are shown on the site; a month or year alone would display as the 1st.
       sourceDate: c.source_date && /^\d{4}-\d{2}-\d{2}$/.test(c.source_date) ? c.source_date : null,
@@ -111,8 +118,8 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
 type Database = PgDatabase<PgQueryResultHKT, typeof schema>;
 export async function siteState(db: Pick<Database, "select">) {
   const [r, e] = await Promise.all([
-    db.select({ id: rackets.id, name: rackets.name, year: rackets.year }).from(rackets),
-    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags, sourceLanguage: externalReviews.sourceLanguage, excerptTranslation: externalReviews.excerptTranslation }).from(externalReviews),
+    db.select({ id: rackets.id, name: rackets.name, year: rackets.year, core: rackets.core }).from(rackets),
+    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags, sourceLanguage: externalReviews.sourceLanguage, excerptTranslation: externalReviews.excerptTranslation, variant: externalReviews.variant }).from(externalReviews),
   ]);
   return { rackets: r, external: e };
 }
@@ -125,7 +132,7 @@ export async function applyImport(db: Database, plan: Plan) {
     const inserted = plan.rows.length ? await tx.insert(externalReviews).values(plan.rows.map(({ candidateId: _, ...row }) => row)).onConflictDoNothing({ target: externalReviews.id }).returning({ id: externalReviews.id }) : [];
     let updated = 0;
     for (const u of plan.updates) {
-      const done = await tx.update(externalReviews).set({ excerpt: u.excerpt, summary: u.summary, sentiment: u.sentiment, tags: u.tags, sourceLanguage: u.sourceLanguage, excerptTranslation: u.excerptTranslation }).where(eq(externalReviews.id, u.id)).returning({ id: externalReviews.id });
+      const done = await tx.update(externalReviews).set({ excerpt: u.excerpt, summary: u.summary, sentiment: u.sentiment, tags: u.tags, sourceLanguage: u.sourceLanguage, excerptTranslation: u.excerptTranslation, variant: u.variant }).where(eq(externalReviews.id, u.id)).returning({ id: externalReviews.id });
       updated += done.length;
     }
     let removed = 0;

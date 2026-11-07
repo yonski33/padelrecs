@@ -12,7 +12,7 @@ import { database } from "../../../db/data";
 import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
-import ReviewList, { PAGE, type ListItem } from "./review-list";
+import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
 import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
@@ -20,6 +20,7 @@ import { websiteButton } from "../../../lib/product-links";
 import { ratingVerdict, listYear } from "../../../lib/top-lists";
 import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
+import { variantCounts } from "../../../lib/variants";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -37,9 +38,10 @@ function SideArt({ x, brand }: { x: Parameters<typeof shopPhoto>[0] & Parameters
 }
 
 /** Counts behind the page's verdict, title and description: every review, the sentiment split, and tags by how often
- *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. */
-function summary(data: Data, id: string) {
-  const allReviews = data.reviews.filter(x => x.racketId === id), allExternal = data.external.filter(e => e.racketId === id);
+ *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. With `variant`
+ *  (niche.variants), the same counts for the web reviews of that one variant: the "By plastic" table. */
+function summary(data: Data, id: string, variant?: string) {
+  const allReviews = variant ? [] : data.reviews.filter(x => x.racketId === id), allExternal = data.external.filter(e => e.racketId === id && (!variant || e.variant === variant));
   // Tags and "% positive" count the niche's recent window (lib/recent.ts), or every review when too few are recent;
   // the total is always every review.
   const recentReviews = allReviews.filter(x => isRecent(x.createdAt)), recentExternal = allExternal.filter(e => isRecent(webDate(e)));
@@ -72,7 +74,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
 }
 
-export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]; tag?: string | string[]; show?: string | string[]}>}) {
+export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]; tag?: string | string[]; show?: string | string[]} & Record<string, string | string[] | undefined>>}) {
   const [{slug}, query, data] = await Promise.all([params, searchParams, catalog()]);
   const r = data.rackets.find(r => r.slug === slug);
   if (!r) {
@@ -103,6 +105,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const sort = query.sort === "newest" ? "newest" : "helpful";
   const sum = summary(data, r.id);
   const tag = typeof query.tag === "string" && sum.tagCounts.has(query.tag) ? query.tag : undefined;
+  // Niches with variants (DiscGolfRecs plastics): how many web reviews name each one, most first. Empty elsewhere, and on
+  // products none of whose reviews name one, so nothing below shows.
+  const variants = niche.variants ? variantCounts(external) : [];
+  const asked = query[variantParam], wanted = typeof asked === "string" ? asked.toLowerCase() : undefined;
+  const variant = wanted ? variants.find(([v]) => v.toLowerCase() === wanted)?.[0] : undefined;
   const show = Math.min(Math.max(PAGE, Math.ceil((Number(query.show) || PAGE) / PAGE) * PAGE), 2000);
 
   const cats = categories.map(([label, key]) => {
@@ -133,7 +140,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const items: ListItem[] = [
     ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, node: () => <Review review={x} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, node: () => <External entry={e} data={data} showRacket={false}/>,
+    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <External entry={e} data={data} showRacket={false}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -212,6 +219,23 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     </div>
     {sum.other.length > 0 && <p className="says-also">Also mentioned: {sum.other.slice(0, 3).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
   </div>;
+  // Variants compared (DiscGolfRecs "By plastic"): only variants with 3+ reviews, and only when at least two qualify. The
+  // positive share and the tags are counted like the headline's (summary()), over that variant's web reviews.
+  const variantHref = (v: string) => `${productHref(r)}?${variantParam}=${encodeURIComponent(v)}#reviews`;
+  const variantRows = variants.filter(([, n]) => n >= 3).map(([v, n]) => { const vs = summary(data, r.id, v);
+    return { v, n, positive: vs.positive, tags: [...vs.tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 2).map(([t]) => t) }; });
+  const byVariant = niche.variants && variantRows.length >= 2 && <section className="by-variant">
+    <h2>{`By ${niche.variants.label.toLowerCase()}`}</h2>
+    <table>
+      <thead><tr><th scope="col">{niche.variants.label}</th><th scope="col">Reviews</th><th scope="col">Positive</th><th scope="col">Mentioned most</th></tr></thead>
+      <tbody>{variantRows.map(x => <tr key={x.v}>
+        <th scope="row"><a href={variantHref(x.v)}>{x.v}</a></th>
+        <td className="num">{x.n}</td>
+        <td className="num">{x.positive === null ? "—" : `${x.positive}%`}</td>
+        <td>{x.tags.length ? <div className="tags-cell">{x.tags.map(t => <span key={t} className={`tag ${tagTone(t)}`}>{t}</span>)}</div> : <span className="none">—</span>}</td>
+      </tr>)}</tbody>
+    </table>
+  </section>;
   const affiliate = !!(amazon || site?.affiliate);
 
 
@@ -242,6 +266,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {/* "In short" (kept, owner choice 2026-11-05); the summary itself opens by naming who is speaking ("Most players…"). A 2–3 sentence summary written from the product's reviews (review_summary), checked against its tag counts. */}
         {r.reviewSummary && <div className="tldr"><input type="checkbox" id="tldr-more" className="tldr-toggle"/><p><span className="tldr-label">In short</span>{r.reviewSummary}</p><label htmlFor="tldr-more" className="tldr-more">more</label></div>}
         {says}
+        {byVariant}
         <dl className="spec-strip">
           {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
         </dl>
@@ -298,7 +323,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}/>
+        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}
+          variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
         {faq.length >= 2 && <section className="faq" id="faq">
           <h2>{`Common questions about ${name}`}</h2>
           {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
