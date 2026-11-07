@@ -9,7 +9,7 @@ const shuttlePickOff = svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0
 const ogShuttle = (skirt: string, cork: string, stroke: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M3 1.6h14L13.2 12.4H6.8z" fill="${skirt}" stroke="${stroke}" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.6 12.4h6.8v2.4a3.4 3.4 0 0 1-6.8 0z" fill="${cork}" stroke="${stroke}" stroke-width="1.3"/></svg>`;
 
 /** Racket lines as the makers name them; the catalog's "Series" field holds one of these. */
-export const BADMINTON_SERIES = ["Astrox", "Nanoflare", "Arcsaber", "Thruster", "Auraspeed", "DriveX", "Jetspeed", "Axforce", "Halbertec", "Aeronaut", "BladeX", "Tectonic"];
+export const BADMINTON_SERIES = ["Astrox", "Nanoflare", "Arcsaber", "Thruster", "Auraspeed", "DriveX", "Jetspeed", "Axforce", "Halbertec", "Aeronaut", "BladeX", "Tectonic", "Bravesword"];
 
 export const badminton: Niche = {
   id: "badminton",
