@@ -1,0 +1,1 @@
+ALTER TABLE "padelrecs"."external_reviews" ADD COLUMN "variant" text;

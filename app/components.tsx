@@ -140,6 +140,8 @@ export function External({entry: e, data, showRacket = true, showCategory = true
         {e.excerpt && <details className="quote-toggle"><summary>Show quote</summary><SourceQuote entry={e}/></details>}
       </> : <SourceQuote entry={e} bare/>}
       <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}/>
+      {/* Niches with variants: the one the source used (DiscGolfRecs: "Plastic: Star"). */}
+      {niche.variants && e.variant && <p className="variant-label">{niche.variants.label}: <b>{e.variant}</b></p>}
       <div className="cite">
         {/* The source name is the link to the original, so the row keeps room for the vote. */}
         {e.sourceUrl

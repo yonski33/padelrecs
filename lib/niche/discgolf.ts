@@ -181,6 +181,8 @@ export const discgolf: Niche = {
     { slug: "best-disc-golf-putters", formerSlugs: ["best-putters"], label: "Putters", title: "Best Disc Golf Putters", minReviews: 6,
       intro: "The disc golf putters and approach discs players are most consistently happy with.", filters: [{ column: "shape", include: ["Putter"] }] },
   ],
+  // One page per mold; each web review can name the plastic it was thrown in, from the mold's plastics list (the core spec).
+  variants: { label: "Plastic", plural: "plastics" },
   sourcePlatforms: ["Reddit", "YouTube", "Disc golf shop", "Forum", "Other"],
   examples: { brand: "Innova", model: "Destroyer", year: 2026, search: "innova" },
   form: {
