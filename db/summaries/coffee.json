@@ -186,5 +186,73 @@
   {
     "slug": "wacaco-picopresso",
     "summary": "Owners are impressed by the Picopresso, saying it makes genuinely good espresso for its price and is highly portable for travel, camping or the office. The workflow is somewhat cumbersome, and one owner found the lack of pressure control left shots worse than a Flair."
+  },
+  {
+    "slug": "profitec-go",
+    "summary": "Home baristas are happy with the Profitec GO, with several keeping it for years and calling it great value and a solid step up from entry-level machines. One notes the daily routine can feel like a burden."
+  },
+  {
+    "slug": "profitec-pro-300",
+    "summary": "Home baristas describe the Profitec Pro 300 as solidly built, ready in under about 10 minutes and good at steaming for its size, with several reporting years of trouble-free use. A couple found steaming awkward or still need to learn it."
+  },
+  {
+    "slug": "rocket-espresso-appartamento",
+    "summary": "Home baristas praise the Appartamento's strong steam, compact size and solid feel, and several run it on a smart plug because it needs a long warm-up and some learning. A few report failures or poor warranty service, while others have used it for years without issues."
+  },
+  {
+    "slug": "timemore-chestnut-s3",
+    "summary": "Home baristas like the Timemore Chestnut S3 for clear, sweet pour-over cups, especially on V60, and for its heavy, premium feel. Its adjustment wheel is the one thing that gets a mention as a negative."
+  },
+  {
+    "slug": "1zpresso-q-air",
+    "summary": "Home baristas value the 1Zpresso Q Air as a cheap, light hand grinder that makes excellent pour-overs and travels well, grinding a dose in about a minute or less. Light roasts can be hard work, and dialing in espresso or grinding for two is a struggle."
+  },
+  {
+    "slug": "ecm-classika-pid",
+    "summary": "Home baristas are very satisfied with the ECM Classika PID, many after years of use, and describe it as well built and good for espresso. The warm-up of 20 minutes or more bothers some, as does slow milk drinks for several guests on its single boiler."
+  },
+  {
+    "slug": "gaggia-classic-pro-e24",
+    "summary": "Home baristas mostly enjoy the Gaggia Classic Pro E24 as an affordable, tinkerable machine, with some using it daily for years. A learning curve is real, as a couple struggled to pull good shots, and steaming was called underwhelming by one."
+  },
+  {
+    "slug": "hario-v60-mugen",
+    "summary": "Home baristas find the Hario V60 MUGEN easy to pour and dial in, giving a consistently good cup. Some find it a bit boring or limiting, with a slow drawdown and less room to experiment."
+  },
+  {
+    "slug": "lelit-elizabeth",
+    "summary": "Home baristas like the Lelit Elizabeth for strong steam, the ability to steam while the shot runs, and shots they call amazing, with heat-up in roughly 8 to 15 minutes. A few note its ready light comes on early and the settings menu takes some learning."
+  },
+  {
+    "slug": "profitec-pro-600",
+    "summary": "Home baristas love the Profitec Pro 600 as a well-built, reliable machine, with several using it daily for years without trouble. It warms quickly and suits milk drinks, though one found the flow control imprecise for light roasts."
+  },
+  {
+    "slug": "weber-workshops-eg-1",
+    "summary": "Home baristas who own the Weber Workshops EG-1 describe it as a well-built, consistent grinder that is easy to dial in and gives excellent pour-over and AeroPress cups. Its size and mess put one owner off, and gains beyond the top tiers are small."
+  },
+  {
+    "slug": "breville-oracle-jet",
+    "summary": "Home baristas like the Breville Oracle Jet for its automatic tamping and easy, consistent routine, which suits families and people moving up from a Bambino or a super-automatic. Grinder retention and purging bother a couple."
+  },
+  {
+    "slug": "profitec-pro-700",
+    "summary": "Home baristas call the Profitec Pro 700 built like a tank, with several reporting 10 or more years of use with little maintenance. It makes great espresso and heats quickly."
+  },
+  {
+    "slug": "hario-v60-buono-drip-kettle",
+    "summary": "Home baristas like how the stovetop Hario V60 Buono Drip Kettle pours, and several have used it for years without rust. One found rust spots within months and the metal flimsy."
+  },
+  {
+    "slug": "moccamaster-cup-one",
+    "summary": "Home baristas find the Moccamaster Cup-One easy and convenient for a quick daily cup, with several saying it works great every time. It is seen as a big upgrade on Nespresso."
+  },
+  {
+    "slug": "flair-classic",
+    "summary": "Home baristas describe the Flair Classic as simple, low-maintenance and long-lasting, with a couple of owners using it for about 10 years. It makes espresso they rate highly, though it needs a good hand grinder and grinding is a chore."
+  },
+  {
+    "slug": "moccamaster-kbgv",
+    "summary": "Home baristas call the Moccamaster KBGV simple, easy to clean and repairable with replaceable parts, and several say it makes good to excellent coffee. One first pot tasted terrible until grind and water were adjusted."
   }
 ]
