@@ -210,7 +210,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => sum.tagCounts.get(t) ?? 0)));
   const tagHref = (t: string) => `${productHref(r)}?tag=${encodeURIComponent(t)}#reviews`;
   const says = sum.tagCounts.size > 0 && <div className="says">
-    <h2>{`What ${niche.people.many} keep saying`}</h2>
+    <h2>{`What ${niche.people.many} say about ${displayName(r.name, brand?.name)}`}</h2>
     <div className="says-cards">
       {sideTags.filter(([, , ts]) => ts.length).map(([label, tone, ts]) => <section key={label} className={`says-card ${tone}`}>
         <h3>{label}</h3>
@@ -256,7 +256,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="profile-info">
         <div className="titleblock">
           <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
-          <h1>{displayName(r.name, brand?.name)}</h1>
+          {/* "<Product> Reviews" matches the page title and what people search for; the count sits right below. */}
+          <h1>{`${displayName(r.name, brand?.name)} Reviews`}</h1>
           {sum.total > 0 && <p className="verdict-line">{sum.positive !== null && <b>{sum.positive}% positive</b>}<a href="#reviews">{`${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`}</a>{amazon
             ? <a className="button amazon top-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
             : site && <a className="button visit-site top-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>}</p>}
@@ -323,7 +324,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}
+        <ReviewList title={`${niche.people.One} reviews`} href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}
           variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
         {faq.length >= 2 && <section className="faq" id="faq">
           <h2>{`Common questions about ${name}`}</h2>
