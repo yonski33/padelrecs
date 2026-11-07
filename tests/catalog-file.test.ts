@@ -398,7 +398,7 @@ test("the CoffeeRecs starter catalog: sourced machines, grinders, brewers, kettl
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/coffee.json");
   const snapshot = catalogSnapshot(catalog, "coffeerecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 32);
+  assert.equal(snapshot.tables.brands.length, 33);
   assert(snapshot.tables.rackets.length >= 140);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
