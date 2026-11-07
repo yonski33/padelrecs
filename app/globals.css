@@ -167,7 +167,7 @@ button:disabled { opacity: .6; cursor: progress; }
 
 .feed-heading { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 6px; }
 .feed-title { margin: 0; font-size: 26px; }
-.feed-title-row { display: flex; align-items: center; gap: 16px; }
+.feed-title-row { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; }
 .feed-title-row .add-review { min-height: 34px; padding: 0 14px; font-size: 13.5px; }
 .feed-sub { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-3); }
 
@@ -590,7 +590,7 @@ summary { cursor: pointer; font-weight: 600; }
   .home { padding-top: 20px; }
   .columns { gap: 36px; }
   .feed-heading { flex-direction: column; align-items: stretch; }
-  .feed-title { font-size: 23px; }
+  .feed-title { font-size: 21px; flex: 1 1 100%; }
   .feed-title-row { justify-content: space-between; }
 
   .note { grid-template-columns: 40px minmax(0, 1fr); column-gap: 12px; padding: 20px 0; }
