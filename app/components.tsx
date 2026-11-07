@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Catalog } from "../db/data";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { sourceLabel } from "../lib/source-label";
-import { TagList } from "./tags";
+import { TagList, VariantPill } from "./tags";
 import { niche, productHref, categoryPill } from "../lib/niche";
 import { languageName } from "../lib/languages";
 import { displayName } from "../lib/brand-name";
@@ -95,9 +95,8 @@ export function Review({review: r, data, showRacket = true, showCategory = true}
       <Score rating={r.rating}/>
     </header>
     <p className="note-body">{r.reviewText}</p>
-    <TagList tags={r.tags}/>
-    {/* Niches with variants: the one the player used (DiscGolfRecs: "Plastic: Star"). */}
-    {niche.variants && r.variant && <p className="variant-label">{niche.variants.label}: <b>{r.variant}</b></p>}
+    {/* Niches with variants: the one the player used (DiscGolfRecs: "Plastic Star"), at the end of the tag row. */}
+    <TagList tags={r.tags} trail={niche.variants && r.variant && <VariantPill label={niche.variants.label} value={r.variant}/>}/>
     {!showRacket && scores.length > 0 && <div className="subscores-line">{scores.map(([label, key]) => <span key={key}>{label}<b>{r[key]}</b></span>)}</div>}
     <footer className="note-foot">
       <Avatar alias={r.alias}/>
@@ -141,9 +140,8 @@ export function External({entry: e, data, showRacket = true, showCategory = true
         {/* The summary is what readers scan; the source's exact words are one click away (and still in the page). */}
         {e.excerpt && <details className="quote-toggle"><summary>Show quote</summary><SourceQuote entry={e}/></details>}
       </> : <SourceQuote entry={e} bare/>}
-      <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>}/>
-      {/* Niches with variants: the one the source used (DiscGolfRecs: "Plastic: Star"). */}
-      {niche.variants && e.variant && <p className="variant-label">{niche.variants.label}: <b>{e.variant}</b></p>}
+      {/* Niches with variants: the one the source used (DiscGolfRecs: "Plastic Star"), at the end of the tag row. */}
+      <TagList tags={e.tags} lead={e.sentiment && <SentimentBadge sentiment={e.sentiment}/>} trail={niche.variants && e.variant && <VariantPill label={niche.variants.label} value={e.variant}/>}/>
       <div className="cite">
         {/* The source name is the link to the original, so the row keeps room for the vote. */}
         {e.sourceUrl
