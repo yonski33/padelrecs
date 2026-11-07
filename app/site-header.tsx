@@ -69,7 +69,8 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
         {topLists.filter(l => ranked.includes(l.slug) || pathname === rankingHref(l.slug)).map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
       </ChipRow>}
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
-      {niche.typePages && pathname !== "/" && !inRankings && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
+      {/* Product-type chips help browsing; the add-review form has its own product picker, so they are left off there. */}
+      {niche.typePages && pathname !== "/" && !inRankings && !onAddPage && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
         <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
         {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : inTypePath === t ? "true" : undefined}>{t.label}</a>)}
       </ChipRow>}
