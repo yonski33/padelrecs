@@ -34,7 +34,7 @@ export function reviewsHref(href: string, { sort, tag, variant, show }: { sort: 
  * reviews used to send all of them). Sort, tag filter and "Show more" are real links, so they work without JavaScript and keep
  * the scroll position.
  */
-export default function ReviewList({ href, addHref, addButton, items, sort, tag, show, intro, variants, variant }: { href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; intro?: ReactNode; variants?: Variants; variant?: string }) {
+export default function ReviewList({ title = "Reviews", href, addHref, addButton, items, sort, tag, show, intro, variants, variant }: { title?: string; href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; intro?: ReactNode; variants?: Variants; variant?: string }) {
   // Filters run over every review before paging, so "Show more" pages through the filtered list, not the loaded page.
   const matching = items.filter(i => (!tag || i.tags.includes(tag)) && (!variant || i.variant === variant));
   // Older web reviews (outside the niche's recentMonths window) always come after the recent ones, under a note.
@@ -55,7 +55,7 @@ export default function ReviewList({ href, addHref, addButton, items, sort, tag,
     {intro}
     <div className="feed-heading">
       <div className="feed-title-row">
-        <h2 className="feed-title">Reviews</h2>
+        <h2 className="feed-title">{title}</h2>
         {addButton}
       </div>
     </div>
