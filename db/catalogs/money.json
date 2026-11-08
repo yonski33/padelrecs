@@ -737,6 +737,20 @@
    "website": "https://www.capitalone.com/credit-cards/quicksilver-student/"
   },
   {
+   "brand": "capitalone",
+   "name": "Capital One QuicksilverOne",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card for fair credit",
+   "weight": "$39 annual fee",
+   "surface": "Unlimited 1.5% cash back on every purchase",
+   "core": null,
+   "description": "Fees and rates as stated on capitalone.com on 2026-11-09 (catalog checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://www.capitalone.com/credit-cards/quicksilverone/"
+   ],
+   "website": "https://www.capitalone.com/credit-cards/quicksilverone/"
+  },
+  {
    "brand": "bofa",
    "name": "BankAmericard Secured",
    "shape": "Starter card",
@@ -1127,6 +1141,20 @@
     "https://robinhood.com/us/en/"
    ],
    "website": "https://robinhood.com/us/en/"
+  },
+  {
+   "brand": "robinhood",
+   "name": "Robinhood Gold Card",
+   "shape": "Cash-back card",
+   "balance": "Cash-back credit card",
+   "weight": "No annual fee; Robinhood Gold membership required",
+   "surface": "3% cash back on all categories",
+   "core": null,
+   "description": "Fees and rates as stated on robinhood.com on 2026-11-09 (catalog checked 2026-10-29). Rates, fees and terms change; check the provider's site before you apply or open an account.",
+   "sources": [
+    "https://robinhood.com/creditcard/"
+   ],
+   "website": "https://robinhood.com/creditcard/"
   },
   {
    "brand": "ibkr",
