@@ -190,8 +190,8 @@ test("the KeyboardRecs catalog: the 99 GamingRecs keyboards under their old ids 
   const catalog = await readCatalog("db/catalogs/keyboard.json");
   const snapshot = catalogSnapshot(catalog, "keyboardrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 27);
-  assert.equal(snapshot.tables.rackets.length, 203);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 203);
+  assert.equal(snapshot.tables.rackets.length, 204);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 204);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.keyboard.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf } = await import("../app/art/keyboard");
