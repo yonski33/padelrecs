@@ -90,7 +90,6 @@ button:disabled { opacity: .6; cursor: progress; }
 .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .wordmark { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -0.025em; }
 .wordmark span { color: var(--ink-3); font-weight: 500; }
-.descriptor { font-size: 12.5px; color: var(--ink-3); }
 
 .header-add { margin-left: auto; }
 
@@ -579,8 +578,6 @@ summary { cursor: pointer; font-weight: 600; }
   h1 { font-size: 26px; }
 
   .header-top { flex-wrap: wrap; gap: 12px; padding-top: 12px; padding-bottom: 10px; }
-  /* The tagline is too long for a phone header: it was cut off and pushed "Add" onto its own row. Hidden, not removed, so it stays in the page. */
-  .descriptor { display: none; }
   .header-add { min-height: 36px; padding: 0 13px; font-size: 13.5px; }
   .header-add .long { display: none; }
   .search { order: 3; flex-basis: 100%; max-width: none; }
