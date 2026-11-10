@@ -49,7 +49,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
       <div className="wrap header-top">
         <a className="logo" href="/">
           <LogoIcon/>
-          <span className="logo-text"><span className="wordmark">{niche.site.wordmark}<span>.com</span></span><span className="descriptor">{niche.site.descriptor}</span></span>
+          <span className="logo-text"><span className="wordmark">{niche.site.wordmark}<span>.com</span></span></span>
         </a>
         <RacketSearch/>
         {!onAddPage && <a className="button ghost header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
