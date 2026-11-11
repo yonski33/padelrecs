@@ -1,7 +1,6 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
 // so a list re-ranks itself as soon as new reviews are published.
 export const dynamic = "force-dynamic";
-import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
@@ -14,7 +13,9 @@ import { rankedLists, listHref, longDate, currentYear, type RankedList } from ".
 import { listLine } from "../../../lib/list-lines";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
-import { FinderInvite } from "../../finder/invite";
+import { ProductArt, SentimentBar, Arrow } from "../../visual";
+import type { Catalog } from "../../../db/data";
+type Product = Catalog["rackets"][number];
 
 const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
@@ -35,38 +36,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const pct = (n: number, total: number) => `${n / total * 100}%`;
 const withThe = (name: string) => `${/^the /i.test(name) ? "" : "the "}${name}`;
 
-function Entry({ e, brand, list, amazon }: { e: ListEntry; brand: string; list: TopList; amazon: AmazonButton | null }) {
-  const href = productHref(e.product), own = shopPhoto(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
-  const parts = [["positive", e.positive], ["mixed", e.mixed], ["negative", e.negative]] as const;
-  const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", "), line = listLine(e.product);
-  return <li className="top-entry">
-    <span className="top-rank" aria-label={`Rank ${e.rank}`}>{e.rank}</span>
-    {own ? <a className="thumb top-thumb own" href={href} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a> : amazon?.image && !photoHidden(e.product)
-      ? <a className="thumb top-thumb photo" href={href} aria-hidden="true" tabIndex={-1}><img src={amazon.image} alt="" loading="lazy"/></a>
-      : <a className="thumb top-thumb" href={href} aria-hidden="true" tabIndex={-1}><ProductIcon shape={e.product.shape} brand={brand}/></a>}
-    <div className="top-body">
-      <div className="top-head">
-        <h2><a className="racket-link" href={href}><span className="model">{displayName(e.product.name, brand)}</span></a></h2>
-      </div>
-      {/* A quiet text link under the name, the same place the product page's button goes: Amazon on niches with Amazon links,
-          otherwise the product's own site on niches with website links (software, hosting, money). */}
+function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
+  const href = productHref(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
+  const line = listLine(e.product), name = displayName(e.product.name, brand);
+  return <li className={`rrow${e.rank === 1 ? " lead" : ""}`}>
+    <span className="rrow-rank" aria-label={`Rank ${e.rank}`}>{String(e.rank).padStart(2, "0")}</span>
+    <a className="rrow-art" href={href} aria-hidden="true" tabIndex={-1}>{product ? <ProductArt product={product} brand={brand}/> : <span className="art art-none"><ProductIcon shape={e.product.shape} brand={brand}/></span>}</a>
+    <div className="rrow-main">
+      <h2><a href={href}>{name}</a>{e.rank === 1 && <span className="top-pick">Top pick</span>}</h2>
+      {line && <p className="rrow-line">{line}</p>}
+      {(e.pros.length > 0 || e.con) && <p className="rrow-chips">
+        {e.pros.slice(0, 2).map(t => <span key={t.label} className="chip-liked"><span className="sr-only">Liked: </span>{t.label}</span>)}
+        {e.con && <span className="chip-watch"><span className="cw">Watch for</span>{e.con.label}</span>}
+      </p>}
+      {list.trait && <p className="rrow-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
+      {/* A quiet text link: Amazon on niches with Amazon links, otherwise the product's own site (software, hosting, money). */}
       {amazon
-        ? <a className="top-amazon" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
-        : site && <a className="top-amazon" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
-      {line && <p className="top-line">{line}</p>}
-      <div className="top-split">
-        <div className="stack" role="img" aria-label={label}>
-          {parts.map(([s, n]) => n ? <i key={s} className={`s-${s}`} style={{ width: pct(n, e.reviews) }}/> : null)}
-        </div>
-        <p className="top-stat" title={label}><b>{e.positive} positive</b> out of {e.reviews} reviews</p>
-        {list.trait && <p className="top-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
-      </div>
-      {(e.pros.length > 0 || e.con) && <div className="tags">
-        {e.pros.map(t => <span key={t.label} className={`tag ${tagTone(t.label)}`}>{t.label}<span className="c">{t.count}</span></span>)}
-        {e.con && <span className="tag neg">{e.con.label}<span className="c">{e.con.count}</span></span>}
-      </div>}
-      <a className="top-more" href={href}>{`Read all ${e.reviews} reviews of ${withThe(e.product.name)} →`}</a>
+        ? <a className="rrow-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
+        : site && <a className="rrow-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
     </div>
+    <a className="rrow-score" href={href}>
+      <span className="rrow-pos"><b>{e.positive}</b> positive</span>
+      <SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative}/>
+      <span className="rrow-n">{`${e.reviews} reviews`}</span>
+    </a>
   </li>;
 }
 
@@ -118,22 +111,41 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     ] },
   ] };
 
-  return <main className="top-page">
+  const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
+  const byId = new Map(data.rackets.map(r => [r.id, r]));
+  const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
+  return <main className="top-page v2">
     {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
-    <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
-    <div className="page-title">
-      {/* A short heading; the review count sits in the line under it. The full title stays the browser/search title and the ItemList name. */}
+    <div className="page-hero">
+      <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
+      {/* A short heading; the full title stays the browser/search title and the ItemList name. */}
       <h1>{`${list.title} ${listYear(list)}`}</h1>
       <p>{list.intro}</p>
-      {updated && <p className="top-updated"><b>{`Ranked by ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</b> · Updated <time dateTime={updated}>{longDate(updated)}</time> · <a href="#how-we-rank">How we rank</a></p>}
+      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">Methodology explained ↓</a></li></ul>
     </div>
-    <ol className="top-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
-    <FinderInvite/>
-    {related.length > 0 && <section className="top-related" aria-labelledby="more-lists">
-      <h2 id="more-lists">More rankings</h2>
-      <div>{related.map(r => <a key={r.list.slug} href={listHref(r.list.slug)}><b>{`${r.list.title} ${listYear(r.list)}`}</b><span>{`${r.entries.length} ranked from ${r.reviews.toLocaleString("en-US")} reviews`}</span></a>)}</div>
-    </section>}
+    <div className="catalog-grid">
+      <ol className="rank-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} product={byId.get(e.product.id)} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
+      <aside className="filter-panel">
+        <section className="how-box">
+          <h2>How the ranking works</h2>
+          <p>{`${people.One} opinions, not sponsored placements. The order weighs positive reviews alongside how many there are.`}</p>
+          <ul>
+            {yearRule && <li><CalendarGlyph/>{yearRule}</li>}
+            <li><PeopleGlyph/>{`${min}+ reviews to qualify`}</li>
+            <li><LinkGlyph/>Source-linked reviews</li>
+          </ul>
+          <a className="more-link" href="#how-we-rank">Full method ↓</a>
+        </section>
+        {niche.finder && <a className="side-finder" href="/finder"><b>{niche.finder.navLabel}</b><span>{niche.finder.invite}</span><span className="button">Take the 1-minute quiz</span></a>}
+        {related.length > 0 && <section className="side-lists"><h2>Other lists</h2><ul>{related.map(r => <li key={r.list.slug}><a href={listHref(r.list.slug)}>{r.list.label}<Arrow/></a></li>)}</ul></section>}
+      </aside>
+    </div>
     <Method list={list} count={entries.length} affiliate={affiliate}/>
   </main>;
 }
+
+const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+function CalendarGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></g></svg>; }
+function PeopleGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><circle cx="7.5" cy="7" r="2.8"/><path d="M2.5 16.5c.6-3 2.6-4.5 5-4.5s4.4 1.5 5 4.5"/><circle cx="14" cy="7.5" r="2.2"/><path d="M14 12c1.9 0 3.2 1.2 3.6 3.6"/></g></svg>; }
+function LinkGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><path d="M8.5 11.5l3-3"/><path d="M9.5 6l1.3-1.3a3.2 3.2 0 0 1 4.5 4.5L14 10.5M6 9.5l-1.3 1.3a3.2 3.2 0 0 0 4.5 4.5L10.5 14"/></g></svg>; }

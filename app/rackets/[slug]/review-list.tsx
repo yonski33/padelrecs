@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { niche } from "../../../lib/niche";
@@ -34,7 +35,7 @@ export function reviewsHref(href: string, { sort, tag, variant, show }: { sort: 
  * reviews used to send all of them). Sort, tag filter and "Show more" are real links, so they work without JavaScript and keep
  * the scroll position.
  */
-export default function ReviewList({ title = "Reviews", href, addHref, addButton, items, sort, tag, show, intro, variants, variant }: { title?: string; href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; intro?: ReactNode; variants?: Variants; variant?: string }) {
+export default function ReviewList({ title = "Reviews", subtitle, href, addHref, addButton, items, sort, tag, show, intro, variants, variant }: { title?: ReactNode; subtitle?: string; href: string; addHref: string; addButton?: ReactNode; items: ListItem[]; sort: Sort; tag?: string; show: number; intro?: ReactNode; variants?: Variants; variant?: string }) {
   // Filters run over every review before paging, so "Show more" pages through the filtered list, not the loaded page.
   const matching = items.filter(i => (!tag || i.tags.includes(tag)) && (!variant || i.variant === variant));
   // Older web reviews (outside the niche's recentMonths window) always come after the recent ones, under a note.
@@ -44,10 +45,10 @@ export default function ReviewList({ title = "Reviews", href, addHref, addButton
   const hidden = show < IN_HTML ? ordered.slice(show, IN_HTML) : [];
   const firstOlder = [...shown, ...hidden].findIndex(i => i.older);
   const left = ordered.length - shown.length - hidden.length;
-  const card = (i: ListItem, n: number) => <div key={i.key}>
+  const card = (i: ListItem, n: number) => <Fragment key={i.key}>
     {n === firstOlder && <p className="older-note">{`Older than ${niche.recentMonths} months. These may describe an earlier version.`}</p>}
-    {i.node()}
-  </div>;
+    <div>{i.node()}</div>
+  </Fragment>;
   const moreLink = left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, variant, show: Math.max(show, IN_HTML) + PAGE })} scroll={false}>Show more reviews</Link></div>;
 
   return <section id="reviews" className="review-list">
@@ -58,6 +59,7 @@ export default function ReviewList({ title = "Reviews", href, addHref, addButton
         <h2 className="feed-title">{title}</h2>
         {addButton}
       </div>
+      {subtitle && items.length > 0 && <p className="feed-sub m-only">{subtitle}</p>}
     </div>
     {/* Niches with variants (DiscGolfRecs plastics), once a review on this product names one: one chip per variant. */}
     {variants && <ChipRow className="variant-filter" label={`Filter reviews by ${variants.label.toLowerCase()}`}>
@@ -67,10 +69,13 @@ export default function ReviewList({ title = "Reviews", href, addHref, addButton
     {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span>{variant && ` in ${variant}`} <Link href={reviewsHref(href, { sort, variant })} scroll={false}>Show all</Link></p>}
     {matching.length > 1 && <p className="sort-links">Sort: {(["helpful", "newest"] as const).map(v =>
       <Link key={v} href={reviewsHref(href, { sort: v, tag, variant })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</p>}
-    {shown.map(card)}
+    {/* Phones show the first three, then "See all" opens the rest (no JavaScript). */}
+    <input type="checkbox" id="all-voices" className="all-voices"/>
+    <div className="voices">{shown.map(card)}</div>
+    {matching.length > 3 && <label htmlFor="all-voices" className="see-all m-only">{`See all ${matching.length.toLocaleString("en-US")} opinions →`}</label>}
     {hidden.length > 0 ? <>
       <input type="checkbox" id="more-reviews" className="more-toggle"/>
-      <div className="more-hidden">{hidden.map((i, n) => card(i, shown.length + n))}{moreLink}</div>
+      <div className="more-hidden"><div className="voices">{hidden.map((i, n) => card(i, shown.length + n))}</div>{moreLink}</div>
       <div className="load-more first"><label htmlFor="more-reviews" className="button ghost">Show more reviews</label></div>
     </> : moreLink}
     {items.length === 0 && <p className="empty-feed">{`No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}

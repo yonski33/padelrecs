@@ -1,8 +1,9 @@
 export const dynamic = "force-dynamic";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Figtree } from "next/font/google";
+import { Bricolage_Grotesque, Figtree, Source_Serif_4, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+import "./visual.css";
 import { SiteHeader } from "./site-header";
 import { LogoIcon } from "./icons";
 import { Analytics } from "./analytics";
@@ -12,6 +13,10 @@ import { rankedSlugs } from "./rankings/lists";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
 const sans = Figtree({ subsets: ["latin"], variable: "--font-sans" });
+// Editorial headings on product pages (2026-11 redesign).
+// The home page headline: heavy condensed italic, like the owner's mockup.
+const headline = Barlow_Condensed({ subsets: ["latin"], weight: ["800"], style: ["italic"], variable: "--font-headline" });
+const serif = Source_Serif_4({ subsets: ["latin"], weight: ["600", "700"], style: ["normal", "italic"], variable: "--font-serif" });
 
 export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"), title: {default: niche.seo.homeTitle, template: niche.seo.titleTemplate}, description: niche.seo.layoutDescription, openGraph: { siteName: niche.site.name, type: "website" },
   // Each niche's tab and home-screen icons live in public/niches/<niche> (scripts/niche-icons.tsx makes new ones).
@@ -20,7 +25,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
 
 export default async function Layout({children}: {children: React.ReactNode}) {
   const ranked = await rankedSlugs();
-  return <html lang="en" className={`${display.variable} ${sans.variable}`} style={niche.theme as CSSProperties}><body>
+  return <html lang="en" className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}><body>
     <SiteHeader ranked={ranked}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">

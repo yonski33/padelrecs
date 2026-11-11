@@ -21,6 +21,8 @@ import { ratingVerdict, listYear } from "../../../lib/top-lists";
 import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
+import { listLine } from "../../../lib/list-lines";
+import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares } from "../../visual";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -138,9 +140,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Review review={x} data={data} showRacket={false}/>,
+    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <External entry={e} data={data} showRacket={false}/>,
+    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -152,7 +154,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // Where it ranks: every list it's on, best placing first (shown under the name, and in the FAQ).
   const placings = (await rankedLists()).lists.flatMap(l => {
     const e = l.entries.find(x => x.product.id === r.id);
-    return e ? [{ rank: e.rank, title: `${l.list.title} ${listYear(l.list)}`, href: listHref(l.list.slug) }] : [];
+    return e ? [{ rank: e.rank, title: `${l.list.title} ${listYear(l.list)}`, label: l.list.label, href: listHref(l.list.slug) }] : [];
   }).sort((a, b) => a.rank - b.rank);
 
   // Common questions, answered only from the counts and summaries on this page. Shown at the foot of the reviews and
@@ -206,14 +208,14 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // What reviewers praise and complain about, most mentioned first: a summary under the specs, above the verdict.
   // The product at a glance: what people praise and complain about, with bars so the big themes stand out. Each row opens
   // the reviews that mention it.
-  const sideTags = [["Loved for", "pos", sum.loved.slice(0, 5)], ["Complaints", "neg", sum.complaints.slice(0, 5)]] as const;
+  const sideTags = [["Liked", "pos", sum.loved.slice(0, 5)], ["Watch for", "neg", sum.complaints.slice(0, 5)]] as const;
   const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => sum.tagCounts.get(t) ?? 0)));
   const tagHref = (t: string) => `${productHref(r)}?tag=${encodeURIComponent(t)}#reviews`;
   const says = sum.tagCounts.size > 0 && <div className="says">
-    <h2>{`What ${niche.people.many} say about ${displayName(r.name, brand?.name)}`}</h2>
+    <h2><span className="d-only">{`What ${niche.people.many} love — and don’t`}</span><span className="m-only">{`What ${niche.people.many} noticed`}</span></h2>
     <div className="says-cards">
       {sideTags.filter(([, , ts]) => ts.length).map(([label, tone, ts]) => <section key={label} className={`says-card ${tone}`}>
-        <h3>{label}</h3>
+        <h3><TagGlyph tone={tone}/>{label}</h3>
         <ul>{ts.map(t => { const n = sum.tagCounts.get(t) ?? 0; return <li key={t}><a href={tagHref(t)}><span className="says-name">{t}</span><span className="says-bar"><i style={{ width: `${Math.max(6, n / topCount * 100)}%` }}/></span><span className="says-n">{n}</span></a></li>; })}</ul>
       </section>)}
     </div>
@@ -239,64 +241,64 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const affiliate = !!(amazon || site?.affiliate);
 
 
-  const own = shopPhoto(r);
-  return <main>
+  const own = shopPhoto(r), stored = amazonPhoto(r);
+  const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
+  const pos = positiveShare(s);
+  const oneLine = listLine(r);
+  const fullName = displayName(r.name, brand?.name);
+  return <main className="product v2">
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
     {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
-    <section className="profile">
-      {own ? <div className="profile-art own"><img src={own} alt={displayName(r.name, brand?.name)}/></div> : amazon?.image && !photoHidden(r)
-        // Amazon's terms: the photo is served by Amazon, unaltered, and links to its product page.
-        ? <a className="profile-art photo" href={amazon.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazon.image} alt={displayName(r.name, brand?.name)}/></a>
-        : <div className="profile-art">
-          <ProductIcon shape={r.shape} brand={brand?.name}/>
-          {r.shape && <small>{r.shape.toLowerCase()}</small>}
-        </div>}
-
-      <div className="profile-info">
-        <div className="titleblock">
-          <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
-          {/* "<Product> Reviews" matches the page title and what people search for; the count sits right below. */}
-          <h1>{`${displayName(r.name, brand?.name)} Reviews`}</h1>
-          {sum.total > 0 && <p className="verdict-line">{sum.positive !== null && <b>{sum.positive}% positive</b>}<a href="#reviews">{`${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`}</a>{amazon
-            ? <a className="button amazon top-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">View price on Amazon</a>
-            : site && <a className="button visit-site top-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>}</p>}
-          {placings.length > 0 && <p className="placings">{placings.slice(0, 2).map(p => <a key={p.href} href={p.href} className="placing"><b>#{p.rank}</b> in {p.title}</a>)}</p>}
-          {r.description && <p className="description">{r.description}</p>}
-        </div>
-        {/* "In short" (kept, owner choice 2026-11-05); the summary itself opens by naming who is speaking ("Most players…"). A 2–3 sentence summary written from the product's reviews (review_summary), checked against its tag counts. */}
-        {r.reviewSummary && <div className="tldr"><input type="checkbox" id="tldr-more" className="tldr-toggle"/><p><span className="tldr-label">In short</span>{r.reviewSummary}</p><label htmlFor="tldr-more" className="tldr-more">more</label></div>}
-        {says}
-        {byVariant}
-        <dl className="spec-strip">
-          {specs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd className={v ? undefined : "unknown"}>{v || "—"}</dd></div>)}
-        </dl>
-        {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}
+    <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+    <section className="p-hero">
+      <div className="p-head">
+        {/* "<Product> Reviews" matches the page title and what people search for; the word itself is for search and screen readers. */}
+        <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
+        {(r.shape || hasYears) && <p className="p-kicker">{[hasYears ? String(r.year) : null, r.shape && `${r.shape}${typePage?.one || niche.categoryPaths ? "" : ` ${niche.words.one}`}`].filter(Boolean).join(" · ")}</p>}
+        {placings[0] && <a className="p-placing" href={placings[0].href}><span className="d-only">{`#${placings[0].rank} in ${placings[0].title}`}</span><span className="m-only">{`#${placings[0].rank} · ${placings[0].label}`}</span> <span aria-hidden="true">→</span></a>}
+        {sum.total > 0 && <a className="p-count m-only" href="#reviews"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>{`${sum.total.toLocaleString("en-US")} ${niche.people.one} ${sum.total === 1 ? "opinion" : "opinions"}`}</a>}
       </div>
-
-      <aside className="scorecard">
-        {s.average ? <>
-          <div className="big">{s.average}<small>/ 5</small></div>
-          <Score rating={Number(s.average)} size="lg"/>
-          <p><b>{s.count}</b>{` ${niche.people.one} `}{s.count === 1 ? "rating" : "ratings"} · <b>{reviews.length + external.length}</b> reviews</p>
-          <WebSplit entries={verdicts} label="What reviewers say" noun=""/>
-        </> : <>
-          {reviews.length + external.length ? <>
-          </> : <>
-            <div className="no-score">Be the first to review it</div>
-            <p>{`${niche.copy.ui.triedIt} Tell others how it went.`}</p>
-          </>}
-          <WebSplit entries={verdicts} label="What reviewers say" noun=""/>
-        </>}
-        {/* The shop button sits by the title, and on phones in the sticky bar; adding a review is at the Reviews heading. */}
-        {!amazon && !site && <a className="button" href={addHref}><PlusIcon/>Add your review</a>}
-        {!amazon && !site && <p className="hint">{`${niche.copy.ui.triedIt} No account needed.`}</p>}
-      </aside>
+      {own ? <div className="p-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
+        // Amazon's terms: the photo is served by Amazon, unaltered, and links to its product page.
+        ? <a className="p-photo art art-amazon" href={amazon?.url ?? stored?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+        : <div className="p-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/>{r.shape && <small>{r.shape.toLowerCase()}</small>}</div>}
+      <div className="p-scorebox">
+        {sum.total > 0 ? <div className="p-score">
+          {pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
+          <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
+          {s.average && <div className="p-big p-avg"><b>{s.average}</b><span>{`/ 5 · ${s.count} ${s.count === 1 ? "rating" : "ratings"}`}</span></div>}
+        </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
+        {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
+        {pos !== null && <ul className="p-legend m-only" aria-hidden="true">{([["positive", "Positive", s.positive], ["mixed", "Mixed", s.mixed], ["negative", "Negative", s.negative]] as const).map(([k, w, n], i) =>
+          <li key={k} className={`s-${k}`}><span>{w}</span><b>{`${shares([s.positive, s.mixed, s.negative])[i]}%`}</b></li>)}</ul>}
+      </div>
+      <div className="p-rest">
+        {/* The one-line verdict (lib/list-lines), else the "In short" summary written from the product's reviews (review_summary). */}
+        {(oneLine || r.reviewSummary) && <div className="clamp p-line-wrap"><input type="checkbox" id="tldr-more" className="clamp-toggle"/><p className={`p-line${oneLine ? "" : " clamped3"}`}>{oneLine ?? r.reviewSummary}</p>{!oneLine && <label htmlFor="tldr-more" className="clamp-more">Read more</label>}</div>}
+        <p className="p-actions">
+          {sum.total > 0 && <a className="button" href="#reviews">Read reviews</a>}
+          {amazon ? <a className="button ghost amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price</a>
+            : site ? <a className="button ghost" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
+            : <a className="button ghost" href={addHref}><PlusIcon/>Add your review</a>}
+        </p>
+        <p className="p-links m-only">
+          {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} opinions`} <span aria-hidden="true">↓</span></a>}
+          {similar.length > 0 && <a className="p-compare" href="#similar">{`Compare ${niche.words.many}`} <span aria-hidden="true">→</span></a>}
+        </p>
+      </div>
     </section>
+    {specs.length > 0 && <section className="p-glance"><h2 className="m-only">At a glance</h2><dl className="p-specs">{specs.map(([k, v]) => <div key={k} title={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>}
+    {says}
+    {byVariant}
+    {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}
+    {r.description && <p className="p-description">{r.description}</p>}
 
     <div className="columns">
       <div>
-        {reviews.length > 0 && <div className="panels">
+        <ReviewList title={<><span className="d-only">{`${niche.people.One} voices`}</span><span className="m-only">{`From the ${niche.people.many}`}</span></>} subtitle={`${(reviews.length + external.length).toLocaleString("en-US")} source-linked opinions`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
+          variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
+        {reviews.length >= 3 && <div className="panels">
           <section className="panel">
             <h2>{niche.copy.ui.howItPerforms}<small>{catPlayers} {catPlayers === 1 ? niche.people.one : niche.people.many}</small></h2>
             {catPlayers ? <ul className="cats">{cats.map(c => <li key={c.key}>
@@ -324,8 +326,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        <ReviewList title={`${niche.people.One} reviews`} href={productHref(r)} addHref={addHref} addButton={shopButton ? <a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a> : undefined} items={items} sort={sort} tag={tag} show={show}
-          variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
         {faq.length >= 2 && <section className="faq" id="faq">
           <h2>{`Common questions about ${name}`}</h2>
           {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
@@ -333,10 +333,14 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </div>
 
       <aside className="database-sidebar">
-        {similar.length > 0 && <section>
+        {similar.length > 0 && <section id="similar" className="similar">
+          <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
           <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
-          <ul className="mini">{similar.map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a href={productHref(x)}>
-            <SideArt x={x} brand={b}/><span className="nm">{displayName(x.name, b)}<span className="mt">{`${Math.round(sc.positive / sc.judged * 100)}% positive · ${sc.count + sc.web} reviews`}</span></span>
+          <ul className="sim-cards">{similar.map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
+            <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
+            <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
+            {sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
+            <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
           </a></li>; })}</ul>
         </section>}
 
@@ -355,4 +359,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
     </div>}
   </main>;
+}
+
+/** Thumbs-up for what reviewers liked, a warning sign for what to watch for. */
+function TagGlyph({ tone }: { tone: "pos" | "neg" }) {
+  const g = { fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  return tone === "pos"
+    ? <svg className="tag-glyph" viewBox="0 0 20 20" aria-hidden="true"><path {...g} d="M6.5 9.5v7h-3v-7zM6.5 9.5l3.2-6c1.4 0 2.2 1 1.9 2.3l-.6 2.7h4.3c1 0 1.7.9 1.5 1.9l-1.1 5.2c-.2.9-.9 1.4-1.8 1.4H6.5"/></svg>
+    : <svg className="tag-glyph" viewBox="0 0 20 20" aria-hidden="true"><path {...g} d="M10 3l7.5 13.5h-15zM10 8.5v3.5M10 14.4v.1"/></svg>;
 }

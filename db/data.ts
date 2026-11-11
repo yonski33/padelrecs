@@ -54,7 +54,8 @@ export function score(data: Catalog, id: string) {
  const recentRs = rs.filter(r => isRecent(r.createdAt)), recentWeb = web.filter(e => isRecent(webDate(e)));
  const [jr, jw] = recentRs.length + recentWeb.filter(e => e.sentiment).length >= MIN_RECENT ? [recentRs, recentWeb] : [rs, web];
  const judged = jr.length + jw.filter(e => e.sentiment).length, positive = jr.filter(r => r.rating >= 4).length + jw.filter(e => e.sentiment === "positive").length;
- return {count: rs.length, average: rs.length >= MIN_RATINGS ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive};
+ const mixed = jr.filter(r => r.rating === 3).length + jw.filter(e => e.sentiment === "mixed").length;
+ return {count: rs.length, average: rs.length >= MIN_RATINGS ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive, mixed, negative: judged - positive - mixed};
 }
 export type Score = ReturnType<typeof score>;
 

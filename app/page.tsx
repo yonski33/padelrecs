@@ -4,19 +4,20 @@ import { spreadByProduct } from "../lib/review-order";
 import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { displayName } from "../lib/brand-name";
-import { Review, External, Sidebar, activity, racketParts } from "./components";
-import { ProductIcon } from "./icons";
+import { activity, racketParts } from "./components";
+import { topTags } from "../db/data";
+import { ProductArt, SentimentBar, QuoteCard, FeedCard, shortQuotes, browseTiles, BrowseTile, Arrow } from "./visual";
+import { homeHeadline } from "../lib/home-lines";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
-import { FinderInvite } from "./finder/invite";
 
 const DAY = 86_400_000;
 /** Separator for "users, Reddit, YouTube and forums": commas, the last item already carries "and". */
 const a2 = (n: number) => n >= 2 ? ", " : " ";
-const PAGE = 24;
+const PAGE = 12;
 
 const homeTitle = niche.seo.homeTitle;
 /** "Real Reviews of Nail Polish, Gel Polish, Top Coats and Press-On Nails": the title without the site name, the page's H1. */
@@ -62,26 +63,18 @@ export default async function Home({ searchParams }: {
     return q.size ? `/?${q}` : "/";
   };
   const items = spreadByProduct([
-    ...reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <Review review={r} data={data} showCategory={!type}/> })),
-    ...external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <External entry={e} data={data} showCategory={!type}/> })),
+    ...reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <FeedCard review={r} data={data}/> })),
+    ...external.map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <FeedCard entry={e} data={data}/> })),
   ]);
 
 
-  // Popular strip: most notes this week, or this month when the week is quiet. Hidden if there's nothing to rank.
-  const week = activity(data, now.getTime() - 7 * DAY);
-  const month = activity(data, now.getTime() - 30 * DAY);
-  const popular = (week.length >= 2 ? week : month).slice(0, 4);
-  const popularLabel = week.length >= 2 ? "this week" : "this month";
-  const strip = popular.length >= 2 && <section className="strip" aria-label={`Popular ${popularLabel}`}>
-    <div className="strip-head"><h2>Popular <em>{popularLabel}</em></h2><span>most new reviews</span></div>
-    <ol>{popular.map(({racket, count}) => { const {brand} = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
-      <ProductIcon shape={racket.shape} brand={brand}/><span className="nm">{displayName(racket.name, brand)}</span><span className="ct">+{count} {count === 1 ? "review" : "reviews"}</span>
-    </a></li>; })}</ol>
-  </section>;
-
+  // Most discussed: most new reviews this month, or the last 90 days when the month is quiet.
+  const month = activity(data, now.getTime() - 30 * DAY), quarter = activity(data, now.getTime() - 90 * DAY);
+  const [popular, popularLabel] = month.length >= 3 ? [month.slice(0, 4), "this month"] : [quarter.slice(0, 4), "lately"];
+  const tags = topTags(data);
   // Intro: what the site is, for a first-time visitor (and Google), above everything else.
   const total = all.reviews.length + all.external.length;
-  const platforms = [...all.external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([p]) => p).slice(0, 3);
+  const platforms = [...all.external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([p]) => p).filter(p => p !== "Other").slice(0, 3);
   const fromWhere = [`${niche.people.many}`, ...platforms].map((x, i, a) => i === a.length - 1 && a.length > 1 ? `and ${x}` : x).join(a2(platforms.length));
   // Top picks: each ranking list with its top three, the most useful thing on the site for someone deciding what to buy.
   const picks = type ? [] : (await rankedLists()).lists.slice(0, 6);
@@ -92,42 +85,103 @@ export default async function Home({ searchParams }: {
     { "@type": "Organization", name: niche.site.name, url: `${base}/`, logo: `${base}/niches/${niche.id}/apple-icon.png` },
   ] };
 
-  return <main className="home"><div className="columns"><div>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
-    {!type && <section className="intro">
-      <h1>{headline}</h1>
-      <p>{`${total.toLocaleString("en-US")} reviews from ${fromWhere}, ranked by what people actually say.`}</p>
-    </section>}
-    {!type && <FinderInvite/>}
-    {picks.length > 0 && <section className="picks" aria-label="Top picks">
-      <h2>Top picks</h2>
-      {/* The rankings page's row style, two columns. No product names (owner choice): the ranking is what the click shows. */}
-      <div className="picks-grid">{picks.map(({ list, entries, reviews }) => { const lead = entries[0], b = brandName(lead.product.brandId);
-        return <a key={list.slug} className="top-card" href={listHref(list.slug)}>
-          <span className="thumb" aria-hidden="true"><ProductIcon shape={lead.product.shape} brand={b}/></span>
-          <span className="top-card-text">
-            <span className="pick-title">{`${list.title} ${listYear(list)}`}</span>
-            <span className="top-card-meta">{`Based on ${reviews.toLocaleString("en-US")} reviews · ${entries.length} ranked`}</span>
-          </span>
-        </a>; })}</div>
-    </section>}
-    <div className="feed-heading">
-      <div>
-        {type ? <h1 className="feed-title">{`Latest ${type.label.toLowerCase()} reviews`}</h1> : <h2 className="feed-title">Latest reviews</h2>}
-        <p className="feed-sub">{`From ${niche.people.many}, and from around the web with the source linked.`}</p>
-      </div>
+  const listedCount = all.listed.length;
+  const newThisMonth = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now.getTime() - 30 * DAY).length;
+  const lead = picks[0];
+  const top = lead?.entries.slice(0, 5) ?? [];
+  const tiles = type ? [] : browseTiles(all, picks, id => all.reviews.filter(r => r.racketId === id).length + all.external.filter(e => e.racketId === id).length);
+  const updated = [...all.reviews, ...all.external].reduce((m, x) => x.createdAt > m ? x.createdAt : m, "");
+  const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brandName(r.brandId));
+
+  const feed = <section className="feed" id="latest">
+    <div className="section-head">
+      {type ? <h1 className="feed-title">{`Latest ${type.label.toLowerCase()} reviews`}</h1> : <h2>Latest reviews</h2>}
+      <span className="section-note">Every review links to where it was said</span>
     </div>
     {niche.typePages && <ChipRow className="type-filter" label={`Filter reviews by ${niche.words.one} type`}>
       <a href={query({})} aria-current={!type ? "page" : undefined}>All</a>
       {niche.typePages.map(t => <a key={t.slug} href={query({ type: t.slug })} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</a>)}
     </ChipRow>}
-    {items.slice(0, show).map((item, index) => <Fragment key={item.key}>
-      {item.node}
-      {index === 3 && strip}
-    </Fragment>)}
-    {items.length > 0 && items.length < 4 && strip}
+    <div className="feed-grid">{items.slice(0, show).map(item => <Fragment key={item.key}>{item.node}</Fragment>)}</div>
     {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
     {items.length > show && <LoadMore href={query({ type: type?.slug, show: show + PAGE })}/>}
     {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
-  </div><Sidebar data={data} all={all} minYear={oldest}/></div></main>;
+  </section>;
+
+  const [accent, rest] = homeHeadline();
+  const lastReview = new Map<string, { date: string; linked: boolean }>();
+  for (const x of [...all.reviews.map(r => ({ id: r.racketId, date: r.createdAt, linked: false })), ...all.external.map(e => ({ id: e.racketId, date: e.createdAt, linked: !!e.sourceUrl }))])
+    if (!lastReview.has(x.id) || lastReview.get(x.id)!.date < x.date) lastReview.set(x.id, x);
+  const newest = [...all.listed].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
+  // Two experiences worth reading, about products the top five and the first page of the feed don't already show.
+  const inFeed = items.slice(0, show).map(i => i.product);
+  const featured = shortQuotes(data.external, 2, { min: 70, max: 260, exclude: new Set([...top.map(e => e.product.id), ...inFeed]) });
+  return <main className="home v2">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
+    {!type && <>
+      <section className="hero">
+        <ul className="hero-facts"><li>{`Real ${niche.people.one} experiences`}</li><li>Source-linked reviews</li>{updated && <li>{`Updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" })}`}</li>}</ul>
+        <h1><span className="swash">{accent}</span>{rest}</h1>
+        <div className="hero-row">
+          <p className="hero-sub">{`${total.toLocaleString("en-US")} real experiences, collected from ${fromWhere}.`}</p>
+          <p className="hero-links"><a href={catalogPath}>{`Explore all ${listedCount.toLocaleString("en-US")} ${niche.words.many}`}<Arrow/></a>{lead && <a className="quiet" href={`${listHref(lead.list.slug)}#how-we-rank`}>How top picks work</a>}</p>
+        </div>
+      </section>
+
+      {top.length >= 3 && <section className="top5" aria-labelledby="top5-title">
+        <div className="section-head"><h2 id="top5-title">{`${lead.list.title} ${listYear(lead.list)}`}</h2><a className="section-link" href={listHref(lead.list.slug)}>{`See the top ${lead.entries.length}`}<Arrow/></a></div>
+        <ol className="top5-row">{top.map(e => { const p = Math.round(e.positive / e.reviews * 100); return <li key={e.product.id}><a className="pcard" href={productHref(e.product)}>
+          <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
+          <ProductArt product={all.rackets.find(r => r.id === e.product.id) ?? (e.product as never)} brand={brandName(e.product.brandId)} eager/>
+          <span className="pcard-body">
+            <span className="pcard-name">{nameOf(e.product)}</span>
+            <span className="pcard-score"><b>{`${p}%`}</b><span>positive</span><span className="pcard-n"><ChatGlyph/>{e.reviews}</span></span>
+            <SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative}/>
+          </span>
+        </a></li>; })}</ol>
+      </section>}
+
+      <div className="home-split">
+        {popular.length > 0 && <section aria-labelledby="discussed-title">
+          <div className="section-head"><h2 id="discussed-title">{`What ${niche.people.many} are discussing`}</h2><span className="section-note">{`Most new reviews ${popularLabel}`}</span></div>
+          <ul className="discussed">{popular.map(({ racket, count }) => { const t = tags.get(racket.id), { brand } = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
+            <ProductArt product={racket} brand={brand}/>
+            <span className="d-body"><span className="d-name">{displayName(racket.name, brand)}</span>
+              {(t?.loved || t?.complaint) && <span className="d-said">{t.loved && <span>Loved: <b>{t.loved}</b></span>}{t.complaint && <span>Concern: <b>{t.complaint}</b></span>}</span>}</span>
+            <span className="d-count"><b>{`+${count}`}</b>{count === 1 ? "review" : "reviews"}</span>
+          </a></li>; })}</ul>
+        </section>}
+        <section aria-labelledby="new-title">
+          <div className="section-head"><h2 id="new-title">New to the index</h2></div>
+          <ul className="justin">{newest.map(r => { const b = brandName(r.brandId), last = lastReview.get(r.id); return <li key={r.id}>
+            <a href={productHref(r)}><ProductArt product={r} brand={b}/><span className="j-body"><span className="j-name">{displayName(r.name, b)}</span><span className="j-text">{last ? `Latest review added ${new Date(last.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" })}` : "Added to the index"}</span></span></a>
+            {last?.linked && <span className="j-pill">Source linked</span>}
+          </li>; })}</ul>
+          <dl className="stat-tiles">
+            <div><dt>reviews</dt><dd><ChatGlyph/>{total.toLocaleString("en-US")}</dd></div>
+            <div><dt>{niche.words.many}</dt><dd><BoxGlyph/>{listedCount.toLocaleString("en-US")}</dd></div>
+            <div><dt>{`+${newThisMonth.toLocaleString("en-US")} this month`}</dt><dd><LinkGlyph/><span className="stat-word">Source linked</span></dd></div>
+          </dl>
+        </section>
+      </div>
+
+      {tiles.length >= 2 && <section className="browse-tiles" aria-labelledby="browse-title">
+        <div className="section-head"><div><h2 id="browse-title">{niche.typePages?.length ? `Explore what you need` : `Find by playing style`}</h2><p className="section-sub">{niche.typePages?.length ? `Find ${niche.words.many} and reviews by type.` : `Rankings for how you like to play.`}</p></div><a className="section-link" href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? `All ${niche.words.many}` : "All rankings"}<Arrow/></a></div>
+        <div className="btile-row">{tiles.slice(0, 4).map(t => <BrowseTile key={t.key} tile={t} data={all}/>)}</div>
+        {tiles.length > 4 && <p className="more-types">{tiles.slice(4).map(t => <a key={t.key} href={t.href}>{t.label}</a>)}</p>}
+      </section>}
+
+      {featured.length === 2 && <section className="quotes" aria-labelledby="words-title">
+        <div className="section-head"><h2 id="words-title">In their words</h2><span className="section-note">Two recent experiences, each linked to the original post</span></div>
+        <div className="qcard-row two">{featured.map(e => <QuoteCard key={e.id} entry={e} data={all}/>)}</div>
+      </section>}
+    </>}
+    {feed}
+    {!type && <a className="index-bar" href={catalogPath}>{`Browse the full ${niche.words.one} index`}<Arrow/></a>}
+  </main>;
 }
+
+const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+function ChatGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M3 4.5h14v9H9l-4 3v-3H3z"/></svg>; }
+function BoxGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M7.5 2.5h5v3l1.5 2v10h-8v-10l1.5-2z"/></svg>; }
+function LinkGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><path d="M8.5 11.5l3-3"/><path d="M9.5 6l1.3-1.3a3.2 3.2 0 0 1 4.5 4.5L14 10.5M6 9.5l-1.3 1.3a3.2 3.2 0 0 0 4.5 4.5L10.5 14"/></g></svg>; }
