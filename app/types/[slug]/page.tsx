@@ -53,7 +53,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
       <label className="pills-sort">Sort:<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
       <noscript><button>Filter</button></noscript>
     </AutoSubmitForm>
-    <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} tags={tags.get(r.id)} details={niche.rowDetail && r[niche.rowDetail.column] ? `${r[niche.rowDetail.column]}${niche.rowDetail.suffix}` : ""}/>)}/>
+    <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} tags={tags.get(r.id)} details=""/>)}/>
     {!results.length && (f.brand
       ? <p className="empty-feed">{`No ${lowerWords(seoName(t))} from this brand yet. `}<a href={`/${t.slug}`}>Show all {lowerWords(seoName(t))}</a></p>
       : <p className="empty-feed">{`No ${lowerWords(seoName(t))} reviewed here yet. `}<a href="/add-review">Add a review →</a></p>)}

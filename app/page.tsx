@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { displayName } from "../lib/brand-name";
 import { activity, racketParts } from "./components";
-import { topTags } from "../db/data";
 import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
 import { homeHeadline } from "../lib/home-lines";
 import { platformName } from "../lib/source-label";
@@ -72,7 +71,6 @@ export default async function Home({ searchParams }: {
   // Most discussed: most new reviews this month, or the last 90 days when the month is quiet.
   const month = activity(data, now.getTime() - 30 * DAY), quarter = activity(data, now.getTime() - 90 * DAY);
   const [popular, popularLabel] = month.length >= 3 ? [month.slice(0, 4), "this month"] : [quarter.slice(0, 4), "lately"];
-  const tags = topTags(data);
   // Intro: what the site is, for a first-time visitor (and Google), above everything else.
   const total = all.reviews.length + all.external.length;
   const platforms = [...all.external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([p]) => platformName(p)).map(p => p === "Blog" ? "blogs" : p === "Forum" ? "forums" : p).filter((p, i, a) => a.indexOf(p) === i).slice(0, 3);
@@ -134,10 +132,9 @@ export default async function Home({ searchParams }: {
 
       <section className="discussed-wide" aria-labelledby="discussed-title">
           {popular.length > 0 && <><div className="section-head"><h2 id="discussed-title">{`What ${niche.people.many} are discussing`}</h2><span className="section-note" title="Most new reviews">{popularLabel === "this month" ? "This month" : "Lately"}</span></div>
-          <ul className="discussed">{popular.map(({ racket, count }) => { const t = tags.get(racket.id), { brand } = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
+          <ul className="discussed">{popular.map(({ racket, count }) => { const { brand } = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
             <ProductArt product={racket} brand={brand}/>
-            <span className="d-body"><span className="d-name">{displayName(racket.name, brand)}</span>
-              {(t?.loved || t?.complaint) && <span className="d-said">{t.loved && <span>Loved: <b>{t.loved}</b></span>}{t.complaint && <span>Concern: <b>{t.complaint}</b></span>}</span>}</span>
+            <span className="d-body"><span className="d-name">{displayName(racket.name, brand)}</span></span>
             <span className="d-count"><b>{`+${count}`}</b>{count === 1 ? "review" : "reviews"}</span>
           </a></li>; })}</ul></>}
           <dl className="stat-tiles">
