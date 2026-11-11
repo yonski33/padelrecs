@@ -763,3 +763,11 @@ a:hover .w-name { color: var(--green); }
 .home-split .section-head { flex-wrap: nowrap; } .home-split .section-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 @media (max-width: 680px) { .home-split .section-head { flex-wrap: wrap; } }
 .home-split .section-head h2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+
+/* "What … are discussing" across the full width: two columns of products, the stats strip under them */
+.home.v2 > .discussed-wide { margin-top: 44px; }
+.discussed-wide .discussed { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 44px; }
+.discussed-wide .discussed li + li { border-top: 0; }
+.discussed-wide .discussed li { border-bottom: 1px solid var(--line); }
+.discussed-wide .stat-tiles { margin-top: 18px; }
+@media (max-width: 680px) { .discussed-wide .discussed { grid-template-columns: minmax(0, 1fr); } }
