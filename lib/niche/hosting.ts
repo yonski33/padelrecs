@@ -172,7 +172,7 @@ export const hosting: Niche = {
     { slug: "best-hosting-support", label: "Best support", title: "Hosting With the Best Support", minReviews: 5,
       intro: "The services customers most often say have helpful support.", trait: { tags: ["helpful support"], minShare: 0.2, against: ["poor support"], noun: "the support" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Blog"],
   examples: { brand: "Hetzner", model: "Hetzner Cloud", year: 2026, search: "hetzner" },
   form: {
     prompts: [["Where were you before?", "Before this I hosted with "], ["What do you run on it?", "I mostly use it for "], ["Anything that bugs you?", "The one thing I'd change is "]],

@@ -82,11 +82,11 @@ export function QuoteCard({ entry: e, data, product = true }: { entry: WebReview
   const label = sourceLabel(e);
   return <article className="qcard">
     {product && r && <a className="qcard-product" href={productHref(r)}><ProductArt product={r} brand={brand}/><span>{displayName(r.name, brand)}</span></a>}
-    {e.summary ? <p className="qcard-text summary"><span className="qcard-kind">{`Summary of a ${label.platform === "Other" ? "web" : label.platform} post`}</span>{quoteText(e)}</p>
+    {e.summary ? <p className="qcard-text summary"><span className="qcard-kind">{`Summary of a ${label.platform === "Blog" ? "blog" : label.platform} post`}</span>{quoteText(e)}</p>
       : <blockquote className="qcard-text verbatim">{quoteText(e)}</blockquote>}
     <footer className="qcard-foot">
       <a className="qcard-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}>
-        <SourceIcon platform={e.sourcePlatform}/><b>{label.platform === "Other" ? label.name ?? "Web" : label.platform}</b>{e.sourceDate && <span>{monthYear(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span>
+        <SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{e.sourceDate && <span>{monthYear(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span>
       </a>
       {e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}
     </footer>
@@ -139,13 +139,13 @@ export function Voice(props: { review: PlayerReview } | { entry: WebReview }) {
     return <article className="voice">
       <header><span className="voice-src"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="currentColor"/></svg><b>{`${niche.people.One} review`}</b><span>{fullDate(r.createdAt)}</span></span><span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
       <Clamp id={`p-${r.id}`} text={r.reviewText}/>
-      <footer className="voice-by">{[r.alias || "Anonymous", r.playerLevel].filter(Boolean).join(" · ")}<span className="sr-only">{`, rated ${r.rating} out of 5`}</span></footer>
+      <footer className="voice-by">{[r.alias || "Anonymous", r.playerLevel].filter(Boolean).join(" · ")}</footer>
     </article>;
   }
   const e = props.entry, label = sourceLabel(e);
   return <article className="voice">
     <header>
-      <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><b>{label.platform === "Other" ? label.name ?? "Web" : label.platform}</b>{label.name && label.platform !== "Other" && <span>{label.name}</span>}{e.sourceDate && <span>{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>
+      <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{label.name && <span>{label.name}</span>}{e.sourceDate && <span>{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>
       {e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}
     </header>
     <Clamp id={`w-${e.id}`} text={quoteText(e)}/>

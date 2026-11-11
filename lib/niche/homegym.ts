@@ -167,7 +167,7 @@ export const homegym: Niche = {
     { slug: "best-budget-home-gym-equipment", label: "Budget", title: "Best Budget Home Gym Equipment", minReviews: 5,
       intro: "The home gym gear owners most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "REP Fitness", model: "PR-4000", year: 2026, search: "pr-4000" },
   form: {
     prompts: [["What did you have before?", "Before this I used "], ["How do you use it?", "I mostly use it for "], ["Any issues?", "After a while I noticed "]],

@@ -128,7 +128,7 @@ export const cycling: Niche = {
     { label: "aggressive fit", tone: "neutral" },
     { label: "relaxed fit", tone: "neutral" },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Bike shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Bike shop", "Forum", "Blog"],
   examples: { brand: "Canyon", model: "Grail CF SLX", year: 2026, search: "canyon" },
   form: {
     prompts: [["What did you ride before?", "Before this I rode "], ["Where do you ride it?", "I mostly ride "], ["Any issues?", "After a while I noticed "]],

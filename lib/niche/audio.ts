@@ -143,7 +143,7 @@ export const audio: Niche = {
     { slug: "best-wireless-earbuds", label: "Earbuds", title: "Best Wireless Earbuds", minReviews: 6,
       intro: "The true wireless earbuds listeners are most consistently happy with.", filters: [{ column: "shape", include: ["Earbuds"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Audio shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Audio shop", "Forum", "Blog"],
   examples: { brand: "Sennheiser", model: "HD 600", year: 2026, search: "sennheiser" },
   form: {
     prompts: [["What did you use before?", "Before these I used "], ["What do you drive them with?", "I listen on "], ["Any issues?", "After a while I noticed "]],

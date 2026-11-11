@@ -206,7 +206,7 @@ export const babygear: Niche = {
     { slug: "best-baby-bouncers-and-swings", label: "Bouncers & swings", title: "Best Baby Bouncers and Swings", minReviews: 5,
       intro: "The bouncers and swings parents are most consistently happy with.", filters: [{ column: "shape", include: ["Bouncer or swing"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "UPPAbaby", model: "Vista V3", year: 2026, search: "uppababy" },
   form: {
     prompts: [["What did you use before?", "Before this we used "], ["How did you use it?", "We used it for "], ["Any issues?", "After a few months we noticed "]],

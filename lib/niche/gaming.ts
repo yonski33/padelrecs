@@ -182,7 +182,7 @@ export const gaming: Niche = {
     { slug: "best-gaming-headsets", label: "Headsets", title: "Best Gaming Headsets", minReviews: 6,
       intro: "The gaming headsets gamers are most consistently happy with.", filters: [{ column: "shape", include: ["Headset"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Logitech", model: "G Pro X Superlight 2", year: 2026, search: "logitech" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you play?", "I mostly play "], ["Any issues?", "After a while I noticed "]],

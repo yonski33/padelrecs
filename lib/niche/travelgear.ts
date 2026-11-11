@@ -173,7 +173,7 @@ export const travelgear: Niche = {
     { slug: "best-travel-accessories", label: "Accessories", title: "Best Travel Accessories", minReviews: 5,
       intro: "The neck pillows, adapters, toiletry bags and trackers travelers are most consistently happy with.", filters: [{ column: "shape", include: ["Travel accessory"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Aer", model: "Travel Pack 4 35L", year: 2026, search: "aer" },
   form: {
     prompts: [["What did you use before?", "Before this I traveled with "], ["Where did you take it?", "I took it on "], ["Any issues?", "After a few trips I noticed "]],

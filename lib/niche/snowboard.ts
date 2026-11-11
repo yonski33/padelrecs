@@ -162,7 +162,7 @@ export const snowboard: Niche = {
       intro: "Boards riders most often call playful, poppy or easy to butter.",
       trait: { tags: ["playful", "easy to butter", "poppy"], minShare: 0.25, noun: "playfulness or pop" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Snowboard shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Snowboard shop", "Forum", "Blog"],
   examples: { brand: "Burton", model: "Custom", year: 2026, search: "custom" },
   form: {
     prompts: [["What did you ride before?", "Before this I rode "], ["Where do you ride it?", "I mostly ride it "], ["Any issues?", "After a few days I noticed "]],

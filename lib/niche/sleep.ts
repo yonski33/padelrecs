@@ -219,7 +219,7 @@ export const sleep: Niche = {
     { slug: "best-bed-cooling-systems", label: "Bed cooling", title: "Best Bed Cooling Systems", minReviews: 5,
       intro: "The bed cooling systems sleepers are most consistently happy with.", filters: [{ column: "shape", include: ["Bed cooling"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Helix", model: "Midnight Luxe", year: 2026, search: "helix" },
   form: {
     prompts: [["What did you sleep on before?", "Before this I slept on "], ["How long have you had it?", "I've had it for "], ["Any issues?", "After a few months I noticed "]],

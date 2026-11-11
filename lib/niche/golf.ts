@@ -172,7 +172,7 @@ export const golf: Niche = {
       intro: "Drivers golfers keep describing as long.",
       trait: { tags: ["long", "low spin"], minShare: 0.2, against: ["too much spin"], noun: "distance or low spin" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Golf shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Golf shop", "Forum", "Blog"],
   examples: { brand: "TaylorMade", model: "Qi4D", year: 2026, search: "taylormade" },
   form: {
     prompts: [["What did you play before?", "Before this I hit a "], ["How was it fitted?", "I play it at "], ["Your miss?", "My usual miss is "]],

@@ -164,7 +164,7 @@ export const keyboard: Niche = {
     { slug: "best-keyboard-switches", label: "Switches", title: "Best Keyboard Switches", minReviews: 5,
       intro: "The switches owners are most consistently happy with.", filters: [{ column: "shape", include: ["Switches"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Keychron", model: "Q1 Max", year: 2026, search: "keychron" },
   form: {
     prompts: [["What did you use before?", "Before this I typed on "], ["What do you use it for?", "I mostly use it for "], ["Any issues?", "After a while I noticed "]],

@@ -183,7 +183,7 @@ export const discgolf: Niche = {
   ],
   // One page per mold; each web review can name the plastic it was thrown in, from the mold's plastics list (the core spec).
   variants: { label: "Plastic", plural: "plastics" },
-  sourcePlatforms: ["Reddit", "YouTube", "Disc golf shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Disc golf shop", "Forum", "Blog"],
   examples: { brand: "Innova", model: "Destroyer", year: 2026, search: "innova" },
   form: {
     prompts: [["Which plastic and weight?", "Mine is "], ["What do you throw it for?", "I throw this for "], ["What did it replace?", "Before this I threw a "]],

@@ -157,7 +157,7 @@ export const coffee: Niche = {
     { slug: "best-budget-coffee-gear", label: "Budget", title: "Best Budget Coffee Gear", minReviews: 5,
       intro: "The machines, grinders, brewers, kettles and scales home baristas most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Coffee retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Coffee retailer", "Forum", "Blog"],
   examples: { brand: "Breville", model: "Bambino Plus", year: 2026, search: "bambino" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you make with it?", "I mostly make "], ["Any issues?", "After a while I noticed "]],

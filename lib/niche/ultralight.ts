@@ -172,7 +172,7 @@ export const ultralight: Niche = {
     { slug: "best-budget-ultralight-gear", label: "Budget", title: "Best Budget Ultralight Gear", minReviews: 5,
       intro: "The ultralight gear hikers most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Outdoor shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Outdoor shop", "Forum", "Blog"],
   examples: { brand: "Durston", model: "X-Mid Pro 2", year: 2026, search: "durston" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["Where did you take it?", "I used it on "], ["Any issues?", "After a while I noticed "]],

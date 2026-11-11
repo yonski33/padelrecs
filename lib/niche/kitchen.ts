@@ -166,7 +166,7 @@ export const kitchen: Niche = {
     { slug: "best-budget-kitchen-appliances", label: "Budget", title: "Best Budget Kitchen Appliances", minReviews: 5,
       intro: "The air fryers, ovens, blenders, mixers and multicookers owners most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Ninja", model: "Foodi DualZone DZ201", year: 2026, search: "dualzone" },
   form: {
     prompts: [["What did you have before?", "Before this I used "], ["What do you make in it?", "I mostly use it for "], ["Any issues?", "After a while I noticed "]],

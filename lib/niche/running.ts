@@ -180,7 +180,7 @@ export const running: Niche = {
       intro: "Shoes runners call great for long runs and well cushioned.",
       trait: { tags: ["great for long runs", "great cushioning"], minShare: 0.2, noun: "long runs or cushioning" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Running shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Running shop", "Forum", "Blog"],
   examples: { brand: "Nike", model: "Pegasus 42", year: 2026, search: "nike" },
   form: {
     prompts: [["What did you run in before?", "Before this I ran in "], ["How many miles?", "I've put about "], ["Fit and sizing?", "For fit, I "]],

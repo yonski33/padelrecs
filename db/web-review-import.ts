@@ -1,3 +1,4 @@
+import { platformName } from "../lib/source-label";
 import { z } from "zod";
 import { and, eq, inArray } from "drizzle-orm";
 import { externalReviews, rackets, reviewVotes } from "./schema";
@@ -97,6 +98,8 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     // Queued under a name that still ended in the model year (PickleballRecs dropped years from names on 2026-10-22).
     const racket = site.rackets.find(r => r.name.toLowerCase() === wanted) ?? site.rackets.find(r => r.year !== undefined && `${r.name} ${r.year}`.toLowerCase() === wanted);
     if (!racket) { skip(`no racket named "${c.racket_name}" on the site`); continue; }
+    // The research queue may still say "Other" for blogs and websites; the sites call them "Blog" (lib/source-label.ts).
+    c.source_platform = platformName(c.source_platform);
     if (!niche.sourcePlatforms.includes(c.source_platform)) { skip(`source platform "${c.source_platform}" is not one the site uses`); continue; }
     const tags = [...new Set(c.tags)];
     if (tags.some(t => !tagBank.has(t)) || tags.length > 3) { skip("tags outside the site's tag bank, or more than 3"); continue; }

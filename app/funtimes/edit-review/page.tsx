@@ -1,3 +1,5 @@
+import { platformName } from "../../../lib/source-label";
+import { VERDICTS, verdictRating, verdictWord, normalizedRating } from "../../../lib/verdict";
 import {redirect,notFound} from "next/navigation";
 import {eq} from "drizzle-orm";
 import {isAdmin} from "../auth";
@@ -34,7 +36,7 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
  <RacketEditSelector key={selected.id} models={models.map(({id,name})=>({id,name}))} racketId={selected.racketId} variants={variants} variant={selected.variant}/>
  {player?<>
   <p className="small muted">Status: {player.status}. Saving keeps this moderation status.</p>
-  <label className="field">Overall rating<select name="rating" required defaultValue={player.rating}>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label>
+  <label className="field">Overall<select name="rating" required defaultValue={normalizedRating(player.rating)}>{VERDICTS.map(v=><option key={v} value={verdictRating[v]}>{verdictWord[v]}</option>)}</select></label>
   <label className="field">Review text<textarea name="reviewText" required minLength={20} defaultValue={player.reviewText}/></label>
   <div className="form-grid"><label className="field">Alias<input name="alias" maxLength={50} defaultValue={player.alias||""}/></label><label className="field">Private email<input name="email" type="email" maxLength={254} defaultValue={player.email||""}/><small>Not shown publicly.</small></label></div>
   <div className="form-grid">{(["playerLevel","playingSide","playingStyle","timeWithRacket"] as const).map(name=><label className="field" key={name}>{profile[name].adminLabel}<select name={name} defaultValue={player[name]||""}><option value="">Not provided</option>{profile[name].options.map(o=><option key={o.value}>{o.value}</option>)}</select></label>)}</div>
@@ -43,7 +45,7 @@ export default async function EditReview({searchParams}:{searchParams:Promise<{t
  </>:external?<>
   <label className="field">Summary <span className="muted">(our own words)</span><textarea name="summary" maxLength={1200} defaultValue={external.summary??""}/><small>Shown first, as the card’s main text; write it in the third person. Leave blank to show only the excerpt.</small></label>
   <label className="field">Excerpt <span className="muted">(the source’s exact words)</span><textarea name="excerpt" defaultValue={external.excerpt??""}/><small>Shown as an indented quote. At least 20 characters; may be blank if there is a summary.</small></label>
-  <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={external.sourcePlatform}>{niche.sourcePlatforms.map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} defaultValue={external.sourceName}/></label></div>
+  <div className="form-grid"><label className="field">Source platform<select name="sourcePlatform" required defaultValue={platformName(external.sourcePlatform)}>{niche.sourcePlatforms.map(s=><option key={s}>{s}</option>)}</select></label><label className="field">Source name<input name="sourceName" required maxLength={120} defaultValue={external.sourceName}/></label></div>
   <label className="field">Overall sentiment <span className="muted">(optional)</span><select name="sentiment" defaultValue={external.sentiment??""}><option value="">Not judged</option><option value="positive">Positive</option><option value="mixed">Mixed</option><option value="negative">Negative</option></select><small>How the source felt overall. Shown as a small label on the card and counted in the racket’s web split.</small></label>
   <label className="field">Original source link<input name="sourceUrl" type="url" required maxLength={2000} defaultValue={external.sourceUrl}/></label>
   <label className="field">Source date<input name="sourceDate" type="date" defaultValue={external.sourceDate||""}/></label>

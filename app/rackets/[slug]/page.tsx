@@ -125,8 +125,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const levels = tally(reviews.map(x => x.playerLevel), playerLevel.options.map(o => o.value).reverse());
   const sideTotal = sides.reduce((a, x) => a + x.n, 0), levelTotal = levels.reduce((a, x) => a + x.n, 0);
   const colors = niche.chartColors;
-  const dist = [5, 4, 3, 2, 1].map(n => ({ n, count: reviews.filter(x => x.rating === n).length }));
-  const distMax = Math.max(1, ...dist.map(d => d.count));
 
   const firstWord = model.split(" ")[0]?.toLowerCase();
   const siblings = data.listed.filter(x => x.brandId === r.brandId && x.id !== r.id)
@@ -168,6 +166,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     .sort((a, b) => (b.helpful ?? 0) - (a.helpful ?? 0) || Math.abs(a.summary!.length - 110) - Math.abs(b.summary!.length - 110))[0]?.summary ?? null;
   const list = (ts: readonly string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
   const faq: { q: string; a: string }[] = [];
+  if (r.reviewSummary) faq.push({ q: `What do ${niche.people.many} say about ${name}?`, a: r.reviewSummary });
   if (judged >= 5) faq.push({ q: `Is ${name} worth it?`, a: [`Of the ${judged.toLocaleString("en-US")} reviews with a clear verdict, ${share("positive")}% are positive, ${share("mixed")}% mixed and ${share("negative")}% negative.`,
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
@@ -179,22 +178,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     faq.push({ q: `Where do these ${name} reviews come from?`, a: [
       external.length ? `${external.length.toLocaleString("en-US")} are quotes from discussions on ${list2(plats)}, each linked to the original post.` : "",
       reviews.length ? `${reviews.length.toLocaleString("en-US")} ${reviews.length === 1 ? "was" : "were"} written by ${niche.people.many} here.` : "",
-      `${niche.people.One} reviews are checked for spam before they appear, and only they count toward the star rating; quotes never do.`,
+      `${niche.people.One} reviews are checked for spam before they appear. Every review, written here or quoted, is read as positive, mixed or negative.`,
     ].filter(Boolean).join(" ") });
   }
-  // Structured data for Google: the product once it has MIN_RATINGS user ratings, since Google rejects a Product with no
-  // rating, review or offer, and web quotes can't fill in (its rules want ratings collected on this site). Plus breadcrumbs.
+  // Structured data for Google: FAQ and breadcrumbs. The star-rating Product block went with the 1–5 ratings (owner
+  // decision 2026-11-12: reviews are positive / mixed / negative), since Google's Product needs a numeric rating, review or offer.
   const jsonLd = { "@context": "https://schema.org", "@graph": [
-    ...(s.average ? [{
-      "@type": "Product", name: displayName(r.name, brand?.name), url, image: `${url}/opengraph-image`, category: typePage?.label ?? niche.seo.productCategory,
-      description: r.description || `${niche.people.One} reviews and ratings of the ${displayName(r.name, brand?.name)}.`,
-      ...(brand ? { brand: { "@type": "Brand", name: brand.name } } : {}),
-      aggregateRating: { "@type": "AggregateRating", ratingValue: s.average, ratingCount: s.count, reviewCount: s.count, bestRating: 5, worstRating: 1 },
-      review: reviews.slice(0, 10).map(x => ({
-        "@type": "Review", author: { "@type": "Person", name: x.alias || `Anonymous ${niche.people.one}` }, datePublished: x.createdAt.slice(0, 10), reviewBody: x.reviewText,
-        reviewRating: { "@type": "Rating", ratingValue: x.rating, bestRating: 5, worstRating: 1 },
-      })),
-    }] : []),
     ...(faq.length >= 2 ? [{ "@type": "FAQPage", mainEntity: faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
       ...[
@@ -267,15 +256,15 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {sum.total > 0 ? <div className="p-score">
           {pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
-          {s.average && <div className="p-big p-avg"><b>{s.average}</b><span>{`/ 5 · ${s.count} ${s.count === 1 ? "rating" : "ratings"}`}</span></div>}
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
         {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
         {pos !== null && <ul className="p-legend m-only" aria-hidden="true">{([["positive", "Positive", s.positive], ["mixed", "Mixed", s.mixed], ["negative", "Negative", s.negative]] as const).map(([k, w, n], i) =>
           <li key={k} className={`s-${k}`}><span>{w}</span><b>{`${shares([s.positive, s.mixed, s.negative])[i]}%`}</b></li>)}</ul>}
       </div>
       <div className="p-rest">
-        {/* The one-line verdict (lib/list-lines), else the "In short" summary written from the product's reviews (review_summary). */}
-        {(oneLine || r.reviewSummary) && <div className="clamp p-line-wrap"><input type="checkbox" id="tldr-more" className="clamp-toggle"/><p className={`p-line${oneLine ? "" : " clamped3"}`}>{oneLine ?? r.reviewSummary}</p>{!oneLine && <label htmlFor="tldr-more" className="clamp-more">Read more</label>}</div>}
+        {/* "In short" is one sentence now (owner, 2026-11-12): the product's one-line take (lib/list-lines), else the first
+            sentence of its review summary. The whole summary answers the first question in the FAQ. */}
+        {oneLine && <p className="p-line">{oneLine}</p>}
         <p className="p-actions">
           {sum.total > 0 && <a className="button" href="#reviews">Read reviews</a>}
           {amazon ? <a className="button ghost amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price</a>
@@ -319,10 +308,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
               <div className="stack">{levels.map((x, i) => <i key={x.o} style={{width: pct(x.n, levelTotal), background: colors[i]}}/>)}</div>
               <div className="legend">{levels.map((x, i) => <span key={x.o} style={{"--c": colors[i]} as React.CSSProperties}>{x.o} {x.n}</span>)}</div>
             </div>}
-            <div className="split">
-              <div className="lbl">Ratings</div>
-              <ul className="dist">{dist.map(d => <li key={d.n}><span>{d.n}</span><span className="track"><i style={{width: `${d.count / distMax * 100}%`}}/></span><b>{d.count}</b></li>)}</ul>
-            </div>
           </section>
         </div>}
 
@@ -347,8 +332,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {siblings.length > 0 && <section>
           <h2>More from {brand?.name}</h2>
           <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
-            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{sc.count ? `${sc.count} ${sc.count === 1 ? "rating" : "ratings"}` : webReviewsLine(sc.web)}</span></span>
-            {sc.average && <span className="end"><Score rating={Number(sc.average)} size="sm"/></span>}
+            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{`${sc.count + sc.web} ${sc.count + sc.web === 1 ? "review" : "reviews"}`}</span></span>
           </a></li>; })}</ul>
         </section>}
       </aside>

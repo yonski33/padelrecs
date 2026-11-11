@@ -163,7 +163,7 @@ export const nails: Niche = {
     { slug: "best-budget-nail-products", label: "Budget", title: "Best Budget Nail Products", minReviews: 5,
       intro: "The polishes, gels, coats, press-ons and treatments users most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Blog"],
   examples: { brand: "OPI", model: "Infinite Shine", year: 2026, search: "infinite shine" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["How long did it last?", "On my nails it lasted "], ["Any issues?", "After a while I noticed "]],

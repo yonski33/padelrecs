@@ -153,7 +153,7 @@ export const camera: Niche = {
     { slug: "best-budget-cameras", label: "Budget", title: "Best Budget Cameras", minReviews: 5,
       intro: "The cameras photographers most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Camera shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Camera shop", "Forum", "Blog"],
   examples: { brand: "Fujifilm", model: "X-T5", year: 2026, search: "fujifilm" },
   form: {
     prompts: [["What did you shoot with before?", "Before this I used "], ["What do you shoot?", "I mostly shoot "], ["Any issues?", "After a while I noticed "]],

@@ -182,7 +182,7 @@ export const software: Niche = {
     { slug: "best-free-software-tools", label: "Best free plans", title: "Software Tools With the Best Free Plans", minReviews: 5,
       intro: "The tools users most often say have a good free plan.", trait: { tags: ["good free plan"], minShare: 0.2, against: ["usage limits"], noun: "the free plan" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Blog"],
   examples: { brand: "Notion", model: "Notion", year: 2026, search: "notion" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you use it for?", "I mostly use it for "], ["Anything that bugs you?", "The one thing I'd change is "]],

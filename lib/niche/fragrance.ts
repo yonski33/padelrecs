@@ -164,7 +164,7 @@ export const fragrance: Niche = {
       intro: "Fragrances wearers say are worth the money, without many complaints that they smell cheap.",
       trait: { tags: ["great value"], minShare: 0.15, against: ["overpriced", "smells cheap"], noun: "value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Fragrance retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Fragrance retailer", "Forum", "Blog"],
   examples: { brand: "Dior", model: "Sauvage Eau de Parfum", year: 2026, search: "sauvage" },
   form: {
     prompts: [["What does it remind you of?", "To me it smells like "], ["How long does it last?", "On my skin it lasts "], ["When do you wear it?", "I mostly wear it "]],

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Catalog, Score as ScoreT } from "../db/data";
 import { ProductArt, SentimentBar, positiveShare } from "./visual";
+import { ratingVerdict } from "../lib/verdict";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { sourceLabel } from "../lib/source-label";
 import { TagList, VariantPill } from "./tags";
@@ -17,7 +18,8 @@ type WebReview = Catalog["external"][number];
 
 const w = niche.words;
 
-export function Stars({rating}: {rating:number}) { return <Score rating={rating}/>; }
+/** A user review's verdict, as a word (the admin list). */
+export function Stars({rating}: {rating:number}) { return <SentimentBadge sentiment={ratingVerdict(rating)}/>; }
 
 export function shortDate(iso: string, withYear = false) {
   return new Date(iso).toLocaleDateString("en-GB", {day: "numeric", month: "short", ...(withYear ? {year: "numeric"} : {}), timeZone: "UTC"});
@@ -93,7 +95,7 @@ export function Review({review: r, data, showRacket = true, showCategory = true}
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     <header className="note-head">
       {showRacket && <CardHeading racket={racket} data={data} showCategory={showCategory}/>}
-      <Score rating={r.rating}/>
+      <SentimentBadge sentiment={ratingVerdict(r.rating)}/>
     </header>
     <ClampText id={`p-${r.id}`} text={r.reviewText}/>
     {/* Niches with variants: the one the player used (DiscGolfRecs: "Plastic Star"), at the end of the tag row. */}
@@ -190,7 +192,6 @@ export function RacketRow({racket: r, brand, average, count, web = 0, positive =
     <Thumb racket={r} brand={brand}/>
     <div><h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">
-      {average && <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></>}
       {(web > 0 || positive !== null) && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive{web > 0 ? " · " : ""}</>}{web > 0 && `${web} ${web === 1 ? "review" : "reviews"}`}</span>}
     </div>
   </article>;

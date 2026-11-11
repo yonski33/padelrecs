@@ -171,7 +171,7 @@ export const pickleball: Niche = {
       intro: "Paddles players say put lots of spin on the ball.",
       trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Pickleball shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Pickleball shop", "Forum", "Blog"],
   examples: { brand: "Joola", model: "Perseus 16mm", year: 2025, search: "joola" },
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Weight as played?", "Mine weighs about "], ["Spin and pop?", "On spin and pop it "]],

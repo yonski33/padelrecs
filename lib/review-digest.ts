@@ -1,3 +1,4 @@
+import { ratingVerdict, verdictWord } from "./verdict";
 import { CONTACT_FROM_ADDRESS, sendWithResend, type ContactEmail } from "./contact";
 import { niches, productPathIn, type Niche } from "./niche";
 
@@ -42,7 +43,7 @@ export function digestEmail(to: string, sites: DigestSite[], date: Date): Contac
    const reviewer = r.alias ? oneLine(r.alias) : "anonymous";
    lines.push(
     "",
-    `${oneLine(r.product.name)}: ${r.rating}/5 by ${reviewer}${r.email ? ` <${oneLine(r.email)}>` : ""} [${r.status}]`,
+    `${oneLine(r.product.name)}: ${verdictWord[ratingVerdict(r.rating)].toLowerCase()} by ${reviewer}${r.email ? ` <${oneLine(r.email)}>` : ""} [${r.status}]`,
     ...(r.newProduct ? ["New product added with this review; its page stays hidden until the review is approved."] : []),
     r.reviewText,
     `Product page: ${origin}${productPathIn(n, { ...r.product, slug: encodeURIComponent(r.product.slug) })}`,

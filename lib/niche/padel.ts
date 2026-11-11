@@ -173,7 +173,7 @@ export const padel: Niche = {
       trait: { tags: ["forgiving", "arm-friendly"], minShare: 0.2, against: ["small sweet spot", "demanding"], noun: "forgiveness or comfort" },
       filters: [{ column: "shape", exclude: ["Diamond"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Padel shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Padel shop", "Forum", "Blog"],
   examples: { brand: "Nox", model: "AT10 Genius 18K", year: 2026, search: "nox" },
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Weight as played?", "Mine weighs about "], ["Arm comfort?", "On my arm it "]],

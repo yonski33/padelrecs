@@ -160,7 +160,7 @@ export const climbing: Niche = {
     { slug: "best-budget-climbing-gear", label: "Budget", title: "Best Budget Climbing Gear", minReviews: 5,
       intro: "The shoes, harnesses, belay devices, ropes and pads climbers most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Climbing retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Climbing retailer", "Forum", "Blog"],
   examples: { brand: "Scarpa", model: "Instinct VSR", year: 2026, search: "instinct" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you climb in it?", "I mostly use it for "], ["Any issues?", "After a while I noticed "]],

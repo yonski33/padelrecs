@@ -148,7 +148,7 @@ export const monitor: Niche = {
     { slug: "best-portable-monitors", label: "Portable", title: "Best Portable Monitors", minReviews: 5,
       intro: "The portable monitors owners are most consistently happy with.", filters: [{ column: "shape", include: ["Portable"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Dell", model: "UltraSharp U2725QE", year: 2026, search: "dell" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you use it for?", "I mostly use it for "], ["Any issues?", "After a while I noticed "]],

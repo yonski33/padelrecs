@@ -136,7 +136,7 @@ export const badminton: Niche = {
       intro: "Rackets players call forgiving or comfortable, without many complaints that they are demanding.",
       trait: { tags: ["forgiving", "comfortable"], minShare: 0.2, against: ["demanding"], noun: "forgiveness or comfort" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Badminton shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Badminton shop", "Forum", "Blog"],
   examples: { brand: "Yonex", model: "Astrox 99 Pro", year: 2026, search: "yonex" },
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Strings and tension?", "I strung it with "], ["Singles or doubles?", "I mostly play "]],

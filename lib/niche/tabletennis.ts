@@ -165,7 +165,7 @@ export const tabletennis: Niche = {
       intro: "The blades, rubbers and rackets players most often call great value or durable.",
       trait: { tags: ["great value", "durable"], minShare: 0.25, against: ["overpriced", "loses grip fast"], noun: "value or durability" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Table tennis shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Table tennis shop", "Forum", "Blog"],
   examples: { brand: "Butterfly", model: "Viscaria", year: 2026, search: "viscaria" },
   form: {
     prompts: [["What did you use before?", "Before this I played with "], ["What is it paired with?", "I use it with "], ["Forehand or backhand?", "I have it on my "]],

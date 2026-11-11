@@ -187,7 +187,7 @@ export const simracing: Niche = {
     { slug: "best-sim-racing-shifters-handbrakes", label: "Shifters & handbrakes", title: "Best Sim Racing Shifters and Handbrakes", minReviews: 5,
       intro: "The shifters and handbrakes sim racers are most consistently happy with.", filters: [{ column: "shape", include: ["Shifter / handbrake"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Sim racing shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Sim racing shop", "Forum", "Blog"],
   examples: { brand: "Fanatec", model: "CSL DD 8 Nm", year: 2026, search: "fanatec" },
   form: {
     prompts: [["What did you upgrade from?", "Before this I used "], ["What do you race?", "I mostly race "], ["Any issues?", "After a while I noticed "]],

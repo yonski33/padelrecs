@@ -6,8 +6,9 @@ import { catalog } from "../db/data";
 import { displayName } from "../lib/brand-name";
 import { activity, racketParts } from "./components";
 import { topTags } from "../db/data";
-import { ProductArt, SentimentBar, QuoteCard, FeedCard, shortQuotes, browseTiles, BrowseTile, Arrow } from "./visual";
+import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
 import { homeHeadline } from "../lib/home-lines";
+import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import { niche, catalogPath, productHref } from "../lib/niche";
@@ -74,7 +75,7 @@ export default async function Home({ searchParams }: {
   const tags = topTags(data);
   // Intro: what the site is, for a first-time visitor (and Google), above everything else.
   const total = all.reviews.length + all.external.length;
-  const platforms = [...all.external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([p]) => p).filter(p => p !== "Other").slice(0, 3);
+  const platforms = [...all.external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([p]) => platformName(p)).map(p => p === "Blog" ? "blogs" : p === "Forum" ? "forums" : p).filter((p, i, a) => a.indexOf(p) === i).slice(0, 3);
   const fromWhere = [`${niche.people.many}`, ...platforms].map((x, i, a) => i === a.length - 1 && a.length > 1 ? `and ${x}` : x).join(a2(platforms.length));
   // Top picks: each ranking list with its top three, the most useful thing on the site for someone deciding what to buy.
   const picks = type ? [] : (await rankedLists()).lists.slice(0, 6);
@@ -108,35 +109,31 @@ export default async function Home({ searchParams }: {
     {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
   </section>;
 
-  const [accent, rest] = homeHeadline();
+  const [lead1, topic] = homeHeadline();
   const lastReview = new Map<string, { date: string; linked: boolean }>();
   for (const x of [...all.reviews.map(r => ({ id: r.racketId, date: r.createdAt, linked: false })), ...all.external.map(e => ({ id: e.racketId, date: e.createdAt, linked: !!e.sourceUrl }))])
     if (!lastReview.has(x.id) || lastReview.get(x.id)!.date < x.date) lastReview.set(x.id, x);
   const newest = [...all.listed].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
-  // Two experiences worth reading, about products the top five and the first page of the feed don't already show.
-  const inFeed = items.slice(0, show).map(i => i.product);
-  const featured = shortQuotes(data.external, 2, { min: 70, max: 260, exclude: new Set([...top.map(e => e.product.id), ...inFeed]) });
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
       <section className="hero">
-        <ul className="hero-facts"><li>{`Real ${niche.people.one} experiences`}</li><li>Source-linked reviews</li>{updated && <li>{`Updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" })}`}</li>}</ul>
-        <h1><span className="swash">{accent}</span>{rest}</h1>
+        <h1>{lead1}<span className="swash">{topic}</span></h1>
         <div className="hero-row">
-          <p className="hero-sub">{`${total.toLocaleString("en-US")} real experiences, collected from ${fromWhere}.`}</p>
+          <p className="hero-sub">{`${total.toLocaleString("en-US")} real experiences from ${fromWhere}.`}</p>
           <p className="hero-links"><a href={catalogPath}>{`Explore all ${listedCount.toLocaleString("en-US")} ${niche.words.many}`}<Arrow/></a>{lead && <a className="quiet" href={`${listHref(lead.list.slug)}#how-we-rank`}>How top picks work</a>}</p>
         </div>
       </section>
 
       {top.length >= 3 && <section className="top5" aria-labelledby="top5-title">
         <div className="section-head"><h2 id="top5-title">{`${lead.list.title} ${listYear(lead.list)}`}</h2><a className="section-link" href={listHref(lead.list.slug)}>{`See the top ${lead.entries.length}`}<Arrow/></a></div>
-        <ol className="top5-row">{top.map(e => { const p = Math.round(e.positive / e.reviews * 100); return <li key={e.product.id}><a className="pcard" href={productHref(e.product)}>
+        <ol className="top5-row">{top.map(e => { return <li key={e.product.id}><a className="pcard" href={productHref(e.product)}>
           <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
           <ProductArt product={all.rackets.find(r => r.id === e.product.id) ?? (e.product as never)} brand={brandName(e.product.brandId)} eager/>
           <span className="pcard-body">
             <span className="pcard-name">{nameOf(e.product)}</span>
-            <span className="pcard-score"><b>{`${p}%`}</b><span>positive</span><span className="pcard-n"><ChatGlyph/>{e.reviews}</span></span>
-            <SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative}/>
+            {/* Owner, 2026-11-12: no bar here, just the count. */}
+            <span className="pcard-score"><b>{e.positive}</b><span>positive reviews</span><span className="pcard-n" title={`${e.reviews} reviews in all`}><ChatGlyph/>{e.reviews}</span></span>
           </span>
         </a></li>; })}</ol>
       </section>}
@@ -171,10 +168,14 @@ export default async function Home({ searchParams }: {
         {tiles.length > 4 && <p className="more-types">{tiles.slice(4).map(t => <a key={t.key} href={t.href}>{t.label}</a>)}</p>}
       </section>}
 
-      {featured.length === 2 && <section className="quotes" aria-labelledby="words-title">
-        <div className="section-head"><h2 id="words-title">In their words</h2><span className="section-note">Two recent experiences, each linked to the original post</span></div>
-        <div className="qcard-row two">{featured.map(e => <QuoteCard key={e.id} entry={e} data={all}/>)}</div>
-      </section>}
+      {/* Where "In their words" was (it repeated the feed): a way in for visitors still deciding. */}
+      {niche.finder ? <a className="cta-band" href="/finder">
+        <span className="cta-text"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span></span>
+        <span className="cta-button">{`${niche.finder.navLabel}`}<Arrow/></span>
+      </a> : lead && <a className="cta-band" href="/rankings">
+        <span className="cta-text"><b>{`Not sure where to start?`}</b><span>{`See the ${niche.words.many} ${niche.people.many} are most consistently happy with.`}</span></span>
+        <span className="cta-button">See the rankings<Arrow/></span>
+      </a>}
     </>}
     {feed}
     {!type && <a className="index-bar" href={catalogPath}>{`Browse the full ${niche.words.one} index`}<Arrow/></a>}

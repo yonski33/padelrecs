@@ -173,7 +173,7 @@ export const tennis: Niche = {
       intro: "Rackets players call arm-friendly or forgiving, without many complaints about harshness.",
       trait: { tags: ["arm-friendly", "forgiving"], minShare: 0.2, against: ["harsh on the arm"], noun: "comfort or forgiveness" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Tennis shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Tennis shop", "Forum", "Blog"],
   examples: { brand: "Babolat", model: "Pure Aero 98", year: 2026, search: "babolat" },
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Strings and tension?", "I strung it with "], ["Arm comfort?", "On my arm it "]],

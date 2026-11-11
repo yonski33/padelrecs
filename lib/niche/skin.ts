@@ -197,7 +197,7 @@ export const skin: Niche = {
       intro: "Products users call gentle, with few reports of irritation or stinging.",
       trait: { tags: ["gentle"], minShare: 0.2, against: ["irritating", "stinging"], noun: "gentleness" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Blog"],
   examples: { brand: "CeraVe", model: "Moisturizing Cream", year: 2026, search: "cerave" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["How long until results?", "I noticed a difference after "], ["Any irritation?", "On my skin it "]],
