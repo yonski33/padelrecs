@@ -107,6 +107,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const sort = query.sort === "newest" ? "newest" : "helpful";
   const sum = summary(data, r.id);
   const tag = typeof query.tag === "string" && sum.tagCounts.has(query.tag) ? query.tag : undefined;
+  const verdict = (["positive", "mixed", "negative"] as const).find(v => v === query.verdict);
   // Niches with variants (DiscGolfRecs plastics): how many player and web reviews name each one, most first. Empty elsewhere, and on
   // products none of whose reviews name one, so nothing below shows.
   const variants = niche.variants ? variantCounts([...reviews, ...external]) : [];
@@ -138,9 +139,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x}/>,
+    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e}/>,
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -286,7 +287,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
     <div className="columns">
       <div>
-        <ReviewList title={`${niche.people.One} reviews`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
+        <ReviewList verdict={verdict} title={`${niche.people.One} reviews`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
           variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
         {reviews.length >= 3 && <div className="panels">
           <section className="panel">

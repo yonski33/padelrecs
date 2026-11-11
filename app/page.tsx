@@ -148,17 +148,14 @@ export default async function Home({ searchParams }: {
       {tiles.length >= 2 && <section className="browse-tiles" aria-labelledby="browse-title">
         <div className="section-head"><div><h2 id="browse-title">{niche.typePages?.length ? `Explore what you need` : `Find by playing style`}</h2><p className="section-sub">{niche.typePages?.length ? `Find ${niche.words.many} and reviews by type.` : `Rankings for how you like to play.`}</p></div><a className="section-link" href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? `All ${niche.words.many}` : "All rankings"}<Arrow/></a></div>
         <div className="btile-row">{tiles.slice(0, 4).map(t => <BrowseTile key={t.key} tile={t} data={all}/>)}</div>
-        {tiles.length > 4 && <p className="more-types">{tiles.slice(4).map(t => <a key={t.key} href={t.href}>{t.label}</a>)}</p>}
+        {tiles.length > 4 && <p className="more-types-link"><a href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? "Explore all categories" : "See all rankings"}<Arrow/></a></p>}
       </section>}
 
       {/* Where "In their words" was (it repeated the feed): a way in for visitors still deciding. */}
       {niche.finder ? <a className="cta-band" href="/finder">
         <span className="cta-text"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span></span>
         <span className="cta-button">{`${niche.finder.navLabel}`}<Arrow/></span>
-      </a> : lead && <a className="cta-band" href="/rankings">
-        <span className="cta-text"><b>{`Not sure where to start?`}</b><span>{`See the ${niche.words.many} ${niche.people.many} are most consistently happy with.`}</span></span>
-        <span className="cta-button">See the rankings<Arrow/></span>
-      </a>}
+      </a> : null}
     </>}
     {feed}
     {!type && <a className="index-bar" href={catalogPath}>{`Browse the full ${niche.words.one} index`}<Arrow/></a>}

@@ -976,3 +976,17 @@ a:hover .w-name { color: var(--green); }
 /* Review text in the plain sans everywhere, product page included (owner, 2026-11-12). */
 .voice-text { font-family: var(--sans); font-style: normal; font-weight: 400; font-size: 15.5px; line-height: 1.55; }
 @media (max-width: 680px) { .voice-text { font-size: 15px; } }
+
+/* Review filter: All / Positive / Mixed / Negative (owner, 2026-11-12) */
+.verdict-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 4px; }
+.verdict-filter a { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 1px solid var(--line-2); border-radius: 99px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.verdict-filter a.s-positive::before, .verdict-filter a.s-mixed::before, .verdict-filter a.s-negative::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.verdict-filter a .c { font-weight: 500; color: var(--ink-3); }
+.verdict-filter a:hover { border-color: var(--ink-3); }
+.verdict-filter a[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.verdict-filter a[aria-current="page"] .c { color: rgba(255, 255, 255, .7); }
+
+/* Home: "Explore all categories" under the tiles, instead of loose chips */
+.more-types-link { display: flex; justify-content: center; margin-top: 16px; }
+.more-types-link a { display: inline-flex; align-items: center; padding: 10px 20px; border: 1.5px solid var(--ink); border-radius: 8px; font-weight: 700; color: var(--ink); }
+.more-types-link a:hover { background: var(--ink); color: #fff; }
