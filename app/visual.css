@@ -973,3 +973,6 @@ a:hover .w-name { color: var(--green); }
 /* Home feed: review text in the plain sans, not italic serif (owner, 2026-11-12). */
 .feed-card .voice-text { font-family: var(--sans); font-style: normal; font-weight: 400; font-size: 15px; line-height: 1.55; color: var(--ink); }
 .feed-card .feed-product { font-family: var(--sans); font-weight: 700; font-size: 15.5px; }
+/* Review text in the plain sans everywhere, product page included (owner, 2026-11-12). */
+.voice-text { font-family: var(--sans); font-style: normal; font-weight: 400; font-size: 15.5px; line-height: 1.55; }
+@media (max-width: 680px) { .voice-text { font-size: 15px; } }
