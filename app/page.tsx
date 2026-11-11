@@ -132,8 +132,9 @@ export default async function Home({ searchParams }: {
           <ProductArt product={all.rackets.find(r => r.id === e.product.id) ?? (e.product as never)} brand={brandName(e.product.brandId)} eager/>
           <span className="pcard-body">
             <span className="pcard-name">{nameOf(e.product)}</span>
-            {/* Owner, 2026-11-12: no bar here, just the count. */}
-            <span className="pcard-score"><b>{e.positive}</b><span>positive reviews</span><span className="pcard-n" title={`${e.reviews} reviews in all`}><ChatGlyph/>{e.reviews}</span></span>
+            {/* Owner, 2026-11-12: no numbers here (neither the count nor the share follows the ranking order, which weighs
+                both); what reviewers like most about it, in green. A product with no shared praise tag shows its share positive. */}
+            <span className="pcard-liked">{e.pros[0] ? <>Loved for <b>{e.pros[0].label}</b></> : <><b>{`${Math.round(e.positive / e.reviews * 100)}%`}</b> positive</>}</span>
           </span>
         </a></li>; })}</ol>
       </section>}

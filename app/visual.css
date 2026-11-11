@@ -748,3 +748,6 @@ a.voice-src:hover { color: var(--green); }
 }
 .home.v2 > .cta-band { margin-top: 44px; }
 .pcard-score > span:not(.pcard-n) { white-space: nowrap; } .pcard-score { flex-wrap: wrap; }
+.pcard-liked { display: flex; align-items: center; gap: 6px; font-size: 13.5px; color: #2f6b34; }
+.pcard-liked::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; background: #e2f0df url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.4l2.6 2.6L12 5.4' fill='none' stroke='%232f6b34' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.pcard-liked b { font-weight: 700; }
