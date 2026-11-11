@@ -24,9 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string }> }) {
   const [data, f, { lists }] = await Promise.all([catalog(), searchParams, rankedLists()]);
   const sort = parseSort(f.sort);
+  const shapeGroup = niche.shapeTabs?.find(t => t.key === f.shape);
   // ?q= still narrows the list for old links; the header search is where people type names now.
   const results = sortProducts(matchingRackets(data.listed, f.q || "")
-    .filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && (!f.shape || r.shape === f.shape))
+    .filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && (!f.shape || (shapeGroup ? shapeGroup.shapes.includes(r.shape ?? "") : r.shape === f.shape)))
     .map(r => ({ r, s: score(data, r.id) })), sort);
   const shapes = [...new Set([...niche.shapeFilter, ...data.listed.map(r => r.shape).filter((s): s is string => !!s)])].sort();
   const filtered = !!(f.q || f.brand || f.year || f.shape || f.sort);

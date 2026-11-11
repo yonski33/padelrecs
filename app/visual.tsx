@@ -184,6 +184,7 @@ export function CategoryTabs({ current, shapes = [], query = {} }: { current?: s
   const keep = (shape?: string) => { const q = new URLSearchParams(Object.entries({ ...query, shape, show: undefined }).filter(([, v]) => v) as [string, string][]); return q.size ? `${catalogPathOf()}?${q}` : catalogPathOf(); };
   const tabs = types.length
     ? [{ key: "", label: "All", href: catalogPathOf() }, ...types.map(t => ({ key: t.slug, label: t.label, href: `/${t.slug}` }))]
+    : niche.shapeTabs?.length ? [{ key: "", label: "All", href: keep() }, ...niche.shapeTabs.map(t => ({ key: t.key, label: t.label, href: keep(t.key) }))]
     : shapes.length > 1 ? [{ key: "", label: "All", href: keep() }, ...shapes.map(x => ({ key: x, label: x, href: keep(x) }))] : [];
   if (!tabs.length) return null;
   return <nav className="rank-tabs cat-tabs" aria-label={`${niche.words.One} types`}>{tabs.map(t => <a key={t.key || "all"} href={t.href} aria-current={(current ?? "") === t.key ? "page" : undefined}>{t.label}</a>)}</nav>;

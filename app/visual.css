@@ -908,3 +908,18 @@ a:hover .w-name { color: var(--green); }
 }
 @media (min-width: 981px) { .rrow { grid-template-columns: 48px 128px minmax(0, 1fr) 150px 76px; gap: 18px; } .rrow-art .art { width: 128px; height: 128px; } .rrow-rank { font-size: 40px; } }
 .rrow-n { white-space: nowrap; }
+
+/* Owner, 2026-11-12: product page on phones */
+@media (max-width: 680px) {
+  /* Liked / Watch for explain themselves; the heading stays for screen readers and search. */
+  .product.v2 .says > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .product.v2 > .says { border-top: 2px solid var(--ink); padding-top: 4px; }
+  /* The sticky bar is just the shop button, full width. */
+  main > .buy-bar { padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+  .buy-bar .button { flex: 1; width: 100%; justify-content: center; padding: 15px 18px; font-size: 17px; font-weight: 700; border-radius: 10px; }
+}
+
+/* Home tiles: labels readable on any photo (darker band behind the text) */
+.btile-label { padding: 56px 16px 14px; background: linear-gradient(to top, rgba(0, 0, 0, .78) 0%, rgba(0, 0, 0, .55) 45%, transparent 100%); }
+.btile-label b { text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.btile-label span { color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }

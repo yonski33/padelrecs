@@ -150,6 +150,9 @@ export type Niche = {
   specs: { column: SpecColumn; label: string; max: number; placeholder: string; options?: string[] }[];
   /** Shapes always offered in the catalogue filter, even before any product uses them. */
   shapeFilter: string[];
+  /** Catalogue tabs that group shapes (PadelRecs: Diamond, Hybrid / Teardrop, Round), linked as ?shape=<key>. Without it
+   *  every shape is its own tab. Shapes in no group show under "All" only. */
+  shapeTabs?: { key: string; label: string; shapes: string[] }[];
   /** Optional top-level browse pages per shape (SkinRecs: /cleansers, /sunscreens…) with a menu row under the header. */
   typePages?: {
     shape: string; slug: string; label: string; intro: string;

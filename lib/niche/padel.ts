@@ -88,6 +88,12 @@ export const padel: Niche = {
     { column: "surface", label: "Surface", max: 200, placeholder: "e.g. 12K carbon" },
   ],
   shapeFilter: ["Round", "Teardrop", "Diamond"],
+  // Owner, 2026-11-12: three tabs on /rackets.
+  shapeTabs: [
+    { key: "diamond", label: "Diamond", shapes: ["Diamond", "Diamond (oversized)"] },
+    { key: "hybrid-teardrop", label: "Hybrid / Teardrop", shapes: ["Hybrid", "Teardrop"] },
+    { key: "round", label: "Round", shapes: ["Round"] },
+  ],
   rowDetail: { column: "balance", suffix: " balance" },
   // The fixed bank of quick tags. Reviews can only carry terms from this list, so counts stay comparable.
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
