@@ -771,3 +771,35 @@ a:hover .w-name { color: var(--green); }
 .discussed-wide .discussed li { border-bottom: 1px solid var(--line); }
 .discussed-wide .stat-tiles { margin-top: 18px; }
 @media (max-width: 680px) { .discussed-wide .discussed { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Catalogue rows, photo-led (owner, 2026-11-12: images bigger, like the racket-index mockup) ---------- */
+
+.catalog.v2 .page-hero h1 { font-family: var(--headline); font-style: italic; font-weight: 800; font-size: clamp(40px, 5vw, 62px); letter-spacing: -0.01em; color: var(--green-ink); }
+.catalog.v2 .page-hero p { font-family: var(--serif); font-size: 18px; }
+.catalog.v2 .list-bar { font-size: 14px; }
+.prow { grid-template-columns: 150px minmax(0, 1fr) 190px 84px; gap: 26px; padding: 18px 0; }
+.prow-art .art { width: 150px; height: 150px; border-radius: 10px; background: var(--warm); }
+.prow-art .art-amazon { background: #fff; border: 1px solid var(--line); }
+.prow-art .art-amazon img { padding: 4%; }
+.prow-art .art-own img { padding: 5%; }
+.prow h2 { font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+.prow-details { font-size: 13.5px; }
+.prow-tags .tag { font-size: 12.5px; padding: 3px 11px; }
+.sbar.stacked { gap: 9px; }
+.sbar.stacked .sbar-track { height: 10px; }
+.sbar.stacked .sbar-legend { display: grid; gap: 3px; font-size: 13px; }
+.sbar.stacked .sbar-legend span:first-child { font-weight: 700; color: var(--ink); }
+.prow-count { grid-template-columns: auto; }
+.prow-count b { font-family: var(--serif); font-size: 26px; }
+.prow-go { margin-top: 6px; font-size: 18px; color: var(--green); transition: transform .15s ease; }
+.prow:hover .prow-go { transform: translateX(3px); }
+.prow:hover h2 a { color: var(--green); }
+@media (max-width: 980px) { .prow { grid-template-columns: 120px minmax(0, 1fr) 170px 70px; gap: 18px; } .prow-art .art { width: 120px; height: 120px; } }
+@media (max-width: 680px) {
+  .prow { grid-template-columns: 104px minmax(0, 1fr) auto; gap: 8px 14px; padding: 16px 0; }
+  .prow-art .art { width: 104px; height: 104px; }
+  .prow h2 { font-size: 17px; }
+  .sbar.stacked .sbar-legend { display: flex; gap: 2px 12px; font-size: 12.5px; }
+  .prow-go { display: none; }
+  .prow-count b { font-size: 20px; }
+}

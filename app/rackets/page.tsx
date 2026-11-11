@@ -60,7 +60,8 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
         <AutoSubmitForm className="filters" action={catalogPath}>
           <h2>Filter</h2>
           <label className="f-field"><span>Sort by</span><select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
-          {shapeSpec && shapes.length > 1 && <fieldset className="f-field"><legend>{shapeLabel}</legend><div className="f-chips">
+          {/* Sites with type pages have them as chips under the header, so the filter leaves type out. */}
+          {shapeSpec && shapes.length > 1 && !niche.typePages?.length && <fieldset className="f-field"><legend>{shapeLabel}</legend><div className="f-chips">
             <label><input type="radio" name="shape" value="" defaultChecked={!f.shape}/><span>All</span></label>
             {shapes.map(x => <label key={x}><input type="radio" name="shape" value={x} defaultChecked={f.shape === x}/><span>{x}</span></label>)}
           </div></fieldset>}

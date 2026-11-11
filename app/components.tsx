@@ -208,8 +208,8 @@ export function ProductCard({racket: r, brand, count, web = 0, details, tags, sc
       {details && <p className="prow-details">{details}</p>}
       {(tags?.loved || tags?.complaint) && <p className="prow-tags">{tags.loved && <span className="tag pos"><span className="sr-only">Loved: </span>{tags.loved}</span>}{tags.complaint && <span className="tag neg"><span className="sr-only">Complaint: </span>{tags.complaint}</span>}</p>}
     </div>
-    <div className="prow-score">{s && pos !== null ? <><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/><span><b>{pos}%</b> positive</span></> : <span className="prow-few">Not enough reviews to score yet</span>}</div>
-    <a className="prow-count" href={`${href}#reviews`}><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span></a>
+    <div className="prow-score">{s && pos !== null ? <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative} legend className="stacked"/> : <span className="prow-few">Not enough reviews to score yet</span>}</div>
+    <a className="prow-count" href={`${href}#reviews`}><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span><span className="prow-go" aria-hidden="true">→</span></a>
   </article>;
 }
 
