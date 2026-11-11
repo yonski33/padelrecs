@@ -6,7 +6,8 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { shopPhoto } from "../lib/shop-photos";
 import { sourceLabel } from "../lib/source-label";
 import { displayName } from "../lib/brand-name";
-import { niche, productHref } from "../lib/niche";
+import { niche, productHref, catalogPath } from "../lib/niche";
+const catalogPathOf = () => catalogPath;
 import { plainSummary } from "../lib/plain-summary";
 
 const monthYear = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
@@ -174,4 +175,16 @@ export function FeedCard(props: { data: Catalog } & ({ review: PlayerReview } | 
     <a className="feed-product" href={productHref(r)}><ProductArt product={r} brand={brand}/><span>{displayName(r.name, brand)}</span></a>
     {"review" in props ? <Voice review={props.review}/> : <Voice entry={props.entry}/>}
   </div>;
+}
+
+/** Category tabs above a product list (2026-11 redesign, like the rankings tabs): "All" plus the niche's product types,
+ *  each its own page, or, on niches without type pages, the shape filter as ?shape= links. */
+export function CategoryTabs({ current, shapes = [], query = {} }: { current?: string; shapes?: string[]; query?: Record<string, string | undefined> }) {
+  const types = niche.typePages ?? [];
+  const keep = (shape?: string) => { const q = new URLSearchParams(Object.entries({ ...query, shape, show: undefined }).filter(([, v]) => v) as [string, string][]); return q.size ? `${catalogPathOf()}?${q}` : catalogPathOf(); };
+  const tabs = types.length
+    ? [{ key: "", label: "All", href: catalogPathOf() }, ...types.map(t => ({ key: t.slug, label: t.label, href: `/${t.slug}` }))]
+    : shapes.length > 1 ? [{ key: "", label: "All", href: keep() }, ...shapes.map(x => ({ key: x, label: x, href: keep(x) }))] : [];
+  if (!tabs.length) return null;
+  return <nav className="rank-tabs cat-tabs" aria-label={`${niche.words.One} types`}>{tabs.map(t => <a key={t.key || "all"} href={t.href} aria-current={(current ?? "") === t.key ? "page" : undefined}>{t.label}</a>)}</nav>;
 }

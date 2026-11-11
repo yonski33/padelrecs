@@ -67,7 +67,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
       {/* Rankings pages show their lists as tabs in the page itself (2026-11 redesign), so no chip row here. */}
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
       {/* Product-type chips help browsing; the add-review form has its own product picker, so they are left off there. */}
-      {niche.typePages && pathname !== "/" && !inRankings && !onAddPage && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
+      {niche.typePages && pathname !== "/" && pathname !== catalogPath && !niche.typePages.some(t => pathname === `/${t.slug}`) && !inRankings && !onAddPage && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
         <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
         {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : inTypePath === t ? "true" : undefined}>{t.label}</a>)}
       </ChipRow>}

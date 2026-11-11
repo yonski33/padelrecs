@@ -9,7 +9,7 @@ import { matchingRackets } from "../../lib/racket-search";
 import { SORTS, parseSort, sortProducts } from "../../lib/product-sort";
 import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
-import { browseTiles, BrowseTile, Arrow } from "../visual";
+import { browseTiles, BrowseTile, Arrow, CategoryTabs } from "../visual";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -49,6 +49,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
       <h1>{catalogKeyword}</h1>
       <p>{`${data.listed.length.toLocaleString("en-US")} ${w.many} · ${reviewTotal.toLocaleString("en-US")} reviews.`}</p>
     </div>
+    <CategoryTabs shapes={shapeSpec ? shapes : []} current={f.shape} query={{ brand: f.brand, year: f.year, sort: f.sort, q: f.q }}/>
     <div className="catalog-grid">
       <div className="catalog-main">
         <div className="list-bar"><p>{`${results.length.toLocaleString("en-US")} ${results.length === 1 ? w.one : w.many}`}{filtered && <> · <a href={catalogPath}>Clear filters</a></>}</p><p className="list-bar-sort">{`Sorted by ${(SORTS.find(x => x.value === sort)?.label ?? "").toLowerCase()}`}</p></div>
@@ -58,13 +59,9 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
       </div>
       <aside className="filter-panel">
         <AutoSubmitForm className="filters" action={catalogPath}>
+          {f.shape && <input type="hidden" name="shape" value={f.shape}/>}
           <h2>Filter</h2>
           <label className="f-field"><span>Sort by</span><select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
-          {/* Sites with type pages have them as chips under the header, so the filter leaves type out. */}
-          {shapeSpec && shapes.length > 1 && !niche.typePages?.length && <fieldset className="f-field"><legend>{shapeLabel}</legend><div className="f-chips">
-            <label><input type="radio" name="shape" value="" defaultChecked={!f.shape}/><span>All</span></label>
-            {shapes.map(x => <label key={x}><input type="radio" name="shape" value={x} defaultChecked={f.shape === x}/><span>{x}</span></label>)}
-          </div></fieldset>}
           <label className="f-field"><span>Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
           {hasYears && <label className="f-field"><span>Model year</span><select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select></label>}
           {f.q && <input type="hidden" name="q" value={f.q}/>}

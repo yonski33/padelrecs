@@ -872,3 +872,5 @@ a:hover .w-name { color: var(--green); }
 .chip-watch { background: #fbe4dc; color: #a3361d; }
 .rrow.lead { background: none; border-radius: 0; box-shadow: inset 4px 0 0 var(--lime-line); }
 .rrow.lead .rrow-rank { padding-left: 6px; }
+.cat-tabs { margin: 18px 0 0; } .catalog.v2 .catalog-grid { margin-top: 18px; } .cat-tabs + .pills { margin-top: 14px; }
+.catalog.v2 .breadcrumb { margin: 22px 0 0; } .catalog.v2 .breadcrumb + .page-hero { padding-top: 6px; }

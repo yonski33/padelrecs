@@ -6,6 +6,7 @@ import { catalog as loadCatalog, score, topTags } from "../../../db/data";
 import { pageFor, seoName, hubTitle, hubDescription, productsOfType } from "../../../lib/type-pages";
 import { ProductCard, Directory, parseShow } from "../../components";
 import { AutoSubmitForm } from "../../auto-submit";
+import { CategoryTabs } from "../../visual";
 import { SORTS, parseSort, sortProducts } from "../../../lib/product-sort";
 import { niche, catalogPath, catalogLabel, productHref } from "../../../lib/niche";
 import { displayName } from "../../../lib/brand-name";
@@ -40,10 +41,11 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const tags = topTags(data), show = parseShow(f.show);
   const moreHref = (n: number) => { const q = new URLSearchParams(Object.entries({ ...f, show: String(n) }).filter(([, v]) => v) as [string, string][]); return `/${t.slug}?${q}`; };
   const jsonLd = listJsonLd([catalogCrumb, { name: t.label, path: `/${t.slug}` }], results.map(({ r }) => ({ name: displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name), href: productHref(r) })));
-  return <main>
+  return <main className="catalog v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/>
     <p className="breadcrumb"><a href={catalogPath}>{catalogLabel}</a> / {t.label}</p>
-    <div className="page-title"><h1>{seoName(t)}</h1><p>{`${t.intro}. ${ofType.length} ${ofType.length === 1 ? niche.words.one : niche.words.many} · ${reviewTotal} reviews.`}</p></div>
+    <div className="page-hero"><h1>{seoName(t)}</h1><p>{`${t.intro}. ${ofType.length} ${ofType.length === 1 ? niche.words.one : niche.words.many} · ${reviewTotal} reviews.`}</p></div>
+    <CategoryTabs current={t.slug}/>
     <AutoSubmitForm className="pills" action={`/${t.slug}`}>
       {brands.length > 1 && <label className={f.brand ? "pill on" : "pill"}><span className="sr-only">Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>}
       {(f.brand || f.sort) && <a className="pills-clear" href={`/${t.slug}`}>Clear</a>}
