@@ -48,8 +48,9 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
       <h2><a href={href}>{name.replace(/ \d{4}$/, "")}{/ \d{4}$/.test(name) && <span className="rrow-year">{name.slice(-5)}</span>}</a></h2>
       {line && <p className="rrow-line">{line}</p>}
       {(e.pros.length > 0 || e.con) && <p className="rrow-chips">
-        {e.pros[0] && <span className="chip-liked"><ThumbGlyph/><span className="cw">{`What ${people.many} liked:`}</span>{e.pros[0].label}</span>}
-        {e.con && <span className="chip-watch"><WarnGlyph/><span className="cw">Watch for:</span>{e.con.label}</span>}
+        {/* Icon and colour say which is which (owner, 2026-11-12); the words are for screen readers. */}
+        {e.pros[0] && <span className="chip-liked"><ThumbGlyph/><span className="sr-only">{`What ${people.many} liked: `}</span>{e.pros[0].label}</span>}
+        {e.con && <span className="chip-watch"><WarnGlyph/><span className="sr-only">Watch for: </span>{e.con.label}</span>}
       </p>}
       {list.trait && <p className="rrow-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       {/* A quiet text link: Amazon on niches with Amazon links, otherwise the product's own site (software, hosting, money). */}

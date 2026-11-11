@@ -864,3 +864,11 @@ a:hover .w-name { color: var(--green); }
 }
 .rrow { grid-template-columns: 64px 116px minmax(0, 1fr) 130px; gap: 18px; } .rrow-art .art { width: 116px; height: 116px; } .chip-liked, .chip-watch { padding: 4px 10px; font-size: 12.5px; }
 .rrow { grid-template-columns: 64px 116px minmax(0, 1fr) 160px; } .rrow-pos b { white-space: nowrap; }
+/* Rankings: chips in one row, green for liked and red for watch-for; #1 marked by its badge and an accent line, not a
+   tinted row (white Amazon photos looked off on the tint). */
+.rrow-chips { flex-wrap: wrap; gap: 6px; }
+.chip-liked, .chip-watch { white-space: nowrap; font-weight: 600; font-size: 13px; padding: 4px 11px; }
+.chip-liked { background: #e3f1dc; color: #2f6b2c; }
+.chip-watch { background: #fbe4dc; color: #a3361d; }
+.rrow.lead { background: none; border-radius: 0; box-shadow: inset 4px 0 0 var(--lime-line); }
+.rrow.lead .rrow-rank { padding-left: 6px; }
