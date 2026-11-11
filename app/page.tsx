@@ -137,20 +137,20 @@ export default async function Home({ searchParams }: {
       </section>}
 
       <div className="home-split">
-        {popular.length > 0 && <section aria-labelledby="discussed-title">
-          <div className="section-head"><h2 id="discussed-title">{`What ${niche.people.many} are discussing`}</h2><span className="section-note">{`Most new reviews ${popularLabel}`}</span></div>
-          <ul className="discussed">{popular.map(({ racket, count }) => { const t = tags.get(racket.id), { brand } = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
-            <ProductArt product={racket} brand={brand}/>
-            <span className="d-body"><span className="d-name">{displayName(racket.name, brand)}</span>
-              {(t?.loved || t?.complaint) && <span className="d-said">{t.loved && <span>Loved: <b>{t.loved}</b></span>}{t.complaint && <span>Concern: <b>{t.complaint}</b></span>}</span>}</span>
-            <span className="d-count"><b>{`+${count}`}</b>{count === 1 ? "review" : "reviews"}</span>
-          </a></li>; })}</ul>
-        </section>}
         <section aria-labelledby="new-title">
           {second && <div className="section-head"><h2 id="new-title">{`${second.list.title} ${listYear(second.list)}`}</h2><a className="section-link" href={listHref(second.list.slug)}>{`See the top ${second.entries.length}`}<Arrow/></a></div>}
           <ol className="winners">{secondTop.map(({ e, product: r }) => { const b = brandName(r!.brandId); return <li key={r!.id}>
             <a href={productHref(r!)}><span className="w-badge">{String(e.rank).padStart(2, "0")}</span><ProductArt product={r!} brand={b}/><span className="w-name">{displayName(r!.name, b)}</span></a>
           </li>; })}</ol>
+        </section>
+        <section aria-labelledby="discussed-title">
+          {popular.length > 0 && <><div className="section-head"><h2 id="discussed-title">{`What ${niche.people.many} are discussing`}</h2><span className="section-note" title="Most new reviews">{popularLabel === "this month" ? "This month" : "Lately"}</span></div>
+          <ul className="discussed">{popular.map(({ racket, count }) => { const t = tags.get(racket.id), { brand } = racketParts(racket, data); return <li key={racket.id}><a href={productHref(racket)}>
+            <ProductArt product={racket} brand={brand}/>
+            <span className="d-body"><span className="d-name">{displayName(racket.name, brand)}</span>
+              {(t?.loved || t?.complaint) && <span className="d-said">{t.loved && <span>Loved: <b>{t.loved}</b></span>}{t.complaint && <span>Concern: <b>{t.complaint}</b></span>}</span>}</span>
+            <span className="d-count"><b>{`+${count}`}</b>{count === 1 ? "review" : "reviews"}</span>
+          </a></li>; })}</ul></>}
           <dl className="stat-tiles">
             <div><dt>reviews</dt><dd><ChatGlyph/>{total.toLocaleString("en-US")}</dd></div>
             <div><dt>{niche.words.many}</dt><dd><BoxGlyph/>{listedCount.toLocaleString("en-US")}</dd></div>

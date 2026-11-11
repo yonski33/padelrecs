@@ -760,3 +760,6 @@ a.voice-src:hover { color: var(--green); }
 .w-name { font-family: var(--serif); font-weight: 700; font-size: 16.5px; line-height: 1.25; }
 a:hover .w-name { color: var(--green); }
 .w-badge { width: 44px; text-align: center; font-family: var(--headline); font-style: italic; font-weight: 800; font-size: 20px; padding: 2px 10px 2px 8px; color: var(--lime-ink-2); background: var(--lime); clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%); }
+.home-split .section-head { flex-wrap: nowrap; } .home-split .section-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+@media (max-width: 680px) { .home-split .section-head { flex-wrap: wrap; } }
+.home-split .section-head h2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
