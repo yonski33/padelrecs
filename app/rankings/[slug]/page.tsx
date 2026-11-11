@@ -54,11 +54,11 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
         ? <a className="rrow-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
         : site && <a className="rrow-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
     </div>
+    {/* The same row as the catalogue (owner, 2026-11-12): the split with its legend, then the count the order rests on. */}
+    <div className="rrow-split"><SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative} legend className="stacked"/></div>
     <a className="rrow-score" href={href}>
-      <span className="rrow-pos"><ChatGlyph/><b>{`${e.positive} positive`}</b></span>
-      <span className="rrow-n">{`${e.reviews} reviews`}</span>
-      {/* Owner, 2026-11-12: the split explains the order better than the count alone; no legend, to keep rows light. */}
-      <SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative} className="rrow-bar"/>
+      <span className="rrow-pos"><b>{e.positive}</b><span>positive</span></span>
+      <span className="rrow-n">{`of ${e.reviews} reviews`}</span>
     </a>
   </li>;
 }
@@ -149,4 +149,3 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
 const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 function CalendarGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></g></svg>; }
 function PeopleGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><circle cx="7.5" cy="7" r="2.8"/><path d="M2.5 16.5c.6-3 2.6-4.5 5-4.5s4.4 1.5 5 4.5"/><circle cx="14" cy="7.5" r="2.2"/><path d="M14 12c1.9 0 3.2 1.2 3.6 3.6"/></g></svg>; }
-function ChatGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M3 4.5h14v9H9l-4 3v-3H3z"/></svg>; }

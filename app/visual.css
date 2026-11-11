@@ -877,3 +877,34 @@ a:hover .w-name { color: var(--green); }
 .rrow-bar { margin-top: 8px; } .rrow-bar .sbar-track { height: 8px; } @media (max-width: 680px) { .rrow-bar { grid-column: 1 / -1; margin-top: 2px; } }
 /* "XX positive" in the shared positive green on every site (owner, 2026-11-12), not the theme colour. */
 .rrow-pos, .rrow-pos b, .rrow-pos .cg { color: #2f6b34; }
+
+/* ---------- Ranking rows = catalogue rows (owner, 2026-11-12), plus rank, one-line take and the positive count ---------- */
+.rrow { grid-template-columns: 56px 150px minmax(0, 1fr) 170px 96px; gap: 22px; padding: 18px 0; align-items: center; }
+.rrow.lead { box-shadow: none; }
+.rrow-rank { font-size: 44px; padding-bottom: 6px; }
+.rrow-art .art { width: 150px; height: 150px; border-radius: 10px; background: var(--warm); }
+.rrow-art .art-amazon { background: #fff; border: 1px solid var(--line); }
+.rrow-art .art-amazon img { padding: 4%; }
+.rrow-art .art-own img { padding: 5%; }
+.rrow h2 { font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+.rrow-year { font-family: var(--sans); font-size: 15px; }
+.rrow-line { font-size: 14.5px; color: var(--ink-2); }
+.rrow-split { min-width: 0; }
+.rrow-score { border-left: 0; padding-left: 0; display: grid; justify-items: end; gap: 0; text-align: right; }
+.rrow-pos { display: grid; justify-items: end; gap: 0; }
+.rrow-pos b { font-family: var(--serif); font-size: 26px; font-weight: 700; line-height: 1.1; color: #2f6b34; }
+.rrow-pos span { font-size: 12px; color: #2f6b34; }
+.rrow-n { padding-left: 0; font-size: 12px; color: var(--ink-3); }
+.top-pick { position: static; justify-self: start; margin-bottom: 2px; }
+.rrow-main { gap: 6px; }
+@media (max-width: 980px) { .rrow { grid-template-columns: 44px 110px minmax(0, 1fr) 84px; } .rrow-art .art { width: 110px; height: 110px; } .rrow-split { grid-column: 3; } }
+@media (max-width: 680px) {
+  .rrow { grid-template-columns: 96px minmax(0, 1fr) auto; grid-template-areas: "art main score" "art split split"; gap: 8px 12px; padding: 16px 0; }
+  .rrow-art { grid-area: art; } .rrow-main { grid-area: main; } .rrow-score { grid-area: score; align-self: start; } .rrow-split { grid-area: split; grid-column: auto; }
+  .rrow-art .art { width: 96px; height: 96px; }
+  .rrow h2 { font-size: 17px; }
+  .rrow-pos b { font-size: 20px; }
+  .sbar.stacked .sbar-legend { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+}
+@media (min-width: 981px) { .rrow { grid-template-columns: 48px 128px minmax(0, 1fr) 150px 76px; gap: 18px; } .rrow-art .art { width: 128px; height: 128px; } .rrow-rank { font-size: 40px; } }
+.rrow-n { white-space: nowrap; }
