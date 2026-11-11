@@ -201,7 +201,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => sum.tagCounts.get(t) ?? 0)));
   const tagHref = (t: string) => `${productHref(r)}?tag=${encodeURIComponent(t)}#reviews`;
   const says = sum.tagCounts.size > 0 && <div className="says">
-    <h2><span className="d-only">{`What ${niche.people.many} love — and don’t`}</span><span className="m-only">{`What ${niche.people.many} noticed`}</span></h2>
+    <h2><span className="d-only">{`What ${niche.people.many} love, and what they don’t`}</span><span className="m-only">{`What ${niche.people.many} noticed`}</span></h2>
     <div className="says-cards">
       {sideTags.filter(([, , ts]) => ts.length).map(([label, tone, ts]) => <section key={label} className={`says-card ${tone}`}>
         <h3><TagGlyph tone={tone}/>{label}</h3>

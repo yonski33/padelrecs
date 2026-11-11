@@ -209,7 +209,7 @@ export const nails: Niche = {
         "A polish that lasts a week on one person chips in a day on someone else. Knowing someone’s natural nails, how they apply it and what they used before often tells you more than a swatch or a score on its own.",
       ],
       sections: [
-        { heading: "Users, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and NailsRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Users, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones users write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and NailsRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "NailsRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about products you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

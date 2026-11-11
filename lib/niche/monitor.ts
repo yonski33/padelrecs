@@ -194,7 +194,7 @@ export const monitor: Niche = {
         "A monitor that suits one person won’t suit everyone. Knowing what someone uses it for, what it’s connected to and what they had before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from owner submissions, and external comments stay separate from those ratings. Monitor pages link to Amazon, and MonitorRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Monitor pages link to Amazon, and MonitorRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "MonitorRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about monitors you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

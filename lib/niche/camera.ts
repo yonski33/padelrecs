@@ -199,7 +199,7 @@ export const camera: Niche = {
         "A camera that suits one photographer won’t suit everyone. Knowing what someone shoots, which lenses they use and what they had before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Photographers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from photographer submissions, and external comments stay separate from those ratings. Camera pages link to Amazon, and CameraRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Photographers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones photographers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Camera pages link to Amazon, and CameraRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "CameraRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about cameras you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

@@ -225,8 +225,8 @@ export const padel: Niche = {
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, playing side and time with a racket often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Racket pages link to Amazon, and PadelRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
-        { heading: "A work in progress", body: "This is a rough prototype. The initial fictional reviews have been removed. Player submissions are moderated before publication, and web reviews link to their sources. Some catalog specifications remain illustrative." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones players write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Racket pages link to Amazon, and PadelRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "How reviews get here", body: "Player reviews are checked for spam before they appear. Reviews from Reddit, YouTube, blogs and forums are short summaries of first-hand posts, each linked to the original." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },
       ],
