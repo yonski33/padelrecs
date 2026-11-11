@@ -110,10 +110,13 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
-  const lastReview = new Map<string, { date: string; linked: boolean }>();
-  for (const x of [...all.reviews.map(r => ({ id: r.racketId, date: r.createdAt, linked: false })), ...all.external.map(e => ({ id: e.racketId, date: e.createdAt, linked: !!e.sourceUrl }))])
-    if (!lastReview.has(x.id) || lastReview.get(x.id)!.date < x.date) lastReview.set(x.id, x);
-  const newest = [...all.listed].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 4);
+  // The #1 of each other ranking ("Best for power", "Best cleanser"): always tied to a category, unlike site-wide tags.
+  // Yearly lists can repeat a title; each title shows once.
+  // A product that tops two lists shows once, under the first.
+  const shownWinners = new Set(top.map(e => e.product.id));
+  const winners = picks.slice(1).filter((l, i, a) => l.entries.length && a.findIndex(x => x.list.title === l.list.title) === i)
+    .filter(l => !shownWinners.has(l.entries[0].product.id) && !!shownWinners.add(l.entries[0].product.id)).slice(0, 4)
+    .map(l => ({ list: l.list, product: all.rackets.find(r => r.id === l.entries[0].product.id) })).filter(w => w.product);
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
@@ -148,10 +151,9 @@ export default async function Home({ searchParams }: {
           </a></li>; })}</ul>
         </section>}
         <section aria-labelledby="new-title">
-          <div className="section-head"><h2 id="new-title">New to the index</h2></div>
-          <ul className="justin">{newest.map(r => { const b = brandName(r.brandId), last = lastReview.get(r.id); return <li key={r.id}>
-            <a href={productHref(r)}><ProductArt product={r} brand={b}/><span className="j-body"><span className="j-name">{displayName(r.name, b)}</span><span className="j-text">{last ? `Latest review added ${new Date(last.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" })}` : "Added to the index"}</span></span></a>
-            {last?.linked && <span className="j-pill">Source linked</span>}
+          <div className="section-head"><h2 id="new-title">Top of each ranking</h2><a className="section-link" href="/rankings">All rankings<Arrow/></a></div>
+          <ul className="winners">{winners.map(({ list, product: r }) => { const b = brandName(r!.brandId); return <li key={list.slug}>
+            <a href={listHref(list.slug)}><ProductArt product={r!} brand={b}/><span className="w-body"><span className="w-list">{list.label}</span><span className="w-name">{displayName(r!.name, b)}</span></span><span className="w-badge" aria-hidden="true">#1</span></a>
           </li>; })}</ul>
           <dl className="stat-tiles">
             <div><dt>reviews</dt><dd><ChatGlyph/>{total.toLocaleString("en-US")}</dd></div>
