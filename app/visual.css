@@ -950,3 +950,8 @@ a:hover .w-name { color: var(--green); }
 }
 @media (max-width: 680px) { .rrow-split { grid-area: auto; grid-column: 2 / -1; grid-row: 3; } .rrow-split .sbar-legend { display: flex; flex-wrap: wrap; gap: 2px 12px; } }
 .rrow.lead .rrow-art .art { background: var(--warm); } .rrow.lead .rrow-art .art-amazon { background: #fff; }
+@media (max-width: 680px) {
+  .product.v2 .p-shop { display: flex; justify-content: center; width: 100%; margin: 2px 0 0; padding: 15px 18px; font-size: 17px; font-weight: 700; border-radius: 10px; }
+  main:has(.p-shop) { padding-bottom: 40px; }
+}
+@media (max-width: 680px) { .p-rest .p-links { order: 1; } .p-rest .p-shop { order: 2; } }
