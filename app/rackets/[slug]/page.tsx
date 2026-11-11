@@ -271,8 +271,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             : site ? <a className="button ghost" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
             : <a className="button ghost" href={addHref}><PlusIcon/>Add your review</a>}
         </p>
-        {/* Phones: the shop button full width here, above "At a glance" (owner, 2026-11-12), instead of a pinned bar. */}
-        {shopButton && <a className={`button m-only p-shop ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>}
         <p className="p-links m-only">
           {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} opinions`} <span aria-hidden="true">↓</span></a>}
           {/* Jumps to the similar products below; a real side-by-side compare is not built yet. */}
@@ -340,6 +338,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </section>}
       </aside>
     </div>
+    {/* Phones: the shop button stays in reach at the bottom of the screen. */}
+    {shopButton && <div className="buy-bar">
+      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
+    </div>}
   </main>;
 }
 
