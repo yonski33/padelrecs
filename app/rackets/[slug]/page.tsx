@@ -285,7 +285,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
     <div className="columns">
       <div>
-        <ReviewList title={<><span className="d-only">{`${niche.people.One} voices`}</span><span className="m-only">{`From the ${niche.people.many}`}</span></>} subtitle={`${(reviews.length + external.length).toLocaleString("en-US")} source-linked opinions`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
+        <ReviewList title={<><span className="d-only">{`${niche.people.One} voices`}</span><span className="m-only">{`From the ${niche.people.many}`}</span></>} subtitle={`${(reviews.length + external.length).toLocaleString("en-US")} opinions`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
           variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
         {reviews.length >= 3 && <div className="panels">
           <section className="panel">

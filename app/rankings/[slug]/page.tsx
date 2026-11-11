@@ -43,11 +43,13 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
     <span className="rrow-rank" aria-label={`Rank ${e.rank}`}>{String(e.rank).padStart(2, "0")}</span>
     <a className="rrow-art" href={href} aria-hidden="true" tabIndex={-1}>{product ? <ProductArt product={product} brand={brand}/> : <span className="art art-none"><ProductIcon shape={e.product.shape} brand={brand}/></span>}</a>
     <div className="rrow-main">
-      <h2><a href={href}>{name}</a>{e.rank === 1 && <span className="top-pick">Top pick</span>}</h2>
+      {e.rank === 1 && <span className="top-pick">Top pick</span>}
+      {/* A model year at the end of the name reads lighter, as in the mockup. */}
+      <h2><a href={href}>{name.replace(/ \d{4}$/, "")}{/ \d{4}$/.test(name) && <span className="rrow-year">{name.slice(-5)}</span>}</a></h2>
       {line && <p className="rrow-line">{line}</p>}
       {(e.pros.length > 0 || e.con) && <p className="rrow-chips">
-        {e.pros.slice(0, 2).map(t => <span key={t.label} className="chip-liked"><span className="sr-only">Liked: </span>{t.label}</span>)}
-        {e.con && <span className="chip-watch"><span className="cw">Watch for</span>{e.con.label}</span>}
+        {e.pros[0] && <span className="chip-liked"><ThumbGlyph/><span className="cw">{`What ${people.many} liked:`}</span>{e.pros[0].label}</span>}
+        {e.con && <span className="chip-watch"><WarnGlyph/><span className="cw">Watch for:</span>{e.con.label}</span>}
       </p>}
       {list.trait && <p className="rrow-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       {/* A quiet text link: Amazon on niches with Amazon links, otherwise the product's own site (software, hosting, money). */}
@@ -56,8 +58,7 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
         : site && <a className="rrow-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
     </div>
     <a className="rrow-score" href={href}>
-      <span className="rrow-pos"><b>{e.positive}</b> positive</span>
-      <SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative}/>
+      <span className="rrow-pos"><ChatGlyph/><b>{`${e.positive} positive`}</b></span>
       <span className="rrow-n">{`${e.reviews} reviews`}</span>
     </a>
   </li>;
@@ -120,8 +121,10 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
     <div className="page-hero">
       <p className="breadcrumb"><a href={RANKINGS_PATH}>Rankings</a> / {list.label}</p>
       {/* A short heading; the full title stays the browser/search title and the ItemList name. */}
-      <h1>{`${list.title} ${listYear(list)}`}</h1>
+      <h1>{`${list.title} `}<span className="swash">{listYear(list)}</span></h1>
       <p>{list.intro}</p>
+      {/* The lists as tabs, as in the mockup (the header's chip row is left off on rankings pages). */}
+      {lists.length > 1 && <nav className="rank-tabs" aria-label="Rankings">{lists.filter((l, i) => lists.findIndex(x => x.list.slug === l.list.slug) === i).map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label}</a>)}</nav>}
       <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">Methodology explained ↓</a></li></ul>
     </div>
     <div className="catalog-grid">
@@ -133,11 +136,10 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
           <ul>
             {yearRule && <li><CalendarGlyph/>{yearRule}</li>}
             <li><PeopleGlyph/>{`${min}+ reviews to qualify`}</li>
-            <li><LinkGlyph/>Source-linked reviews</li>
           </ul>
           <a className="more-link" href="#how-we-rank">Full method ↓</a>
+          {niche.finder && <a className="find-button" href="/finder">{niche.finder.navLabel}<Arrow/></a>}
         </section>
-        {niche.finder && <a className="side-finder" href="/finder"><b>{niche.finder.navLabel}</b><span>{niche.finder.invite}</span><span className="button">Take the 1-minute quiz</span></a>}
         {related.length > 0 && <section className="side-lists"><h2>Other lists</h2><ul>{related.map(r => <li key={r.list.slug}><a href={listHref(r.list.slug)}>{r.list.label}<Arrow/></a></li>)}</ul></section>}
       </aside>
     </div>
@@ -148,4 +150,6 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
 const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 function CalendarGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></g></svg>; }
 function PeopleGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><circle cx="7.5" cy="7" r="2.8"/><path d="M2.5 16.5c.6-3 2.6-4.5 5-4.5s4.4 1.5 5 4.5"/><circle cx="14" cy="7.5" r="2.2"/><path d="M14 12c1.9 0 3.2 1.2 3.6 3.6"/></g></svg>; }
-function LinkGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><path d="M8.5 11.5l3-3"/><path d="M9.5 6l1.3-1.3a3.2 3.2 0 0 1 4.5 4.5L14 10.5M6 9.5l-1.3 1.3a3.2 3.2 0 0 0 4.5 4.5L10.5 14"/></g></svg>; }
+function ThumbGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M6.5 9.5v7h-3v-7zM6.5 9.5l3.2-6c1.4 0 2.2 1 1.9 2.3l-.6 2.7h4.3c1 0 1.7.9 1.5 1.9l-1.1 5.2c-.2.9-.9 1.4-1.8 1.4H6.5"/></svg>; }
+function WarnGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M10 3l7.5 13.5h-15zM10 8.5v3.5M10 14.4v.1"/></svg>; }
+function ChatGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M3 4.5h14v9H9l-4 3v-3H3z"/></svg>; }

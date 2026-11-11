@@ -97,7 +97,6 @@ export default async function Home({ searchParams }: {
   const feed = <section className="feed" id="latest">
     <div className="section-head">
       {type ? <h1 className="feed-title">{`Latest ${type.label.toLowerCase()} reviews`}</h1> : <h2>Latest reviews</h2>}
-      <span className="section-note">Every review links to where it was said</span>
     </div>
     {niche.typePages && <ChipRow className="type-filter" label={`Filter reviews by ${niche.words.one} type`}>
       <a href={query({})} aria-current={!type ? "page" : undefined}>All</a>
@@ -144,7 +143,7 @@ export default async function Home({ searchParams }: {
           <dl className="stat-tiles">
             <div><dt>reviews</dt><dd><ChatGlyph/>{total.toLocaleString("en-US")}</dd></div>
             <div><dt>{niche.words.many}</dt><dd><BoxGlyph/>{listedCount.toLocaleString("en-US")}</dd></div>
-            <div><dt>{`+${newThisMonth.toLocaleString("en-US")} this month`}</dt><dd><LinkGlyph/><span className="stat-word">Source linked</span></dd></div>
+            <div><dt>new this month</dt><dd><PlusGlyph/>{`+${newThisMonth.toLocaleString("en-US")}`}</dd></div>
           </dl>
         </section>
 
@@ -171,4 +170,4 @@ export default async function Home({ searchParams }: {
 const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 function ChatGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M3 4.5h14v9H9l-4 3v-3H3z"/></svg>; }
 function BoxGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M7.5 2.5h5v3l1.5 2v10h-8v-10l1.5-2z"/></svg>; }
-function LinkGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><path d="M8.5 11.5l3-3"/><path d="M9.5 6l1.3-1.3a3.2 3.2 0 0 1 4.5 4.5L14 10.5M6 9.5l-1.3 1.3a3.2 3.2 0 0 0 4.5 4.5L10.5 14"/></g></svg>; }
+function PlusGlyph() { return <svg className="glyph" viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><circle cx="10" cy="10" r="7"/><path d="M10 6.5v7M6.5 10h7"/></g></svg>; }

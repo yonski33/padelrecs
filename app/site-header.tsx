@@ -64,10 +64,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
         {!onAddPage && <a className="button header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
       </div>
       {/* On Rankings pages the row lists the rankings, so a chip there opens a ranking, not a product-type page. */}
-      {inRankings && ranked.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">
-        <a href={RANKINGS_PATH} aria-current={pathname === RANKINGS_PATH ? "page" : undefined}>All rankings</a>
-        {topLists.filter(l => ranked.includes(l.slug) || pathname === rankingHref(l.slug)).map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
-      </ChipRow>}
+      {/* Rankings pages show their lists as tabs in the page itself (2026-11 redesign), so no chip row here. */}
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
       {/* Product-type chips help browsing; the add-review form has its own product picker, so they are left off there. */}
       {niche.typePages && pathname !== "/" && !inRankings && !onAddPage && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>

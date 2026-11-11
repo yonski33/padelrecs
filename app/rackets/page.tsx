@@ -47,7 +47,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/>
     <div className="page-hero">
       <h1>{catalogKeyword}</h1>
-      <p>{`${data.listed.length.toLocaleString("en-US")} ${w.many} · ${reviewTotal.toLocaleString("en-US")} reviews, every one linked to its source.`}</p>
+      <p>{`${data.listed.length.toLocaleString("en-US")} ${w.many} · ${reviewTotal.toLocaleString("en-US")} reviews.`}</p>
     </div>
     <div className="catalog-grid">
       <div className="catalog-main">
