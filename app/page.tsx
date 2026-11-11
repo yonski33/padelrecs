@@ -7,6 +7,7 @@ import { displayName } from "../lib/brand-name";
 import { activity, racketParts } from "./components";
 import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
 import { homeHeadline } from "../lib/home-lines";
+import { CountUp } from "./count-up";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
@@ -113,7 +114,7 @@ export default async function Home({ searchParams }: {
       <section className="hero">
         <h1>{lead1}<span className="swash">{topic}</span></h1>
         <div className="hero-row">
-          <p className="hero-sub">{`${total.toLocaleString("en-US")} real experiences from ${fromWhere}.`}</p>
+          <p className="hero-sub"><CountUp value={total}/>{` real experiences from ${fromWhere}.`}</p>
           <p className="hero-links"><a href={catalogPath}>{`Explore all ${listedCount.toLocaleString("en-US")} ${niche.words.many}`}<Arrow/></a>{lead && <a className="quiet" href={`${listHref(lead.list.slug)}#how-we-rank`}>How top picks work</a>}</p>
         </div>
       </section>
