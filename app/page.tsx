@@ -7,7 +7,7 @@ import { displayName } from "../lib/brand-name";
 import { activity, racketParts } from "./components";
 import { topTags } from "../db/data";
 import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
-import { homeHeadline } from "../lib/home-lines";
+import { homeHeadline, secondRanking } from "../lib/home-lines";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
@@ -110,13 +110,9 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
-  // The #1 of each other ranking ("Best for power", "Best cleanser"): always tied to a category, unlike site-wide tags.
-  // Yearly lists can repeat a title; each title shows once.
-  // A product that tops two lists shows once, under the first.
-  const shownWinners = new Set(top.map(e => e.product.id));
-  const winners = picks.slice(1).filter((l, i, a) => l.entries.length && a.findIndex(x => x.list.title === l.list.title) === i)
-    .filter(l => !shownWinners.has(l.entries[0].product.id) && !!shownWinners.add(l.entries[0].product.id)).slice(0, 4)
-    .map(l => ({ list: l.list, product: all.rackets.find(r => r.id === l.entries[0].product.id) })).filter(w => w.product);
+  // A second ranking's top four beside "What … are discussing" (owner, 2026-11-12): SkinRecs sunscreens next to the moisturizers.
+  const second = picks.find(l => l.list.slug === secondRanking[niche.id]) ?? picks.slice(1).find(l => l.list.title !== lead?.list.title);
+  const secondTop = second?.entries.slice(0, 4).map(e => ({ e, product: all.rackets.find(r => r.id === e.product.id) })).filter(x => x.product) ?? [];
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
@@ -151,10 +147,10 @@ export default async function Home({ searchParams }: {
           </a></li>; })}</ul>
         </section>}
         <section aria-labelledby="new-title">
-          <div className="section-head"><h2 id="new-title">Top of each ranking</h2><a className="section-link" href="/rankings">All rankings<Arrow/></a></div>
-          <ul className="winners">{winners.map(({ list, product: r }) => { const b = brandName(r!.brandId); return <li key={list.slug}>
-            <a href={listHref(list.slug)}><ProductArt product={r!} brand={b}/><span className="w-body"><span className="w-list">{list.label}</span><span className="w-name">{displayName(r!.name, b)}</span></span><span className="w-badge" aria-hidden="true">#1</span></a>
-          </li>; })}</ul>
+          {second && <div className="section-head"><h2 id="new-title">{`${second.list.title} ${listYear(second.list)}`}</h2><a className="section-link" href={listHref(second.list.slug)}>{`See the top ${second.entries.length}`}<Arrow/></a></div>}
+          <ol className="winners">{secondTop.map(({ e, product: r }) => { const b = brandName(r!.brandId); return <li key={r!.id}>
+            <a href={productHref(r!)}><span className="w-badge">{String(e.rank).padStart(2, "0")}</span><ProductArt product={r!} brand={b}/><span className="w-name">{displayName(r!.name, b)}</span></a>
+          </li>; })}</ol>
           <dl className="stat-tiles">
             <div><dt>reviews</dt><dd><ChatGlyph/>{total.toLocaleString("en-US")}</dd></div>
             <div><dt>{niche.words.many}</dt><dd><BoxGlyph/>{listedCount.toLocaleString("en-US")}</dd></div>
