@@ -970,3 +970,6 @@ a:hover .w-name { color: var(--green); }
 .site-footer .footer-line { font-family: var(--headline); font-style: italic; font-weight: 800; font-size: 18px; color: #fff; }
 .site-footer .footer-notice { color: var(--on-green-muted); }
 .count-up { font-variant-numeric: tabular-nums; font-weight: 700; font-style: normal; color: var(--green-ink); }
+/* Home feed: review text in the plain sans, not italic serif (owner, 2026-11-12). */
+.feed-card .voice-text { font-family: var(--sans); font-style: normal; font-weight: 400; font-size: 15px; line-height: 1.55; color: var(--ink); }
+.feed-card .feed-product { font-family: var(--sans); font-weight: 700; font-size: 15.5px; }
