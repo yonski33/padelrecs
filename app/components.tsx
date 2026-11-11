@@ -206,7 +206,7 @@ export function ProductCard({racket: r, brand, count, web = 0, details, tags, sc
     <div className="prow-main">
       <h2><a href={href}>{displayName(r.name, brand)}</a></h2>
       {details && <p className="prow-details">{details}</p>}
-      {(tags?.loved || tags?.complaint) && <p className="prow-tags">{tags.loved && <span className="tag pos"><span className="sr-only">Loved: </span>{tags.loved}</span>}{tags.complaint && <span className="tag neg"><span className="sr-only">Complaint: </span>{tags.complaint}</span>}</p>}
+      {/* Owner, 2026-11-12: no tags on list rows (without counts a lone complaint reads as the verdict); the product page shows them with counts. */}
     </div>
     <div className="prow-score">{s && pos !== null ? <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative} legend className="stacked"/> : <span className="prow-few">Not enough reviews to score yet</span>}</div>
     <a className="prow-count" href={`${href}#reviews`}><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span><span className="prow-go" aria-hidden="true">→</span></a>

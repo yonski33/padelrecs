@@ -47,11 +47,7 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
       {/* A model year at the end of the name reads lighter, as in the mockup. */}
       <h2><a href={href}>{name.replace(/ \d{4}$/, "")}{/ \d{4}$/.test(name) && <span className="rrow-year">{name.slice(-5)}</span>}</a></h2>
       {line && <p className="rrow-line">{line}</p>}
-      {(e.pros.length > 0 || e.con) && <p className="rrow-chips">
-        {/* Icon and colour say which is which (owner, 2026-11-12); the words are for screen readers. */}
-        {e.pros[0] && <span className="chip-liked"><ThumbGlyph/><span className="sr-only">{`What ${people.many} liked: `}</span>{e.pros[0].label}</span>}
-        {e.con && <span className="chip-watch"><WarnGlyph/><span className="sr-only">Watch for: </span>{e.con.label}</span>}
-      </p>}
+      {/* Owner, 2026-11-12: no tag chips here; the line above names the main downside in context, the product page has the counts. */}
       {list.trait && <p className="rrow-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       {/* A quiet text link: Amazon on niches with Amazon links, otherwise the product's own site (software, hosting, money). */}
       {amazon
@@ -153,6 +149,4 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
 const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 function CalendarGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></g></svg>; }
 function PeopleGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><circle cx="7.5" cy="7" r="2.8"/><path d="M2.5 16.5c.6-3 2.6-4.5 5-4.5s4.4 1.5 5 4.5"/><circle cx="14" cy="7.5" r="2.2"/><path d="M14 12c1.9 0 3.2 1.2 3.6 3.6"/></g></svg>; }
-function ThumbGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M6.5 9.5v7h-3v-7zM6.5 9.5l3.2-6c1.4 0 2.2 1 1.9 2.3l-.6 2.7h4.3c1 0 1.7.9 1.5 1.9l-1.1 5.2c-.2.9-.9 1.4-1.8 1.4H6.5"/></svg>; }
-function WarnGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M10 3l7.5 13.5h-15zM10 8.5v3.5M10 14.4v.1"/></svg>; }
 function ChatGlyph() { return <svg className="cg" viewBox="0 0 20 20" aria-hidden="true"><path {...glyph} d="M3 4.5h14v9H9l-4 3v-3H3z"/></svg>; }
