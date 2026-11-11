@@ -950,3 +950,22 @@ a:hover .w-name { color: var(--green); }
 }
 @media (max-width: 680px) { .rrow-split { grid-area: auto; grid-column: 2 / -1; grid-row: 3; } .rrow-split .sbar-legend { display: flex; flex-wrap: wrap; gap: 2px 12px; } }
 .rrow.lead .rrow-art .art { background: var(--warm); } .rrow.lead .rrow-art .art-amazon { background: #fff; }
+
+/* ---------- The remaining pages in the new look (brand, rankings index, quiz, about, contact, review form) ---------- */
+.page-title h1, .form-title h1, .prose h1, .rankings-index .page-hero h1 { font-family: var(--headline); font-style: italic; font-weight: 800; font-size: clamp(38px, 5vw, 58px); letter-spacing: -0.01em; line-height: 1.02; color: var(--green-ink); text-wrap: balance; }
+.page-title p, .form-title p { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-2); }
+.prose .eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); }
+.prose h2 { font-family: var(--serif); font-weight: 700; font-size: 24px; }
+.rankings-index .page-hero p { font-family: var(--serif); font-style: italic; font-size: 17px; }
+.index-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; }
+.index-tiles .btile { aspect-ratio: 4 / 3.1; }
+.rankings-index .finder-invite { margin-top: 28px; }
+@media (max-width: 980px) { .index-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .index-tiles { grid-template-columns: minmax(0, 1fr); } .index-tiles .btile-label span { display: block; } }
+
+/* Footer: a dark band, as bold as the header */
+.site-footer { background: var(--green-ink); color: var(--on-green-muted); border-top: 0; padding: 28px 0 40px; margin-top: 40px; }
+.site-footer a { color: var(--on-green); }
+.site-footer a:hover { color: var(--lime); }
+.site-footer .footer-line { font-family: var(--headline); font-style: italic; font-weight: 800; font-size: 18px; color: #fff; }
+.site-footer .footer-notice { color: var(--on-green-muted); }

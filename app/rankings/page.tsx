@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche } from "../../lib/niche";
 import { RANKINGS_PATH, listYear } from "../../lib/top-lists";
-import { ProductIcon } from "../icons";
+import { BrowseTile } from "../visual";
 import { rankedLists, listHref, longDate, currentYear } from "./lists";
 import { FinderInvite } from "../finder/invite";
 
@@ -24,28 +24,18 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function TopListsIndex() {
   const { data, lists } = await rankedLists();
   if (!lists.length) notFound();
-  const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
-  return <main className="top-page">
-    <div className="page-title">
+  return <main className="top-page v2 rankings-index">
+    <div className="page-hero">
       <h1>{heading}</h1>
       <p>{`${w.Many} ranked by what ${people.many} say about them in published reviews. No sponsored placements; every number is counted from reviews you can read.`}</p>
       {updated && <p className="top-updated">Last updated <time dateTime={updated}>{longDate(updated)}</time></p>}
     </div>
+    {/* Each ranking as a big image tile with its top three (2026-11 redesign); the click opens the full list. */}
+    <div className="btile-row index-tiles">{lists.map(({ list, entries }) => {
+      const products = entries.slice(0, 3).map(e => data.rackets.find(r => r.id === e.product.id)).filter((r): r is NonNullable<typeof r> => !!r);
+      return products.length ? <BrowseTile key={list.slug} data={data} tile={{ key: list.slug, href: listHref(list.slug), label: list.label, note: `${list.title} ${listYear(list)} · ${entries.length} ranked`, products }}/> : null;
+    })}</div>
     <FinderInvite/>
-    <div className="top-index">
-      {/* One short row per list: its title and size, no products, so the ranking itself is what the click shows. */}
-      {lists.map(({ list, entries, reviews }) => {
-        const lead = entries[0];
-        return <a key={list.slug} className="top-card" href={listHref(list.slug)}>
-          <span className="thumb" aria-hidden="true"><ProductIcon shape={lead.product.shape} brand={brandOf(lead.product.brandId)}/></span>
-          <span className="top-card-text">
-            <h2>{`${list.title} ${listYear(list)}`}</h2>
-            <span className="top-card-meta">{`Based on ${reviews} reviews · ${entries.length} ranked`}</span>
-          </span>
-          <span className="top-card-more">See the ranking <span className="arrow" aria-hidden="true">→</span></span>
-        </a>;
-      })}
-    </div>
   </main>;
 }

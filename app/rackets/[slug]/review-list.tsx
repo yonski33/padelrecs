@@ -8,10 +8,10 @@ import { ChipRow } from "../../chip-row";
 export type Sort = "newest" | "helpful";
 export type ListItem = { key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; tags: string[]; variant?: string | null; node: () => ReactNode };
 /** Reviews shown at first, and added by each "Show more". The page stays short; the rest are a click away. */
-export const PAGE = 20;
+export const PAGE = 10;
 /** Reviews in the page's HTML on first load: PAGE visible, the rest behind a no-JS "Show more" toggle, so search engines
  *  index more review text without the page growing with every review (owner choice, 2026-11-05). */
-export const IN_HTML = 50;
+export const IN_HTML = 30;
 
 /** Query parameter for the variant filter on niches with variants: "plastic" on DiscGolfRecs. */
 export const variantParam = niche.variants?.label.toLowerCase() ?? "variant";
