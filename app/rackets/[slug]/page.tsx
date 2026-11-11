@@ -273,7 +273,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </p>
         <p className="p-links m-only">
           {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} opinions`} <span aria-hidden="true">↓</span></a>}
-          {similar.length > 0 && <a className="p-compare" href="#similar">{`Compare ${niche.words.many}`} <span aria-hidden="true">→</span></a>}
+          {/* Jumps to the similar products below; a real side-by-side compare is not built yet. */}
+          {similar.length > 0 && <a className="p-compare" href="#similar">{`Similar ${niche.words.many}`} <span aria-hidden="true">→</span></a>}
         </p>
       </div>
     </section>
