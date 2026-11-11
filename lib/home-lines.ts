@@ -16,6 +16,3 @@ export function homeHeadline(): [string, string] {
   return [`What ${niche.people.many} are saying about `, topics[niche.id] ?? niche.words.many];
 }
 
-/** The ranking whose top four sit beside "What … are discussing": by default the next list with a different title
- *  from the top-five one; a site can name its own. */
-export const secondRanking: Record<string, string> = { skin: "best-face-sunscreens" };

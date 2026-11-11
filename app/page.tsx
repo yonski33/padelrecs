@@ -7,7 +7,7 @@ import { displayName } from "../lib/brand-name";
 import { activity, racketParts } from "./components";
 import { topTags } from "../db/data";
 import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
-import { homeHeadline, secondRanking } from "../lib/home-lines";
+import { homeHeadline } from "../lib/home-lines";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
@@ -110,9 +110,6 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
-  // A second ranking's top five, laid out like the first (owner, 2026-11-12): SkinRecs sunscreens after the moisturizers.
-  const second = picks.find(l => l.list.slug === secondRanking[niche.id]) ?? picks.slice(1).find(l => l.list.title !== lead?.list.title);
-  const secondTop = second?.entries.slice(0, 5).map(e => ({ e, product: all.rackets.find(r => r.id === e.product.id) })).filter(x => x.product) ?? [];
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
@@ -150,14 +147,6 @@ export default async function Home({ searchParams }: {
             <div><dt>{`+${newThisMonth.toLocaleString("en-US")} this month`}</dt><dd><LinkGlyph/><span className="stat-word">Source linked</span></dd></div>
           </dl>
         </section>
-      {second && secondTop.length >= 3 && <section className="top5" aria-labelledby="second-title">
-        <div className="section-head"><h2 id="second-title">{`${second.list.title} ${listYear(second.list)}`}</h2><a className="section-link" href={listHref(second.list.slug)}>{`See the top ${second.entries.length}`}<Arrow/></a></div>
-        <ol className="top5-row">{secondTop.map(({ e, product: r }) => <li key={r!.id}><a className="pcard" href={productHref(r!)}>
-          <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
-          <ProductArt product={r!} brand={brandName(r!.brandId)}/>
-          <span className="pcard-body"><span className="pcard-name">{nameOf(r!)}</span></span>
-        </a></li>)}</ol>
-      </section>}
 
       {tiles.length >= 2 && <section className="browse-tiles" aria-labelledby="browse-title">
         <div className="section-head"><div><h2 id="browse-title">{niche.typePages?.length ? `Explore what you need` : `Find by playing style`}</h2><p className="section-sub">{niche.typePages?.length ? `Find ${niche.words.many} and reviews by type.` : `Rankings for how you like to play.`}</p></div><a className="section-link" href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? `All ${niche.words.many}` : "All rankings"}<Arrow/></a></div>
