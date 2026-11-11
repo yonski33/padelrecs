@@ -874,3 +874,4 @@ a:hover .w-name { color: var(--green); }
 .rrow.lead .rrow-rank { padding-left: 6px; }
 .cat-tabs { margin: 18px 0 0; } .catalog.v2 .catalog-grid { margin-top: 18px; } .cat-tabs + .pills { margin-top: 14px; }
 .catalog.v2 .breadcrumb { margin: 22px 0 0; } .catalog.v2 .breadcrumb + .page-hero { padding-top: 6px; }
+.rrow-bar { margin-top: 8px; } .rrow-bar .sbar-track { height: 8px; } @media (max-width: 680px) { .rrow-bar { grid-column: 1 / -1; margin-top: 2px; } }

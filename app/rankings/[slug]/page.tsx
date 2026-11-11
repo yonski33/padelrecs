@@ -61,6 +61,8 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
     <a className="rrow-score" href={href}>
       <span className="rrow-pos"><ChatGlyph/><b>{`${e.positive} positive`}</b></span>
       <span className="rrow-n">{`${e.reviews} reviews`}</span>
+      {/* Owner, 2026-11-12: the split explains the order better than the count alone; no legend, to keep rows light. */}
+      <SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative} className="rrow-bar"/>
     </a>
   </li>;
 }
