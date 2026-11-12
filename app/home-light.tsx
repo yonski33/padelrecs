@@ -2,7 +2,6 @@
 // page, one soft accent. A pill bar of types and rankings, a small centred hero with the search, then a compact
 // leaderboard (rank, small photo, name, one grey line, a tiny meta line, the signal) with short #1–#5 lists beside it.
 // Shown with ?home=d until the owner picks a direction; every number is counted from published reviews.
-import { Poppins } from "next/font/google";
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
 import { niche, productHref } from "../lib/niche";
@@ -17,16 +16,18 @@ import { Directory, parseShow } from "./components";
 import { AutoSubmitForm } from "./auto-submit";
 import { ProductArt } from "./visual";
 import { SourceIcon } from "./icons";
+import { lightFont } from "./light-font";
 import { shapeChoices, tagCounts, consensus, ago } from "./home-catalog";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap" });
+// Preview links carry the light look through to the product page.
+const lightHref = (x: Parameters<typeof productHref>[0]) => `${productHref(x)}?look=light`;
 const DAY = 86_400_000, w = niche.words, p = niche.people;
 const fmt = (n: number) => n.toLocaleString("en-US");
 type Product = Catalog["listed"][number];
 export type LightFilters = { q?: string; shape?: string; sort?: string; show?: string };
 
 function Row({ data, r, rank, signal, line }: { data: Catalog; r: Product; rank: number | null; signal?: number; line: string | null }) {
-  const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = productHref(r);
+  const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = lightHref(r);
   const s = score(data, r.id), total = s.count + s.web, pos = s.judged >= 3 ? Math.round(100 * s.positive / s.judged) : null;
   return <a className={`lt-row${rank !== null && rank <= 3 ? ` lt-top lt-top${rank}` : ""}`} href={href}>
     <span className="lt-rank">{rank !== null ? `#${rank}` : ""}</span>
@@ -77,11 +78,12 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const fresh = [...data.external].filter(e => e.sentiment).sort((a, b) => b.createdAt.localeCompare(a.createdAt)).filter(e => !seen.has(e.racketId) && seen.add(e.racketId)).slice(0, 5);
   const side = picks.filter((l, i) => l.entries.length >= 5 && picks.findIndex(x => x.list.title === l.list.title) === i).slice(1, 3);
 
-  return <div className={`lt ${poppins.className}`}>
+  return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
       <p className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} opinions`}</p>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
       <p className="lt-sub">We read Reddit, YouTube and forums so you don’t have to. Every opinion links to its source.</p>
+      <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
       <AutoSubmitForm className="lt-search" action="/">
         {Object.entries({ ...keep, shape: f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
         <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search a ${w.one} or brand`} aria-label={`Search ${w.many}`}/>
@@ -91,22 +93,21 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
     <div className="lt-grid" id="board">
       <div className="lt-board">
-        {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count, an underline on the
-            one picked, and the order at the right. It stays at the top while the long list scrolls. */}
+        {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count and an underline on
+            the one picked. It stays at the top while the long list scrolls. */}
         <div className="lt-bar">
           {cats.length > 1 && <nav className="lt-cats" aria-label={`${w.One} categories`}>
             <a href={link({ shape: undefined })} aria-current={!shape ? "true" : undefined}>All<small>{fmt(searched.length)}</small></a>
             {cats.map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
           </nav>}
-          <nav className="lt-order" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</nav>
         </div>
         {f.q && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} for “${f.q}” · `}<a href={link({ q: undefined })}>clear</a></p>}
         <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <Row key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/>)}/>
         {!results.length && <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>}
       </div>
       <aside className="lt-side">
-        <Mini title="Fresh opinions" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: productHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
-        {side.map(l => <Mini key={l.list.slug} title={l.list.label} href={listHref(l.list.slug)} items={l.entries.slice(0, 5).map(e => { const full = data.rackets.find(r => r.id === e.product.id); return { key: e.product.id, rank: e.rank, art: full ? <ProductArt product={full} brand={brandOf(full.brandId)}/> : null, name: displayName(e.product.name, brandOf(e.product.brandId)), href: productHref(e.product), value: signals.get(e.product.id)?.signal ?? "" }; })}/>)}
+        <Mini title="Fresh opinions" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
+        {side.map(l => <Mini key={l.list.slug} title={l.list.label} href={listHref(l.list.slug)} items={l.entries.slice(0, 5).map(e => { const full = data.rackets.find(r => r.id === e.product.id); return { key: e.product.id, rank: e.rank, art: full ? <ProductArt product={full} brand={brandOf(full.brandId)}/> : null, name: displayName(e.product.name, brandOf(e.product.brandId)), href: lightHref(e.product), value: signals.get(e.product.id)?.signal ?? "" }; })}/>)}
         <p className="lt-note">The signal is positive opinions weighed by how many there are. No sponsored picks. <a href="/about#signal">How it works</a></p>
       </aside>
     </div>
