@@ -126,3 +126,7 @@
 .lcmp .cmp-head { overflow: hidden; min-width: 0; }
 .lcmp .cmp-buy { display: block; width: 100%; white-space: normal; line-height: 1.25; }
 @media (max-width: 640px) { .lcmp .cmp-buy { padding: 9px 10px; font-size: 12.5px; } .lcmp .cmp-head { padding: 10px; } }
+/* The shop buttons line up across products whatever the name length (owner, 2026-11-12). */
+.lcmp .cmp-head { display: flex; flex-direction: column; align-self: stretch; }
+.lcmp .cmp-head .cmp-buy { margin-top: auto; }
+.lcmp .cmp-head .cmp-kind { margin-bottom: 10px; }
