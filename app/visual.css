@@ -1158,5 +1158,4 @@ svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--
 .product.v2 .says-card.neg { --bar: #c4643f; }
 @media (max-width: 680px) { .product.v2 .says-card.neg a { background: #fbe4dc; color: #8a2f17; } }
 @media (max-width: 680px) { .product.v2 .says-card:not(.neg) a { background: #e4f0e2; color: #24572c; } .product.v2 .says-card:not(.neg) h3 .tag-glyph { color: #3f7a3a; } }
-/* "Reviews" visible again after the product name, lighter than the name (owner, 2026-11-12). */
-.h1-reviews { font-weight: 400; color: var(--ink-3); letter-spacing: -0.02em; }
+/* "Reviews" visible after the product name, in the same style as the name, like the earlier design (owner, 2026-11-12). */
