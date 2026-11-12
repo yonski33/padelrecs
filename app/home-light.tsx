@@ -98,7 +98,10 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
         <div className="lt-bar">
           {cats.length > 1 && <nav className="lt-cats" aria-label={`${w.One} categories`}>
             <a href={link({ shape: undefined })} aria-current={!shape ? "true" : undefined}>All<small>{fmt(searched.length)}</small></a>
-            {cats.map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
+            {/* One row (owner, 2026-11-13): the first five categories, the rest under "More", as on the catalogue. */}
+            {cats.slice(0, 5).map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
+            {cats.length > 5 && <details className="lc-more"><summary>{cats.slice(5).some(c => c.key === shape?.key) ? cats.find(c => c.key === shape?.key)!.label : "More"} <span aria-hidden="true">⌄</span></summary>
+              <div>{cats.slice(5).map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}</div></details>}
           </nav>}
         </div>
         {f.q && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} for “${f.q}” · `}<a href={link({ q: undefined })}>clear</a></p>}

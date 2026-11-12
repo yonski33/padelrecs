@@ -1922,3 +1922,8 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-site .site > main:not(.lt-page):not(.home) h1 { margin: 26px 0 8px; font-style: normal; font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; color: var(--lt-ink); }
 .lt-site .site > main:not(.lt-page):not(.home) h1 + p { margin-bottom: 22px; color: var(--lt-mute); }
 .lt-site .site > main:not(.lt-page):not(.home) label > span, .lt-site .site > main:not(.lt-page):not(.home) label { font-weight: 500; }
+/* Home category row: one line; the More menu opens over the list. */
+.lt-cats { flex-wrap: nowrap !important; overflow: visible; }
+.lt-bar { overflow: visible; }
+.lt-cats .lc-more summary { padding: 6px 0 9px; font-size: 13.5px; }
+@media (max-width: 720px) { .lt-cats { overflow-x: auto; } .lt-cats .lc-more > div { position: fixed; right: 16px; top: auto; } }
