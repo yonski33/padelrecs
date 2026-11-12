@@ -1072,3 +1072,19 @@ a:hover .w-name { color: var(--green); }
   font-family: var(--sans); font-style: normal;
 }
 .top-page.v2 .page-hero > p:not(.breadcrumb), .catalog.v2 .page-hero p, .rankings-index .page-hero p, .page-title p, .form-title p { font-size: 17px; }
+/* Trust band under the home top five (owner, 2026-11-12): bold, in the badges' colours and type, joined to the cards. */
+.trust-strip { display: flex; align-items: center; justify-content: space-between; gap: 14px 28px; flex-wrap: wrap; margin-top: 12px; padding: 16px 24px 16px 22px;
+  border-radius: 0 0 10px 10px; background: var(--green-ink); color: var(--on-green); text-decoration: none; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+.trust-strip:hover { filter: brightness(1.08); }
+.trust-left { display: contents; }
+.trust-lead { font-family: var(--headline); font-style: italic; font-weight: 800; font-size: 30px; line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; color: #fff; }
+.trust-lead b { display: inline-block; margin-right: 8px; padding: 2px 14px 2px 10px; background: var(--lime); color: var(--lime-ink-2); clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%); }
+.trust-sources { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.trust-src { display: inline-flex; align-items: center; gap: 7px; font-size: 15px; color: var(--on-green-muted); }
+.trust-src svg { width: 18px; height: 18px; color: #fff; }
+.trust-src b { font-family: var(--headline); font-style: italic; font-weight: 800; font-size: 22px; color: #fff; }
+@media (max-width: 680px) {
+  .trust-strip { padding: 14px 16px; gap: 12px; }
+  .trust-lead { font-size: 24px; }
+  .trust-sources { gap: 8px 16px; }
+}

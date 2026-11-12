@@ -13,7 +13,8 @@ import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
-import { listYear } from "../lib/top-lists";
+import { listYear, reviewWindowMonths } from "../lib/top-lists";
+import { SourceIcon } from "./icons";
 
 const DAY = 86_400_000;
 /** Separator for "users, Reddit, YouTube and forums": commas, the last item already carries "and". */
@@ -108,6 +109,19 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
+  // The reviews the lead list counts: judged, inside its window, on its listed products (lib/top-lists.ts rankList).
+  const sources = (() => {
+    if (!lead) return null;
+    const ids = new Set(lead.entries.map(e => e.product.id));
+    const since = Date.now() - reviewWindowMonths(lead.list) * 30.44 * DAY;
+    const counts = new Map<string, number>();
+    const bump = (k: string) => counts.set(k, (counts.get(k) ?? 0) + 1);
+    for (const r of all.reviews) if (ids.has(r.racketId) && Date.parse(r.createdAt) >= since) bump(niche.site.name);
+    for (const e of all.external) if (ids.has(e.racketId) && e.sentiment && Date.parse(e.sourceDate || e.createdAt) >= since) bump(platformName(e.sourcePlatform) === "Blog" ? "Blogs" : platformName(e.sourcePlatform));
+    const parts = [...counts].sort((a, b) => b[1] - a[1]);
+    const total = parts.reduce((a, [, n]) => a + n, 0);
+    return total ? { total, parts: parts.slice(0, 4) } : null;
+  })();
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
@@ -129,6 +143,11 @@ export default async function Home({ searchParams }: {
             {/* Owner, 2026-11-12: just the name; the product page has the detail. */}
           </span>
         </a></li>; })}</ol>
+        {/* Trust strip (owner, 2026-11-12): where the list's reviews come from, counted the way the ranking counts them. */}
+        {sources && <a className="trust-strip" href={`${listHref(lead.list.slug)}#how-we-rank`}>
+          <span className="trust-left"><span className="trust-lead"><b>{sources.total.toLocaleString("en-US")}</b>{` reviews behind this list`}</span>
+          <span className="trust-sources">{sources.parts.map(([name, n]) => <span key={name} className="trust-src"><SourceIcon platform={name === niche.site.name ? "forum" : name}/><b>{n.toLocaleString("en-US")}</b>{` ${name === niche.site.name ? `${niche.site.name} ${niche.people.many}` : name}`}</span>)}</span></span>
+        </a>}
       </section>}
 
       <section className="discussed-wide" aria-labelledby="discussed-title">
