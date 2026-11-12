@@ -1731,3 +1731,10 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lr-main .lr-buy span { color: inherit; }
 .lr-main .lr-buy:hover { background: none; color: var(--lt-acc); text-decoration: underline; }
 @media (max-width: 640px) { .lr-main .lr-buy { display: inline; padding: 0; } }
+@media (max-width: 640px) {
+  .lr-row { grid-template-columns: 26px 48px minmax(0, 1fr) auto; grid-template-areas: "rank art main side"; align-items: start; gap: 10px; }
+  .lr-art { width: 48px; height: 48px; }
+  .lr-side { align-self: start; }
+  .lr-sig { display: grid; justify-items: center; gap: 0; }
+  .lr-sig b { font-size: 20px; }
+}
