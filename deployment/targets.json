@@ -158,6 +158,11 @@
       "name": "printrecs",
       "id": "prj_jRJJaaobEDIbL1eJyWR8SjTpGhrk",
       "domain": "www.printrecs.com"
+    },
+    "laptop": {
+      "name": "laptoprecs",
+      "id": "prj_hb072aDpZfwrY3gZLXxZh1faBc7a",
+      "domain": "www.laptoprecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
