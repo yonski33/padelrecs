@@ -1999,3 +1999,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-board .lt-cats { gap: 15px; }
 .lt-board .lt-cats a small { margin-left: 3px; }
 @media (max-width: 1100px) and (min-width: 721px) { .lt-board .lt-cats a small { display: none; } }
+/* Sort on the same line as the category labels (owner, 2026-11-13). */
+.lt-board .lt-bar { align-items: baseline; }
+.lt-board .lt-bar-aside { padding: 0 0 0 14px; align-self: baseline; }
+.lt-board .lt-sort, .lt-board .lt-sort select { font-size: 13.5px; line-height: 1.2; }
