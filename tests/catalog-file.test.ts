@@ -811,13 +811,13 @@ test("the TVRecs catalog: 193 sourced TVs in all three categories, one product p
   } finally { await engine.close(); }
 });
 
-test("the GrillRecs catalog: 236 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
+test("the GrillRecs catalog: 237 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/grill.json");
   const snapshot = catalogSnapshot(catalog, "grillrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 34);
-  assert.equal(snapshot.tables.rackets.length, 236);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 236);
+  assert.equal(snapshot.tables.rackets.length, 237);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 237);
   const categories = niches.grill.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/grill");
   for (const r of snapshot.tables.rackets) {
@@ -826,7 +826,7 @@ test("the GrillRecs catalog: 236 sourced products in all eight categories, one p
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 10, `${c}: at least 10 products`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
-  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 236, "one source URL per product");
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 237, "one source URL per product");
   // Generations and maker-sold sizes with near-identical names are separate products, never merged (the niche's traps).
   for (const name of ["Traeger Ironwood 885", "Traeger Ironwood", "Traeger Ironwood XL", "Traeger Timberline 850", "Traeger Timberline", "Traeger Pro 575", "Traeger Pro 780",
     "Weber Genesis II E-315", "Weber Genesis E-325s", "Weber Genesis EX-325s", "Weber Genesis E-325 (2025)", "Weber Q 1200", "Weber Q 1200N",
@@ -839,7 +839,7 @@ test("the GrillRecs catalog: 236 sourced products in all eight categories, one p
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 34, rackets: 236, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 34, rackets: 236, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 34, rackets: 237, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 34, rackets: 237, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
