@@ -8,6 +8,8 @@ import { activity, racketParts } from "./components";
 import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
 import { homeHeadline } from "../lib/home-lines";
 import { CountUp } from "./count-up";
+import { HomeA, HomeB } from "./home-variants";
+import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
@@ -33,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[] }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[]; home?: string | string[] }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -108,6 +110,15 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
+  // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
+  const variant = params.home === "a" || params.home === "b" ? params.home : null;
+  if (variant && !type) {
+    const props = { all, picks, signals: await productSignals(), now: now.getTime() };
+    return <main className={`home v2 home-${variant}`}>
+      {variant === "a" ? <HomeA {...props}/> : <HomeB {...props}/>}
+      {feed}
+    </main>;
+  }
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
