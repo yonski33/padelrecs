@@ -49,10 +49,9 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
   const shown = ordered.slice(0, show);
   // On the first page, the next reviews up to IN_HTML are already in the HTML, hidden until "Show more" is clicked.
   const hidden = show < IN_HTML ? ordered.slice(show, IN_HTML) : [];
-  const firstOlder = [...shown, ...hidden].findIndex(i => i.older);
   const left = ordered.length - shown.length - hidden.length;
-  const card = (i: ListItem, n: number) => <Fragment key={i.key}>
-    {n === firstOlder && <p className="older-note">{`Older than ${niche.recentMonths} months. These may describe an earlier version.`}</p>}
+  const card = (i: ListItem, _n?: number) => <Fragment key={i.key}>
+    {/* No "Older than … months" note (owner, 2026-11-12): it could make readers doubt the reviews; old ones get a separate look. */}
     <div>{i.node()}</div>
   </Fragment>;
   const moreLink = left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, variant, verdict, show: Math.max(show, IN_HTML) + PAGE })} scroll={false}>Show more reviews</Link></div>;
