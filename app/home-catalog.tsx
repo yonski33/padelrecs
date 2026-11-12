@@ -26,17 +26,17 @@ type Product = Catalog["listed"][number];
 export type IndexFilters = { q?: string; brand?: string; shape?: string; sort?: string; show?: string } & Partial<Record<SpecColumn, string>>;
 
 /** The shape/type choices: the niche's grouped tabs where it has them, else its shape list. */
-const shapeChoices = () => niche.shapeTabs?.length
+export const shapeChoices = () => niche.shapeTabs?.length
   ? niche.shapeTabs.map(t => ({ key: t.key, label: t.label, shapes: t.shapes }))
   : niche.shapeFilter.map(s => ({ key: s, label: s, shapes: [s] }));
 /** Other specs with a fixed list of values (padel balance, skincare fragrance) get a dropdown too. */
-const specFacets = niche.specs.filter(s => s.column !== "shape" && s.options?.length);
+export const specFacets = niche.specs.filter(s => s.column !== "shape" && s.options?.length);
 /** "High (~26 cm)" and "Medium-high" count as High and Medium: the value starts with the option, then a non-letter. */
-const specIs = (value: unknown, option: string) => typeof value === "string" && value.toLowerCase().startsWith(option.toLowerCase()) && !/[a-z]/i.test(value.charAt(option.length));
+export const specIs = (value: unknown, option: string) => typeof value === "string" && value.toLowerCase().startsWith(option.toLowerCase()) && !/[a-z]/i.test(value.charAt(option.length));
 const spec = (r: Product, column: SpecColumn) => (r as Record<string, unknown>)[column];
 
 /** How many reviews of each product mention each tag, counted once for the whole page. */
-function tagCounts(data: Catalog) {
+export function tagCounts(data: Catalog) {
   const out = new Map<string, Map<string, number>>();
   for (const x of [...data.reviews, ...data.external]) {
     if (!x.tags.length) continue;
@@ -47,7 +47,7 @@ function tagCounts(data: Catalog) {
 }
 
 /** One line of player consensus from the most mentioned liked and disliked themes (3+ mentions each). */
-function consensus(counts: Map<string, number> | undefined) {
+export function consensus(counts: Map<string, number> | undefined) {
   const top = (tone: string) => [...(counts ?? [])].filter(([t, n]) => n >= 3 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
   const liked = top("pos").slice(0, 2), disliked = top("neg")[0];
   if (!liked.length && !disliked) return null;
@@ -80,8 +80,8 @@ function IndexRow({ data, r, rank, signal, tags }: { data: Catalog; r: Product; 
   </article>;
 }
 
-const ago = (iso: string, now: number) => { const h = Math.floor((now - Date.parse(iso)) / HOUR); return h < 1 ? "just now" : h < 24 ? `${h} hour${h === 1 ? "" : "s"} ago` : h < 48 ? "yesterday" : `${Math.floor(h / 24)} days ago`; };
-const clip = (s: string, n = 90) => s.length <= n ? s : `${s.slice(0, s.lastIndexOf(" ", n)).replace(/[,;:.]$/, "")}…`;
+export const ago = (iso: string, now: number) => { const h = Math.floor((now - Date.parse(iso)) / HOUR); return h < 1 ? "just now" : h < 24 ? `${h} hour${h === 1 ? "" : "s"} ago` : h < 48 ? "yesterday" : `${Math.floor(h / 24)} days ago`; };
+export const clip = (s: string, n = 90) => s.length <= n ? s : `${s.slice(0, s.lastIndexOf(" ", n)).replace(/[,;:.]$/, "")}…`;
 
 /** The newest opinions, one per product: reviews written here in quotes (their own words), web opinions as our summary. */
 function Fresh({ data, now }: { data: Catalog; now: number }) {

@@ -10,6 +10,7 @@ import { homeHeadline } from "../lib/home-lines";
 import { CountUp } from "./count-up";
 import { HomeA, HomeB } from "./home-variants";
 import { HomeC } from "./home-catalog";
+import { HomeLight } from "./home-light";
 import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
@@ -112,6 +113,13 @@ export default async function Home({ searchParams }: {
 
   const [lead1, topic] = homeHeadline();
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
+  if (params.home === "d" && !type) {
+    const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
+    return <main className="home v2 home-d">
+      <HomeLight data={all} f={{ q: params.q, shape: params.shape, sort: params.sort, show: one(params.show) }} signals={await productSignals()} picks={picks} now={now.getTime()} keep={{ home: "d" }}/>
+      {feed}
+    </main>;
+  }
   if (params.home === "c" && !type) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     const f = { q: params.q, brand: params.brand, year: params.year, shape: params.shape, balance: params.balance, sort: params.sort, show: one(params.show) };
