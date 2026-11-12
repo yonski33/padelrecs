@@ -306,7 +306,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const liked = sum.loved.filter(t => mentions(t) >= MIN_THEME).slice(0, 5), concerns = sum.complaints.filter(t => mentions(t) >= MIN_THEME).slice(0, 5);
     const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.createdAt)].sort().pop();
     const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-    const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [`${niche.people.One}s here`] : []);
+    const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [niche.site.name] : []);
     const glance = [
       ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
       ...(liked[0] ? [["Best known for", cap(liked[0])]] : []),
