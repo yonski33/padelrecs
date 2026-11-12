@@ -15,6 +15,7 @@ import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/ama
 import { websiteButton } from "../../../lib/product-links";
 import { ProductArt, SentimentBar, Arrow } from "../../visual";
 import type { Catalog } from "../../../db/data";
+import { type Signal, TOP_SIGNAL, MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 type Product = Catalog["rackets"][number];
 
 const w = niche.words, people = niche.people;
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const pct = (n: number, total: number) => `${n / total * 100}%`;
 const withThe = (name: string) => `${/^the /i.test(name) ? "" : "the "}${name}`;
 
-function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
+function Entry({ e, product, brand, list, amazon }: { e: ListEntry & { signal: Signal | null }; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
   const line = listLine(e.product), name = displayName(e.product.name, brand);
   return <li className={`rrow${e.rank === 1 ? " lead" : ""}`}>
@@ -57,8 +58,9 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
     {/* The same row as the catalogue (owner, 2026-11-12): the split with its legend, then the count the order rests on. */}
     <div className="rrow-split"><SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative} legend className="stacked"/></div>
     <a className="rrow-score" href={href}>
-      <span className="rrow-pos"><b>{e.positive}</b><span>positive</span></span>
-      <span className="rrow-n">{`of ${e.reviews} reviews`}</span>
+      {/* The signal score (owner, 2026-11-12): what the order follows, so the numbers always run high to low. */}
+      {e.signal ? <span className="rrow-pos rrow-signal"><b>{e.signal.signal}</b><span>signal</span></span> : <span className="rrow-pos"><span>No signal yet</span></span>}
+      <span className="rrow-n">{`${e.reviews} reviews`}</span>
     </a>
   </li>;
 }
@@ -100,7 +102,8 @@ function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nam
   if (lead && lead[1].length >= 2 && [...brands.values()].filter(v => v.length === lead[1].length).length === 1) faq.push({ q: `Which brand has the most ${w.many} on this list?`, a:
     `${lead[0]}, with ${lead[1].length} of the ${entries.length}: ${lead[1].map(e => `${nameOf(e)} (#${e.rank})`).join(", ").replace(/, ([^,]+)$/, " and $1")}.` });
   faq.push({ q: `How is this ranking made?`, a:
-    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order rewards ${w.many} that are both well liked and widely discussed, so it doesn't always follow the share of positive reviews.` });
+    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order follows each ${w.one}'s signal score, which rewards ${w.many} that are both well liked and widely discussed.` });
+  faq.push({ q: `What is the signal score?`, a: `A number from ${TOP_SIGNAL} down that shows how well reviewed a ${w.one} is next to others of its kind: the best-reviewed one scores ${TOP_SIGNAL}, one with half its signal about 50. It counts positive reviews (mixed as half) and how many there are, so a ${w.one} many people like beats one a handful love. It needs at least ${MIN_SIGNAL_REVIEWS} reviews and moves as new reviews come in.` });
   faq.push({ q: `What does a ${w.one} need to make this list?`, a: [
     `At least ${min} reviews, with at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counts as half).`,
     list.trait ? `It also needs reviews that tag it ${quoted(list.trait.tags)}.` : "",
@@ -156,7 +159,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       <aside className="filter-panel">
         <section className="how-box">
           <h2>How the ranking works</h2>
-          <p>{`${people.One} opinions, not sponsored placements. The order weighs positive reviews alongside how many there are.`}</p>
+          <p>{`${people.One} opinions, not sponsored placements. The order follows the signal score: positive reviews weighed with how many there are.`}</p>
           <ul>
             {yearRule && <li><CalendarGlyph/>{yearRule}</li>}
             <li><PeopleGlyph/>{`${min}+ reviews to qualify`}</li>

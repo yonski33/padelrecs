@@ -7,6 +7,8 @@ import { rankedLists, listHref } from "../rankings/lists";
 import { catalog, score, topTags } from "../../db/data";
 import { matchingRackets } from "../../lib/racket-search";
 import { SORTS, parseSort, sortProducts } from "../../lib/product-sort";
+import { productSignals } from "../signals";
+
 import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
 import { browseTiles, BrowseTile, Arrow, CategoryTabs } from "../visual";
@@ -22,13 +24,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string }> }) {
-  const [data, f, { lists }] = await Promise.all([catalog(), searchParams, rankedLists()]);
+  const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
   const sort = parseSort(f.sort);
   const shapeGroup = niche.shapeTabs?.find(t => t.key === f.shape);
   // ?q= still narrows the list for old links; the header search is where people type names now.
   const results = sortProducts(matchingRackets(data.listed, f.q || "")
     .filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && (!f.shape || (shapeGroup ? shapeGroup.shapes.includes(r.shape ?? "") : r.shape === f.shape)))
-    .map(r => ({ r, s: score(data, r.id) })), sort);
+    .map(r => ({ r, s: score(data, r.id) })), sort, x => sig.get(x.r.id)?.signal);
   const shapes = [...new Set([...niche.shapeFilter, ...data.listed.map(r => r.shape).filter((s): s is string => !!s)])].sort();
   const filtered = !!(f.q || f.brand || f.year || f.shape || f.sort);
   const tags = topTags(data), show = parseShow(f.show);
@@ -54,7 +56,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
     <div className="catalog-grid">
       <div className="catalog-main">
         <div className="list-bar"><p>{`${results.length.toLocaleString("en-US")} ${results.length === 1 ? w.one : w.many}`}{filtered && <> · <a href={catalogPath}>Clear filters</a></>}</p><p className="list-bar-sort">{`Sorted by ${(SORTS.find(x => x.value === sort)?.label ?? "").toLowerCase()}`}</p></div>
-        <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} tags={tags.get(r.id)}
+        <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} signal={sig.get(r.id)?.signal} tags={tags.get(r.id)}
           details={r.shape ?? ""}/>)}/>
         {!results.length && <p className="empty-feed">{`No ${w.one} found. Either it’s very new, very obscure, or we need to add it. `}<a href={catalogPath}>Clear filters</a> or <a href="/add-review">add it with a review →</a></p>}
       </div>

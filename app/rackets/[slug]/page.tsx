@@ -3,6 +3,8 @@ import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
 import { platformName } from "../../../lib/source-label";
+import { productSignals, categoryWords } from "../../signals";
+import { TOP_SIGNAL } from "../../../lib/signal";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
 import type { Metadata } from "next";
 import { catalog as loadCatalog, score } from "../../../db/data";
@@ -152,6 +154,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const url = `${base}${productHref(r)}`;
   const typePage = typePageFor(r.shape);
   // Where it ranks: every list it's on, best placing first (shown under the name, and in the FAQ).
+  const sigs = await productSignals(), sig = sigs.get(r.id) ?? null;
   const placings = (await rankedLists()).lists.flatMap(l => {
     const e = l.entries.find(x => x.product.id === r.id);
     return e ? [{ rank: e.rank, title: `${l.list.title} ${listYear(l.list)}`, label: l.list.label, href: listHref(l.list.slug) }] : [];
@@ -173,6 +176,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
+  if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is next to the other ${categoryWords(sig.category)} here, from ${TOP_SIGNAL} for the best-reviewed one down. It counts positive reviews (mixed as half) and how many reviews there are, so a product many people like scores above one a few people love. ${name} is #${sig.rank} of ${sig.of}. It's worked out from reviews only, needs at least 10 of them, and updates as new ones come in.` });
   if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Where the reviews come from (this used to be two sidebar boxes): web quotes by platform, and how user reviews count.
@@ -257,7 +261,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         : <div className="p-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/>{r.shape && <small>{r.shape.toLowerCase()}</small>}</div>}
       <div className="p-scorebox">
         {sum.total > 0 ? <div className="p-score">
-          {pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
+          {/* The signal score leads (owner, 2026-11-12); the bar below shows the split it comes from. */}
+          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal<small>{`#${sig.rank} of ${sig.of} ${categoryWords(sig.category)}`}</small></span></div>
+            : pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
         {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
@@ -328,7 +334,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <ul className="sim-cards">{similar.map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
             <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
             <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
-            {sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
+            {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
             <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
           </a></li>; })}</ul>
         </section>}

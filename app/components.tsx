@@ -199,7 +199,7 @@ export function RacketRow({racket: r, brand, average, count, web = 0, positive =
 
 /** A product row in the catalogue, type and brand pages: photo, name, what people praise and complain about, how positive
  *  its reviews are and how many there are. */
-export function ProductCard({racket: r, brand, count, web = 0, details, tags, score: s}: {racket: Racket; brand?: string | null; count: number; web?: number; details: string; tags?: {loved?: string; complaint?: string}; score?: ScoreT}) {
+export function ProductCard({racket: r, brand, count, web = 0, details, tags, score: s, signal}: {racket: Racket; brand?: string | null; count: number; web?: number; details: string; tags?: {loved?: string; complaint?: string}; score?: ScoreT; signal?: number}) {
   const total = count + web, href = productHref(r), pos = s ? positiveShare(s) : null;
   return <article className="prow">
     <a className="prow-art" href={href} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
@@ -209,7 +209,8 @@ export function ProductCard({racket: r, brand, count, web = 0, details, tags, sc
       {/* Owner, 2026-11-12: no tags on list rows (without counts a lone complaint reads as the verdict); the product page shows them with counts. */}
     </div>
     <div className="prow-score">{s && pos !== null ? <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative} legend className="stacked"/> : <span className="prow-few">Not enough reviews to score yet</span>}</div>
-    <a className="prow-count" href={`${href}#reviews`}><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span><span className="prow-go" aria-hidden="true">→</span></a>
+    {/* The signal score leads where the product has one (owner, 2026-11-12); the review count sits under it. */}
+    <a className="prow-count" href={`${href}#reviews`}>{signal ? <><b className="prow-signal">{signal}</b><span className="prow-signal-label">signal</span><span className="prow-n">{`${total.toLocaleString("en-US")} ${total === 1 ? "review" : "reviews"}`}</span></> : <><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span></>}<span className="prow-go" aria-hidden="true">→</span></a>
   </article>;
 }
 

@@ -8,6 +8,7 @@ import { ProductCard, Directory, parseShow } from "../../components";
 import { AutoSubmitForm } from "../../auto-submit";
 import { CategoryTabs } from "../../visual";
 import { SORTS, parseSort, sortProducts } from "../../../lib/product-sort";
+import { productSignals } from "../../signals";
 import { niche, catalogPath, catalogLabel, productHref } from "../../../lib/niche";
 import { displayName } from "../../../lib/brand-name";
 import { listJsonLd, catalogCrumb } from "../../../lib/catalogue-seo";
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const lowerWords = (text: string) => text.replace(/\b[A-Z](?=[a-z])/g, c => c.toLowerCase());
 
 export default async function TypePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ brand?: string; sort?: string; show?: string }> }) {
-  const [{ slug }, f, data] = await Promise.all([params, searchParams, catalog()]);
+  const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const t = pageFor(slug);
   if (!t) notFound();
   const ofType = data.listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase());
@@ -36,7 +37,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const brandIds = new Set(ofType.map(r => r.brandId));
   const brands = data.brands.filter(b => brandIds.has(b.id));
   const sort = parseSort(f.sort);
-  const results = sortProducts(scored.filter(x => !f.brand || x.r.brandId === f.brand), sort);
+  const results = sortProducts(scored.filter(x => !f.brand || x.r.brandId === f.brand), sort, x => sig.get(x.r.id)?.signal);
   const reviewTotal = scored.reduce((n, x) => n + x.s.count + x.s.web, 0);
   const tags = topTags(data), show = parseShow(f.show);
   const moreHref = (n: number) => { const q = new URLSearchParams(Object.entries({ ...f, show: String(n) }).filter(([, v]) => v) as [string, string][]); return `/${t.slug}?${q}`; };
@@ -53,7 +54,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
       <label className="pills-sort">Sort:<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
       <noscript><button>Filter</button></noscript>
     </AutoSubmitForm>
-    <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} tags={tags.get(r.id)} details=""/>)}/>
+    <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} signal={sig.get(r.id)?.signal} tags={tags.get(r.id)} details=""/>)}/>
     {!results.length && (f.brand
       ? <p className="empty-feed">{`No ${lowerWords(seoName(t))} from this brand yet. `}<a href={`/${t.slug}`}>Show all {lowerWords(seoName(t))}</a></p>
       : <p className="empty-feed">{`No ${lowerWords(seoName(t))} reviewed here yet. `}<a href="/add-review">Add a review →</a></p>)}

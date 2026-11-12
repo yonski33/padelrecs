@@ -4,7 +4,8 @@ export const MIN_JUDGED = 5;   // user ratings plus web reviews with a sentiment
 
 export const SORTS = [
   { value: "discussed", label: "Most discussed" },
-  { value: "positive", label: "Most positive" },
+  // "positive" keeps its old URL value; it orders by the signal score where the page passes one (owner, 2026-11-12).
+  { value: "positive", label: "Highest signal" },
   { value: "newest", label: "Newest" },
 ] as const;
 export type SortKey = typeof SORTS[number]["value"];
@@ -33,7 +34,10 @@ const byPositive = (a: Item, b: Item) => {
 };
 const byNewest = (a: Item, b: Item) => b.r.createdAt.localeCompare(a.r.createdAt) || byName(a, b);
 
-export function sortProducts<T extends Item>(list: T[], key: SortKey): T[] {
+/** `signalOf`: the product's signal score (lib/signal.ts), if it has one. With it, "positive" follows the signal, so the
+ *  numbers on the rows run high to low; products without one follow, most discussed first. */
+export function sortProducts<T extends Item>(list: T[], key: SortKey, signalOf?: (x: T) => number | undefined): T[] {
+  if (key === "positive" && signalOf) return [...list].sort((a, b) => (signalOf(b) ?? -1) - (signalOf(a) ?? -1) || byDiscussed(a, b));
   const cmp = { discussed: byDiscussed, positive: byPositive, newest: byNewest }[key];
   return [...list].sort(cmp);
 }
