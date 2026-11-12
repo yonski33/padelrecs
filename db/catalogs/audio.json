@@ -7,6 +7,10 @@
       "name": "7Hz"
     },
     {
+      "id": "aful",
+      "name": "Aful"
+    },
+    {
       "id": "apple",
       "name": "Apple"
     },
@@ -59,6 +63,10 @@
       "name": "HIFIMAN"
     },
     {
+      "id": "juzear",
+      "name": "Juzear"
+    },
+    {
       "id": "kiwi-ears",
       "name": "Kiwi Ears"
     },
@@ -79,6 +87,18 @@
       "name": "Moondrop"
     },
     {
+      "id": "oneplus",
+      "name": "OnePlus"
+    },
+    {
+      "id": "philips",
+      "name": "Philips"
+    },
+    {
+      "id": "qcy",
+      "name": "QCY"
+    },
+    {
       "id": "sennheiser",
       "name": "Sennheiser"
     },
@@ -89,6 +109,10 @@
     {
       "id": "sony",
       "name": "Sony"
+    },
+    {
+      "id": "soundpeats",
+      "name": "SoundPeats"
     },
     {
       "id": "tanchjim",
@@ -310,6 +334,18 @@
       "balance": null,
       "sources": [
         "https://www.linsoul.com/products/7hz-x-crinacle-zero-2"
+      ]
+    },
+    {
+      "brand": "aful",
+      "name": "Aful Explorer",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hifigo.com/collections/100-200/products/aful-explorer"
       ]
     },
     {
@@ -1088,6 +1124,30 @@
       ]
     },
     {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-R70x",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.audio-technica.com/en-au/ath-r70x"
+      ]
+    },
+    {
+      "brand": "audio-technica",
+      "name": "Audio-Technica ATH-CKS50TW",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audio-technica.com/en/headphones/all/ath-cks50tw"
+      ]
+    },
+    {
       "brand": "beyerdynamic",
       "name": "Beyerdynamic Amiron 200",
       "shape": "Headphones",
@@ -1352,6 +1412,18 @@
       ]
     },
     {
+      "brand": "beyerdynamic",
+      "name": "Beyerdynamic DT 1990 PRO",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://europe.beyerdynamic.com/p/dt-1990-pro-b-stock"
+      ]
+    },
+    {
       "brand": "bose",
       "name": "Bose QuietComfort Earbuds",
       "shape": "Earbuds",
@@ -1460,6 +1532,18 @@
       ]
     },
     {
+      "brand": "bose",
+      "name": "Bose QuietComfort Ultra Headphones",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": "Over-ear",
+      "sources": [
+        "https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones/QCUH-HEADPHONEARN.html"
+      ]
+    },
+    {
       "brand": "bowers-and-wilkins",
       "name": "Bowers & Wilkins Pi5",
       "shape": "Earbuds",
@@ -1505,6 +1589,30 @@
       "balance": null,
       "sources": [
         "https://headphones.com/products/bowers-wilkins-px8-wireless-anc-headphones"
+      ]
+    },
+    {
+      "brand": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins PX8 S2",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bowerswilkins.com/en/product/over-ear-headphones/px8-s2/FP45365P.html"
+      ]
+    },
+    {
+      "brand": "bowers-and-wilkins",
+      "name": "Bowers & Wilkins Pi7 S2",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bowerswilkins.com/en/product/archive-headphones/pi7-s2/300650.html"
       ]
     },
     {
@@ -2456,6 +2564,18 @@
       ]
     },
     {
+      "brand": "juzear",
+      "name": "Juzear Defiant",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hifigo.com/products/juzear-x-z-review-defiant"
+      ]
+    },
+    {
       "brand": "kiwi-ears",
       "name": "Kiwi Ears Aether",
       "shape": "IEMs",
@@ -3272,6 +3392,18 @@
       ]
     },
     {
+      "brand": "kz",
+      "name": "KZ EDX Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://kz-audio.com/kz-edx-pro.html"
+      ]
+    },
+    {
       "brand": "letshuoer",
       "name": "Letshuoer Astralis",
       "shape": "IEMs",
@@ -3980,6 +4112,54 @@
       ]
     },
     {
+      "brand": "moondrop",
+      "name": "Moondrop Space Travel",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://linsoul.com/products/moondrop-space-travel"
+      ]
+    },
+    {
+      "brand": "oneplus",
+      "name": "OnePlus Buds 4",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.oneplus.com/global/oneplus-buds-4"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips SHP9500",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.philips.com.ph/c-p/SHP9500_00/hifi-stereo-headphones"
+      ]
+    },
+    {
+      "brand": "qcy",
+      "name": "QCY Melobuds N70",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.qcy.com/es/products/qcy-melobuds-n70"
+      ]
+    },
+    {
       "brand": "sennheiser",
       "name": "Sennheiser Accentum Open",
       "shape": "Earbuds",
@@ -4373,6 +4553,66 @@
       "balance": null,
       "sources": [
         "https://us.sennheiser-hearing.com/products/momentum-true-wireless-5"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 450BT",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://global.sennheiser-hearing.com/products/hd-450bt"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser Momentum True Wireless 3",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://global.sennheiser-hearing.com/products/momentum-true-wireless-3"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser IE 300",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.sennheiser-hearing.com/products/ie-300"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 598",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bhphotovideo.com/c/product/751989-REG/Sennheiser_HD598_HD_598_Open_Back_Around_Ear.html/specs"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 4.50 BTNC",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nz.sennheiser-hearing.com/products/wireless-headphones-hd-4-50-btnc"
       ]
     },
     {
@@ -4829,6 +5069,42 @@
       "balance": null,
       "sources": [
         "https://www.sony.jp/headphone/products/WH-CH730N/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WH-1000XM4",
+      "shape": "Headphones",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WH-1000XM4/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony WF-1000XM4",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sony.jp/headphone/products/WF-1000XM4/"
+      ]
+    },
+    {
+      "brand": "soundpeats",
+      "name": "SoundPeats H3",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://soundpeats.com/products/soundpeats-h3"
       ]
     },
     {
