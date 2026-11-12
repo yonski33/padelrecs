@@ -10,6 +10,7 @@ import { amazonButton } from "../../lib/amazon-offer";
 import { websiteButton } from "../../lib/product-links";
 import { ProductArt, SentimentBar, positiveShare } from "../visual";
 import { CompareAdd } from "./compare-add";
+import { lightFont } from "../light-font";
 import { productSignals } from "../signals";
 import { comparePairs, pairHref } from "../../lib/compare-pairs";
 
@@ -48,7 +49,7 @@ export function compareMetadata(data: Data, products: Data["rackets"], canonical
 }
 
 /** The compare page itself, for either address. */
-export async function CompareView({ data, products }: { data: Data; products: Data["rackets"] }) {
+export async function CompareView({ data, products, light = false }: { data: Data; products: Data["rackets"]; light?: boolean }) {
   const slugs = products.map(r => r.slug);
   const without = (slug: string) => hrefFor(slugs.filter(s => s !== slug));
   const brandOf = (r: Data["rackets"][number]) => data.brands.find(b => b.id === r.brandId)?.name;
@@ -83,9 +84,11 @@ export async function CompareView({ data, products }: { data: Data; products: Da
   const empty = <span className="cmp-none">—</span>;
   const addCell = (key: string) => canAdd ? <div key={key} className="cmp-cell cmp-slot" aria-hidden="true"/> : null;
 
-  return <main className="compare v2">
+  // light: the light direction, previewed with ?look=light (owner, 2026-11-12); same content, the light look.
+  return <main className={`compare v2${light ? ` lt-page lcmp ${lightFont.className}` : ""}`}>
     {cols.some(c => c.affiliate) && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <div className="page-hero cmp-hero">
+      {light && products.length >= 2 && <p className="lf-kicker">{`Compared from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real ${niche.people.one} reviews`}</p>}
       <h1>{products.length >= 2 ? products.map(r => nameOf(data, r)).join(" vs ") : `Compare ${w.many}`}</h1>
       <p>{products.length >= 2
         ? `Side by side from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real reviews. Every count is the same as on each ${w.one}’s page.`

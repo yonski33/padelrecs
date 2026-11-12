@@ -22,6 +22,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const [q, data] = await Promise.all([searchParams, catalog()]);
   const products = picked(data, q);
   const pair = curated(data, products);
-  if (pair) redirect(pairHref(pair.a.slug, pair.b.slug));
-  return <CompareView data={data} products={products}/>;
+  const light = (q as { look?: string }).look === "light";
+  if (pair) redirect(`${pairHref(pair.a.slug, pair.b.slug)}${light ? "?look=light" : ""}`);
+  return <CompareView data={data} products={products} light={light}/>;
 }

@@ -28,9 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
   return compareMetadata(data, [pair.a, pair.b], pairHref(pair.a.slug, pair.b.slug), true);
 }
 
-export default async function ComparePairPage({ params }: { params: Promise<{ pair: string }> }) {
-  const [{ pair: key }, data] = await Promise.all([params, catalog()]);
+export default async function ComparePairPage({ params, searchParams }: { params: Promise<{ pair: string }>; searchParams: Promise<{ look?: string }> }) {
+  const [{ pair: key }, data, q] = await Promise.all([params, catalog(), searchParams]);
   const { pair, fallback } = resolve(data, key);
   if (!pair) { if (fallback) redirect(fallback); notFound(); }
-  return <CompareView data={data} products={[pair.a, pair.b]}/>;
+  return <CompareView data={data} products={[pair.a, pair.b]} light={q.look === "light"}/>;
 }
