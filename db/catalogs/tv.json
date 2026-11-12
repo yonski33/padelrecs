@@ -1,0 +1,2709 @@
+{
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C7/G2, Samsung S95B/QN90B). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "checked": "2026-11-12",
+  "brands": [
+    {
+      "id": "amazon",
+      "name": "Amazon"
+    },
+    {
+      "id": "hisense",
+      "name": "Hisense"
+    },
+    {
+      "id": "insignia",
+      "name": "Insignia"
+    },
+    {
+      "id": "lg",
+      "name": "LG"
+    },
+    {
+      "id": "panasonic",
+      "name": "Panasonic"
+    },
+    {
+      "id": "philips",
+      "name": "Philips"
+    },
+    {
+      "id": "roku",
+      "name": "Roku"
+    },
+    {
+      "id": "samsung",
+      "name": "Samsung"
+    },
+    {
+      "id": "sony",
+      "name": "Sony"
+    },
+    {
+      "id": "tcl",
+      "name": "TCL"
+    },
+    {
+      "id": "vizio",
+      "name": "Vizio"
+    },
+    {
+      "id": "xiaomi",
+      "name": "Xiaomi"
+    }
+  ],
+  "products": [
+    {
+      "brand": "amazon",
+      "name": "Amazon Ember Artline",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (matte)",
+      "surface": "55/65\"",
+      "core": "60 Hz, 4× HDMI (1× HDMI 2.1 eARC)",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.aboutamazon.com/news/devices/new-fire-tv-upgrades-features-2026",
+        "https://developer.amazon.com/docs/device-specs/device-specifications-fire-tv-edition-smart-tv-na.html#amazon-ember-artline"
+      ]
+    },
+    {
+      "brand": "amazon",
+      "name": "Amazon Fire TV 2-Series (2025)",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "32/40\"",
+      "core": "60 Hz, 2× HDMI (1× HDMI 2.1 eARC)",
+      "weight": "Fire TV",
+      "sources": [
+        "https://developer.amazon.com/docs/device-specs/device-specifications-fire-tv-edition-smart-tv-na.html#fire-tv-2-series-2025",
+        "https://www.aboutamazon.com/news/devices/amazon-fire-tv-alexa-plus-fire-tv-stick#2-series"
+      ]
+    },
+    {
+      "brand": "amazon",
+      "name": "Amazon Fire TV 4-Series (2024)",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55\"",
+      "core": "60 Hz, 4× HDMI (1× HDMI 2.1 eARC)",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.notebookcheck.net/Amazon-launches-new-budget-4K-Fire-Smart-TVs-and-discounts-older-models.920574.0.html",
+        "https://www.aboutamazon.com/news/devices/amazon-new-fire-tv-omni-soundbar-4-series#4-series"
+      ]
+    },
+    {
+      "brand": "amazon",
+      "name": "Amazon Fire TV 4-Series (2025)",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55\"",
+      "core": "60 Hz, 4× HDMI (1× HDMI 2.1)",
+      "weight": "Fire TV",
+      "sources": [
+        "https://developer.amazon.com/docs/device-specs/device-specifications-fire-tv-edition-smart-tv-na.html#fire-tv-4-series-2025",
+        "https://www.aboutamazon.com/news/devices/amazon-fire-tv-alexa-plus-fire-tv-stick#4-series"
+      ]
+    },
+    {
+      "brand": "amazon",
+      "name": "Amazon Fire TV Omni Mini-LED",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65/75/85\"",
+      "core": "144 Hz (game mode), 4× HDMI (2× HDMI 2.1)",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.aboutamazon.com/news/devices/amazon-new-fire-tv-omni-soundbar-4-series",
+        "https://www.aftvnews.com/amazon-releases-fire-tv-omni-mini-led-series-smart-tvs-as-its-new-flagship-models-with-impressive-features-and-specs/"
+      ]
+    },
+    {
+      "brand": "amazon",
+      "name": "Amazon Fire TV Omni QLED (2025)",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (full-array local dimming)",
+      "surface": "50/55/65/75\"",
+      "core": "60 Hz, 4× HDMI (1× HDMI 2.1 eARC)",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.aboutamazon.com/news/devices/amazon-fire-tv-alexa-plus-fire-tv-stick",
+        "https://developer.amazon.com/docs/device-specs/device-specifications-fire-tv-edition-smart-tv-na.html"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense 116UX",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED",
+      "surface": "116\"",
+      "core": "165 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-116-class-ux-rgb-miniled-uled-4k-google-tv-116ux",
+        "https://www.bestbuy.com/product/hisense-116-class-ux-series-rgb-miniled-4k-uhd-smart-google-tv-2025/6633208",
+        "https://www.hisense-usa.com/post/hisense-debuts-116-inch-ux-tv-with-rgb-miniled-for-stunning-color-precision"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense A65K",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED (VA)",
+      "surface": "43/50/55/65/75\"",
+      "core": "60 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/products/hisense-65-class-a6-series-4k-uhd-smart-google-tv-65a65k",
+        "https://www.rtings.com/tv/reviews/hisense/a65k"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense A6N",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED (IPS)",
+      "surface": "43/50/55/65/70/75/85\"",
+      "core": "60 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-a6-series-led-4k-uhd-google-smart-tv-65a6n",
+        "https://www.rtings.com/tv/reviews/hisense/a6n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense A7N",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED (VA)",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "60 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-a7-series-4k-wide-color-gamut-google-tv-65a7n",
+        "https://www.rtings.com/tv/reviews/hisense/a7n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense CanvasTV",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "55/65\"",
+      "core": "144 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-s7-canvastv-4k-qled-google-tv-65s7n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense CanvasTV (2026)",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (VA)",
+      "surface": "50/55/65/75/85\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/product/hisense-65-class-s7-canvas-series-smart-google-tv-4k-qled-smart-google-tv-with-hi-matte-display-and-ultraslim-wall-mount-2026/J3Z9Z42HK4",
+        "https://www.rtings.com/tv/reviews/hisense/canvastv-2026"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense QD6QF",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (VA)",
+      "surface": "43/50/55/65/75/85/100\"",
+      "core": "60 Hz, no HDMI 2.1",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-qd6-series-qled-4k-fire-tv-65qd6qf",
+        "https://www.rtings.com/tv/reviews/hisense/qd6qf"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense QD7QF",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "50/55/65/75/85/100\"",
+      "core": "60 Hz (144 Hz on 75/85/100\"), no HDMI 2.1",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-qd7-series-miniled-uled-4k-fire-tv-65qd7qf",
+        "https://www.rtings.com/tv/reviews/hisense/qd7qf"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U65QF",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-u6-series-miniled-uled-4k-fire-tv-65u65qf",
+        "https://www.rtings.com/tv/reviews/hisense/u65qf"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U6K",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75\"",
+      "core": "60 Hz, no HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/site/reviews/hisense-65-class-u6-series-mini-led-qled-4k-uhd-smart-google-tv-2023/6541866",
+        "https://www.rtings.com/tv/reviews/hisense/u6k"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U6N",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85\"",
+      "core": "60 Hz, 4× HDMI 2.0",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-u6-series-mini-led-uled-4k-google-tv-65u6n",
+        "https://www.rtings.com/tv/reviews/hisense/u6-u6n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U6SF",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "50/55/65/75/85/100\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-u6-series-uled-miniled-4k-fire-tv-65u6sf",
+        "https://www.rtings.com/tv/reviews/hisense/u6sf"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U6SF Pro",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-u6-pro-series-uled-miniled-4k-fire-tv-65u6sf-pro",
+        "https://www.rtings.com/tv/reviews/hisense/u6sf-pro"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U75QG",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "165 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-u7-series-miniled-uled-4k-google-tv-65u75qg",
+        "https://www.rtings.com/tv/reviews/hisense/u75qg"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U7K",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/site/reviews/hisense-65-class-u7-series-mini-led-qled-4k-uhd-smart-google-tv-2023/6541872",
+        "https://www.rtings.com/tv/reviews/hisense/u7k"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U7N",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-65-class-u7-series-mini-led-uled-4k-google-tv-65u7n",
+        "https://www.rtings.com/tv/reviews/hisense/u7-u7n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U7SG",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "165 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense.com/us/en/tv/u7-series/hisense-75-class-u7-series-uled-miniled-4k-google-tv-75u7sg",
+        "https://www.rtings.com/tv/reviews/hisense/u7sg"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U8K",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/product/hisense-65-class-u8-series-mini-led-qled-4k-uhd-smart-google-tv-2023/J3Z9Z427W2",
+        "https://www.rtings.com/tv/reviews/hisense/u8k"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U8N",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/televisions/hisense-65-class-u8-series-mini-led-uled-4k-google-tv-65u8n",
+        "https://www.rtings.com/tv/reviews/hisense/u8-u8n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U8QG",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "165 Hz, 3× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense.com/us/en/tv/u8-series/hisense-65-class-u8-series-miniled-uled-4k-google-tv",
+        "https://www.rtings.com/tv/reviews/hisense/u8qg"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U9N",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (IPS)",
+      "surface": "75/85\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-75-class-u9-series-mini-led-qled-4k-google-tv-75u9n",
+        "https://www.hisense-usa.com/newsroom/hisense-unveils-u9n-mini-led-uled-tv-gateway-to-ultra-premium-big-screen-entertainment",
+        "https://www.rtings.com/tv/reviews/hisense/u9n"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense UR8",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED (VA)",
+      "surface": "55/65/75/85/100\"",
+      "core": "180 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense.com/us/en/tv/ur8-series/hisense-75-ur8-series-rgb-miniled-google-tv-75ur8sg",
+        "https://www.rtings.com/tv/reviews/hisense/ur8sg"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense UR9",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED (VA)",
+      "surface": "65/75/85/100\"",
+      "core": "180 Hz, 3× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-75-class-ur9-series-rgb-miniled-4k-google-tv-75ur9sg",
+        "https://www.rtings.com/tv/reviews/hisense/ur9sg"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense UX",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "85\"",
+      "core": "120 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.hisense-usa.com/product-page/televisions-85-ux-series-mini-led-uled-google-tv-85ux",
+        "https://www.rtings.com/tv/reviews/hisense/ux"
+      ]
+    },
+    {
+      "brand": "insignia",
+      "name": "Insignia F50 (2024)",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": null,
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.bestbuy.com/site/insignia-65-class-f50-series-led-4k-uhd-smart-fire-tv/6605982.p",
+        "https://www.hdtvmagazine.com/equipment/tvs/insignia/ns-65f501na24/"
+      ]
+    },
+    {
+      "brand": "insignia",
+      "name": "Insignia F50 (2025)",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.bestbuy.com/product/insignia-70-class-f50-series-led-4k-uhd-smart-fire-tv/J2FPJKSVJJ",
+        "https://tvreviews.net/insignia-f50-2025/"
+      ]
+    },
+    {
+      "brand": "insignia",
+      "name": "Insignia F70",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.bestbuy.com/site/insignia-65-class-f70-series-4k-uhd-qled-mini-led-smart-tv-with-fire-tv/6677126.p",
+        "https://www.bestbuy.com/product/insignia-55-class-f70-series-4k-uhd-qled-mini-led-smart-tv-with-fire-tv/J2FPJK9F77",
+        "https://tvreviews.net/insignia-f70/"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B3",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "55/65/77\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65b3pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B4",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/55/65/77\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65b4pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B5",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/55/65/77/83\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65b5pua-oled-4k-tv",
+        "https://www.lg.com/us/press-release/lg-announces-initial-pricing-and-availability-for-its-lg-oled-b5-series"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B6",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/65/77/83\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65b6gua-oled-4k-tv",
+        "https://www.rtings.com/tv/reviews/lg/b6-oled-2026"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C1",
+      "year": 2021,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "48/55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/my/tvs/lg-oled65c1ptb",
+        "https://www.lg.com/us/press-release/lg-usa-begins-rollout-of-2021-oled-tv-lineup"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C2",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/my/tvs/lg-oled65c2psa",
+        "https://www.lg.com/us/tvs/lg-oled65c2pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C3",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65c3pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C4",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65c4pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C5",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65c5pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C6",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled77c6hup-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C7",
+      "year": 2017,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-OLED65C7P-oled-4k-tv",
+        "https://www.lg.com/us/PDF/press-release/77W7%20LG%20LAUNCH%20-%20JUNE%2028%202017%20FINAL.pdf"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C9",
+      "year": 2019,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "HDMI 2.1",
+      "weight": null,
+      "sources": [
+        "https://www.lg.com/us/press-release/lg-usa-reveals-pricing-availability-of-critically-acclaimed-2019-lg-oled-tvs-with-ai-thinq",
+        "https://www.lg.com/us/tvs/lg-oled65c9pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG CX",
+      "year": 2020,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "48/55/65/77\"",
+      "core": "4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tv-soundbars/oled/oled65cxpua/",
+        "https://lg.com/us/press-release/lg-usa-begins-rollout-of-2020-oled-tv-lineup"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG G2",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83/97\"",
+      "core": "120 Hz, 4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/my/tvs/lg-oled65g2psa",
+        "https://www.lg.com/us/tvs/lg-oled65g2pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG G3",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65/77/83\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65g3pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG G4",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65/77/83/97\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65g4sub-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG G5",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "55/65/77/83/97\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled65g5wua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG G6",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/55/65/77/83/97\"",
+      "core": "165 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled77g6wua-oled-4k-tv",
+        "https://www.lg.com/us/oled-tvs"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG M3",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "77/83/97\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled77m3pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG M5",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "77\"",
+      "core": "144 Hz, HDMI 2.1 via wireless Zero Connect Box",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-oled77m5pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG Micro RGB MRGB95B",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED (Micro RGB)",
+      "surface": "75/86/100\"",
+      "core": "165 Hz VRR",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-75mrgb95bua-mrgb-4k-tv",
+        "https://lg.com/us/press-release/micro-rgb-evo-2026"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG NU70",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-55nu700bpua-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG NU85",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "55/65/85/98\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-55nu850baua-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED75UR",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QNED LED",
+      "surface": "43/50/55/65/75\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65qned75ura-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED80T",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QNED LED (local dimming)",
+      "surface": "43/55/65/75/86\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-75qned80tuc-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED80UR",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QNED LED",
+      "surface": "50/55/65/75/86\"",
+      "core": "120 Hz",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-75qned80ura"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED84B",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/85/100\"",
+      "core": "144 Hz VRR",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65qned84bua-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED85A",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/86/100\"",
+      "core": "120 Hz",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65qned85aua-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED85T",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QNED LED (local dimming)",
+      "surface": "50/55/65/75/86/98\"",
+      "core": "120 Hz",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65qned85tua-qned-4k-tv",
+        "https://lg.com/us/press-release/lg-begins-us-rollout-of-2024-qned-tvs"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED90T",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/86\"",
+      "core": "120 Hz",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65qned90tua-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED92A",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "120 Hz",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-85qned92aua-qned-4k-tv",
+        "https://www.lg.com/us/press-release/lg-launches-pre-order-for-its-2025-qned-evo-tv-lineup"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED92B",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "115\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-115qned92bu-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG QNED9MA",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75\"",
+      "core": "120 Hz, HDMI via wireless Zero Connect Box",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-75qned9maua-qned-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG UA7000",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/75\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-55ua7000pub-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG UA77",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/75/86\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65ua7700pub-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG UR8000",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/70/75/86\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65ur8000aua-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG UR9000",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/75\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65ur9000pua-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG UT7000",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": null,
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.bestbuy.com/site/-/6593578.p"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG UT8000",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/70/75/86\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-65ut8000aua-4k-uhd-tv"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic MZ1500",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": null,
+      "core": "120 Hz, 2× HDMI 2.1",
+      "weight": "My Home Screen 8.0",
+      "sources": [
+        "https://www.panasonic.com/uk/consumer/televisions/4K-OLED-TV/tx-65mz1500b.specs.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic MZ2000",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65/77\"",
+      "core": "120 Hz",
+      "weight": "My Home Screen 8.0",
+      "sources": [
+        "https://www.panasonic.com/uk/corporate/news/articles/panasonic-announces-the-mz2000-flagship-oled-tv-delivering-a-new-era-of-oled-brightness-and-expression.html",
+        "https://na.panasonic.com/news/panasonic-announces-mz2000-flagship-oled-tv-delivering-new-era-oled-brightness-and-expression"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic W95A",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": null,
+      "core": "144 Hz",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.panasonic.com/uk/consumer/televisions/4K-LED-TV/tv-65w95aeb.html",
+        "https://help.na.panasonic.com/?p=416126"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic W95B",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/85\"",
+      "core": "144 Hz",
+      "weight": "Fire TV",
+      "sources": [
+        "https://na.panasonic.com/news/panasonic-introduces-2025-flagship-w95b-series-mini-led-tv-with-improved-picture-performance-and-fire-tv-built-in-enhancements",
+        "https://www.panasonic.com/nz/support/product-archives/product-archives-consumer/tv-home-theatre-audio/televisions/mini-led-full-array-tvs/tv-65w95bgz.specs.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic W95C",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QD)",
+      "surface": "55/65/75/86\"",
+      "core": "2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.panasonic.com/uk/corporate/news/articles/brighter-rooms-bigger-screens-smarter-choice-panasonic-launches-its-2026-european-tv-line-up-led-by-flagship-oled-and-advanced-mini-led.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic Z85A",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "55/65\"",
+      "core": "120 Hz",
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.panasonic.com/de/corporate/presse/alle-meldungen/06-fy2024-panasonic-oled-serien-z90a-z85a.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic Z90A",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65\"",
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.panasonic.com/uk/corporate/news/articles/panasonic-announces-the-new-z90a-and-z85a-oled-with-panasonic-premium-tv-and-fire-tv-built-in.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic Z90B",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77\"",
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.panasonic.com/uk/consumer/televisions/4K-OLED-TV/tv-65z90beb.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic Z95A",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://shop.panasonic.com/products/panasonic-oled-tv-z95a-series",
+        "https://www.panasonic.com/uk/consumer/televisions/4K-OLED-TV/tv-65z95aeb.html"
+      ]
+    },
+    {
+      "brand": "panasonic",
+      "name": "Panasonic Z95B",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED (Primary RGB Tandem)",
+      "surface": "55/65/77\"",
+      "core": null,
+      "weight": "Fire TV",
+      "sources": [
+        "https://www.panasonic.com/uk/consumer/televisions/4K-OLED-TV/tv-65z95beb.specs.html",
+        "https://help.na.panasonic.com/answers/features-and-specifications-television-amazon-fire-oled-model-tv-65z95bp/"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips MLED910",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QD)",
+      "surface": "55/65/75/85\"",
+      "core": "144 Hz, 4× HDMI (48–144 Hz)",
+      "weight": "Titan OS",
+      "sources": [
+        "https://www.philips.de/about/news-and-insights/press-release/starttermine-der-neuen-philips-ambilight-tvs-stehen-fest",
+        "https://www.tpvision.com/blog/new-2025-philips-ambilight-tv-range/"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips MLED981",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED",
+      "surface": "85\"",
+      "core": "165 Hz, 4× HDMI",
+      "weight": "Titan OS",
+      "sources": [
+        "https://www.tpvision.com/?p=36541",
+        "https://www.tpvision.com/?p=36392"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED+910",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65/77\"",
+      "core": "144 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.tpvision.com/?p=34477"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED+911",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "WOLED (Primary RGB Tandem)",
+      "surface": "48/55/65/77\"",
+      "core": "165 Hz, 4× HDMI 2.1",
+      "weight": "Titan OS",
+      "sources": [
+        "https://www.tpvision.com/blog/philips-oled-tvs-the-ultimate-pq-and-tv-sound"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED+950",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "65/77\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.philips.de/about/news-and-insights/press-release/oled-aus-tradition-erstklassig"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED708",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/55/65\"",
+      "core": "120 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.coolblue.nl/en/product/934758/philips-55oled708-2023.html"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED759",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/55/65/77\"",
+      "core": null,
+      "weight": "Titan OS",
+      "sources": [
+        "https://tpvision.com/?p=32398"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED760",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "48/55/65/77\"",
+      "core": "120 Hz, 4× HDMI (48–120 Hz)",
+      "weight": "Titan OS",
+      "sources": [
+        "https://www.tpvision.com/blog/new-2025-philips-ambilight-tv-range/"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED808",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77\"",
+      "core": "120 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.richersounds.com/philips-65oled808.html"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED809",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77\"",
+      "core": "144 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.philips.co.uk/c-p/65OLED809_12/oled-4k-ambilight-tv"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED810",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77\"",
+      "core": "144 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.philips.co.uk/c-m-so/tv/oled/latest"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED811",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "42/48/55/65/77\"",
+      "core": "165 Hz, 4× HDMI 2.1",
+      "weight": "Titan OS",
+      "sources": [
+        "https://www.tpvision.com/?p=36392"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED908",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65/77\"",
+      "core": "120 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.richersounds.com/philips-65oled908.html",
+        "https://www.richersounds.com/philips-55oled908.html"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips OLED909",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED (MLA)",
+      "surface": "55/65/77\"",
+      "core": "144 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.richersounds.com/philips-55oled909.html"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips PML9009",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/85\"",
+      "core": "144 Hz",
+      "weight": "Titan OS",
+      "sources": [
+        "https://www.philips.com/c-dam/corporate/newscenter/de/press-releases/2024/202401-philips-audio-video/Philips_TV_Range_2024_deu.pdf"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Plus Series",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (full-array local dimming)",
+      "surface": "55/65/75\"",
+      "core": "60 Hz",
+      "weight": "Roku TV",
+      "sources": [
+        "https://www.bestbuy.com/site/questions/roku-65-class-plus-series-qled-4k-smart-rokutv/6536734",
+        "https://www.rtings.com/tv/reviews/roku/plus-series-qled"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Plus Series (2025)",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65/75\"",
+      "core": null,
+      "weight": "Roku TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/18924385",
+        "https://www.silicon.co.uk/press-release/2025-roku-made-tv-lineup-brings-better-tv-for-everyone"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Pro Series",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65/75\"",
+      "core": "120 Hz, 4× HDMI (2× HDMI 2.1)",
+      "weight": "Roku TV",
+      "sources": [
+        "https://www.roku.com/products/roku-tv/roku-made-tvs/pro-series",
+        "https://www.bestbuy.com/site/6578068.p",
+        "https://www.techradar.com/televisions/roku-pro-series-review"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Pro Series (2025)",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65/75\"",
+      "core": "120 Hz",
+      "weight": "Roku TV",
+      "sources": [
+        "https://www.bestbuy.com/product/roku-65-class-pro-series-4k-qled-mini-led-smart-rokutv-2025/6625625",
+        "https://www.hdtvmagazine.com/equipment/tvs/roku/65r8c5/",
+        "https://www.rtings.com/tv/reviews/roku/pro-series-2025"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Pro Series LX OLED",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": null,
+      "surface": "55/65\"",
+      "core": "144 Hz",
+      "weight": "Roku TV",
+      "sources": [
+        "https://hothardware.com/news/roku-144hz-pro-series-lx-oled-tvs-hit-amazon",
+        "https://www.gadgetreview.com/?p=422428"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Pro Series OLED",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": null,
+      "surface": "55/65\"",
+      "core": "120 Hz",
+      "weight": "Roku TV",
+      "sources": [
+        "https://www.tvtechnology.com/business/roku-debuts-its-first-4k-oled-tvs",
+        "https://www.rtings.com/tv/reviews/roku/pro-series-oled"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Select Series",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": null,
+      "core": null,
+      "weight": "Roku TV",
+      "sources": [
+        "https://electronicexpress.com/catalog/214912/roku-65r4a5r-65-in-class-4k-hdr-led-select-series-smart-tv",
+        "https://www.rtings.com/tv/reviews/roku/select-series"
+      ]
+    },
+    {
+      "brand": "roku",
+      "name": "Roku Select Series (2025)",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "24–85\" (HD, FHD and 4K models)",
+      "core": null,
+      "weight": "Roku TV",
+      "sources": [
+        "https://www.silicon.co.uk/press-release/2025-roku-made-tv-lineup-brings-better-tv-for-everyone#select-2025",
+        "https://www.tvtechnology.com/news/roku-expands-updates-tv-lineup"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung CU7000",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/58/65/70/75/85\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20230609183732/https://www.samsung.com/us/televisions-home-theater/tvs/crystal-uhd-tvs/65-class-cu7000-crystal-uhd-4k-smart-tv-2023-un65cu7000fxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung CU8000",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20230417211015/https://www.samsung.com/us/televisions-home-theater/tvs/crystal-uhd-tvs/65-class-cu8000-crystal-uhd-4k-smart-tv-2023-un65cu8000fxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung DU7200",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/60/65/70/75/85\"",
+      "core": null,
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240617211611/https://www.samsung.com/us/televisions-home-theater/tvs/crystal-uhd-tvs/65-class-crystal-uhd-du7200-un65du7200fxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung DU8000",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/uhd-4k-tv/du8000-65-inch-crystal-uhd-4k-tizen-os-smart-tv-un65du8000fxzc/",
+        "https://web.archive.org/web/20250111035544/https://www.samsung.com/us/televisions-home-theater/tvs/crystal-uhd-tvs/65-class-crystal-uhd-du8000-un65du8000fxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q60C",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "32/43/50/55/65/70/75/85\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240305151549/https://www.samsung.com/ca/tvs/qled-tv/q60c-55-inch-qled-4k-smart-tv-qn55q60cafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q60D",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "32/43/50/55/65/70/75/85\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/q60d-65-inch-qled-4k-tizen-os-smart-tv-qn65q60dafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q70C",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240117201110/https://www.samsung.com/ca/tvs/qled-tv/q70c-65-inch-qled-4k-smart-tv-qn65q70cafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q70D",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/q70d-65-inch-qled-4k-tizen-os-smart-tv-qn65q70dafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q7F",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "43/50/55/65/75/85/98\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/q7f-55-inch-qled-4k-vision-ai-smart-tv-qn55q7faafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q80C",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED (QLED)",
+      "surface": "50/55/65/75/85/98\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240117201109/https://www.samsung.com/ca/tvs/qled-tv/q80c-65-inch-qled-4k-smart-tv-qn65q80cafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q80D",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED (QLED)",
+      "surface": "50/55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/q80d-65-inch-qled-4k-tizen-os-smart-tv-qn65q80dafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Q8F",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "32/43/50/55/65/75/85\"",
+      "core": null,
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/q8f-32-inch-qled-4k-smart-tv-qn32q8faafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN800C",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20230326113542/https://www.samsung.com/ca/tvs/qled-tv/qn800c-65-inch-neo-qled-8k-smart-tv-qn65qn800cfxzc/",
+        "https://news.samsung.com/us/samsung-2023-neo-qled-8k-plus-4k-tvs-out-now/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN800D",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "165 Hz (4K), 4× HDMI (8K 60 / 4K 165 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn800d-65-inch-neo-qled-8k-tizen-os-smart-tv-qn65qn800dfxzc/",
+        "https://news.samsung.com/us/samsung-2024-tv-audio-products-now-available-pre-order-music-frame/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN80F",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "50/55/65/75/85/100\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn80f-65-inch-neo-qled-4k-vision-ai-smart-tv-qn65qn80fafxzc/",
+        "https://news.samsung.com/us/samsung-launches-2025-neo-qled-tvs-powered-by-samsung-vision-ai/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN80H",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "50/55/65/75/85/100\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn80h-65-inch-neo-qled-4k-mini-led-smart-tv-qn65qn80hafxzc/",
+        "https://news.samsung.com/us/samsung-expands-2026-tv-lineup-refreshed-neo-qled-series-new-mini-led-tvs/",
+        "https://www.samsung.com/us/tvs/qled-tv/75-inch-neo-qled-4k-tv-qn80h-sku-qn75qn80hafxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN85C",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240817041613/https://www.samsung.com/ca/tvs/qled-tv/qn85c-65-inch-neo-qled-4k-smart-tv-qn65qn85cafxzc/",
+        "https://news.samsung.com/us/samsung-2023-neo-qled-8k-plus-4k-tvs-out-now/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN85D",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn85d-55-inch-neo-qled-4k-tizen-os-smart-tv-qn55qn85dbfxzc/",
+        "https://news.samsung.com/us/samsung-2024-tv-audio-products-now-available-pre-order-music-frame/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN900C",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20230816011508/https://www.samsung.com/ca/tvs/qled-tv/qn900c-65-inch-neo-qled-8k-smart-tv-qn65qn900cfxzc/",
+        "https://news.samsung.com/us/samsung-2023-neo-qled-8k-plus-4k-tvs-out-now/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN900D",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "240 Hz (4K), 4× HDMI (8K 60 / 4K 240 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn900d-65-inch-neo-qled-8k-tizen-os-smart-tv-qn65qn900dfxzc/",
+        "https://news.samsung.com/us/samsung-2024-tv-audio-products-now-available-pre-order-music-frame/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN900F",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "165 Hz (4K), 4× HDMI (8K 60 / 4K 165 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn900f-65-inch-neo-qled-8k-vision-ai-smart-tv-qn65qn900ffxzc/",
+        "https://news.samsung.com/us/samsung-launches-2025-neo-qled-tvs-powered-by-samsung-vision-ai/",
+        "https://www.samsung.com/us/tvs/neo-qled/65-class-neo-qled-8k-tv-qn900f-sku-qn65qn900ffxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN90B",
+      "year": 2022,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/uk/business/tvs/qled-tv/qn90b-65-inch-neo-qled-4k-smart-tv-qe65qn90batxxu",
+        "https://www.samsung.com/ca/tvs/qled-tv/qn90b-65-inch-neo-qled-4k-smart-tv-qn65qn90bafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN90C",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn90c-43-inch-neo-qled-4k-smart-tv-qn43qn90cafxzc/",
+        "https://news.samsung.com/us/samsung-2023-neo-qled-8k-plus-4k-tvs-out-now/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN90D",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "43/50/55/65/75/85/98\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn90d-65-inch-neo-qled-4k-tizen-os-smart-tv-qn65qn90dafxzc/",
+        "https://news.samsung.com/us/samsung-2024-tv-audio-products-now-available-pre-order-music-frame/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN90F",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "43/50/55/65/75/85/98/115\"",
+      "core": "165 Hz, 4× HDMI (4K 165 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn90f-55-inch-neo-qled-4k-vision-ai-smart-tv-qn55qn90fafxzc/",
+        "https://news.samsung.com/us/samsung-launches-2025-neo-qled-tvs-powered-by-samsung-vision-ai/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN95C",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20230817175640/https://www.samsung.com/ca/tvs/qled-tv/qn95c-65-inch-neo-qled-4k-smart-tv-qn65qn95cafxzc/",
+        "https://news.samsung.com/us/samsung-2023-neo-qled-8k-plus-4k-tvs-out-now/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN990F",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85/98\"",
+      "core": "240 Hz (4K), 5× HDMI (8K 120 / 4K 240 Hz on all 5)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn990f-75-inch-neo-qled-8k-vision-ai-smart-tv-qn75qn990ffxzc/",
+        "https://news.samsung.com/us/samsung-launches-2025-neo-qled-tvs-powered-by-samsung-vision-ai/",
+        "https://www.samsung.com/us/tvs/neo-qled/65-class-neo-qled-8k-tv-qn990f-sku-qn65qn990ffxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung QN990H",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "85\"",
+      "core": "240 Hz (4K), 5× HDMI (8K 120 / 4K 240 Hz on all 5)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/qled-tv/qn990h-85-inch-neo-qled-8k-mini-led-smart-tv-qn85qn990hfxzc/",
+        "https://www.samsung.com/us/tvs/qled-tv/85-inch-neo-qled-8k-tv-qn990h-sku-qn85qn990hfxza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S85D",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s85d-55-inch-oled-4k-tizen-os-smart-tv-qn55s85daexzc/",
+        "https://news.samsung.com/us/samsung-expands-2024-oled-tv-lineup-more-series-sizes/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S85F",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s85f-65-inch-oled-4k-vision-ai-smart-tv-qn65s85fafxzc/",
+        "https://news.samsung.com/us/samsung-introduces-2025-oled-tvs-samsung-vision-ai-next-level-glare-free-technology/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S85H",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "48/55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s85h-65-inch-4k-smart-tv-qn65s85haexzc/",
+        "https://news.samsung.com/us/samsung-upgrades-2026-oled-tvs-new-designs-expanded-premium-features/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S90C",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240407120305/https://www.samsung.com/ca/tvs/oled-tv/s90c-65-inch-oled-4k-smart-tv-qn65s90cafxzc/",
+        "https://news.samsung.com/us/samsung-expands-2023-oled-4k-tv-lineup/",
+        "https://news.samsung.com/us/samsung-introduces-83-inch-class-oled-s90c-tv/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S90D",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s90d-65-inch-oled-4k-tizen-os-smart-tv-qn65s90dafxzc/",
+        "https://news.samsung.com/us/samsung-expands-2024-oled-tv-lineup-more-series-sizes/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S90F",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s90f-65-inch-oled-4k-vision-ai-smart-tv-qn65s90fafxzc/",
+        "https://news.samsung.com/us/samsung-introduces-2025-oled-tvs-samsung-vision-ai-next-level-glare-free-technology/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S90H",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": "165 Hz, 4× HDMI (4K 165 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s90h-77-inch-4k-smart-tv-qn77s90haexzc/",
+        "https://news.samsung.com/us/samsung-upgrades-2026-oled-tvs-new-designs-expanded-premium-features/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S95B",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": "120 Hz, 4× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://images.samsung.com/is/content/samsung/assets/au/tvs/product-specs/OLED-S95B-Product-Specifications.pdf",
+        "https://www.samsung.com/latin_en/tvs/oled-tv/s95b-65-inch-oled-4k-smart-tv-qn65s95bafxza",
+        "https://www.coolblue.be/en/product/905725/samsung-qd-oled-65s95b-2022.html"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S95C",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://web.archive.org/web/20240117201133/https://www.samsung.com/ca/tvs/oled-tv/s95c-55-inch-oled-4k-smart-tv-qn55s95cafxzc/",
+        "https://news.samsung.com/us/samsung-expands-2023-oled-4k-tv-lineup/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S95D",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s95d-65-inch-oled-4k-tizen-os-smart-tv-qn65s95dafxzc/",
+        "https://news.samsung.com/us/samsung-expands-2024-oled-tv-lineup-more-series-sizes/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S95F",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83\"",
+      "core": "165 Hz, 4× HDMI (4K 165 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s95f-65-inch-oled-4k-vision-ai-smart-tv-qn65s95fafxzc/",
+        "https://news.samsung.com/us/samsung-introduces-2025-oled-tvs-samsung-vision-ai-next-level-glare-free-technology/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S95H",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83\"",
+      "core": "165 Hz, 4× HDMI (4K 165 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/oled-tv/s95ha-65-inch-4k-smart-tv-qn65s95hafxzc/",
+        "https://news.samsung.com/us/samsung-upgrades-2026-oled-tvs-new-designs-expanded-premium-features/",
+        "https://www.samsung.com/us/tvs/oled-tv/83-inch-oled-4k-tv-s95h-sku-qn83s95haexza/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung The Frame (2024)",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI (4K 120 Hz on HDMI 4 only)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/lifestyle-tvs/the-frame/ls03d-65-inch-qled-4k-art-mode-black-qn65ls03dafxzc/",
+        "https://news.samsung.com/us/samsung-2024-tv-audio-products-now-available-pre-order-music-frame/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung The Frame (2025)",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "43/50/55/65\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on HDMI 4 only)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/lifestyle-tvs/the-frame/ls03f-65-inch-qfls03m-black-qn65ls03fafxzc/",
+        "https://news.samsung.com/us/samsung-expands-2025-art-tv-lineup-the-frame-and-the-frame-pro/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung The Frame (2026)",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "43/55/65/75/85/98\"",
+      "core": "144 Hz, 4× HDMI (4K 144 Hz on all 4)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/lifestyle-tvs/the-frame/ls03he-55-inch-qn55ls03hefxzc/",
+        "https://news.samsung.com/us/samsung-elevates-2026-frame-lineup-broader-customization-advanced-glare-free-technology/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung The Frame Pro",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "144 Hz, 5× HDMI (4K 144 Hz on all 5)",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/lifestyle-tvs/the-frame/ls03fw-75-inch-black-qn75ls03fwfxzc/",
+        "https://news.samsung.com/us/samsung-expands-2025-art-tv-lineup-the-frame-and-the-frame-pro/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung U8000F",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "LED",
+      "surface": "43/50/55/58/65/70/75/85\"",
+      "core": "60 Hz, 3× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/ca/tvs/uhd-4k-tv/u8000f-85-inch-crystal-uhd-4k-smart-tv-un85u8000ffxzc/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony A80L",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "55/65/77/83\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://sony.mediaroom.com/2023-05-01-Sony-Electronics-Announces-Pricing-and-Availability-for-2023-BRAVIA-XR-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony A95L",
+      "year": 2023,
+      "shape": "OLED",
+      "balance": "QD-OLED",
+      "surface": "55/65/77\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://sony.mediaroom.com/2023-07-31-Sony-Electronics-Announces-Pricing-and-Availability-for-Sony-BRAVIA-XR-A95L-QD-OLED-4K-HDR-Google-TV",
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-65-a95l-4k-uhd-hdr-qd-oled-120hz-dolby-vision-atmos-imax-enhanced-google-tv-smart-tv-xr65a95l-2023-great-for-movies-gaming/17230339"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 2 II",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED",
+      "surface": "43/50/55/65/75\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-2-ii-65-s20m2-bravia-2-series-4k-uhd-hdr-led-smart-google-tv-k65s20m2-2025/19254961"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 3",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.sony.eu/presscentre/cinema-is-coming-home-sony-introduces-its-brightest-and-best-sounding-new-braviatm-tvs-to-further-enrich-ultimate-cinematic-experience-at-home"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 3 II",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": null,
+      "surface": "43–100\"",
+      "core": "4× HDMI 2.1 (4K 120)",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-3-ii-65-4k-uhd-hdr-led-120hz-dolby-vision-imax-enhanced-google-tv-with-gemini-k65xr30m2-2026-great-for-movies-gaming/19826438"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 5",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/98\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-5-65-xr50-series-4k-uhd-hdr-mini-led-120hz-google-tv-smart-tv-k65xr50-2025-great-for-movies-gaming/19254958"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 6",
+      "year": 2026,
+      "shape": "OLED",
+      "balance": null,
+      "surface": "48/55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bhphotovideo.com/c/product/1994569-REG/sony_k65a60_bravia_6_65_4k.html"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 7",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "50/55/65/75/85\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://sony.mediaroom.com/2024-04-17-Cinema-Is-Coming-Home-Sony-Electronics-Introduces-its-Brightest-and-Best-Sounding-BRAVIA-R-TVs-to-Further-Enrich-the-Authentic-Cinematic-Experience-at-Home"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 7 II",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED",
+      "surface": "50/55/65/75/85/98\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://sony.mediaroom.com/2026-05-27-The-Future-of-Color-and-Sound-is-Here-Sony-Electronics-Introduces-BRAVIA-R-9-II-and-BRAVIA-7-II-RGB-TVs-and-the-BRAVIA-Theater-Trio"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 8",
+      "year": 2024,
+      "shape": "OLED",
+      "balance": "WOLED",
+      "surface": "55/65/77\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-8-65-xr80-series-4k-uhd-hdr-oled-smart-google-tv-k65xr80b-2024/17909540"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 8 II",
+      "year": 2025,
+      "shape": "OLED",
+      "balance": "QD-OLED",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-8-ii-65-xr80m2-series-4k-uhd-hdr-qd-oled-smart-google-tv-k65xr80m2-2025/19254956",
+        "https://sony.mediaroom.com/2025-04-02-Cinema-is-Coming-Home-Sony-Electronics-Expands-its-BRAVIA-R-TV-Line-Up-for-the-Most-Authentic-Cinematic-Home-Experience"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 9",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-9-65-xr90-series-4k-uhd-hdr-mini-led-qled-smart-google-tv-k65xr90b-2024/17909544",
+        "https://sony.mediaroom.com/2024-04-17-Cinema-Is-Coming-Home-Sony-Electronics-Introduces-its-Brightest-and-Best-Sounding-BRAVIA-R-TVs-to-Further-Enrich-the-Authentic-Cinematic-Experience-at-Home"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony Bravia 9 II",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED",
+      "surface": "65/75/85/115\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.sony.eu/presscentre/the-future-of-colour-and-sound-is-here-sony-introduces-braviar-9-ii-and-bravia-7-ii-rgb-tvs-and-the-bravia-theatre-trio",
+        "https://sony.mediaroom.com/2026-05-27-The-Future-of-Color-and-Sound-is-Here-Sony-Electronics-Introduces-BRAVIA-R-9-II-and-BRAVIA-7-II-RGB-TVs-and-the-BRAVIA-Theater-Trio"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony X77L",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED",
+      "surface": null,
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/sony-bravia-x77l-65-4k-uhd-hdr-led-google-tv-smart-tv-kd65x77l-2023-great-for-streaming-gaming/17080858"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony X90L",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Full-array LED (VA)",
+      "surface": "55/65/75/85/98\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.sony.com.my/bravia/products/x90l-series/spec",
+        "https://sony.mediaroom.com/2023-05-01-Sony-Electronics-Announces-Pricing-and-Availability-for-2023-BRAVIA-XR-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony X93L",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.ca/en-ca/product/open-box-sony-65-4k-uhd-hdr-mini-led-120hz-dolby-vision-atmos-google-tv-smart-tv-xr65x93l-2023-great-for-movies-gaming/17189133",
+        "https://sony.mediaroom.com/2023-05-01-Sony-Electronics-Announces-Pricing-and-Availability-for-2023-BRAVIA-XR-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony X95L",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "85\"",
+      "core": null,
+      "weight": "Google TV",
+      "sources": [
+        "https://www.sony.eu/presscentre/sony-introduces-2023-bravia-xr-tv-line-up",
+        "https://sony.mediaroom.com/2023-05-01-Sony-Electronics-Announces-Pricing-and-Availability-for-2023-BRAVIA-XR-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL Q6",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (VA)",
+      "surface": "55/65/75/85\"",
+      "core": "60 Hz, 3× HDMI 2.0",
+      "weight": "Google TV",
+      "sources": [
+        "https://tcl.com/us/en/products/home-theater/q6-class/65-class-4k-qled-hdr-google-tv-65q650g",
+        "https://www.rtings.com/tv/reviews/tcl/q6-q650g-qled"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL Q6 (2024)",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (VA)",
+      "surface": "43/50/55/65/75/85/98\"",
+      "core": "60 Hz, no HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/tcl-65-q-class-4k-uhd-hdr-qled-smart-tv-with-google-tv-65q651g",
+        "https://www.rtings.com/tv/reviews/tcl/q6-q651g-qled"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL Q7",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "QLED (VA)",
+      "surface": "55/65/75/85\"",
+      "core": "up to 144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/site/tcl-65-class-q7-q-class-qled-4k-uhd-smart-google-tv-2023/6538137.p",
+        "https://www.rtings.com/tv/reviews/tcl/q7-q750g-qled"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM5K",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "50/55/65/75/85\"",
+      "core": "60 Hz (144 Hz at 1080p/1440p)",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/product/tcl-65-class-qm5k-series-4k-uhd-qd-mini-led-smart-tv-with-google-tv-2025/J36QYTQWZ4",
+        "https://www.rtings.com/tv/reviews/tcl/qm5k"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM6K",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/98\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/qm6k-series-qd-mini-led-qled-4k-uhd-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/qm6k"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM7",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/98\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.tcl.com/us/en/products/home-theater/qm7-class/65-class-4k-qd-mini-led-qled-hdr-google-tv-65qm751g",
+        "https://www.rtings.com/tv/reviews/tcl/qm7-qm751g-qled"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM7K",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/98/115\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/qm7k-series-qd-mini-led-qled-4k-uhd-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/qm7k"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM7L",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "55/65/75/85/98\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/qm7l-series-sqd-mini-led-4k-uhd-hdr-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/qm7l",
+        "https://us.tcl.com/blogs/press-releases/tcl-turns-up-the-color-expanding-its-groundbreaking-sqd-mini-led-lineup"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM8",
+      "year": 2023,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85/98\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/site/questions/tcl-65-class-qm8-q-class-mini-led-qled-4k-hdr-smart-tv-with-google-tv-2023/6538131",
+        "https://www.tcl.com/us/en/press-releases/tcl-premium-2023-tv-lineup",
+        "https://www.rtings.com/tv/reviews/tcl/qm8-qm850g-qled"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM8 (2024)",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85/98\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://tcl.com/us/en/products/home-theater/qm8-class/65-class-4k-qd-mini-led-qled-hdr-google-tv-65qm851g",
+        "https://www.rtings.com/tv/reviews/tcl/qm8-qm851g-qled"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM8K",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85/98\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/site/tcl-65-class-qm8k-series-4k-uhd-qd-mini-led-smart-tv-with-google-tv-2025/6625842.p",
+        "https://www.rtings.com/tv/reviews/tcl/qm8k"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM8L",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85/98\"",
+      "core": "144 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/qm8l-series-sqd-mini-led-4k-uhd-hdr-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/qm8l"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL QM9K",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "65/75/85/98\"",
+      "core": "144 Hz, 2× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/qm9k-series-qd-mini-led-qled-4k-uhd-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/qm9k"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL RM9L",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "RGB Mini-LED (VA)",
+      "surface": "85/98/115\"",
+      "core": "144 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/rm9l-series-4k-uhd-hdr-rgb-mini-led-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/rm9l"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL S4",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED (VA)",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "60 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.tcl.com/us/en/products/home-theater/s4-class/55-class-4k-uhd-hdr-led-smart-google-tv-55s450g",
+        "https://www.rtings.com/tv/reviews/tcl/s4-s450g"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL S5",
+      "year": 2024,
+      "shape": "Budget & mid-range",
+      "balance": "Direct-lit LED (VA)",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "60 Hz",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.bestbuy.com/site/tcl-55-class-s5-series-4k-uhd-hdr-led-smart-google-tv-2024/6579460.p",
+        "https://www.rtings.com/tv/reviews/tcl/s5-s551g"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL X11K",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "85/98\"",
+      "core": "144 Hz, HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.tcl.com/us/en/products/home-theater/x11k-class/98-class-4k-uhd-hdr-qd-mini-led-qled-smart-google-tv-98x11k",
+        "https://us.tcl.com/products/x11k-series-4k-uhd-hdr-qd-mini-led-smart-tv-with-google-tv"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL X11L",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (VA)",
+      "surface": "75/85/98\"",
+      "core": "144 Hz, 4× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://us.tcl.com/products/x11l-series-4k-uhd-hdr-sqd-mini-led-smart-tv-with-google-tv",
+        "https://www.rtings.com/tv/reviews/tcl/x11l"
+      ]
+    },
+    {
+      "brand": "vizio",
+      "name": "Vizio MQX",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED (QLED)",
+      "surface": "50/65/75\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "SmartCast",
+      "sources": [
+        "https://www.bestbuy.com/site/vizio-65-class-mqx-series-premium-4k-qled-hdr-smart-tv/6510138.p",
+        "https://www.vizio.com/en/tv/m-series/M65QXM-K03"
+      ]
+    },
+    {
+      "brand": "vizio",
+      "name": "Vizio Mini LED Quantum 4K",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "60 Hz, 3× HDMI 2.1",
+      "weight": "VIZIO OS",
+      "sources": [
+        "https://www.vizio.com/en/tv/mini-led/VQM65C-1004",
+        "https://www.vizio.com/en/tv/mini-led",
+        "https://www.walmart.com/ip/VIZIO-65-Mini-LED-Quantum-4K-QLED-HDR-Smart-TV-NEW-VQM65C-10/7771502259"
+      ]
+    },
+    {
+      "brand": "vizio",
+      "name": "Vizio Quantum Pro",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED (QLED)",
+      "surface": "65/75\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "SmartCast",
+      "sources": [
+        "https://www.vizio.com/en/tv/quantum-pro/VQP65C-84",
+        "https://www.rtings.com/tv/reviews/vizio/quantum-pro"
+      ]
+    },
+    {
+      "brand": "vizio",
+      "name": "Vizio V-Series (2023)",
+      "year": 2023,
+      "shape": "Budget & mid-range",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": "SmartCast",
+      "sources": [
+        "https://www.walmart.com/ip/564798749",
+        "https://www.bestbuy.com/product/vizio-70-class-v-series-4k-led-hdr-smart-tv-2023/J369J2QPJF"
+      ]
+    },
+    {
+      "brand": "xiaomi",
+      "name": "Xiaomi TV A Pro 2025",
+      "year": 2025,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "43/55/65/75\"",
+      "core": "60 Hz, 3× HDMI (1 eARC)",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.mi.com/global/product/xiaomi-tv-a-pro-43-2025/specs/",
+        "https://www.mi.com/global/product/xiaomi-tv-a-pro-75-2025/specs",
+        "https://www.mi.com/ae/product/xiaomi-tv-a-pro-55-2025/specs/"
+      ]
+    },
+    {
+      "brand": "xiaomi",
+      "name": "Xiaomi TV A Pro 2026",
+      "year": 2026,
+      "shape": "Budget & mid-range",
+      "balance": "QLED",
+      "surface": "43/50/55/65\"",
+      "core": "60 Hz, 3× HDMI (1 eARC)",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.mi.com/global/product/xiaomi-tv-a-pro-55-2026/specs/",
+        "https://www.mi.com/global/product/xiaomi-tv-a-pro-43-2026/specs/",
+        "https://www.mi.com/global/product/xiaomi-tv-a-pro-50-2026/specs/"
+      ]
+    },
+    {
+      "brand": "xiaomi",
+      "name": "Xiaomi TV S Mini LED 2025",
+      "year": 2025,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65/75\"",
+      "core": "144 Hz, 3× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.mi.com/sg/product/xiaomi-tv-s-mini-led-65-2025/specs/",
+        "https://www.mi.com/cz/product/xiaomi-tv-s-mini-led-55-2025/specs/",
+        "https://www.mi.com/sg/product/xiaomi-tv-s-mini-led-75-2025/specs"
+      ]
+    },
+    {
+      "brand": "xiaomi",
+      "name": "Xiaomi TV S Pro Mini LED 2026",
+      "year": 2026,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED (QLED)",
+      "surface": "55/65/75\"",
+      "core": "144 Hz, 3× HDMI 2.1",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.mi.com/global/product/xiaomi-tv-s-pro-mini-led-55-2026/specs/",
+        "https://www.mi.com/cz/product/xiaomi-tv-s-pro-mini-led-65-2026/specs/",
+        "https://www.mi.com/sa-en/product/xiaomi-tv-s-pro-mini-led-75-2026/specs/"
+      ]
+    }
+  ]
+}
