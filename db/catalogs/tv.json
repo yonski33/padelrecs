@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C7/G2, Samsung S95B/QN90B). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/G2, Samsung S95B/QN90B/QN90A, Sony A80J). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -662,6 +662,19 @@
       "sources": [
         "https://www.lg.com/us/tvs/lg-OLED65C7P-oled-4k-tv",
         "https://www.lg.com/us/PDF/press-release/77W7%20LG%20LAUNCH%20-%20JUNE%2028%202017%20FINAL.pdf"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C8",
+      "year": 2018,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tvs/lg-OLED65C8PUA-oled-4k-tv"
       ]
     },
     {
@@ -1769,6 +1782,19 @@
     },
     {
       "brand": "samsung",
+      "name": "Samsung QN90A",
+      "year": 2021,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": null,
+      "core": "4× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/latin_en/tvs/qled-tv/qn90a-65-inch-neo-qled-4k-smart-tv-qn65qn90aapxpa"
+      ]
+    },
+    {
+      "brand": "samsung",
       "name": "Samsung QN90B",
       "year": 2022,
       "shape": "Mini-LED & QLED",
@@ -2104,6 +2130,20 @@
       "weight": "Tizen",
       "sources": [
         "https://www.samsung.com/ca/tvs/uhd-4k-tv/u8000f-85-inch-crystal-uhd-4k-smart-tv-un85u8000ffxzc/"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony A80J",
+      "year": 2021,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "4× HDMI (HDMI 2.1 4K120)",
+      "weight": "Google TV",
+      "sources": [
+        "https://store.sony.com.au/archived-television-OLED/XR65A80J.html",
+        "https://sony.mediaroom.com/2021-01-07-Sony-Electronics-Announces-New-BRAVIA-XR-8K-LED-4K-OLED-and-4K-LED-Models-with-New-Cognitive-Processor-XR"
       ]
     },
     {
