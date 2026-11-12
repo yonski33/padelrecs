@@ -9,8 +9,8 @@ import { niche, catalogPath, catalogLabel } from "../lib/niche";
 import { RANKINGS_PATH, rankingHref, withModelYears } from "../lib/top-lists";
 
 // Kept short: "Add a review" is the button above, and About and Brands live in the footer.
+// No "Player reviews" item any more (owner, 2026-11-12): the home page isn't a reviews feed now, and the logo goes home.
 const links = [
-  ["/", `${niche.people.One} reviews`],
   [catalogPath, catalogLabel],
 ] as const;
 const finderLink = niche.finder ? ["/finder", niche.finder.navLabel] as const : null;
