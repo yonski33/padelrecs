@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
+import { platformName } from "../../../lib/source-label";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
 import type { Metadata } from "next";
 import { catalog as loadCatalog, score } from "../../../db/data";
@@ -172,12 +173,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
+  if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Where the reviews come from (this used to be two sidebar boxes): web quotes by platform, and how user reviews count.
   if (external.length || reviews.length) {
-    const plats = platforms.map(([p]) => p), list2 = (ts: string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
+    const plats = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "blogs" : platformName(p)))], list2 = (ts: string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
     faq.push({ q: `Where do these ${name} reviews come from?`, a: [
-      external.length ? `${external.length.toLocaleString("en-US")} are quotes from discussions on ${list2(plats)}, each linked to the original post.` : "",
+      external.length ? `${external.length.toLocaleString("en-US")} are quotes from ${list2(plats)}, each linked to the original.` : "",
       reviews.length ? `${reviews.length.toLocaleString("en-US")} ${reviews.length === 1 ? "was" : "were"} written by ${niche.people.many} here.` : "",
       `${niche.people.One} reviews are checked for spam before they appear. Every review, written here or quoted, is read as positive, mixed or negative.`,
     ].filter(Boolean).join(" ") });
@@ -279,7 +281,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </p>
       </div>
     </section>
-    {specs.length > 0 && <section className="p-glance"><h2 className="m-only">At a glance</h2><dl className="p-specs">{specs.map(([k, v]) => <div key={k} title={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>}
+    {/* Specs live in the FAQ now (owner, 2026-11-12): reviews are what the page is for. */}
     {says}
     {byVariant}
     {niche.specsNote && <p className="specs-note">{niche.specsNote.replace("{checked}", checkedDate(r.createdAt))}</p>}

@@ -924,12 +924,6 @@ a:hover .w-name { color: var(--green); }
 .btile-label b { text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
 .btile-label span { color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
 
-/* Spec strip: one line; a long value is cut with "…" and shown whole on hover (title) and in the phone table. */
-@media (min-width: 681px) {
-  .product.v2 .p-specs { flex-wrap: nowrap; overflow: hidden; }
-  .product.v2 .p-specs div { min-width: 0; flex: 0 1 auto; }
-  .product.v2 .p-specs dd { max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-}
 
 /* Rankings on phones (owner, 2026-11-12): the rank in its own column, never over the photo; just "49 positive" on the right. */
 @media (max-width: 680px) {
