@@ -1973,3 +1973,4 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-live .sig-pop summary { font-size: inherit; } .lt-live .sig-pop-card { left: 50%; transform: translateX(-50%); }
 .lr-others .sig-pop + a { padding-left: 18px; border-left: 1px solid var(--lt-line); }
 .lr-others .sig-pop summary { color: var(--lt-acc); }
+.lt-note .sig-pop-card { left: auto; right: 0; }
