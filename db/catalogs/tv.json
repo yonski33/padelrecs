@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/G2, Samsung S95B/QN90B/QN90A, Sony A80J). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2, Samsung S95B/QN90B/QN90A, Sony A80J). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -568,6 +568,21 @@
       "sources": [
         "https://www.lg.com/us/tvs/lg-oled65b6gua-oled-4k-tv",
         "https://www.rtings.com/tv/reviews/lg/b6-oled-2026"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B7",
+      "year": 2017,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://lg.com/ae/about-lg/press-media/ces2017-lg-oled-tv-lineup",
+        "https://www.lg.com/us/tvs/lg-OLED65B7A-oled-4k-tv",
+        "https://www.lg.com/us/tvs/lg-OLED55B7P-oled-4k-tv"
       ]
     },
     {
