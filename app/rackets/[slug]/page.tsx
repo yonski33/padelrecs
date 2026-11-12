@@ -14,6 +14,8 @@ import { isRecent, webDate, MIN_RECENT } from "../../../lib/recent";
 import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
+import { saveAmazonPhoto } from "../../../db/amazon-photo-save";
+import { after } from "next/server";
 import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
@@ -233,6 +235,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
   const own = shopPhoto(r), stored = amazonPhoto(r);
   const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
+  // Cards (home, lists, rankings) only read the saved photo, so a photo found by the live lookup is saved for them, once,
+  // after the page is sent (owner, 2026-11-12: GolfRecs top 5 showed drawings for drivers whose pages had photos).
+  if (!own && !stored && !(r as { amazonImage?: string | null }).amazonImage && amazon?.asin && amazon.image && !photoHidden(r)) {
+    const { asin, image } = amazon;
+    after(() => saveAmazonPhoto(r.id, asin, image).catch(error => console.error(`[amazon] Saving the photo for ${r.slug} failed: ${error}`)));
+  }
   const pos = positiveShare(s);
   const oneLine = listLine(r);
   const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;

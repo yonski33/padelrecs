@@ -17,7 +17,7 @@ const cachedOffer = unstable_cache(
 
 /** `image`: Amazon's own image address, on niches with amazon.photos. Amazon's terms: served from Amazon, the address kept
  *  under 24 hours (the 12-hour cache above), not altered beyond resizing, and it links to the Amazon product page. List pages link theirs to our product page instead (owner's decision, 2026-11-07; see lib/amazon-photos.ts). */
-export type AmazonButton = { url: string; price: string | null; image?: string | null };
+export type AmazonButton = { url: string; price: string | null; image?: string | null; asin?: string };
 
 /**
  * Whether this site shows Amazon links: its niche config has `amazon` and the deployment has a tag for links
@@ -47,7 +47,7 @@ export async function amazonButton(product: { name: string; brand: string | unde
   if (!product.brand) return search;
   try {
     const offer = await cachedOffer(product.name, product.brand);
-    return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null } : search;
+    return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null, asin: offer.asin } : search;
   } catch (error) {
     console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`);
     return search;

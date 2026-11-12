@@ -24,8 +24,34 @@ export function publicCatalogItems<R extends RacketRef, B extends BrandRef>(allB
  return { brands: visibleBrands, rackets: visibleRackets };
 }
 
-// Cached per request: the layout reads it for the header's rankings menu, and so does the page.
+// Kept in this server instance's memory between requests (owner, 2026-11-12: cache misses took 5–25 s because every
+// page, even /contact, reloaded every review for the header's rankings menu). A copy younger than FRESH_MS is used as
+// is; an older one is still served at once while a fresh load runs in the background, up to STALE_MS. Pages are cached
+// at the edge anyway, so new reviews show within a couple of minutes, as before. Scripts pass their own connection
+// and always read fresh.
+const FRESH_MS = 2 * 60_000, STALE_MS = 30 * 60_000;
+type Loaded = Awaited<ReturnType<typeof loadCatalog>>;
+let memo: { at: number; value: Promise<Loaded>; refreshing?: boolean } | null = null;
+function remembered(): Promise<Loaded> {
+ const now = Date.now();
+ if (memo && (now - memo.at < FRESH_MS || (memo.refreshing && now - memo.at < STALE_MS))) return memo.value;
+ if (memo && now - memo.at < STALE_MS) {
+  // Serve the copy we have, refresh behind it; a failed refresh keeps the old copy for the next try.
+  const current = memo; current.refreshing = true;
+  loadCatalog().then(fresh => { memo = { at: Date.now(), value: Promise.resolve(fresh) }; }, () => { current.refreshing = false; });
+  return current.value;
+ }
+ const value = loadCatalog();
+ memo = { at: now, value };
+ value.catch(() => { if (memo?.value === value) memo = null; });
+ return value;
+}
+// Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
+ return connection ? loadCatalog(connection) : remembered();
+});
+
+async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  const db = connection ?? await database();
  const [allBrands, allRackets, publicReviews, external, unapproved, votes] = await Promise.all([
  db.select().from(brands), db.select().from(rackets),
@@ -42,7 +68,7 @@ export const catalog = cache(async function catalog(connection?:ReturnType<typeo
  return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands,
   reviews: publicReviews.map(r => ({ ...r, helpful: votes.get(`player:${r.id}`) ?? 0 })),
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
-});
+}
 export type Catalog = Awaited<ReturnType<typeof catalog>>;
 /** The star average shows only from this many user ratings; below it one or two ratings would read as the verdict. */
 export const MIN_RATINGS = 3;
