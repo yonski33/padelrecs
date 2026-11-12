@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { sourceLabel, summaryKind } from "../lib/source-label";
+import { sourceLabel, summaryKind, originalLinkLabel } from "../lib/source-label";
 
 const video = "https://www.youtube.com/watch?v=X5wmRWxlVCs";
 
@@ -30,4 +30,11 @@ test("a Reddit link to one comment is summarised as a comment, a thread link as 
   assert.equal(r("https://www.reddit.com/r/Pillows/comments/18a8h47/purple_harmony"), "Reddit post");
   assert.equal(summaryKind({ sourcePlatform: "YouTube", sourceUrl: video }), "YouTube video");
   assert.equal(summaryKind({ sourcePlatform: "Other", sourceUrl: "https://example.com/review" }), "blog post");
+});
+
+test("the link to the original fits the source", () => {
+  assert.equal(originalLinkLabel({ sourcePlatform: "YouTube", sourceUrl: video }), "Watch the original video");
+  assert.equal(originalLinkLabel({ sourcePlatform: "Other", sourceUrl: "https://example.com/r" }), "Read the original post");
+  assert.equal(originalLinkLabel({ sourcePlatform: "Reddit", sourceUrl: "https://www.reddit.com/r/padel/comments/abc/slug/" }), "View the original discussion");
+  assert.equal(originalLinkLabel({ sourcePlatform: "Reddit", sourceUrl: "https://www.reddit.com/r/padel/comments/abc/slug/def/" }), "View the original comment");
 });

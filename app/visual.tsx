@@ -5,7 +5,7 @@ import type { Catalog, Score as ScoreT } from "../db/data";
 import { ProductIcon, SourceIcon } from "./icons";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { shopPhoto } from "../lib/shop-photos";
-import { sourceLabel, summaryKind } from "../lib/source-label";
+import { sourceLabel, summaryKind, originalLinkLabel } from "../lib/source-label";
 import { displayName } from "../lib/brand-name";
 import { niche, productHref, catalogPath } from "../lib/niche";
 const catalogPathOf = () => catalogPath;
@@ -194,7 +194,7 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
       <header><p className="lv-src"><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
       <p className="lv-kind">{`Summary of a ${kind}`}</p>
       <p className="lv-text">{quoteText(e)}</p>
-      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original discussion <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
+      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
     </div>
   </article>;
 }

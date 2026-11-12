@@ -28,3 +28,14 @@ export function summaryKind(source: Source) {
   if (p === "Blog") return "blog post";
   return `${p} post`;
 }
+
+/** The words on the link to the original (owner, 2026-11-13): a video is watched, a blog post read, a Reddit thread is a discussion. */
+export function originalLinkLabel(source: Source) {
+  const k = summaryKind(source);
+  if (k === "YouTube video") return "Watch the original video";
+  if (k === "YouTube comment") return "View the original comment";
+  if (k === "Reddit comment") return "View the original comment";
+  if (k === "Reddit post") return "View the original discussion";
+  if (k === "blog post") return "Read the original post";
+  return "View the original";
+}
