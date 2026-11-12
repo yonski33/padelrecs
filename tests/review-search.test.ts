@@ -76,7 +76,7 @@ test("the finder searches every site by words, link, id and filters, and lists d
 
 test("only schemas recorded for a known niche are searched, and links point at the review's own site",()=>{
  assert.deepEqual(reviewSites({padel:"padelrecs",skin:"padelrecs",unknown:"unknownrecs"}).map(s=>s.id),["padel"]);
- assert.equal(reviewSites().length,30);
+ assert.equal(reviewSites().length,Object.keys(niches).length,"every niche is searched");
  const [skin]=reviewSites({skin:"skinrecs"});
  const links=reviewLinks(skin,{id:"research-1",slug:"cerave-cleanser",shape:null},{id:"padel"});
  assert.match(links.edit,/^https:\/\/www\.skinrecs\.com\/funtimes\/edit-review\?type=web&id=research-1$/);

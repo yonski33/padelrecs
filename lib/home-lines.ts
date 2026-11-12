@@ -6,7 +6,7 @@ const topics: Record<string, string> = {
   audio: "audio gear", babygear: "baby gear", badminton: "badminton rackets", camera: "cameras", climbing: "climbing gear",
   coffee: "coffee gear", cycling: "bikes", discgolf: "discs", fragrance: "fragrances", gaming: "gaming gear", golf: "drivers",
   homegym: "home gym gear", hosting: "web hosting", keyboard: "keyboards", kitchen: "kitchen appliances", money: "cards and apps",
-  monitor: "monitors", nails: "nail products", padel: "padel rackets", pickleball: "pickleball paddles", running: "running shoes",
+  laptop: "laptops", monitor: "monitors", nails: "nail products", padel: "padel rackets", pickleball: "pickleball paddles", running: "running shoes",
   simracing: "sim racing gear", skin: "skincare", sleep: "sleep gear", snowboard: "snowboards", software: "software",
   tabletennis: "table tennis gear", tennis: "tennis rackets", travelgear: "travel gear", ultralight: "ultralight gear",
 };

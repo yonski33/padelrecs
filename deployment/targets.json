@@ -188,7 +188,8 @@
     "keyboard": "keyboardrecs",
     "travelgear": "travelgearrecs",
     "babygear": "babygearrecs",
-    "sleep": "sleeprecs"
+    "sleep": "sleeprecs",
+    "laptop": "laptoprecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
