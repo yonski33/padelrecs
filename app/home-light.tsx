@@ -106,7 +106,10 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
         </div>
         {f.q && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} for “${f.q}” · `}<a href={link({ q: undefined })}>clear</a></p>}
         <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <Row key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/>)}/>
-        {!results.length && <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>}
+        {!results.length && (f.q || shape
+          ? <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>
+          // A new site (TVRecs, 2026-11-13) before its first reviews are in.
+          : <p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>)}
       </div>
       <aside className="lt-side">
         <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
