@@ -139,11 +139,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst/>,
+    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst light={query.look === "light"}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
     // "Newest" goes by the date the review was written; one without a known date sorts last, not by when we imported it
     // (owner, 2026-11-12: the Newest order looked alphabetical).
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst/>,
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst light={query.look === "light"}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".

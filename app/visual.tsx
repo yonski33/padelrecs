@@ -138,8 +138,9 @@ function Clamp({ id, text }: { id: string; text: string }) {
 /** A review on the product page, as a short quote card: where it was said and when, how it felt, and its words. */
 /** textFirst (product pages, owner 2026-11-12): the review leads, larger and airier, with the verdict, source and date
  *  on one quiet line under it. The home feed keeps the source on top, under the product's name. */
-export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) & { textFirst?: boolean }) {
+export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) & { textFirst?: boolean; light?: boolean }) {
   const tf = !!props.textFirst;
+  if (props.light) return <LightVoice {...props}/>;
   if ("review" in props) {
     const r = props.review, v = verdictOf(r.rating);
     const src = <span className="voice-src"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="currentColor"/></svg><b>{`${niche.people.One} review`}</b><span className="vdate">{fullDate(r.createdAt)}</span></span>;
@@ -168,6 +169,33 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
     <Clamp id={`w-${e.id}`} text={quoteText(e)}/>
     <a className="voice-orig m-only" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original source <span aria-hidden="true">↗</span></a>
     <AdminEdit type="web" id={e.id}/>
+  </article>;
+}
+
+/** The light product page's review (owner's mockup, 2026-11-12): a round source icon at the left, the source and date on
+ *  top with the verdict in the corner, what kind of summary it is, the words, then a link to the original. */
+function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
+  const helpful = (n?: number | null) => n ? <span className="lv-help">{`Helpful ${n}`}</span> : null;
+  if ("review" in props) {
+    const r = props.review, v = verdictOf(r.rating);
+    return <article className="lv">
+      <span className="lv-icon lv-own" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="M4 17c.8-3.2 3.2-5 6-5s5.2 1.8 6 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></span>
+      <div className="lv-body">
+        <header><p className="lv-src"><b>{`${niche.people.One} review`}</b>{[r.alias || "Anonymous", r.playerLevel, fullDate(r.createdAt)].filter(Boolean).map(x => ` · ${x}`).join("")}</p><span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
+        <p className="lv-text">{r.reviewText}</p>
+        <footer>{helpful((r as { helpful?: number }).helpful)}<AdminEdit type="player" id={r.id}/></footer>
+      </div>
+    </article>;
+  }
+  const e = props.entry, label = sourceLabel(e), kind = /comment/i.test(label.platform) ? label.platform : label.platform === "YouTube" ? "YouTube video" : label.platform === "Blog" ? "blog post" : `${label.platform} post`;
+  return <article className="lv">
+    <span className="lv-icon" aria-hidden="true"><SourceIcon platform={e.sourcePlatform}/></span>
+    <div className="lv-body">
+      <header><p className="lv-src"><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
+      <p className="lv-kind">{`Summary of a ${kind}`}</p>
+      <p className="lv-text">{quoteText(e)}</p>
+      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original discussion <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
+    </div>
   </article>;
 }
 
