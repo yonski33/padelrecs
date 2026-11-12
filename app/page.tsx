@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; tag?: string; sort?: string }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -114,7 +114,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   if (params.home === "c" && !type) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
-    const f = { q: params.q, brand: params.brand, year: params.year, shape: params.shape, tag: params.tag, sort: params.sort, show: one(params.show) };
+    const f = { q: params.q, brand: params.brand, year: params.year, shape: params.shape, balance: params.balance, sort: params.sort, show: one(params.show) };
     return <main className="home v2 home-c">
       <HomeC data={all} f={f} signals={await productSignals()} now={now.getTime()} keep={{ home: "c" }}/>
       {feed}

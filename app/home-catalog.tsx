@@ -1,30 +1,39 @@
-// Direction C (owner, 2026-11-12): the home page is the catalog. A slim hero says what the site is (an index of first-hand
-// reviews, updated daily) with live counts, then the whole catalog in signal order with a filter rail, then a strip of
-// what came in today. Shown with ?home=c until the owner picks it; every number is counted from published reviews.
+// Direction C (owner's mockup, 2026-11-12): the home page is the racket index. A hero that says what the site is ("A
+// racket index built from players' opinions."), a "keeps growing" strip, a row of filters, the ranked list with a one-line
+// player consensus, and "Fresh from the court" beside it with the newest opinions. Shown with ?home=c until the owner
+// picks it; every number is counted from published reviews.
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
-import { niche, hasYears, productHref } from "../lib/niche";
+import { niche, productHref } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
 import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
-import { platformName, sourceLabel } from "../lib/source-label";
+import { sourceLabel } from "../lib/source-label";
 import { tagTone } from "../lib/tags";
 import { webDate } from "../lib/recent";
 import type { Signal } from "../lib/signal";
+import type { SpecColumn } from "../lib/niche/types";
 import { Directory, parseShow } from "./components";
 import { AutoSubmitForm } from "./auto-submit";
-import { ProductArt, SentimentBar, Arrow, SignalInfo } from "./visual";
+import { ProductArt, SentimentBar, Arrow, SignalInfo, quoteText } from "./visual";
 import { SourceIcon } from "./icons";
-import { CompareCheck, CompareTray } from "./compare/compare-pick";
+import { CompareTray } from "./compare/compare-pick";
 
-const DAY = 86_400_000, w = niche.words;
+const DAY = 86_400_000, HOUR = 3_600_000, w = niche.words, p = niche.people;
 const fmt = (n: number) => n.toLocaleString("en-US");
-export type IndexFilters = { q?: string; brand?: string; year?: string; shape?: string; tag?: string; sort?: string; show?: string };
+const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
+type Product = Catalog["listed"][number];
+export type IndexFilters = { q?: string; brand?: string; shape?: string; sort?: string; show?: string } & Partial<Record<SpecColumn, string>>;
 
-/** The shape/type chips: the niche's grouped tabs where it has them, else its shape list. */
-const shapeChips = () => niche.shapeTabs?.length
+/** The shape/type choices: the niche's grouped tabs where it has them, else its shape list. */
+const shapeChoices = () => niche.shapeTabs?.length
   ? niche.shapeTabs.map(t => ({ key: t.key, label: t.label, shapes: t.shapes }))
   : niche.shapeFilter.map(s => ({ key: s, label: s, shapes: [s] }));
+/** Other specs with a fixed list of values (padel balance, skincare fragrance) get a dropdown too. */
+const specFacets = niche.specs.filter(s => s.column !== "shape" && s.options?.length);
+/** "High (~26 cm)" and "Medium-high" count as High and Medium: the value starts with the option, then a non-letter. */
+const specIs = (value: unknown, option: string) => typeof value === "string" && value.toLowerCase().startsWith(option.toLowerCase()) && !/[a-z]/i.test(value.charAt(option.length));
+const spec = (r: Product, column: SpecColumn) => (r as Record<string, unknown>)[column];
 
 /** How many reviews of each product mention each tag, counted once for the whole page. */
 function tagCounts(data: Catalog) {
@@ -37,157 +46,131 @@ function tagCounts(data: Catalog) {
   return out;
 }
 
-/** A product is "known for" a liked or descriptive tag when at least KNOWN_MIN reviews and KNOWN_SHARE of all its reviews say it. */
-const KNOWN_MIN = 3, KNOWN_SHARE = 0.08;
-const knownFor = (counts: Map<string, number> | undefined, total: number, tag: string) => { const n = counts?.get(tag) ?? 0; return n >= KNOWN_MIN && n >= KNOWN_SHARE * total; };
-
-/** The most mentioned liked and disliked theme with how many reviews raise each, so a lone complaint never reads as the verdict. */
-function gist(counts: Map<string, number> | undefined) {
-  const best = (tone: string) => [...(counts ?? [])].filter(([t, n]) => n >= 3 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
-  return { liked: best("pos"), disliked: best("neg") };
+/** One line of player consensus from the most mentioned liked and disliked themes (3+ mentions each). */
+function consensus(counts: Map<string, number> | undefined) {
+  const top = (tone: string) => [...(counts ?? [])].filter(([t, n]) => n >= 3 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
+  const liked = top("pos").slice(0, 2), disliked = top("neg")[0];
+  if (!liked.length && !disliked) return null;
+  const praise = liked.length ? cap(liked.join(", ")) : "";
+  return praise && disliked ? `${praise}; some find it ${disliked}.` : praise ? `${praise}.` : `Some find it ${disliked}.`;
 }
 
+/** The short spec line: shape, then the other fixed-value specs with their label ("Medium balance"). */
+function specLine(r: Product) {
+  const parts = [typeof r.shape === "string" ? r.shape : ""];
+  for (const sp of specFacets) { const o = sp.options!.find(o => specIs(spec(r, sp.column), o)); if (o) parts.push(sp.column === "balance" && niche.id === "padel" ? `${o} balance` : o); }
+  return parts.filter(Boolean).join(" · ");
+}
 
-function IndexRow({ data, r, rank, signal, tags, picked = [] }: { data: Catalog; r: Catalog["listed"][number]; rank: number | null; signal?: number; tags?: Map<string, number>; picked?: string[] }) {
+function IndexRow({ data, r, rank, signal, tags }: { data: Catalog; r: Product; rank: number | null; signal?: number; tags?: Map<string, number> }) {
   const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = productHref(r);
-  const s = score(data, r.id), total = s.count + s.web, g = gist(tags);
-  const specs = niche.specs.slice(0, 3).map(x => (r as Record<string, unknown>)[x.column]).filter((v): v is string => typeof v === "string" && !!v && v.length <= 24).slice(0, 2);
-  const pos = s.judged ? Math.round(100 * s.positive / s.judged) : null;
+  const s = score(data, r.id), total = s.count + s.web, line = consensus(tags), specs = specLine(r);
+  const pos = s.judged >= 3 ? Math.round(100 * s.positive / s.judged) : null;
   return <article className="ix-row">
     <span className="ix-rank">{rank !== null ? String(rank).padStart(2, "0") : ""}</span>
     <a className="ix-art" href={href} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
     <div className="ix-main">
       <h3><a href={href}>{name}</a></h3>
-      {specs.length > 0 && <p className="ix-specs">{specs.join(" · ")}</p>}
-      {(g.liked || g.disliked) && <p className="ix-gist">
-        {g.liked && <span><span className="ix-k">Liked</span>{` ${g.liked[0]} `}<small>{`(${g.liked[1]})`}</small></span>}
-        {g.disliked && <span><span className="ix-k neg">Disliked</span>{` ${g.disliked[0]} `}<small>{`(${g.disliked[1]})`}</small></span>}
-      </p>}
-      {/* The tags someone filtered by, with how many reviews say it, so they can see why the product is in the list. */}
-      {picked.filter(t => t !== g.liked?.[0]).length > 0 && <p className="ix-picked">{picked.filter(t => t !== g.liked?.[0]).map(t => <span key={t}>{`${t} (${tags?.get(t) ?? 0})`}</span>)}</p>}
-      <CompareCheck slug={r.slug} name={name}/>
+      {specs && <p className="ix-specs">{specs}</p>}
+      {line && <p className="ix-line">{line}</p>}
+      <p className="ix-n">{pos !== null && <b>{`${pos}% positive`}</b>}{pos !== null && " · "}{`${fmt(total)} ${total === 1 ? "opinion" : "opinions"}`}</p>
+      {pos !== null && <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
     </div>
-    <a className="ix-score" href={`${href}#reviews`}>
-      {signal ? <><b className="ix-signal">{signal}</b><span className="ix-signal-label">Signal</span></> : <span className="ix-few">Too few reviews to score</span>}
-      <span className="ix-n">{`${fmt(total)} ${total === 1 ? "review" : "reviews"}`}</span><span className="ix-src">source-linked</span>
-      {pos !== null && s.judged >= 3 && <><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/><span className="ix-pos">{`${pos}% positive`}</span></>}
-    </a>
+    <a className="ix-sig" href={`${href}#reviews`} aria-label={signal ? `Signal ${signal}` : "Reviews"}>{signal ? <><b>{signal}</b><span>Signal</span></> : <span className="ix-few">Too few to score</span>}</a>
   </article>;
 }
 
+const ago = (iso: string, now: number) => { const h = Math.floor((now - Date.parse(iso)) / HOUR); return h < 1 ? "just now" : h < 24 ? `${h} hour${h === 1 ? "" : "s"} ago` : h < 48 ? "yesterday" : `${Math.floor(h / 24)} days ago`; };
+const clip = (s: string, n = 90) => s.length <= n ? s : `${s.slice(0, s.lastIndexOf(" ", n)).replace(/[,;:.]$/, "")}…`;
+
+/** The newest opinions, one per product: reviews written here in quotes (their own words), web opinions as our summary. */
+function Fresh({ data, now }: { data: Catalog; now: number }) {
+  type Item = { key: string; id: string; at: string; kind: "own" | "web"; platform: string; head: string; text: string };
+  const items: Item[] = [
+    ...data.reviews.map(r => ({ key: `p${r.id}`, id: r.racketId, at: r.createdAt, kind: "own" as const, platform: "forum", head: `${p.one} review`, text: r.reviewText })),
+    ...data.external.filter(e => e.sentiment && quoteText(e)).map(e => { const l = sourceLabel(e); return { key: `w${e.id}`, id: e.racketId, at: e.createdAt, kind: "web" as const, platform: e.sourcePlatform, head: l.platform, text: quoteText(e) }; }),
+  ].sort((a, b) => b.at.localeCompare(a.at));
+  // One per product, and the newest from each kind of source first (a review written here, Reddit, YouTube...), so the box
+  // shows where opinions come from rather than four Reddit threads.
+  const seen = new Set<string>(), fresh = items.filter(x => !seen.has(x.id) && seen.add(x.id));
+  const kinds = new Set<string>(), first = fresh.filter(x => { const k = x.kind === "own" ? "own" : x.head; return !kinds.has(k) && kinds.add(k); });
+  const pick = [...first, ...fresh.filter(x => !first.includes(x))].slice(0, 4).sort((a, b) => b.at.localeCompare(a.at));
+  const nameOf = (id: string) => { const r = data.rackets.find(x => x.id === id); return r ? { r, name: displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name) } : null; };
+  return <aside className="ix-fresh" aria-labelledby="ix-fresh-title">
+    <h2 id="ix-fresh-title">{niche.id === "padel" ? "Fresh from the court" : "Fresh opinions"}</h2>
+    <p className="ix-fresh-sub">New opinions added to the database.</p>
+    <ul>{pick.map(x => { const n = nameOf(x.id); if (!n) return null; return <li key={x.key}>
+      <p className="ix-fresh-src"><SourceIcon platform={x.platform}/>{`${x.head} · ${ago(x.at, now)}`}</p>
+      <a className="ix-fresh-name" href={productHref(n.r)}>{n.name}</a>
+      <p className="ix-fresh-text">{x.kind === "own" ? `“${clip(x.text)}”` : clip(x.text)}</p>
+      <span className="ix-fresh-kind">{x.kind === "own" ? `Written by a ${p.one} here` : `Summary of a ${p.one}’s ${x.head === "YouTube" ? "video" : "post"}`}</span>
+    </li>; })}</ul>
+    <a className="ix-fresh-all" href="#latest">View all recent reviews<Arrow/></a>
+    <p className="ix-fresh-note">Every web opinion links to its original discussion.</p>
+  </aside>;
+}
+
 export function HomeC({ data, f, signals, now, basePath = "/", keep = {} }: { data: Catalog; f: IndexFilters; signals: Map<string, Signal>; now: number; basePath?: string; keep?: Record<string, string> }) {
-  const sort = parseSort(f.sort), chips = shapeChips(), chip = chips.find(c => c.key === f.shape);
-  const tc = tagCounts(data), totals = new Map(data.listed.map(r => { const s = score(data, r.id); return [r.id, s.count + s.web] as const; }));
-  const picked = (f.tag ?? "").split(",").map(t => t.trim()).filter(t => niche.tags.some(x => x.label === t));
-  const inShape = (r: Catalog["listed"][number], c = chip) => !c || c.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase());
-  const has = (r: Catalog["listed"][number], tags: string[]) => tags.every(t => knownFor(tc.get(r.id), totals.get(r.id) ?? 0, t));
-  // Everything but one filter, so each chip can say how many products it would leave.
-  const base = matchingRackets(data.listed, f.q || "").filter(r => !f.year || String(r.year) === f.year);
-  const pass = (r: Catalog["listed"][number], skip: "brand" | "shape" | "tag" | null = null) =>
-    (skip === "brand" || !f.brand || r.brandId === f.brand) && (skip === "shape" || inShape(r)) && (skip === "tag" || has(r, picked));
-  const results = sortProducts(base.filter(r => pass(r)).map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
-  const filtered = !!(f.q || f.brand || f.year || f.shape || picked.length || f.sort);
-  const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, tag: picked.join(",") || undefined, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `${basePath}?${q}#ix-title` : `${basePath}#ix-title`; };
-  const clear = link({ q: undefined, brand: undefined, year: undefined, shape: undefined, tag: undefined, sort: undefined });
-  const toggleTag = (t: string) => link({ tag: (picked.includes(t) ? picked.filter(x => x !== t) : [...picked, t]).join(",") || undefined });
-
-  // Facets. Type chips carry the photo of their best-scored product; tag chips are the liked and descriptive tags from the
-  // niche's tag bank, most common first; brand chips are the brands with the most products.
-  const noTag = base.filter(r => pass(r, "tag"));
-  const tagChips = niche.tags.filter(t => t.tone !== "neg").map(t => ({ label: t.label, n: noTag.filter(r => has(r, [...picked.filter(x => x !== t.label), t.label])).length }))
-    .filter(t => t.n > 0 || picked.includes(t.label)).sort((a, b) => b.n - a.n).slice(0, 14);
-  const noShape = base.filter(r => pass(r, "shape"));
-  const best = (list: Catalog["listed"]) => [...list].sort((a, b) => (signals.get(b.id)?.signal ?? 0) - (signals.get(a.id)?.signal ?? 0))[0];
-  const typeChips = chips.map(c => { const list = noShape.filter(r => inShape(r, c)); return { ...c, n: list.length, top: best(list) }; }).filter(c => c.n > 0 || c.key === f.shape);
-  const noBrand = base.filter(r => pass(r, "brand"));
-  const brandChips = data.listedBrands.map(b => ({ b, n: noBrand.filter(r => r.brandId === b.id).length })).filter(x => x.n > 0 || x.b.id === f.brand).sort((a, z) => z.n - a.n).slice(0, 10);
-  const brandName = (id?: string) => data.brands.find(b => b.id === id)?.name;
-  const active = [
-    ...(f.q ? [{ label: `“${f.q}”`, href: link({ q: undefined }) }] : []),
-    ...(chip ? [{ label: chip.label, href: link({ shape: undefined }) }] : []),
-    ...picked.map(t => ({ label: t[0].toUpperCase() + t.slice(1), href: toggleTag(t) })),
-    ...(f.brand ? [{ label: brandName(f.brand) ?? "Brand", href: link({ brand: undefined }) }] : []),
-    ...(f.year ? [{ label: f.year, href: link({ year: undefined }) }] : []),
-  ];
-
-  // Hero counts.
-  const everything = [...data.reviews, ...data.external];
-  // "This month" counts reviews written in the last 30 days (the source's own date where we have it), not when we read them:
-  // a re-read of old threads would otherwise make every review look new.
-  const total = everything.length, month = [...data.reviews.map(r => r.createdAt), ...data.external.map(webDate)].filter(d => Date.parse(d) >= now - 30 * DAY).length;
-  const today = everything.filter(x => Date.parse(x.createdAt) >= now - DAY).length;
-  const sources = new Map<string, number>(); for (const e of data.external) { const p = platformName(e.sourcePlatform); sources.set(p, (sources.get(p) ?? 0) + 1); }
-  const top = [...sources].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([p]) => p === "Blog" ? "independent blogs" : p);
-  const latestWeb = [...data.external].sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
-  const latestLabel = latestWeb && [sourceLabel(latestWeb).platform, sourceLabel(latestWeb).name].filter(Boolean).join(" · ");
-  const updated = everything.reduce((m, x) => x.createdAt > m ? x.createdAt : m, "");
-  // A rank number only means something in signal order: within the filters, it is the place among what's shown.
+  const sort = parseSort(f.sort), shapes = shapeChoices(), shape = shapes.find(c => c.key === f.shape);
+  const tc = tagCounts(data);
+  const results = sortProducts(matchingRackets(data.listed, f.q || "")
+    .filter(r => (!f.brand || r.brandId === f.brand)
+      && (!shape || shape.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase()))
+      && specFacets.every(sp => !f[sp.column] || specIs(spec(r, sp.column), f[sp.column]!)))
+    .map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
+  const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `${basePath}?${q}#browse` : `${basePath}#browse`; };
+  const refined = !!(f.q || f.brand || f.shape || specFacets.some(s => f[s.column]));
+  const reset = link(Object.fromEntries(["q", "brand", "shape", "sort", ...specFacets.map(s => s.column)].map(k => [k, undefined])));
   const ranked = sort === DEFAULT_SORT && !f.q;
+
+  const everything = [...data.reviews, ...data.external];
+  // New opinions by the date they were written (the source's own date where we have it), not when we read them: re-reading
+  // old threads would otherwise make hundreds look new.
+  const written = [...data.reviews.map(r => r.createdAt), ...data.external.map(webDate)].map(d => Date.parse(d));
+  const week = written.filter(t => t >= now - 7 * DAY).length, today = written.filter(t => t >= now - DAY).length;
+  const updated = everything.reduce((m, x) => x.createdAt > m ? x.createdAt : m, "");
+  const Select = ({ name, label, value, options }: { name: string; label: string; value?: string; options: { value: string; label: string }[] }) =>
+    <label className="ix-sel"><span className="sr-only">{label}</span><select name={name} defaultValue={value || ""}><option value="">{`${label}: All`}</option>{options.map(o => <option key={o.value} value={o.value}>{`${label}: ${o.label}`}</option>)}</select></label>;
 
   return <>
     <section className="ix-hero">
       <div>
-        <p className="hv-kicker">{`The ${niche.people.one} review index · updated daily`}</p>
-        <h1>{`Every ${w.one}. `}<em>{`Real ${niche.people.one} opinions.`}</em></h1>
-        <p className="ix-lede">{`Ranked by what ${niche.people.many} who own them say: reviews written here and first-hand experiences we read on ${top.slice(0, -1).join(", ")}${top.length > 1 ? " and " : ""}${top[top.length - 1]}, each linked to the original. No sponsored picks.`}</p>
+        <p className="hv-kicker">{`Not another ${w.one} review site`}</p>
+        <h1>{`A ${w.one} index built from `}<em>{`${p.many}’ opinions.`}</em></h1>
+        <p className="ix-lede">{`Real experiences, collected across the web and organized by ${w.one}. Follow the original discussion, or add your own.`}</p>
       </div>
       <dl className="ix-stats">
-        <div><dt>reviews</dt><dd>{fmt(total)}</dd></div>
+        <div><dt>opinions</dt><dd>{fmt(everything.length)}</dd></div>
         <div><dt>{w.many}</dt><dd>{fmt(data.listed.length)}</dd></div>
-        <div><dt>this month</dt><dd>{`+${fmt(month)}`}</dd></div>
-        <p className="ix-stats-note"><span className="hv-live" aria-hidden="true"/>{`From ${niche.people.many} on ${niche.site.name}, ${top.join(", ")}`}</p>
       </dl>
     </section>
+    <p className="ix-growing"><b>The index keeps growing</b>
+      <span><em>{`+${fmt(week)}`}</em>{" opinions this week"}</span>
+      {today > 0 && <span>{`${fmt(today)} new today`}</span>}
+      {updated && <span>{`Last updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`}</span>}
+    </p>
 
-
-    <section className="ix" aria-labelledby="ix-title">
-      <div className="section-head"><h2 id="ix-title">{`Explore the ${w.one} index`}</h2><a className="section-link" href="/about#signal">How the signal score works<Arrow/></a></div>
-      <div className="ix-filters">
-        <AutoSubmitForm className="ix-bar" action={basePath}>
-          {Object.entries({ ...keep, shape: f.shape, tag: picked.join(",") || undefined, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-          <label className="ix-q"><span className="sr-only">{`Search ${w.many}`}</span><input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many} or brands`}/></label>
-          <label className="ix-sel"><span className="sr-only">Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
-          {hasYears && <label className="ix-sel"><span className="sr-only">Model year</span><select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select></label>}
-          <noscript><button className="button">Search</button></noscript>
-        </AutoSubmitForm>
-        {typeChips.length > 1 && <div className="ix-facet ix-types"><span className="ix-facet-label">{niche.specs.find(s => s.column === "shape")?.label ?? "Type"}</span>
-          <div className="ix-scroll">
-            <a className="ix-type" href={link({ shape: undefined })} aria-current={!f.shape ? "true" : undefined}><span className="ix-type-all" aria-hidden="true">All</span><b>{`All ${w.many}`}</b><small>{fmt(noShape.length)}</small></a>
-            {typeChips.map(c => <a key={c.key} className="ix-type" href={link({ shape: f.shape === c.key ? undefined : c.key })} aria-current={f.shape === c.key ? "true" : undefined}>
-              {c.top ? <ProductArt product={c.top} brand={brandName(c.top.brandId)}/> : <span className="ix-type-all" aria-hidden="true"/>}<b>{c.label}</b><small>{fmt(c.n)}</small></a>)}
-          </div></div>}
-        {tagChips.length > 0 && <div className="ix-facet"><span className="ix-facet-label">Known for</span>
-          <div className="ix-scroll ix-tags">{tagChips.map(t => <a key={t.label} href={toggleTag(t.label)} aria-current={picked.includes(t.label) ? "true" : undefined} rel="nofollow">
-            {picked.includes(t.label) && <span aria-hidden="true">✓ </span>}{t.label[0].toUpperCase() + t.label.slice(1)}<small>{fmt(t.n)}</small></a>)}</div></div>}
-        {brandChips.length > 1 && <div className="ix-facet"><span className="ix-facet-label">Brand</span>
-          <div className="ix-scroll ix-tags ix-brands">{brandChips.map(({ b, n }) => <a key={b.id} href={link({ brand: f.brand === b.id ? undefined : b.id })} aria-current={f.brand === b.id ? "true" : undefined} rel="nofollow">{b.name}<small>{fmt(n)}</small></a>)}</div></div>}
-      </div>
-      <div className="ix-list">
-        <div className="list-bar">
-          <p>{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many}`}</p>
-          {active.length > 0 && <p className="ix-active">{active.map(a => <a key={a.label} href={a.href} aria-label={`Remove ${a.label}`}>{a.label}<span aria-hidden="true"> ×</span></a>)}<a className="ix-clear" href={clear}>Clear all</a></p>}
-          <AutoSubmitForm className="ix-sort" action={basePath}>
-            {Object.entries({ ...keep, ...f, tag: picked.join(",") || undefined, sort: undefined, show: undefined }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-            <SortSelect sort={sort}/><noscript><button className="button ghost">Sort</button></noscript>
-          </AutoSubmitForm><SignalInfo align="right"/></div>
-        {picked.length > 0 && <p className="ix-why">{`Showing ${w.many} where at least ${KNOWN_MIN} reviews, and ${Math.round(KNOWN_SHARE * 100)}% of all of them, say ${picked.map(t => `“${t}”`).join(" and ")}.`}</p>}
-        <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <IndexRow key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} tags={tc.get(r.id)} picked={picked}/>)}/>
-        {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={clear}>Clear filters</a> or remove one above.</p>}
+    <section className="ix" id="browse" aria-labelledby="ix-title">
+      <div className="ix-head"><h2 id="ix-title">{`Browse what ${p.many} think`}</h2><a className="ix-how" href="/about#signal">How scores work<Arrow/></a></div>
+      <AutoSubmitForm className="ix-bar" action={basePath}>
+        {Object.entries(keep).map(([k, v]) => <input key={k} type="hidden" name={k} value={v}/>)}
+        <label className="ix-q"><span className="sr-only">{`Search ${w.many}`}</span><input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search a ${w.one}…`}/></label>
+        <Select name="brand" label="Brand" value={f.brand} options={data.listedBrands.map(b => ({ value: b.id, label: b.name }))}/>
+        {shapes.length > 1 && <Select name="shape" label={niche.specs.find(s => s.column === "shape")?.label ?? "Type"} value={f.shape} options={shapes.map(c => ({ value: c.key, label: c.label }))}/>}
+        {specFacets.map(sp => { const opts = sp.options!.filter(o => data.listed.some(r => specIs(spec(r, sp.column), o))); return opts.length > 1 && <Select key={sp.column} name={sp.column} label={sp.label} value={f[sp.column]} options={opts.map(o => ({ value: o, label: o }))}/>; })}
+        <label className="ix-sel ix-sort"><span className="sr-only">Sort</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{`Sort: ${s.value === DEFAULT_SORT ? "Signal ↓" : s.label}`}</option>)}</select></label>
+        <noscript><button className="button">Show</button></noscript>
+      </AutoSubmitForm>
+      {refined && <p className="ix-refined">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} match · `}<a href={reset}>Reset filters</a></p>}
+      <div className="ix-grid">
+        <div className="ix-list">
+          <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <IndexRow key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} tags={tc.get(r.id)}/>)}/>
+          {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={reset}>Reset filters</a></p>}
+          <div className="ix-sig-note"><SignalInfo/><span>The signal: positive opinions, weighed by how many there are.</span></div>
+        </div>
+        <Fresh data={data} now={now}/>
       </div>
     </section>
-
-    <aside className="ix-strip" aria-label="New reviews">
-      <b>New today</b>
-      <span>{`${fmt(today)} ${today === 1 ? "review" : "reviews"} added in the last 24 hours`}</span>
-      {latestLabel && <span>{`Latest source: ${latestLabel}`}</span>}
-      {updated && <span>{`Updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}`}</span>}
-      <a href="#latest">Read the latest reviews<Arrow/></a>
-    </aside>
     <CompareTray noun={w.one}/>
   </>;
 }
-
-function SortSelect({ sort }: { sort: string }) {
-  return <label className="ix-sort-field"><span>Sort</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{s.label}</option>)}</select></label>;
-}
-
