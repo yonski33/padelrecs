@@ -261,9 +261,113 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const oneLine = listLine(r);
   const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
   const fullName = displayName(r.name, brand?.name);
+  // Pieces both layouts show (the light one previews with ?look=light).
+  const similarBox = similar.length > 0 && <section id="similar" className="similar">
+          <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
+          <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
+          <ul className="sim-cards">{[...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
+            <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
+            <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
+            {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
+            <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
+          </a></li>; })}</ul>
+        </section>;
+  const siblingsBox = siblings.length > 0 && <section>
+          <h2>More from {brand?.name}</h2>
+          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
+            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{`${sc.count + sc.web} ${sc.count + sc.web === 1 ? "review" : "reviews"}`}</span></span>
+          </a></li>; })}</ul>
+        </section>;
+  const nextBox = (discover.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
+      {discover.length >= 3 && <>
+        <div className="section-head"><h2 id="next-title">{`Discover more ${typePage ? typePage.label.toLowerCase() : niche.words.many}`}</h2><a className="section-link" href={typePage ? `/${typePage.slug}` : catalogPath}>{`See all ${typePage ? typePage.label.toLowerCase() : niche.words.many}`} <span aria-hidden="true">→</span></a></div>
+        <ul className="top5-row discover-row">{discover.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a className="pcard" href={productHref(x)}>
+          <ProductArt product={x} brand={b}/>
+          <span className="pcard-body"><span className="pcard-name">{displayName(x.name, b)}</span></span>
+        </a></li>; })}</ul>
+      </>}
+      <div className="p-next-actions">
+        <a className="p-next-card" href={addHref}><b>{niche.copy.ui.triedIt}</b><span>Add your review in about two minutes. No account needed.</span><span className="button">Add your review</span></a>
+        {niche.finder && <a className="p-next-card" href="/finder"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="button ghost">{niche.finder.navLabel} <span aria-hidden="true">→</span></span></a>}
+      </div>
+    </section>;
+  const buyBar = shopButton && <div className="buy-bar">
+      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "Check price on Amazon" : site!.label}</a>
+    </div>;
+  const faqBox = faq.length >= 2 && <section className="faq" id="faq">
+          <h2>{`Common questions about ${name}`}</h2>
+          {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+        </section>;
   // The light direction's product page, previewed with ?look=light (owner, 2026-11-12); the page is unchanged without it.
-  const light = query.look === "light";
-  return <main className={`product v2${light ? ` lt-page ${lightFont.className}` : ""}`}>
+  if (query.look === "light") {
+    // Compact, after the owner's mockup (2026-11-12): photo and numbers in one tight block, what people mention as chips,
+    // then the reviews with "At a glance" beside them, so the reviews start high on the page.
+    const cap = (t: string) => t ? t[0].toUpperCase() + t.slice(1) : t;
+    const liked = sum.loved.filter(t => mentions(t) >= MIN_THEME).slice(0, 5), concerns = sum.complaints.filter(t => mentions(t) >= MIN_THEME).slice(0, 5);
+    const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.createdAt)].sort().pop();
+    const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+    const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [`${niche.people.One}s here`] : []);
+    const glance = [
+      ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
+      ...(liked[0] ? [["Best known for", cap(liked[0])]] : []),
+      ["Opinions collected", sum.total.toLocaleString("en-US")],
+      ...(sources.length ? [["Sources", sources.slice(0, 4).join(", ")]] : []),
+      ...specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).slice(0, 3).map(([k, v]) => [k, String(v)]),
+    ];
+    const buy = amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
+      : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
+      : <a className="button" href={addHref}><PlusIcon/>Add your review</a>;
+    const chips = (ts: readonly string[]) => <p className="lp-chips">{ts.map(t => <a key={t} href={tagHref(t)}>{cap(t)}<b>{mentions(t)}</b></a>)}</p>;
+    return <main className={`product v2 lt-page lp ${lightFont.className}`}>
+      {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
+      <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+      <section className="lp-hero">
+        {own ? <div className="lp-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
+          ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+          : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
+        <div className="lp-info">
+          <div className="lp-title">
+            <h1>{fullName}<span className="h1-reviews"> Reviews</span></h1>
+            {placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}
+          </div>
+          {(r.shape || hasYears) && <p className="lp-kicker">{[r.shape, hasYears ? String(r.year) : null].filter(Boolean).join(" · ")}</p>}
+          {oneLine && <p className="lp-line">{oneLine}</p>}
+          {sum.total > 0 ? <div className="lp-stats">
+            {sig && <div className="lp-stat"><b className="lp-acc">{sig.signal}</b><span>Signal</span></div>}
+            {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
+            <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "opinion" : "opinions"}</span></a>
+          </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
+          <p className="lp-sub"><a href="/about#signal">How the signal works ↗</a>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</p>
+          <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read opinions ↓</a>}</p>
+        </div>
+      </section>
+      {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
+        <h2 id="lp-mention-title">What people mention</h2>
+        <div className="lp-mention-cols">
+          {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
+          {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
+        </div>
+        <p className="lp-note">{`Topics grouped from ${niche.people.one} opinions, with how many mention each; read the originals below.`}</p>
+      </section>}
+      {byVariant}
+      <div className="columns lp-cols">
+        <div>
+          <ReviewList verdict={verdict} title={`Real ${niche.people.one} experiences`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
+            variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
+          {faqBox}
+        </div>
+        <aside className="database-sidebar">
+          <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>
+          {similarBox}
+          {siblingsBox}
+        </aside>
+      </div>
+      {nextBox}
+      {buyBar}
+    </main>;
+  }
+  return <main className="product v2">
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
     {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -342,50 +446,19 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        {faq.length >= 2 && <section className="faq" id="faq">
-          <h2>{`Common questions about ${name}`}</h2>
-          {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
-        </section>}
+{faqBox}
       </div>
 
       <aside className="database-sidebar">
-        {similar.length > 0 && <section id="similar" className="similar">
-          <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
-          <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
-          <ul className="sim-cards">{[...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
-            <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
-            <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
-            {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
-            <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
-          </a></li>; })}</ul>
-        </section>}
+{similarBox}
 
-        {siblings.length > 0 && <section>
-          <h2>More from {brand?.name}</h2>
-          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
-            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{`${sc.count + sc.web} ${sc.count + sc.web === 1 ? "review" : "reviews"}`}</span></span>
-          </a></li>; })}</ul>
-        </section>}
+{siblingsBox}
       </aside>
     </div>
 
-    {(discover.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
-      {discover.length >= 3 && <>
-        <div className="section-head"><h2 id="next-title">{`Discover more ${typePage ? typePage.label.toLowerCase() : niche.words.many}`}</h2><a className="section-link" href={typePage ? `/${typePage.slug}` : catalogPath}>{`See all ${typePage ? typePage.label.toLowerCase() : niche.words.many}`} <span aria-hidden="true">→</span></a></div>
-        <ul className="top5-row discover-row">{discover.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a className="pcard" href={productHref(x)}>
-          <ProductArt product={x} brand={b}/>
-          <span className="pcard-body"><span className="pcard-name">{displayName(x.name, b)}</span></span>
-        </a></li>; })}</ul>
-      </>}
-      <div className="p-next-actions">
-        <a className="p-next-card" href={addHref}><b>{niche.copy.ui.triedIt}</b><span>Add your review in about two minutes. No account needed.</span><span className="button">Add your review</span></a>
-        {niche.finder && <a className="p-next-card" href="/finder"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="button ghost">{niche.finder.navLabel} <span aria-hidden="true">→</span></span></a>}
-      </div>
-    </section>}
+{nextBox}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
-    {shopButton && <div className="buy-bar">
-      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "Check price on Amazon" : site!.label}</a>
-    </div>}
+{buyBar}
   </main>;
 }
 
