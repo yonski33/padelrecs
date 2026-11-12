@@ -189,7 +189,8 @@
     "travelgear": "travelgearrecs",
     "babygear": "babygearrecs",
     "sleep": "sleeprecs",
-    "laptop": "laptoprecs"
+    "laptop": "laptoprecs",
+    "print": "printrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

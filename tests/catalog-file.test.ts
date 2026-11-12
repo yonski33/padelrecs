@@ -742,3 +742,36 @@ test("the LaptopRecs catalog: 266 sourced laptops in all seven categories, one p
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 266, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the PrintRecs catalog: 170 sourced products in all five categories, models and revisions kept apart, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/print.json");
+  const snapshot = catalogSnapshot(catalog, "printrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 14);
+  assert.equal(snapshot.tables.rackets.length, 170);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 170);
+  const categories = niches.print.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/print");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: 3D printing products carry models and revisions, not years`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 6, `${c}: at least six products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 170, "one source URL per product");
+  // Models and revisions with near-identical names are separate products, never merged.
+  for (const name of ["Bambu Lab P1P", "Bambu Lab P1S", "Bambu Lab P2S", "Bambu Lab X1 Carbon", "Bambu Lab A1", "Bambu Lab A1 mini", "Bambu Lab H2D",
+    "Bambu Lab AMS", "Bambu Lab AMS lite", "Bambu Lab AMS 2 Pro", "Bambu Lab AMS HT", "Original Prusa MK4", "Original Prusa MK4S", "Prusa CORE One", "Prusa CORE One+",
+    "Creality Ender-3 V3", "Creality Ender-3 V3 SE", "Creality Ender-3 V3 KE", "Creality K1", "Creality K1C", "Creality K1 Max", "Elegoo Saturn 4", "Elegoo Saturn 4 Ultra",
+    "Elegoo Saturn 4 Ultra 16K", "Elegoo Neptune 4", "Elegoo Neptune 4 Pro", "Bambu Lab PLA Basic", "Bambu Lab PLA Matte", "Polymaker Panchroma Matte PLA", "Polymaker PolyLite PLA"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 170, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 170, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});

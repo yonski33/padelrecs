@@ -1,0 +1,2116 @@
+{
+  "about": "PrintRecs catalog (2026-11-12, scope approved by the owner): FDM printers, resin printers (with wash and cure stations), multi-material units and enclosures, filament (one product per line and material) and resin. Each exact name and URL was read on the maker's own site or store on 2026-11-12; Prusa's store is bot-checked, so Prusa printers are named from help.prusa3d.com product pages and Prusament lines from prusament.com. Models and revisions are separate products (Bambu Lab P1P vs P1S vs P2S, A1 vs A1 mini, Prusa MK4 vs MK4S, CORE One vs CORE One+, Ender-3 V3 vs V3 SE vs V3 KE vs V3 Plus, Elegoo Saturn 4 vs 4 Ultra vs 4 Ultra 16K); combos that only add the maker's multi-material unit, kit vs assembled, spool sizes and colours are folded into the base product. Older models are in only where the maker's site still names them (Elegoo Centauri Carbon pre-owned, Anycubic Kobra 3 end of life, Bambu Lab P1P on the compare page). Renamed lines keep the maker's current name: Polymaker PolyTerra PLA is now Panchroma Matte PLA, PolyLite PETG and ASA are Polymaker PETG and ASA (the old URLs redirect). Columns: shape = category; core (type), weight (build volume), surface (material) and balance (notable features) not read. Blank = not read.",
+  "checked": "2026-11-12",
+  "brands": [
+    {
+      "id": "anycubic",
+      "name": "Anycubic"
+    },
+    {
+      "id": "bambu-lab",
+      "name": "Bambu Lab"
+    },
+    {
+      "id": "creality",
+      "name": "Creality"
+    },
+    {
+      "id": "elegoo",
+      "name": "Elegoo"
+    },
+    {
+      "id": "flashforge",
+      "name": "FlashForge"
+    },
+    {
+      "id": "formlabs",
+      "name": "Formlabs"
+    },
+    {
+      "id": "overture",
+      "name": "Overture"
+    },
+    {
+      "id": "polymaker",
+      "name": "Polymaker"
+    },
+    {
+      "id": "prusa",
+      "name": "Prusa"
+    },
+    {
+      "id": "prusament",
+      "name": "Prusament"
+    },
+    {
+      "id": "qidi",
+      "name": "Qidi"
+    },
+    {
+      "id": "siraya-tech",
+      "name": "Siraya Tech"
+    },
+    {
+      "id": "sovol",
+      "name": "Sovol"
+    },
+    {
+      "id": "sunlu",
+      "name": "Sunlu"
+    }
+  ],
+  "products": [
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra 2 Neo",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-2-neo"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra 3",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/anycubic-kobra-3"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra 3 Max V2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-3-max-v2-3d-printer"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra 3 V2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-3-v2"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra 4",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-4-3d-printer"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra S1",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-s1-ace-2-pro-combo-3d-printer"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra S1 Max",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-s1-max"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Kobra X",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-x"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon Mono 4 Ultra",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-mono-4-ultra"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon Mono M5s Pro",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-mono-m5s-pro"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon Mono M7",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-mono-m7"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon Mono M7 Max",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-mono-m7-max"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon Mono M7 Pro",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-mono-m7-pro"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon P1",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-p1-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Photon P1 Max",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/photon-p1-max-best-large-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Wash & Cure 3",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/wash-cure-3"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Wash & Cure 3 Plus",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/wash-cure-3-plus"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic ACE 2 Pro",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/ace-2-pro"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic ACE Pro",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/kobra-3-combo-upgrade-kit"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/petg-filament"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic PLA Basic",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/pla-filament"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic PLA High Speed",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/high-speed-pla-filament"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic PLA Matte",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/matte-pla-filament"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic PLA+",
+      "slug": "anycubic-pla-plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/pla-plus-filament"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic ABS-Like Resin 3.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/abs-like-resin-3-0"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic ABS-Like Resin Pro 2",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/abs-like-resin-pro-2"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic High Speed Resin 2.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/high-speed-resin-2"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Plant-Based UV Resin 2.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/plant-based-uv-resin"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Standard Resin V2",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/standard-resin-v2"
+      ]
+    },
+    {
+      "brand": "anycubic",
+      "name": "Anycubic Water-Wash Resin 2.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.anycubic.com/products/water-wash-resin"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab A1",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/a1"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab A1 mini",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/a1-mini"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab A2L",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/a2l"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab H2C",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/h2c"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab H2D",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/h2d"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab H2S",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/h2s"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab H3C",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/h3c"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab P1P",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/compare"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab P1S",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/p1"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab P2S",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/p2s"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab X1 Carbon",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/x1"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab X1E",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/x1e"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab X2D",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bambulab.com/en/x2d"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab AMS",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://wiki.bambulab.com/en/ams"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab AMS 2 Pro",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://wiki.bambulab.com/en/ams-2-pro"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab AMS HT",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://wiki.bambulab.com/en/ams-ht"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab AMS lite",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://wiki.bambulab.com/en/ams-lite"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab ABS",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/abs-filament"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab ASA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/asa-filament"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PETG Basic",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/petg-basic"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PETG HF",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/petg-hf"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PETG Translucent",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/petg-translucent"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PLA Basic",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/pla-basic-filament"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PLA Matte",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/pla-matte"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PLA Silk+",
+      "slug": "bambu-lab-pla-silk-plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/pla-silk-upgrade"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab PLA Tough+",
+      "slug": "bambu-lab-pla-tough-plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/pla-tough-upgrade"
+      ]
+    },
+    {
+      "brand": "bambu-lab",
+      "name": "Bambu Lab TPU for AMS",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://asia.store.bambulab.com/products/tpu-for-ams"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 S1 Pro",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.creality.com/products/creality-ender-3-s1-pro-fdm-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-3-v2-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V2 Neo",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-3-v2-neo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V3",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.creality.com/products/creality-ender-3-v3"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V3 KE",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.creality.com/products/creality-ender-3-v3-ke"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V3 Mega",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-3-v3-mega-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V3 Neo",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-3-v3-neo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V3 Plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-3-v3-plus-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-3 V3 SE",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-3-v3-se-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Ender-5 Max",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/ender-5-max-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Hi",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/creality-hi-combo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K1",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.creality.com/products/creality-k1-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K1 Max",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/k1-max-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K1 SE",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.creality.com/products/creality-k1-se-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K1C",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/k1c-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/k2-combo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K2 Plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/creality-k2-plus-combo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K2 Pro",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/k2-pro-combo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality K2 SE",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/k2-se-combo-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality HALOT-MAGE S",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/halot-mage-s-14k-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality HALOT-X1",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/halot-x1-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality UW-03",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/uw-03-washing-curing-machine"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality CFS",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/cfs-creality-filament-system"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality CFS 2",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/cfs-2-creality-filament-system"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality CFS-C",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.creality.com/products/cfs-c-smart-filament-system"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality CR-Silk PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/cr-silk-1-75mm-pla-3d-printing-filament-1kg"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Hyper PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/hyper-series-petg-3d-printing-filament-1kg"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Hyper PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg"
+      ]
+    },
+    {
+      "brand": "creality",
+      "name": "Creality Hyper PLA RFID",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.creality.com/products/hyper-pla-rfid-3d-printing-filament-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Centauri 2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/centauri-2"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Centauri Carbon",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/pre-owned-centauri-carbon"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Centauri Carbon 2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/centauri-carbon-2"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Neptune 4",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-neptune-4-fdm-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Neptune 4 Max",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/neptune-4-max-fdm-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Neptune 4 Plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/neptune-4-plus-fdm-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Neptune 4 Pro",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-neptune-4-pro-fdm-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo OrangeStorm Giga",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/orangestorm-giga"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Jupiter 2",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-jupiter-2"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Mars 5",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/mars-5-4k-6-6inch-monochrome-lcd-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Mars 5 Ultra",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/mars-5-ultra-9k-7inch-monochrome-lcd-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Mercury Plus V3.0",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-wash-and-cure-station-3-0-for-resin-3d-printers"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Saturn 4",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/saturn-4-12k-10inch-monochrome-lcd-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Saturn 4 Ultra",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/saturn-4-ultra-12k-10inch-monochrome-lcd-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Saturn 4 Ultra 16K",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/saturn-4-ultra-16k-10inch-monochrome-lcd-resin-3d-printer"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo 3D Printer Enclosure",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/3d-printer-enclosure"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo CANVAS (Centauri Carbon 2 / Centauri 2)",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/canvas-for-centauri-carbon-2-centauri-2-series"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo CANVAS (Centauri Carbon)",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/canvas-for-centauri-carbon"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/pla-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo PLA Matte",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/pla-matte-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo PLA Plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-pla-plus-3d-printer-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo PLA Silk",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-silk-pla-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Rapid PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/rapid-petg-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Rapid PLA Plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-rapid-pla-plus-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo TPU 95A",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/tpu-filament-1-75mm-colored-1kg"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo 8K Standard Resin",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-8k-standard-resin"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo ABS-Like Resin V3.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-abs-like-resin-v-3-0"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Standard Resin V2.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-standard-resin-v-2-0"
+      ]
+    },
+    {
+      "brand": "elegoo",
+      "name": "Elegoo Water-Washable Resin V2.0",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.elegoo.com/products/elegoo-water-washable-resin-v-2-0"
+      ]
+    },
+    {
+      "brand": "flashforge",
+      "name": "FlashForge AD5X",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.flashforge.com/products/flashforge-ad5x-3d-printer"
+      ]
+    },
+    {
+      "brand": "flashforge",
+      "name": "FlashForge Adventurer 5M",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.flashforge.com/products/adventurer-5m-3d-printer"
+      ]
+    },
+    {
+      "brand": "flashforge",
+      "name": "FlashForge Adventurer 5M Pro",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.flashforge.com/products/adventurer-5m-pro-3d-printer"
+      ]
+    },
+    {
+      "brand": "flashforge",
+      "name": "FlashForge Creator 5",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.flashforge.com/products/flashforge-creator-5"
+      ]
+    },
+    {
+      "brand": "formlabs",
+      "name": "Formlabs Form 4",
+      "shape": "Resin printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://formlabs.com/3d-printers/form-4/"
+      ]
+    },
+    {
+      "brand": "overture",
+      "name": "Overture High Speed PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://overture3d.com/products/overture-high-speed-petg"
+      ]
+    },
+    {
+      "brand": "overture",
+      "name": "Overture Matte PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://overture3d.com/products/overture-matte-pla"
+      ]
+    },
+    {
+      "brand": "overture",
+      "name": "Overture PLA Pro",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://overture3d.com/products/overture-pla-professional-3d-printer-filament-1-75mm"
+      ]
+    },
+    {
+      "brand": "overture",
+      "name": "Overture PLA+",
+      "slug": "overture-pla-plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://overture3d.com/products/overture-pla-plus-3d-printer-filament-1-75mm"
+      ]
+    },
+    {
+      "brand": "overture",
+      "name": "Overture TPU 95A",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://overture3d.com/products/overture-tpu"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker ASA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/asa"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/petg"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker Panchroma Basic PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/panchroma-pla"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker Panchroma Matte PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/matte-pla"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker PolyLite PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/polylite-pla"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker PolyLite PLA Pro",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/polylite-pla-pro"
+      ]
+    },
+    {
+      "brand": "polymaker",
+      "name": "Polymaker PolyMax PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://shop.polymaker.com/products/polymax-pla"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Original Prusa MINI+",
+      "slug": "original-prusa-mini-plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/mini"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Original Prusa MK4",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/mk4"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Original Prusa MK4S",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/mk4s"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Original Prusa XL",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/xl"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Original Prusa i3 MK3S+",
+      "slug": "original-prusa-i3-mk3s-plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/mk3s"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Prusa CORE One",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/core-one"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Prusa CORE One L",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/core-one-l"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Prusa CORE One L+",
+      "slug": "prusa-core-one-l-plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/core-one-l-plus"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Prusa CORE One+",
+      "slug": "prusa-core-one-plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/core-one-plus"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Prusa CORE One+ INDX",
+      "slug": "prusa-core-one-plus-indx",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.prusa3d.com/product/prusa-core-one-gen-2-indx-8-tool/"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Prusa XL+",
+      "slug": "prusa-xl-plus",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/xl-plus"
+      ]
+    },
+    {
+      "brand": "prusa",
+      "name": "Original Prusa MMU3",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://help.prusa3d.com/product/mmu3"
+      ]
+    },
+    {
+      "brand": "prusament",
+      "name": "Prusament ASA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://prusament.com/materials/prusament-asa/"
+      ]
+    },
+    {
+      "brand": "prusament",
+      "name": "Prusament PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://prusament.com/materials/prusament-petg/"
+      ]
+    },
+    {
+      "brand": "prusament",
+      "name": "Prusament PLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://prusament.com/materials/pla/"
+      ]
+    },
+    {
+      "brand": "prusament",
+      "name": "Prusament PLA High Speed",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://prusament.com/materials/prusament-pla-high-speed/"
+      ]
+    },
+    {
+      "brand": "prusament",
+      "name": "Prusament TPU 95A",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://prusament.com/materials/prusament-tpu-95a/"
+      ]
+    },
+    {
+      "brand": "prusament",
+      "name": "Prusament rPLA",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://prusament.com/materials/prusament-rpla/"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Max4",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/max4"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Plus4",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/plus4-3d-printer"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Plus5",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/plus5"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Q1 Pro",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/q1-pro-3d-printer"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Q2",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/qidi-q2"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Q2C",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/q2c"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi X-Max 3",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/qidi-x-max-3"
+      ]
+    },
+    {
+      "brand": "qidi",
+      "name": "Qidi Box",
+      "shape": "Multi-material & enclosure",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://qidi3d.com/products/qidi-box"
+      ]
+    },
+    {
+      "brand": "siraya-tech",
+      "name": "Siraya Tech Blu",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://siraya.tech/products/blu-tough-resin-by-siraya"
+      ]
+    },
+    {
+      "brand": "siraya-tech",
+      "name": "Siraya Tech Fast ABS-Like",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://siraya.tech/products/fast-abs-like"
+      ]
+    },
+    {
+      "brand": "siraya-tech",
+      "name": "Siraya Tech Simple",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://siraya.tech/products/simple-resin-water-washable"
+      ]
+    },
+    {
+      "brand": "siraya-tech",
+      "name": "Siraya Tech Tenacious",
+      "shape": "Resin",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://siraya.tech/products/tenacious-resin-flexible-resin"
+      ]
+    },
+    {
+      "brand": "sovol",
+      "name": "Sovol SV06 ACE",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sovol3d.com/products/sovol-sv06-ace"
+      ]
+    },
+    {
+      "brand": "sovol",
+      "name": "Sovol SV08",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sovol3d.com/products/sovol-sv08-3d-printer"
+      ]
+    },
+    {
+      "brand": "sovol",
+      "name": "Sovol SV08 Max",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sovol3d.com/products/sovol-sv08-max-3d-printer"
+      ]
+    },
+    {
+      "brand": "sunlu",
+      "name": "Sunlu PETG",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.sunlu.com/products/petg-filament-3kg-large-spool-3d-printer-filament-3kg"
+      ]
+    },
+    {
+      "brand": "sunlu",
+      "name": "Sunlu PLA Matte",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.sunlu.com/products/matte-pla-3kg-large-spool-3d-printer-filament-3kg"
+      ]
+    },
+    {
+      "brand": "sunlu",
+      "name": "Sunlu PLA Meta",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.sunlu.com/products/pla-metamacaron-colors-3kg-large-spool-3d-printer-filament-3kg"
+      ]
+    },
+    {
+      "brand": "sunlu",
+      "name": "Sunlu PLA+",
+      "slug": "sunlu-pla-plus",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.sunlu.com/products/pla-pla-plus-3kg-large-spool-3d-printer-filament-3kg"
+      ]
+    },
+    {
+      "brand": "sunlu",
+      "name": "Sunlu PLA+ 2.0",
+      "slug": "sunlu-pla-plus-2-0",
+      "shape": "Filament",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://store.sunlu.com/products/moq-6kg-pla-2-0-upgraded-pla-pla-plus-3d-printer-filament-1kg"
+      ]
+    }
+  ]
+}
