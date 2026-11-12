@@ -1630,3 +1630,5 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
   .lp .voice.tf .voice-meta .spill { position: static; }
 }
 @media (max-width: 640px) { .product.v2.lp .review-list .feed-title-row { flex-wrap: wrap; } .product.v2.lp .review-list .feed-title { font-size: 18px !important; } }
+/* Phones: no "How the signal works / Updated / Compare" line and no "Read opinions" button (owner, 2026-11-12). */
+@media (max-width: 640px) { .lp-sub, .product.v2.lp .lp-actions .button.ghost { display: none; } }
