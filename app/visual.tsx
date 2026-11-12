@@ -211,14 +211,13 @@ export function SentimentBand({ positive, mixed, negative }: { positive: number;
 }
 
 /** "How the signal works" as a small pop-up with the short explanation (owner, 2026-11-13), instead of a trip to the
- *  About page; the full method stays one link further. No JavaScript. */
+ *  About page. No JavaScript. */
 export function SignalPop({ label = "How the signal works" }: { label?: string }) {
   return <details className="sig-pop"><summary>{label}<span aria-hidden="true"> ⓘ</span></summary>
     <div className="sig-pop-card" role="note">
       <b>The signal score</b>
       <p>A score out of 100 for how well reviewed a product is. It rises with positive reviews and with how many there are; negative and mixed reviews take points off.</p>
       <p>So a handful of glowing reviews can’t beat a product lots of people like. No sponsored placements.</p>
-      <a href="/about#signal">Full method →</a>
     </div>
   </details>;
 }
