@@ -228,13 +228,12 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
               <h3><a href={href}>{displayName(e.product.name, brand)}</a></h3>
               {line && <p className="lr-line">{line}</p>}
               <p className="lr-meta">{[e.product.shape, `${sc.judged.toLocaleString("en-US")} opinions`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}{list.trait && ` · ${e.traitReviews} mention ${list.trait.noun}`}</p>
+              {/* A quiet text link, as on the current rankings (owner, 2026-11-12). */}
+              {a ? <a className="lr-buy" href={a.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a>
+                : site && <a className="lr-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label} <span aria-hidden="true">↗</span></a>}
             </div>
             <div className="lr-side">
               {e.signal && <a className="lr-sig" href={href}><b>{e.signal.signal}</b><span>signal</span></a>}
-              {/* One clear action per row (owner, 2026-11-12): "Check price" with the shop's name under it, so more shops can
-                  sit here later without changing the row. */}
-              {a ? <a className="lr-buy" href={a.url} target="_blank" rel="sponsored nofollow noopener" aria-label={`Check the price of ${displayName(e.product.name, brand)} on Amazon`}><b>Check price</b><span>on Amazon ↗</span></a>
-                : site && <a className="lr-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}><b>{site.label}</b><span>↗</span></a>}
             </div>
           </li>; })}</ol>
       </section>
