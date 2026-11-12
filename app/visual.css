@@ -1949,3 +1949,8 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-row { grid-template-columns: 40px 64px minmax(0, 1fr) auto; }
 .lt-art { width: 64px; height: 64px; }
 @media (max-width: 560px) { .lt-row { grid-template-columns: 30px 52px minmax(0, 1fr) auto; } .lt-art { width: 52px; height: 52px; } }
+/* Ranking list thumbnails a little bigger, like the home list (owner, 2026-11-13). */
+.lr-row { grid-template-columns: 38px 72px minmax(0, 1fr) auto; }
+.lr-art { width: 72px; height: 72px; }
+.lc-row { grid-template-columns: 72px minmax(0, 1fr) auto; }
+@media (max-width: 640px) { .lr-row { grid-template-columns: 26px 56px minmax(0, 1fr) auto; } .lr-art { width: 56px; height: 56px; } .lc-row { grid-template-columns: 56px minmax(0, 1fr) auto; } }
