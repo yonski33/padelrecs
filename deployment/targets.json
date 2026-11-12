@@ -200,7 +200,8 @@
     "babygear": "babygearrecs",
     "sleep": "sleeprecs",
     "laptop": "laptoprecs",
-    "print": "printrecs"
+    "print": "printrecs",
+    "tv": "tvrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

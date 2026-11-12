@@ -775,3 +775,35 @@ test("the PrintRecs catalog: 171 sourced products in all five categories, models
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 171, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the TVRecs catalog: 185 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/tv.json");
+  const snapshot = catalogSnapshot(catalog, "tvrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 12);
+  assert.equal(snapshot.tables.rackets.length, 185);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 185);
+  const categories = niches.tv.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/tv");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(r.year >= 2023 && r.year <= 2026, `${r.name}: model years 2023-2026 only`);
+    assert(!/\d{2}["”]/.test(r.name), `${r.name}: sizes share one product, never in the name`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 30, `${c}: at least 30 TVs`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 185, "one source URL per product");
+  // Model years with near-identical names are separate products, never merged (the niche's generation traps).
+  for (const name of ["LG C3", "LG C4", "LG C5", "LG C6", "Samsung S90C", "Samsung S90D", "Samsung S90F", "Sony Bravia 8", "Sony Bravia 8 II",
+    "Sony A80L", "TCL QM8", "TCL QM8 (2024)", "TCL QM8K", "Hisense U8K", "Hisense U8N", "Hisense U8QG", "Panasonic Z95A", "Panasonic Z95B"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 185, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 185, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
