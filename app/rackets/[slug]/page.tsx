@@ -27,6 +27,9 @@ import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares } from "../../visual";
+import { summary } from "../../../lib/product-summary";
+import { comparePairs, pairHref } from "../../../lib/compare-pairs";
+import "../../compare/compare-lists.css";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -41,25 +44,6 @@ type Data = Awaited<ReturnType<typeof loadCatalog>>;
 function SideArt({ x, brand }: { x: Parameters<typeof shopPhoto>[0] & Parameters<typeof amazonPhoto>[0] & { shape: string | null }; brand?: string | null }) {
   const photo = shopPhoto(x) ?? amazonPhoto(x)?.image;
   return photo ? <img className="sug-photo" src={photo} alt="" loading="lazy"/> : <ProductIcon shape={x.shape} brand={brand}/>;
-}
-
-/** Counts behind the page's verdict, title and description: every review, the sentiment split, and tags by how often
- *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. With `variant`
- *  (niche.variants), the same counts for the player and web reviews of that one variant: the "By plastic" table. */
-function summary(data: Data, id: string, variant?: string) {
-  const allReviews = data.reviews.filter(x => x.racketId === id && (!variant || x.variant === variant)), allExternal = data.external.filter(e => e.racketId === id && (!variant || e.variant === variant));
-  // Tags and "% positive" count the niche's recent window (lib/recent.ts), or every review when too few are recent;
-  // the total is always every review.
-  const recentReviews = allReviews.filter(x => isRecent(x.createdAt)), recentExternal = allExternal.filter(e => isRecent(webDate(e)));
-  const useRecent = recentReviews.length + recentExternal.filter(e => e.sentiment).length >= MIN_RECENT;
-  const reviews = useRecent ? recentReviews : allReviews, external = useRecent ? recentExternal : allExternal;
-  const tagCounts = new Map<string, number>();
-  for (const t of [...reviews, ...external].flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
-  const byCount = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
-  const judged = [...reviews.map(x => ratingVerdict(x.rating)), ...external.map(e => e.sentiment)].filter(Boolean);
-  const positive = judged.length >= 3 ? Math.round(judged.filter(v => v === "positive").length / judged.length * 100) : null;
-  return { total: allReviews.length + allExternal.length, tagCounts, positive,
-    loved: byCount.filter(t => tagTone(t) === "pos"), complaints: byCount.filter(t => tagTone(t) === "neg"), other: byCount.filter(t => tagTone(t) === "neutral") };
 }
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
@@ -244,6 +228,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
   const pos = positiveShare(s);
   const oneLine = listLine(r);
+  const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
   const fullName = displayName(r.name, brand?.name);
   return <main className="product v2">
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
@@ -285,9 +270,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </p>
         <p className="p-links m-only">
           {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} reviews`} <span aria-hidden="true">↓</span></a>}
-          {/* Jumps to the similar products below; a real side-by-side compare is not built yet. */}
           {similar.length > 0 && <a className="p-compare" href="#similar">{`Similar ${niche.words.many}`} <span aria-hidden="true">→</span></a>}
         </p>
+        {/* Side by side with the product reviewers describe most like it: its indexable "vs" page when the pair has one,
+            else that product (or an empty slot) at /compare?ids=. */}
+        <p className="p-compare-link"><a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${[r.slug, ...(compareWith ? [compareWith.slug] : [])].join(",")}`}>{compareWith ? `Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}` : `Compare with another ${niche.words.one}`} <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
     {/* Specs live in the FAQ now (owner, 2026-11-12): reviews are what the page is for. */}

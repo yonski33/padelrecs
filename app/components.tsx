@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CompareCheck } from "./compare/compare-pick";
 import type { Catalog, Score as ScoreT } from "../db/data";
 import { ProductArt, SentimentBar, positiveShare } from "./visual";
 import { ratingVerdict } from "../lib/verdict";
@@ -206,6 +207,7 @@ export function ProductCard({racket: r, brand, count, web = 0, details, tags, sc
     <div className="prow-main">
       <h2><a href={href}>{displayName(r.name, brand)}</a></h2>
       {details && <p className="prow-details">{details}</p>}
+      <CompareCheck slug={r.slug} name={displayName(r.name, brand)}/>
       {/* Owner, 2026-11-12: no tags on list rows (without counts a lone complaint reads as the verdict); the product page shows them with counts. */}
     </div>
     <div className="prow-score">{s && pos !== null ? <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative} legend className="stacked"/> : <span className="prow-few">Not enough reviews to score yet</span>}</div>

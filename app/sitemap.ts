@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
 import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
+import { comparePairs, pairHref } from "../lib/compare-pairs";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
 
 // Built per request from the public catalog, so new rackets and brands appear without a deploy.
@@ -42,6 +43,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...listedBrands.map(b => ({
       url: `${base}/brands/${b.slug}`,
       lastModified: latest(listed.filter(r => r.brandId === b.id).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    })),
+    // Curated "X vs Y" pages only (lib/compare-pairs); other mixes of products are not indexed.
+    ...comparePairs(data).pairs.filter(p => !moved.has(`${catalogPath}/${p.a.slug}`) && !moved.has(`${catalogPath}/${p.b.slug}`)).map(p => ({
+      url: `${base}${pairHref(p.a.slug, p.b.slug)}`,
+      lastModified: latest([p.a.createdAt, p.b.createdAt, ...notesFor(p.a.id), ...notesFor(p.b.id)]),
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),

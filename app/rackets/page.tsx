@@ -13,6 +13,7 @@ import { productSignals } from "../signals";
 import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
 import { browseTiles, BrowseTile, Arrow, CategoryTabs } from "../visual";
+import { CompareTray } from "../compare/compare-pick";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -86,5 +87,6 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
     <nav className="browse" aria-label="Browse">
       <div><h2>Browse by brand</h2><p>{topBrands.map(({ b }) => <a key={b.id} href={`/brands/${b.slug}`}>{b.name}</a>)}<a href="/brands">All brands →</a></p></div>
     </nav>
+    <CompareTray noun={w.one}/>
   </main>;
 }

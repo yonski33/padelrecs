@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import { siteOgImages } from "../../site-og";
+import { CompareTray } from "../../compare/compare-pick";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
@@ -59,5 +60,6 @@ export default async function TypePage({ params, searchParams }: { params: Promi
     {!results.length && (f.brand
       ? <p className="empty-feed">{`No ${lowerWords(seoName(t))} from this brand yet. `}<a href={`/${t.slug}`}>Show all {lowerWords(seoName(t))}</a></p>
       : <p className="empty-feed">{`No ${lowerWords(seoName(t))} reviewed here yet. `}<a href="/add-review">Add a review →</a></p>)}
+    <CompareTray noun={niche.words.one}/>
   </main>;
 }
