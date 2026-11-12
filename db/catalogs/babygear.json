@@ -1,5 +1,5 @@
 {
-  "about": "BabyGearRecs catalog (2026-11-01, approved by the owner): strollers, car seats, baby carriers and wraps, high chairs, cribs/bassinets/play yards, baby monitors, breast pumps and bottles, bouncers and swings. Each exact name and URL was read on the maker's own site or store. Generations are separate products (Vista V2 vs V3, Doona vs Doona X, PIPA rx vs PIPA aire rx); fabric, colour and retailer editions are folded into the base product; older generations are in only where the maker's site still names them (UPPAbaby's manuals page). Columns: shape = category; core (child limits), weight, surface (folded size) and balance (notable features) not read. Blank = not read.",
+  "about": "BabyGearRecs catalog (2026-11-01, approved by the owner): strollers, car seats, baby carriers and wraps, high chairs, cribs/bassinets/play yards, baby monitors, breast pumps and bottles, bouncers and swings. Each exact name and URL was read on the maker's own site or store. Generations are separate products (Vista V2 vs V3, Doona vs Doona X, PIPA rx vs PIPA aire rx); fabric, colour and retailer editions are folded into the base product; older generations are in only where the maker's site still names them (UPPAbaby's manuals page). Columns: shape = category; core (child limits), weight, surface (folded size) and balance (notable features) not read. Blank = not read. 46 products added 2026-11-12 (owner standing OK): each held by 3 or more first-hand authors in the sweep and named on the maker's own page; later generations stay separate products.",
   "checked": "2026-11-01",
   "brands": [
     {
@@ -153,6 +153,86 @@
     {
       "id": "willow",
       "name": "Willow"
+    },
+    {
+      "id": "pumpables",
+      "name": "Pumpables"
+    },
+    {
+      "id": "ameda",
+      "name": "Ameda"
+    },
+    {
+      "id": "motif",
+      "name": "Motif"
+    },
+    {
+      "id": "zomee",
+      "name": "Zomee"
+    },
+    {
+      "id": "bumbleride",
+      "name": "Bumbleride"
+    },
+    {
+      "id": "happy-baby",
+      "name": "Happy Baby"
+    },
+    {
+      "id": "abiie",
+      "name": "Abiie"
+    },
+    {
+      "id": "baby-jogger",
+      "name": "Baby Jogger"
+    },
+    {
+      "id": "tula",
+      "name": "Tula"
+    },
+    {
+      "id": "inglesina",
+      "name": "Inglesina"
+    },
+    {
+      "id": "mockingbird",
+      "name": "Mockingbird"
+    },
+    {
+      "id": "mountain-buggy",
+      "name": "Mountain Buggy"
+    },
+    {
+      "id": "thule",
+      "name": "Thule"
+    },
+    {
+      "id": "lennylamb",
+      "name": "LennyLamb"
+    },
+    {
+      "id": "munchkin",
+      "name": "Munchkin"
+    },
+    {
+      "id": "joolz",
+      "name": "Joolz"
+    },
+    {
+      "id": "mompush",
+      "name": "Mompush"
+    },
+    {
+      "id": "cosco",
+      "name": "Cosco"
+    },
+    {
+      "id": "guava-family",
+      "name": "Guava Family"
+    },
+    {
+      "id": "boba",
+      "name": "Boba"
     }
   ],
   "products": [
@@ -3106,6 +3186,558 @@
       "balance": null,
       "sources": [
         "https://www.onewillow.com/products/willow-sync-breast-pump"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "Eufy S1 Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eufy.com/us/products/t8d04121"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "Eufy E20",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eufy.com/products/eufy-breast-pump-e20"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "Eufy S2",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eufy.com/products/t600p18a-eufy-wearable-breast-pump-s2"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "Eufy S2 Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.eufy.com/us/products/t600p181-eufy-wearable-breast-pump-s2-pro"
+      ]
+    },
+    {
+      "brand": "eufy",
+      "name": "Eufy E10",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.eufy.com/products/t8d03121"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy M6",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/momcozy-mobile-style-hands-free-breast-pump"
+      ]
+    },
+    {
+      "brand": "momcozy",
+      "name": "Momcozy V2 Pro",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://momcozy.com/products/v2pro-hands-free-breast-pump-ultra-light-potent"
+      ]
+    },
+    {
+      "brand": "pumpables",
+      "name": "Pumpables Genie Advanced",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://pumpables.co/products/genie-advanced"
+      ]
+    },
+    {
+      "brand": "lansinoh",
+      "name": "Lansinoh Manual Breast Pump",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://lansinoh.com/products/manual-breast-pump"
+      ]
+    },
+    {
+      "brand": "lansinoh",
+      "name": "Lansinoh DiscreetDuo",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://lansinoh.com/products/discreet-duo"
+      ]
+    },
+    {
+      "brand": "ameda",
+      "name": "Ameda Platinum",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.ameda.com/product/platinum-breast-pump/"
+      ]
+    },
+    {
+      "brand": "motif",
+      "name": "Motif Luna",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.motifmedical.com/luna"
+      ]
+    },
+    {
+      "brand": "zomee",
+      "name": "Zomee Z2",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://zomee.com/products/zomee-z2-double-electric-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Pump In Style with MaxFlow",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://medela.com/en-us/breastfeeding-pumping/products/pumps/classic-electric/pump-in-style-with-maxflow-breast-pump"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Freestyle Flex",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.in/breastfeeding/products/breast-pumps/freestyle-flex"
+      ]
+    },
+    {
+      "brand": "medela",
+      "name": "Medela Swing Maxi",
+      "shape": "Pump or bottle",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.medela.com/en-us/breastfeeding-pumping/products/pumps/classic-electric/swing-maxi-double-electric-breast-pump?productId=4064"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Fox 5",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/strollers/bugaboo-fox-5/"
+      ]
+    },
+    {
+      "brand": "bugaboo",
+      "name": "Bugaboo Butterfly",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.bugaboo.com/us-en/strollers/bugaboo-butterfly/"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Viaro",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/our-products/strollers/full-size/viaro-quick-fold-stroller/79746.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco Corso LE",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/shop-our-products/strollers/full-size/corso-le-modular-stroller/79557.html"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco NextFit Zip",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://chiccousa.com/on/demandware.store/Sites-Chicco-Site/default/Product-Variation?pid=79852"
+      ]
+    },
+    {
+      "brand": "chicco",
+      "name": "Chicco MyFit",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.chiccousa.com/myfit/"
+      ]
+    },
+    {
+      "brand": "bumbleride",
+      "name": "Bumbleride Indie Twin",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bumbleride.com/products/indie-twin-double-stroller"
+      ]
+    },
+    {
+      "brand": "bumbleride",
+      "name": "Bumbleride Indie",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://bumbleride.com/products/indie-all-terrain-stroller"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna PIPA lite",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/en/pipa-lite-infant-car-seat"
+      ]
+    },
+    {
+      "brand": "nuna",
+      "name": "Nuna DEMI grow",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://nunababy.com/usa/demi-grow-single-to-double-stroller"
+      ]
+    },
+    {
+      "brand": "happy-baby",
+      "name": "Happy Baby Original Baby Carrier",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://happybabycarriers.com/collections/baby-carriers/products/original-baby-carrier"
+      ]
+    },
+    {
+      "brand": "abiie",
+      "name": "Abiie Beyond Junior",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.abiie.com/products/beyond-junior-high-chair"
+      ]
+    },
+    {
+      "brand": "baby-jogger",
+      "name": "Baby Jogger City Select 2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyjogger.com/strollers/shop-all-strollers/all-terrain/city-select-2/city-select-2-stroller/SAP_2148584.html"
+      ]
+    },
+    {
+      "brand": "baby-jogger",
+      "name": "Baby Jogger City Mini GT2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.babyjogger.com/strollers/shop-all-strollers/all-terrain/city-mini-gt2-stroller/SP_255263.html"
+      ]
+    },
+    {
+      "brand": "ergobaby",
+      "name": "Ergobaby Metro+",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ergobaby.com/strollers/metro-stroller/metro-plus-compact-city-stroller-black"
+      ]
+    },
+    {
+      "brand": "tula",
+      "name": "Tula Free-to-Grow",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://babytula.com/collections/original-baby-carriers"
+      ]
+    },
+    {
+      "brand": "inglesina",
+      "name": "Inglesina Fast Table Chair",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.inglesina.com/product/fast-table-chair/"
+      ]
+    },
+    {
+      "brand": "mockingbird",
+      "name": "Mockingbird High Chair",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hellomockingbird.com/products/mockingbird-high-chair"
+      ]
+    },
+    {
+      "brand": "mountain-buggy",
+      "name": "Mountain Buggy nano",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://us.mountainbuggy.com/shop/nanotm-buggy-2020-11359"
+      ]
+    },
+    {
+      "brand": "thule",
+      "name": "Thule Spring",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.thule.com/en-ca/strollers/compact-strollers/thule-spring-_-11300213"
+      ]
+    },
+    {
+      "brand": "lennylamb",
+      "name": "LennyLamb LennyLight",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://en.lennylamb.com/shop/by/erp_product_type/lenny_light"
+      ]
+    },
+    {
+      "brand": "munchkin",
+      "name": "Munchkin Float High Chair",
+      "shape": "High chair",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.munchkin.com/float-foldable-high-chair"
+      ]
+    },
+    {
+      "brand": "joolz",
+      "name": "Joolz Aer+",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.joolz.com/us/en/lightweight-stroller/joolz-aerplus.html"
+      ]
+    },
+    {
+      "brand": "joolz",
+      "name": "Joolz Aer2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.joolz.com/us/en/strollers/440200-M.html"
+      ]
+    },
+    {
+      "brand": "mompush",
+      "name": "Mompush Ultimate 2",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.mompush.com/products/mompush-ultimate-2"
+      ]
+    },
+    {
+      "brand": "cosco",
+      "name": "Cosco Scenera NEXT",
+      "shape": "Car seat",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://coscokids.com/collections/convertible-car-seats"
+      ]
+    },
+    {
+      "brand": "guava-family",
+      "name": "Guava Lotus Travel Crib",
+      "shape": "Crib or bassinet",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.guavafamily.com/travel-crib"
+      ]
+    },
+    {
+      "brand": "graco",
+      "name": "Graco Modes Nest",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.gracobaby.com/shop/strollers/full-size-strollers/modes-nest-stroller/SP_1961558.html"
+      ]
+    },
+    {
+      "brand": "cybex",
+      "name": "Cybex Priam",
+      "shape": "Stroller",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.cybex-online.com/en/de/p/10108355.html"
+      ]
+    },
+    {
+      "brand": "boba",
+      "name": "Boba Wrap",
+      "shape": "Baby carrier",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://boba.com/collections/boba-baby-wraps"
       ]
     }
   ]
