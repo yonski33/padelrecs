@@ -3,14 +3,16 @@
 export const MIN_JUDGED = 5;   // user ratings plus web reviews with a sentiment before "% positive" counts
 
 export const SORTS = [
-  { value: "discussed", label: "Most discussed" },
-  // "positive" keeps its old URL value; it orders by the signal score where the page passes one (owner, 2026-11-12).
+  // "positive" keeps its old URL value; it orders by the signal score where the page passes one, and is the default so
+  // the signal numbers on the rows always run high to low (owner, 2026-11-12).
   { value: "positive", label: "Highest signal" },
+  { value: "discussed", label: "Most discussed" },
   { value: "newest", label: "Newest" },
 ] as const;
 export type SortKey = typeof SORTS[number]["value"];
 // "rated" (Highest rated) was dropped: with so few star ratings it always matched "Most positive", so old links land there.
-export const parseSort = (v: string | undefined): SortKey => v === "rated" ? "positive" : SORTS.some(s => s.value === v) ? v as SortKey : "discussed";
+export const DEFAULT_SORT: SortKey = "positive";
+export const parseSort = (v: string | undefined): SortKey => v === "rated" ? "positive" : SORTS.some(s => s.value === v) ? v as SortKey : DEFAULT_SORT;
 
 type Stats = { count: number; average: string | null; web: number; judged: number; positive: number };
 type Item = { r: { name: string; createdAt: string }; s: Stats };

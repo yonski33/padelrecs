@@ -7,7 +7,7 @@ import { pageFor, seoName, hubTitle, hubDescription, productsOfType } from "../.
 import { ProductCard, Directory, parseShow } from "../../components";
 import { AutoSubmitForm } from "../../auto-submit";
 import { CategoryTabs } from "../../visual";
-import { SORTS, parseSort, sortProducts } from "../../../lib/product-sort";
+import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../../../lib/product-sort";
 import { productSignals } from "../../signals";
 import { niche, catalogPath, catalogLabel, productHref } from "../../../lib/niche";
 import { displayName } from "../../../lib/brand-name";
@@ -51,7 +51,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
       {brands.length > 1 && <label className={f.brand ? "pill on" : "pill"}><span className="sr-only">Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>}
       {(f.brand || f.sort) && <a className="pills-clear" href={`/${t.slug}`}>Clear</a>}
       <p className="pills-count">{`${results.length} ${results.length === 1 ? niche.words.one : niche.words.many}`}</p>
-      <label className="pills-sort">Sort:<select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
+      <label className="pills-sort">Sort:<select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{s.label}</option>)}</select></label>
       <noscript><button>Filter</button></noscript>
     </AutoSubmitForm>
     <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} signal={sig.get(r.id)?.signal} tags={tags.get(r.id)} details=""/>)}/>

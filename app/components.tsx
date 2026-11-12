@@ -210,7 +210,7 @@ export function ProductCard({racket: r, brand, count, web = 0, details, tags, sc
     </div>
     <div className="prow-score">{s && pos !== null ? <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative} legend className="stacked"/> : <span className="prow-few">Not enough reviews to score yet</span>}</div>
     {/* The signal score leads where the product has one (owner, 2026-11-12); the review count sits under it. */}
-    <a className="prow-count" href={`${href}#reviews`}>{signal ? <><b className="prow-signal">{signal}</b><span className="prow-signal-label">signal</span><span className="prow-n">{`${total.toLocaleString("en-US")} ${total === 1 ? "review" : "reviews"}`}</span></> : <><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span></>}<span className="prow-go" aria-hidden="true">→</span></a>
+    <a className="prow-count" href={`${href}#reviews`}>{signal ? <><b className="prow-signal">{signal}</b><span className="prow-signal-label">signal</span></> : <><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span></>}<span className="prow-go" aria-hidden="true">→</span></a>
   </article>;
 }
 

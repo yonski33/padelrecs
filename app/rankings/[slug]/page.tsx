@@ -60,7 +60,6 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry & { signal: S
     <a className="rrow-score" href={href}>
       {/* The signal score (owner, 2026-11-12): what the order follows, so the numbers always run high to low. */}
       {e.signal ? <span className="rrow-pos rrow-signal"><b>{e.signal.signal}</b><span>signal</span></span> : <span className="rrow-pos"><span>No signal yet</span></span>}
-      <span className="rrow-n">{`${e.reviews} reviews`}</span>
     </a>
   </li>;
 }

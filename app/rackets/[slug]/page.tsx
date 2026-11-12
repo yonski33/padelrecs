@@ -331,7 +331,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         {similar.length > 0 && <section id="similar" className="similar">
           <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
           <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
-          <ul className="sim-cards">{similar.map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
+          <ul className="sim-cards">{[...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
             <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
             <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
             {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}

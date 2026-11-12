@@ -6,7 +6,7 @@ import { catalogKeyword, catalogTitle, catalogDescription, listJsonLd, catalogCr
 import { rankedLists, listHref } from "../rankings/lists";
 import { catalog, score, topTags } from "../../db/data";
 import { matchingRackets } from "../../lib/racket-search";
-import { SORTS, parseSort, sortProducts } from "../../lib/product-sort";
+import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../../lib/product-sort";
 import { productSignals } from "../signals";
 
 import { ProductCard, Directory, parseShow } from "../components";
@@ -64,7 +64,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
         <AutoSubmitForm className="filters" action={catalogPath}>
           {f.shape && <input type="hidden" name="shape" value={f.shape}/>}
           <h2>Filter</h2>
-          <label className="f-field"><span>Sort by</span><select name="sort" defaultValue={sort === "discussed" ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === "discussed" ? "" : s.value}>{s.label}</option>)}</select></label>
+          <label className="f-field"><span>Sort by</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{s.label}</option>)}</select></label>
           <label className="f-field"><span>Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
           {hasYears && <label className="f-field"><span>Model year</span><select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select></label>}
           {f.q && <input type="hidden" name="q" value={f.q}/>}
