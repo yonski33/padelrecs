@@ -19,24 +19,38 @@ import { CompareCheck, CompareTray } from "./compare/compare-pick";
 
 const DAY = 86_400_000, w = niche.words;
 const fmt = (n: number) => n.toLocaleString("en-US");
-export type IndexFilters = { q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string };
+export type IndexFilters = { q?: string; brand?: string; year?: string; shape?: string; tag?: string; sort?: string; show?: string };
 
 /** The shape/type chips: the niche's grouped tabs where it has them, else its shape list. */
 const shapeChips = () => niche.shapeTabs?.length
   ? niche.shapeTabs.map(t => ({ key: t.key, label: t.label, shapes: t.shapes }))
   : niche.shapeFilter.map(s => ({ key: s, label: s, shapes: [s] }));
 
+/** How many reviews of each product mention each tag, counted once for the whole page. */
+function tagCounts(data: Catalog) {
+  const out = new Map<string, Map<string, number>>();
+  for (const x of [...data.reviews, ...data.external]) {
+    if (!x.tags.length) continue;
+    const m = out.get(x.racketId) ?? new Map<string, number>(); out.set(x.racketId, m);
+    for (const t of x.tags) m.set(t, (m.get(t) ?? 0) + 1);
+  }
+  return out;
+}
+
+/** A product is "known for" a liked or descriptive tag when at least KNOWN_MIN reviews and KNOWN_SHARE of all its reviews say it. */
+const KNOWN_MIN = 3, KNOWN_SHARE = 0.08;
+const knownFor = (counts: Map<string, number> | undefined, total: number, tag: string) => { const n = counts?.get(tag) ?? 0; return n >= KNOWN_MIN && n >= KNOWN_SHARE * total; };
+
 /** The most mentioned liked and disliked theme with how many reviews raise each, so a lone complaint never reads as the verdict. */
-function gist(data: Catalog, id: string) {
-  const counts = new Map<string, number>();
-  for (const x of [...data.reviews.filter(r => r.racketId === id), ...data.external.filter(e => e.racketId === id)]) for (const t of x.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
-  const best = (tone: string) => [...counts].filter(([t, n]) => n >= 3 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
+function gist(counts: Map<string, number> | undefined) {
+  const best = (tone: string) => [...(counts ?? [])].filter(([t, n]) => n >= 3 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
   return { liked: best("pos"), disliked: best("neg") };
 }
 
-function IndexRow({ data, r, rank, signal }: { data: Catalog; r: Catalog["listed"][number]; rank: number | null; signal?: number }) {
+
+function IndexRow({ data, r, rank, signal, tags, picked = [] }: { data: Catalog; r: Catalog["listed"][number]; rank: number | null; signal?: number; tags?: Map<string, number>; picked?: string[] }) {
   const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = productHref(r);
-  const s = score(data, r.id), total = s.count + s.web, g = gist(data, r.id);
+  const s = score(data, r.id), total = s.count + s.web, g = gist(tags);
   const specs = niche.specs.slice(0, 3).map(x => (r as Record<string, unknown>)[x.column]).filter((v): v is string => typeof v === "string" && !!v && v.length <= 24).slice(0, 2);
   const pos = s.judged ? Math.round(100 * s.positive / s.judged) : null;
   return <article className="ix-row">
@@ -49,6 +63,8 @@ function IndexRow({ data, r, rank, signal }: { data: Catalog; r: Catalog["listed
         {g.liked && <span><span className="ix-k">Liked</span>{` ${g.liked[0]} `}<small>{`(${g.liked[1]})`}</small></span>}
         {g.disliked && <span><span className="ix-k neg">Disliked</span>{` ${g.disliked[0]} `}<small>{`(${g.disliked[1]})`}</small></span>}
       </p>}
+      {/* The tags someone filtered by, with how many reviews say it, so they can see why the product is in the list. */}
+      {picked.filter(t => t !== g.liked?.[0]).length > 0 && <p className="ix-picked">{picked.filter(t => t !== g.liked?.[0]).map(t => <span key={t}>{`${t} (${tags?.get(t) ?? 0})`}</span>)}</p>}
       <CompareCheck slug={r.slug} name={name}/>
     </div>
     <a className="ix-score" href={`${href}#reviews`}>
@@ -61,12 +77,38 @@ function IndexRow({ data, r, rank, signal }: { data: Catalog; r: Catalog["listed
 
 export function HomeC({ data, f, signals, now, basePath = "/", keep = {} }: { data: Catalog; f: IndexFilters; signals: Map<string, Signal>; now: number; basePath?: string; keep?: Record<string, string> }) {
   const sort = parseSort(f.sort), chips = shapeChips(), chip = chips.find(c => c.key === f.shape);
-  const results = sortProducts(matchingRackets(data.listed, f.q || "")
-    .filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && (!chip || chip.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase())))
-    .map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
-  const filtered = !!(f.q || f.brand || f.year || f.shape || f.sort);
-  const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `${basePath}?${q}` : basePath; };
-  const clear = link({ q: undefined, brand: undefined, year: undefined, shape: undefined, sort: undefined });
+  const tc = tagCounts(data), totals = new Map(data.listed.map(r => { const s = score(data, r.id); return [r.id, s.count + s.web] as const; }));
+  const picked = (f.tag ?? "").split(",").map(t => t.trim()).filter(t => niche.tags.some(x => x.label === t));
+  const inShape = (r: Catalog["listed"][number], c = chip) => !c || c.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase());
+  const has = (r: Catalog["listed"][number], tags: string[]) => tags.every(t => knownFor(tc.get(r.id), totals.get(r.id) ?? 0, t));
+  // Everything but one filter, so each chip can say how many products it would leave.
+  const base = matchingRackets(data.listed, f.q || "").filter(r => !f.year || String(r.year) === f.year);
+  const pass = (r: Catalog["listed"][number], skip: "brand" | "shape" | "tag" | null = null) =>
+    (skip === "brand" || !f.brand || r.brandId === f.brand) && (skip === "shape" || inShape(r)) && (skip === "tag" || has(r, picked));
+  const results = sortProducts(base.filter(r => pass(r)).map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
+  const filtered = !!(f.q || f.brand || f.year || f.shape || picked.length || f.sort);
+  const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, tag: picked.join(",") || undefined, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `${basePath}?${q}#ix-title` : `${basePath}#ix-title`; };
+  const clear = link({ q: undefined, brand: undefined, year: undefined, shape: undefined, tag: undefined, sort: undefined });
+  const toggleTag = (t: string) => link({ tag: (picked.includes(t) ? picked.filter(x => x !== t) : [...picked, t]).join(",") || undefined });
+
+  // Facets. Type chips carry the photo of their best-scored product; tag chips are the liked and descriptive tags from the
+  // niche's tag bank, most common first; brand chips are the brands with the most products.
+  const noTag = base.filter(r => pass(r, "tag"));
+  const tagChips = niche.tags.filter(t => t.tone !== "neg").map(t => ({ label: t.label, n: noTag.filter(r => has(r, [...picked.filter(x => x !== t.label), t.label])).length }))
+    .filter(t => t.n > 0 || picked.includes(t.label)).sort((a, b) => b.n - a.n).slice(0, 14);
+  const noShape = base.filter(r => pass(r, "shape"));
+  const best = (list: Catalog["listed"]) => [...list].sort((a, b) => (signals.get(b.id)?.signal ?? 0) - (signals.get(a.id)?.signal ?? 0))[0];
+  const typeChips = chips.map(c => { const list = noShape.filter(r => inShape(r, c)); return { ...c, n: list.length, top: best(list) }; }).filter(c => c.n > 0 || c.key === f.shape);
+  const noBrand = base.filter(r => pass(r, "brand"));
+  const brandChips = data.listedBrands.map(b => ({ b, n: noBrand.filter(r => r.brandId === b.id).length })).filter(x => x.n > 0 || x.b.id === f.brand).sort((a, z) => z.n - a.n).slice(0, 10);
+  const brandName = (id?: string) => data.brands.find(b => b.id === id)?.name;
+  const active = [
+    ...(f.q ? [{ label: `“${f.q}”`, href: link({ q: undefined }) }] : []),
+    ...(chip ? [{ label: chip.label, href: link({ shape: undefined }) }] : []),
+    ...picked.map(t => ({ label: t[0].toUpperCase() + t.slice(1), href: toggleTag(t) })),
+    ...(f.brand ? [{ label: brandName(f.brand) ?? "Brand", href: link({ brand: undefined }) }] : []),
+    ...(f.year ? [{ label: f.year, href: link({ year: undefined }) }] : []),
+  ];
 
   // Hero counts.
   const everything = [...data.reviews, ...data.external];
@@ -79,7 +121,7 @@ export function HomeC({ data, f, signals, now, basePath = "/", keep = {} }: { da
   const latestWeb = [...data.external].sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
   const latestLabel = latestWeb && [sourceLabel(latestWeb).platform, sourceLabel(latestWeb).name].filter(Boolean).join(" · ");
   const updated = everything.reduce((m, x) => x.createdAt > m ? x.createdAt : m, "");
-  // A rank number only means something in signal order over the whole list.
+  // A rank number only means something in signal order: within the filters, it is the place among what's shown.
   const ranked = sort === DEFAULT_SORT && !f.q;
 
   return <>
@@ -97,35 +139,40 @@ export function HomeC({ data, f, signals, now, basePath = "/", keep = {} }: { da
       </dl>
     </section>
 
+
     <section className="ix" aria-labelledby="ix-title">
       <div className="section-head"><h2 id="ix-title">{`Explore the ${w.one} index`}</h2><a className="section-link" href="/about#signal">How the signal score works<Arrow/></a></div>
-      <div className="ix-grid">
-        <aside className="ix-rail filter-panel">
-          <input type="checkbox" id="filters-open" className="filters-toggle"/>
-          <label htmlFor="filters-open" className="filters-button">{`Filter and sort${filtered ? " (on)" : ""}`}<span aria-hidden="true"> ⌄</span></label>
-          <AutoSubmitForm className="filters" action={basePath}>
-            {Object.entries(keep).map(([k, v]) => <input key={k} type="hidden" name={k} value={v}/>)}
-            {f.shape && <input type="hidden" name="shape" value={f.shape}/>}
-            <h2>Narrow it down</h2>
-            <label className="f-field"><span>Search</span><input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many}`}/></label>
-            <label className="f-field"><span>Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
-            {hasYears && <label className="f-field"><span>Model year</span><select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select></label>}
-            <noscript><button className="button">Show results</button></noscript>
-          </AutoSubmitForm>
-          {chips.length > 1 && <div className="ix-chips"><span>{niche.specs.find(s => s.column === "shape")?.label ?? "Type"}</span><p>
-            <a href={link({ shape: undefined })} aria-current={!f.shape ? "page" : undefined}>All</a>
-            {chips.map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={f.shape === c.key ? "page" : undefined}>{c.label}</a>)}</p></div>}
-          {filtered && <a className="f-clear" href={clear}>Clear filters</a>}
-        </aside>
-        <div className="ix-list">
-          <div className="list-bar"><p>{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many}`}</p>
-            <AutoSubmitForm className="ix-sort" action={basePath}>
-              {Object.entries({ ...keep, ...f, sort: undefined, show: undefined }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-              <SortSelect sort={sort}/><noscript><button className="button ghost">Sort</button></noscript>
-            </AutoSubmitForm><SignalInfo align="right"/></div>
-          <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <IndexRow key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal}/>)}/>
-          {!results.length && <p className="empty-feed">{`No ${w.one} found. `}<a href={clear}>Clear filters</a> or <a href="/add-review">add it with a review →</a></p>}
-        </div>
+      <div className="ix-filters">
+        <AutoSubmitForm className="ix-bar" action={basePath}>
+          {Object.entries({ ...keep, shape: f.shape, tag: picked.join(",") || undefined, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
+          <label className="ix-q"><span className="sr-only">{`Search ${w.many}`}</span><input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many} or brands`}/></label>
+          <label className="ix-sel"><span className="sr-only">Brand</span><select name="brand" defaultValue={f.brand || ""}><option value="">All brands</option>{data.listedBrands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
+          {hasYears && <label className="ix-sel"><span className="sr-only">Model year</span><select name="year" defaultValue={f.year || ""}><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select></label>}
+          <noscript><button className="button">Search</button></noscript>
+        </AutoSubmitForm>
+        {typeChips.length > 1 && <div className="ix-facet ix-types"><span className="ix-facet-label">{niche.specs.find(s => s.column === "shape")?.label ?? "Type"}</span>
+          <div className="ix-scroll">
+            <a className="ix-type" href={link({ shape: undefined })} aria-current={!f.shape ? "true" : undefined}><span className="ix-type-all" aria-hidden="true">All</span><b>{`All ${w.many}`}</b><small>{fmt(noShape.length)}</small></a>
+            {typeChips.map(c => <a key={c.key} className="ix-type" href={link({ shape: f.shape === c.key ? undefined : c.key })} aria-current={f.shape === c.key ? "true" : undefined}>
+              {c.top ? <ProductArt product={c.top} brand={brandName(c.top.brandId)}/> : <span className="ix-type-all" aria-hidden="true"/>}<b>{c.label}</b><small>{fmt(c.n)}</small></a>)}
+          </div></div>}
+        {tagChips.length > 0 && <div className="ix-facet"><span className="ix-facet-label">Known for</span>
+          <div className="ix-scroll ix-tags">{tagChips.map(t => <a key={t.label} href={toggleTag(t.label)} aria-current={picked.includes(t.label) ? "true" : undefined} rel="nofollow">
+            {picked.includes(t.label) && <span aria-hidden="true">✓ </span>}{t.label[0].toUpperCase() + t.label.slice(1)}<small>{fmt(t.n)}</small></a>)}</div></div>}
+        {brandChips.length > 1 && <div className="ix-facet"><span className="ix-facet-label">Brand</span>
+          <div className="ix-scroll ix-tags ix-brands">{brandChips.map(({ b, n }) => <a key={b.id} href={link({ brand: f.brand === b.id ? undefined : b.id })} aria-current={f.brand === b.id ? "true" : undefined} rel="nofollow">{b.name}<small>{fmt(n)}</small></a>)}</div></div>}
+      </div>
+      <div className="ix-list">
+        <div className="list-bar">
+          <p>{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many}`}</p>
+          {active.length > 0 && <p className="ix-active">{active.map(a => <a key={a.label} href={a.href} aria-label={`Remove ${a.label}`}>{a.label}<span aria-hidden="true"> ×</span></a>)}<a className="ix-clear" href={clear}>Clear all</a></p>}
+          <AutoSubmitForm className="ix-sort" action={basePath}>
+            {Object.entries({ ...keep, ...f, tag: picked.join(",") || undefined, sort: undefined, show: undefined }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
+            <SortSelect sort={sort}/><noscript><button className="button ghost">Sort</button></noscript>
+          </AutoSubmitForm><SignalInfo align="right"/></div>
+        {picked.length > 0 && <p className="ix-why">{`Showing ${w.many} where at least ${KNOWN_MIN} reviews, and ${Math.round(KNOWN_SHARE * 100)}% of all of them, say ${picked.map(t => `“${t}”`).join(" and ")}.`}</p>}
+        <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <IndexRow key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} tags={tc.get(r.id)} picked={picked}/>)}/>
+        {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={clear}>Clear filters</a> or remove one above.</p>}
       </div>
     </section>
 

@@ -1345,3 +1345,45 @@ svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--
 .ix-score .ix-src { margin-top: -2px; font-size: 10.5px; }
 @media (max-width: 860px) { .ix-score .ix-src { display: none; } }
 @media (max-width: 860px) { .ix-stats-note { display: none; } .ix { margin-top: 22px; } }
+/* Direction C filter band across the top (owner, 2026-11-12): search and selects, then type cards with a photo,
+   "Known for" tag chips and brand chips, each with how many products it leaves. Links, so it works without JavaScript. */
+.ix-filters { display: grid; gap: 14px; margin-top: 16px; padding: 18px 20px; border-radius: 14px; background: var(--surface-2, #f6f4ef); border: 1px solid var(--line-2); }
+.ix-bar { display: flex; flex-wrap: wrap; gap: 10px; }
+.ix-q { flex: 1 1 320px; }
+.ix-q input { width: 100%; height: 46px; padding: 0 14px 0 42px; border: 1.5px solid var(--line); border-radius: 10px; font: inherit; font-size: 16px; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23777' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") no-repeat 14px 50%; }
+.ix-q input:focus { outline: none; border-color: var(--green-ink); }
+.ix-sel select { height: 46px; padding: 0 34px 0 12px; border: 1.5px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; background-color: var(--surface); color: var(--ink); }
+.ix-facet { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: center; }
+.ix-facet-label { font-size: 12px; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); }
+.ix-scroll { display: flex; flex-wrap: wrap; gap: 8px; }
+.ix-type { display: grid; grid-template-columns: 40px auto; grid-template-rows: auto auto; column-gap: 10px; align-items: center; padding: 6px 14px 6px 6px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+.ix-type > .art, .ix-type > .ix-type-all { grid-row: 1 / 3; width: 40px; height: 40px; border-radius: 8px; overflow: hidden; background: var(--surface-2, #f6f4ef); display: grid; place-items: center; }
+.ix-type > .art img { width: 100%; height: 100%; object-fit: contain; }
+.ix-type-all { font-size: 12px; font-weight: 800; color: var(--green-ink); }
+.ix-type b { font-size: 14.5px; font-weight: 700; line-height: 1.1; }
+.ix-type small { font-size: 12.5px; color: var(--ink-3); }
+.ix-type:hover { border-color: var(--ink-3); }
+.ix-type[aria-current] { border-color: var(--green-ink); box-shadow: 0 0 0 2px var(--green-ink) inset; }
+.ix-tags a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 14px; font-weight: 600; color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+.ix-tags a small { font-size: 12px; font-weight: 600; color: var(--ink-3); }
+.ix-tags a:hover { border-color: var(--ink-3); color: var(--ink); }
+.ix-tags a[aria-current] { background: var(--green-ink); border-color: var(--green-ink); color: #fff; }
+.ix-tags a[aria-current] small { color: rgba(255,255,255,.8); }
+.ix-brands a { font-weight: 650; }
+.home-c .ix-list { margin-top: 22px; }
+.ix-list .list-bar { flex-wrap: wrap; }
+.ix-active { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 !important; font-family: inherit !important; font-size: 13.5px !important; font-weight: 600 !important; }
+.ix-active a { padding: 4px 10px; border-radius: 999px; background: var(--green-ink); color: #fff; text-decoration: none; }
+.ix-active a.ix-clear { background: none; color: var(--green-ink); text-decoration: underline; }
+.ix-why { margin: 10px 0 0; font-size: 13.5px; color: var(--ink-3); }
+.ix-picked { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.ix-picked span { padding: 2px 9px; border-radius: 999px; background: #e7f0e4; color: #2f5f29; font-size: 12.5px; font-weight: 650; }
+@media (max-width: 860px) {
+  .ix-filters { margin: 12px -16px 0; padding: 14px 16px; border-radius: 0; border-width: 1px 0; gap: 12px; }
+  .ix-sel { flex: 1 1 0; } .ix-sel select { width: 100%; }
+  .ix-facet { grid-template-columns: 1fr; gap: 6px; }
+  /* One swipeable row per facet on phones, so the list still starts high on the screen. */
+  .ix-scroll { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 4px; scrollbar-width: none; }
+  .ix-scroll::-webkit-scrollbar { display: none; }
+  .ix-type { flex: none; }
+}
