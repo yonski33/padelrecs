@@ -269,7 +269,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <ul className="sim-cards">{[...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
             <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
             <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
-            {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
+            {sigs.get(x.id) ? <span className="sim-meta sim-signal"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
             <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
           </a></li>; })}</ul>
         </section>;
@@ -335,7 +335,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {(r.shape || hasYears) && <p className="lp-kicker">{[r.shape, hasYears ? String(r.year) : null].filter(Boolean).join(" · ")}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}
           {sum.total > 0 ? <div className="lp-stats">
-            {sig && <div className="lp-stat"><b className="lp-acc">{sig.signal}</b><span>Signal</span></div>}
+            {sig && <div className="lp-stat"><b className="lp-acc lp-signal">{sig.signal}</b><span>Signal</span></div>}
             {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
             <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}

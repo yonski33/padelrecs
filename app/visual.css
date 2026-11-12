@@ -2003,3 +2003,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-board .lt-bar { align-items: baseline; }
 .lt-board .lt-bar-aside { padding: 0 0 0 14px; align-self: baseline; }
 .lt-board .lt-sort, .lt-board .lt-sort select { font-size: 13.5px; line-height: 1.2; }
+
+/* One deep green for the signal number on every site (owner, 2026-11-13), whatever the site's own accent. */
+:root { --lt-signal: #2f6b34; }
+.lt-sig b, .lt-mini-v, .lr-sig b, .lri-sig, .product.v2.lt-page .p-signal b, .lcmp .cmp-pos.cmp-signal b, .ix-sig b, .lp-stat .lp-signal, .sim-signal b { color: var(--lt-signal) !important; }
