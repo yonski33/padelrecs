@@ -215,7 +215,7 @@ test("the KeyboardRecs catalog: the 99 GamingRecs keyboards under their old ids 
 test("the DiscGolfRecs starter catalog: sourced molds without years, known types, flight numbers in speed / glide / turn / fade, unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/discgolf.json");
   const snapshot = catalogSnapshot(catalog, "discgolfrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 12);
+  assert.equal(snapshot.tables.brands.length, 14);
   assert(snapshot.tables.rackets.length >= 450);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
