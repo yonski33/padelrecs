@@ -9,6 +9,10 @@ import { RANKINGS_PATH, listYear } from "../../lib/top-lists";
 import { BrowseTile } from "../visual";
 import { rankedLists, listHref, longDate, currentYear } from "./lists";
 import { FinderInvite } from "../finder/invite";
+import { ProductArt } from "../visual";
+import { productHref } from "../../lib/niche";
+import { displayName } from "../../lib/brand-name";
+import { lightFont } from "../light-font";
 
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
@@ -23,10 +27,34 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website", images: siteOgImages } };
 }
 
-export default async function TopListsIndex() {
-  const { data, lists } = await rankedLists();
+export default async function TopListsIndex({ searchParams }: { searchParams: Promise<{ look?: string }> }) {
+  const [{ data, lists }, f] = await Promise.all([rankedLists(), searchParams]);
   if (!lists.length) notFound();
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
+  // The light direction, previewed with ?look=light (owner, 2026-11-12): each ranking as a calm card with its top three.
+  if (f.look === "light") {
+    const seen = new Set<string>(), unique = lists.filter(l => !seen.has(l.list.slug) && seen.add(l.list.slug));
+    const reviews = new Set(unique.flatMap(l => l.entries.map(e => e.product.id)));
+    const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
+    return <main className={`top-page v2 lt-page lri ${lightFont.className}`}>
+      <p className="crumbs"><a href="/">Home</a><span>/</span>Rankings</p>
+      <header className="lr-hero">
+        <h1>{`${category[0]}${category.slice(1).toLowerCase()} rankings, according to `}<em>{`real ${people.many}`}</em></h1>
+        <p className="lr-sub">{`${unique.length} rankings of ${reviews.size} ${w.many}, counted from published reviews · no sponsored placements${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
+      </header>
+      <ul className="lri-grid">{unique.map(({ list, entries }) => <li key={list.slug} className="lri-card">
+        <a className="lri-head" href={`${listHref(list.slug)}?look=light`}><h2>{list.label}</h2><span>{`${entries.length} ranked →`}</span></a>
+        {list.intro && <p className="lri-intro">{list.intro}</p>}
+        <ol>{entries.slice(0, 3).map(e => { const r = data.rackets.find(x => x.id === e.product.id); const b = brandOf(e.product.brandId); return <li key={e.product.id}><a href={`${productHref(e.product)}?look=light`}>
+          <span className="lri-rank">{`#${e.rank}`}</span>
+          <span className="lri-art">{r && <ProductArt product={r} brand={b}/>}</span>
+          <span className="lri-name">{displayName(e.product.name, b)}</span>
+          {e.signal && <b className="lri-sig">{e.signal.signal}</b>}
+        </a></li>; })}</ol>
+      </li>)}</ul>
+      {niche.finder && <a className="lri-finder" href="/finder?look=light"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="lri-go">{`${niche.finder.navLabel} →`}</span></a>}
+    </main>;
+  }
   return <main className="top-page v2 rankings-index">
     <div className="page-hero">
       <h1>{heading}</h1>
