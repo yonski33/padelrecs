@@ -260,7 +260,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     <section className="p-hero">
       <div className="p-head">
         {/* "<Product> Reviews" matches the page title and what people search for; the word itself is for search and screen readers. */}
-        <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
+        <h1>{fullName}<span className="h1-reviews"> Reviews</span></h1>
         {(r.shape || hasYears) && <p className="p-kicker">{[hasYears ? String(r.year) : null, r.shape && `${r.shape}${typePage?.one || niche.categoryPaths ? "" : ` ${niche.words.one}`}`].filter(Boolean).join(" · ")}</p>}
         {placings[0] && <a className="p-placing" href={placings[0].href}><span className="d-only">{`#${placings[0].rank} in ${placings[0].title}`}</span><span className="m-only">{`#${placings[0].rank} · ${placings[0].label}`}</span> <span aria-hidden="true">→</span></a>}
         {sum.total > 0 && <a className="p-count m-only" href="#reviews"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>{`${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`}</a>}
