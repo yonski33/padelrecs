@@ -1058,3 +1058,5 @@ a:hover .w-name { color: var(--green); }
 .product.v2 .review-list .feed-title-row:has(.feed-title-actions) { align-items: center; }
 .feed-title-actions { align-self: center; }
 .feed-title-actions .sort-menu { margin: 0; }
+.top-page.v2 .top-faq { margin-top: 56px; max-width: 760px; }
+.top-page.v2 .top-faq h2 { font-family: var(--sans); font-weight: 700; font-size: 24px; letter-spacing: -0.02em; }

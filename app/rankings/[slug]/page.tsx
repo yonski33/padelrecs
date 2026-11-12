@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, TRAIT_LIST_LIKED_WEIGHT, RANKINGS_PATH, listYear, MIN_LIST_ENTRIES, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, RANKINGS_PATH, listYear, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon } from "../../icons";
 import { tagTone } from "../../../lib/tags";
@@ -65,30 +65,53 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry; product: Pro
 
 const quoted = (tags: string[]) => tags.map(t => `“${t}”`).join(tags.length > 2 ? ", " : " or ").replace(/, (“[^”]+”)$/, " or $1");
 
-function Method({ list, count, affiliate }: { list: TopList; count: number; affiliate: boolean }) {
+/* FAQ at the bottom of each ranking (owner, 2026-11-12): it replaces the long "How we rank" block, with a short
+   version of the method as answers, and is marked up as FAQPage for search. Every answer comes from the list's data. */
+function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nameOf: (e: ListEntry) => string, brandName: (e: ListEntry) => string, data: Catalog, updated?: string): { q: string; a: string }[] {
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
+  const year = listYear(list);
   const filters = (list.filters ?? []).flatMap(f => {
     const spec = niche.specs.find(s => s.column === f.column)?.label.toLowerCase() ?? f.column;
     return [f.include && `only includes ${w.many} with a ${f.include.join(" or ").toLowerCase()} ${spec}`, f.exclude && `leaves out ${w.many} with a ${f.exclude.join(" or ").toLowerCase()} ${spec}`].filter(Boolean);
   });
-  const trait = list.trait;
-  return <section className="top-method" id="how-we-rank">
-    <h2>How we rank</h2>
-    <ul>
-      <li>{`Two kinds of published review count: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web, each linked to its source. Each one is read as positive, mixed or negative. A ${people.one} review counts as its reviewer chose (positive, mixed or negative); quoted comments are judged when they are moderated, and ones nobody has judged yet don't count. Only reviews from the last ${windowLabel(reviewWindowMonths(list))} count, and a quoted comment is dated by when it was written, not when we quoted it.`}</li>
-      <li>{`The order rewards ${w.many} that are both well liked and widely discussed: we count how many more positive reviews a ${w.one} has than an average ${w.one} with the same number of reviews would have. A ${w.one} with 33 positive reviews out of 43 therefore ranks above one with 15 out of 17, which is why the order doesn't always follow the share of positive reviews.`}</li>
-      {trait && <li>{`This list only takes ${w.many} where at least ${Math.round(trait.minShare * 100)}% of reviews are positive or mixed and tag it ${quoted(trait.tags)}${trait.against ? `, and fewer reviews tag it ${quoted(trait.against)} than that` : ""}. The order is led by how many positive or mixed reviews use those tags, counted the same way (above the site average for that many reviews); a ${w.one} liked more than average gets a smaller bonus (${TRAIT_LIST_LIKED_WEIGHT === 0.5 ? "half" : `${TRAIT_LIST_LIKED_WEIGHT}×`} of its positive reviews above average), and one liked less loses nothing beyond the ${Math.round(MIN_POSITIVE_SHARE * 100)}% minimum.`}</li>}
-      {list.modelYearsBack !== undefined && <li>{`Only ${listYear(list)} models are listed: last season's ${w.many}, kept apart from this year's so each list compares like with like.`}</li>}
-      {list.maxAgeYears !== undefined && <li>{list.maxAgeYears === 0
-        ? `Only ${currentYear()} models are listed, so last season's ${w.many} don't crowd out this year's.`
-        : `Only ${w.many} from the last ${list.maxAgeYears + 1} model years are listed (${currentYear() - list.maxAgeYears} or newer), so older models don't crowd out current ones.`}</li>}
-      <li>{`A ${w.one} needs at least ${min} reviews, at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counting as half), to be listed${filters.length ? `, and this list ${filters.join(" and ")}` : ""}. We never pad a list: ${count < 10 ? `only ${count} ${w.many} qualify right now, so that's how many you see.` : `if fewer than 10 ${w.many} qualify, you see fewer.`} A list with fewer than ${MIN_LIST_ENTRIES} isn't shown until more qualify.`}</li>
-      <li>{`The line under each ${w.one} is a short summary of what its reviews say, not our own opinion.`}</li>
-      <li>{affiliate
-        ? `The list re-ranks itself as new reviews are published. There are no sponsored placements or paid rankings. The Amazon links are affiliate links and never change the order.`
-        : `The list re-ranks itself as new reviews are published. There are no sponsored placements, affiliate links or paid rankings.`}</li>
-    </ul>
-  </section>;
+  const yearRule = list.modelYearsBack !== undefined ? `Only ${year} models are listed.`
+    : list.maxAgeYears === 0 ? `Only ${currentYear()} models are listed.`
+    : list.maxAgeYears !== undefined ? `Only ${currentYear() - list.maxAgeYears} or newer models are listed.` : "";
+  const faq: { q: string; a: string }[] = [];
+  // Not readable off the rows (owner, 2026-11-12): what reviews say across the whole list, and which brands lead it.
+  const ids = new Set(entries.map(e => e.product.id));
+  const counts = new Map<string, Map<string, number>>();
+  for (const x of [...data.reviews, ...data.external]) if (ids.has(x.racketId)) for (const t of x.tags ?? []) {
+    const m = counts.get(t) ?? new Map<string, number>(); counts.set(t, m); m.set(x.racketId, (m.get(x.racketId) ?? 0) + 1);
+  }
+  const total = (m: Map<string, number>) => [...m.values()].reduce((a, b) => a + b, 0);
+  const top = (tone: string) => [...counts].filter(([t, m]) => tagTone(t) === tone && total(m) >= 3).sort((x, y) => total(y[1]) - total(x[1]) || x[0].localeCompare(y[0])).slice(0, 3);
+  const said = (tags: [string, Map<string, number>][]) => tags.map(([t, m]) => `“${t}” (${total(m)} reviews)`).join(tags.length > 2 ? ", " : " and ").replace(/, ([^,]+)$/, " and $1");
+  const byId = new Map(entries.map(e => [e.product.id, e]));
+  const most = (m: Map<string, number>) => byId.get([...m].sort((x, y) => y[1] - x[1])[0][0])!;
+  const loved = top("pos"), complaints = top("neg");
+  if (loved.length) faq.push({ q: `What do ${people.many} like most about these ${w.many}?`, a:
+    `Across the ${entries.length} ${w.many} on this list, the praise mentioned most is ${said(loved)}. ${nameOf(most(loved[0][1]))} gets the most “${loved[0][0]}” mentions.` });
+  if (complaints.length) faq.push({ q: `What are the most common complaints about these ${w.many}?`, a:
+    `The complaints that come up most are ${said(complaints)}. “${complaints[0][0]}” is mentioned most for ${nameOf(most(complaints[0][1]))}.` });
+  const brands = new Map<string, ListEntry[]>();
+  for (const e of entries) { const b = brandName(e); if (b) brands.set(b, [...(brands.get(b) ?? []), e]); }
+  const lead = [...brands].sort((x, y) => y[1].length - x[1].length)[0];
+  if (lead && lead[1].length >= 2 && [...brands.values()].filter(v => v.length === lead[1].length).length === 1) faq.push({ q: `Which brand has the most ${w.many} on this list?`, a:
+    `${lead[0]}, with ${lead[1].length} of the ${entries.length}: ${lead[1].map(e => `${nameOf(e)} (#${e.rank})`).join(", ").replace(/, ([^,]+)$/, " and $1")}.` });
+  faq.push({ q: `How is this ranking made?`, a:
+    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order rewards ${w.many} that are both well liked and widely discussed, so it doesn't always follow the share of positive reviews.` });
+  faq.push({ q: `What does a ${w.one} need to make this list?`, a: [
+    `At least ${min} reviews, with at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counts as half).`,
+    list.trait ? `It also needs reviews that tag it ${quoted(list.trait.tags)}.` : "",
+    filters.length ? `This list ${filters.join(" and ")}.` : "", yearRule,
+    entries.length < 10 ? `Only ${entries.length} ${w.many} qualify right now, so the list isn't padded to 10.` : "",
+  ].filter(Boolean).join(" ") });
+  faq.push({ q: `Are these rankings sponsored?`, a: affiliate
+    ? `No. There are no sponsored placements or paid rankings. The Amazon links are affiliate links and never change the order.`
+    : `No. There are no sponsored placements, affiliate links or paid rankings.` });
+  faq.push({ q: `How often is this list updated?`, a: `It re-ranks itself whenever new reviews are published${updated ? `; the latest change was on ${longDate(updated)}` : ""}.` });
+  return faq;
 }
 
 export default async function TopListPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -102,7 +125,9 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   const amazon = affiliate ? await Promise.all(entries.map(e => amazonButton({ name: e.product.name, brand: brandOf(e.product.brandId) || undefined }))) : [];
   const url = `${base()}${listHref(list.slug)}`;
   const title = listTitle(list, listYear(list), reviews, people.One);
+  const faq = rankingFaq(list, entries, affiliate, e => displayName(e.product.name, brandOf(e.product.brandId)), e => brandOf(e.product.brandId), data, updated);
   const jsonLd = { "@context": "https://schema.org", "@graph": [
+    { "@type": "FAQPage", mainEntity: faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
     { "@type": "ItemList", name: title, url, numberOfItems: entries.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
       itemListElement: entries.map(e => ({ "@type": "ListItem", position: e.rank, name: e.product.name, url: `${base()}${productHref(e.product)}` })) },
     { "@type": "BreadcrumbList", itemListElement: [
@@ -124,7 +149,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       <p>{list.intro}</p>
       {/* The lists as tabs, as in the mockup (the header's chip row is left off on rankings pages). */}
       {lists.length > 1 && <nav className="rank-tabs" aria-label="Rankings">{lists.filter((l, i) => lists.findIndex(x => x.list.slug === l.list.slug) === i).map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label}</a>)}</nav>}
-      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">Methodology explained ↓</a></li></ul>
+      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">How we rank ↓</a></li></ul>
     </div>
     <div className="catalog-grid">
       <ol className="rank-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} product={byId.get(e.product.id)} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
@@ -136,13 +161,16 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
             {yearRule && <li><CalendarGlyph/>{yearRule}</li>}
             <li><PeopleGlyph/>{`${min}+ reviews to qualify`}</li>
           </ul>
-          <a className="more-link" href="#how-we-rank">Full method ↓</a>
+          <a className="more-link" href="#how-we-rank">More on the method ↓</a>
           {niche.finder && <a className="find-button" href="/finder">{niche.finder.navLabel}<Arrow/></a>}
         </section>
         {related.length > 0 && <section className="side-lists"><h2>Other lists</h2><ul>{related.map(r => <li key={r.list.slug}><a href={listHref(r.list.slug)}>{r.list.label}<Arrow/></a></li>)}</ul></section>}
       </aside>
     </div>
-    <Method list={list} count={entries.length} affiliate={affiliate}/>
+    <section className="faq top-faq" id="how-we-rank">
+      <h2>{`${list.title}: common questions`}</h2>
+      {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </section>
   </main>;
 }
 

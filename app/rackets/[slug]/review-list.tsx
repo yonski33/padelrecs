@@ -92,7 +92,7 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     {/* Phones show the first three, then "See all" opens the rest (no JavaScript). */}
     <input type="checkbox" id="all-voices" className="all-voices"/>
     <div className="voices">{shown.map(card)}</div>
-    {matching.length > 3 && <label htmlFor="all-voices" className="see-all m-only">{`See all ${matching.length.toLocaleString("en-US")} opinions →`}</label>}
+    {matching.length > 3 && <label htmlFor="all-voices" className="see-all m-only">{`See all reviews ↓`}</label>}
     {hidden.length > 0 ? <>
       <input type="checkbox" id="more-reviews" className="more-toggle"/>
       <div className="more-hidden"><div className="voices">{hidden.map((i, n) => card(i, shown.length + n))}</div>{moreLink}</div>
