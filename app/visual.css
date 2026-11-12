@@ -1738,3 +1738,4 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
   .lr-sig { display: grid; justify-items: center; gap: 0; }
   .lr-sig b { font-size: 20px; }
 }
+.lr-meta b { white-space: nowrap; }
