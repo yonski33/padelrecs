@@ -712,6 +712,10 @@
     { "brand": "prokennex", "name": "ProKennex Ki Q+ 15 2021", "shape": "105 sq in (677 cm²)", "weight": "300 g strung", "balance": "5 pts HL strung", "core": "16x19", "surface": "72 RA", "slug": "prokennex-ki-q-plus-15-2021",
       "sources": ["https://www.racquetfinder.com/compare.php?pcode=Q15KI8"] },
     { "brand": "wilson", "name": "Wilson Blade 98S V10", "shape": "98 sq in (632 cm²)", "weight": "323 g strung", "balance": "3 pts HL strung", "core": "18x16", "surface": null, "sources": ["https://www.tenniswarehouse-europe.com/descpageRCWILSON-WB98S1-EN.html"] },
-    { "brand": "head", "name": "Head Speed MP 2022", "shape": "100 sq in (645 cm²)", "weight": "315 g strung", "balance": "4 pts HL strung", "core": "16x19", "surface": "62 RA", "sources": ["https://www.tenniswarehouse-europe.com/Head_Speed_MP_2022_Racket/descpageRCHEAD-SPDM-EN.html"] }
+    { "brand": "head", "name": "Head Speed MP 2022", "shape": "100 sq in (645 cm²)", "weight": "315 g strung", "balance": "4 pts HL strung", "core": "16x19", "surface": "62 RA", "sources": ["https://www.tenniswarehouse-europe.com/Head_Speed_MP_2022_Racket/descpageRCHEAD-SPDM-EN.html"] },
+    { "brand": "wilson", "name": "Wilson Defyer 98 Pro", "shape": "98 sq in (632 cm²)", "weight": "323 g strung", "balance": "32.39 cm (6 pts HL strung)", "core": "16x20", "surface": "64 RA", "sources": ["https://www.tennis-warehouse.com/Wilson_Defyer_98_Pro_Racquet/descpage-WRL98.html?img=2"] },
+    { "brand": "wilson", "name": "Wilson Defyer 100", "shape": "100 sq in (645 cm²)", "weight": "318 g strung", "balance": "32.49 cm (6 pts HL strung)", "core": "16x19", "surface": "66 RA", "sources": ["https://www.tennis-warehouse.com/Wilson_Defyer_100_Racquet/descpageRCWILSON-WRL100.html"] },
+    { "brand": "wilson", "name": "Wilson Clash 108 V1", "shape": "108 sq in (697 cm²)", "weight": "297 g strung (280 g unstrung)", "balance": "34.5 cm strung (0 pts EB); 33.5 cm unstrung (3 pts HL)", "core": "16x19", "surface": null, "sources": ["https://tenniscompanion.org/wilson-clash-108-v2/"] },
+    { "brand": "solinco", "name": "Solinco Whiteout 305 18x20 V1", "shape": "98 sq in (632 cm²)", "weight": "323 g strung", "balance": "33.02 cm (4 pts HL strung)", "core": "18x20", "surface": "66 RA", "sources": ["https://www.tennis-warehouse.com/Solinco_Whiteout_305_18x20/descpageRCSOLINCO-WHO18X.html"] }
   ]
 }
