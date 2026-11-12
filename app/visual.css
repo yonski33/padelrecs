@@ -1971,3 +1971,5 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 @media (max-width: 720px) { .lt-bar-aside { display: none; } }
 @media (max-width: 640px) { .lr-others .sig-pop-card { position: fixed; left: 16px; right: 16px; top: auto; width: auto; margin-top: 8px; } }
 .lt-live .sig-pop summary { font-size: inherit; } .lt-live .sig-pop-card { left: 50%; transform: translateX(-50%); }
+.lr-others .sig-pop + a { padding-left: 18px; border-left: 1px solid var(--lt-line); }
+.lr-others .sig-pop summary { color: var(--lt-acc); }
