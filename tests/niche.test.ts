@@ -834,3 +834,32 @@ test("sleep: products named by model and tier (no years), seven category pages w
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("laptop: one product per model and generation (no years), seven category pages with product URLs under them, laptop rating icons", async () => {
+  const n = selectNiche("laptop");
+  assert.equal(n.schema, "laptoprecs");
+  assert.equal(n.productPath, "laptops");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "Computers");
+  assert.equal(n.people.many, "owners");
+  assert.deepEqual(n.categories.map(c => c.label), ["Performance", "Display", "Battery life", "Build & keyboard", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Processor", "Graphics", "Display", "Weight"]);
+  // The owner's approved category URLs (2026-11-12).
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["ultrabooks", "gaming-laptops", "business-laptops", "creator-laptops", "2-in-1-laptops", "chromebooks", "macbooks"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/laptop");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 7, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+    for (const t of [...(list.trait?.tags ?? []), ...(list.trait?.against ?? [])]) assert(n.tags.some(x => x.label === t), `${list.slug}: unknown tag ${t}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

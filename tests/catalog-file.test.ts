@@ -714,3 +714,31 @@ test("the SleepRecs catalog: 238 sourced products in all seven categories, tiers
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: 44, rackets: 238, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the LaptopRecs catalog: 266 sourced laptops in all seven categories, one per model and generation, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/laptop.json");
+  const snapshot = catalogSnapshot(catalog, "laptoprecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 14);
+  assert.equal(snapshot.tables.rackets.length, 266);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 266);
+  const categories = niches.laptop.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/laptop");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    assert(!/ 20\d\d$/.test(r.name), `${r.name}: a year belongs in parentheses, as the maker writes it`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 10, `${c}: at least ten laptops`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Generations, sizes and chip families are separate products, never merged (owner rule 2026-11-12).
+  for (const name of ["Lenovo ThinkPad X1 Carbon Gen 12", "Lenovo ThinkPad X1 Carbon Gen 13", "Apple MacBook Air 13 (M3)", "Apple MacBook Air 13 (M4)", "Apple MacBook Air 15 (M4)",
+    "Apple MacBook Pro 14 (M4)", "Apple MacBook Pro 14 (M4 Pro/Max)", "ASUS ROG Zephyrus G14 (2024)", "ASUS ROG Zephyrus G14 (2025)", "ASUS ROG Zephyrus G16 (2025)",
+    "Lenovo Legion 5i Gen 9", "Lenovo Legion Pro 7i Gen 10", "Dell XPS 13 9340", "Dell XPS 13 9350", "Razer Blade 16 (2024)", "Razer Blade 16 (2025)"]) assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 266, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
