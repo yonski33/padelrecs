@@ -12,8 +12,7 @@ import { webDate } from "../lib/recent";
 import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
 import { listHref } from "./rankings/lists";
-import { HomeBoard } from "./home-board";
-import { AutoSubmitForm } from "./auto-submit";
+import { HomeBoard, HomeSearch } from "./home-board";
 import { ProductArt } from "./visual";
 import { SourceIcon } from "./icons";
 import { lightFont } from "./light-font";
@@ -65,8 +64,8 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   // Category names as the site says them elsewhere ("Cleansers"), with how many products each holds under the search.
   const plural = (c: { key: string; label: string; shapes: string[] }) => niche.typePages?.find(t => c.shapes.some(s => s.toLowerCase() === t.shape.toLowerCase()))?.label ?? c.label;
   const cats = shapes.map(c => ({ key: c.key, label: plural(c), n: searched.filter(r => inShape(r, c)).length })).filter(c => c.n > 0 || c.key === shape?.key);
-  // Every product under the search, in order; the category row filters them on the page (app/home-board.tsx).
-  const results = sortProducts(searched.map(r => ({ r, s: score(data, r.id) })), sort,
+  // Every product, in order; the search box and the category row filter them on the page (app/home-board.tsx).
+  const results = sortProducts(data.listed.map(r => ({ r, s: score(data, r.id) })), sort,
     x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
   const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `/?${q}#board` : "/#board"; };
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
@@ -86,24 +85,19 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
       <p className="lt-sub">We read Reddit, YouTube and blogs so you don’t have to. Every review links to its source.</p>
       <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
-      <AutoSubmitForm className="lt-search" action="/">
-        {Object.entries({ ...keep, shape: f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-        <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search a ${w.one} or brand`} aria-label={`Search ${w.many}`}/>
-        <button type="submit">Search</button>
-      </AutoSubmitForm>
+      {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
+      <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
 
     <div className="lt-grid" id="board">
       <div className="lt-board">
         {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count and an underline on
             the one picked. It stays at the top while the long list scrolls. */}
-        {f.q && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} for “${f.q}” · `}<a href={link({ q: undefined })}>clear</a></p>}
-        <HomeBoard cats={cats} allCount={searched.length} initial={shape?.key} ranked={ranked} base={new URLSearchParams(Object.entries({ ...keep, q: f.q, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
-          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, node: <Row data={data} r={r} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/> }))}
-          empty={f.q
-            ? <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>
-            // A new site (TVRecs, 2026-11-13) before its first reviews are in.
-            : <p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
+        <HomeBoard cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
+          noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
+          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <Row data={data} r={r} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/> }))}
+          // A new site (TVRecs, 2026-11-13) before its first reviews are in.
+          empty={<p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>
       <aside className="lt-side">
         <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
