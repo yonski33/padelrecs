@@ -1171,3 +1171,33 @@ svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--
   .product.v2 .p-signal > b { grid-column: 1 / -1; }
   .sig-info p { left: auto; right: -8px; width: min(260px, 72vw); }
 }
+/* "Summary of a review on Reddit": the text is ours, the link goes to the original. */
+.voice-src .vsum { color: var(--ink-3); }
+.voice-src .vsum + b::before { content: none; }
+.voice-src .vsum::before { content: none !important; }
+.voice-src b + span:not(.arr)::before { content: "·"; margin-right: 8px; }
+@media (max-width: 680px) { .voice-meta .voice-src .vsum { display: inline; } .voice-src > .vsum { display: inline; } }
+/* UX audit round 1 (owner, 2026-11-12). */
+/* Sentiment bar labels meet WCAG AA (4.5:1): deeper green and red with white text, gold with dark text. */
+.sband .s-positive { background: #3d7535; color: #fff; }
+.sband .s-mixed { background: #e3b75a; color: #2b2000; }
+.sband .s-negative { background: #a9432a; color: #fff; }
+.p-legend .s-positive::before { background: #3d7535; } .p-legend .s-mixed::before { background: #e3b75a; } .p-legend .s-negative::before { background: #a9432a; }
+.product.v2 .says-card.neg { --bar: #a9432a; }
+/* The base of the split, so it reads the same as the review tabs. */
+.sband-base { margin: 6px 0 0; font-size: 13px; color: var(--ink-3); }
+/* Review counts beside every signal. */
+.rrow-n { display: block; font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+.prow-count .prow-n { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+@media (max-width: 680px) { .rrow-score .rrow-n { display: inline; margin-left: 6px; } }
+/* The "i" explainer: opens leftwards near the right edge; its link to the method. */
+.sig-info { position: relative; display: inline-block; vertical-align: middle; margin-left: 6px; }
+.sig-info p a { color: var(--green-ink); font-weight: 600; white-space: nowrap; }
+.sig-right p { left: auto; right: 0; }
+.list-bar-sort { display: flex; align-items: center; justify-content: flex-end; gap: 2px; }
+.hero-sig { display: inline-flex; align-items: center; }
+/* Shop button first and filled; "Read reviews" is a text link. */
+.p-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.p-actions .p-read { font-weight: 650; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+/* Rankings: a real button, at least 44px tall. */
+.rrow .rrow-buy.button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 10px; padding: 0 16px; font-size: 14px; font-weight: 650; text-decoration: none; }

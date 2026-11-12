@@ -58,7 +58,7 @@ export async function CompareView({ data, products }: { data: Data; products: Da
     const brand = brandOf(r), s = score(data, r.id), sum = summary(data, r.id);
     const amazon = await amazonButton({ name: r.name, brand });
     const site = amazon ? null : websiteButton(r);
-    return { r, brand, s, sum, signal: sigs.get(r.id)?.signal ?? null, pos: positiveShare(s), line: listLine(r), shop: amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null,
+    return { r, brand, s, sum, signal: sigs.get(r.id)?.signal ?? null, pos: positiveShare(s), line: listLine(r), shop: amazon ? { url: amazon.url, label: "Check price on Amazon", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null,
       affiliate: !!(amazon || site?.affiliate), type: typePageFor(r.shape) };
   }));
 

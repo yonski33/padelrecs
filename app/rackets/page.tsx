@@ -12,7 +12,7 @@ import { productSignals } from "../signals";
 
 import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
-import { browseTiles, BrowseTile, Arrow, CategoryTabs } from "../visual";
+import { browseTiles, BrowseTile, Arrow, CategoryTabs, SignalInfo } from "../visual";
 import { CompareTray } from "../compare/compare-pick";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
@@ -57,7 +57,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
     <CategoryTabs shapes={shapeSpec ? shapes : []} current={f.shape} query={{ brand: f.brand, year: f.year, sort: f.sort, q: f.q }}/>
     <div className="catalog-grid">
       <div className="catalog-main">
-        <div className="list-bar"><p>{`${results.length.toLocaleString("en-US")} ${results.length === 1 ? w.one : w.many}`}{filtered && <> · <a href={catalogPath}>Clear filters</a></>}</p><p className="list-bar-sort">{`Sorted by ${(SORTS.find(x => x.value === sort)?.label ?? "").toLowerCase()}`}</p></div>
+        <div className="list-bar"><p>{`${results.length.toLocaleString("en-US")} ${results.length === 1 ? w.one : w.many}`}{filtered && <> · <a href={catalogPath}>Clear filters</a></>}</p><p className="list-bar-sort">{`Sorted by ${(SORTS.find(x => x.value === sort)?.label ?? "").toLowerCase()}`}<SignalInfo align="right"/></p></div>
         <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} signal={sig.get(r.id)?.signal} tags={tags.get(r.id)}
           details={r.shape ?? ""}/>)}/>
         {!results.length && <p className="empty-feed">{`No ${w.one} found. Either it’s very new, very obscure, or we need to add it. `}<a href={catalogPath}>Clear filters</a> or <a href="/add-review">add it with a review →</a></p>}

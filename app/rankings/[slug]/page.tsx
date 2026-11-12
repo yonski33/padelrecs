@@ -15,8 +15,8 @@ import { rankedLists, listHref, longDate, currentYear, type RankedList } from ".
 import { listLine } from "../../../lib/list-lines";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
-import { ProductArt, SentimentBar, Arrow } from "../../visual";
-import type { Catalog } from "../../../db/data";
+import { ProductArt, SentimentBar, Arrow, SignalInfo } from "../../visual";
+import { score, type Catalog, type Score } from "../../../db/data";
 import { type Signal, MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 type Product = Catalog["rackets"][number];
 
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const pct = (n: number, total: number) => `${n / total * 100}%`;
 const withThe = (name: string) => `${/^the /i.test(name) ? "" : "the "}${name}`;
 
-function Entry({ e, product, brand, list, amazon }: { e: ListEntry & { signal: Signal | null }; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
+function Entry({ e, sc, product, brand, list, amazon }: { e: ListEntry & { signal: Signal | null }; sc: Score; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
   const line = listLine(e.product), name = displayName(e.product.name, brand);
   return <li className={`rrow${e.rank === 1 ? " lead" : ""}`}>
@@ -55,14 +55,16 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry & { signal: S
       {list.trait && <p className="rrow-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       {/* A quiet text link: Amazon on niches with Amazon links, otherwise the product's own site (software, hosting, money). */}
       {amazon
-        ? <a className="rrow-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
-        : site && <a className="rrow-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
+        ? <a className="rrow-buy button" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
+        : site && <a className="rrow-buy button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>}
     </div>
     {/* The same row as the catalogue (owner, 2026-11-12): the split with its legend, then the count the order rests on. */}
-    <div className="rrow-split"><SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative} legend className="stacked"/></div>
+    <div className="rrow-split"><SentimentBar positive={sc.positive} mixed={sc.mixed} negative={sc.negative} legend className="stacked"/></div>
     <a className="rrow-score" href={href}>
       {/* The signal score (owner, 2026-11-12): what the order follows, so the numbers always run high to low. */}
       {e.signal ? <span className="rrow-pos rrow-signal"><b>{e.signal.signal}</b><span>signal</span></span> : <span className="rrow-pos"><span>No signal yet</span></span>}
+      {/* The count the score rests on (owner, 2026-11-12, UX audit). */}
+      <span className="rrow-n">{`${sc.judged.toLocaleString("en-US")} ${sc.judged === 1 ? "review" : "reviews"}`}</span>
     </a>
   </li>;
 }
@@ -154,10 +156,10 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       <p>{list.intro}</p>
       {/* The lists as tabs, as in the mockup (the header's chip row is left off on rankings pages). */}
       {lists.length > 1 && <nav className="rank-tabs" aria-label="Rankings">{lists.filter((l, i) => lists.findIndex(x => x.list.slug === l.list.slug) === i).map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label}</a>)}</nav>}
-      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">How we rank ↓</a></li></ul>
+      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">How we rank ↓</a></li><li className="hero-sig">Signal score <SignalInfo/></li></ul>
     </div>
     <div className="catalog-grid">
-      <ol className="rank-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} product={byId.get(e.product.id)} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
+      <ol className="rank-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} sc={score(data, e.product.id)} product={byId.get(e.product.id)} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
       <aside className="filter-panel">
         <section className="how-box">
           <h2>How the ranking works</h2>

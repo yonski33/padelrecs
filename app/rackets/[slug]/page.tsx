@@ -29,7 +29,7 @@ import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
-import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares } from "../../visual";
+import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo } from "../../visual";
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, pairHref } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
@@ -62,10 +62,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const title = `${name} ${niche.people.One} Reviews`;
   const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
     ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
-       sum.loved.length ? `Loved for: ${sum.loved.slice(0, 3).join(", ")}.` : "",
-       sum.complaints.length ? `Most common complaint: ${sum.complaints[0]}.` : ""])
+       // Only themes with 3+ mentions make the snippet (owner, 2026-11-12, UX audit).
+       sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).length ? `Loved for: ${sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).slice(0, 3).join(", ")}.` : "",
+       (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])
     : base.description;
-  return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
+  const images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
+  return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
 }
 
 export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]; tag?: string | string[]; show?: string | string[]} & Record<string, string | string[] | undefined>>}) {
@@ -97,9 +99,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const webDate = (e: {sourceDate: string | null; createdAt: string}) => e.sourceDate || e.createdAt;
   const since = new Date(); if (niche.recentMonths !== undefined) since.setUTCMonth(since.getUTCMonth() - niche.recentMonths);
   const older = (e: {sourceDate: string | null; createdAt: string}) => niche.recentMonths !== undefined && Date.parse(webDate(e)) < since.getTime();
-  const recentWeb = external.filter(e => !older(e));
   // The sentiment bar counts user reviews too, by their stars (4–5 positive, 3 mixed, 1–2 negative), like the rankings.
-  const verdicts = [...reviews.filter(x => !older({ sourceDate: null, createdAt: x.createdAt })).map(x => ({ sentiment: ratingVerdict(x.rating) })), ...recentWeb];
+  // Every review with a verdict, the same count as the bar and the tabs (owner, 2026-11-12).
+  const verdicts = [...reviews.map(x => ({ sentiment: ratingVerdict(x.rating) })), ...external];
   // "Most helpful" (our helpfulness score, plus votes) is the default; "Newest" on request.
   const sort = query.sort === "newest" ? "newest" : "helpful";
   const sum = summary(data, r.id);
@@ -138,7 +140,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const items: ListItem[] = [
     ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst/>,
+    // "Newest" goes by the date the review was written; one without a known date sorts last, not by when we imported it
+    // (owner, 2026-11-12: the Newest order looked alphabetical).
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -205,18 +209,24 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // What reviewers praise and complain about, most mentioned first: a summary under the specs, above the verdict.
   // The product at a glance: what people praise and complain about, with bars so the big themes stand out. Each row opens
   // the reviews that mention it.
-  const sideTags = [["Liked", "pos", sum.loved.slice(0, 5)], ["Watch for", "neg", sum.complaints.slice(0, 5)]] as const;
-  const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => sum.tagCounts.get(t) ?? 0)));
+  // A theme gets its own row at MIN_THEME mentions, shown as a share of the product's reviews; rarer ones go under "Also
+  // mentioned" (owner, 2026-11-12, UX audit: one or two mentions read as a finding).
+  const MIN_THEME = 3, mentions = (t: string) => sum.tagCounts.get(t) ?? 0;
+  const sideTags = [["Liked", "pos", sum.loved.filter(t => mentions(t) >= MIN_THEME).slice(0, 5)], ["Watch for", "neg", sum.complaints.filter(t => mentions(t) >= MIN_THEME).slice(0, 5)]] as const;
+  const rare = [...sum.loved, ...sum.complaints].filter(t => mentions(t) < MIN_THEME);
+  const also = [...sum.other, ...rare].sort((a, b) => mentions(b) - mentions(a));
+  const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => mentions(t))));
+  const pctOf = (n: number) => Math.max(1, Math.round(n / Math.max(1, sum.total) * 100));
   const tagHref = (t: string) => `${productHref(r)}?tag=${encodeURIComponent(t)}#reviews`;
-  const says = sum.tagCounts.size > 0 && <div className="says">
+  const says = sideTags.some(([, , ts]) => ts.length) && <div className="says">
     <h2><span className="d-only">{`What ${niche.people.many} love, and what they don’t`}</span><span className="m-only">{`What ${niche.people.many} noticed`}</span></h2>
     <div className="says-cards">
       {sideTags.filter(([, , ts]) => ts.length).map(([label, tone, ts]) => <section key={label} className={`says-card ${tone}`}>
         <h3><TagGlyph tone={tone}/>{label}</h3>
-        <ul>{ts.map(t => { const n = sum.tagCounts.get(t) ?? 0; return <li key={t}><a href={tagHref(t)}><span className="says-name">{t}</span><span className="says-bar"><i style={{ width: `${Math.max(6, n / topCount * 100)}%` }}/></span><span className="says-n">{n}</span></a></li>; })}</ul>
+        <ul>{ts.map(t => { const n = mentions(t); return <li key={t}><a href={tagHref(t)}><span className="says-name">{t}</span><span className="says-bar"><i style={{ width: `${Math.max(6, n / topCount * 100)}%` }}/></span><span className="says-n" title={`${n} of ${sum.total} reviews`}>{`${pctOf(n)}%`}</span></a></li>; })}</ul>
       </section>)}
     </div>
-    {sum.other.length > 0 && <p className="says-also">Also mentioned: {sum.other.slice(0, 3).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
+    {also.length > 0 && <p className="says-also">Also mentioned: {also.slice(0, 4).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
   </div>;
   // Variants compared (DiscGolfRecs "By plastic"): only variants with 3+ reviews, and only when at least two qualify. The
   // positive share and the tags are counted like the headline's (summary()), over that variant's player and web reviews.
@@ -272,11 +282,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {/* The signal score leads (owner, 2026-11-12); the bar below shows the split it comes from. */}
           {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span>
             {/* What the number means, one tap away (owner, 2026-11-12, after the outside audit). No JavaScript. */}
-            <details className="sig-info"><summary aria-label="What is the signal score?">i</summary><p>A score out of 100. Negative and mixed reviews take points off, and so does having only a few reviews, so a handful of glowing reviews can’t beat a product many people like.</p></details></div>
+            <SignalInfo/></div>
             : pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
         {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
+        {/* What the split is a share of, so it reads the same as the review tabs below (owner, 2026-11-12). */}
+        {pos !== null && <p className="sband-base">{`Of ${s.judged.toLocaleString("en-US")} ${s.judged === 1 ? "review" : "reviews"} with a clear verdict`}</p>}
         {pos !== null && <ul className="p-legend m-only" aria-hidden="true">{([["positive", "Positive", s.positive], ["mixed", "Mixed", s.mixed], ["negative", "Negative", s.negative]] as const).map(([k, w, n], i) =>
           <li key={k} className={`s-${k}`}><span>{w}</span><b>{`${shares([s.positive, s.mixed, s.negative])[i]}%`}</b></li>)}</ul>}
       </div>
@@ -285,10 +297,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             sentence of its review summary. The whole summary answers the first question in the FAQ. */}
         {oneLine && <p className="p-line">{oneLine}</p>}
         <p className="p-actions">
-          {sum.total > 0 && <a className="button" href="#reviews">Read reviews</a>}
-          {amazon ? <a className="button ghost amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price</a>
-            : site ? <a className="button ghost" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
+          {/* The shop link is the main button, with one label everywhere; reviews are a text link (owner, 2026-11-12, UX audit). */}
+          {amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
+            : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
             : <a className="button ghost" href={addHref}><PlusIcon/>Add your review</a>}
+          {sum.total > 0 && <a className="p-read" href="#reviews">Read reviews <span aria-hidden="true">↓</span></a>}
         </p>
         <p className="p-links m-only">
           {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} reviews`} <span aria-hidden="true">↓</span></a>}
@@ -368,7 +381,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     </section>}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
     {shopButton && <div className="buy-bar">
-      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
+      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "Check price on Amazon" : site!.label}</a>
     </div>}
   </main>;
 }

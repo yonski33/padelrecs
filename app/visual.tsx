@@ -156,7 +156,8 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
     </article>;
   }
   const e = props.entry, label = sourceLabel(e);
-  const src = <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{label.name && <span>{label.name}</span>}{e.sourceDate && <span className="vdate">{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>;
+  // Quoted reviews are our summaries, said as much on the card (owner, 2026-11-12, UX audit), not styled as quotes.
+  const src = <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><span className="vsum">Summary of a review on</span><b>{label.platform}</b>{label.name && <span>{label.name}</span>}{e.sourceDate && <span className="vdate">{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>;
   const pill = e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>;
   if (tf) return <article className="voice tf">
     <p className="voice-text">{quoteText(e)}</p>
@@ -204,4 +205,11 @@ export function CategoryTabs({ current, shapes = [], query = {} }: { current?: s
     : shapes.length > 1 ? [{ key: "", label: "All", href: keep() }, ...shapes.map(x => ({ key: x, label: x, href: keep(x) }))] : [];
   if (!tabs.length) return null;
   return <nav className="rank-tabs cat-tabs" aria-label={`${niche.words.One} types`}>{tabs.map(t => <a key={t.key || "all"} href={t.href} aria-current={(current ?? "") === t.key ? "page" : undefined}>{t.label}</a>)}</nav>;
+}
+
+/** The signal score's one-line explanation behind an "i", with a link to the full method on the About page (owner,
+ *  2026-11-12, UX audit). No JavaScript. `align` opens it leftwards where it sits near the right edge. */
+export function SignalInfo({ align = "left" }: { align?: "left" | "right" }) {
+  return <details className={`sig-info${align === "right" ? " sig-right" : ""}`}><summary aria-label="What is the signal score?">i</summary>
+    <p>A score out of 100. Negative and mixed reviews take points off, and so does having only a few reviews, so a handful of glowing reviews can’t beat a product many people like. <a href="/about#signal">How it works</a></p></details>;
 }
