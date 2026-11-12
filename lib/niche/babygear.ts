@@ -36,7 +36,7 @@ export const babygear: Niche = {
   scoreUnit: { one: "rattle", many: "rattles" },
   // Warm off-white page, soft charcoal ink, deep sage primary, one apricot accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
-    "--bg": "#fcfbf8",
+    "--bg": "#ffffff",
     "--surface": "#ffffff",
     "--tint": "#f4f3ee",
     "--ink": "#2b2f2d",

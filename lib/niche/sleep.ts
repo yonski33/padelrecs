@@ -37,7 +37,7 @@ export const sleep: Niche = {
   scoreUnit: { one: "bed", many: "beds" },
   // Warm cream page, night-blue ink and primary, one muted lavender accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
-    "--bg": "#fbf8f3",
+    "--bg": "#ffffff",
     "--surface": "#ffffff",
     "--tint": "#f3efe7",
     "--ink": "#1f2433",

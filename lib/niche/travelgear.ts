@@ -34,7 +34,7 @@ export const travelgear: Niche = {
   scoreUnit: { one: "suitcase", many: "suitcases" },
   // Warm sand-white page, deep navy ink, one orange accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
-    "--bg": "#fdfcf9",
+    "--bg": "#ffffff",
     "--surface": "#ffffff",
     "--tint": "#f6f3ec",
     "--ink": "#14213d",
