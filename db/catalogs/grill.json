@@ -1,5 +1,5 @@
 {
-  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5), Ooni Pro 16 (4; sold earlier as \"Ooni Pro\"), Traeger Silverton 620 (4).",
+  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5), Ooni Pro 16 (4; sold earlier as \"Ooni Pro\"), Traeger Silverton 620 (4), Traeger Pro 34 (3).",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -2314,6 +2314,18 @@
       "sources": [
         "https://support.traeger.com/hc/en-us/articles/9328446722331-Pro-22-Support-Guide",
         "https://www.traeger.com/pellet-grills/pro/22-bronze"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Pro 34",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": "up to 450°F",
+      "weight": "None",
+      "sources": [
+        "https://support.traeger.com/hc/en-us/articles/9328460642203-Pro-34-Support-Guide"
       ]
     },
     {
