@@ -146,7 +146,7 @@ export default async function Home({ searchParams }: {
         </section>
 
       {tiles.length >= 2 && <section className="browse-tiles" aria-labelledby="browse-title">
-        <div className="section-head"><div><h2 id="browse-title">{niche.typePages?.length ? `Browse by category` : `Find by playing style`}</h2></div><a className="section-link" href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? `All ${niche.words.many}` : "All rankings"}<Arrow/></a></div>
+        <div className="section-head"><div><h2 id="browse-title">{niche.typePages?.length ? `Browse by category` : `Explore the rankings`}</h2></div><a className="section-link" href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? `All ${niche.words.many}` : "All rankings"}<Arrow/></a></div>
         <div className="btile-row">{tiles.slice(0, 4).map(t => <BrowseTile key={t.key} tile={t} data={all}/>)}</div>
         {tiles.length > 4 && <p className="more-types-link"><a href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? "Explore all categories" : "See all rankings"}<Arrow/></a></p>}
       </section>}

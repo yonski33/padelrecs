@@ -257,7 +257,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="p-scorebox">
         {sum.total > 0 ? <div className="p-score">
           {/* The signal score leads (owner, 2026-11-12); the bar below shows the split it comes from. */}
-          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span></div>
+          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span>
+            {/* What the number means, one tap away (owner, 2026-11-12, after the outside audit). No JavaScript. */}
+            <details className="sig-info"><summary aria-label="What is the signal score?">i</summary><p>{`A score out of 100: how positive the reviews are and how many there are, compared with other ${categoryWords(sig.category)}. Negative and mixed reviews take points off.`}</p></details></div>
             : pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
