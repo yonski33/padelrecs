@@ -1,5 +1,6 @@
 // Shared pieces of the visual layout (2026-11 redesign): product photos with a drawn placeholder, sentiment bars, short
 // source-linked quote cards and image tiles. Every number and word comes from published reviews; nothing is filled in.
+import AdminEdit from "./admin-edit";
 import type { Catalog, Score as ScoreT } from "../db/data";
 import { ProductIcon, SourceIcon } from "./icons";
 import { amazonPhoto } from "../lib/amazon-photos";
@@ -146,12 +147,12 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
     if (tf) return <article className="voice tf">
       {/* Product pages show the whole review, no "Read more" (owner, 2026-11-12). */}
       <p className="voice-text">{r.reviewText}</p>
-      <footer className="voice-meta"><span className={`spill s-${v}`}>{sentimentWord[v]}</span>{src}<span className="voice-by">{by}</span></footer>
+      <footer className="voice-meta"><span className={`spill s-${v}`}>{sentimentWord[v]}</span>{src}<span className="voice-by">{by}</span><AdminEdit type="player" id={r.id}/></footer>
     </article>;
     return <article className="voice">
       <header>{src}<span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
       <Clamp id={`p-${r.id}`} text={r.reviewText}/>
-      <footer className="voice-by">{by}</footer>
+      <footer className="voice-by">{by}<AdminEdit type="player" id={r.id}/></footer>
     </article>;
   }
   const e = props.entry, label = sourceLabel(e);
@@ -159,12 +160,13 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
   const pill = e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>;
   if (tf) return <article className="voice tf">
     <p className="voice-text">{quoteText(e)}</p>
-    <footer className="voice-meta">{pill}{src}</footer>
+    <footer className="voice-meta">{pill}{src}<AdminEdit type="web" id={e.id}/></footer>
   </article>;
   return <article className="voice">
     <header>{src}{pill}</header>
     <Clamp id={`w-${e.id}`} text={quoteText(e)}/>
     <a className="voice-orig m-only" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original source <span aria-hidden="true">↗</span></a>
+    <AdminEdit type="web" id={e.id}/>
   </article>;
 }
 

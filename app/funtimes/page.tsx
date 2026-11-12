@@ -12,6 +12,8 @@ import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
 import { niche, catalogPath, productHref } from "../../lib/niche";
 import { productVariants } from "../../lib/variants";
+import { FinderForm, FinderResults, allSources } from "./finder";
+import { reviewSites, searchInput, searchReviews } from "../../db/review-search";
 const w = niche.words;
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {title: "Review admin", robots: {index: false, follow: false}};
@@ -37,15 +39,23 @@ const messages: Record<string,string> = {
  "spec-slug-invalid":"That page address can't be used. Use letters, numbers and dashes. Nothing was saved.",
  failed:"Could not save your changes. Please try again."
 };
-export default async function Admin({searchParams}:{searchParams:Promise<{status?:string,tab?:string,page?:string,result?:string,racket?:string}>}) {
+export default async function Admin({searchParams}:{searchParams:Promise<{status?:string,tab?:string,page?:string,result?:string,racket?:string,q?:string,site?:string,sentiment?:string,source?:string,days?:string,check?:string}>}) {
  if (!(await isAdmin())) {
   const user = await getCurrentUser();
   return <main className="narrow"><div className="page-title"><h1>Review admin</h1></div><p>{user ? "This account does not have admin access." : "Sign in with the owner account to manage reviews."}</p>{!user && <a className="button" href="/funtimes/login">Admin sign in →</a>}<p><a href="/">Back to reviews</a></p></main>;
  }
- const q=await searchParams, web=q.tab==="web", specs=q.tab==="specs";
+ const q=await searchParams, web=q.tab==="web", specs=q.tab==="specs", find=q.tab==="find";
+ const sites=reviewSites(), sources=allSources(), finderInput=searchInput.parse(find?q:{});
  const status = q.status==="approved"||q.status==="rejected" ? q.status : "pending";
  const page = Math.max(1, Math.min(100000, parseInt(q.page||"1",10)||1));
  const db = await database();
+ if (find) {
+  const result = await searchReviews(db, finderInput, sites);
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Find and fix published web reviews on every site.</p></div>
+  <AdminNav current="find"/>
+  <FinderForm input={finderInput} sites={sites} sources={sources}/>
+  <FinderResults input={finderInput} result={result} sites={sites} here={niche.id}/></main>;
+ }
  const [models, totals, queue, external, allBrands] = await Promise.all([
   db.select().from(rackets).orderBy(rackets.name),
   db.select({status:reviews.status,total:count()}).from(reviews).where(notLike(reviews.id,"demo-%")).groupBy(reviews.status),
@@ -57,7 +67,8 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  const variants = niche.variants ? Object.fromEntries(models.map(m => [m.id, productVariants(m.core)]).filter(([, v]) => v.length)) : undefined;
  const variantLine = (v: string | null) => niche.variants && v ? <p className="small">{niche.variants.label}: <b>{v}</b></p> : null;
  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">{`Manage ${niche.people.one} submissions, web reviews, and ${w.one} specifications.`}</p></div>
- <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes" aria-current={!web&&!specs?"page":undefined}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={web?"page":undefined}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={specs?"page":undefined}>{`${w.Many} & specs`}</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>
+ <AdminNav current={specs?"specs":web?"web":"player"}/>
+ <FinderForm input={finderInput} sites={sites} sources={sources}/>
  {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing","spec-slug-taken","spec-slug-invalid"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
  {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket} oldSlugs={q.racket ? await oldSlugs(db, q.racket) : []}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
  <form method="post" action="/api/funtimes/external-reviews" className="review-form">
@@ -86,4 +97,9 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>20&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
  </>}
  </main>;
+}
+
+function AdminNav({current}:{current:"find"|"player"|"web"|"specs"}) {
+ const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
+ return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
 }

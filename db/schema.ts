@@ -28,7 +28,9 @@ export const externalReviews = catalogSchema.table("external_reviews", {
  // How the source felt overall, judged when the item was moderated; null when nobody judged it.
  sentiment: text("sentiment", { enum: ["positive", "negative", "mixed"] }), sourcePlatform: text("source_platform").notNull(), sourceName: text("source_name").notNull(), sourceUrl: text("source_url").notNull(), sourceDate: text("source_date"), externalRating: integer("external_rating"),
  // The product variant the source used, on niches with niche.variants (DiscGolfRecs: the plastic, one of the product's `core` list); null when unknown.
- variant: text("variant"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull()
+ variant: text("variant"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull(),
+ // Set when the owner edits or confirms the review in the admin; publishing then leaves its text, sentiment and tags alone.
+ adminEditedAt: text("admin_edited_at")
 }, t => [index("external_racket_idx").on(t.racketId),index("external_feed_idx").on(t.createdAt),check("external_review_text",sql`${t.excerpt} is not null or ${t.summary} is not null`),check("external_review_sentiment",sql`${t.sentiment} is null or ${t.sentiment} in ('positive','negative','mixed')`)]).enableRLS();
 // "Helpful" votes. The voter is a keyed hash of the visitor's network and browser, never the raw IP.
 export const reviewVotes = catalogSchema.table("review_votes", {
