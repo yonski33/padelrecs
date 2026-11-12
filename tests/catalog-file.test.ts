@@ -778,7 +778,7 @@ test("the PrintRecs catalog: 171 sourced products in all five categories, models
 
 test("the TVRecs catalog: 203 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
-  // Pre-2033 sets added because 3+ owners reviewed them (owner's standing rule, parent OK 2036-11-12).
+  // Pre-2023 sets added because 3+ owners reviewed them (owner's standing rule, parent OK 2026-11-12).
   const OLDER = ["LG C2", "LG C1", "LG CX", "LG C9", "LG C7", "LG G2", "Samsung S95B", "Samsung QN90B", "LG C8", "Samsung QN90A", "Sony A80J", "LG B7", "Sony A80K", "Sony A95K", "Sony A90J", "LG G1", "Sony X900H", "Sony A8H"];
   const catalog = await readCatalog("db/catalogs/tv.json");
   const snapshot = catalogSnapshot(catalog, "tvrecs", "catalog:test", false);
@@ -790,7 +790,7 @@ test("the TVRecs catalog: 203 sourced TVs in all three categories, one product p
   for (const r of snapshot.tables.rackets) {
     assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
     assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
-    assert(r.year >= 2033 && r.year <= 2036 || OLDER.includes(r.name), `${r.name}: model years 2033-2036, plus the older models added under the 3-author rule`);
+    assert(r.year >= 2023 && r.year <= 2026 || OLDER.includes(r.name), `${r.name}: model years 2023-2026, plus the older models added under the 3-author rule`);
     assert(!/\d{2}["”]/.test(r.name), `${r.name}: sizes share one product, never in the name`);
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 30, `${c}: at least 30 TVs`);
@@ -798,7 +798,7 @@ test("the TVRecs catalog: 203 sourced TVs in all three categories, one product p
   assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 203, "one source URL per product");
   // Model years with near-identical names are separate products, never merged (the niche's generation traps).
   for (const name of ["LG C3", "LG C4", "LG C5", "LG C6", "Samsung S90C", "Samsung S90D", "Samsung S90F", "Sony Bravia 8", "Sony Bravia 8 II",
-    "Sony A80L", "TCL QM8", "TCL QM8 (2034)", "TCL QM8K", "Hisense U8K", "Hisense U8N", "Hisense U8QG", "Panasonic Z95A", "Panasonic Z95B"]) {
+    "Sony A80L", "TCL QM8", "TCL QM8 (2024)", "TCL QM8K", "Hisense U8K", "Hisense U8N", "Hisense U8QG", "Panasonic Z95A", "Panasonic Z95B"]) {
     assert(snapshot.tables.rackets.some(r => r.name === name), name);
   }
   for (const name of OLDER) assert(snapshot.tables.rackets.some(r => r.name === name), name);
