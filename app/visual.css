@@ -1927,3 +1927,83 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-bar { overflow: visible; }
 .lt-cats .lc-more summary { padding: 6px 0 9px; font-size: 13.5px; }
 @media (max-width: 720px) { .lt-cats { overflow-x: auto; } .lt-cats .lc-more > div { position: fixed; right: 16px; top: auto; } }
+/* Home leaderboard rows: the rank is a counter over the rows shown, so it follows the category picked on the page. */
+.lt-list.ranked { counter-reset: lt-rank; }
+.lt-list.ranked .lt-slot { counter-increment: lt-rank; }
+.lt-list.ranked .lt-rank::before { content: "#" counter(lt-rank); }
+.lt-slot.lt-top > .lt-row { border-color: transparent; background: var(--lt-tint2); }
+.lt-slot.lt-top1 > .lt-row { background: linear-gradient(90deg, var(--lt-tint), color-mix(in srgb, #f6c79a 30%, #fff)); }
+.lt-list { display: grid; gap: 4px; }
+.lt-slot.lt-top, .lt-slot.lt-top1 { background: none; border: 0; }
+/* "How the signal works" pop-up (owner, 2026-11-13). */
+.sig-pop { position: relative; display: inline-block; }
+.sig-pop summary { list-style: none; cursor: pointer; color: var(--lt-acc, var(--green-ink)); }
+.sig-pop summary::-webkit-details-marker { display: none; }
+.sig-pop summary:hover { text-decoration: underline; }
+.sig-pop-card { position: absolute; z-index: 30; top: calc(100% + 8px); left: 0; width: min(300px, 80vw); display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 14px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.1); color: var(--lt-ink, #262421); font-size: 13px; line-height: 1.5; text-align: left; white-space: normal; }
+.sig-pop-card b { font-size: 14px; font-weight: 600; }
+.sig-pop-card p { margin: 0; color: var(--lt-mute, #8a857c); }
+.sig-pop-card a { font-weight: 600; color: var(--lt-acc, var(--green-ink)); }
+.lp-sub .sig-pop + *::before { content: "·"; margin-right: 14px; color: var(--lt-mute); }
+/* Home list thumbnails a little bigger (owner, 2026-11-13). */
+.lt-row { grid-template-columns: 40px 64px minmax(0, 1fr) auto; }
+.lt-art { width: 64px; height: 64px; }
+@media (max-width: 560px) { .lt-row { grid-template-columns: 30px 52px minmax(0, 1fr) auto; } .lt-art { width: 52px; height: 52px; } }
+/* Ranking list thumbnails a little bigger, like the home list (owner, 2026-11-13). */
+.lr-row { grid-template-columns: 38px 72px minmax(0, 1fr) auto; }
+.lr-art { width: 72px; height: 72px; }
+.lc-row { grid-template-columns: 72px minmax(0, 1fr) auto; }
+@media (max-width: 640px) { .lr-row { grid-template-columns: 26px 56px minmax(0, 1fr) auto; } .lr-art { width: 56px; height: 56px; } .lc-row { grid-template-columns: 56px minmax(0, 1fr) auto; } }
+/* Readability (owner, 2026-11-13): the one-line summaries in a darker grey, and the small grey text a touch darker,
+   so both read well on the white and tinted rows. */
+.lt-site, .lt-page { --lt-mute: #736e65; }
+.lt-line, .lr-line, .lp-line, .lri-intro { color: #4f4b44 !important; }
+/* Signal pop-up in more places (owner, 2026-11-13). */
+.sig-pop-right .sig-pop-card { left: auto; right: 0; }
+.sig-pop summary { font-size: 13px; font-weight: 500; white-space: nowrap; }
+.lt-bar-aside { margin-left: auto; padding: 6px 0 9px 14px; }
+.lt-note .sig-pop summary { font-size: inherit; }
+.lr-others .sig-pop summary { font-weight: 600; }
+.lr-others .sig-pop + a { padding-left: 18px; border-left: 1px solid var(--lt-line); }
+.lri .lr-hero .sig-pop, .lcmp .cmp-hero .sig-pop { justify-self: center; }
+.lri .lr-hero .sig-pop-card, .lcmp .cmp-hero .sig-pop-card { left: 50%; transform: translateX(-50%); }
+.lc-head .sig-pop { margin-right: 6px; }
+@media (max-width: 720px) { .lt-bar-aside { display: none; } }
+@media (max-width: 640px) { .lr-others .sig-pop-card { position: fixed; left: 16px; right: 16px; top: auto; width: auto; margin-top: 8px; } }
+.lt-live .sig-pop summary { font-size: inherit; } .lt-live .sig-pop-card { left: 50%; transform: translateX(-50%); }
+.lr-others .sig-pop + a { padding-left: 18px; border-left: 1px solid var(--lt-line); }
+.lr-others .sig-pop summary { color: var(--lt-acc); }
+.lt-note .sig-pop-card { left: auto; right: 0; }
+/* Home: count and sort right over the list (owner, 2026-11-13). */
+.lt-listhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 10px 4px 8px; font-size: 13px; color: var(--lt-mute); }
+.lt-sort { display: inline-flex; align-items: center; gap: 4px; color: var(--lt-mute); }
+.lt-sort select { appearance: none; border: 0; background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23262421' stroke-width='1.6'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 2px center; padding: 2px 16px 2px 2px; font: inherit; font-size: 13px; font-weight: 600; color: var(--lt-ink); cursor: pointer; }
+.lt-hero { padding-bottom: 22px; }
+.lt-site .site > main .lt-sort select { border: 0; border-radius: 0; background-color: transparent; padding: 2px 16px 2px 2px; }
+.lt-sort select { border: 0 !important; border-radius: 0 !important; background-color: transparent !important; box-shadow: none !important; }
+/* Category tabs readable on the light background (owner, 2026-11-13). */
+.lt-cats a, .lt-cats .lc-more summary { color: #4f4b44 !important; }
+.lt-cats a small { color: #736e65 !important; }
+.lt-cats a[aria-current] { color: var(--lt-ink) !important; font-weight: 600; }
+.lt-cats a[aria-current] small { color: var(--lt-acc) !important; }
+.lt-cats a:hover, .lt-cats .lc-more summary:hover { color: var(--lt-ink) !important; }
+/* Sort sits right under the category tabs (owner, 2026-11-13). */
+.lt-bar { margin-bottom: 0; }
+.lt-listhead { margin: 6px 4px 4px; }
+/* Home: Sort in the tab row, right end (owner, 2026-11-13). */
+.lt-bar { align-items: center; }
+.lt-cats { flex: 1 1 auto; min-width: 0; }
+.lt-bar-aside { display: block !important; flex: none; margin-left: auto; padding: 6px 0 9px 14px; }
+.lt-board > .lt-filtered { margin: 8px 4px 4px; }
+@media (max-width: 720px) { .lt-bar-aside { margin-left: 0; padding: 6px 0 4px; } }
+.lt-board .lt-cats { gap: 15px; }
+.lt-board .lt-cats a small { margin-left: 3px; }
+@media (max-width: 1100px) and (min-width: 721px) { .lt-board .lt-cats a small { display: none; } }
+/* Sort on the same line as the category labels (owner, 2026-11-13). */
+.lt-board .lt-bar { align-items: baseline; }
+.lt-board .lt-bar-aside { padding: 0 0 0 14px; align-self: baseline; }
+.lt-board .lt-sort, .lt-board .lt-sort select { font-size: 13.5px; line-height: 1.2; }
+
+/* One deep green for the signal number on every site (owner, 2026-11-13), whatever the site's own accent. */
+:root { --lt-signal: #2f6b34; }
+.lt-sig b, .lt-mini-v, .lr-sig b, .lri-sig, .product.v2.lt-page .p-signal b, .lcmp .cmp-pos.cmp-signal b, .ix-sig b, .lp-stat .lp-signal, .sim-signal b { color: var(--lt-signal) !important; }

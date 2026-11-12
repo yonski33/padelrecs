@@ -15,6 +15,7 @@ import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
+import Link from "next/link";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
@@ -63,6 +64,7 @@ export default async function Home({ searchParams }: {
   const reviews = ofType(data.reviews), external = ofType(data.external);
   const query = (next: { type?: string; show?: number }) => {
     const q = new URLSearchParams();
+    for (const k of ["shape", "q", "sort"] as const) { const v = params[k]; if (typeof v === "string" && v) q.set(k, v); }
     if (next.type) q.set("type", next.type);
     if (next.show) q.set("show", String(next.show));
     return q.size ? `/?${q}` : "/";
@@ -99,11 +101,12 @@ export default async function Home({ searchParams }: {
 
   const feed = <section className="feed" id="latest">
     <div className="section-head">
-      {type ? <h1 className="feed-title">{`Latest ${type.label.toLowerCase()} reviews`}</h1> : <h2>Latest reviews</h2>}
+      <h2>{type ? `Latest ${type.label.toLowerCase()} reviews` : "Latest reviews"}</h2>
     </div>
     {niche.typePages && <ChipRow className="type-filter" label={`Filter reviews by ${niche.words.one} type`}>
-      <a href={query({})} aria-current={!type ? "page" : undefined}>All</a>
-      {niche.typePages.map(t => <a key={t.slug} href={query({ type: t.slug })} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</a>)}
+      {/* Swaps only the reviews, without a full reload, and keeps the scroll position (owner, 2026-11-13). */}
+      <Link href={query({})} scroll={false} replace prefetch={false} aria-current={!type ? "page" : undefined}>All</Link>
+      {niche.typePages.map(t => <Link key={t.slug} href={query({ type: t.slug })} scroll={false} replace prefetch={false} aria-current={type?.slug === t.slug ? "page" : undefined}>{t.label}</Link>)}
     </ChipRow>}
     <div className="feed-grid">{items.slice(0, show).map(item => <Fragment key={item.key}>{item.node}</Fragment>)}</div>
     {items.length === 0 && <p className="empty-feed">{type ? `No ${type.label.toLowerCase()} reviews here yet.` : "No reviews here yet. Somebody has to go first."} <a href="/add-review">Add a review →</a></p>}
@@ -113,7 +116,8 @@ export default async function Home({ searchParams }: {
 
   const [lead1, topic] = homeHeadline();
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
-  if ((params.home === "d" || !params.home) && !type) {
+  // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
+  if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">
       <HomeLight data={all} f={{ q: params.q, shape: params.shape, sort: params.sort, show: one(params.show) }} signals={await productSignals()} picks={picks} now={now.getTime()}/>

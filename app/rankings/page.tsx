@@ -10,7 +10,7 @@ import { RANKINGS_PATH, listYear } from "../../lib/top-lists";
 import { BrowseTile } from "../visual";
 import { rankedLists, listHref, longDate, currentYear } from "./lists";
 import { FinderInvite } from "../finder/invite";
-import { ProductArt } from "../visual";
+import { ProductArt, SignalPop } from "../visual";
 import { productHref } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { lightFont } from "../light-font";
@@ -41,6 +41,7 @@ export default async function TopListsIndex({ searchParams }: { searchParams: Pr
       <p className="crumbs"><a href="/">Home</a><span>/</span>Rankings</p>
       <header className="lr-hero">
         <h1>{`${category[0]}${category.slice(1).toLowerCase()} rankings, according to `}<em>{`real ${people.many}`}</em></h1>
+        <SignalPop/>
         <p className="lr-sub">{`${unique.length} rankings of ${reviews.size} ${w.many}, counted from published reviews · no sponsored placements${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       </header>
       <ul className="lri-grid">{unique.map(({ list, entries }) => <li key={list.slug} className="lri-card">

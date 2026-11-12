@@ -13,3 +13,29 @@ export function sourceLabel(source: Source) {
     ? { platform: "YouTube comment", name: name && `on ${name}` }
     : { platform: platformName(source.sourcePlatform), name };
 }
+
+/** A Reddit link to one comment carries the comment's id after the thread's: /r/x/comments/<post>/<slug>/<comment>/
+ *  (or ?comment=…). A link that stops at the slug is the post itself. */
+export const isRedditComment = ({ sourcePlatform, sourceUrl }: Source) => sourcePlatform === "Reddit" && !!sourceUrl
+  && (/\/comments\/[a-z0-9]+\/[^/?#]*\/[a-z0-9]+/i.test(sourceUrl) || /\/comment\/[a-z0-9]+/i.test(sourceUrl) || /[?&]comment=/.test(sourceUrl));
+
+/** What a summary is a summary of (owner, 2026-11-13): "Reddit comment", "Reddit post", "YouTube video", "blog post". */
+export function summaryKind(source: Source) {
+  if (isYouTubeComment(source)) return "YouTube comment";
+  const p = platformName(source.sourcePlatform);
+  if (p === "Reddit") return isRedditComment(source) ? "Reddit comment" : "Reddit post";
+  if (p === "YouTube") return "YouTube video";
+  if (p === "Blog") return "blog post";
+  return `${p} post`;
+}
+
+/** The words on the link to the original (owner, 2026-11-13): a video is watched, a blog post read, a Reddit thread is a discussion. */
+export function originalLinkLabel(source: Source) {
+  const k = summaryKind(source);
+  if (k === "YouTube video") return "Watch the original video";
+  if (k === "YouTube comment") return "View the original comment";
+  if (k === "Reddit comment") return "View the original comment";
+  if (k === "Reddit post") return "View the original discussion";
+  if (k === "blog post") return "Read the original post";
+  return "View the original";
+}
