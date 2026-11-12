@@ -863,3 +863,31 @@ test("laptop: one product per model and generation (no years), seven category pa
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("print: products named by model and revision (no years), five category pages with product URLs under them, spool rating icons", async () => {
+  const n = selectNiche("print");
+  assert.equal(n.schema, "printrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "Industrial");
+  assert.deepEqual(n.categories.map(c => c.label), ["Print quality", "Ease of use & reliability", "Build & hardware", "Software & features", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Build volume", "Material", "Notable features"]);
+  // The owner's approved categories (2026-11-12).
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["fdm-printers", "resin-printers", "multi-material", "filament", "resin"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/print");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 5, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  assert.equal(n.tags.length, 32);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
