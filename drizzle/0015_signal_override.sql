@@ -1,0 +1,1 @@
+ALTER TABLE "padelrecs"."rackets" ADD COLUMN "signal_override" integer;

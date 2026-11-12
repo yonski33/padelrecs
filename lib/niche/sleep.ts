@@ -219,7 +219,7 @@ export const sleep: Niche = {
     { slug: "best-bed-cooling-systems", label: "Bed cooling", title: "Best Bed Cooling Systems", minReviews: 5,
       intro: "The bed cooling systems sleepers are most consistently happy with.", filters: [{ column: "shape", include: ["Bed cooling"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Helix", model: "Midnight Luxe", year: 2026, search: "helix" },
   form: {
     prompts: [["What did you sleep on before?", "Before this I slept on "], ["How long have you had it?", "I've had it for "], ["Any issues?", "After a few months I noticed "]],
@@ -265,7 +265,7 @@ export const sleep: Niche = {
         "A mattress a back sleeper loves can hurt a side sleeper’s shoulders, and a bed that feels right in the first month can sag in the third year. Knowing how someone sleeps, how much they weigh and how long they have used it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Sleepers, not promotions", body: "No sponsored rankings. No paid placements. We skip brand reps, store staff and review-site affiliates. Ratings come from sleeper submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and SleepRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Sleepers, not promotions", body: "No sponsored rankings. No paid placements. We skip brand reps, store staff and review-site affiliates. Rankings are counted from reviews: the ones sleepers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and SleepRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "Experiences, not medical advice", body: "Reviews describe what sleepers lived with. When someone says a mattress helped their back, that is their experience, not a medical claim. For ongoing pain, insomnia or a possible sleep disorder, talk to a doctor." },
         { heading: "A work in progress", body: "SleepRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product names come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about products you’ve actually slept on or used, and be specific about what worked for you." },

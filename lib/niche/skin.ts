@@ -197,7 +197,7 @@ export const skin: Niche = {
       intro: "Products users call gentle, with few reports of irritation or stinging.",
       trait: { tags: ["gentle"], minShare: 0.2, against: ["irritating", "stinging"], noun: "gentleness" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Blog"],
   examples: { brand: "CeraVe", model: "Moisturizing Cream", year: 2026, search: "cerave" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["How long until results?", "I noticed a difference after "], ["Any irritation?", "On my skin it "]],
@@ -243,7 +243,7 @@ export const skin: Niche = {
         "A product that works for one person won’t work for everyone. Knowing someone’s skin type, what they were trying to fix and how long they used it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings. Product pages link to Amazon, and SkinRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones users write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and SkinRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "Not medical advice", body: "Reviews describe personal experiences, not dermatological advice. Patch-test new products, and talk to a dermatologist or doctor about persistent skin problems, allergies or prescription treatments." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about products you’ve actually used and be specific about your skin and what changed." },
         { heading: "Your privacy", body: "An alias is optional, and so are skin type, concern and age range. If you leave an email address, it is stored privately with your submission and never included in public reviews." },

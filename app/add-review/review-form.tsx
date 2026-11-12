@@ -6,8 +6,7 @@ import {MAX_TAGS, TAGS} from "../../lib/tags";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
 
 // The API (app/api/reviews/route.ts) accepts exactly these niche option values.
-const {words: w, scoreUnit, profile, ratingWords, form: {prompts, tips}} = niche;
-const categories = niche.categories.map(c => [c.label, c.column, c.hint] as const);
+const {words: w, profile, form: {prompts, tips}} = niche;
 type Option = {value: string; hint?: string};
 
 // "Time with …" shows only its hint ("A few sessions"); other options show the value with the hint underneath.
@@ -37,7 +36,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
   if(values.racketMode==="existing"&&!values.racketId){setError(`Pick a ${w.one} from the list as you type.`);return;}
   if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&(!hasYears||/^\d{4}$/.test(values.year||"")))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand${hasYears?", model and year":" and product name"}.`);return;}
-  if(!values.rating){setError(`Give it an overall rating — tap one of the ${scoreUnit.many}.`);return;}
+  if(!values.rating){setError("Pick how it went overall: positive, mixed or negative.");return;}
   if((values.reviewText||"").trim().length<20){setError(`Tell us a little more — at least 20 characters about ${niche.copy.ui.howItWent}.`);return;}
   if(!formToken.current)formToken.current=await fetchFormToken();
   if(!formToken.current){setError("Could not reach the site. Check your connection and try again.");return;}
@@ -80,11 +79,10 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
     <section className="step">
      <h2 className="step-h"><span className="no">2</span>How did it go?</h2>
      <div className="group" role="radiogroup" aria-labelledby="rating-label">
-      <span className="group-label" id="rating-label">Overall rating</span>
-      <div className="ballpick-row">
-       <div className="ballpick">{["5","4","3","2","1"].map(n=><Fragment key={n}><input type="radio" name="rating" value={n} id={`rating-${n}`} checked={rating===n} onChange={()=>setRating(n)}/><label htmlFor={`rating-${n}`} title={ratingWords[n]}><span className="sr-only">{ratingWords[n]}</span></label></Fragment>)}</div>
-       <span className="ball-word" aria-hidden="true">{rating?ratingWords[rating]:`Tap a ${scoreUnit.one}`}</span>
-      </div>
+      <span className="group-label" id="rating-label">Overall</span>
+      {/* Positive, mixed or negative, like the web reviews (saved as 5, 3 or 1; lib/verdict.ts). */}
+      <div className="verdict-pick">{([["5","positive","Positive","It worked for me"],["3","mixed","Mixed","Some good, some bad"],["1","negative","Negative","Not for me"]] as const).map(([n,k,word,hint])=><Fragment key={n}>
+       <input type="radio" name="rating" value={n} id={`rating-${n}`} checked={rating===n} onChange={()=>setRating(n)}/><label htmlFor={`rating-${n}`} className={`s-${k}`}><b>{word}</b><small>{hint}</small></label></Fragment>)}</div>
       <p className="help">Rate how it worked for <em>you</em>, not how good it is on paper.</p>
      </div>
      <div className="group" role="radiogroup" aria-labelledby="time-label">
@@ -100,20 +98,10 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
      <div className="group" role="radiogroup" aria-labelledby="style-label"><span className="group-label" id="style-label">{profile.playingStyle.label}</span><Options name="playingStyle" options={profile.playingStyle.options}/></div>
     </section>
 
-    <section className="step">
-     <h2 className="step-h"><span className="no">4</span>{`${niche.copy.ui.howItPerforms} `}<small>optional · skip anything you’re unsure about</small></h2>
-     <div className="scale-ends" aria-hidden="true"><span>← low</span><span>high →</span></div>
-     <div className="scale-rows">{categories.map(([label,name,hint])=><div className="scale-row" key={name} role="radiogroup" aria-labelledby={`${name}-label`}>
-      <span className="nm" id={`${name}-label`}>{label}<small>{hint}</small></span>
-      <div className="pips">
-       {[1,2,3,4,5].map(n=><label key={n}><input type="radio" name={name} value={n} aria-label={`${label} ${n} of 5`}/><span>{n}</span></label>)}
-       <label className="skip"><input type="radio" name={name} value="" defaultChecked aria-label={`Skip ${label}`}/><span>skip</span></label>
-      </div>
-     </div>)}</div>
-    </section>
+    {/* The optional 1–5 scales (power, control…) were dropped (owner, 2026-11-12): too much effort next to the three verdicts. */}
 
     <section className="step">
-     <h2 className="step-h"><span className="no">5</span>In your own words</h2>
+     <h2 className="step-h"><span className="no">4</span>In your own words</h2>
      <label className="field" htmlFor="reviewText" style={{marginBottom:0}}>Your experience</label>
      <div className="prompts">Stuck? Try:{prompts.map(([label,start])=><button type="button" key={label} onClick={()=>addPrompt(start)}>{label}</button>)}</div>
      <textarea id="reviewText" name="reviewText" ref={textarea} value={text} onChange={e=>setText(e.target.value)} minLength={20} required placeholder="What did you like? What drove you nuts? What would you tell a friend thinking about buying it?"/>
@@ -127,7 +115,7 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
     </section>
 
     <section className="step">
-     <h2 className="step-h"><span className="no">6</span>Sign it</h2>
+     <h2 className="step-h"><span className="no">5</span>Sign it</h2>
      <div className="form-grid">
       <label className="field">Alias <span className="opt">optional</span><input name="alias" maxLength={50} autoComplete="nickname"/><small>Any name you like. Leave it blank and you’ll be “anonymous”. Very mysterious.</small></label>
       <label className="field">Email <span className="opt">optional, private</span><input type="email" name="email" maxLength={254} autoComplete="email"/><small>Never shown publicly.</small></label>

@@ -157,7 +157,7 @@ export const coffee: Niche = {
     { slug: "best-budget-coffee-gear", label: "Budget", title: "Best Budget Coffee Gear", minReviews: 5,
       intro: "The machines, grinders, brewers, kettles and scales home baristas most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Coffee retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Coffee retailer", "Forum", "Blog"],
   examples: { brand: "Breville", model: "Bambino Plus", year: 2026, search: "bambino" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you make with it?", "I mostly make "], ["Any issues?", "After a while I noticed "]],
@@ -203,7 +203,7 @@ export const coffee: Niche = {
         "Gear that suits one person won’t suit everyone. Knowing what someone drinks, what grinder or machine they pair it with and what they used before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Home baristas, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from home barista submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and CoffeeRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Home baristas, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones home baristas write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and CoffeeRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "CoffeeRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ and retailers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

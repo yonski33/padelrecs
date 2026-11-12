@@ -180,7 +180,7 @@ export const running: Niche = {
       intro: "Shoes runners call great for long runs and well cushioned.",
       trait: { tags: ["great for long runs", "great cushioning"], minShare: 0.2, noun: "long runs or cushioning" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Running shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Running shop", "Forum", "Blog"],
   examples: { brand: "Nike", model: "Pegasus 42", year: 2026, search: "nike" },
   form: {
     prompts: [["What did you run in before?", "Before this I ran in "], ["How many miles?", "I've put about "], ["Fit and sizing?", "For fit, I "]],
@@ -226,7 +226,7 @@ export const running: Niche = {
         "A shoe that works for one runner won’t work for everyone. Knowing someone’s mileage, gait, foot shape and how far they’ve gone in a pair often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Runners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from runner submissions, and external comments stay separate from those ratings. Shoe pages link to Amazon, and RunningRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Runners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones runners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Shoe pages link to Amazon, and RunningRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "RunningRecs is new. Runner submissions are moderated before publication, web reviews link to their sources, and shoe specifications come from the brands’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about shoes you’ve actually run in and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

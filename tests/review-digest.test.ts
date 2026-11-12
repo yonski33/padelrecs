@@ -14,8 +14,8 @@ test("digest groups reviews by site with moderation, product and edit links",()=
  assert.equal(email.subject,"[Recs] 2 new reviews on 1 site — 2 Nov");
  assert(email.text.startsWith("2 new reviews in the last 24 hours on 1 site."));
  assert(email.text.includes("== ClimbingRecs (2) — approve or reject: https://www.climbingrecs.com/funtimes?status=pending"));
- assert(email.text.includes("La Sportiva Skwama: 4/5 by Maria <maria@example.com> [pending]"));
- assert(email.text.includes("La Sportiva Skwama: 4/5 by anonymous [pending]"));
+ assert(email.text.includes("La Sportiva Skwama: positive by Maria <maria@example.com> [pending]"));
+ assert(email.text.includes("La Sportiva Skwama: positive by anonymous [pending]"));
  assert(email.text.includes("Edit: https://www.climbingrecs.com/funtimes/edit-review?type=player&id=rev%201"));
  assert.match(email.text,/New product added with this review/);
  assert(!email.text.includes("PadelRecs"));

@@ -182,7 +182,7 @@ export const software: Niche = {
     { slug: "best-free-software-tools", label: "Best free plans", title: "Software Tools With the Best Free Plans", minReviews: 5,
       intro: "The tools users most often say have a good free plan.", trait: { tags: ["good free plan"], minShare: 0.2, against: ["usage limits"], noun: "the free plan" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Blog"],
   examples: { brand: "Notion", model: "Notion", year: 2026, search: "notion" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you use it for?", "I mostly use it for "], ["Anything that bugs you?", "The one thing I'd change is "]],
@@ -228,7 +228,7 @@ export const software: Niche = {
         "A tool that is perfect for a solo freelancer can be painful for a 200-person company, and a free plan that is fine for notes may not survive a team. Knowing how someone uses a tool, on which plan and for how long often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Users, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from user submissions, and quotes from around the web stay separate from those ratings. We skip posts from company staff, resellers and affiliates. Tool pages link to each product’s official website." },
+        { heading: "Users, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones users write here and the ones quoted from around the web. Each is read as positive, mixed or negative. We skip posts from company staff, resellers and affiliates. Tool pages link to each product’s official website." },
         { heading: "A work in progress", body: "SoftwareRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from each company’s own site." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about software you actually use or have used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

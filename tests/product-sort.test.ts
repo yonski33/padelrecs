@@ -16,8 +16,9 @@ test("old Highest rated links land on Most positive", () => {
   assert.equal(parseSort("rated"), "positive");
 });
 
-test("unknown sort falls back to most discussed", () => {
-  assert.equal(parseSort("nonsense"), "discussed");
-  const list = [item("a", { web: 1 }), item("b", { count: 2, web: 3 })];
-  assert.deepEqual(sortProducts(list, parseSort(undefined)).map(x => x.r.name), ["b", "a"]);
+test("unknown sort falls back to highest signal, which follows the signal numbers", () => {
+  assert.equal(parseSort("nonsense"), "positive");
+  const list = [item("a", { web: 1 }), item("b", { count: 2, web: 3 }), item("c", { web: 20 })];
+  const signal = new Map([["a", 92], ["b", 75]]);
+  assert.deepEqual(sortProducts(list, parseSort(undefined), x => signal.get(x.r.name)).map(x => x.r.name), ["a", "b", "c"]);
 });

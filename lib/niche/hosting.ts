@@ -172,7 +172,7 @@ export const hosting: Niche = {
     { slug: "best-hosting-support", label: "Best support", title: "Hosting With the Best Support", minReviews: 5,
       intro: "The services customers most often say have helpful support.", trait: { tags: ["helpful support"], minShare: 0.2, against: ["poor support"], noun: "the support" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Blog"],
   examples: { brand: "Hetzner", model: "Hetzner Cloud", year: 2026, search: "hetzner" },
   form: {
     prompts: [["Where were you before?", "Before this I hosted with "], ["What do you run on it?", "I mostly use it for "], ["Anything that bugs you?", "The one thing I'd change is "]],
@@ -218,7 +218,7 @@ export const hosting: Niche = {
         "A host that is perfect for a personal blog can be painful for a busy store, and an intro price says little about the renewal bill. Knowing what someone hosts, on which plan and for how long often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Customers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from customer submissions, and quotes from around the web stay separate from those ratings. We skip posts from hosting staff, resellers and affiliates, and anything carrying a referral link. Service pages link to each provider’s official website." },
+        { heading: "Customers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones customers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. We skip posts from hosting staff, resellers and affiliates, and anything carrying a referral link. Service pages link to each provider’s official website." },
         { heading: "A work in progress", body: "HostingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and service details come from each provider’s own site." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about services you actually use or have used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

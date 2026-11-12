@@ -182,7 +182,7 @@ export const gaming: Niche = {
     { slug: "best-gaming-headsets", label: "Headsets", title: "Best Gaming Headsets", minReviews: 6,
       intro: "The gaming headsets gamers are most consistently happy with.", filters: [{ column: "shape", include: ["Headset"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Logitech", model: "G Pro X Superlight 2", year: 2026, search: "logitech" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you play?", "I mostly play "], ["Any issues?", "After a while I noticed "]],
@@ -228,7 +228,7 @@ export const gaming: Niche = {
         "A mouse or headset that suits one person won’t suit everyone. Knowing what someone plays, on which platform and how long they’ve used it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Gamers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from gamer submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and GamingRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Gamers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones gamers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and GamingRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "GamingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ and reviewers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

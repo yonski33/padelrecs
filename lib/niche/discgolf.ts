@@ -183,7 +183,7 @@ export const discgolf: Niche = {
   ],
   // One page per mold; each web review can name the plastic it was thrown in, from the mold's plastics list (the core spec).
   variants: { label: "Plastic", plural: "plastics" },
-  sourcePlatforms: ["Reddit", "YouTube", "Disc golf shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Disc golf shop", "Forum", "Blog"],
   examples: { brand: "Innova", model: "Destroyer", year: 2026, search: "innova" },
   form: {
     prompts: [["Which plastic and weight?", "Mine is "], ["What do you throw it for?", "I throw this for "], ["What did it replace?", "Before this I threw a "]],
@@ -229,7 +229,7 @@ export const discgolf: Niche = {
         "A disc that flies one way for one player can fly very differently for another. Knowing someone’s arm speed, throwing hand, the plastic they threw and how beat in it is often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Disc pages link to Amazon, and DiscGolfRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones players write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Disc pages link to Amazon, and DiscGolfRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "DiscGolfRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and disc details come from the makers’ published flight numbers and PDGA specifications." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about discs you’ve actually thrown, and say which plastic and weight you threw." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

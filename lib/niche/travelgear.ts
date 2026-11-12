@@ -173,7 +173,7 @@ export const travelgear: Niche = {
     { slug: "best-travel-accessories", label: "Accessories", title: "Best Travel Accessories", minReviews: 5,
       intro: "The neck pillows, adapters, toiletry bags and trackers travelers are most consistently happy with.", filters: [{ column: "shape", include: ["Travel accessory"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Aer", model: "Travel Pack 4 35L", year: 2026, search: "aer" },
   form: {
     prompts: [["What did you use before?", "Before this I traveled with "], ["Where did you take it?", "I took it on "], ["Any issues?", "After a few trips I noticed "]],
@@ -219,7 +219,7 @@ export const travelgear: Niche = {
         "A bag that is perfect for one person’s month in Southeast Asia is too much for another’s weekend away. Knowing how someone travels, for how long and what they carry often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Travelers, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from traveler submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and TravelGearRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Travelers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones travelers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and TravelGearRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "TravelGearRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product names come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually traveled with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

@@ -128,7 +128,7 @@ export const cycling: Niche = {
     { label: "aggressive fit", tone: "neutral" },
     { label: "relaxed fit", tone: "neutral" },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Bike shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Bike shop", "Forum", "Blog"],
   examples: { brand: "Canyon", model: "Grail CF SLX", year: 2026, search: "canyon" },
   form: {
     prompts: [["What did you ride before?", "Before this I rode "], ["Where do you ride it?", "I mostly ride "], ["Any issues?", "After a while I noticed "]],
@@ -174,7 +174,7 @@ export const cycling: Niche = {
         "A bike that suits one rider won’t suit everyone. Knowing where someone rides, how far, which build they have and what they rode before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from rider submissions, and external comments stay separate from those ratings. Bike pages link to Amazon, and CyclingRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones riders write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Bike pages link to Amazon, and CyclingRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "CyclingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and bike details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about a bike you’ve actually ridden and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

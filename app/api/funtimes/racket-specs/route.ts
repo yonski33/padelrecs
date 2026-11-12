@@ -8,7 +8,9 @@ const optionalText=(max:number)=>z.string().trim().max(max).transform(value=>val
 const input=z.object({
  id:z.string().min(1).max(100),name:z.string().trim().min(1).max(260),brandId:z.string().min(1).max(100),year:z.coerce.number().int().min(1980).max(2100),
  shape:optionalText(100),weight:optionalText(120),balance:optionalText(120),surface:optionalText(200),core:optionalText(200),description:optionalText(5000),
- slug:z.string().trim().max(260).optional()
+ slug:z.string().trim().max(260).optional(),
+ // Blank: the signal score is worked out from reviews. A number: shown and ranked instead (owner, 2026-11-12).
+ signalOverride:z.union([z.literal("").transform(()=>null),z.coerce.number().int().min(1).max(99)]).optional().transform(v=>v??null)
 });
 export async function POST(request:Request) {
  const forbidden=await adminWriteGuard(request);if(forbidden)return forbidden;

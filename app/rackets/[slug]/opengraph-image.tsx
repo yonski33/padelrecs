@@ -16,8 +16,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const { brand } = racketParts(racket, data);
   const s = score(data, racket.id);
   const notes = data.reviews.filter(r => r.racketId === racket.id).length + data.external.filter(e => e.racketId === racket.id).length;
-  const detail = s.average
-    ? `${s.count} ${niche.people.one} ${s.count === 1 ? "rating" : "ratings"} · ${notes} ${notes === 1 ? "review" : "reviews"}`
-    : notes ? `${notes} ${notes === 1 ? "review" : "reviews"} from around the web` : "Be the first to review it";
-  return ogCard({ eyebrow: niche.seo.productCategory, title: displayName(racket.name, brand), rating: s.average ? Number(s.average) : null, detail });
+  // Reviews are positive / mixed / negative now (lib/verdict.ts): the card shows the positive share, not stars.
+  const share = s.judged >= 3 ? Math.round(s.positive / s.judged * 100) : null;
+  const detail = notes ? [share !== null && `${share}% positive`, `${notes} ${notes === 1 ? "review" : "reviews"}`].filter(Boolean).join(" · ") : "Be the first to review it";
+  return ogCard({ eyebrow: niche.seo.productCategory, title: displayName(racket.name, brand), rating: null, detail });
 }

@@ -9,8 +9,8 @@ import { niche, catalogPath, catalogLabel } from "../lib/niche";
 import { RANKINGS_PATH, rankingHref, withModelYears } from "../lib/top-lists";
 
 // Kept short: "Add a review" is the button above, and About and Brands live in the footer.
+// No "Player reviews" item any more (owner, 2026-11-12): the home page isn't a reviews feed now, and the logo goes home.
 const links = [
-  ["/", `${niche.people.One} reviews`],
   [catalogPath, catalogLabel],
 ] as const;
 const finderLink = niche.finder ? ["/finder", niche.finder.navLabel] as const : null;
@@ -49,12 +49,9 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
       <div className="wrap header-top">
         <a className="logo" href="/">
           <LogoIcon/>
-          <span className="logo-text"><span className="wordmark">{niche.site.wordmark}<span>.com</span></span></span>
+          <span className="logo-text"><span className="wordmark">{niche.site.name}</span></span>
         </a>
-        <RacketSearch/>
-        {!onAddPage && <a className="button ghost header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
-      </div>
-      <nav className="wrap main-nav" aria-label="Main navigation">
+      <nav className="main-nav" aria-label="Main navigation">
         {links.map(([href, label]) => {
           // On categoryPaths niches a product page (/vpns/mullvad-vpn) still belongs under the catalogue link.
           const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`) || (href === catalogPath && !!inTypePath);
@@ -63,14 +60,14 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
         })}
         {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}><span className="nav-long">{finderLink[1]}</span><span className="nav-short">Finder quiz</span></a>}
       </nav>
+        <RacketSearch/>
+        {!onAddPage && <a className="button header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}
+      </div>
       {/* On Rankings pages the row lists the rankings, so a chip there opens a ranking, not a product-type page. */}
-      {inRankings && ranked.length > 0 && <ChipRow className="type-nav" inner="wrap" label="Rankings">
-        <a href={RANKINGS_PATH} aria-current={pathname === RANKINGS_PATH ? "page" : undefined}>All rankings</a>
-        {topLists.filter(l => ranked.includes(l.slug) || pathname === rankingHref(l.slug)).map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
-      </ChipRow>}
+      {/* Rankings pages show their lists as tabs in the page itself (2026-11 redesign), so no chip row here. */}
       {/* Product-type pages menu. The home page shows its own row that filters the review feed instead. */}
       {/* Product-type chips help browsing; the add-review form has its own product picker, so they are left off there. */}
-      {niche.typePages && pathname !== "/" && !inRankings && !onAddPage && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
+      {niche.typePages && pathname !== "/" && pathname !== catalogPath && !niche.typePages.some(t => pathname === `/${t.slug}`) && !inRankings && !onAddPage && <ChipRow className="type-nav" inner="wrap" label={`${niche.words.One} types`}>
         <a href={catalogPath} aria-current={pathname === catalogPath ? "page" : undefined}>All</a>
         {niche.typePages.map(t => <a key={t.slug} href={`/${t.slug}`} aria-current={pathname === `/${t.slug}` ? "page" : inTypePath === t ? "true" : undefined}>{t.label}</a>)}
       </ChipRow>}

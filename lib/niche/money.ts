@@ -178,7 +178,7 @@ export const money: Niche = {
     { slug: "best-money-apps-for-support", label: "Helpful support", title: "Financial Products Customers Say Have Helpful Support", minReviews: 5,
       intro: "The cards, banks, brokerages and apps customers most often say have helpful support.", trait: { tags: ["helpful support"], minShare: 0.25, against: ["poor support"], noun: "helpful support" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Forum", "Blog"],
   examples: { brand: "Chase", model: "Sapphire Preferred", year: 2026, search: "sapphire" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you use it for?", "I mostly use it for "], ["Any issues?", "One thing that went wrong was "]],

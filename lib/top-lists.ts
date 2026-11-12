@@ -104,7 +104,9 @@ type Note = { verdict: Verdict; tags: string[]; createdAt: string };
 const credit = (v: Verdict) => v === "positive" ? 1 : v === "mixed" ? 0.5 : 0;
 
 /** Ranks one list. Returns at most LIST_SIZE entries and never pads: products below the minimums are simply left out. */
-export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], now = new Date()): ListEntry[] {
+/** `order`: the site's signal score per product (lib/signal.ts). When given, every list follows it, so the numbers on a
+ *  list always run high to low; the list's own rules still decide which products qualify (owner, 2026-11-12). */
+export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], now = new Date(), order?: ReadonlyMap<string, number>): ListEntry[] {
   const trait = list.trait;
   const minReviews = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
   const tone = new Map(tags.map(t => [t.label, t.tone]));
@@ -151,7 +153,8 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
       latest: own.reduce((a, x) => x.createdAt > a ? x.createdAt : a, ""),
     }];
   });
-  return scored.sort((a, b) => b.rankScore - a.rankScore || b.reviews - a.reviews || a.product.name.localeCompare(b.product.name))
+  const signalOf = (id: string) => order?.get(id) ?? -1;
+  return scored.sort((a, b) => (order ? signalOf(b.product.id) - signalOf(a.product.id) : 0) || b.rankScore - a.rankScore || b.reviews - a.reviews || a.product.name.localeCompare(b.product.name))
     .slice(0, LIST_SIZE).map((e, i) => ({ rank: i + 1, ...e }));
 }
 

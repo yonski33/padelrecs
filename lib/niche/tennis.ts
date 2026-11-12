@@ -173,7 +173,7 @@ export const tennis: Niche = {
       intro: "Rackets players call arm-friendly or forgiving, without many complaints about harshness.",
       trait: { tags: ["arm-friendly", "forgiving"], minShare: 0.2, against: ["harsh on the arm"], noun: "comfort or forgiveness" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Tennis shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Tennis shop", "Forum", "Blog"],
   examples: { brand: "Babolat", model: "Pure Aero 98", year: 2026, search: "babolat" },
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Strings and tension?", "I strung it with "], ["Arm comfort?", "On my arm it "]],
@@ -219,7 +219,7 @@ export const tennis: Niche = {
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, backhand, strings and time with a racket often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Racket pages link to Amazon, and TennisRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones players write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Racket pages link to Amazon, and TennisRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "TennisRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and racket specifications come from the manufacturers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

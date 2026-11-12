@@ -7,6 +7,8 @@ export const catalogSchema = pgSchema(niche.schema);
 export const brands = catalogSchema.table("brands", { id: text("id").primaryKey(), name: text("name").notNull(), slug: text("slug").notNull().unique() }).enableRLS();
 export const rackets = catalogSchema.table("rackets", {
  id: text("id").primaryKey(), brandId: text("brand_id").notNull().references(() => brands.id), name: text("name").notNull(), slug: text("slug").notNull().unique(), year: integer("year").notNull(), imageUrl: text("image_url"), shape: text("shape"), weight: text("weight"), balance: text("balance"), surface: text("surface"), core: text("core"), description: text("description"),
+ // The owner can set a product's signal score by hand (0–99) in the admin area; null means worked out from reviews.
+ signalOverride: integer("signal_override"),
   // The product's official website (software, financial products) and, once the site has one, an affiliate link that
   // replaces it on the "Visit site" button. See lib/product-links.ts.
   websiteUrl: text("website_url"), affiliateUrl: text("affiliate_url"), reviewSummary: text("review_summary"), amazonAsin: text("amazon_asin"), amazonImage: text("amazon_image"), amazonCheckedAt: text("amazon_checked_at"), createdAt: text("created_at").notNull()

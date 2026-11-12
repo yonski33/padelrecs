@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
-import type { Catalog } from "../db/data";
+import type { Catalog, Score as ScoreT } from "../db/data";
+import { ProductArt, SentimentBar, positiveShare } from "./visual";
+import { ratingVerdict } from "../lib/verdict";
 import { Score, ProductIcon, SourceIcon } from "./icons";
 import { sourceLabel } from "../lib/source-label";
 import { TagList, VariantPill } from "./tags";
@@ -16,7 +18,8 @@ type WebReview = Catalog["external"][number];
 
 const w = niche.words;
 
-export function Stars({rating}: {rating:number}) { return <Score rating={rating}/>; }
+/** A user review's verdict, as a word (the admin list). */
+export function Stars({rating}: {rating:number}) { return <SentimentBadge sentiment={ratingVerdict(rating)}/>; }
 
 export function shortDate(iso: string, withYear = false) {
   return new Date(iso).toLocaleDateString("en-GB", {day: "numeric", month: "short", ...(withYear ? {year: "numeric"} : {}), timeZone: "UTC"});
@@ -64,8 +67,8 @@ export function CategoryPill({shape}: {shape: string | null | undefined}) {
 
 function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
   const own = shopPhoto(racket), photo = amazonPhoto(racket);
-  if (own) return <a className="thumb own" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a>;
-  if (photo) return <a className="thumb photo" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt="" loading="lazy"/></a>;
+  if (own) return <a className="thumb own" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={own} alt={displayName(racket.name, brand)} loading="lazy"/></a>;
+  if (photo) return <a className="thumb photo" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt={displayName(racket.name, brand)} loading="lazy"/></a>;
   return <a className="thumb" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
 }
 
@@ -92,9 +95,9 @@ export function Review({review: r, data, showRacket = true, showCategory = true}
     {showRacket && <Thumb racket={racket} brand={racketParts(racket, data).brand}/>}
     <header className="note-head">
       {showRacket && <CardHeading racket={racket} data={data} showCategory={showCategory}/>}
-      <Score rating={r.rating}/>
+      <SentimentBadge sentiment={ratingVerdict(r.rating)}/>
     </header>
-    <p className="note-body">{r.reviewText}</p>
+    <ClampText id={`p-${r.id}`} text={r.reviewText}/>
     {/* Niches with variants: the one the player used (DiscGolfRecs: "Plastic Star"), at the end of the tag row. */}
     <TagList tags={r.tags} trail={niche.variants && r.variant && <VariantPill label={niche.variants.label} value={r.variant}/>}/>
     {!showRacket && scores.length > 0 && <div className="subscores-line">{scores.map(([label, key]) => <span key={key}>{label}<b>{r[key]}</b></span>)}</div>}
@@ -106,25 +109,25 @@ export function Review({review: r, data, showRacket = true, showCategory = true}
   </article>;
 }
 
+/** Long review text shows its first lines, with "Read more" opening the rest (no JavaScript; the whole text is in the page). */
+function ClampText({id, text}: {id: string; text: string}) {
+  if (text.length < 320) return <p className="note-body">{text}</p>;
+  return <div className="clamp"><input type="checkbox" id={`more-${id}`} className="clamp-toggle"/><p className="note-body clamped">{text}</p><label htmlFor={`more-${id}`} className="clamp-more">Read more</label></div>;
+}
+
 /** The source's words: verbatim when they're English; otherwise our English translation, labelled, with the original
  *  (the exact words) one click away. */
 function SourceQuote({entry: e, bare = false}: {entry: WebReview; bare?: boolean}) {
   const from = e.sourceLanguage && e.sourceLanguage !== "en" ? languageName(e.sourceLanguage) : null;
-  if (!from || !e.excerptTranslation) return bare ? <p className="note-body">{e.excerpt}</p> : <blockquote className="source-quote">“{e.excerpt}”</blockquote>;
+  if (!from || !e.excerptTranslation) return bare ? <ClampText id={`w-${e.id}`} text={e.excerpt ?? ""}/> : <blockquote className="source-quote">“{e.excerpt}”</blockquote>;
   return <figure className="source-quote translated">
     <blockquote className={bare ? "note-body" : undefined}>“{e.excerptTranslation}”</blockquote>
     <details className="original"><summary>Translated from {from} · original</summary><blockquote lang={e.sourceLanguage!}>“{e.excerpt}”</blockquote></details>
   </figure>;
 }
 
-/** Summaries are written about "the reviewer"; on a review card that's implied, so the lead word goes:
- *  "Reviewer says Mooncat lasts" → "Mooncat lasts", "Reviewer loves" → "Loves". "Reviewer with long nails…" keeps it. */
-export function plainSummary(text: string) {
-  const said = text.match(/^(?:The )?[Rr]eviewer (?:says|said|notes|reports|writes|thinks|feels)(?: that)? (\S)/);
-  if (said) return said[1].toUpperCase() + text.slice(said[0].length);
-  const verb = text.match(/^(?:The )?[Rr]eviewer (?!with\b|who\b|whose\b|and\b|on\b|in\b|from\b)([a-z])/);
-  return verb ? verb[1].toUpperCase() + text.slice(verb[0].length) : text;
-}
+export { plainSummary } from "../lib/plain-summary";
+import { plainSummary } from "../lib/plain-summary";
 
 export function External({entry: e, data, showRacket = true, showCategory = true}: {entry: WebReview; data: Catalog; showRacket?: boolean; showCategory?: boolean}) {
   const racket = data.rackets.find(r => r.id === e.racketId)!;
@@ -189,26 +192,25 @@ export function RacketRow({racket: r, brand, average, count, web = 0, positive =
     <Thumb racket={r} brand={brand}/>
     <div><h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>{details && <p className="small muted">{details}</p>}</div>
     <div className="racket-score">
-      {average && <><Score rating={Number(average)} size="sm"/><span><b>{average}</b> · {count} {count === 1 ? "rating" : "ratings"}</span></>}
       {(web > 0 || positive !== null) && <span>{positive !== null && <><b className="pos-share">{positive}%</b> positive{web > 0 ? " · " : ""}</>}{web > 0 && `${web} ${web === 1 ? "review" : "reviews"}`}</span>}
     </div>
   </article>;
 }
 
-/** A product in the catalogue and type-page grid: art, name, what people praise and complain about, and how many reviews. */
-export function ProductCard({racket: r, brand, count, web = 0, details, tags}: {racket: Racket; brand?: string | null; count: number; web?: number; details: string; tags?: {loved?: string; complaint?: string}}) {
-  const total = count + web, own = shopPhoto(r), photo = amazonPhoto(r);
-  return <article className="product-card">
-    {own ? <div className="pc-art own" aria-hidden="true"><img src={own} alt="" loading="lazy"/></div> : photo
-      ? <a className="pc-art photo" href={productHref(r)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt="" loading="lazy"/></a>
-      : <div className="pc-art" aria-hidden="true"><ProductIcon shape={r.shape} brand={brand}/></div>}
-    <div className="pc-body">
-      <h2><a href={productHref(r)}>{displayName(r.name, brand)}</a></h2>
-      {details && <p className="pc-details">{details}</p>}
-      {tags?.loved && <p className="pc-said"><span>Loved</span>{tags.loved}</p>}
-      {tags?.complaint && <p className="pc-said"><span>Complaint</span>{tags.complaint}</p>}
-      {total > 0 && <p className="pc-foot">{`${total.toLocaleString("en-US")} ${total === 1 ? "review" : "reviews"}`}</p>}
+/** A product row in the catalogue, type and brand pages: photo, name, what people praise and complain about, how positive
+ *  its reviews are and how many there are. */
+export function ProductCard({racket: r, brand, count, web = 0, details, tags, score: s, signal}: {racket: Racket; brand?: string | null; count: number; web?: number; details: string; tags?: {loved?: string; complaint?: string}; score?: ScoreT; signal?: number}) {
+  const total = count + web, href = productHref(r), pos = s ? positiveShare(s) : null;
+  return <article className="prow">
+    <a className="prow-art" href={href} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
+    <div className="prow-main">
+      <h2><a href={href}>{displayName(r.name, brand)}</a></h2>
+      {details && <p className="prow-details">{details}</p>}
+      {/* Owner, 2026-11-12: no tags on list rows (without counts a lone complaint reads as the verdict); the product page shows them with counts. */}
     </div>
+    <div className="prow-score">{s && pos !== null ? <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative} legend className="stacked"/> : <span className="prow-few">Not enough reviews to score yet</span>}</div>
+    {/* The signal score leads where the product has one (owner, 2026-11-12); the review count sits under it. */}
+    <a className="prow-count" href={`${href}#reviews`}>{signal ? <><b className="prow-signal">{signal}</b><span className="prow-signal-label">signal</span></> : <><b>{total.toLocaleString("en-US")}</b><span>{total === 1 ? "review" : "reviews"}</span></>}<span className="prow-go" aria-hidden="true">→</span></a>
   </article>;
 }
 
@@ -220,10 +222,10 @@ export function Directory({rows, show, moreHref}: {rows: ReactNode[]; show: numb
   const shown = rows.slice(0, show), hidden = show < ROWS_IN_HTML ? rows.slice(show, ROWS_IN_HTML) : [];
   const more = rows.length > shown.length + hidden.length && <div className="load-more"><a className="button ghost" href={moreHref(Math.max(show, ROWS_IN_HTML) + ROWS_SHOWN)}>Show more</a></div>;
   return <div className="directory-list">
-    <div className="product-grid">{shown}</div>
+    <div className="prow-list">{shown}</div>
     {hidden.length > 0 ? <>
       <input type="checkbox" id="more-rows" className="more-toggle"/>
-      <div className="more-hidden"><div className="product-grid">{hidden}</div>{more}</div>
+      <div className="more-hidden"><div className="prow-list">{hidden}</div>{more}</div>
       <div className="load-more first"><label htmlFor="more-rows" className="button ghost">Show more</label></div>
     </> : more}
   </div>;

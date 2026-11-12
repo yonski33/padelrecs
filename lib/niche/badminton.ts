@@ -136,7 +136,7 @@ export const badminton: Niche = {
       intro: "Rackets players call forgiving or comfortable, without many complaints that they are demanding.",
       trait: { tags: ["forgiving", "comfortable"], minShare: 0.2, against: ["demanding"], noun: "forgiveness or comfort" } },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Badminton shop", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Badminton shop", "Forum", "Blog"],
   examples: { brand: "Yonex", model: "Astrox 99 Pro", year: 2026, search: "yonex" },
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Strings and tension?", "I strung it with "], ["Singles or doubles?", "I mostly play "]],
@@ -182,7 +182,7 @@ export const badminton: Niche = {
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, whether they play singles or doubles, their strings and their time with a racket often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from player submissions, and external comments stay separate from those ratings. Racket pages link to Amazon, and BadmintonRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones players write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Racket pages link to Amazon, and BadmintonRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "BadmintonRecs is new. Player submissions are moderated before publication, web reviews link to their sources, and racket specifications come from the manufacturers’ published figures." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

@@ -164,7 +164,7 @@ export const keyboard: Niche = {
     { slug: "best-keyboard-switches", label: "Switches", title: "Best Keyboard Switches", minReviews: 5,
       intro: "The switches owners are most consistently happy with.", filters: [{ column: "shape", include: ["Switches"] }] },
   ],
-  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Other"],
+  sourcePlatforms: ["Reddit", "YouTube", "Retailer", "Forum", "Blog"],
   examples: { brand: "Keychron", model: "Q1 Max", year: 2026, search: "keychron" },
   form: {
     prompts: [["What did you use before?", "Before this I typed on "], ["What do you use it for?", "I mostly use it for "], ["Any issues?", "After a while I noticed "]],
@@ -210,7 +210,7 @@ export const keyboard: Niche = {
         "A board that sounds perfect to one person is too loud for another. Knowing what someone uses it for, which switches they run and how long they’ve had it often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Ratings come from owner submissions, and external comments stay separate from those ratings. Product pages link to Amazon, and KeyboardRecs may earn a commission when you buy through those links; that never changes a rating or ranking." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and KeyboardRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "KeyboardRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product names and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about boards and parts you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },
