@@ -14,7 +14,7 @@ import type { Signal } from "../lib/signal";
 import type { SpecColumn } from "../lib/niche/types";
 import { Directory, parseShow } from "./components";
 import { AutoSubmitForm } from "./auto-submit";
-import { ProductArt } from "./visual";
+import { ProductArt, SignalPop } from "./visual";
 import { CompareCheck, CompareTray } from "./compare/compare-pick";
 import { lightFont } from "./light-font";
 import { shapeChoices, specFacets, specIs, tagCounts, consensus } from "./home-catalog";
@@ -83,10 +83,13 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
       </div>
       <p className="lc-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(scope.length)} ${w.many} · ${fmt(scopeReviews)} reviews`}</p>
     </header>
-    <form className="lc-search" action={basePath}>
-            {shape && !fixed.shape && <input type="hidden" name="shape" value={shape.key}/>}
-      <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many} or brands…`} aria-label={`Search ${w.many}`}/>
-    </form>
+    {/* Filters as you type (owner, 2026-11-13); the other filters ride along as hidden fields. */}
+    <AutoSubmitForm className="lc-search" action={basePath}>
+      {Object.entries({ shape: fixed.shape ? undefined : f.shape, brand: fixed.brand ? undefined : f.brand, year: f.year, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
+      {tags.map(t => <input key={`t${t}`} type="hidden" name="tag" value={t}/>)}
+      {specFacets.flatMap(sp => (f.specs?.[sp.column] ?? []).map(o => <input key={sp.column + o} type="hidden" name={sp.column} value={o}/>))}
+      <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many} or brands…`} aria-label={`Search ${w.many}`} autoComplete="off"/>
+    </AutoSubmitForm>
     {cats.length > 1 && <nav className="lt-cats lc-cats" aria-label={`${w.One} categories`}>
       <a href={catHref()} aria-current={!shape ? "true" : undefined}>All<small>{fmt(base.length)}</small></a>
       {shown.map(c => <a key={c.key} href={catHref(c)} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
@@ -117,6 +120,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
           <div><h2 id="lc-title">{shape ? plural(shape) : `All ${w.many}`}</h2><p>{`Showing ${fmt(results.length)} ${results.length === 1 ? w.one : w.many}`}</p></div>
           {/* Compare boxes show when this is on, or once something is picked (owner, 2026-11-12): rows stay clean by default. CSS only. */}
           <label className="lc-cmp-toggle"><input type="checkbox" id="lc-cmp"/><span className="lc-switch" aria-hidden="true"/>Compare</label>
+          <SignalPop align="right"/>
           <AutoSubmitForm className="lc-sort" action={basePath}>
                         {Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
             {tags.map(t => <input key={t} type="hidden" name="tag" value={t}/>)}

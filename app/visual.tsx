@@ -5,7 +5,7 @@ import type { Catalog, Score as ScoreT } from "../db/data";
 import { ProductIcon, SourceIcon } from "./icons";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { shopPhoto } from "../lib/shop-photos";
-import { sourceLabel } from "../lib/source-label";
+import { sourceLabel, summaryKind, originalLinkLabel } from "../lib/source-label";
 import { displayName } from "../lib/brand-name";
 import { niche, productHref, catalogPath } from "../lib/niche";
 const catalogPathOf = () => catalogPath;
@@ -85,7 +85,7 @@ export function QuoteCard({ entry: e, data, product = true }: { entry: WebReview
   const label = sourceLabel(e);
   return <article className="qcard">
     {product && r && <a className="qcard-product" href={productHref(r)}><ProductArt product={r} brand={brand}/><span>{displayName(r.name, brand)}</span></a>}
-    {e.summary ? <p className="qcard-text summary"><span className="qcard-kind">{`Summary of a ${label.platform === "Blog" ? "blog" : label.platform} post`}</span>{quoteText(e)}</p>
+    {e.summary ? <p className="qcard-text summary"><span className="qcard-kind">{`Summary of a ${summaryKind(e)}`}</span>{quoteText(e)}</p>
       : <blockquote className="qcard-text verbatim">{quoteText(e)}</blockquote>}
     <footer className="qcard-foot">
       <a className="qcard-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}>
@@ -187,14 +187,14 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
       </div>
     </article>;
   }
-  const e = props.entry, label = sourceLabel(e), kind = /comment/i.test(label.platform) ? label.platform : label.platform === "YouTube" ? "YouTube video" : label.platform === "Blog" ? "blog post" : `${label.platform} post`;
+  const e = props.entry, label = sourceLabel(e), kind = summaryKind(e);
   return <article className="lv">
     <span className="lv-icon" aria-hidden="true"><SourceIcon platform={e.sourcePlatform}/></span>
     <div className="lv-body">
       <header><p className="lv-src"><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
       <p className="lv-kind">{`Summary of a ${kind}`}</p>
       <p className="lv-text">{quoteText(e)}</p>
-      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original discussion <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
+      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
     </div>
   </article>;
 }
@@ -208,6 +208,18 @@ export function SentimentBand({ positive, mixed, negative }: { positive: number;
   return <div className="sband" role="img" aria-label={`${p}% positive, ${m}% mixed, ${n}% negative`}>
     {parts.map(([k, count, pct, word]) => count > 0 && <i key={k} className={`s-${k}`} style={{ width: `${count / total * 100}%` }}>{pct >= 14 ? `${pct}% ${word}` : pct >= 7 ? `${pct}%` : ""}</i>)}
   </div>;
+}
+
+/** "How the signal works" as a small pop-up with the short explanation (owner, 2026-11-13), instead of a trip to the
+ *  About page. No JavaScript. */
+export function SignalPop({ label = "How the signal works", align = "left" }: { label?: string; align?: "left" | "right" }) {
+  return <details className={`sig-pop${align === "right" ? " sig-pop-right" : ""}`}><summary>{label}<span aria-hidden="true"> ⓘ</span></summary>
+    <div className="sig-pop-card" role="note">
+      <b>The signal score</b>
+      <p>A score out of 100 for how well reviewed a product is. It rises with positive reviews and with how many there are; negative and mixed reviews take points off.</p>
+      <p>So a handful of glowing reviews can’t beat a product lots of people like. No sponsored placements.</p>
+    </div>
+  </details>;
 }
 
 /** A review in the home feed: the product's photo and name, then the same short quote card as the product page. */

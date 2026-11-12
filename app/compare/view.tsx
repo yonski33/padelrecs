@@ -8,7 +8,7 @@ import { summary } from "../../lib/product-summary";
 import { similarProducts, tagProfiles } from "../../lib/similar";
 import { amazonButton } from "../../lib/amazon-offer";
 import { websiteButton } from "../../lib/product-links";
-import { ProductArt, SentimentBar, positiveShare } from "../visual";
+import { ProductArt, SentimentBar, positiveShare, SignalPop } from "../visual";
 import { CompareAdd } from "./compare-add";
 import { lightFont } from "../light-font";
 import { productSignals } from "../signals";
@@ -93,6 +93,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
       <p>{products.length >= 2
         ? `Side by side from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real reviews. Every count is the same as on each ${w.one}’s page.`
         : `Pick two or three ${w.many} to see them side by side: how positive their reviews are, what reviewers praise and complain about, and their specs.`}</p>
+      {light && products.length >= 2 && <SignalPop/>}
     </div>
 
     {products.length === 0 ? <section className="cmp-start">
