@@ -1,0 +1,25 @@
+/* Compare entry points outside the compare page: the product page link and the catalogue row checkboxes with their bottom bar. */
+/* Product page: the link to /compare under the buttons. */
+.p-compare-link { margin: 0; font-size: 14.5px; font-weight: 650; }
+.p-compare-link a { color: var(--green); }
+
+/* Compare picks on list rows (app/compare/compare-pick.tsx): a small checkbox per row, and a bar at the bottom once one is picked. */
+.cmp-check { display: inline-flex; align-items: center; gap: 6px; justify-self: start; font-size: 13px; font-weight: 600; color: var(--ink-3); cursor: pointer; user-select: none; }
+.cmp-check input { width: 16px; height: 16px; margin: 0; accent-color: var(--green); cursor: pointer; }
+.cmp-check:hover, .cmp-check.on { color: var(--green); }
+.cmp-check.full { opacity: .45; cursor: not-allowed; }
+.cmp-tray { position: fixed; z-index: 60; left: 50%; bottom: 16px; transform: translateX(-50%); width: min(760px, calc(100vw - 24px)); display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px -8px rgba(20, 30, 20, .35); }
+.cmp-tray ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.cmp-tray li { display: inline-flex; align-items: center; gap: 4px; max-width: 220px; padding: 4px 4px 4px 10px; background: var(--tint); border-radius: 8px; font-size: 13px; font-weight: 600; }
+.cmp-tray li span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmp-tray li button { border: 0; background: transparent; font-size: 16px; line-height: 1; padding: 2px 6px; color: var(--ink-3); cursor: pointer; }
+.cmp-tray-go { display: flex; align-items: center; gap: 10px; flex: none; }
+.cmp-tray-clear { border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--ink-3); cursor: pointer; text-decoration: underline; }
+.cmp-tray-more { font-size: 13px; color: var(--ink-3); }
+.cmp-tray-count { display: none; font-size: 14px; font-weight: 650; }
+.cmp-tray .button { white-space: nowrap; }
+@media (max-width: 680px) {
+  .cmp-tray { bottom: 10px; padding: 8px 8px 8px 14px; }
+  .cmp-tray ul { display: none; }
+  .cmp-tray-count { display: inline; }
+}

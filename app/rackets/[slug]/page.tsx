@@ -4,7 +4,8 @@ import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
 import { platformName } from "../../../lib/source-label";
 import { fitText } from "../../../lib/fit-text";
-import { productSignals, categoryWords } from "../../signals";
+import { productSignals, categoryWords, signalCategory } from "../../signals";
+import { discoverPicks, weekOf } from "../../../lib/discover";
 import { MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
 import type { Metadata } from "next";
@@ -27,6 +28,9 @@ import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares } from "../../visual";
+import { summary } from "../../../lib/product-summary";
+import { comparePairs, pairHref } from "../../../lib/compare-pairs";
+import "../../compare/compare-lists.css";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -41,25 +45,6 @@ type Data = Awaited<ReturnType<typeof loadCatalog>>;
 function SideArt({ x, brand }: { x: Parameters<typeof shopPhoto>[0] & Parameters<typeof amazonPhoto>[0] & { shape: string | null }; brand?: string | null }) {
   const photo = shopPhoto(x) ?? amazonPhoto(x)?.image;
   return photo ? <img className="sug-photo" src={photo} alt="" loading="lazy"/> : <ProductIcon shape={x.shape} brand={brand}/>;
-}
-
-/** Counts behind the page's verdict, title and description: every review, the sentiment split, and tags by how often
- *  reviewers mention them. One place, so the header, the tags and the search snippet never disagree. With `variant`
- *  (niche.variants), the same counts for the player and web reviews of that one variant: the "By plastic" table. */
-function summary(data: Data, id: string, variant?: string) {
-  const allReviews = data.reviews.filter(x => x.racketId === id && (!variant || x.variant === variant)), allExternal = data.external.filter(e => e.racketId === id && (!variant || e.variant === variant));
-  // Tags and "% positive" count the niche's recent window (lib/recent.ts), or every review when too few are recent;
-  // the total is always every review.
-  const recentReviews = allReviews.filter(x => isRecent(x.createdAt)), recentExternal = allExternal.filter(e => isRecent(webDate(e)));
-  const useRecent = recentReviews.length + recentExternal.filter(e => e.sentiment).length >= MIN_RECENT;
-  const reviews = useRecent ? recentReviews : allReviews, external = useRecent ? recentExternal : allExternal;
-  const tagCounts = new Map<string, number>();
-  for (const t of [...reviews, ...external].flatMap(x => x.tags)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
-  const byCount = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
-  const judged = [...reviews.map(x => ratingVerdict(x.rating)), ...external.map(e => e.sentiment)].filter(Boolean);
-  const positive = judged.length >= 3 ? Math.round(judged.filter(v => v === "positive").length / judged.length * 100) : null;
-  return { total: allReviews.length + allExternal.length, tagCounts, positive,
-    loved: byCount.filter(t => tagTone(t) === "pos"), complaints: byCount.filter(t => tagTone(t) === "neg"), other: byCount.filter(t => tagTone(t) === "neutral") };
 }
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
@@ -144,9 +129,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x}/>,
+    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e}/>,
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -157,10 +142,16 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const typePage = typePageFor(r.shape);
   // Where it ranks: every list it's on, best placing first (shown under the name, and in the FAQ).
   const sigs = await productSignals(), sig = sigs.get(r.id) ?? null;
-  const placings = (await rankedLists()).lists.flatMap(l => {
+  const ranked = (await rankedLists()).lists;
+  const placings = ranked.flatMap(l => {
     const e = l.entries.find(x => x.product.id === r.id);
     return e ? [{ rank: e.rank, title: `${l.list.title} ${listYear(l.list)}`, label: l.list.label, href: listHref(l.list.slug) }] : [];
   }).sort((a, b) => a.rank - b.rank);
+  // The page's ending (owner, 2026-11-12): "Discover more", a different handful of well-reviewed products of the same
+  // kind on every page, reshuffled weekly (lib/discover.ts), leaving out this product and the sidebar's similar ones.
+  const category = signalCategory(r);
+  const pool = data.listed.filter(x => signalCategory(x) === category && sigs.has(x.id)).sort((a, b) => sigs.get(b.id)!.signal - sigs.get(a.id)!.signal).map(x => x.id);
+  const discover = discoverPicks(pool, new Set([r.id, ...similar.map(s => s.x.id)]), `${r.id}|${weekOf()}`).map(id => data.listed.find(x => x.id === id)!);
 
   // Common questions, answered only from the counts and summaries on this page. Shown at the foot of the reviews and
   // given to Google as FAQPage data.
@@ -244,6 +235,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
   const pos = positiveShare(s);
   const oneLine = listLine(r);
+  const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
   const fullName = displayName(r.name, brand?.name);
   return <main className="product v2">
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
@@ -253,7 +245,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     <section className="p-hero">
       <div className="p-head">
         {/* "<Product> Reviews" matches the page title and what people search for; the word itself is for search and screen readers. */}
-        <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
+        <h1>{fullName}<span className="h1-reviews"> Reviews</span></h1>
         {(r.shape || hasYears) && <p className="p-kicker">{[hasYears ? String(r.year) : null, r.shape && `${r.shape}${typePage?.one || niche.categoryPaths ? "" : ` ${niche.words.one}`}`].filter(Boolean).join(" · ")}</p>}
         {placings[0] && <a className="p-placing" href={placings[0].href}><span className="d-only">{`#${placings[0].rank} in ${placings[0].title}`}</span><span className="m-only">{`#${placings[0].rank} · ${placings[0].label}`}</span> <span aria-hidden="true">→</span></a>}
         {sum.total > 0 && <a className="p-count m-only" href="#reviews"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>{`${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`}</a>}
@@ -285,9 +277,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </p>
         <p className="p-links m-only">
           {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} reviews`} <span aria-hidden="true">↓</span></a>}
-          {/* Jumps to the similar products below; a real side-by-side compare is not built yet. */}
           {similar.length > 0 && <a className="p-compare" href="#similar">{`Similar ${niche.words.many}`} <span aria-hidden="true">→</span></a>}
         </p>
+        {/* Side by side with the product reviewers describe most like it: its indexable "vs" page when the pair has one,
+            else that product (or an empty slot) at /compare?ids=. */}
+        <p className="p-compare-link"><a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${[r.slug, ...(compareWith ? [compareWith.slug] : [])].join(",")}`}>{compareWith ? `Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}` : `Compare with another ${niche.words.one}`} <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
     {/* Specs live in the FAQ now (owner, 2026-11-12): reviews are what the page is for. */}
@@ -343,6 +337,20 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </section>}
       </aside>
     </div>
+
+    {(discover.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
+      {discover.length >= 3 && <>
+        <div className="section-head"><h2 id="next-title">{`Discover more ${typePage ? typePage.label.toLowerCase() : niche.words.many}`}</h2><a className="section-link" href={typePage ? `/${typePage.slug}` : catalogPath}>{`See all ${typePage ? typePage.label.toLowerCase() : niche.words.many}`} <span aria-hidden="true">→</span></a></div>
+        <ul className="top5-row discover-row">{discover.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a className="pcard" href={productHref(x)}>
+          <ProductArt product={x} brand={b}/>
+          <span className="pcard-body"><span className="pcard-name">{displayName(x.name, b)}</span></span>
+        </a></li>; })}</ul>
+      </>}
+      <div className="p-next-actions">
+        <a className="p-next-card" href={addHref}><b>{niche.copy.ui.triedIt}</b><span>Add your review in about two minutes. No account needed.</span><span className="button">Add your review</span></a>
+        {niche.finder && <a className="p-next-card" href="/finder"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="button ghost">{niche.finder.navLabel} <span aria-hidden="true">→</span></span></a>}
+      </div>
+    </section>}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
     {shopButton && <div className="buy-bar">
       <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
