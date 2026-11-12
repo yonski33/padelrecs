@@ -1072,10 +1072,3 @@ a:hover .w-name { color: var(--green); }
   font-family: var(--sans); font-style: normal;
 }
 .top-page.v2 .page-hero > p:not(.breadcrumb), .catalog.v2 .page-hero p, .rankings-index .page-hero p, .page-title p, .form-title p { font-size: 17px; }
-/* The top five's caption: where its reviews come from (owner, 2026-11-12). */
-.top5-sources { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin: 6px 0 0; font-size: 14.5px; color: var(--ink-2); }
-.top5-sources > span:first-child { font-weight: 600; color: var(--ink); }
-.trust-src { display: inline-flex; align-items: center; gap: 5px; }
-.trust-src svg { width: 16px; height: 16px; color: var(--green-ink); }
-.trust-src b { font-weight: 700; color: var(--ink); }
-@media (max-width: 680px) { .top5-sources { gap: 4px 12px; font-size: 13.5px; } }

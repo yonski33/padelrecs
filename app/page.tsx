@@ -13,8 +13,7 @@ import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
-import { listYear, reviewWindowMonths } from "../lib/top-lists";
-import { SourceIcon } from "./icons";
+import { listYear } from "../lib/top-lists";
 
 const DAY = 86_400_000;
 /** Separator for "users, Reddit, YouTube and forums": commas, the last item already carries "and". */
@@ -109,19 +108,6 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
-  // The reviews the lead list counts: judged, inside its window, on its listed products (lib/top-lists.ts rankList).
-  const sources = (() => {
-    if (!lead) return null;
-    const ids = new Set(lead.entries.map(e => e.product.id));
-    const since = Date.now() - reviewWindowMonths(lead.list) * 30.44 * DAY;
-    const counts = new Map<string, number>();
-    const bump = (k: string) => counts.set(k, (counts.get(k) ?? 0) + 1);
-    for (const r of all.reviews) if (ids.has(r.racketId) && Date.parse(r.createdAt) >= since) bump(niche.site.name);
-    for (const e of all.external) if (ids.has(e.racketId) && e.sentiment && Date.parse(e.sourceDate || e.createdAt) >= since) bump(platformName(e.sourcePlatform) === "Blog" ? "Blogs" : platformName(e.sourcePlatform));
-    const parts = [...counts].sort((a, b) => b[1] - a[1]);
-    const total = parts.reduce((a, [, n]) => a + n, 0);
-    return total ? { total, parts: parts.slice(0, 4) } : null;
-  })();
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>
@@ -134,9 +120,7 @@ export default async function Home({ searchParams }: {
       </section>
 
       {top.length >= 3 && <section className="top5" aria-labelledby="top5-title">
-        <div className="section-head"><div><h2 id="top5-title">{`${lead.list.title} ${listYear(lead.list)}`}</h2>
-          {/* Where the list's reviews come from (owner, 2026-11-12), as the list's own caption, counted the way the ranking counts them. */}
-          {sources && <p className="top5-sources"><span>{`Ranked from ${sources.total.toLocaleString("en-US")} reviews`}</span>{sources.parts.map(([name, n]) => <span key={name} className="trust-src"><SourceIcon platform={name === niche.site.name ? "forum" : name}/><b>{n.toLocaleString("en-US")}</b>{` ${name === niche.site.name ? `${niche.site.name} ${niche.people.many}` : name}`}</span>)}</p>}</div><a className="section-link" href={listHref(lead.list.slug)}>{`See the top ${lead.entries.length}`}<Arrow/></a></div>
+        <div className="section-head"><h2 id="top5-title">{`${lead.list.title} ${listYear(lead.list)}`}</h2><a className="section-link" href={listHref(lead.list.slug)}>{`See the top ${lead.entries.length}`}<Arrow/></a></div>
         <ol className="top5-row">{top.map(e => { return <li key={e.product.id}><a className="pcard" href={productHref(e.product)}>
           <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
           <ProductArt product={all.rackets.find(r => r.id === e.product.id) ?? (e.product as never)} brand={brandName(e.product.brandId)} eager/>
