@@ -4,7 +4,7 @@ export function AutoSubmitForm({ action, className, children }: { action: string
   return <form action={action} className={className} onChange={e => {
     // Skip empty fields so the address stays clean (/products?sort=positive, not ?brand=&shape=&sort=positive).
     const q = new URLSearchParams();
-    for (const [k, v] of new FormData(e.currentTarget)) if (typeof v === "string" && v) q.set(k, v);
+    for (const [k, v] of new FormData(e.currentTarget)) if (typeof v === "string" && v) q.append(k, v); // append: checkbox groups send several values
     window.location.href = q.size ? `${action}?${q}` : action;
   }}>{children}</form>;
 }

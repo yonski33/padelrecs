@@ -15,23 +15,9 @@ type Result = { asin?: string; title?: string; thumbnail?: string; sponsored?: b
 /** SerpApi's thumbnail is about 320px; the same image exists larger under Amazon's size token. */
 export const largerImage = (url: string) => url.replace(/\._[A-Z0-9_,]+_\.(jpg|png)$/i, "._SL500_.$1");
 
-const ACCESSORY = /\b(compatible|replacements?|liners?|mats?|covers?|lids?|trays?|stones?|bellows?|filters?|caps?|parts?|sealers?|mounts?|holders?|tamping|gaskets?|pads?|attachments?|samples?|sampler|vials?|inspired|charging|baseplate)\b/i;
-
-/** Third-party parts name the product they fit ("Silicone Mat for Profitec Drive"), so a match alone isn't enough. */
-export function isAccessory(product: { name: string; brand: string }, title: string) {
-  const own = new Set(words(product.name)), word = ACCESSORY.exec(title)?.[0].toLowerCase();
-  return Boolean(word && !own.has(word)) || title.toLowerCase().includes(`for ${product.brand.toLowerCase()}`);
-}
-
-const VARIANT = /^(ii|iii|iv|2|3|4|5|pro|plus|ultra|max|mini|nano|lite|mg|s2|impress|esp|mark|monochrom)$/;
-
-/** "Focal Clear MG" isn't the Focal Clear, nor "Cadenza II" the Cadenza: the word after the model marks another version. */
-export function isOtherVersion(product: { name: string; brand: string }, title: string) {
-  const own = new Set(words(product.name)), brand = new Set(words(product.brand)), found = words(title), model = [...own].filter(w => !brand.has(w));
-  if (/\b2nd gen/i.test(title) && !/\b2nd gen/i.test(product.name)) return true;
-  const last = Math.max(...model.map(w => found.indexOf(w))), next = found[last + 1];
-  return last >= 0 && Boolean(next) && VARIANT.test(next) && !own.has(next);
-}
+// The match checks live in lib/amazon-match.ts, shared with the live product-page lookup (owner, 2026-11-12).
+export { isAccessory, isOtherVersion } from "../lib/amazon-match";
+import { isAccessory, isOtherVersion } from "../lib/amazon-match";
 
 const AUDIENCE = new Set(["unisex", "men", "mens", "women", "womens", "s", "kids", "boys", "girls", "youth", "adult"]);
 

@@ -8,6 +8,10 @@ import { activity, racketParts } from "./components";
 import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
 import { homeHeadline } from "../lib/home-lines";
 import { CountUp } from "./count-up";
+import { HomeA, HomeB } from "./home-variants";
+import { HomeC } from "./home-catalog";
+import { HomeLight } from "./home-light";
+import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
@@ -33,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[] }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -108,6 +112,30 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const [lead1, topic] = homeHeadline();
+  // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
+  if ((params.home === "d" || !params.home) && !type) {
+    const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
+    return <main className="home v2 home-d">
+      <HomeLight data={all} f={{ q: params.q, shape: params.shape, sort: params.sort, show: one(params.show) }} signals={await productSignals()} picks={picks} now={now.getTime()}/>
+      {feed}
+    </main>;
+  }
+  if (params.home === "c" && !type) {
+    const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
+    const f = { q: params.q, brand: params.brand, year: params.year, shape: params.shape, balance: params.balance, sort: params.sort, show: one(params.show) };
+    return <main className="home v2 home-c">
+      <HomeC data={all} f={f} signals={await productSignals()} now={now.getTime()} keep={{ home: "c" }}/>
+      {feed}
+    </main>;
+  }
+  const variant = params.home === "a" || params.home === "b" ? params.home : null;
+  if (variant && !type) {
+    const props = { all, picks, signals: await productSignals(), now: now.getTime() };
+    return <main className={`home v2 home-${variant}`}>
+      {variant === "a" ? <HomeA {...props}/> : <HomeB {...props}/>}
+      {feed}
+    </main>;
+  }
   return <main className="home v2">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {!type && <>

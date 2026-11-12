@@ -1,4 +1,5 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
+import { isLight } from "../../../lib/look";
 import { fitText } from "../../../lib/fit-text";
 import { siteOgImages } from "../../site-og";
 // so a list re-ranks itself as soon as new reviews are published.
@@ -9,14 +10,16 @@ import { niche, productHref } from "../../../lib/niche";
 import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, RANKINGS_PATH, listYear, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon } from "../../icons";
+import { lightFont } from "../../light-font";
+import { platformName } from "../../../lib/source-label";
 import { tagTone } from "../../../lib/tags";
 import { displayName } from "../../../lib/brand-name";
 import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { listLine } from "../../../lib/list-lines";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
-import { ProductArt, SentimentBar, Arrow } from "../../visual";
-import type { Catalog } from "../../../db/data";
+import { ProductArt, SentimentBar, Arrow, SignalInfo } from "../../visual";
+import { score, type Catalog, type Score } from "../../../db/data";
 import { type Signal, MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 type Product = Catalog["rackets"][number];
 
@@ -40,7 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const pct = (n: number, total: number) => `${n / total * 100}%`;
 const withThe = (name: string) => `${/^the /i.test(name) ? "" : "the "}${name}`;
 
-function Entry({ e, product, brand, list, amazon }: { e: ListEntry & { signal: Signal | null }; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
+function Entry({ e, sc, product, brand, list, amazon }: { e: ListEntry & { signal: Signal | null }; sc: Score; product: Product | undefined; brand: string; list: TopList; amazon: AmazonButton | null }) {
   const href = productHref(e.product), site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
   const line = listLine(e.product), name = displayName(e.product.name, brand);
   return <li className={`rrow${e.rank === 1 ? " lead" : ""}`}>
@@ -55,14 +58,16 @@ function Entry({ e, product, brand, list, amazon }: { e: ListEntry & { signal: S
       {list.trait && <p className="rrow-trait">{`${e.traitReviews} of ${e.reviews} reviews mention ${list.trait.noun}`}</p>}
       {/* A quiet text link: Amazon on niches with Amazon links, otherwise the product's own site (software, hosting, money). */}
       {amazon
-        ? <a className="rrow-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
-        : site && <a className="rrow-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}<span aria-hidden="true"> ↗</span></a>}
+        ? <a className="rrow-buy button" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
+        : site && <a className="rrow-buy button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>}
     </div>
     {/* The same row as the catalogue (owner, 2026-11-12): the split with its legend, then the count the order rests on. */}
-    <div className="rrow-split"><SentimentBar positive={e.positive} mixed={e.mixed} negative={e.negative} legend className="stacked"/></div>
+    <div className="rrow-split"><SentimentBar positive={sc.positive} mixed={sc.mixed} negative={sc.negative} legend className="stacked"/></div>
     <a className="rrow-score" href={href}>
       {/* The signal score (owner, 2026-11-12): what the order follows, so the numbers always run high to low. */}
       {e.signal ? <span className="rrow-pos rrow-signal"><b>{e.signal.signal}</b><span>signal</span></span> : <span className="rrow-pos"><span>No signal yet</span></span>}
+      {/* The count the score rests on (owner, 2026-11-12, UX audit). */}
+      <span className="rrow-n">{`${sc.judged.toLocaleString("en-US")} ${sc.judged === 1 ? "review" : "reviews"}`}</span>
     </a>
   </li>;
 }
@@ -119,8 +124,8 @@ function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nam
   return faq;
 }
 
-export default async function TopListPage({ params }: { params: Promise<{ slug: string }> }) {
-  const [{ slug }, { data, lists }] = await Promise.all([params, rankedLists()]);
+export default async function TopListPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ look?: string }> }) {
+  const [{ slug }, { data, lists }, query] = await Promise.all([params, rankedLists(), searchParams]);
   const found = lists.find(x => x.list.slug === slug);
   if (!found) notFound();
   const { list, entries, reviews, updated } = found;
@@ -144,6 +149,7 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
+  if (isLight(query.look)) return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
   return <main className="top-page v2">
     {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -154,10 +160,10 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
       <p>{list.intro}</p>
       {/* The lists as tabs, as in the mockup (the header's chip row is left off on rankings pages). */}
       {lists.length > 1 && <nav className="rank-tabs" aria-label="Rankings">{lists.filter((l, i) => lists.findIndex(x => x.list.slug === l.list.slug) === i).map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label}</a>)}</nav>}
-      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">How we rank ↓</a></li></ul>
+      <ul className="hero-facts"><li>{`${reviews.toLocaleString("en-US")} ${people.one} reviews`}</li>{updated && <li>Updated <time dateTime={updated}>{longDate(updated)}</time></li>}<li><a href="#how-we-rank">How we rank ↓</a></li><li className="hero-sig">Signal score <SignalInfo/></li></ul>
     </div>
     <div className="catalog-grid">
-      <ol className="rank-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} product={byId.get(e.product.id)} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
+      <ol className="rank-list">{entries.map((e, i) => <Entry key={e.product.id} e={e} sc={score(data, e.product.id)} product={byId.get(e.product.id)} brand={brandOf(e.product.brandId)} list={list} amazon={amazon[i] ?? null}/>)}</ol>
       <aside className="filter-panel">
         <section className="how-box">
           <h2>How the ranking works</h2>
@@ -182,3 +188,69 @@ export default async function TopListPage({ params }: { params: Promise<{ slug: 
 const glyph = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 function CalendarGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></g></svg>; }
 function PeopleGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {...glyph}><circle cx="7.5" cy="7" r="2.8"/><path d="M2.5 16.5c.6-3 2.6-4.5 5-4.5s4.4 1.5 5 4.5"/><circle cx="14" cy="7.5" r="2.2"/><path d="M14 12c1.9 0 3.2 1.2 3.6 3.6"/></g></svg>; }
+
+/** "Best Face Serums" reads as "Best face serums"; words in capitals (SPF, AT10) stay as they are. */
+const sentenceCase = (t: string) => t.split(" ").map((x, i) => i === 0 || /^[A-Z0-9]{2,}$/.test(x) || /\d/.test(x) ? x : x.toLowerCase()).join(" ");
+
+/** The light direction's ranking page (owner's mockup, 2026-11-12), the default since 2026-11-12 (?look=classic shows the old page): the claim in the title
+ *  ("according to real users"), one line of facts, the list as calm rows with the shop button at the right, and a short
+ *  "How this ranking works" beside it. The FAQ stays below for search. */
+function LightRanking({ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }: {
+  data: Catalog; lists: RankedList[]; found: RankedList; entries: RankedList["entries"]; reviews: number; updated?: string; amazon: (AmazonButton | null)[]; affiliate: boolean;
+  faq: { q: string; a: string }[]; jsonLd: object; byId: Map<string, Product>; brandOf: (id: string) => string }) {
+  const { list } = found;
+  const ids = new Set(entries.map(e => e.product.id));
+  // Where the opinions come from, as the owner says it (2026-11-12): Reddit, YouTube and blogs, plus reviews written here.
+  const order = ["Reddit", "YouTube", "Blog"];
+  const platforms = [...new Set(data.external.filter(e => ids.has(e.racketId)).map(e => platformName(e.sourcePlatform)))].filter(p => order.includes(p)).sort((a, b) => order.indexOf(a) - order.indexOf(b)).map(p => p === "Blog" ? "blogs" : p);
+  const sources = [...platforms, niche.site.name].join(", ").replace(/, ([^,]+)$/, " and $1");
+  const others = lists.filter((l, i) => l !== found && lists.findIndex(x => x.list.slug === l.list.slug) === i);
+  const lightHref = (x: { slug: string }) => `${productHref(x)}`;
+  return <main className={`top-page v2 lt-page lr ${lightFont.className}`}>
+    {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you).</p>}
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
+    <p className="crumbs"><a href={RANKINGS_PATH}>Rankings</a><span>/</span>{list.label}</p>
+    <header className="lr-hero">
+      <h1>{`${sentenceCase(list.title)}, according to `}<em>{`real ${people.many}`}</em></h1>
+      {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
+      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
+      {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
+      <nav className="lr-others" aria-label="More rankings"><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}`}>{l.list.label}</a>)}</nav>
+    </header>
+    <div className="lr-grid">
+      <section aria-label={`${list.title}, ranked`}>
+        <ol className="lr-list">{entries.map((e, i) => { const brand = brandOf(e.product.brandId), product = byId.get(e.product.id), sc = score(data, e.product.id);
+          const pos = sc.judged >= 3 ? Math.round(100 * sc.positive / sc.judged) : null, line = listLine(e.product), href = lightHref(e.product);
+          const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
+          return <li key={e.product.id} className={`lr-row${e.rank <= 2 ? " lr-top" : ""}`}>
+            <span className="lr-rank">{`#${e.rank}`}</span>
+            <a className="lr-art" href={href} aria-hidden="true" tabIndex={-1}>{product ? <ProductArt product={product} brand={brand}/> : <span className="art art-none"><ProductIcon shape={e.product.shape} brand={brand}/></span>}</a>
+            <div className="lr-main">
+              <h3><a href={href}>{displayName(e.product.name, brand)}</a></h3>
+              {line && <p className="lr-line">{line}</p>}
+              <p className="lr-meta">{[e.product.shape, `${sc.judged.toLocaleString("en-US")} reviews`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}{list.trait && ` · ${e.traitReviews} mention ${list.trait.noun}`}</p>
+              {/* A quiet text link, as on the current rankings (owner, 2026-11-12). */}
+              {a ? <a className="lr-buy" href={a.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a>
+                : site && <a className="lr-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label} <span aria-hidden="true">↗</span></a>}
+            </div>
+            <div className="lr-side">
+              {e.signal && <a className="lr-sig" href={href}><b>{e.signal.signal}</b><span>signal</span></a>}
+            </div>
+          </li>; })}</ol>
+      </section>
+      <aside className="lr-aside">
+        <section className="lr-box">
+          <h2>How this ranking works</h2>
+          <p>{`We collect first-hand ${people.one} reviews, read each as positive, mixed or negative, and rank by the signal: positive reviews weighed by how many there are. No sponsored placements.`}</p>
+          <a href="/about#signal">Full method →</a>
+        </section>
+        {others.length > 0 && <section className="lr-box lr-more"><h2>More rankings</h2><ul>{others.slice(0, 8).map(l => <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>{l.list.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>}
+        {niche.finder && <a className="lr-box lr-finder" href="/finder"><b>{niche.finder.navLabel}</b><span>{niche.finder.invite}</span></a>}
+      </aside>
+    </div>
+    <section className="faq top-faq" id="how-we-rank">
+      <h2>{`${sentenceCase(list.title)}: common questions`}</h2>
+      {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </section>
+  </main>;
+}

@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../lib/look";
 import { siteOgImages } from "../site-og";
 import type { Metadata } from "next";
 import { niche, catalogPath, hasYears, productHref } from "../../lib/niche";
@@ -12,8 +13,9 @@ import { productSignals } from "../signals";
 
 import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
-import { browseTiles, BrowseTile, Arrow, CategoryTabs } from "../visual";
+import { browseTiles, BrowseTile, Arrow, CategoryTabs, SignalInfo } from "../visual";
 import { CompareTray } from "../compare/compare-pick";
+import { LightCatalog, lightFilters } from "../light-catalog";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -25,8 +27,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title, description, alternates: { canonical: catalogPath }, openGraph: { title, description, url: catalogPath, type: "website", images: siteOgImages } };
 }
 
-export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string }> }) {
+export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string }> }) {
   const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
+  // The light direction's catalogue, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
+  if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;
   const sort = parseSort(f.sort);
   const shapeGroup = niche.shapeTabs?.find(t => t.key === f.shape);
   // ?q= still narrows the list for old links; the header search is where people type names now.
@@ -57,7 +61,7 @@ export default async function Rackets({ searchParams }: { searchParams: Promise<
     <CategoryTabs shapes={shapeSpec ? shapes : []} current={f.shape} query={{ brand: f.brand, year: f.year, sort: f.sort, q: f.q }}/>
     <div className="catalog-grid">
       <div className="catalog-main">
-        <div className="list-bar"><p>{`${results.length.toLocaleString("en-US")} ${results.length === 1 ? w.one : w.many}`}{filtered && <> · <a href={catalogPath}>Clear filters</a></>}</p><p className="list-bar-sort">{`Sorted by ${(SORTS.find(x => x.value === sort)?.label ?? "").toLowerCase()}`}</p></div>
+        <div className="list-bar"><p>{`${results.length.toLocaleString("en-US")} ${results.length === 1 ? w.one : w.many}`}{filtered && <> · <a href={catalogPath}>Clear filters</a></>}</p><p className="list-bar-sort">{`Sorted by ${(SORTS.find(x => x.value === sort)?.label ?? "").toLowerCase()}`}<SignalInfo align="right"/></p></div>
         <Directory show={show} moreHref={moreHref} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={data.brands.find(b => b.id === r.brandId)?.name} count={s.count} web={s.web} score={s} signal={sig.get(r.id)?.signal} tags={tags.get(r.id)}
           details={r.shape ?? ""}/>)}/>
         {!results.length && <p className="empty-feed">{`No ${w.one} found. Either it’s very new, very obscure, or we need to add it. `}<a href={catalogPath}>Clear filters</a> or <a href="/add-review">add it with a review →</a></p>}
