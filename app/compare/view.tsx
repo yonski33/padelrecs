@@ -109,6 +109,8 @@ export async function CompareView({ data, products, light = false }: { data: Dat
             <a href={productHref(c.r)} className="cmp-art"><ProductArt product={c.r} brand={c.brand} eager/></a>
             <h2><a href={productHref(c.r)}>{nameOf(data, c.r)}</a></h2>
             {c.r.shape && <p className="cmp-kind">{c.type ? <a href={`/${c.type.slug}`}>{c.type.one ?? c.r.shape}</a> : c.r.shape}</p>}
+            {/* Light look (owner, 2026-11-12): the solid shop button sits in the card, where the "Reviews" heading was. */}
+            {light && c.shop && <a className="button cmp-buy" href={c.shop.url} target="_blank" rel={c.shop.rel}>{c.shop.label}</a>}
           </div>)}
           {canAdd && <div className="cmp-cell cmp-head cmp-add">
             <p className="cmp-add-title">{products.length === 1 ? `Add a ${w.one} to compare` : `Add a third ${w.one}`}</p>
@@ -117,7 +119,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
           </div>}
         </div>
 
-        <Row label="Reviews">
+        <Row label={light ? "" : "Reviews"}>
           {cols.map(c => <div key={c.r.id} className="cmp-cell cmp-verdict">
             {c.pos !== null ? <>
               {/* The signal score leads where the product has one, as on its page and the catalogue (owner, 2026-11-12). */}
@@ -151,8 +153,8 @@ export async function CompareView({ data, products, light = false }: { data: Dat
         <div className="cmp-row cmp-actions">
           {cols.map(c => <div key={c.r.id} className="cmp-cell">
             {/* The shop button is the solid one (owner, 2026-11-12); without one, "Read reviews" stays solid. */}
-            <a className={c.shop ? "button ghost" : "button"} href={`${productHref(c.r)}#reviews`}>Read reviews</a>
-            {c.shop && <a className="button" href={c.shop.url} target="_blank" rel={c.shop.rel}>{c.shop.label}</a>}
+            <a className={c.shop || light ? "button ghost" : "button"} href={`${productHref(c.r)}#reviews`}>Read reviews</a>
+            {c.shop && !light && <a className="button" href={c.shop.url} target="_blank" rel={c.shop.rel}>{c.shop.label}</a>}
           </div>)}
           {addCell("a")}
         </div>
@@ -178,7 +180,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
 
 function Row({ label, note, group, children }: { label: string; note?: string; group?: boolean; children: React.ReactNode }) {
   return <section className={`cmp-row${group ? " cmp-group" : ""}`}>
-    <h3 className="cmp-label">{label}{note && <small>{note}</small>}</h3>
+    {label && <h3 className="cmp-label">{label}{note && <small>{note}</small>}</h3>}
     {children}
   </section>;
 }

@@ -119,3 +119,10 @@
 .lcmp .cmp-sugs a { border-radius: 12px; } .lcmp .cmp-sugs a:hover { background: #fff; }
 .lcmp .cmp-sug-add { background: var(--lt-acc); }
 .lcmp .cmp-sugs-title { font-size: 11px; color: var(--lt-mute); }
+/* Light: the shop button in each product's card; the reviews row has no heading, just a little air. */
+.lcmp .cmp-buy { margin-top: 6px; padding: 10px 14px; border-radius: 12px; background: var(--lt-acc); border-color: var(--lt-acc); color: #fff; font-size: 13.5px; font-weight: 600; text-align: center; box-shadow: none; }
+.lcmp .cmp-buy:hover { background: color-mix(in srgb, var(--lt-acc) 85%, #000); }
+.lcmp .cmp-verdict { margin-top: 18px; }
+.lcmp .cmp-head { overflow: hidden; min-width: 0; }
+.lcmp .cmp-buy { display: block; width: 100%; white-space: normal; line-height: 1.25; }
+@media (max-width: 640px) { .lcmp .cmp-buy { padding: 9px 10px; font-size: 12.5px; } .lcmp .cmp-head { padding: 10px; } }
