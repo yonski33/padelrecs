@@ -163,6 +163,11 @@
       "name": "laptoprecs",
       "id": "prj_hb072aDpZfwrY3gZLXxZh1faBc7a",
       "domain": "www.laptoprecs.com"
+    },
+    "grill": {
+      "name": "grillrecs",
+      "id": "prj_4kKPOoQWfIwwZsiCrJWrqTryUYjc",
+      "domain": "www.grillrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
