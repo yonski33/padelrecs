@@ -1159,3 +1159,15 @@ svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--
 @media (max-width: 680px) { .product.v2 .says-card.neg a { background: #fbe4dc; color: #8a2f17; } }
 @media (max-width: 680px) { .product.v2 .says-card:not(.neg) a { background: #e4f0e2; color: #24572c; } .product.v2 .says-card:not(.neg) h3 .tag-glyph { color: #3f7a3a; } }
 /* "Reviews" visible after the product name, in the same style as the name, like the earlier design (owner, 2026-11-12). */
+/* Signal explainer (owner, 2026-11-12): a small "i" beside the score that opens one line. No JavaScript. */
+.p-signal { position: relative; }
+.sig-info { align-self: center; }
+.sig-info summary { list-style: none; display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--ink-3); color: var(--ink-3); font: italic 700 11px/1 Georgia, serif; cursor: pointer; }
+.sig-info summary::-webkit-details-marker { display: none; }
+.sig-info[open] summary, .sig-info summary:hover { border-color: #2f6b34; color: #2f6b34; }
+.sig-info p { position: absolute; left: 0; top: calc(100% + 8px); z-index: 30; width: min(300px, 80vw); margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow); font-size: 13.5px; line-height: 1.45; color: var(--ink-2); font-weight: 400; letter-spacing: 0; text-transform: none; }
+@media (max-width: 680px) {
+  .product.v2 .p-signal { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; column-gap: 8px; }
+  .product.v2 .p-signal > b { grid-column: 1 / -1; }
+  .sig-info p { left: auto; right: -8px; width: min(260px, 72vw); }
+}

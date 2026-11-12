@@ -3,32 +3,32 @@ import assert from "node:assert/strict";
 import {signals, signalCeiling, MIN_SIGNAL_REVIEWS, NEGATIVE_WEIGHT, MIXED_WEIGHT} from "../lib/signal";
 
 const p=(id:string,category:string,positive:number,mixed:number,judged:number)=>({id,category,positive,mixed,judged});
+// A site with a spread of review counts, so "well reviewed" means something.
+const site=(extra:(ReturnType<typeof p>&{override?:number})[])=>[...Array.from({length:20},(_,i)=>p(`filler${i}`,"road",Math.round((20+i*7)*0.7),Math.round((20+i*7)*0.15),20+i*7)),...extra];
 
-test("the best-reviewed product leads, its score held down by its own negative and mixed reviews",()=>{
- const s=signals([p("a","x",60,0,64),p("b","x",14,0,15),p("c","x",30,10,60)]);
- // 4 of 64 negative (6.25%): 100 - 0.4 × 6.25 = 97.5, rounded 98.
- assert.equal(s.get("a")!.signal,98);
- assert.deepEqual([s.get("a")!.rank,s.get("b")!.rank,s.get("c")!.rank],[1,2,3]);
- // 14 of 15 (3.73) beats 30 positive + 10 mixed of 60 (3.46): being liked counts most.
- assert(s.get("b")!.signal>s.get("c")!.signal);
- assert.equal(s.get("a")!.of,3);
+test("a handful of all-positive reviews can't beat a product many people like (owner, RunningRecs 2026-11-12)",()=>{
+ const s=signals(site([p("thin","trail",16,0,16),p("popular","road",130,15,150)]));
+ assert(s.get("popular")!.signal>s.get("thin")!.signal, `${s.get("popular")!.signal} vs ${s.get("thin")!.signal}`);
 });
 
-test("categories are scored apart, and too few reviews means no signal",()=>{
- const s=signals([p("a","x",50,0,60),p("b","y",10,0,12),p("c","y",5,0,MIN_SIGNAL_REVIEWS-1)]);
- assert.equal(s.get("b")!.signal,Math.round(signalCeiling(10,0,12)));
- assert.equal(signalCeiling(49,20,79),100-NEGATIVE_WEIGHT*100*10/79-MIXED_WEIGHT*100*20/79);
- assert.equal(s.get("b")!.of,1);
+test("with the same volume, fewer negative and mixed reviews score higher",()=>{
+ const s=signals(site([p("loved","road",90,5,100),p("split","road",60,20,100)]));
+ assert(s.get("loved")!.signal>s.get("split")!.signal);
+});
+
+test("the ceiling takes NEGATIVE_WEIGHT points per % negative and MIXED_WEIGHT per % mixed",()=>{
+ assert.equal(signalCeiling(0.1,0.2),100-NEGATIVE_WEIGHT*10-MIXED_WEIGHT*20);
+});
+
+test("rank follows the number within a category; too few reviews means no signal",()=>{
+ const s=signals(site([p("a","x",50,5,60),p("b","x",20,2,25),p("c","x",3,0,MIN_SIGNAL_REVIEWS-1)]));
+ assert.equal(s.get("a")!.rank,1); assert.equal(s.get("b")!.rank,2); assert.equal(s.get("a")!.of,2);
  assert.equal(s.has("c"),false);
-});
-
-test("a mixed review costs less than a negative one",()=>{
- const s=signals([p("neg","x",30,0,40),p("mix","x",30,10,40)]);
- assert(s.get("mix")!.signal>s.get("neg")!.signal);
+ assert(s.get("a")!.signal<=99);
 });
 
 test("a score set by hand replaces the worked-out one and takes its place in the order",()=>{
- const s=signals([{...p("a","x",60,0,64)},{...p("b","x",10,0,20),override:99},{...p("c","x",1,0,2),override:40}]);
+ const s=signals(site([p("a","x",60,0,64),{...p("b","x",10,0,20),override:99},{...p("c","x",1,0,2),override:40}]));
  assert.equal(s.get("b")!.signal,99); assert.equal(s.get("b")!.rank,1); assert.equal(s.get("b")!.set,true);
  assert.equal(s.get("c")!.signal,40);
  assert.equal(s.get("a")!.set,undefined);

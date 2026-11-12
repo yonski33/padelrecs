@@ -14,6 +14,8 @@ import { isRecent, webDate, MIN_RECENT } from "../../../lib/recent";
 import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
+import { saveAmazonPhoto } from "../../../db/amazon-photo-save";
+import { after } from "next/server";
 import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
@@ -170,7 +172,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sig?.set) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone.` });
-  else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. Two things go in: how its reviews compare with the best-reviewed ${niche.words.one} (positive reviews, mixed counting half, and how many reviews there are), and its own negative and mixed reviews, which take points off, so only a ${niche.words.one} few people are unhappy with scores in the high 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
+  else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100. Negative and mixed reviews take points off, and so does having only a few reviews: a ${niche.words.one} needs plenty of them, compared with the most-reviewed ${niche.words.many} here, to reach the high 80s and 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
   if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Where the reviews come from (this used to be two sidebar boxes): web quotes by platform, and how user reviews count.
@@ -233,6 +235,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
   const own = shopPhoto(r), stored = amazonPhoto(r);
   const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
+  // Cards (home, lists, rankings) only read the saved photo, so a photo found by the live lookup is saved for them, once,
+  // after the page is sent (owner, 2026-11-12: GolfRecs top 5 showed drawings for drivers whose pages had photos).
+  if (!own && !stored && !(r as { amazonImage?: string | null }).amazonImage && amazon?.asin && amazon.image && !photoHidden(r)) {
+    const { asin, image } = amazon;
+    after(() => saveAmazonPhoto(r.id, asin, image).catch(error => console.error(`[amazon] Saving the photo for ${r.slug} failed: ${error}`)));
+  }
   const pos = positiveShare(s);
   const oneLine = listLine(r);
   const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
@@ -257,7 +265,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="p-scorebox">
         {sum.total > 0 ? <div className="p-score">
           {/* The signal score leads (owner, 2026-11-12); the bar below shows the split it comes from. */}
-          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span></div>
+          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span>
+            {/* What the number means, one tap away (owner, 2026-11-12, after the outside audit). No JavaScript. */}
+            <details className="sig-info"><summary aria-label="What is the signal score?">i</summary><p>A score out of 100. Negative and mixed reviews take points off, and so does having only a few reviews, so a handful of glowing reviews can’t beat a product many people like.</p></details></div>
             : pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
