@@ -57,13 +57,21 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
   </Fragment>;
   const moreLink = left > 0 && <div className="load-more"><Link className="button ghost" href={reviewsHref(href, { sort, tag, variant, verdict, show: Math.max(show, IN_HTML) + PAGE })} scroll={false}>Show more reviews</Link></div>;
 
+  const showTabs = items.length >= 20 && inScope.some(i => i.verdict);
+  const showSort = matching.length + (verdict ? 1 : 0) > 1;
+  const sortMenu = <details className="sort-menu">
+    <summary><span className="sort-label">{showTabs ? "Sort: " : "Sorted by: "}</span><b>{sort === "newest" ? "Newest" : "Most helpful"}</b></summary>
+    <div>{(["helpful", "newest"] as const).map(v => <Link key={v} href={reviewsHref(href, { sort: v, tag, variant, verdict })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</div>
+    </details>;
+
   return <section id="reviews" className="review-list">
     {/* The page's "what people say" tags sit here, right above the reviews they filter. */}
     {intro}
     <div className="feed-heading">
       <div className="feed-title-row">
         <h2 className="feed-title">{title}{items.length > 0 && <span className="feed-count">{` (${items.length.toLocaleString("en-US")})`}</span>}</h2>
-        {addButton}
+        {/* Under 20 reviews there are no verdict tabs, so the sort sits in the title row (owner, 2026-11-12). */}
+        {!showTabs && showSort ? <div className="feed-title-actions">{sortMenu}{addButton}</div> : addButton}
       </div>
       {subtitle && items.length > 0 && <p className="feed-sub m-only">{subtitle}</p>}
     </div>
@@ -74,15 +82,12 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     </ChipRow>}
     {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span>{variant && ` in ${variant}`} <Link href={reviewsHref(href, { sort, variant })} scroll={false}>Show all</Link></p>}
     {/* One quiet row (owner, 2026-11-12): verdict tabs on products with 20+ reviews, the sort as a small menu on the right. */}
-    {matching.length + (verdict ? 1 : 0) > 1 && <div className="review-controls">
-      {items.length >= 20 && inScope.some(i => i.verdict) ? <nav className="verdict-filter" aria-label="Filter by verdict">
+    {showTabs && showSort && <div className="review-controls">
+      <nav className="verdict-filter" aria-label="Filter by verdict">
         <Link href={reviewsHref(href, { sort, tag, variant })} scroll={false} aria-current={!verdict ? "page" : undefined}>All <span className="c">{inScope.length}</span></Link>
         {VERDICT_FILTERS.filter(v => verdictCount(v)).map(v => <Link key={v} href={reviewsHref(href, { sort, tag, variant, verdict: v })} scroll={false} aria-current={verdict === v ? "page" : undefined}>{v[0].toUpperCase() + v.slice(1)} <span className="c">{verdictCount(v)}</span></Link>)}
-      </nav> : <span/>}
-      <details className="sort-menu">
-        <summary>{items.length >= 20 ? "Sort: " : "Sorted by: "}<b>{sort === "newest" ? "Newest" : "Most helpful"}</b></summary>
-        <div>{(["helpful", "newest"] as const).map(v => <Link key={v} href={reviewsHref(href, { sort: v, tag, variant, verdict })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</div>
-      </details>
+      </nav>
+      {sortMenu}
     </div>}
     {/* Phones show the first three, then "See all" opens the rest (no JavaScript). */}
     <input type="checkbox" id="all-voices" className="all-voices"/>

@@ -1042,3 +1042,19 @@ a:hover .w-name { color: var(--green); }
 .pcard-name, .d-name, .j-name, .w-name, .feed-product, .product.v2 .sim-name { font-weight: 650; }
 .product.v2 .p-line { font-family: var(--sans); font-style: normal; font-weight: 500; font-size: 17px; line-height: 1.5; }
 @media (max-width: 680px) { .product.v2 .p-line::before { content: none; } }
+.feed-title-actions { display: flex; align-items: center; gap: 18px; margin-left: auto; }
+.feed-title-actions .sort-menu summary { padding: 2px 0; }
+.product.v2 .review-list .feed-heading:has(.feed-title-actions) { padding-bottom: 12px; border-bottom: 1px solid var(--line-2); }
+@media (max-width: 680px) { .feed-title-actions { gap: 12px; } .product.v2 .review-list .feed-title-row .feed-title-actions .add-review { display: inline-flex; } }
+.feed-title-actions .sort-menu { line-height: 1; }
+.feed-title-actions .sort-menu summary::after { transform: translateY(-2px) rotate(45deg); }
+/* Phones: title and a short "Most helpful ⌄" in one row; the header's Add button stays one tap away. */
+@media (max-width: 680px) {
+  .feed-title-actions .sort-label { display: none; }
+  .product.v2 .review-list .feed-title-row .feed-title-actions .add-review { display: none; }
+}
+.feed-title-actions { flex: none; white-space: nowrap; }
+@media (max-width: 680px) { .product.v2 .review-list .feed-heading:has(.feed-title-actions) { border-bottom: 0; padding-bottom: 0; } }
+.product.v2 .review-list .feed-title-row:has(.feed-title-actions) { align-items: center; }
+.feed-title-actions { align-self: center; }
+.feed-title-actions .sort-menu { margin: 0; }
