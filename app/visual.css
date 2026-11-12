@@ -1935,3 +1935,13 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-slot.lt-top1 > .lt-row { background: linear-gradient(90deg, var(--lt-tint), color-mix(in srgb, #f6c79a 30%, #fff)); }
 .lt-list { display: grid; gap: 4px; }
 .lt-slot.lt-top, .lt-slot.lt-top1 { background: none; border: 0; }
+/* "How the signal works" pop-up (owner, 2026-11-13). */
+.sig-pop { position: relative; display: inline-block; }
+.sig-pop summary { list-style: none; cursor: pointer; color: var(--lt-acc, var(--green-ink)); }
+.sig-pop summary::-webkit-details-marker { display: none; }
+.sig-pop summary:hover { text-decoration: underline; }
+.sig-pop-card { position: absolute; z-index: 30; top: calc(100% + 8px); left: 0; width: min(300px, 80vw); display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 14px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.1); color: var(--lt-ink, #262421); font-size: 13px; line-height: 1.5; text-align: left; white-space: normal; }
+.sig-pop-card b { font-size: 14px; font-weight: 600; }
+.sig-pop-card p { margin: 0; color: var(--lt-mute, #8a857c); }
+.sig-pop-card a { font-weight: 600; color: var(--lt-acc, var(--green-ink)); }
+.lp-sub .sig-pop + *::before { content: "·"; margin-right: 14px; color: var(--lt-mute); }

@@ -31,7 +31,7 @@ import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
-import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo } from "../../visual";
+import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, pairHref } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
@@ -339,7 +339,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
             <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
-          <p className="lp-sub"><a href="/about#signal">How the signal works ↗</a>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</p>
+          <div className="lp-sub"><SignalPop/>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</div>
           <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read reviews ↓</a>}</p>
         </div>
       </section>

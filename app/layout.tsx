@@ -39,6 +39,8 @@ export default async function Layout({children}: {children: React.ReactNode}) {
         <a href="/contact">Contact</a>
       </nav>
     </div>{niche.site.notice && <p className="wrap footer-notice">{niche.site.notice}</p>}</footer>
+    {/* Small pop-ups (signal explainer, "More" menus) close when you click anywhere else (owner, 2026-11-13). */}
+    <script dangerouslySetInnerHTML={{ __html: `document.addEventListener("click",function(e){document.querySelectorAll("details.sig-pop[open],details.lc-more[open],details.sig-info[open]").forEach(function(d){if(!d.contains(e.target))d.removeAttribute("open")})})` }}/>
     {process.env.VERCEL_ENV === "production" && niche.site.analyticsId && <Analytics id={niche.site.analyticsId}/>}
   </body></html>;
 }
