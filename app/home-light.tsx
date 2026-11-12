@@ -59,7 +59,11 @@ function Mini({ title, href, items }: { title: string; href: string; items: { ke
 export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: Catalog; f: LightFilters; signals: Map<string, Signal>; picks: RankedList[]; now: number; keep?: Record<string, string> }) {
   const sort = parseSort(f.sort), shapes = shapeChoices(), shape = shapes.find(c => c.key === f.shape), tc = tagCounts(data);
   const inShape = (r: Product, c = shape) => !c || c.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase());
-  const results = sortProducts(matchingRackets(data.listed, f.q || "").filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort,
+  const searched = matchingRackets(data.listed, f.q || "");
+  // Category names as the site says them elsewhere ("Cleansers"), with how many products each holds under the search.
+  const plural = (c: { key: string; label: string; shapes: string[] }) => niche.typePages?.find(t => c.shapes.some(s => s.toLowerCase() === t.shape.toLowerCase()))?.label ?? c.label;
+  const cats = shapes.map(c => ({ key: c.key, label: plural(c), n: searched.filter(r => inShape(r, c)).length })).filter(c => c.n > 0 || c.key === shape?.key);
+  const results = sortProducts(searched.filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort,
     x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
   const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `/?${q}#board` : "/#board"; };
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
@@ -74,19 +78,10 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const side = picks.filter((l, i) => l.entries.length >= 5 && picks.findIndex(x => x.list.title === l.list.title) === i).slice(1, 3);
 
   return <div className={`lt ${poppins.className}`}>
-    <nav className="lt-pills" aria-label={`${w.One} types and rankings`}>
-      <a href={link({ shape: undefined })} aria-current={!shape ? "true" : undefined}>All</a>
-      {shapes.length > 1 && shapes.map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}</a>)}
-      {!niche.typePages?.length && <span className="lt-pill-sep" aria-hidden="true"/>}
-      {/* Rankings next to the types, unless the rankings are the types themselves (SkinRecs ranks per type). */}
-      {!niche.typePages?.length && picks.filter((l, i) => picks.findIndex(x => x.list.label === l.list.label) === i).slice(0, 5).map(l => <a key={l.list.slug} href={listHref(l.list.slug)} className="lt-pill-list">{l.list.label}</a>)}
-    </nav>
-
     <section className="lt-hero">
       <p className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} opinions`}</p>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
       <p className="lt-sub">We read Reddit, YouTube and forums so you don’t have to. Every opinion links to its source.</p>
-      <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
       <AutoSubmitForm className="lt-search" action="/">
         {Object.entries({ ...keep, shape: f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
         <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search a ${w.one} or brand`} aria-label={`Search ${w.many}`}/>
@@ -96,7 +91,16 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
     <div className="lt-grid" id="board">
       <div className="lt-board">
-        {(f.q || shape) && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many}${shape ? ` · ${shape.label}` : ""}${f.q ? ` · “${f.q}”` : ""} · `}<a href={link({ q: undefined, shape: undefined })}>clear</a></p>}
+        {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count, an underline on the
+            one picked, and the order at the right. It stays at the top while the long list scrolls. */}
+        <div className="lt-bar">
+          {cats.length > 1 && <nav className="lt-cats" aria-label={`${w.One} categories`}>
+            <a href={link({ shape: undefined })} aria-current={!shape ? "true" : undefined}>All<small>{fmt(searched.length)}</small></a>
+            {cats.map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
+          </nav>}
+          <nav className="lt-order" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</nav>
+        </div>
+        {f.q && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} for “${f.q}” · `}<a href={link({ q: undefined })}>clear</a></p>}
         <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <Row key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/>)}/>
         {!results.length && <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>}
       </div>
