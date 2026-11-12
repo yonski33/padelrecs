@@ -1119,3 +1119,28 @@ svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--
   .voice-src svg[data-src="youtube"] { background: var(--src-youtube); }
   .voice-src svg[data-src="web"], .voice-src svg[data-src="forum"], .voice-src svg[data-src="shop"] { background: var(--src-web); }
 }
+/* Product-page reviews, text first (owner, 2026-11-12): bigger, airier text; verdict, source and date on one quiet line. */
+.voice.tf { padding: 22px 0; }
+.voice.tf .voice-text { margin: 0; font-size: 17px; line-height: 1.75; }
+.voice-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 12px; }
+.voice-meta .voice-src { font-size: 13px; }
+.voice-meta .voice-src svg { width: 16px; height: 16px; }
+.voice-meta .voice-by { margin: 0; font-size: 12.5px; color: var(--ink-3); }
+.voice-meta .voice-by::before { content: "·"; margin-right: 8px; }
+.voice.tf .clamp-more { margin-top: 6px; }
+@media (max-width: 680px) {
+  .voice.tf .voice-text { font-size: 16px; line-height: 1.7; }
+  .voice-meta .voice-src svg { width: 20px; height: 20px; padding: 3px; }
+  .voice-meta .voice-by { display: inline; }
+}
+@media (max-width: 680px) {
+  .product.v2 .voice.tf { padding: 16px 14px 14px; }
+  .voice-meta .voice-src b { text-transform: none; letter-spacing: 0; font-size: 13px; }
+  .voice-meta .voice-src span:not(.arr) { display: none; }
+  .voice-meta .voice-src span.vdate { display: inline; }
+  .voice-meta .voice-by { display: none; }
+  .voice-meta .voice-src .arr { display: inline; }
+}
+/* Logo back to the smoother display sans of the earlier design (owner, 2026-11-12), name kept as "PadelRecs". */
+.wordmark { font-family: var(--display); font-style: normal; font-weight: 750; font-size: 25px; letter-spacing: -0.03em; line-height: 1; color: var(--green-ink); }
+@media (max-width: 680px) { .wordmark { font-size: 23px; } }

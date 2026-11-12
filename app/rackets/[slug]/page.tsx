@@ -144,9 +144,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x}/>,
+    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e}/>,
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".

@@ -135,21 +135,33 @@ function Clamp({ id, text }: { id: string; text: string }) {
 }
 
 /** A review on the product page, as a short quote card: where it was said and when, how it felt, and its words. */
-export function Voice(props: { review: PlayerReview } | { entry: WebReview }) {
+/** textFirst (product pages, owner 2026-11-12): the review leads, larger and airier, with the verdict, source and date
+ *  on one quiet line under it. The home feed keeps the source on top, under the product's name. */
+export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) & { textFirst?: boolean }) {
+  const tf = !!props.textFirst;
   if ("review" in props) {
     const r = props.review, v = verdictOf(r.rating);
-    return <article className="voice">
-      <header><span className="voice-src"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="currentColor"/></svg><b>{`${niche.people.One} review`}</b><span>{fullDate(r.createdAt)}</span></span><span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
+    const src = <span className="voice-src"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="currentColor"/></svg><b>{`${niche.people.One} review`}</b><span className="vdate">{fullDate(r.createdAt)}</span></span>;
+    const by = [r.alias || "Anonymous", r.playerLevel].filter(Boolean).join(" · ");
+    if (tf) return <article className="voice tf">
       <Clamp id={`p-${r.id}`} text={r.reviewText}/>
-      <footer className="voice-by">{[r.alias || "Anonymous", r.playerLevel].filter(Boolean).join(" · ")}</footer>
+      <footer className="voice-meta"><span className={`spill s-${v}`}>{sentimentWord[v]}</span>{src}<span className="voice-by">{by}</span></footer>
+    </article>;
+    return <article className="voice">
+      <header>{src}<span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
+      <Clamp id={`p-${r.id}`} text={r.reviewText}/>
+      <footer className="voice-by">{by}</footer>
     </article>;
   }
   const e = props.entry, label = sourceLabel(e);
+  const src = <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{label.name && <span>{label.name}</span>}{e.sourceDate && <span className="vdate">{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>;
+  const pill = e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>;
+  if (tf) return <article className="voice tf">
+    <Clamp id={`w-${e.id}`} text={quoteText(e)}/>
+    <footer className="voice-meta">{pill}{src}</footer>
+  </article>;
   return <article className="voice">
-    <header>
-      <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{label.name && <span>{label.name}</span>}{e.sourceDate && <span>{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>
-      {e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}
-    </header>
+    <header>{src}{pill}</header>
     <Clamp id={`w-${e.id}`} text={quoteText(e)}/>
     <a className="voice-orig m-only" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">View original source <span aria-hidden="true">↗</span></a>
   </article>;
