@@ -8,7 +8,7 @@ const topics: Record<string, string> = {
   homegym: "home gym gear", hosting: "web hosting", keyboard: "keyboards", kitchen: "kitchen appliances", money: "cards and apps",
   laptop: "laptops", monitor: "monitors", nails: "nail products", padel: "padel rackets", pickleball: "pickleball paddles", running: "running shoes",
   simracing: "sim racing gear", skin: "skincare", sleep: "sleep gear", snowboard: "snowboards", software: "software",
-  tabletennis: "table tennis gear", tennis: "tennis rackets", travelgear: "travel gear", ultralight: "ultralight gear",
+  tabletennis: "table tennis gear", tennis: "tennis rackets", travelgear: "travel gear", tv: "TVs", ultralight: "ultralight gear",
 };
 
 /** ["What players are saying about ", "padel rackets"]: the headline and its underlined topic. */

@@ -891,3 +891,33 @@ test("print: products named by model and revision (no years), five category page
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("tv: one product per model and year (sizes merged), three category pages with product URLs under them, TV rating icons", async () => {
+  const n = selectNiche("tv");
+  assert.equal(n.schema, "tvrecs");
+  assert.equal(n.productPath, "tvs");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "Electronics");
+  assert.equal(n.people.many, "owners");
+  assert.deepEqual(n.categories.map(c => c.label), ["Picture quality", "Motion & gaming", "Brightness & room", "Smart TV & software", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Panel", "Sizes", "Refresh & HDMI", "Smart TV"]);
+  // The owner's approved category URLs (2026-11-12): 8K is a tag, not a page; no projectors or soundbars.
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["oled-tvs", "mini-led-tvs", "budget-tvs"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  assert(n.tags.some(t => t.label === "8K"));
+  const { shapeOf } = await import("../app/art/tv");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 3, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+    for (const t of [...(list.trait?.tags ?? []), ...(list.trait?.against ?? [])]) assert(n.tags.some(x => x.label === t), `${list.slug}: unknown tag ${t}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
