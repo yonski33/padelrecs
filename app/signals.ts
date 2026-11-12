@@ -16,5 +16,5 @@ export function categoryWords(category: string) {
 /** Every listed product's signal, once per request (pages and the rankings read the same numbers). */
 export const productSignals = cache(async (): Promise<Map<string, Signal>> => {
   const data = await catalog();
-  return signals(data.listed.map(r => { const s = score(data, r.id); return { id: r.id, category: signalCategory(r), positive: s.positive, mixed: s.mixed, judged: s.judged }; }));
+  return signals(data.listed.map(r => { const s = score(data, r.id); return { id: r.id, category: signalCategory(r), positive: s.positive, mixed: s.mixed, judged: s.judged, override: r.signalOverride }; }));
 });

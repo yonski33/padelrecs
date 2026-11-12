@@ -26,3 +26,10 @@ test("a mixed review costs less than a negative one",()=>{
  const s=signals([p("neg","x",30,0,40),p("mix","x",30,10,40)]);
  assert(s.get("mix")!.signal>s.get("neg")!.signal);
 });
+
+test("a score set by hand replaces the worked-out one and takes its place in the order",()=>{
+ const s=signals([{...p("a","x",60,0,64)},{...p("b","x",10,0,20),override:99},{...p("c","x",1,0,2),override:40}]);
+ assert.equal(s.get("b")!.signal,99); assert.equal(s.get("b")!.rank,1); assert.equal(s.get("b")!.set,true);
+ assert.equal(s.get("c")!.signal,40);
+ assert.equal(s.get("a")!.set,undefined);
+});

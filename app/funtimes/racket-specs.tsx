@@ -38,6 +38,7 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
     {hasYears ? <label className="field">Year<input name="year" type="number" required min={1980} max={2100} defaultValue={selected.year}/></label> : <input type="hidden" name="year" value={selected.year}/>}
     {niche.specs.map(spec=><label className="field" key={spec.column}>{spec.label}<input name={spec.column} list={spec.options?`${spec.column}-options`:undefined} maxLength={spec.max} defaultValue={selected[spec.column]||""} placeholder={spec.placeholder}/>{spec.options&&<datalist id={`${spec.column}-options`}>{spec.options.map(s=><option key={s} value={s}/>)}</datalist>}</label>)}
    </div>
+   <label className="field">Signal score <span className="muted">(optional, 1–99)</span><input name="signalOverride" type="number" min={1} max={99} defaultValue={selected.signalOverride ?? ""} placeholder="Worked out from reviews"/><small>Leave blank to use the score worked out from reviews. A number here is shown everywhere and decides this product's place in the rankings.</small></label>
    <label className="field">Description<textarea name="description" maxLength={5000} defaultValue={selected.description||""}/></label>
    <p className="small muted">{`Blank optional fields display as “Not specified.” Saving updates the public ${w.one} page within a minute. Linked reviews stay attached; if you change the page address, the old one keeps working.`}</p>
    <button type="submit">{`Save ${w.one} details`}</button>
