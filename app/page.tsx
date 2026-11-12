@@ -134,7 +134,9 @@ export default async function Home({ searchParams }: {
       </section>
 
       {top.length >= 3 && <section className="top5" aria-labelledby="top5-title">
-        <div className="section-head"><h2 id="top5-title">{`${lead.list.title} ${listYear(lead.list)}`}</h2><a className="section-link" href={listHref(lead.list.slug)}>{`See the top ${lead.entries.length}`}<Arrow/></a></div>
+        <div className="section-head"><div><h2 id="top5-title">{`${lead.list.title} ${listYear(lead.list)}`}</h2>
+          {/* Where the list's reviews come from (owner, 2026-11-12), as the list's own caption, counted the way the ranking counts them. */}
+          {sources && <p className="top5-sources"><span>{`Ranked from ${sources.total.toLocaleString("en-US")} reviews`}</span>{sources.parts.map(([name, n]) => <span key={name} className="trust-src"><SourceIcon platform={name === niche.site.name ? "forum" : name}/><b>{n.toLocaleString("en-US")}</b>{` ${name === niche.site.name ? `${niche.site.name} ${niche.people.many}` : name}`}</span>)}</p>}</div><a className="section-link" href={listHref(lead.list.slug)}>{`See the top ${lead.entries.length}`}<Arrow/></a></div>
         <ol className="top5-row">{top.map(e => { return <li key={e.product.id}><a className="pcard" href={productHref(e.product)}>
           <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
           <ProductArt product={all.rackets.find(r => r.id === e.product.id) ?? (e.product as never)} brand={brandName(e.product.brandId)} eager/>
@@ -143,11 +145,6 @@ export default async function Home({ searchParams }: {
             {/* Owner, 2026-11-12: just the name; the product page has the detail. */}
           </span>
         </a></li>; })}</ol>
-        {/* Trust strip (owner, 2026-11-12): where the list's reviews come from, counted the way the ranking counts them. */}
-        {sources && <a className="trust-strip" href={`${listHref(lead.list.slug)}#how-we-rank`}>
-          <span className="trust-left"><span className="trust-lead"><b>{sources.total.toLocaleString("en-US")}</b>{` reviews behind this list`}</span>
-          <span className="trust-sources">{sources.parts.map(([name, n]) => <span key={name} className="trust-src"><SourceIcon platform={name === niche.site.name ? "forum" : name}/><b>{n.toLocaleString("en-US")}</b>{` ${name === niche.site.name ? `${niche.site.name} ${niche.people.many}` : name}`}</span>)}</span></span>
-        </a>}
       </section>}
 
       <section className="discussed-wide" aria-labelledby="discussed-title">
