@@ -1,5 +1,5 @@
 {
-  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews).",
+  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3).",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -1094,6 +1094,18 @@
       "sources": [
         "https://www.bbqguys.com/i/3090674/halo-products-group/versa-16-outdoor-pizza-oven-hz-1004-ana",
         "https://www.basspro.com/shop/en/halo-versa-16-outdoor-propane-countertop-pizza-oven"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Big Joe I",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://manuals-cdn.masterbuilt.com/de.kamadojoe.com/BJ24RH_Big_Joe_I_German_mobile.pdf"
       ]
     },
     {
