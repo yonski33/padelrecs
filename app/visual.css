@@ -1721,3 +1721,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 }
 .lr-others a, .lr-buy b, .lr-buy span { white-space: nowrap; }
 @media (max-width: 640px) { .lr-others a { flex: none; } .lr-buy { display: flex; gap: 6px; } }
+/* The row's shop button as a filled pill (owner, 2026-11-12: the white one didn't work). */
+.lr-buy { background: var(--lt-acc); border-color: var(--lt-acc); color: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.lr-buy span { color: rgba(255,255,255,.78); }
+.lr-buy:hover { background: color-mix(in srgb, var(--lt-acc) 85%, #000); border-color: transparent; }

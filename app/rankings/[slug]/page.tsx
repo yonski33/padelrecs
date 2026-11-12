@@ -199,7 +199,9 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
   faq: { q: string; a: string }[]; jsonLd: object; byId: Map<string, Product>; brandOf: (id: string) => string }) {
   const { list } = found;
   const ids = new Set(entries.map(e => e.product.id));
-  const platforms = [...new Set(data.external.filter(e => ids.has(e.racketId)).map(e => platformName(e.sourcePlatform)))].filter(p => p !== "Blog").slice(0, 2);
+  // Where the opinions come from, as the owner says it (2026-11-12): Reddit, YouTube and blogs, plus reviews written here.
+  const order = ["Reddit", "YouTube", "Blog"];
+  const platforms = [...new Set(data.external.filter(e => ids.has(e.racketId)).map(e => platformName(e.sourcePlatform)))].filter(p => order.includes(p)).sort((a, b) => order.indexOf(a) - order.indexOf(b)).map(p => p === "Blog" ? "blogs" : p);
   const sources = [...platforms, niche.site.name].join(", ").replace(/, ([^,]+)$/, " and $1");
   const others = lists.filter((l, i) => l !== found && lists.findIndex(x => x.list.slug === l.list.slug) === i);
   const lightHref = (x: { slug: string }) => `${productHref(x)}?look=light`;
