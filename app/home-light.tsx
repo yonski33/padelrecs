@@ -12,7 +12,7 @@ import { webDate } from "../lib/recent";
 import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
 import { listHref } from "./rankings/lists";
-import { Directory, parseShow } from "./components";
+import { HomeBoard } from "./home-board";
 import { AutoSubmitForm } from "./auto-submit";
 import { ProductArt } from "./visual";
 import { SourceIcon } from "./icons";
@@ -26,11 +26,12 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 type Product = Catalog["listed"][number];
 export type LightFilters = { q?: string; shape?: string; sort?: string; show?: string };
 
-function Row({ data, r, rank, signal, line }: { data: Catalog; r: Product; rank: number | null; signal?: number; line: string | null }) {
+/** The rank number comes from CSS (a counter over the rows shown), so it follows the category picked on the page. */
+function Row({ data, r, signal, line }: { data: Catalog; r: Product; signal?: number; line: string | null }) {
   const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = lightHref(r);
   const s = score(data, r.id), total = s.count + s.web, pos = s.judged >= 3 ? Math.round(100 * s.positive / s.judged) : null;
-  return <a className={`lt-row${rank !== null && rank <= 3 ? ` lt-top lt-top${rank}` : ""}`} href={href}>
-    <span className="lt-rank">{rank !== null ? `#${rank}` : ""}</span>
+  return <a className="lt-row" href={href}>
+    <span className="lt-rank" aria-hidden="true"/>
     <span className="lt-art"><ProductArt product={r} brand={brand}/></span>
     <span className="lt-body">
       <span className="lt-name">{name}</span>
@@ -64,7 +65,8 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   // Category names as the site says them elsewhere ("Cleansers"), with how many products each holds under the search.
   const plural = (c: { key: string; label: string; shapes: string[] }) => niche.typePages?.find(t => c.shapes.some(s => s.toLowerCase() === t.shape.toLowerCase()))?.label ?? c.label;
   const cats = shapes.map(c => ({ key: c.key, label: plural(c), n: searched.filter(r => inShape(r, c)).length })).filter(c => c.n > 0 || c.key === shape?.key);
-  const results = sortProducts(searched.filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort,
+  // Every product under the search, in order; the category row filters them on the page (app/home-board.tsx).
+  const results = sortProducts(searched.map(r => ({ r, s: score(data, r.id) })), sort,
     x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
   const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `/?${q}#board` : "/#board"; };
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
@@ -95,21 +97,13 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <div className="lt-board">
         {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count and an underline on
             the one picked. It stays at the top while the long list scrolls. */}
-        <div className="lt-bar">
-          {cats.length > 1 && <nav className="lt-cats" aria-label={`${w.One} categories`}>
-            <a href={link({ shape: undefined })} aria-current={!shape ? "true" : undefined}>All<small>{fmt(searched.length)}</small></a>
-            {/* One row (owner, 2026-11-13): the first five categories, the rest under "More", as on the catalogue. */}
-            {cats.slice(0, 5).map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
-            {cats.length > 5 && <details className="lc-more"><summary>{cats.slice(5).some(c => c.key === shape?.key) ? cats.find(c => c.key === shape?.key)!.label : "More"} <span aria-hidden="true">⌄</span></summary>
-              <div>{cats.slice(5).map(c => <a key={c.key} href={link({ shape: c.key })} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}</div></details>}
-          </nav>}
-        </div>
         {f.q && <p className="lt-filtered">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} for “${f.q}” · `}<a href={link({ q: undefined })}>clear</a></p>}
-        <Directory show={parseShow(f.show)} moreHref={n => link({ show: String(n) })} rows={results.map(({ r }, i) => <Row key={r.id} data={data} r={r} rank={ranked ? i + 1 : null} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/>)}/>
-        {!results.length && (f.q || shape
-          ? <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>
-          // A new site (TVRecs, 2026-11-13) before its first reviews are in.
-          : <p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>)}
+        <HomeBoard cats={cats} allCount={searched.length} initial={shape?.key} ranked={ranked} base={new URLSearchParams(Object.entries({ ...keep, q: f.q, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
+          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, node: <Row data={data} r={r} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/> }))}
+          empty={f.q
+            ? <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>
+            // A new site (TVRecs, 2026-11-13) before its first reviews are in.
+            : <p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>
       <aside className="lt-side">
         <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>

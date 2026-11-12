@@ -1927,3 +1927,11 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-bar { overflow: visible; }
 .lt-cats .lc-more summary { padding: 6px 0 9px; font-size: 13.5px; }
 @media (max-width: 720px) { .lt-cats { overflow-x: auto; } .lt-cats .lc-more > div { position: fixed; right: 16px; top: auto; } }
+/* Home leaderboard rows: the rank is a counter over the rows shown, so it follows the category picked on the page. */
+.lt-list.ranked { counter-reset: lt-rank; }
+.lt-list.ranked .lt-slot { counter-increment: lt-rank; }
+.lt-list.ranked .lt-rank::before { content: "#" counter(lt-rank); }
+.lt-slot.lt-top > .lt-row { border-color: transparent; background: var(--lt-tint2); }
+.lt-slot.lt-top1 > .lt-row { background: linear-gradient(90deg, var(--lt-tint), color-mix(in srgb, #f6c79a 30%, #fff)); }
+.lt-list { display: grid; gap: 4px; }
+.lt-slot.lt-top, .lt-slot.lt-top1 { background: none; border: 0; }
