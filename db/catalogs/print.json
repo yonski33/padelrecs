@@ -1,5 +1,5 @@
 {
-  "about": "PrintRecs catalog (2026-11-12, scope approved by the owner): FDM printers, resin printers (with wash and cure stations), multi-material units and enclosures, filament (one product per line and material) and resin. Each exact name and URL was read on the maker's own site or store on 2026-11-12; Prusa's store is bot-checked, so Prusa printers are named from help.prusa3d.com product pages and Prusament lines from prusament.com. Models and revisions are separate products (Bambu Lab P1P vs P1S vs P2S, A1 vs A1 mini, Prusa MK4 vs MK4S, CORE One vs CORE One+, Ender-3 V3 vs V3 SE vs V3 KE vs V3 Plus, Elegoo Saturn 4 vs 4 Ultra vs 4 Ultra 16K); combos that only add the maker's multi-material unit, kit vs assembled, spool sizes and colours are folded into the base product. Older models are in only where the maker's site still names them (Elegoo Centauri Carbon pre-owned, Anycubic Kobra 3 end of life, Bambu Lab P1P on the compare page). Renamed lines keep the maker's current name: Polymaker PolyTerra PLA is now Panchroma Matte PLA, PolyLite PETG and ASA are Polymaker PETG and ASA (the old URLs redirect). Columns: shape = category; core (type), weight (build volume), surface (material) and balance (notable features) not read. Blank = not read. Snapmaker U1 added 2026-11-12 (3 first-hand reviews from distinct authors held in the first sweep; owner standing OK). the original Creality Ender-3 (filed only when a comment names it with no version suffix), Creality Ender-3 Pro, Creality Ender-5 Plus, Creality Ender-5 Pro and Sovol SV06 Plus added 2026-11-12 (3+ first-hand authors held in the sweep; SV06 Plus is named on Sovol's own SV06 Plus parts pages, its product page is gone). Elegoo Saturn 3 and Saturn 3 Ultra added 2026-11-13 (3 held first-hand authors each). Creality Ender-3 S1 added 2026-11-13 (3 held first-hand authors). Elegoo Saturn 2 added 2026-11-13 (3 held first-hand authors). Elegoo Mars 4 Ultra added 2026-11-13 (3 held first-hand authors).",
+  "about": "PrintRecs catalog (2026-11-12, scope approved by the owner): FDM printers, resin printers (with wash and cure stations), multi-material units and enclosures, filament (one product per line and material) and resin. Each exact name and URL was read on the maker's own site or store on 2026-11-12; Prusa's store is bot-checked, so Prusa printers are named from help.prusa3d.com product pages and Prusament lines from prusament.com. Models and revisions are separate products (Bambu Lab P1P vs P1S vs P2S, A1 vs A1 mini, Prusa MK4 vs MK4S, CORE One vs CORE One+, Ender-3 V3 vs V3 SE vs V3 KE vs V3 Plus, Elegoo Saturn 4 vs 4 Ultra vs 4 Ultra 16K); combos that only add the maker's multi-material unit, kit vs assembled, spool sizes and colours are folded into the base product. Older models are in only where the maker's site still names them (Elegoo Centauri Carbon pre-owned, Anycubic Kobra 3 end of life, Bambu Lab P1P on the compare page). Renamed lines keep the maker's current name: Polymaker PolyTerra PLA is now Panchroma Matte PLA, PolyLite PETG and ASA are Polymaker PETG and ASA (the old URLs redirect). Columns: shape = category; core (type), weight (build volume), surface (material) and balance (notable features) not read. Blank = not read. Snapmaker U1 added 2026-11-12 (3 first-hand reviews from distinct authors held in the first sweep; owner standing OK). the original Creality Ender-3 (filed only when a comment names it with no version suffix), Creality Ender-3 Pro, Creality Ender-5 Plus, Creality Ender-5 Pro and Sovol SV06 Plus added 2026-11-12 (3+ first-hand authors held in the sweep; SV06 Plus is named on Sovol's own SV06 Plus parts pages, its product page is gone). Elegoo Saturn 3 and Saturn 3 Ultra added 2026-11-13 (3 held first-hand authors each). Creality Ender-3 S1 added 2026-11-13 (3 held first-hand authors). Elegoo Saturn 2 added 2026-11-13 (3 held first-hand authors). Elegoo Mars 4 Ultra added 2026-11-13 (3 held first-hand authors). Sovol SV06 (original) added 2026-11-13 (5 held first-hand authors).",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -2136,6 +2136,18 @@
       "balance": null,
       "sources": [
         "https://www.snapmaker.com/snapmaker-u1"
+      ]
+    },
+    {
+      "brand": "sovol",
+      "name": "Sovol SV06",
+      "shape": "FDM printer",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.sovol3d.com/products/sv06-all-metal-hotend"
       ]
     },
     {
