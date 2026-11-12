@@ -1990,3 +1990,12 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 /* Sort sits right under the category tabs (owner, 2026-11-13). */
 .lt-bar { margin-bottom: 0; }
 .lt-listhead { margin: 6px 4px 4px; }
+/* Home: Sort in the tab row, right end (owner, 2026-11-13). */
+.lt-bar { align-items: center; }
+.lt-cats { flex: 1 1 auto; min-width: 0; }
+.lt-bar-aside { display: block !important; flex: none; margin-left: auto; padding: 6px 0 9px 14px; }
+.lt-board > .lt-filtered { margin: 8px 4px 4px; }
+@media (max-width: 720px) { .lt-bar-aside { margin-left: 0; padding: 6px 0 4px; } }
+.lt-board .lt-cats { gap: 15px; }
+.lt-board .lt-cats a small { margin-left: 3px; }
+@media (max-width: 1100px) and (min-width: 721px) { .lt-board .lt-cats a small { display: none; } }

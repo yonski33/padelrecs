@@ -55,7 +55,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
   const visible = searched.filter(i => !shape || i.shape === shape);
   const count = (key: string) => searched.filter(i => i.shape === key).length;
   const shownCats = cats.filter(c => count(c.key) > 0 || c.key === shape);
-  const head = shownCats.slice(0, 5), more = shownCats.slice(5), current = cats.find(c => c.key === shape);
+  const head = shownCats.slice(0, 4), more = shownCats.slice(4), current = cats.find(c => c.key === shape);
   // A rank number means a place in the ranking, so it shows only without a search.
   const numbered = ranked && !q.trim();
 
@@ -67,10 +67,11 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
         {more.length > 0 && <details className="lc-more"><summary>{more.some(c => c.key === shape) ? current!.label : "More"} <span aria-hidden="true">⌄</span></summary>
           <div>{more.map(c => <a key={c.key} href={href(c.key)} onClick={pick(c.key)} aria-current={shape === c.key ? "true" : undefined}>{c.label}<small>{count(c.key).toLocaleString("en-US")}</small></a>)}</div></details>}
       </nav>}
-      {aside && <div className="lt-bar-aside">{aside}</div>}
+      {/* Sort at the right end of the tab row (owner, 2026-11-13): no extra line between the tabs and the list. */}
+      {(sort || aside) && <div className="lt-bar-aside">{sort}{aside}</div>}
     </div>
     {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
-    {items.length > 0 && <div className="lt-listhead"><span>{q.trim() ? `${visible.length.toLocaleString("en-US")} for “${q.trim()}”` : ""}</span>{sort}</div>}
+    {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
       {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
