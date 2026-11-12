@@ -37,7 +37,7 @@ function Row({ data, r, rank, signal, line }: { data: Catalog; r: Product; rank:
       {line && <span className="lt-line">{line}</span>}
       <span className="lt-meta">
         {r.shape && <span className="lt-shape">{r.shape}</span>}
-        <span>{`${fmt(total)} ${total === 1 ? "opinion" : "opinions"}`}</span>
+        <span>{`${fmt(total)} ${total === 1 ? "review" : "reviews"}`}</span>
         {pos !== null && <span className="lt-pos">{`${pos}% positive`}</span>}
         <span className="lt-see">see reviews</span>
       </span>
@@ -80,9 +80,9 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
-      <p className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} opinions`}</p>
+      <p className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} reviews`}</p>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
-      <p className="lt-sub">We read Reddit, YouTube and forums so you don’t have to. Every opinion links to its source.</p>
+      <p className="lt-sub">We read Reddit, YouTube and forums so you don’t have to. Every review links to its source.</p>
       <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
       <AutoSubmitForm className="lt-search" action="/">
         {Object.entries({ ...keep, shape: f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
@@ -106,9 +106,9 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
         {!results.length && <p className="lt-filtered">{`Nothing matches. `}<a href={link({ q: undefined, shape: undefined })}>Show all</a></p>}
       </div>
       <aside className="lt-side">
-        <Mini title="Fresh opinions" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
+        <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
         {side.map(l => <Mini key={l.list.slug} title={l.list.label} href={listHref(l.list.slug)} items={l.entries.slice(0, 5).map(e => { const full = data.rackets.find(r => r.id === e.product.id); return { key: e.product.id, rank: e.rank, art: full ? <ProductArt product={full} brand={brandOf(full.brandId)}/> : null, name: displayName(e.product.name, brandOf(e.product.brandId)), href: lightHref(e.product), value: signals.get(e.product.id)?.signal ?? "" }; })}/>)}
-        <p className="lt-note">The signal is positive opinions weighed by how many there are. No sponsored picks. <a href="/about#signal">How it works</a></p>
+        <p className="lt-note">The signal is positive reviews weighed by how many there are. No sponsored picks. <a href="/about#signal">How it works</a></p>
       </aside>
     </div>
   </div>;

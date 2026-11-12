@@ -212,7 +212,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
     <header className="lr-hero">
       <h1>{`${sentenceCase(list.title)}, according to `}<em>{`real ${people.many}`}</em></h1>
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
-      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} opinions on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
+      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
       <nav className="lr-others" aria-label="More rankings"><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}?look=light`}>{l.list.label}</a>)}</nav>
     </header>
@@ -227,7 +227,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
             <div className="lr-main">
               <h3><a href={href}>{displayName(e.product.name, brand)}</a></h3>
               {line && <p className="lr-line">{line}</p>}
-              <p className="lr-meta">{[e.product.shape, `${sc.judged.toLocaleString("en-US")} opinions`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}{list.trait && ` · ${e.traitReviews} mention ${list.trait.noun}`}</p>
+              <p className="lr-meta">{[e.product.shape, `${sc.judged.toLocaleString("en-US")} reviews`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}{list.trait && ` · ${e.traitReviews} mention ${list.trait.noun}`}</p>
               {/* A quiet text link, as on the current rankings (owner, 2026-11-12). */}
               {a ? <a className="lr-buy" href={a.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a>
                 : site && <a className="lr-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label} <span aria-hidden="true">↗</span></a>}
@@ -240,7 +240,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
       <aside className="lr-aside">
         <section className="lr-box">
           <h2>How this ranking works</h2>
-          <p>{`We collect first-hand ${people.one} opinions, read each as positive, mixed or negative, and rank by the signal: positive opinions weighed by how many there are. No sponsored placements.`}</p>
+          <p>{`We collect first-hand ${people.one} reviews, read each as positive, mixed or negative, and rank by the signal: positive reviews weighed by how many there are. No sponsored placements.`}</p>
           <a href="/about#signal">Full method →</a>
         </section>
         {others.length > 0 && <section className="lr-box lr-more"><h2>More rankings</h2><ul>{others.slice(0, 8).map(l => <li key={l.list.slug}><a href={`${listHref(l.list.slug)}?look=light`}>{l.list.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>}

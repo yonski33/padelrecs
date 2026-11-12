@@ -310,7 +310,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const glance = [
       ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
       ...(liked[0] ? [["Best known for", cap(liked[0])]] : []),
-      ["Opinions collected", sum.total.toLocaleString("en-US")],
+      ["Reviews collected", sum.total.toLocaleString("en-US")],
       ...(sources.length ? [["Sources", sources.slice(0, 4).join(", ")]] : []),
       ...specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).slice(0, 3).map(([k, v]) => [k, String(v)]),
     ];
@@ -336,10 +336,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {sum.total > 0 ? <div className="lp-stats">
             {sig && <div className="lp-stat"><b className="lp-acc">{sig.signal}</b><span>Signal</span></div>}
             {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
-            <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "opinion" : "opinions"}</span></a>
+            <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
           <p className="lp-sub"><a href="/about#signal">How the signal works ↗</a>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</p>
-          <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read opinions ↓</a>}</p>
+          <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read reviews ↓</a>}</p>
         </div>
       </section>
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
@@ -348,7 +348,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
           {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
         </div>
-        <p className="lp-note">{`Topics grouped from ${niche.people.one} opinions, with how many mention each; read the originals below.`}</p>
+        <p className="lp-note">{`Topics grouped from ${niche.people.one} reviews, with how many mention each; read the originals below.`}</p>
       </section>}
       {byVariant}
       <div className="columns lp-cols">
