@@ -3331,6 +3331,18 @@
   },
   {
    "brand": "trak-racer",
+   "name": "Trak Racer TR120S V2",
+   "shape": "Cockpit",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "balance": null,
+   "sources": [
+    "https://trakracer.com/products/tr120s-v2-racing-simulator-new"
+   ]
+  },
+  {
+   "brand": "trak-racer",
    "name": "Trak Racer TRF",
    "shape": "Cockpit",
    "weight": null,
