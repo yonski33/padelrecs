@@ -921,3 +921,32 @@ test("tv: one product per model and year (sizes merged), three category pages wi
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("grill: one product per model and generation, eight category pages with product URLs under them, flame rating icons", async () => {
+  const n = selectNiche("grill");
+  assert.equal(n.schema, "grillrecs");
+  assert.equal(n.productPath, "grills");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "LawnAndGarden");
+  assert.equal(n.people.many, "owners");
+  assert.deepEqual(n.categories.map(c => c.label), ["Heat control", "Cooking results", "Build & durability", "Ease of use & cleanup", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Fuel", "Cooking area", "Temperature range", "Connectivity"]);
+  // The owner's approved category URLs (2026-11-12): pizza ovens and portable grills included; no thermometers or accessories.
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["pellet-grills", "smokers", "kamado-grills", "gas-grills", "charcoal-grills", "griddles", "portable-grills", "pizza-ovens"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/grill");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 8, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
+    assert.equal(list.maxAgeYears, undefined, `${list.slug}: no model years here`);
+    for (const t of [...(list.trait?.tags ?? []), ...(list.trait?.against ?? [])]) assert(n.tags.some(x => x.label === t), `${list.slug}: unknown tag ${t}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});

@@ -8,7 +8,7 @@ import { productMove } from "../proxy";
 
 // Owner decision 2026-10-30: niches with several product types serve product pages under the type (/vpns/mullvad-vpn)
 // and every old address 301s there, because the physical-goods sites are already indexed.
-const SWITCHED = ["audio", "babygear", "camera", "climbing", "coffee", "gaming", "homegym", "hosting", "keyboard", "kitchen", "laptop", "money", "nails", "print", "simracing", "skin", "sleep", "software", "tabletennis", "travelgear", "tv", "ultralight"];
+const SWITCHED = ["audio", "babygear", "camera", "climbing", "coffee", "gaming", "grill", "homegym", "hosting", "keyboard", "kitchen", "laptop", "money", "nails", "print", "simracing", "skin", "sleep", "software", "tabletennis", "travelgear", "tv", "ultralight"];
 
 test("exactly the multi-type niches have category paths", () => {
   assert.deepEqual(Object.values(niches).filter(n => n.categoryPaths).map(n => n.id).sort(), [...SWITCHED].sort());

@@ -201,7 +201,8 @@
     "sleep": "sleeprecs",
     "laptop": "laptoprecs",
     "print": "printrecs",
-    "tv": "tvrecs"
+    "tv": "tvrecs",
+    "grill": "grillrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
