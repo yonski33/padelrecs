@@ -255,6 +255,7 @@
     {"brand": "oxdog", "name": "Oxdog Hyper Pro 2.0", "year": 2025, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.tenniswarehouse-europe.com/descpageRCOXDPPHA-OXPRHYP2-EN.html"]},
     {"brand": "9b12ea43-21db-47be-abbb-43cf33250585", "name": "Wilson Defy LS V1", "year": 2025, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.padelful.com/en/rackets/wilson-defy-ls-v1-2025"]},
     {"brand": "adidas", "name": "Adidas Arrow Hit CTRL", "year": 2026, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.padelful.com/en/rackets/adidas-arrow-hit-ctrl-2026"]},
-    {"brand": "adidas", "name": "Adidas Metalbone HRD+ 3.3", "year": 2024, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.padelreference.com/en/adidas-padel-rackets/p/adidas-metalbone-hrd-33-2024"], "slug": "adidas-metalbone-hrd-plus-3-3-2024"}
+    {"brand": "adidas", "name": "Adidas Metalbone HRD+ 3.3", "year": 2024, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.padelreference.com/en/adidas-padel-rackets/p/adidas-metalbone-hrd-33-2024"], "slug": "adidas-metalbone-hrd-plus-3-3-2024"},
+    {"brand": "oxdog", "name": "Oxdog Ultimate Pro+", "year": 2024, "shape": null, "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.padelful.com/en/rackets/oxdog-ultimate-pro-plus-2024"], "slug": "oxdog-ultimate-pro-plus-2024"}
   ]
 }
