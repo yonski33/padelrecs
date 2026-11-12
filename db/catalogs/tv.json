@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K, TCL R655). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -2436,6 +2436,20 @@
     },
     {
       "brand": "sony",
+      "name": "Sony X90J",
+      "year": 2021,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED",
+      "surface": "50/55/65/75\"",
+      "core": "4× HDMI (HDMI 2.1 4K120/eARC/VRR/ALLM)",
+      "weight": "Google TV",
+      "sources": [
+        "https://store.sony.com.au/archived-television-LED/XR65X90J.html",
+        "https://sony.mediaroom.com/2021-04-19-Sony-Electronics-Announces-Availability-and-Pricing-for-Highly-Anticipated-2021-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "sony",
       "name": "Sony X90L",
       "year": 2023,
       "shape": "Mini-LED & QLED",
@@ -2460,6 +2474,20 @@
       "sources": [
         "https://www.bestbuy.ca/en-ca/product/open-box-sony-65-4k-uhd-hdr-mini-led-120hz-dolby-vision-atmos-google-tv-smart-tv-xr65x93l-2023-great-for-movies-gaming/17189133",
         "https://sony.mediaroom.com/2023-05-01-Sony-Electronics-Announces-Pricing-and-Availability-for-2023-BRAVIA-XR-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony X95K",
+      "year": 2022,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85\"",
+      "core": "4× HDMI (HDMI 2.1 4K120/eARC/VRR/ALLM)",
+      "weight": "Google TV",
+      "sources": [
+        "https://store.sony.com.au/archived-television-LED/XR65X95K.html",
+        "https://sony.mediaroom.com/2022-05-02-Sony-Electronics-Announces-Pricing-and-Availability-for-2022-BRAVIA-XR-Television-Lineup"
       ]
     },
     {
@@ -2658,6 +2686,20 @@
       "sources": [
         "https://us.tcl.com/products/qm9k-series-qd-mini-led-qled-4k-uhd-smart-tv-with-google-tv",
         "https://www.rtings.com/tv/reviews/tcl/qm9k"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL R655",
+      "year": 2022,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "55/65/75/85\"",
+      "core": "up to 144 Hz, HDMI 2.1",
+      "weight": "Roku TV",
+      "sources": [
+        "https://us.tcl.com/blogs/press-releases/tcl-launches-new-high-performance-models-for-its-premium-2022-tv-lineup",
+        "https://us.tcl.com/blogs/press-releases/tcl-introduces-its-largest-premium-tv-model-with-mini-led-technology-to-award-winning-lineup"
       ]
     },
     {
