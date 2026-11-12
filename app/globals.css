@@ -531,6 +531,39 @@ legend { padding: 0; font-size: 14.5px; font-weight: 600; margin-bottom: 8px; }
 .admin-queue { max-width: 760px; }
 .admin-pagination { display: flex; justify-content: space-between; max-width: 760px; margin-top: 25px; font-size: 14px; }
 .admin-queue .review-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+/* Find & fix (app/funtimes/finder.tsx): the search bar on every admin tab, and the found reviews with one-click sentiment. */
+.finder-form { max-width: 760px; margin: 0 0 22px; }
+.finder-bar { display: flex; gap: 8px; }
+.finder-bar input { flex: 1; min-width: 0; }
+.finder-filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.finder-filters select { min-height: 38px; font-size: 13.5px; width: 100%; }
+.finder { max-width: 760px; }
+.finder-modes { margin-bottom: 14px; }
+.found { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.found-head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 14px; }
+.found-head a { font-weight: 700; }
+.found-head time, .found-site { color: var(--ink-3); font-size: 12.5px; }
+.found-site { text-transform: uppercase; letter-spacing: .04em; font-weight: 700; }
+.found-text { margin: 6px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.found-text mark { background: #f8eecb; color: inherit; padding: 0 2px; border-radius: 3px; }
+.found-quote { font-size: 13.5px; color: var(--ink-2, var(--ink)); }
+.found-quote summary { cursor: pointer; color: var(--ink-3); }
+.found-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; color: var(--ink-3); overflow-wrap: anywhere; }
+.found-actions { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-top: 10px; }
+.found-edit { font-size: 13.5px; }
+.found-id { margin: 6px 0 0; overflow-wrap: anywhere; }
+.sent-buttons { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.sent-buttons button { min-height: 36px; padding: 0 14px; font-size: 13.5px; background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.sent-buttons button:hover { background: rgba(0, 0, 0, .04); color: var(--ink); }
+.sent-buttons button.suggested { border-style: dashed; border-color: var(--c); }
+.sent-buttons button[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: #fff; font-weight: 700; }
+.sent-state { font-size: 12.5px; color: var(--ink-3); min-width: 6em; }
+.admin-edit { margin-left: auto; font-size: 12.5px; font-weight: 700; padding-left: 10px; }
+@media (max-width: 640px) {
+  .finder-filters { grid-template-columns: 1fr 1fr; }
+  .sent-buttons button { flex: 1; }
+  .sent-buttons { flex: 1 1 100%; }
+}
 .spec-selector { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; margin: 18px 0 22px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
 .spec-selector .field { flex: 1; min-width: 200px; margin: 0; }
 details { margin-bottom: 20px; }

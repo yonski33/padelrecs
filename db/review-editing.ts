@@ -42,7 +42,7 @@ export async function saveReviewEdit(db:ReturnType<typeof getDb>,value:ReviewEdi
    if(reviewRevision(current)!==value.revision)return "stale";
    const [racket]=await tx.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return "invalid";
-   await tx.update(externalReviews).set({racketId:value.racketId,excerpt:value.excerpt,summary:value.summary,sentiment:value.sentiment,sourcePlatform:value.sourcePlatform,sourceName:value.sourceName,sourceUrl:value.sourceUrl,sourceDate:value.sourceDate||null,tags:value.tags,
+   await tx.update(externalReviews).set({racketId:value.racketId,excerpt:value.excerpt,summary:value.summary,sentiment:value.sentiment,sourcePlatform:value.sourcePlatform,sourceName:value.sourceName,sourceUrl:value.sourceUrl,sourceDate:value.sourceDate||null,tags:value.tags,adminEditedAt:new Date().toISOString(),
     variant:await reviewVariant(tx,niche,value.racketId,value.variant)}).where(eq(externalReviews.id,value.id));
   }
   return "saved";

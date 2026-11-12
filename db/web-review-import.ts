@@ -61,11 +61,11 @@ type Row = typeof externalReviews.$inferInsert;
 type Update = { candidateId: string; id: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage: string | null; excerptTranslation: string | null; variant: string | null };
 /** A published web review whose candidate the research agent withdrew (its source no longer says what we quote). */
 type Removal = { candidateId: string; id: string };
-export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; removals: Removal[]; skipped: { candidate: Candidate; reason: string }[] };
+export type Plan = { rows: (Row & { candidateId: string })[]; updates: Update[]; removals: Removal[]; skipped: { candidate: Candidate; reason: string }[]; kept?: { candidateId: string; id: string }[] };
 
-type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; sourceLanguage?: string | null; excerptTranslation?: string | null; variant?: string | null };
+type SiteReview = { id: string; racketId: string; sourceUrl: string; excerpt: string | null; summary: string | null; sentiment: Sentiment | null; tags: string[]; adminEditedAt?: string | null; sourceLanguage?: string | null; excerptTranslation?: string | null; variant?: string | null };
 export function planImport(candidates: Candidate[], site: { rackets: { id: string; name: string; year?: number; core?: string | null }[]; external: SiteReview[] }, niche: Pick<Niche, "sourcePlatforms" | "tags" | "variants">, now = new Date()): Plan {
-  const plan: Plan = { rows: [], updates: [], removals: [], skipped: [] };
+  const plan: Plan = { rows: [], updates: [], removals: [], skipped: [], kept: [] };
   const byId = new Map(site.external.map(e => [e.id, e]));
   const quoted = new Set(site.external.map(e => `${e.racketId}|${sameSource(e.sourceUrl)}`));
   const tagBank = new Set(niche.tags.map(t => t.label));
@@ -85,6 +85,8 @@ export function planImport(candidates: Candidate[], site: { rackets: { id: strin
     const excerptTranslation = sourceLanguage && excerpt && c.excerpt_translation?.trim() ? c.excerpt_translation.trim() : null;
     const live = byId.get(webReviewId(c.id));
     if (live) {
+      // Edited or confirmed by the owner in the admin: the site's version wins over the queue's.
+      if (live.adminEditedAt) { plan.kept!.push({ candidateId: c.id, id: live.id }); continue; }
       // Published before: bring the site's text and tags in line with the queue, never anything else.
       const tags = [...new Set(c.tags)].filter(t => tagBank.has(t)).slice(0, 3);
       const variant = matchVariant(niche, coreOf.get(live.racketId), c.variant);
@@ -122,7 +124,7 @@ type Database = PgDatabase<PgQueryResultHKT, typeof schema>;
 export async function siteState(db: Pick<Database, "select">) {
   const [r, e] = await Promise.all([
     db.select({ id: rackets.id, name: rackets.name, year: rackets.year, core: rackets.core }).from(rackets),
-    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags, sourceLanguage: externalReviews.sourceLanguage, excerptTranslation: externalReviews.excerptTranslation, variant: externalReviews.variant }).from(externalReviews),
+    db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sourceUrl: externalReviews.sourceUrl, excerpt: externalReviews.excerpt, summary: externalReviews.summary, sentiment: externalReviews.sentiment, tags: externalReviews.tags, sourceLanguage: externalReviews.sourceLanguage, excerptTranslation: externalReviews.excerptTranslation, variant: externalReviews.variant, adminEditedAt: externalReviews.adminEditedAt }).from(externalReviews),
   ]);
   return { rackets: r, external: e };
 }

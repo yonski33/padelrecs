@@ -21,6 +21,7 @@ try {
   for (const r of plan.rows) console.log(`  + ${candidates.find(c => c.id === r.candidateId)!.racket_name} | ${r.sourceName} | ${r.sourceUrl}${r.excerpt ? "" : " (summary only)"}`);
   for (const u of plan.updates) { const c = candidates.find(x => x.id === u.candidateId)!; console.log(`  ~ ${c.racket_name} | ${c.source_url} (update text/tags)`); }
   for (const r of plan.removals) { const c = candidates.find(x => x.id === r.candidateId)!; console.log(`  x ${c.racket_name} | ${c.source_url} (withdrawn: ${c.review_note ?? "source changed"})`); }
+  if (plan.kept?.length) console.log(`  = ${plan.kept.length} published review(s) edited in the admin: kept as they are on the site (the queue's version is not applied).`);
   for (const s of plan.skipped) console.log(`  - ${s.candidate.racket_name} | ${s.candidate.source_url}\n      skipped: ${s.reason}`);
   if (!apply) { console.log("\nDry run: nothing changed. Add --apply to back up the database and publish."); process.exit(0); }
   if (!plan.rows.length && !plan.updates.length && !plan.removals.length) { console.log("Nothing to publish, update or remove."); process.exit(0); }
