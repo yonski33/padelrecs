@@ -163,6 +163,11 @@
       "name": "laptoprecs",
       "id": "prj_hb072aDpZfwrY3gZLXxZh1faBc7a",
       "domain": "www.laptoprecs.com"
+    },
+    "tv": {
+      "name": "tvrecs",
+      "id": "prj_zugP1PDzpRoxxI12CXyU91ec5RNs",
+      "domain": "www.tvrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
