@@ -14,7 +14,7 @@ import { ProductCard, Directory, parseShow } from "../components";
 import { AutoSubmitForm } from "../auto-submit";
 import { browseTiles, BrowseTile, Arrow, CategoryTabs, SignalInfo } from "../visual";
 import { CompareTray } from "../compare/compare-pick";
-import { LightCatalog } from "../light-catalog";
+import { LightCatalog, lightFilters } from "../light-catalog";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -29,12 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string }> }) {
   const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
   // The light direction's catalogue, previewed with ?look=light (owner, 2026-11-12).
-  if (f.look === "light") {
-    const raw = f as Record<string, string | string[] | undefined>;
-    const one = (v: string | string[] | undefined) => Array.isArray(v) ? v[0] : v, all = (v: string | string[] | undefined) => v === undefined ? [] : Array.isArray(v) ? v : [v];
-    return <LightCatalog data={data} signals={sig} f={{ q: one(raw.q), brand: one(raw.brand), year: one(raw.year), shape: one(raw.shape), sort: one(raw.sort), show: one(raw.show), tag: all(raw.tag),
-      specs: Object.fromEntries(niche.specs.filter(s => s.column !== "shape").map(s => [s.column, all(raw[s.column])])) }}/>;
-  }
+  if (f.look === "light") return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;
   const sort = parseSort(f.sort);
   const shapeGroup = niche.shapeTabs?.find(t => t.key === f.shape);
   // ?q= still narrows the list for old links; the header search is where people type names now.
