@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12. One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C7/G2, Samsung S95B/QN90B). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -572,6 +572,34 @@
     },
     {
       "brand": "lg",
+      "name": "LG C1",
+      "year": 2021,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "48/55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/my/tvs/lg-oled65c1ptb",
+        "https://www.lg.com/us/press-release/lg-usa-begins-rollout-of-2021-oled-tv-lineup"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C2",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "42/48/55/65/77/83\"",
+      "core": "120 Hz, 4× HDMI 2.1",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/my/tvs/lg-oled65c2psa",
+        "https://www.lg.com/us/tvs/lg-oled65c2pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
       "name": "LG C3",
       "year": 2023,
       "shape": "OLED",
@@ -620,6 +648,62 @@
       "weight": "webOS",
       "sources": [
         "https://www.lg.com/us/tvs/lg-oled77c6hup-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C7",
+      "year": 2017,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-OLED65C7P-oled-4k-tv",
+        "https://www.lg.com/us/PDF/press-release/77W7%20LG%20LAUNCH%20-%20JUNE%2028%202017%20FINAL.pdf"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG C9",
+      "year": 2019,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "HDMI 2.1",
+      "weight": null,
+      "sources": [
+        "https://www.lg.com/us/press-release/lg-usa-reveals-pricing-availability-of-critically-acclaimed-2019-lg-oled-tvs-with-ai-thinq",
+        "https://www.lg.com/us/tvs/lg-oled65c9pua-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG CX",
+      "year": 2020,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "48/55/65/77\"",
+      "core": "4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tv-soundbars/oled/oled65cxpua/",
+        "https://lg.com/us/press-release/lg-usa-begins-rollout-of-2020-oled-tv-lineup"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG G2",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77/83/97\"",
+      "core": "120 Hz, 4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/my/tvs/lg-oled65g2psa",
+        "https://www.lg.com/us/tvs/lg-oled65g2pua-oled-4k-tv"
       ]
     },
     {
@@ -1685,6 +1769,20 @@
     },
     {
       "brand": "samsung",
+      "name": "Samsung QN90B",
+      "year": 2022,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "43/50/55/65/75/85\"",
+      "core": "120 Hz, 4× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://www.samsung.com/uk/business/tvs/qled-tv/qn90b-65-inch-neo-qled-4k-smart-tv-qe65qn90batxxu",
+        "https://www.samsung.com/ca/tvs/qled-tv/qn90b-65-inch-neo-qled-4k-smart-tv-qn65qn90bafxzc/"
+      ]
+    },
+    {
+      "brand": "samsung",
       "name": "Samsung QN90C",
       "year": 2023,
       "shape": "Mini-LED & QLED",
@@ -1865,6 +1963,21 @@
       "sources": [
         "https://www.samsung.com/ca/tvs/oled-tv/s90h-77-inch-4k-smart-tv-qn77s90haexzc/",
         "https://news.samsung.com/us/samsung-upgrades-2026-oled-tvs-new-designs-expanded-premium-features/"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung S95B",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": "120 Hz, 4× HDMI",
+      "weight": "Tizen",
+      "sources": [
+        "https://images.samsung.com/is/content/samsung/assets/au/tvs/product-specs/OLED-S95B-Product-Specifications.pdf",
+        "https://www.samsung.com/latin_en/tvs/oled-tv/s95b-65-inch-oled-4k-smart-tv-qn65s95bafxza",
+        "https://www.coolblue.be/en/product/905725/samsung-qd-oled-65s95b-2022.html"
       ]
     },
     {
