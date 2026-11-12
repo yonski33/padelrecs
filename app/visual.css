@@ -1987,3 +1987,6 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-cats a[aria-current] { color: var(--lt-ink) !important; font-weight: 600; }
 .lt-cats a[aria-current] small { color: var(--lt-acc) !important; }
 .lt-cats a:hover, .lt-cats .lc-more summary:hover { color: var(--lt-ink) !important; }
+/* Sort sits right under the category tabs (owner, 2026-11-13). */
+.lt-bar { margin-bottom: 0; }
+.lt-listhead { margin: 6px 4px 4px; }

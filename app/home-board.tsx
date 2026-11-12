@@ -70,7 +70,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
       {aside && <div className="lt-bar-aside">{aside}</div>}
     </div>
     {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
-    {items.length > 0 && <div className="lt-listhead"><span>{q.trim() ? `${visible.length.toLocaleString("en-US")} for “${q.trim()}”` : `${visible.length.toLocaleString("en-US")} ${visible.length === 1 ? noun[0] : noun[1]}`}</span>{sort}</div>}
+    {items.length > 0 && <div className="lt-listhead"><span>{q.trim() ? `${visible.length.toLocaleString("en-US")} for “${q.trim()}”` : ""}</span>{sort}</div>}
     {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
       {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
