@@ -79,7 +79,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   }
   const brand = data.brands.find(b => b.id === r.brandId);
   // Only niches with Amazon links (SkinRecs, SimRacingRecs) have one: the product on Amazon, or an Amazon search for it. Prices are not shown.
-  const amazon = await amazonButton({ name: r.name, brand: brand?.name });
+  const live = await amazonButton({ name: r.name, brand: brand?.name });
+  // The saved Amazon item (backfill or admin) wins over the live lookup (owner, 2026-11-12: the live search matched
+  // CeraVe Healing Ointment to a Lip Balm twin pack). When the two disagree, the buttons go to the saved item, with no
+  // price, since the live price belongs to the other listing.
+  const saved = amazonPhoto(r);
+  const amazon = live && saved && live.asin && live.asin !== (r as { amazonAsin?: string | null }).amazonAsin ? { url: saved.url, price: null, image: null } : live;
   // Niches with `website` links (SoftwareRecs) link to the product's own site instead; an affiliate link only when the data has one.
   const site = websiteButton(r);
   const shopButton = amazon || site;
@@ -234,7 +239,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
 
   const own = shopPhoto(r), stored = amazonPhoto(r);
-  const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
+  const amazonImage = !photoHidden(r) ? (stored?.image ?? amazon?.image) : null;
   // Cards (home, lists, rankings) only read the saved photo, so a photo found by the live lookup is saved for them, once,
   // after the page is sent (owner, 2026-11-12: GolfRecs top 5 showed drawings for drivers whose pages had photos).
   if (!own && !stored && !(r as { amazonImage?: string | null }).amazonImage && amazon?.asin && amazon.image && !photoHidden(r)) {
@@ -260,7 +265,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </div>
       {own ? <div className="p-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
         // Amazon's terms: the photo is served by Amazon, unaltered, and links to its product page.
-        ? <a className="p-photo art art-amazon" href={amazon?.url ?? stored?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+        ? <a className="p-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
         : <div className="p-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/>{r.shape && <small>{r.shape.toLowerCase()}</small>}</div>}
       <div className="p-scorebox">
         {sum.total > 0 ? <div className="p-score">

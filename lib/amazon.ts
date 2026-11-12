@@ -10,6 +10,7 @@
  * AMAZON_AFFILIATE_TAG, when set, replaces the associate tag in the links visitors click (and only there), so clicks
  * from the Recs sites show up under their own tracking ID; API calls keep the partner tag.
  */
+import { looksLikeOtherProduct } from "./amazon-match";
 
 export type AmazonOffer = { asin: string; title: string; price: string | null; url: string; image: string | null };
 export type AmazonCredentials = { id: string; secret: string; partnerTag: string };
@@ -136,7 +137,9 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
     keywords: product.name.trim(), searchIndex: settings.searchIndex, itemCount: 5, resources: ["itemInfo.title", "itemInfo.byLineInfo"],
   }, credentials, marketplace, fetcher);
   const match = (found.searchResult?.items ?? []).find(item => item.asin && isAsin(item.asin) && item.itemInfo?.title?.displayValue
-    && matchesProduct(product, { title: item.itemInfo.title.displayValue, brand: item.itemInfo.byLineInfo?.brand?.displayValue }));
+    && matchesProduct(product, { title: item.itemInfo.title.displayValue, brand: item.itemInfo.byLineInfo?.brand?.displayValue })
+    // The name alone isn't enough: "CeraVe Healing Ointment Lip Balm" carries every word of "CeraVe Healing Ointment".
+    && !looksLikeOtherProduct(product, item.itemInfo.title.displayValue));
   if (!match?.asin) {
     const titles = (found.searchResult?.items ?? []).map(item => `${item.asin} "${item.itemInfo?.title?.displayValue ?? ""}"`);
     log(`[amazon] No matching result for ${product.name}${titles.length ? `; Amazon returned ${titles.join(", ")}` : found.errors?.[0]?.code ? ` (${found.errors[0].code})` : "; Amazon returned nothing"}`);
