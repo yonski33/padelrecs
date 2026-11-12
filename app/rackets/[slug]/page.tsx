@@ -1,7 +1,9 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../../lib/look";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
+import { lightFont } from "../../light-font";
 import { platformName } from "../../../lib/source-label";
 import { fitText } from "../../../lib/fit-text";
 import { productSignals, categoryWords, signalCategory } from "../../signals";
@@ -29,7 +31,7 @@ import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
-import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares } from "../../visual";
+import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo } from "../../visual";
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, pairHref } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
@@ -62,10 +64,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const title = `${name} ${niche.people.One} Reviews`;
   const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
     ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
-       sum.loved.length ? `Loved for: ${sum.loved.slice(0, 3).join(", ")}.` : "",
-       sum.complaints.length ? `Most common complaint: ${sum.complaints[0]}.` : ""])
+       // Only themes with 3+ mentions make the snippet (owner, 2026-11-12, UX audit).
+       sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).length ? `Loved for: ${sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).slice(0, 3).join(", ")}.` : "",
+       (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])
     : base.description;
-  return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
+  const images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
+  return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
 }
 
 export default async function RacketPage({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<{sort?: string | string[]; tag?: string | string[]; show?: string | string[]} & Record<string, string | string[] | undefined>>}) {
@@ -79,7 +83,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   }
   const brand = data.brands.find(b => b.id === r.brandId);
   // Only niches with Amazon links (SkinRecs, SimRacingRecs) have one: the product on Amazon, or an Amazon search for it. Prices are not shown.
-  const amazon = await amazonButton({ name: r.name, brand: brand?.name });
+  const live = await amazonButton({ name: r.name, brand: brand?.name });
+  // The saved Amazon item (backfill or admin) wins over the live lookup (owner, 2026-11-12: the live search matched
+  // CeraVe Healing Ointment to a Lip Balm twin pack). When the two disagree, the buttons go to the saved item, with no
+  // price, since the live price belongs to the other listing.
+  const saved = amazonPhoto(r);
+  const amazon = live && saved && live.asin && live.asin !== (r as { amazonAsin?: string | null }).amazonAsin ? { url: saved.url, price: null, image: null } : live;
   // Niches with `website` links (SoftwareRecs) link to the product's own site instead; an affiliate link only when the data has one.
   const site = websiteButton(r);
   const shopButton = amazon || site;
@@ -92,9 +101,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const webDate = (e: {sourceDate: string | null; createdAt: string}) => e.sourceDate || e.createdAt;
   const since = new Date(); if (niche.recentMonths !== undefined) since.setUTCMonth(since.getUTCMonth() - niche.recentMonths);
   const older = (e: {sourceDate: string | null; createdAt: string}) => niche.recentMonths !== undefined && Date.parse(webDate(e)) < since.getTime();
-  const recentWeb = external.filter(e => !older(e));
   // The sentiment bar counts user reviews too, by their stars (4–5 positive, 3 mixed, 1–2 negative), like the rankings.
-  const verdicts = [...reviews.filter(x => !older({ sourceDate: null, createdAt: x.createdAt })).map(x => ({ sentiment: ratingVerdict(x.rating) })), ...recentWeb];
+  // Every review with a verdict, the same count as the bar and the tabs (owner, 2026-11-12).
+  const verdicts = [...reviews.map(x => ({ sentiment: ratingVerdict(x.rating) })), ...external];
   // "Most helpful" (our helpfulness score, plus votes) is the default; "Newest" on request.
   const sort = query.sort === "newest" ? "newest" : "helpful";
   const sum = summary(data, r.id);
@@ -131,9 +140,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst/>,
+    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst light={isLight(query.look)}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: webDate(e), older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst/>,
+    // "Newest" goes by the date the review was written; one without a known date sorts last, not by when we imported it
+    // (owner, 2026-11-12: the Newest order looked alphabetical).
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst light={isLight(query.look)}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -200,18 +211,24 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // What reviewers praise and complain about, most mentioned first: a summary under the specs, above the verdict.
   // The product at a glance: what people praise and complain about, with bars so the big themes stand out. Each row opens
   // the reviews that mention it.
-  const sideTags = [["Liked", "pos", sum.loved.slice(0, 5)], ["Watch for", "neg", sum.complaints.slice(0, 5)]] as const;
-  const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => sum.tagCounts.get(t) ?? 0)));
+  // A theme gets its own row at MIN_THEME mentions, shown as a share of the product's reviews; rarer ones go under "Also
+  // mentioned" (owner, 2026-11-12, UX audit: one or two mentions read as a finding).
+  const MIN_THEME = 3, mentions = (t: string) => sum.tagCounts.get(t) ?? 0;
+  const sideTags = [["Liked", "pos", sum.loved.filter(t => mentions(t) >= MIN_THEME).slice(0, 5)], ["Watch for", "neg", sum.complaints.filter(t => mentions(t) >= MIN_THEME).slice(0, 5)]] as const;
+  const rare = [...sum.loved, ...sum.complaints].filter(t => mentions(t) < MIN_THEME);
+  const also = [...sum.other, ...rare].sort((a, b) => mentions(b) - mentions(a));
+  const topCount = Math.max(1, ...sideTags.flatMap(([, , ts]) => ts.map(t => mentions(t))));
+  const pctOf = (n: number) => Math.max(1, Math.round(n / Math.max(1, sum.total) * 100));
   const tagHref = (t: string) => `${productHref(r)}?tag=${encodeURIComponent(t)}#reviews`;
-  const says = sum.tagCounts.size > 0 && <div className="says">
+  const says = sideTags.some(([, , ts]) => ts.length) && <div className="says">
     <h2><span className="d-only">{`What ${niche.people.many} love, and what they don’t`}</span><span className="m-only">{`What ${niche.people.many} noticed`}</span></h2>
     <div className="says-cards">
       {sideTags.filter(([, , ts]) => ts.length).map(([label, tone, ts]) => <section key={label} className={`says-card ${tone}`}>
         <h3><TagGlyph tone={tone}/>{label}</h3>
-        <ul>{ts.map(t => { const n = sum.tagCounts.get(t) ?? 0; return <li key={t}><a href={tagHref(t)}><span className="says-name">{t}</span><span className="says-bar"><i style={{ width: `${Math.max(6, n / topCount * 100)}%` }}/></span><span className="says-n">{n}</span></a></li>; })}</ul>
+        <ul>{ts.map(t => { const n = mentions(t); return <li key={t}><a href={tagHref(t)}><span className="says-name">{t}</span><span className="says-bar"><i style={{ width: `${Math.max(6, n / topCount * 100)}%` }}/></span><span className="says-n" title={`${n} of ${sum.total} reviews`}>{`${pctOf(n)}%`}</span></a></li>; })}</ul>
       </section>)}
     </div>
-    {sum.other.length > 0 && <p className="says-also">Also mentioned: {sum.other.slice(0, 3).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
+    {also.length > 0 && <p className="says-also">Also mentioned: {also.slice(0, 4).map(t => <a key={t} className="tag neutral" href={tagHref(t)}>{t}<span className="c">{sum.tagCounts.get(t)}</span></a>)}</p>}
   </div>;
   // Variants compared (DiscGolfRecs "By plastic"): only variants with 3+ reviews, and only when at least two qualify. The
   // positive share and the tags are counted like the headline's (summary()), over that variant's player and web reviews.
@@ -234,7 +251,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
 
 
   const own = shopPhoto(r), stored = amazonPhoto(r);
-  const amazonImage = !photoHidden(r) ? (amazon?.image ?? stored?.image) : null;
+  const amazonImage = !photoHidden(r) ? (stored?.image ?? amazon?.image) : null;
   // Cards (home, lists, rankings) only read the saved photo, so a photo found by the live lookup is saved for them, once,
   // after the page is sent (owner, 2026-11-12: GolfRecs top 5 showed drawings for drivers whose pages had photos).
   if (!own && !stored && !(r as { amazonImage?: string | null }).amazonImage && amazon?.asin && amazon.image && !photoHidden(r)) {
@@ -245,6 +262,112 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const oneLine = listLine(r);
   const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
   const fullName = displayName(r.name, brand?.name);
+  // Pieces both layouts show (the light one is the default; ?look=classic shows the old one).
+  const similarBox = similar.length > 0 && <section id="similar" className="similar">
+          <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
+          <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
+          <ul className="sim-cards">{[...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
+            <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
+            <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
+            {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
+            <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
+          </a></li>; })}</ul>
+        </section>;
+  const siblingsBox = siblings.length > 0 && <section>
+          <h2>More from {brand?.name}</h2>
+          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
+            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{`${sc.count + sc.web} ${sc.count + sc.web === 1 ? "review" : "reviews"}`}</span></span>
+          </a></li>; })}</ul>
+        </section>;
+  const nextBox = (discover.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
+      {discover.length >= 3 && <>
+        <div className="section-head"><h2 id="next-title">{`Discover more ${typePage ? typePage.label.toLowerCase() : niche.words.many}`}</h2><a className="section-link" href={typePage ? `/${typePage.slug}` : catalogPath}>{`See all ${typePage ? typePage.label.toLowerCase() : niche.words.many}`} <span aria-hidden="true">→</span></a></div>
+        <ul className="top5-row discover-row">{discover.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a className="pcard" href={productHref(x)}>
+          <ProductArt product={x} brand={b}/>
+          <span className="pcard-body"><span className="pcard-name">{displayName(x.name, b)}</span></span>
+        </a></li>; })}</ul>
+      </>}
+      <div className="p-next-actions">
+        <a className="p-next-card" href={addHref}><b>{niche.copy.ui.triedIt}</b><span>Add your review in about two minutes. No account needed.</span><span className="button">Add your review</span></a>
+        {niche.finder && <a className="p-next-card" href="/finder"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="button ghost">{niche.finder.navLabel} <span aria-hidden="true">→</span></span></a>}
+      </div>
+    </section>;
+  const buyBar = shopButton && <div className="buy-bar">
+      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "Check price on Amazon" : site!.label}</a>
+    </div>;
+  const faqBox = faq.length >= 2 && <section className="faq" id="faq">
+          <h2>{`Common questions about ${name}`}</h2>
+          {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+        </section>;
+  // The light direction's product page, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
+  if (isLight(query.look)) {
+    // Compact, after the owner's mockup (2026-11-12): photo and numbers in one tight block, what people mention as chips,
+    // then the reviews with "At a glance" beside them, so the reviews start high on the page.
+    const cap = (t: string) => t ? t[0].toUpperCase() + t.slice(1) : t;
+    const liked = sum.loved.filter(t => mentions(t) >= MIN_THEME).slice(0, 5), concerns = sum.complaints.filter(t => mentions(t) >= MIN_THEME).slice(0, 5);
+    const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.createdAt)].sort().pop();
+    const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+    const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [niche.site.name] : []);
+    const glance = [
+      ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
+      ...(liked[0] ? [["Best known for", cap(liked[0])]] : []),
+      ["Reviews collected", sum.total.toLocaleString("en-US")],
+      ...(sources.length ? [["Sources", sources.slice(0, 4).join(", ")]] : []),
+      ...specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).slice(0, 3).map(([k, v]) => [k, String(v)]),
+    ];
+    const buy = amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
+      : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
+      : <a className="button" href={addHref}><PlusIcon/>Add your review</a>;
+    const chips = (ts: readonly string[]) => <p className="lp-chips">{ts.map(t => <a key={t} href={tagHref(t)}>{cap(t)}<b>{mentions(t)}</b></a>)}</p>;
+    return <main className={`product v2 lt-page lp ${lightFont.className}`}>
+      {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
+      <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
+      <section className="lp-hero">
+        {own ? <div className="lp-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
+          ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+          : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
+        <div className="lp-info">
+          <div className="lp-title">
+            <h1>{fullName}<span className="h1-reviews"> Reviews</span></h1>
+            {placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}
+          </div>
+          {(r.shape || hasYears) && <p className="lp-kicker">{[r.shape, hasYears ? String(r.year) : null].filter(Boolean).join(" · ")}</p>}
+          {oneLine && <p className="lp-line">{oneLine}</p>}
+          {sum.total > 0 ? <div className="lp-stats">
+            {sig && <div className="lp-stat"><b className="lp-acc">{sig.signal}</b><span>Signal</span></div>}
+            {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
+            <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
+          </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
+          <p className="lp-sub"><a href="/about#signal">How the signal works ↗</a>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</p>
+          <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read reviews ↓</a>}</p>
+        </div>
+      </section>
+      {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
+        <h2 id="lp-mention-title">What people mention</h2>
+        <div className="lp-mention-cols">
+          {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
+          {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
+        </div>
+        <p className="lp-note">{`Topics grouped from ${niche.people.one} reviews, with how many mention each; read the originals below.`}</p>
+      </section>}
+      {byVariant}
+      <div className="columns lp-cols">
+        <div>
+          <ReviewList verdict={verdict} title={`Real ${niche.people.one} experiences`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
+            variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
+          {faqBox}
+        </div>
+        <aside className="database-sidebar">
+          <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>
+          {similarBox}
+          {siblingsBox}
+        </aside>
+      </div>
+      {nextBox}
+      {buyBar}
+    </main>;
+  }
   return <main className="product v2">
     {/* One quiet line at the top (owner choice, 2026-11-05): the buy button stays free of nearby text. */}
     {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
@@ -260,18 +383,20 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </div>
       {own ? <div className="p-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
         // Amazon's terms: the photo is served by Amazon, unaltered, and links to its product page.
-        ? <a className="p-photo art art-amazon" href={amazon?.url ?? stored?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+        ? <a className="p-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
         : <div className="p-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/>{r.shape && <small>{r.shape.toLowerCase()}</small>}</div>}
       <div className="p-scorebox">
         {sum.total > 0 ? <div className="p-score">
           {/* The signal score leads (owner, 2026-11-12); the bar below shows the split it comes from. */}
           {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span>
             {/* What the number means, one tap away (owner, 2026-11-12, after the outside audit). No JavaScript. */}
-            <details className="sig-info"><summary aria-label="What is the signal score?">i</summary><p>A score out of 100. Negative and mixed reviews take points off, and so does having only a few reviews, so a handful of glowing reviews can’t beat a product many people like.</p></details></div>
+            <SignalInfo/></div>
             : pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
         {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
+        {/* What the split is a share of, so it reads the same as the review tabs below (owner, 2026-11-12). */}
+        {pos !== null && <p className="sband-base">{`Of ${s.judged.toLocaleString("en-US")} ${s.judged === 1 ? "review" : "reviews"} with a clear verdict`}</p>}
         {pos !== null && <ul className="p-legend m-only" aria-hidden="true">{([["positive", "Positive", s.positive], ["mixed", "Mixed", s.mixed], ["negative", "Negative", s.negative]] as const).map(([k, w, n], i) =>
           <li key={k} className={`s-${k}`}><span>{w}</span><b>{`${shares([s.positive, s.mixed, s.negative])[i]}%`}</b></li>)}</ul>}
       </div>
@@ -280,10 +405,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             sentence of its review summary. The whole summary answers the first question in the FAQ. */}
         {oneLine && <p className="p-line">{oneLine}</p>}
         <p className="p-actions">
-          {sum.total > 0 && <a className="button" href="#reviews">Read reviews</a>}
-          {amazon ? <a className="button ghost amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price</a>
-            : site ? <a className="button ghost" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
+          {/* The shop link is the main button, with one label everywhere; reviews are a text link (owner, 2026-11-12, UX audit). */}
+          {amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
+            : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
             : <a className="button ghost" href={addHref}><PlusIcon/>Add your review</a>}
+          {sum.total > 0 && <a className="p-read" href="#reviews">Read reviews <span aria-hidden="true">↓</span></a>}
         </p>
         <p className="p-links m-only">
           {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} reviews`} <span aria-hidden="true">↓</span></a>}
@@ -321,50 +447,19 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           </section>
         </div>}
 
-        {faq.length >= 2 && <section className="faq" id="faq">
-          <h2>{`Common questions about ${name}`}</h2>
-          {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
-        </section>}
+{faqBox}
       </div>
 
       <aside className="database-sidebar">
-        {similar.length > 0 && <section id="similar" className="similar">
-          <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
-          <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
-          <ul className="sim-cards">{[...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x, sc }) => { const b = data.brands.find(y => y.id === x.brandId)?.name, sp = positiveShare(sc); return <li key={x.id}><a href={productHref(x)}>
-            <ProductArt product={x} brand={b}/><span className="sim-body"><span className="sim-name">{displayName(x.name, b)}</span>
-            <span className="sim-meta">{[x.shape, `${sc.count + sc.web} reviews`].filter(Boolean).join(" · ")}</span>
-            {sigs.get(x.id) ? <span className="sim-meta"><b>{sigs.get(x.id)!.signal}</b> signal</span> : sp !== null && <span className="sim-meta"><b>{sp}%</b> positive</span>}
-            <span className="sim-go">View reviews <span aria-hidden="true">→</span></span></span>
-          </a></li>; })}</ul>
-        </section>}
+{similarBox}
 
-        {siblings.length > 0 && <section>
-          <h2>More from {brand?.name}</h2>
-          <ul className="mini">{siblings.map(x => { const sc = score(data, x.id); return <li key={x.id}><a href={productHref(x)}>
-            <SideArt x={x} brand={brand?.name}/><span className="nm">{x.name}<span className="mt">{`${sc.count + sc.web} ${sc.count + sc.web === 1 ? "review" : "reviews"}`}</span></span>
-          </a></li>; })}</ul>
-        </section>}
+{siblingsBox}
       </aside>
     </div>
 
-    {(discover.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
-      {discover.length >= 3 && <>
-        <div className="section-head"><h2 id="next-title">{`Discover more ${typePage ? typePage.label.toLowerCase() : niche.words.many}`}</h2><a className="section-link" href={typePage ? `/${typePage.slug}` : catalogPath}>{`See all ${typePage ? typePage.label.toLowerCase() : niche.words.many}`} <span aria-hidden="true">→</span></a></div>
-        <ul className="top5-row discover-row">{discover.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a className="pcard" href={productHref(x)}>
-          <ProductArt product={x} brand={b}/>
-          <span className="pcard-body"><span className="pcard-name">{displayName(x.name, b)}</span></span>
-        </a></li>; })}</ul>
-      </>}
-      <div className="p-next-actions">
-        <a className="p-next-card" href={addHref}><b>{niche.copy.ui.triedIt}</b><span>Add your review in about two minutes. No account needed.</span><span className="button">Add your review</span></a>
-        {niche.finder && <a className="p-next-card" href="/finder"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="button ghost">{niche.finder.navLabel} <span aria-hidden="true">→</span></span></a>}
-      </div>
-    </section>}
+{nextBox}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}
-    {shopButton && <div className="buy-bar">
-      <a className={`button ${amazon ? "amazon" : "visit-site"}`} href={shopButton.url} target="_blank" rel={amazon || site?.affiliate ? "sponsored nofollow noopener" : "noopener"}>{amazon ? "View on Amazon" : site!.label}</a>
-    </div>}
+{buyBar}
   </main>;
 }
 

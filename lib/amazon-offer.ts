@@ -11,7 +11,8 @@ const cachedOffer = unstable_cache(
     if (!settings || !credentials) return null;
     return findAmazonOffer({ name, brand }, settings, credentials);
   },
-  ["amazon-offer-v2", niche.id],
+  // v3: stricter matching (lib/amazon-match.ts), so lookups cached under the old rules are not reused.
+  ["amazon-offer-v3", niche.id],
   { revalidate: 12 * 60 * 60, tags: ["amazon-offers"] },
 );
 

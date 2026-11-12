@@ -76,9 +76,10 @@ export const MIN_RATINGS = 3;
  *  (lib/top-lists.ts ratingVerdict). The star average stays user-only, and only from MIN_RATINGS ratings. */
 export function score(data: Catalog, id: string) {
  const rs = data.reviews.filter(r => r.racketId === id), web = data.external.filter(e => e.racketId === id);
- // "% positive" counts the niche's recent window (lib/recent.ts), or every review when too few are recent.
- const recentRs = rs.filter(r => isRecent(r.createdAt)), recentWeb = web.filter(e => isRecent(webDate(e)));
- const [jr, jw] = recentRs.length + recentWeb.filter(e => e.sentiment).length >= MIN_RECENT ? [recentRs, recentWeb] : [rs, web];
+ // One count everywhere (owner, 2026-11-12, UX audit): every published review with a clear verdict, the same reviews the
+ // product page's Positive / Mixed / Negative tabs list. It used to count only the recent window, so the bar said 84% of
+ // 68 while the tabs listed 141 positive of 189.
+ const [jr, jw] = [rs, web];
  const judged = jr.length + jw.filter(e => e.sentiment).length, positive = jr.filter(r => r.rating >= 4).length + jw.filter(e => e.sentiment === "positive").length;
  const mixed = jr.filter(r => r.rating === 3).length + jw.filter(e => e.sentiment === "mixed").length;
  return {count: rs.length, average: rs.length >= MIN_RATINGS ? (rs.reduce((s,r) => s+r.rating,0)/rs.length).toFixed(1) : null, web: web.length, judged, positive, mixed, negative: judged - positive - mixed};

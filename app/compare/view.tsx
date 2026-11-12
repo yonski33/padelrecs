@@ -10,6 +10,7 @@ import { amazonButton } from "../../lib/amazon-offer";
 import { websiteButton } from "../../lib/product-links";
 import { ProductArt, SentimentBar, positiveShare } from "../visual";
 import { CompareAdd } from "./compare-add";
+import { lightFont } from "../light-font";
 import { productSignals } from "../signals";
 import { comparePairs, pairHref } from "../../lib/compare-pairs";
 
@@ -48,7 +49,7 @@ export function compareMetadata(data: Data, products: Data["rackets"], canonical
 }
 
 /** The compare page itself, for either address. */
-export async function CompareView({ data, products }: { data: Data; products: Data["rackets"] }) {
+export async function CompareView({ data, products, light = false }: { data: Data; products: Data["rackets"]; light?: boolean }) {
   const slugs = products.map(r => r.slug);
   const without = (slug: string) => hrefFor(slugs.filter(s => s !== slug));
   const brandOf = (r: Data["rackets"][number]) => data.brands.find(b => b.id === r.brandId)?.name;
@@ -58,7 +59,7 @@ export async function CompareView({ data, products }: { data: Data; products: Da
     const brand = brandOf(r), s = score(data, r.id), sum = summary(data, r.id);
     const amazon = await amazonButton({ name: r.name, brand });
     const site = amazon ? null : websiteButton(r);
-    return { r, brand, s, sum, signal: sigs.get(r.id)?.signal ?? null, pos: positiveShare(s), line: listLine(r), shop: amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null,
+    return { r, brand, s, sum, signal: sigs.get(r.id)?.signal ?? null, pos: positiveShare(s), line: listLine(r), shop: amazon ? { url: amazon.url, label: "Check price on Amazon", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null,
       affiliate: !!(amazon || site?.affiliate), type: typePageFor(r.shape) };
   }));
 
@@ -83,9 +84,11 @@ export async function CompareView({ data, products }: { data: Data; products: Da
   const empty = <span className="cmp-none">—</span>;
   const addCell = (key: string) => canAdd ? <div key={key} className="cmp-cell cmp-slot" aria-hidden="true"/> : null;
 
-  return <main className="compare v2">
+  // light: the light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12); same content, the light look.
+  return <main className={`compare v2${light ? ` lt-page lcmp ${lightFont.className}` : ""}`}>
     {cols.some(c => c.affiliate) && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <div className="page-hero cmp-hero">
+      {light && products.length >= 2 && <p className="lf-kicker">{`Compared from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real ${niche.people.one} reviews`}</p>}
       <h1>{products.length >= 2 ? products.map(r => nameOf(data, r)).join(" vs ") : `Compare ${w.many}`}</h1>
       <p>{products.length >= 2
         ? `Side by side from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real reviews. Every count is the same as on each ${w.one}’s page.`
@@ -106,6 +109,8 @@ export async function CompareView({ data, products }: { data: Data; products: Da
             <a href={productHref(c.r)} className="cmp-art"><ProductArt product={c.r} brand={c.brand} eager/></a>
             <h2><a href={productHref(c.r)}>{nameOf(data, c.r)}</a></h2>
             {c.r.shape && <p className="cmp-kind">{c.type ? <a href={`/${c.type.slug}`}>{c.type.one ?? c.r.shape}</a> : c.r.shape}</p>}
+            {/* Light look (owner, 2026-11-12): the solid shop button sits in the card, where the "Reviews" heading was. */}
+            {light && c.shop && <a className="button cmp-buy" href={c.shop.url} target="_blank" rel={c.shop.rel}>{c.shop.label}</a>}
           </div>)}
           {canAdd && <div className="cmp-cell cmp-head cmp-add">
             <p className="cmp-add-title">{products.length === 1 ? `Add a ${w.one} to compare` : `Add a third ${w.one}`}</p>
@@ -114,7 +119,7 @@ export async function CompareView({ data, products }: { data: Data; products: Da
           </div>}
         </div>
 
-        <Row label="Reviews">
+        <Row label={light ? "" : "Reviews"}>
           {cols.map(c => <div key={c.r.id} className="cmp-cell cmp-verdict">
             {c.pos !== null ? <>
               {/* The signal score leads where the product has one, as on its page and the catalogue (owner, 2026-11-12). */}
@@ -148,8 +153,8 @@ export async function CompareView({ data, products }: { data: Data; products: Da
         <div className="cmp-row cmp-actions">
           {cols.map(c => <div key={c.r.id} className="cmp-cell">
             {/* The shop button is the solid one (owner, 2026-11-12); without one, "Read reviews" stays solid. */}
-            <a className={c.shop ? "button ghost" : "button"} href={`${productHref(c.r)}#reviews`}>Read reviews</a>
-            {c.shop && <a className="button" href={c.shop.url} target="_blank" rel={c.shop.rel}>{c.shop.label}</a>}
+            <a className={c.shop || light ? "button ghost" : "button"} href={`${productHref(c.r)}#reviews`}>Read reviews</a>
+            {c.shop && !light && <a className="button" href={c.shop.url} target="_blank" rel={c.shop.rel}>{c.shop.label}</a>}
           </div>)}
           {addCell("a")}
         </div>
@@ -175,7 +180,7 @@ export async function CompareView({ data, products }: { data: Data; products: Da
 
 function Row({ label, note, group, children }: { label: string; note?: string; group?: boolean; children: React.ReactNode }) {
   return <section className={`cmp-row${group ? " cmp-group" : ""}`}>
-    <h3 className="cmp-label">{label}{note && <small>{note}</small>}</h3>
+    {label && <h3 className="cmp-label">{label}{note && <small>{note}</small>}</h3>}
     {children}
   </section>;
 }

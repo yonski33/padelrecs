@@ -16,11 +16,11 @@ test("a web review is old by its source date, not the day it was added", () => {
   assert.equal(isRecent(old), niche.recentMonths === undefined);
 });
 
-test("% positive counts only recent reviews once there are enough of them", () => {
+test("% positive counts every review with a verdict, old ones too (one count everywhere, owner 2026-11-12)", () => {
   const recent = Array.from({ length: MIN_RECENT }, (_, i) => web(`r${i}`, "positive", fresh));
   const s = score(data([...recent, web("d", "negative", old), web("e", "negative", old)]), "p");
-  assert.equal(s.web, MIN_RECENT + 2, "every review still counts toward the total");
-  assert.deepEqual([s.judged, s.positive], niche.recentMonths === undefined ? [MIN_RECENT + 2, MIN_RECENT] : [MIN_RECENT, MIN_RECENT]);
+  assert.equal(s.web, MIN_RECENT + 2);
+  assert.deepEqual([s.judged, s.positive], [MIN_RECENT + 2, MIN_RECENT]);
 });
 
 test("with fewer than MIN_RECENT recent reviews, % positive falls back to every review", () => {
