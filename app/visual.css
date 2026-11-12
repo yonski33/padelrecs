@@ -1060,3 +1060,7 @@ a:hover .w-name { color: var(--green); }
 .feed-title-actions .sort-menu { margin: 0; }
 .top-page.v2 .top-faq { margin-top: 56px; max-width: 760px; }
 .top-page.v2 .top-faq h2 { font-family: var(--sans); font-weight: 700; font-size: 24px; letter-spacing: -0.02em; }
+/* Quiz page: plain sans title and intro, like the other titles (owner, 2026-11-12). */
+.finder-page .page-title h1 { font-family: var(--sans); font-style: normal; font-weight: 750; font-size: clamp(30px, 4vw, 42px); letter-spacing: -0.025em; line-height: 1.1; }
+.finder-page .page-title p { font-family: var(--sans); font-style: normal; font-size: 16px; }
+.finder-page .finder-card h2, .finder-page .finder-summary h2, .finder-page .top-method h2 { font-family: var(--sans); font-style: normal; letter-spacing: -0.02em; }
