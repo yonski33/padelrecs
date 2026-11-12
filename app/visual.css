@@ -1028,3 +1028,17 @@ a:hover .w-name { color: var(--green); }
 /* Home section headings in the same plain sans as the review text. */
 .home.v2 .section-head h2, .home.v2 .section-head h1 { font-family: var(--sans); font-style: normal; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; }
 @media (max-width: 680px) { .home.v2 .section-head h2, .home.v2 .section-head h1 { font-size: 21px; } }
+/* Titles, product names and big numbers site-wide in the plain sans (the condensed italic brand headlines stay). */
+.product.v2 .p-info h1, .product.v2 .p-head h1,
+.product.v2 .says > h2, .product.v2 .review-list .feed-title, .product.v2 .database-sidebar h2, .p-glance h2, .product.v2 .similar h2, .product.v2 .faq h2,
+.catalog.v2 .section-head h2, .prose h2, .how-box h2, .top-page.v2 .side-lists h2,
+.prow h2, .rrow h2, .pcard-name, .d-name, .j-name, .w-name, .feed-product, .product.v2 .sim-name, .qcard-row.two .qcard-product,
+.product.v2 .p-big b, .pcard-score b, .stat-tiles dd, .prow-count b, .rrow-pos b {
+  font-family: var(--sans); font-style: normal; letter-spacing: -0.015em;
+}
+.product.v2 .p-info h1, .product.v2 .p-head h1 { font-weight: 750; letter-spacing: -0.025em; }
+.how-box h2, .top-page.v2 .side-lists h2 { text-transform: none; font-size: 21px; font-weight: 700; }
+.prow h2, .rrow h2 { font-size: 19px; }
+.pcard-name, .d-name, .j-name, .w-name, .feed-product, .product.v2 .sim-name { font-weight: 650; }
+.product.v2 .p-line { font-family: var(--sans); font-style: normal; font-weight: 500; font-size: 17px; line-height: 1.5; }
+@media (max-width: 680px) { .product.v2 .p-line::before { content: none; } }
