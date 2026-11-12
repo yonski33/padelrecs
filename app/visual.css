@@ -1980,3 +1980,10 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-sort select { appearance: none; border: 0; background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23262421' stroke-width='1.6'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 2px center; padding: 2px 16px 2px 2px; font: inherit; font-size: 13px; font-weight: 600; color: var(--lt-ink); cursor: pointer; }
 .lt-hero { padding-bottom: 22px; }
 .lt-site .site > main .lt-sort select { border: 0; border-radius: 0; background-color: transparent; padding: 2px 16px 2px 2px; }
+.lt-sort select { border: 0 !important; border-radius: 0 !important; background-color: transparent !important; box-shadow: none !important; }
+/* Category tabs readable on the light background (owner, 2026-11-13). */
+.lt-cats a, .lt-cats .lc-more summary { color: #4f4b44 !important; }
+.lt-cats a small { color: #736e65 !important; }
+.lt-cats a[aria-current] { color: var(--lt-ink) !important; font-weight: 600; }
+.lt-cats a[aria-current] small { color: var(--lt-acc) !important; }
+.lt-cats a:hover, .lt-cats .lc-more summary:hover { color: var(--lt-ink) !important; }
