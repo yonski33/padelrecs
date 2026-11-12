@@ -5,6 +5,7 @@
 // a search can still be linked to and shared. The search box sits in the hero (HomeSearch) and talks to the list with a
 // window event.
 import { useEffect, useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 
 export type BoardItem = { key: string; shape: string | null; text: string; node: ReactNode };
 type Cat = { key: string; label: string };
@@ -32,7 +33,7 @@ export function HomeSearch({ initial, placeholder, label }: { initial?: string; 
 }
 
 /** base: the rest of the address (order), the same on the server and in the browser so links match. */
-export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode }) {
+export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside, noun, sort }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode; noun: [string, string]; sort?: ReactNode }) {
   const [shape, setShape] = useState<string | undefined>(cats.some(c => c.key === initial) ? initial : undefined);
   const [q, setQ] = useState(initialQ ?? "");
   const [shown, setShown] = useState(PAGE);
@@ -68,10 +69,20 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
       </nav>}
       {aside && <div className="lt-bar-aside">{aside}</div>}
     </div>
-    {q.trim() && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
+    {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
+    {items.length > 0 && <div className="lt-listhead"><span>{q.trim() ? `${visible.length.toLocaleString("en-US")} for “${q.trim()}”` : `${visible.length.toLocaleString("en-US")} ${visible.length === 1 ? noun[0] : noun[1]}`}</span>{sort}</div>}
     {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
       {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost" onClick={() => setShown(shown + PAGE)}>Show more</button></div>}
   </>;
+}
+
+/** "Sort: Top rated ⌄" over the list. Changing it updates the page in place (no full reload). */
+export function HomeSort({ value, options }: { value: string; options: { value: string; label: string }[] }) {
+  const router = useRouter();
+  return <label className="lt-sort"><span>Sort:</span>
+    <select value={value} onChange={e => { const url = new URL(window.location.href); if (e.target.value) url.searchParams.set("sort", e.target.value); else url.searchParams.delete("sort"); url.hash = ""; router.replace(`${url.pathname}${url.search}`, { scroll: false }); }}>
+      {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+    </select></label>;
 }

@@ -12,7 +12,7 @@ import { webDate } from "../lib/recent";
 import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
 import { listHref } from "./rankings/lists";
-import { HomeBoard, HomeSearch } from "./home-board";
+import { HomeBoard, HomeSearch, HomeSort } from "./home-board";
 import { ProductArt, SignalPop } from "./visual";
 import { SourceIcon } from "./icons";
 import { lightFont } from "./light-font";
@@ -81,10 +81,9 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
-      <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} reviews`}</div>
+      <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
       <p className="lt-sub">We read Reddit, YouTube and blogs so you don’t have to. Every review links to its source.</p>
-      <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
@@ -93,7 +92,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <div className="lt-board">
         {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count and an underline on
             the one picked. It stays at the top while the long list scrolls. */}
-        <HomeBoard cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
+        <HomeBoard noun={[w.one, w.many]} sort={<HomeSort value={sort === DEFAULT_SORT ? "" : sort} options={sorts.map(s => ({ value: s.v ?? "", label: s.label }))}/>} cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
           items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <Row data={data} r={r} signal={signals.get(r.id)?.signal} line={consensus(tc.get(r.id))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
