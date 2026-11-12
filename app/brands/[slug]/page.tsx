@@ -19,7 +19,7 @@ export default async function Brand({ params, searchParams }: { params: Promise<
   const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const brand = data.brands.find(b => b.slug === slug);
   if (!brand) notFound();
-  const results = sortProducts(data.listed.filter(r => r.brandId === brand.id).map(r => ({ r, s: score(data, r.id) })), "positive", x => sig.get(x.r.id)?.signal);
+  const results = sortProducts(data.listed.filter(r => r.brandId === brand.id).map(r => ({ r, s: score(data, r.id) })), "positive", x => { const g = sig.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
   const tags = topTags(data), show = parseShow(f.show), w = niche.words;
   const reviews = results.reduce((n, { s }) => n + s.count + s.web, 0);
   const jsonLd = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], results.map(({ r }) => ({ name: displayName(r.name, brand.name), href: productHref(r) })));

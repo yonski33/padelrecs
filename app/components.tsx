@@ -67,8 +67,8 @@ export function CategoryPill({shape}: {shape: string | null | undefined}) {
 
 function Thumb({racket, brand}: {racket: Racket; brand?: string | null}) {
   const own = shopPhoto(racket), photo = amazonPhoto(racket);
-  if (own) return <a className="thumb own" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={own} alt="" loading="lazy"/></a>;
-  if (photo) return <a className="thumb photo" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt="" loading="lazy"/></a>;
+  if (own) return <a className="thumb own" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={own} alt={displayName(racket.name, brand)} loading="lazy"/></a>;
+  if (photo) return <a className="thumb photo" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><img src={photo.image} alt={displayName(racket.name, brand)} loading="lazy"/></a>;
   return <a className="thumb" href={productHref(racket)} aria-hidden="true" tabIndex={-1}><ProductIcon shape={racket.shape} brand={brand}/></a>;
 }
 

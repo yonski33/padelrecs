@@ -1082,3 +1082,28 @@ a:hover .w-name { color: var(--green); }
   .rrow-signal b { font-size: 24px; }
   .prow-count .prow-signal { font-size: 24px; }
 }
+/* One panel now ("Who's playing it"); half width beside nothing looked lost. */
+.panels.one { grid-template-columns: minmax(0, 1fr); max-width: 520px; }
+/* Short pages (brands, contact, 404): the footer sits at the bottom of the screen, not mid-page. */
+body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+body > .site { flex: 1 0 auto; width: 100%; box-sizing: border-box; }
+/* Brands index (owner, 2026-11-12): A–Z photo cards. */
+.brands-page .brand-cards { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.brand-cards a { position: relative; display: grid; grid-template-rows: auto auto; height: 100%; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+.brand-cards a:hover { border-color: var(--green-ink); box-shadow: var(--shadow); }
+.brand-cards .art { aspect-ratio: 4 / 3; width: 100%; border-radius: 0; border: 0; border-bottom: 1px solid var(--line-2); }
+.brand-card-body { display: grid; gap: 2px; padding: 12px 40px 14px 14px; }
+.brand-card-body b { font-size: 18px; font-weight: 750; letter-spacing: -0.015em; }
+.brand-card-body span { font-size: 13.5px; color: var(--ink-3); }
+.brand-cards .arrow { position: absolute; right: 14px; bottom: 16px; color: var(--green-ink); }
+@media (max-width: 680px) { .brands-page .brand-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .brand-card-body { padding: 10px 30px 12px 10px; } .brand-card-body b { font-size: 16px; } .brand-cards .arrow { right: 10px; bottom: 12px; } }
+/* Catalogue filters on phones: one "Filter and sort" button; the side rankings and quiz card stay on desktop only. */
+.filters-toggle, .filters-button { display: none; }
+@media (max-width: 680px) {
+  .catalog.v2 .filters-button { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); font-weight: 650; font-size: 15px; cursor: pointer; }
+  .catalog.v2 .filters-toggle:not(:checked) ~ .filters { display: none; }
+  .catalog.v2 .filters-toggle:checked + .filters-button { border-color: var(--green-ink); }
+  .catalog.v2 .filter-panel .side-lists, .catalog.v2 .filter-panel .side-finder { display: none; }
+  .catalog.v2 .filter-panel { gap: 10px; }
+}
+.filter-panel .filters-toggle { display: block; position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }

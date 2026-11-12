@@ -1,4 +1,6 @@
 // Per request like the other public pages, cached at Vercel's edge for a minute (next.config.ts headers).
+import { fitText } from "../../lib/fit-text";
+import { siteOgImages } from "../site-og";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -17,8 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const { lists } = await rankedLists();
   if (!lists.length) return { robots: { index: false } };
   const title = `${heading} ${currentYear()}, Based on Real ${people.One} Reviews`;
-  const description = `${lists.map(l => l.list.label).join(", ")}: ${w.many} ranked by what ${people.many} actually say, from published first-hand reviews. Updated as new reviews come in.`;
-  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website" } };
+  const description = fitText([`${w.many[0].toUpperCase()}${w.many.slice(1)} ranked by what ${people.many} actually say: ${lists.map(l => l.list.label.toLowerCase()).join(", ")}.`, "No sponsored placements; updated as new reviews come in."]);
+  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: RANKINGS_PATH }, openGraph: { title, description, url: RANKINGS_PATH, type: "website", images: siteOgImages } };
 }
 
 export default async function TopListsIndex() {

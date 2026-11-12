@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { siteOgImages } from "../../site-og";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!t) return {};
   const title = hubTitle(t);
   const description = hubDescription(t, productsOfType(await catalog(), t).map(x => x.r.name));
-  return { title, description, alternates: { canonical: `/${t.slug}` }, openGraph: { title, description, url: `/${t.slug}`, type: "website" } };
+  return { title, description, alternates: { canonical: `/${t.slug}` }, openGraph: { title, description, url: `/${t.slug}`, type: "website", images: siteOgImages } };
 }
 
 // "Cleanser" → "cleanser", but acronyms stay as they are: "AI assistant", "CRM", "VPN".
@@ -37,7 +38,7 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const brandIds = new Set(ofType.map(r => r.brandId));
   const brands = data.brands.filter(b => brandIds.has(b.id));
   const sort = parseSort(f.sort);
-  const results = sortProducts(scored.filter(x => !f.brand || x.r.brandId === f.brand), sort, x => sig.get(x.r.id)?.signal);
+  const results = sortProducts(scored.filter(x => !f.brand || x.r.brandId === f.brand), sort, x => { const g = sig.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
   const reviewTotal = scored.reduce((n, x) => n + x.s.count + x.s.web, 0);
   const tags = topTags(data), show = parseShow(f.show);
   const moreHref = (n: number) => { const q = new URLSearchParams(Object.entries({ ...f, show: String(n) }).filter(([, v]) => v) as [string, string][]); return `/${t.slug}?${q}`; };

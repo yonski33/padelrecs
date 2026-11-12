@@ -1,4 +1,5 @@
 // Per request like the other public pages, cached at Vercel's edge for a minute (next.config.ts headers).
+import { siteOgImages } from "../site-og";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -19,7 +20,7 @@ const finder = niche.finder, w = niche.words, people = niche.people;
 export function generateMetadata(): Metadata {
   if (!finder) return { robots: { index: false } };
   const title = `${finder.title}: Find Your ${w.One} From Real ${people.One} Reviews`;
-  return { title: { absolute: `${title} | ${niche.site.name}` }, description: finder.description, alternates: { canonical: "/finder" }, openGraph: { title, description: finder.description, url: "/finder", type: "website" } };
+  return { title: { absolute: `${title} | ${niche.site.name}` }, description: finder.description, alternates: { canonical: "/finder" }, openGraph: { title, description: finder.description, url: "/finder", type: "website", images: siteOgImages } };
 }
 
 export default async function FinderPage() {

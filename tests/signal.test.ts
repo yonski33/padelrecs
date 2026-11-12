@@ -1,6 +1,6 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
-import {signals, signalCeiling, MIN_SIGNAL_REVIEWS} from "../lib/signal";
+import {signals, signalCeiling, MIN_SIGNAL_REVIEWS, NEGATIVE_WEIGHT, MIXED_WEIGHT} from "../lib/signal";
 
 const p=(id:string,category:string,positive:number,mixed:number,judged:number)=>({id,category,positive,mixed,judged});
 
@@ -17,7 +17,7 @@ test("the best-reviewed product leads, its score held down by its own negative a
 test("categories are scored apart, and too few reviews means no signal",()=>{
  const s=signals([p("a","x",50,0,60),p("b","y",10,0,12),p("c","y",5,0,MIN_SIGNAL_REVIEWS-1)]);
  assert.equal(s.get("b")!.signal,Math.round(signalCeiling(10,0,12)));
- assert.equal(signalCeiling(49,20,79),100-0.4*100*10/79-0.1*100*20/79);
+ assert.equal(signalCeiling(49,20,79),100-NEGATIVE_WEIGHT*100*10/79-MIXED_WEIGHT*100*20/79);
  assert.equal(s.get("b")!.of,1);
  assert.equal(s.has("c"),false);
 });

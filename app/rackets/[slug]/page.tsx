@@ -3,6 +3,7 @@ import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
 import { platformName } from "../../../lib/source-label";
+import { fitText } from "../../../lib/fit-text";
 import { productSignals, categoryWords } from "../../signals";
 import { MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
@@ -70,11 +71,12 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   // With enough reviews, the search snippet says what the page knows: how many, how positive, what people praise and
   // complain about. Below that, the niche's generic wording.
   const rich = sum.total >= 5 && sum.positive !== null;
-  const title = rich ? base.title.replace(" Reviews |", ` Reviews ${new Date().getUTCFullYear()}: ${sum.total.toLocaleString("en-US")} Real Reviews |`) : base.title;
+  // Just the name and "Player Reviews" (owner, 2026-11-12): short enough for Google to show whole, no repeated year.
+  const title = `${name} ${niche.people.One} Reviews`;
   const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
-    ? [`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
+    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
        sum.loved.length ? `Loved for: ${sum.loved.slice(0, 3).join(", ")}.` : "",
-       sum.complaints.length ? `Most common complaint: ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ")
+       sum.complaints.length ? `Most common complaint: ${sum.complaints[0]}.` : ""])
     : base.description;
   return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website" } };
 }
@@ -176,8 +178,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
-  if (sig?.set) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone. ${name} is #${sig.rank} of ${sig.of}.` });
-  else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. Two things go in: how its reviews compare with the best-reviewed ${niche.words.one} (positive reviews, mixed counting half, and how many reviews there are), and its own negative and mixed reviews, which take points off, so only a ${niche.words.one} few people are unhappy with scores in the high 90s. ${name} is #${sig.rank} of ${sig.of}. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
+  if (sig?.set) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone.` });
+  else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. Two things go in: how its reviews compare with the best-reviewed ${niche.words.one} (positive reviews, mixed counting half, and how many reviews there are), and its own negative and mixed reviews, which take points off, so only a ${niche.words.one} few people are unhappy with scores in the high 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
   if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Where the reviews come from (this used to be two sidebar boxes): web quotes by platform, and how user reviews count.
@@ -254,7 +256,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
         {(r.shape || hasYears) && <p className="p-kicker">{[hasYears ? String(r.year) : null, r.shape && `${r.shape}${typePage?.one || niche.categoryPaths ? "" : ` ${niche.words.one}`}`].filter(Boolean).join(" · ")}</p>}
         {placings[0] && <a className="p-placing" href={placings[0].href}><span className="d-only">{`#${placings[0].rank} in ${placings[0].title}`}</span><span className="m-only">{`#${placings[0].rank} · ${placings[0].label}`}</span> <span aria-hidden="true">→</span></a>}
-        {sum.total > 0 && <a className="p-count m-only" href="#reviews"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>{`${sum.total.toLocaleString("en-US")} ${niche.people.one} ${sum.total === 1 ? "opinion" : "opinions"}`}</a>}
+        {sum.total > 0 && <a className="p-count m-only" href="#reviews"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>{`${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`}</a>}
       </div>
       {own ? <div className="p-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
         // Amazon's terms: the photo is served by Amazon, unaltered, and links to its product page.
@@ -263,7 +265,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="p-scorebox">
         {sum.total > 0 ? <div className="p-score">
           {/* The signal score leads (owner, 2026-11-12); the bar below shows the split it comes from. */}
-          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal<small>{`#${sig.rank} of ${sig.of} ${categoryWords(sig.category)}`}</small></span></div>
+          {sig ? <div className="p-big p-pos p-signal"><b>{sig.signal}</b><span>signal</span></div>
             : pos !== null && <div className="p-big p-pos"><b>{pos}%</b><span>positive</span></div>}
           <a className="p-big p-total" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
@@ -282,7 +284,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             : <a className="button ghost" href={addHref}><PlusIcon/>Add your review</a>}
         </p>
         <p className="p-links m-only">
-          {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} opinions`} <span aria-hidden="true">↓</span></a>}
+          {sum.total > 0 && <a href="#reviews">{`Read ${niche.people.one} reviews`} <span aria-hidden="true">↓</span></a>}
           {/* Jumps to the similar products below; a real side-by-side compare is not built yet. */}
           {similar.length > 0 && <a className="p-compare" href="#similar">{`Similar ${niche.words.many}`} <span aria-hidden="true">→</span></a>}
         </p>
@@ -298,15 +300,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div>
         <ReviewList verdict={verdict} title={`${niche.people.One} reviews`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
           variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
-        {reviews.length >= 3 && <div className="panels">
-          <section className="panel">
-            <h2>{niche.copy.ui.howItPerforms}<small>{catPlayers} {catPlayers === 1 ? niche.people.one : niche.people.many}</small></h2>
-            {catPlayers ? <ul className="cats">{cats.map(c => <li key={c.key}>
-              <span>{c.label}</span><span className="track"><i style={{width: c.avg ? `${c.avg / 5 * 100}%` : 0}}/></span>
-              <b className={c.avg ? undefined : "na"}>{c.avg ? c.avg.toFixed(1) : "—"}</b>
-            </li>)}</ul> : <p className="empty">No category scores yet. They're optional when adding a review.</p>}
-          </section>
-
+        {reviews.length >= 3 && <div className="panels one">
+          {/* "How it plays" (old 1–5 averages) is gone (owner, 2026-11-12): reviews are positive, mixed or negative now. */}
           <section className="panel">
             <h2>{niche.copy.ui.whoUsesIt}</h2>
             {sideTotal > 0 && <div className="split">

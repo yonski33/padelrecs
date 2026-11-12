@@ -27,7 +27,8 @@ export function productPhoto(r: Product) {
 export function ProductArt({ product, brand, className = "", eager = false }: { product: Product; brand?: string | null; className?: string; eager?: boolean }) {
   const photo = productPhoto(product);
   return <span className={`art ${photo ? `art-${photo.kind}` : "art-none"} ${className}`} aria-hidden="true">
-    {photo ? <img src={photo.src} alt="" loading={eager ? "eager" : "lazy"} decoding="async"/> : <ProductIcon shape={product.shape} brand={brand}/>}
+    {/* The product name as alt text so image search can index the photo (owner, 2026-11-12); the wrapper stays hidden from screen readers, which read the name next to it. */}
+    {photo ? <img src={photo.src} alt={displayName(product.name, brand ?? undefined)} loading={eager ? "eager" : "lazy"} decoding="async"/> : <ProductIcon shape={product.shape} brand={brand}/>}
   </span>;
 }
 

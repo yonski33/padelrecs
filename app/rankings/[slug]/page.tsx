@@ -1,4 +1,6 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
+import { fitText } from "../../../lib/fit-text";
+import { siteOgImages } from "../../site-og";
 // so a list re-ranks itself as soon as new reviews are published.
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
@@ -22,16 +24,17 @@ const w = niche.words, people = niche.people;
 const find = async (slug: string) => (await rankedLists()).lists.find(x => x.list.slug === slug);
 const base = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
 
+// About 155 characters so Google shows it whole: who leads, how many reviews, then the list's intro if it fits.
 function description(r: RankedList) {
-  const names = r.entries.slice(0, 3).map(e => e.product.name).join(", ");
-  return `${r.list.intro} Ranked from ${r.reviews.toLocaleString("en-US")} first-hand reviews: ${names}…`;
+  const [a, b, c] = r.entries.map(e => e.product.name);
+  return fitText([`#1 ${a}${b ? `, then ${b}${c ? ` and ${c}` : ""}` : ""}.`, `Ranked from ${r.reviews.toLocaleString("en-US")} first-hand reviews.`, r.list.intro]);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const found = await find((await params).slug);
   if (!found) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
   const title = listTitle(found.list, listYear(found.list), found.reviews, people.One), desc = description(found), url = listHref(found.list.slug);
-  return { title: { absolute: title }, description: desc, alternates: { canonical: url }, openGraph: { title, description: desc, url, type: "website" } };
+  return { title: { absolute: title }, description: desc, alternates: { canonical: url }, openGraph: { title, description: desc, url, type: "website", images: siteOgImages } };
 }
 
 const pct = (n: number, total: number) => `${n / total * 100}%`;

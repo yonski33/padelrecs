@@ -5,7 +5,7 @@
 // reviews)) against the best-reviewed product in the same category, 0–1, as a square root so the steps between
 // products stay gradual (owner, 2026-11-12: 91 to 82 between #2 and #3 was too steep). And its own ceiling: 100 minus
 // NEGATIVE_WEIGHT points per % of negative reviews and MIXED_WEIGHT per % mixed, so even the top product only scores
-// high when few people are unhappy with it (owner, 2026-11-12: 13% negative and 25% mixed is about 92, not 99).
+// high when few people are unhappy with it (owner, 2026-11-12: 13% negative and 25% mixed is about 91, not 99).
 // Nothing is estimated: a product needs MIN_SIGNAL_REVIEWS reviews with a verdict, or it has no score.
 import { likedScore, MIN_LIST_REVIEWS } from "./top-lists";
 
@@ -13,7 +13,8 @@ import { likedScore, MIN_LIST_REVIEWS } from "./top-lists";
  *  Few reviews already score low (log2 of the count). */
 export const MIN_SIGNAL_REVIEWS = MIN_LIST_REVIEWS;
 export const TOP_SIGNAL = 99;
-export const NEGATIVE_WEIGHT = 0.4, MIXED_WEIGHT = 0.1;
+// Mixed reviews cost a little more than at first (owner, 2026-11-12): 47% positive with 38% mixed shouldn't sit at 90.
+export const NEGATIVE_WEIGHT = 0.4, MIXED_WEIGHT = 0.15;
 
 /** The most a product can score: 100 less points for its negative and mixed shares. */
 export const signalCeiling = (positive: number, mixed: number, judged: number) =>
