@@ -4,7 +4,8 @@ import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
 import { platformName } from "../../../lib/source-label";
 import { fitText } from "../../../lib/fit-text";
-import { productSignals, categoryWords } from "../../signals";
+import { productSignals, categoryWords, signalCategory } from "../../signals";
+import { discoverPicks, weekOf } from "../../../lib/discover";
 import { MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
 import type { Metadata } from "next";
@@ -162,11 +163,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const e = l.entries.find(x => x.product.id === r.id);
     return e ? [{ rank: e.rank, title: `${l.list.title} ${listYear(l.list)}`, label: l.list.label, href: listHref(l.list.slug) }] : [];
   }).sort((a, b) => a.rank - b.rank);
-  // The page's ending (owner, 2026-11-12): the ranking this product is best placed in, else one with products of its
-  // type, else the main list; shown as photo cards without this product, so the visit doesn't end at the FAQ.
-  const nextList = (placings[0] && ranked.find(l => listHref(l.list.slug) === placings[0].href))
-    ?? ranked.find(l => r.shape && l.entries.some(e => e.product.shape === r.shape)) ?? ranked[0];
-  const nextPicks = nextList ? nextList.entries.filter(e => e.product.id !== r.id).slice(0, 5) : [];
+  // The page's ending (owner, 2026-11-12): "Discover more", a different handful of well-reviewed products of the same
+  // kind on every page, reshuffled weekly (lib/discover.ts), leaving out this product and the sidebar's similar ones.
+  const category = signalCategory(r);
+  const pool = data.listed.filter(x => signalCategory(x) === category && sigs.has(x.id)).sort((a, b) => sigs.get(b.id)!.signal - sigs.get(a.id)!.signal).map(x => x.id);
+  const discover = discoverPicks(pool, new Set([r.id, ...similar.map(s => s.x.id)]), `${r.id}|${weekOf()}`).map(id => data.listed.find(x => x.id === id)!);
 
   // Common questions, answered only from the counts and summaries on this page. Shown at the foot of the reviews and
   // given to Google as FAQPage data.
@@ -350,14 +351,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </aside>
     </div>
 
-    {(nextPicks.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
-      {nextPicks.length >= 3 && nextList && <>
-        <div className="section-head"><h2 id="next-title">{`${nextList.list.title} ${listYear(nextList.list)}`}</h2><a className="section-link" href={listHref(nextList.list.slug)}>See the full ranking <span aria-hidden="true">→</span></a></div>
-        <ol className="top5-row">{nextPicks.map(e => { const full = data.rackets.find(x => x.id === e.product.id); const b = data.brands.find(y => y.id === e.product.brandId)?.name; return <li key={e.product.id}><a className="pcard" href={productHref(e.product)}>
-          <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
-          {full ? <ProductArt product={full} brand={b}/> : <span className="art art-none"/>}
-          <span className="pcard-body"><span className="pcard-name">{displayName(e.product.name, b)}</span></span>
-        </a></li>; })}</ol>
+    {(discover.length >= 3 || niche.finder) && <section className="p-next" aria-labelledby="next-title">
+      {discover.length >= 3 && <>
+        <div className="section-head"><h2 id="next-title">{`Discover more ${typePage ? typePage.label.toLowerCase() : niche.words.many}`}</h2><a className="section-link" href={typePage ? `/${typePage.slug}` : catalogPath}>{`See all ${typePage ? typePage.label.toLowerCase() : niche.words.many}`} <span aria-hidden="true">→</span></a></div>
+        <ul className="top5-row discover-row">{discover.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name; return <li key={x.id}><a className="pcard" href={productHref(x)}>
+          <ProductArt product={x} brand={b}/>
+          <span className="pcard-body"><span className="pcard-name">{displayName(x.name, b)}</span></span>
+        </a></li>; })}</ul>
       </>}
       <div className="p-next-actions">
         <a className="p-next-card" href={addHref}><b>{niche.copy.ui.triedIt}</b><span>Add your review in about two minutes. No account needed.</span><span className="button">Add your review</span></a>
