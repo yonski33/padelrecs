@@ -1025,3 +1025,6 @@ a:hover .w-name { color: var(--green); }
   .product.v2 .review-list .feed-title-row { border-bottom: 2px solid var(--ink); padding-bottom: 8px; }
 }
 @media (max-width: 680px) { .product.v2 .review-list .feed-title-row a.button.add-review { font-size: 13px; padding: 6px 11px; min-height: 0; gap: 4px; } .product.v2 .review-list .feed-title { font-size: 20px; } }
+/* Home section headings in the same plain sans as the review text. */
+.home.v2 .section-head h2, .home.v2 .section-head h1 { font-family: var(--sans); font-style: normal; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; }
+@media (max-width: 680px) { .home.v2 .section-head h2, .home.v2 .section-head h1 { font-size: 21px; } }
