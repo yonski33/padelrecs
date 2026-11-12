@@ -1,5 +1,5 @@
 {
-  "about": "ToolRecs starter catalog (2026-11-13): cordless and corded power tools (drills and drivers, saws, oscillating multi-tools, sanders, grinders, nailers), battery outdoor power tools and the battery platforms themselves, from DeWalt, Milwaukee, Makita, Ryobi, Bosch, Metabo HPT, Ego, Ridgid, Festool, Flex, Craftsman and Kobalt; owner build queue 2026-11-12, scope OK 2026-11-13. One product per base model number: kit and bare-tool SKUs of one tool share an entry; a new generation has its own model number and its own entry (Milwaukee 2804 vs 2904, DeWalt DCD791 vs DCD800, Makita XDT19 vs XDT20). Names and specs are read on the makers' own product pages, press releases or retailer pages showing the maker's model number; Ridgid entries rest on search excerpts of maker and retailer pages (ridgid.com blocked fetches). Specs: shape = category, balance = battery platform (Corded / Pneumatic for tools without one), surface = tool type, core = the maker's headline figure, weight = as the maker states it. Blank = not confirmed. Years only where a dated page shows the launch.",
+  "about": "ToolRecs starter catalog (2026-11-13): cordless and corded power tools (drills and drivers, saws, oscillating multi-tools, sanders, grinders, nailers), battery outdoor power tools and the battery platforms themselves, from DeWalt, Milwaukee, Makita, Ryobi, Bosch, Metabo HPT, Ego, Ridgid, Festool, Flex, Craftsman and Kobalt; owner build queue 2026-11-12, scope OK 2026-11-13. One product per base model number: kit and bare-tool SKUs of one tool share an entry; a new generation has its own model number and its own entry (Milwaukee 2804 vs 2904, DeWalt DCD791 vs DCD800, Makita XDT19 vs XDT20). Names and specs are read on the makers' own product pages, press releases or retailer pages showing the maker's model number; Ridgid entries rest on search excerpts of maker and retailer pages (ridgid.com blocked fetches). Specs: shape = category, balance = battery platform (Corded / Pneumatic for tools without one), surface = tool type, core = the maker's headline figure, weight = as the maker states it. Blank = not confirmed. Years only where a dated page shows the launch. Added later under the owner's 3-author rule: Milwaukee M12 FUEL Installation Drill/Driver 2505 (7 held first-hand reviews; the 4-in-1 kit's tool).",
   "checked": "2026-11-13",
   "brands": [
     {
@@ -2023,6 +2023,18 @@
       "sources": [
         "https://www.milwaukeetool.com/products/details/m12-fuel-1-4-hex-impact-driver/3453-20",
         "https://www.protoolreviews.com/updated-milwaukee-m12-fuel-impact-driver-drill-review/"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL Installation Drill/Driver 2505",
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Drill/driver",
+      "core": "300 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.milwaukeetool.com/products/2505-20"
       ]
     },
     {
