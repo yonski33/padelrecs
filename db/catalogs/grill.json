@@ -1,5 +1,5 @@
 {
-  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5).",
+  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5), Ooni Pro 16 (4; sold earlier as \"Ooni Pro\").",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -1809,6 +1809,19 @@
       "sources": [
         "https://ooni.com/products/ooni-koda-2-pro",
         "https://ooni.com/pages/ooni-koda-range"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Pro 16",
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "16\" stone",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/products/ooni-pro",
+        "https://ca.ooni.com/blogs/ooni-insights/ooni-pro-vs-ooni-karu-16"
       ]
     },
     {
