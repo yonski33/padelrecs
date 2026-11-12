@@ -1,0 +1,2959 @@
+{
+  "about": "ToolRecs starter catalog (2026-11-13): cordless and corded power tools (drills and drivers, saws, oscillating multi-tools, sanders, grinders, nailers), battery outdoor power tools and the battery platforms themselves, from DeWalt, Milwaukee, Makita, Ryobi, Bosch, Metabo HPT, Ego, Ridgid, Festool, Flex, Craftsman and Kobalt; owner build queue 2026-11-12, scope OK 2026-11-13. One product per base model number: kit and bare-tool SKUs of one tool share an entry; a new generation has its own model number and its own entry (Milwaukee 2804 vs 2904, DeWalt DCD791 vs DCD800, Makita XDT19 vs XDT20). Names and specs are read on the makers' own product pages, press releases or retailer pages showing the maker's model number; Ridgid entries rest on search excerpts of maker and retailer pages (ridgid.com blocked fetches). Specs: shape = category, balance = battery platform (Corded / Pneumatic for tools without one), surface = tool type, core = the maker's headline figure, weight = as the maker states it. Blank = not confirmed. Years only where a dated page shows the launch.",
+  "checked": "2026-11-13",
+  "brands": [
+    {
+      "id": "bosch",
+      "name": "Bosch"
+    },
+    {
+      "id": "craftsman",
+      "name": "Craftsman"
+    },
+    {
+      "id": "dewalt",
+      "name": "DeWalt"
+    },
+    {
+      "id": "ego",
+      "name": "Ego"
+    },
+    {
+      "id": "festool",
+      "name": "Festool"
+    },
+    {
+      "id": "flex",
+      "name": "Flex"
+    },
+    {
+      "id": "kobalt",
+      "name": "Kobalt"
+    },
+    {
+      "id": "makita",
+      "name": "Makita"
+    },
+    {
+      "id": "metabo-hpt",
+      "name": "Metabo HPT"
+    },
+    {
+      "id": "milwaukee",
+      "name": "Milwaukee"
+    },
+    {
+      "id": "ridgid",
+      "name": "Ridgid"
+    },
+    {
+      "id": "ryobi",
+      "name": "Ryobi"
+    }
+  ],
+  "products": [
+    {
+      "brand": "bosch",
+      "name": "Bosch 10\" Worksite Table Saw 4100XC-10",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Table saw",
+      "core": "10\" blade, 30\" rip right",
+      "weight": null,
+      "sources": [
+        "https://www.acmetools.com/bosch-worksite-table-saw-10-gravity-rise-wheeled-stand-4100xc-10/000346639773.html",
+        "https://www.protoolreviews.com/?p=120086",
+        "https://toolup.com/products/bosch-4100xc-10-10-in-worksite-table-saw-with-gravity-rise-wheeled-stand"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 12\" Dual-Bevel Axial-Glide Miter Saw GCM12SD",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Miter saw",
+      "core": "12\" blade, 15 amp",
+      "weight": null,
+      "sources": [
+        "https://boschtools.com/ca/en/products/gcm12sd-060166501C",
+        "https://www.protoolreviews.com/bosch-gcm12sd-miter-saw-review",
+        "https://www.toolup.com/Bosch-GCM12SD-12-Dual-Bevel-Glide-Miter-Saw"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Bosch 18V",
+      "surface": "Battery platform",
+      "core": "18V",
+      "weight": null,
+      "sources": [
+        "https://www.boschtools.com/us/en/profactor/",
+        "https://bosch-pt.com.my/my/en/procore18v"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Brute Tough Drill/Driver GSR18V-755C",
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V",
+      "surface": "Drill/driver",
+      "core": "755 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://boschtools.com/us/en/products/gsr18v-755cb25-06019G0112",
+        "https://www.homelectrical.com/electric-power-drill/bosch-bpt-gsr18v755cn.1.html"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Brute Tough Hammer Drill/Driver GSB18V-755C",
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V",
+      "surface": "Hammer drill",
+      "core": "755 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/-/1003193456",
+        "https://cdn.rona.ca/webassets/manuals/332023345_HowToManual.pdf"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Brute Tough Hammer Drill/Driver GSB18V-975C",
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V",
+      "surface": "Hammer drill",
+      "core": "975 in-lbs",
+      "weight": "3.5 lbs",
+      "sources": [
+        "https://www.boschtools.com/us/en/products/gsb18v-975cb25-06019G031L",
+        "https://images.salsify.com/image/upload/q_100,fl_attachment/gtwpvirf45hty1xazuan.pdf",
+        "https://protoolreviews.com/?p=121680"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Compact Tough Drill/Driver GSR18V-535C",
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V",
+      "surface": "Drill/driver",
+      "core": "535 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://boschtools.com/us/en/products/gsr18v-535cn-06019G1118",
+        "https://www.pcstools.com/Bosch-GSR18V-535CN-18V-EC-Brushless-Compact-Tough-1-2-Drill-Driver-Bare-Tool"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Freak 2-in-1 Impact Driver/Wrench GDX18V-1860C",
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V",
+      "surface": "Impact driver/wrench",
+      "core": "1,860 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.boschtools.com/us/en/products/gdx18v-1860cb25-06019J0216",
+        "https://www.protoolreviews.com/bosch-connected-ready-freak-impact-driver-gdx18v-1800cn/",
+        "https://compactequip.com/hand-tools/get-freaky-bosch-power-tools-updates-beloved-freak-impact-driver-with-three-predefined-modes/"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 18V Impact Driver GDR18V-1860C",
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V",
+      "surface": "Impact driver",
+      "core": "1,860 in-lbs",
+      "weight": "2.4 lb",
+      "sources": [
+        "https://boschtools.com/us/en/products/gdr18v-1860cb25-06019J011B",
+        "https://toolup.com/products/bosch-gdr18v-1860cn-18v-brushless-connected-ready-1-4-in-hex-impact-driver-bare-tool"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 5\" Angle Grinder GWS13-50VSP",
+      "shape": "Grinders",
+      "balance": "Corded",
+      "surface": "Angle grinder",
+      "core": "13 amp, 5\" wheel",
+      "weight": null,
+      "sources": [
+        "https://www.boschtools.com/us/en/products/gws13-50vsp-060179H412",
+        "https://www.toolup.com/Bosch-GWS13-50VSP-5-High-Performance-Angle-Grinder-Var-Speed-Paddle-Switch"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch 5\" Random Orbit Sander ROS20VSC",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Random orbit sander",
+      "core": "2.5 amp, 5\" pad",
+      "weight": "3.5 lb",
+      "sources": [
+        "https://boschtools.com/us/en/products/ros20vsc-0601387514",
+        "https://www.lowes.com/pd/Bosch-120-Volt-2-5-Amps-Random-Orbital-Sander-with-Bag/3735191"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch PROFACTOR 18V Hammer Drill/Driver GSB18V-1330C",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Bosch 18V PROFACTOR",
+      "surface": "Hammer drill",
+      "core": "1,330 in-lbs",
+      "weight": "4.6 lbs",
+      "sources": [
+        "https://boschtools.com/us/en/products/gsb18v-1330cn-06019J5116",
+        "https://pressroom.boschtools.com/2022-01-18-New-PROFACTOR-TM-GSR18V-1330C-18V-Brushless-Drill-Driver-and-PROFACTOR-GSB18V-1330C-18V-Hammer-Drill-Driver-from-Bosch-Power-Tools-Bring-the-Muscle-for-Pro-Projects?asPDF=1",
+        "https://protoolreviews.com/?p=120427"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch PROFACTOR 18V Strong Arm 7-1/4\" Circular Saw GKS18V-25GC",
+      "shape": "Saws",
+      "balance": "Bosch 18V PROFACTOR",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": "9.5 lbs",
+      "sources": [
+        "https://boschtools.com/us/en/products/gks18v-25gcn-06016B5116",
+        "https://images.salsify.com/image/upload/q_100,fl_attachment/kq3azrcqi5qq8ika2pbs.pdf"
+      ]
+    },
+    {
+      "brand": "bosch",
+      "name": "Bosch StarlockPlus Oscillating Multi-Tool GOP40-30C",
+      "shape": "Oscillating & multi-tools",
+      "balance": "Corded",
+      "surface": "Oscillating multi-tool",
+      "core": "4.0 amp",
+      "weight": null,
+      "sources": [
+        "https://www.boschtools.com/us/en/products/gop40-30c-0601231011",
+        "https://www.homedepot.com/p/Bosch-4-Amp-Corded-StarlockPlus-Oscillating-Multi-Tool-Kit-with-Case-30-Piece-GOP40-30C/300749977"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 1/2\" Drill/Driver CMCD700",
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20",
+      "surface": "Drill/driver",
+      "core": "280 UWO",
+      "weight": null,
+      "sources": [
+        "https://www.craftsman.com/en-us/product/cmcd700c1/v20-cordless-12-drill-driver-kit-1-15ah-battery-and-charger",
+        "https://www.craftsman.com/products/cmcd700d1"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 1/4\" Impact Driver CMCF800",
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20",
+      "surface": "Impact driver",
+      "core": "1,460 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.craftsman.com/en-us/product/cmcf800c2/v20-cordless-14-impact-driver-kit-2-15ah-batteries-and-charger",
+        "https://www.lowes.com/pd/CRAFTSMAN-20-Volt-Max-1-4-in-Variable-Speed-Cordless-Impact-Driver-1-Battery-Included/1003016536"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Craftsman V20",
+      "surface": "Battery platform",
+      "core": "20V MAX (18V nominal)",
+      "weight": null,
+      "sources": [
+        "https://www.craftsman.com/en-us/system/v20-system",
+        "https://www.craftsman.com/product/cmcb209/v20-90ah-lithium-ion-battery"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 Brushless 1/2\" Drill/Driver CMCD710",
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20",
+      "surface": "Drill/driver",
+      "core": "350 UWO",
+      "weight": null,
+      "sources": [
+        "https://affinity.stanleyblackanddecker.com/products/cmcd710c1",
+        "https://toolguyd.com/first-thoughts-on-the-new-craftsman-v20-cordless-drills-and-drivers",
+        "https://www.protoolreviews.com/?p=120372"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 Brushless 1/4\" Impact Driver CMCF810",
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20",
+      "surface": "Impact driver",
+      "core": "1,500 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://craftsman.com/products/cmcf810c1",
+        "https://www.lowes.com/pd/CRAFTSMAN-V20-20-Volt-Max-Variable-Speed-Brushless-Cordless-Impact-Driver-1-Battery/1000931796"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 Brushless RP 1/2\" Drill/Driver CMCD725",
+      "year": 2024,
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20 BRUSHLESS RP",
+      "surface": "Drill/driver",
+      "core": "2,000 RPM",
+      "weight": null,
+      "sources": [
+        "https://newsroom.stanleyblackanddecker.com/2024-10-14-Step-Up-to-More-Runtime-and-Better-Performance-TM-CRAFTSMAN-R-Adds-to-V20-BRUSHLESS-RP-TM-Line"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 Brushless RP 1/2\" Hammer Drill CMCD726",
+      "year": 2024,
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20 BRUSHLESS RP",
+      "surface": "Hammer drill",
+      "core": "2,000 RPM",
+      "weight": null,
+      "sources": [
+        "https://newsroom.stanleyblackanddecker.com/2024-10-14-Step-Up-to-More-Runtime-and-Better-Performance-TM-CRAFTSMAN-R-Adds-to-V20-BRUSHLESS-RP-TM-Line"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 Brushless RP 1/4\" Impact Driver CMCF830",
+      "year": 2024,
+      "shape": "Drills & drivers",
+      "balance": "Craftsman V20 BRUSHLESS RP",
+      "surface": "Impact driver",
+      "core": "1,800 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://newsroom.stanleyblackanddecker.com/2024-10-14-Step-Up-to-More-Runtime-and-Better-Performance-TM-CRAFTSMAN-R-Adds-to-V20-BRUSHLESS-RP-TM-Line",
+        "https://www.craftsman.com/en-us/product/cmcf830b/v20-brushless-rp-cordless-14-impact-driver-tool-only"
+      ]
+    },
+    {
+      "brand": "craftsman",
+      "name": "Craftsman V20 WEEDWACKER 13\" String Trimmer CMCST900",
+      "shape": "Outdoor power",
+      "balance": "Craftsman V20",
+      "surface": "String trimmer",
+      "core": "13\" cutting path",
+      "weight": null,
+      "sources": [
+        "https://www.craftsman.com/products/cmcst900b",
+        "https://www.craftsman.com/en-us/product/cmcst900d1/v20-weedwacker-13-cordless-string-trimmer-and-edger-automatic-feed-kit-20ah"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 10\" Jobsite Table Saw w/ Rolling Stand DWE7491RS",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Table saw",
+      "core": "10\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dwe7491rs/10-jobsite-table-saw-and-rolling-stand"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 12\" Double-Bevel Sliding Compound Miter Saw DWS779",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Miter saw",
+      "core": "12\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dws779/12-double-bevel-sliding-compound-miter-saw"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX 14\" Folding String Trimmer DCST922",
+      "shape": "Outdoor power",
+      "balance": "DeWalt 20V MAX",
+      "surface": "String trimmer",
+      "core": "14\" swath",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcst922b/20v-max-14-brushless-cordless-folding-string-trimmer-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "DeWalt 20V MAX",
+      "surface": "Battery platform",
+      "core": "20V MAX (18V nominal)",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/20v",
+        "https://www.dewalt.com/en-us/product/dcb203/20v-max-20-ah-battery"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX Compact Drill/Driver DCD771",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX",
+      "surface": "Drill/driver",
+      "core": "300 UWO",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcd771c2/20v-max-compact-drilldriver-kit-2-batteries"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX FLEXVOLT ADVANTAGE 1/2\" Hammer Drill/Driver DCD999",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX (FLEXVOLT ADVANTAGE)",
+      "surface": "Hammer drill",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/product/dcd999b/20v-max-12-brushless-cordless-hammer-drilldriver-flexvolt-advantage-tool-only",
+        "https://www.protoolreviews.com/dewalt-20v-max-flexvolt-advantage-hammer-drill-review-dcd999",
+        "https://www.protoolreviews.com/?p=182858"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX FLEXVOLT ADVANTAGE 7-1/4\" Circular Saw DCS573",
+      "shape": "Saws",
+      "balance": "DeWalt 20V MAX (FLEXVOLT ADVANTAGE)",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs573b/20v-max-7-14-brushless-cordless-circular-saw-flexvolt-advantage-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 1/2\" 3-Speed Hammer Drill DCD1007",
+      "year": 2024,
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Hammer drill",
+      "core": "2,100 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcd1007b/20v-max-xr-brushless-cordless-12-3-speed-hammer-drill-tool-only",
+        "https://manuals.plus/m/38bd87982c31b292555fa5900e90d940efa77f6b8fdc8ff140ce5f323f4a0f1f",
+        "https://www.protoolreviews.com/?p=182858"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 1/2\" Drill/Driver DCD800",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Drill/driver",
+      "core": "2,000 rpm",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcd800b/20v-max-xr-12-brushless-cordless-drilldriver-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 1/2\" Hammer Drill/Driver DCD805",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Hammer drill",
+      "core": "2,000 rpm",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcd805b/20v-max-xr-brushless-cordless-12-hammer-drilldriver-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 1/2\" High Torque Impact Wrench DCF900",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Impact wrench",
+      "core": "1,400 ft-lbs breakaway",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcf900b/20v-max-xr-12-high-torque-impact-wrench-hog-ring-anvil-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 1/2\" Mid-Range Impact Wrench DCF891",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Impact wrench",
+      "core": "800 ft-lbs breakaway",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcf891b/20v-max-xr-12-mid-range-impact-wrench-hog-ring-anvil-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 15 Gauge Angled Finish Nailer DCN650",
+      "shape": "Nailers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Finish nailer",
+      "core": "15 gauge",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcn650b/20v-max-xr-15-ga-cordless-angled-finish-nailer-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 18 Gauge Brad Nailer DCN680",
+      "shape": "Nailers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Brad nailer",
+      "core": "18 gauge",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcn680b/20v-max-xr-18ga-cordless-brad-nailer-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 23 Gauge Pin Nailer DCN623",
+      "shape": "Nailers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Pin nailer",
+      "core": "23 gauge",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcn623b/20v-max-xrr-brushless-cordless-23ga-pin-nailer-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 3-Speed 1/4\" Impact Driver DCF845",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Impact driver",
+      "core": "1,825 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcf845b/20v-max-xr-3-speed-impact-14-driver-tool-only",
+        "https://www.protoolreviews.com/dewalt-20v-max-xr-brushless-impact-driver-review"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 3-Speed 1/4\" Impact Driver DCF887",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Impact driver",
+      "core": "1,825 in-lbs",
+      "weight": "2 lbs",
+      "sources": [
+        "https://www.dewalt.com/product/dcf887b/20v-max-xr-3-speed-14-impact-driver-tool-only",
+        "https://dewalt.ca/product/dcf887b/20v-max-xr-14-3-speed-impact-driver-bare",
+        "https://www.protoolreviews.com/dewalt-20v-max-xr-brushless-impact-driver-review"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 3-Speed High Torque 1/4\" Impact Driver DCF860",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Impact driver",
+      "core": "2,500 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcf860b/20v-max-xr-14-3-speed-brushless-high-torque-impact-driver-tool-only",
+        "https://www.protoolreviews.com/dewalt-dcf860-20v-max-high-torque-impact-driver-review"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 3-Speed Oscillating Multi-Tool DCS356",
+      "shape": "Oscillating & multi-tools",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Oscillating multi-tool",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs356b/20v-max-brushless-cordless-3-speed-oscillating-multi-tool-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 30° Framing Nailer DCN692",
+      "shape": "Nailers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Framing nailer",
+      "core": "30° paper collated",
+      "weight": null,
+      "sources": [
+        "https://www.applied.com/c-dewalt-dcn692m1/p/111441747",
+        "https://www.homedepot.ca/product/dewalt-20v-max-xr-brushless-cordless-30-degree-paper-collated-framing-nailer/1001864974"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 30° Paper Collated Framing Nailer DCN930",
+      "shape": "Nailers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Framing nailer",
+      "core": "30° paper collated, up to 3-1/2\" nails",
+      "weight": "8.65 lbs",
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcn930b/20v-max-xr-brushless-30deg-paper-collated-framing-nailer-tool-only",
+        "https://hammondlumber.com/wp-content/uploads/2024/10/DCN930_SELL-SHEET-Print-EN_DMK1.pdf",
+        "https://www.forconstructionpros.com/equipment/worksite/hand-tools/product/22893993/dewalt-dewalt-introduces-20v-max-xr-cordless-21-and-30-framing-nailers"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 4-1/2\" Paddle Grinder w/ KICKBACK BRAKE DCG413",
+      "shape": "Grinders",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Angle grinder",
+      "core": "4-1/2\" wheel",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcg413b/20v-max-xr-4-12-paddle-switch-small-angle-grinder-kickback-brake-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 5\" Random Orbital Sander DCW210",
+      "shape": "Sanders",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Random orbit sander",
+      "core": "5\" pad",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcw210b/20v-max-xr-5-brushless-cordless-variable-speed-random-orbital-sander-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR 7-1/4\" Circular Saw DCS590",
+      "shape": "Saws",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Circular saw",
+      "core": "1,700 MWO",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs590b/20v-max-xr-brushless-cordless-7-14-circular-saw-tool-only",
+        "https://protoolreviews.com/?p=179535"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR Compact Drill/Driver DCD791",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Drill/driver",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://dewalt.com/product/dcd791b/20v-max-xr-brushless-compact-drilldriver-tool-only",
+        "https://dewalt.ca/product/dcd791b/20v-max-xr-li-ion-brushless-compact-drilldriver-tool-only",
+        "https://www.protoolreviews.com/tools/power/cordless/drills-drivers-cordless/new-dewalt-20v-max-xr-drills-impact-driver/19864/"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR Compact Hammer Drill/Driver DCD796",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Hammer drill",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/product/dcd796b/20v-max-xr-brushless-cordless-12-hammer-drilldriver-tool-only",
+        "https://acetool.com/products/dewalt-dcd796b-20v-max-xr-brls-compact-hammerdrill-bare"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 20V MAX XR Handheld Blower DCBL722",
+      "shape": "Outdoor power",
+      "balance": "DeWalt 20V MAX XR",
+      "surface": "Leaf blower",
+      "core": "450 CFM",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcbl722b/20v-max-xr-brushless-cordless-handheld-blower-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 2X20V MAX XR 21\" Push Lawn Mower DCMWP234",
+      "shape": "Outdoor power",
+      "balance": "DeWalt 2X20V MAX XR",
+      "surface": "Lawn mower",
+      "core": "21\" deck",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcmwp234u2/21-2x20v-max-xr-brushless-cordless-push-lawn-mower-kit",
+        "https://www.homedepot.com/p/DEWALT-2x20V-MAX-21-in-Cordless-Battery-Powered-Push-Lawn-Mower-Kit-with-2-10-Ah-Batteries-and-Chargers-DCMWP234U2/331926550"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 5\" Variable-Speed Random Orbit Sander DWE6423",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Random orbit sander",
+      "core": "5\" pad",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dwe6423/5-variable-speed-random-orbit-sander"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 60V MAX 12\" Double Bevel Sliding Miter Saw DCS781",
+      "shape": "Saws",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Miter saw",
+      "core": "12\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs781b/60v-max-12-brushless-cordless-double-bevel-sliding-miter-saw-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 60V MAX 17\" String Trimmer DCST972",
+      "shape": "Outdoor power",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "String trimmer",
+      "core": "15\"/17\" swath",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcst972b/60v-max-17-brushless-cordless-attachment-capable-string-trimmer-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 60V MAX 4-1/2\"-6\" Grinder w/ KICKBACK BRAKE DCG418",
+      "shape": "Grinders",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Angle grinder",
+      "core": "4-1/2\" - 6\" wheel",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcg418b/60v-max-brushless-cordless-4-12-6-grinder-kickback-brake-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt 60V MAX Handheld Axial Blower DCBL772",
+      "shape": "Outdoor power",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Leaf blower",
+      "core": "600 CFM",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcbl772b/60v-max-brushless-cordless-handheld-axial-blower-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt ATOMIC 20V MAX 1/4\" Compact Impact Driver DCF809",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX ATOMIC",
+      "surface": "Impact driver",
+      "core": "1,700 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcf809b/atomic-20v-max-14-brushless-compact-impact-driver-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt ATOMIC 20V MAX 3-Speed 1/4\" Impact Driver DCF850",
+      "shape": "Drills & drivers",
+      "balance": "DeWalt 20V MAX ATOMIC",
+      "surface": "Impact driver",
+      "core": "1,825 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcf850b/atomic-20v-max-14-3-speed-brushless-impact-driver-tool-only",
+        "https://www.protoolreviews.com/?p=112533"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt FLEXVOLT 60V MAX 7-1/4\" Circular Saw w/ Brake DCS578",
+      "shape": "Saws",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs578b/60v-max-7-14-brushless-circular-saw-electronic-brake-tool-only",
+        "https://www.protoolreviews.com/dewalt-flexvolt-60v-max-circular-saw-review/"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt FLEXVOLT 60V MAX 7-1/4\" Worm Drive Style Saw DCS577",
+      "shape": "Saws",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Worm drive circular saw",
+      "core": "7-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs577b/flexvolt-60v-max-7-14-cordless-worm-drive-style-saw-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt FLEXVOLT 60V MAX 8-1/4\" Table Saw DCS7485",
+      "shape": "Saws",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Table saw",
+      "core": "8-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/product/dcs7485b/60v-max-table-saw-tool-only"
+      ]
+    },
+    {
+      "brand": "dewalt",
+      "name": "DeWalt FLEXVOLT 60V MAX Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "DeWalt FLEXVOLT 60V MAX",
+      "surface": "Battery platform",
+      "core": "20V/60V MAX (18V/54V nominal)",
+      "weight": null,
+      "sources": [
+        "https://www.dewalt.com/en-us/products/systems/cordless-platforms/60v/flexvolt-battery-system",
+        "https://www.dewalt.ca/systems/cordless-platforms/60v/flexvolt-battery-system"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 15\" POWERLOAD String Trimmer Carbon Fiber ST1521S",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "String trimmer",
+      "core": "15\" cutting swath",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/15-inch-string-trimmer-powerload/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 15\" POWERLOAD String Trimmer ST1511T",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "String trimmer",
+      "core": "15\" cutting swath",
+      "weight": "7.63 lbs (tool weight)",
+      "sources": [
+        "https://egopowerplus.com/15-inch-string-trimmer-powerload-aluminum-st1511t"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 16\" Chain Saw (40cc) CS1611",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Chainsaw",
+      "core": "16\" bar, 40cc gas equivalent",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/16-inch-chain-saw-40cc/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 16\" LINE IQ POWERLOAD String Trimmer ST1623T",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "String trimmer",
+      "core": "16\" cutting swath",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/string-trimmer-powerload-line-iq-st1623t/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 16\" POWERLOAD String Trimmer Carbon Fiber ST1611T",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "String trimmer",
+      "core": "16\" cutting swath",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/16-inch-powerload-string-trimmer-telescopic-carbon-fiber-shaft-st1610t/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 18\" Chain Saw CS1804",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Chainsaw",
+      "core": "18\" bar, 45cc gas equivalent",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/18-inch-chain-saw/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 21\" Select Cut Self-Propelled Mower LM2135SP",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Lawn mower",
+      "core": "21\" deck, 7.0 ft-lbs torque",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/21-inch-self-propelled-mower-select-cut-lm2135sp/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 21\" Select Cut XP Self-Propelled Mower LM2156SP",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Lawn mower",
+      "core": "21\" deck, 8.3 ft-lbs torque",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/21-inch-self-propelled-mower-select-cut-xp-lm2156sp/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 21\" Self-Propelled Mower Touch Drive LM2125SP",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Lawn mower",
+      "core": "21\" deck, 6.0 ft-lbs torque",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/21-inch-self-propelled-mower-touch-drive-lm2120sp/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 22\" Aluminum Deck Select Cut Mower LM2206SP",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Lawn mower",
+      "core": "22\" aluminum deck, 11.1 ft-lbs torque",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/22-inch-aluminum-deck-self-propelled-lawn-mower-lm2200sp/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 25\" Hedge Trimmer HT2501",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Hedge trimmer",
+      "core": "25\" blade",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/25inch-hedge-trimmer-ht2501/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 56V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Battery platform",
+      "core": "56V",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/technology",
+        "https://egopowerplus.com/battery-10-amp-ba5600t/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 580 CFM Blower LB5804",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Leaf blower",
+      "core": "580 CFM",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/blower-580cfm/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 615 CFM Blower LB6151",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Leaf blower",
+      "core": "615 CFM / 170 MPH",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/blower-615cfm-lb6151/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 650 CFM Blower LB6504",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Leaf blower",
+      "core": "650 CFM / 180 MPH",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/blower-650cfm/"
+      ]
+    },
+    {
+      "brand": "ego",
+      "name": "Ego POWER+ 765 CFM Blower LB7654",
+      "shape": "Outdoor power",
+      "balance": "Ego POWER+ 56V",
+      "surface": "Leaf blower",
+      "core": "765 CFM / 200 MPH",
+      "weight": null,
+      "sources": [
+        "https://egopowerplus.com/blower-765cfm-lb7650/"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool 18V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Festool 18V",
+      "surface": "Battery platform",
+      "core": "18V",
+      "weight": null,
+      "sources": [
+        "https://www.festoolusa.com/@578939",
+        "https://cloud-cms.festool.com/accessory/sawing/cordless-accessories/battery-packs/577660---bp-18-li-5,0-asi"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Cordless Table Saw CSC SYS 50",
+      "shape": "Saws",
+      "balance": "Festool 18V",
+      "surface": "Table saw",
+      "core": "168 mm blade, 2 x 18V",
+      "weight": "33.08 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576821",
+        "https://www.rockler.com/festool-cordless-table-saw-csc-sys-50-ebi-basic-576821"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Cordless Track Saw TSC 55 K",
+      "shape": "Saws",
+      "balance": "Festool 18V",
+      "surface": "Track saw",
+      "core": "6-1/4\" (160 mm) blade, 2 x 18V",
+      "weight": "7.94 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@577008",
+        "https://www.acetool.com:443/Festool-577008-p/fes-577008.htm",
+        "https://www.woodshopnews.com/tools-machines/festool-adds-anti-kickback-feature-to-new-track-saw"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Kapex Sliding Compound Miter Saw KS 120 REB",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Miter saw",
+      "core": "10-1/4\" (260 mm) blade",
+      "weight": "50.93 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@575306",
+        "https://cloud-cms.festool.com/products/sawing/sliding-compound-mitre-saws/575302---ks-120-reb",
+        "https://toolbrothers.de/en/products/festool-ks-120-reb-cross-cut-saw-kapex-1600w-260mm-575302-successor-to-ks-120-eb-561283"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Random Orbital Sander ETS 125 REQ",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Random orbit sander",
+      "core": "5\" (125 mm) pad, 2 mm stroke, 250 W",
+      "weight": "3.53 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576070",
+        "https://www.festoolrecon.com/collections/black-friday/products/random-orbital-sander-ets-125-req-plus"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Random Orbital Sander ETS EC 125/3",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Random orbit sander",
+      "core": "5\" (125 mm) pad, 3 mm stroke",
+      "weight": "3.31 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576340",
+        "https://www.festool.com/products/surface-preparation/random-orbital-sander/576341---ets-ec-1253-eq-plus"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Random Orbital Sander ETS EC 150/3",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Random orbit sander",
+      "core": "6\" (150 mm) pad, 3 mm stroke",
+      "weight": "3.53 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576326",
+        "https://toolbrothers.nl/en/products/festool-ets-ec150-3-eq-plus-random-orbital-sander-400-w-150-mm-brushless-systainer-576320-successor-to-575032"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Random Orbital Sander ETS EC 150/5",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Random orbit sander",
+      "core": "6\" (150 mm) pad, 5 mm stroke",
+      "weight": "3.53 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576339",
+        "https://toolstoday.com/festool-576339-random-orbital-sander-ets-ec150-5-eq-plus.html"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool ROTEX Multi-Mode Sander RO 125 FEQ",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Geared eccentric sander",
+      "core": "5\" (125 mm) pad, 3.6 mm stroke, 500 W",
+      "weight": "5.07 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576032",
+        "https://toolbrothers.nl/en/products/festool-rotex-ro-125-feq-plus-gear-eccentric-sander-500-w-125-mm-systainer-576029-successor-to-571779"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool ROTEX Multi-Mode Sander RO 150 FEQ",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Geared eccentric sander",
+      "core": "6\" (150 mm) pad, 5 mm stroke, 720 W",
+      "weight": "5.95 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576028",
+        "https://www.festool.com/@576017"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool ROTEX Multi-Mode Sander RO 90 DX FEQ",
+      "shape": "Sanders",
+      "balance": "Corded",
+      "surface": "Geared eccentric sander",
+      "core": "3.5\" (90 mm) pad, 400 W",
+      "weight": "3.08 lb",
+      "sources": [
+        "https://www.festoolusa.com/@576263",
+        "https://cloud-cms.festool.com/products/polishing/gear-drive-eccentric-sander-rotex/576259---ro-90-dx-feq-plus"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Track Saw TS 55 F",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Track saw",
+      "core": "6-1/4\" (160 mm) blade, 55 mm depth",
+      "weight": "10.58 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576708",
+        "https://www.ultimatetools.ca/products/festool-track-saw-160mm-ts-55-feq-f-plus-us-576708",
+        "https://www.festool.com/products/sawing/circular-saws/576703---ts-55-febq-plus"
+      ]
+    },
+    {
+      "brand": "festool",
+      "name": "Festool Track Saw TS 60 K",
+      "year": 2023,
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Track saw",
+      "core": "6-5/8\" (168 mm) blade, 62 mm depth",
+      "weight": "10.58 lbs",
+      "sources": [
+        "https://www.festoolusa.com/@576726",
+        "https://www.festoolusa.com/-/media/tts/fcp/festool-usa/downloads/press-releases/festool_2023_summerlaunch_press-release.pdf",
+        "https://www.festool.com/press/product-news/ts-60-k"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 1/2\" 2-Speed Drill Driver FX1151",
+      "shape": "Drills & drivers",
+      "balance": "Flex 24V",
+      "surface": "Drill/driver",
+      "core": "750 in-lbs",
+      "weight": "3.2 lbs",
+      "sources": [
+        "https://www.flexpowertools.com/half-in-2-speed-drill-driver-kit-fx1151-2a/",
+        "https://cdn.rona.ca/documents/FLEX-ProductCatalog2023-EN.pdf"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 1/2\" Drill Driver with Turbo Mode FX1171T",
+      "shape": "Drills & drivers",
+      "balance": "Flex 24V",
+      "surface": "Drill/driver",
+      "core": "1,400 in-lbs",
+      "weight": "3.7 lbs",
+      "sources": [
+        "https://www.flexpowertools.com/half-in-2-speed-drill-driver-with-turbo-mode-kit-fx1171t-2b/",
+        "https://beavertools.com/products/flex-tools-1-2-2-speed-drill-driver-with-turbo-mode-tool-only-fx1171t-z"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 1/2\" Hammer Drill with Turbo Mode FX1271T",
+      "shape": "Drills & drivers",
+      "balance": "Flex 24V",
+      "surface": "Hammer drill",
+      "core": "1,400 in-lbs",
+      "weight": "3.8 lbs",
+      "sources": [
+        "https://www.flexpowertools.com/hammer-drill-with-turbo-mode-stacked-lithiumkit-fx1271t/",
+        "https://beavertools.com/products/flex-tools-1-2-2-speed-hammer-drill-with-turbo-mode-kit-fx1271t-2b"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 1/2\" Mid-Torque Impact Wrench FX1451",
+      "shape": "Drills & drivers",
+      "balance": "Flex 24V",
+      "surface": "Impact wrench",
+      "core": "600 ft-lbs fastening / 750 ft-lbs nut-busting",
+      "weight": "4.2 lb",
+      "sources": [
+        "https://www.flexpowertools.com/half-inch-mid-torque-impact-wrench-fx1451/",
+        "https://www.protoolreviews.com/?p=136209"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 1/4\" Quick Eject Impact Driver FX1371A",
+      "shape": "Drills & drivers",
+      "balance": "Flex 24V",
+      "surface": "Impact driver",
+      "core": "2,500 in-lbs",
+      "weight": "2.7 lbs",
+      "sources": [
+        "https://www.flexpowertools.com/quick-eject-hex-impact-driver-stacked-lithium-kit-fx1371a/",
+        "https://tigersupplies.com/products/flex-fx1371a-z-1-4-quick-eject-hex-impact-driver-tool-only-1"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 5\" Paddle Switch Angle Grinder FX3171A",
+      "shape": "Grinders",
+      "balance": "Flex 24V",
+      "surface": "Angle grinder",
+      "core": "5\" wheel, 10,000 RPM",
+      "weight": null,
+      "sources": [
+        "https://toolup.com/products/flex-fx3171a-1c-24v-5-variable-speed-angle-grinder-with-paddle-switch-kit",
+        "https://www.flexpowertools.com/5-in-variable-speed-angle-grinder-with-side-switch-bare-tool-fx3181a-z/"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V 7-1/4\" Rear Handle Circular Saw FX2141R",
+      "shape": "Saws",
+      "balance": "Flex 24V",
+      "surface": "Rear-handle circular saw",
+      "core": "7-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.flexpowertools.com/7-25-in-rear-handle-circular-saw-kit-fx2141r/",
+        "https://toolup.com/products/flex-fx2141r-z-7-1-4-rear-handle-circular-saw-bare-tool"
+      ]
+    },
+    {
+      "brand": "flex",
+      "name": "Flex 24V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Flex 24V",
+      "surface": "Battery platform",
+      "core": "24V",
+      "weight": null,
+      "sources": [
+        "https://www.flexpowertools.com/stackedlithium",
+        "https://www.flexpowertools.com/24v-6ah-stacked-lithium-battery-fx0331-1/"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt 24V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Kobalt 24V max",
+      "surface": "Battery platform",
+      "core": "24V max",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Kobalt-24V-4-0Ah-Ultimate-Output-Battery/5000020305",
+        "https://www.protoolreviews.com/kobalt-xtr-technology/"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt 24V Max Brushless Drill KDD 1424A-03",
+      "shape": "Drills & drivers",
+      "balance": "Kobalt 24V max",
+      "surface": "Drill/driver",
+      "core": "650 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Kobalt-24-Volt-Max-1-2-in-Cordless-Brushless-Drill/1000061633",
+        "https://www.protoolreviews.com/kobalt-24v-brushless-drill"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt 40V Gen4 520 CFM Leaf Blower KLB 1040A-03",
+      "shape": "Outdoor power",
+      "balance": "Kobalt 40V max",
+      "surface": "Leaf blower",
+      "core": "520 CFM, 120 MPH",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Unbranded-KOB-40V-520CFM-LEAF-BLOWER-KIT/5002904975",
+        "https://www.rona.ca/doors-and-windows%2f../en/product/kobalt-40-v-max-520-cfm-120-mph-cordless-brushless-leaf-blower-bare-tool-45595099"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt 80V 16\" String Trimmer KST 2580-06",
+      "shape": "Outdoor power",
+      "balance": "Kobalt 80V max",
+      "surface": "String trimmer",
+      "core": "14\"/16\" cutting width",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Kobalt-80-Volt-Max-16-in-Straight-Cordless-String-Trimmer-1-Batteries-Included/1000765304"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt 80V 21\" Self-Propelled Mower KMP 2580-06",
+      "shape": "Outdoor power",
+      "balance": "Kobalt 80V max",
+      "surface": "Lawn mower",
+      "core": "21\" deck",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Kobalt-80-volt-Max-Brushless-Lithium-Ion-Self-propelled-21-in-Cordless-Electric-Lawn-Mower/1000915068"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt XTR 24V Max Brushless Drill KXDD 1424A-03",
+      "shape": "Drills & drivers",
+      "balance": "Kobalt 24V max XTR",
+      "surface": "Drill/driver",
+      "core": "1,200 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Kobalt-XTR-24-Volt-Max-1-2-in-Brushless-Cordless-Drill-Charger-Included/1002273816",
+        "https://www.toolboxbuzz.com/?p=27768"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt XTR 24V Max Brushless Hammer Drill KXHD 1424A-03",
+      "shape": "Drills & drivers",
+      "balance": "Kobalt 24V max XTR",
+      "surface": "Hammer drill",
+      "core": "1,200 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.lowes.com/pd/Kobalt-XTR-1-2-in-24-Volt-Max-Variable-Speed-Brushless-Cordless-Hammer-Drill-1-Battery-Included/1002273868",
+        "https://www.protoolreviews.com/kobalt-24v-max-xtr-hammer-drill-review"
+      ]
+    },
+    {
+      "brand": "kobalt",
+      "name": "Kobalt XTR 24V Max Brushless Impact Driver KXID 1424A-03",
+      "shape": "Drills & drivers",
+      "balance": "Kobalt 24V max XTR",
+      "surface": "Impact driver",
+      "core": "2,400 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.protoolreviews.com/kobalt-24v-max-xtr-impact-driver-review",
+        "https://www.bestbuy.ca/en-ca/product/kobalt-xtr-24-volt-max-1-4in-brushless-cordless-impact-driver-1-battery-included-hard-case/19452189"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT 23 Ga. 1-3/8\" Pin Nailer XTP02",
+      "shape": "Nailers",
+      "balance": "Makita 18V LXT",
+      "surface": "Pin nailer",
+      "core": "23 ga., up to 1-3/8\" pins",
+      "weight": "3.6 lbs. (without battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XTP02Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT 5\" Random Orbit Sander XOB01",
+      "shape": "Sanders",
+      "balance": "Makita 18V LXT",
+      "surface": "Random orbit sander",
+      "core": "5\" pad, 7,000/9,500/11,000 OPM",
+      "weight": "3.6 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XOB01Z",
+        "https://www.makitatools.com/products/details/XOB02Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Makita 18V LXT",
+      "surface": "Battery platform",
+      "core": "18V",
+      "weight": null,
+      "sources": [
+        "https://makitatools.com/lxt"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 1/2\" Hammer Driver-Drill XPH14",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Hammer drill",
+      "core": "1,250 in.lbs. Max Torque",
+      "weight": "6 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XPH14Z",
+        "https://www.makitatools.com/products/details/XPH14T"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 21° 3-1/2\" Framing Nailer XNB03",
+      "shape": "Nailers",
+      "balance": "Makita 18V LXT",
+      "surface": "Framing nailer",
+      "core": "21° full round head, 3-1/2\"",
+      "weight": "10.2 lbs. (without battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XNB03Z",
+        "https://www.makitatools.com/products/details/XNB07Z",
+        "https://www.makitatools.com/company/press-releases/2026/makita-releases-two-new-xgt-framing-nailers-and-new-framing-nailer-accessory-for-formwork"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 4-1/2\"/5\" Angle Grinder XAG04",
+      "shape": "Grinders",
+      "balance": "Makita 18V LXT",
+      "surface": "Angle grinder",
+      "core": "4-1/2\"/5\", 8,500 RPM",
+      "weight": "5.6 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XAG04Z",
+        "https://www.makitatools.com/products/details/XAG20Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 4-Speed 1/2\" Impact Wrench XWT14",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact wrench",
+      "core": "240 ft.lbs. fastening / 430 ft.lbs. nut-busting",
+      "weight": "4.0 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XWT14Z",
+        "https://www.makitatools.com/products/details/XWT14T"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 4-Speed Impact Driver XDT16",
+      "year": 2019,
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact driver",
+      "core": "1,600 in.lbs. Max Torque",
+      "weight": "3.4 lbs. (with battery)",
+      "sources": [
+        "https://makitatools.com/company/press-releases/2019/new-makita-18v-lxt-brushless-cordless-4-speed-impact-driver-offers-more-speed-and-features-in-a-compact-size"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 4-Speed Impact Driver XDT19",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact driver",
+      "core": "1,590 in.lbs. Max Torque",
+      "weight": "3.3 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XDT19T",
+        "https://thepowertoolstore.com/products/makita-xdt19r"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 4-Speed Impact Driver XDT20",
+      "year": 2024,
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact driver",
+      "core": "1,590 in.lbs. Max Torque",
+      "weight": "3.3 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XDT20Z",
+        "https://www.makitatools.com/products/details/XDT20T",
+        "https://makitatools.com/company/press-releases/2024/makita-releases-new-multi-speed-lxt-impact-driver"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 4-Speed Mid-Torque Impact Wrench XWT17",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact wrench",
+      "core": "520 ft.lbs. fastening / 740 ft.lbs. nut-busting",
+      "weight": "6.0 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XWT17Z",
+        "https://www.makitatools.com/products/details/XWT18Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless 6-1/2\" Circular Saw XSH03",
+      "shape": "Saws",
+      "balance": "Makita 18V LXT",
+      "surface": "Circular saw",
+      "core": "6-1/2\" blade, 5,000 RPM",
+      "weight": "7.3 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XSH03Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless Impact Driver XDT13",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact driver",
+      "core": "1,500 in.lbs. Max Torque",
+      "weight": "3.3 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XDT13Z",
+        "https://www.makitatools.com/products/details/XDT13T"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Brushless Oscillating Multi-Tool XMT04",
+      "shape": "Oscillating & multi-tools",
+      "balance": "Makita 18V LXT",
+      "surface": "Oscillating multi-tool",
+      "core": "10,000-20,000 OPM, StarlockMax",
+      "weight": "4.4 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XMT04Z",
+        "https://www.makitatools.com/products/details/XMT03Z",
+        "https://www.makitatools.com/products/details/GMT01Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Compact Brushless 1/2\" Driver-Drill XFD12",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Drill/driver",
+      "core": "530 in.lbs. Max Torque",
+      "weight": "3.4 lbs. (with 2.0Ah battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XFD12Z",
+        "https://www.makitatools.com/products/details/XFD12R",
+        "https://www.makitatools.com/products/details/XFD12T"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Compact Brushless 1/2\" Driver-Drill XFD13",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Drill/driver",
+      "core": "440 in.lbs. Max Torque",
+      "weight": "3.8 lbs. (with 3.0Ah battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XFD131"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Compact Brushless 1/2\" Hammer Driver-Drill XPH12",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Hammer drill",
+      "core": "530 in.lbs. Max Torque",
+      "weight": "4 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XPH12Z",
+        "https://www.makitatools.com/products/details/XPH12R"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Compact Brushless 1/2\" Hammer Driver-Drill XPH16",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Hammer drill",
+      "core": "970 in.lbs. Max Torque",
+      "weight": "4.9 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XPH16Z",
+        "https://www.makitatools.com/products/details/XPH16T"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 18V LXT Sub-Compact Brushless Impact Driver XDT18",
+      "shape": "Drills & drivers",
+      "balance": "Makita 18V LXT",
+      "surface": "Impact driver",
+      "core": "1,240 in.lbs. Max Torque",
+      "weight": "2.6 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XDT18ZB",
+        "https://www.makitatools.com/products/details/XDT18SY1B"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless 10\" Sliding Miter Saw XSL06",
+      "shape": "Saws",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "Miter saw",
+      "core": "10\" dual-bevel sliding, 12\" crosscut at 90°",
+      "weight": "60 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XSL06Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless 16\" Chain Saw XCU04",
+      "shape": "Outdoor power",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "Chainsaw",
+      "core": "16\" bar, 0-3,940 FPM",
+      "weight": "8.3 lbs. (without battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XCU04Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless 6-1/2\" Plunge Circular Saw XPS01",
+      "shape": "Saws",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "Track saw",
+      "core": "6-1/2\" blade, 2,500-6,300 RPM",
+      "weight": "11.2 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XPS01Z",
+        "https://www.makitatools.com/products/details/GPS01Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless 7-1/4\" Circular Saw XSH06",
+      "shape": "Saws",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": "10.5 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XSH06Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless Blower XBU02",
+      "shape": "Outdoor power",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "Leaf blower",
+      "core": "473 CFM / 120 MPH",
+      "weight": "9 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XBU02Z",
+        "https://www.makitatools.com/products/details/XBU04Z",
+        "https://www.makitatools.com/products/details/XBU03Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless Rear Handle 7-1/4\" Circular Saw XSR01",
+      "shape": "Saws",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "Rear-handle circular saw",
+      "core": "7-1/4\" blade, 5,100 RPM",
+      "weight": "12.4 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XSR01Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 36V (18V X2) LXT Brushless String Trimmer XRU15",
+      "shape": "Outdoor power",
+      "balance": "Makita 36V (18V X2) LXT",
+      "surface": "String trimmer",
+      "core": "3 speeds up to 6,500 RPM",
+      "weight": "7.6 lbs. (without battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/XRU15Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 40V max XGT Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Makita 40V max XGT",
+      "surface": "Battery platform",
+      "core": "40V max",
+      "weight": null,
+      "sources": [
+        "https://makitatools.com/products/xgt"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 40V max XGT Brushless 1/2\" Hammer Driver-Drill GPH01",
+      "shape": "Drills & drivers",
+      "balance": "Makita 40V max XGT",
+      "surface": "Hammer drill",
+      "core": "1,250 in.lbs. Max Torque",
+      "weight": "6 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/GPH01Z"
+      ]
+    },
+    {
+      "brand": "makita",
+      "name": "Makita 40V max XGT Brushless 4-Speed Impact Driver GDT04",
+      "shape": "Drills & drivers",
+      "balance": "Makita 40V max XGT",
+      "surface": "Impact driver",
+      "core": "2,040 in.lbs. Max Torque",
+      "weight": "4.0 lbs. (with battery)",
+      "sources": [
+        "https://www.makitatools.com/products/details/GDT04Z",
+        "https://www.makitatools.com/products/details/GDT04D"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 1-3/4\" Coil Roofing Nailer NV45AB2",
+      "shape": "Nailers",
+      "balance": "Pneumatic",
+      "surface": "Roofing nailer",
+      "core": "7/8\" to 1-3/4\" coil nails",
+      "weight": "5.7 lbs",
+      "sources": [
+        "https://metabo-hpt.com/products/product/coil-roofing-nailer-metabo-hpt-nv45ab2",
+        "https://www.coastaltool.com/products/metabo-hpt-nv45ab2-roofing-nailer-1-3-4-coil"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 10\" Compound Miter Saw C10FCGS",
+      "shape": "Saws",
+      "balance": "Pneumatic",
+      "surface": "Miter saw",
+      "core": "10\" blade, 15 amp",
+      "weight": "24.5 lbs",
+      "sources": [
+        "https://metabo-hpt.com/products/product/10-compound-miter-saw-c10fcgs-metabo-hpt",
+        "https://thepowertoolstore.com/products/metabo-hpt-c10fcgsm"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 15 Gauge Angled Finish Nailer NT65MA4",
+      "shape": "Nailers",
+      "balance": "Pneumatic",
+      "surface": "Finish nailer",
+      "core": "15 gauge, up to 2-1/2\" nails",
+      "weight": null,
+      "sources": [
+        "https://metabo-hpt.com/products/product/nt65ma4-2-1-2-15-gauge-angled-finish-nailer-with-air-duster-metabo-hpt",
+        "https://www.coastaltool.com/products/metabo-hpt-nt65ma4-finish-nailer-15-ga-angled"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 18 Gauge Brad Nailer NT50AE2",
+      "shape": "Nailers",
+      "balance": "Pneumatic",
+      "surface": "Brad nailer",
+      "core": "18 gauge, up to 2\" brads",
+      "weight": "2.2 lbs",
+      "sources": [
+        "https://metabo-hpt.com/products/product/nt50ae2-2-18-gauge-brad-nailer",
+        "https://www.protoolreviews.com/metabo-hpt-nt50ae2m-18-gauge-finish-nailer/"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 18V 15 Gauge Angled Finish Nailer NT1865DMA",
+      "shape": "Nailers",
+      "balance": "Metabo HPT MultiVolt",
+      "surface": "Finish nailer",
+      "core": "15 gauge, 34-degree, 1-1/4\" to 2-1/2\" nails",
+      "weight": "7.5 lbs",
+      "sources": [
+        "https://www.jlconline.com//fastening-tools/finish-nailers/hitachi-18-volt-cordless-nailers_o/",
+        "https://www.protoolreviews.com/metabo-hpt-cordless-brushless-finish-nailers/"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 18V MultiVolt Framing Nailer NR1890DC",
+      "shape": "Nailers",
+      "balance": "Metabo HPT MultiVolt",
+      "surface": "Framing nailer",
+      "core": "30-degree paper strip, 2\" to 3-1/2\" nails",
+      "weight": null,
+      "sources": [
+        "https://metabo-hpt.com/products/product/nr1890dc-3-1-2-18v-cordless-paper-strip-framing-nailer-Metabo-HPT",
+        "https://metabo-hpt.com/products/product/18v-multivolt-cordless-30-degree-3-1-2-paper-tape-framing-nailer-(1x4.0ah)-metabo-hpt-nr1890dcst",
+        "https://www.protoolreviews.com/?p=206188"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 21 Degree Framing Nailer NR83A5",
+      "shape": "Nailers",
+      "balance": "Pneumatic",
+      "surface": "Framing nailer",
+      "core": "21-degree plastic collated, 2\" to 3-1/4\" nails",
+      "weight": "8.8 lbs",
+      "sources": [
+        "https://metabo-hpt.com/products/product/nr83a5-3-1-4-plastic-collated-framing-nailer-metabo-hpt",
+        "https://protoolreviews.com/?p=33793"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 21 Degree Framing Nailer NR90AES1",
+      "shape": "Nailers",
+      "balance": "Pneumatic",
+      "surface": "Framing nailer",
+      "core": "21-degree plastic collated, 2\" to 3-1/2\" nails",
+      "weight": "7.5 lbs",
+      "sources": [
+        "https://metabo-hpt.com/products/product/plastic-collated-framing-nailer-metabo-hpt-nr90aes1",
+        "https://plumbersstock.com/hitachi-nr90aes1.html"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT 36V MultiVolt Framing Nailer NR3690DC",
+      "shape": "Nailers",
+      "balance": "Metabo HPT MultiVolt",
+      "surface": "Framing nailer",
+      "core": "30-degree paper strip, up to 3-1/2\" nails",
+      "weight": null,
+      "sources": [
+        "https://metabo-hpt.com/products/product/36v-cordless-paper-strip-framing-nailer-metabo-hpt-nr3690dc",
+        "https://www.zoro.com/metabo-hpt-36v-mv-cordless-brushless-3-12in-cordless-paper-strip-30-framing-nailer-bare-nr3690dcm/i/G311641777"
+      ]
+    },
+    {
+      "brand": "metabo-hpt",
+      "name": "Metabo HPT MultiVolt Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Metabo HPT MultiVolt",
+      "surface": "Battery platform",
+      "core": "36V/18V",
+      "weight": null,
+      "sources": [
+        "https://www.metabo-hpt.com/accessories/batteries-and-chargers/product/36v-18v-multivolt-lithium-ion-slide-battery-4.0ah-8.0ah-372121m"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 23 Gauge Pin Nailer 2540",
+      "year": 2021,
+      "shape": "Nailers",
+      "balance": "Milwaukee M12",
+      "surface": "Pin nailer",
+      "core": "23 gauge",
+      "weight": "3.3 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-23-gauge-pin-nailer/2540-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Milwaukee M12",
+      "surface": "Battery platform",
+      "core": "12V",
+      "weight": null,
+      "sources": [
+        "https://www.milwaukeetool.com/products/batteries-and-chargers/m12-batteries-and-chargers"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL 1/2\" Drill/Driver 2503",
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Drill/driver",
+      "core": "350 in-lbs",
+      "weight": "2.3 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-1-2-drill-driver-tool-only/2503-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL 1/2\" Drill/Driver 3403",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Drill/driver",
+      "core": "400 in-lbs",
+      "weight": "2.1 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-1-2-drill-driver/3403-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL 1/2\" Hammer Drill 2504",
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Hammer drill",
+      "core": "350 in-lbs",
+      "weight": "2.3 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-1-2-hammer-drill-tool-only/2504-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL 1/2\" Hammer Drill/Driver 3404",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Hammer drill",
+      "core": "400 in-lbs",
+      "weight": "2.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-1-2-hammer-drill-driver/3404-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL 1/4\" Hex Impact Driver 2553",
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Impact driver",
+      "core": "1,300 in-lbs",
+      "weight": "1.76 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-1-4-hex-impact-driver-tool-only/2553-20",
+        "https://www.protoolreviews.com/updated-milwaukee-m12-fuel-impact-driver-drill-review/"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL 1/4\" Hex Impact Driver 3453",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Impact driver",
+      "core": "1,500 in-lbs",
+      "weight": "1.6 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-1-4-hex-impact-driver/3453-20",
+        "https://www.protoolreviews.com/updated-milwaukee-m12-fuel-impact-driver-drill-review/"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M12 FUEL Oscillating Multi-Tool 2526",
+      "year": 2020,
+      "shape": "Oscillating & multi-tools",
+      "balance": "Milwaukee M12 FUEL",
+      "surface": "Oscillating multi-tool",
+      "core": null,
+      "weight": "2.296 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m12-fuel-oscillating-multi-tool/2526-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 5\" Random Orbit Sander 2648",
+      "shape": "Sanders",
+      "balance": "Milwaukee M18",
+      "surface": "Random orbit sander",
+      "core": null,
+      "weight": "2.7 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-random-orbit-sander-tool-only/2648-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Milwaukee M18",
+      "surface": "Battery platform",
+      "core": "18V",
+      "weight": null,
+      "sources": [
+        "https://www.milwaukeetool.com/products/batteries-and-chargers/m18-batteries-and-chargers"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 Compact Brushless 1/2\" Drill/Driver 3601",
+      "year": 2023,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18",
+      "surface": "Drill/driver",
+      "core": "550 in-lbs",
+      "weight": "2.3 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-compact-brushless-1-2-drill-driver/3601-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 Compact Brushless 1/4\" Hex Impact Driver 3650",
+      "year": 2023,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18",
+      "surface": "Impact driver",
+      "core": "1,700 in-lbs",
+      "weight": "1.7 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-compact-brushless-1-4-hex-impact-driver/3650-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" Drill/Driver 2803",
+      "year": 2018,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Drill/driver",
+      "core": "1,200 in-lbs",
+      "weight": "3.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-drill-driver-tool-only/2803-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" Drill/Driver 2903",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Drill/driver",
+      "core": "1,400 in-lbs",
+      "weight": "3.21 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-drill-driver/2903-20",
+        "https://www.milwaukeetool.com/news/press-releases/milwaukee-dominates-high-performance-drilling-driving-with-their-new-m18-fuel-drill-and-impact"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" Hammer Drill/Driver 2804",
+      "year": 2018,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Hammer drill",
+      "core": "1,200 in-lbs",
+      "weight": "3.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-hammer-drill-driver-tool-only/2804-20",
+        "https://www.protoolreviews.com/milwaukee-m18-fuel-hammer-drill-review/"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" Hammer Drill/Driver 2904",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Hammer drill",
+      "core": "1,400 in-lbs",
+      "weight": "3.3 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-hammer-drill-driver-cordless-power-tool/2904-20",
+        "https://www.milwaukeetool.com/news/press-releases/milwaukee-dominates-high-performance-drilling-driving-with-their-new-m18-fuel-drill-and-impact"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" High Torque Impact Wrench 2767",
+      "year": 2017,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Impact wrench",
+      "core": "1,400 ft-lbs nut-busting",
+      "weight": "7.5 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-high-torque-impact-wrench-with-friction-ring-tool-only/2767-20",
+        "https://www.protoolreviews.com/milwaukee-m18-fuel-1-2-inch-high-torque-impact-wrench-2967-review",
+        "https://blog.acmetools.com/milwaukee-gen-ii-m18-fuel-high-torque-impact-wrench"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" High Torque Impact Wrench 2967",
+      "year": 2023,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Impact wrench",
+      "core": "1,500 ft-lbs nut-busting",
+      "weight": "5.9 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-high-torque-impact-wrench-with-friction-ring/2967-20",
+        "https://www.protoolreviews.com/milwaukee-m18-fuel-1-2-inch-high-torque-impact-wrench-2967-review"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/2\" Mid-Torque Impact Wrench 2962",
+      "year": 2020,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Impact wrench",
+      "core": "650 ft-lbs nut-busting",
+      "weight": "3.9 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-mid-torque-impact-wrench-w-friction-ring/2962-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/4\" Hex Impact Driver 2853",
+      "year": 2018,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Impact driver",
+      "core": "2,000 in-lbs",
+      "weight": "2.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-4-hex-impact-driver-tool-only/2853-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 1/4\" Hex Impact Driver 2953",
+      "year": 2022,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Impact driver",
+      "core": "2,000 in-lbs",
+      "weight": "2.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-1-4-hex-impact-driver/2953-20",
+        "https://www.milwaukeetool.com/news/press-releases/milwaukee-dominates-high-performance-drilling-driving-with-their-new-m18-fuel-drill-and-impact"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 10\" Dual Bevel Sliding Miter Saw 2734",
+      "shape": "Saws",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Miter saw",
+      "core": "10\" blade",
+      "weight": "45 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-dual-bevel-sliding-compound-miter-saw/2734-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 16 Gauge Angled Finish Nailer 2841",
+      "year": 2022,
+      "shape": "Nailers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Finish nailer",
+      "core": "16 gauge, 20° angled",
+      "weight": "6.5 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-16-gauge-angled-finish-nailer/2841-20",
+        "https://www.milwaukeetool.com/products/2742-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 16 Gauge Straight Finish Nailer 3020",
+      "year": 2023,
+      "shape": "Nailers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Finish nailer",
+      "core": "16 gauge straight",
+      "weight": "6.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-16-gauge-straight-finish-nailer/3020-20",
+        "https://www.milwaukeetool.com/products/2741-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 16\" Chainsaw 2727",
+      "shape": "Outdoor power",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Chainsaw",
+      "core": "16\" bar",
+      "weight": "10.7 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-16-chainsaw-tool-only/2727-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 17\" Dual Battery String Trimmer 3006",
+      "year": 2023,
+      "shape": "Outdoor power",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "String trimmer",
+      "core": "17\" swath",
+      "weight": "11.8 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-17-dual-battery-string-trimmer/3006-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 18 Gauge Brad Nailer 2746",
+      "year": 2019,
+      "shape": "Nailers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Brad nailer",
+      "core": "18 gauge",
+      "weight": "5.35 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-18-gauge-brad-nailer/2746-20",
+        "https://www.homedepot.com/p/questions/Milwaukee-M18-FUEL-18-Volt-Lithium-Ion-Brushless-Cordless-Gen-II-18-Gauge-Brad-Nailer-Tool-Only-2746-20/309752194/6"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 21 Degree Framing Nailer 2744",
+      "year": 2020,
+      "shape": "Nailers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Framing nailer",
+      "core": "21° framing",
+      "weight": null,
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-21-degree-framing-nailer/2744-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 21\" Self-Propelled Dual Battery Mower 2823",
+      "year": 2024,
+      "shape": "Outdoor power",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Lawn mower",
+      "core": "21\" deck",
+      "weight": "78.2 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-21-self-propelled-dual-battery-mower/2823-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 30 Degree Framing Nailer 2745",
+      "year": 2020,
+      "shape": "Nailers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Framing nailer",
+      "core": "30° framing",
+      "weight": "9.4 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-30-degree-framing-nailer/2745-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 4-1/2\"/5\" Braking Grinder, Paddle Switch 2888",
+      "year": 2022,
+      "shape": "Grinders",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Angle grinder",
+      "core": "4-1/2\" / 5\" wheel",
+      "weight": null,
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-4-1-2-5-variable-speed-braking-grinder-paddle-switch-no-lock/2888-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 4-1/2\"/5\" Grinder, Paddle Switch No-Lock 2880",
+      "year": 2021,
+      "shape": "Grinders",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Angle grinder",
+      "core": "4-1/2\" / 5\" wheel",
+      "weight": "3.1 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-4-1-2-5-braking-grinder-paddle-switch-no-lock/2880-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 5\" Random Orbital Sander 2837",
+      "year": 2024,
+      "shape": "Sanders",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Random orbit sander",
+      "core": "5\" pad",
+      "weight": null,
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-5-random-orbital-sander/2837-20",
+        "https://www.homedepot.com/p/Milwaukee-M18-18V-Lithium-Ion-Brushless-Cordless-FUEL-5-in-Random-Orbit-Sander-Tool-Only-2837-20/329967760"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 6-1/2\" Plunge Track Saw 2831",
+      "year": 2023,
+      "shape": "Saws",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Track saw",
+      "core": "6-1/2\" blade",
+      "weight": "9.13 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-6-1-2-plunge-track-saw/2831-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 7-1/4\" Circular Saw 2732",
+      "shape": "Saws",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": "8 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-7-1-4-circular-saw-tool-only/2732-20",
+        "https://www.protoolreviews.com/new-milwaukee-m18-and-m12-circular-saws-milwaukee-pipeline-announcement"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 7-1/4\" Circular Saw 2834",
+      "year": 2024,
+      "shape": "Saws",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": "7.9 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-7-1-4-circular-saw-tool-only/2834-20",
+        "https://www.protoolreviews.com/new-milwaukee-m18-and-m12-circular-saws-milwaukee-pipeline-announcement"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL 8-1/4\" Table Saw w/ ONE-KEY 2736",
+      "shape": "Saws",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Table saw",
+      "core": "8-1/4\" blade",
+      "weight": "41.6 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-8-1-4-table-saw-w-one-key/2736-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL Blower 2724",
+      "shape": "Outdoor power",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Leaf blower",
+      "core": null,
+      "weight": "4.9 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-blower-tool-only/2724-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL Oscillating Multi-Tool 2836",
+      "year": 2020,
+      "shape": "Oscillating & multi-tools",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Oscillating multi-tool",
+      "core": null,
+      "weight": "2.581 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-oscillating-multi-tool/2836-20"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL String Trimmer w/ QUIK-LOK 2825",
+      "year": 2019,
+      "shape": "Outdoor power",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "String trimmer",
+      "core": "16\" cutting width",
+      "weight": "13.18 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-string-trimmer-w-quik-lok/2825-20st"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL SURGE 1/4\" Hex Driver 2761",
+      "year": 2025,
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Hydraulic impact driver",
+      "core": "1,000 in-lbs",
+      "weight": "2.4 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-surge-1-4-hex-hydraulic-driver/2761-20",
+        "https://www.milwaukeetool.com/news/press-releases/quieter-smoother-faster-the-next-gen-m18-fuel-surge"
+      ]
+    },
+    {
+      "brand": "milwaukee",
+      "name": "Milwaukee M18 FUEL SURGE 1/4\" Hex Hydraulic Driver 2760",
+      "shape": "Drills & drivers",
+      "balance": "Milwaukee M18 FUEL",
+      "surface": "Hydraulic impact driver",
+      "core": "450 in-lbs",
+      "weight": "2.1 lbs",
+      "sources": [
+        "https://www.milwaukeetool.com/products/details/m18-fuel-surge-1-4-hex-hydraulic-driver/2760-20",
+        "https://www.milwaukeetool.com/news/press-releases/quieter-smoother-faster-the-next-gen-m18-fuel-surge"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 15 Amp 10\" Jobsite Table Saw R4518",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Table saw",
+      "core": "10\" blade, 27\" rip capacity",
+      "weight": null,
+      "sources": [
+        "https://powertools.ridgid.com/products/648846072982",
+        "https://www.homedepot.com/p/questions/RIDGID-15-Amp-10-in-Portable-Corded-Jobsite-Table-Saw-with-Folding-Stand-R4518/309413142/0"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 15 Amp 10\" Pro Jobsite Table Saw R4514",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Table saw",
+      "core": "10\" blade, 15 Amp",
+      "weight": null,
+      "sources": [
+        "https://www.ridgid.com/us/en/10-inch-pro-jobsite-table-saw-with-stand",
+        "https://homedepot.com/p/RIDGID-15-Amp-10-in-Portable-Corded-Pro-Jobsite-Table-Saw-with-Stand-R4514/309415135"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 15 Amp 12\" Dual Bevel Sliding Miter Saw R4222",
+      "shape": "Saws",
+      "balance": "Corded",
+      "surface": "Miter saw",
+      "core": "12\" dual bevel sliding, 70° miter",
+      "weight": "64 lb",
+      "sources": [
+        "https://powertools.ridgid.com/products/648846071787",
+        "https://homedepot.com/p/RIDGID-15-Amp-Corded-12-in-Dual-Bevel-Sliding-Miter-Saw-with-70-Deg-Miter-Capacity-and-LED-Cut-Line-Indicator-R4222/306939244"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Ridgid 18V",
+      "surface": "Battery platform",
+      "core": "18V",
+      "weight": null,
+      "sources": [
+        "https://RIDGID.com/us/en/18v-4-ah-max-output-battery"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V Brushless 1/2\" Hammer Drill/Driver R86115",
+      "shape": "Drills & drivers",
+      "balance": "Ridgid 18V",
+      "surface": "Hammer drill",
+      "core": "800 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://RIDGID.com/us/en/18v-brushless-1-2-in-hammer-drill-driver",
+        "https://homedepot.com/p/RIDGID-18V-Brushless-Cordless-1-2-in-Hammer-Drill-Driver-Kit-with-4-0-Ah-MAX-Output-Battery-18V-Charger-and-Tool-Bag-R86115K/315110199",
+        "https://www.protoolreviews.com/ridgid-18v-brushless-hammer-drill-review-r86115/"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V Brushless 3-Speed Impact Driver R862312",
+      "shape": "Drills & drivers",
+      "balance": "Ridgid 18V",
+      "surface": "Impact driver",
+      "core": "2,400 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.protoolreviews.com/ridgid-18v-brushless-impact-driver-review-r862311",
+        "https://reach.dog/shop/zeereez/products/ridgid-r87002-1"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V Brushless 4-Mode 1/2\" Mid-Torque Impact Wrench R86012",
+      "shape": "Drills & drivers",
+      "balance": "Ridgid 18V",
+      "surface": "Impact wrench",
+      "core": "650 ft-lbs breakaway",
+      "weight": null,
+      "sources": [
+        "https://RIDGID.com/us/en/r86012b",
+        "https://www.ridgid.com/ca/en/r86012pdb"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V Brushless 7-1/4\" Circular Saw R8657",
+      "shape": "Saws",
+      "balance": "Ridgid 18V",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade, 2-9/16\" depth",
+      "weight": null,
+      "sources": [
+        "https://www.protoolreviews.com/ridgid-18v-brushless-7-14-inch-circular-saw-r8657b/",
+        "https://punchout.hdsupplysolutions.com/p/ridgid-18v-brushless-cordless-7-1-4-circular-saw-tool-only-p428473"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V SubCompact Brushless 1/2\" Drill/Driver R8701",
+      "shape": "Drills & drivers",
+      "balance": "Ridgid 18V",
+      "surface": "Drill/driver",
+      "core": "400 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://RIDGID.com/us/en/18v-subcompact-brushless-half-inch-drill-driver-r8701b"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid 18V SubCompact Brushless Impact Driver R872311",
+      "shape": "Drills & drivers",
+      "balance": "Ridgid 18V",
+      "surface": "Impact driver",
+      "core": "1,850 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.homedepot.com/p/RIDGID-18V-SubCompact-Brushless-Cordless-Impact-Driver-Kit-with-2-0-Ah-Battery-Charger-and-Tool-Bag-R872311K/321348805",
+        "https://powertools.ridgid.com/products/648846084978"
+      ]
+    },
+    {
+      "brand": "ridgid",
+      "name": "Ridgid Pneumatic 21° 3-1/2\" Round Head Framing Nailer R350RHF",
+      "shape": "Nailers",
+      "balance": "Pneumatic",
+      "surface": "Framing nailer",
+      "core": "21°, up to 3-1/2\" nails",
+      "weight": null,
+      "sources": [
+        "https://powertools.ridgid.com/products/648846066158",
+        "https://www.homedepot.com/p/RIDGID-Pneumatic-21-Degree-3-1-2-in-Round-Head-Framing-Nailer-R350RHF/207103100"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi 18V ONE+ Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Ryobi 18V ONE+",
+      "surface": "Battery platform",
+      "core": "18V",
+      "weight": null,
+      "sources": [
+        "https://ryobitools.com/products/one-plus",
+        "https://www.ryobitools.com/blogs/diy/ryobi-18v-oneplus-batteries"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi 40V Battery Platform",
+      "shape": "Battery platforms",
+      "balance": "Ryobi 40V",
+      "surface": "Battery platform",
+      "core": "40V",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/40v/",
+        "https://www.ryobitools.com/products/details/46396015129"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi 40V HP Brushless 17\" String Trimmer RY402110",
+      "shape": "Outdoor power",
+      "balance": "Ryobi 40V HP",
+      "surface": "String trimmer",
+      "core": "17\" cut",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/46396039552",
+        "https://www.ryobitools.com/products/46396039569"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi 40V HP Brushless 20\" Push Mower RY401170",
+      "shape": "Outdoor power",
+      "balance": "Ryobi 40V HP",
+      "surface": "Lawn mower",
+      "core": "20\" deck",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/46396037169"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi 40V HP Brushless 730 CFM Whisper Series Blower RY404100",
+      "shape": "Outdoor power",
+      "balance": "Ryobi 40V HP",
+      "surface": "Leaf blower",
+      "core": "730 CFM",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/46396036933",
+        "https://www.ryobitools.com/products/46396036926"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ 1/2\" Drill/Driver PCL206",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+",
+      "surface": "Drill/driver",
+      "core": "515 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287200160",
+        "https://www.ryobitools.com/products/33287200177",
+        "https://www.ryobitools.com/products/33287200184"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ 5\" Random Orbit Sander PCL406",
+      "shape": "Sanders",
+      "balance": "Ryobi 18V ONE+",
+      "surface": "Random orbit sander",
+      "core": "10,000 OPM",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287197224",
+        "https://www.ryobitools.com/products/33287204366"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ AirStrike 18GA Brad Nailer P320",
+      "shape": "Nailers",
+      "balance": "Ryobi 18V ONE+",
+      "surface": "Brad nailer",
+      "core": "18 ga.",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287139620"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 1/2\" Drill/Driver PBLDD01",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Drill/driver",
+      "core": "750 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287192625",
+        "https://www.ryobitools.com/products/33287191581",
+        "https://www.ryobitools.com/products/33287195718"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 1/2\" Drill/Driver PBLDD02",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Drill/driver",
+      "core": "850 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287238200",
+        "https://www.ryobitools.com/products/33287226696"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 1/2\" Hammer Drill PBLHM101",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Hammer drill",
+      "core": "750 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287192618",
+        "https://www.ryobitools.com/products/33287191598",
+        "https://www.ryobitools.com/products/33287213580"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 1/2\" Hammer Drill PBLHM102",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Hammer drill",
+      "core": "850 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287226719",
+        "https://www.ryobitools.com/products/33287226726"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 10\" Sliding Miter Saw PBLMS01",
+      "shape": "Saws",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Miter saw",
+      "core": "10\" sliding compound, up to 4,100 RPM",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287198153",
+        "https://www.ryobitools.com/products/33287209774"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 4-1/2\" Angle Grinder PBLAG01",
+      "shape": "Grinders",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Angle grinder",
+      "core": "4-1/2\" wheel",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287188048",
+        "https://www.ryobitools.com/products/33287201037"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 4-Mode High Torque Impact Wrench PBLIW01",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Impact wrench",
+      "core": "1,170 ft-lbs breakaway",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287202898",
+        "https://www.ryobitools.com/products/33287223138"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 4-Mode Impact Driver PBLID02",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Impact driver",
+      "core": "2,200 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287191703",
+        "https://www.ryobitools.com/products/33287195435"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 4-Mode Impact Driver PBLID04",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Impact driver",
+      "core": "2,300 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287226733"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 7-1/4\" Circular Saw PBLCS300",
+      "shape": "Saws",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287186136",
+        "https://www.ryobitools.com/products/33287200078"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 7-1/4\" Circular Saw PBLCS302",
+      "shape": "Saws",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Circular saw",
+      "core": "7-1/4\" blade, up to 2-9/16\" depth",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287227709"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless 8-1/4\" Table Saw PBLTS01",
+      "shape": "Saws",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Table saw",
+      "core": "8-1/4\" blade",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287197590",
+        "https://www.ryobitools.com/products/33287209422"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Brushless Multi-Tool PBLMT51 (Gen II)",
+      "shape": "Oscillating & multi-tools",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Oscillating multi-tool",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287212613",
+        "https://www.ryobitools.com/products/33287220496"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Compact Brushless 1/2\" Drill/Driver PSBDD01",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Drill/driver",
+      "core": "400 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287189571",
+        "https://www.ryobitools.com/products/33287189663"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Compact Brushless 1/2\" Drill/Driver PSBDD02",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Drill/driver",
+      "core": "450 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287219599",
+        "https://www.ryobitools.com/products/33287235766",
+        "https://www.ryobitools.com/products/33287219582"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Compact Brushless Impact Driver PSBID01",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Impact driver",
+      "core": "1,700 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287189588",
+        "https://www.ryobitools.com/products/33287190607"
+      ]
+    },
+    {
+      "brand": "ryobi",
+      "name": "Ryobi ONE+ HP Compact Brushless Impact Driver PSBID02",
+      "shape": "Drills & drivers",
+      "balance": "Ryobi 18V ONE+ HP",
+      "surface": "Impact driver",
+      "core": "1,900 in-lbs",
+      "weight": null,
+      "sources": [
+        "https://www.ryobitools.com/products/33287219612",
+        "https://www.ryobitools.com/products/33287235773",
+        "https://www.ryobitools.com/products/33287219605"
+      ]
+    }
+  ]
+}
