@@ -113,10 +113,10 @@ export default async function Home({ searchParams }: {
 
   const [lead1, topic] = homeHeadline();
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
-  if (params.home === "d" && !type) {
+  if ((params.home === "d" || !params.home) && !type) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">
-      <HomeLight data={all} f={{ q: params.q, shape: params.shape, sort: params.sort, show: one(params.show) }} signals={await productSignals()} picks={picks} now={now.getTime()} keep={{ home: "d" }}/>
+      <HomeLight data={all} f={{ q: params.q, shape: params.shape, sort: params.sort, show: one(params.show) }} signals={await productSignals()} picks={picks} now={now.getTime()}/>
       {feed}
     </main>;
   }

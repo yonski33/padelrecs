@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../lib/look";
 import { siteOgImages } from "../site-og";
 import type { Metadata } from "next";
 import { niche, catalogPath, hasYears, productHref } from "../../lib/niche";
@@ -28,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string }> }) {
   const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
-  // The light direction's catalogue, previewed with ?look=light (owner, 2026-11-12).
-  if (f.look === "light") return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;
+  // The light direction's catalogue, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
+  if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;
   const sort = parseSort(f.sort);
   const shapeGroup = niche.shapeTabs?.find(t => t.key === f.shape);
   // ?q= still narrows the list for old links; the header search is where people type names now.

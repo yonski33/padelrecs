@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../../lib/look";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
@@ -139,11 +140,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst light={query.look === "light"}/>,
+    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst light={isLight(query.look)}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
     // "Newest" goes by the date the review was written; one without a known date sorts last, not by when we imported it
     // (owner, 2026-11-12: the Newest order looked alphabetical).
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst light={query.look === "light"}/>,
+    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst light={isLight(query.look)}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
@@ -261,7 +262,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const oneLine = listLine(r);
   const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
   const fullName = displayName(r.name, brand?.name);
-  // Pieces both layouts show (the light one previews with ?look=light).
+  // Pieces both layouts show (the light one is the default; ?look=classic shows the old one).
   const similarBox = similar.length > 0 && <section id="similar" className="similar">
           <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
           <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
@@ -298,8 +299,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <h2>{`Common questions about ${name}`}</h2>
           {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
         </section>;
-  // The light direction's product page, previewed with ?look=light (owner, 2026-11-12); the page is unchanged without it.
-  if (query.look === "light") {
+  // The light direction's product page, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
+  if (isLight(query.look)) {
     // Compact, after the owner's mockup (2026-11-12): photo and numbers in one tight block, what people mention as chips,
     // then the reviews with "At a glance" beside them, so the reviews start high on the page.
     const cap = (t: string) => t ? t[0].toUpperCase() + t.slice(1) : t;

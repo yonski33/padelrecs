@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../../lib/look";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound, redirect } from "next/navigation";
@@ -32,5 +33,5 @@ export default async function ComparePairPage({ params, searchParams }: { params
   const [{ pair: key }, data, q] = await Promise.all([params, catalog(), searchParams]);
   const { pair, fallback } = resolve(data, key);
   if (!pair) { if (fallback) redirect(fallback); notFound(); }
-  return <CompareView data={data} products={[pair.a, pair.b]} light={q.look === "light"}/>;
+  return <CompareView data={data} products={[pair.a, pair.b]} light={isLight(q.look)}/>;
 }

@@ -1,4 +1,5 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
+import { isLight } from "../../../lib/look";
 import { fitText } from "../../../lib/fit-text";
 import { siteOgImages } from "../../site-og";
 // so a list re-ranks itself as soon as new reviews are published.
@@ -148,7 +149,7 @@ export default async function TopListPage({ params, searchParams }: { params: Pr
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
-  if (query.look === "light") return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
+  if (isLight(query.look)) return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
   return <main className="top-page v2">
     {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -191,7 +192,7 @@ function PeopleGlyph() { return <svg viewBox="0 0 20 20" aria-hidden="true"><g {
 /** "Best Face Serums" reads as "Best face serums"; words in capitals (SPF, AT10) stay as they are. */
 const sentenceCase = (t: string) => t.split(" ").map((x, i) => i === 0 || /^[A-Z0-9]{2,}$/.test(x) || /\d/.test(x) ? x : x.toLowerCase()).join(" ");
 
-/** The light direction's ranking page (owner's mockup, 2026-11-12), previewed with ?look=light: the claim in the title
+/** The light direction's ranking page (owner's mockup, 2026-11-12), the default since 2026-11-12 (?look=classic shows the old page): the claim in the title
  *  ("according to real users"), one line of facts, the list as calm rows with the shop button at the right, and a short
  *  "How this ranking works" beside it. The FAQ stays below for search. */
 function LightRanking({ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }: {
@@ -204,7 +205,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
   const platforms = [...new Set(data.external.filter(e => ids.has(e.racketId)).map(e => platformName(e.sourcePlatform)))].filter(p => order.includes(p)).sort((a, b) => order.indexOf(a) - order.indexOf(b)).map(p => p === "Blog" ? "blogs" : p);
   const sources = [...platforms, niche.site.name].join(", ").replace(/, ([^,]+)$/, " and $1");
   const others = lists.filter((l, i) => l !== found && lists.findIndex(x => x.list.slug === l.list.slug) === i);
-  const lightHref = (x: { slug: string }) => `${productHref(x)}?look=light`;
+  const lightHref = (x: { slug: string }) => `${productHref(x)}`;
   return <main className={`top-page v2 lt-page lr ${lightFont.className}`}>
     {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you).</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -214,7 +215,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
       <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
-      <nav className="lr-others" aria-label="More rankings"><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}?look=light`}>{l.list.label}</a>)}</nav>
+      <nav className="lr-others" aria-label="More rankings"><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}`}>{l.list.label}</a>)}</nav>
     </header>
     <div className="lr-grid">
       <section aria-label={`${list.title}, ranked`}>
@@ -243,7 +244,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
           <p>{`We collect first-hand ${people.one} reviews, read each as positive, mixed or negative, and rank by the signal: positive reviews weighed by how many there are. No sponsored placements.`}</p>
           <a href="/about#signal">Full method →</a>
         </section>
-        {others.length > 0 && <section className="lr-box lr-more"><h2>More rankings</h2><ul>{others.slice(0, 8).map(l => <li key={l.list.slug}><a href={`${listHref(l.list.slug)}?look=light`}>{l.list.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>}
+        {others.length > 0 && <section className="lr-box lr-more"><h2>More rankings</h2><ul>{others.slice(0, 8).map(l => <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>{l.list.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>}
         {niche.finder && <a className="lr-box lr-finder" href="/finder"><b>{niche.finder.navLabel}</b><span>{niche.finder.invite}</span></a>}
       </aside>
     </div>

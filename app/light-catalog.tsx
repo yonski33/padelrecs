@@ -1,4 +1,4 @@
-// The light direction's catalogue (owner's mockup, 2026-11-12), previewed with ?look=light: a title with the live counts,
+// The light direction's catalogue (owner's mockup, 2026-11-12), the default since 2026-11-12 (?look=classic shows the old page): a title with the live counts,
 // one big search, the categories as tabs with counts, a "Narrow it down" rail of checkboxes (what people mention, the
 // niche's fixed-value specs, brand), and the list as calm rows with the signal and a compare box. Every number is counted
 // from published reviews; nothing here needs JavaScript except the compare tray and the auto-submitting filters.
@@ -50,10 +50,10 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
 
   // Links keep the other filters; the look stays light while this is a preview.
   const params = (extra: Record<string, string | string[] | undefined>, path = basePath) => {
-    const q = new URLSearchParams({ look: "light" });
+    const q = new URLSearchParams();
     for (const [k, v] of Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape, sort: f.sort, tag: tags, ...Object.fromEntries(specFacets.map(s => [s.column, f.specs?.[s.column]])), ...extra }))
       for (const x of Array.isArray(v) ? v : v ? [v] : []) q.append(k, x);
-    return `${path}?${q}`;
+    return q.size ? `${path}?${q}` : path;
   };
   // On niches with category pages (SkinRecs /serums) the tabs go to those pages; elsewhere they filter in place.
   const typeOf = (c: { shapes: string[] }) => niche.typePages?.find(t => c.shapes.some(s => s.toLowerCase() === t.shape.toLowerCase()));
@@ -84,8 +84,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
       <p className="lc-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(scope.length)} ${w.many} · ${fmt(scopeReviews)} reviews`}</p>
     </header>
     <form className="lc-search" action={basePath}>
-      <input type="hidden" name="look" value="light"/>
-      {shape && !fixed.shape && <input type="hidden" name="shape" value={shape.key}/>}
+            {shape && !fixed.shape && <input type="hidden" name="shape" value={shape.key}/>}
       <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many} or brands…`} aria-label={`Search ${w.many}`}/>
     </form>
     {cats.length > 1 && <nav className="lt-cats lc-cats" aria-label={`${w.One} categories`}>
@@ -100,8 +99,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
         <input type="checkbox" id="filters-open" className="filters-toggle"/>
         <label htmlFor="filters-open" className="filters-button">{`Narrow it down${refined ? " (on)" : ""}`}<span aria-hidden="true"> ⌄</span></label>
         <AutoSubmitForm className="filters lc-form" action={basePath}>
-          <input type="hidden" name="look" value="light"/>
-          {Object.entries({ q: f.q, shape: fixed.shape ? undefined : f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
+                    {Object.entries({ q: f.q, shape: fixed.shape ? undefined : f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
           <h2>Narrow it down</h2>
           {mention.length > 0 && <fieldset><legend>What people mention</legend>
             {mention.map(m => <label key={m.t} className="lc-check"><input type="checkbox" name="tag" value={m.t} defaultChecked={tags.includes(m.t)}/><span>{cap(m.t)}</span><small>{fmt(m.n)}</small></label>)}</fieldset>}
@@ -120,8 +118,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
           {/* Compare boxes show when this is on, or once something is picked (owner, 2026-11-12): rows stay clean by default. CSS only. */}
           <label className="lc-cmp-toggle"><input type="checkbox" id="lc-cmp"/><span className="lc-switch" aria-hidden="true"/>Compare</label>
           <AutoSubmitForm className="lc-sort" action={basePath}>
-            <input type="hidden" name="look" value="light"/>
-            {Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
+                        {Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
             {tags.map(t => <input key={t} type="hidden" name="tag" value={t}/>)}
             {specFacets.flatMap(s => ((f.specs?.[s.column]) ?? []).map(o => <input key={s.column + o} type="hidden" name={s.column} value={o}/>))}
             <label><span>Sort:</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{s.label}</option>)}</select></label>
@@ -129,7 +126,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
           </AutoSubmitForm>
         </div>
         <Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r, s }, i) => {
-          const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = `${productHref(r)}?look=light`;
+          const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = `${productHref(r)}`;
           const pos = s.judged >= 3 ? Math.round(100 * s.positive / s.judged) : null, line = listLine(r) ?? consensus(tc.get(r.id)), sig = signals.get(r.id)?.signal;
           return <article key={r.id} className={`lr-row lc-row${i < 2 && sort === DEFAULT_SORT && !f.q ? " lr-top" : ""}`}>
             <a className="lr-art" href={href} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>

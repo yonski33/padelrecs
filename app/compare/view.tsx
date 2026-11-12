@@ -84,7 +84,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
   const empty = <span className="cmp-none">—</span>;
   const addCell = (key: string) => canAdd ? <div key={key} className="cmp-cell cmp-slot" aria-hidden="true"/> : null;
 
-  // light: the light direction, previewed with ?look=light (owner, 2026-11-12); same content, the light look.
+  // light: the light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12); same content, the light look.
   return <main className={`compare v2${light ? ` lt-page lcmp ${lightFont.className}` : ""}`}>
     {cols.some(c => c.affiliate) && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <div className="page-hero cmp-hero">

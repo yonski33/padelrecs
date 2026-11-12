@@ -1,4 +1,5 @@
 // Per request like the other public pages, cached at Vercel's edge for a minute (next.config.ts headers).
+import { isLight } from "../../lib/look";
 import { lightFont } from "../light-font";
 import { productPhoto } from "../visual";
 import { siteOgImages } from "../site-og";
@@ -28,8 +29,8 @@ export function generateMetadata(): Metadata {
 export default async function FinderPage({ searchParams }: { searchParams: Promise<{ look?: string }> }) {
   if (!finder) notFound();
   const [data, f] = await Promise.all([catalog(), searchParams]);
-  // The light direction, previewed with ?look=light (owner, 2026-11-12): same quiz, the light look.
-  const light = f.look === "light";
+  // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): same quiz, the light look.
+  const light = isLight(f.look);
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   const pool = withRankings(finderPool(finder, data, good), finder, topLists, data, niche.tags);
   if (!pool.length) notFound();
@@ -40,7 +41,7 @@ export default async function FinderPage({ searchParams }: { searchParams: Promi
     const p = byId.get(entry.id)!, brand = brandOf(p.brandId);
     const amazon = affiliate ? await amazonButton({ name: p.name, brand: brand || undefined }) : null;
     const site = websiteButton({ websiteUrl: p.websiteUrl ?? null, affiliateUrl: p.affiliateUrl ?? null });
-    return { ...entry, name: displayName(p.name, brand), brand, href: light ? `${productHref(p)}?look=light` : productHref(p), line: listLine(p), own: shopPhoto(p) ?? (light ? productPhoto(p)?.src : null) ?? null,
+    return { ...entry, name: displayName(p.name, brand), brand, href: productHref(p), line: listLine(p), own: shopPhoto(p) ?? (light ? productPhoto(p)?.src : null) ?? null,
       amazonUrl: amazon?.url ?? null, amazonImage: amazon?.image && !photoHidden(p) ? amazon.image : null,
       siteUrl: site?.url ?? null, siteLabel: site?.label ?? null, siteAffiliate: !!site?.affiliate };
   }));

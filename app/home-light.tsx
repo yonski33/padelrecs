@@ -20,7 +20,7 @@ import { lightFont } from "./light-font";
 import { shapeChoices, tagCounts, consensus, ago } from "./home-catalog";
 
 // Preview links carry the light look through to the product page.
-const lightHref = (x: Parameters<typeof productHref>[0]) => `${productHref(x)}?look=light`;
+const lightHref = productHref;
 const DAY = 86_400_000, w = niche.words, p = niche.people;
 const fmt = (n: number) => n.toLocaleString("en-US");
 type Product = Catalog["listed"][number];
@@ -82,7 +82,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
     <section className="lt-hero">
       <p className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} reviews`}</p>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
-      <p className="lt-sub">We read Reddit, YouTube and forums so you don’t have to. Every review links to its source.</p>
+      <p className="lt-sub">We read Reddit, YouTube and blogs so you don’t have to. Every review links to its source.</p>
       <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
       <AutoSubmitForm className="lt-search" action="/">
         {Object.entries({ ...keep, shape: f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}

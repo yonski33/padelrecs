@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../../lib/look";
 import { CompareTray } from "../../compare/compare-pick";
 import { LightCatalog, lightFilters } from "../../light-catalog";
 import type { Metadata } from "next";
@@ -21,9 +22,9 @@ export default async function Brand({ params, searchParams }: { params: Promise<
   const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const brand = data.brands.find(b => b.slug === slug);
   if (!brand) notFound();
-  // The light direction, previewed with ?look=light (owner, 2026-11-12): the light catalogue with this brand set.
-  if (f.look === "light") return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/brands/${brand.slug}`} fixed={{ brand: brand.id }}
-    title={<>{`${brand.name} `}<em>{catalogKeyword.toLowerCase()}</em></>} crumbs={<><a href="/">Home</a><span>/</span><a href="/brands?look=light">Brands</a><span>/</span>{brand.name}</>}/>;
+  // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): the light catalogue with this brand set.
+  if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/brands/${brand.slug}`} fixed={{ brand: brand.id }}
+    title={<>{`${brand.name} `}<em>{catalogKeyword.toLowerCase()}</em></>} crumbs={<><a href="/">Home</a><span>/</span><a href="/brands">Brands</a><span>/</span>{brand.name}</>}/>;
   const results = sortProducts(data.listed.filter(r => r.brandId === brand.id).map(r => ({ r, s: score(data, r.id) })), "positive", x => { const g = sig.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
   const tags = topTags(data), show = parseShow(f.show), w = niche.words;
   const reviews = results.reduce((n, { s }) => n + s.count + s.web, 0);

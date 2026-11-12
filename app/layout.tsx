@@ -5,6 +5,7 @@ import { Bricolage_Grotesque, Figtree, Source_Serif_4, Barlow_Condensed } from "
 import "./globals.css";
 import "./visual.css";
 import { SiteHeader } from "./site-header";
+import { lightFont } from "./light-font";
 import { LogoIcon } from "./icons";
 import { Analytics } from "./analytics";
 import { niche, catalogPath } from "../lib/niche";
@@ -25,7 +26,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
 
 export default async function Layout({children}: {children: React.ReactNode}) {
   const ranked = await rankedSlugs();
-  return <html lang="en" className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}><body>
+  return <html lang="en" className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
     <SiteHeader ranked={ranked}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">

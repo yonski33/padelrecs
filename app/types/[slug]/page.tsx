@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { isLight } from "../../../lib/look";
 import { siteOgImages } from "../../site-og";
 import { LightCatalog, lightFilters } from "../../light-catalog";
 import { CompareTray } from "../../compare/compare-pick";
@@ -35,9 +36,9 @@ export default async function TypePage({ params, searchParams }: { params: Promi
   const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const t = pageFor(slug);
   if (!t) notFound();
-  // The light direction, previewed with ?look=light (owner, 2026-11-12): the light catalogue with this category set.
-  if (f.look === "light") return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/${t.slug}`} fixed={{ shape: t.shape }}
-    title={<>{"Explore all "}<em>{lowerWords(seoName(t))}</em></>} crumbs={<><a href="/">Home</a><span>/</span><a href={`${catalogPath}?look=light`}>{catalogLabel}</a><span>/</span>{t.label}</>}/>;
+  // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): the light catalogue with this category set.
+  if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/${t.slug}`} fixed={{ shape: t.shape }}
+    title={<>{"Explore all "}<em>{lowerWords(seoName(t))}</em></>} crumbs={<><a href="/">Home</a><span>/</span><a href={`${catalogPath}`}>{catalogLabel}</a><span>/</span>{t.label}</>}/>;
   const ofType = data.listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase());
   const scored = ofType.map(r => ({ r, s: score(data, r.id) }));
   const brandIds = new Set(ofType.map(r => r.brandId));
