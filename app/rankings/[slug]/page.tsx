@@ -18,7 +18,7 @@ import { rankedLists, listHref, longDate, currentYear, type RankedList } from ".
 import { listLine } from "../../../lib/list-lines";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
-import { ProductArt, SentimentBar, Arrow, SignalInfo } from "../../visual";
+import { ProductArt, SentimentBar, Arrow, SignalInfo, SignalPop } from "../../visual";
 import { score, type Catalog, type Score } from "../../../db/data";
 import { type Signal, MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 type Product = Catalog["rackets"][number];
@@ -215,7 +215,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
       <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
-      <nav className="lr-others" aria-label="More rankings"><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}`}>{l.list.label}</a>)}</nav>
+      <nav className="lr-others" aria-label="More rankings"><SignalPop/><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}`}>{l.list.label}</a>)}</nav>
     </header>
     <div className="lr-grid">
       <section aria-label={`${list.title}, ranked`}>

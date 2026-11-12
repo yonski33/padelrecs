@@ -32,7 +32,7 @@ export function HomeSearch({ initial, placeholder, label }: { initial?: string; 
 }
 
 /** base: the rest of the address (order), the same on the server and in the browser so links match. */
-export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string }) {
+export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode }) {
   const [shape, setShape] = useState<string | undefined>(cats.some(c => c.key === initial) ? initial : undefined);
   const [q, setQ] = useState(initialQ ?? "");
   const [shown, setShown] = useState(PAGE);
@@ -66,6 +66,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
         {more.length > 0 && <details className="lc-more"><summary>{more.some(c => c.key === shape) ? current!.label : "More"} <span aria-hidden="true">⌄</span></summary>
           <div>{more.map(c => <a key={c.key} href={href(c.key)} onClick={pick(c.key)} aria-current={shape === c.key ? "true" : undefined}>{c.label}<small>{count(c.key).toLocaleString("en-US")}</small></a>)}</div></details>}
       </nav>}
+      {aside && <div className="lt-bar-aside">{aside}</div>}
     </div>
     {q.trim() && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}`}>

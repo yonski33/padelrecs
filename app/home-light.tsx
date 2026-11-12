@@ -13,7 +13,7 @@ import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
 import { listHref } from "./rankings/lists";
 import { HomeBoard, HomeSearch } from "./home-board";
-import { ProductArt } from "./visual";
+import { ProductArt, SignalPop } from "./visual";
 import { SourceIcon } from "./icons";
 import { lightFont } from "./light-font";
 import { shapeChoices, tagCounts, consensus, ago } from "./home-catalog";
@@ -81,7 +81,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
-      <p className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} reviews`}</p>
+      <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(week)} new this week · ${fmt(everything.length)} ${p.one} reviews · `}<SignalPop/></div>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
       <p className="lt-sub">We read Reddit, YouTube and blogs so you don’t have to. Every review links to its source.</p>
       <div className="lt-seg" role="group" aria-label="Order">{sorts.map(s => <a key={s.label} href={link({ sort: s.v })} aria-current={s.on ? "true" : undefined}>{s.label}</a>)}</div>
@@ -102,7 +102,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <aside className="lt-side">
         <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
         {side.map(l => <Mini key={l.list.slug} title={l.list.label} href={listHref(l.list.slug)} items={l.entries.slice(0, 5).map(e => { const full = data.rackets.find(r => r.id === e.product.id); return { key: e.product.id, rank: e.rank, art: full ? <ProductArt product={full} brand={brandOf(full.brandId)}/> : null, name: displayName(e.product.name, brandOf(e.product.brandId)), href: lightHref(e.product), value: signals.get(e.product.id)?.signal ?? "" }; })}/>)}
-        <p className="lt-note">The signal is positive reviews weighed by how many there are. No sponsored picks. <a href="/about#signal">How it works</a></p>
+        <div className="lt-note">The signal is positive reviews weighed by how many there are. No sponsored picks. <SignalPop label="How it works"/></div>
       </aside>
     </div>
   </div>;

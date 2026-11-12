@@ -14,7 +14,7 @@ import type { Signal } from "../lib/signal";
 import type { SpecColumn } from "../lib/niche/types";
 import { Directory, parseShow } from "./components";
 import { AutoSubmitForm } from "./auto-submit";
-import { ProductArt } from "./visual";
+import { ProductArt, SignalPop } from "./visual";
 import { CompareCheck, CompareTray } from "./compare/compare-pick";
 import { lightFont } from "./light-font";
 import { shapeChoices, specFacets, specIs, tagCounts, consensus } from "./home-catalog";
@@ -120,6 +120,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
           <div><h2 id="lc-title">{shape ? plural(shape) : `All ${w.many}`}</h2><p>{`Showing ${fmt(results.length)} ${results.length === 1 ? w.one : w.many}`}</p></div>
           {/* Compare boxes show when this is on, or once something is picked (owner, 2026-11-12): rows stay clean by default. CSS only. */}
           <label className="lc-cmp-toggle"><input type="checkbox" id="lc-cmp"/><span className="lc-switch" aria-hidden="true"/>Compare</label>
+          <SignalPop align="right"/>
           <AutoSubmitForm className="lc-sort" action={basePath}>
                         {Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
             {tags.map(t => <input key={t} type="hidden" name="tag" value={t}/>)}
