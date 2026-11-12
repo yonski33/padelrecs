@@ -267,7 +267,7 @@ test("the CyclingRecs starter catalog: sourced bikes without years, one per mode
 test("the AudioRecs starter catalog: sourced headphones, IEMs and earbuds without years, no gaming headsets, unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/audio.json");
   const snapshot = catalogSnapshot(catalog, "audiorecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 26);
+  assert.equal(snapshot.tables.brands.length, 32);
   assert(snapshot.tables.rackets.length >= 400);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
