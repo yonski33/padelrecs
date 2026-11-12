@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { CompareTray } from "../../compare/compare-pick";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
@@ -28,5 +29,6 @@ export default async function Brand({ params, searchParams }: { params: Promise<
     <p className="breadcrumb"><a href="/brands">Brands</a> / {brand.name}</p>
     <div className="page-title"><h1>{`${brand.name} ${catalogKeyword}`}</h1><p>{`${results.length} ${results.length === 1 ? w.one : w.many} · ${reviews.toLocaleString("en-US")} ${reviews === 1 ? "review" : "reviews"}.`}</p></div>
     <Directory show={show} moreHref={n => `/brands/${brand.slug}?show=${n}`} rows={results.map(({ r, s }) => <ProductCard key={r.id} racket={r} brand={brand.name} count={s.count} web={s.web} score={s} signal={sig.get(r.id)?.signal} tags={tags.get(r.id)} details={r.shape ?? ""}/>)}/>
+    <CompareTray noun={niche.words.one}/>
   </main>;
 }
