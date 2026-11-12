@@ -134,7 +134,7 @@ test("the padel catalog expansion: sourced current models with unique URLs that 
 test("the RunningRecs starter catalog: sourced shoes named by version, every category drawable, unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/running.json");
   const snapshot = catalogSnapshot(catalog, "runningrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 16);
+  assert.equal(snapshot.tables.brands.length, 24);
   assert(snapshot.tables.rackets.length >= 400);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
@@ -146,7 +146,7 @@ test("the RunningRecs starter catalog: sourced shoes named by version, every cat
   }
   // Starter shoes come from RunRepeat; shoes added later for held reviews may cite another review site (2026-10-21).
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
-  assert(catalog.products.filter(p => !p.sources[0].startsWith("https://runrepeat.com/")).length <= 10);
+  assert(catalog.products.filter(p => !p.sources[0].startsWith("https://runrepeat.com/")).length <= 70); // 2026-11-12: 50 held shoes added from RunRepeat, retailer and review pages
 });
 
 test("the GolfRecs starter catalog: sourced drivers named by generation, known categories, unique URLs", async () => {
