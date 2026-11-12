@@ -213,11 +213,11 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
       <h1>{`${sentenceCase(list.title)}, according to `}<em>{`real ${people.many}`}</em></h1>
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
       <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} opinions on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
-      {others.length > 0 && <nav className="lr-others" aria-label="More rankings"><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}?look=light`}>{l.list.label}</a>)}</nav>}
+      {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
+      <nav className="lr-others" aria-label="More rankings"><a className="lr-how" href="#how-we-rank">How we rank ↓</a><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}?look=light`}>{l.list.label}</a>)}</nav>
     </header>
     <div className="lr-grid">
-      <section aria-labelledby="lr-top">
-        <div className="lr-head"><h2 id="lr-top">{`The top ${entries.length}`}</h2><a href="#how-we-rank">How we rank ↓</a></div>
+      <section aria-label={`${list.title}, ranked`}>
         <ol className="lr-list">{entries.map((e, i) => { const brand = brandOf(e.product.brandId), product = byId.get(e.product.id), sc = score(data, e.product.id);
           const pos = sc.judged >= 3 ? Math.round(100 * sc.positive / sc.judged) : null, line = listLine(e.product), href = lightHref(e.product);
           const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });

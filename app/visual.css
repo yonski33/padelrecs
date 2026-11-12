@@ -1741,3 +1741,8 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lr-meta b { white-space: nowrap; }
 /* Phones: the one-line take stays one line, like the home list (owner, 2026-11-12); the product page has it whole. */
 @media (max-width: 640px) { .lr-line { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden; } }
+/* The list right under the title (owner, 2026-11-12): no "The top 10" heading, a tighter hero. */
+.lr-hero { padding: 16px 0 14px; gap: 8px; }
+.lr-grid { margin-top: 14px; }
+.lr-others .lr-how { color: var(--lt-acc); font-weight: 600; }
+.lr-others .lr-how + a { padding-left: 18px; border-left: 1px solid var(--lt-line); }
