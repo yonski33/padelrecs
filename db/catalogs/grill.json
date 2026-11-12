@@ -1,5 +1,5 @@
 {
-  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3).",
+  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5).",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -753,6 +753,19 @@
       "sources": [
         "https://www.charbroil.com/products/performance-series-4-burner-gas-grill-with-flavormax-cart-black-463348825",
         "https://www.charbroil.com/products/performance-series-4-burner-gas-grill-with-flavormax-cart-gray-463349025"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Akorn Auto-Kamado",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": "200-700°F",
+      "weight": null,
+      "sources": [
+        "https://www.chargriller.com/products/auto-kamado",
+        "https://www.chargriller.com/blogs/tips-and-care/how-to-grill-on-the-auto-kamado"
       ]
     },
     {
