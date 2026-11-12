@@ -5,7 +5,7 @@ import type { Catalog, Score as ScoreT } from "../db/data";
 import { ProductIcon, SourceIcon } from "./icons";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { shopPhoto } from "../lib/shop-photos";
-import { sourceLabel } from "../lib/source-label";
+import { sourceLabel, summaryKind } from "../lib/source-label";
 import { displayName } from "../lib/brand-name";
 import { niche, productHref, catalogPath } from "../lib/niche";
 const catalogPathOf = () => catalogPath;
@@ -85,7 +85,7 @@ export function QuoteCard({ entry: e, data, product = true }: { entry: WebReview
   const label = sourceLabel(e);
   return <article className="qcard">
     {product && r && <a className="qcard-product" href={productHref(r)}><ProductArt product={r} brand={brand}/><span>{displayName(r.name, brand)}</span></a>}
-    {e.summary ? <p className="qcard-text summary"><span className="qcard-kind">{`Summary of a ${label.platform === "Blog" ? "blog" : label.platform} post`}</span>{quoteText(e)}</p>
+    {e.summary ? <p className="qcard-text summary"><span className="qcard-kind">{`Summary of a ${summaryKind(e)}`}</span>{quoteText(e)}</p>
       : <blockquote className="qcard-text verbatim">{quoteText(e)}</blockquote>}
     <footer className="qcard-foot">
       <a className="qcard-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}>
@@ -187,7 +187,7 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
       </div>
     </article>;
   }
-  const e = props.entry, label = sourceLabel(e), kind = /comment/i.test(label.platform) ? label.platform : label.platform === "YouTube" ? "YouTube video" : label.platform === "Blog" ? "blog post" : `${label.platform} post`;
+  const e = props.entry, label = sourceLabel(e), kind = summaryKind(e);
   return <article className="lv">
     <span className="lv-icon" aria-hidden="true"><SourceIcon platform={e.sourcePlatform}/></span>
     <div className="lv-body">

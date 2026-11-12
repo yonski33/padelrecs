@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { sourceLabel } from "../lib/source-label";
+import { sourceLabel, summaryKind } from "../lib/source-label";
 
 const video = "https://www.youtube.com/watch?v=X5wmRWxlVCs";
 
@@ -19,4 +19,15 @@ test("a comment with no channel name still says it's a comment", () => {
 test("other platforms are left as they are, whatever the link says", () => {
   assert.deepEqual(sourceLabel({ sourcePlatform: "Reddit", sourceName: "r/padel", sourceUrl: "https://reddit.com/r/padel/1?lc=1" }), { platform: "Reddit", name: "r/padel" });
   assert.deepEqual(sourceLabel({ sourcePlatform: "Reddit", sourceName: "Reddit" }), { platform: "Reddit", name: null });
+});
+
+test("a Reddit link to one comment is summarised as a comment, a thread link as a post", () => {
+  const r = (sourceUrl: string) => summaryKind({ sourcePlatform: "Reddit", sourceUrl });
+  assert.equal(r("https://www.reddit.com/r/SkincareAddiction/comments/1j8alvt/product_question_thick/oyo9km4/"), "Reddit comment");
+  assert.equal(r("https://www.reddit.com/r/Pillows/comments/1j8alvt/purple_harmony/oyo9km4"), "Reddit comment");
+  assert.equal(r("https://www.reddit.com/r/Pillows/comments/1j8alvt/comment/oyo9km4/"), "Reddit comment");
+  assert.equal(r("https://www.reddit.com/r/SkincareAddiction/comments/18a8h47/product_question_about_vaselinecerave_healing/"), "Reddit post");
+  assert.equal(r("https://www.reddit.com/r/Pillows/comments/18a8h47/purple_harmony"), "Reddit post");
+  assert.equal(summaryKind({ sourcePlatform: "YouTube", sourceUrl: video }), "YouTube video");
+  assert.equal(summaryKind({ sourcePlatform: "Other", sourceUrl: "https://example.com/review" }), "blog post");
 });
