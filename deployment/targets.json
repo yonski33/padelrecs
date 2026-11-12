@@ -153,6 +153,11 @@
       "name": "sleeprecs",
       "id": "prj_lV1ssdrm8Ph6GDJEy6VBNO7Uj72R",
       "domain": "www.sleeprecs.com"
+    },
+    "print": {
+      "name": "printrecs",
+      "id": "prj_jRJJaaobEDIbL1eJyWR8SjTpGhrk",
+      "domain": "www.printrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
