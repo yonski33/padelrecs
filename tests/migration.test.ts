@@ -97,3 +97,15 @@ test("admin authorization uses verified Supabase user IDs, never spoofed Sites h
   if(previous.key)process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=previous.key;
  }
 });
+
+test("exports carry a product's signal override (migration 0015) and import it back",async()=>{
+ const withOverride=structuredClone(fixture) as typeof fixture;
+ (withOverride.tables.rackets[0] as Record<string,unknown>).signal_override=87;
+ const snapshot=parseSnapshot(withOverride);
+ const {db,engine}=await setup();
+ try{
+  await importSnapshot(db as unknown as Database,snapshot);
+  const [row]=await db.select().from(rackets).where(eq(rackets.id,snapshot.tables.rackets[0].id));
+  assert.equal(row.signalOverride,87);
+ }finally{await engine.close();}
+});
