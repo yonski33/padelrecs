@@ -15,7 +15,9 @@ export function SourceIcon({ platform }: { platform: string }) {
   else if (p.includes("shop") || p.includes("store") || p.includes("retail")) body = <g {...common}><path d="M2.5 5.5h11l-.8 8h-9.4z"/><path d="M5.6 5.5V4.4a2.4 2.4 0 0 1 4.8 0v1.1"/></g>;
   else if (p.includes("forum")) body = <g {...common}><path d="M1.8 2.8h8.4v5.6H5.4L2.8 10.4V8.4h-1z"/><path d="M12.2 5.6h2v5.6h-1v2l-2.6-2H7"/></g>;
   else body = <g {...common}><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c-2.2 2.4-2.2 9.6 0 12M8 2c2.2 2.4 2.2 9.6 0 12"/></g>;
-  return <svg viewBox="0 0 16 16" aria-hidden="true">{body}</svg>;
+  // data-src lets the CSS give each platform its own colour (Reddit orange, YouTube red) on every site (owner, 2026-11-12).
+  const src = p.includes("reddit") ? "reddit" : p.includes("youtube") ? "youtube" : p.includes("shop") || p.includes("store") || p.includes("retail") ? "shop" : p.includes("forum") ? "forum" : "web";
+  return <svg viewBox="0 0 16 16" aria-hidden="true" data-src={src}>{body}</svg>;
 }
 
 export function SearchIcon() {

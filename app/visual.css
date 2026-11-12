@@ -1107,3 +1107,15 @@ body > .site { flex: 1 0 auto; width: 100%; box-sizing: border-box; }
   .catalog.v2 .filter-panel { gap: 10px; }
 }
 .filter-panel .filters-toggle { display: block; position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+/* Source icons in each platform's own colour on every site (owner, 2026-11-12): Reddit orange, YouTube red; blogs,
+   forums and shops a neutral grey. Reviews written on the site keep the site colour (their icon isn't a SourceIcon). */
+:root { --src-reddit: #ff4500; --src-youtube: #ff0000; --src-web: #5f6b73; }
+svg[data-src="reddit"] { color: var(--src-reddit) !important; }
+svg[data-src="youtube"] { color: var(--src-youtube) !important; }
+svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--src-web) !important; }
+@media (max-width: 680px) {
+  .voice-src svg[data-src] { color: #fff !important; }
+  .voice-src svg[data-src="reddit"] { background: var(--src-reddit); }
+  .voice-src svg[data-src="youtube"] { background: var(--src-youtube); }
+  .voice-src svg[data-src="web"], .voice-src svg[data-src="forum"], .voice-src svg[data-src="shop"] { background: var(--src-web); }
+}
