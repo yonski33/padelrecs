@@ -151,11 +151,7 @@ export default async function Home({ searchParams }: {
         {tiles.length > 4 && <p className="more-types-link"><a href={niche.typePages?.length ? catalogPath : "/rankings"}>{niche.typePages?.length ? "Explore all categories" : "See all rankings"}<Arrow/></a></p>}
       </section>}
 
-      {/* Where "In their words" was (it repeated the feed): a way in for visitors still deciding. */}
-      {niche.finder ? <a className="cta-band" href="/finder">
-        <span className="cta-text"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span></span>
-        <span className="cta-button">{`${niche.finder.navLabel}`}<Arrow/></span>
-      </a> : null}
+      {/* The quiz band was removed (owner, 2026-11-12): the quiz is already in the main menu. */}
     </>}
     {feed}
     {!type && <a className="index-bar" href={catalogPath}>{`Browse the full ${niche.words.one} index`}<Arrow/></a>}

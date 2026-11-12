@@ -1064,3 +1064,11 @@ a:hover .w-name { color: var(--green); }
 .finder-page .page-title h1 { font-family: var(--sans); font-style: normal; font-weight: 750; font-size: clamp(30px, 4vw, 42px); letter-spacing: -0.025em; line-height: 1.1; }
 .finder-page .page-title p { font-family: var(--sans); font-style: normal; font-size: 16px; }
 .finder-page .finder-card h2, .finder-page .finder-summary h2, .finder-page .top-method h2 { font-family: var(--sans); font-style: normal; letter-spacing: -0.02em; }
+/* The last serif text (subtitles under titles, hero line, small notes) in the plain sans, so the site uses two fonts:
+   the sans for everything and the condensed italic for page headlines and the logo (owner, 2026-11-12). */
+.hero-sub, .hero-sub *, .section-sub, .home.v2 .section-note, .feed-sub.m-only, .page-title p, .form-title p, .catalog.v2 .page-hero p,
+.top-page.v2 .page-hero > p:not(.breadcrumb), .rankings-index .page-hero p, .top-updated, .top-updated *, .cta-text span, p.muted,
+.top-page.v2 .page-hero .breadcrumb, .top-page.v2 .page-hero .breadcrumb * {
+  font-family: var(--sans); font-style: normal;
+}
+.top-page.v2 .page-hero > p:not(.breadcrumb), .catalog.v2 .page-hero p, .rankings-index .page-hero p, .page-title p, .form-title p { font-size: 17px; }
