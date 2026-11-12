@@ -144,7 +144,8 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
     const src = <span className="voice-src"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12v7H7l-3 2.5v-2.5H2z" fill="currentColor"/></svg><b>{`${niche.people.One} review`}</b><span className="vdate">{fullDate(r.createdAt)}</span></span>;
     const by = [r.alias || "Anonymous", r.playerLevel].filter(Boolean).join(" · ");
     if (tf) return <article className="voice tf">
-      <Clamp id={`p-${r.id}`} text={r.reviewText}/>
+      {/* Product pages show the whole review, no "Read more" (owner, 2026-11-12). */}
+      <p className="voice-text">{r.reviewText}</p>
       <footer className="voice-meta"><span className={`spill s-${v}`}>{sentimentWord[v]}</span>{src}<span className="voice-by">{by}</span></footer>
     </article>;
     return <article className="voice">
@@ -157,7 +158,7 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
   const src = <a className="voice-src" href={e.sourceUrl} target="_blank" rel="noopener noreferrer" title={`Read the original on ${e.sourcePlatform}`}><SourceIcon platform={e.sourcePlatform}/><b>{label.platform}</b>{label.name && <span>{label.name}</span>}{e.sourceDate && <span className="vdate">{fullDate(e.sourceDate)}</span>}<span className="arr" aria-hidden="true">↗</span></a>;
   const pill = e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>;
   if (tf) return <article className="voice tf">
-    <Clamp id={`w-${e.id}`} text={quoteText(e)}/>
+    <p className="voice-text">{quoteText(e)}</p>
     <footer className="voice-meta">{pill}{src}</footer>
   </article>;
   return <article className="voice">
