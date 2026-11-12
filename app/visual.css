@@ -1154,3 +1154,7 @@ svg[data-src="web"], svg[data-src="forum"], svg[data-src="shop"] { color: var(--
 .p-next-card .button { justify-self: start; margin-top: 8px; }
 .p-next-card:hover .button { filter: brightness(1.08); }
 @media (max-width: 680px) { .p-next { margin-top: 36px; padding-top: 24px; } .p-next-card { padding: 16px; } }
+/* Complaints in the same red as "negative" in the sentiment bar (owner, 2026-11-12); yellow means mixed everywhere else. */
+.product.v2 .says-card.neg { --bar: #c4643f; }
+@media (max-width: 680px) { .product.v2 .says-card.neg a { background: #fbe4dc; color: #8a2f17; } }
+@media (max-width: 680px) { .product.v2 .says-card:not(.neg) a { background: #e4f0e2; color: #24572c; } .product.v2 .says-card:not(.neg) h3 .tag-glyph { color: #3f7a3a; } }
