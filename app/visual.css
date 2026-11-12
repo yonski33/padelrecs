@@ -1945,3 +1945,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .sig-pop-card p { margin: 0; color: var(--lt-mute, #8a857c); }
 .sig-pop-card a { font-weight: 600; color: var(--lt-acc, var(--green-ink)); }
 .lp-sub .sig-pop + *::before { content: "·"; margin-right: 14px; color: var(--lt-mute); }
+/* Home list thumbnails a little bigger (owner, 2026-11-13). */
+.lt-row { grid-template-columns: 40px 64px minmax(0, 1fr) auto; }
+.lt-art { width: 64px; height: 64px; }
+@media (max-width: 560px) { .lt-row { grid-template-columns: 30px 52px minmax(0, 1fr) auto; } .lt-art { width: 52px; height: 52px; } }
