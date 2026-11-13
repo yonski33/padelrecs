@@ -34,7 +34,7 @@ export function HomeSearch({ initial, placeholder, label }: { initial?: string; 
 }
 
 /** base: the rest of the address (order), the same on the server and in the browser so links match. */
-export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside, noun, sort, how }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode; noun: [string, string]; sort?: ReactNode; how?: ReactNode }) {
+export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside, noun, sort, how, tint }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode; noun: [string, string]; sort?: ReactNode; how?: ReactNode; tint?: boolean }) {
   const [shape, setShape] = useState<string | undefined>(cats.some(c => c.key === initial) ? initial : undefined);
   const [q, setQ] = useState(initialQ ?? "");
   const [shown, setShown] = useState(PAGE);
@@ -59,6 +59,8 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
   const head = shownCats.slice(0, 4), more = shownCats.slice(4), current = cats.find(c => c.key === shape);
   // A rank number means a place in the ranking, so it shows only without a search.
   const numbered = ranked && !q.trim();
+  // The top three rows' tint (owner, 2026-11-13): on the ranked list, or wherever asked for, but not on search results.
+  const tinted = (numbered || !!tint) && !q.trim();
 
   return <>
     <div className="lt-bar">
@@ -76,7 +78,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {/* The first row's signal explains itself on hover or tap (owner, 2026-11-13); the words sit once, in a CSS variable. */}
     {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
-      {visible.slice(0, shown).map((it, i) => <div key={it.key} className="lt-slot">{it.node}</div>)}
+      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${tinted && i === 0 ? " lr-p1" : tinted && i < 3 ? " lr-p23" : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost lt-more-btn" onClick={() => setShown(shown + PAGE * 2)}>Show more {noun[1]} <span aria-hidden="true">↓</span></button></div>}
   </>;

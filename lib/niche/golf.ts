@@ -25,6 +25,7 @@ export const golf: Niche = {
     adminLoginHint: "Use the email and password for your Recs admin account.",
   },
   words: { one: "driver", many: "drivers", One: "Driver", Many: "Drivers" },
+  talkLabel: "golf drivers",
   people: { one: "golfer", many: "golfers", One: "Golfer", Many: "Golfers" },
   recentMonths: 24,
   // Makers name each generation (Qi35, Qi4D, G440), so names carry the generation instead of a year.

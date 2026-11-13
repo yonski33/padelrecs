@@ -2703,9 +2703,163 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 /* Product page with the wider layout (owner, 2026-11-13): a wider sidebar, and review text capped at a readable line length. */
 @media (min-width: 981px) { .product.v2.lp > .columns.lp-cols { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; } }
 .lp .lv-text, .lp .lv-body > p:not(.lv-src) { max-width: 68ch; }
-/* Ranking lists, after the owner's mockup (2026-11-13): #1 on a soft gradient of the site's colour into warm neutral,
+/* Ranking lists and the home list (owner, 2026-11-13), after the owner's mockup: #1 on a soft gradient of the site's colour into warm neutral,
    #2–3 on a barely-there tint of it, #4 on plain rows. Catalogues and review feeds stay neutral. */
-.lr-list .lt-slot.lr-p1 > .lt-row.v2, .lr-list .lt-slot.lr-p23 > .lt-row.v2 { border: 1px solid transparent; border-radius: 14px; margin-bottom: 6px; }
-.lr-list .lt-slot.lr-p1 > .lt-row.v2 { background: linear-gradient(90deg, color-mix(in srgb, var(--lt-acc) 8%, #fcfbf8), color-mix(in srgb, #f6c79a 14%, #fcfbf8)) !important; border-color: color-mix(in srgb, var(--lt-acc) 10%, transparent); }
-.lr-list .lt-slot.lr-p23 > .lt-row.v2 { background: color-mix(in srgb, var(--lt-acc) 3%, #fcfbf8) !important; }
-.lr-list .lt-slot.lr-p1 > .lt-row.v2:hover, .lr-list .lt-slot.lr-p23 > .lt-row.v2:hover { border-color: color-mix(in srgb, var(--lt-acc) 18%, transparent); }
+:is(.lr-list, .home-d) .lt-slot.lr-p1 > .lt-row.v2, :is(.lr-list, .home-d) .lt-slot.lr-p23 > .lt-row.v2 { border: 1px solid transparent; border-radius: 14px; margin-bottom: 6px; }
+:is(.lr-list, .home-d) .lt-slot.lr-p1 > .lt-row.v2 { background: linear-gradient(90deg, color-mix(in srgb, var(--lt-acc) 8%, #fcfbf8), color-mix(in srgb, #f6c79a 14%, #fcfbf8)) !important; border-color: color-mix(in srgb, var(--lt-acc) 10%, transparent); }
+:is(.lr-list, .home-d) .lt-slot.lr-p23 > .lt-row.v2 { background: color-mix(in srgb, var(--lt-acc) 3%, #fcfbf8) !important; }
+:is(.lr-list, .home-d) .lt-slot.lr-p1 > .lt-row.v2:hover, :is(.lr-list, .home-d) .lt-slot.lr-p23 > .lt-row.v2:hover { border-color: color-mix(in srgb, var(--lt-acc) 18%, transparent); }
+/* Review text a step darker for long reading (auditor, 2026-11-13): body #383838 at 15px/1.6, names and sources #252525,
+   dates and other details stay muted at #777, review headings #242424. Product pages, /reviews and the home's latest reviews. */
+.lv .lv-text, .lrv-card .lrv-text, .rc-card .rc-text { color: #383838 !important; font-size: 15px !important; line-height: 1.6 !important; font-weight: 400; }
+.lv .lv-src, .lrv-card .lrv-src, .rc-card .rc-src { color: #777 !important; }
+.lv .lv-src b, .lrv-card .lrv-name { color: #252525 !important; }
+.review-list h2, .lrv h1, .lrv-hero h1 { color: #242424; }
+/* Category clicks swap the list in place (owner, 2026-11-13): it fades while the next one loads. */
+.lc-grid:has(.lc-radios.is-pending) .lc-list { opacity: .45; transition: opacity .15s ease .08s; pointer-events: none; }
+/* Left to right: total reviews, positive reviews over the bar, then the signal score (owner, 2026-11-13). Phones keep
+   the signal top right with positive and total underneath. */
+@media (min-width: 721px) {
+  .lt-row.v2 { grid-template-areas: "rank art body total pos sig" !important; }
+  .lt-row.v2.no-rank { grid-template-areas: "art body total pos sig" !important; }
+}
+/* …and the column widths swap with them, so the signal keeps the wider slot. */
+@media (min-width: 901px) {
+  .lt-row.v2, .home-d .lt-row.v2 { grid-template-columns: 40px 88px minmax(0, 1fr) 70px 150px 84px !important; }
+  .lt-row.v2.no-rank, .lcx .lt-row.v2.no-rank { grid-template-columns: 92px minmax(0, 1fr) 70px 150px 84px !important; }
+}
+@media (min-width: 721px) and (max-width: 900px) {
+  .lt-row.v2 { grid-template-columns: 36px 76px minmax(0, 1fr) 64px 128px 74px !important; }
+  .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 64px 128px 74px !important; }
+  .home-d .lt-row.v2 { grid-template-columns: 32px 56px minmax(0, 1fr) 58px 120px 74px !important; }
+}
+/* Home on small laptops (901–1199px): the side lists move under the product list, so names and takes keep their room. */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .home-d .lt-side { position: static; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+}
+/* The home list's "See the rankings" link, styled like the "How it works" link it replaces (owner, 2026-11-13). */
+.lt-how > a { color: var(--lt-acc); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.lt-how > a:hover { text-decoration: underline; }
+/* Home rows have no rank column now (most discussed is not a ranking). */
+@media (min-width: 721px) and (max-width: 900px) { .home-d .lt-row.v2.no-rank { grid-template-columns: 56px minmax(0, 1fr) 58px 120px 74px !important; } }
+/* Home "most reviewed" browse (owner and auditor, 2026-11-13): no sort menu and no signal score. Rows: photo, name and
+   take, positive reviews over the bar, total reviews. */
+.lt-most { font-size: 13px; color: var(--lt-mute); white-space: nowrap; }
+@media (min-width: 721px) {
+  .lt-row.v2.no-rank.no-sig > .lt-total { display: flex; align-items: baseline; justify-content: flex-end; gap: 5px; }
+  .lt-row.v2.no-rank.no-sig > .lt-total b { font-size: 18px !important; }
+  .lt-row.v2.no-rank.no-sig > .lt-total span { margin: 0; font-size: 13.5px; }
+}
+@media (max-width: 720px) { .lt-bar .lt-most { display: none; } .lt-row.v2.no-rank.no-sig > .lt-posbar { min-width: 0; } }
+@media (min-width: 901px) {
+  .lt-row.v2.no-rank.no-sig { grid-template-columns: 92px minmax(0, 1fr) 160px 110px !important; grid-template-areas: "art body pos total" !important; }
+}
+@media (min-width: 721px) and (max-width: 900px) {
+  .lt-row.v2.no-rank.no-sig { grid-template-columns: 56px minmax(0, 1fr) 130px 90px !important; grid-template-areas: "art body pos total" !important; }
+}
+@media (max-width: 720px) {
+  .lt-row.v2.no-rank.no-sig { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "art body body" "pos pos total"; }
+}
+/* Home list title (auditor's mockup, 2026-11-13): says plainly what the order is, with the rankings one clear click away. */
+.lt-listhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin: 4px 0 12px; }
+.lt-listhead h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: #242124; }
+.lt-listhead p { margin: 5px 0 0; font-size: 14.5px; color: #6b665e; }
+.lt-explore { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border: 1.5px solid var(--lt-acc); border-radius: 10px; color: var(--lt-acc); font-size: 15px; font-weight: 600; text-decoration: none; transition: background .12s; }
+.lt-explore:hover { background: color-mix(in srgb, var(--lt-acc) 7%, transparent); }
+@media (max-width: 720px) {
+  .lt-listhead { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .lt-listhead h2 { font-size: 23px; }
+  .lt-listhead p { font-size: 14px; }
+  .lt-explore { padding: 8px 14px; font-size: 14.5px; }
+}
+/* Home rows closer to the auditor's mockup (owner, 2026-11-13): tighter and bolder, darker summary, category chip and the
+   Amazon link on one line, positive reviews in black. */
+.home-d .lt-row.v2.no-sig { padding-top: 10px !important; padding-bottom: 10px !important; row-gap: 6px; }
+.home-d .lt-row.v2.no-sig > .lt-body { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; }
+.home-d .lt-row.v2.no-sig > .lt-body > .lt-name, .home-d .lt-row.v2.no-sig > .lt-body > .lt-line { flex: 0 0 100%; }
+.home-d .lt-row.v2.no-sig > .lt-body > .lt-shape { margin-top: 4px; }
+.home-d .lt-row.v2.no-sig > .lt-body > .lt-shop { margin-top: 4px; font-weight: 600; }
+.home-d .lt-row.v2.no-sig .lt-name { font-size: 17px !important; font-weight: 700 !important; color: #1f1c1f !important; }
+.home-d .lt-row.v2.no-sig .lt-line { color: #2f2b2f !important; line-height: 1.4; }
+.home-d .lt-row.v2.no-sig .lt-posn { color: #1f1c1f !important; font-weight: 600; }
+.home-d .lt-row.v2.no-sig > .lt-total b, .home-d .lt-row.v2.no-sig > .lt-total span { color: #1f1c1f !important; }
+.home-d .lt-row.v2.no-sig > .lt-total b { font-weight: 700; }
+.home-d .lt-row.v2.no-sig > .lt-total span { font-weight: 600; }
+@media (min-width: 901px) {
+  .home-d .lt-row.v2.no-sig { grid-template-columns: 84px minmax(0, 1fr) 160px 104px !important; column-gap: 18px !important; }
+  .home-d .lt-row.v2.no-sig > .lt-art { width: 84px !important; height: 84px !important; }
+}
+@media (max-width: 720px) {
+  .home-d .lt-row.v2.no-sig { padding: 10px 4px !important; }
+  .home-d .lt-row.v2.no-sig .lt-name { font-size: 16px !important; }
+  .home-d .lt-row.v2.no-sig .lt-posn { font-size: 13.5px; }
+  .home-d .lt-row.v2.no-sig > .lt-total b { font-size: 13.5px !important; }
+}
+/* Home side after the auditor's mockup (owner, 2026-11-13): fresh reviews with a line of each, then the rankings as rows. */
+.lt-side2 { gap: 30px !important; }
+.lt-side2 .ls-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+.lt-side2 .ls-head h2 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: #1f1c1f; }
+.lt-side2 .ls-head a { font-size: 13.5px; font-weight: 600; color: var(--lt-acc); text-decoration: none; }
+.lt-side2 ul { margin: 0; padding: 0; list-style: none; }
+.ls-fresh li + li { border-top: 1px solid var(--lt-line); }
+.ls-fresh a { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 9px 0; color: inherit; text-decoration: none; }
+.ls-fresh a:hover b { text-decoration: underline; }
+.ls-src { display: grid; place-items: center; padding-top: 2px; }
+.ls-src svg { width: 20px; height: 20px; }
+.ls-src svg[data-src="reddit"] { color: #ff4500; }
+.ls-src svg[data-src="youtube"] { color: #ff0000; }
+.ls-body { display: grid; min-width: 0; }
+.ls-body b { overflow: hidden; font-size: 14px; font-weight: 700; color: #1f1c1f; white-space: nowrap; text-overflow: ellipsis; }
+.ls-quote { overflow: hidden; font-size: 13px; color: #3d393d; white-space: nowrap; text-overflow: ellipsis; }
+.ls-ago { padding-top: 2px; font-size: 12px; color: #777; white-space: nowrap; }
+.ls-rank ul { display: grid; gap: 8px; }
+.ls-rank a { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 14px; border-radius: 10px; background: color-mix(in srgb, var(--lt-acc) 5%, #fcfbf8); color: #1f1c1f; text-decoration: none; transition: background .12s; }
+.ls-rank a:hover { background: color-mix(in srgb, var(--lt-acc) 10%, #fcfbf8); }
+.ls-rank b { overflow: hidden; font-size: 15px; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; }
+.ls-icon { display: grid; place-items: center; color: var(--lt-acc); }
+.ls-icon svg { width: 28px; height: 28px; }
+.ls-go { font-size: 17px; color: var(--lt-acc); }
+/* The time sits beside the name, so the quote gets the full width under it. */
+.lt-side2 .ls-head a { white-space: nowrap; }
+.ls-fresh a { grid-template-columns: 24px minmax(0, 1fr) auto; grid-template-areas: "src name ago" "src quote quote"; row-gap: 1px; }
+.ls-body { display: contents; }
+.ls-src { grid-area: src; } .ls-body b { grid-area: name; } .ls-quote { grid-area: quote; } .ls-ago { grid-area: ago; padding-top: 1px; }
+.lt-side2 .ls-head a { display: inline-flex !important; align-items: center; gap: 4px; width: auto !important; }
+/* Home text a step darker again (owner, 2026-11-13). */
+.home-d .lt-row.v2.no-sig .lt-name { color: #111 !important; }
+.home-d .lt-row.v2.no-sig .lt-line { color: #1c1a1c !important; }
+.home-d .lt-row.v2.no-sig .lt-posn, .home-d .lt-row.v2.no-sig > .lt-total b, .home-d .lt-row.v2.no-sig > .lt-total span { color: #111 !important; }
+.lt-listhead h2 { color: #111; }
+.lt-listhead p { color: #4a464a; }
+.lt-side2 .ls-head h2, .ls-body b, .ls-rank b { color: #111; }
+.ls-quote { color: #262326; }
+.ls-ago { color: #5c585c; }
+/* Poppins at 400 reads grey even in near-black; one weight up makes the summaries and quotes read dark. */
+.home-d .lt-row.v2.no-sig .lt-line, .ls-quote, .lt-listhead p { font-weight: 500; }
+/* "+46 in 6 months" under the total on the home list: what orders it (owner, 2026-11-13). */
+.lt-row.v2.no-sig > .lt-total { flex-wrap: wrap; row-gap: 2px; }
+.lt-row.v2.no-sig > .lt-total .lt-recent-n { flex: 0 0 100%; margin: 0; font-size: 12px; font-weight: 600; line-height: 1.2; text-align: right; color: var(--lt-signal, #28733D); white-space: nowrap; }
+@media (max-width: 720px) { .lt-row.v2.no-sig > .lt-total { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 0 4px; } }
+.ls-rank b { white-space: normal; line-height: 1.25; }
+/* Rankings and catalogue rows in the home page's bolder, darker look (owner, 2026-11-13): near-black names, summaries and
+   counts, the category chip, Amazon link and compare box on one line, a little tighter. The signal stays green. */
+:is(.lr-list, .lcx) .lt-row.v2 { padding-top: 11px !important; padding-bottom: 11px !important; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-body { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-body > :is(.lt-name, .lt-line, .lt-trait) { flex: 0 0 100%; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-body > :is(.lt-shape, .lt-shop, .lt-extra) { margin-top: 4px; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-shop { font-weight: 600; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-name { font-size: 17px !important; font-weight: 700 !important; color: #111 !important; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-line { color: #1c1a1c !important; font-weight: 500; line-height: 1.4; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-posn { color: #111 !important; font-weight: 600; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b, :is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { color: #111 !important; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b { font-weight: 700; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { font-weight: 600; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-sig small { color: #4a464a !important; font-weight: 500; }
+@media (max-width: 720px) { :is(.lr-list, .lcx) .lt-row.v2 .lt-name { font-size: 16px !important; } }
+/* …but the review total and the Amazon link step back again there (owner, 2026-11-13): the summary reads dark, the signal
+   is the number to look at, and the count and shop link stay quieter, as before. */
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b, :is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { color: #6b665e !important; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b { font-weight: 700; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { font-weight: 500; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-shop { font-weight: 500; }
