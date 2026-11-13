@@ -24,7 +24,8 @@ const finder = niche.finder, w = niche.words, people = niche.people;
 
 export function generateMetadata(): Metadata {
   if (!finder) return { robots: { index: false } };
-  const title = `${finder.title}: Find Your ${w.One} From Real ${people.One} Reviews`;
+  // The menu label ("Find Your Racket", "Find Your Headphones") names the products better than words.One on sites whose word is "product".
+  const title = `${finder.title}: ${finder.navLabel} From Real ${people.One} Reviews`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description: finder.description, alternates: { canonical: "/finder" }, openGraph: { title, description: finder.description, url: "/finder", type: "website", images: siteOgImages } };
 }
 

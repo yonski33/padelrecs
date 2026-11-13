@@ -132,6 +132,47 @@ export const monitor: Niche = {
     { label: "matte", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough monitors in it have reviews.
+  finder: {
+    title: "Monitor Finder Quiz",
+    heading: "Which monitor is right for you?",
+    description: "Pick a gaming, ultrawide, Mac or office monitor, answer a few quick questions and get the monitors whose real owner reviews best match how you use yours.",
+    intro: "Pick the kind of monitor you need, answer a few quick questions and see what real owners recommend.",
+    navLabel: "Find Your Monitor",
+    invite: "Not sure which monitor to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What kind of monitor are you looking for?", options: [
+        { label: "Gaming", shapes: ["Gaming"] },
+        { label: "Ultrawide", hint: "21:9 and 32:9", shapes: ["Ultrawide"] },
+        { label: "Mac or creative work", shapes: ["Mac & creator"] },
+        { label: "Office work", shapes: ["Productivity"] },
+      ] },
+      { id: "motion", question: "Do you play fast games?", onlyIf: { question: "type", labels: ["Gaming", "Ultrawide"] }, options: [
+        { label: "Yes", hint: "Shooters, racing, esports", want: ["smooth motion"], weight: 1.5 },
+        { label: "Not really" },
+      ] },
+      { id: "hdr", question: "Do you watch or play in HDR?", onlyIf: { question: "type", labels: ["Gaming", "Ultrawide"] }, options: [
+        { label: "Yes", want: ["great HDR"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "text", question: "Will you read a lot of text or code on it?", options: [
+        { label: "Yes", hint: "Sharp text matters", want: ["sharp text"], avoid: ["text fringing"], weight: 1.5 },
+        { label: "Not much" },
+      ] },
+      { id: "finish", question: "Glossy or matte screen?", options: [
+        { label: "Glossy", hint: "Richer blacks in a dim room", want: ["glossy"] },
+        { label: "Matte", hint: "Fewer reflections in a bright room", want: ["matte"] },
+        { label: "No preference" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Lasting well", want: ["solid build"], avoid: ["quality control issues", "durability issues", "burn-in"], weight: 1.5 },
+        { label: "Trouble-free setup", hint: "Ports, firmware, software", avoid: ["connection issues", "bad software"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-gaming-monitors", label: "Gaming", title: "Best Gaming Monitors", minReviews: 5,
       intro: "The gaming monitors owners are most consistently happy with.", filters: [{ column: "shape", include: ["Gaming"] }] },

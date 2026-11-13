@@ -135,6 +135,49 @@ export const camera: Niche = {
     { label: "heavy", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough cameras in it have reviews.
+  finder: {
+    title: "Camera Finder Quiz",
+    heading: "Which camera is right for you?",
+    description: "Pick a mirrorless, compact, vlogging or action camera, answer a few quick questions and get the cameras whose real photographer reviews best match how you shoot.",
+    intro: "Pick the kind of camera you want, answer a few quick questions and see what real photographers recommend.",
+    navLabel: "Find Your Camera",
+    invite: "Not sure which camera to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What kind of camera are you looking for?", options: [
+        { label: "Mirrorless", hint: "Interchangeable lenses", shapes: ["Mirrorless"] },
+        { label: "Compact", hint: "Fixed lens, fits a pocket or bag", shapes: ["Compact"] },
+        { label: "Vlogging", shapes: ["Vlogging"] },
+        { label: "Action & 360", shapes: ["Action & 360"] },
+      ] },
+      { id: "sensor", question: "Which sensor size?", onlyIf: { question: "type", labels: ["Mirrorless"] }, options: [
+        { label: "Full-frame", hint: "Best low light, bigger lenses", list: "best-full-frame-cameras" },
+        { label: "APS-C", hint: "Smaller, lighter, cheaper", list: "best-aps-c-cameras" },
+        { label: "No preference" },
+      ] },
+      { id: "shoot", question: "What will you shoot most?", options: [
+        { label: "Photos", want: ["great image quality", "great colours"] },
+        { label: "Video", want: ["great video", "great stabilisation"], avoid: ["overheating"] },
+        { label: "Both equally" },
+      ] },
+      { id: "motion", question: "Do you shoot moving subjects?", onlyIf: { question: "type", labels: ["Mirrorless", "Compact"] }, options: [
+        { label: "Yes", hint: "Kids, pets, sport, wildlife", want: ["fast autofocus"], avoid: ["autofocus issues"], weight: 1.5 },
+        { label: "Not often" },
+      ] },
+      { id: "light", question: "Do you often shoot in low light?", options: [
+        { label: "Yes", hint: "Indoors, evenings, events", want: ["great low light"], weight: 1.5 },
+        { label: "Not often" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Small and light", want: ["compact"], avoid: ["heavy"], weight: 1.5 },
+        { label: "Easy to use", want: ["great handling"], avoid: ["clunky menus"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Lasting well", avoid: ["build quality issues"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-mirrorless-cameras", label: "Mirrorless", title: "Best Mirrorless Cameras", minReviews: 5,
       intro: "The interchangeable-lens mirrorless cameras photographers are most consistently happy with.", filters: [{ column: "shape", include: ["Mirrorless"] }] },

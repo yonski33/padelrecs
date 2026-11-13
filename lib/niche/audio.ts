@@ -133,6 +133,52 @@ export const audio: Niche = {
     { label: "warm", tone: "neutral" },
     { label: "bright", tone: "neutral" },
   ],
+  finder: {
+    title: "Headphone Finder Quiz",
+    heading: "Which headphones are right for you?",
+    description: "Pick headphones, IEMs or earbuds, answer a few quick questions and get the ones whose real listener reviews best match how you listen.",
+    intro: "Pick what you want to wear, answer a few quick questions and see what real listeners recommend.",
+    navLabel: "Find Your Headphones",
+    invite: "Not sure which headphones to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Headphones", hint: "Over-ear and on-ear", shapes: ["Headphones"] },
+        { label: "IEMs", hint: "Wired in-ear monitors", shapes: ["IEMs"] },
+        { label: "Earbuds", hint: "True wireless", shapes: ["Earbuds"] },
+      ] },
+      { id: "anc", question: "Do you need noise cancelling?", onlyIf: { question: "type", labels: ["Headphones", "Earbuds"] }, options: [
+        { label: "Yes", hint: "For commutes, flights and offices", want: ["great noise cancelling"], weight: 1.5, must: true },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "sound", question: "What do you want more of?", options: [
+        { label: "Bass", want: ["great bass", "warm"], avoid: ["muddy"] },
+        { label: "Detail", want: ["detailed"], avoid: ["muddy"] },
+        { label: "A wide, open sound", want: ["wide soundstage"] },
+        { label: "No preference" },
+      ] },
+      { id: "treble", question: "Does sharp treble bother you?", options: [
+        { label: "Yes", hint: "Sibilance, fatigue", avoid: ["harsh treble"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "comfort", question: "Will you wear them for hours at a time?", options: [
+        { label: "Yes", hint: "Comfort matters most", want: ["comfortable"], avoid: ["uncomfortable"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "buds", question: "What else do you need from earbuds?", onlyIf: { question: "type", labels: ["Earbuds"] }, options: [
+        { label: "Long battery life", want: ["long battery life"], weight: 1.5 },
+        { label: "Clear calls", want: ["great mic"], weight: 1.5 },
+        { label: "A stable connection", avoid: ["connection issues"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Lasting well", avoid: ["build quality issues"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-headphones", label: "Headphones", title: "Best Headphones", minReviews: 6,
       intro: "The over-ear and on-ear headphones listeners are most consistently happy with.", filters: [{ column: "shape", include: ["Headphones"] }] },
