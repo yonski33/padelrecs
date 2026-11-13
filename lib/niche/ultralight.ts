@@ -146,6 +146,63 @@ export const ultralight: Niche = {
     { label: "wets out", tone: "neg" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Ultralight Gear Finder Quiz",
+    heading: "Which ultralight gear is right for you?",
+    description: "Pick a tent, backpack, sleeping pad, quilt or cook kit, answer a few quick questions and get the gear whose real hiker reviews best match your trips.",
+    intro: "Pick what you need, answer a few quick questions and see what real hikers recommend.",
+    navLabel: "Find Your Gear",
+    invite: "Not sure which gear to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Tent or shelter", shapes: ["Shelter"] },
+        { label: "Backpack", shapes: ["Backpack"] },
+        { label: "Sleeping pad", shapes: ["Sleeping pad"] },
+        { label: "Quilt or sleeping bag", shapes: ["Quilt & bag"] },
+        { label: "Stove and cook kit", shapes: ["Cook kit"] },
+      ] },
+      { id: "shelter", question: "What kind of shelter?", onlyIf: { question: "type", labels: ["Tent or shelter"] }, options: [
+        { label: "Trekking-pole tent", hint: "Lightest, pitched with your poles", list: "best-trekking-pole-tents" },
+        { label: "Freestanding tent", hint: "Pitches anywhere, even on rock", list: "best-freestanding-tents" },
+        { label: "No preference" },
+      ] },
+      { id: "sleep", question: "Quilt or sleeping bag?", onlyIf: { question: "type", labels: ["Quilt or sleeping bag"] }, options: [
+        { label: "Quilt", hint: "Lighter, open back", list: "best-ultralight-quilts" },
+        { label: "Sleeping bag", hint: "Fully enclosed", list: "best-ultralight-sleeping-bags" },
+        { label: "No preference" },
+      ] },
+      { id: "weather", question: "Will you camp in wind and rain?", onlyIf: { question: "type", labels: ["Tent or shelter"] }, options: [
+        { label: "Yes", want: ["weatherproof"], avoid: ["condensation", "leaks"], weight: 1.5 },
+        { label: "Mostly fair weather" },
+      ] },
+      { id: "cold", question: "Do you camp in cold weather?", onlyIf: { question: "type", labels: ["Sleeping pad", "Quilt or sleeping bag"] }, options: [
+        { label: "Yes", hint: "Near or below freezing", want: ["warm"], avoid: ["cold"], weight: 1.5 },
+        { label: "Mostly mild nights" },
+      ] },
+      { id: "comfort", question: "Comfort or weight?", onlyIf: { question: "type", labels: ["Backpack", "Sleeping pad"] }, options: [
+        { label: "Comfort", want: ["comfortable"], avoid: ["uncomfortable"], weight: 1.5 },
+        { label: "Weight", want: ["light", "packs small"], weight: 1.5 },
+        { label: "Both equally" },
+      ] },
+      { id: "room", question: "Do you want extra room?", onlyIf: { question: "type", labels: ["Tent or shelter", "Backpack"] }, options: [
+        { label: "Yes", hint: "Space for gear, or a bigger load", want: ["roomy"] },
+        { label: "No, lighter is better", want: ["light"] },
+      ] },
+      { id: "stove", question: "What matters most in a stove?", onlyIf: { question: "type", labels: ["Stove and cook kit"] }, options: [
+        { label: "Boiling fast", want: ["fast boil"], weight: 1.5 },
+        { label: "Saving fuel", want: ["fuel efficient"], weight: 1.5 },
+        { label: "No preference" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Lightest possible", want: ["light", "packs small"], weight: 1.5 },
+        { label: "Lasting well", want: ["durable"], avoid: ["durability issues"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-ultralight-tents", label: "Tents", title: "Best Ultralight Tents", minReviews: 5,
       intro: "The ultralight tents and shelters hikers are most consistently happy with.", filters: [{ column: "shape", include: ["Shelter"] }] },

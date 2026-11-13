@@ -137,6 +137,54 @@ export const coffee: Niche = {
     { label: "great taste", tone: "pos" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Coffee Gear Finder Quiz",
+    heading: "Which coffee gear is right for you?",
+    description: "Pick an espresso machine, grinder, brewer, kettle or scale, answer a few quick questions and get the gear whose real home barista reviews best match how you brew.",
+    intro: "Pick what you need, answer a few quick questions and see what real home baristas recommend.",
+    navLabel: "Find Your Coffee Gear",
+    invite: "Not sure which coffee gear to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Espresso machine", shapes: ["Espresso machine"] },
+        { label: "Grinder", shapes: ["Grinder"] },
+        { label: "Brewer", hint: "Pour-over, drip, press", shapes: ["Brewer"] },
+        { label: "Kettle", shapes: ["Kettle"] },
+        { label: "Scale", shapes: ["Scale"] },
+      ] },
+      { id: "boiler", question: "Do you want a dual boiler?", onlyIf: { question: "type", labels: ["Espresso machine"] }, options: [
+        { label: "Yes", hint: "Brew and steam at the same time", list: "best-dual-boiler-espresso-machines" },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "milk", question: "Do you make milk drinks?", onlyIf: { question: "type", labels: ["Espresso machine"] }, options: [
+        { label: "Yes", hint: "Lattes, cappuccinos", want: ["great steam"], weight: 1.5 },
+        { label: "Mostly straight espresso", want: ["great espresso"] },
+      ] },
+      { id: "grind", question: "What will you grind for?", onlyIf: { question: "type", labels: ["Grinder"] }, options: [
+        { label: "Espresso", want: ["great espresso", "low retention"], weight: 1.5 },
+        { label: "Filter and pour-over", want: ["great taste"], weight: 1.5 },
+        { label: "Hand grinder for travel or one cup", list: "best-hand-coffee-grinders" },
+        { label: "A bit of everything" },
+      ] },
+      { id: "brew", question: "Which kind of brewer?", onlyIf: { question: "type", labels: ["Brewer"] }, options: [
+        { label: "Pour-over", list: "best-pour-over-coffee-makers" },
+        { label: "Drip machine", list: "best-drip-coffee-makers" },
+        { label: "No preference" },
+      ] },
+      { id: "ease", question: "How hands-on do you want to be?", onlyIf: { question: "type", labels: ["Espresso machine", "Grinder", "Brewer"] }, options: [
+        { label: "Keep it simple", want: ["easy to use"], avoid: ["learning curve", "messy"], weight: 1.5 },
+        { label: "I like to dial things in" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Consistent results", want: ["consistent"], avoid: ["inconsistent"], weight: 1.5 },
+        { label: "Lasting well", want: ["well built"], avoid: ["durability issues"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-espresso-machines", label: "Espresso machines", title: "Best Home Espresso Machines", minReviews: 5,
       intro: "The home espresso machines home baristas are most consistently happy with.", filters: [{ column: "shape", include: ["Espresso machine"] }] },

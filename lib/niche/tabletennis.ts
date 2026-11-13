@@ -145,6 +145,41 @@ export const tabletennis: Niche = {
     { label: "soft", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Table Tennis Equipment Finder Quiz",
+    heading: "Which table tennis equipment is right for you?",
+    description: "Pick a rubber or a blade, answer a few quick questions about how you play and get the equipment whose real player reviews best match your game.",
+    intro: "Pick a rubber or a blade, answer a few quick questions and see what real players recommend.",
+    navLabel: "Find Your Equipment",
+    invite: "Not sure which rubber or blade to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Rubber", shapes: ["Rubber"] },
+        { label: "Blade", shapes: ["Blade"] },
+      ] },
+      { id: "style", question: "How do you play?", options: [
+        { label: "Attacking with loops", want: ["spinny", "fast", "great for looping"], weight: 1.5 },
+        { label: "All-round and controlled", want: ["great control", "consistent"], avoid: ["hard to control"], weight: 1.5 },
+        { label: "Close to the table, blocking", want: ["solid blocks", "good short game"], weight: 1.5 },
+      ] },
+      { id: "level", question: "What is your level?", options: [
+        { label: "Beginner or improving", want: ["great for beginners", "forgiving"], avoid: ["too fast", "hard to control"], weight: 1.5 },
+        { label: "Experienced" },
+      ] },
+      { id: "sponge", question: "Soft or hard sponge?", onlyIf: { question: "type", labels: ["Rubber"] }, options: [
+        { label: "Softer", hint: "More dwell, easier to use", want: ["soft"] },
+        { label: "Harder", hint: "More power at full swing", want: ["hard"] },
+        { label: "No preference" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Lasting well", want: ["durable"], avoid: ["loses grip fast"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-table-tennis-blades", label: "Blades", title: "Best Table Tennis Blades", minReviews: 5,
       intro: "The blades players are most consistently happy with.", filters: [{ column: "shape", include: ["Blade"] }] },

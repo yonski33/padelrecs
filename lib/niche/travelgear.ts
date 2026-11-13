@@ -161,6 +161,43 @@ export const travelgear: Niche = {
     { label: "personal item", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Travel Gear Finder Quiz",
+    heading: "Which travel gear is right for you?",
+    description: "Pick a travel backpack, daypack, sling or carry-on, answer a few quick questions and get the gear whose real traveler reviews best match how you travel.",
+    intro: "Pick what you need, answer a few quick questions and see what real travelers recommend.",
+    navLabel: "Find Your Travel Gear",
+    invite: "Not sure which travel gear to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Travel backpack", shapes: ["Travel backpack"] },
+        { label: "Daypack or sling", shapes: ["Daypack or sling"] },
+        { label: "Rolling luggage", shapes: ["Rolling luggage"] },
+        { label: "Travel accessory", shapes: ["Travel accessory"] },
+      ] },
+      { id: "onebag", question: "Will it be your only bag?", onlyIf: { question: "type", labels: ["Travel backpack"] }, options: [
+        { label: "Yes", hint: "One-bag travel", want: ["one-bag", "fits carry-on limits"], weight: 1.5 },
+        { label: "No, I'll check a bag too" },
+      ] },
+      { id: "carry", question: "Will you carry it for hours?", onlyIf: { question: "type", labels: ["Travel backpack", "Daypack or sling"] }, options: [
+        { label: "Yes", hint: "Comfort matters most", want: ["comfortable", "great harness"], avoid: ["uncomfortable", "heavy"], weight: 1.5 },
+        { label: "Not really" },
+      ] },
+      { id: "laptop", question: "Will you carry a laptop?", onlyIf: { question: "type", labels: ["Travel backpack", "Daypack or sling"] }, options: [
+        { label: "Yes", want: ["laptop access"] },
+        { label: "No" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Organisation", want: ["great organization"], avoid: ["hard to pack"], weight: 1.5 },
+        { label: "Light weight", want: ["lightweight"], avoid: ["heavy"], weight: 1.5 },
+        { label: "Lasting well", want: ["durable"], avoid: ["durability issues", "zipper issues"], weight: 1.5 },
+        { label: "Looks", want: ["looks great"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-travel-backpacks", label: "Travel backpacks", title: "Best Travel Backpacks", minReviews: 5,
       intro: "The one-bag and carry-on travel backpacks travelers are most consistently happy with.", filters: [{ column: "shape", include: ["Travel backpack"] }] },

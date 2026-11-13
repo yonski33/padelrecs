@@ -142,6 +142,47 @@ export const kitchen: Niche = {
     { label: "small capacity", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Kitchen Appliance Finder Quiz",
+    heading: "Which kitchen appliance is right for you?",
+    description: "Pick an air fryer, blender, countertop oven or multicooker, answer a few quick questions and get the appliances whose real owner reviews best match how you cook.",
+    intro: "Pick what you need, answer a few quick questions and see what real owners recommend.",
+    navLabel: "Find Your Appliance",
+    invite: "Not sure which appliance to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Air fryer", shapes: ["Air fryer"] },
+        { label: "Blender", shapes: ["Blender"] },
+        { label: "Countertop oven", shapes: ["Countertop oven"] },
+        { label: "Multicooker", hint: "Pressure and slow cooking", shapes: ["Multicooker"] },
+      ] },
+      { id: "baskets", question: "Do you want two baskets?", onlyIf: { question: "type", labels: ["Air fryer"] }, options: [
+        { label: "Yes", hint: "Cook two things at once", list: "best-dual-basket-air-fryers" },
+        { label: "One is fine" },
+      ] },
+      { id: "crispy", question: "How much does crispy, even cooking matter?", onlyIf: { question: "type", labels: ["Air fryer", "Countertop oven", "Multicooker"] }, options: [
+        { label: "A lot", want: ["crispy results", "cooks evenly"], avoid: ["uneven cooking"], weight: 1.5 },
+        { label: "Not much" },
+      ] },
+      { id: "blend", question: "What will you blend most?", onlyIf: { question: "type", labels: ["Blender"] }, options: [
+        { label: "Smoothies and frozen fruit", want: ["smooth blends", "powerful"], weight: 1.5 },
+        { label: "Quick everyday jobs", want: ["easy to use"], weight: 1.5 },
+        { label: "A bit of everything" },
+      ] },
+      { id: "clean", question: "Does easy cleaning matter?", options: [
+        { label: "Yes", want: ["easy to clean"], avoid: ["hard to clean"], weight: 1.5 },
+        { label: "Not much" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Lasting well", want: ["solid build"], avoid: ["broke down"], weight: 1.5 },
+        { label: "Quiet", want: ["quiet"], avoid: ["loud"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-air-fryers", label: "Air fryers", title: "Best Air Fryers", minReviews: 5,
       intro: "The air fryers owners are most consistently happy with.", filters: [{ column: "shape", include: ["Air fryer"] }] },
