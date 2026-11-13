@@ -2623,3 +2623,6 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
 .lrv-short { display: none; }
 .lrv-body footer a { white-space: nowrap; }
 @media (max-width: 720px) { .lrv-long { display: none; } .lrv-short { display: inline; } .lrv-src { flex-wrap: wrap; } }
+/* Review cards on the page colour, so they don't look boxed in (owner, 2026-11-13). */
+.lrv-card, .rc-card { background: transparent !important; border-color: #ece6de !important; }
+.lrv-card:hover, .rc-card:hover { background: #fff !important; }
