@@ -2743,3 +2743,21 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lt-how > a:hover { text-decoration: underline; }
 /* Home rows have no rank column now (most discussed is not a ranking). */
 @media (min-width: 721px) and (max-width: 900px) { .home-d .lt-row.v2.no-rank { grid-template-columns: 56px minmax(0, 1fr) 58px 120px 74px !important; } }
+/* Home "most reviewed" browse (owner and auditor, 2026-11-13): no sort menu and no signal score. Rows: photo, name and
+   take, positive reviews over the bar, total reviews. */
+.lt-most { font-size: 13px; color: var(--lt-mute); white-space: nowrap; }
+@media (min-width: 721px) {
+  .lt-row.v2.no-rank.no-sig > .lt-total { display: flex; align-items: baseline; justify-content: flex-end; gap: 5px; }
+  .lt-row.v2.no-rank.no-sig > .lt-total b { font-size: 18px !important; }
+  .lt-row.v2.no-rank.no-sig > .lt-total span { margin: 0; font-size: 13.5px; }
+}
+@media (max-width: 720px) { .lt-bar .lt-most { display: none; } .lt-row.v2.no-rank.no-sig > .lt-posbar { min-width: 0; } }
+@media (min-width: 901px) {
+  .lt-row.v2.no-rank.no-sig { grid-template-columns: 92px minmax(0, 1fr) 160px 110px !important; grid-template-areas: "art body pos total" !important; }
+}
+@media (min-width: 721px) and (max-width: 900px) {
+  .lt-row.v2.no-rank.no-sig { grid-template-columns: 56px minmax(0, 1fr) 130px 90px !important; grid-template-areas: "art body pos total" !important; }
+}
+@media (max-width: 720px) {
+  .lt-row.v2.no-rank.no-sig { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "art body body" "pos pos total"; }
+}
