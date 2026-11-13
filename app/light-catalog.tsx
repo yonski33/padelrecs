@@ -46,6 +46,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
   // A list mixing different kinds of product (all of SkinRecs, or one brand) opens most discussed first: signal scores only
   // compare within a category (owner, 2026-11-13). A category opens on the signal order; "Top rated" stays one click away.
   const mixed = (niche.typePages?.length ?? 0) > 1 && !shape;
+  // The signal score shows only where every product is the same kind (owner, 2026-11-13): hidden in these mixed views.
   const defaultSort = mixed ? "discussed" : DEFAULT_SORT, sort = f.sort ? parseSort(f.sort) : defaultSort;
   const totals = new Map(data.listed.map(r => { const s = score(data, r.id); return [r.id, s.count + s.web] as const; }));
   const known = (r: Product, t: string) => { const n = tc.get(r.id)?.get(t) ?? 0; return n >= KNOWN_MIN && n >= KNOWN_SHARE * (totals.get(r.id) ?? 0); };
@@ -143,7 +144,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
         <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
           const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);
           return <div key={r.id} className="lt-slot">
-            <LightRow data={data} r={r} rank={null} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
+            <LightRow data={data} r={r} rank={null} noSignal={mixed} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
               extra={<CompareCheck slug={r.slug} name={name}/>}/>
           </div>; })}/></div>
         {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={clearAll}>Clear filters</a></p>}
