@@ -2389,3 +2389,11 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
 .lt-board .lt-bar-aside .lt-sort, .lt-board .lt-bar-aside .lt-sort select { height: auto !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; line-height: 1.3; }
 .lt-how { margin-top: 6px; padding-bottom: 8px; }
 @media (max-width: 720px) { .lt-board .lt-bar-aside { padding: 0 !important; margin: 6px 0 8px; align-self: flex-start; } }
+/* Home: a wider name and summary column, like the catalogue (owner, 2026-11-13). */
+@media (min-width: 901px) { .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) 244px; gap: 24px; } }
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 34px 60px minmax(0, 1fr) 72px 118px 54px; gap: 10px; padding: 12px 6px; }
+  .home-d .lt-row.v2 > .lt-art { width: 60px; height: 60px; }
+  .home-d .lt-row.v2 .lt-posn { font-size: 12.5px; }
+  .home-d .lt-row.v2 > .lt-rank { font-size: 19px; }
+}
