@@ -2294,3 +2294,6 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 }
 @media (min-width: 901px) { .lcx .lt-row.v2.no-rank { grid-template-columns: 72px minmax(0, 1fr) 80px 140px 62px; gap: 14px; } .lcx .lt-row.v2 > .lt-art { width: 72px; height: 72px; } .lcx .lt-row.v2 > .lt-sig small { font-size: 12.5px; } }
 @media (min-width: 901px) { .lcx .lt-row.v2.no-rank { grid-template-columns: 72px minmax(0, 1fr) 76px 126px 58px; gap: 12px; } .lcx .lt-row.v2 .lt-posn { font-size: 13px; } .lcx .lt-row.v2 > .lt-sig small { font-size: 12px; } }
+/* Catalogue search on the page colour, with a slightly firmer outline (owner, 2026-11-13). */
+.lcx-tools .lc-search input { background-color: transparent !important; border-color: #ddd8cf !important; }
+.lcx-tools .lc-search input:focus { border-color: var(--lt-acc) !important; background-color: transparent !important; }
