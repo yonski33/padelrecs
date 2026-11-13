@@ -232,14 +232,23 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
               extra={list.trait ? <span className="lt-trait">{`${e.traitReviews} mention ${list.trait.noun}`}</span> : undefined}/>
           </li>; })}</ol>
       </section>
-      <aside className="lr-aside">
+    </div>
+    {/* The list has the whole width (owner, 2026-11-13); what sat beside it comes after it, before the questions. */}
+    <div className="lr-below">
+      {others.length > 0 && <section className="lr-more2"><h2>More rankings</h2>
+        <ul>{others.slice(0, 8).map(l => { const top = l.entries[0], full = top && data.rackets.find(r => r.id === top.product.id), b = top ? brandOf(top.product.brandId) : undefined;
+          return <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>
+            <span className="lr-more-art">{full ? <ProductArt product={full} brand={b}/> : null}</span>
+            <span className="lr-more-text"><b>{l.list.label}</b>{top && <small>{`#1 ${displayName(top.product.name, b)}`}</small>}</span>
+            <span className="lr-more-go" aria-hidden="true">→</span>
+          </a></li>; })}</ul></section>}
+      <div className="lr-below-boxes">
         <section className="lr-box">
           <h2>How this ranking works</h2>
           <p>{`We collect first-hand ${people.one} reviews, read each as positive, mixed or negative, and rank by the signal: positive reviews weighed by how many there are. No sponsored placements.`}</p>
         </section>
-        {others.length > 0 && <section className="lr-box lr-more"><h2>More rankings</h2><ul>{others.slice(0, 8).map(l => <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>{l.list.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>}
         {niche.finder && <a className="lr-box lr-finder" href="/finder"><b>{niche.finder.navLabel}</b><span>{niche.finder.invite}</span></a>}
-      </aside>
+      </div>
     </div>
     <section className="faq top-faq" id="how-we-rank">
       <h2>{`${sentenceCase(list.title)}: common questions`}</h2>
