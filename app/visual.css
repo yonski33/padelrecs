@@ -2717,3 +2717,19 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .review-list h2, .lrv h1, .lrv-hero h1 { color: #242424; }
 /* Category clicks swap the list in place (owner, 2026-11-13): it fades while the next one loads. */
 .lc-grid:has(.lc-radios.is-pending) .lc-list { opacity: .45; transition: opacity .15s ease .08s; pointer-events: none; }
+/* Left to right: total reviews, positive reviews over the bar, then the signal score (owner, 2026-11-13). Phones keep
+   the signal top right with positive and total underneath. */
+@media (min-width: 721px) {
+  .lt-row.v2 { grid-template-areas: "rank art body total pos sig" !important; }
+  .lt-row.v2.no-rank { grid-template-areas: "art body total pos sig" !important; }
+}
+/* …and the column widths swap with them, so the signal keeps the wider slot. */
+@media (min-width: 901px) {
+  .lt-row.v2, .home-d .lt-row.v2 { grid-template-columns: 40px 88px minmax(0, 1fr) 70px 150px 84px !important; }
+  .lt-row.v2.no-rank, .lcx .lt-row.v2.no-rank { grid-template-columns: 92px minmax(0, 1fr) 70px 150px 84px !important; }
+}
+@media (min-width: 721px) and (max-width: 900px) {
+  .lt-row.v2 { grid-template-columns: 36px 76px minmax(0, 1fr) 64px 128px 74px !important; }
+  .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 64px 128px 74px !important; }
+  .home-d .lt-row.v2 { grid-template-columns: 32px 56px minmax(0, 1fr) 58px 120px 74px !important; }
+}
