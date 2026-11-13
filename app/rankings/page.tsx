@@ -12,9 +12,7 @@ import { rankedLists, listHref, longDate, currentYear } from "./lists";
 import { FinderInvite } from "../finder/invite";
 import { ProductArt, SignalPop } from "../visual";
 import { productHref } from "../../lib/niche";
-import { displayName } from "../../lib/brand-name";
 import { lightFont } from "../light-font";
-import { ProductIcon } from "../icons";
 
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
@@ -40,26 +38,25 @@ export default async function TopListsIndex({ searchParams }: { searchParams: Pr
     const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
     // The rankings hub after the owner's mockup (2026-11-13): rankings by type, then by what matters (trait lists), as
     // cards with the type's icon, a line, how many are ranked and the top pick's photo.
-    const card = ({ list, entries }: (typeof unique)[number]) => { const top = entries[0], r = top && data.rackets.find(x => x.id === top.product.id), b = top ? brandOf(top.product.brandId) : undefined;
-      return <li key={list.slug}><a className="lrx-card" href={`${listHref(list.slug)}`}>
-        <span className="lrx-icon" aria-hidden="true"><ProductIcon shape={top?.product.shape ?? null} brand={b}/></span>
-        <span className="lrx-text"><b>{list.label}</b>{list.intro && <span className="lrx-intro">{list.intro}</span>}<small>{`${entries.length} ranked`}</small></span>
-        {top && <span className="lrx-top"><span className="lrx-art">{r && <ProductArt product={r} brand={b}/>}</span>
-          <span className="lrx-pick"><small>Top pick</small><b>{displayName(top.product.name, b)}</b></span></span>}
-        <span className="lrx-go" aria-hidden="true">→</span>
+    // Cards after the owner's pick (2026-11-13, option B): the title and a line, then the list's top three as real photos
+    // and how many are ranked. One kind of image per card, and lists that share a #1 still look apart.
+    const card = ({ list, entries }: (typeof unique)[number]) => {
+      return <li key={list.slug}><a className="lrx-card2" href={`${listHref(list.slug)}`}>
+        <span className="lrx2-text"><b>{list.label}</b>{list.intro && <span className="lrx-intro">{list.intro}</span>}</span>
+        <span className="lrx2-foot">
+          <span className="lrx2-thumbs" aria-hidden="true">{entries.slice(0, 3).map(e => { const r = data.rackets.find(x => x.id === e.product.id); return <span key={e.product.id} className="lrx2-art">{r && <ProductArt product={r} brand={brandOf(r.brandId)}/>}</span>; })}</span>
+          <span className="lrx2-go">{`${entries.length} ranked`} <span aria-hidden="true">→</span></span>
+        </span>
       </a></li>; };
-    const groups = [{ title: `By ${w.one}`, lists: unique.filter(l => !l.list.trait) }, { title: "By what matters", lists: unique.filter(l => l.list.trait) }].filter(g => g.lists.length);
     return <main className={`top-page v2 lt-page lri lrx ${lightFont.className}`}>
       <p className="crumbs"><a href="/">Home</a><span>/</span>Rankings</p>
       <header className="lrx-hero">
         <h1>{`Explore ${category.split(" ")[0].toLowerCase()} `}<em>rankings</em></h1>
-        <p className="lrx-sub">{`The ${w.many} real ${people.many} recommend, organized by type and what matters most.`}</p>
+        <p className="lrx-sub">{`The ${w.many} real ${people.many} recommend, ranked from their reviews.`}</p>
         <p className="lrx-meta">{`${unique.length} rankings · ${reviews.size} ${w.many} · Built from real ${people.one} reviews · No sponsored placements`}<span className="lrx-sep" aria-hidden="true">|</span><SignalPop label="How rankings work"/></p>
       </header>
-      {groups.map(g => <section key={g.title} className="lrx-group">
-        <h2>{g.title}<span className="lrx-count">{`${g.lists.length} ${g.lists.length === 1 ? "ranking" : "rankings"}`}</span></h2>
-        <ul className="lrx-grid">{g.lists.map(card)}</ul>
-      </section>)}
+      {/* One plain grid, the type rankings first (owner, 2026-11-13): few enough lists that groups only add noise. */}
+      <ul className="lrx-grid lrx-all">{[...unique.filter(l => !l.list.trait), ...unique.filter(l => l.list.trait)].map(card)}</ul>
       {niche.finder && <a className="lri-finder" href="/finder"><b>{niche.finder.heading}</b><span>{niche.finder.invite}</span><span className="lri-go">{`${niche.finder.navLabel} →`}</span></a>}
     </main>;
   }
