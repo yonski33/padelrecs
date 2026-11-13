@@ -2857,3 +2857,9 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 :is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { font-weight: 600; }
 :is(.lr-list, .lcx) .lt-row.v2 > .lt-sig small { color: #4a464a !important; font-weight: 500; }
 @media (max-width: 720px) { :is(.lr-list, .lcx) .lt-row.v2 .lt-name { font-size: 16px !important; } }
+/* …but the review total and the Amazon link step back again there (owner, 2026-11-13): the summary reads dark, the signal
+   is the number to look at, and the count and shop link stay quieter, as before. */
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b, :is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { color: #6b665e !important; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b { font-weight: 700; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { font-weight: 500; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-shop { font-weight: 500; }
