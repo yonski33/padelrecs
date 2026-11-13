@@ -13,7 +13,7 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
   const snapshot = catalogSnapshot(catalog, "pickleballrecs", "catalog:test", false);
   assert.equal(snapshotSchema(snapshot), "pickleballrecs");
   assert.equal(snapshot.tables.brands.length, 31);
-  assert.equal(snapshot.tables.rackets.length, 287);
+  assert.equal(snapshot.tables.rackets.length, 289);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 287, "no two paddles share a URL");
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0, "a catalog never brings reviews");
   assert(catalog.products.every(p => p.sources.every(s => /^https:\/\//.test(s))), "every value has an https source");
@@ -32,7 +32,7 @@ test("the pickleball catalog (starter + expansion) is complete, sourced and impo
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
     const counts = await importSnapshot(db, snapshot);
-    assert.deepEqual(counts, { brands: 31, rackets: 287, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(counts, { brands: 31, rackets: 289, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
@@ -715,13 +715,13 @@ test("the SleepRecs catalog: 238 sourced products in all seven categories, tiers
   } finally { await engine.close(); }
 });
 
-test("the LaptopRecs catalog: 287 sourced laptops in all seven categories, one per model and generation, unique URLs", async () => {
+test("the LaptopRecs catalog: 289 sourced laptops in all seven categories, one per model and generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/laptop.json");
   const snapshot = catalogSnapshot(catalog, "laptoprecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 14);
-  assert.equal(snapshot.tables.rackets.length, 287);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 287);
+  assert.equal(snapshot.tables.rackets.length, 289);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 289);
   const categories = niches.laptop.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/laptop");
   for (const r of snapshot.tables.rackets) {
@@ -739,7 +739,7 @@ test("the LaptopRecs catalog: 287 sourced laptops in all seven categories, one p
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 287, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 289, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
