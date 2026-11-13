@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche, productHref } from "../../../lib/niche";
-import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, RANKINGS_PATH, listYear, type ListEntry } from "../../../lib/top-lists";
+import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, RANKINGS_PATH, listYear, listModelYear, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon } from "../../icons";
 import { lightFont } from "../../light-font";
@@ -111,7 +111,7 @@ function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nam
   if (lead && lead[1].length >= 2 && [...brands.values()].filter(v => v.length === lead[1].length).length === 1) faq.push({ q: `Which brand has the most ${w.many} on this list?`, a:
     `${lead[0]}, with ${lead[1].length} of the ${entries.length}: ${lead[1].map(e => `${nameOf(e)} (#${e.rank})`).join(", ").replace(/, ([^,]+)$/, " and $1")}.` });
   faq.push({ q: `How is this ranking made?`, a:
-    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand comments quoted from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order follows each ${w.one}'s signal score, which rewards ${w.many} that are both well liked and widely discussed.` });
+    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand experiences collected and summarized from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order follows each ${w.one}'s signal score, which rewards ${w.many} that are both well liked and widely discussed.` });
   faq.push({ q: `What is the signal score?`, a: `A score out of 100 for how well reviewed a ${w.one} is. Negative and mixed reviews take points off, and so does having only a few reviews, so a ${w.one} many people like ranks above one a handful love. It needs at least ${MIN_SIGNAL_REVIEWS} reviews and moves as new reviews come in.` });
   faq.push({ q: `What does a ${w.one} need to make this list?`, a: [
     `At least ${min} reviews, with at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counts as half).`,
@@ -208,12 +208,15 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
   const sources = [...platforms, niche.site.name].join(", ").replace(/, ([^,]+)$/, " and $1");
   const others = lists.filter((l, i) => l !== found && lists.findIndex(x => x.list.slug === l.list.slug) === i);
   const lightHref = (x: { slug: string }) => `${productHref(x)}`;
+  const year = listYear(list);
   return <main className={`top-page v2 lt-page lr ${lightFont.className}`}>
     {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you).</p>}
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <p className="crumbs"><a href={RANKINGS_PATH}>Rankings</a><span>/</span>{list.label}</p>
     <header className="lr-hero">
-      <h1>{`${sentenceCase(list.title)}, according to `}<em>{`real ${people.many}`}</em></h1>
+      {/* "Best gaming monitors 2026, ranked by real owners" (owner, 2026-11-14): the year people search for, and our angle
+          in the same line. A last-season list says "of 2025"; a title that already has its year keeps it once. */}
+      <h1>{`${sentenceCase(list.title)}${String(list.title).includes(String(year)) ? "" : listModelYear(list) ? ` of ${year}` : ` ${year}`}, ranked by `}<em>{`real ${people.many}`}</em></h1>
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
       <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews of the last ${windowLabel(reviewWindowMonths(list))} on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}

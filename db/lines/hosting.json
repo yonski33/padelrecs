@@ -17,10 +17,10 @@
   "netcup": "Strong performance on low-priced root servers; the gripe is slow support and tough cancellation.",
   "oracle-cloud": "Generous free tier for small servers, but free instances can be hard to get or vanish unannounced.",
   "porkbun": "Low, predictable renewal prices and easy transfers; a minority find support slow on complex issues.",
-  "pressable": "Rock solid for WordPress and WooCommerce sites; one found it poor over unsupported plugins.",
+  "pressable": "Rock solid for WordPress and WooCommerce sites; one ran into trouble with unsupported plugins.",
   "racknerd": "Budget VPS with long stretches of uptime for small projects; no built-in backups or firewall.",
   "rocket-net": "Fast load times and quick access to a real person; one found it struggled with a heavy plugin site.",
-  "spaceship": "Cheap, simple registrar with bulk transfers and quick refunds; a few had bad domain handling.",
+  "spaceship": "Cheap, simple registrar with bulk transfers and quick refunds; a few had domains mishandled.",
   "vultr": "Fast VPS performance and quick support, though suspensions and lockouts pushed a few to Hetzner.",
   "zoho-mail": "Cheap custom-domain email with a useful free plan; a few found setup and account management fiddly."
 }

@@ -91,7 +91,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // CeraVe Healing Ointment to a Lip Balm twin pack). When the two disagree, the buttons go to the saved item, with no
   // price, since the live price belongs to the other listing.
   const saved = amazonPhoto(r);
-  const amazon = live && saved && live.asin && live.asin !== (r as { amazonAsin?: string | null }).amazonAsin ? { url: saved.url, price: null, image: null } : live;
+  // Also when the live lookup only found a search page: the button goes to the exact saved listing (auditor, 2026-11-14).
+  const amazon = live && saved && live.asin !== (r as { amazonAsin?: string | null }).amazonAsin ? { url: saved.url, price: null, image: null } : live;
   // Niches with `website` links (SoftwareRecs) link to the product's own site instead; an affiliate link only when the data has one.
   const site = websiteButton(r);
   const shopButton = amazon || site;
@@ -107,8 +108,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // The sentiment bar counts user reviews too, by their stars (4–5 positive, 3 mixed, 1–2 negative), like the rankings.
   // Every review with a verdict, the same count as the bar and the tabs (owner, 2026-11-12).
   const verdicts = [...reviews.map(x => ({ sentiment: ratingVerdict(x.rating) })), ...external];
-  // "Most helpful" (our helpfulness score, plus votes) is the default; "Newest" on request.
-  const sort = query.sort === "newest" ? "newest" : "helpful";
+  // Newest first by default (auditor, 2026-11-14: with no helpful votes, "Most helpful" overpromised); "Most detailed"
+  // (our helpfulness score: length, specifics, tags) on request.
+  const sort = query.sort === "helpful" ? "helpful" : "newest";
   const sum = summary(data, r.id);
   const tag = typeof query.tag === "string" && sum.tagCounts.has(query.tag) ? query.tag : undefined;
   const verdict = (["positive", "mixed", "negative"] as const).find(v => v === query.verdict);
@@ -189,13 +191,14 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100. Negative and mixed reviews take points off, and so does having only a few reviews: a ${niche.words.one} needs plenty of them, compared with the most-reviewed ${niche.words.many} here, to reach the high 80s and 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
   if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
-  // Where the reviews come from (this used to be two sidebar boxes): web quotes by platform, and how user reviews count.
+  // Where the reviews come from (this used to be two sidebar boxes): web reviews by platform, and how user reviews count.
   if (external.length || reviews.length) {
     const plats = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "blogs" : platformName(p)))], list2 = (ts: string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
     faq.push({ q: `Where do these ${name} reviews come from?`, a: [
-      external.length ? `${external.length.toLocaleString("en-US")} are quotes from ${list2(plats)}, each linked to the original.` : "",
-      reviews.length ? `${reviews.length.toLocaleString("en-US")} ${reviews.length === 1 ? "was" : "were"} written by ${niche.people.many} here.` : "",
-      `${niche.people.One} reviews are checked for spam before they appear. Every review, written here or quoted, is read as positive, mixed or negative.`,
+      // Collected and summarized, not quoted (auditor, 2026-11-14): most web reviews show as short summaries.
+      external.length ? `We collected and summarized ${external.length.toLocaleString("en-US")} ${external.length === 1 ? "experience" : "experiences"} shared on ${list2(plats)}, with links to the original sources.` : "",
+      reviews.length ? `${reviews.length === 1 ? "One review was" : `${reviews.length.toLocaleString("en-US")} reviews were`} submitted directly to ${niche.site.name}.` : "",
+      `Reviews submitted here are checked for spam before they appear. Every review, submitted here or collected, is read as positive, mixed or negative.`,
     ].filter(Boolean).join(" ") });
   }
   // Structured data for Google: FAQ and breadcrumbs. The star-rating Product block went with the 1–5 ratings (owner
@@ -341,14 +344,14 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
       <section className="lp-hero">
         {own ? <div className="lp-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
-          ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+          // Not a link (owner, 2026-11-14): people click a photo to look at it, so the Amazon link stays on the button only.
+          ? <div className="lp-photo art art-amazon"><img src={amazonImage} alt={fullName}/></div>
           : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
         <div className="lp-info">
-          {/* After the owner's product-page mockup (2026-11-13): a kicker, the name, the category chip, the take, then the
+          {/* After the owner's product-page mockup (2026-11-13): the name with "Reviews" after it (owner, 2026-11-14; no kicker above), the category chip, the take, then the
               signal, the positive share and the review count as one group, one Amazon button and a quiet reviews link. */}
-          <p className="lp-eyebrow">{`Reviews & ${niche.people.one} experiences`}</p>
           <div className="lp-title">
-            <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
+            <h1>{fullName}<span className="lp-h1-rev"> Reviews</span></h1>
           </div>
           {r.shape && <p className="lp-chiprow"><span className="lp-cat">{r.shape}</span>{hasYears && <span className="lp-year">{r.year}</span>}{placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}

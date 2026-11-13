@@ -175,7 +175,6 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
 /** The light product page's review (owner's mockup, 2026-11-12): a round source icon at the left, the source and date on
  *  top with the verdict in the corner, what kind of summary it is, the words, then a link to the original. */
 function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
-  const helpful = (n?: number | null) => n ? <span className="lv-help">{`Helpful ${n}`}</span> : null;
   if ("review" in props) {
     const r = props.review, v = verdictOf(r.rating);
     return <article className="lv">
@@ -183,7 +182,7 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
       <div className="lv-body">
         <header><p className="lv-src"><b>{`${niche.people.One} review`}</b>{[r.alias || "Anonymous", r.playerLevel, fullDate(r.createdAt)].filter(Boolean).map(x => ` · ${x}`).join("")}</p><span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
         <p className="lv-text">{r.reviewText}</p>
-        <footer>{helpful((r as { helpful?: number }).helpful)}<AdminEdit type="player" id={r.id}/></footer>
+        <footer><AdminEdit type="player" id={r.id}/></footer>
       </div>
     </article>;
   }
@@ -194,7 +193,7 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
       {/* Source, where, when and "summarized" on one line (owner's audit, 2026-11-13); the kind of source is in the hover title. */}
       <header><p className="lv-src" title={`Summary of a ${kind}`}><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}{e.summary ? " · summarized" : ""}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
       <p className="lv-text">{quoteText(e)}</p>
-      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
+      <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a><AdminEdit type="web" id={e.id}/></footer>
     </div>
   </article>;
 }

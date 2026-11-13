@@ -57,10 +57,10 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`) || (href === catalogPath && !!inTypePath);
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
           // Latest reviews sits right after Rankings (owner, 2026-11-13).
-          const reviews = <a key="reviews" href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}>Latest reviews</a>;
+          const reviews = <a key="reviews" href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}><span className="nav-long">Latest reviews</span><span className="nav-short">Reviews</span></a>;
           return href === catalogPath ? [link, ranked.length ? <TopMenu key="rankings" pathname={pathname} ranked={ranked}/> : null, reviews] : link;
         })}
-        {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}><span className="nav-long">{finderLink[1]}</span><span className="nav-short">Finder quiz</span></a>}
+        {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}><span className="nav-long">{finderLink[1]}</span><span className="nav-short">Finder</span></a>}
       </nav>
         <RacketSearch/>
         {!onAddPage && <a className="button header-add" href={addHref}><PlusIcon/><span>Add<span className="long"> a review</span></span></a>}

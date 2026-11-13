@@ -26,7 +26,7 @@ export default function AffiliateDisclosure() {
     <p>{`Each ${niche.words.one} page and every ranking list has a "Check price on Amazon" button for each ${niche.words.one}. They go to that ${niche.words.one} on Amazon when we can find it there, or to an Amazon search for its name when we can't. Those links carry our Amazon Associates tag, so Amazon can tell the visit came from ${site}. Commissions help pay for hosting and for keeping the catalog up to date.`}</p>
 
     <h2>What affiliate links never change</h2>
-    <p>{`Ratings come only from ${niche.people.one} reviews, and quotes from around the web are kept separate from them. Rankings are worked out from those reviews. No brand or retailer pays to be listed, rated or ranked, and every ${niche.words.one} gets the same Amazon button whether its reviews are glowing or harsh.`}</p>
+    <p>{`Ratings come only from ${niche.people.one} reviews, and experiences collected from around the web are kept separate from them. Rankings are worked out from those reviews. No brand or retailer pays to be listed, rated or ranked, and every ${niche.words.one} gets the same Amazon button whether its reviews are glowing or harsh.`}</p>
 
     <h2>Amazon Associates Program</h2>
     <p>{`${site} is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, ${site} earns from qualifying purchases.`}</p>
