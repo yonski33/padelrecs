@@ -1,5 +1,5 @@
 {
-  "about": "SnowboardRecs starter catalog: snowboards and splitboards from 14 makers, 2025 and 2026 model years (splitboards also 2027), one entry per model and model year as evo.com names them, colourways and sizes merged, women's-only models kept under their own names, kids' boards left out. Read on 2026-10-24 from each board's evo.com product page. Category comes from evo's terrain list: Powder, or Freeride listed first, makes a Freeride snowboard; Freestyle listed first a Freestyle snowboard; otherwise All-mountain. Terrain, profile (evo's rocker type, in the maker's own words), shape and flex are as the page states them; blank where the page gives none or gives only sidecut tech. Bindings and boots are not included: Burton and thirtytwo don't give them model years. Older model years (2010–2024) are added only for boards with 3 or more first-hand rider reviews, read on 2026-10-27 from that year's evo.com page (live outlet page, or its web.archive.org copy where evo now redirects to the current model).",
+  "about": "SnowboardRecs starter catalog: snowboards and splitboards from 14 makers, 2025 and 2026 model years (splitboards also 2027), one entry per model and model year as evo.com names them, colourways and sizes merged, women's-only models kept under their own names, kids' boards left out. Read on 2026-10-24 from each board's evo.com product page. Category comes from evo's terrain list: Powder, or Freeride listed first, makes a Freeride snowboard; Freestyle listed first a Freestyle snowboard; otherwise All-mountain. Terrain, profile (evo's rocker type, in the maker's own words), shape and flex are as the page states them; blank where the page gives none or gives only sidecut tech. Bindings and boots are not included: Burton and thirtytwo don't give them model years. Older model years (2010–2024) are added only for boards with 3 or more first-hand rider reviews, read on 2026-10-27 from that year's evo.com page (live outlet page, or its web.archive.org copy where evo now redirects to the current model). Catalog adds on 2026-11-13 (3+ held first-hand reviews from distinct authors, owner standing OK): model years 2019-2024 read from that year's evo.com page (live or web.archive.org copy dated within that model year's selling season; the heading must state the same model year).",
   "checked": "2026-10-24",
   "brands": [
     {
@@ -63,6 +63,45 @@
     {
       "brand": "burton",
       "name": "Burton Custom",
+      "year": 2020,
+      "shape": "All-mountain snowboard",
+      "weight": "Stiff",
+      "core": "Directional Twin",
+      "surface": "Camber",
+      "balance": "All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20190820183922/https://www.evo.com/snowboards/burton-custom-snowboard"
+      ]
+    },
+    {
+      "brand": "burton",
+      "name": "Burton Custom",
+      "year": 2023,
+      "shape": "All-mountain snowboard",
+      "weight": "Medium",
+      "core": "Directional Twin",
+      "surface": "Camber",
+      "balance": "All-Mountain, Freeride",
+      "sources": [
+        "https://web.archive.org/web/20220814004155/https://www.evo.com/snowboards/burton-custom-snowboard"
+      ]
+    },
+    {
+      "brand": "burton",
+      "name": "Burton Custom",
+      "year": 2024,
+      "shape": "All-mountain snowboard",
+      "weight": "Medium",
+      "core": "Directional Twin",
+      "surface": "Camber",
+      "balance": "All-Mountain, Freeride",
+      "sources": [
+        "https://web.archive.org/web/20240104061657/https://www.evo.com/snowboards/burton-custom-snowboard"
+      ]
+    },
+    {
+      "brand": "burton",
+      "name": "Burton Custom",
       "year": 2025,
       "shape": "All-mountain snowboard",
       "weight": "Medium",
@@ -123,6 +162,19 @@
       "balance": "All-Mountain, Freeride, Freestyle",
       "sources": [
         "https://web.archive.org/web/20140926003547/http://www.evo.com/outlet/snowboards/burton-custom-x-snowboard-2014.aspx"
+      ]
+    },
+    {
+      "brand": "burton",
+      "name": "Burton Custom X",
+      "year": 2021,
+      "shape": "All-mountain snowboard",
+      "weight": "Very Stiff",
+      "core": "Directional Twin",
+      "surface": "Camber",
+      "balance": "All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20201031075250/https://www.evo.com/snowboards/burton-custom-x-snowboard"
       ]
     },
     {
@@ -414,6 +466,45 @@
     {
       "brand": "capita",
       "name": "CAPiTA Defenders of Awesome",
+      "year": 2019,
+      "shape": "Freestyle snowboard",
+      "weight": "Medium",
+      "core": "True Twin",
+      "surface": "All-Terrain V2 Profile",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20190820224259/https://www.evo.com/outlet/snowboards/capita-defenders-of-awesome-snowboard-2019"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Defenders of Awesome",
+      "year": 2021,
+      "shape": "Freestyle snowboard",
+      "weight": "5.5/10",
+      "core": "True Twin",
+      "surface": "Resort V1 Profile",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20200822002250/https://www.evo.com/snowboards/capita-defenders-of-awesome-snowboard"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Defenders of Awesome",
+      "year": 2022,
+      "shape": "Freestyle snowboard",
+      "weight": "5.5/10",
+      "core": "True Twin",
+      "surface": "Resort V1 Profile",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20211017001134/https://www.evo.com/snowboards/capita-defenders-of-awesome-snowboard"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Defenders of Awesome",
       "year": 2024,
       "shape": "Freestyle snowboard",
       "weight": "5.5/10",
@@ -487,6 +578,45 @@
       "balance": "Freestyle, All-Mountain",
       "sources": [
         "https://www.evo.com/products/265524-capita-super-doa-snowboard-2026"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Mercury",
+      "year": 2020,
+      "shape": "Freestyle snowboard",
+      "weight": "Stiff",
+      "core": "Directional Twin",
+      "surface": "Resort V2 Profile",
+      "balance": "Freestyle, All-Mountain, Freeride",
+      "sources": [
+        "https://web.archive.org/web/20190915094746/https://www.evo.com/snowboards/capita-mercury-snowboard"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Mercury",
+      "year": 2022,
+      "shape": "All-mountain snowboard",
+      "weight": "6.5/10",
+      "core": "Directional Twin",
+      "surface": "Resort V2 Profile",
+      "balance": "All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20211025103402/https://www.evo.com/snowboards/capita-mercury-snowboard"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA Mercury",
+      "year": 2023,
+      "shape": "All-mountain snowboard",
+      "weight": "6.5/10",
+      "core": "Directional Twin",
+      "surface": "Resort V2 Profile",
+      "balance": "All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20220922101219/https://www.evo.com/snowboards/capita-mercury-snowboard?image=220039/890326/capita-mercury-snowboard-2"
       ]
     },
     {
@@ -643,6 +773,19 @@
       "balance": "All-Mountain, Powder",
       "sources": [
         "https://www.evo.com/products/265528-capita-the-navigator-snowboard-2026"
+      ]
+    },
+    {
+      "brand": "capita",
+      "name": "CAPiTA The Black Snowboard of Death",
+      "year": 2024,
+      "shape": "All-mountain snowboard",
+      "weight": "6.5/10",
+      "core": "Directional",
+      "surface": "Alpine V1 Profile",
+      "balance": "All-Mountain, Freeride",
+      "sources": [
+        "https://web.archive.org/web/20231021132141/https://www.evo.com/snowboards/capita-the-black-snowboard-of-death"
       ]
     },
     {
@@ -1285,6 +1428,19 @@
     {
       "brand": "jones",
       "name": "Jones Flagship",
+      "year": 2023,
+      "shape": "All-mountain snowboard",
+      "weight": "8/10",
+      "core": "Directional",
+      "surface": "Directional Rocker",
+      "balance": "All-Mountain, Freeride",
+      "sources": [
+        "https://web.archive.org/web/20220817043309/https://www.evo.com/snowboards/jones-flagship-snowboard"
+      ]
+    },
+    {
+      "brand": "jones",
+      "name": "Jones Flagship",
       "year": 2026,
       "shape": "All-mountain snowboard",
       "weight": "Stiff",
@@ -1410,6 +1566,32 @@
       "balance": "All-Mountain",
       "sources": [
         "https://www.evo.com/products/264094-jones-dream-weaver-2-0-snowboard-women-s-2026"
+      ]
+    },
+    {
+      "brand": "never-summer",
+      "name": "Never Summer Proto Synthesis",
+      "year": 2023,
+      "shape": "Freestyle snowboard",
+      "weight": "6/10",
+      "core": "True Twin",
+      "surface": "Shock Wave Rocker Camber",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20220627200827/https://www.evo.com/snowboards/never-summer-proto-synthesis-snowboard"
+      ]
+    },
+    {
+      "brand": "never-summer",
+      "name": "Never Summer Proto Synthesis",
+      "year": 2024,
+      "shape": "Freestyle snowboard",
+      "weight": "6/10",
+      "core": "True Twin",
+      "surface": "Shock Wave Rocker Camber",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20230922004351/https://www.evo.com/snowboards/never-summer-proto-synthesis-snowboard"
       ]
     },
     {
@@ -2729,6 +2911,19 @@
     {
       "brand": "bataleon",
       "name": "Bataleon Evil Twin",
+      "year": 2020,
+      "shape": "Freestyle snowboard",
+      "weight": "5/10",
+      "core": "True Twin",
+      "surface": "Medium Camber",
+      "balance": "Freestyle, All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20210116095258/https://www.evo.com/outlet/snowboards/bataleon-evil-twin-snowboard-2020"
+      ]
+    },
+    {
+      "brand": "bataleon",
+      "name": "Bataleon Evil Twin",
       "year": 2025,
       "shape": "Freestyle snowboard",
       "weight": "5/10",
@@ -3153,6 +3348,32 @@
       "balance": "Backcountry",
       "sources": [
         "https://www.evo.com/products/281905-arbor-landmark-splitboard-2027"
+      ]
+    },
+    {
+      "brand": "arbor",
+      "name": "Arbor Formula Rocker",
+      "year": 2023,
+      "shape": "All-mountain snowboard",
+      "weight": "5/10",
+      "core": "Directional Twin",
+      "surface": "System Rocker",
+      "balance": "All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20230208162440/https://www.evo.com/snowboards/arbor-formula-rocker-snowboard"
+      ]
+    },
+    {
+      "brand": "arbor",
+      "name": "Arbor Formula Camber",
+      "year": 2023,
+      "shape": "All-mountain snowboard",
+      "weight": "5/10",
+      "core": "Directional Twin",
+      "surface": "System Camber",
+      "balance": "All-Mountain",
+      "sources": [
+        "https://web.archive.org/web/20221205231537/https://www.evo.com/snowboards/arbor-formula-camber-snowboard?avad=196194_c2ccda965&a=Avantlink"
       ]
     },
     {
