@@ -256,20 +256,24 @@ export function SignalInfo({ align = "left" }: { align?: "left" | "right" }) {
 
 /** A short review card for the home page's "Recent reviews" preview (owner's mockup, 2026-11-13): photo, product, where
  *  and when, the verdict and the words, clamped to a few lines. The full feed stays one click away. */
-export function RecentCard(props: { data: Catalog } & ({ review: PlayerReview } | { entry: WebReview })) {
+export function RecentCard(props: { data: Catalog; now?: number } & ({ review: PlayerReview } | { entry: WebReview })) {
   const id = "review" in props ? props.review.racketId : props.entry.racketId;
   const r = props.data.rackets.find(x => x.id === id);
   if (!r) return null;
   const brand = props.data.brands.find(b => b.id === r.brandId)?.name;
-  const [from, date, verdict, text] = "review" in props
-    ? [`a ${niche.site.name} ${niche.people.one}`, props.review.createdAt, verdictOf(props.review.rating), props.review.reviewText]
-    : (() => { const e = props.entry, l = sourceLabel(e); return [l.name ? l.name : l.platform, e.sourceDate || e.createdAt, e.sentiment, quoteText(e)] as const; })();
+  // "Reddit · r/SkincareAddiction · Added 12 min ago" (owner's mockup, 2026-11-13): where it's from and when it was added here.
+  const added = (iso: string) => { const m = Math.max(0, Math.floor(((props.now ?? Date.now()) - Date.parse(iso)) / 60000));
+    return m < 60 ? `Added ${Math.max(1, m)} min ago` : m < 1440 ? `Added ${Math.floor(m / 60)} h ago` : m < 2880 ? "Added yesterday" : `Added ${Math.floor(m / 1440)} days ago`; };
+  const [src, verdict, text] = "review" in props
+    ? [[`${niche.site.name} ${niche.people.one}`, added(props.review.createdAt)], verdictOf(props.review.rating), props.review.reviewText]
+    : (() => { const e = props.entry, l = sourceLabel(e); return [[l.platform, l.name, added(e.createdAt)].filter(Boolean), e.sentiment, quoteText(e)] as const; })();
   return <article className="rc-card">
     <a className="rc-art" href={productHref(r)} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
     <div className="rc-body">
       <header><a className="rc-name" href={productHref(r)}>{displayName(r.name, brand)}</a>{verdict && <span className={`spill s-${verdict}`}>{sentimentWord[verdict as keyof typeof sentimentWord]}</span>}</header>
-      <p className="rc-src">{`from ${from}`}{date && <> · {fullDate(date)}</>}</p>
-      <p className="rc-text">{`“${String(text).replace(/^[“"]|[”"]$/g, "")}”`}</p>
+      <p className="rc-src">{(src as string[]).join(" · ")}</p>
+      <p className="rc-text">{String(text)}</p>
+      <a className="rc-more" href={`${productHref(r)}#reviews`}>Read reviews <span aria-hidden="true">→</span></a>
     </div>
   </article>;
 }

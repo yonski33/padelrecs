@@ -115,11 +115,11 @@ export default async function Home({ searchParams }: {
   </section>;
 
   const recentItems = spreadByProduct([
-    ...data.reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <RecentCard review={r} data={data}/> })),
-    ...data.external.filter(e => e.sentiment).map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <RecentCard entry={e} data={data}/> })),
+    ...data.reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <RecentCard review={r} data={data} now={now.getTime()}/> })),
+    ...data.external.filter(e => e.sentiment).map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <RecentCard entry={e} data={data} now={now.getTime()}/> })),
   ]).slice(0, 4);
   const recent = recentItems.length > 0 && <section className="feed rc-feed" id="latest">
-    <div className="rc-head"><h2>Recent reviews</h2><a href="/reviews">See all recent reviews <span aria-hidden="true">→</span></a></div>
+    <div className="rc-head"><h2>Latest reviews</h2><a href="/reviews">See all reviews <span aria-hidden="true">→</span></a></div>
     <div className="rc-grid">{recentItems.map(item => <Fragment key={item.key}>{item.node}</Fragment>)}</div>
   </section>;
   const [lead1, topic] = homeHeadline();

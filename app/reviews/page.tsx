@@ -1,5 +1,5 @@
 // The full review feed on its own page (owner's mockup, 2026-11-13): newest first, filtered by category, sentiment and
-// source, 12 cards at a time. The home page shows four of them and links here. Per request, cached at the edge for a minute.
+// source, 24 cards at a time (owner, 2026-11-13). The home page shows four of them and links here. Per request, cached at the edge for a minute.
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -14,7 +14,7 @@ import { ago } from "../home-catalog";
 import { lightFont } from "../light-font";
 import { siteOgImages } from "../site-og";
 
-const PAGE = 12, w = niche.words, people = niche.people;
+const PAGE = 24, w = niche.words, people = niche.people;
 const SENTIMENTS = [["", "All"], ["positive", "Positive"], ["mixed", "Mixed"], ["negative", "Negative"]] as const;
 const word = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as const;
 

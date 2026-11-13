@@ -2626,3 +2626,17 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
 /* Review cards on the page colour, so they don't look boxed in (owner, 2026-11-13). */
 .lrv-card, .rc-card { background: transparent !important; border-color: #ece6de !important; }
 .lrv-card:hover, .rc-card:hover { background: #fff !important; }
+/* Home "Latest reviews" after the owner's mockup (2026-11-13): a bigger product photo, two lines of text, a reviews link. */
+.rc-feed { padding-top: 26px; border-top: 1px solid var(--lt-line); margin-top: 30px; }
+.rc-head h2 { font-size: 28px !important; }
+.rc-head a { font-size: 15px; font-weight: 600; }
+.rc-card { grid-template-columns: 100px minmax(0, 1fr) !important; gap: 18px !important; padding: 16px 20px !important; border-radius: 14px; }
+.rc-art { width: 100px !important; height: 110px !important; }
+.rc-art img { mix-blend-mode: multiply; }
+.rc-name { font-size: 16px !important; }
+.rc-src { font-size: 12.5px; color: #827C82 !important; }
+.rc-text { font-size: 14px !important; color: #3d3a3f !important; -webkit-line-clamp: 2 !important; margin-top: 4px !important; }
+.rc-more { justify-self: start; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--lt-acc, var(--green-ink)); text-decoration: none; }
+.rc-more:hover { text-decoration: underline; }
+@media (max-width: 720px) { .rc-card { grid-template-columns: 72px minmax(0, 1fr) !important; gap: 12px !important; padding: 12px 14px !important; } .rc-art { width: 72px !important; height: 84px !important; } .rc-head h2 { font-size: 22px !important; } }
+.rc-text { display: -webkit-box !important; -webkit-box-orient: vertical; overflow: hidden !important; line-height: 1.5 !important; max-height: 3em; }
