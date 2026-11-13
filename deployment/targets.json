@@ -206,7 +206,8 @@
     "sleep": "sleeprecs",
     "laptop": "laptoprecs",
     "print": "printrecs",
-    "tv": "tvrecs"
+    "tv": "tvrecs",
+    "tool": "toolrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

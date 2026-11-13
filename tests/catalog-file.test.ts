@@ -810,3 +810,39 @@ test("the TVRecs catalog: 210 sourced TVs in all three categories, one product p
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 210, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the ToolRecs catalog: 230 sourced tools and platforms in all eight categories, one product per model number, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/tool.json");
+  const snapshot = catalogSnapshot(catalog, "toolrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 12);
+  assert.equal(snapshot.tables.rackets.length, 230);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 230);
+  const categories = niches.tool.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/tool");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 5, `${c}: at least 5 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // The impact-driver and drill rankings filter on the tool type, so those values must stay exact.
+  for (const type of ["Drill/driver", "Hammer drill", "Impact driver"]) assert(snapshot.tables.rackets.filter(r => r.surface === type).length >= 20, type);
+  // Generations and near-identical model numbers are separate products, never merged (the niche's traps).
+  for (const name of ["DeWalt 20V MAX XR 1/2\" Drill/Driver DCD800", "DeWalt 20V MAX XR 1/2\" Hammer Drill/Driver DCD805", "DeWalt 20V MAX XR Compact Drill/Driver DCD791",
+    "DeWalt 20V MAX XR 3-Speed 1/4\" Impact Driver DCF887", "DeWalt 20V MAX XR 3-Speed 1/4\" Impact Driver DCF845", "DeWalt ATOMIC 20V MAX 3-Speed 1/4\" Impact Driver DCF850",
+    "Milwaukee M18 FUEL 1/2\" Hammer Drill/Driver 2804", "Milwaukee M18 FUEL 1/2\" Hammer Drill/Driver 2904", "Milwaukee M18 FUEL 1/4\" Hex Impact Driver 2853", "Milwaukee M18 FUEL 1/4\" Hex Impact Driver 2953",
+    "Milwaukee M12 FUEL 1/4\" Hex Impact Driver 2553", "Milwaukee M12 FUEL 1/4\" Hex Impact Driver 3453", "Milwaukee M18 FUEL 1/2\" High Torque Impact Wrench 2767", "Milwaukee M18 FUEL 1/2\" High Torque Impact Wrench 2967",
+    "Makita 18V LXT Compact Brushless 1/2\" Driver-Drill XFD12", "Makita 18V LXT Compact Brushless 1/2\" Driver-Drill XFD13", "Makita 18V LXT Brushless 4-Speed Impact Driver XDT19", "Makita 18V LXT Brushless 4-Speed Impact Driver XDT20",
+    "Ryobi ONE+ HP Brushless 4-Mode Impact Driver PBLID02", "Ryobi ONE+ HP Brushless 4-Mode Impact Driver PBLID04", "Ego POWER+ 650 CFM Blower LB6504", "Ego POWER+ 765 CFM Blower LB7654",
+    "Festool Track Saw TS 55 F", "Festool Cordless Track Saw TSC 55 K", "Milwaukee M18 Battery Platform", "Milwaukee M12 Battery Platform"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 230, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 230, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
