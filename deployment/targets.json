@@ -218,7 +218,8 @@
     "print": "printrecs",
     "tv": "tvrecs",
     "tool": "toolrecs",
-    "grill": "grillrecs"
+    "grill": "grillrecs",
+    "dog": "dogrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
