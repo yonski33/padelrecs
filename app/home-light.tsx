@@ -13,9 +13,8 @@ import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
 import { listHref } from "./rankings/lists";
 import { HomeBoard, HomeSearch, HomeSort } from "./home-board";
-import { ProductArt, SentimentBar, SignalPop } from "./visual";
-import { amazonLinksOn } from "../lib/amazon-offer";
-import { affiliateTag, amazonLink, amazonSearchLink } from "../lib/amazon";
+import { ProductArt, SignalPop } from "./visual";
+import { LightRow, quickAmazon } from "./light-row";
 import { SourceIcon } from "./icons";
 import { lightFont } from "./light-font";
 import { listLine } from "../lib/list-lines";
@@ -28,31 +27,6 @@ const DAY = 86_400_000, w = niche.words, p = niche.people;
 const fmt = (n: number) => n.toLocaleString("en-US");
 type Product = Catalog["listed"][number];
 export type LightFilters = { q?: string; shape?: string; sort?: string; show?: string };
-
-/** One leaderboard row (owner's mockup, 2026-11-13): rank, photo, name with its one-line summary, category and a quiet
- *  Amazon link; then the signal score, the positive reviews over a sentiment bar, and the total reviews. The rank number
- *  comes from CSS (a counter over the rows shown), so it follows the category picked on the page. The name link covers
- *  the whole row; the Amazon and reviews links sit above it. */
-function Row({ data, r, signal, line, shop }: { data: Catalog; r: Product; signal?: number; line: string | null; shop: string | null }) {
-  const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = lightHref(r);
-  const s = score(data, r.id), total = s.count + s.web;
-  return <div className="lt-row v2">
-    <span className="lt-rank" aria-hidden="true"/>
-    <span className="lt-art"><ProductArt product={r} brand={brand}/></span>
-    <span className="lt-body">
-      <a className="lt-name" href={href}>{name}</a>
-      {line && <span className="lt-line">{line}</span>}
-      {r.shape && <span className="lt-shape">{r.shape}</span>}
-      {shop && <a className="lt-shop" href={shop} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">›</span></a>}
-    </span>
-    <span className="lt-sig">{signal ? <><b>{signal}</b><small>Signal score</small></> : <small>new</small>}</span>
-    <span className="lt-posbar">{s.judged > 0 && <><span className="lt-posn">{`${fmt(s.positive)} positive ${s.positive === 1 ? "review" : "reviews"}`}</span>
-      <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></>}</span>
-    {/* Phones: the Amazon link takes the positive count's place under the name (owner, 2026-11-13). */}
-    {shop && <a className="lt-shop-m" href={shop} target="_blank" rel="sponsored nofollow noopener">Check Amazon price <span aria-hidden="true">›</span></a>}
-    <a className="lt-total" href={`${href}#reviews`}><b>{fmt(total)}</b><span>{total === 1 ? "review" : "reviews"} <span aria-hidden="true">›</span></span></a>
-  </div>;
-}
 
 /** A short "#1–#5" list for the side: a ranking's top five, or the newest opinions. */
 function Mini({ title, href, items }: { title: string; href: string; items: { key: string; rank?: number; art: React.ReactNode; name: string; href: string; value: React.ReactNode }[] }) {
@@ -81,9 +55,6 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const week = [...data.reviews.map(r => r.createdAt), ...data.external.map(webDate)].filter(d => Date.parse(d) >= now - 7 * DAY).length;
   const sorts = [{ v: undefined, label: "Top rated", on: sort === DEFAULT_SORT }, { v: "discussed", label: "Most discussed", on: sort === "discussed" }, { v: "newest", label: "Newest", on: sort === "newest" }];
   const ranked = sort === DEFAULT_SORT && !f.q;
-  // Amazon: the matched product page when the product has one saved, otherwise a tagged Amazon search. No lookups here.
-  const tag = amazonLinksOn() ? affiliateTag() : "", market = niche.amazon?.marketplace;
-  const shopFor = (r: Product) => !tag ? null : (r as { amazonAsin?: string | null }).amazonAsin ? amazonLink((r as { amazonAsin: string }).amazonAsin, tag, market) : amazonSearchLink(displayName(r.name, brandOf(r.brandId)), tag, market);
 
   // Side lists: the newest opinions (one per product), then the top five of two rankings.
   const seen = new Set<string>();
@@ -105,7 +76,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
             the one picked. It stays at the top while the long list scrolls. */}
         <HomeBoard noun={[w.one, w.many]} sort={<HomeSort value={sort === DEFAULT_SORT ? "" : sort} options={sorts.map(s => ({ value: s.v ?? "", label: s.label }))}/>} cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
-          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <Row data={data} r={r} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={shopFor(r)}/> }))}
+          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
           empty={<p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>

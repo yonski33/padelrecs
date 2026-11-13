@@ -10,6 +10,8 @@ import { matchingRackets } from "../lib/racket-search";
 import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
 import { catalogKeyword } from "../lib/catalogue-seo";
 import { listLine } from "../lib/list-lines";
+import { shortLine } from "../lib/short-lines";
+import { LightRow, quickAmazon, sigTipStyle } from "./light-row";
 import type { Signal } from "../lib/signal";
 import type { SpecColumn } from "../lib/niche/types";
 import { Directory, parseShow } from "./components";
@@ -129,19 +131,13 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
             <noscript><button className="button ghost">Sort</button></noscript>
           </AutoSubmitForm>
         </div>
-        <Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r, s }, i) => {
-          const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = `${productHref(r)}`;
-          const pos = s.judged >= 3 ? Math.round(100 * s.positive / s.judged) : null, line = listLine(r) ?? consensus(tc.get(r.id)), sig = signals.get(r.id)?.signal;
-          return <article key={r.id} className={`lr-row lc-row${i < 2 && sort === DEFAULT_SORT && !f.q ? " lr-top" : ""}`}>
-            <a className="lr-art" href={href} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
-            <div className="lr-main">
-              <h3><a href={href}>{name}</a></h3>
-              {line && <p className="lr-line">{line}</p>}
-              <p className="lr-meta">{[r.shape, `${fmt(s.count + s.web)} reviews`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}</p>
-              <CompareCheck slug={r.slug} name={name}/>
-            </div>
-            <div className="lr-side">{sig ? <a className="lr-sig" href={href}><b>{sig}</b><span>signal</span></a> : <span className="lc-new">new</span>}</div>
-          </article>; })}/>
+        {/* The home page's row (owner, 2026-11-13), with the compare box under the name and no rank number. */}
+        <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
+          const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), top = sort === DEFAULT_SORT && !f.q && i < 3;
+          return <div key={r.id} className={`lt-slot${top ? ` lt-top lt-top${i + 1}` : ""}${i === 0 ? " lt-first" : ""}`}>
+            <LightRow data={data} r={r} rank={null} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
+              extra={<CompareCheck slug={r.slug} name={name}/>}/>
+          </div>; })}/></div>
         {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={params({ q: undefined, brand: undefined, year: undefined, tag: undefined, shape: undefined })}>Clear filters</a></p>}
       </section>
     </div>

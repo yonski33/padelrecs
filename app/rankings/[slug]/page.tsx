@@ -16,6 +16,8 @@ import { tagTone } from "../../../lib/tags";
 import { displayName } from "../../../lib/brand-name";
 import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { listLine } from "../../../lib/list-lines";
+import { shortLine } from "../../../lib/short-lines";
+import { LightRow, sigTipStyle } from "../../light-row";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 import { ProductArt, SentimentBar, Arrow, SignalInfo, SignalPop } from "../../visual";
@@ -219,23 +221,15 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
     </header>
     <div className="lr-grid">
       <section aria-label={`${list.title}, ranked`}>
-        <ol className="lr-list">{entries.map((e, i) => { const brand = brandOf(e.product.brandId), product = byId.get(e.product.id), sc = score(data, e.product.id);
-          const pos = sc.judged >= 3 ? Math.round(100 * sc.positive / sc.judged) : null, line = listLine(e.product), href = lightHref(e.product);
+        {/* The home page's row (owner, 2026-11-13), without the category line: the list is one category already. */}
+        <ol className="lr-list lt-list" style={sigTipStyle}>{entries.map((e, i) => { const brand = brandOf(e.product.brandId), product = byId.get(e.product.id);
+          if (!product) return null;
           const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
-          return <li key={e.product.id} className={`lr-row${e.rank <= 2 ? " lr-top" : ""}`}>
-            <span className="lr-rank">{`#${e.rank}`}</span>
-            <a className="lr-art" href={href} aria-hidden="true" tabIndex={-1}>{product ? <ProductArt product={product} brand={brand}/> : <span className="art art-none"><ProductIcon shape={e.product.shape} brand={brand}/></span>}</a>
-            <div className="lr-main">
-              <h3><a href={href}>{displayName(e.product.name, brand)}</a></h3>
-              {line && <p className="lr-line">{line}</p>}
-              <p className="lr-meta">{[e.product.shape, `${sc.judged.toLocaleString("en-US")} reviews`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}{list.trait && ` · ${e.traitReviews} mention ${list.trait.noun}`}</p>
-              {/* A quiet text link, as on the current rankings (owner, 2026-11-12). */}
-              {a ? <a className="lr-buy" href={a.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a>
-                : site && <a className="lr-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label} <span aria-hidden="true">↗</span></a>}
-            </div>
-            <div className="lr-side">
-              {e.signal && <a className="lr-sig" href={href}><b>{e.signal.signal}</b><span>signal</span></a>}
-            </div>
+          const shop = a ? { url: a.url, label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" }
+            : site ? { url: site.url, label: site.label, short: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
+          return <li key={e.product.id} className={`lt-slot${e.rank <= 3 ? ` lt-top lt-top${e.rank}` : ""}${i === 0 ? " lt-first" : ""}`}>
+            <LightRow data={data} r={product} rank={e.rank} signal={e.signal?.signal} line={shortLine(e.product) ?? listLine(e.product)} shop={shop} shape={false}
+              extra={list.trait ? <span className="lt-trait">{`${e.traitReviews} mention ${list.trait.noun}`}</span> : undefined}/>
           </li>; })}</ol>
       </section>
       <aside className="lr-aside">
