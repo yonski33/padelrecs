@@ -56,7 +56,9 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
           // On categoryPaths niches a product page (/vpns/mullvad-vpn) still belongs under the catalogue link.
           const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`) || (href === catalogPath && !!inTypePath);
           const link = <a key={href} href={href} aria-current={active ? "page" : undefined}>{label}</a>;
-          return href === catalogPath && ranked.length ? [link, <TopMenu key="rankings" pathname={pathname} ranked={ranked}/>] : link;
+          // Latest reviews sits right after Rankings (owner, 2026-11-13).
+          const reviews = <a key="reviews" href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}>Latest reviews</a>;
+          return href === catalogPath ? [link, ranked.length ? <TopMenu key="rankings" pathname={pathname} ranked={ranked}/> : null, reviews] : link;
         })}
         {finderLink && <a href={finderLink[0]} aria-current={pathname === finderLink[0] ? "page" : undefined}><span className="nav-long">{finderLink[1]}</span><span className="nav-short">Finder quiz</span></a>}
       </nav>
