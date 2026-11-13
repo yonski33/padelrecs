@@ -2279,3 +2279,8 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lcx-tools .lc-search input { height: 44px; }
 @media (min-width: 561px) { .lcx-tools .lc-search { margin-right: auto !important; } .lcx-tools .lcx-cmp { margin-left: 0 !important; } }
 @media (min-width: 561px) { .lcx-tools .lc-search { flex: 0 1 50%; } .lcx-sort select { width: auto !important; min-width: 0 !important; } .lcx-sort label { display: flex; align-items: center; } }
+/* Compare and the Sort choice in the site colour (owner, 2026-11-13), the chevron too. */
+.lcx-cmp, .lcx-cmp:hover { color: var(--lt-acc) !important; }
+.lcx-sort select { color: var(--lt-acc) !important; background-image: none !important; padding-right: 36px !important; }
+.lcx-sort label { position: relative; }
+.lcx-sort label::after { content: ""; position: absolute; right: 15px; top: 50%; width: 7px; height: 7px; margin-top: -6px; border-right: 1.7px solid var(--lt-acc); border-bottom: 1.7px solid var(--lt-acc); transform: rotate(45deg); pointer-events: none; }
