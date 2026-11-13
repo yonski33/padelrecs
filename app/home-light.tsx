@@ -14,9 +14,9 @@ import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
 import { listHref } from "./rankings/lists";
 import { HomeBoard, HomeSearch } from "./home-board";
-import { ProductArt } from "./visual";
+import { quoteText } from "./visual";
 import { LightRow, quickAmazon } from "./light-row";
-import { SourceIcon } from "./icons";
+import { ProductIcon, SourceIcon } from "./icons";
 import { lightFont } from "./light-font";
 import { listLine } from "../lib/list-lines";
 import { shortLine } from "../lib/short-lines";
@@ -28,17 +28,6 @@ const DAY = 86_400_000, w = niche.words, p = niche.people;
 const fmt = (n: number) => n.toLocaleString("en-US");
 type Product = Catalog["listed"][number];
 export type LightFilters = { q?: string; shape?: string; sort?: string; show?: string };
-
-/** A short "#1–#5" list for the side: a ranking's top five, or the newest opinions. */
-function Mini({ title, href, items }: { title: string; href: string; items: { key: string; rank?: number; art: React.ReactNode; name: string; href: string; value: React.ReactNode }[] }) {
-  return <section className="lt-mini">
-    <div className="lt-mini-head"><h2><span className="lt-dot" aria-hidden="true"/>{title}</h2><a href={href}>See all ›</a></div>
-    <ol>{items.map(x => <li key={x.key}><a href={x.href}>
-      <span className="lt-mini-rank">{x.rank !== undefined ? `#${x.rank}` : ""}</span>
-      <span className="lt-mini-art">{x.art}</span><span className="lt-mini-name">{x.name}</span><span className="lt-mini-v">{x.value}</span>
-    </a></li>)}</ol>
-  </section>;
-}
 
 export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: Catalog; f: LightFilters; signals: Map<string, Signal>; picks: RankedList[]; now: number; keep?: Record<string, string> }) {
   // The home list is a "most reviewed" browse on every site (owner and auditor, 2026-11-13): review counts compare across
@@ -60,7 +49,10 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   // Side lists: the newest opinions (one per product), then the top five of two rankings.
   const seen = new Set<string>();
   const fresh = [...data.external].filter(e => e.sentiment).sort((a, b) => b.createdAt.localeCompare(a.createdAt)).filter(e => !seen.has(e.racketId) && seen.add(e.racketId)).slice(0, 5);
-  const side = picks.filter((l, i) => l.entries.length >= 5 && picks.findIndex(x => x.list.title === l.list.title) === i).slice(1, 3);
+  // Rankings to explore: one per category where the site has them (Best cleansers, Best serums…), else its first lists.
+  const uniq = picks.filter((l, i) => l.entries.length > 0 && picks.findIndex(x => x.list.slug === l.list.slug) === i);
+  const byType = uniq.filter(l => !l.list.trait);
+  const explore = (byType.length >= 3 ? byType : uniq).slice(0, 5);
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
@@ -81,15 +73,28 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
           {picks.length > 0 && <a className="lt-explore" href={RANKINGS_PATH}>Explore rankings <span aria-hidden="true">→</span></a>}
         </header>
         {/* The categories as plain words with a count and an underline on the one picked (owner, 2026-11-12). */}
-        <HomeBoard noun={[w.one, w.many]} cats={cats} initial={shape?.key} initialQ={f.q} ranked={false} tint base={new URLSearchParams(Object.entries(keep).filter(([, v]) => v) as [string, string][]).toString()}
+        <HomeBoard noun={[w.one, w.many]} cats={cats} initial={shape?.key} initialQ={f.q} ranked={false} base={new URLSearchParams(Object.entries(keep).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
           items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} rank={null} noSignal line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
           empty={<p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>
-      <aside className="lt-side">
-        <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
-        {side.map(l => <Mini key={l.list.slug} title={/^best\b/i.test(l.list.label) ? l.list.label : `Best ${l.list.label[0].toLowerCase()}${l.list.label.slice(1)}`} href={listHref(l.list.slug)} items={l.entries.slice(0, 5).map(e => { const full = data.rackets.find(r => r.id === e.product.id); return { key: e.product.id, rank: e.rank, art: full ? <ProductArt product={full} brand={brandOf(full.brandId)}/> : null, name: displayName(e.product.name, brandOf(e.product.brandId)), href: lightHref(e.product), value: signals.get(e.product.id)?.signal ?? "" }; })}/>)}
+      {/* The side after the auditor's mockup (owner, 2026-11-13): the newest reviews with a line of each, then the rankings. */}
+      <aside className="lt-side lt-side2">
+        <section className="ls-fresh">
+          <div className="ls-head"><h2>Fresh reviews</h2><a href="/reviews">See all <span aria-hidden="true">→</span></a></div>
+          <ul>{fresh.slice(0, 4).map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return <li key={e.id}><a href={`${lightHref(r)}#reviews`}>
+            <span className="ls-src"><SourceIcon platform={e.sourcePlatform}/></span>
+            <span className="ls-body"><b>{displayName(r.name, brandOf(r.brandId))}</b><span className="ls-quote">{`“${quoteText(e)}”`}</span></span>
+            <span className="ls-ago">{`· ${ago(e.createdAt, now)}`}</span></a></li>; })}</ul>
+        </section>
+        {explore.length > 0 && <section className="ls-rank">
+          <div className="ls-head"><h2>Explore rankings</h2></div>
+          <ul>{explore.map(l => <li key={l.list.slug}><a href={listHref(l.list.slug)}>
+            <span className="ls-icon" aria-hidden="true"><ProductIcon shape={l.entries[0]?.product.shape ?? null} brand={brandOf(l.entries[0]?.product.brandId ?? "")}/></span>
+            <b>{/^best\b/i.test(l.list.label) ? l.list.label : `Best ${l.list.label[0].toLowerCase()}${l.list.label.slice(1)}`}</b>
+            <span className="ls-go" aria-hidden="true">→</span></a></li>)}</ul>
+        </section>}
       </aside>
     </div>
   </div>;

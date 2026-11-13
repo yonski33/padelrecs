@@ -2773,3 +2773,56 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
   .lt-listhead p { font-size: 14px; }
   .lt-explore { padding: 8px 14px; font-size: 14.5px; }
 }
+/* Home rows closer to the auditor's mockup (owner, 2026-11-13): tighter and bolder, darker summary, category chip and the
+   Amazon link on one line, positive reviews in black. */
+.home-d .lt-row.v2.no-sig { padding-top: 10px !important; padding-bottom: 10px !important; row-gap: 6px; }
+.home-d .lt-row.v2.no-sig > .lt-body { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; }
+.home-d .lt-row.v2.no-sig > .lt-body > .lt-name, .home-d .lt-row.v2.no-sig > .lt-body > .lt-line { flex: 0 0 100%; }
+.home-d .lt-row.v2.no-sig > .lt-body > .lt-shape { margin-top: 4px; }
+.home-d .lt-row.v2.no-sig > .lt-body > .lt-shop { margin-top: 4px; font-weight: 600; }
+.home-d .lt-row.v2.no-sig .lt-name { font-size: 17px !important; font-weight: 700 !important; color: #1f1c1f !important; }
+.home-d .lt-row.v2.no-sig .lt-line { color: #2f2b2f !important; line-height: 1.4; }
+.home-d .lt-row.v2.no-sig .lt-posn { color: #1f1c1f !important; font-weight: 600; }
+.home-d .lt-row.v2.no-sig > .lt-total b, .home-d .lt-row.v2.no-sig > .lt-total span { color: #1f1c1f !important; }
+.home-d .lt-row.v2.no-sig > .lt-total b { font-weight: 700; }
+.home-d .lt-row.v2.no-sig > .lt-total span { font-weight: 600; }
+@media (min-width: 901px) {
+  .home-d .lt-row.v2.no-sig { grid-template-columns: 84px minmax(0, 1fr) 160px 104px !important; column-gap: 18px !important; }
+  .home-d .lt-row.v2.no-sig > .lt-art { width: 84px !important; height: 84px !important; }
+}
+@media (max-width: 720px) {
+  .home-d .lt-row.v2.no-sig { padding: 10px 4px !important; }
+  .home-d .lt-row.v2.no-sig .lt-name { font-size: 16px !important; }
+  .home-d .lt-row.v2.no-sig .lt-posn { font-size: 13.5px; }
+  .home-d .lt-row.v2.no-sig > .lt-total b { font-size: 13.5px !important; }
+}
+/* Home side after the auditor's mockup (owner, 2026-11-13): fresh reviews with a line of each, then the rankings as rows. */
+.lt-side2 { gap: 30px !important; }
+.lt-side2 .ls-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+.lt-side2 .ls-head h2 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: #1f1c1f; }
+.lt-side2 .ls-head a { font-size: 13.5px; font-weight: 600; color: var(--lt-acc); text-decoration: none; }
+.lt-side2 ul { margin: 0; padding: 0; list-style: none; }
+.ls-fresh li + li { border-top: 1px solid var(--lt-line); }
+.ls-fresh a { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 9px 0; color: inherit; text-decoration: none; }
+.ls-fresh a:hover b { text-decoration: underline; }
+.ls-src { display: grid; place-items: center; padding-top: 2px; }
+.ls-src svg { width: 20px; height: 20px; }
+.ls-src svg[data-src="reddit"] { color: #ff4500; }
+.ls-src svg[data-src="youtube"] { color: #ff0000; }
+.ls-body { display: grid; min-width: 0; }
+.ls-body b { overflow: hidden; font-size: 14px; font-weight: 700; color: #1f1c1f; white-space: nowrap; text-overflow: ellipsis; }
+.ls-quote { overflow: hidden; font-size: 13px; color: #3d393d; white-space: nowrap; text-overflow: ellipsis; }
+.ls-ago { padding-top: 2px; font-size: 12px; color: #777; white-space: nowrap; }
+.ls-rank ul { display: grid; gap: 8px; }
+.ls-rank a { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 14px; border-radius: 10px; background: color-mix(in srgb, var(--lt-acc) 5%, #fcfbf8); color: #1f1c1f; text-decoration: none; transition: background .12s; }
+.ls-rank a:hover { background: color-mix(in srgb, var(--lt-acc) 10%, #fcfbf8); }
+.ls-rank b { overflow: hidden; font-size: 15px; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; }
+.ls-icon { display: grid; place-items: center; color: var(--lt-acc); }
+.ls-icon svg { width: 28px; height: 28px; }
+.ls-go { font-size: 17px; color: var(--lt-acc); }
+/* The time sits beside the name, so the quote gets the full width under it. */
+.lt-side2 .ls-head a { white-space: nowrap; }
+.ls-fresh a { grid-template-columns: 24px minmax(0, 1fr) auto; grid-template-areas: "src name ago" "src quote quote"; row-gap: 1px; }
+.ls-body { display: contents; }
+.ls-src { grid-area: src; } .ls-body b { grid-area: name; } .ls-quote { grid-area: quote; } .ls-ago { grid-area: ago; padding-top: 1px; }
+.lt-side2 .ls-head a { display: inline-flex !important; align-items: center; gap: 4px; width: auto !important; }
