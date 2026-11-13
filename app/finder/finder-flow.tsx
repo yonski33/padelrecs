@@ -8,36 +8,38 @@ import { ProductIcon } from "../icons";
 export type FinderCard = FinderProduct & {
   name: string; brand: string; href: string; line: string | null; own: string | null;
   amazonUrl: string | null; amazonImage: string | null; siteUrl: string | null; siteLabel: string | null; siteAffiliate: boolean;
+  signal: number | null; category: string | null;
 };
 
-const pct = (n: number, total: number) => `${n / total * 100}%`;
 
+/** A result in the same row as the home page, rankings and catalogue (owner, 2026-11-13), plus the topics that matched. */
 function Result({ match, rank }: { match: FinderMatch<FinderCard>; rank: number }) {
   const c = match.product;
-  const parts = [["positive", c.positive], ["mixed", c.mixed], ["negative", c.negative]] as const;
-  const label = parts.filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ");
-  return <li className="top-entry">
-    <span className="top-rank" aria-label={`Match ${rank}`}>{rank}</span>
-    {c.own ? <a className="thumb top-thumb own" href={c.href} aria-hidden="true" tabIndex={-1}><img src={c.own} alt="" loading="lazy"/></a> : c.amazonImage
-      ? <a className="thumb top-thumb photo" href={c.href} aria-hidden="true" tabIndex={-1}><img src={c.amazonImage} alt="" loading="lazy"/></a>
-      : <a className="thumb top-thumb" href={c.href} aria-hidden="true" tabIndex={-1}><ProductIcon shape={c.shape} brand={c.brand}/></a>}
-    <div className="top-body">
-      <div className="top-head"><h2><a className="racket-link" href={c.href}><span className="model">{c.name}</span></a></h2></div>
-      {c.amazonUrl
-        ? <a className="top-amazon" href={c.amazonUrl} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon<span aria-hidden="true"> ↗</span></a>
-        : c.siteUrl && <a className="top-amazon" href={c.siteUrl} target="_blank" rel={c.siteAffiliate ? "sponsored nofollow noopener" : "noopener"}>{c.siteLabel}<span aria-hidden="true"> ↗</span></a>}
-      {c.line && <p className="top-line">{c.line}</p>}
-      <div className="top-split">
-        <div className="stack" role="img" aria-label={label}>
-          {parts.map(([s, n]) => n ? <i key={s} className={`s-${s}`} style={{ width: pct(n, c.reviews) }}/> : null)}
-        </div>
-        <p className="top-stat" title={label}><b>{c.positive} positive</b> out of {c.reviews} reviews</p>
-      </div>
-      {(match.reasons.length > 0 || match.watch) && <div className="tags">
-        {match.reasons.map(r => <span key={r.tag} className="tag pos">{r.tag}<span className="c">{r.count}</span></span>)}
-        {match.watch && <span className="tag neg">{match.watch.tag}<span className="c">{match.watch.count}</span></span>}
-      </div>}
-      <a className="top-more" href={c.href}>{`Read all ${c.reviews} reviews →`}</a>
+  const shop = c.amazonUrl ? { url: c.amazonUrl, label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" }
+    : c.siteUrl ? { url: c.siteUrl, label: c.siteLabel ?? "Visit site", short: c.siteLabel ?? "Visit site", rel: c.siteAffiliate ? "sponsored nofollow noopener" : "noopener" } : null;
+  const judged = c.positive + c.mixed + c.negative;
+  const img = c.own ?? c.amazonImage;
+  return <li className="lt-slot">
+    <div className="lt-row v2">
+      <span className="lt-rank">{`#${rank}`}</span>
+      <span className="lt-art">{img ? <span className="art"><img src={img} alt="" loading="lazy"/></span> : <span className="art art-none"><ProductIcon shape={c.shape} brand={c.brand}/></span>}</span>
+      <span className="lt-body">
+        <a className="lt-name" href={c.href}>{c.name}</a>
+        {c.line && <span className="lt-line">{c.line}</span>}
+        {(match.reasons.length > 0 || match.watch) && <span className="lt-extra lf-tags">
+          {match.reasons.map(r => <span key={r.tag} className="lf-tag pos">{r.tag}<b>{r.count}</b></span>)}
+          {match.watch && <span className="lf-tag neg">{match.watch.tag}<b>{match.watch.count}</b></span>}
+        </span>}
+        {shop && <a className="lt-shop" href={shop.url} target="_blank" rel={shop.rel}>{shop.label} <span aria-hidden="true">›</span></a>}
+      </span>
+      <span className="lt-sig">{c.signal ? <><b>{c.signal}</b><small>Signal score</small></> : <small>new</small>}</span>
+      <span className="lt-posbar">{judged > 0 && <><span className="lt-posn">{`${c.positive} positive ${c.positive === 1 ? "review" : "reviews"}`}</span>
+        <span className="sbar"><span className="sbar-track" role="img" aria-label={`${c.positive} positive, ${c.mixed} mixed, ${c.negative} negative`}>
+          {c.positive > 0 && <i className="s-positive" style={{ width: `${c.positive / judged * 100}%` }}/>}
+          {c.mixed > 0 && <i className="s-mixed" style={{ width: `${c.mixed / judged * 100}%` }}/>}
+          {c.negative > 0 && <i className="s-negative" style={{ width: `${c.negative / judged * 100}%` }}/>}
+        </span></span></>}</span>
+      <a className="lt-total" href={`${c.href}#reviews`}><b>{c.reviews.toLocaleString("en-US")}</b><span>{c.reviews === 1 ? "review" : "reviews"} <span aria-hidden="true">›</span></span></a>
     </div>
   </li>;
 }
@@ -80,7 +82,7 @@ export function FinderFlow({ cards, negativeTags }: { cards: FinderCard[]; negat
       {offShape && <p>{`Not enough ${niche.words.many} of that kind qualify yet, so these are the closest matches overall.`}</p>}
       <button type="button" className="finder-link" onClick={restart}>Start again</button>
     </div>
-    <ol className="top-list">{matches.map((m, i) => <Result key={m.product.id} match={m} rank={i + 1}/>)}</ol>
+    <ol className="lt-list lf-list">{matches.map((m, i) => <Result key={m.product.id} match={m} rank={i + 1}/>)}</ol>
   </section>;
 
   const q = questions[shown[step]];

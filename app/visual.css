@@ -2560,3 +2560,23 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
   .lp-more-swipe { display: block; order: 3; margin: 10px 0 0; text-align: right; font-size: 13px; color: #827C82; }
   .lp-more-all { order: 4; margin-top: 10px; }
 }
+
+/* Quiz results in the shared row (owner, 2026-11-13), with the topics that matched as small chips. */
+.lf-list { margin: 0; padding: 0; list-style: none; }
+.lf-list .lt-slot > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8); }
+.lf-list .lt-slot > .lt-row.v2:hover { background: #fff; }
+.lf-list .lt-row.v2 .lt-name { font-weight: 700; color: #242124; }
+.lf-list .lt-row.v2 > .lt-rank { font-weight: 800; color: color-mix(in srgb, var(--lt-acc) 82%, #000); }
+.lf-list .lt-row.v2 > .lt-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lf-list .lt-row.v2 > .lt-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lf-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 2px; }
+.lf-tag { display: inline-flex; align-items: baseline; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+.lf-tag b { font-weight: 600; opacity: .7; }
+.lf-tag.pos { background: #eef5ee; color: #2f6b34; }
+.lf-tag.neg { background: #faefe8; color: #9a4a24; }
+.lt-row.v2 .lf-tags { display: flex !important; flex-wrap: wrap; gap: 5px; width: 100%; }
+.lt-row.v2 .lf-tags .lf-tag { flex: none; }
+.lf .finder-results { max-width: 980px; margin-left: auto; margin-right: auto; }
+@media (max-width: 720px) { .lt-row.v2 .lf-tag { font-size: 11.5px; padding: 1px 7px; } }
+.lt-row.v2 .lt-extra.lf-tags { justify-self: stretch; }
+@media (max-width: 720px) { .lt-row.v2 .lf-tags { gap: 4px; } .lt-row.v2 .lf-tags .lf-tag { font-size: 11px !important; padding: 1px 6px !important; gap: 3px; } }

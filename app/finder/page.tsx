@@ -12,6 +12,8 @@ import { finderPool, withRankings } from "../../lib/finder";
 import { topLists } from "../rankings/lists";
 import { MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE } from "../../lib/top-lists";
 import { listLine } from "../../lib/list-lines";
+import { shortLine } from "../../lib/short-lines";
+import { productSignals } from "../signals";
 import { displayName } from "../../lib/brand-name";
 import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { amazonButton, amazonLinksOn } from "../../lib/amazon-offer";
@@ -36,12 +38,12 @@ export default async function FinderPage({ searchParams }: { searchParams: Promi
   if (!pool.length) notFound();
   const byId = new Map(data.listed.map(p => [p.id, p]));
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
-  const affiliate = amazonLinksOn();
+  const affiliate = amazonLinksOn(), sigs = await productSignals();
   const cards: FinderCard[] = await Promise.all(pool.map(async entry => {
     const p = byId.get(entry.id)!, brand = brandOf(p.brandId);
     const amazon = affiliate ? await amazonButton({ name: p.name, brand: brand || undefined }) : null;
     const site = websiteButton({ websiteUrl: p.websiteUrl ?? null, affiliateUrl: p.affiliateUrl ?? null });
-    return { ...entry, name: displayName(p.name, brand), brand, href: productHref(p), line: listLine(p), own: shopPhoto(p) ?? (light ? productPhoto(p)?.src : null) ?? null,
+    return { ...entry, name: displayName(p.name, brand), brand, href: productHref(p), line: shortLine(p) ?? listLine(p), signal: sigs.get(p.id)?.signal ?? null, category: p.shape ?? null, own: shopPhoto(p) ?? (light ? productPhoto(p)?.src : null) ?? null,
       amazonUrl: amazon?.url ?? null, amazonImage: amazon?.image && !photoHidden(p) ? amazon.image : null,
       siteUrl: site?.url ?? null, siteLabel: site?.label ?? null, siteAffiliate: !!site?.affiliate };
   }));
