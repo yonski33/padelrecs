@@ -2034,9 +2034,9 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 
 /* Home leaderboard row, owner's mockup (2026-11-13): rank · photo · name, summary, category, Amazon · signal score ·
    positive reviews over a sentiment bar · total reviews. The name's link covers the row; Amazon and reviews sit above it. */
-.lt-row.v2 { position: relative; grid-template-columns: 42px 68px minmax(0, 1fr) 74px 136px 66px; grid-template-areas: "rank art body sig pos total"; gap: 16px; padding: 14px 18px; }
+.lt-row.v2 { position: relative; grid-template-columns: 42px 92px minmax(0, 1fr) 74px 136px 66px; grid-template-areas: "rank art body sig pos total"; gap: 16px; padding: 14px 18px; }
 .lt-row.v2 > .lt-rank { grid-area: rank; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-.lt-row.v2 > .lt-art { grid-area: art; width: 68px; height: 68px; }
+.lt-row.v2 > .lt-art { grid-area: art; width: 92px; height: 92px; }
 .lt-row.v2 > .lt-body { grid-area: body; gap: 1px; }
 .lt-row.v2 .lt-name { color: var(--lt-ink); text-decoration: none; font-size: 15.5px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .lt-row.v2 .lt-name::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
@@ -2056,11 +2056,11 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-row.v2 > .lt-total span { margin-top: 4px; font-size: 12px; font-weight: 500; white-space: nowrap; }
 .lt-row.v2 > .lt-total:hover span { text-decoration: underline; }
 /* Narrower desktops (sidebar beside the list): a smaller bar column. */
-@media (max-width: 1180px) { .lt-row.v2 { grid-template-columns: 36px 60px minmax(0, 1fr) 66px 116px 60px; gap: 12px; padding: 12px 12px; } .lt-row.v2 > .lt-art { width: 60px; height: 60px; } .lt-row.v2 > .lt-rank { font-size: 19px; } }
+@media (max-width: 1180px) { .lt-row.v2 { grid-template-columns: 36px 76px minmax(0, 1fr) 66px 116px 60px; gap: 12px; padding: 12px 12px; } .lt-row.v2 > .lt-art { width: 76px; height: 76px; } .lt-row.v2 > .lt-rank { font-size: 19px; } }
 /* Phones: name and summary beside the photo with the signal at the right; positive reviews and the total under them. */
 @media (max-width: 720px) {
-  .lt-row.v2 { grid-template-columns: 28px 52px minmax(0, 1fr) auto; grid-template-areas: "rank art body sig" ". . pos total"; gap: 8px 10px; padding: 12px 8px; }
-  .lt-row.v2 > .lt-art { width: 52px; height: 52px; }
+  .lt-row.v2 { grid-template-columns: 28px 64px minmax(0, 1fr) auto; grid-template-areas: "rank art body sig" ". . pos total"; gap: 8px 10px; padding: 12px 8px; }
+  .lt-row.v2 > .lt-art { width: 64px; height: 64px; }
   .lt-row.v2 > .lt-rank { font-size: 16px; }
   .lt-row.v2 .lt-line { -webkit-line-clamp: 1; }
   .lt-row.v2 .lt-shop, .lt-row.v2 .lt-shape { display: none; }
@@ -2072,3 +2072,9 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
   .lt-row.v2 > .lt-sig small { font-size: 0; } .lt-row.v2 > .lt-sig small::after { content: "signal"; font-size: 11px; }
   .lt-row.v2 > .lt-total { color: var(--lt-mute); } .lt-row.v2 > .lt-total b { font-size: 12px; font-weight: 500; color: var(--lt-mute); }
 }
+/* Bigger home photos with no white tile (owner, 2026-11-13, after the mockup): the photo's white background melts into the row. */
+.lt-row.v2 > .lt-art, .lt-row.v2 > .lt-art .art { background: transparent !important; border-radius: 0; overflow: visible; box-shadow: none !important; border: 0 !important; }
+.lt-row.v2 > .lt-art img { padding: 0 !important; mix-blend-mode: multiply; }
+/* The list's fade mask isolates it, so plain rows need the page colour for the photos to blend into. */
+.lt-slot:not(.lt-top) > .lt-row.v2 { background-color: var(--lt-bg, #fcfbf8); }
+.lt-slot:not(.lt-top) > .lt-row.v2:hover { background-color: #fff; }
