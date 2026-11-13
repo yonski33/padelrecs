@@ -2078,3 +2078,9 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 /* The list's fade mask isolates it, so plain rows need the page colour for the photos to blend into. */
 .lt-slot:not(.lt-top) > .lt-row.v2 { background-color: var(--lt-bg, #fcfbf8); }
 .lt-slot:not(.lt-top) > .lt-row.v2:hover { background-color: #fff; }
+/* Phones: "Check price on Amazon" under the name, in the positive count's place (owner, 2026-11-13). */
+.lt-row.v2 > .lt-shop-m { display: none; }
+@media (max-width: 720px) {
+  .lt-row.v2:has(.lt-shop-m) > .lt-posbar { display: none; }
+  .lt-row.v2 > .lt-shop-m { display: block; grid-area: pos; position: relative; z-index: 1; justify-self: start; white-space: nowrap; font-size: 12.5px; font-weight: 500; color: var(--lt-acc); text-decoration: none; }
+}

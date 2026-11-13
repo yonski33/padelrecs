@@ -47,6 +47,8 @@ function Row({ data, r, signal, line, shop }: { data: Catalog; r: Product; signa
     <span className="lt-sig">{signal ? <><b>{signal}</b><small>Signal score</small></> : <small>new</small>}</span>
     <span className="lt-posbar">{s.judged > 0 && <><span className="lt-posn">{`${fmt(s.positive)} positive ${s.positive === 1 ? "review" : "reviews"}`}</span>
       <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></>}</span>
+    {/* Phones: the Amazon link takes the positive count's place under the name (owner, 2026-11-13). */}
+    {shop && <a className="lt-shop-m" href={shop} target="_blank" rel="sponsored nofollow noopener">Check Amazon price <span aria-hidden="true">›</span></a>}
     <a className="lt-total" href={`${href}#reviews`}><b>{fmt(total)}</b><span>{total === 1 ? "review" : "reviews"} <span aria-hidden="true">›</span></span></a>
   </div>;
 }
