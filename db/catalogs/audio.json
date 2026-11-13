@@ -11,8 +11,16 @@
       "name": "Aful"
     },
     {
+      "id": "akg",
+      "name": "AKG"
+    },
+    {
       "id": "apple",
       "name": "Apple"
+    },
+    {
+      "id": "artti",
+      "name": "Artti"
     },
     {
       "id": "audeze",
@@ -43,8 +51,16 @@
       "name": "Dan Clark Audio"
     },
     {
+      "id": "denon",
+      "name": "Denon"
+    },
+    {
       "id": "dunu",
       "name": "Dunu"
+    },
+    {
+      "id": "fiio",
+      "name": "FiiO"
     },
     {
       "id": "final",
@@ -99,12 +115,28 @@
       "name": "QCY"
     },
     {
+      "id": "raptgo",
+      "name": "Raptgo"
+    },
+    {
+      "id": "samsung",
+      "name": "Samsung"
+    },
+    {
       "id": "sennheiser",
       "name": "Sennheiser"
     },
     {
+      "id": "shokz",
+      "name": "Shokz"
+    },
+    {
       "id": "simgot",
       "name": "Simgot"
+    },
+    {
+      "id": "softears",
+      "name": "Softears"
     },
     {
       "id": "sony",
@@ -129,6 +161,14 @@
     {
       "id": "truthear",
       "name": "Truthear"
+    },
+    {
+      "id": "xenns",
+      "name": "Xenns"
+    },
+    {
+      "id": "yu9",
+      "name": "Yu9"
     }
   ],
   "products": [
@@ -5525,6 +5565,270 @@
       "balance": null,
       "sources": [
         "https://headphones.com/products/truthear-x-crinacle-zero-red-in-ear-headphones"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Aria",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-aria"
+      ]
+    },
+    {
+      "brand": "sony",
+      "name": "Sony MDR-7506",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://pro.sony/en_DK/products/headphones/mdr-7506"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Origin",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/tanchjim-origin"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Blessing 2",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-blessing-2"
+      ]
+    },
+    {
+      "brand": "softears",
+      "name": "Softears Volume S",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hangout.audio/products/softears-volume-s"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Starfield",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.linsoul.com/products/moondrop-starfield"
+      ]
+    },
+    {
+      "brand": "artti",
+      "name": "Artti T10",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.newegg.com/artti-t10-cream/p/0G6-043U-000K9"
+      ]
+    },
+    {
+      "brand": "philips",
+      "name": "Philips Fidelio X2HR",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.usa.philips.com/c-p/X2HR_27/fidelio-fidelio-headphones/overview"
+      ]
+    },
+    {
+      "brand": "shokz",
+      "name": "Shokz OpenDots One",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://ca.shokz.com/products/opendots-one"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Bunny",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.audiophonics.fr/en/in-ear-earphones/tanchjim-bunny-3-5-p-20418.html"
+      ]
+    },
+    {
+      "brand": "yu9",
+      "name": "Yu9 Que",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hangout.audio/products/yu9-audio-que"
+      ]
+    },
+    {
+      "brand": "raptgo",
+      "name": "Raptgo Bridge",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://linsoul.com/products/raptgo-bridge"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Variations",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://linsoul.com/products/moondrop-variations"
+      ]
+    },
+    {
+      "brand": "xenns",
+      "name": "Xenns Tea Pro",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://linsoul.com/products/xenns-mangird-tea-pro"
+      ]
+    },
+    {
+      "brand": "samsung",
+      "name": "Samsung Galaxy Buds3 Pro",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.samsung.com/de/audio-sound/galaxy-buds/galaxy-buds3-pro-silver-sm-r630nzaadbt"
+      ]
+    },
+    {
+      "brand": "akg",
+      "name": "AKG K361",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.zzounds.com/item--AKGK361"
+      ]
+    },
+    {
+      "brand": "denon",
+      "name": "Denon PerL Pro",
+      "shape": "Earbuds",
+      "weight": "Wireless",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.denon.com/en-us/product/wireless-earbuds/perl-pro/300898-01-00-302.html"
+      ]
+    },
+    {
+      "brand": "sennheiser",
+      "name": "Sennheiser HD 558",
+      "shape": "Headphones",
+      "weight": null,
+      "core": null,
+      "surface": null,
+      "balance": "Open-back",
+      "sources": [
+        "https://www.bhphotovideo.com/c/product/751985-REG/Sennheiser_HD558_HD_558_Open_Back_Around_Ear.html"
+      ]
+    },
+    {
+      "brand": "fiio",
+      "name": "FiiO FT1",
+      "shape": "Headphones",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://www.fiio.com/FT1"
+      ]
+    },
+    {
+      "brand": "tanchjim",
+      "name": "Tanchjim Fola",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hifigo.com/products/tanchjim-fola"
+      ]
+    },
+    {
+      "brand": "aful",
+      "name": "Aful Performer 5",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://hangout.audio/zh/products/aful-performer-5"
+      ]
+    },
+    {
+      "brand": "moondrop",
+      "name": "Moondrop Chu",
+      "shape": "IEMs",
+      "weight": "Wired",
+      "core": null,
+      "surface": null,
+      "balance": null,
+      "sources": [
+        "https://linsoul.com/products/moondrop-chu"
       ]
     }
   ]

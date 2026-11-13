@@ -163,6 +163,16 @@
       "name": "laptoprecs",
       "id": "prj_hb072aDpZfwrY3gZLXxZh1faBc7a",
       "domain": "www.laptoprecs.com"
+    },
+    "tv": {
+      "name": "tvrecs",
+      "id": "prj_zugP1PDzpRoxxI12CXyU91ec5RNs",
+      "domain": "www.tvrecs.com"
+    },
+    "grill": {
+      "name": "grillrecs",
+      "id": "prj_4kKPOoQWfIwwZsiCrJWrqTryUYjc",
+      "domain": "www.grillrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
@@ -201,7 +211,9 @@
     "sleep": "sleeprecs",
     "laptop": "laptoprecs",
     "print": "printrecs",
-    "tv": "tvrecs"
+    "tv": "tvrecs",
+    "tool": "toolrecs",
+    "grill": "grillrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

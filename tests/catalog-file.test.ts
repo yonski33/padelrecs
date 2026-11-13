@@ -165,13 +165,13 @@ test("the GolfRecs starter catalog: sourced drivers named by generation, known c
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
 });
 
-test("the GamingRecs starter catalog: 281 sourced products in three known categories (monitors and keyboards moved away), no years in names, unique URLs", async () => {
+test("the GamingRecs starter catalog: 294 sourced products in three known categories (monitors and keyboards moved away), no years in names, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/gaming.json");
   const snapshot = catalogSnapshot(catalog, "gamingrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 29);
-  assert.equal(snapshot.tables.rackets.length, 281);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 281);
+  assert.equal(snapshot.tables.brands.length, 32);
+  assert.equal(snapshot.tables.rackets.length, 294);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 294);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
   const categories = niches.gaming.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf } = await import("../app/art/gaming");
@@ -215,7 +215,7 @@ test("the KeyboardRecs catalog: the 99 GamingRecs keyboards under their old ids 
 test("the DiscGolfRecs starter catalog: sourced molds without years, known types, flight numbers in speed / glide / turn / fade, unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/discgolf.json");
   const snapshot = catalogSnapshot(catalog, "discgolfrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 14);
+  assert.equal(snapshot.tables.brands.length, 19);
   assert(snapshot.tables.rackets.length >= 450);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
@@ -267,7 +267,7 @@ test("the CyclingRecs starter catalog: sourced bikes without years, one per mode
 test("the AudioRecs starter catalog: sourced headphones, IEMs and earbuds without years, no gaming headsets, unique URLs", async () => {
   const catalog = await readCatalog("db/catalogs/audio.json");
   const snapshot = catalogSnapshot(catalog, "audiorecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 32);
+  assert.equal(snapshot.tables.brands.length, 42);
   assert(snapshot.tables.rackets.length >= 400);
   assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, snapshot.tables.rackets.length);
   assert.equal(snapshot.tables.reviews.length + snapshot.tables.external_reviews.length, 0);
@@ -663,13 +663,13 @@ test("the TravelGearRecs catalog: 197 sourced products in all five categories, s
   } finally { await engine.close(); }
 });
 
-test("the BabyGearRecs catalog: 246 sourced products in all eight categories, generations kept apart, unique URLs", async () => {
+test("the BabyGearRecs catalog: 292 sourced products in all eight categories, generations kept apart, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/babygear.json");
   const snapshot = catalogSnapshot(catalog, "babygearrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 38);
-  assert.equal(snapshot.tables.rackets.length, 246);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 246);
+  assert.equal(snapshot.tables.brands.length, 58);
+  assert.equal(snapshot.tables.rackets.length, 292);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 292);
   const categories = niches.babygear.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/babygear");
   for (const r of snapshot.tables.rackets) {
@@ -685,7 +685,7 @@ test("the BabyGearRecs catalog: 246 sourced products in all eight categories, ge
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 38, rackets: 246, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 58, rackets: 292, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
@@ -715,13 +715,13 @@ test("the SleepRecs catalog: 238 sourced products in all seven categories, tiers
   } finally { await engine.close(); }
 });
 
-test("the LaptopRecs catalog: 268 sourced laptops in all seven categories, one per model and generation, unique URLs", async () => {
+test("the LaptopRecs catalog: 289 sourced laptops in all seven categories, one per model and generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/laptop.json");
   const snapshot = catalogSnapshot(catalog, "laptoprecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 14);
-  assert.equal(snapshot.tables.rackets.length, 268);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 268);
+  assert.equal(snapshot.tables.rackets.length, 289);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 289);
   const categories = niches.laptop.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/laptop");
   for (const r of snapshot.tables.rackets) {
@@ -739,17 +739,17 @@ test("the LaptopRecs catalog: 268 sourced laptops in all seven categories, one p
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 268, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 14, rackets: 289, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
-test("the PrintRecs catalog: 171 sourced products in all five categories, models and revisions kept apart, unique URLs", async () => {
+test("the PrintRecs catalog: 182 sourced products in all five categories, models and revisions kept apart, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/print.json");
   const snapshot = catalogSnapshot(catalog, "printrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 15);
-  assert.equal(snapshot.tables.rackets.length, 171);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 171);
+  assert.equal(snapshot.tables.rackets.length, 182);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 182);
   const categories = niches.print.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/print");
   for (const r of snapshot.tables.rackets) {
@@ -759,7 +759,7 @@ test("the PrintRecs catalog: 171 sourced products in all five categories, models
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 6, `${c}: at least six products`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
-  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 171, "one source URL per product");
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 182, "one source URL per product");
   // Models and revisions with near-identical names are separate products, never merged.
   for (const name of ["Bambu Lab P1P", "Bambu Lab P1S", "Bambu Lab P2S", "Bambu Lab X1 Carbon", "Bambu Lab A1", "Bambu Lab A1 mini", "Bambu Lab H2D",
     "Bambu Lab AMS", "Bambu Lab AMS lite", "Bambu Lab AMS 2 Pro", "Bambu Lab AMS HT", "Original Prusa MK4", "Original Prusa MK4S", "Prusa CORE One", "Prusa CORE One+",
@@ -771,20 +771,20 @@ test("the PrintRecs catalog: 171 sourced products in all five categories, models
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 171, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 171, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 182, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 182, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
-test("the TVRecs catalog: 193 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
+test("the TVRecs catalog: 210 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   // Pre-2023 sets added because 3+ owners reviewed them (owner's standing rule, parent OK 2026-11-12).
-  const OLDER = ["LG C2", "LG C1", "LG CX", "LG C9", "LG C7", "LG G2", "Samsung S95B", "Samsung QN90B"];
+  const OLDER = ["LG C2", "LG C1", "LG CX", "LG C9", "LG C7", "LG G2", "Samsung S95B", "Samsung QN90B", "LG C8", "Samsung QN90A", "Sony A80J", "LG B7", "Sony A80K", "Sony A95K", "Sony A90J", "LG G1", "Sony X900H", "Sony A8H", "Sony X90J", "Sony X95K", "TCL R655", "Samsung Q90T", "LG BX", "Sony X90K", "TCL C855"];
   const catalog = await readCatalog("db/catalogs/tv.json");
   const snapshot = catalogSnapshot(catalog, "tvrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 12);
-  assert.equal(snapshot.tables.rackets.length, 193);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 193);
+  assert.equal(snapshot.tables.rackets.length, 210);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 210);
   const categories = niches.tv.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/tv");
   for (const r of snapshot.tables.rackets) {
@@ -795,7 +795,7 @@ test("the TVRecs catalog: 193 sourced TVs in all three categories, one product p
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 30, `${c}: at least 30 TVs`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
-  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 193, "one source URL per product");
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 210, "one source URL per product");
   // Model years with near-identical names are separate products, never merged (the niche's generation traps).
   for (const name of ["LG C3", "LG C4", "LG C5", "LG C6", "Samsung S90C", "Samsung S90D", "Samsung S90F", "Sony Bravia 8", "Sony Bravia 8 II",
     "Sony A80L", "TCL QM8", "TCL QM8 (2024)", "TCL QM8K", "Hisense U8K", "Hisense U8N", "Hisense U8QG", "Panasonic Z95A", "Panasonic Z95B"]) {
@@ -806,7 +806,76 @@ test("the TVRecs catalog: 193 sourced TVs in all three categories, one product p
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 193, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 193, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 210, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 210, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
+
+test("the ToolRecs catalog: 230 sourced tools and platforms in all eight categories, one product per model number, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/tool.json");
+  const snapshot = catalogSnapshot(catalog, "toolrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 12);
+  assert.equal(snapshot.tables.rackets.length, 230);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 230);
+  const categories = niches.tool.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/tool");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 5, `${c}: at least 5 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // The impact-driver and drill rankings filter on the tool type, so those values must stay exact.
+  for (const type of ["Drill/driver", "Hammer drill", "Impact driver"]) assert(snapshot.tables.rackets.filter(r => r.surface === type).length >= 20, type);
+  // Generations and near-identical model numbers are separate products, never merged (the niche's traps).
+  for (const name of ["DeWalt 20V MAX XR 1/2\" Drill/Driver DCD800", "DeWalt 20V MAX XR 1/2\" Hammer Drill/Driver DCD805", "DeWalt 20V MAX XR Compact Drill/Driver DCD791",
+    "DeWalt 20V MAX XR 3-Speed 1/4\" Impact Driver DCF887", "DeWalt 20V MAX XR 3-Speed 1/4\" Impact Driver DCF845", "DeWalt ATOMIC 20V MAX 3-Speed 1/4\" Impact Driver DCF850",
+    "Milwaukee M18 FUEL 1/2\" Hammer Drill/Driver 2804", "Milwaukee M18 FUEL 1/2\" Hammer Drill/Driver 2904", "Milwaukee M18 FUEL 1/4\" Hex Impact Driver 2853", "Milwaukee M18 FUEL 1/4\" Hex Impact Driver 2953",
+    "Milwaukee M12 FUEL 1/4\" Hex Impact Driver 2553", "Milwaukee M12 FUEL 1/4\" Hex Impact Driver 3453", "Milwaukee M18 FUEL 1/2\" High Torque Impact Wrench 2767", "Milwaukee M18 FUEL 1/2\" High Torque Impact Wrench 2967",
+    "Makita 18V LXT Compact Brushless 1/2\" Driver-Drill XFD12", "Makita 18V LXT Compact Brushless 1/2\" Driver-Drill XFD13", "Makita 18V LXT Brushless 4-Speed Impact Driver XDT19", "Makita 18V LXT Brushless 4-Speed Impact Driver XDT20",
+    "Ryobi ONE+ HP Brushless 4-Mode Impact Driver PBLID02", "Ryobi ONE+ HP Brushless 4-Mode Impact Driver PBLID04", "Ego POWER+ 650 CFM Blower LB6504", "Ego POWER+ 765 CFM Blower LB7654",
+    "Festool Track Saw TS 55 F", "Festool Cordless Track Saw TSC 55 K", "Milwaukee M18 Battery Platform", "Milwaukee M12 Battery Platform"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 230, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 230, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
+
+test("the GrillRecs catalog: 248 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/grill.json");
+  const snapshot = catalogSnapshot(catalog, "grillrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 36);
+  assert.equal(snapshot.tables.rackets.length, 248);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 248);
+  const categories = niches.grill.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/grill");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 10, `${c}: at least 10 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 248, "one source URL per product");
+  // Generations and maker-sold sizes with near-identical names are separate products, never merged (the niche's traps).
+  for (const name of ["Traeger Ironwood 885", "Traeger Ironwood", "Traeger Ironwood XL", "Traeger Timberline 850", "Traeger Timberline", "Traeger Pro 575", "Traeger Pro 780",
+    "Weber Genesis II E-315", "Weber Genesis E-325s", "Weber Genesis EX-325s", "Weber Genesis E-325 (2025)", "Weber Q 1200", "Weber Q 1200N",
+    "Kamado Joe Classic Joe II", "Kamado Joe Classic Joe III", "Kamado Joe Konnected Joe", "Big Green Egg Large", "Big Green Egg XL",
+    "Blackstone 36\" Omnivore Griddle", "Blackstone 36\" Omnivore Griddle with Hood", "Ooni Koda 16", "Ooni Koda 2 Max", "Ooni Karu 16", "Ooni Karu 2 Pro",
+    "recteq RT-700", "recteq Flagship 1100", "Masterbuilt Gravity Series 560", "Masterbuilt Gravity Series 800"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 36, rackets: 248, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 36, rackets: 248, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
