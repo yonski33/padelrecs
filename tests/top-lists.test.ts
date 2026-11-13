@@ -233,3 +233,17 @@ test("review windows: a niche's recentMonths fills in lists that don't set their
   assert.equal(rankList({ ...base, reviewMonths: 36 }, data, tags, now).length, 1);
   assert.equal(rankList({ ...base, reviewMonths: 12 }, data, tags, now).length, 0);
 });
+
+test("SkinRecs: balms and ointments have their own list and hub, and leave the face moisturizer list", () => {
+  const skin = niches.skin;
+  const balms = skin.topLists!.find(l => l.slug === "best-balms-ointments")!;
+  const moisturizers = skin.topLists!.find(l => l.slug === "best-face-moisturizers")!;
+  assert(skin.typePages!.some(t => t.slug === "balms-ointments" && t.shape === "Balm & ointment"));
+  const data: ListInput = {
+    listed: [product("ointment", { shape: "Balm & ointment" }), product("cream", { shape: "Moisturizer" })],
+    reviews: [],
+    external: [...many(12, () => web("ointment", "positive")), ...many(12, () => web("cream", "positive"))],
+  };
+  assert.deepEqual(rankList(balms, data, skin.tags, NOW).map(e => e.product.id), ["ointment"]);
+  assert.deepEqual(rankList(moisturizers, data, skin.tags, NOW).map(e => e.product.id), ["cream"]);
+});

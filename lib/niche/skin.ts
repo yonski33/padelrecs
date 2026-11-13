@@ -89,13 +89,13 @@ export const skin: Niche = {
   },
   // Columns are shared: shape = product type, weight = size, core = key ingredients, surface = skin types, balance = fragrance.
   specs: [
-    { column: "shape", label: "Type", max: 100, placeholder: "e.g. Moisturizer", options: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment"] },
+    { column: "shape", label: "Type", max: 100, placeholder: "e.g. Moisturizer", options: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment", "Balm & ointment"] },
     { column: "weight", label: "Size", max: 120, placeholder: "e.g. 50 ml / 1.7 fl oz" },
     { column: "core", label: "Key ingredients", max: 200, placeholder: "e.g. Ceramides, hyaluronic acid" },
     { column: "surface", label: "Skin types", max: 200, placeholder: "e.g. Dry to very dry" },
     { column: "balance", label: "Fragrance", max: 120, placeholder: "e.g. Fragrance-free", options: ["Fragrance-free", "Contains fragrance"] },
   ],
-  shapeFilter: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment"],
+  shapeFilter: ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Eye cream", "Exfoliant", "Mask", "Treatment", "Balm & ointment"],
   // Each is served at /<slug> and listed in the menu row, in this order. Slugs are public URLs: don't rename them.
   // Product pages live under their type page (/<type slug>/<slug>); see Niche.categoryPaths.
   categoryPaths: true,
@@ -103,7 +103,8 @@ export const skin: Niche = {
     { shape: "Cleanser", slug: "cleansers", label: "Cleansers", seoLabel: "Face Cleansers", intro: "Gel, foam, cream and oil cleansers" },
     { shape: "Toner", slug: "toners", label: "Toners", seoLabel: "Toners", intro: "Hydrating and exfoliating toners and pads" },
     { shape: "Serum", slug: "serums", label: "Serums", seoLabel: "Face Serums", intro: "Niacinamide, vitamin C, hyaluronic acid and other serums" },
-    { shape: "Moisturizer", slug: "moisturizers", label: "Moisturizers", seoLabel: "Moisturizers", intro: "Gels, lotions, creams and balms" },
+    { shape: "Moisturizer", slug: "moisturizers", label: "Moisturizers", seoLabel: "Moisturizers", intro: "Gels, lotions and creams" },
+    { shape: "Balm & ointment", slug: "balms-ointments", label: "Balms & ointments", seoLabel: "Balms & Ointments", intro: "Occlusive ointments and repair balms, used for slugging, cracked skin and barrier repair" },
     { shape: "Sunscreen", slug: "sunscreens", label: "Sunscreens", seoLabel: "Face Sunscreens", intro: "Chemical and mineral sunscreens for the face" },
     { shape: "Eye cream", slug: "eye-creams", label: "Eye creams", seoLabel: "Eye Creams", intro: "Eye creams, gels and serums" },
     { shape: "Exfoliant", slug: "exfoliants", label: "Exfoliants", seoLabel: "Exfoliants", intro: "AHA, BHA and PHA exfoliants" },
@@ -193,6 +194,8 @@ export const skin: Niche = {
       intro: "The face sunscreens users are most consistently happy with.", filters: [{ column: "shape", include: ["Sunscreen"] }] },
     { slug: "best-skincare-treatments", label: "Treatments", title: "Best Skincare Treatments", minReviews: 8, reviewYears: 5,
       intro: "Retinoids, acids and spot treatments users are most consistently happy with.", filters: [{ column: "shape", include: ["Treatment"] }] },
+    { slug: "best-balms-ointments", label: "Balms & ointments", title: "Best Balms & Ointments", minReviews: 5, reviewYears: 5,
+      intro: "The occlusive ointments and repair balms users are most consistently happy with.", filters: [{ column: "shape", include: ["Balm & ointment"] }] },
     { slug: "best-skincare-for-sensitive-skin", label: "For sensitive skin", title: "Best Skincare for Sensitive Skin", minReviews: 10, reviewYears: 5,
       intro: "Products users call gentle, with few reports of irritation or stinging.",
       trait: { tags: ["gentle"], minShare: 0.2, against: ["irritating", "stinging"], noun: "gentleness" } },
