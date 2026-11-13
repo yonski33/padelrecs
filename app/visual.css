@@ -2709,3 +2709,9 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lr-list .lt-slot.lr-p1 > .lt-row.v2 { background: linear-gradient(90deg, color-mix(in srgb, var(--lt-acc) 8%, #fcfbf8), color-mix(in srgb, #f6c79a 14%, #fcfbf8)) !important; border-color: color-mix(in srgb, var(--lt-acc) 10%, transparent); }
 .lr-list .lt-slot.lr-p23 > .lt-row.v2 { background: color-mix(in srgb, var(--lt-acc) 3%, #fcfbf8) !important; }
 .lr-list .lt-slot.lr-p1 > .lt-row.v2:hover, .lr-list .lt-slot.lr-p23 > .lt-row.v2:hover { border-color: color-mix(in srgb, var(--lt-acc) 18%, transparent); }
+/* Review text a step darker for long reading (auditor, 2026-11-13): body #383838 at 15px/1.6, names and sources #252525,
+   dates and other details stay muted at #777, review headings #242424. Product pages, /reviews and the home's latest reviews. */
+.lv .lv-text, .lrv-card .lrv-text, .rc-card .rc-text { color: #383838 !important; font-size: 15px !important; line-height: 1.6 !important; font-weight: 400; }
+.lv .lv-src, .lrv-card .lrv-src, .rc-card .rc-src { color: #777 !important; }
+.lv .lv-src b, .lrv-card .lrv-name { color: #252525 !important; }
+.review-list h2, .lrv h1, .lrv-hero h1 { color: #242424; }
