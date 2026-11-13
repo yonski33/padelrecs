@@ -344,7 +344,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       <div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{typePage && <><a href={`/${typePage.slug}`}>{typePage.label}</a><span>/</span></>}{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>
       <section className="lp-hero">
         {own ? <div className="lp-photo art art-own"><img src={own} alt={fullName}/></div> : amazonImage
-          ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
+          // Not a link (owner, 2026-11-14): people click a photo to look at it, so the Amazon link stays on the button only.
+          ? <div className="lp-photo art art-amazon"><img src={amazonImage} alt={fullName}/></div>
           : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
         <div className="lp-info">
           {/* After the owner's product-page mockup (2026-11-13): the name with "Reviews" after it (owner, 2026-11-14; no kicker above), the category chip, the take, then the
