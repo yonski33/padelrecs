@@ -2761,3 +2761,15 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 @media (max-width: 720px) {
   .lt-row.v2.no-rank.no-sig { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "art body body" "pos pos total"; }
 }
+/* Home list title (auditor's mockup, 2026-11-13): says plainly what the order is, with the rankings one clear click away. */
+.lt-listhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin: 4px 0 12px; }
+.lt-listhead h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: #242124; }
+.lt-listhead p { margin: 5px 0 0; font-size: 14.5px; color: #6b665e; }
+.lt-explore { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border: 1.5px solid var(--lt-acc); border-radius: 10px; color: var(--lt-acc); font-size: 15px; font-weight: 600; text-decoration: none; transition: background .12s; }
+.lt-explore:hover { background: color-mix(in srgb, var(--lt-acc) 7%, transparent); }
+@media (max-width: 720px) {
+  .lt-listhead { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .lt-listhead h2 { font-size: 23px; }
+  .lt-listhead p { font-size: 14px; }
+  .lt-explore { padding: 8px 14px; font-size: 14.5px; }
+}
