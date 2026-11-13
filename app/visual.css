@@ -2837,3 +2837,8 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .ls-ago { color: #5c585c; }
 /* Poppins at 400 reads grey even in near-black; one weight up makes the summaries and quotes read dark. */
 .home-d .lt-row.v2.no-sig .lt-line, .ls-quote, .lt-listhead p { font-weight: 500; }
+/* "+46 in 6 months" under the total on the home list: what orders it (owner, 2026-11-13). */
+.lt-row.v2.no-sig > .lt-total { flex-wrap: wrap; row-gap: 2px; }
+.lt-row.v2.no-sig > .lt-total .lt-recent-n { flex: 0 0 100%; margin: 0; font-size: 12px; font-weight: 600; line-height: 1.2; text-align: right; color: var(--lt-signal, #28733D); white-space: nowrap; }
+@media (max-width: 720px) { .lt-row.v2.no-sig > .lt-total { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 0 4px; } }
+.ls-rank b { white-space: normal; line-height: 1.25; }

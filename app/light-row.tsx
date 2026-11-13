@@ -25,7 +25,7 @@ export function quickAmazon(r: Product, brand: string | undefined): ShopLink | n
 
 /** rank: a number shows "#n"; undefined leaves it to the list's CSS counter (home); null hides the rank column (catalogue). */
 /** noSignal: the home page's "most reviewed" browse shows no signal score (owner, 2026-11-13). */
-export function LightRow({ data, r, signal, line, shop, rank, shape = true, extra, noSignal }: { data: Catalog; r: Product; signal?: number; line: string | null; shop: ShopLink | null; rank?: number | null; shape?: boolean; extra?: ReactNode; noSignal?: boolean }) {
+export function LightRow({ data, r, signal, line, shop, rank, shape = true, extra, noSignal, recent }: { data: Catalog; r: Product; signal?: number; line: string | null; shop: ShopLink | null; rank?: number | null; shape?: boolean; extra?: ReactNode; noSignal?: boolean; recent?: number }) {
   const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), href = productHref(r);
   const s = score(data, r.id), total = s.count + s.web;
   return <div className={`lt-row v2${rank === null ? " no-rank" : ""}${noSignal ? " no-sig" : ""}`}>
@@ -43,7 +43,9 @@ export function LightRow({ data, r, signal, line, shop, rank, shape = true, extr
       <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></>}</span>
     {/* Phones: the shop link takes the positive count's place under the name (owner, 2026-11-13). */}
     {shop && <a className="lt-shop-m" href={shop.url} target="_blank" rel={shop.rel}>{shop.short} <span aria-hidden="true">›</span></a>}
-    <a className="lt-total" href={`${href}#reviews`}><b>{fmt(total)}</b><span>{total === 1 ? "review" : "reviews"}{noSignal && <span aria-hidden="true"> ›</span>}</span></a>
+    <a className="lt-total" href={`${href}#reviews`}><b>{fmt(total)}</b><span>{total === 1 ? "review" : "reviews"}{noSignal && <span aria-hidden="true"> ›</span>}</span>
+      {/* The home list's order: reviews posted in the last six months (owner, 2026-11-13). */}
+      {recent !== undefined && recent > 0 && <small className="lt-recent-n">{`+${fmt(recent)} in 6 months`}</small>}</a>
   </div>;
 }
 

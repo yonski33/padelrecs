@@ -9,6 +9,7 @@ import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
 import { sortProducts } from "../lib/product-sort";
 import { RANKINGS_PATH } from "../lib/top-lists";
+import { catalogKeyword } from "../lib/catalogue-seo";
 import { webDate } from "../lib/recent";
 import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
@@ -24,10 +25,16 @@ import { shapeChoices, tagCounts, consensus, ago } from "./home-catalog";
 
 // Preview links carry the light look through to the product page.
 const lightHref = productHref;
-const DAY = 86_400_000, w = niche.words, p = niche.people;
+const DAY = 86_400_000, TALK_DAYS = 182, w = niche.words, p = niche.people;
 const fmt = (n: number) => n.toLocaleString("en-US");
 type Product = Catalog["listed"][number];
 export type LightFilters = { q?: string; shape?: string; sort?: string; show?: string };
+
+// "skincare products", "padel rackets", "climbing gear": the catalogue's keyword, lowercased except acronyms ("AI tools").
+const talkLabel = niche.talkLabel ?? catalogKeyword.split(" ").map(x => /^[A-Z]{2,}s?$/.test(x) ? x : x.toLowerCase()).join(" ");
+
+/** "Best Padel Rackets for Power" → "Best padel rackets for power" (acronyms stay: "Best AI Tools" → "Best AI tools"). */
+const sentence = (t: string) => t.split(" ").map((x, i) => i === 0 || /^[A-Z0-9]{2,}s?$/.test(x) ? x : x.toLowerCase()).join(" ");
 
 export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: Catalog; f: LightFilters; signals: Map<string, Signal>; picks: RankedList[]; now: number; keep?: Record<string, string> }) {
   // The home list is a "most reviewed" browse on every site (owner and auditor, 2026-11-13): review counts compare across
@@ -39,8 +46,14 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const plural = (c: { key: string; label: string; shapes: string[] }) => niche.typePages?.find(t => c.shapes.some(s => s.toLowerCase() === t.shape.toLowerCase()))?.label ?? c.label;
   const cats = shapes.map(c => ({ key: c.key, label: plural(c), n: searched.filter(r => inShape(r, c)).length })).filter(c => c.n > 0 || c.key === shape?.key);
   // Every product, in order; the search box and the category row filter them on the page (app/home-board.tsx).
-  const results = sortProducts(data.listed.map(r => ({ r, s: score(data, r.id) })), sort,
-    x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
+  // "Most talked-about" (owner, 2026-11-13): ordered by the reviews posted in the last six months, dated by their source,
+  // so the list follows what people discuss now (2026 rackets, not the 2025 ones with the most reviews ever). Products
+  // with no recent reviews follow, most reviewed first.
+  const since = now - TALK_DAYS * DAY, recent = new Map<string, number>();
+  for (const e of data.external) if (Date.parse(webDate(e)) >= since) recent.set(e.racketId, (recent.get(e.racketId) ?? 0) + 1);
+  for (const r of data.reviews) if (Date.parse(r.createdAt) >= since) recent.set(r.racketId, (recent.get(r.racketId) ?? 0) + 1);
+  const results = sortProducts(data.listed.map(r => ({ r, s: score(data, r.id) })), sort)
+    .sort((a, b) => (recent.get(b.r.id) ?? 0) - (recent.get(a.r.id) ?? 0));
   const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `/?${q}#board` : "/#board"; };
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
   const everything = [...data.reviews, ...data.external];
@@ -52,7 +65,10 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   // Rankings to explore: one per category where the site has them (Best cleansers, Best serums…), else its first lists.
   const uniq = picks.filter((l, i) => l.entries.length > 0 && picks.findIndex(x => x.list.slug === l.list.slug) === i);
   const byType = uniq.filter(l => !l.list.trait);
-  const explore = (byType.length >= 3 ? byType : uniq).slice(0, 5);
+  // Each by its title in sentence case; a year list adds its year ("Best padel rackets of 2025"), and repeats are dropped.
+  const rankName = (l: RankedList) => { const y = l.list.label.match(/\b(19|20)\d{2}\b/)?.[0], t = sentence(l.list.title); return y && !t.includes(y) ? `${t} of ${y}` : t; };
+  const named = new Set<string>();
+  const explore = (byType.length >= 3 ? byType : uniq).filter(l => !named.has(rankName(l)) && !!named.add(rankName(l))).slice(0, 5);
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
@@ -68,14 +84,14 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
         {/* A clear title says what the order is, so nobody reads it as a rating (auditor's mockup, owner, 2026-11-13). The
             verdict lives in the rankings, one prominent link away. */}
         <header className="lt-listhead">
-          <div><h2>{`Most reviewed ${w.many}`}</h2>
-            <p>{`${niche.typePages?.length ? "Across all categories, ordered" : "Ordered"} by the number of reviews collected, not by rating.`}</p></div>
+          <div><h2>{`Most talked-about ${talkLabel}`}</h2>
+            <p>{`The ${w.many} people have posted about most in the last 6 months, on Reddit, YouTube and blogs. Not a rating.`}</p></div>
           {picks.length > 0 && <a className="lt-explore" href={RANKINGS_PATH}>Explore rankings <span aria-hidden="true">→</span></a>}
         </header>
         {/* The categories as plain words with a count and an underline on the one picked (owner, 2026-11-12). */}
         <HomeBoard noun={[w.one, w.many]} cats={cats} initial={shape?.key} initialQ={f.q} ranked={false} base={new URLSearchParams(Object.entries(keep).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
-          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} rank={null} noSignal line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
+          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} rank={null} noSignal recent={recent.get(r.id) ?? 0} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
           empty={<p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>
@@ -92,7 +108,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
           <div className="ls-head"><h2>Explore rankings</h2></div>
           <ul>{explore.map(l => <li key={l.list.slug}><a href={listHref(l.list.slug)}>
             <span className="ls-icon" aria-hidden="true"><ProductIcon shape={l.entries[0]?.product.shape ?? null} brand={brandOf(l.entries[0]?.product.brandId ?? "")}/></span>
-            <b>{/^best\b/i.test(l.list.label) ? l.list.label : `Best ${l.list.label[0].toLowerCase()}${l.list.label.slice(1)}`}</b>
+            <b>{rankName(l)}</b>
             <span className="ls-go" aria-hidden="true">→</span></a></li>)}</ul>
         </section>}
       </aside>
