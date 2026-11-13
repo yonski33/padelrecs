@@ -76,7 +76,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {/* The first row's signal explains itself on hover or tap (owner, 2026-11-13); the words sit once, in a CSS variable. */}
     {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
-      {visible.slice(0, shown).map((it, i) => <div key={it.key} className="lt-slot">{it.node}</div>)}
+      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i === 0 ? " lr-p1" : numbered && i < 3 ? " lr-p23" : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost lt-more-btn" onClick={() => setShown(shown + PAGE * 2)}>Show more {noun[1]} <span aria-hidden="true">↓</span></button></div>}
   </>;
