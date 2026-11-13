@@ -239,8 +239,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
         <ul>{others.slice(0, 8).map(l => { const top = l.entries[0], full = top && data.rackets.find(r => r.id === top.product.id), b = top ? brandOf(top.product.brandId) : undefined;
           return <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>
             <span className="lr-more-art">{full ? <ProductArt product={full} brand={b}/> : null}</span>
-            <span className="lr-more-text"><b>{l.list.label}</b>{top && <small>{`#1 ${displayName(top.product.name, b)}`}</small>}</span>
-            <span className="lr-more-go" aria-hidden="true">→</span>
+            <span className="lr-more-text"><b>{l.list.label}</b><span className="lr-more-go" aria-hidden="true">→</span></span>
           </a></li>; })}</ul></section>}
       <div className="lr-below-boxes">
         <section className="lr-box">

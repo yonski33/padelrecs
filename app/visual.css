@@ -2173,3 +2173,16 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lrx-icon > * { width: 46px !important; height: 46px !important; }
 .lrx-icon svg { width: 100%; height: 100%; }
 @media (max-width: 560px) { .lrx-sep { display: none; } .lrx-meta .sig-pop { flex-basis: 100%; } }
+/* More rankings as picture cards (owner, 2026-11-13): a big photo of the list's #1 on a soft tint, the name under it. */
+.lr-more2 ul { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.lr-more2 a { grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 0; padding: 0; overflow: hidden; }
+.lr-more2 .lr-more-art { width: 100%; height: 150px; padding: 16px; box-sizing: border-box; background: linear-gradient(160deg, var(--lt-tint), var(--lt-tint2)); }
+.lr-more2 .lr-more-art img { mix-blend-mode: multiply; transition: transform .2s; }
+.lr-more2 a:hover .lr-more-art img { transform: scale(1.05); }
+.lr-more2 .lr-more-text { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 14px; }
+.lr-more2 .lr-more-text b { font-size: 14.5px; }
+@media (max-width: 560px) { .lr-more2 ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .lr-more2 .lr-more-art { height: 110px; padding: 12px; } }
+.lr-more2 .lr-more-art { padding: 6px; height: 160px; }
+.lr-more2 .lr-more-art img { transform: scale(1.25); }
+.lr-more2 a:hover .lr-more-art img { transform: scale(1.32); }
+@media (max-width: 560px) { .lr-more2 .lr-more-art { height: 120px; padding: 4px; } }
