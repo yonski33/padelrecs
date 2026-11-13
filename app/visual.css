@@ -2095,6 +2095,6 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 @media (max-width: 720px) { .lt-first .lt-row.v2 > .lt-sig::after { left: auto; right: 0; transform: none; width: min(250px, 70vw); } }
 /* The list's fade mask would clip the tooltip under the first row only if the list were one row tall; rows keep it visible. */
 .lt-slot.lt-first { position: relative; z-index: 3; }
-/* The review count in one blue on every site (owner, 2026-11-13, after the mockup). */
-:root { --lt-count: #2563d9; }
+/* The review count in the text colour (owner, 2026-11-13: blue competed with the green signal). */
+:root { --lt-count: var(--lt-ink, #262421); }
 .lt-row.v2 > .lt-total b { color: var(--lt-count) !important; }
