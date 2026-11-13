@@ -74,7 +74,8 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
     <section className="lt-hero">
       <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, reviewed by `}<span>{`real ${p.many}`}</span></h1>
-      <p className="lt-sub">Real reviews from Reddit, YouTube and blogs, linked to their sources.</p>
+      {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). */}
+      <p className="lt-sub">{`What real ${p.many} say on Reddit, YouTube and blogs, counted and ranked.`}</p>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
