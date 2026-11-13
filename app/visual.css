@@ -2397,3 +2397,10 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
   .home-d .lt-row.v2 .lt-posn { font-size: 12.5px; }
   .home-d .lt-row.v2 > .lt-rank { font-size: 19px; }
 }
+/* Home: room back for the stats (owner, 2026-11-13: too tight), taken from a narrower sidebar instead. */
+@media (min-width: 901px) { .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) 216px; gap: 22px; } }
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 32px 58px minmax(0, 1fr) 74px 124px 58px; column-gap: 12px; }
+  .home-d .lt-row.v2 > .lt-posbar { margin-right: 6px; }
+  .home-d .lt-row.v2 > .lt-art { width: 58px; height: 58px; }
+}
