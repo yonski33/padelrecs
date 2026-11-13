@@ -140,6 +140,42 @@ export const climbing: Niche = {
     { label: "needs break-in", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Climbing Gear Finder Quiz",
+    heading: "Which climbing gear is right for you?",
+    description: "Pick climbing shoes, a harness or a belay device, answer a few quick questions and get the gear whose real climber reviews best match how you climb.",
+    intro: "Pick what you need, answer a few quick questions and see what real climbers recommend.",
+    navLabel: "Find Your Climbing Gear",
+    invite: "Not sure which climbing gear to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Climbing shoes", shapes: ["Climbing shoe"] },
+        { label: "Harness", shapes: ["Harness"] },
+        { label: "Belay device", shapes: ["Belay device"] },
+      ] },
+      { id: "style", question: "What do you climb most?", onlyIf: { question: "type", labels: ["Climbing shoes"] }, options: [
+        { label: "Bouldering", want: ["great heel hooks", "great toe hooks", "sensitive"], weight: 1.5 },
+        { label: "Sport and trad routes", want: ["precise edging", "comfortable"], weight: 1.5 },
+        { label: "A bit of everything" },
+      ] },
+      { id: "fit", question: "Comfort or performance?", onlyIf: { question: "type", labels: ["Climbing shoes"] }, options: [
+        { label: "Comfort", hint: "Long sessions, beginners", want: ["comfortable"], avoid: ["painful", "needs break-in"], weight: 1.5 },
+        { label: "Performance", hint: "Hard routes and problems", want: ["precise edging", "sticky rubber"], weight: 1.5 },
+        { label: "A balance of both" },
+      ] },
+      { id: "braking", question: "Do you want assisted braking?", onlyIf: { question: "type", labels: ["Belay device"] }, options: [
+        { label: "Yes", hint: "Extra security when catching falls", list: "best-assisted-braking-belay-devices" },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Lasting well", want: ["durable"], avoid: ["wears out fast"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-climbing-shoes", label: "Climbing shoes", title: "Best Climbing Shoes", minReviews: 5,
       intro: "The climbing shoes climbers are most consistently happy with.", filters: [{ column: "shape", include: ["Climbing shoe"] }] },

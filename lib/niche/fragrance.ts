@@ -138,6 +138,51 @@ export const fragrance: Niche = {
     { label: "fresh", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts): one per "For" type page, then trait lists from review tags.
+  finder: {
+    title: "Fragrance Finder Quiz",
+    heading: "Which fragrance is right for you?",
+    description: "Answer a few quick questions about when you wear it, the scent you like and how strong it should be, and get the fragrances whose real wearer reviews best match you.",
+    intro: "Answer a few quick questions and see what real wearers recommend.",
+    navLabel: "Find Your Fragrance",
+    invite: "Not sure which fragrance to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "Who is it for?", options: [
+        { label: "Men", shapes: ["Men"] },
+        { label: "Women", shapes: ["Women"] },
+        { label: "Unisex", shapes: ["Unisex"] },
+        { label: "Any" },
+      ] },
+      { id: "when", question: "When will you wear it most?", options: [
+        { label: "Warm days", want: ["summer", "fresh"], weight: 1.5 },
+        { label: "Cold evenings", want: ["winter"], weight: 1.5 },
+        { label: "At work", want: ["office-safe"], weight: 1.5 },
+        { label: "Date nights", want: ["date night"], weight: 1.5 },
+        { label: "All year round", want: ["versatile"], weight: 1.5 },
+      ] },
+      { id: "scent", question: "What kind of scent do you like?", options: [
+        { label: "Fresh", want: ["fresh"] },
+        { label: "Sweet", want: ["sweet"] },
+        { label: "Not sweet", avoid: ["sweet"] },
+        { label: "No preference" },
+      ] },
+      { id: "strength", question: "How strong should it be?", options: [
+        { label: "Loud and long-lasting", want: ["strong projection", "long-lasting"], avoid: ["weak projection", "fades fast"], weight: 1.5 },
+        { label: "Long-lasting but close to the skin", want: ["long-lasting"], avoid: ["fades fast"] },
+        { label: "No preference" },
+      ] },
+      { id: "compliments", question: "Do you want compliments?", options: [
+        { label: "Yes", want: ["compliment getter"], weight: 1.5 },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Smelling natural", avoid: ["synthetic", "smells cheap"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-mens-fragrances", label: "For men", title: "Best Men’s Fragrances", minReviews: 10,
       intro: "The colognes and fragrances sold for men that wearers are most consistently happy with.", filters: [{ column: "shape", include: ["Men"] }] },

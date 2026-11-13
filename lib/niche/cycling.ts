@@ -128,6 +128,43 @@ export const cycling: Niche = {
     { label: "aggressive fit", tone: "neutral" },
     { label: "relaxed fit", tone: "neutral" },
   ],
+  finder: {
+    title: "Bike Finder Quiz",
+    heading: "Which bike is right for you?",
+    description: "Pick a road, gravel or mountain bike, answer a few quick questions and get the bikes whose real rider reviews best match how you ride.",
+    intro: "Pick the kind of bike you want, answer a few quick questions and see what real riders recommend.",
+    navLabel: "Find Your Bike",
+    invite: "Not sure which bike to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What kind of bike are you looking for?", options: [
+        { label: "Road", shapes: ["Road"] },
+        { label: "Gravel", shapes: ["Gravel"] },
+        { label: "Mountain", shapes: ["Mountain"] },
+      ] },
+      { id: "road", question: "Speed or comfort?", onlyIf: { question: "type", labels: ["Road", "Gravel"] }, options: [
+        { label: "Speed", hint: "Fast group rides and racing", want: ["fast", "lightweight"], weight: 1.5 },
+        { label: "Comfort", hint: "Long days in the saddle", want: ["comfortable", "relaxed fit"], avoid: ["harsh ride"], weight: 1.5 },
+        { label: "A balance of both" },
+      ] },
+      { id: "trail", question: "What do you enjoy most on the trail?", onlyIf: { question: "type", labels: ["Mountain"] }, options: [
+        { label: "Climbing", hint: "Cross-country, long rides", want: ["climbs well", "efficient pedaling"], weight: 1.5 },
+        { label: "Descending", hint: "Steep, rough trails", want: ["confident descending"], weight: 1.5 },
+        { label: "A balance of both" },
+      ] },
+      { id: "handling", question: "Do you want sharp, lively handling?", options: [
+        { label: "Yes", want: ["great handling"] },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Light weight", want: ["lightweight"], avoid: ["heavy"], weight: 1.5 },
+        { label: "Trouble-free", avoid: ["quality control issues", "creaks"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   sourcePlatforms: ["Reddit", "YouTube", "Bike shop", "Forum", "Blog"],
   examples: { brand: "Canyon", model: "Grail CF SLX", year: 2026, search: "canyon" },
   form: {

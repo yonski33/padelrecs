@@ -150,6 +150,42 @@ export const tv: Niche = {
     { label: "returned it", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough TVs in it have reviews.
+  finder: {
+    title: "TV Finder Quiz",
+    heading: "Which TV is right for you?",
+    description: "Answer a few quick questions about your room, gaming and what you watch, and get the TVs whose real owner reviews best match how you'll use yours.",
+    intro: "Answer a few quick questions and see what real owners recommend.",
+    navLabel: "Find Your TV",
+    invite: "Not sure which TV to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "OLED or Mini-LED?", options: [
+        { label: "OLED", hint: "Perfect blacks, best in dim rooms", shapes: ["OLED"] },
+        { label: "Mini-LED or QLED", hint: "Brighter, better in sunny rooms", shapes: ["Mini-LED & QLED"] },
+        { label: "Not sure" },
+      ] },
+      { id: "room", question: "How bright is the room?", options: [
+        { label: "Bright, with windows", want: ["bright", "handles glare well"], weight: 1.5 },
+        { label: "Mostly dim", want: ["deep blacks"], weight: 1.5 },
+        { label: "A mix" },
+      ] },
+      { id: "gaming", question: "Will you game on it?", options: [
+        { label: "Yes", want: ["great for gaming", "smooth motion"], avoid: ["HDMI or connection issues"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "watch", question: "Do you watch a lot of films and HDR?", options: [
+        { label: "Yes", want: ["great picture", "great HDR"] },
+        { label: "Mostly TV and sport" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Reliability", avoid: ["returned it", "panel defect", "failed early"], weight: 1.5 },
+        { label: "Smooth smart TV software", want: ["great smart TV"], avoid: ["laggy software"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-oled-tvs", label: "OLED", title: "Best OLED TVs", minReviews: 5,
       intro: "The OLED TVs owners are most consistently happy with.", filters: [{ column: "shape", include: ["OLED"] }] },

@@ -143,6 +143,47 @@ export const nails: Niche = {
     { label: "sheer", tone: "neutral" },
   ],
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
+  finder: {
+    title: "Nail Product Finder Quiz",
+    heading: "Which nail product is right for you?",
+    description: "Pick a polish, top coat, gel, press-ons or a treatment, answer a few quick questions and get the products whose real user reviews best match you.",
+    intro: "Pick what you need, answer a few quick questions and see what real users recommend.",
+    navLabel: "Find Your Nail Products",
+    invite: "Not sure which nail product to choose?",
+    minReviews: 10,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Nail polish", shapes: ["Nail polish"] },
+        { label: "Base or top coat", shapes: ["Base & top coat"] },
+        { label: "Gel polish", shapes: ["Gel polish"] },
+        { label: "Press-on nails", shapes: ["Press-on nails"] },
+        { label: "Nail treatment", hint: "Strengtheners and repair", shapes: ["Nail treatment"] },
+        { label: "Cuticle oil", shapes: ["Cuticle oil"] },
+      ] },
+      { id: "dry", question: "Do you want it to dry fast?", onlyIf: { question: "type", labels: ["Base or top coat"] }, options: [
+        { label: "Yes", list: "best-quick-dry-nail-top-coats" },
+        { label: "Doesn't matter" },
+      ] },
+      { id: "coverage", question: "Do you want full colour in one coat?", onlyIf: { question: "type", labels: ["Nail polish"] }, options: [
+        { label: "Yes", want: ["opaque in one coat"], avoid: ["needs two coats", "sheer", "streaky"], weight: 1.5 },
+        { label: "I don't mind two coats" },
+      ] },
+      { id: "wear", question: "How long should it last?", onlyIf: { question: "type", labels: ["Nail polish", "Base or top coat", "Gel polish", "Press-on nails"] }, options: [
+        { label: "As long as possible", want: ["long-lasting"], avoid: ["chips easily", "lifting"], weight: 1.5 },
+        { label: "A few days is fine" },
+      ] },
+      { id: "gentle", question: "Are your nails weak or damaged?", options: [
+        { label: "Yes", want: ["gentle on nails", "strengthened my nails"], avoid: ["damaged my nails"], weight: 1.5 },
+        { label: "No" },
+      ] },
+      { id: "priority", question: "What else matters most?", options: [
+        { label: "Easy to apply", want: ["easy to apply", "self-leveling"], avoid: ["thick formula"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+        { label: "Nothing in particular" },
+      ] },
+    ],
+  },
   topLists: [
     { slug: "best-nail-polish", label: "Nail polish", title: "Best Nail Polish", minReviews: 5,
       intro: "The nail polish lines users are most consistently happy with.", filters: [{ column: "shape", include: ["Nail polish"] }] },
