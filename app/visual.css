@@ -2696,3 +2696,7 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lp .lv-text { color: #3D393D !important; font-size: 14.5px; }
 .lp .lv-src { color: #777078; }
 .lp .lv-src b { color: #242124; }
+/* Ranking lists: plain rows with a line between them, no tinted top three (owner, 2026-11-13). */
+.lr-list.lt-list { gap: 0 !important; }
+.lr-list .lt-slot > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8) !important; }
+.lr-list .lt-slot > .lt-row.v2:hover { background: #fff !important; }
