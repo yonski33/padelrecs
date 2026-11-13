@@ -2842,3 +2842,18 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lt-row.v2.no-sig > .lt-total .lt-recent-n { flex: 0 0 100%; margin: 0; font-size: 12px; font-weight: 600; line-height: 1.2; text-align: right; color: var(--lt-signal, #28733D); white-space: nowrap; }
 @media (max-width: 720px) { .lt-row.v2.no-sig > .lt-total { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 0 4px; } }
 .ls-rank b { white-space: normal; line-height: 1.25; }
+/* Rankings and catalogue rows in the home page's bolder, darker look (owner, 2026-11-13): near-black names, summaries and
+   counts, the category chip, Amazon link and compare box on one line, a little tighter. The signal stays green. */
+:is(.lr-list, .lcx) .lt-row.v2 { padding-top: 11px !important; padding-bottom: 11px !important; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-body { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-body > :is(.lt-name, .lt-line, .lt-trait) { flex: 0 0 100%; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-body > :is(.lt-shape, .lt-shop, .lt-extra) { margin-top: 4px; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-shop { font-weight: 600; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-name { font-size: 17px !important; font-weight: 700 !important; color: #111 !important; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-line { color: #1c1a1c !important; font-weight: 500; line-height: 1.4; }
+:is(.lr-list, .lcx) .lt-row.v2 .lt-posn { color: #111 !important; font-weight: 600; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b, :is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { color: #111 !important; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total b { font-weight: 700; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { font-weight: 600; }
+:is(.lr-list, .lcx) .lt-row.v2 > .lt-sig small { color: #4a464a !important; font-weight: 500; }
+@media (max-width: 720px) { :is(.lr-list, .lcx) .lt-row.v2 .lt-name { font-size: 16px !important; } }
