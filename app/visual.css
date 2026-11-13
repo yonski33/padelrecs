@@ -2642,3 +2642,21 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
 .rc-text { display: -webkit-box !important; -webkit-box-orient: vertical; overflow: hidden !important; line-height: 1.5 !important; max-height: 3em; }
 /* Full review text on /reviews, no "…" (owner, 2026-11-13). */
 .lrv-text { display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; max-height: none !important; }
+
+/* /reviews test of the auditor's suggestions (2026-11-13): a wider page (about 1220px of content, header included),
+   bigger photos, stronger type and outlines, links lined up at the bottom. The cards stay on the page colour and show
+   the full review, as the owner asked. */
+body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
+.lrv-grid { gap: 20px; }
+.lrv-card { grid-template-columns: 100px minmax(0, 1fr); gap: 20px; padding: 18px !important; border: 1px solid #E5DFE2 !important; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.025); }
+.lrv-art { width: 100px; height: 110px; align-self: start; }
+.lrv-body { display: flex !important; flex-direction: column; gap: 4px; }
+.lrv-name { font-size: 16px !important; font-weight: 700; }
+.lrv-src { font-size: 12px !important; color: #777078 !important; }
+.lrv-text { font-size: 14px !important; color: #3D393D !important; }
+.lrv-body footer { margin-top: auto !important; padding-top: 12px; }
+.lrv-body footer a { font-size: 13px !important; }
+.lrv .spill.s-positive { background: #dcefdc; color: #1f6a2c; }
+.lrv .spill.s-mixed { background: #f6ebc4; color: #7a5a00; }
+.lrv .spill.s-negative { background: #f8dcd6; color: #a0321c; }
+@media (max-width: 720px) { .lrv-card { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px !important; } .lrv-art { width: 80px; height: 96px; } }
