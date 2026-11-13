@@ -5,7 +5,7 @@ export const MIN_JUDGED = 5;   // user ratings plus web reviews with a sentiment
 export const SORTS = [
   // "positive" keeps its old URL value; it orders by the signal score where the page passes one, and is the default so
   // the signal numbers on the rows always run high to low (owner, 2026-11-12).
-  { value: "positive", label: "Highest signal" },
+  { value: "positive", label: "Top rated" },
   { value: "discussed", label: "Most discussed" },
   { value: "newest", label: "Newest" },
 ] as const;

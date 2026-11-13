@@ -33,3 +33,24 @@ test("a score set by hand replaces the worked-out one and takes its place in the
  assert.equal(s.get("c")!.signal,40);
  assert.equal(s.get("a")!.set,undefined);
 });
+
+test("each category's best scores in the 90s and the next ones step down, even when their reviews are close (owner, 2026-11-13)",()=>{
+ const close=Array.from({length:8},(_,i)=>p(`m${i}`,"moist",80-i,8,100));
+ const s=signals(site([...close,p("weak1","vps",40,20,80),p("weak2","vps",38,20,80)]));
+ const m=close.map(x=>s.get(x.id)!.signal);
+ assert(m[0]>=92,`leader ${m[0]}`);
+ for(let i=1;i<m.length;i++) assert(m[i]<m[i-1],`${m.join(" ")}`);
+ // A category whose products are all weaker still has its best near the top: scores are against its own kind.
+ assert(s.get("weak1")!.signal>=88,`vps leader ${s.get("weak1")!.signal}`);
+ assert(s.get("weak1")!.signal>s.get("weak2")!.signal);
+});
+
+test("more positive reviews usually rank higher, even with a slightly lower share (owner, 2026-11-13)",()=>{
+ const s=signals(site([p("many","road",300,60,520),p("few","road",90,15,130)]));
+ assert(s.get("many")!.signal>s.get("few")!.signal,`${s.get("many")!.signal} vs ${s.get("few")!.signal}`);
+});
+
+test("a mostly negative product doesn't top its category on volume alone",()=>{
+ const s=signals(site([p("liked","road",150,20,200),p("panned","road",100,40,380)]));
+ assert(s.get("liked")!.signal>s.get("panned")!.signal);
+});

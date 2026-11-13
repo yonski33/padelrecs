@@ -16,6 +16,8 @@ import { tagTone } from "../../../lib/tags";
 import { displayName } from "../../../lib/brand-name";
 import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { listLine } from "../../../lib/list-lines";
+import { shortLine } from "../../../lib/short-lines";
+import { LightRow, sigTipStyle } from "../../light-row";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 import { ProductArt, SentimentBar, Arrow, SignalInfo, SignalPop } from "../../visual";
@@ -213,39 +215,39 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
     <header className="lr-hero">
       <h1>{`${sentenceCase(list.title)}, according to `}<em>{`real ${people.many}`}</em></h1>
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
-      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
+      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews of the last ${windowLabel(reviewWindowMonths(list))} on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
       <nav className="lr-others" aria-label="More rankings"><SignalPop label="How we rank"/><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}`}>{l.list.label}</a>)}</nav>
     </header>
     <div className="lr-grid">
       <section aria-label={`${list.title}, ranked`}>
-        <ol className="lr-list">{entries.map((e, i) => { const brand = brandOf(e.product.brandId), product = byId.get(e.product.id), sc = score(data, e.product.id);
-          const pos = sc.judged >= 3 ? Math.round(100 * sc.positive / sc.judged) : null, line = listLine(e.product), href = lightHref(e.product);
+        {/* The home page's row (owner, 2026-11-13), without the category line: the list is one category already. */}
+        <ol className="lr-list lt-list" style={sigTipStyle}>{entries.map((e, i) => { const brand = brandOf(e.product.brandId), product = byId.get(e.product.id);
+          if (!product) return null;
           const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
-          return <li key={e.product.id} className={`lr-row${e.rank <= 2 ? " lr-top" : ""}`}>
-            <span className="lr-rank">{`#${e.rank}`}</span>
-            <a className="lr-art" href={href} aria-hidden="true" tabIndex={-1}>{product ? <ProductArt product={product} brand={brand}/> : <span className="art art-none"><ProductIcon shape={e.product.shape} brand={brand}/></span>}</a>
-            <div className="lr-main">
-              <h3><a href={href}>{displayName(e.product.name, brand)}</a></h3>
-              {line && <p className="lr-line">{line}</p>}
-              <p className="lr-meta">{[e.product.shape, `${sc.judged.toLocaleString("en-US")} reviews`].filter(Boolean).join(" · ")}{pos !== null && <> · <b>{`${pos}% positive`}</b></>}{list.trait && ` · ${e.traitReviews} mention ${list.trait.noun}`}</p>
-              {/* A quiet text link, as on the current rankings (owner, 2026-11-12). */}
-              {a ? <a className="lr-buy" href={a.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a>
-                : site && <a className="lr-buy" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label} <span aria-hidden="true">↗</span></a>}
-            </div>
-            <div className="lr-side">
-              {e.signal && <a className="lr-sig" href={href}><b>{e.signal.signal}</b><span>signal</span></a>}
-            </div>
+          const shop = a ? { url: a.url, label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" }
+            : site ? { url: site.url, label: site.label, short: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
+          return <li key={e.product.id} className={`lt-slot${e.rank === 1 ? " lr-p1" : e.rank <= 3 ? " lr-p23" : ""}`}>
+            <LightRow data={data} r={product} rank={e.rank} signal={e.signal?.signal} line={shortLine(e.product) ?? listLine(e.product)} shop={shop} shape={false}
+              extra={list.trait ? <span className="lt-trait">{`${e.traitReviews} mention ${list.trait.noun}`}</span> : undefined}/>
           </li>; })}</ol>
       </section>
-      <aside className="lr-aside">
+    </div>
+    {/* The list has the whole width (owner, 2026-11-13); what sat beside it comes after it, before the questions. */}
+    <div className="lr-below">
+      {others.length > 0 && <section className="lr-more2"><h2>More rankings</h2>
+        <ul>{others.slice(0, 8).map(l => { const top = l.entries[0], full = top && data.rackets.find(r => r.id === top.product.id), b = top ? brandOf(top.product.brandId) : undefined;
+          return <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>
+            <span className="lr-more-art">{full ? <ProductArt product={full} brand={b}/> : null}</span>
+            <span className="lr-more-text"><b>{l.list.label}</b><span className="lr-more-go" aria-hidden="true">→</span></span>
+          </a></li>; })}</ul></section>}
+      <div className="lr-below-boxes">
         <section className="lr-box">
           <h2>How this ranking works</h2>
           <p>{`We collect first-hand ${people.one} reviews, read each as positive, mixed or negative, and rank by the signal: positive reviews weighed by how many there are. No sponsored placements.`}</p>
         </section>
-        {others.length > 0 && <section className="lr-box lr-more"><h2>More rankings</h2><ul>{others.slice(0, 8).map(l => <li key={l.list.slug}><a href={`${listHref(l.list.slug)}`}>{l.list.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>}
         {niche.finder && <a className="lr-box lr-finder" href="/finder"><b>{niche.finder.navLabel}</b><span>{niche.finder.invite}</span></a>}
-      </aside>
+      </div>
     </div>
     <section className="faq top-faq" id="how-we-rank">
       <h2>{`${sentenceCase(list.title)}: common questions`}</h2>

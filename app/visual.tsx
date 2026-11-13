@@ -191,8 +191,8 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
   return <article className="lv">
     <span className="lv-icon" aria-hidden="true"><SourceIcon platform={e.sourcePlatform}/></span>
     <div className="lv-body">
-      <header><p className="lv-src"><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
-      <p className="lv-kind">{`Summary of a ${kind}`}</p>
+      {/* Source, where, when and "summarized" on one line (owner's audit, 2026-11-13); the kind of source is in the hover title. */}
+      <header><p className="lv-src" title={`Summary of a ${kind}`}><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}{e.summary ? " · summarized" : ""}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
       <p className="lv-text">{quoteText(e)}</p>
       <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
     </div>
@@ -216,7 +216,7 @@ export function SignalPop({ label = "How the signal works", align = "left" }: { 
   return <details className={`sig-pop${align === "right" ? " sig-pop-right" : ""}`}><summary>{label}<span aria-hidden="true"> ⓘ</span></summary>
     <div className="sig-pop-card" role="note">
       <b>The signal score</b>
-      <p>A score out of 100 for how well reviewed a product is. It rises with positive reviews and with how many there are; negative and mixed reviews take points off.</p>
+      <p>A score out of 100 for how well reviewed a product is next to others of its kind. It rises with positive reviews and with how many there are; negative and mixed reviews take points off. The best in each category scores in the 90s.</p>
       <p>So a handful of glowing reviews can’t beat a product lots of people like. No sponsored placements.</p>
     </div>
   </details>;
@@ -252,4 +252,28 @@ export function CategoryTabs({ current, shapes = [], query = {} }: { current?: s
 export function SignalInfo({ align = "left" }: { align?: "left" | "right" }) {
   return <details className={`sig-info${align === "right" ? " sig-right" : ""}`}><summary aria-label="What is the signal score?">i</summary>
     <p>A score out of 100. Negative and mixed reviews take points off, and so does having only a few reviews, so a handful of glowing reviews can’t beat a product many people like. <a href="/about#signal">How it works</a></p></details>;
+}
+
+/** A short review card for the home page's "Recent reviews" preview (owner's mockup, 2026-11-13): photo, product, where
+ *  and when, the verdict and the words, clamped to a few lines. The full feed stays one click away. */
+export function RecentCard(props: { data: Catalog; now?: number } & ({ review: PlayerReview } | { entry: WebReview })) {
+  const id = "review" in props ? props.review.racketId : props.entry.racketId;
+  const r = props.data.rackets.find(x => x.id === id);
+  if (!r) return null;
+  const brand = props.data.brands.find(b => b.id === r.brandId)?.name;
+  // "Reddit · r/SkincareAddiction · Added 12 min ago" (owner's mockup, 2026-11-13): where it's from and when it was added here.
+  const added = (iso: string) => { const m = Math.max(0, Math.floor(((props.now ?? Date.now()) - Date.parse(iso)) / 60000));
+    return m < 60 ? `Added ${Math.max(1, m)} min ago` : m < 1440 ? `Added ${Math.floor(m / 60)} h ago` : m < 2880 ? "Added yesterday" : `Added ${Math.floor(m / 1440)} days ago`; };
+  const [src, verdict, text] = "review" in props
+    ? [[`${niche.site.name} ${niche.people.one}`, added(props.review.createdAt)], verdictOf(props.review.rating), props.review.reviewText]
+    : (() => { const e = props.entry, l = sourceLabel(e); return [[l.platform, l.name, added(e.createdAt)].filter(Boolean), e.sentiment, quoteText(e)] as const; })();
+  return <article className="rc-card">
+    <a className="rc-art" href={productHref(r)} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
+    <div className="rc-body">
+      <header><a className="rc-name" href={productHref(r)}>{displayName(r.name, brand)}</a>{verdict && <span className={`spill s-${verdict}`}>{sentimentWord[verdict as keyof typeof sentimentWord]}</span>}</header>
+      <p className="rc-src">{(src as string[]).join(" · ")}</p>
+      <p className="rc-text">{String(text)}</p>
+      <a className="rc-more" href={`${productHref(r)}#reviews`}>Read reviews <span aria-hidden="true">→</span></a>
+    </div>
+  </article>;
 }

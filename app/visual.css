@@ -1633,7 +1633,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 /* Phones: no "How the signal works / Updated / Compare" line and no "Read opinions" button (owner, 2026-11-12). */
 @media (max-width: 640px) { .lp-sub, .product.v2.lp .lp-actions .button.ghost { display: none; } }
 /* Phones: the sticky shop button at the bottom is the only one. */
-@media (max-width: 640px) { .product.v2.lp:has(.buy-bar) .lp-actions { display: none; } }
+
 /* Light product page reviews (owner's mockup, 2026-11-12). */
 .lv { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--lt-line); }
 .lv-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #f3f1ec; }
@@ -2007,3 +2007,705 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 /* One deep green for the signal number on every site (owner, 2026-11-13), whatever the site's own accent. */
 :root { --lt-signal: #2f6b34; }
 .lt-sig b, .lt-mini-v, .lr-sig b, .lri-sig, .product.v2.lt-page .p-signal b, .lcmp .cmp-pos.cmp-signal b, .ix-sig b, .lp-stat .lp-signal, .sim-signal b { color: var(--lt-signal) !important; }
+
+/* Audit fixes (owner, 2026-11-13). */
+/* Phones: the home page has its own big search in the hero, so the header's smaller one goes there. */
+@media (max-width: 720px) { body:has(.lt-hero) .site-header form.search { display: none; } }
+/* Home: 15 rows, the last ones fading into the Show more button. */
+.lt-list.lt-faded { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 190px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 190px), transparent); }
+.lt-list.lt-faded + .load-more { margin-top: -36px; position: relative; }
+/* Catalogue: Compare, "How the signal works" and Sort on one line, same size and middle. */
+.lc-head .lc-cmp-toggle, .lc-head .sig-pop summary, .lc-head .lc-sort label, .lc-head .lc-sort select { font-size: 13px; line-height: 20px; }
+.lc-head .sig-pop { display: inline-flex; align-items: center; margin: 0 6px 0 0; }
+.lc-head .lc-sort { display: flex; align-items: center; }
+.lc-head .lc-sort label { margin: 0; }
+/* Phones: the title on its own line, then Compare, the signal link and Sort, wrapping if they must (never wider than the screen). */
+@media (max-width: 720px) {
+  .lc-head { flex-wrap: wrap; row-gap: 10px; column-gap: 14px; }
+  .lc-head > div:first-child { flex: 1 0 100%; margin-right: 0; }
+  .lc-head .lc-cmp-toggle { margin-right: 0; }
+  .lc-head .lc-cmp-toggle { order: 1; }
+  .lc-head .lc-sort { order: 2; margin-left: auto; }
+  .lc-head .sig-pop { order: 3; flex: 1 0 100%; margin: 0; }
+  .lc-head .sig-pop-card { left: 0; right: auto; }
+}
+/* Phones: the home category strip is as wide as the screen and scrolls inside itself (audit, 2026-11-13). */
+@media (max-width: 720px) { .lt-board .lt-cats { align-self: stretch; max-width: 100%; } }
+
+/* Home leaderboard row, owner's mockup (2026-11-13): rank · photo · name, summary, category, Amazon · signal score ·
+   positive reviews over a sentiment bar · total reviews. The name's link covers the row; Amazon and reviews sit above it. */
+.lt-row.v2 { position: relative; grid-template-columns: 42px 92px minmax(0, 1fr) 74px 136px 66px; grid-template-areas: "rank art body sig pos total"; gap: 16px; padding: 14px 18px; }
+.lt-row.v2 > .lt-rank { grid-area: rank; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.lt-row.v2 > .lt-art { grid-area: art; width: 92px; height: 92px; }
+.lt-row.v2 > .lt-body { grid-area: body; gap: 1px; }
+.lt-row.v2 .lt-name { color: var(--lt-ink); text-decoration: none; font-size: 15.5px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.lt-row.v2 .lt-name::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.lt-row.v2 .lt-name:focus-visible { outline: none; } .lt-row.v2:has(.lt-name:focus-visible) { outline: 2px solid var(--lt-acc); outline-offset: 2px; }
+.lt-row.v2 .lt-line { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.lt-row.v2 .lt-shape { font-size: 12px; color: var(--lt-mute); }
+.lt-row.v2 .lt-shop { position: relative; z-index: 1; justify-self: start; margin-top: 2px; font-size: 12.5px; font-weight: 500; color: var(--lt-acc); text-decoration: none; }
+.lt-row.v2 .lt-shop:hover { text-decoration: underline; }
+.lt-row.v2 > .lt-sig { grid-area: sig; justify-items: center; }
+.lt-row.v2 > .lt-sig b { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.lt-row.v2 > .lt-sig small { margin-top: 4px; font-size: 11.5px; white-space: nowrap; }
+.lt-row.v2 > .lt-posbar { grid-area: pos; display: grid; gap: 7px; min-width: 0; }
+.lt-row.v2 .lt-posn { font-size: 12.5px; font-weight: 500; color: #2f6b34; white-space: nowrap; }
+.lt-row.v2 .sbar-track { height: 9px; }
+.lt-row.v2 > .lt-total { grid-area: total; position: relative; z-index: 1; display: grid; justify-items: center; line-height: 1; color: var(--lt-ink); text-decoration: none; }
+.lt-row.v2 > .lt-total b { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--lt-acc); }
+.lt-row.v2 > .lt-total span { margin-top: 4px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.lt-row.v2 > .lt-total:hover span { text-decoration: underline; }
+/* Narrower desktops (sidebar beside the list): a smaller bar column. */
+@media (max-width: 1180px) { .lt-row.v2 { grid-template-columns: 36px 76px minmax(0, 1fr) 66px 116px 60px; gap: 12px; padding: 12px 12px; } .lt-row.v2 > .lt-art { width: 76px; height: 76px; } .lt-row.v2 > .lt-rank { font-size: 19px; } }
+/* Phones: name and summary beside the photo with the signal at the right; positive reviews and the total under them. */
+@media (max-width: 720px) {
+  .lt-row.v2 { grid-template-columns: 28px 64px minmax(0, 1fr) auto; grid-template-areas: "rank art body sig" ". . pos total"; gap: 8px 10px; padding: 12px 8px; }
+  .lt-row.v2 > .lt-art { width: 64px; height: 64px; }
+  .lt-row.v2 > .lt-rank { font-size: 16px; }
+  .lt-row.v2 .lt-line { -webkit-line-clamp: 3; font-size: 12.5px; }
+  .lt-row.v2 .lt-shop, .lt-row.v2 .lt-shape { display: none; }
+  .lt-row.v2 > .lt-sig b { font-size: 22px; }
+  .lt-row.v2 > .lt-total { display: flex; align-items: baseline; gap: 4px; justify-self: end; }
+  .lt-row.v2 > .lt-total b { font-size: 14px; } .lt-row.v2 > .lt-total span { margin: 0; }
+  .lt-row.v2 > .lt-posbar { display: block; } .lt-row.v2 > .lt-posbar .sbar { display: none; }
+  .lt-row.v2 .lt-posn { font-size: 12px; }
+  .lt-row.v2 > .lt-sig small { font-size: 0; } .lt-row.v2 > .lt-sig small::after { content: "signal"; font-size: 11px; }
+  .lt-row.v2 > .lt-total { color: var(--lt-mute); } .lt-row.v2 > .lt-total b { font-size: 12px; font-weight: 500; color: var(--lt-mute); }
+}
+/* Bigger home photos with no white tile (owner, 2026-11-13, after the mockup): the photo's white background melts into the row. */
+.lt-row.v2 > .lt-art, .lt-row.v2 > .lt-art .art { background: transparent !important; border-radius: 0; overflow: visible; box-shadow: none !important; border: 0 !important; }
+.lt-row.v2 > .lt-art img { padding: 0 !important; mix-blend-mode: multiply; }
+/* The list's fade mask isolates it, so plain rows need the page colour for the photos to blend into. */
+.lt-slot:not(.lt-top) > .lt-row.v2 { background-color: var(--lt-bg, #fcfbf8); }
+.lt-slot:not(.lt-top) > .lt-row.v2:hover { background-color: #fff; }
+/* Phones: "Check price on Amazon" under the name, in the positive count's place (owner, 2026-11-13). */
+.lt-row.v2 > .lt-shop-m { display: none; }
+@media (max-width: 720px) {
+  .lt-row.v2:has(.lt-shop-m) > .lt-posbar { display: none; }
+  .lt-row.v2 > .lt-shop-m { display: block; grid-area: pos; position: relative; z-index: 1; justify-self: start; white-space: nowrap; font-size: 12.5px; font-weight: 500; color: var(--lt-acc); text-decoration: none; }
+}
+/* The first row's signal: a small ⓘ and a tooltip on hover or tap (owner, 2026-11-13). */
+.lt-first .lt-row.v2 > .lt-sig { position: relative; z-index: 2; cursor: help; }
+.lt-first .lt-row.v2 > .lt-sig small b, .lt-first .lt-row.v2 > .lt-sig > small::before { content: none; }
+/* The ⓘ sits on its own line under the number and its label, centred (owner, 2026-11-13). */
+.lt-first .lt-row.v2 > .lt-sig { grid-template-rows: auto auto auto; }
+.lt-first .lt-row.v2 > .lt-sig::before { content: "ⓘ"; order: 3; justify-self: center; margin-top: 3px; font-size: 12px; font-style: normal; line-height: 1; color: var(--lt-mute); }
+.lt-first .lt-row.v2 > .lt-sig::after { content: var(--sig-tip); position: absolute; z-index: 40; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 250px; padding: 11px 13px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 12px; background: #fff; box-shadow: 0 10px 28px rgba(0,0,0,.12); color: var(--lt-ink, #262421); font-size: 12.5px; font-weight: 400; line-height: 1.45; text-align: left; white-space: normal; opacity: 0; visibility: hidden; transition: opacity .12s; pointer-events: none; }
+.lt-first .lt-row.v2 > .lt-sig:hover::after, .lt-first .lt-row.v2 > .lt-sig:active::after { opacity: 1; visibility: visible; }
+@media (max-width: 720px) { .lt-first .lt-row.v2 > .lt-sig::after { left: auto; right: 0; transform: none; width: min(250px, 70vw); } }
+/* The list's fade mask would clip the tooltip under the first row only if the list were one row tall; rows keep it visible. */
+.lt-slot.lt-first { position: relative; z-index: 3; }
+/* The review count in the text colour (owner, 2026-11-13: blue competed with the green signal). */
+:root { --lt-count: var(--lt-ink, #262421); }
+.lt-row.v2 > .lt-total b { color: var(--lt-count) !important; }
+
+/* The shared row on the catalogue and the rankings (owner, 2026-11-13). */
+.lt-row.v2.no-rank { grid-template-columns: 92px minmax(0, 1fr) 74px 136px 66px; grid-template-areas: "art body sig pos total"; }
+.lt-row.v2 .lt-extra { position: relative; z-index: 1; justify-self: start; }
+.lt-row.v2 .lt-trait { font-size: 12px; color: var(--lt-mute); }
+.lc .lt-row.v2 .cmp-check { display: none; margin-top: 4px; font-size: 12px; color: var(--lt-mute); }
+.lc:has(#lc-cmp:checked) .lt-row.v2 .cmp-check, .lc:has(.cmp-check.on) .lt-row.v2 .cmp-check { display: inline-flex; }
+.lr-list.lt-list, .lc-rows .prow-list { display: grid; gap: 6px; }
+@media (max-width: 1180px) { .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 66px 116px 60px; } }
+@media (max-width: 720px) {
+  .lt-row.v2.no-rank { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "art body sig" ". pos total"; }
+  .lt-row.v2 .lt-trait { display: none; }
+}
+/* The review count and its word a softer grey (owner, 2026-11-13: black was too dark). */
+:root { --lt-count: #6b665e; }
+.lt-row.v2 > .lt-total, .lt-row.v2 > .lt-total span { color: #6b665e !important; }
+
+/* Rankings: the list gets the whole stage, centred, with no sidebar (owner, 2026-11-13). */
+.lr .lr-grid { grid-template-columns: minmax(0, 1fr); max-width: 980px; margin-left: auto; margin-right: auto; }
+.lr-below { display: grid; gap: 18px; max-width: 980px; margin: 34px auto 0; }
+.lr-more2 h2 { margin: 0 0 12px; font-size: 18px; font-weight: 600; }
+.lr-more2 ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.lr-more2 a { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 12px; height: 100%; padding: 12px 14px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; color: var(--lt-ink); text-decoration: none; transition: border-color .12s, box-shadow .12s, transform .12s; }
+.lr-more2 a:hover { border-color: color-mix(in srgb, var(--lt-acc) 35%, var(--lt-line)); box-shadow: 0 6px 18px rgba(0,0,0,.06); transform: translateY(-1px); }
+.lr-more-art { width: 56px; height: 56px; display: grid; place-items: center; }
+.lr-more-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lr-more-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lr-more-text { display: grid; gap: 3px; min-width: 0; }
+.lr-more-text b { font-size: 14px; font-weight: 600; }
+.lr-more-text small { font-size: 12px; color: var(--lt-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr-more-go { color: var(--lt-acc); }
+.lr-below-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.top-page.v2.lr .top-faq { max-width: 980px; margin-left: auto; margin-right: auto; }
+
+/* The rankings hub after the owner's mockup (2026-11-13). */
+.lrx-hero { margin: 6px 0 30px; }
+.lrx-hero h1 { margin: 0; font-size: clamp(30px, 4.4vw, 44px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+.lrx-hero h1 em { font-style: normal; color: var(--lt-acc); }
+.lrx-sub { margin: 10px 0 0; font-size: 17px; color: #4f4b44; }
+.lrx-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 12px 0 0; font-size: 13px; color: var(--lt-mute); }
+.lrx-sep { color: var(--lt-line); }
+.lrx-meta .sig-pop summary { font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.lrx-group { margin-top: 28px; }
+.lrx-group h2 { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.lrx-group h2::after { content: ""; flex: 1; height: 1px; background: var(--lt-line); }
+.lrx-count { padding: 4px 11px; border-radius: 99px; background: var(--lt-tint); font-size: 12.5px; font-weight: 500; letter-spacing: 0; color: var(--lt-ink); }
+.lrx-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.lrx-card { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 210px) 18px; align-items: center; gap: 16px; height: 100%; padding: 16px 18px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; color: var(--lt-ink); text-decoration: none; transition: border-color .12s, box-shadow .12s, transform .12s; }
+.lrx-card:hover { border-color: color-mix(in srgb, var(--lt-acc) 35%, var(--lt-line)); box-shadow: 0 8px 22px rgba(0,0,0,.06); transform: translateY(-1px); }
+.lrx-icon { display: grid; place-items: center; height: 56px; padding-right: 14px; border-right: 1px solid var(--lt-line); color: var(--lt-acc); }
+.lrx-icon svg { width: 40px; height: 40px; }
+.lrx-text { display: grid; gap: 4px; min-width: 0; }
+.lrx-text b { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.lrx-intro { font-size: 12.5px; line-height: 1.45; color: #4f4b44; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lrx-text small { font-size: 12px; color: var(--lt-mute); }
+.lrx-top { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: center; gap: 12px; min-width: 0; }
+.lrx-art { width: 76px; height: 76px; display: grid; place-items: center; }
+.lrx-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lrx-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lrx-pick { display: grid; gap: 4px; min-width: 0; }
+.lrx-pick small { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--lt-acc); }
+.lrx-pick b { font-size: 13px; font-weight: 500; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lrx-go { color: var(--lt-acc); font-size: 18px; }
+@media (max-width: 1080px) { .lrx-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .lrx-card { grid-template-columns: minmax(0, 1fr) 64px; gap: 10px 12px; padding: 14px; }
+  .lrx-icon, .lrx-go { display: none; }
+  .lrx-top { grid-column: 1 / -1; grid-template-columns: 52px minmax(0, 1fr); padding-top: 10px; border-top: 1px solid var(--lt-line); }
+  .lrx-art { width: 52px; height: 52px; }
+  .lrx-group h2 { font-size: 20px; }
+}
+.lrx-meta .sig-pop { margin: 0; }
+.lrx-icon > * { width: 46px !important; height: 46px !important; }
+.lrx-icon svg { width: 100%; height: 100%; }
+@media (max-width: 560px) { .lrx-sep { display: none; } .lrx-meta .sig-pop { flex-basis: 100%; } }
+/* More rankings as picture cards (owner, 2026-11-13): a big photo of the list's #1 on a soft tint, the name under it. */
+.lr-more2 ul { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.lr-more2 a { grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 0; padding: 0; overflow: hidden; }
+.lr-more2 .lr-more-art { width: 100%; height: 150px; padding: 16px; box-sizing: border-box; background: linear-gradient(160deg, var(--lt-tint), var(--lt-tint2)); }
+.lr-more2 .lr-more-art img { mix-blend-mode: multiply; transition: transform .2s; }
+.lr-more2 a:hover .lr-more-art img { transform: scale(1.05); }
+.lr-more2 .lr-more-text { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 14px; }
+.lr-more2 .lr-more-text b { font-size: 14.5px; }
+@media (max-width: 560px) { .lr-more2 ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .lr-more2 .lr-more-art { height: 110px; padding: 12px; } }
+.lr-more2 .lr-more-art { padding: 6px; height: 160px; }
+.lr-more2 .lr-more-art img { transform: scale(1.25); }
+.lr-more2 a:hover .lr-more-art img { transform: scale(1.32); }
+@media (max-width: 560px) { .lr-more2 .lr-more-art { height: 120px; padding: 4px; } }
+
+/* Catalogue after the owner's mockup (2026-11-13): a Filters rail and a tool row over plain rows. */
+.lcx .lc-grid { grid-template-columns: 240px minmax(0, 1fr); gap: 0; margin-top: 10px; }
+.lcx .lc-rail { padding-right: 24px; border-right: 1px solid var(--lt-line); max-height: calc(100vh - 28px); overflow: auto; scrollbar-width: thin; }
+.lcx .lc-list { padding-left: 28px; }
+.lc-rail-head { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--lt-line); }
+.lc-rail-head h2 { margin: 0; font-size: 20px; font-weight: 700; }
+.lc-rail-head a { font-size: 13px; color: var(--lt-acc); }
+.lc-group { padding: 14px 0; border-bottom: 1px solid var(--lt-line); }
+.lc-group > summary { display: flex; align-items: center; justify-content: space-between; list-style: none; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--lt-ink); }
+.lc-group > summary::-webkit-details-marker { display: none; }
+.lc-chev { width: 8px; height: 8px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(-135deg); margin-top: 4px; transition: transform .15s; }
+.lc-group:not([open]) .lc-chev { transform: rotate(45deg); margin-top: -4px; }
+.lc-group-body { display: grid; gap: 11px; margin-top: 12px; }
+.lcx .lc-check small, .lc-radios small { margin-left: auto; font-size: 12px; color: var(--lt-mute); }
+.lc-radios { display: grid; gap: 11px; }
+.lc-radios a { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--lt-ink); text-decoration: none; }
+.lc-radios a:hover { color: var(--lt-acc); }
+.lc-radio { flex: none; width: 15px; height: 15px; border: 1.5px solid #b9b4aa; border-radius: 50%; box-sizing: border-box; }
+.lc-radios a[aria-current] .lc-radio { border: 4.5px solid var(--lt-acc); }
+.lc-radios a[aria-current] { font-weight: 500; }
+.lc-showmore > summary { list-style: none; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--lt-acc); }
+.lc-showmore > summary::-webkit-details-marker { display: none; }
+.lc-showmore[open] > summary { display: none; }
+.lc-showmore { display: grid; gap: 11px; }
+.lcx .lc-group select { width: 100%; padding: 9px 12px; border: 1px solid var(--lt-line); border-radius: 10px; background: #fff; font: inherit; font-size: 13.5px; color: var(--lt-ink); }
+.lcx-head h1 { margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.lcx-sub { margin: 4px 0 0; font-size: 14px; color: var(--lt-mute); }
+.lcx-tools { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.lcx-tools .lc-search { flex: 1; max-width: 500px; margin: 0; }
+.lcx-tools .lc-search input { width: 100%; height: 42px; padding: 0 14px 0 40px; border: 1px solid var(--lt-line); border-radius: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23736e65' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 14px center; font: inherit; font-size: 14px; box-sizing: border-box; }
+.lcx-cmp { margin-left: auto !important; height: 42px; padding: 0 20px; border: 1px solid var(--lt-line); border-radius: 12px; background: #fff; font-size: 14px !important; font-weight: 500 !important; color: var(--lt-ink) !important; }
+.lcx-cmp input { position: absolute; opacity: 0; pointer-events: none; }
+.lcx-cmp:has(input:checked) { border-color: var(--lt-acc); color: var(--lt-acc) !important; background: var(--lt-tint2); }
+.lcx-cmp .lc-switch { display: none; }
+.lcx-sort label { gap: 8px !important; font-size: 14px !important; }
+.lcx-sort select { height: 42px; padding: 0 34px 0 14px !important; border: 1px solid var(--lt-line) !important; border-radius: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23262421' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center !important; -webkit-appearance: none; appearance: none; font-size: 14px !important; font-weight: 500 !important; color: var(--lt-ink) !important; }
+.lcx-how { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 14px 0 0; padding-bottom: 12px; border-bottom: 1px solid var(--lt-line); font-size: 13px; color: var(--lt-mute); }
+.lcx-how .sig-pop { margin: 0; }
+/* Plain rows with a line between them, no tinted top rows. */
+.lcx .lc-rows .prow-list { gap: 0; }
+.lcx .lc-rows .lt-slot > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8); }
+.lcx .lc-rows .lt-slot > .lt-row.v2:hover { background: #fff; }
+.lcx .lc-cmp-toggle { display: inline-flex; align-items: center; }
+@media (max-width: 900px) {
+  .lcx .lc-grid { grid-template-columns: 1fr; }
+  .lcx .lc-rail { position: static; max-height: none; padding-right: 0; border-right: 0; }
+  .lcx .lc-list { padding-left: 0; margin-top: 14px; }
+}
+@media (max-width: 560px) {
+  .lcx-tools { flex-wrap: wrap; }
+  .lcx-tools .lc-search { flex: 1 0 100%; max-width: none; }
+  .lcx-cmp { margin-left: 0 !important; }
+  .lcx-sort { margin-left: auto; }
+  .lcx-head h1 { font-size: 24px; }
+}
+.lc-radios a, .lcx .lc-check { padding: 0 !important; margin: 0 !important; min-height: 0 !important; line-height: 1.35 !important; border: 0 !important; background: none !important; }
+.lcx .lc-check span, .lc-radios a { font-size: 14px; font-weight: 400 !important; }
+.lc-radios a[aria-current] { font-weight: 500 !important; }
+.lcx .lc-form, .lcx .lc-form-inner { display: block !important; gap: 0 !important; padding: 0 !important; border: 0 !important; background: none !important; box-shadow: none !important; }
+.lcx .lc-group, .lcx .lc-form-inner > div { margin: 0 !important; }
+.lcx .lc-showmore { margin: 0; }
+@media (max-width: 900px) { .lcx .filters-toggle:not(:checked) ~ .filters.lc-form { display: none !important; } .lcx .filters-toggle:checked ~ .filters.lc-form { margin-top: 10px !important; } .lcx .lc-rail-head { display: none; } }
+/* Bigger row type, as in the owner's mockup (2026-11-13). */
+@media (min-width: 721px) {
+  .lt-row.v2 .lt-name { font-size: 17px; font-weight: 600; }
+  .lt-row.v2 .lt-line { font-size: 14px; }
+  .lt-row.v2 .lt-shape { font-size: 13px; }
+  .lt-row.v2 .lt-shop { font-size: 14px; }
+  .lt-row.v2 > .lt-sig b { font-size: 29px; }
+  .lt-row.v2 > .lt-sig small { font-size: 13px; }
+  .lt-row.v2 .lt-posn { font-size: 14px; }
+  .lt-row.v2 .sbar-track { height: 10px; }
+  .lt-row.v2 > .lt-total b { font-size: 27px; }
+  .lt-row.v2 > .lt-total span { font-size: 14px; }
+  .lt-row.v2 { grid-template-columns: 42px 92px minmax(0, 1fr) 84px 152px 72px; }
+  .lt-row.v2.no-rank { grid-template-columns: 92px minmax(0, 1fr) 84px 152px 72px; }
+}
+@media (min-width: 721px) and (max-width: 1180px) {
+  .lt-row.v2 { grid-template-columns: 36px 76px minmax(0, 1fr) 74px 128px 64px; }
+  .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 74px 128px 64px; }
+}
+/* The search on the left, Compare and Sort apart at the right (owner, 2026-11-13). */
+@media (min-width: 561px) {
+  .lcx-tools { gap: 14px; }
+  .lcx-tools .lc-search { flex: 0 1 58%; max-width: 520px; }
+  .lcx-tools .lcx-sort { flex: none; }
+  .lcx-cmp { margin-left: auto !important; margin-right: 10px !important; }
+}
+.lcx-cmp, .lcx-sort select { height: 40px; }
+.lcx-tools .lc-search input { height: 44px; }
+@media (min-width: 561px) { .lcx-tools .lc-search { margin-right: auto !important; } .lcx-tools .lcx-cmp { margin-left: 0 !important; } }
+@media (min-width: 561px) { .lcx-tools .lc-search { flex: 0 1 50%; } .lcx-sort select { width: auto !important; min-width: 0 !important; } .lcx-sort label { display: flex; align-items: center; } }
+/* Compare and the Sort choice in the site colour (owner, 2026-11-13), the chevron too. */
+.lcx-cmp, .lcx-cmp:hover { color: var(--lt-acc) !important; }
+.lcx-sort select { color: var(--lt-acc) !important; background-image: none !important; padding-right: 36px !important; }
+.lcx-sort label { position: relative; }
+.lcx-sort label::after { content: ""; position: absolute; right: 15px; top: 50%; width: 7px; height: 7px; margin-top: -6px; border-right: 1.7px solid var(--lt-acc); border-bottom: 1.7px solid var(--lt-acc); transform: rotate(45deg); pointer-events: none; }
+/* Catalogue: more room for the name and summary so most takes fit on one line (owner, 2026-11-13). */
+@media (min-width: 901px) {
+  .lcx .lc-grid { grid-template-columns: 212px minmax(0, 1fr); }
+  .lcx .lc-rail { padding-right: 20px; }
+  .lcx .lc-list { padding-left: 22px; }
+  .lcx .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 70px 138px 62px; gap: 12px; padding: 14px 10px; }
+  .lcx .lt-row.v2 > .lt-art { width: 76px; height: 76px; }
+}
+@media (min-width: 901px) { .lcx .lt-row.v2.no-rank { grid-template-columns: 72px minmax(0, 1fr) 80px 140px 62px; gap: 14px; } .lcx .lt-row.v2 > .lt-art { width: 72px; height: 72px; } .lcx .lt-row.v2 > .lt-sig small { font-size: 12.5px; } }
+@media (min-width: 901px) { .lcx .lt-row.v2.no-rank { grid-template-columns: 72px minmax(0, 1fr) 76px 126px 58px; gap: 12px; } .lcx .lt-row.v2 .lt-posn { font-size: 13px; } .lcx .lt-row.v2 > .lt-sig small { font-size: 12px; } }
+/* Catalogue search on the page colour, with a slightly firmer outline (owner, 2026-11-13). */
+.lcx-tools .lc-search input { background-color: transparent !important; border-color: #ddd8cf !important; }
+.lcx-tools .lc-search input:focus { border-color: var(--lt-acc) !important; background-color: transparent !important; }
+/* The category as a soft tinted chip, easy to scan down the list (owner, 2026-11-13). */
+.lt-row.v2 .lt-shape { justify-self: start; margin: 3px 0 2px; padding: 2px 9px; border-radius: 7px; background: #f5ecdc; color: #5c4a2e !important; font-size: 12px !important; font-weight: 500; line-height: 1.5; }
+/* The owner's exact chip values (2026-11-13). */
+.lt-row.v2 .lt-shape { padding: 3px 8px !important; border-radius: 5px !important; background: #F8F1DF !important; color: #745C39 !important; font-size: 12px !important; font-weight: 500 !important; border: 0 !important; box-shadow: none !important; line-height: 1.4; }
+/* Phones: the category chip too, for lists that mix categories (owner, 2026-11-13). */
+@media (max-width: 720px) { .lt-row.v2 .lt-shape { display: inline-block !important; margin: 5px 0 1px; font-size: 11.5px !important; padding: 2px 7px !important; } }
+
+/* Home after the owner's mockup and audit (2026-11-13). */
+/* The hero has the search, so no header search on the home page at any width. */
+body:has(.lt-hero) .site-header form.search { display: none !important; }
+/* Plain rows with a line between them, no tinted top three. */
+.home-d .lt-list .prow-list, .home-d .lt-list { gap: 0; }
+.home-d .lt-slot > .lt-row.v2, .home-d .lt-slot.lt-top > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8) !important; }
+.home-d .lt-slot > .lt-row.v2:hover { background: #fff !important; }
+/* Category tabs with thin separators. */
+.lt-board .lt-cats > a + a::before, .lt-board .lt-cats > .lc-more::before { content: ""; display: inline-block; width: 1px; height: 13px; margin-right: 15px; vertical-align: -1px; background: var(--lt-line); }
+.lt-board .lt-cats > .lc-more { display: inline-flex; align-items: baseline; }
+/* "Ranked by signal score … How it works", right over the list. */
+.lt-how { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 10px 0 0; padding-bottom: 10px; border-bottom: 1px solid var(--lt-line); font-size: 13px; color: var(--lt-mute); }
+.lt-how .sig-pop { margin: 0; }
+.lt-more-btn { display: inline-flex; gap: 6px; padding: 10px 22px !important; border: 0 !important; border-radius: 12px !important; background: var(--lt-tint) !important; color: var(--lt-acc) !important; font-weight: 600 !important; }
+.home-d .load-more { display: flex; justify-content: center; margin-top: 16px; }
+/* Recent reviews: a short 2 × 2 preview. */
+.rc-feed { max-width: var(--wrap, 1064px); }
+.rc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.rc-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.rc-head a { font-size: 14px; font-weight: 500; color: var(--lt-acc, var(--green-ink)); text-decoration: none; }
+.rc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.rc-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; padding: 14px 16px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 14px; background: #fff; }
+.rc-art { width: 64px; height: 64px; display: grid; place-items: center; }
+.rc-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.rc-art img { width: 100%; height: 100%; object-fit: contain; }
+.rc-body { display: grid; gap: 3px; min-width: 0; }
+.rc-body header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.rc-name { font-size: 14.5px; font-weight: 600; color: var(--lt-ink, #262421); text-decoration: none; }
+.rc-name:hover { text-decoration: underline; }
+.rc-src { margin: 0; font-size: 12px; color: var(--lt-mute, #736e65); }
+.rc-text { margin: 4px 0 0; font-size: 13.5px; line-height: 1.5; color: #4f4b44; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 720px) { .rc-grid { grid-template-columns: 1fr; } .rc-card { grid-template-columns: 52px minmax(0, 1fr); } .rc-art { width: 52px; height: 52px; } }
+
+/* Phones: the Amazon link under the name; positive reviews, the bar and the total in a full row below (owner, 2026-11-13). */
+@media (max-width: 720px) {
+  .lt-row.v2, .lt-row.v2.no-rank { grid-template-columns: 28px 64px minmax(0, 1fr) auto; grid-template-areas: "rank art body sig" "pos pos pos total"; row-gap: 10px; }
+  .lt-row.v2.no-rank { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "art body sig" "pos pos total"; }
+  .lt-row.v2 .lt-shop { display: block !important; font-size: 13px; }
+  .lt-row.v2 > .lt-shop-m { display: none !important; }
+  .lt-row.v2:has(.lt-shop-m) > .lt-posbar, .lt-row.v2 > .lt-posbar { display: grid !important; grid-template-columns: auto minmax(60px, 1fr); align-items: center; gap: 10px; }
+  .lt-row.v2 > .lt-posbar .sbar { display: block !important; }
+  .lt-row.v2 .sbar-track { height: 8px; }
+  .lt-row.v2 .lt-posn { font-size: 12.5px; font-weight: 600; }
+  .lt-row.v2 > .lt-total { align-self: center; padding-left: 10px; }
+  .lt-row.v2 > .lt-total b { font-size: 12.5px !important; font-weight: 600 !important; color: var(--lt-ink) !important; }
+  .lt-row.v2 > .lt-total, .lt-row.v2 > .lt-total span { color: var(--lt-ink) !important; font-weight: 600; font-size: 12.5px; }
+  .lt-side .lt-mini li:nth-child(n+4) { display: none; }
+}
+/* Header: with no search on the home page, "Add a review" stays at the right. */
+body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
+.lt-hero .lt-sub { max-width: 640px; margin-left: auto; margin-right: auto; }
+/* Home desktop rows, denser like the mockup: one-line names and takes where they fit. */
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 40px 68px minmax(0, 1fr) 76px 128px 58px; gap: 12px; padding: 12px 8px; }
+  .home-d .lt-row.v2 > .lt-art { width: 68px; height: 68px; }
+  .home-d .lt-row.v2 .lt-name { font-size: 15.5px; -webkit-line-clamp: 1; }
+  .home-d .lt-row.v2 .lt-line { font-size: 13px; -webkit-line-clamp: 2; }
+  .home-d .lt-row.v2 .lt-shop { font-size: 13px; margin-top: 1px; }
+  .home-d .lt-row.v2 > .lt-sig b { font-size: 26px; }
+  .home-d .lt-row.v2 > .lt-sig small { font-size: 12px; }
+  .home-d .lt-row.v2 .lt-posn { font-size: 13px; }
+  .home-d .lt-row.v2 > .lt-total b { font-size: 24px; }
+  .home-d .lt-row.v2 > .lt-total span { font-size: 12.5px; }
+}
+/* Phones: a wider text column and links that don't wrap. */
+@media (max-width: 720px) {
+  .lt-row.v2 { grid-template-columns: 24px 56px minmax(0, 1fr) auto; column-gap: 10px; padding: 14px 4px; }
+  .lt-row.v2.no-rank { grid-template-columns: 56px minmax(0, 1fr) auto; }
+  .lt-row.v2 > .lt-art { width: 56px !important; height: 56px !important; }
+  .lt-row.v2 > .lt-rank { font-size: 15px; }
+  .lt-row.v2 .lt-name { font-size: 15px !important; }
+  .lt-row.v2 .lt-line { font-size: 13px !important; -webkit-line-clamp: 2 !important; }
+  .lt-row.v2 .lt-shop { white-space: nowrap; }
+  .lt-row.v2 > .lt-sig b { font-size: 22px !important; }
+  .lt-how-long { display: none; }
+  .lt-how { flex-wrap: nowrap; }
+}
+@media (max-width: 720px) { .lt-row.v2 .lt-line { -webkit-line-clamp: 3 !important; } }
+/* A tight category bar (owner, 2026-11-13): no stray margin under "More", a short Sort, less space above and below. */
+.lt-board .lt-cats .lc-more { margin: 0 !important; }
+.lt-board .lt-bar { padding-top: 2px; }
+.lt-board .lt-cats > a { padding: 6px 0 8px; }
+.lt-board .lt-bar-aside .lt-sort, .lt-board .lt-bar-aside .lt-sort select { height: auto !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; line-height: 1.3; }
+.lt-how { margin-top: 6px; padding-bottom: 8px; }
+@media (max-width: 720px) { .lt-board .lt-bar-aside { padding: 0 !important; margin: 6px 0 8px; align-self: flex-start; } }
+/* Home: a wider name and summary column, like the catalogue (owner, 2026-11-13). */
+@media (min-width: 901px) { .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) 244px; gap: 24px; } }
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 34px 60px minmax(0, 1fr) 72px 118px 54px; gap: 10px; padding: 12px 6px; }
+  .home-d .lt-row.v2 > .lt-art { width: 60px; height: 60px; }
+  .home-d .lt-row.v2 .lt-posn { font-size: 12.5px; }
+  .home-d .lt-row.v2 > .lt-rank { font-size: 19px; }
+}
+/* Home: room back for the stats (owner, 2026-11-13: too tight), taken from a narrower sidebar instead. */
+@media (min-width: 901px) { .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) 216px; gap: 22px; } }
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 32px 58px minmax(0, 1fr) 74px 124px 58px; column-gap: 12px; }
+  .home-d .lt-row.v2 > .lt-posbar { margin-right: 6px; }
+  .home-d .lt-row.v2 > .lt-art { width: 58px; height: 58px; }
+}
+
+/* Home refinement brief (owner's auditor, 2026-11-13): about 20% tighter, bolder names, stronger focal points,
+   a wider sidebar, a shorter hero and compact review cards. Same palette, no new colours. */
+:root { --lt-signal: #28733D; }
+.home-d { --lt-name: #242124; --lt-summary: #575258; --lt-label: #827C82; }
+/* Hero: about 50px less vertical space on desktop. */
+@media (min-width: 721px) {
+  .home-d .lt-hero { gap: 7px; padding: 18px 0 14px; }
+  .home-d .lt-hero .lt-sub { margin: 0; }
+  .home-d .lt-search { margin-top: 6px; }
+}
+/* Layout: rankings about 75%, the sidebar 280px. */
+@media (min-width: 901px) { .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) 280px; gap: 26px; } }
+/* Rows: about 20% less height, stronger type. */
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 32px 56px minmax(0, 1fr) 72px 120px 58px; column-gap: 12px; padding: 9px 6px; }
+  .home-d .lt-row.v2 > .lt-art { width: 56px; height: 56px; }
+  .home-d .lt-row.v2 > .lt-body { gap: 1px; }
+  .home-d .lt-row.v2 .lt-name { font-size: 15.5px; font-weight: 700; color: var(--lt-name); }
+  .home-d .lt-row.v2 .lt-line { font-size: 13.5px; color: var(--lt-summary) !important; line-height: 1.4; }
+  .home-d .lt-row.v2 .lt-shape { margin: 2px 0 1px; font-size: 11.5px !important; padding: 1px 7px !important; }
+  .home-d .lt-row.v2 .lt-shop { font-size: 12.5px; font-weight: 500; }
+  .home-d .lt-row.v2 > .lt-sig b { font-size: 25px; font-weight: 750; }
+  .home-d .lt-row.v2 > .lt-sig small, .home-d .lt-row.v2 > .lt-total span { font-size: 11.5px; color: var(--lt-label) !important; }
+  .home-d .lt-row.v2 > .lt-total b { font-size: 22px; font-weight: 700; }
+  .home-d .lt-row.v2 .lt-posn { font-size: 12.5px; font-weight: 600; }
+}
+.home-d .lt-row.v2 > .lt-rank { font-weight: 800; color: color-mix(in srgb, var(--lt-acc) 82%, #000); }
+/* Sidebar: stronger headings and a line between its sections. */
+.home-d .lt-side { gap: 0; }
+.home-d .lt-mini { padding: 14px 0; border-bottom: 1px solid var(--lt-line); }
+.home-d .lt-mini:first-child { padding-top: 0; }
+.home-d .lt-mini:last-of-type { border-bottom: 0; }
+.home-d .lt-mini-head h2 { font-size: 16.5px; font-weight: 700; color: var(--lt-name); }
+.home-d .lt-mini-head h2 .lt-dot { display: none; }
+.home-d .lt-mini-name { color: var(--lt-name); }
+/* Recent reviews: compact snippets. */
+.rc-card { gap: 12px; padding: 12px 14px; grid-template-columns: 48px minmax(0, 1fr); }
+.rc-art { width: 48px; height: 48px; }
+.rc-name { font-size: 14px; font-weight: 700; color: #242124; }
+.rc-text { margin-top: 2px; font-size: 13px; line-height: 1.45; -webkit-line-clamp: 3; }
+.rc-grid { gap: 10px; }
+
+/* Product page after the owner's mockup and audit (2026-11-13). */
+.lp .lp-hero { grid-template-columns: 310px minmax(0, 1fr); gap: 36px; padding: 6px 0 24px; align-items: center; }
+.lp .lp-photo { border-radius: 20px; padding: 18px; }
+.lp .lp-photo img { width: 100%; height: 100%; object-fit: contain; }
+.lp-eyebrow { margin: 0 0 4px; font-size: 14px; font-weight: 600; color: var(--lt-acc); }
+.lp .lp-title h1 { margin: 0; font-size: clamp(28px, 3.4vw, 38px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: #242124; }
+.lp-chiprow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 0; }
+.lp-cat { padding: 3px 10px; border-radius: 6px; background: #F8F1DF; color: #745C39; font-size: 13px; font-weight: 500; }
+.lp-year { font-size: 13px; color: var(--lt-mute); }
+.lp-chiprow .lp-rank { font-size: 13px; font-weight: 500; color: var(--lt-acc); text-decoration: none; }
+.lp-chiprow .lp-rank:hover { text-decoration: underline; }
+.lp .lp-line { margin: 12px 0 0; font-size: 16px; line-height: 1.5; color: #3d3a3f; }
+/* The three numbers as one group with thin dividers. */
+.lp-stats2 { display: grid !important; grid-template-columns: repeat(3, minmax(0, auto)); justify-content: start; gap: 0; margin-top: 18px !important; }
+.lp-stats2 .lp-stat { display: grid; justify-items: center; gap: 4px; padding: 0 34px !important; border-left: 1px solid var(--lt-line); text-align: center; color: inherit; text-decoration: none; }
+.lp-stats2 .lp-stat:first-child { padding-left: 0 !important; border-left: 0; }
+.lp-stats2 .lp-stat b { font-size: 30px !important; font-weight: 750 !important; letter-spacing: -0.02em; line-height: 1.1; color: #242124; }
+.lp-stats2 .lp-stat .lp-signal { color: var(--lt-signal) !important; }
+.lp-stats2 .lp-stat span { font-size: 14px !important; color: #575258 !important; }
+.lp-stats2 .lp-split { min-width: 220px; }
+.lp-stats2 .sbar-track { height: 10px; width: 100%; }
+.lp .lp-sub { margin-top: 12px; }
+.lp .lp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 18px; }
+.lp .lp-buy { padding: 13px 30px !important; border-radius: 12px !important; font-size: 16px !important; font-weight: 600 !important; background: var(--lt-acc) !important; border-color: var(--lt-acc) !important; color: #fff !important; }
+.lp-read { font-size: 15px; font-weight: 600; color: var(--lt-acc); text-decoration: none; }
+.lp-read:hover { text-decoration: underline; }
+/* What people mention: one compact row. */
+.lp .lp-mention { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; padding: 16px 0; }
+.lp .lp-mention h2 { margin: 0; padding-right: 26px; border-right: 1px solid var(--lt-line); font-size: 20px; font-weight: 700; }
+.lp .lp-mention-cols { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+.lp .lp-mention-cols > div { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lp .lp-mention-cols > div + div { padding-left: 26px; border-left: 1px solid var(--lt-line); }
+.lp .lp-mention-cols h3 { display: flex; align-items: center; gap: 7px; margin: 0 6px 0 0; font-size: 14.5px; font-weight: 600; }
+.lp .lp-mention-cols .lp-chips { margin: 0; }
+/* Review filters as pills on one row; on phones the row scrolls and Sort sits under it. */
+.lp .verdict-filter { gap: 8px; }
+.lp .verdict-filter a { padding: 6px 15px; border: 0; background: #f3eee6; font-weight: 500; }
+.lp .verdict-filter a[aria-current] { background: var(--lt-acc); color: #fff; }
+.lp .verdict-filter a[aria-current] .c { color: #fff; opacity: .85; }
+.lp-compare { display: block; margin: 0 0 14px; padding: 12px 14px; border: 1px solid var(--lt-line); border-radius: 12px; background: #fff; font-size: 13.5px; font-weight: 600; color: var(--lt-acc); text-decoration: none; }
+.lp-compare:hover { border-color: var(--lt-acc); }
+@media (max-width: 720px) {
+  .lp .lp-hero { grid-template-columns: 116px minmax(0, 1fr); gap: 14px 16px; align-items: start; }
+  .lp .lp-photo { padding: 8px; border-radius: 14px; }
+  .lp .lp-title h1 { font-size: 25px; }
+  .lp-eyebrow { order: 1; font-size: 13px; }
+  .lp .lp-line, .lp-stats2, .lp .lp-sub, .lp .lp-actions { grid-column: 1 / -1; }
+  .lp-stats2 { grid-template-columns: 1fr 1.4fr 1fr; width: 100%; }
+  .lp-stats2 .lp-stat { padding: 0 10px !important; }
+  .lp-stats2 .lp-stat b { font-size: 24px !important; }
+  .lp-stats2 .lp-split { min-width: 0; }
+  .lp .lp-actions { gap: 16px; }
+  .lp .lp-buy { flex: 1; justify-content: center; }
+  .lp .lp-mention { display: grid; gap: 10px; }
+  .lp .lp-mention h2 { padding: 0; border: 0; font-size: 19px; }
+  .lp .lp-mention-cols { display: grid; gap: 10px; }
+  .lp .lp-mention-cols > div + div { padding-left: 0; border-left: 0; }
+  .lp .review-controls { display: grid; gap: 10px; }
+  .lp .verdict-filter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -16px; padding-right: 16px; }
+  .lp .verdict-filter a { flex: none; }
+}
+.lp .verdict-filter a { border-radius: 99px !important; font-size: 14px !important; }
+.lp-stats2 .lp-split { align-content: center; }
+@media (max-width: 720px) {
+  .lp-eyebrow { order: 0 !important; align-self: end; margin: 0; }
+  .lp .lp-title { align-self: start; }
+  .lp-stats2 .lp-split b { font-size: 20px !important; white-space: nowrap; }
+  .lp .lp-actions { justify-content: space-between; }
+  .lp .lp-buy { flex: 1 1 100%; }
+  .lp-read { margin: 0 auto; }
+}
+@media (max-width: 720px) { .lp .lp-photo { grid-row: span 3 !important; } .lp-chiprow { grid-column: 2; margin-top: 2px; } .lp-cat { white-space: nowrap; } }
+.product.v2.lp .lp-glance { padding: 14px 16px !important; border: 1px solid #ece4dc !important; border-radius: 14px !important; background: transparent !important; box-shadow: none !important; }
+.product.v2.lp .lp-glance dl > div { grid-template-columns: 120px minmax(0, 1fr); padding: 7px 0; font-size: 13px; border-top: 1px solid #efe9e2; }
+.product.v2.lp .lp-glance dl > div:first-child { border-top: 0; }
+.product.v2.lp .lp-glance dt, .product.v2.lp .lp-glance dd { color: #3d3a3f; }
+
+/* "More balms & ointments" at the bottom of a product page (owner's mockup, 2026-11-13). */
+.lp-more { margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--lt-line); }
+.lp-more-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.lp-more-head h2 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.lp-more-head p { margin: 4px 0 0; font-size: 14.5px; color: #575258; }
+.lp-more-all { flex: none; font-size: 14.5px; font-weight: 600; color: var(--lt-acc); text-decoration: none; }
+.lp-more-all:hover { text-decoration: underline; }
+.lp-more ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.lp-more li a { display: grid; grid-template-columns: 96px minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 14px 18px; height: 100%; padding: 18px 20px; border: 1px solid #ece4dc; border-radius: 16px; background: #fff; color: inherit; text-decoration: none; transition: border-color .12s, box-shadow .12s; }
+.lp-more li a:hover { border-color: color-mix(in srgb, var(--lt-acc) 35%, #ece4dc); box-shadow: 0 6px 18px rgba(0,0,0,.05); }
+.lp-more-art { width: 96px; height: 120px; display: grid; place-items: center; }
+.lp-more-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lp-more-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lp-more-body { display: grid; align-content: center; gap: 8px; min-width: 0; }
+.lp-more-body b { font-size: 16.5px; font-weight: 700; line-height: 1.25; color: #242124; }
+.lp-more-body span { font-size: 13.5px; line-height: 1.45; color: #575258; }
+.lp-more-foot { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid #f1ebe4; }
+.lp-more-foot small { font-size: 12.5px; color: #827C82; }
+.lp-more-foot em { font-style: normal; font-size: 14px; font-weight: 600; color: var(--lt-acc); }
+.lp-more-swipe { display: none; }
+/* The older "Discover more" strip is replaced by this section on the light page. */
+.lp .p-next > .section-head, .lp .p-next > .discover-row { display: none; }
+@media (max-width: 720px) {
+  .lp-more { display: flex; flex-direction: column; }
+  .lp-more-head { display: contents; }
+  .lp-more-head > div { order: 1; margin-bottom: 14px; }
+  .lp-more-head h2 { font-size: 22px; }
+  .lp-more ul { order: 2; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
+  .lp-more li { flex: 0 0 72%; scroll-snap-align: start; }
+  .lp-more li a { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: 10px; padding: 14px; }
+  .lp-more-art { width: 100%; height: 130px; }
+  .lp-more-foot { border-top: 0; padding-top: 0; }
+  .lp-more-foot small { display: none; }
+  .lp-more-swipe { display: block; order: 3; margin: 10px 0 0; text-align: right; font-size: 13px; color: #827C82; }
+  .lp-more-all { order: 4; margin-top: 10px; }
+}
+
+/* Quiz results in the shared row (owner, 2026-11-13), with the topics that matched as small chips. */
+.lf-list { margin: 0; padding: 0; list-style: none; }
+.lf-list .lt-slot > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8); }
+.lf-list .lt-slot > .lt-row.v2:hover { background: #fff; }
+.lf-list .lt-row.v2 .lt-name { font-weight: 700; color: #242124; }
+.lf-list .lt-row.v2 > .lt-rank { font-weight: 800; color: color-mix(in srgb, var(--lt-acc) 82%, #000); }
+.lf-list .lt-row.v2 > .lt-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lf-list .lt-row.v2 > .lt-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lf-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 2px; }
+.lf-tag { display: inline-flex; align-items: baseline; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+.lf-tag b { font-weight: 600; opacity: .7; }
+.lf-tag.pos { background: #eef5ee; color: #2f6b34; }
+.lf-tag.neg { background: #faefe8; color: #9a4a24; }
+.lt-row.v2 .lf-tags { display: flex !important; flex-wrap: wrap; gap: 5px; width: 100%; }
+.lt-row.v2 .lf-tags .lf-tag { flex: none; }
+.lf .finder-results { max-width: 980px; margin-left: auto; margin-right: auto; }
+@media (max-width: 720px) { .lt-row.v2 .lf-tag { font-size: 11.5px; padding: 1px 7px; } }
+.lt-row.v2 .lt-extra.lf-tags { justify-self: stretch; }
+@media (max-width: 720px) { .lt-row.v2 .lf-tags { gap: 4px; } .lt-row.v2 .lf-tags .lf-tag { font-size: 11px !important; padding: 1px 6px !important; gap: 3px; } }
+
+/* The /reviews page (owner's mockup, 2026-11-13). */
+.lrv-hero h1 { margin: 6px 0 0; font-size: clamp(30px, 4vw, 42px); font-weight: 700; letter-spacing: -0.03em; color: #242124; }
+.lrv-sub { margin: 6px 0 0; font-size: 16px; color: #575258; }
+.lrv-meta { margin: 6px 0 0; font-size: 13px; color: #827C82; }
+.lrv-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 22px 0 18px; border-bottom: 1px solid var(--lt-line); }
+.lrv-cats { flex: 1 1 auto; min-width: 0; gap: 26px !important; }
+.lrv-cats a { padding: 8px 2px 10px !important; font-size: 14.5px !important; }
+.lrv-filters { display: flex; gap: 10px; padding-bottom: 8px; }
+.lrv-filters select { height: 38px; padding: 0 34px 0 14px; border: 1px solid #ddd8cf; border-radius: 12px; background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23262421' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance: none; appearance: none; font: inherit; font-size: 14px; color: var(--lt-ink); cursor: pointer; }
+.lrv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.lrv-card { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 18px; padding: 18px 20px; border: 1px solid #ece4dc; border-radius: 16px; background: #fff; }
+.lrv-art { width: 120px; height: 140px; display: grid; place-items: center; }
+.lrv-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lrv-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lrv-body { display: grid; align-content: start; gap: 4px; min-width: 0; }
+.lrv-body header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.lrv-name { font-size: 17px; font-weight: 700; line-height: 1.25; color: #242124; text-decoration: none; }
+.lrv-name:hover { text-decoration: underline; }
+.lrv-src { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 13px; color: #827C82; }
+.lrv-src svg { width: 15px; height: 15px; flex: none; }
+.lrv-text { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: #3d3a3f; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.lrv-body footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.lrv-body footer a { font-size: 14px; font-weight: 600; color: var(--lt-acc); text-decoration: none; }
+.lrv-body footer a:hover { text-decoration: underline; }
+.lrv-body footer .lrv-orig { font-weight: 400; color: #827C82; }
+.lrv .load-more { display: flex; justify-content: center; margin-top: 18px; }
+@media (max-width: 900px) { .lrv-grid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) {
+  .lrv-bar { display: block; border-bottom: 0; margin: 16px 0 14px; }
+  .lrv-cats { overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--lt-line); gap: 20px !important; }
+  .lrv-cats .lc-more { display: none; }
+  .lrv-filters { display: grid; grid-template-columns: 1fr 1fr; margin-top: 12px; }
+  .lrv-filters select { width: 100%; }
+  .lrv-card { grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .lrv-art { width: 84px; height: 110px; }
+  .lrv-name { font-size: 15.5px; }
+  .lrv-text { font-size: 13.5px; }
+  .lrv-body footer a { font-size: 13px; }
+}
+.lrv-short { display: none; }
+.lrv-body footer a { white-space: nowrap; }
+@media (max-width: 720px) { .lrv-long { display: none; } .lrv-short { display: inline; } .lrv-src { flex-wrap: wrap; } }
+/* Review cards on the page colour, so they don't look boxed in (owner, 2026-11-13). */
+.lrv-card, .rc-card { background: transparent !important; border-color: #ece6de !important; }
+.lrv-card:hover, .rc-card:hover { background: #fff !important; }
+/* Home "Latest reviews" after the owner's mockup (2026-11-13): a bigger product photo, two lines of text, a reviews link. */
+.rc-feed { padding-top: 26px; border-top: 1px solid var(--lt-line); margin-top: 30px; }
+.rc-head h2 { font-size: 28px !important; }
+.rc-head a { font-size: 15px; font-weight: 600; }
+.rc-card { grid-template-columns: 100px minmax(0, 1fr) !important; gap: 18px !important; padding: 16px 20px !important; border-radius: 14px; }
+.rc-art { width: 100px !important; height: 110px !important; }
+.rc-art img { mix-blend-mode: multiply; }
+.rc-name { font-size: 16px !important; }
+.rc-src { font-size: 12.5px; color: #827C82 !important; }
+.rc-text { font-size: 14px !important; color: #3d3a3f !important; -webkit-line-clamp: 2 !important; margin-top: 4px !important; }
+.rc-more { justify-self: start; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--lt-acc, var(--green-ink)); text-decoration: none; }
+.rc-more:hover { text-decoration: underline; }
+@media (max-width: 720px) { .rc-card { grid-template-columns: 72px minmax(0, 1fr) !important; gap: 12px !important; padding: 12px 14px !important; } .rc-art { width: 72px !important; height: 84px !important; } .rc-head h2 { font-size: 22px !important; } }
+.rc-text { display: -webkit-box !important; -webkit-box-orient: vertical; overflow: hidden !important; line-height: 1.5 !important; max-height: 3em; }
+/* Full review text on /reviews, no "…" (owner, 2026-11-13). */
+.lrv-text { display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; max-height: none !important; }
+
+/* /reviews test of the auditor's suggestions (2026-11-13): a wider page (about 1220px of content, header included),
+   bigger photos, stronger type and outlines, links lined up at the bottom. The cards stay on the page colour and show
+   the full review, as the owner asked. */
+body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
+.lrv-grid { gap: 20px; }
+.lrv-card { grid-template-columns: 100px minmax(0, 1fr); gap: 20px; padding: 18px !important; border: 1px solid #E5DFE2 !important; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.025); }
+.lrv-art { width: 100px; height: 110px; align-self: start; }
+.lrv-body { display: flex !important; flex-direction: column; gap: 4px; }
+.lrv-name { font-size: 16px !important; font-weight: 700; }
+.lrv-src { font-size: 12px !important; color: #777078 !important; }
+.lrv-text { font-size: 14px !important; color: #3D393D !important; }
+.lrv-body footer { margin-top: auto !important; padding-top: 12px; }
+.lrv-body footer a { font-size: 13px !important; }
+.lrv .spill.s-positive { background: #dcefdc; color: #1f6a2c; }
+.lrv .spill.s-mixed { background: #f6ebc4; color: #7a5a00; }
+.lrv .spill.s-negative { background: #f8dcd6; color: #a0321c; }
+@media (max-width: 720px) { .lrv-card { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px !important; } .lrv-art { width: 80px; height: 96px; } }
+
+/* Every page about 1220px wide on desktop (owner, 2026-11-13, after the auditor's /reviews test), header included. */
+.wrap, .site { max-width: 1276px; }
+.rc-feed { max-width: none; }
+/* Rankings keep the list centred, a little wider. */
+.lr .lr-grid, .lr-below, .top-page.v2.lr .top-faq { max-width: 1060px; }
+
+/* With the wider page (owner, 2026-11-13): the auditor's other suggestions on every list. Bigger photos, roomier stats,
+   darker summaries and source lines, bolder names. */
+@media (min-width: 901px) {
+  .lt-row.v2, .home-d .lt-row.v2 { grid-template-columns: 40px 88px minmax(0, 1fr) 84px 150px 70px !important; column-gap: 16px !important; padding: 12px 8px !important; }
+  .lt-row.v2.no-rank, .lcx .lt-row.v2.no-rank { grid-template-columns: 92px minmax(0, 1fr) 84px 150px 70px !important; column-gap: 16px !important; }
+  .lt-row.v2 > .lt-art, .home-d .lt-row.v2 > .lt-art, .lcx .lt-row.v2 > .lt-art { width: 88px !important; height: 88px !important; }
+  .lcx .lt-row.v2.no-rank > .lt-art { width: 92px !important; height: 92px !important; }
+  .lt-row.v2 .lt-name, .home-d .lt-row.v2 .lt-name { font-size: 16.5px !important; font-weight: 700 !important; color: #242124 !important; }
+  .lt-row.v2 .lt-line, .home-d .lt-row.v2 .lt-line { font-size: 14px !important; color: #3D393D !important; }
+  .lt-row.v2 .lt-posn, .home-d .lt-row.v2 .lt-posn, .lcx .lt-row.v2 .lt-posn { font-size: 13.5px !important; }
+  .lt-row.v2 > .lt-sig small, .lt-row.v2 > .lt-total span { color: #777078 !important; }
+}
+/* Sidebar lists and review cards: slightly bigger photos and stronger text. */
+.home-d .lt-mini-art { width: 34px; height: 34px; }
+.home-d .lt-mini-name { font-size: 13.5px; }
+.rc-src, .lrv-src { color: #777078 !important; }
+.rc-text, .lrv-text { color: #3D393D !important; }
+.rc-card { border-color: #E5DFE2 !important; }
+.spill.s-positive { background: #dcefdc; color: #1f6a2c; }
+.spill.s-mixed { background: #f6ebc4; color: #7a5a00; }
+.spill.s-negative { background: #f8dcd6; color: #a0321c; }
+/* Product page with the wider layout: a bigger photo, values that wrap inside "At a glance", darker review text. */
+.lp .lp-photo { padding: 6px !important; }
+.lp .lp-photo img { transform: scale(1.12); mix-blend-mode: multiply; }
+.product.v2.lp .lp-glance dl > div { grid-template-columns: 104px minmax(0, 1fr); }
+.product.v2.lp .lp-glance dd { min-width: 0; overflow-wrap: anywhere; }
+.lp .lv-text { color: #3D393D !important; font-size: 14.5px; }
+.lp .lv-src { color: #777078; }
+.lp .lv-src b { color: #242124; }
+/* Ranking lists: plain rows with a line between them, no tinted top three (owner, 2026-11-13). */
+.lr-list.lt-list { gap: 0 !important; }
+.lr-list .lt-slot > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8) !important; }
+.lr-list .lt-slot > .lt-row.v2:hover { background: #fff !important; }
+/* Product page with the wider layout (owner, 2026-11-13): a wider sidebar, and review text capped at a readable line length. */
+@media (min-width: 981px) { .product.v2.lp > .columns.lp-cols { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; } }
+.lp .lv-text, .lp .lv-body > p:not(.lv-src) { max-width: 68ch; }
+/* Ranking lists, after the owner's mockup (2026-11-13): #1 on a soft gradient of the site's colour into warm neutral,
+   #2–3 on a barely-there tint of it, #4 on plain rows. Catalogues and review feeds stay neutral. */
+.lr-list .lt-slot.lr-p1 > .lt-row.v2, .lr-list .lt-slot.lr-p23 > .lt-row.v2 { border: 1px solid transparent; border-radius: 14px; margin-bottom: 6px; }
+.lr-list .lt-slot.lr-p1 > .lt-row.v2 { background: linear-gradient(90deg, color-mix(in srgb, var(--lt-acc) 8%, #fcfbf8), color-mix(in srgb, #f6c79a 14%, #fcfbf8)) !important; border-color: color-mix(in srgb, var(--lt-acc) 10%, transparent); }
+.lr-list .lt-slot.lr-p23 > .lt-row.v2 { background: color-mix(in srgb, var(--lt-acc) 3%, #fcfbf8) !important; }
+.lr-list .lt-slot.lr-p1 > .lt-row.v2:hover, .lr-list .lt-slot.lr-p23 > .lt-row.v2:hover { border-color: color-mix(in srgb, var(--lt-acc) 18%, transparent); }

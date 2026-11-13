@@ -31,6 +31,7 @@ import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
+import { shortLine } from "../../../lib/short-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, pairHref } from "../../../lib/compare-pairs";
@@ -59,11 +60,13 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const base = niche.seo.product(name), sum = summary(data, r.id);
   // With enough reviews, the search snippet says what the page knows: how many, how positive, what people praise and
   // complain about. Below that, the niche's generic wording.
-  const rich = sum.total >= 5 && sum.positive !== null;
+  // The same "% positive" as the page header and the FAQ (all reviews), not the recent-window share (audit, 2026-11-13).
+  const shown = positiveShare(score(data, r.id));
+  const rich = sum.total >= 5 && shown !== null;
   // Just the name and "Player Reviews" (owner, 2026-11-12): short enough for Google to show whole, no repeated year.
   const title = `${name} ${niche.people.One} Reviews`;
   const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
-    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
+    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${shown}% positive.`,
        // Only themes with 3+ mentions make the snippet (owner, 2026-11-12, UX audit).
        sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).length ? `Loved for: ${sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).slice(0, 3).join(", ")}.` : "",
        (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])
@@ -197,6 +200,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   }
   // Structured data for Google: FAQ and breadcrumbs. The star-rating Product block went with the 1–5 ratings (owner
   // decision 2026-11-12: reviews are positive / mixed / negative), since Google's Product needs a numeric rating, review or offer.
+  // Four distinct questions (owner's audit, 2026-11-13): what people say, whether it's worth it, the complaints, and
+  // where the reviews come from. The others repeated those or the page above them.
+  const keepFaq = [/^What do .+ say about/, /^Is .+ worth it\?/, /most common complaints/, /^Where do these/];
+  faq.splice(0, faq.length, ...keepFaq.flatMap(re => faq.filter(f => re.test(f.q)).slice(0, 1)));
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     ...(faq.length >= 2 ? [{ "@type": "FAQPage", mainEntity: faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
@@ -308,17 +315,26 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.createdAt)].sort().pop();
     const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
     const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [niche.site.name] : []);
-    const glance = [
-      ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
-      ...(liked[0] ? [["Best known for", cap(liked[0])]] : []),
-      ["Reviews collected", sum.total.toLocaleString("en-US")],
-      ...(sources.length ? [["Sources", sources.slice(0, 4).join(", ")]] : []),
-      ...specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).slice(0, 3).map(([k, v]) => [k, String(v)]),
-    ];
+    // Only the product's details (owner, 2026-11-13): type, review count and sources are already at the top of the page.
+    const glance = specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).map(([k, v]) => [k, String(v)]);
     const buy = amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
       : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
       : <a className="button" href={addHref}><PlusIcon/>Add your review</a>;
     const chips = (ts: readonly string[]) => <p className="lp-chips">{ts.map(t => <a key={t} href={tagHref(t)}>{cap(t)}<b>{mentions(t)}</b></a>)}</p>;
+    // "More balms & ointments" at the bottom (owner's mockup, 2026-11-13): the category's best-scored others, three cards.
+    const sameType = typePage ? data.listed.filter(x => x.id !== r.id && typePageFor(x.shape)?.slug === typePage.slug) : [];
+    const more = sameType.filter(x => sigs.get(x.id)).sort((a, b) => sigs.get(b.id)!.signal - sigs.get(a.id)!.signal).slice(0, 3);
+    const moreBox = typePage && more.length >= 2 && <section className="lp-more" aria-labelledby="lp-more-title">
+      <div className="lp-more-head"><div><h2 id="lp-more-title">{`More ${typePage.label.toLowerCase()}`}</h2>{typePage.intro && <p>{`${typePage.intro}, ranked by real ${niche.people.many}.`}</p>}</div>
+        <a className="lp-more-all" href={`/${typePage.slug}`}>{`View all ${typePage.label.toLowerCase()}`} <span aria-hidden="true">→</span></a></div>
+      <ul>{more.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name, sc = score(data, x.id), n = sc.count + sc.web, take = shortLine(x) ?? listLine(x);
+        return <li key={x.id}><a href={productHref(x)}>
+          <span className="lp-more-art"><ProductArt product={x} brand={b}/></span>
+          <span className="lp-more-body"><b>{displayName(x.name, b)}</b>{take && <span>{take}</span>}</span>
+          <span className="lp-more-foot"><small>{`${n.toLocaleString("en-US")} ${n === 1 ? "review" : "reviews"}`}</small><em>Read reviews <span aria-hidden="true">→</span></em></span>
+        </a></li>; })}</ul>
+      <p className="lp-more-swipe m-only" aria-hidden="true">Swipe to explore →</p>
+    </section>;
     return <main className={`product v2 lt-page lp ${lightFont.className}`}>
       {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -328,19 +344,22 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
           : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
         <div className="lp-info">
+          {/* After the owner's product-page mockup (2026-11-13): a kicker, the name, the category chip, the take, then the
+              signal, the positive share and the review count as one group, one Amazon button and a quiet reviews link. */}
+          <p className="lp-eyebrow">{`Reviews & ${niche.people.one} experiences`}</p>
           <div className="lp-title">
-            <h1>{fullName}<span className="h1-reviews"> Reviews</span></h1>
-            {placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}
+            <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
           </div>
-          {(r.shape || hasYears) && <p className="lp-kicker">{[r.shape, hasYears ? String(r.year) : null].filter(Boolean).join(" · ")}</p>}
+          {r.shape && <p className="lp-chiprow"><span className="lp-cat">{r.shape}</span>{hasYears && <span className="lp-year">{r.year}</span>}{placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}
-          {sum.total > 0 ? <div className="lp-stats">
-            {sig && <div className="lp-stat"><b className="lp-acc lp-signal">{sig.signal}</b><span>Signal</span></div>}
+          {sum.total > 0 ? <div className="lp-stats lp-stats2">
+            {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>Signal score</span></div>}
             {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
-            <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
+            <a className="lp-stat" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
-          <div className="lp-sub"><SignalPop/>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</div>
-          <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read reviews ↓</a>}</p>
+          <div className="lp-sub"><SignalPop label="How the signal works"/>{latest && <span>{`Updated ${day(latest)}`}</span>}</div>
+          <p className="lp-actions">{amazon ? <a className="button amazon-out lp-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a> : buy}
+            {sum.total > 0 && <a className="lp-read" href="#reviews">{`Read ${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">↓</span></a>}</p>
         </div>
       </section>
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
@@ -349,7 +368,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
           {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
         </div>
-        <p className="lp-note">{`Topics grouped from ${niche.people.one} reviews, with how many mention each; read the originals below.`}</p>
       </section>}
       {byVariant}
       <div className="columns lp-cols">
@@ -359,13 +377,16 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {faqBox}
         </div>
         <aside className="database-sidebar">
-          <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>
+          {glance.length > 0 && <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>}
+          {/* "Compare with …" sits with the similar products, not in the header (owner's audit, 2026-11-13). */}
+          {compareWith && <a className="lp-compare" href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`} <span aria-hidden="true">→</span></a>}
           {similarBox}
           {siblingsBox}
         </aside>
       </div>
+      {moreBox}
       {nextBox}
-      {buyBar}
+      {/* No fixed "Check price" bar on phones (owner, 2026-11-13, audit): the one button in the header stays where it is. */}
     </main>;
   }
   return <main className="product v2">
