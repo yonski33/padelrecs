@@ -2284,3 +2284,13 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lcx-sort select { color: var(--lt-acc) !important; background-image: none !important; padding-right: 36px !important; }
 .lcx-sort label { position: relative; }
 .lcx-sort label::after { content: ""; position: absolute; right: 15px; top: 50%; width: 7px; height: 7px; margin-top: -6px; border-right: 1.7px solid var(--lt-acc); border-bottom: 1.7px solid var(--lt-acc); transform: rotate(45deg); pointer-events: none; }
+/* Catalogue: more room for the name and summary so most takes fit on one line (owner, 2026-11-13). */
+@media (min-width: 901px) {
+  .lcx .lc-grid { grid-template-columns: 212px minmax(0, 1fr); }
+  .lcx .lc-rail { padding-right: 20px; }
+  .lcx .lc-list { padding-left: 22px; }
+  .lcx .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 70px 138px 62px; gap: 12px; padding: 14px 10px; }
+  .lcx .lt-row.v2 > .lt-art { width: 76px; height: 76px; }
+}
+@media (min-width: 901px) { .lcx .lt-row.v2.no-rank { grid-template-columns: 72px minmax(0, 1fr) 80px 140px 62px; gap: 14px; } .lcx .lt-row.v2 > .lt-art { width: 72px; height: 72px; } .lcx .lt-row.v2 > .lt-sig small { font-size: 12.5px; } }
+@media (min-width: 901px) { .lcx .lt-row.v2.no-rank { grid-template-columns: 72px minmax(0, 1fr) 76px 126px 58px; gap: 12px; } .lcx .lt-row.v2 .lt-posn { font-size: 13px; } .lcx .lt-row.v2 > .lt-sig small { font-size: 12px; } }
