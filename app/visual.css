@@ -2301,3 +2301,5 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-row.v2 .lt-shape { justify-self: start; margin: 3px 0 2px; padding: 2px 9px; border-radius: 7px; background: #f5ecdc; color: #5c4a2e !important; font-size: 12px !important; font-weight: 500; line-height: 1.5; }
 /* The owner's exact chip values (2026-11-13). */
 .lt-row.v2 .lt-shape { padding: 3px 8px !important; border-radius: 5px !important; background: #F8F1DF !important; color: #745C39 !important; font-size: 12px !important; font-weight: 500 !important; border: 0 !important; box-shadow: none !important; line-height: 1.4; }
+/* Phones: the category chip too, for lists that mix categories (owner, 2026-11-13). */
+@media (max-width: 720px) { .lt-row.v2 .lt-shape { display: inline-block !important; margin: 5px 0 1px; font-size: 11.5px !important; padding: 2px 7px !important; } }
