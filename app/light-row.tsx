@@ -43,7 +43,7 @@ export function LightRow({ data, r, signal, line, shop, rank, shape = true, extr
       <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></>}</span>
     {/* Phones: the shop link takes the positive count's place under the name (owner, 2026-11-13). */}
     {shop && <a className="lt-shop-m" href={shop.url} target="_blank" rel={shop.rel}>{shop.short} <span aria-hidden="true">›</span></a>}
-    <a className="lt-total" href={`${href}#reviews`}><b>{fmt(total)}</b><span>{total === 1 ? "review" : "reviews"}</span></a>
+    <a className="lt-total" href={`${href}#reviews`}><b>{fmt(total)}</b><span>{total === 1 ? "review" : "reviews"}{noSignal && <span aria-hidden="true"> ›</span>}</span></a>
   </div>;
 }
 
