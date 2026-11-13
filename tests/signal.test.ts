@@ -44,3 +44,13 @@ test("each category's best scores in the 90s and the next ones step down, even w
  assert(s.get("weak1")!.signal>=88,`vps leader ${s.get("weak1")!.signal}`);
  assert(s.get("weak1")!.signal>s.get("weak2")!.signal);
 });
+
+test("more positive reviews usually rank higher, even with a slightly lower share (owner, 2026-11-13)",()=>{
+ const s=signals(site([p("many","road",300,60,520),p("few","road",90,15,130)]));
+ assert(s.get("many")!.signal>s.get("few")!.signal,`${s.get("many")!.signal} vs ${s.get("few")!.signal}`);
+});
+
+test("a mostly negative product doesn't top its category on volume alone",()=>{
+ const s=signals(site([p("liked","road",150,20,200),p("panned","road",100,40,380)]));
+ assert(s.get("liked")!.signal>s.get("panned")!.signal);
+});
