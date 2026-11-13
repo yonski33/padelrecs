@@ -1,5 +1,5 @@
 {
-  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5), Ooni Pro 16 (4; sold earlier as \"Ooni Pro\"), Traeger Silverton 620 (4), Traeger Pro 34 (3), Blackstone 36\" Griddle with Hinged Hood and Front Shelf (3; Costco item 4000251694, not the Omnivore), recteq RT-1250 (6; succeeded by the Flagship XL 1400), Blackstone Bronco 28\" XL Griddle Vertical Pellet Smoker Combo (5), Blackstone On The Go Tailgater (3; model 1550), Coleman RoadTrip LXE (3; discontinued predecessor of the RoadTrip 285, model 9949), Ninja Woodfire Pro XL (6; OG850 series, not the app-connected Pro Connect XL).",
+  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5), Ooni Pro 16 (4; sold earlier as \"Ooni Pro\"), Traeger Silverton 620 (4), Traeger Pro 34 (3), Blackstone 36\" Griddle with Hinged Hood and Front Shelf (3; Costco item 4000251694, not the Omnivore), recteq RT-1250 (6; succeeded by the Flagship XL 1400), Blackstone Bronco 28\" XL Griddle Vertical Pellet Smoker Combo (5), Blackstone On The Go Tailgater (3; model 1550), Coleman RoadTrip LXE (3; discontinued predecessor of the RoadTrip 285, model 9949), Ninja Woodfire Pro XL (6; OG850 series, not the app-connected Pro Connect XL), Oklahoma Joe's Longhorn Combo (3; charcoal/gas combo with offset firebox), Old Country BBQ Pits Brazos (3; Loaded/DLX counterweight versions share the entry), Brinkmann Gourmet Electric Smoker (14; model 810-7080-K, discontinued).",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -21,6 +21,10 @@
     {
       "id": "broilking",
       "name": "Broil King"
+    },
+    {
+      "id": "brinkmann",
+      "name": "Brinkmann"
     },
     {
       "id": "camp-chef",
@@ -1337,6 +1341,19 @@
       ]
     },
     {
+      "brand": "brinkmann",
+      "name": "Brinkmann Gourmet Electric Smoker",
+      "shape": "Smokers",
+      "balance": "Electric",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://amazingribs.com/smoker/brinkmann-gourmet-electric-smoker-review/",
+        "https://www.sonicelectronix.com/item-28732-Brinkmann-BRK8107080K.html"
+      ]
+    },
+    {
       "brand": "masterbuilt",
       "name": "Masterbuilt AutoIgnite Series 545",
       "year": 2024,
@@ -1658,6 +1675,19 @@
     },
     {
       "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Longhorn Combo",
+      "shape": "Smokers",
+      "balance": "Charcoal, wood or propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/longhorn-combo-charcoal-gas-smoker-grill",
+        "https://www.bjs.com/product/oklahoma-joes-longhorn-combo-charcoalgas-smoker-and-grill/3000000000001891323"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
       "name": "Oklahoma Joe's Longhorn Reverse Flow",
       "shape": "Smokers",
       "balance": "Charcoal or wood",
@@ -1719,6 +1749,19 @@
       "sources": [
         "https://ocbbqpits.com/products/pecos-offset-smoker",
         "https://www.academy.com/p/old-country-bbq-pits-pecos-smoker"
+      ]
+    },
+    {
+      "brand": "old-country-bbq-pits",
+      "name": "Old Country BBQ Pits Brazos",
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.bbqguys.com/i/3099710/old-country-bbq-pits/brazos-35-inch-offset-charcoal-smoker-oc20x60",
+        "https://www.tractorsupply.com/tsc/product/old-country-bbq-pits-brazos-35-in-offset-charcoal-smoker"
       ]
     },
     {
