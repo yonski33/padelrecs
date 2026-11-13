@@ -79,7 +79,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
     <header className="lc-hero">
       <div>
         <h1>{title ?? <>{`Explore all ${words.join(" ")} `}<em>{last}</em></>}</h1>
-        <p className="lc-sub">Real experiences, gathered in one place. Every review links to its source.</p>
+        <p className="lc-sub">Real experiences, gathered in one place.</p>
       </div>
       <p className="lc-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(scope.length)} ${w.many} · ${fmt(scopeReviews)} reviews`}</p>
     </header>

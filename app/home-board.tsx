@@ -9,7 +9,8 @@ import { useRouter } from "next/navigation";
 
 export type BoardItem = { key: string; shape: string | null; text: string; node: ReactNode };
 type Cat = { key: string; label: string };
-const PAGE = 30, EVENT = "home-search";
+// 15 rows first, the last ones fading out over a Show more button (owner, 2026-11-13).
+const PAGE = 15, EVENT = "home-search";
 
 /** Lower case, accents and punctuation off, so "La Roche-Posay" matches "la roche posay". */
 const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -72,7 +73,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     </div>
     {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
-    {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
+    {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}${visible.length > shown ? " lt-faded" : ""}`}>
       {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost" onClick={() => setShown(shown + PAGE)}>Show more</button></div>}

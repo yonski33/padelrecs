@@ -1633,7 +1633,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 /* Phones: no "How the signal works / Updated / Compare" line and no "Read opinions" button (owner, 2026-11-12). */
 @media (max-width: 640px) { .lp-sub, .product.v2.lp .lp-actions .button.ghost { display: none; } }
 /* Phones: the sticky shop button at the bottom is the only one. */
-@media (max-width: 640px) { .product.v2.lp:has(.buy-bar) .lp-actions { display: none; } }
+
 /* Light product page reviews (owner's mockup, 2026-11-12). */
 .lv { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--lt-line); }
 .lv-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #f3f1ec; }
@@ -2007,3 +2007,27 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 /* One deep green for the signal number on every site (owner, 2026-11-13), whatever the site's own accent. */
 :root { --lt-signal: #2f6b34; }
 .lt-sig b, .lt-mini-v, .lr-sig b, .lri-sig, .product.v2.lt-page .p-signal b, .lcmp .cmp-pos.cmp-signal b, .ix-sig b, .lp-stat .lp-signal, .sim-signal b { color: var(--lt-signal) !important; }
+
+/* Audit fixes (owner, 2026-11-13). */
+/* Phones: the home page has its own big search in the hero, so the header's smaller one goes there. */
+@media (max-width: 720px) { body:has(.lt-hero) .site-header form.search { display: none; } }
+/* Home: 15 rows, the last ones fading into the Show more button. */
+.lt-list.lt-faded { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 190px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 190px), transparent); }
+.lt-list.lt-faded + .load-more { margin-top: -36px; position: relative; }
+/* Catalogue: Compare, "How the signal works" and Sort on one line, same size and middle. */
+.lc-head .lc-cmp-toggle, .lc-head .sig-pop summary, .lc-head .lc-sort label, .lc-head .lc-sort select { font-size: 13px; line-height: 20px; }
+.lc-head .sig-pop { display: inline-flex; align-items: center; margin: 0 6px 0 0; }
+.lc-head .lc-sort { display: flex; align-items: center; }
+.lc-head .lc-sort label { margin: 0; }
+/* Phones: the title on its own line, then Compare, the signal link and Sort, wrapping if they must (never wider than the screen). */
+@media (max-width: 720px) {
+  .lc-head { flex-wrap: wrap; row-gap: 10px; column-gap: 14px; }
+  .lc-head > div:first-child { flex: 1 0 100%; margin-right: 0; }
+  .lc-head .lc-cmp-toggle { margin-right: 0; }
+  .lc-head .lc-cmp-toggle { order: 1; }
+  .lc-head .lc-sort { order: 2; margin-left: auto; }
+  .lc-head .sig-pop { order: 3; flex: 1 0 100%; margin: 0; }
+  .lc-head .sig-pop-card { left: 0; right: auto; }
+}
+/* Phones: the home category strip is as wide as the screen and scrolls inside itself (audit, 2026-11-13). */
+@media (max-width: 720px) { .lt-board .lt-cats { align-self: stretch; max-width: 100%; } }

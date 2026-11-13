@@ -59,11 +59,13 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const base = niche.seo.product(name), sum = summary(data, r.id);
   // With enough reviews, the search snippet says what the page knows: how many, how positive, what people praise and
   // complain about. Below that, the niche's generic wording.
-  const rich = sum.total >= 5 && sum.positive !== null;
+  // The same "% positive" as the page header and the FAQ (all reviews), not the recent-window share (audit, 2026-11-13).
+  const shown = positiveShare(score(data, r.id));
+  const rich = sum.total >= 5 && shown !== null;
   // Just the name and "Player Reviews" (owner, 2026-11-12): short enough for Google to show whole, no repeated year.
   const title = `${name} ${niche.people.One} Reviews`;
   const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
-    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${sum.positive}% positive.`,
+    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${shown}% positive.`,
        // Only themes with 3+ mentions make the snippet (owner, 2026-11-12, UX audit).
        sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).length ? `Loved for: ${sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).slice(0, 3).join(", ")}.` : "",
        (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])
@@ -365,7 +367,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </aside>
       </div>
       {nextBox}
-      {buyBar}
+      {/* No fixed "Check price" bar on phones (owner, 2026-11-13, audit): the one button in the header stays where it is. */}
     </main>;
   }
   return <main className="product v2">

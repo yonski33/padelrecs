@@ -213,7 +213,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
     <header className="lr-hero">
       <h1>{`${sentenceCase(list.title)}, according to `}<em>{`real ${people.many}`}</em></h1>
       {/* One line of facts (owner, 2026-11-12: less meta under the title). */}
-      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
+      <p className="lr-sub">{`${entries.length} ${entries.length === 1 ? w.one : w.many} ranked from ${reviews.toLocaleString("en-US")} reviews of the last ${windowLabel(reviewWindowMonths(list))} on ${sources}${updated ? ` · updated ${new Date(updated).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}` : ""}`}</p>
       {/* "How we rank" leads the row of other rankings (owner, 2026-11-12), so the list starts right under it. */}
       <nav className="lr-others" aria-label="More rankings"><SignalPop label="How we rank"/><a href={RANKINGS_PATH}>All rankings</a>{others.slice(0, 5).map(l => <a key={l.list.slug} href={`${listHref(l.list.slug)}`}>{l.list.label}</a>)}</nav>
     </header>
