@@ -212,7 +212,7 @@ export const kitchen: Niche = {
         "An air fryer that is perfect for one person is too small for a family of five, and a blender that is fine for smoothies may not survive nut butter. Knowing who someone cooks for, what they make and what they had before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Appliance pages link to Amazon, and KitchenRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Appliance pages link to Amazon, and KitchenRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "KitchenRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about appliances you actually own or have used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

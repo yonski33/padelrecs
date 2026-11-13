@@ -20,11 +20,11 @@ export const variantParam = niche.variants?.label.toLowerCase() ?? "variant";
 /** Product variants with their review counts, most first, for the filter chips (niche.variants). */
 export type Variants = { label: string; plural: string; counts: [string, number][] };
 
-/** The product page's review address for a sort, tag filter, variant and length. "Most helpful" is the default, so it has no parameter.
+/** The product page's review address for a sort, tag filter, variant and length. "Newest" is the default, so it has no parameter.
  *  These addresses all share the product page's canonical URL (generateMetadata), so filtered views add no pages to the index. */
 export function reviewsHref(href: string, { sort, tag, variant, verdict, show }: { sort: Sort; tag?: string; variant?: string; verdict?: Verdict; show?: number }) {
   const q = new URLSearchParams();
-  if (sort !== "helpful") q.set("sort", sort);
+  if (sort !== "newest") q.set("sort", sort);
   if (verdict) q.set("verdict", verdict);
   if (tag) q.set("tag", tag);
   if (variant) q.set(variantParam, variant);
@@ -59,8 +59,8 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
   const showTabs = items.length >= 20 && inScope.some(i => i.verdict);
   const showSort = matching.length + (verdict ? 1 : 0) > 1;
   const sortMenu = <details className="sort-menu">
-    <summary><span className="sort-label">{showTabs ? "Sort: " : "Sorted by: "}</span><b>{sort === "newest" ? "Newest" : "Most helpful"}</b></summary>
-    <div>{(["helpful", "newest"] as const).map(v => <Link key={v} href={reviewsHref(href, { sort: v, tag, variant, verdict })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most helpful"}</Link>)}</div>
+    <summary><span className="sort-label">{showTabs ? "Sort: " : "Sorted by: "}</span><b>{sort === "newest" ? "Newest" : "Most detailed"}</b></summary>
+    <div>{(["newest", "helpful"] as const).map(v => <Link key={v} href={reviewsHref(href, { sort: v, tag, variant, verdict })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most detailed"}</Link>)}</div>
     </details>;
 
   return <section id="reviews" className="review-list">

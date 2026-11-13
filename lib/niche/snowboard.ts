@@ -208,7 +208,7 @@ export const snowboard: Niche = {
         "A board that is perfect for one rider is a handful for another. Knowing someone's level, where they ride, their size and what they rode before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones riders write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Board pages link to Amazon, and SnowboardRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Riders, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones riders write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Board pages link to Amazon, and SnowboardRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "SnowboardRecs is new. Submissions are moderated before publication, web reviews link to their sources, and board details come from the shop and maker pages linked for each board." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about boards you have actually ridden and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

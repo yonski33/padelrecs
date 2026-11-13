@@ -213,7 +213,7 @@ export const homegym: Niche = {
         "A rack that is perfect in a garage with a 9-foot ceiling won’t fit a basement, and dumbbells that are fine for curls may be slow to change between supersets. Knowing where someone trains, how they train and what they had before often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Item pages link to Amazon, and HomeGymRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Item pages link to Amazon, and HomeGymRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "HomeGymRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about equipment you actually own or have used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

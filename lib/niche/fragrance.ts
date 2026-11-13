@@ -210,7 +210,7 @@ export const fragrance: Niche = {
         "A fragrance that works on one person won’t work on everyone. Skin, climate, the concentration and how someone wears it often tell you more than a score on its own.",
       ],
       sections: [
-        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones users write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Fragrance pages link to Amazon, and FragranceRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "People, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones users write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Fragrance pages link to Amazon, and FragranceRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "Concentrations are separate", body: "An Eau de Toilette, Eau de Parfum, Parfum and Elixir of the same line smell and wear differently, so each has its own page. Catalogue details come from a maker’s or retailer’s page and stay blank where that page doesn’t say." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about fragrances you’ve actually worn and say which concentration you have." },
         { heading: "Your privacy", body: "An alias is optional, and so are experience, occasion and climate. If you leave an email address, it is stored privately with your submission and never included in public reviews." },

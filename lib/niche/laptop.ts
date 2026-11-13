@@ -226,7 +226,7 @@ export const laptop: Niche = {
         "A laptop that suits one person won’t suit everyone. Knowing what someone uses it for, which configuration they bought and what they had before often tells you more than a benchmark or a score on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Laptop pages link to Amazon, and LaptopRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Laptop pages link to Amazon, and LaptopRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "One page per generation", body: "Laptops are refreshed every year under almost the same name. Each generation has its own page (ThinkPad X1 Carbon Gen 12 and Gen 13, MacBook Air M3 and M4), and RAM, storage and screen options of one model share a page." },
         { heading: "A work in progress", body: "LaptopRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about laptops you’ve actually used and be specific about what worked for you." },

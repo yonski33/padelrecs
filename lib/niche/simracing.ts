@@ -233,7 +233,7 @@ export const simracing: Niche = {
         "A wheelbase or pedal set that suits one driver won’t suit everyone. Knowing which sims someone races, on which platform, what it’s mounted to and what they upgraded from often tells you more than a score on its own.",
       ],
       sections: [
-        { heading: "Drivers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones drivers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Gear pages link to Amazon, and SimRacingRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Drivers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones drivers write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Gear pages link to Amazon, and SimRacingRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "SimRacingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and product details come from the makers’ own published specifications." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually raced on and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

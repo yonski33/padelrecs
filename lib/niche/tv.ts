@@ -210,7 +210,7 @@ export const tv: Niche = {
         "A TV that suits one room won’t suit every room. Knowing whether someone watches in a bright or dark room, which size they bought and what they had before often tells you more than a measurement on its own.",
       ],
       sections: [
-        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones quoted from around the web. Each is read as positive, mixed or negative. TV pages link to Amazon, and TVRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Owners, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones owners write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. TV pages link to Amazon, and TVRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "One page per model and year", body: "TVs are replaced every year under almost the same name. Each model year has its own page (LG C4 and C5, Samsung S90D and S90F, Sony Bravia 8 and Bravia 8 II), and all screen sizes of one model share a page." },
         { heading: "A work in progress", body: "TVRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about TVs you’ve actually owned and be specific about what worked for you." },

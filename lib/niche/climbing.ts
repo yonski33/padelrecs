@@ -206,7 +206,7 @@ export const climbing: Niche = {
         "Gear that suits one climber won’t suit everyone. Knowing someone’s foot shape and size, what they climb and what they used before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [
-        { heading: "Climbers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones climbers write here and the ones quoted from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and ClimbingRecs may earn a commission when you buy through those links; that never changes a ranking." },
+        { heading: "Climbers, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones climbers write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Product pages link to Amazon, and ClimbingRecs may earn a commission when you buy through those links; that never changes a ranking." },
         { heading: "A work in progress", body: "ClimbingRecs is new. Submissions are moderated before publication, web reviews link to their sources, and specifications come from the makers’ own pages." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about gear you’ve actually used and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },

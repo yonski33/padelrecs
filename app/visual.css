@@ -2898,3 +2898,27 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .home-d .lt-bar, .lt .lt-bar { position: static; }
 /* Product page: "Reviews" after the name, quieter than the name itself (owner, 2026-11-14). */
 .lp-h1-rev { font-weight: 600; color: #6b665e; }
+/* Phones (auditor, 2026-11-14): the first product sooner. A tighter hero, "Explore rankings" as a text link, and less
+   space between the list's title and the tabs; the product text stays its size. */
+@media (max-width: 720px) {
+  .lt-hero { padding-top: 12px !important; padding-bottom: 12px !important; }
+  .lt-hero h1 { margin-top: 6px; }
+  .lt-listhead { gap: 6px !important; margin: 2px 0 2px !important; }
+  .lt-listhead p { margin-top: 3px; }
+  .lt-explore { padding: 0 !important; border: 0 !important; background: none !important; font-size: 14.5px; }
+}
+@media (max-width: 720px) {
+  .lt-hero { gap: 7px !important; }
+  .lt-hero h1 { margin-top: 2px; }
+  .lt-hero .lt-search { margin-top: 2px !important; }
+  #board { margin-top: 0 !important; }
+}
+/* Phones: "How the signal works" stays reachable under the score (auditor, 2026-11-14); the date line stays hidden. */
+@media (max-width: 640px) {
+  .product.v2.lp .lp-sub { display: flex !important; margin-top: 8px; }
+  .product.v2.lp .lp-sub > :not(.sig-pop) { display: none; }
+}
+/* Small secondary text at WCAG AA (auditor, 2026-11-14): #6b666b is about 5.5:1 on the page background, where the
+   old #827C82 and #777 were 3.9–4.5:1. Source lines, "Original source", dates and the counts under lists. */
+.lrv-orig, .lrv-card .lrv-src, .rc-card .rc-src, .lv .lv-src, .ls-ago, .lt-how, .lcx-how, .lt-row.v2 > .lt-sig small, .lrv-meta, .lp-sub, .lt-live { color: #6b666b !important; }
+.lrv-orig:hover { color: var(--lt-acc) !important; }
