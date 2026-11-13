@@ -84,14 +84,14 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
         {/* A clear title says what the order is, so nobody reads it as a rating (auditor's mockup, owner, 2026-11-13). The
             verdict lives in the rankings, one prominent link away. */}
         <header className="lt-listhead">
-          <div><h2>{`Most talked-about ${talkLabel}`}</h2>
-            <p>{`The ${w.many} people have posted about most in the last 6 months, on Reddit, YouTube and blogs. Not a rating.`}</p></div>
+          <div><h2>{`Most talked about ${talkLabel}`}</h2>
+            <p>{`The ${w.many} people have posted about most in the last 6 months, on Reddit, YouTube and blogs.`}</p></div>
           {picks.length > 0 && <a className="lt-explore" href={RANKINGS_PATH}>Explore rankings <span aria-hidden="true">→</span></a>}
         </header>
         {/* The categories as plain words with a count and an underline on the one picked (owner, 2026-11-12). */}
         <HomeBoard noun={[w.one, w.many]} cats={cats} initial={shape?.key} initialQ={f.q} ranked={false} base={new URLSearchParams(Object.entries(keep).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
-          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} rank={null} noSignal recent={recent.get(r.id) ?? 0} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
+          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} rank={null} noSignal line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
           empty={<p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>
