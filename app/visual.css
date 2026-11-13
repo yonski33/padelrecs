@@ -2890,3 +2890,7 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lrv-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 14px; }
 main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .lrv-card .lrv-text { max-width: 72ch; }
+/* One plain grid of rankings, no group headings, and no #1 name under the photos (owner, 2026-11-13). */
+.lrx-all { margin-top: 26px; }
+.lrx2-foot { display: flex !important; align-items: center; justify-content: space-between; gap: 14px; }
+@media (max-width: 720px) { .lrx-all { margin-top: 18px; } }
