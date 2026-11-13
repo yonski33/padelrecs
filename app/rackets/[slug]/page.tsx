@@ -344,11 +344,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
           : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
         <div className="lp-info">
-          {/* After the owner's product-page mockup (2026-11-13): a kicker, the name, the category chip, the take, then the
+          {/* After the owner's product-page mockup (2026-11-13): the name with "Reviews" after it (owner, 2026-11-14; no kicker above), the category chip, the take, then the
               signal, the positive share and the review count as one group, one Amazon button and a quiet reviews link. */}
-          <p className="lp-eyebrow">{`Reviews & ${niche.people.one} experiences`}</p>
           <div className="lp-title">
-            <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
+            <h1>{fullName}<span className="lp-h1-rev"> Reviews</span></h1>
           </div>
           {r.shape && <p className="lp-chiprow"><span className="lp-cat">{r.shape}</span>{hasYears && <span className="lp-year">{r.year}</span>}{placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}

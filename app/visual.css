@@ -2894,3 +2894,7 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .lrx-all { margin-top: 26px; }
 .lrx2-foot { display: flex !important; align-items: center; justify-content: space-between; gap: 14px; }
 @media (max-width: 720px) { .lrx-all { margin-top: 18px; } }
+/* Home category row scrolls with the page now (owner, 2026-11-14). */
+.home-d .lt-bar, .lt .lt-bar { position: static; }
+/* Product page: "Reviews" after the name, quieter than the name itself (owner, 2026-11-14). */
+.lp-h1-rev { font-weight: 600; color: #6b665e; }
