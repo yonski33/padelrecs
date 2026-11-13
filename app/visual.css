@@ -2303,3 +2303,82 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-row.v2 .lt-shape { padding: 3px 8px !important; border-radius: 5px !important; background: #F8F1DF !important; color: #745C39 !important; font-size: 12px !important; font-weight: 500 !important; border: 0 !important; box-shadow: none !important; line-height: 1.4; }
 /* Phones: the category chip too, for lists that mix categories (owner, 2026-11-13). */
 @media (max-width: 720px) { .lt-row.v2 .lt-shape { display: inline-block !important; margin: 5px 0 1px; font-size: 11.5px !important; padding: 2px 7px !important; } }
+
+/* Home after the owner's mockup and audit (2026-11-13). */
+/* The hero has the search, so no header search on the home page at any width. */
+body:has(.lt-hero) .site-header form.search { display: none !important; }
+/* Plain rows with a line between them, no tinted top three. */
+.home-d .lt-list .prow-list, .home-d .lt-list { gap: 0; }
+.home-d .lt-slot > .lt-row.v2, .home-d .lt-slot.lt-top > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8) !important; }
+.home-d .lt-slot > .lt-row.v2:hover { background: #fff !important; }
+/* Category tabs with thin separators. */
+.lt-board .lt-cats > a + a::before, .lt-board .lt-cats > .lc-more::before { content: ""; display: inline-block; width: 1px; height: 13px; margin-right: 15px; vertical-align: -1px; background: var(--lt-line); }
+.lt-board .lt-cats > .lc-more { display: inline-flex; align-items: baseline; }
+/* "Ranked by signal score … How it works", right over the list. */
+.lt-how { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 10px 0 0; padding-bottom: 10px; border-bottom: 1px solid var(--lt-line); font-size: 13px; color: var(--lt-mute); }
+.lt-how .sig-pop { margin: 0; }
+.lt-more-btn { display: inline-flex; gap: 6px; padding: 10px 22px !important; border: 0 !important; border-radius: 12px !important; background: var(--lt-tint) !important; color: var(--lt-acc) !important; font-weight: 600 !important; }
+.home-d .load-more { display: flex; justify-content: center; margin-top: 16px; }
+/* Recent reviews: a short 2 × 2 preview. */
+.rc-feed { max-width: var(--wrap, 1064px); }
+.rc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.rc-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.rc-head a { font-size: 14px; font-weight: 500; color: var(--lt-acc, var(--green-ink)); text-decoration: none; }
+.rc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.rc-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; padding: 14px 16px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 14px; background: #fff; }
+.rc-art { width: 64px; height: 64px; display: grid; place-items: center; }
+.rc-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.rc-art img { width: 100%; height: 100%; object-fit: contain; }
+.rc-body { display: grid; gap: 3px; min-width: 0; }
+.rc-body header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.rc-name { font-size: 14.5px; font-weight: 600; color: var(--lt-ink, #262421); text-decoration: none; }
+.rc-name:hover { text-decoration: underline; }
+.rc-src { margin: 0; font-size: 12px; color: var(--lt-mute, #736e65); }
+.rc-text { margin: 4px 0 0; font-size: 13.5px; line-height: 1.5; color: #4f4b44; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 720px) { .rc-grid { grid-template-columns: 1fr; } .rc-card { grid-template-columns: 52px minmax(0, 1fr); } .rc-art { width: 52px; height: 52px; } }
+
+/* Phones: the Amazon link under the name; positive reviews, the bar and the total in a full row below (owner, 2026-11-13). */
+@media (max-width: 720px) {
+  .lt-row.v2, .lt-row.v2.no-rank { grid-template-columns: 28px 64px minmax(0, 1fr) auto; grid-template-areas: "rank art body sig" "pos pos pos total"; row-gap: 10px; }
+  .lt-row.v2.no-rank { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "art body sig" "pos pos total"; }
+  .lt-row.v2 .lt-shop { display: block !important; font-size: 13px; }
+  .lt-row.v2 > .lt-shop-m { display: none !important; }
+  .lt-row.v2:has(.lt-shop-m) > .lt-posbar, .lt-row.v2 > .lt-posbar { display: grid !important; grid-template-columns: auto minmax(60px, 1fr); align-items: center; gap: 10px; }
+  .lt-row.v2 > .lt-posbar .sbar { display: block !important; }
+  .lt-row.v2 .sbar-track { height: 8px; }
+  .lt-row.v2 .lt-posn { font-size: 12.5px; font-weight: 600; }
+  .lt-row.v2 > .lt-total { align-self: center; padding-left: 10px; }
+  .lt-row.v2 > .lt-total b { font-size: 12.5px !important; font-weight: 600 !important; color: var(--lt-ink) !important; }
+  .lt-row.v2 > .lt-total, .lt-row.v2 > .lt-total span { color: var(--lt-ink) !important; font-weight: 600; font-size: 12.5px; }
+  .lt-side .lt-mini li:nth-child(n+4) { display: none; }
+}
+/* Header: with no search on the home page, "Add a review" stays at the right. */
+body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
+.lt-hero .lt-sub { max-width: 640px; margin-left: auto; margin-right: auto; }
+/* Home desktop rows, denser like the mockup: one-line names and takes where they fit. */
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 40px 68px minmax(0, 1fr) 76px 128px 58px; gap: 12px; padding: 12px 8px; }
+  .home-d .lt-row.v2 > .lt-art { width: 68px; height: 68px; }
+  .home-d .lt-row.v2 .lt-name { font-size: 15.5px; -webkit-line-clamp: 1; }
+  .home-d .lt-row.v2 .lt-line { font-size: 13px; -webkit-line-clamp: 2; }
+  .home-d .lt-row.v2 .lt-shop { font-size: 13px; margin-top: 1px; }
+  .home-d .lt-row.v2 > .lt-sig b { font-size: 26px; }
+  .home-d .lt-row.v2 > .lt-sig small { font-size: 12px; }
+  .home-d .lt-row.v2 .lt-posn { font-size: 13px; }
+  .home-d .lt-row.v2 > .lt-total b { font-size: 24px; }
+  .home-d .lt-row.v2 > .lt-total span { font-size: 12.5px; }
+}
+/* Phones: a wider text column and links that don't wrap. */
+@media (max-width: 720px) {
+  .lt-row.v2 { grid-template-columns: 24px 56px minmax(0, 1fr) auto; column-gap: 10px; padding: 14px 4px; }
+  .lt-row.v2.no-rank { grid-template-columns: 56px minmax(0, 1fr) auto; }
+  .lt-row.v2 > .lt-art { width: 56px !important; height: 56px !important; }
+  .lt-row.v2 > .lt-rank { font-size: 15px; }
+  .lt-row.v2 .lt-name { font-size: 15px !important; }
+  .lt-row.v2 .lt-line { font-size: 13px !important; -webkit-line-clamp: 2 !important; }
+  .lt-row.v2 .lt-shop { white-space: nowrap; }
+  .lt-row.v2 > .lt-sig b { font-size: 22px !important; }
+  .lt-how-long { display: none; }
+  .lt-how { flex-wrap: nowrap; }
+}
+@media (max-width: 720px) { .lt-row.v2 .lt-line { -webkit-line-clamp: 3 !important; } }

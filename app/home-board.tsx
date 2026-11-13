@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 
 export type BoardItem = { key: string; shape: string | null; text: string; node: ReactNode };
 type Cat = { key: string; label: string };
-// 15 rows first, the last ones fading out over a Show more button (owner, 2026-11-13).
-const PAGE = 15, EVENT = "home-search";
+// 8 rows first and a Show more button (owner's mockup and audit, 2026-11-13).
+const PAGE = 8, EVENT = "home-search";
 
 /** Lower case, accents and punctuation off, so "La Roche-Posay" matches "la roche posay". */
 const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -34,7 +34,7 @@ export function HomeSearch({ initial, placeholder, label }: { initial?: string; 
 }
 
 /** base: the rest of the address (order), the same on the server and in the browser so links match. */
-export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside, noun, sort }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode; noun: [string, string]; sort?: ReactNode }) {
+export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMatch, base, aside, noun, sort, how }: { cats: Cat[]; initial?: string; initialQ?: string; ranked: boolean; items: BoardItem[]; empty: ReactNode; noMatch: string; base: string; aside?: ReactNode; noun: [string, string]; sort?: ReactNode; how?: ReactNode }) {
   const [shape, setShape] = useState<string | undefined>(cats.some(c => c.key === initial) ? initial : undefined);
   const [q, setQ] = useState(initialQ ?? "");
   const [shown, setShown] = useState(PAGE);
@@ -71,13 +71,14 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
       {/* Sort at the right end of the tab row (owner, 2026-11-13): no extra line between the tabs and the list. */}
       {(sort || aside) && <div className="lt-bar-aside">{sort}{aside}</div>}
     </div>
+    {how && <p className="lt-how">{how}</p>}
     {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {/* The first row's signal explains itself on hover or tap (owner, 2026-11-13); the words sit once, in a CSS variable. */}
-    {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}${visible.length > shown ? " lt-faded" : ""}`}>
-      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}${i === 0 ? " lt-first" : ""}`}>{it.node}</div>)}
+    {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
+      {visible.slice(0, shown).map((it, i) => <div key={it.key} className="lt-slot">{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
-    {visible.length > shown && <div className="load-more"><button type="button" className="button ghost" onClick={() => setShown(shown + PAGE)}>Show more</button></div>}
+    {visible.length > shown && <div className="load-more"><button type="button" className="button ghost lt-more-btn" onClick={() => setShown(shown + PAGE * 2)}>Show more {noun[1]} <span aria-hidden="true">↓</span></button></div>}
   </>;
 }
 

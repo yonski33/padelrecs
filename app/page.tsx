@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { catalog } from "../db/data";
 import { displayName } from "../lib/brand-name";
 import { activity, racketParts } from "./components";
-import { ProductArt, SentimentBar, FeedCard, browseTiles, BrowseTile, Arrow } from "./visual";
+import { ProductArt, SentimentBar, FeedCard, RecentCard, browseTiles, BrowseTile, Arrow } from "./visual";
 import { homeHeadline } from "../lib/home-lines";
 import { CountUp } from "./count-up";
 import { HomeA, HomeB } from "./home-variants";
@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -114,6 +114,14 @@ export default async function Home({ searchParams }: {
     {items.length > 0 && items.length <= show && <p className="end-note">{`You've reached the end. ${niche.copy.ui.triedOneOfThese} `}<a href="/add-review">Add your own review →</a></p>}
   </section>;
 
+  const recentItems = spreadByProduct([
+    ...data.reviews.map(r => ({ date: r.createdAt, product: r.racketId, key: `player-${r.id}`, node: <RecentCard review={r} data={data}/> })),
+    ...data.external.filter(e => e.sentiment).map(e => ({ date: e.createdAt, product: e.racketId, key: `web-${e.id}`, node: <RecentCard entry={e} data={data}/> })),
+  ]).slice(0, 4);
+  const recent = recentItems.length > 0 && <section className="feed rc-feed" id="latest">
+    <div className="rc-head"><h2>Recent reviews</h2><a href="/?feed=all#latest">See all recent reviews <span aria-hidden="true">↗</span></a></div>
+    <div className="rc-grid">{recentItems.map(item => <Fragment key={item.key}>{item.node}</Fragment>)}</div>
+  </section>;
   const [lead1, topic] = homeHeadline();
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
@@ -121,7 +129,8 @@ export default async function Home({ searchParams }: {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">
       <HomeLight data={all} f={{ q: params.q, shape: params.shape, sort: params.sort, show: one(params.show) }} signals={await productSignals()} picks={picks} now={now.getTime()}/>
-      {feed}
+      {/* A short preview of the newest reviews (owner's mockup, 2026-11-13); ?feed=all shows the whole feed with its filters. */}
+      {one(params.feed) === "all" || type || params.show ? feed : recent}
     </main>;
   }
   if (params.home === "c" && !type) {

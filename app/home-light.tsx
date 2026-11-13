@@ -65,7 +65,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
     <section className="lt-hero">
       <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, ranked by `}<span>{`real ${p.many}`}</span></h1>
-      <p className="lt-sub">We read Reddit, YouTube and blogs so you don’t have to.</p>
+      <p className="lt-sub">Real reviews from Reddit, YouTube and blogs, linked to their sources.</p>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
@@ -74,7 +74,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <div className="lt-board">
         {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count and an underline on
             the one picked. It stays at the top while the long list scrolls. */}
-        <HomeBoard noun={[w.one, w.many]} sort={<HomeSort value={sort === DEFAULT_SORT ? "" : sort} options={sorts.map(s => ({ value: s.v ?? "", label: s.label }))}/>} cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
+        <HomeBoard how={<><span>Ranked by signal score<span className="lt-how-long">: positive reviews, weighted by how many there are.</span></span> <SignalPop label="How it works"/></>} noun={[w.one, w.many]} sort={<HomeSort value={sort === DEFAULT_SORT ? "" : sort} options={sorts.map(s => ({ value: s.v ?? "", label: s.label }))}/>} cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
           items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
@@ -83,7 +83,6 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <aside className="lt-side">
         <Mini title="Fresh reviews" href="#latest" items={fresh.map(e => { const r = data.rackets.find(x => x.id === e.racketId)!; return { key: e.id, art: <SourceIcon platform={e.sourcePlatform}/>, name: displayName(r.name, brandOf(r.brandId)), href: lightHref(r), value: <span className={`lt-s lt-s-${e.sentiment}`}>{ago(e.createdAt, now).replace(" ago", "")}</span> }; })}/>
         {side.map(l => <Mini key={l.list.slug} title={/^best\b/i.test(l.list.label) ? l.list.label : `Best ${l.list.label[0].toLowerCase()}${l.list.label.slice(1)}`} href={listHref(l.list.slug)} items={l.entries.slice(0, 5).map(e => { const full = data.rackets.find(r => r.id === e.product.id); return { key: e.product.id, rank: e.rank, art: full ? <ProductArt product={full} brand={brandOf(full.brandId)}/> : null, name: displayName(e.product.name, brandOf(e.product.brandId)), href: lightHref(e.product), value: signals.get(e.product.id)?.signal ?? "" }; })}/>)}
-        <div className="lt-note">The signal is positive reviews weighed by how many there are. No sponsored picks. <SignalPop label="How it works"/></div>
       </aside>
     </div>
   </div>;

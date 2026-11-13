@@ -253,3 +253,23 @@ export function SignalInfo({ align = "left" }: { align?: "left" | "right" }) {
   return <details className={`sig-info${align === "right" ? " sig-right" : ""}`}><summary aria-label="What is the signal score?">i</summary>
     <p>A score out of 100. Negative and mixed reviews take points off, and so does having only a few reviews, so a handful of glowing reviews can’t beat a product many people like. <a href="/about#signal">How it works</a></p></details>;
 }
+
+/** A short review card for the home page's "Recent reviews" preview (owner's mockup, 2026-11-13): photo, product, where
+ *  and when, the verdict and the words, clamped to a few lines. The full feed stays one click away. */
+export function RecentCard(props: { data: Catalog } & ({ review: PlayerReview } | { entry: WebReview })) {
+  const id = "review" in props ? props.review.racketId : props.entry.racketId;
+  const r = props.data.rackets.find(x => x.id === id);
+  if (!r) return null;
+  const brand = props.data.brands.find(b => b.id === r.brandId)?.name;
+  const [from, date, verdict, text] = "review" in props
+    ? [`a ${niche.site.name} ${niche.people.one}`, props.review.createdAt, verdictOf(props.review.rating), props.review.reviewText]
+    : (() => { const e = props.entry, l = sourceLabel(e); return [l.name ? l.name : l.platform, e.sourceDate || e.createdAt, e.sentiment, quoteText(e)] as const; })();
+  return <article className="rc-card">
+    <a className="rc-art" href={productHref(r)} aria-hidden="true" tabIndex={-1}><ProductArt product={r} brand={brand}/></a>
+    <div className="rc-body">
+      <header><a className="rc-name" href={productHref(r)}>{displayName(r.name, brand)}</a>{verdict && <span className={`spill s-${verdict}`}>{sentimentWord[verdict as keyof typeof sentimentWord]}</span>}</header>
+      <p className="rc-src">{`from ${from}`}{date && <> · {fullDate(date)}</>}</p>
+      <p className="rc-text">{`“${String(text).replace(/^[“"]|[”"]$/g, "")}”`}</p>
+    </div>
+  </article>;
+}
