@@ -315,12 +315,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.createdAt)].sort().pop();
     const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
     const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [niche.site.name] : []);
-    const glance = [
-      ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
-      ["Collected reviews", sum.total.toLocaleString("en-US")],
-      ...(sources.length ? [["Sources", sources.slice(0, 4).join(" · ")]] : []),
-      ...specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).slice(0, 3).map(([k, v]) => [k, String(v)]),
-    ];
+    // Only the product's details (owner, 2026-11-13): type, review count and sources are already at the top of the page.
+    const glance = specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).map(([k, v]) => [k, String(v)]);
     const buy = amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
       : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
       : <a className="button" href={addHref}><PlusIcon/>Add your review</a>;
@@ -381,7 +377,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {faqBox}
         </div>
         <aside className="database-sidebar">
-          <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>
+          {glance.length > 0 && <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>}
           {/* "Compare with …" sits with the similar products, not in the header (owner's audit, 2026-11-13). */}
           {compareWith && <a className="lp-compare" href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`} <span aria-hidden="true">→</span></a>}
           {similarBox}
