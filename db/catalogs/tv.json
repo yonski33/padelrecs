@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K, TCL R655). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K/X90K, Samsung Q90T, LG BX, TCL R655/C855). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -583,6 +583,19 @@
         "https://lg.com/ae/about-lg/press-media/ces2017-lg-oled-tv-lineup",
         "https://www.lg.com/us/tvs/lg-OLED65B7A-oled-4k-tv",
         "https://www.lg.com/us/tvs/lg-OLED55B7P-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG BX",
+      "year": 2020,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": "4× HDMI (HDCP 2.2), VRR",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tvs/lg-OLED55BXPUA"
       ]
     },
     {
@@ -1683,6 +1696,21 @@
     },
     {
       "brand": "samsung",
+      "name": "Samsung Q90T",
+      "year": 2020,
+      "shape": "Budget & mid-range",
+      "balance": null,
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.samsung.com/ca/support/model/QN65Q90TAFXZC/",
+        "https://www.samsung.com/uk/support/model/QE65Q90TATXXU/",
+        "https://image-us.samsung.com/SamsungUS/samsung/us/tvs/spec/Q90T_Spec_Sheet.pdf"
+      ]
+    },
+    {
+      "brand": "samsung",
       "name": "Samsung QN800C",
       "year": 2023,
       "shape": "Mini-LED & QLED",
@@ -2450,6 +2478,20 @@
     },
     {
       "brand": "sony",
+      "name": "Sony X90K",
+      "year": 2022,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED",
+      "surface": "55/65/75/85\"",
+      "core": "4× HDMI (HDMI 2.1 features: 4K120, VRR, ALLM, eARC)",
+      "weight": "Google TV",
+      "sources": [
+        "https://store.sony.com.au/television-4K-X9000/XR75X90K.html",
+        "https://sony.mediaroom.com/2022-01-04-Sony-Electronics-Introduces-2022-BRAVIA-XR-TV-Lineup,-Featuring-Innovative-XR-Backlight-Master-Drive-Technology-for-New-Mini-LED-Models"
+      ]
+    },
+    {
+      "brand": "sony",
       "name": "Sony X90L",
       "year": 2023,
       "shape": "Mini-LED & QLED",
@@ -2502,6 +2544,21 @@
       "sources": [
         "https://www.sony.eu/presscentre/sony-introduces-2023-bravia-xr-tv-line-up",
         "https://sony.mediaroom.com/2023-05-01-Sony-Electronics-Announces-Pricing-and-Availability-for-2023-BRAVIA-XR-Television-Lineup"
+      ]
+    },
+    {
+      "brand": "tcl",
+      "name": "TCL C855",
+      "year": 2024,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": "65/75/85/98\"",
+      "core": "144 Hz VRR, 4× HDMI",
+      "weight": "Google TV",
+      "sources": [
+        "https://www.tcl.com/au/en/tvs/65c855",
+        "https://www.appliancesonline.com.au/product/tcl-65-inch-c855-premium-qd-mini-led-google-tv-65c855",
+        "https://www.tcl.com/nz/en/news/tcl-unveils-latest-extra-large-premium-qd-mini-led-tv-line-up-and-smart-home-appliances-to-transform-home-entertainment-and-inspire-greatness-globally"
       ]
     },
     {
