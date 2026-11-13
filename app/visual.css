@@ -2738,3 +2738,8 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
   .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) !important; }
   .home-d .lt-side { position: static; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
 }
+/* The home list's "See the rankings" link, styled like the "How it works" link it replaces (owner, 2026-11-13). */
+.lt-how > a { color: var(--lt-acc); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.lt-how > a:hover { text-decoration: underline; }
+/* Home rows have no rank column now (most discussed is not a ranking). */
+@media (min-width: 721px) and (max-width: 900px) { .home-d .lt-row.v2.no-rank { grid-template-columns: 56px minmax(0, 1fr) 58px 120px 74px !important; } }

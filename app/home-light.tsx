@@ -8,6 +8,7 @@ import { niche, productHref } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
 import { DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
+import { RANKINGS_PATH } from "../lib/top-lists";
 import { webDate } from "../lib/recent";
 import type { Signal } from "../lib/signal";
 import type { RankedList } from "./rankings/lists";
@@ -40,7 +41,9 @@ function Mini({ title, href, items }: { title: string; href: string; items: { ke
 }
 
 export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: Catalog; f: LightFilters; signals: Map<string, Signal>; picks: RankedList[]; now: number; keep?: Record<string, string> }) {
-  const sort = parseSort(f.sort), shapes = shapeChoices(), shape = shapes.find(c => c.key === f.shape), tc = tagCounts(data);
+  // The home list opens most discussed first on every site (owner, 2026-11-13): review counts compare across categories,
+  // and the signal-score order belongs to the rankings. "Top rated" is still in the menu.
+  const sort = f.sort ? parseSort(f.sort) : "discussed", shapes = shapeChoices(), shape = shapes.find(c => c.key === f.shape), tc = tagCounts(data);
   const inShape = (r: Product, c = shape) => !c || c.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase());
   const searched = matchingRackets(data.listed, f.q || "");
   // Category names as the site says them elsewhere ("Cleansers"), with how many products each holds under the search.
@@ -53,8 +56,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
   const everything = [...data.reviews, ...data.external];
   const week = [...data.reviews.map(r => r.createdAt), ...data.external.map(webDate)].filter(d => Date.parse(d) >= now - 7 * DAY).length;
-  const sorts = [{ v: undefined, label: "Top rated", on: sort === DEFAULT_SORT }, { v: "discussed", label: "Most discussed", on: sort === "discussed" }, { v: "newest", label: "Newest", on: sort === "newest" }];
-  const ranked = sort === DEFAULT_SORT && !f.q;
+  const sorts = [{ v: undefined, label: "Most discussed", on: sort === "discussed" }, { v: DEFAULT_SORT, label: "Top rated", on: sort === DEFAULT_SORT }, { v: "newest", label: "Newest", on: sort === "newest" }];
 
   // Side lists: the newest opinions (one per product), then the top five of two rankings.
   const seen = new Set<string>();
@@ -74,9 +76,11 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <div className="lt-board">
         {/* One quiet row over the list (owner, 2026-11-12): the categories as plain words with a count and an underline on
             the one picked. It stays at the top while the long list scrolls. */}
-        <HomeBoard how={<><span>Ranked by signal score<span className="lt-how-long">: positive reviews, weighted by how many there are.</span></span> <SignalPop label="How it works"/></>} noun={[w.one, w.many]} sort={<HomeSort value={sort === DEFAULT_SORT ? "" : sort} options={sorts.map(s => ({ value: s.v ?? "", label: s.label }))}/>} cats={cats} initial={shape?.key} initialQ={f.q} ranked={sort === DEFAULT_SORT} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
+        <HomeBoard how={sort === "discussed" ? <><span>Most discussed first<span className="lt-how-long">: the products with the most reviews.</span></span> {picks.length > 0 && <a href={RANKINGS_PATH}>See the rankings ›</a>}</>
+          : sort === DEFAULT_SORT ? <><span>Sorted by signal score<span className="lt-how-long">: positive reviews, weighted by how many there are.</span></span> <SignalPop label="How it works"/></>
+          : <span>Newest first.</span>} noun={[w.one, w.many]} sort={<HomeSort value={sort === "discussed" ? "" : sort} options={sorts.map(s => ({ value: s.v ?? "", label: s.label }))}/>} cats={cats} initial={shape?.key} initialQ={f.q} ranked={false} base={new URLSearchParams(Object.entries({ ...keep, sort: f.sort }).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
-          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
+          items={results.map(({ r }) => ({ key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, text: `${data.brands.find(b => b.id === r.brandId)?.name ?? ""} ${r.name} ${r.shape ?? ""}`, node: <LightRow data={data} r={r} rank={null} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brandOf(r.brandId))}/> }))}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.
           empty={<p className="lt-filtered">{`The first ${p.one} reviews are being collected; ${w.many} appear here as soon as they have some. `}<a href="/add-review">Add a review →</a></p>}/>
       </div>

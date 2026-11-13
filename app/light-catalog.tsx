@@ -42,7 +42,11 @@ const KNOWN_MIN = 3, KNOWN_SHARE = 0.08;
 export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed = {}, title, crumbs }: { data: Catalog; f: LightCatalogFilters; signals: Map<string, Signal>;
   basePath?: string; fixed?: { shape?: string; brand?: string }; title?: React.ReactNode; crumbs?: React.ReactNode }) {
   f = { ...f, shape: fixed.shape ?? f.shape, brand: fixed.brand ?? f.brand };
-  const sort = parseSort(f.sort), shapes = shapeChoices(), shape = shapes.find(c => c.key.toLowerCase() === (f.shape ?? "").toLowerCase()), tc = tagCounts(data);
+  const shapes = shapeChoices(), shape = shapes.find(c => c.key.toLowerCase() === (f.shape ?? "").toLowerCase()), tc = tagCounts(data);
+  // A list mixing different kinds of product (all of SkinRecs, or one brand) opens most discussed first: signal scores only
+  // compare within a category (owner, 2026-11-13). A category opens on the signal order; "Top rated" stays one click away.
+  const mixed = (niche.typePages?.length ?? 0) > 1 && !shape;
+  const defaultSort = mixed ? "discussed" : DEFAULT_SORT, sort = f.sort ? parseSort(f.sort) : defaultSort;
   const totals = new Map(data.listed.map(r => { const s = score(data, r.id); return [r.id, s.count + s.web] as const; }));
   const known = (r: Product, t: string) => { const n = tc.get(r.id)?.get(t) ?? 0; return n >= KNOWN_MIN && n >= KNOWN_SHARE * (totals.get(r.id) ?? 0); };
   const tags = (f.tag ?? []).filter(t => niche.tags.some(x => x.label === t));
@@ -127,13 +131,14 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
           </AutoSubmitForm>
           {/* Compare boxes show when this is on, or once something is picked (owner, 2026-11-12): rows stay clean by default. CSS only. */}
           <label className="lc-cmp-toggle lcx-cmp"><input type="checkbox" id="lc-cmp"/>Compare</label>
-          <AutoSubmitForm className="lc-sort lcx-sort" action={basePath}>
+          {/* Keyed so the menu shows the right order after a category switch without a reload. */}
+          <AutoSubmitForm key={`${basePath}-${sort}`} className="lc-sort lcx-sort" action={basePath}>
             {hidden({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape })}
-            <label><span>Sort:</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{s.label}</option>)}</select></label>
+            <label><span>Sort:</span><select name="sort" defaultValue={sort === defaultSort ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === defaultSort ? "" : s.value}>{s.label}</option>)}</select></label>
             <noscript><button className="button ghost">Sort</button></noscript>
           </AutoSubmitForm>
         </div>
-        <p className="lcx-how">{sort === DEFAULT_SORT ? "Ranked by signal score: positive reviews, weighted by how many there are." : `Sorted by ${SORTS.find(s => s.value === sort)?.label.toLowerCase()}.`} <SignalPop label="How it works"/></p>
+        <p className="lcx-how">{sort === DEFAULT_SORT ? "Ranked by signal score: positive reviews, weighted by how many there are." : `Sorted by ${SORTS.find(s => s.value === sort)?.label.toLowerCase()}.${mixed && sort === "discussed" ? " Pick a category to see it ranked by signal score." : ""}`} <SignalPop label="How it works"/></p>
         {/* The home page's row (owner, 2026-11-13), with the compare box under the name and no rank number. */}
         <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
           const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);
