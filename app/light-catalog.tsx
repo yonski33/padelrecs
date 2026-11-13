@@ -16,6 +16,7 @@ import type { Signal } from "../lib/signal";
 import type { SpecColumn } from "../lib/niche/types";
 import { Directory, parseShow } from "./components";
 import { AutoSubmitForm } from "./auto-submit";
+import { CatRadios, type CatChoice } from "./cat-radios";
 import { ProductArt, SignalPop } from "./visual";
 import { CompareCheck, CompareTray } from "./compare/compare-pick";
 import { lightFont } from "./light-font";
@@ -86,7 +87,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
   const clearAll = params({ q: undefined, brand: undefined, year: undefined, tag: undefined, shape: undefined, ...Object.fromEntries(specFacets.map(s => [s.column, undefined])) }, niche.typePages?.length && !fixed.brand ? catalogPath : basePath);
   const mentionShown = mention.slice(0, 5), mentionMore = mention.slice(5);
   const check = (m: { t: string; n: number }) => <label key={m.t} className="lc-check"><input type="checkbox" name="tag" value={m.t} defaultChecked={tags.includes(m.t)}/><span>{cap(m.t)}</span><small>{fmt(m.n)}</small></label>;
-  const radio = (c: (typeof cats)[number]) => <a key={c.key} href={catHref(c)} aria-current={shape?.key === c.key ? "true" : undefined}><span className="lc-radio" aria-hidden="true"/>{c.label}<small>{fmt(c.n)}</small></a>;
+  const choice = (c: (typeof cats)[number]): CatChoice => ({ key: c.key, href: catHref(c), label: c.label, n: fmt(c.n), current: shape?.key === c.key });
   const group = (label: string, body: React.ReactNode) => <details className="lc-group" open><summary>{label}<span className="lc-chev" aria-hidden="true"/></summary><div className="lc-group-body">{body}</div></details>;
 
   return <main className={`catalog v2 lt-page lc lcx ${lightFont.className}`}>
@@ -97,11 +98,9 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
         <label htmlFor="filters-open" className="filters-button">{`Filters${refined || shape ? " (on)" : ""}`}<span aria-hidden="true"> ⌄</span></label>
         <div className="filters lc-form">
           <div className="lc-rail-head"><h2>Filters</h2>{(refined || (shape && !fixed.shape)) && <a href={clearAll}>Clear all</a>}</div>
-          {cats.length > 1 && group("Category", <nav className="lc-radios" aria-label={`${w.One} categories`}>
-            <a href={catHref()} aria-current={!shape ? "true" : undefined}><span className="lc-radio" aria-hidden="true"/>{`All ${w.many}`}<small>{fmt(base.length)}</small></a>
-            {cats.slice(0, 5).map(radio)}
-            {cats.length > 5 && <details className="lc-showmore" open={cats.slice(5).some(c => c.key === shape?.key)}><summary>Show more <span aria-hidden="true">›</span></summary>{cats.slice(5).map(radio)}</details>}
-          </nav>)}
+          {cats.length > 1 && group("Category", <CatRadios label={`${w.One} categories`}
+            head={[{ key: "", href: catHref(), label: `All ${w.many}`, n: fmt(base.length), current: !shape }, ...cats.slice(0, 5).map(choice)]}
+            more={cats.slice(5).map(choice)}/>)}
           <AutoSubmitForm className="lc-form-inner" action={basePath}>
             {hidden({ q: f.q, shape: fixed.shape ? undefined : f.shape, sort: f.sort }, false)}
             {mention.length > 0 && group("What people mention", <>{mentionShown.map(check)}

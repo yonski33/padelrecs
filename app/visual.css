@@ -2715,3 +2715,5 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lv .lv-src, .lrv-card .lrv-src, .rc-card .rc-src { color: #777 !important; }
 .lv .lv-src b, .lrv-card .lrv-name { color: #252525 !important; }
 .review-list h2, .lrv h1, .lrv-hero h1 { color: #242424; }
+/* Category clicks swap the list in place (owner, 2026-11-13): it fades while the next one loads. */
+.lc-grid:has(.lc-radios.is-pending) .lc-list { opacity: .45; transition: opacity .15s ease .08s; pointer-events: none; }
