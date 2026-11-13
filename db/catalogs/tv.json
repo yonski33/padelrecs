@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K/X90K, Samsung Q90T, LG BX/B2, Hisense U8H/U8G/U7G, TCL R655/R646/C855). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K/X90K, Samsung Q90T, LG BX/B2/B9/B8/B6 (2016)/A2, Hisense U8H/U8G/U7G, TCL R655/R646/C855). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -639,6 +639,62 @@
         "https://lg.com/ae/about-lg/press-media/ces2017-lg-oled-tv-lineup",
         "https://www.lg.com/us/tvs/lg-OLED65B7A-oled-4k-tv",
         "https://www.lg.com/us/tvs/lg-OLED55B7P-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B6 (2016)",
+      "year": 2016,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "65\"",
+      "core": "4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tv-soundbars/oled/oled65b6p/",
+        "https://www.lg.com/us/tvs/lg-OLED65B6P-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B8",
+      "year": 2018,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": "4× HDMI",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/tvs/lg-OLED65B8PUA-oled-4k-tv",
+        "https://www.lg.com/ca_en/tv-soundbars/oled/oled65b8pua/"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B9",
+      "year": 2019,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "4× HDMI (HDCP 2.2)",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tv-soundbars/oled/oled65b9pua/",
+        "https://www.lg.com/us/tvs/lg-OLED65B9PUA-oled-4k-tv"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG A2",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65\"",
+      "core": null,
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/us/support/product/lg-OLED65A2PUA.AUS",
+        "https://www.lg.com/us/newsroom/media-entertainment/lg-begins-us-rollout-of-2022-oled-tv-lineup"
       ]
     },
     {
