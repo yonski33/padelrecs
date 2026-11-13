@@ -2382,3 +2382,10 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
   .lt-how { flex-wrap: nowrap; }
 }
 @media (max-width: 720px) { .lt-row.v2 .lt-line { -webkit-line-clamp: 3 !important; } }
+/* A tight category bar (owner, 2026-11-13): no stray margin under "More", a short Sort, less space above and below. */
+.lt-board .lt-cats .lc-more { margin: 0 !important; }
+.lt-board .lt-bar { padding-top: 2px; }
+.lt-board .lt-cats > a { padding: 6px 0 8px; }
+.lt-board .lt-bar-aside .lt-sort, .lt-board .lt-bar-aside .lt-sort select { height: auto !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; line-height: 1.3; }
+.lt-how { margin-top: 6px; padding-bottom: 8px; }
+@media (max-width: 720px) { .lt-board .lt-bar-aside { padding: 0 !important; margin: 6px 0 8px; align-self: flex-start; } }
