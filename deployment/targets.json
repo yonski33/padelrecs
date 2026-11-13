@@ -173,6 +173,11 @@
       "name": "grillrecs",
       "id": "prj_4kKPOoQWfIwwZsiCrJWrqTryUYjc",
       "domain": "www.grillrecs.com"
+    },
+    "tool": {
+      "name": "toolrecs",
+      "id": "prj_nCEN0xnqEZpOeZBzxT5W8TKWGPTj",
+      "domain": "www.toolrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
