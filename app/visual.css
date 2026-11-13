@@ -2863,3 +2863,30 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 :is(.lr-list, .lcx) .lt-row.v2 > .lt-total b { font-weight: 700; }
 :is(.lr-list, .lcx) .lt-row.v2 > .lt-total span { font-weight: 500; }
 :is(.lr-list, .lcx) .lt-row.v2 .lt-shop { font-weight: 500; }
+/* Rankings hub cards, option B (owner, 2026-11-13): title and a line on top, then the top three photos, the #1's name and
+   how many are ranked. Real photos only, no drawn icon. */
+.lrx-card2 { display: grid; grid-template-rows: auto 1fr; gap: 14px; height: 100%; padding: 18px 20px 16px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; color: inherit; text-decoration: none; transition: border-color .12s, box-shadow .12s, transform .12s; }
+.lrx-card2:hover { border-color: color-mix(in srgb, var(--lt-acc) 35%, var(--lt-line)); box-shadow: 0 8px 22px rgba(0,0,0,.06); transform: translateY(-1px); }
+.lrx2-text { display: grid; gap: 5px; min-width: 0; }
+.lrx2-text b { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #111; }
+.lrx2-text .lrx-intro { font-size: 13.5px; font-weight: 500; color: #3d393d; }
+.lrx2-foot { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; align-self: end; padding-top: 12px; border-top: 1px solid var(--lt-line); }
+.lrx2-thumbs { display: flex; gap: 6px; }
+.lrx2-art { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 10px; background: var(--lt-bg, #fcfbf8); }
+.lrx2-art .art { display: block; width: 100%; height: 100%; background: transparent !important; }
+.lrx2-art img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.lrx2-pick { display: grid; gap: 2px; min-width: 0; }
+.lrx2-pick small { font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--lt-acc); }
+.lrx2-pick b { overflow: hidden; font-size: 13.5px; font-weight: 600; line-height: 1.3; color: #111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.lrx2-go { font-size: 13.5px; font-weight: 600; color: var(--lt-acc); white-space: nowrap; }
+@media (max-width: 720px) {
+  .lrx-card2 { padding: 14px; gap: 10px; }
+  .lrx2-foot { grid-template-columns: auto minmax(0, 1fr); }
+  .lrx2-go { grid-column: 1 / -1; }
+  .lrx2-art { width: 48px; height: 48px; }
+}
+/* /reviews as one column (owner, 2026-11-13): one review per line, the list at a comfortable reading width under the
+   filters, the text capped near 75 characters a line. */
+.lrv-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 14px; }
+main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
+.lrv-card .lrv-text { max-width: 72ch; }
