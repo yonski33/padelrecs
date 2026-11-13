@@ -73,8 +73,9 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     </div>
     {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
-    {visible.length ? <div className={`prow-list lt-list${numbered ? " ranked" : ""}${visible.length > shown ? " lt-faded" : ""}`}>
-      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}`}>{it.node}</div>)}
+    {/* The first row's signal explains itself on hover or tap (owner, 2026-11-13); the words sit once, in a CSS variable. */}
+    {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}${visible.length > shown ? " lt-faded" : ""}`}>
+      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${numbered && i < 3 ? ` lt-top lt-top${i + 1}` : ""}${i === 0 ? " lt-first" : ""}`}>{it.node}</div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost" onClick={() => setShown(shown + PAGE)}>Show more</button></div>}
   </>;

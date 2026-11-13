@@ -216,7 +216,7 @@ export function SignalPop({ label = "How the signal works", align = "left" }: { 
   return <details className={`sig-pop${align === "right" ? " sig-pop-right" : ""}`}><summary>{label}<span aria-hidden="true"> ⓘ</span></summary>
     <div className="sig-pop-card" role="note">
       <b>The signal score</b>
-      <p>A score out of 100 for how well reviewed a product is. It rises with positive reviews and with how many there are; negative and mixed reviews take points off.</p>
+      <p>A score out of 100 for how well reviewed a product is next to others of its kind. It rises with positive reviews and with how many there are; negative and mixed reviews take points off. The best in each category scores in the 90s.</p>
       <p>So a handful of glowing reviews can’t beat a product lots of people like. No sponsored placements.</p>
     </div>
   </details>;
