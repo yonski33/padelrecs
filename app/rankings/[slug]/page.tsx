@@ -227,7 +227,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
           const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
           const shop = a ? { url: a.url, label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" }
             : site ? { url: site.url, label: site.label, short: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
-          return <li key={e.product.id} className="lt-slot">
+          return <li key={e.product.id} className={`lt-slot${e.rank === 1 ? " lr-p1" : e.rank <= 3 ? " lr-p23" : ""}`}>
             <LightRow data={data} r={product} rank={e.rank} signal={e.signal?.signal} line={shortLine(e.product) ?? listLine(e.product)} shop={shop} shape={false}
               extra={list.trait ? <span className="lt-trait">{`${e.traitReviews} mention ${list.trait.noun}`}</span> : undefined}/>
           </li>; })}</ol>

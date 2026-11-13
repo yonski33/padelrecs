@@ -2703,3 +2703,9 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 /* Product page with the wider layout (owner, 2026-11-13): a wider sidebar, and review text capped at a readable line length. */
 @media (min-width: 981px) { .product.v2.lp > .columns.lp-cols { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; } }
 .lp .lv-text, .lp .lv-body > p:not(.lv-src) { max-width: 68ch; }
+/* Ranking lists, after the owner's mockup (2026-11-13): #1 on a soft gradient of the site's colour into warm neutral,
+   #2–3 on a barely-there tint of it, #4 on plain rows. Catalogues and review feeds stay neutral. */
+.lr-list .lt-slot.lr-p1 > .lt-row.v2, .lr-list .lt-slot.lr-p23 > .lt-row.v2 { border: 1px solid transparent; border-radius: 14px; margin-bottom: 6px; }
+.lr-list .lt-slot.lr-p1 > .lt-row.v2 { background: linear-gradient(90deg, color-mix(in srgb, var(--lt-acc) 8%, #fcfbf8), color-mix(in srgb, #f6c79a 14%, #fcfbf8)) !important; border-color: color-mix(in srgb, var(--lt-acc) 10%, transparent); }
+.lr-list .lt-slot.lr-p23 > .lt-row.v2 { background: color-mix(in srgb, var(--lt-acc) 3%, #fcfbf8) !important; }
+.lr-list .lt-slot.lr-p1 > .lt-row.v2:hover, .lr-list .lt-slot.lr-p23 > .lt-row.v2:hover { border-color: color-mix(in srgb, var(--lt-acc) 18%, transparent); }
