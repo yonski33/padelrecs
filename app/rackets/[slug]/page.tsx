@@ -31,6 +31,7 @@ import { rankedLists, listHref } from "../../rankings/lists";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
+import { shortLine } from "../../../lib/short-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, pairHref } from "../../../lib/compare-pairs";
@@ -316,15 +317,28 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const sources = [...new Set(platforms.map(([p]) => platformName(p) === "Blog" ? "Blogs" : platformName(p)))].concat(reviews.length ? [niche.site.name] : []);
     const glance = [
       ...(r.shape ? [[niche.specs.find(x => x.column === "shape")?.label ?? "Type", r.shape]] : []),
-      ...(liked[0] ? [["Best known for", cap(liked[0])]] : []),
-      ["Reviews collected", sum.total.toLocaleString("en-US")],
-      ...(sources.length ? [["Sources", sources.slice(0, 4).join(", ")]] : []),
+      ["Collected reviews", sum.total.toLocaleString("en-US")],
+      ...(sources.length ? [["Sources", sources.slice(0, 4).join(" · ")]] : []),
       ...specs.filter(([k]) => k !== (niche.specs.find(x => x.column === "shape")?.label ?? "Type")).slice(0, 3).map(([k, v]) => [k, String(v)]),
     ];
     const buy = amazon ? <a className="button amazon-out" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
       : site ? <a className="button" href={site.url} target="_blank" rel={site.affiliate ? "sponsored nofollow noopener" : "noopener"}>{site.label}</a>
       : <a className="button" href={addHref}><PlusIcon/>Add your review</a>;
     const chips = (ts: readonly string[]) => <p className="lp-chips">{ts.map(t => <a key={t} href={tagHref(t)}>{cap(t)}<b>{mentions(t)}</b></a>)}</p>;
+    // "More balms & ointments" at the bottom (owner's mockup, 2026-11-13): the category's best-scored others, three cards.
+    const sameType = typePage ? data.listed.filter(x => x.id !== r.id && typePageFor(x.shape)?.slug === typePage.slug) : [];
+    const more = sameType.filter(x => sigs.get(x.id)).sort((a, b) => sigs.get(b.id)!.signal - sigs.get(a.id)!.signal).slice(0, 3);
+    const moreBox = typePage && more.length >= 2 && <section className="lp-more" aria-labelledby="lp-more-title">
+      <div className="lp-more-head"><div><h2 id="lp-more-title">{`More ${typePage.label.toLowerCase()}`}</h2>{typePage.intro && <p>{`${typePage.intro}, ranked by real ${niche.people.many}.`}</p>}</div>
+        <a className="lp-more-all" href={`/${typePage.slug}`}>{`View all ${typePage.label.toLowerCase()}`} <span aria-hidden="true">→</span></a></div>
+      <ul>{more.map(x => { const b = data.brands.find(y => y.id === x.brandId)?.name, sc = score(data, x.id), n = sc.count + sc.web, take = shortLine(x) ?? listLine(x);
+        return <li key={x.id}><a href={productHref(x)}>
+          <span className="lp-more-art"><ProductArt product={x} brand={b}/></span>
+          <span className="lp-more-body"><b>{displayName(x.name, b)}</b>{take && <span>{take}</span>}</span>
+          <span className="lp-more-foot"><small>{`${n.toLocaleString("en-US")} ${n === 1 ? "review" : "reviews"}`}</small><em>Read reviews <span aria-hidden="true">→</span></em></span>
+        </a></li>; })}</ul>
+      <p className="lp-more-swipe m-only" aria-hidden="true">Swipe to explore →</p>
+    </section>;
     return <main className={`product v2 lt-page lp ${lightFont.className}`}>
       {affiliate && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -374,6 +388,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {siblingsBox}
         </aside>
       </div>
+      {moreBox}
       {nextBox}
       {/* No fixed "Check price" bar on phones (owner, 2026-11-13, audit): the one button in the header stays where it is. */}
     </main>;
