@@ -2733,3 +2733,8 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
   .lt-row.v2.no-rank { grid-template-columns: 76px minmax(0, 1fr) 64px 128px 74px !important; }
   .home-d .lt-row.v2 { grid-template-columns: 32px 56px minmax(0, 1fr) 58px 120px 74px !important; }
 }
+/* Home on small laptops (901–1199px): the side lists move under the product list, so names and takes keep their room. */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .home-d .lt-side { position: static; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+}

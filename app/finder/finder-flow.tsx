@@ -39,7 +39,7 @@ function Result({ match, rank }: { match: FinderMatch<FinderCard>; rank: number 
           {c.mixed > 0 && <i className="s-mixed" style={{ width: `${c.mixed / judged * 100}%` }}/>}
           {c.negative > 0 && <i className="s-negative" style={{ width: `${c.negative / judged * 100}%` }}/>}
         </span></span></>}</span>
-      <a className="lt-total" href={`${c.href}#reviews`}><b>{c.reviews.toLocaleString("en-US")}</b><span>{c.reviews === 1 ? "review" : "reviews"} <span aria-hidden="true">›</span></span></a>
+      <a className="lt-total" href={`${c.href}#reviews`}><b>{c.reviews.toLocaleString("en-US")}</b><span>{c.reviews === 1 ? "review" : "reviews"}</span></a>
     </div>
   </li>;
 }
