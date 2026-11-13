@@ -2404,3 +2404,45 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
   .home-d .lt-row.v2 > .lt-posbar { margin-right: 6px; }
   .home-d .lt-row.v2 > .lt-art { width: 58px; height: 58px; }
 }
+
+/* Home refinement brief (owner's auditor, 2026-11-13): about 20% tighter, bolder names, stronger focal points,
+   a wider sidebar, a shorter hero and compact review cards. Same palette, no new colours. */
+:root { --lt-signal: #28733D; }
+.home-d { --lt-name: #242124; --lt-summary: #575258; --lt-label: #827C82; }
+/* Hero: about 50px less vertical space on desktop. */
+@media (min-width: 721px) {
+  .home-d .lt-hero { gap: 7px; padding: 18px 0 14px; }
+  .home-d .lt-hero .lt-sub { margin: 0; }
+  .home-d .lt-search { margin-top: 6px; }
+}
+/* Layout: rankings about 75%, the sidebar 280px. */
+@media (min-width: 901px) { .home-d .lt-grid { grid-template-columns: minmax(0, 1fr) 280px; gap: 26px; } }
+/* Rows: about 20% less height, stronger type. */
+@media (min-width: 721px) {
+  .home-d .lt-row.v2 { grid-template-columns: 32px 56px minmax(0, 1fr) 72px 120px 58px; column-gap: 12px; padding: 9px 6px; }
+  .home-d .lt-row.v2 > .lt-art { width: 56px; height: 56px; }
+  .home-d .lt-row.v2 > .lt-body { gap: 1px; }
+  .home-d .lt-row.v2 .lt-name { font-size: 15.5px; font-weight: 700; color: var(--lt-name); }
+  .home-d .lt-row.v2 .lt-line { font-size: 13.5px; color: var(--lt-summary) !important; line-height: 1.4; }
+  .home-d .lt-row.v2 .lt-shape { margin: 2px 0 1px; font-size: 11.5px !important; padding: 1px 7px !important; }
+  .home-d .lt-row.v2 .lt-shop { font-size: 12.5px; font-weight: 500; }
+  .home-d .lt-row.v2 > .lt-sig b { font-size: 25px; font-weight: 750; }
+  .home-d .lt-row.v2 > .lt-sig small, .home-d .lt-row.v2 > .lt-total span { font-size: 11.5px; color: var(--lt-label) !important; }
+  .home-d .lt-row.v2 > .lt-total b { font-size: 22px; font-weight: 700; }
+  .home-d .lt-row.v2 .lt-posn { font-size: 12.5px; font-weight: 600; }
+}
+.home-d .lt-row.v2 > .lt-rank { font-weight: 800; color: color-mix(in srgb, var(--lt-acc) 82%, #000); }
+/* Sidebar: stronger headings and a line between its sections. */
+.home-d .lt-side { gap: 0; }
+.home-d .lt-mini { padding: 14px 0; border-bottom: 1px solid var(--lt-line); }
+.home-d .lt-mini:first-child { padding-top: 0; }
+.home-d .lt-mini:last-of-type { border-bottom: 0; }
+.home-d .lt-mini-head h2 { font-size: 16.5px; font-weight: 700; color: var(--lt-name); }
+.home-d .lt-mini-head h2 .lt-dot { display: none; }
+.home-d .lt-mini-name { color: var(--lt-name); }
+/* Recent reviews: compact snippets. */
+.rc-card { gap: 12px; padding: 12px 14px; grid-template-columns: 48px minmax(0, 1fr); }
+.rc-art { width: 48px; height: 48px; }
+.rc-name { font-size: 14px; font-weight: 700; color: #242124; }
+.rc-text { margin-top: 2px; font-size: 13px; line-height: 1.45; -webkit-line-clamp: 3; }
+.rc-grid { gap: 10px; }
