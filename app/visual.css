@@ -2826,3 +2826,14 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .ls-body { display: contents; }
 .ls-src { grid-area: src; } .ls-body b { grid-area: name; } .ls-quote { grid-area: quote; } .ls-ago { grid-area: ago; padding-top: 1px; }
 .lt-side2 .ls-head a { display: inline-flex !important; align-items: center; gap: 4px; width: auto !important; }
+/* Home text a step darker again (owner, 2026-11-13). */
+.home-d .lt-row.v2.no-sig .lt-name { color: #111 !important; }
+.home-d .lt-row.v2.no-sig .lt-line { color: #1c1a1c !important; }
+.home-d .lt-row.v2.no-sig .lt-posn, .home-d .lt-row.v2.no-sig > .lt-total b, .home-d .lt-row.v2.no-sig > .lt-total span { color: #111 !important; }
+.lt-listhead h2 { color: #111; }
+.lt-listhead p { color: #4a464a; }
+.lt-side2 .ls-head h2, .ls-body b, .ls-rank b { color: #111; }
+.ls-quote { color: #262326; }
+.ls-ago { color: #5c585c; }
+/* Poppins at 400 reads grey even in near-black; one weight up makes the summaries and quotes read dark. */
+.home-d .lt-row.v2.no-sig .lt-line, .ls-quote, .lt-listhead p { font-weight: 500; }
