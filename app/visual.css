@@ -2299,3 +2299,5 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lcx-tools .lc-search input:focus { border-color: var(--lt-acc) !important; background-color: transparent !important; }
 /* The category as a soft tinted chip, easy to scan down the list (owner, 2026-11-13). */
 .lt-row.v2 .lt-shape { justify-self: start; margin: 3px 0 2px; padding: 2px 9px; border-radius: 7px; background: #f5ecdc; color: #5c4a2e !important; font-size: 12px !important; font-weight: 500; line-height: 1.5; }
+/* The owner's exact chip values (2026-11-13). */
+.lt-row.v2 .lt-shape { padding: 3px 8px !important; border-radius: 5px !important; background: #F8F1DF !important; color: #745C39 !important; font-size: 12px !important; font-weight: 500 !important; border: 0 !important; box-shadow: none !important; line-height: 1.4; }
