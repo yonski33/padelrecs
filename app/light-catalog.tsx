@@ -76,69 +76,73 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
   const scopeReviews = scope.reduce((n, r) => n + (totals.get(r.id) ?? 0), 0);
   const words = catalogKeyword.toLowerCase().split(" "), last = words.pop();
 
-  return <main className={`catalog v2 lt-page lc ${lightFont.className}`}>
-    <p className="crumbs">{crumbs ?? <><a href="/">Home</a><span>/</span>{niche.navLabel ?? w.Many}</>}</p>
-    <header className="lc-hero">
-      <div>
-        <h1>{title ?? <>{`Explore all ${words.join(" ")} `}<em>{last}</em></>}</h1>
-        <p className="lc-sub">Real experiences, gathered in one place.</p>
-      </div>
-      <p className="lc-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(scope.length)} ${w.many} · ${fmt(scopeReviews)} reviews`}</p>
-    </header>
-    {/* Filters as you type (owner, 2026-11-13); the other filters ride along as hidden fields. */}
-    <AutoSubmitForm className="lc-search" action={basePath}>
-      {Object.entries({ shape: fixed.shape ? undefined : f.shape, brand: fixed.brand ? undefined : f.brand, year: f.year, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-      {tags.map(t => <input key={`t${t}`} type="hidden" name="tag" value={t}/>)}
-      {specFacets.flatMap(sp => (f.specs?.[sp.column] ?? []).map(o => <input key={sp.column + o} type="hidden" name={sp.column} value={o}/>))}
-      <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search ${w.many} or brands…`} aria-label={`Search ${w.many}`} autoComplete="off"/>
-    </AutoSubmitForm>
-    {cats.length > 1 && <nav className="lt-cats lc-cats" aria-label={`${w.One} categories`}>
-      <a href={catHref()} aria-current={!shape ? "true" : undefined}>All<small>{fmt(base.length)}</small></a>
-      {shown.map(c => <a key={c.key} href={catHref(c)} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}
-      {more.length > 0 && <details className="lc-more"><summary>{more.some(c => c.key === shape?.key) ? plural(shape!) : "More"} <span aria-hidden="true">⌄</span></summary>
-        <div>{more.map(c => <a key={c.key} href={catHref(c)} aria-current={shape?.key === c.key ? "true" : undefined}>{c.label}<small>{fmt(c.n)}</small></a>)}</div></details>}
-    </nav>}
+  // After the owner's mockup (2026-11-13): a "Filters" rail (category, what people mention, the niche's specs, brand),
+  // and over the list the title, one line of counts, the search, Compare and Sort, and how the order works.
+  const hidden = (keep: Record<string, string | undefined>, withTags = true) => <>
+    {Object.entries(keep).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
+    {withTags && tags.map(t => <input key={`t${t}`} type="hidden" name="tag" value={t}/>)}
+    {withTags && specFacets.flatMap(sp => (f.specs?.[sp.column] ?? []).map(o => <input key={sp.column + o} type="hidden" name={sp.column} value={o}/>))}
+  </>;
+  const clearAll = params({ q: undefined, brand: undefined, year: undefined, tag: undefined, shape: undefined, ...Object.fromEntries(specFacets.map(s => [s.column, undefined])) }, niche.typePages?.length && !fixed.brand ? catalogPath : basePath);
+  const mentionShown = mention.slice(0, 5), mentionMore = mention.slice(5);
+  const check = (m: { t: string; n: number }) => <label key={m.t} className="lc-check"><input type="checkbox" name="tag" value={m.t} defaultChecked={tags.includes(m.t)}/><span>{cap(m.t)}</span><small>{fmt(m.n)}</small></label>;
+  const radio = (c: (typeof cats)[number]) => <a key={c.key} href={catHref(c)} aria-current={shape?.key === c.key ? "true" : undefined}><span className="lc-radio" aria-hidden="true"/>{c.label}<small>{fmt(c.n)}</small></a>;
+  const group = (label: string, body: React.ReactNode) => <details className="lc-group" open><summary>{label}<span className="lc-chev" aria-hidden="true"/></summary><div className="lc-group-body">{body}</div></details>;
 
+  return <main className={`catalog v2 lt-page lc lcx ${lightFont.className}`}>
+    <p className="crumbs">{crumbs ?? <><a href="/">Home</a><span>/</span>{niche.navLabel ?? w.Many}</>}</p>
     <div className="lc-grid">
       <aside className="lc-rail filter-panel">
         <input type="checkbox" id="filters-open" className="filters-toggle"/>
-        <label htmlFor="filters-open" className="filters-button">{`Narrow it down${refined ? " (on)" : ""}`}<span aria-hidden="true"> ⌄</span></label>
-        <AutoSubmitForm className="filters lc-form" action={basePath}>
-                    {Object.entries({ q: f.q, shape: fixed.shape ? undefined : f.shape, sort: f.sort }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-          <h2>Narrow it down</h2>
-          {mention.length > 0 && <fieldset><legend>What people mention</legend>
-            {mention.map(m => <label key={m.t} className="lc-check"><input type="checkbox" name="tag" value={m.t} defaultChecked={tags.includes(m.t)}/><span>{cap(m.t)}</span><small>{fmt(m.n)}</small></label>)}</fieldset>}
-          {specFacets.map(sp => { const opts = sp.options!.filter(o => data.listed.some(r => specIs((r as Record<string, unknown>)[sp.column], o))); return opts.length > 1 && <fieldset key={sp.column}><legend>{sp.label}</legend>
-            {opts.map(o => <label key={o} className="lc-check"><input type="checkbox" name={sp.column} value={o} defaultChecked={((f.specs?.[sp.column]) ?? []).includes(o)}/><span>{o}</span></label>)}</fieldset>; })}
-          {!fixed.brand && <fieldset><legend>Brand</legend><select name="brand" defaultValue={f.brand || ""} aria-label="Brand"><option value="">All brands</option>{data.listedBrands.filter(b => scope.some(r => r.brandId === b.id)).map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></fieldset>}
-          {hasYears && <fieldset><legend>Model year</legend><select name="year" defaultValue={f.year || ""} aria-label="Model year"><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select></fieldset>}
-          <noscript><button className="button">Show results</button></noscript>
-          {refined && <a className="lc-clear" href={params({ q: undefined, brand: undefined, year: undefined, tag: undefined, ...Object.fromEntries(specFacets.map(s => [s.column, undefined])) })}>Clear filters</a>}
-        </AutoSubmitForm>
+        <label htmlFor="filters-open" className="filters-button">{`Filters${refined || shape ? " (on)" : ""}`}<span aria-hidden="true"> ⌄</span></label>
+        <div className="filters lc-form">
+          <div className="lc-rail-head"><h2>Filters</h2>{(refined || (shape && !fixed.shape)) && <a href={clearAll}>Clear all</a>}</div>
+          {cats.length > 1 && group("Category", <nav className="lc-radios" aria-label={`${w.One} categories`}>
+            <a href={catHref()} aria-current={!shape ? "true" : undefined}><span className="lc-radio" aria-hidden="true"/>{`All ${w.many}`}<small>{fmt(base.length)}</small></a>
+            {cats.slice(0, 5).map(radio)}
+            {cats.length > 5 && <details className="lc-showmore" open={cats.slice(5).some(c => c.key === shape?.key)}><summary>Show more <span aria-hidden="true">›</span></summary>{cats.slice(5).map(radio)}</details>}
+          </nav>)}
+          <AutoSubmitForm className="lc-form-inner" action={basePath}>
+            {hidden({ q: f.q, shape: fixed.shape ? undefined : f.shape, sort: f.sort }, false)}
+            {mention.length > 0 && group("What people mention", <>{mentionShown.map(check)}
+              {mentionMore.length > 0 && <details className="lc-showmore"><summary>Show more <span aria-hidden="true">›</span></summary>{mentionMore.map(check)}</details>}</>)}
+            {specFacets.map(sp => { const opts = sp.options!.filter(o => data.listed.some(r => specIs((r as Record<string, unknown>)[sp.column], o))); return opts.length > 1 && <div key={sp.column}>{group(sp.label,
+              opts.map(o => <label key={o} className="lc-check"><input type="checkbox" name={sp.column} value={o} defaultChecked={((f.specs?.[sp.column]) ?? []).includes(o)}/><span>{o}</span></label>))}</div>; })}
+            {!fixed.brand && group("Brand", <select name="brand" defaultValue={f.brand || ""} aria-label="Brand"><option value="">All brands</option>{data.listedBrands.filter(b => scope.some(r => r.brandId === b.id)).map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select>)}
+            {hasYears && group("Model year", <select name="year" defaultValue={f.year || ""} aria-label="Model year"><option value="">All years</option>{[...new Set(data.listed.map(r => r.year))].sort((a, b) => b - a).map(y => <option key={y}>{y}</option>)}</select>)}
+            <noscript><button className="button">Show results</button></noscript>
+          </AutoSubmitForm>
+        </div>
       </aside>
 
       <section className="lc-list" aria-labelledby="lc-title">
-        <div className="lc-head">
-          <div><h2 id="lc-title">{shape ? plural(shape) : `All ${w.many}`}</h2><p>{`Showing ${fmt(results.length)} ${results.length === 1 ? w.one : w.many}`}</p></div>
+        <header className="lcx-head">
+          <h1 id="lc-title">{title ?? (shape ? plural(shape) : `All ${w.many}`)}</h1>
+          <p className="lcx-sub">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} · ${fmt(scopeReviews)} reviews from Reddit, YouTube and blogs`}</p>
+        </header>
+        <div className="lcx-tools">
+          {/* Filters as you type (owner, 2026-11-13); the other filters ride along as hidden fields. */}
+          <AutoSubmitForm className="lc-search" action={basePath}>
+            {hidden({ shape: fixed.shape ? undefined : f.shape, brand: fixed.brand ? undefined : f.brand, year: f.year, sort: f.sort })}
+            <input type="search" name="q" defaultValue={f.q || ""} placeholder={`Search a ${w.one} or brand…`} aria-label={`Search ${w.many}`} autoComplete="off"/>
+          </AutoSubmitForm>
           {/* Compare boxes show when this is on, or once something is picked (owner, 2026-11-12): rows stay clean by default. CSS only. */}
-          <label className="lc-cmp-toggle"><input type="checkbox" id="lc-cmp"/><span className="lc-switch" aria-hidden="true"/>Compare</label>
-          <SignalPop align="right"/>
-          <AutoSubmitForm className="lc-sort" action={basePath}>
-                        {Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape }).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
-            {tags.map(t => <input key={t} type="hidden" name="tag" value={t}/>)}
-            {specFacets.flatMap(s => ((f.specs?.[s.column]) ?? []).map(o => <input key={s.column + o} type="hidden" name={s.column} value={o}/>))}
+          <label className="lc-cmp-toggle lcx-cmp"><input type="checkbox" id="lc-cmp"/>Compare</label>
+          <AutoSubmitForm className="lc-sort lcx-sort" action={basePath}>
+            {hidden({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape })}
             <label><span>Sort:</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{s.label}</option>)}</select></label>
             <noscript><button className="button ghost">Sort</button></noscript>
           </AutoSubmitForm>
         </div>
+        <p className="lcx-how">{sort === DEFAULT_SORT ? "Ranked by signal score: positive reviews, weighted by how many there are." : `Sorted by ${SORTS.find(s => s.value === sort)?.label.toLowerCase()}.`} <SignalPop label="How it works"/></p>
         {/* The home page's row (owner, 2026-11-13), with the compare box under the name and no rank number. */}
         <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
-          const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand), top = sort === DEFAULT_SORT && !f.q && i < 3;
-          return <div key={r.id} className={`lt-slot${top ? ` lt-top lt-top${i + 1}` : ""}${i === 0 ? " lt-first" : ""}`}>
+          const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);
+          return <div key={r.id} className={`lt-slot${i === 0 ? " lt-first" : ""}`}>
             <LightRow data={data} r={r} rank={null} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
               extra={<CompareCheck slug={r.slug} name={name}/>}/>
           </div>; })}/></div>
-        {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={params({ q: undefined, brand: undefined, year: undefined, tag: undefined, shape: undefined })}>Clear filters</a></p>}
+        {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={clearAll}>Clear filters</a></p>}
       </section>
     </div>
     <CompareTray noun={w.one}/>
