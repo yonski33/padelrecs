@@ -2660,3 +2660,39 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lrv .spill.s-mixed { background: #f6ebc4; color: #7a5a00; }
 .lrv .spill.s-negative { background: #f8dcd6; color: #a0321c; }
 @media (max-width: 720px) { .lrv-card { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px !important; } .lrv-art { width: 80px; height: 96px; } }
+
+/* Every page about 1220px wide on desktop (owner, 2026-11-13, after the auditor's /reviews test), header included. */
+.wrap, .site { max-width: 1276px; }
+.rc-feed { max-width: none; }
+/* Rankings keep the list centred, a little wider. */
+.lr .lr-grid, .lr-below, .top-page.v2.lr .top-faq { max-width: 1060px; }
+
+/* With the wider page (owner, 2026-11-13): the auditor's other suggestions on every list. Bigger photos, roomier stats,
+   darker summaries and source lines, bolder names. */
+@media (min-width: 901px) {
+  .lt-row.v2, .home-d .lt-row.v2 { grid-template-columns: 40px 88px minmax(0, 1fr) 84px 150px 70px !important; column-gap: 16px !important; padding: 12px 8px !important; }
+  .lt-row.v2.no-rank, .lcx .lt-row.v2.no-rank { grid-template-columns: 92px minmax(0, 1fr) 84px 150px 70px !important; column-gap: 16px !important; }
+  .lt-row.v2 > .lt-art, .home-d .lt-row.v2 > .lt-art, .lcx .lt-row.v2 > .lt-art { width: 88px !important; height: 88px !important; }
+  .lcx .lt-row.v2.no-rank > .lt-art { width: 92px !important; height: 92px !important; }
+  .lt-row.v2 .lt-name, .home-d .lt-row.v2 .lt-name { font-size: 16.5px !important; font-weight: 700 !important; color: #242124 !important; }
+  .lt-row.v2 .lt-line, .home-d .lt-row.v2 .lt-line { font-size: 14px !important; color: #3D393D !important; }
+  .lt-row.v2 .lt-posn, .home-d .lt-row.v2 .lt-posn, .lcx .lt-row.v2 .lt-posn { font-size: 13.5px !important; }
+  .lt-row.v2 > .lt-sig small, .lt-row.v2 > .lt-total span { color: #777078 !important; }
+}
+/* Sidebar lists and review cards: slightly bigger photos and stronger text. */
+.home-d .lt-mini-art { width: 34px; height: 34px; }
+.home-d .lt-mini-name { font-size: 13.5px; }
+.rc-src, .lrv-src { color: #777078 !important; }
+.rc-text, .lrv-text { color: #3D393D !important; }
+.rc-card { border-color: #E5DFE2 !important; }
+.spill.s-positive { background: #dcefdc; color: #1f6a2c; }
+.spill.s-mixed { background: #f6ebc4; color: #7a5a00; }
+.spill.s-negative { background: #f8dcd6; color: #a0321c; }
+/* Product page with the wider layout: a bigger photo, values that wrap inside "At a glance", darker review text. */
+.lp .lp-photo { padding: 6px !important; }
+.lp .lp-photo img { transform: scale(1.12); mix-blend-mode: multiply; }
+.product.v2.lp .lp-glance dl > div { grid-template-columns: 104px minmax(0, 1fr); }
+.product.v2.lp .lp-glance dd { min-width: 0; overflow-wrap: anywhere; }
+.lp .lv-text { color: #3D393D !important; font-size: 14.5px; }
+.lp .lv-src { color: #777078; }
+.lp .lv-src b { color: #242124; }
