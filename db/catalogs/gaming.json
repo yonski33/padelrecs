@@ -7,6 +7,7 @@
     {"id": "atk", "name": "ATK"},
     {"id": "audeze", "name": "Audeze"},
     {"id": "corsair", "name": "Corsair"},
+    {"id": "easysmx", "name": "EasySMX"},
     {"id": "endgame-gear", "name": "Endgame Gear"},
     {"id": "finalmouse", "name": "Finalmouse"},
     {"id": "flydigi", "name": "Flydigi"},
@@ -17,6 +18,7 @@
     {"id": "hyperx", "name": "HyperX"},
     {"id": "lamzu", "name": "Lamzu"},
     {"id": "logitech", "name": "Logitech"},
+    {"id": "mobapad", "name": "Mobapad"},
     {"id": "microsoft", "name": "Microsoft"},
     {"id": "nacon", "name": "Nacon"},
     {"id": "nintendo", "name": "Nintendo"},
@@ -253,6 +255,7 @@
     {"brand": "flydigi", "name": "Flydigi Vader 5 Pro", "shape": "Controller", "weight": null, "core": "Wireless (2.4 GHz, Bluetooth) + wired", "surface": "FORCEFLEX Hall effect sticks, Hall effect/micro-switch triggers", "balance": null, "sources": ["https://shops.flydigi.com/products/vader5pro"]},
     {"brand": "flydigi", "name": "Flydigi Vader 5S Wired Controller for Xbox", "shape": "Controller", "weight": null, "core": "Wired", "surface": "FORCEFLEX Hall effect sticks, Hall effect/micro-switch triggers", "balance": "Xbox layout", "sources": ["https://shops.flydigi.com/products/vader5s"]},
     {"brand": "flydigi", "name": "Flydigi Vader 4 Pro", "shape": "Controller", "weight": null, "core": "Wireless (2.4 GHz, Bluetooth) + wired", "surface": null, "balance": null, "sources": ["https://shops.flydigi.com/products/flydigi-vader4pro-gaming-controller"]},
+    {"brand": "flydigi", "name": "Flydigi Apex 4", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://shops.flydigi.com/products/flydigi-apex4-gaming-controller"]},
     {"brand": "gamesir", "name": "GameSir Cyclone 2", "shape": "Controller", "weight": "306.9 g", "core": "Wireless (2.4 GHz, Bluetooth) + wired", "surface": "TMR sticks, Hall effect/micro-switch triggers", "balance": null, "sources": ["https://gamesir.com/products/gamesir-cyclone2/buy"]},
     {"brand": "gamesir", "name": "GameSir G7 HE", "shape": "Controller", "weight": "227 g", "core": "Wired (USB-C)", "surface": "Hall effect sticks and triggers", "balance": "Xbox layout", "sources": ["https://gamesir.com/products/gamesir-g7-he-xbox-controller/buy", "https://gamesir.com/products/gamesir-g7-he-xbox-controller"]},
     {"brand": "gamesir", "name": "GameSir G7 Pro", "shape": "Controller", "weight": "272 g", "core": "Wireless (2.4 GHz, Bluetooth) + wired", "surface": "TMR sticks, Hall effect triggers, 1000 Hz", "balance": "Xbox layout", "sources": ["https://gamesir.com/products/gamesir-g7-pro/buy"]},
@@ -306,6 +309,7 @@
     {"brand": "scuf", "name": "SCUF Valor Wired with TMR", "shape": "Controller", "weight": null, "core": "Wired (USB-C)", "surface": "TMR sticks", "balance": "Xbox layout", "sources": ["https://scufgaming.com/en-us/p/scuf-valor-pro-smoke-tmr"]},
     {"brand": "sony", "name": "Sony DualSense Edge Wireless Controller", "shape": "Controller", "weight": "325 g", "core": "Wireless (Bluetooth) + wired (USB-C)", "surface": null, "balance": "PlayStation layout", "sources": ["https://www.playstation.com/en-us/accessories/dualsense-edge-wireless-controller/", "https://www.multitronic.fi/en/products/4003942/sony-playstation-5-dualsense-edge---wireless-controller--white"]},
     {"brand": "sony", "name": "Sony DualSense Wireless Controller", "shape": "Controller", "weight": "280 g", "core": "Wireless (Bluetooth) + wired (USB-C)", "surface": null, "balance": "PlayStation layout", "sources": ["https://www.playstation.com/en-us/accessories/dualsense-wireless-controller/", "https://ee.co.uk/products/ps5-dualsense-wireless-controller-v2"]},
+    {"brand": "sony", "name": "Sony DualShock 4 Wireless Controller", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.playstation.com/en-us/accessories/dualshock-4-wireless-controller/"]},
     {"brand": "thrustmaster", "name": "Thrustmaster ESWAP X2 H.E", "shape": "Controller", "weight": "300 g", "core": "Wired (3 m USB-C)", "surface": "Interchangeable SH5 Hall effect (H.E.A.R.T.) stick modules", "balance": "Xbox layout", "sources": ["https://eshop.thrustmaster.com/en_us/eswap-x2-h-e.html"]},
     {"brand": "thrustmaster", "name": "Thrustmaster HEART CONTROLLER", "shape": "Controller", "weight": "214 g", "core": null, "surface": "H.E.A.R.T. Hall effect sticks", "balance": "Xbox layout", "sources": ["https://eshop.thrustmaster.com/en_us/heart-controller.html"]},
     {"brand": "turtle-beach", "name": "Turtle Beach Afterglow Ignite Wired Controller for Xbox", "shape": "Controller", "weight": "390 g", "core": "Wired (USB-C)", "surface": "Hall effect triggers", "balance": "Xbox layout", "sources": ["https://www.turtlebeach.com/products/afterglow-ignite-wired-controller"]},
@@ -322,6 +326,9 @@
     {"brand": "valve", "name": "Valve Steam Controller", "shape": "Controller", "weight": "292 g", "core": "Wireless (2.4 GHz puck, Bluetooth) + wired (USB-C)", "surface": "TMR sticks", "balance": null, "sources": ["https://en.wikipedia.org/wiki/Steam_Controller_(2nd_generation)"]},
     {"brand": "victrix", "name": "Victrix Pro BFG Reloaded Wireless Controller", "shape": "Controller", "weight": "265 g", "core": "Wireless (USB-A transmitter)", "surface": "Hall effect stick modules and triggers", "balance": "PlayStation layout", "sources": ["https://www.turtlebeach.com/products/victrix-pro-bfg-reloaded-wireless-controller"]},
     {"brand": "victrix", "name": "Victrix Pro BFG Reloaded Wireless Modular Controller for PC", "shape": "Controller", "weight": "265 g", "core": "Wireless (USB-A transmitter)", "surface": "Hall effect stick modules and triggers", "balance": null, "sources": ["https://www.turtlebeach.com/products/victrix-pro-bfg-reloaded-wireless-modular-controller-pc"]},
-    {"brand": "gulikit", "name": "GuliKit TT Max", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://gulikit.com/productinfo/3600562.html"]}
+    {"brand": "gulikit", "name": "GuliKit TT Max", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://gulikit.com/productinfo/3600562.html"]},
+    {"brand": "gulikit", "name": "GuliKit KK3 Max", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.pcgamer.com/hardware/controllers/gulikit-kk3-max-review"]},
+    {"brand": "easysmx", "name": "EasySMX S10", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.easysmx.com/products/easysmx-s10-gaming-controller-for-switch-2-tmr-sticks-hd-rumble-motion-control"]},
+    {"brand": "mobapad", "name": "Mobapad N1-HD", "shape": "Controller", "weight": null, "core": null, "surface": null, "balance": null, "sources": ["https://www.mobapad.com/products/mobapad-n1-hd-nintendo-switch-pro-controller"]}
   ]
 }
