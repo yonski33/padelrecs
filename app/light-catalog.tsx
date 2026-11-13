@@ -138,7 +138,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
         {/* The home page's row (owner, 2026-11-13), with the compare box under the name and no rank number. */}
         <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
           const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);
-          return <div key={r.id} className={`lt-slot${i === 0 ? " lt-first" : ""}`}>
+          return <div key={r.id} className="lt-slot">
             <LightRow data={data} r={r} rank={null} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
               extra={<CompareCheck slug={r.slug} name={name}/>}/>
           </div>; })}/></div>
