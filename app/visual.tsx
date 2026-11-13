@@ -191,8 +191,8 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
   return <article className="lv">
     <span className="lv-icon" aria-hidden="true"><SourceIcon platform={e.sourcePlatform}/></span>
     <div className="lv-body">
-      <header><p className="lv-src"><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
-      <p className="lv-kind">{`Summary of a ${kind}`}</p>
+      {/* Source, where, when and "summarized" on one line (owner's audit, 2026-11-13); the kind of source is in the hover title. */}
+      <header><p className="lv-src" title={`Summary of a ${kind}`}><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}{e.summary ? " · summarized" : ""}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
       <p className="lv-text">{quoteText(e)}</p>
       <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a>{helpful(e.helpful)}<AdminEdit type="web" id={e.id}/></footer>
     </div>

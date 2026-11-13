@@ -199,6 +199,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   }
   // Structured data for Google: FAQ and breadcrumbs. The star-rating Product block went with the 1–5 ratings (owner
   // decision 2026-11-12: reviews are positive / mixed / negative), since Google's Product needs a numeric rating, review or offer.
+  // Four distinct questions (owner's audit, 2026-11-13): what people say, whether it's worth it, the complaints, and
+  // where the reviews come from. The others repeated those or the page above them.
+  const keepFaq = [/^What do .+ say about/, /^Is .+ worth it\?/, /most common complaints/, /^Where do these/];
+  faq.splice(0, faq.length, ...keepFaq.flatMap(re => faq.filter(f => re.test(f.q)).slice(0, 1)));
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     ...(faq.length >= 2 ? [{ "@type": "FAQPage", mainEntity: faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
     { "@type": "BreadcrumbList", itemListElement: [
@@ -330,19 +334,22 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           ? <a className="lp-photo art art-amazon" href={stored?.url ?? amazon?.url} target="_blank" rel="sponsored nofollow noopener"><img src={amazonImage} alt={fullName}/></a>
           : <div className="lp-photo art art-none"><ProductIcon shape={r.shape} brand={brand?.name}/></div>}
         <div className="lp-info">
+          {/* After the owner's product-page mockup (2026-11-13): a kicker, the name, the category chip, the take, then the
+              signal, the positive share and the review count as one group, one Amazon button and a quiet reviews link. */}
+          <p className="lp-eyebrow">{`Reviews & ${niche.people.one} experiences`}</p>
           <div className="lp-title">
-            <h1>{fullName}<span className="h1-reviews"> Reviews</span></h1>
-            {placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}
+            <h1>{fullName}<span className="sr-only"> Reviews</span></h1>
           </div>
-          {(r.shape || hasYears) && <p className="lp-kicker">{[r.shape, hasYears ? String(r.year) : null].filter(Boolean).join(" · ")}</p>}
+          {r.shape && <p className="lp-chiprow"><span className="lp-cat">{r.shape}</span>{hasYears && <span className="lp-year">{r.year}</span>}{placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}
-          {sum.total > 0 ? <div className="lp-stats">
-            {sig && <div className="lp-stat"><b className="lp-acc lp-signal">{sig.signal}</b><span>Signal</span></div>}
+          {sum.total > 0 ? <div className="lp-stats lp-stats2">
+            {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>Signal score</span></div>}
             {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
-            <a className="lp-stat" href="#reviews"><b className="lp-acc">{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
+            <a className="lp-stat" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
-          <div className="lp-sub"><SignalPop/>{latest && <span>{`Updated ${day(latest)}`}</span>}{compareWith && <a href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`}</a>}</div>
-          <p className="lp-actions">{buy}{sum.total > 0 && <a className="button ghost" href="#reviews">Read reviews ↓</a>}</p>
+          <div className="lp-sub"><SignalPop label="How the signal works"/>{latest && <span>{`Updated ${day(latest)}`}</span>}</div>
+          <p className="lp-actions">{amazon ? <a className="button amazon-out lp-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a> : buy}
+            {sum.total > 0 && <a className="lp-read" href="#reviews">{`Read ${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">↓</span></a>}</p>
         </div>
       </section>
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
@@ -351,7 +358,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
           {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
         </div>
-        <p className="lp-note">{`Topics grouped from ${niche.people.one} reviews, with how many mention each; read the originals below.`}</p>
       </section>}
       {byVariant}
       <div className="columns lp-cols">
@@ -362,6 +368,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div>
         <aside className="database-sidebar">
           <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>
+          {/* "Compare with …" sits with the similar products, not in the header (owner's audit, 2026-11-13). */}
+          {compareWith && <a className="lp-compare" href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`} <span aria-hidden="true">→</span></a>}
           {similarBox}
           {siblingsBox}
         </aside>
