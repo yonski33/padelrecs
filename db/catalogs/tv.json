@@ -1,5 +1,5 @@
 {
-  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K/X90K, Samsung Q90T, LG BX, TCL R655/C855). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
+  "about": "TVRecs starter catalog (2026-11-12): OLED, Mini-LED & QLED (8K included) and budget/mid-range TVs from model years 2023-2026, approved by the owner 2026-11-12, plus older models added under the owner's 3-author rule (LG C2/C1/CX/C9/C8/C7/B7/G2/G1, Samsung S95B/QN90B/QN90A, Sony A80J/A80K/A90J/A95K/X900H/A8H/X90J/X95K/X90K, Samsung Q90T, LG BX/B2, Hisense U8H/U8G/U7G, TCL R655/C855). One product per model and year; all screen sizes of a model share an entry. Names are read on the makers' own pages (product, support and spec pages, newsrooms) or retailer pages showing the maker's model code; a name the maker reused in a later year carries that year in parentheses. Specs: shape = category, balance = panel, surface = sizes, core = refresh rate and HDMI 2.1, weight = smart TV platform. Blank = not confirmed.",
   "checked": "2026-11-12",
   "brands": [
     {
@@ -334,6 +334,20 @@
     },
     {
       "brand": "hisense",
+      "name": "Hisense U7G",
+      "year": 2021,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED",
+      "surface": null,
+      "core": "120 Hz, 4× HDMI (2× HDMI 2.1)",
+      "weight": "Android TV",
+      "sources": [
+        "https://assets.hisense-usa.com/assets/ProductDownloads/339/cb0b8ca958/65U7G-spec-sheet-release-v2.pdf",
+        "https://www.winnings.com.au/p/hisense-u7g-series-65-inch-u7g-4k-uhd-hdr-smart-uled-tv-65u7g"
+      ]
+    },
+    {
+      "brand": "hisense",
       "name": "Hisense U7K",
       "year": 2023,
       "shape": "Mini-LED & QLED",
@@ -372,6 +386,34 @@
       "sources": [
         "https://www.hisense.com/us/en/tv/u7-series/hisense-75-class-u7-series-uled-miniled-4k-google-tv-75u7sg",
         "https://www.rtings.com/tv/reviews/hisense/u7sg"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U8G",
+      "year": 2021,
+      "shape": "Budget & mid-range",
+      "balance": "Full-array LED",
+      "surface": null,
+      "core": "120 Hz, 4× HDMI (2× HDMI 2.1)",
+      "weight": "Android TV",
+      "sources": [
+        "https://assets.hisense-usa.com/assets/ProductDownloads/340/26917188b6/65U8G-spec-sheet-release.pdf",
+        "https://www.winnings.com.au/p/hisense-u8g-series-65-inch-u8g-4k-uhd-hdr-smart-uled-tv-65u8g"
+      ]
+    },
+    {
+      "brand": "hisense",
+      "name": "Hisense U8H",
+      "year": 2022,
+      "shape": "Mini-LED & QLED",
+      "balance": "Mini-LED",
+      "surface": null,
+      "core": "120 Hz, 4× HDMI (2× HDMI 2.1)",
+      "weight": null,
+      "sources": [
+        "https://www.appliancesonline.com.au/product/hisense-u8hau-65-inch-uled-4k-smart-tv-65u8hau",
+        "https://hisense.co.za/products/hisense-65-u8h-mini-led-uled-4k-tv/"
       ]
     },
     {
@@ -514,6 +556,20 @@
         "https://www.bestbuy.com/site/insignia-65-class-f70-series-4k-uhd-qled-mini-led-smart-tv-with-fire-tv/6677126.p",
         "https://www.bestbuy.com/product/insignia-55-class-f70-series-4k-uhd-qled-mini-led-smart-tv-with-fire-tv/J2FPJK9F77",
         "https://tvreviews.net/insignia-f70/"
+      ]
+    },
+    {
+      "brand": "lg",
+      "name": "LG B2",
+      "year": 2022,
+      "shape": "OLED",
+      "balance": "OLED",
+      "surface": "55/65/77\"",
+      "core": "120 Hz",
+      "weight": "webOS",
+      "sources": [
+        "https://www.lg.com/ca_en/tvs/lg-oled65b2pua",
+        "https://www.lg.com/us/press-release/lg-begins-us-rollout-of-2022-oled-tv-lineup"
       ]
     },
     {
