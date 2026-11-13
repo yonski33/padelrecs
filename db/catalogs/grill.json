@@ -1,0 +1,3456 @@
+{
+  "about": "GrillRecs starter catalog (2026-11-12): pellet grills, smokers, kamados, gas grills, charcoal grills, flat-top griddles, portable grills and outdoor pizza ovens, current and recent models, approved by the owner 2026-11-12. One product per model and generation; a size is its own product only when the maker sells it as a separate model, and colours, finishes and cart/tabletop versions of one model share an entry. Names are read on the makers' own pages (product, manual and support pages, press releases) or major retailer pages showing the maker's model name; a name the maker reused for a new generation carries the year in parentheses. Specs: shape = category, balance = fuel, surface = cooking area, core = temperature range, weight = connectivity. Blank = not confirmed. Added later under the owner's 3-author rule: Traeger Pro 22 (4 held first-hand reviews), Kamado Joe Big Joe I (3), Char-Griller Akorn Auto-Kamado (5), Ooni Pro 16 (4; sold earlier as \"Ooni Pro\"), Traeger Silverton 620 (4), Traeger Pro 34 (3), Blackstone 36\" Griddle with Hinged Hood and Front Shelf (3; Costco item 4000251694, not the Omnivore), recteq RT-1250 (6; succeeded by the Flagship XL 1400), Blackstone Bronco 28\" XL Griddle Vertical Pellet Smoker Combo (5), Blackstone On The Go Tailgater (3; model 1550), Coleman RoadTrip LXE (3; discontinued predecessor of the RoadTrip 285, model 9949), Ninja Woodfire Pro XL (6; OG850 series, not the app-connected Pro Connect XL), Oklahoma Joe's Longhorn Combo (3; charcoal/gas combo with offset firebox), Old Country BBQ Pits Brazos (3; Loaded/DLX counterweight versions share the entry), Brinkmann Gourmet Electric Smoker (14; model 810-7080-K, discontinued), Workhorse Pits 1975 (9; 24in, 3/8in-wall offset; rack/firebox/wagon options share the entry).",
+  "checked": "2026-11-12",
+  "brands": [
+    {
+      "id": "alfa",
+      "name": "Alfa"
+    },
+    {
+      "id": "bertello",
+      "name": "Bertello"
+    },
+    {
+      "id": "big-green-egg",
+      "name": "Big Green Egg"
+    },
+    {
+      "id": "blackstone",
+      "name": "Blackstone"
+    },
+    {
+      "id": "broilking",
+      "name": "Broil King"
+    },
+    {
+      "id": "brinkmann",
+      "name": "Brinkmann"
+    },
+    {
+      "id": "camp-chef",
+      "name": "Camp Chef"
+    },
+    {
+      "id": "char-broil",
+      "name": "Char-Broil"
+    },
+    {
+      "id": "char-griller",
+      "name": "Char-Griller"
+    },
+    {
+      "id": "coleman",
+      "name": "Coleman"
+    },
+    {
+      "id": "cuisinart",
+      "name": "Cuisinart"
+    },
+    {
+      "id": "gozney",
+      "name": "Gozney"
+    },
+    {
+      "id": "grilla",
+      "name": "Grilla Grills"
+    },
+    {
+      "id": "halo",
+      "name": "Halo"
+    },
+    {
+      "id": "kamado-joe",
+      "name": "Kamado Joe"
+    },
+    {
+      "id": "lone-star-grillz",
+      "name": "Lone Star Grillz"
+    },
+    {
+      "id": "masterbuilt",
+      "name": "Masterbuilt"
+    },
+    {
+      "id": "monument",
+      "name": "Monument Grills"
+    },
+    {
+      "id": "napoleon",
+      "name": "Napoleon"
+    },
+    {
+      "id": "nexgrill",
+      "name": "Nexgrill"
+    },
+    {
+      "id": "ninja",
+      "name": "Ninja"
+    },
+    {
+      "id": "oklahoma-joes",
+      "name": "Oklahoma Joe's"
+    },
+    {
+      "id": "old-country-bbq-pits",
+      "name": "Old Country BBQ Pits"
+    },
+    {
+      "id": "ooni",
+      "name": "Ooni"
+    },
+    {
+      "id": "pit-barrel-cooker",
+      "name": "Pit Barrel Cooker"
+    },
+    {
+      "id": "pit-boss",
+      "name": "Pit Boss"
+    },
+    {
+      "id": "pkgrills",
+      "name": "PK Grills"
+    },
+    {
+      "id": "primo",
+      "name": "Primo"
+    },
+    {
+      "id": "recteq",
+      "name": "recteq"
+    },
+    {
+      "id": "sns-grills",
+      "name": "SnS Grills"
+    },
+    {
+      "id": "solo-stove",
+      "name": "Solo Stove"
+    },
+    {
+      "id": "traeger",
+      "name": "Traeger"
+    },
+    {
+      "id": "weber",
+      "name": "Weber"
+    },
+    {
+      "id": "workhorse-pits",
+      "name": "Workhorse Pits"
+    },
+    {
+      "id": "yoder",
+      "name": "Yoder Smokers"
+    },
+    {
+      "id": "z-grills",
+      "name": "Z Grills"
+    }
+  ],
+  "products": [
+    {
+      "brand": "alfa",
+      "name": "Alfa Moderno 2 Pizze",
+      "shape": "Pizza ovens",
+      "balance": "Natural gas or propane",
+      "surface": "70 x 50 cm floor",
+      "core": "up to 500°C",
+      "weight": "None",
+      "sources": [
+        "https://cdn.shopify.com/s/files/1/1241/8236/files/st-MODERNO-2PIZZE-GAS.pdf",
+        "https://www.patioandpizza.com/products/alfa-ovens-moderno-2-pizze-gas-oven"
+      ]
+    },
+    {
+      "brand": "alfa",
+      "name": "Alfa Moderno Portable",
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "12\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.patioandpizza.com/products/alfa-moderno-portable-gas-fired-pizza-oven",
+        "https://cdn.shopify.com/s/files/1/1273/1937/files/st-MODERNO-PORTABLE.pdf"
+      ]
+    },
+    {
+      "brand": "alfa",
+      "name": "Alfa Nano",
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": null,
+      "core": "up to 500°C",
+      "weight": "None",
+      "sources": [
+        "https://cdn.shopify.com/s/files/1/1241/8236/files/ds-nano-gas.pdf",
+        "https://thebarbecuelab.com/recommends/alfa-nano-19/"
+      ]
+    },
+    {
+      "brand": "bertello",
+      "name": "Bertello Grande 16",
+      "shape": "Pizza ovens",
+      "balance": "Wood and gas",
+      "surface": "16\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.patioandpizza.com/products/bertello-grande-pizza-oven-16",
+        "https://www.myhouseofpizza.com/bertello-grande-16-pizza-oven-review/"
+      ]
+    },
+    {
+      "brand": "bertello",
+      "name": "Bertello Outdoor Pizza Oven",
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal, pellets or gas",
+      "surface": "12\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://bertello.com/pages/pizza-ovens",
+        "https://techgearlab.com/reviews/kitchen/pizza-oven/bertello-outdoor",
+        "https://www.overtons.com/bertello-12-simulfire-outdoor-pizza-oven-144932.html"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg 2XL",
+      "year": 2018,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "672 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/2xl-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes",
+        "https://www.patioandhearthproductsreport.com/index.php/current/big_green_egg_launches_all_new_2xl_egg_at_hpbexpo"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg Large",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "262 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/large-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg Medium",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "177 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/medium-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg Mini",
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/mini-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg MiniMax",
+      "year": 2014,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "133 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/minimax-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes",
+        "https://www.patioandhearthproductsreport.com/index.php/current/big_green_egg_announces_minimax_for_the_compact_cooking_experience"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg Small",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "133 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/small-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes"
+      ]
+    },
+    {
+      "brand": "big-green-egg",
+      "name": "Big Green Egg XL",
+      "year": 2005,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "452 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://biggreenegg.com/products/xlarge-big-green-egg",
+        "https://www.biggreenegg.com/eggs/sizes"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 16\" Pizza Oven with Stand",
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "16\" rotating stone",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://bbqguys.com/i/3119283/blackstone-products/pizza-oven-with-stand",
+        "https://www.bbqgrills.com/Blackstone-Griddles/Blackstone-Freestanding-Propane-Gas-Pizza-Oven/6825.html"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 17\" Tabletop Griddle",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/17-original-tabletop-stainless-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 17\" Tabletop Griddle with Hood",
+      "year": 2021,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/original-17in-tabletop-griddle-w-hood",
+        "https://blackstoneproducts.com/products/original-17-tabletop-griddle-with-hood"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 22\" Tabletop Griddle with Hood",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/22-omnivore-stainless-front-panel-tabletop-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 28\" Griddle Cooking Station",
+      "year": 2020,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/28-griddle-cooking-station"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 28\" Griddle with Hood",
+      "year": 2022,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/28-griddle-w-hood"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 28\" Omnivore Griddle",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/28-omnivore-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 28\" Omnivore Griddle with Hood",
+      "year": 2023,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/28-omnivore-griddle-w-hood",
+        "https://blackstoneproducts.com/products/28in-original-omnivore-griddle-w-hood",
+        "https://blackstoneproducts.com/products/28-omnivore-griddle-whood"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 28\" XL Omnivore Griddle with Hood",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/28-xl-omnivore-griddle-with-hood",
+        "https://blackstoneproducts.com/products/original-28-xl-griddle-with-hood"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 36\" Griddle Cooking Station",
+      "year": 2020,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "720 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/36-griddle-cooking-station-in-classic-black"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 36\" Griddle with Hinged Hood and Front Shelf",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "768 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.costco.com/blackstone-36in.-griddle-with-hinged-hood%2c-front-shelf-and-soft-cover.product.4000251694.html"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 36\" Omnivore Griddle",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/36-omnivore-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone 36\" Omnivore Griddle with Hood",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "768 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/36-omnivore-griddle-w-hood",
+        "https://blackstoneproducts.com/products/original-36-griddle-with-hood-1",
+        "https://www.bbqguys.com/i/3164094/blackstone-products/36-inch-griddle-w-hood-2322"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone Adventure Ready 22\" Griddle with Stand",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/22in-omnivore-adventure-ready-griddle-w-stand"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone Bronco 28\" XL Griddle Vertical Pellet Smoker Combo",
+      "shape": "Griddles",
+      "balance": "Propane and pellet",
+      "surface": null,
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://blackstoneproducts.com/products/bronco-28-xl-griddle-vertical-pellet-smoker-combo",
+        "https://blackstoneproducts.com/pages/bronco"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone Culinary 36\" Griddle Deluxe",
+      "year": 2025,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/culinary-36-griddle-deluxe"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone Culinary 36\" Griddle with Hood",
+      "year": 2025,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/culinary-36-griddle-with-hood",
+        "https://blackstoneproducts.com/products/36-culinary-griddle-w-hood"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone E-Series 17\" Electric Tabletop Griddle",
+      "year": 2022,
+      "shape": "Griddles",
+      "balance": "Electric",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/17-electric-tabletop-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone E-Series 22\" Electric Tabletop Griddle",
+      "year": 2021,
+      "shape": "Griddles",
+      "balance": "Electric",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/22-e-series-electric-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone Iron Forged 36\" Griddle with Hood",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/iron-forged-36in-griddle-w-hood"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone On The Go 22\" Griddle with Flexfold Legs",
+      "year": 2022,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "361 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/22-on-the-go-foldable-griddle"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone On The Go Tailgater",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "534 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/on-the-go-tailgater",
+        "https://www.bbqguys.com/blackstone-products/on-the-go-tailgater-portable-griddle-w-removable-grill-box-1550"
+      ]
+    },
+    {
+      "brand": "blackstone",
+      "name": "Blackstone Original 22\" Tabletop Griddle",
+      "year": 2021,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "361 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://blackstoneproducts.com/products/original-22in-stainless-front-panel-tabletop-griddle"
+      ]
+    },
+    {
+      "brand": "broilking",
+      "name": "Broil King Baron 490 Pro",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "444 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.ruralenergy.com/922184-broil-king-baron-490-lp",
+        "https://grillio.com/pub/media/documents/Broil King Baron Brochure.pdf"
+      ]
+    },
+    {
+      "brand": "broilking",
+      "name": "Broil King Baron 590 Pro",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "570 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://broilkingbbq.com/grills/baron-590-pro"
+      ]
+    },
+    {
+      "brand": "broilking",
+      "name": "Broil King Monarch 320",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "330 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://broilkingbbq.com/specs/monarch_320/"
+      ]
+    },
+    {
+      "brand": "broilking",
+      "name": "Broil King Regal S590 Pro",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "625 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://broilkingbbq.com/specs/regal_s590_pro/"
+      ]
+    },
+    {
+      "brand": "broilking",
+      "name": "Broil King Signet 320",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "400 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://broilkingbbq.com/en_ca/specs/signet_320"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef Apex 36",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.bbqguys.com/camp-chef/apex-36-inch-pellet-grill-pg36hg"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef Gridiron 36",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.campchef.com/products/gridiron-36"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef Italia Artisan Pizza Oven",
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://campchef.com/italia-artisan-pizza-oven.html",
+        "https://www.lowes.com/pd/Camp-Chef-Italia-Artisan-Pizza-Oven-PZOVEN/5001740029"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef SmokePro DLX 24",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": "160-500°F",
+      "weight": "None",
+      "sources": [
+        "https://www.sportsmanswarehouse.com/outdoor-cooking-grills-supplies-accessories/pellet-grills/camp-chef-smokepro-dlx-24-pellet-grill/p/1323108"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef Woodwind 24",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.campchef.com/products/woodwind-24"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef Woodwind 36",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1236 sq in",
+      "core": "160-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.campchef.com/products/woodwind-36"
+      ]
+    },
+    {
+      "brand": "camp-chef",
+      "name": "Camp Chef Woodwind Pro 36",
+      "year": 2022,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.campchef.com/products/woodwind-pro-36",
+        "https://www.smokedbbqsource.com/camp-chef-woodwind-pro/"
+      ]
+    },
+    {
+      "brand": "char-broil",
+      "name": "Char-Broil Kettleman",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "360 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.charbroil.com/products/kettleman-tru-infrared-charcoal-grill-black-16301878",
+        "https://www.charbroil.com/products/kettleman-tru-infrared-charcoal-grill-red-17302067"
+      ]
+    },
+    {
+      "brand": "char-broil",
+      "name": "Char-Broil Performance Series 4-Burner",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "435 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.charbroil.com/products/performance-series-4-burner-gas-grill-cart-black-463351125"
+      ]
+    },
+    {
+      "brand": "char-broil",
+      "name": "Char-Broil Performance Series 4-Burner with FlavorMax",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "435 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.charbroil.com/products/performance-series-4-burner-gas-grill-with-flavormax-cart-black-463348825",
+        "https://www.charbroil.com/products/performance-series-4-burner-gas-grill-with-flavormax-cart-gray-463349025"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Akorn Auto-Kamado",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": "200-700°F",
+      "weight": null,
+      "sources": [
+        "https://www.chargriller.com/products/auto-kamado",
+        "https://www.chargriller.com/blogs/tips-and-care/how-to-grill-on-the-auto-kamado"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Akorn Jr",
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": "155 sq in",
+      "core": "200-700°F",
+      "weight": "None",
+      "sources": [
+        "https://www.chargriller.com/products/grill-kamado-jr-black",
+        "https://www.chargriller.com/products/akorn-jr-kamado-charcoal-grey"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Akorn Kamado",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "314 sq in",
+      "core": "200-700°F",
+      "weight": "None",
+      "sources": [
+        "https://www.chargriller.com/products/akorn-graphite-16620",
+        "https://www.chargriller.com/products/akorn-kamado-06620"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Duo 5050",
+      "shape": "Gas grills",
+      "balance": "Propane or charcoal",
+      "surface": "1,260 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://chargriller.com/products/duo",
+        "https://amazingribs.com/combination-grill-smoker/char-griller-duo-model-5050-review/"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Grand Champ XD",
+      "shape": "Smokers",
+      "balance": "Charcoal or wood",
+      "surface": "1,200 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.homedepot.com/p/questions/Char-Griller-Grand-Champ-Charcoal-Grill-and-Offset-Smoker-in-Black-8250/314125664/5",
+        "https://amazingribs.com/ratings-reviews/smokers/char-griller-grand-champ-offset/"
+      ]
+    },
+    {
+      "brand": "char-griller",
+      "name": "Char-Griller Gravity 980",
+      "year": 2021,
+      "shape": "Smokers",
+      "balance": "Charcoal (gravity-fed)",
+      "surface": "980 sq in",
+      "core": "200-600°F",
+      "weight": "None",
+      "sources": [
+        "https://chargriller.com/products/char-griller-gravity-fed-9800-charcoal-grill",
+        "https://www.chargriller.com/pages/gravity-faqs",
+        "https://www.chargriller.com/blogs/tips-and-care/how-to-start-the-gravity-980-charcoal-grill"
+      ]
+    },
+    {
+      "brand": "coleman",
+      "name": "Coleman RoadTrip 285",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "285 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.rei.com/product/148310/coleman-roadtrip-285-portable-stand-up-propane-grill"
+      ]
+    },
+    {
+      "brand": "coleman",
+      "name": "Coleman RoadTrip LXE",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "285 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.homedepot.com/p/Coleman-RoadTrip-LXE-2-Burner-Portable-Propane-Grill-in-Orange-2000017439/300733479",
+        "https://www.dickssportinggoods.com/p/coleman-roadtrip-lxe-propane-grill-15colurdtrplxxxxxcfp/15colurdtrplxxxxxcfp"
+      ]
+    },
+    {
+      "brand": "cuisinart",
+      "name": "Cuisinart 36\" 4-Burner Gas Griddle",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "760 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.cuisinart.com/36-4-burner-gas-griddle/CGG-0036.html",
+        "https://www.lowes.com/pd/Cuisinart-760-Sq-in-Multi-Portable-Liquid-Propane-Grill/5003102291"
+      ]
+    },
+    {
+      "brand": "cuisinart",
+      "name": "Cuisinart 360° Griddle Cooking Center",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "380 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.bbqguys.com/cuisinart/360-degree-griddle-cooking-center-cgg-888",
+        "https://www.cuisinart.ca/en/360-griddle-cooking-center/CGG-888C.html"
+      ]
+    },
+    {
+      "brand": "cuisinart",
+      "name": "Cuisinart Petite Gourmet",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "150 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.cuisinart.com/petite-gourmet-portable-tabletop-gas-grill/CGG-180T.html"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Arc",
+      "year": 2024,
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "14\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://us.gozney.com/products/arc",
+        "https://9to5toys.com/2024/03/06/gozney-portable-pizza-oven-reveal/"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Arc XL",
+      "year": 2024,
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "16\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://us.gozney.com/products/arc-xl",
+        "https://9to5toys.com/2024/03/06/gozney-portable-pizza-oven-reveal/"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Dome",
+      "year": 2021,
+      "shape": "Pizza ovens",
+      "balance": "Wood or gas",
+      "surface": "16\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://help.gozney.com/hc/en-au/articles/4938540587665-When-will-the-Dome-be-available-to-purchase-in-my-region",
+        "https://geardiary.com/2020/10/14/gozney-reveals-premium-pizza-oven-set-to-release-in-2021/",
+        "https://eu.gozney.com/products/dome"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Dome (Gen 2)",
+      "year": 2025,
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "16\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://us.gozney.com/products/dome",
+        "https://www.theupcoming.co.uk/2025/09/10/gozney-unveils-dome-gen-2-series-of-larger-smarter-hybrid-fuel-ovens-for-home-cooks/"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Dome S1",
+      "year": 2023,
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "16\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://us.gozney.com/products/dome-s1",
+        "https://t3.com/reviews/gozney-dome-s1"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Dome XL (Gen 2)",
+      "year": 2025,
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "18\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://us.gozney.com/products/dome-xl-gen-2",
+        "https://www.utahbusiness.com/press-releases/2025/09/23/goxney-launches-dome-gen-2-series-biggest-most-versatile-ovens"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Roccbox",
+      "year": 2016,
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "12\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://us.gozney.com/products/roccbox"
+      ]
+    },
+    {
+      "brand": "gozney",
+      "name": "Gozney Tread",
+      "year": 2025,
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "12\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://gozney.com/products/tread",
+        "https://www.tomsguide.com/home/gozney-tread-release-first-look"
+      ]
+    },
+    {
+      "brand": "grilla",
+      "name": "Grilla Kong",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "643 sq in",
+      "core": "up to 700°F",
+      "weight": "None",
+      "sources": [
+        "https://www.grillagrills.com/product/4000097"
+      ]
+    },
+    {
+      "brand": "grilla",
+      "name": "Grilla Mammoth",
+      "shape": "Smokers",
+      "balance": "Pellet",
+      "surface": "1660 sq in",
+      "core": "180-450°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.grillagrills.com/product/4001294B"
+      ]
+    },
+    {
+      "brand": "grilla",
+      "name": "Grilla OG",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "488 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.grillagrills.com/product/4000096"
+      ]
+    },
+    {
+      "brand": "grilla",
+      "name": "Grilla Silverbac",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "692 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.grillagrills.com/product/4000103"
+      ]
+    },
+    {
+      "brand": "grilla",
+      "name": "Grilla Silverbac 2.0",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "692 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.grillagrills.com/product/4001336",
+        "https://www.smokedbbqsource.com/?p=79069"
+      ]
+    },
+    {
+      "brand": "grilla",
+      "name": "Grilla Silverbac 2.0 XL",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1644 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.grillagrills.com/product/4001313"
+      ]
+    },
+    {
+      "brand": "halo",
+      "name": "Halo Elite3B Griddle",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "564 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.bbqguys.com/halo/elite-3-burner-outdoor-countertop-griddle-hz-1002-xna"
+      ]
+    },
+    {
+      "brand": "halo",
+      "name": "Halo Elite4B Griddle",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "720 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.bbqguys.com/halo/elite-4-burner-outdoor-countertop-griddle-hz-1001-xna"
+      ]
+    },
+    {
+      "brand": "halo",
+      "name": "Halo Versa 16",
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": "16\" rotating stone",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://www.bbqguys.com/i/3090674/halo-products-group/versa-16-outdoor-pizza-oven-hz-1004-ana",
+        "https://www.basspro.com/shop/en/halo-versa-16-outdoor-propane-countertop-pizza-oven"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Big Joe I",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://manuals-cdn.masterbuilt.com/de.kamadojoe.com/BJ24RH_Big_Joe_I_German_mobile.pdf"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Big Joe II",
+      "year": 2019,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "450 sq in",
+      "core": "225-750°F",
+      "weight": "None",
+      "sources": [
+        "https://www.kamadojoe.com/products/big-joe-ii",
+        "https://cdn.asp.events/CLIENT_Ascentia_4E961A52_5056_B739_54289B84DF34E888/sites/GLEE-BIRMINGHAM-2020/media/libraries/exhibitor-product-catalogues/186150-KJO_2019%20Brochure_EnglishUK.pdf"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Big Joe III",
+      "year": 2019,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "450 sq in",
+      "core": "225-750°F",
+      "weight": "None",
+      "sources": [
+        "https://www.kamadojoe.com/products/big-joe-iii",
+        "https://www.prnewswire.com/in/news-releases/kamado-joe-launches-new-grills-and-unveils-innovative-new-smoke-chamber--828590679.html"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Big Joe Konnected Joe",
+      "year": 2024,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "450 sq in",
+      "core": "225-750°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.kamadojoe.com/products/big-joe-konnected-joe",
+        "https://www.kamadojoe.com/pages/faq"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Classic Joe I",
+      "year": 2014,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.kamadojoe.com/products/classic-joe-i"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Classic Joe II",
+      "year": 2018,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "250 sq in",
+      "core": "225-750°F",
+      "weight": "None",
+      "sources": [
+        "https://www.kamadojoe.com/products/classic-joe-ii",
+        "https://amazingribs.com/grill-combination-grill-smoker/kamado-joe-classic-ii-18"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Classic Joe III",
+      "year": 2019,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "250 sq in",
+      "core": "225-750°F",
+      "weight": "None",
+      "sources": [
+        "https://www.kamadojoe.com/products/classic-joe-iii",
+        "https://www.prnewswire.com/in/news-releases/kamado-joe-launches-new-grills-and-unveils-innovative-new-smoke-chamber--828590679.html"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Joe Jr",
+      "year": 2017,
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": "150 sq in",
+      "core": "225-750°F",
+      "weight": "None",
+      "sources": [
+        "https://www.kamadojoe.com/products/joe-jr-with-cast-iron-stand",
+        "https://www.kamadojoe.com/collections/jr-series"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Kettle Joe",
+      "year": 2021,
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "350 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://kamadojoe.com/products/kettle-joe",
+        "https://prnewswire.com/news-releases/kamado-joe-pioneers-first-kamado-style-kettle-grill-301246995.html"
+      ]
+    },
+    {
+      "brand": "kamado-joe",
+      "name": "Kamado Joe Konnected Joe",
+      "year": 2023,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "250 sq in",
+      "core": "225-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://kamadojoe.com/products/konnected-joe",
+        "https://www.kamadojoe.com/pages/faq",
+        "https://www.ubergizmo.com/2023/03/konnected-joe-connected-ceramic-grill/"
+      ]
+    },
+    {
+      "brand": "lone-star-grillz",
+      "name": "Lone Star Grillz 20x42 Offset Smoker",
+      "year": 2018,
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": "1,610.5 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://lonestargrillz.com/products/20-x-42-offset-smoker",
+        "https://pitmaster.amazingribs.com/forum/log-burners/lone-star-grillz/521268-walkaround-video-for-my-lone-star-grillz-20x42-offset-smoker"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt 30\" Digital Electric Smoker",
+      "shape": "Smokers",
+      "balance": "Electric",
+      "surface": "710 sq in",
+      "core": "100-275°F",
+      "weight": "None",
+      "sources": [
+        "https://www.masterbuilt.com/products/30-inch-digital-electric-smoker"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt 40\" Digital Electric Smoker",
+      "shape": "Smokers",
+      "balance": "Electric",
+      "surface": "970 sq in",
+      "core": "100-275°F",
+      "weight": "None",
+      "sources": [
+        "https://www.masterbuilt.com/products/40-inch-digital-electric-smoker"
+      ]
+    },
+    {
+      "brand": "brinkmann",
+      "name": "Brinkmann Gourmet Electric Smoker",
+      "shape": "Smokers",
+      "balance": "Electric",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://amazingribs.com/smoker/brinkmann-gourmet-electric-smoker-review/",
+        "https://www.sonicelectronix.com/item-28732-Brinkmann-BRK8107080K.html"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt AutoIgnite Series 545",
+      "year": 2024,
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": "545 sq in",
+      "core": "250-650°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.masterbuilt.com/products/autoignite-series-545",
+        "https://techaeris.com/2024/01/31/masterbuilt-and-kamado-joe-announce-new-connected-grills-and-smokers/"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt Gravity Series 1050",
+      "year": 2020,
+      "shape": "Smokers",
+      "balance": "Charcoal (gravity-fed)",
+      "surface": "1,050 sq in",
+      "core": "225-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.masterbuilt.com/products/gravity-series-1050-digital-charcoal-grill-smoker"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt Gravity Series 560",
+      "year": 2019,
+      "shape": "Smokers",
+      "balance": "Charcoal (gravity-fed)",
+      "surface": "560 sq in",
+      "core": "225-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.masterbuilt.com/products/gravity-series-560-with-cover-front-shelf-warming-racks-bundle",
+        "https://prnewswire.com/news-releases/masterbuilt-a-leader-in-outdoor-cooking-innovation-launches-the-gravity-series-charcoal-grill--smoker-300940985.html"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt Gravity Series 800",
+      "year": 2020,
+      "shape": "Smokers",
+      "balance": "Charcoal (gravity-fed)",
+      "surface": "800 sq in",
+      "core": "225-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.masterbuilt.com/products/gravity-series-800-digital-charcoal-griddle-grill-smoker",
+        "https://prnewswire.com/news-releases/masterbuilt-the-leader-in-charcoal-cooking-innovation-announces-new-gravity-series-griddle--grill--smoker-301164513.html"
+      ]
+    },
+    {
+      "brand": "masterbuilt",
+      "name": "Masterbuilt Gravity Series XT",
+      "year": 2024,
+      "shape": "Smokers",
+      "balance": "Charcoal (gravity-fed)",
+      "surface": "1,260 sq in",
+      "core": "225-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.masterbuilt.com/products/gravity-series-xt-digital-charcoal-grill-smoker",
+        "https://techaeris.com/2024/01/31/masterbuilt-and-kamado-joe-announce-new-connected-grills-and-smokers/"
+      ]
+    },
+    {
+      "brand": "monument",
+      "name": "Monument Grills Mesa 400",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "690 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://monumentgrills.com/products/mesa-400-4-burner-propane-gas-grill"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Prestige 500",
+      "year": 2019,
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "900 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://napoleon.com/en/us/grills/products/gas-grills/phantom-series/phantom-prestige-500-rsib-p500rsibpk-3-phm",
+        "https://www.bbqguys.com/napoleon-grills/prestige-500-natural-gas-grill-black-p500nk-3-2019"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Prestige PRO 665",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "1,140 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.abt.com/Napoleon-Prestige-Pro-665-RSIB-Stainless-Steel-Freestanding-Liquid-Propane-Gas-Grill-PRO665RSIBPSS3/p/136072.html",
+        "https://www.napoleon.com/en/us/grills/products/gas-grills/prestige-pro-series/prestige-pro-665-elite-pro665vxrsibnss"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Professional 22\" Charcoal Kettle",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "365 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://napoleon.com/en/sea/grills/products/charcoal-grills/charcoal-pro-series/professional-22-charcoal-kettle-pro22k-leg-2",
+        "https://bbqgrills.com/Napoleon/Napoleon-PRO-22-Inch-Charcoal-Kettle-Grill/PRO22K-LEG-2.html"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Rogue 425",
+      "year": 2019,
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "576 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.napoleon.com/en/us/grills/products/gas-grills/rogue-series/rogue-425-r425pk-2",
+        "https://www.bbqguys.com/napoleon-grills/rogue-425-propane-gas-grill-black-r425pk-2019"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Rogue SE 425",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.napoleon.com/en/us/grills/products/gas-grills/phantom-series/phantom-rogue-se-425-rsib-rse425rsibpk-1-phm",
+        "https://www.ShoppersChoice.com/i/3068576/napoleon/rogue-se-425-propane-grill-rse425rsibpss-1"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Rogue XT 425",
+      "year": 2020,
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "571 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://napoleon.com/en/us/grills/products/gas-grills/rogue-xt-series/rogue-xt-425-rxt425pss-1",
+        "https://napoleon.com/en/us/grills/products/gas-grills/rogue-xt-series/rogue-xt-425-rxt425nss-1"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon Rogue XT 525",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "711 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://napoleon.com/en/us/grills/products/gas-grills/rogue-xt-series/rogue-xt-525-rxt525nss-1"
+      ]
+    },
+    {
+      "brand": "napoleon",
+      "name": "Napoleon TravelQ PRO285",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "285 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://napoleon.com/en/us/grills/products/portable-grills/travelq-pro-series/travelq-pro285x-pro285x-bk",
+        "https://www.build.com/napoleon-pro285/s1326710"
+      ]
+    },
+    {
+      "brand": "nexgrill",
+      "name": "Nexgrill 4-Burner Propane Gas Grill (720-0925PG)",
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "566 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://nexgrill.com/products/4-burner-gas-grill-black",
+        "https://www.homedepot.com:443/p/Nexgrill-4-Burner-Propane-Gas-Grill-in-Black-with-Stainless-Steel-Main-Lid-720-0925PG/326294740"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Woodfire Outdoor Grill",
+      "year": 2023,
+      "shape": "Portable grills",
+      "balance": "Electric",
+      "surface": "141 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.ninjakitchen.com/products/ninja-woodfire-outdoor-grill-smoker-zidOG701RAW",
+        "https://www.bbqguys.com/ninja/ninja-woodfire-grill-og701"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Woodfire Pizza Oven",
+      "shape": "Pizza ovens",
+      "balance": "Electric",
+      "surface": "12\" pizza",
+      "core": "105-700°F",
+      "weight": "None",
+      "sources": [
+        "https://www.ninjakitchen.com/products/ninja-woodfire-8-in-1-outdoor-oven-zidOO101",
+        "https://www.kohls.com/product/prd-6515584/ninja-woodfire-8-in-1-outdoor-oven-high-heat-roaster-pizza-oven-bbq-smoker.jsp"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Woodfire Pro XL",
+      "shape": "Portable grills",
+      "balance": "Electric",
+      "surface": "180 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://old-support.ninjakitchen.com/hc/en-us/articles/9909404725276-OG850-Series-Ninja-Woodfire-Pro-XL-Outdoor-Grill-Smoker-FAQs",
+        "https://www.sharkninja.co.uk/product/ninja-woodfire-pro-xl-electric-bbq-grill-smoker-og850uk-zidOG850UK"
+      ]
+    },
+    {
+      "brand": "ninja",
+      "name": "Ninja Woodfire Pro Connect XL",
+      "year": 2024,
+      "shape": "Portable grills",
+      "balance": "Electric",
+      "surface": "180 sq in",
+      "core": "105-500°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.ninjakitchen.ca/products/ninja-woodfire-pro-connect-premium-xl-outdoor-grill-smoker-zidOG951",
+        "https://www.sharkninja.com/ninja-woodfire-pro-connect-premium-xl-outdoor-grill-smoker/OG951.html?catId=1"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Bronco",
+      "year": 2019,
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": "284 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/products/oklahoma-joe-s-bronco-drum-smoker-19202097",
+        "https://gearjunkie.com/camping/oklahoma-joes-bronco-drum-smoker-review"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Bronco Pro",
+      "year": 2019,
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": "366 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/products/bronco-pro-drum-smoker-19202099",
+        "https://girlscangrill.com/?p=18746"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Highland",
+      "shape": "Smokers",
+      "balance": "Charcoal or wood",
+      "surface": "879 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.electronicexpress.com/catalog/185656/OklahomaJoes-15202031",
+        "https://www.homedepot.com/p/reviews/OKLAHOMA-JOE-S-Highland-Offset-Charcoal-Smoker-and-Grill-in-Black-with-900-sq-in-Cooking-Space-15202031/315374742/3"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Highland Reverse Flow",
+      "shape": "Smokers",
+      "balance": "Charcoal or wood",
+      "surface": "1,093 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/products/highland-offset-reverse-flow-smoker-grill-24203003",
+        "https://www.lowes.com/pd/Oklahoma-Joe-s-Highland-Reverse-Flow-619-sq-in-Charcoal-Horizontal-Smoker/1000172199"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Longhorn Offset",
+      "shape": "Smokers",
+      "balance": "Charcoal or wood",
+      "surface": "1,060 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/products/longhorn-classic-offset-smoker-grill-13201747-50"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Longhorn Combo",
+      "shape": "Smokers",
+      "balance": "Charcoal, wood or propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/longhorn-combo-charcoal-gas-smoker-grill",
+        "https://www.bjs.com/product/oklahoma-joes-longhorn-combo-charcoalgas-smoker-and-grill/3000000000001891323"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Longhorn Reverse Flow",
+      "shape": "Smokers",
+      "balance": "Charcoal or wood",
+      "surface": "1,060 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/products/longhorn-reverse-flow-offset-smoker-grill-17202053"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Rider DLX",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1,200+ sq in",
+      "core": "175-650°F",
+      "weight": null,
+      "sources": [
+        "https://prnewswire.com/news-releases/oklahoma-joes-goes-the-extra-mile-with-new-series-of-pellet-grills-done-right-300961956.html"
+      ]
+    },
+    {
+      "brand": "oklahoma-joes",
+      "name": "Oklahoma Joe's Rider DLX 1200 (Gen 2)",
+      "year": 2022,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1,234 sq in",
+      "core": "200-650°F",
+      "weight": "None",
+      "sources": [
+        "https://www.oklahomajoes.com/rider-dlx-1200-pellet-grill",
+        "https://www.oklahomajoes.com/rider-gen-2-page",
+        "https://www.smokedbbqsource.com/oklahoma-joes-rider-dlx-1200-pellet-grill-review/"
+      ]
+    },
+    {
+      "brand": "old-country-bbq-pits",
+      "name": "Old Country BBQ Pits Over and Under",
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": "1,100 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://academy.com/p/old-country-bbq-pits-over-and-under-smoker"
+      ]
+    },
+    {
+      "brand": "old-country-bbq-pits",
+      "name": "Old Country BBQ Pits Pecos",
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://ocbbqpits.com/products/pecos-offset-smoker",
+        "https://www.academy.com/p/old-country-bbq-pits-pecos-smoker"
+      ]
+    },
+    {
+      "brand": "old-country-bbq-pits",
+      "name": "Old Country BBQ Pits Brazos",
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.bbqguys.com/i/3099710/old-country-bbq-pits/brazos-35-inch-offset-charcoal-smoker-oc20x60",
+        "https://www.tractorsupply.com/tsc/product/old-country-bbq-pits-brazos-35-in-offset-charcoal-smoker"
+      ]
+    },
+    {
+      "brand": "old-country-bbq-pits",
+      "name": "Old Country BBQ Pits Wrangler",
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": "920 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.academy.com/p/old-country-bbq-pits-wrangler-smoker"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Fyra 12",
+      "year": 2020,
+      "shape": "Pizza ovens",
+      "balance": "Wood pellets",
+      "surface": "12\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ca.ooni.com/products/ooni-fyra",
+        "https://techcrunch.com/?p=1974607"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Karu 12",
+      "year": 2019,
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "13.2\" cooking surface",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/products/ooni-karu",
+        "https://en.wikipedia.org/wiki/Ooni_(company)"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Karu 16",
+      "year": 2021,
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "16\" stone",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/blogs/ooni-insights/meet-ooni-karu-16-multi-fuel-pizza-oven",
+        "https://en.wikipedia.org/wiki/Ooni_(company)"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Karu 2",
+      "year": 2023,
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "12\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ca.ooni.com/products/ooni-karu-2",
+        "https://ooni.com/blogs/news/new-names-for-ooni-pizza-ovens",
+        "https://en.wikipedia.org/wiki/Ooni_(company)"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Karu 2 Pro",
+      "year": 2024,
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "17\" cooking surface (16\" pizza)",
+      "core": "up to 950°F",
+      "weight": "Bluetooth",
+      "sources": [
+        "https://ooni.com/products/ooni-karu-2-pro",
+        "https://www.engadget.com/home/kitchen-tech/oonis-karu-2-pro-pizza-oven-has-app-connectivity-and-a-bigger-window-174519402.html"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Koda 12",
+      "year": 2019,
+      "shape": "Pizza ovens",
+      "balance": "Gas",
+      "surface": "12\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/products/ooni-koda",
+        "https://en.wikipedia.org/wiki/Ooni_(company)"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Koda 16",
+      "year": 2020,
+      "shape": "Pizza ovens",
+      "balance": "Gas",
+      "surface": "16\" pizza",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://baustoffshop.de/media/pdf/ooni/OoniKoda16_EN.pdf",
+        "https://ooni.com/pages/koda-2-range-refresh",
+        "https://en.wikipedia.org/wiki/Ooni_(company)"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Koda 2",
+      "year": 2025,
+      "shape": "Pizza ovens",
+      "balance": "Gas",
+      "surface": "14\" stone",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/koda-2",
+        "https://ooni.com/pages/ooni-koda-range"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Koda 2 Max",
+      "year": 2024,
+      "shape": "Pizza ovens",
+      "balance": "Natural gas or propane",
+      "surface": "24\" cooking area",
+      "core": "up to 950°F",
+      "weight": "Bluetooth",
+      "sources": [
+        "https://ooni.com/pages/ooni-koda-2-max",
+        "https://www.engadget.com/oonis-larger-dual-zone-koda-2-max-pizza-oven-is-now-available-for-pre-order-183424519.html"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Koda 2 Pro",
+      "year": 2025,
+      "shape": "Pizza ovens",
+      "balance": "Gas",
+      "surface": "18\" stone",
+      "core": "up to 950°F",
+      "weight": "Bluetooth",
+      "sources": [
+        "https://ooni.com/products/ooni-koda-2-pro",
+        "https://ooni.com/pages/ooni-koda-range"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Pro 16",
+      "shape": "Pizza ovens",
+      "balance": "Wood, charcoal or gas",
+      "surface": "16\" stone",
+      "core": "up to 950°F",
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/products/ooni-pro",
+        "https://ca.ooni.com/blogs/ooni-insights/ooni-pro-vs-ooni-karu-16"
+      ]
+    },
+    {
+      "brand": "ooni",
+      "name": "Ooni Volt 12",
+      "year": 2023,
+      "shape": "Pizza ovens",
+      "balance": "Electric",
+      "surface": "12\" pizza",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://ooni.com/blogs/ooni-insights/introducing-ooni-volt",
+        "https://www.engadget.com/oonis-volt-12-is-the-companys-first-indoor-pizza-oven-173011466.html"
+      ]
+    },
+    {
+      "brand": "pit-barrel-cooker",
+      "name": "Pit Barrel Cooker 18.5\" Classic",
+      "year": 2017,
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://pitbarrelcooker.com/products/18-5-classic-pit-barrel%c2%ae-cooker",
+        "https://pitbarrelcooker.com/pages/cooker-guide"
+      ]
+    },
+    {
+      "brand": "pit-barrel-cooker",
+      "name": "Pit Barrel Junior 14\"",
+      "year": 2017,
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://luxebbq.ca/products/pit-barrel-junior-cooker",
+        "https://amazingribs.com/ratings-reviews/smokers/pit-barrel-cooker-22-5-pbx/"
+      ]
+    },
+    {
+      "brand": "pit-barrel-cooker",
+      "name": "Pit Barrel PBX 22.5\"",
+      "year": 2022,
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.pitbarrelcooker.com/products/PBX",
+        "https://pitmaster.amazingribs.com/forum/sneak-preview-for-members/1257239-sneak-peek-new-review-the-xl-pit-barrel-cooker-22-5-pbx"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss 4-Burner Ultimate Lift-Off Griddle",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "647 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.pitboss-grills.com/products/pit-boss-4-burner-ultimate-lift-off-griddle"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss Navigator 1150",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1158 sq in",
+      "core": "180-500°F",
+      "weight": null,
+      "sources": [
+        "https://www.pitboss-grills.com/products/navigator-1150-wood-pellet-grill-with-wifi",
+        "https://pitboss-grills.ca/products/pit-boss-navigator-1150-wood-pellet-grill"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss Pro Series 1150 (Pro Series 3)",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1155 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.pitboss-grills.com/products/pro-series-iii-1150-wood-pellet-grill"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss Pro Series 1600 (Pro Series 3)",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1598 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.pitboss-grills.com/products/pro-series-iii-1600-wood-pellet-grill"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss Pro Series II 4-Series Vertical Smoker",
+      "shape": "Smokers",
+      "balance": "Pellet",
+      "surface": "1077 sq in",
+      "core": "150-420°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.pitboss-grills.com/products/pit-boss-pro-series-ii-4-series-wood-pellet-vertical-smoker"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss Sportsman 1100",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1610 sq in",
+      "core": "180-500°F",
+      "weight": null,
+      "sources": [
+        "https://www.pitboss-grills.com/products/sportsman-series-1100-wood-pellet-grill-pb1100spw2"
+      ]
+    },
+    {
+      "brand": "pit-boss",
+      "name": "Pit Boss Sportsman 820",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "849 sq in",
+      "core": "180-500°F",
+      "weight": null,
+      "sources": [
+        "https://pitboss-grills.com/grills/wood-pellet/pit-boss-sportsman-820-wood-pellet-grill"
+      ]
+    },
+    {
+      "brand": "pkgrills",
+      "name": "PK Grills PK300",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "300 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://pkgrills.com/the-all-new-original-pk300-grill-smoker-graphite/",
+        "https://www.bbqguys.com/i/3106832/pk-grills/pk300af-grill-smoker-teal-pk300-af-tc"
+      ]
+    },
+    {
+      "brand": "pkgrills",
+      "name": "PK Grills PK360",
+      "year": 2016,
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "360 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.pkgrills.com/the-pk360-grill-smoker-graphite",
+        "https://www.prweb.com/releases/2016/11/prweb13829642.htm"
+      ]
+    },
+    {
+      "brand": "pkgrills",
+      "name": "PK Grills PKGO",
+      "year": 2020,
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": "200 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://pkgrills.com/pkgo-hibachi/",
+        "https://pkgrills.com/pkgo-w-flipkit/"
+      ]
+    },
+    {
+      "brand": "primo",
+      "name": "Primo Oval JR 200",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "210 sq in",
+      "core": "151-850°F",
+      "weight": "None",
+      "sources": [
+        "https://www.primogrill.com/junior-charcoal-grill.html",
+        "https://flameauthority.com/products/primo-oval-jr-200-ceramic-charcoal-grill"
+      ]
+    },
+    {
+      "brand": "primo",
+      "name": "Primo Oval LG 300",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "300 sq in",
+      "core": "151-850°F",
+      "weight": "None",
+      "sources": [
+        "https://www.primogrill.com/large-charcoal-grill.html",
+        "https://assets.ajmadison.com/ajmadison/itemdocs/PGCLGC-Brochure.pdf"
+      ]
+    },
+    {
+      "brand": "primo",
+      "name": "Primo Oval XL 400",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "400 sq in",
+      "core": "151-850°F",
+      "weight": "None",
+      "sources": [
+        "https://www.primogrill.com/x-large-charcoal-grill.html",
+        "https://cdn.primogrill.com/cmss_files/attachmentlibrary/Spec-Sheet--Oval-XL-400.pdf"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Backyard Beast 1200",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1220 sq in",
+      "core": "180-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.recteq.com/products/rt-1000-backyard-beast",
+        "https://support.recteq.com/hc/en-us/articles/36477314190747-Backyard-Beast-1200-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Bullseye Deluxe RT-B380X",
+      "year": 2022,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "380 sq in",
+      "core": "up to 1000°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://support.recteq.com/hc/en-us/articles/9840396245403-RT-B380X-Bullseye-Deluxe-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Bullseye RT-B380",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "380 sq in",
+      "core": "200-750°F",
+      "weight": "None",
+      "sources": [
+        "https://www.recteq.com/products/rt-b380-wood-pellet-grill"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Deck Boss 590",
+      "year": 2023,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": "180-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://support.recteq.com/hc/en-us/articles/19371830348955-Deck-Boss-590-Manual",
+        "https://www.recteq.com/products/deck-boss-legacy-edition"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Deck Boss 800",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "810 sq in",
+      "core": "180-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.recteq.com/products/deck-boss-800",
+        "https://support.recteq.com/hc/en-us/articles/36274999705755-Deck-Boss-800-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Flagship 1100",
+      "year": 2023,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1109 sq in",
+      "core": "180-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.recteq.com/products/flagship-1100",
+        "https://support.recteq.com/hc/en-us/articles/19372161935643-The-Flagship-1100-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq Flagship 1600",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1656 sq in",
+      "core": "180-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.recteq.com/products/flagship-1600",
+        "https://support.recteq.com/hc/en-us/articles/40847858305307-Flagship-1600-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq RT-1250",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1250 sq in",
+      "core": "180-700°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.bbqguys.com/recteq/rt-1250-wood-pellet-grill",
+        "https://support.recteq.com/hc/en-us/article_attachments/4409005055259"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq RT-590",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://support.recteq.com/hc/en-us/articles/4408997543707-RT-590-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq RT-700",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://support.recteq.com/hc/en-us/articles/4408997167131-RT-700-Manual"
+      ]
+    },
+    {
+      "brand": "recteq",
+      "name": "recteq X-Fire Pro 825",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "825 sq in",
+      "core": "225-1250°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.recteq.com/products/x-fire-pro-825",
+        "https://newswire.ca/news-releases/recteq-r-launches-x-fire-pro-881178267.html"
+      ]
+    },
+    {
+      "brand": "sns-grills",
+      "name": "Slow 'N Sear Deluxe Kamado",
+      "year": 2019,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "22\" grate",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://cdn.bbqgrills.com/SNS-Grills/SNS-Grills-Slow-N-Sear-Deluxe-Kamado-Grill/KAM-DEL.html",
+        "https://www.grillseeker.com/cooker-review-slow-n-sear-deluxe-kamado/"
+      ]
+    },
+    {
+      "brand": "solo-stove",
+      "name": "Solo Stove Pi",
+      "year": 2022,
+      "shape": "Pizza ovens",
+      "balance": "Wood or gas",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.walmart.com/ip/Solo-Stove-Pi-Pizza-Oven-Wood-Gas-Burner-Incl-Stainless-Steel-Outdoor-Maker-Burning-Assembly-Burner-Cordierite-Stone-13-mm-thick-H-15-125-x-Dia-20-5/1954627999",
+        "https://www.fieldandstream.com/gear/solo-stove-pi-prime-pizza-oven-review/"
+      ]
+    },
+    {
+      "brand": "solo-stove",
+      "name": "Solo Stove Pi Prime",
+      "year": 2023,
+      "shape": "Pizza ovens",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://solostove.com/en-gb/p/pi-prime",
+        "https://www.engadget.com/solo-stove-introduces-a-349-gas-only-version-of-its-pi-pizza-oven-190017019.html"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Flatrock 2 Zone",
+      "year": 2025,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "468 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.traeger.com/griddles/flatrock-2-zone"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Flatrock 3 Zone",
+      "year": 2023,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "594 sq in",
+      "core": "350-600°F",
+      "weight": "None",
+      "sources": [
+        "https://www.traeger.com/griddles/flatrock",
+        "https://seekingalpha.com/pr/19128482-traeger-grills-expands-the-outdoor-cooking-experience-with-launch-of-the-flatrock-grill"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Ironwood",
+      "year": 2023,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "616 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/ironwood",
+        "https://www.prnewswire.com/news-releases/traeger-grills-delivers-the-next-generation-of-wood-pellet-grills-with-the-all-new-ironwood-series-301747573.html"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Ironwood 650",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "650 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/ironwood/650",
+        "https://www.engadget.com/2019/03/15/traeger-wifi-grills-pro-series-ironwood-timberline/"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Ironwood 885",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "885 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/ironwood/885",
+        "https://www.engadget.com/2019/03/15/traeger-wifi-grills-pro-series-ironwood-timberline/"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Ironwood XL",
+      "year": 2023,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "924 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/ironwood-xl",
+        "https://www.prnewswire.com/news-releases/traeger-grills-delivers-the-next-generation-of-wood-pellet-grills-with-the-all-new-ironwood-series-301747573.html"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Pro 22",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": "up to 450°F",
+      "weight": "None",
+      "sources": [
+        "https://support.traeger.com/hc/en-us/articles/9328446722331-Pro-22-Support-Guide",
+        "https://www.traeger.com/pellet-grills/pro/22-bronze"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Pro 34",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": "up to 450°F",
+      "weight": "None",
+      "sources": [
+        "https://support.traeger.com/hc/en-us/articles/9328460642203-Pro-34-Support-Guide"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Pro 575",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "575 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/pro/575",
+        "https://www.engadget.com/2019/03/15/traeger-wifi-grills-pro-series-ironwood-timberline/"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Pro 780",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "780 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/pro/780",
+        "https://www.engadget.com/2019/03/15/traeger-wifi-grills-pro-series-ironwood-timberline/"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Ranger",
+      "year": 2018,
+      "shape": "Portable grills",
+      "balance": "Pellet",
+      "surface": "176 sq in",
+      "core": "up to 450°F",
+      "weight": "None",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/portable/ranger",
+        "https://prnewswire.com/news-releases/traeger-introduces-two-new-portable-grills-ranger-and-scout-300675102.html"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Silverton 620",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "624 sq in",
+      "core": "up to 500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://support.traeger.com/hc/en-us/articles/9328444952731-Silverton-620-Support-Guide",
+        "https://www.traeger.com/pellet-grills/silverton/620"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Tailgater",
+      "shape": "Portable grills",
+      "balance": "Pellet",
+      "surface": "300 sq in",
+      "core": "up to 450°F",
+      "weight": "None",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/portable/tailgater-black"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Timberline",
+      "year": 2022,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "880 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/timberline",
+        "https://www.businesswire.com/news/home/20220330005149/en"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Timberline 1300",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1300 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/timberline/1300",
+        "https://www.engadget.com/2019/03/15/traeger-wifi-grills-pro-series-ironwood-timberline/"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Timberline 850",
+      "year": 2019,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "850 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/timberline/850",
+        "https://www.engadget.com/2019/03/15/traeger-wifi-grills-pro-series-ironwood-timberline/"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Timberline XL",
+      "year": 2022,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1320 sq in",
+      "core": "165-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/timberline-xl",
+        "https://www.businesswire.com/news/home/20220330005149/en"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Westwood",
+      "year": 2026,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "653 sq in",
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/westwood",
+        "https://www.engadget.com/home/kitchen-tech/traeger-debuts-westwood-smart-pellet-grills-that-start-at-700-160448450.html"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Westwood XL",
+      "year": 2026,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "823 sq in",
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/westwood-xl",
+        "https://www.engadget.com/home/kitchen-tech/traeger-debuts-westwood-smart-pellet-grills-that-start-at-700-160448450.html"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Woodridge",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "860 sq in",
+      "core": "up to 500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/woodridge",
+        "https://investors.traeger.com/news/news-details/2025/TRAEGER-GRILLS-CELEBRATES-40-YEARS-OF-INNOVATION-WITH-THE-ALL-NEW-WOODRIDGE-PELLET-GRILL-SERIES/default.aspx"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Woodridge Elite",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "970 sq in",
+      "core": "180-500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/woodridge-elite",
+        "https://investors.traeger.com/news/news-details/2025/TRAEGER-GRILLS-CELEBRATES-40-YEARS-OF-INNOVATION-WITH-THE-ALL-NEW-WOODRIDGE-PELLET-GRILL-SERIES/default.aspx"
+      ]
+    },
+    {
+      "brand": "traeger",
+      "name": "Traeger Woodridge Pro",
+      "year": 2025,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "970 sq in",
+      "core": "up to 500°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.traeger.com/pellet-grills/woodridge-pro",
+        "https://investors.traeger.com/news/news-details/2025/TRAEGER-GRILLS-CELEBRATES-40-YEARS-OF-INNOVATION-WITH-THE-ALL-NEW-WOODRIDGE-PELLET-GRILL-SERIES/default.aspx"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis E-325 (2025)",
+      "year": 2025,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "641 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/gas/genesis/genesis-e-325-gas-grill-(liquid-propane)/1500533.html",
+        "https://weber.com/US/en/gas/genesis/genesis-e-325-gas-grill-(natural-gas)/1500534.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis E-325s",
+      "year": 2022,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "787 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.homedepot.com/p/319158248",
+        "https://www.pcrichard.com/weber-genesis-e-325s-3-burner-natural-gas-black/37310001.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis E-335",
+      "year": 2022,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "787 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.shopsilica.com/grills-bbqs-outdoor-cooking/grills/lp-gas-bbq/35410001/",
+        "https://www.bbqguys.com/weber-grills/genesis-335-lp-ss"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis E-335 (2025)",
+      "year": 2025,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "641 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/gas/genesis/genesis-e-335-gas-grill-%28liquid-propane%29/1500535.html",
+        "https://weber.com/US/en/gas/genesis/genesis-e-335-gas-grill-(natural-gas)/1500536.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis EX-325W",
+      "year": 2026,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "640.5 sq in",
+      "core": null,
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.abt.com/Weber-Genesis-EX-325W-Smart-Liquid-Propane-Gas-Grill-in-Black-1501822/p/234193.html",
+        "https://www.parkaveappliance.com/collections/gas-grills/products/web-1501823"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis EX-325s",
+      "year": 2022,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "787 sq in",
+      "core": null,
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.bestbuy.com/site/questions/weber-genesis-ex-325s-natural-gas-grill-black/6493124",
+        "https://www.engadget.com/weber-2022-grill-lineup-genesis-smokefire-weber-connect-140518150.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis EX-335",
+      "year": 2022,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "787 sq in",
+      "core": null,
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.weber.com/US/en/gas/genesis/37610001.html",
+        "https://www.bbqguys.com/i/3081389/weber-grills/genesis-ex-335-natural-gas-smart-grill-black"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis II E-315",
+      "year": 2019,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "669 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/CA/en/grills/gas-grills/genesis-ll/genesis-ii-e-315-gas-grill/61015001.html",
+        "https://tvwbb.com/threads/press-release-weber-launches-new-genesis-ii-grills.76939/latest"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Genesis II E-335",
+      "year": 2019,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "669 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/CA/en/gas/genesis-ll/genesis-ii-e-335-gas-grill/61086001.html",
+        "https://amazingribs.com/weber-genesis-ii-e-335-gas-grill"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Go-Anywhere",
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": "160 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/grills/portable-grills/go-anywhere/go-anywhere-charcoal-grill/121020.html",
+        "https://www.weber.com/CA/en/go-anywhere/go-anywhere-charcoal-grill/121020.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Jumbo Joe",
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": "240 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/grills/charcoal-grills/jumbo-joe-charcoal-grill-18-inch/1211001.html",
+        "https://www.weber.com/grills/series/smokey-joe/jumbo-joe-18"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Master-Touch 22",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "443 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/grills/charcoal-grills/master-touch/master-touch-charcoal-grill-22/14501001.html",
+        "https://www.abt.com/Weber-22-Black-Master-Touch-Charcoal-Grill-14501001/p/88363.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Original Kettle 22",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "363 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.ajmadison.com/cgi-bin/ajmadison/741001.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Original Kettle Premium 22",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "363 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/grills/charcoal-grills/original-kettle/original-kettle-premium-charcoal-grill-22/14401001.html",
+        "https://www.lowes.com/pd/product/50330261"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Original Kettle Premium 26",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "508 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.ajmadison.com/cgi-bin/ajmadison/16401001.html",
+        "https://bbqgrills.com/Weber-Grills/Weber-Grills-Original-Kettle-Premium-26-Inch-Charcoal-Grill-Black/16401001.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Performer Deluxe 22",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "363 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/grills/charcoal-grills/performer/performer-deluxe-charcoal-grill-22/15501001.html",
+        "https://www.abt.com/Weber-22-Black-Performer-Deluxe-Charcoal-Grill-15501001/p/87774.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Performer Premium 22",
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "363 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/charcoal/performer/performer-premium-charcoal-grill-22/15401001.html",
+        "https://www.weber.com/CA/en/grills/charcoal-grills/performer/performer-premium-charcoal-grill-22/15401001.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Performer Smart Charcoal Grill",
+      "year": 2026,
+      "shape": "Charcoal grills",
+      "balance": "Charcoal",
+      "surface": "363 sq in",
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.weber.com/US/en/charcoal/performer/performer-smrt-22in-blk/1501870.html",
+        "https://www.weber.com/US/en/charcoal/performer/performer-prem-smrt-22in-blk/1501563.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 1200",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "189 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/grills/gas-grills/q-series/q1200-gas-grill/51040001.html",
+        "https://www.truevalue.com/product/q-1200-portable-gas-grill-8500-btu-red/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 1200N",
+      "year": 2025,
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "200 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/CA/en/gas/weber--q-series/weber-q-1200n-gas-grill/1502230.html",
+        "https://www.grillfuerst.de/magazin/kaufberatung/weber-q-serie-vergleich/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 2200",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "280 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://bbqguys.com/i/2876958/weber/q-2200-portable-propane-gas-grill-titanium",
+        "https://www.homehardware.ca/en/q2200-series-280-sq-in-12000btu-table-top-propane-barbecue/p/6420852"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 2200N",
+      "year": 2025,
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "2065 cm²",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/IE/en/gas-barbecues/q-series/1501102.html",
+        "https://www.weber.com/IE/en/gas-barbecues/q-series/-/1501090.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 2800N+",
+      "year": 2023,
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "320 sq in",
+      "core": "250-700°F",
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/gas/weber-q-series/q-2800n%2B-gas-grill-(liquid-propane)/1500378.html",
+        "https://consumer.org.nz/articles/weber-q-2800n-bbq-review"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 3200",
+      "shape": "Portable grills",
+      "balance": "Natural gas or propane",
+      "surface": "468 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.pcrichard.com/weber-q-3200-2-burner-freestanding-liquid-propane-gas-grill-titanium/57060001.html",
+        "https://www.bbqguys.com/i/2876962/weber/q-3200-freestanding-natural-gas-grill-titanium"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Q 3200N+",
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "2535 cm²",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/IE/en/gas-barbecues/q-series/-/1501127.html",
+        "https://www.archiexpo.com/prod/weber-europe/product-61612-2570903.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Searwood 600",
+      "year": 2024,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "648 sq in",
+      "core": "180-600°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.weber.com/US/en/wood-pellet/searwood/1500120.html",
+        "https://www.smokedbbqsource.com/weber-searwood-smart-pellet-grill-announcement/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Searwood XL 600",
+      "year": 2024,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "972 sq in",
+      "core": "180-600°F",
+      "weight": "WiFi",
+      "sources": [
+        "https://www.weber.com/US/en/wood-pellet/searwood/searwood-xl-600-wood-pellet-grill/1500121.html",
+        "https://www.lowes.com/pd/Weber-Searwood-600-XL-Pellet-Grill/5014971013"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Slate 22\" Tabletop Griddle",
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "352 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/griddle/portable-griddles/weber-slate-22%E2%80%9D-tabletop-griddle/1500532.html",
+        "https://www.acehardware.com/p/8108735"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Slate 28\" Griddle",
+      "year": 2025,
+      "shape": "Griddles",
+      "balance": "Propane",
+      "surface": "504 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/griddle/stand-up-griddles/slate-28-rust-resistant-griddle-lp/1501345.html",
+        "https://toolsinaction.com/2025-weber-spirit-grill-product-lineup/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Slate 30\" Griddle",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Natural gas or propane",
+      "surface": "540 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/griddle/stand-up-griddles/slate-30-rust-resistant-griddle/1500014.html",
+        "https://weber.com/US/en/griddle/stand-up-griddles/slate-30-rust-resistant-griddle-with-side-table-(natural-gas)/1500420.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Slate 36\" Griddle",
+      "year": 2024,
+      "shape": "Griddles",
+      "balance": "Natural gas or propane",
+      "surface": "756 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/griddle/stand-up-griddles/slate-36-rust-resistant-griddle/1500216.html?gQT=2",
+        "https://weber.com/US/en/griddle/stand-up-griddles/slate-36-rust-resistant-griddle-(natural-gas)/1501350.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber SmokeFire EX4",
+      "year": 2020,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "672 sq in",
+      "core": "200-600°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.pcrichard.com/weber-smokefire-ex4-wood-fired-pellet-grill/22510001.html",
+        "https://geardiary.com/2020/05/01/weber-smokefire-pellet-grill-review/amp/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber SmokeFire EX4 (2nd Gen)",
+      "year": 2021,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "672 sq in",
+      "core": "200-600°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://weber.com/US/en/wood-pellet/smokefire-ex4/22510201.html",
+        "https://www.bbqguys.com/weber-grills/smokefire-ex4-gen-2-wi-fi-enabled-24-inch-wood-fired-pellet-grill-22510201"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber SmokeFire EX6",
+      "year": 2020,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1008 sq in",
+      "core": "200-600°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.bbqguys.com/weber/smokefire-ex6-wi-fi-enabled-36-inch-wood-fired-pellet-grill-23510001"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber SmokeFire EX6 (2nd Gen)",
+      "year": 2021,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1008 sq in",
+      "core": "200-600°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.weber.com/US/en/wood-pellet/smokefire-ex6/23510201.html",
+        "https://homedepot.com/p/Weber-SmokeFire-EX6-Wood-Fired-Pellet-Smart-Grill-in-Black-2nd-Gen-23510201/316986607"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Smokey Joe Premium",
+      "shape": "Portable grills",
+      "balance": "Charcoal",
+      "surface": "147 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.acehardware.com/p/87771?x429=true",
+        "https://www.lowes.com/pd/Weber-Smokey-Joe-Premium-Portable-Grill/5001787347"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Smokey Mountain 14",
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": "286 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.abt.com/Weber-14-Black-Smokey-Mountain-Cooker-Smoker-711001/p/75547.html",
+        "https://www.doitbest.com/product/800747/weber-smokey-mountain-cooker-14-in-dia-286-sq-in-vertical-charcoal-smoker-800747/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Smokey Mountain 18",
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": "481 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.doitbest.com/product/814079/weber-smokey-mountain-cooker-18-in-dia-481-sq-in-vertical-charcoal-smoker-814079/",
+        "https://www.standardtvandappliance.com/grills-bbqs-outdoor-cooking/grills/charcoal-bbq/721001/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Smokey Mountain 22",
+      "shape": "Smokers",
+      "balance": "Charcoal",
+      "surface": "726 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.abt.com/Weber-22-Black-Smokey-Mountain-Cooker-Smoker-731001/p/39777.html",
+        "https://www.doitbest.com/product/814060/weber-smokey-mountain-cooker-22-in-dia-726-sq-in-vertical-charcoal-smoker-814060/"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit E-210 (2025)",
+      "year": 2025,
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/gas/spirit/spirit-e-210-lp-blk/1501000.html",
+        "https://www.gearpatrol.com/?p=873528"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit E-325 (2025)",
+      "year": 2025,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "450 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/gas/spirit/spirit-e-325-lp-blk/1500789.html",
+        "https://weber.com/US/en/gas/spirit/spirit-e-325-ng-blk/1500844.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit E-425 (2025)",
+      "year": 2025,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "533 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/gas/spirit/spirit-e-425-lp-blk/1500780.html",
+        "https://www.weber.com/US/en/gas/spirit/spirit-e-425-ng-blk/1500781.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit EX-315",
+      "year": 2021,
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "529 sq in",
+      "core": null,
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.bbqguys.com/i/3072475/weber-grills/spirit-sx-315-freestanding-propane-gas-smart-grill-stainless-steel-46502401",
+        "https://www.weber.com/CA/en/new-weber-genesis-and-spirit-smart-gas-grills.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit EX-325",
+      "year": 2026,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.weber.com/US/en/gas/spirit/spirit-ex-325-lp-blk/1501843.html",
+        "https://www.engadget.com/home/kitchen-tech/webers-2026-smart-grill-lineup-includes-the-companys-first-wi-fi-equipped-charcoal-grill-150000097.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit EX-325s",
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "529 sq in",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.dewaardandbode.com/outdoor-cooking/grills/lp-gas-bbq/46912401/",
+        "https://assets.ajmadison.com/ajmadison/itemdocs/page16_46912401_47912401_US_FOB_Standard_020923_LR_1__22139644.pdf"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit II E-210",
+      "year": 2017,
+      "shape": "Gas grills",
+      "balance": "Propane",
+      "surface": "450 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/grills/gas-grills/spirit-ii-series/44010001.html",
+        "https://www.bestbuy.com/site/6480167.p"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Spirit II E-310",
+      "year": 2017,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "529 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://weber.com/US/en/grills/gas-grills/spirit-ii-series/45020001.html",
+        "https://www.abt.com/Weber-Spirit-II-E-310-Black-Natural-Gas-Grill-49010001/p/118994.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Summit Charcoal Grill",
+      "year": 2016,
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://amazingribs.com/ratings-reviews/kamados/weber-summit-kamado/",
+        "https://tvwbb.com/threads/summit-charcoal-vs-summit-kamado-e6-s6-and-why.90174"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Summit FS38 E",
+      "year": 2023,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "1053 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.ajmadison.com/cgi-bin/ajmadison/1500040.html",
+        "https://www.weber.com/US/en/gas/summit/summit-fs38-s-gas-grill-(liquid-propane)/1500028.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Summit FS38X E",
+      "year": 2023,
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "1053 sq in",
+      "core": null,
+      "weight": null,
+      "sources": [
+        "https://www.abt.com/Weber-Grill-Summit-Smart-FS38X-E-Liquid-Propane-Gas-In-Black-1500051/p/201757.html",
+        "https://www.abt.com/Weber-Grill-Summit-Smart-FS38X-E-Natural-Gas-In-Black-1500050/p/201758.html"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Summit Kamado E6",
+      "shape": "Kamado grills",
+      "balance": "Charcoal",
+      "surface": "452 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/grills/charcoal-grills/summit-kamado/summit-kamado-e6-charcoal-grill/18201001.html",
+        "https://www.acehardware.com/p/8060341"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Summit S-670",
+      "shape": "Gas grills",
+      "balance": "Natural gas or propane",
+      "surface": "769 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://homedepot.com/p/Weber-Summit-S-670-6-Burner-Liquid-Propane-Gas-Grill-in-Stainless-Steel-with-Built-In-Thermometer-and-Rotisserie-7370001/202213095",
+        "https://www.gertens.com/weberr-summit-s-670-gas-grill"
+      ]
+    },
+    {
+      "brand": "weber",
+      "name": "Weber Traveler",
+      "year": 2021,
+      "shape": "Portable grills",
+      "balance": "Propane",
+      "surface": "320 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.weber.com/US/en/introducing-the-weber-traveler.html",
+        "https://www.lowes.com/pd/Weber-Traveler-Portable-Gas-Grill/5000928297"
+      ]
+    },
+    {
+      "brand": "workhorse-pits",
+      "name": "Workhorse Pits 1975",
+      "shape": "Smokers",
+      "balance": "Wood",
+      "surface": null,
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://thebbqhq.com/products/workhorse-pits-1975-with-upper-rack-and-cowboy-firebox",
+        "https://prosmokebbq.co.uk/products/workhorse-1975"
+      ]
+    },
+    {
+      "brand": "yoder",
+      "name": "Yoder YS480s",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "800 sq in",
+      "core": "150-600°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.yodersmokers.com/pellet/the-ys480s-pellet-grill"
+      ]
+    },
+    {
+      "brand": "yoder",
+      "name": "Yoder YS640s",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1070 sq in",
+      "core": "150-600°F",
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.yodersmokers.com/pellet/the-ys640s-pellet-grill/"
+      ]
+    },
+    {
+      "brand": "z-grills",
+      "name": "Z Grills 1000D4E",
+      "year": 2024,
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi and Bluetooth",
+      "sources": [
+        "https://www.zgrills.com/products/zpg-1000d4e-pellet-grill",
+        "https://www.zgrills.com/pages/new-arrival"
+      ]
+    },
+    {
+      "brand": "z-grills",
+      "name": "Z Grills 10502B",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "1080 sq in",
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.zgrills.com/products/zpg-10502b-wifi-pellet-grill"
+      ]
+    },
+    {
+      "brand": "z-grills",
+      "name": "Z Grills 450B",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": "459 sq in",
+      "core": null,
+      "weight": "None",
+      "sources": [
+        "https://www.zgrills.com/products/zpg-450b-pellet-grill"
+      ]
+    },
+    {
+      "brand": "z-grills",
+      "name": "Z Grills Multitasker 11002B",
+      "shape": "Pellet grills",
+      "balance": "Pellet",
+      "surface": null,
+      "core": null,
+      "weight": "WiFi",
+      "sources": [
+        "https://www.zgrills.com/products/multitasker-11002b-wi-fi-pellet-grill"
+      ]
+    }
+  ]
+}

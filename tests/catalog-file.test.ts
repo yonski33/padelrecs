@@ -846,3 +846,36 @@ test("the ToolRecs catalog: 230 sourced tools and platforms in all eight categor
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 230, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the GrillRecs catalog: 248 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/grill.json");
+  const snapshot = catalogSnapshot(catalog, "grillrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 36);
+  assert.equal(snapshot.tables.rackets.length, 248);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 248);
+  const categories = niches.grill.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/grill");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 10, `${c}: at least 10 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 248, "one source URL per product");
+  // Generations and maker-sold sizes with near-identical names are separate products, never merged (the niche's traps).
+  for (const name of ["Traeger Ironwood 885", "Traeger Ironwood", "Traeger Ironwood XL", "Traeger Timberline 850", "Traeger Timberline", "Traeger Pro 575", "Traeger Pro 780",
+    "Weber Genesis II E-315", "Weber Genesis E-325s", "Weber Genesis EX-325s", "Weber Genesis E-325 (2025)", "Weber Q 1200", "Weber Q 1200N",
+    "Kamado Joe Classic Joe II", "Kamado Joe Classic Joe III", "Kamado Joe Konnected Joe", "Big Green Egg Large", "Big Green Egg XL",
+    "Blackstone 36\" Omnivore Griddle", "Blackstone 36\" Omnivore Griddle with Hood", "Ooni Koda 16", "Ooni Koda 2 Max", "Ooni Karu 16", "Ooni Karu 2 Pro",
+    "recteq RT-700", "recteq Flagship 1100", "Masterbuilt Gravity Series 560", "Masterbuilt Gravity Series 800"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 36, rackets: 248, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 36, rackets: 248, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});

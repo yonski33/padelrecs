@@ -168,6 +168,11 @@
       "name": "tvrecs",
       "id": "prj_zugP1PDzpRoxxI12CXyU91ec5RNs",
       "domain": "www.tvrecs.com"
+    },
+    "grill": {
+      "name": "grillrecs",
+      "id": "prj_4kKPOoQWfIwwZsiCrJWrqTryUYjc",
+      "domain": "www.grillrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
@@ -207,7 +212,8 @@
     "laptop": "laptoprecs",
     "print": "printrecs",
     "tv": "tvrecs",
-    "tool": "toolrecs"
+    "tool": "toolrecs",
+    "grill": "grillrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
