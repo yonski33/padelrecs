@@ -2062,7 +2062,7 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
   .lt-row.v2 { grid-template-columns: 28px 64px minmax(0, 1fr) auto; grid-template-areas: "rank art body sig" ". . pos total"; gap: 8px 10px; padding: 12px 8px; }
   .lt-row.v2 > .lt-art { width: 64px; height: 64px; }
   .lt-row.v2 > .lt-rank { font-size: 16px; }
-  .lt-row.v2 .lt-line { -webkit-line-clamp: 1; }
+  .lt-row.v2 .lt-line { -webkit-line-clamp: 3; font-size: 12.5px; }
   .lt-row.v2 .lt-shop, .lt-row.v2 .lt-shape { display: none; }
   .lt-row.v2 > .lt-sig b { font-size: 22px; }
   .lt-row.v2 > .lt-total { display: flex; align-items: baseline; gap: 4px; justify-self: end; }
