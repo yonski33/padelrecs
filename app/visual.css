@@ -2700,3 +2700,6 @@ body:has(.lrv) .wrap, body:has(.lrv) .site { max-width: 1276px; }
 .lr-list.lt-list { gap: 0 !important; }
 .lr-list .lt-slot > .lt-row.v2 { border: 0; border-bottom: 1px solid var(--lt-line); border-radius: 0; background: var(--lt-bg, #fcfbf8) !important; }
 .lr-list .lt-slot > .lt-row.v2:hover { background: #fff !important; }
+/* Product page with the wider layout (owner, 2026-11-13): a wider sidebar, and review text capped at a readable line length. */
+@media (min-width: 981px) { .product.v2.lp > .columns.lp-cols { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; } }
+.lp .lv-text, .lp .lv-body > p:not(.lv-src) { max-width: 68ch; }
