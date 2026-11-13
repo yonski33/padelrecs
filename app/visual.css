@@ -2640,3 +2640,5 @@ body:has(.lt-hero) .site-header .header-add { margin-left: auto; }
 .rc-more:hover { text-decoration: underline; }
 @media (max-width: 720px) { .rc-card { grid-template-columns: 72px minmax(0, 1fr) !important; gap: 12px !important; padding: 12px 14px !important; } .rc-art { width: 72px !important; height: 84px !important; } .rc-head h2 { font-size: 22px !important; } }
 .rc-text { display: -webkit-box !important; -webkit-box-orient: vertical; overflow: hidden !important; line-height: 1.5 !important; max-height: 3em; }
+/* Full review text on /reviews, no "…" (owner, 2026-11-13). */
+.lrv-text { display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; max-height: none !important; }
