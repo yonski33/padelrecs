@@ -31,7 +31,7 @@ export const VOLUME_PERCENTILE = 0.9;
 export const CATEGORY_TOP = 96, CATEGORY_RANGE = 4;
 /** Category leaders also step down by LEADER_STEP per place among the site's leaders, so the home list's top isn't a row of 95s. */
 export const LEADER_STEP = 0.8;
-export const STRETCH = 1, RANK_STEP = 0.7, RANK_STEPS = 15;
+export const STRETCH = 0.6, RANK_STEP = 0.5, RANK_STEPS = 15;
 
 /** The most a product can score: 100 less points for its negative and mixed shares (0–1). */
 export const signalCeiling = (negativeShare: number, mixedShare: number) =>
