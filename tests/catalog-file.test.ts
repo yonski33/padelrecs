@@ -743,13 +743,13 @@ test("the LaptopRecs catalog: 289 sourced laptops in all seven categories, one p
   } finally { await engine.close(); }
 });
 
-test("the PrintRecs catalog: 191 sourced products in all five categories, models and revisions kept apart, unique URLs", async () => {
+test("the PrintRecs catalog: 192 sourced products in all five categories, models and revisions kept apart, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/print.json");
   const snapshot = catalogSnapshot(catalog, "printrecs", "catalog:test", false);
-  assert.equal(snapshot.tables.brands.length, 15);
-  assert.equal(snapshot.tables.rackets.length, 191);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 191);
+  assert.equal(snapshot.tables.brands.length, 16);
+  assert.equal(snapshot.tables.rackets.length, 192);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 192);
   const categories = niches.print.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/print");
   for (const r of snapshot.tables.rackets) {
@@ -759,7 +759,7 @@ test("the PrintRecs catalog: 191 sourced products in all five categories, models
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 6, `${c}: at least six products`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
-  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 191, "one source URL per product");
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 192, "one source URL per product");
   // Models and revisions with near-identical names are separate products, never merged.
   for (const name of ["Bambu Lab P1P", "Bambu Lab P1S", "Bambu Lab P2S", "Bambu Lab X1 Carbon", "Bambu Lab A1", "Bambu Lab A1 mini", "Bambu Lab H2D",
     "Bambu Lab AMS", "Bambu Lab AMS lite", "Bambu Lab AMS 2 Pro", "Bambu Lab AMS HT", "Original Prusa MK4", "Original Prusa MK4S", "Prusa CORE One", "Prusa CORE One+",
@@ -771,8 +771,8 @@ test("the PrintRecs catalog: 191 sourced products in all five categories, models
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 191, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 15, rackets: 191, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 16, rackets: 192, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 16, rackets: 192, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
