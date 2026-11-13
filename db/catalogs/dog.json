@@ -391,6 +391,10 @@
    "name": "Wild One"
   },
   {
+   "id": "woof",
+   "name": "Woof"
+  },
+  {
    "id": "yeti",
    "name": "Yeti"
   },
@@ -2948,6 +2952,18 @@
    "weight": "squeaky hide-and-seek",
    "sources": [
     "https://zippypaws.com/shop/dogtoys/plush/burrow/burrow-log/"
+   ]
+  },
+  {
+   "brand": "woof",
+   "name": "Woof Pupsicle",
+   "shape": "Toys & chews",
+   "balance": "S, L, XL",
+   "surface": "Treat toy",
+   "core": "Rubber",
+   "weight": "opens in the middle for filling and cleaning",
+   "sources": [
+    "https://mywoof.com/products/pupsicle"
    ]
   }
  ]
