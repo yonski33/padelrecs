@@ -11,6 +11,7 @@ import { CountUp } from "./count-up";
 import { HomeA, HomeB } from "./home-variants";
 import { HomeC } from "./home-catalog";
 import { HomeLight } from "./home-light";
+import HomeV2 from "./home-v2";
 import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
@@ -125,6 +126,8 @@ export default async function Home({ searchParams }: {
   const [lead1, topic] = homeHeadline();
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
+  // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
+  if (niche.id === "padel" && !params.home && !type && !params.feed && !params.q) return <HomeV2 shape={typeof params.shape === "string" ? params.shape : undefined}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">
