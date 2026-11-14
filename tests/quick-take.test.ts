@@ -113,6 +113,15 @@ test("audit rules: takeaway length, repeats, hedging, evidence labels, decisive 
   assert.deepEqual(decisiveRows(rows).map(r => r.chip), ["Loved", "Divided", "Limited"]);
 });
 
+test("the debate: two real takes on opposite sides", () => {
+  const withDebate = (f: string, a: string, fv = false) => block({ catch: { ...block().catch, debate: { topic: "bounce", for: { id: f, text: fv ? "the bounce is real" : "Loves it.", verbatim: fv }, against: { id: a, text: "Too much bounce." } } } });
+  assert.ok(check(withDebate("r1", "r3")).ok, "positive vs mixed is fine");
+  assert.ok(check(withDebate("r1", "r1")).errors.some(e => e.includes("same report")));
+  assert.ok(check(withDebate("r1", "r2")).errors.some(e => e.includes("is positive")));
+  assert.ok(check(withDebate("r1", "r3", true)).ok, "verbatim words pass");
+  assert.ok(!check(block({ catch: { ...block().catch, debate: { topic: "bounce", for: { id: "r1", text: "made up", verbatim: true }, against: { id: "r3", text: "x" } } } })).ok);
+});
+
 test("banned words", () => {
   assert.ok(check(block({ tldr: { ...block().tldr, madeFor: ["AT10 owners", "b", "c"] } })).errors.some(e => e.includes("owners")));
   assert.ok(check(block({ tldr: { ...block().tldr, lead: "From Reddit reviews." } })).errors.some(e => e.includes("Reddit reviews")));

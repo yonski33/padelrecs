@@ -120,3 +120,18 @@ complaint isn't a tip. Hero and leads never lead with Reddit. The catch is never
   when 60%+ of the reports on it agree. The checker warns on flat lines in the arm/hardness modules and Feel/Comfort rows.
 - **How it plays** shows the 3 most decisive rows (strongest, most divided, weakest); the rest sit behind "+ Show all".
   Put the important information in those.
+
+## Design language v2 (owner 2026-11-15): what changes in the block
+
+The page skin follows site-jobs/quick-take-mockups/claude-design-reference-*.html (QUICK-TAKE-RECIPE.md "Design language v2").
+Three fields read differently now:
+- `tldr.lead` is the **verdict line**: two short sentences, "Buy it for the sweet spot. Demo it first for the bounce."
+- `tldr.madeFor` / `tldr.notFor` are drawn under "👍 Get it if you…" / "👎 Skip it if you…", so each bullet continues that
+  sentence: "mishit a lot and still want depth", "want a **dry, direct** feel". A kind of player or situation, never a spec.
+- `catch.debate` (optional, use it): `{ "topic": "bounce", "for": {id, text, verbatim?}, "against": {id, text, verbatim?} }`.
+  The section becomes "The bounce debate 🔥": the lead explains the disagreement, then two real takes side by side, one it
+  worked for ("✓ worked for me") and one it didn't ("✗ not for me"). Each is a stored report, attributed automatically
+  (nickname and level for our own reviews, "Reddit · r/…" or the channel for web reports). Paraphrase by default; set
+  `verbatim` only when `text` is the player's exact words. The checker rejects a positive "against", a negative "for", or
+  the same report twice. Never invent one.
+Tips are drawn together as "Heads up ⚠️", numbered, each with its evidence label; `after` no longer moves them.

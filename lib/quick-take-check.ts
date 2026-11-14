@@ -49,6 +49,7 @@ function fields(qt: QuickTake): Field[] {
     for (const [k, z] of Object.entries(qt.plays.court ?? {})) if (z) add(`plays.court.${k}`, z.line, z.reports);
     qt.plays.rows.forEach((r, i) => add(`plays.rows[${i}] ${r.label}`, r.line, r.reports));
   }
+  if (qt.catch.debate) { add("catch.debate.topic", qt.catch.debate.topic); }
   add("catch.lead", qt.catch.lead, qt.catch.reports); qt.catch.bullets.forEach((t, i) => add(`catch.bullets[${i}]`, t, qt.catch.reports));
   qt.modules.forEach((m, i) => {
     const w = `modules[${i}] ${m.type}`;
@@ -73,6 +74,7 @@ function fields(qt: QuickTake): Field[] {
   return f;
 }
 const receiptsOf = (qt: QuickTake) => [...(qt.catch.receipts ?? []).map(r => ({ ...r, where: "catch.receipts" })),
+  ...(qt.catch.debate ? [{ ...qt.catch.debate.for, where: "catch.debate.for" }, { ...qt.catch.debate.against, where: "catch.debate.against" }] : []),
   ...qt.modules.flatMap((m, i) => ("receipts" in m ? m.receipts ?? [] : []).map(r => ({ ...r, where: `modules[${i}].receipts` })))];
 
 /** The block's quoted passages ("…" or “…”), to be checked against the players' words. */
@@ -231,6 +233,13 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
     else if (r.verbatim && !isVerbatim(r.text)) errors.push(`${r.where}: marked verbatim but isn't the player's exact words: ${r.text.slice(0, 50)}`);
     else if (!r.verbatim) for (const q of quotedPassages(r.text)) if (!isVerbatim(q)) errors.push(`${r.where}: quote marks on words no player wrote: "${q}"`);
     for (const [re, why] of BANNED.slice(0, 4)) if (re.test(r.text)) errors.push(`${r.where}: ${why}`);
+  }
+  // The debate's two takes are real reports on opposite sides (design v2): one positive about it, one not.
+  if (qt.catch.debate) {
+    const f = byId.get(qt.catch.debate.for.id), a = byId.get(qt.catch.debate.against.id);
+    if (f && f.sentiment === "negative") errors.push("catch.debate.for: that report is negative; pick one it worked for");
+    if (a && a.sentiment === "positive") errors.push("catch.debate.against: that report is positive; pick one it didn't work for");
+    if (qt.catch.debate.for.id === qt.catch.debate.against.id) errors.push("catch.debate: the two takes are the same report");
   }
   const nReceipts = receiptsOf(qt).length;
   if (qt.kind === "full" && (nReceipts < 6 || nReceipts > 10)) warnings.push(`${nReceipts} receipts on the page (aim for 6–10)`);

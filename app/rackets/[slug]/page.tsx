@@ -24,6 +24,7 @@ import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
 import QuickVote from "../../quick-vote";
 import QuickTakePage from "./quick-take";
+import { qtFontVars } from "./qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
 import { quickTakeFor } from "../../../db/quick-take";
 import { tagTone } from "../../../lib/tags";
@@ -344,11 +345,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     return <QuickTakePage qt={qt} racketId={r.id} slug={r.slug} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
       crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
-        ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating) }))]}
+        ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
       reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} signal={sig?.signal ?? null} site={niche.site.name} products={products}
       heroSpecs={[r.weight, r.balance && `Balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
-      fontClass={lightFont.variable} tags={(() => {
+      fontClass={qtFontVars} tags={(() => {
         // Most-used tags in this racket's reviews and reports first; with none, the positive ones lead (owner 2026-11-15).
         const used = new Map<string, number>();
         for (const t of [...reviews, ...external].flatMap(x => x.tags)) used.set(t, (used.get(t) ?? 0) + 1);

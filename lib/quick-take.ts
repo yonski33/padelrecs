@@ -69,7 +69,10 @@ export const quickTakeSchema = z.object({
   /** "Who's it for?": 0 beginner, 1 intermediate, 2 advanced (no Pro, recipe §4). */
   level: z.object({ from: z.number().int().min(0).max(2), to: z.number().int().min(0).max(2), answer: z.string().trim().min(1).max(60), note: line, reports: ids }).strict().optional(),
   plays: z.object({ verdict, lead: line, court: z.object({ net: zone.optional(), overheads: zone.optional(), defence: zone.optional() }).strict().optional(), rows: z.array(row).max(8) }).strict().optional(),
-  catch: z.object({ verdict, lead: line, bullets: bullets(2, 4), reports: ids, about: z.boolean().optional(), what: z.string().trim().max(60).optional(), receipts }).strict(),
+  /** The catch, framed as "The <topic> debate 🔥" (design v2): the disagreement, then two real takes side by side, one it
+   *  worked for and one it didn't. Each pick is a stored report (paraphrase, or the player's exact words with verbatim). */
+  catch: z.object({ verdict, debate: z.object({ topic: z.string().trim().min(1).max(24).refine(t => t.split(/\s+/).length <= 3, "3 words at most"),
+    for: receipt, against: receipt }).strict().optional(), lead: line, bullets: bullets(2, 4), reports: ids, about: z.boolean().optional(), what: z.string().trim().max(60).optional(), receipts }).strict(),
   modules: z.array(moduleSchema).max(3),
   /** Rivals are rackets in the catalog only (owner 2026-11-15): a slug for the photo and link. An older version of the same
    *  racket only when it's the direct predecessor. One card is fine; with none, leave out the section. */
