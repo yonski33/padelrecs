@@ -2961,9 +2961,10 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .lp-mention .lp-m-pos .lp-chips a { background: #e7f3ea !important; color: #1f3d28 !important; }
 .lp-mention .lp-m-pos .lp-chips a b { color: #1f6a35 !important; font-weight: 700 !important; }
 .lp-mention .lp-m-pos .lp-chips a:hover { background: #d6ebdc !important; }
-.lp-mention .lp-m-neg .lp-chips a { background: #fbf0d9 !important; color: #4d3a12 !important; }
-.lp-mention .lp-m-neg .lp-chips a b { color: #8a5a00 !important; font-weight: 700 !important; }
-.lp-mention .lp-m-neg .lp-chips a:hover { background: #f6e4bd !important; }
+/* Common concerns in the Negative pill pink (owner 2026-11-14), matching the complaint highlights in the reviews. */
+.lp-mention .lp-m-neg .lp-chips a { background: #fde1de !important; color: #5a1f19 !important; }
+.lp-mention .lp-m-neg .lp-chips a b { color: #a3241c !important; font-weight: 700 !important; }
+.lp-mention .lp-m-neg .lp-chips a:hover { background: #fad0cb !important; }
 @media (max-width: 640px) {
   .lp-mention .lp-m-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .lp-mention .lp-m-row h3 { padding-top: 0; }
@@ -2986,4 +2987,39 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .hl-toggle[aria-checked="true"] .hl-toggle-dot { transform: translateX(12px); }
 .hl-toggle:hover, .hl-toggle:active { background: none; border-color: transparent; color: var(--ink); }
 .hl-toggle:focus-visible { outline: 2px solid var(--lt-green, #1f6a35); outline-offset: 3px; border-radius: 4px; }
+/* Two-colour trial (owner 2026-11-14, Vertex 05 only): praise and complaints in the Positive / Negative pill colours.
+   (A hand-drawn underline was tried and dropped: unfamiliar, and busy with two per review.) */
+.lv-text mark.hl-pos { background: linear-gradient(104deg, rgba(223,240,227,0) 0.4%, #dff0e3 2.5%, #dff0e3 96%, rgba(223,240,227,0) 99.6%); }
+.lv-text mark.hl-neg { background: linear-gradient(104deg, rgba(253,225,222,0) 0.4%, #fde1de 2.5%, #fde1de 96%, rgba(253,225,222,0) 99.6%); }
 html[data-hl="off"] .lv-text mark.hl { background: none; padding: 0; margin: 0; }
+
+/* Mixed in apricot / burnt orange (owner trial 2026-11-14): the old yellow sat too close to the yellow review highlights.
+   Green / amber / red reads as good / in between / bad. Pills, the bar, its dots, the filter tab and the counts all follow. */
+.s-mixed { --c: #e39a55; }
+.spill.s-mixed, .lrv .spill.s-mixed, .tag.sentiment.s-mixed { background: #fde4cc !important; color: #8a4510 !important; }
+.sband .s-mixed { background: #e39a55 !important; }
+.p-legend .s-mixed::before, .product.v2.lt-page .p-legend .s-mixed::before, .lt-s-mixed::before, .lp-counts .c-mix::before { background: #e39a55 !important; }
+
+/* The review's source line is its link to the original (owner 2026-11-14): "Reddit · r/Padelracket ↗". Same colour as the
+   line, green and underlined on hover; the date and "summarized" after it stay plain. */
+.lv-src > .lv-meta::before { content: none !important; }
+.lv-srclink { color: inherit; text-decoration: none; border-radius: 3px; padding: 3px 0; }
+.lv-srclink .lv-arr { margin-left: 4px; font-size: .92em; color: var(--lt-green, #1f6a35); }
+.lv-srclink:hover, .lv-srclink:hover b { color: var(--lt-green, #1f6a35) !important; text-decoration: underline; text-underline-offset: 2px; }
+.lv-srclink:focus-visible { outline: 2px solid var(--lt-green, #1f6a35); outline-offset: 2px; }
+
+
+/* A lighter source line (owner 2026-11-14): a little smaller and greyer, so the review's words are the main thing. */
+.lp .voices .lv-src { font-size: 12.5px; color: #8d878d; }
+.lp .voices .lv-src b { color: #57525a; font-weight: 600; }
+
+/* Trial: the source details under the review's words (owner 2026-11-14). */
+.lv-under { margin: 8px 0 0; font-size: 12.5px; color: #8d878d; }
+.lv-under .lv-srclink { color: #6f6a70; }
+.lv-pill-float { float: right; margin: 1px 0 6px 14px; }
+.lp .voices .lv .lv-text.lv-text-top { margin-top: 0; }
+.lv-under b { font-weight: 600; color: #57525a; }
+.lp .voices .lv .lv-text.lv-text-top { max-width: none; }
+
+/* A clearer divider between reviews (owner 2026-11-14), and a touch more room above and below it. */
+.lp .voices .lv { border-bottom: 1px solid #dcd6cc; padding: 18px 0; }

@@ -11,7 +11,6 @@ import { Analytics } from "./analytics";
 import { niche, catalogPath } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { rankedSlugs } from "./rankings/lists";
-import { showsHighlights } from "../lib/highlights";
 import { HIGHLIGHT_BOOT } from "../lib/highlight-boot";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
@@ -28,7 +27,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
 
 export default async function Layout({children}: {children: React.ReactNode}) {
   const ranked = await rankedSlugs();
-  return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}{showsHighlights(niche.id) && <head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/></head>}{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
+  return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}<head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/></head>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
     <SiteHeader ranked={ranked}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">

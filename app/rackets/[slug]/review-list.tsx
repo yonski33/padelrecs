@@ -1,5 +1,4 @@
 import { HighlightToggle } from "../../highlight-toggle";
-import { showsHighlights } from "../../../lib/highlights";
 import { Fragment } from "react";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -8,7 +7,7 @@ import { helpfulRank } from "../../../lib/review-order";
 import { ChipRow } from "../../chip-row";
 
 export type Sort = "newest" | "helpful";
-export type ListItem = { key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; tags: string[]; variant?: string | null; verdict?: Verdict | null; node: () => ReactNode };
+export type ListItem = { marked?: boolean; key: string; kind: "players" | "web"; date: string; older?: boolean; helpful: number; score: number; tags: string[]; variant?: string | null; verdict?: Verdict | null; node: () => ReactNode };
 export type Verdict = "positive" | "mixed" | "negative";
 export const VERDICT_FILTERS: Verdict[] = ["positive", "mixed", "negative"];
 /** Reviews shown at first, and added by each "Show more". The page stays short; the rest are a click away. */
@@ -65,7 +64,8 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     <div>{(["newest", "helpful"] as const).map(v => <Link key={v} href={reviewsHref(href, { sort: v, tag, variant, verdict })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most detailed"}</Link>)}</div>
     </details>;
   // The highlights switch sits beside the sort, on sites that have highlights.
-  const hl = showsHighlights(niche.id) && items.length > 0;
+  // The switch shows wherever a review on the page has highlights (saved in the database, or the padel fallback).
+  const hl = items.some(i => i.marked);
   const sortArea = hl ? <div className="sort-area"><HighlightToggle/>{sortMenu}</div> : sortMenu;
 
   return <section id="reviews" className="review-list">

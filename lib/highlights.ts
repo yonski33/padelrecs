@@ -4,38 +4,52 @@
 
 import padel from "../db/highlights/padel.json";
 
-export type Segment = { text: string; tone?: "pos" | "neg" };
+/** tone: "mark" is the plain yellow marker; "pos" / "neg" are praise and complaint. */
+export type Segment = { text: string; tone?: "pos" | "neg" | "mark" };
 
-/** Phrases picked per review by a Sonnet pass (owner, 2026-11-14), keyed "p:<player review id>" / "w:<web review id>".
- *  Each is an exact piece of the text the card shows. Reviews without an entry fall back to the tag patterns below. */
-const STORED: Record<string, Record<string, string[]>> = { padel };
+/** Phrases now live on each review in the database (reviews.highlights / external_reviews.highlights, saved by
+ *  scripts/save-highlights.mts). This file keeps only the Vertex 05 two-colour reference, keyed "p:<id>" / "w:<id>". */
+/** A stored phrase: plain text (one yellow marker), or with a tone, drawn in the Positive / Negative pill colours
+ *  (owner trial 2026-11-14, Vertex 05 only for now). */
+export type StoredPhrase = string | { t: string; tone: "pos" | "neg" };
+const STORED: Record<string, Record<string, StoredPhrase[]>> = { padel: padel as Record<string, StoredPhrase[]> };
 
 /** Whether a niche shows highlights (and so the on/off switch). */
+/** Whether a niche has highlights without saved phrases (the padel tag patterns and Vertex 05 reference). Other sites show
+ *  highlights, and the switch, wherever their reviews have phrases saved in the database. */
 export const showsHighlights = (niche: string) => niche in STORED;
 
-/** Segments for a review: its stored phrases when it has them, else the tag patterns. */
-export function reviewSegments(niche: string, key: string, text: string, tags: readonly string[], toneOf: (tag: string) => string | undefined): Segment[] {
+/** Segments for a review. Order: the Vertex 05 two-colour reference (toned JSON entries), then the phrases saved on the review
+ *  in the database (`saved`, owner 2026-11-14), then the JSON files, then the tag patterns. */
+export function reviewSegments(niche: string, key: string, text: string, tags: readonly string[], toneOf: (tag: string) => string | undefined, saved?: readonly string[] | null): Segment[] {
   const stored = STORED[niche]?.[key];
+  const toned = stored?.some(p => typeof p !== "string");
+  if (saved?.length && !toned) {
+    const segs = phraseSegments(text, saved);
+    if (segs.length > 1) return segs;
+  }
   if (stored) {
     const segs = phraseSegments(text, stored);
     if (segs.length > 1) return segs;
   }
-  return highlightSegments(niche, text, tags, toneOf);
+  // The tag patterns carry a tone, but only stored phrases are drawn in two colours for now: these stay one yellow.
+  return highlightSegments(niche, text, tags, toneOf).map(x => ({ text: x.text, ...(x.tone ? { tone: "mark" as const } : {}) }));
 }
 
 /** Marks each phrase where it first appears, skipping any that are missing or overlap an earlier one. */
-export function phraseSegments(text: string, phrases: readonly string[]): Segment[] {
-  const spans: [number, number][] = [];
-  for (const p of phrases.slice(0, MAX_HIGHLIGHTS)) {
+export function phraseSegments(text: string, phrases: readonly StoredPhrase[]): Segment[] {
+  const spans: [number, number, Segment["tone"]][] = [];
+  for (const ph of phrases.slice(0, MAX_HIGHLIGHTS)) {
+    const p = typeof ph === "string" ? ph : ph.t, tone = typeof ph === "string" ? "mark" : ph.tone;
     const at = p ? text.indexOf(p) : -1;
     if (at < 0 || spans.some(([a, b]) => at < b && a < at + p.length)) continue;
-    spans.push([at, at + p.length]);
+    spans.push([at, at + p.length, tone]);
   }
   if (!spans.length) return [{ text }];
   spans.sort((a, b) => a[0] - b[0]);
   const out: Segment[] = [];
   let pos = 0;
-  for (const [a, b] of spans) { if (a > pos) out.push({ text: text.slice(pos, a) }); out.push({ text: text.slice(a, b), tone: "pos" }); pos = b; }
+  for (const [a, b, tone] of spans) { if (a > pos) out.push({ text: text.slice(pos, a) }); out.push({ text: text.slice(a, b), tone }); pos = b; }
   if (pos < text.length) out.push({ text: text.slice(pos) });
   return out;
 }
