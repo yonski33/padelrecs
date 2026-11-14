@@ -2974,6 +2974,7 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 
 /* Quick ratings (2026-11-14 pivot): app/quick-vote.tsx, tap a ball under the sentiment bar, and the rows on /rate. */
 .qv-row { margin: 12px 0 2px; }
+.lp-hero .qv-row { grid-column: 1 / -1; }
 .qv-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
 .qv-ask { font-size: 14px; font-weight: 600; }
 .qv-tail, .qv-thanks { font-size: 13px; color: var(--lt-mute, #8a857c); }
@@ -2982,13 +2983,14 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .qv-thanks a:hover { text-decoration: underline; }
 .qv-error { margin: 6px 0 0; font-size: 13px; color: #a3392b; }
 .tb { display: inline-flex; gap: 4px; }
-.tb-ball { width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: var(--score-off) center / contain no-repeat; cursor: pointer; transition: transform .15s ease; }
-.tb-ball.on { background-image: var(--score-on); }
-.tb-ball:hover { transform: translateY(-2px); }
-.tb-ball.pop { transform: translateY(-7px) scale(1.15); }
-.tb-ball:focus-visible { outline: 2px solid var(--lt-acc, #2f6b3a); outline-offset: 2px; }
-.tb-ball:disabled { cursor: progress; }
-.tb-sm .tb-ball { width: 22px; height: 22px; }
+.tb .tb-ball, .tb .tb-ball:hover, .tb .tb-ball:active, .tb .tb-ball:disabled { flex: none; width: 28px; height: 28px; min-width: 0; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 50%; box-shadow: none; opacity: 1;
+  background: var(--score-off) center / contain no-repeat; cursor: pointer; transition: transform .15s ease; }
+.tb .tb-ball.on, .tb .tb-ball.on:hover, .tb .tb-ball.on:active, .tb .tb-ball.on:disabled { background: var(--score-on) center / contain no-repeat; }
+.tb .tb-ball:hover { transform: translateY(-2px); }
+.tb .tb-ball.pop { transform: translateY(-6px) scale(1.12); }
+.tb .tb-ball:focus-visible { outline: 2px solid var(--lt-acc, #2f6b3a); outline-offset: 2px; }
+.tb .tb-ball:disabled { cursor: progress; }
+.tb.tb-sm .tb-ball, .tb.tb-sm .tb-ball:hover, .tb.tb-sm .tb-ball:active { width: 22px; height: 22px; }
 .qv-choice > span { display: block; margin-bottom: 6px; font-size: 13px; color: var(--lt-mute, #8a857c); }
 .qv-choice > div { display: flex; flex-wrap: wrap; gap: 6px; }
 .qv-choice button { padding: 6px 12px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 999px; background: #fff; color: var(--lt-ink, #262421); font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; }
