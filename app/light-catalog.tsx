@@ -87,7 +87,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
     const pool = preSf.filter(r => inShape(r) && passesSf(others, r as unknown as Record<string, unknown>)).map(r => sf.classify(r as unknown as Record<string, unknown>));
     const groups = sf.groups.map(g => ({ ...g, n: pool.filter(ks => ks.includes(g.key)).length })).filter(g => g.n > 0 || sfWant.get(sf.id)?.has(g.key));
     return { sf, groups };
-  }).filter(x => x.groups.length > 1);
+  }).filter(x => x.groups.length > 1 || sfWant.has(x.sf.id)); // a chosen filter stays, so it can be cleared
   const refined = !!(f.q || (f.brand && !fixed.brand) || f.year || tags.length || sfWant.size > 0 || specFacets.some(s => (f.specs?.[s.column])?.length));
   // The live counts are for what the page covers: the whole catalogue, a category or a brand.
   const scope = data.listed.filter(r => (!fixed.brand || r.brandId === fixed.brand) && (!fixed.shape || inShape(r)));
