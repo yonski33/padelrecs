@@ -1,4 +1,4 @@
-import { HighlightToggle, HighlightBoot } from "../../highlight-toggle";
+import { HighlightToggle } from "../../highlight-toggle";
 import { showsHighlights } from "../../../lib/highlights";
 import { Fragment } from "react";
 import Link from "next/link";
@@ -69,7 +69,6 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
   const sortArea = hl ? <div className="sort-area"><HighlightToggle/>{sortMenu}</div> : sortMenu;
 
   return <section id="reviews" className="review-list">
-    {hl && <HighlightBoot/>}
     {/* The page's "what people say" tags sit here, right above the reviews they filter. */}
     {intro}
     <div className="feed-heading">

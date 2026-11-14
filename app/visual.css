@@ -2977,7 +2977,7 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .lv-text mark.hl { color: inherit; padding: 0 2px; margin: 0 -1px; border-radius: 3px 6px 4px 7px; -webkit-box-decoration-break: clone; box-decoration-break: clone;
   background: linear-gradient(104deg, rgba(255,226,102,0) 0.4%, rgba(255,226,102,.34) 2.5%, rgba(255,226,102,.26) 96%, rgba(255,226,102,0) 99.6%); }
 
-/* Highlights on/off switch beside the review sort (owner 2026-11-14). Off flips html.hl-off, which drops the marker. */
+/* Highlights on/off switch beside the review sort (owner 2026-11-14). Off sets html[data-hl="off"], which drops the marker. */
 .sort-area { display: flex; align-items: baseline; gap: 18px; flex: none; }
 .hl-toggle { display: inline-flex; align-items: center; gap: 7px; padding: 2px 0 6px; border: 0; background: none; font: inherit; font-size: 14px; color: var(--ink-3); cursor: pointer; }
 .hl-toggle-track { position: relative; width: 28px; height: 16px; border-radius: 99px; background: #d9d5cc; transition: background .15s; flex: none; align-self: center; }
@@ -2986,4 +2986,4 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .hl-toggle[aria-checked="true"] .hl-toggle-dot { transform: translateX(12px); }
 .hl-toggle:hover, .hl-toggle:active { background: none; border-color: transparent; color: var(--ink); }
 .hl-toggle:focus-visible { outline: 2px solid var(--lt-green, #1f6a35); outline-offset: 3px; border-radius: 4px; }
-html.hl-off .lv-text mark.hl { background: none; padding: 0; margin: 0; }
+html[data-hl="off"] .lv-text mark.hl { background: none; padding: 0; margin: 0; }
