@@ -23,6 +23,9 @@ import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../c
 import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
 import QuickVote from "../../quick-vote";
+import QuickTakePage from "./quick-take";
+import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
+import { quickTakeFor } from "../../../db/quick-take";
 import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
@@ -54,8 +57,8 @@ function SideArt({ x, brand }: { x: Parameters<typeof shopPhoto>[0] & Parameters
   return photo ? <img className="sug-photo" src={photo} alt="" loading="lazy"/> : <ProductIcon shape={x.shape} brand={brand}/>;
 }
 
-export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
-  const [{slug}, data] = await Promise.all([params, catalog()]);
+export async function generateMetadata({params, searchParams}: {params: Promise<{slug: string}>; searchParams: Promise<Record<string, string | string[] | undefined>>}): Promise<Metadata> {
+  const [{slug}, data, query] = await Promise.all([params, catalog(), searchParams]);
   const r = data.rackets.find(x => x.slug === slug);
   if (!r) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
   const name = displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name);
@@ -74,6 +77,13 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
        (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])
     : base.description;
   const images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
+  // Quick-take pages (recipe "SEO"): "<Racket> review (<year>): what players say | PadelRecs", the hook as the description.
+  const qt = query.qt !== "off" ? await quickTakeFor(r.id, r.slug) : null;
+  if (qt) {
+    const reports = data.external.filter(e => e.racketId === r.id).length + data.reviews.filter(x => x.racketId === r.id).length;
+    const seo = quickTakeSeo(name.replace(new RegExp(`\\s+${r.year}$`), ""), r.year, qt, reports, niche.site.name);
+    return { title: { absolute: seo.title }, description: seo.description, alternates: { canonical: productHref(r) }, openGraph: { title: seo.title, description: seo.description, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
+  }
   return { title: { absolute: title }, description, alternates: { canonical: productHref(r) }, openGraph: { title, description, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
 }
 
@@ -318,6 +328,31 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           <h2>{`Common questions about ${name}`}</h2>
           {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}
         </section>;
+  // The editorial quick take (owner 2026-11-15, lib/quick-take.ts): when the product has a checked block, it replaces the
+  // top of the page; the full list of reports follows it. ?qt=off shows the normal page.
+  const qt = query.qt !== "off" ? await quickTakeFor(r.id, r.slug) : null;
+  if (qt) {
+    const photoOf = (x: typeof r) => photoHidden(x) ? null : shopPhoto(x) ?? amazonPhoto(x)?.image ?? null;
+    const slugs = new Set([...qt.compare?.cards.map(c => c.slug) ?? [], ...qt.modules.map(m => m.type === "version" ? m.other.slug : null)].filter((x): x is string => !!x));
+    const products = new Map(data.rackets.filter(x => slugs.has(x.slug)).map(x => [x.slug, { slug: x.slug, name: displayName(x.name, data.brands.find(b => b.id === x.brandId)?.name), href: productHref(x), photo: photoOf(x) }]));
+    // "Siux Electra Pro ST4 2025" → "Siux Electra Pro ST4": the year sits beside the H1 (recipe "SEO").
+    const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
+    const qtLd = { "@context": "https://schema.org", "@graph": [
+      { "@type": "FAQPage", mainEntity: qt.answers.map(a => ({ "@type": "Question", name: a.q, acceptedAnswer: { "@type": "Answer", text: `${a.badge}. ${plainText(a.a)}` } })) },
+      jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList"),
+    ].filter(Boolean) };
+    return <QuickTakePage qt={qt} racketId={r.id} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
+      crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
+      reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
+        ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating) }))]}
+      reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} signal={sig?.signal ?? null} site={niche.site.name} products={products}
+      specs={[r.shape, r.weight, r.balance && `Balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+      fontClass={lightFont.variable} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []} jsonLd={qtLd}
+      rest={<div className={`product v2 lt-page lp ${lightFont.className}`}>
+        <ReviewList verdict={verdict} title={`Every ${niche.people.one} report`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}/>
+        {nextBox}
+      </div>}/>;
+  }
   // The light direction's product page, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
   if (isLight(query.look)) {
     // Compact, after the owner's mockup (2026-11-12): photo and numbers in one tight block, what people mention as chips,
