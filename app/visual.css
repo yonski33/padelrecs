@@ -2984,5 +2984,6 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .hl-toggle-dot { position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); transition: transform .15s; }
 .hl-toggle[aria-checked="true"] .hl-toggle-track { background: #e9c53a; }
 .hl-toggle[aria-checked="true"] .hl-toggle-dot { transform: translateX(12px); }
+.hl-toggle:hover, .hl-toggle:active { background: none; border-color: transparent; color: var(--ink); }
 .hl-toggle:focus-visible { outline: 2px solid var(--lt-green, #1f6a35); outline-offset: 3px; border-radius: 4px; }
 html.hl-off .lv-text mark.hl { background: none; padding: 0; margin: 0; }
