@@ -34,7 +34,7 @@ test("padel keeps its exact wording, options and visuals", () => {
   assert.deepEqual(padel.profile.playingSide.options.map(o => o.value), ["Left", "Right", "Both"]);
   assert.deepEqual(padel.profile.playerLevel.options.map(o => o.value), ["Beginner", "Intermediate", "Advanced", "Competitive"]);
   assert.deepEqual(padel.specs.map(s => s.column), ["shape", "weight", "balance", "core", "surface"]);
-  assert.equal(padel.tags.length, 16);
+  assert.equal(padel.tags.length, 17);
   assert.equal(padel.theme["--green"], "#1b6b43");
   assert.equal(padel.seo.homeTitle, "PadelRecs – Real Player Reviews of Padel Rackets");
 });

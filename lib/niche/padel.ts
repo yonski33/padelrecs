@@ -108,6 +108,7 @@ export const padel: Niche = {
     { label: "great in defence", tone: "pos" },
     { label: "head-heavy", tone: "neg" },
     { label: "small sweet spot", tone: "neg" },
+    { label: "trampoline effect", tone: "neg" },
     { label: "tiring in long matches", tone: "neg" },
     { label: "vibrates on mishits", tone: "neg" },
     { label: "demanding", tone: "neg" },
