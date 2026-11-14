@@ -3,19 +3,28 @@
 // reports, the rankings' places, the quick-take level band. No guessing: thin data says so instead of giving a verdict.
 import type { QuickChoice } from "./quick-match";
 
+/** A level range, 0 beginner … 2 advanced. */
+export type Band = { from: number; to: number };
+/** Where a racket's level comes from (owner 2026-11-15, RACKET-FIT-PAGE.md "Racket level band: sources"): the brand's own
+ *  product page, YouTube reviewers who state a level (2+ channels agreeing), and the players' reports (the quick-take band). */
+export type LevelSources = { maker?: Band & { words: string; url: string }; youtube?: Band & { channels: number; of: number }; players?: Band };
 export type FitFacts = {
   /** Every stored report on the racket. */
   reports: number;
   /** Tag mentions: good tags counted from positive and mixed reports only (like the finder), the rest from all. */
   tags: Record<string, number>;
-  /** Quick-take level band, 0 beginner … 2 advanced. */
-  band?: { from: number; to: number };
+  /** Quick-take level band (from player reports), 0 beginner … 2 advanced. */
+  band?: Band;
+  /** Maker and YouTube levels beside the players' band; see levelSources(). */
+  levels?: LevelSources;
   /** Place on the control / power rankings, when it's on them. */
   places?: { control?: number; power?: number };
 };
 export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[] };
 
 export const MIN_FIT_REPORTS = 20;
+/** Arm-friendly mentions needed before the fit check vouches for a sore arm. */
+export const ARM_BAR = 3;
 const CONTROL = ["good control", "great in defence"], POWER = ["easy power", "great on smashes"];
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const n = (f: FitFacts, tags: string[]) => tags.reduce((a, t) => a + (f.tags[t] ?? 0), 0);
@@ -41,14 +50,53 @@ function styleCheck(c: QuickChoice, f: FitFacts): Check {
   return { level: "hard", reason: `You want ${c.style}, but this one is a ${lean} racket: ${evidence}.` };
 }
 
+const span = (b: Band) => b.from === b.to ? LEVELS[b.from] : `${LEVELS[b.from]} to ${LEVELS[b.to]}`;
+const has = (b: Band, i: number) => i >= b.from && i <= b.to;
+/** The level sources a racket has, the players' band included. */
+export function levelSources(f: FitFacts): LevelSources {
+  return { ...f.levels, players: f.levels?.players ?? f.band };
+}
+/** "the brand and 3 reviewers say beginner to intermediate · players say intermediate": what backs a band, sources that
+ *  agree grouped together. */
+export function levelBacking(f: FitFacts): string | null {
+  const src = levelSources(f);
+  const named: [string, Band][] = [];
+  if (src.maker) named.push(["the brand", src.maker]);
+  // The brand's own short term when it has one ("Level: Professional" → "professional"), else the range.
+  const brandTerm = src.maker?.words.replace(/^(player\s+)?level( of play)?:?\s*/i, "").trim().toLowerCase();
+  const brandSays = brandTerm && brandTerm.split(/\s+/).length <= 3 ? brandTerm.replace(/\s*[-/]\s*/g, " to ") : null;
+  if (src.youtube) named.push([`${src.youtube.channels} reviewers`, src.youtube]);
+  if (src.players) named.push(["players", src.players]);
+  if (!named.length) return null;
+  const groups = new Map<string, string[]>();
+  for (const [who, b] of named) { const k = span(b); groups.set(k, [...groups.get(k) ?? [], who]); }
+  return [...groups].map(([k, whos]) => [whos.length === 1 && whos[0] === "the brand" && brandSays ? brandSays : k, whos] as const).map(([k, whos]) => `${whos.length > 1 ? `${whos.slice(0, -1).join(", ")} and ${whos.at(-1)}` : whos[0]} ${whos.length === 1 && whos[0] !== "players" && !whos[0].endsWith("reviewers") ? "says" : "say"} ${k}`).join(" · ");
+}
+/** The band the sources agree on: each level that at least half of them include. */
+export function combinedBand(f: FitFacts): Band | undefined {
+  const bands = Object.values(levelSources(f)).filter((b): b is Band => !!b);
+  if (!bands.length) return undefined;
+  const fits = [0, 1, 2].filter(i => bands.filter(b => has(b, i)).length * 2 >= bands.length);
+  return fits.length ? { from: fits[0], to: fits[fits.length - 1] } : undefined;
+}
+
 function levelCheck(c: QuickChoice, f: FitFacts): Check {
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
-  if (f.band) {
-    const span = `${LEVELS[f.band.from]}${f.band.to > f.band.from ? ` to ${LEVELS[f.band.to]}` : ""}`;
-    if (i < f.band.from || i > f.band.to) return { level: "hard", reason: `Players put it at ${span}, not for ${who}.` };
-    return { level: "ok", reason: `Players put it at ${span}: that includes you.` };
+  const src = levelSources(f);
+  // Brands label most top-line rackets "Professional". Such a label says "not aimed at beginners", so it counts for a beginner;
+  // it isn't counted against intermediates. A brand range that names lower levels counts in full (owner 2026-11-15).
+  const makerCounts = !!src.maker && (src.maker.from < 2 || c.level !== "intermediate");
+  const named = ([["the brand", makerCounts ? src.maker : undefined], ["reviewers", src.youtube], ["players", src.players]] as [string, Band | undefined][]).filter((x): x is [string, Band] => !!x[1]);
+  if (named.length) {
+    const yes = named.filter(([, b]) => has(b, i)), no = named.filter(([, b]) => !has(b, i));
+    const backing = levelBacking(f);
+    if (!no.length) return { level: "ok", reason: `Level: ${backing}. That includes you.` };
+    if (!yes.length) return { level: "hard", reason: `Level: ${backing}. Not aimed at ${who}.` };
+    // Sources disagree: say who, and call it a demo-first (owner: note it when player reports disagree).
+    const whoNot = no.map(([w]) => w).join(" and ");
+    return { level: "soft", reason: `Level: ${backing}. ${whoNot[0].toUpperCase()}${whoNot.slice(1)} ${no.length > 1 || no[0][0] !== "the brand" ? "don't" : "doesn't"} put it at ${c.level}.` };
   }
-  // No band yet: the finder's level signal, forgiving against demanding mentions.
+  // No level sources: the finder's level signal, forgiving against demanding mentions.
   const forgiving = f.tags.forgiving ?? 0, demanding = (f.tags.demanding ?? 0) + (c.level === "beginner" ? f.tags["small sweet spot"] ?? 0 : 0);
   if (c.level === "advanced") return { level: "unknown" };
   if (forgiving + demanding < 3) return { level: "unknown" };
@@ -60,8 +108,9 @@ function armCheck(c: QuickChoice, f: FitFacts): Check {
   if (!c.arm) return { level: "ok" };
   const kind = f.tags["arm-friendly"] ?? 0, harsh = f.tags["vibrates on mishits"] ?? 0;
   if (harsh > kind) return { level: "hard", reason: `Sore arm: ${players(harsh)} mention vibration, only ${kind} call it arm-friendly.` };
-  if (kind >= 2) return { level: "ok", reason: `${players(kind)} call it arm-friendly${harsh ? `, ${harsh} mention vibration` : ""}.` };
-  return { level: "unknown" };
+  // Owner 2026-11-15: 3 arm-friendly mentions is the bar ("a racket that hurts your arm will never get 3 of 30–40 saying it's good").
+  if (kind >= ARM_BAR) return { level: "ok", reason: `${players(kind)} call it arm-friendly${harsh ? `, ${harsh} mention vibration` : ""}.` };
+  return { level: "unknown", reason: `Sore arm: only ${kind} ${kind === 1 ? "player calls" : "players call"} it arm-friendly so far, too few to vouch for it.` };
 }
 
 /** The verdict for a visitor's picks. Probably not: a hard conflict. Maybe: one soft conflict. Good: no conflicts and at least
@@ -74,14 +123,15 @@ export function fitVerdict(c: QuickChoice, f: FitFacts): FitVerdict {
   if (f.reports < MIN_FIT_REPORTS || known === 0 || known < Math.ceil(asked / 2))
     return { kind: "thin", label: "Not enough reports from players like you yet", icon: "🫥", reasons: reasons(["hard", "soft", "ok"]).slice(0, 2) };
   if (checks.some(x => x.level === "hard")) return { kind: "no", label: "Probably not your racket", icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3) };
-  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"])].slice(0, 3) };
-  return { kind: "good", label: "Good match for you", icon: "👍", reasons: reasons(["ok"]).slice(0, 3) };
+  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3) };
+  return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3) };
 }
 
 /** "Generally best for" chips when there are no picks: the band, the lean, arm comfort, only what the data supports. */
 export function bestFor(f: FitFacts): string[] {
   const out: string[] = [];
-  if (f.band) out.push(f.band.from === f.band.to ? LEVELS[f.band.from] : `${LEVELS[f.band.from]} → ${LEVELS[f.band.to]}`);
+  const band = combinedBand(f);
+  if (band) out.push(band.from === band.to ? LEVELS[band.from] : `${LEVELS[band.from]} → ${LEVELS[band.to]}`);
   const { lean } = styleLean(f);
   if (lean) out.push(lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags["arm-friendly"] ?? 0, harsh = f.tags["vibrates on mishits"] ?? 0;

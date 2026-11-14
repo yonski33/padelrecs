@@ -50,3 +50,11 @@ test("titles", () => {
   assert.deepEqual(matchTitle({ style: "control", level: "beginner", arm: true }, "rackets"), { title: "Top control rackets for you", sub: "ranked for beginners · arm-friendly first" });
   assert.equal(matchSeoTitle({ style: "control", level: "beginner", arm: false }, "padel rackets"), "Best control padel rackets for beginners");
 });
+
+test("a style's ranking puts its rackets first, in order, and the rest still follow on tag counts", () => {
+  const f = { questions: [{ id: "style", question: "", options: [{ label: "Control", want: ["good control"], list: "best-control" }] }, finder.questions[1]] };
+  const listed = [p("onlist2", { "good control": 2 }), p("offlist", { "good control": 30 }), p("onlist1", { "good control": 1 })]
+    .map(x => ({ ...x, lists: (x.id === "onlist1" ? { "best-control": 1 } : x.id === "onlist2" ? { "best-control": 2 } : {}) as Record<string, number> }));
+  const got = quickMatch(listed, f, readChoice({ style: "control" }), { signal, negativeTags: [], level: () => undefined, count: 10 }).map(m => m.product.id);
+  assert.deepEqual(got, ["onlist1", "onlist2", "offlist"]);
+});

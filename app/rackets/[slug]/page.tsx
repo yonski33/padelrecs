@@ -25,6 +25,8 @@ import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
 import QuickVote from "../../quick-vote";
 import QuickTakePage from "./quick-take";
 import RacketFit from "./racket-fit";
+/** Beginner-friendly pilots on the fit page without a quick-take block (owner 2026-11-15, RACKET-FIT-PAGE.md). */
+const FIT_PILOTS_WITHOUT_BLOCK = new Set<string>(["siux-diablo-pro-4-2025", "adidas-metalbone-carbon-ctrl-3-4-2025"]);
 import { readChoice } from "../../../lib/quick-match";
 import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
@@ -334,6 +336,31 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // The editorial quick take (owner 2026-11-15, lib/quick-take.ts): when the product has a checked block, it replaces the
   // top of the page; the full list of reports follows it. ?qt=off shows the normal page.
   const qt = query.qt !== "off" ? await quickTakeFor(r.id, r.slug) : null;
+  // Beginner-friendly pilots (owner 2026-11-15) get the fit page before they have a quick-take block: lines from tag counts,
+  // takes from two real player excerpts. Only these slugs; every other product without a block keeps today's page.
+  if (!qt && FIT_PILOTS_WITHOUT_BLOCK.has(r.slug) && query.layout !== "long" && query.qt !== "off") {
+    const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
+    const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240;
+    const pickTake = (ok: boolean) => {
+      const own = reviews.filter(x => ok ? x.rating >= 4 : x.rating <= 3).filter(x => english(x.reviewText)).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
+      if (own) return { id: own.id, text: own.reviewText, verbatim: true, ok };
+      const web = external.filter(e => ok ? e.sentiment === "positive" : e.sentiment === "negative" || e.sentiment === "mixed").filter(e => english(e.excerpt) && !e.sourceLanguage)
+        .sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""))[0];
+      return web ? { id: web.id, text: web.excerpt!, verbatim: true, ok } : null;
+    };
+    const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
+    return <RacketFit qt={null} line={shortLine(r) ?? listLine(r)} quotes={[pickTake(true), pickTake(false)].filter((x): x is NonNullable<typeof x> => !!x)}
+      racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null}
+      crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
+      reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
+        ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
+      reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} site={niche.site.name}
+      specs={[r.weight, r.balance && `balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+      buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
+      fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
+      choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined })}
+      picked={picked} jsonLd={{ "@context": "https://schema.org", "@graph": [jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList")].filter(Boolean) }}/>;
+  }
   if (qt) {
     const photoOf = (x: typeof r) => photoHidden(x) ? null : shopPhoto(x) ?? amazonPhoto(x)?.image ?? null;
     const slugs = new Set([...qt.compare?.cards.map(c => c.slug) ?? [], ...qt.modules.map(m => m.type === "version" ? m.other.slug : null)].filter((x): x is string => !!x));

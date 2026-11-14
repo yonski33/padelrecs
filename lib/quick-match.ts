@@ -62,6 +62,9 @@ export function levelBonus(e: LevelEvidence | undefined, level: Level) {
   return band + LIKED_WEIGHT * Math.min(LIKED_CAP, e.liked[level] ?? 0);
 }
 
+/** Being on the chosen style's ranking puts a racket ahead of every racket that isn't; its place orders the list members. */
+const ON_LIST = 2, LIST_PLACE = 0.6;
+
 export type QuickMatch<P> = { product: P; score: number; reasons: Reason[]; watch: Reason | null; arm: number; levelLiked: number; inBand: boolean | null };
 
 /** The ranked list for a choice. Nothing chosen: the Player score order (signal), as the home page always was. */
@@ -76,8 +79,12 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
     return pool.filter(p => opts.signal(p.id) !== null).sort((a, b) => opts.signal(b.id)! - opts.signal(a.id)! || b.reviews - a.reviews || a.id.localeCompare(b.id))
       .slice(0, opts.count).map(p => ({ product: p, score: opts.signal(p.id)!, reasons: [], watch: null, ...extra(p) }));
   }
-  const matched = matchFinder(pool, chosenOptions(finder, c), opts.negativeTags, pool.length, opts.rankWeight);
-  return matched.map(m => ({ ...m, score: m.score + levelBonus(opts.level(m.product.id), c.level), ...extra(m.product) }))
+  // A style that stands for a ranking (Best for control / power): rackets on that live list come first, in list order, and the
+  // rest still follow on their tag counts (owner 2026-11-15), instead of the finder's hard cut to the list.
+  const chosen = chosenOptions(finder, c), lists = chosen.flatMap(o => o.list ? [o.list] : []);
+  const matched = matchFinder(pool, chosen.map(({ list: _list, ...o }) => o), opts.negativeTags, pool.length, opts.rankWeight);
+  const listBonus = (p: P) => lists.reduce((a, slug) => { const place = p.lists?.[slug]; return a + (place ? ON_LIST + LIST_PLACE * Math.max(0, 1 - (place - 1) / 10) : 0); }, 0);
+  return matched.map(m => ({ ...m, score: m.score + listBonus(m.product) + levelBonus(opts.level(m.product.id), c.level), ...extra(m.product) }))
     .sort((a, b) => b.score - a.score || b.product.reviews - a.product.reviews || a.product.id.localeCompare(b.product.id)).slice(0, opts.count);
 }
 

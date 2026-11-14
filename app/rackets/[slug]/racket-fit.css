@@ -48,6 +48,8 @@
   .rf-best { margin: 0; padding-top: 10px; border-top: 2px dashed var(--ink); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; }
   .rf-best span { font: 12px var(--mono); color: var(--mute); }
   .rf-best b { font-weight: 400; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--pos-wash); }
+  .rf-lvl { margin: 0; font: 12px var(--mono); color: var(--soft); }
+  .rf-verdict .rf-lvl { margin-bottom: 6px; }
   .rf-bar { padding: 12px 16px; border-bottom: 2px dashed var(--ink); }
   .rf-bar .rf-seg a { padding: 3px 9px; font-size: 13px; }
   .rf-bar .rf-lv a, .rf-bar > a { padding: 2px 9px !important; font-size: 13px !important; }

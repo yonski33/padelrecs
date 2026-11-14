@@ -1,22 +1,31 @@
 import { cache } from "react";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
-import { topLists } from "./rankings/lists";
-import { finderPool, withRankings, type FinderProduct } from "../lib/finder";
+import { rankedLists } from "./rankings/lists";
+import { finderPool, type FinderProduct } from "../lib/finder";
 import { LEVELS, type Level, type LevelEvidence } from "../lib/quick-match";
-import type { FitFacts } from "../lib/fit-verdict";
+import { combinedBand, type FitFacts, type LevelSources } from "../lib/fit-verdict";
+import padelLevels from "../db/level-sources/padel.json";
 import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
+/** Maker and YouTube levels by product slug (db/level-sources/<niche>.json), beside the players' band. */
+const LEVEL_SOURCES: Record<string, Record<string, LevelSources>> = { padel: padelLevels as unknown as Record<string, LevelSources> };
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
-  const [data, sigs, takes] = await Promise.all([catalog(), productSignals(), quickTakeHooks()]);
+  const [data, sigs, takes, live] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists()]);
   const finder = niche.finder!;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
-  const pool = withRankings(finderPool({ ...finder, maxAgeYears: niche.feedMaxAgeYears }, data, good), finder, topLists, data, niche.tags);
+  // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
+  // that one used another order, so "control" picked a different ten than the Best for control page (owner, 2026-11-15).
+  const places = new Map<string, Record<string, number>>();
+  for (const slug of new Set(finder.questions.flatMap(q => q.options.flatMap(o => o.list ?? [])))) {
+    live.lists.find(l => l.list.slug === slug)?.entries.forEach(e => places.set(e.product.id, { ...places.get(e.product.id), [slug]: e.rank }));
+  }
+  const pool = finderPool({ ...finder, maxAgeYears: niche.feedMaxAgeYears }, data, good).map(p => ({ ...p, lists: places.get(p.id) ?? {} }));
   const byId = new Map(pool.map(p => [p.id, p]));
   const likedBy = new Map<string, Partial<Record<Level, number>>>();
   for (const r of data.reviews) {
@@ -24,7 +33,13 @@ export const matchContext = cache(async () => {
     if (!lv || r.rating < 4) continue;
     const m = likedBy.get(r.racketId) ?? {}; m[lv] = (m[lv] ?? 0) + 1; likedBy.set(r.racketId, m);
   }
-  const level = (id: string): LevelEvidence | undefined => { const liked = likedBy.get(id), band = takes.get(id)?.band; return liked || band ? { liked: liked ?? {}, band } : undefined; };
+  const slugOf = new Map(data.rackets.map(r => [r.id, r.slug]));
+  const sourcesOf = (id: string): LevelSources | undefined => LEVEL_SOURCES[niche.id]?.[slugOf.get(id) ?? ""];
+  // The band quick match ranks with is the one the sources agree on (brand, reviewers, players), like the fit check.
+  const level = (id: string): LevelEvidence | undefined => {
+    const liked = likedBy.get(id), band = combinedBand({ reports: 0, tags: {}, band: takes.get(id)?.band, levels: sourcesOf(id) });
+    return liked || band ? { liked: liked ?? {}, band } : undefined;
+  };
   const signal = (id: string) => sigs.get(id)?.signal ?? null;
   const listOf = (label: string) => finder.questions.find(q => q.id === "style")?.options.find(o => o.label === label)?.list;
   const [controlList, powerList] = [listOf("Control"), listOf("Power")];
@@ -40,7 +55,7 @@ export const matchContext = cache(async () => {
       for (const x of notes) for (const t of x.tags) if (!(goodSet.has(t) && x.v === "negative")) tags[t] = (tags[t] ?? 0) + 1;
     }
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
-    return { reports, tags, band: takes.get(id)?.band, places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    return { reports, tags, band: takes.get(id)?.band, levels: sourcesOf(id), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts };
 });

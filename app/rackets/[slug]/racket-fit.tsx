@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import "./racket-fit.css";
 import { spans, sentimentWords, type QuickTake } from "../../../lib/quick-take";
-import { fitVerdict, bestFor } from "../../../lib/fit-verdict";
+import { fitVerdict, bestFor, levelBacking, levelSources } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { platformName } from "../../../lib/source-label";
@@ -26,7 +26,8 @@ const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "n
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 
 export default async function RacketFit(props: {
-  qt: QuickTake; racketId: string; slug: string; href: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
+  /** The quick-take block; null for the beginner pilots that have none yet (their lines come from tag counts). */
+  qt: QuickTake | null; line?: string | null; quotes?: { id: string; text: string; verbatim: boolean; ok: boolean }[]; racketId: string; slug: string; href: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
   crumbs: ReactNode; reports: QtReport[]; reviews: QtReview[]; site: string; specs: string[]; buy: { url: string; label: string; rel: string } | null;
   fontClass: string; tags: string[]; nicknames: string[]; choice: QuickChoice; picked: boolean; jsonLd: object;
 }) {
@@ -34,6 +35,8 @@ export default async function RacketFit(props: {
   const ctx = await matchContext();
   const facts = ctx.facts(props.racketId);
   const verdict = picked ? fitVerdict(choice, facts) : null;
+  // What backs the level band (brand, reviewers, players), with the brand's page linked (owner 2026-11-15).
+  const backing = levelBacking(facts), maker = levelSources(facts).maker;
   const byId = new Map(reports.map(r => [r.id, r]));
   const count = (k: string) => reports.filter(r => r.sentiment === k).length;
   const [pos, mix, neg] = [count("positive"), count("mixed"), count("negative")];
@@ -53,14 +56,14 @@ export default async function RacketFit(props: {
   </>;
 
   // Six trait lines: the quick-take's own lines where it has them, else what the tag counts say. Text only, no dots.
-  const row = (label: string) => qt.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
+  const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
   const lineOf = (r?: { key?: string; line: string }) => r ? r.line : null;
   const tagLine = (tag: string, say: string) => (facts.tags[tag] ?? 0) >= 3 ? `${facts.tags[tag]} players ${say}.` : null;
   const traits = [
     ["Forgiveness", lineOf(row("Sweet spot")) ?? tagLine("forgiving", "call it forgiving")],
     ["Power", lineOf(row("Power")) ?? tagLine("easy power", "mention easy power")],
     ["Control", lineOf(row("Control")) ?? tagLine("good control", "praise the control")],
-    ["Defence", qt.plays?.court?.defence?.line ?? tagLine("great in defence", "say it's great in defence")],
+    ["Defence", qt?.plays?.court?.defence?.line ?? tagLine("great in defence", "say it's great in defence")],
     ["Arm comfort", lineOf(row("Comfort")) ?? ((facts.tags["arm-friendly"] ?? 0) + (facts.tags["vibrates on mishits"] ?? 0) >= 3 ? `${facts.tags["arm-friendly"] ?? 0} players call it arm-friendly, ${facts.tags["vibrates on mishits"] ?? 0} mention vibration.` : null)],
     ["Speed", lineOf(row("Handling")) ?? tagLine("fast at the net", "call it fast at the net")],
   ].filter((t): t is [string, string] => !!t[1]);
@@ -71,8 +74,9 @@ export default async function RacketFit(props: {
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
-  const d = qt.catch.debate;
-  const tips = qt.tips.slice(0, 2);
+  const d = qt?.catch.debate;
+  const takes = d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? [];
+  const tips = qt?.tips.slice(0, 2) ?? [];
   const total = reports.length;
 
   return <main className={`rf ${props.fontClass}`}>
@@ -87,7 +91,7 @@ export default async function RacketFit(props: {
             <div className="rf-chips">{[props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}</div>
             <h1>{`${props.shortName} review`}</h1>
             <p className="rf-name">{props.shortName}</p>
-            <p className="rf-hook">{qt.hook.good} {qt.hook.catch}</p>
+            {(qt || props.line) && <p className="rf-hook">{qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             <div className="rf-meta">
               {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
               <span>{`${total} player reports${mood ? ` · ${mood}` : ""}`}</span>
@@ -102,12 +106,14 @@ export default async function RacketFit(props: {
             <p>{`Two taps. We'll check it against ${total} player reports.`}</p>
             <div className="rf-grid"><span>I want</span><div>{pills}</div></div>
             {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
+            {backing && <p className="rf-lvl">{`level: ${backing}`}{maker && <> · <a href={maker.url} target="_blank" rel="noopener nofollow">brand page ↗</a></>}</p>}
           </div> : <>
             <div className="rf-bar"><span className="rf-k">fit check</span>{pills}</div>
             <div className="rf-verdict" aria-live="polite">
               <span className="rf-icon" aria-hidden="true">{verdict.icon}</span>
               <div><h2>{verdict.label}</h2>
                 {verdict.reasons.length > 0 && <ul>{verdict.reasons.map(r => <li key={r}>{r}</li>)}</ul>}
+                {maker && <p className="rf-lvl"><a href={maker.url} target="_blank" rel="noopener nofollow">{`brand page: “${maker.words}” ↗`}</a></p>}
                 <Link href={props.href} scroll={false} replace className="rf-reset">start over</Link></div>
             </div>
           </>}
@@ -121,7 +127,7 @@ export default async function RacketFit(props: {
             <div className="rf-said">
               <div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
               <p className="rf-counts"><span>{`👍 ${pos} liked it`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} not for them`}</span></p>
-              {d && <div className="rf-quotes">{[{ t: d.for, ok: true }, { t: d.against, ok: false }].map(({ t, ok }) => <div key={t.id}>
+              {takes.length > 0 && <div className="rf-quotes">{takes.map(t => ({ t, ok: t.ok })).map(({ t, ok }) => <div key={t.id}>
                 <span className={ok ? "ok" : "no"}>{ok ? "✓ worked for them" : "✗ not for them"}</span>
                 <p>{t.verbatim ? `“${t.text}”` : t.text}</p>
                 <small>{who(t.id)}</small>
@@ -167,7 +173,7 @@ export default async function RacketFit(props: {
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from ${total} player reports · every source linked · `}
-          <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test rackets and no brand pays for placement. Thin spot: `}<Rich text={qt.thinSpot}/></span></details>
+          <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test rackets and no brand pays for placement. `}{qt && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
           {" · "}<a href="/contact">spot something wrong?</a></div>
         <p className="rf-made">made by people who own too many rackets 🎾</p>
       </footer>
