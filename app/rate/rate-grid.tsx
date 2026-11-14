@@ -12,6 +12,8 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
   const [brand, setBrand] = useState(""), [query, setQuery] = useState(""), [error, setError] = useState(""), [also, setAlso] = useState<Pick[]>([]);
 
   useEffect(() => {
+    // Read after hydration: the profile lives in localStorage, which the server render can't see.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProfile(loadProfile());
     fetch("/api/racket-votes", { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { mine?: Record<string, number> } | null) => { if (b?.mine) setVotes(b.mine); }).catch(() => {});
@@ -19,7 +21,7 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
 
   const loved = useMemo(() => Object.entries(votes).filter(([, v]) => v >= 4).map(([id]) => id), [votes]);
   useEffect(() => {
-    if (!loved.length) { setAlso([]); return; }
+    if (!loved.length) return;
     const timer = setTimeout(() => fetch(`/api/racket-votes?loved=${loved.map(encodeURIComponent).join(",")}`, { cache: "no-store" })
       .then(r => r.ok ? r.json() : null).then((b: { picks?: Pick[] } | null) => setAlso(b?.picks ?? [])).catch(() => {}), 400);
     return () => clearTimeout(timer);
@@ -56,7 +58,7 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
     {!shown.length && <p className="rate-hint">{`No ${plural} match that. Try another name.`}</p>}
     <section className="rate-summary" aria-live="polite">
       <p><b>{rated}</b>{` ${rated === 1 ? one : plural} rated`}{rated === 0 ? " · tap a verdict on the ones you've played" : ""}</p>
-      {also.length > 0 && <div className="qv-also"><h3>{`${people.many[0].toUpperCase()}${people.many.slice(1)} who love the same ${plural} also love`}</h3>
+      {loved.length > 0 && also.length > 0 && <div className="qv-also"><h3>{`${people.many[0].toUpperCase()}${people.many.slice(1)} who love the same ${plural} also love`}</h3>
         <ul>{also.map(a => <li key={a.id}><a href={a.href}>{a.name}</a><small>{`${a.fans} in common`}</small></li>)}</ul></div>}
     </section>
   </div>;
