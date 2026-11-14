@@ -11,7 +11,7 @@ const SHOWN = 80;
 
 export const metadata: Metadata = {
   title: { absolute: `Rate the ${niche.words.many} you've played | ${niche.site.name}` },
-  description: `Give every ${niche.words.one} you've used one to five balls. Takes about 30 seconds and helps ${niche.people.many} like you choose.`,
+  description: `Positive, mixed or negative: one tap for every ${niche.words.one} you've used. Takes about 30 seconds and helps ${niche.people.many} like you choose.`,
   alternates: { canonical: "/rate" },
 };
 
@@ -26,7 +26,7 @@ export default async function Rate() {
   const p = niche.profile;
   return <main className={`lt-page rate-page ${lightFont.className}`}>
     <h1>{`Rate the ${niche.words.many} you've played`}</h1>
-    <p className="rate-sub">{`Tap one to five balls on every ${niche.words.one} you've used. No account, about 30 seconds, and it shows ${niche.people.many} like you what works.`}</p>
+    <p className="rate-sub">{`One tap for every ${niche.words.one} you've used: positive, mixed or negative. No account, about 30 seconds, and it shows ${niche.people.many} like you what works.`}</p>
     <RateGrid items={items} brands={brands} plural={niche.words.many} people={niche.people}
       levels={p.playerLevel.options.map(o => o.value)} styles={p.playingStyle.options.map(o => o.value)} sides={p.playingSide.options.map(o => o.value)}/>
   </main>;

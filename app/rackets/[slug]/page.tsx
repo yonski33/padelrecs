@@ -369,8 +369,6 @@ export default async function RacketPage({params, searchParams}: {params: Promis
               <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
             <a className="lp-stat" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
-          {/* Quick ratings (2026-11-14 pivot, owner): tap a ball right under the sentiment bar. */}
-          <QuickVote racketId={r.id} name={fullName} people={niche.people} addHref={addHref}/>
           <div className="lp-sub"><SignalPop label="How the signal works"/>{latest && <span>{`Updated ${day(latest)}`}</span>}</div>
           <p className="lp-actions">{amazon ? <a className="button amazon-out lp-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a> : buy}
             {sum.total > 0 && <a className="lp-read" href="#reviews">{`Read ${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">↓</span></a>}</p>
@@ -383,6 +381,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {concerns.length > 0 && <div className="lp-m-row lp-m-neg"><h3>Common concerns</h3>{chips(concerns)}</div>}
         </div>
       </section>}
+      {/* One tap (2026-11-14 pivot, owner's mockup): after what players say, right before their reviews. */}
+      <QuickVote racketId={r.id} name={fullName} one={niche.words.one} people={niche.people} addHref={addHref}/>
       {byVariant}
       <div className="columns lp-cols">
         <div>

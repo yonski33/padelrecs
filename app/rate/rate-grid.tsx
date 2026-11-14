@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { Balls, ChoiceRow, loadProfile, saveProfile, sendVote, type Profile } from "../quick-vote";
+import { ChoiceRow, loadProfile, saveProfile, sendVote, verdictOf, VerdictButtons, type Profile } from "../quick-vote";
 
 type Item = { id: string; name: string; brand: string; href: string };
 type Pick = { id: string; name: string; href: string; fans: number };
@@ -51,11 +51,11 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
     {error && <p className="qv-error" role="alert">{error}</p>}
     <ul className="rate-list">{shown.map(i => <li key={i.id}>
       <a href={i.href}>{i.name}</a>
-      <Balls small value={votes[i.id] ?? 0} onPick={n => vote(i.id, n)} name={i.name}/>
+      <VerdictButtons compact value={votes[i.id] ? verdictOf(votes[i.id]) : null} onPick={v => vote(i.id, v.rating)} name={i.name}/>
     </li>)}</ul>
     {!shown.length && <p className="rate-hint">{`No ${plural} match that. Try another name.`}</p>}
     <section className="rate-summary" aria-live="polite">
-      <p><b>{rated}</b>{` ${rated === 1 ? one : plural} rated`}{rated === 0 ? " · tap the balls on the ones you've played" : ""}</p>
+      <p><b>{rated}</b>{` ${rated === 1 ? one : plural} rated`}{rated === 0 ? " · tap a verdict on the ones you've played" : ""}</p>
       {also.length > 0 && <div className="qv-also"><h3>{`${people.many[0].toUpperCase()}${people.many.slice(1)} who love the same ${plural} also love`}</h3>
         <ul>{also.map(a => <li key={a.id}><a href={a.href}>{a.name}</a><small>{`${a.fans} in common`}</small></li>)}</ul></div>}
     </section>
