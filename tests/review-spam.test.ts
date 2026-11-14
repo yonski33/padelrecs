@@ -1,7 +1,7 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
 import {gibberishWord, looksRandomText, looksRandomName, dottedGmail, normalizeEmail, spamScore} from "../lib/review-spam";
-import {issueFormToken, checkFormToken, FORM_MIN_MS, FORM_MAX_MS} from "../lib/form-token";
+import {issueFormToken, checkFormToken, FORM_MIN_MS, FORM_MAX_MS, checkReviewEdit } from "../lib/form-token";
 import {createLimiter, createLoginThrottle} from "../lib/rate-limit";
 import {POST} from "../app/api/reviews/route";
 import robots from "../app/robots";
@@ -88,7 +88,10 @@ test("bots get the normal success response, even when saving the rejected copy f
  ] as const) {
   const response = await post(body, ip);
   assert.equal(response.status, 201, why);
-  assert.deepEqual(await response.json(), {status: "pending"}, why);
+  // Same shape as a saved review: status, an id and its edit token (the one-tap card adds details with them).
+  const body2 = await response.json() as {status: string; id: string; edit: string};
+  assert.equal(body2.status, "pending", why); assert.deepEqual(Object.keys(body2).sort(), ["edit", "id", "status"], why);
+  assert.equal(checkReviewEdit(body2.id, body2.edit), true, why);
  }
 });
 

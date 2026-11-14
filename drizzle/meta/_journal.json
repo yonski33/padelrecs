@@ -124,8 +124,15 @@
     {
       "idx": 17,
       "version": "7",
+      "when": 1794630000000,
+      "tag": "0017_product_votes",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
       "when": 1794626400000,
-      "tag": "0017_review_highlights",
+      "tag": "0018_review_highlights",
       "breakpoints": true
     }
   ]

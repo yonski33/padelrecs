@@ -176,6 +176,7 @@ export const pickleball: Niche = {
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Weight as played?", "Mine weighs about "], ["Spin and pop?", "On spin and pop it "]],
     tips: ["What you played with before, and how this compares", "Your weight as played, if you added lead tape", "Where it shines and where it struggles", "Spin, pop and feel at the kitchen", "Durability, dead spots or delamination once you’ve had it a while"],
+    quickVote: { question: "Have you played with this paddle?", placeholder: "What stood out? Power, control, spin, how it suits your game…", nicknames: ["Dink", "Drive", "Erne", "Lob", "Volley", "Reset", "Kitchen", "Rally", "Smash", "Spin", "Drop", "Thirdshot"] },
   },
   seo: {
     homeTitle: "PickleballRecs – Real Player Reviews of Pickleball Paddles",

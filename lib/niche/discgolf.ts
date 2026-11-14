@@ -188,6 +188,7 @@ export const discgolf: Niche = {
   form: {
     prompts: [["Which plastic and weight?", "Mine is "], ["What do you throw it for?", "I throw this for "], ["What did it replace?", "Before this I threw a "]],
     tips: ["The plastic and weight of the one you throw", "Backhand or forehand, and roughly how far you throw", "How it flies for your arm: turn, glide and fade", "The lines it's good for: hyzer, flex, turnover, rollers", "How it changed as it beat in"],
+    quickVote: { question: "Have you thrown this disc?", placeholder: "What stood out? Flight, glide, grip, how it fits your bag…", nicknames: ["Hyzer", "Anhyzer", "Fade", "Glide", "Putt", "Drive", "Ace", "Birdie", "Fairway", "Chains", "Skip", "Flex"] },
   },
   seo: {
     homeTitle: "DiscGolfRecs – Real Player Reviews of Disc Golf Discs",

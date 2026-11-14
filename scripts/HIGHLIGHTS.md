@@ -1,7 +1,7 @@
 # Review highlights: how they are made (owner 2026-11-14)
 
 Each review card can show 1–2 yellow marker phrases. They are saved on the review in the database
-(`reviews.highlights` / `external_reviews.highlights`, text[], migration 0017) and drawn by lib/highlights.ts. A phrase that
+(`reviews.highlights` / `external_reviews.highlights`, text[], migration 0018) and drawn by lib/highlights.ts. A phrase that
 no longer matches the card's text is simply not drawn, so an edited review loses its highlight rather than showing a wrong one.
 The Highlights switch shows on any product page whose reviews have saved phrases.
 

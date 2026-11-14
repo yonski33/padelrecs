@@ -847,6 +847,40 @@ test("the ToolRecs catalog: 231 sourced tools and platforms in all eight categor
   } finally { await engine.close(); }
 });
 
+test("the DogRecs catalog: 209 sourced products in all eight categories, one product per model, generation and food formula, no health claims, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/dog.json");
+  const snapshot = catalogSnapshot(catalog, "dogrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 101);
+  assert.equal(snapshot.tables.rackets.length, 209);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 209);
+  const categories = niches.dog.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/dog");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    // The owner's DogRecs rule: no health or medical claims anywhere, spec fields included.
+    for (const v of [r.surface, r.balance, r.core, r.weight]) assert.doesNotMatch(v ?? "", /digest|immun|joint health|healthy|allerg|cure|vet(erinar)?/i, `${r.name}: ${v}`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 20, `${c}: at least 20 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // No prescription or veterinary diets, supplements or treats.
+  assert(!snapshot.tables.rackets.some(r => /prescription|veterinary|supplement|treats?\b/i.test(r.name)));
+  // Generations are separate products, never merged (the niche's traps).
+  for (const name of ["Fi Series 3 Smart Collar", "Fi Series 3+ Smart Collar", "Fi Mini", "Halo Collar 3", "Halo Collar 4", "Halo Collar 5", "Tractive GPS DOG 4", "Tractive DOG 6",
+    "Furbo 360° Dog Camera", "Furbo Mini", "Furbo Mini 360°", "Kong Classic", "Kong Extreme", "Kong Puppy", "Ruffwear Front Range Harness", "Ruffwear Flagline Harness",
+    "Purina Pro Plan Adult Sensitive Skin & Stomach Salmon & Rice Formula", "Purina Pro Plan Adult Large Breed Chicken & Rice Formula", "The Farmer's Dog Fresh Dog Food"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 101, rackets: 209, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 101, rackets: 209, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
+
 test("the GrillRecs catalog: 248 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/grill.json");

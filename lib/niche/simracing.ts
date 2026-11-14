@@ -192,6 +192,7 @@ export const simracing: Niche = {
   form: {
     prompts: [["What did you upgrade from?", "Before this I used "], ["What do you race?", "I mostly race "], ["Any issues?", "After a while I noticed "]],
     tips: ["What you upgraded from, and how this compares", "Which sims you race and on which platform", "What it's mounted to, and any flex", "Software, firmware and compatibility with your other gear", "Build quality, defects and whether it was worth the price"],
+    quickVote: { question: "Have you driven with this?", placeholder: "What stood out? Feel, build, setup, how it fits your rig…", nicknames: ["Apex", "Drift", "Chicane", "Hairpin", "Slipstream", "Pitstop", "Kerb", "Throttle", "Overtake", "Grid", "Lap", "Gearshift"] },
   },
   seo: {
     homeTitle: "SimRacingRecs – Real Driver Reviews of Sim Racing Gear",

@@ -26,3 +26,13 @@ export function checkFormToken(token: unknown, now = Date.now(), key = secret())
  if (now - issued > FORM_MAX_MS) return "expired";
  return "ok";
 }
+
+// After the one-tap card posts a review, its optional details (level, side, style, time, tags) are added one tap at a
+// time (PATCH /api/reviews). The post returns the review's id and this signed token, so only that visitor can add them.
+const editSign = (id: string, key: string) => createHmac("sha256", key).update(`review-edit:${id}`).digest("base64url");
+export const reviewEditToken = (id: string, key = secret()) => editSign(id, key);
+export function checkReviewEdit(id: unknown, token: unknown, key = secret()) {
+ if (typeof id !== "string" || typeof token !== "string" || !id || !token) return false;
+ const expected = Buffer.from(editSign(id, key)), given = Buffer.from(token);
+ return expected.length === given.length && timingSafeEqual(expected, given);
+}
