@@ -357,7 +357,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {oneLine && <p className="lp-line">{oneLine}</p>}
           {sum.total > 0 ? <div className="lp-stats lp-stats2">
             {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>Signal score</span></div>}
-            {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
+            {/* The counts over the bar, not a share (owner, 2026-11-14): a "% positive" read like a second score next to the signal. */}
+            {pos !== null && <div className="lp-stat lp-split"><p className="lp-counts">
+              <span className="c-pos"><b>{s.positive.toLocaleString("en-US")}</b> positive</span>
+              <span className="c-mix"><b>{s.mixed.toLocaleString("en-US")}</b> mixed</span>
+              <span className="c-neg"><b>{s.negative.toLocaleString("en-US")}</b> negative</span></p>
+              <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
             <a className="lp-stat" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
           <div className="lp-sub"><SignalPop label="How the signal works"/>{latest && <span>{`Updated ${day(latest)}`}</span>}</div>
