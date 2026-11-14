@@ -67,7 +67,7 @@ export default function QuickVote({ racketId, name, one, people, addHref }: {
   }
 
   const others = stats ? stats.total - (mine ? 1 : 0) : 0;
-  const corner = stats && stats.total > 0 ? `${stats.total.toLocaleString("en-US")} ${stats.total === 1 ? people.one : people.many} voted` : "About 2 seconds";
+  const corner = stats && stats.total > 0 ? `${stats.total.toLocaleString("en-US")} ${stats.total === 1 ? people.one : people.many} voted` : "";
   const review = `${addHref}${addHref.includes("?") ? "&" : "?"}rating=${rating}`;
   return <section className="qv" aria-labelledby="qv-title">
     <div className="qv-top">
@@ -76,7 +76,7 @@ export default function QuickVote({ racketId, name, one, people, addHref }: {
         <h2 id="qv-title">{mine ? "Thanks for your take" : `Have you played with this ${one}?`}</h2>
         <p className="qv-sub">{`Tell other ${people.many} how it worked for you. No review to write.`}</p>
       </div>
-      <span className="qv-corner">{corner}</span>
+      {corner && <span className="qv-corner">{corner}</span>}
     </div>
     <VerdictButtons value={mine} onPick={vote} name={name} disabled={busy}/>
     {error && <p className="qv-error" role="alert">{error}</p>}
