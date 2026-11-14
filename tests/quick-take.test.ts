@@ -125,6 +125,7 @@ test("the debate: two real takes on opposite sides", () => {
 test("banned words", () => {
   assert.ok(check(block({ tldr: { ...block().tldr, madeFor: ["AT10 owners", "b", "c"] } })).errors.some(e => e.includes("owners")));
   assert.ok(check(block({ tldr: { ...block().tldr, lead: "From Reddit reviews." } })).errors.some(e => e.includes("Reddit reviews")));
+  assert.ok(check(block({ tldr: { ...block().tldr, lead: "We tested it for a week." } })).errors.some(e => e.includes("we don't test")));
 });
 
 test("helpers", () => {

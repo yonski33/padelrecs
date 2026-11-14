@@ -135,3 +135,10 @@ Three fields read differently now:
   `verbatim` only when `text` is the player's exact words. The checker rejects a positive "against", a negative "for", or
   the same report twice. Never invent one.
 Tips are drawn together as "Heads up ⚠️", numbered, each with its evidence label; `after` no longer moves them.
+
+## Our take is allowed (owner 2026-11-15)
+
+"In the end we are reading the reviews and giving our takes." Labelled takes are fine: the TL;DR verdict line, and
+`take` on a version module, drawn as "**Our take:** …" ("upgrade for power; stick with the 2025 if comfort matters").
+Every take must follow from the counted reports on that page: no new facts, no "we tested" (the checker rejects it), no
+invented stats. Player claims keep every accuracy rule.

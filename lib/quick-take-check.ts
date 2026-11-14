@@ -30,7 +30,8 @@ const COUNT_RE = new RegExp(`\\b(\\d{1,3}|${Object.keys(NUMBER_WORDS).join("|")}
 const BANNED: [RegExp, string][] = [
   [/\bowners?\b/i, "say \"players\", not \"owners\""], [/\busers?\b/i, "say \"players\", not \"users\""],
   [/\bcop(y|ies)\b/i, "say \"racket\" or \"unit\", not \"copy\""], [/reddit reviews?/i, "never write \"Reddit reviews\""],
-  [/game[- ]changer|unleash|comprehensive review|elevate your/i, "brand-speak"], [/\b\d+\s+(in|out of)\s+10\b/i, "no \"N in 10\" numbers"],
+  [/game[- ]changer|unleash|comprehensive review|elevate your/i, "brand-speak"],
+  [/\bwe (tested|test|tried|played|measured|weighed)\b|\bin our (test|testing)\b|\bour (tests?|testing|lab)\b/i, "we don't test rackets: takes follow from the reports only"], [/\b\d+\s+(in|out of)\s+10\b/i, "no \"N in 10\" numbers"],
 ];
 
 /** Every text field of the block with where it sits, and the reports that back it. */
@@ -58,7 +59,7 @@ function fields(qt: QuickTake): Field[] {
     if (m.type === "themes") m.bars.forEach((b, j) => add(`${w}.bars[${j}]`, b.label, b.reports));
     if (m.type === "setup") { m.rows.forEach((r, j) => add(`${w}.rows[${j}]`, r.line, reps)); m.numbers?.forEach((n, j) => add(`${w}.numbers[${j}]`, n.note, n.reports)); add(`${w}.note`, m.note, reps); }
     if (m.type === "durability") m.rows.forEach((r, j) => add(`${w}.rows[${j}]`, r.line, reps));
-    if (m.type === "version") { add(`${w}.title`, m.title); [...m.pickSelf, ...m.pickOther].forEach((t, j) => add(`${w}.pick[${j}]`, t, reps)); add(`${w}.other.says`, m.other.says, reps); add(`${w}.self.says`, m.self.says, reps); }
+    if (m.type === "version") { add(`${w}.title`, m.title); add(`${w}.take`, m.take, reps); [...m.pickSelf, ...m.pickOther].forEach((t, j) => add(`${w}.pick[${j}]`, t, reps)); add(`${w}.other.says`, m.other.says, reps); add(`${w}.self.says`, m.self.says, reps); }
     if (m.type === "weigh") [...m.heavy.bullets, ...m.light.bullets].forEach((t, j) => add(`${w}.bullets[${j}]`, t, reps));
     if (m.type === "arm") [...m.kind, ...m.harsh].forEach((t, j) => add(`${w}.bullets[${j}]`, t, reps));
     if (m.type === "hardness") { add(`${w}.answer`, m.answer, reps); add(`${w}.brand`, m.brand); }

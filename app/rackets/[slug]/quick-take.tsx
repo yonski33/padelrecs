@@ -238,7 +238,7 @@ const SpotBody = ({ c }: { c: Ctx }) => <div className="spot"><h2>Spot something
 
 /** The page footer (owner 2026-11-15: specs moved to the hero chips). */
 const Footer = ({ c }: { c: Ctx }) => <footer className="qt-foot">
-  <p>{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#community">Played it? Add your take ↑</a></p>
+  <p>{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We read what players say and give our honest take. We don't test rackets and no brand pays for placement. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#community">Played it? Add your take ↑</a></p>
   <p className="made">made by people who own too many rackets 🎾</p>
 </footer>;
 
@@ -319,6 +319,7 @@ function ModuleBody({ m, c }: { m: Module; c: Ctx }) {
   if (m.type === "version") body = <div className="vtable">
     <div className="vt"><div className="vpic">{c.photo ? <img src={c.photo} alt=""/> : null}</div><h3>{m.self.short}</h3><p className="vsays">{m.self.says}</p><p className="vpick">{`pick it if you want`}</p><Bullets items={m.pickSelf}/></div>
     <div className="vt alt"><div className="vpic">{c.art(m.other.slug, m.other.short, "")}</div><h3>{m.other.short}</h3><p className="vsays">{m.other.says}</p><p className="vpick">{`pick it if you want`}</p><Bullets items={m.pickOther}/></div>
+    {m.take && <p className="vtake"><b>Our take:</b> <Rich text={m.take}/></p>}
   </div>;
   if (m.type === "durability") body = <div className="rows">{m.rows.map(r => <div key={r.label} className="r"><div className="rl"><b>{r.label}</b></div><p><Rich text={r.line}/></p></div>)}</div>;
   if (m.type === "weigh") body = <div className="split"><div><h4><Rich text={m.heavy.title}/></h4><Bullets items={m.heavy.bullets}/></div><div><h4><Rich text={m.light.title}/></h4><Bullets items={m.light.bullets}/></div></div>;

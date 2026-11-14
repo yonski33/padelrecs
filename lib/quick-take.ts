@@ -42,7 +42,9 @@ export const moduleSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("version"), title: z.string().trim().min(1).max(60), lead: line,
     other: z.object({ slug: z.string().nullable(), short: z.string().trim().min(1).max(24), says: z.string().trim().min(1).max(40) }).strict(),
     self: z.object({ short: z.string().trim().min(1).max(24), says: z.string().trim().min(1).max(40) }).strict(),
-    pickSelf: bullets(2, 4), pickOther: bullets(2, 4), reports: ids, receipts }).strict(),
+    pickSelf: bullets(2, 4), pickOther: bullets(2, 4),
+    /** "Our take:" (owner 2026-11-15, recipe "Our take is allowed"): our call, following from the counted reports only. */
+    take: line.optional(), reports: ids, receipts }).strict(),
   z.object({ type: z.literal("durability"), verdict, lead: line, rows: z.array(plainRow).min(2).max(5), reports: ids, receipts }).strict(),
   z.object({ type: z.literal("weigh"), verdict, lead: line, heavy: z.object({ title: short, bullets: bullets(1, 4) }).strict(), light: z.object({ title: short, bullets: bullets(1, 4) }).strict(),
     weights: z.array(z.object({ grams: z.number().int().min(250).max(450), id: z.string().min(1) }).strict()), receipts }).strict(),
