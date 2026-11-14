@@ -178,6 +178,11 @@
       "name": "toolrecs",
       "id": "prj_nCEN0xnqEZpOeZBzxT5W8TKWGPTj",
       "domain": "www.toolrecs.com"
+    },
+    "dog": {
+      "name": "dogrecs",
+      "id": "prj_TonSLKJlthPSelh2UdTwNDcKScmO",
+      "domain": "www.dogrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
