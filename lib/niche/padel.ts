@@ -174,10 +174,6 @@ export const padel: Niche = {
       intro: "Rackets players praise for control, placement and defence.",
       trait: { tags: ["good control", "great in defence"], minShare: 0.2, against: ["head-heavy"], noun: "control or defence" },
       filters: [{ column: "shape", exclude: ["Diamond"] }] },
-    { slug: "most-arm-friendly-padel-rackets", label: "Most arm-friendly", title: "Most Arm-Friendly Padel Rackets", minReviews: 12, maxAgeYears: 0,
-      intro: "Rackets players call easy on the arm and elbow, without many complaints about vibration on mishits.",
-      // Arm comfort comes up less often than control or power, so 1 review in 10 is enough here (owner trial 2026-11-14).
-      trait: { tags: ["arm-friendly"], minShare: 0.1, against: ["vibrates on mishits"], noun: "arm comfort" } },
   ],
   sourcePlatforms: ["Reddit", "YouTube", "Padel shop", "Forum", "Blog"],
   examples: { brand: "Nox", model: "AT10 Genius 18K", year: 2026, search: "nox" },
