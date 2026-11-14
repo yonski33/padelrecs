@@ -2992,7 +2992,18 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .qv-words-row small { font-size: 12.5px; color: var(--lt-mute, #8a857c); }
 .qv-words .qv-post, .qv-words .qv-post:hover { min-height: 0; padding: 8px 16px; border-radius: 10px; background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; font-size: 14px; }
 .qv-words .qv-nah, .qv-words .qv-nah:hover { min-height: 0; padding: 8px 6px; border: 0; background: none; color: var(--lt-mute, #8a857c); font-size: 14px; font-weight: 500; }
-.qv-words .qv-nah:hover { color: var(--lt-ink, #262421); text-decoration: underline; }
+.qv-words .qv-nah:hover, .qv-steps .qv-nah:hover { color: var(--lt-ink, #262421); text-decoration: underline; }
+.qv-steps { position: relative; z-index: 1; display: grid; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--lt-line, #ece9e2); }
+.qv-steps-head { margin: 0; font-size: 12.5px; color: var(--lt-mute, #8a857c); }
+.qv-step h3 { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+.qv-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.qv-chips button, .qv-chips button:hover, .qv-chips button:active, .qv-chips button:disabled { min-height: 0; padding: 7px 13px; border: 1px solid var(--line-2, #e2ded5); border-radius: 999px; background: #fff; color: var(--lt-ink, #262421); font: inherit; font-size: 13.5px; font-weight: 500; transform: none; }
+.qv-chips button:hover { border-color: var(--lt-acc, #2f6b3a); }
+.qv-chips button[aria-pressed="true"] { background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; }
+.qv-chips button:disabled { opacity: .45; cursor: not-allowed; }
+.qv-steps .qv-post, .qv-steps .qv-post:hover { min-height: 0; padding: 8px 16px; border-radius: 10px; background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; font-size: 14px; }
+.qv-steps .qv-nah, .qv-steps .qv-nah:hover { min-height: 0; padding: 8px 6px; border: 0; background: none; color: var(--lt-mute, #8a857c); font-size: 14px; font-weight: 500; }
+.qv-err { font-size: 12.5px; color: #a3392b; }
 /* The same cards as the review form's .verdict-pick: a coloured dot, the word and a hint; --c comes from .s-positive etc. */
 .vb { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
 .vb button, .vb button:hover, .vb button:active, .vb button:disabled { display: grid; gap: 2px; justify-items: center; min-height: 0; padding: 14px 12px; border: 1.5px solid var(--line-2, #e2ded5); border-radius: 10px; background: var(--surface, #fff); color: var(--lt-ink, #262421); font: inherit; white-space: normal; text-align: center; opacity: 1; box-shadow: none; transform: none; cursor: pointer; transition: border-color .15s, background .15s; }

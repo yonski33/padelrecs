@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { MAX_TAGS, TAGS } from "../lib/tags";
 
 // One-tap verdicts (2026-11-14 pivot, owner's mockup): "Have you played with this racket?" between "What players say" and
 // the reviews, with the same Positive / Mixed / Negative cards the review form uses (owner: the same look, no faces). Saved as 5 / 3 / 1, like a review's
@@ -15,6 +16,9 @@ export const VERDICTS: { key: Verdict; rating: number; word: string; hint: strin
 ];
 export const verdictOf = (rating: number): Verdict => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 const PROFILE_KEY = "rv-profile";
+/** One "a few details" question after the words: a review-form field and its chip options. */
+export type DetailStep = { field: "playerLevel" | "playingSide" | "playingStyle" | "timeWithRacket"; question: string; options: { value: string; label: string }[] };
+const PROFILE_FIELD = { playerLevel: "level", playingSide: "side", playingStyle: "style" } as const;
 /** The review API's minimum (app/api/reviews/route.ts). */
 const MIN_WORDS = 20;
 
@@ -47,14 +51,22 @@ export function VerdictButtons({ value, onPick, name, compact, disabled }: { val
   </div>;
 }
 
-export default function QuickVote({ racketId, name, one, people, addHref, placeholder }: {
-  racketId: string; name: string; one: string; people: { one: string; many: string }; addHref: string; placeholder: string;
+export default function QuickVote({ racketId, name, one, people, placeholder, steps }: {
+  racketId: string; name: string; one: string; people: { one: string; many: string }; placeholder: string; steps: DetailStep[];
 }) {
   const [stats, setStats] = useState<Stats | null>(null), [mine, setMine] = useState<Verdict | null>(null), [rating, setRating] = useState(0);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [justVoted, setJustVoted] = useState(false);
   // After a vote: a small "few words" box that posts a normal (moderated) review, or closes with "Nah, I'm good".
-  const [note, setNote] = useState<"closed" | "open" | "sending" | "sent">("closed"), [words, setWords] = useState(""), [noteError, setNoteError] = useState("");
+  const [note, setNote] = useState<"closed" | "open" | "details" | "sending" | "sent">("closed"), [words, setWords] = useState(""), [noteError, setNoteError] = useState("");
   const token = useRef("");
+  const [todo, setTodo] = useState<DetailStep[]>([]), [step, setStep] = useState(0), [answers, setAnswers] = useState<Record<string, string>>({}), [tags, setTags] = useState<string[]>([]);
+  const pending = useRef<null | (() => string)>(null); // the review body, while the details are being asked; sent on leave
+  // Leaving halfway through the details still sends what they gave (sendBeacon survives the page closing).
+  useEffect(() => {
+    const flush = () => { if (pending.current) { navigator.sendBeacon("/api/reviews", new Blob([pending.current()], { type: "text/plain" })); pending.current = null; } };
+    window.addEventListener("pagehide", flush);
+    return () => window.removeEventListener("pagehide", flush);
+  }, []);
 
   useEffect(() => {
     fetch(`/api/racket-votes?racket=${encodeURIComponent(racketId)}`, { cache: "no-store" })
@@ -78,23 +90,38 @@ export default function QuickVote({ racketId, name, one, people, addHref, placeh
     finally { setBusy(false); }
   }
 
-  async function postWords() {
-    const text = words.trim();
-    if (text.length < MIN_WORDS) { setNoteError(`A little more, please: at least ${MIN_WORDS} characters.`); return; }
-    setNote("sending"); setNoteError("");
+  // The steps still to ask: fields already known from this device's profile are skipped.
+  const body = (extra: Record<string, string> = answers, chosen: string[] = tags) => {
+    const p = loadProfile(), profile = { playerLevel: p.level, playingSide: p.side, playingStyle: p.style };
+    const fields = Object.fromEntries(Object.entries({ ...profile, ...extra }).filter(([, v]) => v));
+    return JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: words.trim(), tags: chosen, website: "", formToken: token.current, ...fields });
+  };
+
+  function wordsDone() {
+    if (words.trim().length < MIN_WORDS) { setNoteError(`A little more, please: at least ${MIN_WORDS} characters.`); return; }
+    const known = loadProfile();
+    setTodo(steps.filter(st => !(st.field in PROFILE_FIELD && known[PROFILE_FIELD[st.field as keyof typeof PROFILE_FIELD]])));
+    setNoteError(""); setStep(0); setNote("details");
+    pending.current = () => body();
+  }
+  function answer(field: string, value: string) {
+    const next = { ...answers, [field]: value }; setAnswers(next);
+    if (field in PROFILE_FIELD) saveProfile({ ...loadProfile(), [PROFILE_FIELD[field as keyof typeof PROFILE_FIELD]]: value });
+    pending.current = () => body(next);
+    setStep(s => s + 1);
+  }
+  async function send(chosen = tags) {
+    pending.current = null; setNote("sending"); setNoteError("");
     try {
       if (!token.current) { const b = await (await fetch("/api/reviews", { cache: "no-store" })).json() as { token?: string }; token.current = b.token || ""; }
-      const level = loadProfile().level;
-      const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: text, tags: [], website: "", formToken: token.current, ...(level ? { playerLevel: level } : {}) }) });
+      const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: body(answers, chosen) });
       if (!r.ok) throw new Error(((await r.json()) as { error?: string }).error || "Could not post that. Please try again.");
       setNote("sent");
-    } catch (e) { setNote("open"); setNoteError(e instanceof Error ? e.message : "Could not post that. Please try again."); }
+    } catch (e) { setNote("details"); pending.current = () => body(); setNoteError(e instanceof Error ? e.message : "Could not post that. Please try again."); }
   }
 
   const others = stats ? stats.total - (mine ? 1 : 0) : 0;
   const corner = stats && stats.total > 0 ? `${stats.total.toLocaleString("en-US")} ${stats.total === 1 ? people.one : people.many} voted` : "";
-  const review = `${addHref}${addHref.includes("?") ? "&" : "?"}rating=${rating}`;
   return <section className="qv" aria-labelledby="qv-title">
     <div className="qv-top">
       <div>
@@ -106,21 +133,36 @@ export default function QuickVote({ racketId, name, one, people, addHref, placeh
     </div>
     <VerdictButtons value={mine} onPick={vote} name={name} disabled={busy}/>
     {error && <p className="qv-error" role="alert">{error}</p>}
-    {mine && justVoted && !error && (note === "open" || note === "sending") && <div className="qv-words">
+    {mine && justVoted && !error && note === "open" && <div className="qv-words">
       <label htmlFor="qv-words">{`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}. ` : ""}Got a few words to say about it?`}</label>
       <textarea id="qv-words" rows={3} maxLength={2000} value={words} onChange={e => { setWords(e.target.value); setNoteError(""); }} placeholder={placeholder} autoFocus/>
       <div className="qv-words-row">
-        <button type="button" className="qv-post" disabled={note === "sending"} onClick={postWords}>{note === "sending" ? "Posting…" : "Post it"}</button>
+        <button type="button" className="qv-post" onClick={wordsDone}>Next</button>
         <button type="button" className="qv-nah" onClick={() => setNote("closed")}>{"Nah, I'm good"}</button>
         <small>{noteError || (words.trim().length < MIN_WORDS ? `A sentence is plenty · ${MIN_WORDS - words.trim().length} characters to go` : "Goes live after a quick check")}</small>
       </div>
     </div>}
-    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">
-      {"Thanks! Your words go live after a quick check. "}<a href={review}>Add more details <span aria-hidden="true">→</span></a>
-    </p>}
+    {mine && justVoted && !error && (note === "details" || note === "sending") && <div className="qv-steps" aria-live="polite">
+      <p className="qv-steps-head">{`A few quick details, all optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}`}</p>
+      {step < todo.length ? <div className="qv-step">
+        <h3>{todo[step].question}</h3>
+        <div className="qv-chips">{todo[step].options.map(o => <button type="button" key={o.value} onClick={() => answer(todo[step].field, o.value)}>{o.label}</button>)}</div>
+      </div> : <div className="qv-step">
+        <h3>{`Anything that stands out? Pick up to ${MAX_TAGS}`}</h3>
+        <div className="qv-chips">{TAGS.map(t => { const on = tags.includes(t.label); return <button type="button" key={t.label} className={`tone-${t.tone}`} aria-pressed={on}
+          disabled={!on && tags.length >= MAX_TAGS} onClick={() => setTags(prev => on ? prev.filter(x => x !== t.label) : [...prev, t.label])}>{t.label}</button>; })}</div>
+      </div>}
+      <div className="qv-words-row">
+        {step >= todo.length
+          ? <button type="button" className="qv-post" disabled={note === "sending"} onClick={() => send()}>{note === "sending" ? "Posting…" : "Post my review"}</button>
+          : <button type="button" className="qv-nah" onClick={() => { pending.current = () => body(); setStep(s => s + 1); }}>Skip</button>}
+        {step < todo.length && <button type="button" className="qv-nah" disabled={note === "sending"} onClick={() => send()}>Post now</button>}
+        {noteError && <small className="qv-err">{noteError}</small>}
+      </div>
+    </div>}
+    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">Thanks! Your review goes live after a quick check.</p>}
     {mine && justVoted && !error && note === "closed" && <p className="qv-thanks" role="status">
-      {`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}. ` : "You're the first to vote. "}`}
-      <a href={review}>Want to leave a more detailed review? <span aria-hidden="true">→</span></a>
+      {`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}.` : "You're the first to vote."}`}
     </p>}
   </section>;
 }
