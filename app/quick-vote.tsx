@@ -137,13 +137,13 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
       <label htmlFor="qv-words">{`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}. ` : ""}Got a few words to say about it?`}</label>
       <textarea id="qv-words" rows={3} maxLength={2000} value={words} onChange={e => { setWords(e.target.value); setNoteError(""); }} placeholder={placeholder} autoFocus/>
       <div className="qv-words-row">
-        <button type="button" className="qv-post" onClick={wordsDone}>Next</button>
+        <button type="button" className="qv-post" onClick={wordsDone}>Post it</button>
         <button type="button" className="qv-nah" onClick={() => setNote("closed")}>{"Nah, I'm good"}</button>
         <small>{noteError || (words.trim().length < MIN_WORDS ? `A sentence is plenty · ${MIN_WORDS - words.trim().length} characters to go` : "Goes live after a quick check")}</small>
       </div>
     </div>}
     {mine && justVoted && !error && (note === "details" || note === "sending") && <div className="qv-steps" aria-live="polite">
-      <p className="qv-steps-head">{`A few quick details, all optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}`}</p>
+      <p className="qv-steps-head">{`Nice! Add a quick detail or two? All optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}`}</p>
       {step < todo.length ? <div className="qv-step">
         <h3>{todo[step].question}</h3>
         <div className="qv-chips">{todo[step].options.map(o => <button type="button" key={o.value} onClick={() => answer(todo[step].field, o.value)}>{o.label}</button>)}</div>
@@ -154,9 +154,9 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
       </div>}
       <div className="qv-words-row">
         {step >= todo.length
-          ? <button type="button" className="qv-post" disabled={note === "sending"} onClick={() => send()}>{note === "sending" ? "Posting…" : "Post my review"}</button>
+          ? <button type="button" className="qv-post" disabled={note === "sending"} onClick={() => send()}>{note === "sending" ? "Posting…" : "Done"}</button>
           : <button type="button" className="qv-nah" onClick={() => { pending.current = () => body(); setStep(s => s + 1); }}>Skip</button>}
-        {step < todo.length && <button type="button" className="qv-nah" disabled={note === "sending"} onClick={() => send()}>Post now</button>}
+        {step < todo.length && <button type="button" className="qv-nah" disabled={note === "sending"} onClick={() => send()}>{"I'm done"}</button>}
         {noteError && <small className="qv-err">{noteError}</small>}
       </div>
     </div>}
