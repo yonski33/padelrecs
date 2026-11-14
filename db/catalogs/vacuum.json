@@ -1,0 +1,2826 @@
+{
+ "about": "VacuumRecs starter catalog (2026-11-14): robot vacuums and robot vacuum-mop combos, cordless stick, upright, canister and handheld vacuums, wet/dry floor cleaners and carpet cleaners; owner build list 2026-11-12, build asked 2026-11-14. One product per model and generation: Dyson V15 Detect vs Gen5detect vs V12 Detect Slim, Roborock S8 MaxV Ultra vs Saros 10R vs Qrevo Curv, Roomba j7+ vs Combo j9+, Dreame L10s Ultra vs L20 Ultra vs X50 Ultra are separate; colours, retailer-exclusive SKUs and region variants that share a name merge (Miele Complete C3 variants share one page). Names and specs come from the makers' own pages; where a maker site refused automated fetches (Dyson, Shark, Bissell, Miele, Hoover, Dreame), from search excerpts of the maker page or a major retailer listing showing the maker's name. Specs: shape = category, surface = type, balance = the maker's headline suction (Pa for robots, AW for Dyson), core = runtime or Corded, weight = one headline feature. Blank = not confirmed. Years only where a dated page shows the launch.",
+ "checked": "2026-11-14",
+ "brands": [
+  {
+   "id": "bissell",
+   "name": "Bissell"
+  },
+  {
+   "id": "black-plus-decker",
+   "name": "Black+Decker"
+  },
+  {
+   "id": "dewalt",
+   "name": "DeWalt"
+  },
+  {
+   "id": "dreame",
+   "name": "Dreame"
+  },
+  {
+   "id": "dyson",
+   "name": "Dyson"
+  },
+  {
+   "id": "ecovacs",
+   "name": "Ecovacs"
+  },
+  {
+   "id": "eufy",
+   "name": "eufy"
+  },
+  {
+   "id": "hoover",
+   "name": "Hoover"
+  },
+  {
+   "id": "irobot",
+   "name": "iRobot"
+  },
+  {
+   "id": "kenmore",
+   "name": "Kenmore"
+  },
+  {
+   "id": "levoit",
+   "name": "Levoit"
+  },
+  {
+   "id": "lg",
+   "name": "LG"
+  },
+  {
+   "id": "miele",
+   "name": "Miele"
+  },
+  {
+   "id": "milwaukee",
+   "name": "Milwaukee"
+  },
+  {
+   "id": "narwal",
+   "name": "Narwal"
+  },
+  {
+   "id": "numatic",
+   "name": "Numatic"
+  },
+  {
+   "id": "panasonic",
+   "name": "Panasonic"
+  },
+  {
+   "id": "riccar",
+   "name": "Riccar"
+  },
+  {
+   "id": "roborock",
+   "name": "Roborock"
+  },
+  {
+   "id": "rug-doctor",
+   "name": "Rug Doctor"
+  },
+  {
+   "id": "samsung",
+   "name": "Samsung"
+  },
+  {
+   "id": "sebo",
+   "name": "SEBO"
+  },
+  {
+   "id": "shark",
+   "name": "Shark"
+  },
+  {
+   "id": "tineco",
+   "name": "Tineco"
+  },
+  {
+   "id": "vax",
+   "name": "Vax"
+  }
+ ],
+ "products": [
+  {
+   "brand": "bissell",
+   "name": "Bissell Big Green Machine Professional 86T3",
+   "shape": "Carpet cleaners",
+   "surface": "Corded upright deep cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "1.75 gal clean tank; 8-row DirtLifter brush; 42 lb",
+   "sources": [
+    "https://www.bissell.com/en-us/product/big-green-machine-professional-carpet-cleaner-86T3.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell CleanView Pet Slim Cordless",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "30 min",
+   "weight": "8 in. path; tangle-free brush roll; convertible to handheld",
+   "sources": [
+    "https://www.bissell.com/en-us/product/cleanview-pet-slim-cordless-stick-vacuum-29037.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell CleanView Swivel Pet 3832",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Pet TurboEraser tool; about 13 lb",
+   "sources": [
+    "https://www.wayfair.com/appliances/pdp/bissell-cleanview-swivel-pet-3832-bse10305.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell CleanView Swivel Pet Reach 3198A",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Quick-release extension wand; 1.0 L bin; 16.2 lb",
+   "sources": [
+    "https://www.bissell.com/en-us/product/cleanview-swivel-pet-reach-upright-vacuum-3198A.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell CleanView Swivel Rewind Pet Reach 3197A",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Automatic cord rewind with extension wand",
+   "sources": [
+    "https://www.bissell.com/en-us/product/cleanview-swivel-rewind-pet-reach-upright-vacuum-3197A.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell CrossWave Cordless Max",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": "30 min",
+   "weight": "36V battery; multi-surface",
+   "sources": [
+    "https://bissell.com/en-ca/product/crosswave-cordless-max-multisurface-wet-dry-vac-2554D.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell CrossWave OmniForce",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": "30 min",
+   "weight": "Power Vac Mode with 75% more suction",
+   "sources": [
+    "https://www.bissell.com/s/bissell/product/crosswave-omniforce%E2%84%A2-all-in-one-multi-surface-cleaner-3882.html",
+    "https://www.homepagenews.com/home-housewares/bissell-introduces-crosswave-omniforce-wet-dry-vac/"
+   ],
+   "year": 2024
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Hard Floor Expert Deluxe 1161",
+   "shape": "Canister vacuums",
+   "surface": "Bagless canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Five suction levels; swivel head; cyclonic",
+   "sources": [
+    "https://bissell.com/1161.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Little Green 1400B",
+   "shape": "Carpet cleaners",
+   "surface": "Corded portable spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Compact spot cleaner; Pet Proven; 48 oz tanks",
+   "sources": [
+    "https://bissell.com/en-us/product/little-green-portable-carpet-cleaner-1400B.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Little Green Cordless 3682",
+   "shape": "Carpet cleaners",
+   "surface": "Portable spot cleaner",
+   "balance": null,
+   "core": "Cordless",
+   "weight": "Cordless for cars and upholstery",
+   "sources": [
+    "https://www.bissell.com/product/little-green-cordless-portable-carpet-cleaner-3682.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Little Green Pet Pro 2891",
+   "shape": "Carpet cleaners",
+   "surface": "Portable spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Pet-focused Little Green",
+   "sources": [
+    "https://bissell.com/little-green-pet-pro-portable-carpet-cleaner-2891.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Little Green Pro 3909B",
+   "shape": "Carpet cleaners",
+   "surface": "Portable spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "15 ft cord; 5 ft hose",
+   "sources": [
+    "https://www.bissell.com/en-ca/product/little-green-pro-portable-carpet-cleaner-3909B.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Pet Hair Eraser Corded Handheld",
+   "shape": "Handheld vacuums",
+   "surface": "Corded handheld vacuum",
+   "balance": null,
+   "core": "Corded",
+   "weight": "16 ft cord; pet hair handheld",
+   "sources": [
+    "https://www.bissell.com/s/bissell/product/bissell-pet-hair-eraser-corded-handheld-vacuum-33A1.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Pet Hair Eraser Cordless Handheld",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": "17 min",
+   "weight": "14.4V Li-ion; motorized brush tool",
+   "sources": [
+    "https://www.bissell.com/en-us/product/pet-hair-eraser-lithium-ion-cordless-pet-hand-vacuum-2390.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell PowerGlide Pet Slim Cordless",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Slim pet stick vacuum",
+   "sources": [
+    "https://bissell.com/en-ca/product/bissell-powerglide-pet-slim-cordless-stick-vacuum-3080B.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell ProHeat 2X Revolution 3579C",
+   "shape": "Carpet cleaners",
+   "surface": "Upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Original ProHeat 2X Revolution",
+   "sources": [
+    "https://www.bissell.com/en-ca/product/proheat-2x-revolution-carpet-upholstery-deep-cleaner-3579C.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell ProHeat 2X Revolution Pet Pro",
+   "shape": "Carpet cleaners",
+   "surface": "Upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Dual DirtLifter PowerBrushes; 11 in path",
+   "sources": [
+    "https://www.bissell.com/en-us/product/proheat-2x-revolution-pet-pro-carpet-cleaner-35799.html",
+    "https://bissell.com/proheat-2x-revolution-pet-pro-carpet-cleaner-3587.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell SpotClean HydroSteam",
+   "shape": "Carpet cleaners",
+   "surface": "Corded portable steam spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "HydroSteam heated cleaning; SteamWash/Steam/Wash modes",
+   "sources": [
+    "https://bissell.com.au/products/spotclean-hydrosteam-professional-3689h",
+    "https://www.currys.co.uk/products/bissell-spotclean-hydrosteam-3689e-carpet-cleaner-black-and-copper-harbor-10256895.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell SpotClean Pro 3624",
+   "shape": "Carpet cleaners",
+   "surface": "Corded portable spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Most powerful Bissell portable; 3/4 gal tank; 13 lb",
+   "sources": [
+    "https://bissell.com/3624.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell TurboClean PowerBrush Pet 2085",
+   "shape": "Carpet cleaners",
+   "surface": "Corded upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Lightweight 12 lb; 1/2 gal tank; 4-row DirtLifter brush",
+   "sources": [
+    "https://bissell.com/2085.html"
+   ]
+  },
+  {
+   "brand": "bissell",
+   "name": "Bissell Zing 2156A",
+   "shape": "Canister vacuums",
+   "surface": "Bagless canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Lightweight 10 lb; 16 ft cord with auto rewind",
+   "sources": [
+    "https://www.bissell.com/en-us/product/zing-bagless-canister-vacuum-2156A.html"
+   ]
+  },
+  {
+   "brand": "black-plus-decker",
+   "name": "Black+Decker dustbuster AdvancedClean 12V Max",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Slim, extra-wide nozzle; washable filter; base charger",
+   "sources": [
+    "https://www.blackanddecker.com/products/hlvc315b01"
+   ]
+  },
+  {
+   "brand": "black-plus-decker",
+   "name": "Black+Decker dustbuster AdvancedClean Wet/Dry",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Push-in squeegee for liquid spills; bagless bowl",
+   "sources": [
+    "https://blackanddecker.com/products/hlwva325j21"
+   ]
+  },
+  {
+   "brand": "black-plus-decker",
+   "name": "Black+Decker dustbuster AdvancedClean+ 20V Max",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": "35 AW",
+   "core": null,
+   "weight": "20V MAX lithium-ion; home and car",
+   "sources": [
+    "https://www.blackanddecker.com/products/hhvk515j00ff"
+   ]
+  },
+  {
+   "brand": "dewalt",
+   "name": "DeWalt 20V MAX Cordless Dry Hand Vacuum",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": "46 CFM",
+   "core": "21 min",
+   "weight": "HEPA filter; 0.7 L tank; jobsite use",
+   "sources": [
+    "https://www.dewalt.com/product/dcv501hb/20v-max-handheld-vacuum"
+   ],
+   "year": 2022
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame D10 Plus",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty dock",
+   "balance": "4,000 Pa",
+   "core": "170 min",
+   "weight": "Auto-empty base with 2.5 L bag (up to 45 days)",
+   "sources": [
+    "https://www.dreametech.com/products/dreame-d10-plus",
+    "https://global.dreametech.com/products/dreame-d10-plus"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame D9",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (charge-only dock)",
+   "balance": "3,000 Pa",
+   "core": null,
+   "weight": "LDS navigation; 270 ml water tank",
+   "sources": [
+    "https://www.dreametech.com/blogs/blog/dreame-d9-new-features"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame H12 Pro",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": "18,000 Pa",
+   "core": null,
+   "weight": "Edge-to-edge cleaning; hot air drying",
+   "sources": [
+    "https://store.dreametech.com/?p=351"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame H13 Pro",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://dreametech.com/pages/wet-and-dryer-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame H14",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": "5-minute hot air drying; 140 F brush wash",
+   "sources": [
+    "https://dreametech.com/pages/wet-and-dryer-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame H14 Pro",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": "18,000 Pa",
+   "core": null,
+   "weight": "GlideWheel; 180-degree lie-flat design; 60 C wash",
+   "sources": [
+    "https://global.dreametech.com/products/h14-pro",
+    "https://dreametech.com/pages/wet-and-dryer-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame H15 Pro",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": "Hot water wash and AI drying (Heat variant)",
+   "sources": [
+    "https://dreametech.com/pages/wet-and-dryer-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L10s Pro Ultra Heat",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, hot-wash dock",
+   "balance": "7,000 Pa",
+   "core": "220 min",
+   "weight": "Hot-water mop washing; Vormax suction",
+   "sources": [
+    "https://www.dreametech.com/products/l10s-pro-ultra",
+    "https://support.dreametech.com/hc/en-us/articles/10385827000719-Dreame-Bot-L10s-Pro-Ultra-Heat-Robot-Vacuum-and-Mop-User-Manual"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L10s Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "5,300 Pa",
+   "core": "210 min",
+   "weight": "Auto-empty (60 days) and self-cleaning mops; AI + 3D navigation",
+   "sources": [
+    "https://www.dreametech.com/products/dreamebot-l10s-ultra",
+    "https://global.dreametech.com/products/dreamebot-l10s-ultra"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L20 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "7,000 Pa",
+   "core": null,
+   "weight": "MopExtend edge mopping; mops auto-detach on carpet; 75-day dust bag",
+   "sources": [
+    "https://www.dreametech.com/products/l20-ultra",
+    "https://global.dreametech.com/products/l20-ultra"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L40 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "11,000 Pa",
+   "core": "194 min",
+   "weight": "75-day auto-empty dock; 5,200 mAh battery",
+   "sources": [
+    "https://www.dreametech.com/products/l40ultra-robot-vacuum"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L40 Ultra Gen2",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "25,000 Pa",
+   "core": null,
+   "weight": "100-day auto-empty; DuoScrub mopping",
+   "sources": [
+    "https://www.dreametech.com/pages/robot-vacuum-and-mop-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L40s Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "3DAdapt avoidance; anti-tangle DuoBrush",
+   "sources": [
+    "https://www.dreametech.com/pages/robot-vacuum-and-mop-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame L60 Pro Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "35,000 Pa",
+   "core": null,
+   "weight": "3.47 in obstacle clearing",
+   "sources": [
+    "https://www.dreametech.com/pages/robot-vacuum-and-mop-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame R20",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "190 AW",
+   "core": "65 min",
+   "weight": "150,000 RPM motor; LED dust detection",
+   "sources": [
+    "https://dreametech.com/products/dreame-r20"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame R20 TangleX",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "TangleCut brush; 1 L dust cup",
+   "sources": [
+    "https://www.dreametech.com/products/r20-tanglex-cordless-stick-vacuum"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame V12 Pro",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "85 min",
+   "weight": "160,000 RPM motor; 500 ml dust cup",
+   "sources": [
+    "https://global.dreametech.com/products/dreame-v12-pro"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame X30 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, hot-wash dock",
+   "balance": "8,300 Pa",
+   "core": "260 min",
+   "weight": "MopExtend RoboSwing mop; 60C hot-water mop wash",
+   "sources": [
+    "https://www.dreametech.com/products/dreame-x30-ultra",
+    "https://global.dreametech.com/products/x30-ultra"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame X40 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "11,000 Pa",
+   "core": null,
+   "weight": "Hot-water mop washing and warm-air drying",
+   "sources": [
+    "https://www.dreametech.com/collections/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame X50 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "20,000 Pa",
+   "core": null,
+   "weight": "Anti-tangle brush; retractable legs climb 2.36 in",
+   "sources": [
+    "https://www.dreametech.com/pages/robot-vacuum-and-mop-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame X60 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "3.47 in obstacle crossing; 3.13 in slim",
+   "sources": [
+    "https://www.dreametech.com/pages/robot-vacuum-and-mop-comparison"
+   ]
+  },
+  {
+   "brand": "dreame",
+   "name": "Dreame Z20 Station",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum with self-empty station",
+   "balance": "250 AW",
+   "core": "90 min",
+   "weight": "3 L bag auto-empty hub; illuminated Omni-Brush; HEPA H14",
+   "sources": [
+    "https://dreametech.com/products/z20-station-cordless-stick-vacuum"
+   ]
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson 360 Vis Nav",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum",
+   "balance": "65 AW",
+   "core": "65 min",
+   "weight": "Hyperdymium motor; 360° vision system; 22,000 Pa suction pressure",
+   "sources": [
+    "https://www.dyson.com/vacuum-cleaners/robot/360-vis-nav"
+   ]
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson Ball Animal 3",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": "290 AW",
+   "core": "Corded",
+   "weight": "Radial Root Cyclone; self-adjusting cleaner head",
+   "sources": [
+    "https://dyson.com/vacuum-cleaners/uprights/ball-animal-3/nickel"
+   ]
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson Digital Slim",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "40 min",
+   "weight": "4.4 lb, 0.1 gal bin; 30% lighter than V11",
+   "sources": [
+    "https://www.dyson.com/vacuum-cleaners/cordless/digital-slim"
+   ]
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson Gen5detect",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "280 AW",
+   "core": "70 min",
+   "weight": "HEPA whole-machine filtration; Hyperdymium motor",
+   "sources": [
+    "https://www.dyson.com/newsroom/news/product/gen5detect-gen5outsize-launch"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson Gen5outsize",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "250 AW",
+   "core": "140 min",
+   "weight": "Extra-large 150 mm cleaner head and bin; HEPA",
+   "sources": [
+    "https://www.dyson.com/vacuum-cleaners/cordless/gen5/outsize-hepa-nickel-blue",
+    "https://www.dyson.com/newsroom/news/product/gen5detect-gen5outsize-launch"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson Humdinger",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": "25 min",
+   "weight": "2.1 lb, hair-detangling tool, wall dock",
+   "sources": [
+    "https://www.dyson.com/vacuum-cleaners/handhelds/humdinger/nickel"
+   ],
+   "year": 2022
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson Omni-glide",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum (hard floor)",
+   "balance": null,
+   "core": "20 min",
+   "weight": "Omni-directional Fluffy head; 1.9 kg; hard floors only",
+   "sources": [
+    "https://www.dyson.com/newsroom/news/product/omniglide-launch"
+   ],
+   "year": 2021
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson PencilVac",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum (ultra-slim)",
+   "balance": null,
+   "core": "30 min",
+   "weight": "38 mm slim handle, 1.8 kg, four Fluffycones head",
+   "sources": [
+    "https://www.dyson.com/discover/innovation/new-machines/pencilvac-launch"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson V10",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "150 AW",
+   "core": "60 min",
+   "weight": "Bagless cordless, 40% larger bin than V8",
+   "sources": [
+    "https://www.dyson.hk/en-HK/products/cord-free/dyson-v10",
+    "https://support.dyson.my/vacuums/cordless-vacuums/dyson-v10/features.aspx"
+   ],
+   "year": 2018
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson V11",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "60 min",
+   "weight": "LCD screen with auto power adjust; Hyperdymium motor",
+   "sources": [
+    "https://www.dyson.com/commercial/vacuums/v11-blue",
+    "https://support.dyson.my/vacuums/cordless/dyson-v11/overview.aspx"
+   ],
+   "year": 2019
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson V12 Detect Slim",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "150 AW",
+   "core": "60 min",
+   "weight": "Lightweight 5.2 lb body with laser dust detection",
+   "sources": [
+    "https://www.dyson.com/vacuum-cleaners/cordless/v12/detect-slim-yellow"
+   ]
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson V15 Detect",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "240 AW",
+   "core": "60 min",
+   "weight": "Laser dust detection; piezo sensor counts particles",
+   "sources": [
+    "https://www.dyson.com/vacuum-cleaners/cordless/v15/detect/yellow-iron"
+   ]
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson V8",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "115 AW",
+   "core": "40 min",
+   "weight": "Direct-drive cleaner head; 2016-era workhorse",
+   "sources": [
+    "https://www.dyson.com.au/products/vacuum-cleaners/stick-vacuums/dyson-v8/dyson-v8-absolute-447952-01-silver-nickel"
+   ],
+   "year": 2016
+  },
+  {
+   "brand": "dyson",
+   "name": "Dyson WashG1",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Corded wet floor cleaner",
+   "balance": null,
+   "core": "35 min",
+   "weight": "Counter-rotating rollers; hard floors only",
+   "sources": [
+    "https://www.dyson.com/discover/innovation/new-machines/dyson-washg1"
+   ],
+   "year": 2024
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot N10 Plus",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with auto-empty station",
+   "balance": "3,800 Pa",
+   "core": "300 min",
+   "weight": "LiDAR with dToF; 2.5 L disposable dust bag",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-n10-plus-white",
+    "https://help.ecovacs.com/us/support/deebot-n10-plus-white"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot N30 Pro Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "ZeroTangle 2.0; value line",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-n30pro-omni-white"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot N8 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "2,600 Pa",
+   "core": "110 min",
+   "weight": "LiDAR mapping; ultrasonic carpet detection",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-n8-pro"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot T20 Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash, dry OMNI station",
+   "balance": "6,000 Pa",
+   "core": "260 min",
+   "weight": "Auto-Mop Riser (9 mm lift); 55C hot-water mop wash",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-t20-omni",
+    "https://www.ecovacs.com/uk/deebot-robotic-vacuum-cleaner/deebot-t20-omni"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot T30 Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, hot-wash mini station",
+   "balance": "11,000 Pa",
+   "core": "200 min",
+   "weight": "Edge cleaning; mini station with hot-water mop washing",
+   "sources": [
+    "https://www.ecovacs.com/uk/shop/deebot-robotic-vacuum-cleaner/deebot-t30-omni",
+    "https://www.ecovacs.com/us/campaign/deebot-t30-family"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot T30C",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum",
+   "balance": "20,000 Pa",
+   "core": null,
+   "weight": "Dual anti-tangle brushes",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-t30c"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot T50 Pro Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Pressure-blast cleaning",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-t50-pro-omni"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot T8 AIVI",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": null,
+   "core": null,
+   "weight": "AIVI camera object recognition plus dToF laser",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-ozmo-t8-aivi",
+    "https://help.ecovacs.com/us/support/deebot-ozmo-t8-aivi"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot T80 Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Roller mopping",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-t80-omni"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X1 Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash, dry OMNI station",
+   "balance": "5,000 Pa",
+   "core": "260 min",
+   "weight": "OZMO Turbo 2.0 spinning mops; 3 L auto-empty bag",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-x1-omni-black",
+    "https://www.ecovacs.com/uk/shop/deebot-robotic-vacuum-cleaner/deebot-x1-omni"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X12 OmniCyclone",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "FocusJet stain pre-treatment before mopping",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-x12-omnicyclone"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X2 Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash, dry OMNI station",
+   "balance": "8,000 Pa",
+   "core": "210 min",
+   "weight": "Square-body design; 200 mm roller brush; AIVI 3D 2.0",
+   "sources": [
+    "https://www.ecovacs.com/us/campaign/deebot-x2",
+    "https://www.ecovacs.com/us/blog/deebot-x2-omni-and-deebot-x1-omni-compared"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X5 Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, hot-wash OMNI station",
+   "balance": "12,800 Pa",
+   "core": "260 min",
+   "weight": "12,800 Pa; 15 mm mop lift; clears 22 mm obstacles",
+   "sources": [
+    "https://www.ecovacs.com/global/deebot-robotic-vacuum-cleaner/deebot-x5-omni-black",
+    "https://www.ecovacs.com/au/shop/deebot-robotic-vacuum-cleaner/deebot-x5-omni-black"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X5 Pro Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, 70C hot-wash OMNI station",
+   "balance": "12,800 Pa",
+   "core": "224 min",
+   "weight": "ZeroTangle anti-tangle brush; 70C mop washing",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-x5-pro-omni",
+    "https://www.ecovacs.com/au/newsroom/official-news/deebot-x5-pro-omni-launch"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X8 Pro Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Roller-based mop and clean",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-x8-pro-omni"
+   ]
+  },
+  {
+   "brand": "ecovacs",
+   "name": "Ecovacs Deebot X9 Pro Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "High-pressure dirt blasting plus roller mopping",
+   "sources": [
+    "https://www.ecovacs.com/us/shop/deebot-robotic-vacuum-cleaner/deebot-x9-pro-omni"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy HomeVac H30 Infinity",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": "20 min",
+   "weight": "Handheld with wand and floor head; ~250 ml bin",
+   "sources": [
+    "https://www.lowes.com/pd/eufy-eufy-HomeVac-H30-Infinity/5012913659"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy HomeVac S11 Infinity",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "120 AW",
+   "core": "40 min",
+   "weight": "Two swappable batteries; 2-in-1 stick and handheld",
+   "sources": [
+    "https://beta.eufy.com/eu-fr/products/t2501322"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy L60",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty station",
+   "balance": "5,000 Pa",
+   "core": null,
+   "weight": "iPath laser navigation; self-empty station",
+   "sources": [
+    "https://eufy.com/collections/clean"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy Omni C20",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "7,000 Pa",
+   "core": null,
+   "weight": "Omni station; covers up to 950 sq ft",
+   "sources": [
+    "https://eufy.com/collections/clean"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy Omni C30",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "35,000 Pa",
+   "core": null,
+   "weight": "Two spinning mop pads",
+   "sources": [
+    "https://www.eufy.com/products/t210s111-eufy-robot-vacuum-omni-c30"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy Omni S1 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "8,000 Pa",
+   "core": null,
+   "weight": "No lidar, low-profile body; Omni station",
+   "sources": [
+    "https://eufy.com/collections/clean"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy Omni S2",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Adjusts suction and height for carpets; lifts its mop",
+   "sources": [
+    "https://www.eufy.com/products/t2081111"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy Omni S2 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "40,000 Pa",
+   "core": null,
+   "weight": "UV-C floor disinfection while mopping",
+   "sources": [
+    "https://www.eufy.com/products/t210t111-eufy-robot-vacuum-omni-s2-pro"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy RoboVac 11S MAX",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum (no dock, remote control)",
+   "balance": "2,000 Pa",
+   "core": "100 min",
+   "weight": "Super-slim 2.85 in body; BoostIQ; no Wi-Fi",
+   "sources": [
+    "https://www.eufy.com/products/t2126113",
+    "https://beta.eufy.com/products/t2126"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy RoboVac 30C",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum (no dock)",
+   "balance": "1,500 Pa",
+   "core": "100 min",
+   "weight": "Wi-Fi; BoostIQ; 2.85 in slim body",
+   "sources": [
+    "https://www.eufy.com/products/t2118111",
+    "https://service.eufy.com/product-description/a085g000000Nm4QAAS/robovac-30c"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy RoboVac G30",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum (no dock)",
+   "balance": "2,000 Pa",
+   "core": null,
+   "weight": "Systematic route planning; BoostIQ",
+   "sources": [
+    "https://www.eufy.com/products/t2253",
+    "https://beta.eufy.com/products/t2250?fliter_category=clean"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy RoboVac X8 Hybrid",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "2 x 2,000 Pa",
+   "core": "180 min",
+   "weight": "Twin turbines; laser navigation; 2-in-1 vacuum and mop",
+   "sources": [
+    "https://www.eufy.com/products/t2261112",
+    "https://service.eufy.com/article-description/Specification-of-X8-and-X8-Hybrid"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "eufy X10 Pro Omni",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "8,000 Pa",
+   "core": "173 min",
+   "weight": "All-in-One Station; MopMaster 2.0; iPath laser navigation",
+   "sources": [
+    "https://www.eufy.com/products/t2351111"
+   ]
+  },
+  {
+   "brand": "numatic",
+   "name": "Henry HVR160",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "6 L bag; 620 W; 7.5 kg",
+   "sources": [
+    "https://numatic.com/products/henry-hvr160/"
+   ]
+  },
+  {
+   "brand": "numatic",
+   "name": "Henry Xtra HVX200",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "9 L bag; 620 W; self-seal tab",
+   "sources": [
+    "https://numatic.com/products/henry-xtra-hvx200/"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover CleanSlate Pet",
+   "shape": "Carpet cleaners",
+   "surface": "Corded portable spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "40 oz clean tank; spot cleaner for carpet and upholstery",
+   "sources": [
+    "https://hoover.com/products/cleanslate-pet-carpet-upholstery-spot-cleaner-1"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover MAXLife Pro Pet Swivel UH74220PC",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "MAXLife filter system; 12.5 in cleaning path",
+   "sources": [
+    "https://hoover.com/products/maxlife-pro-pet-swivel-upright-vacuum"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover ONEPWR Blade MAX Pet",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "45 min",
+   "weight": "Hoover's most powerful cord-free vacuum at launch",
+   "sources": [
+    "https://refinery29.com/en-us/shop/product/onepwr-blade-max-pet-cordless-stick-vacuum-cleaner-11047685"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover ONEPWR Blade+",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Budget ONEPWR stick; BH53310",
+   "sources": [
+    "https://www.bestbuy.com/site/product/6352899.p"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover ONEPWR Emerge",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "10.5 in. path; detachable hand vac; ONEPWR battery",
+   "sources": [
+    "https://hoover.com/products/onepwr-emerge-cordless-stick-vacuum-v2"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover ONEPWR Emerge Pet",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "All-Terrain dual brush roll nozzle; powered stair tool",
+   "sources": [
+    "https://hoover.com/products/onepwr-emerge-pet-complete-with-all-terrain-dual-brush-roll-nozzle"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover PowerDash Pet Advanced FH55000",
+   "shape": "Carpet cleaners",
+   "surface": "Corded upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Pet-focused upright washer; separate from PowerDash Pet FH50700",
+   "sources": [
+    "https://hoover.com/products/powerdash-pet-advanced-3"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover PowerDash Pet Compact FH50700",
+   "shape": "Carpet cleaners",
+   "surface": "Corded compact upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "PowerSpin pet brush roll; 12.5 lb; HeatForce drying",
+   "sources": [
+    "https://homedepot.com/p/HOOVER-PowerDash-Pet-Compact-Carpet-Cleaner-Machine-Lightweight-Carpet-Shampooer-FH50700V/312072816"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover SmartWash Pet Complete Automatic FH53000",
+   "shape": "Carpet cleaners",
+   "surface": "Corded automatic upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Automatic wash; pet version of SmartWash",
+   "sources": [
+    "https://hoover.com/smartwash-pet-complete-bonus-kit/FH53000TV1.html"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover SmartWash+ Automatic FH52000",
+   "shape": "Carpet cleaners",
+   "surface": "Corded automatic upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Motion-sensing automatic wash with Auto Mix; no trigger",
+   "sources": [
+    "https://hoover.com/collections/all-carpet-cleaners/products/smartwash-automatic-carpet-cleaner-4"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover WindTunnel 3 Max Performance Pet UH72625",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "WindTunnel 3 technology, pet tools",
+   "sources": [
+    "https://hoover.com/products/windtunnel-3-max-performance-pet-bagless-upright-vacuum-cleaner"
+   ]
+  },
+  {
+   "brand": "hoover",
+   "name": "Hoover WindTunnel 3 Pro Pet UH70935",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "WindTunnel 3 pet upright",
+   "sources": [
+    "https://www.bestbuy.com/site/hoover-windtunnel-3-pro-bagless-pet-upright-vacuum-cobalt-blue/7555078.p"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba 105 Vac",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "AutoEmpty Dock bundle",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-105-vac-robot-plus-autoempty-dock/Q352020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba 694",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "3-stage cleaning; Dirt Detect",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-vacuuming-robot-vacuum-irobot-roomba-69-4020/R694020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Combo 10 Max",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "AutoWash dock",
+   "sources": [
+    "https://www.irobot.com/en_US/robot-vacuums.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Combo Essential",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": null,
+   "core": "120 min",
+   "weight": "2-in-1 vacuum and mop in one pass, pump-fed mop pad",
+   "sources": [
+    "https://media.irobot.com/2024-04-04-iRobot-Introduces-275-Roomba-Combo-R-Essential-Robot,-Letting-More-Customers-Enjoy-Simple,-Affordable-and-Powerful-2-in-1-Cleaning",
+    "https://www.irobot.com/en_US/roomba-combo-essential-robot/Y014020.html"
+   ],
+   "year": 2024
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Combo i3+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Vacuums and mops; self-emptying",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-combo-i3-vacuum-mop/I357420.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Combo j5",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Switches between vacuum-only and vacuum+mop; dock empties up to 60 days",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-combo-j5-robot-vacuum-and-mop/J517020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Combo j7+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Mop lifts away from carpet; self-empty dock",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-combo-j7plus-robot-vacuum-and-mop/C755020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Combo j9+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Clean Base Auto-Fill dock; SmartScrub mopping; PrecisionVision",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-combo-j9plus-auto-fill-robot-vacuum-and-mop/C975020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba i3+ EVO",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Self-emptying Clean Base",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-i3plus-evo-self-emptying-robot-vacuum/I355020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba i4",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Wi-Fi connected",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba_i4/I415020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba i5+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty Clean Base",
+   "balance": null,
+   "core": null,
+   "weight": "Imprint Smart Maps; Clean Base holds 30 bins (60 days)",
+   "sources": [
+    "https://www.irobot.co.uk/en_GB/irobot-roomba-i5/I565240.html",
+    "https://www.irobot.com/en_US/see-it-in-action/i5plus-and-i5.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba i7+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty Clean Base",
+   "balance": null,
+   "core": null,
+   "weight": "Smart Maps room cleaning; Clean Base holds 30 bins (60 days)",
+   "sources": [
+    "https://www.irobot.co.uk/en_GB/irobot-roomba-i7/I755840.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba j7+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "PrecisionVision obstacle avoidance; Clean Base",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-j7plus-self-emptying-robot-vacuum/J755020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba j9+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty Clean Base",
+   "balance": null,
+   "core": null,
+   "weight": "PrecisionVision obstacle avoidance; Clean Base (60 days)",
+   "sources": [
+    "https://www.irobot.co.uk/en_GB/irobot-roomba-j9plus/J955840.html",
+    "https://www.irobot.ca/en_CA/roomba-j9-self-emptying-robot-vacuum/J955020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba Max 705 Vac",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "AutoEmpty Dock",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-max-705-vac-robot-plus-autoempty-dock/W155020.html"
+   ]
+  },
+  {
+   "brand": "irobot",
+   "name": "iRobot Roomba s9+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty Clean Base",
+   "balance": null,
+   "core": null,
+   "weight": "D-shaped body with PerfectEdge sensors; Clean Base (60 days)",
+   "sources": [
+    "https://www.irobot.com/en_US/roomba-vacuuming/robot-vacuum-irobot-roomba-s9-plus/S955020.html"
+   ]
+  },
+  {
+   "brand": "kenmore",
+   "name": "Kenmore Elite ULTRA PLUSH 700 Series 81714",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "2.8 L bag; motorized pet hair tool",
+   "sources": [
+    "https://kenmorefloorcare.com/products/kenmore-elite-ultraplush-bagged-canister-vacuum.html"
+   ]
+  },
+  {
+   "brand": "kenmore",
+   "name": "Kenmore Pet Friendly Pop-N-Go BC4026",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "2.1 L bag; 183 W total power",
+   "sources": [
+    "https://kenmorefloorcare.com/canisters"
+   ]
+  },
+  {
+   "brand": "levoit",
+   "name": "Levoit LVAC-200",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": "70 AW",
+   "core": "50 min",
+   "weight": "3.2 lb; 5-stage filtration; detachable battery",
+   "sources": [
+    "https://levoit.com/products/lvac-200-cordless-vacuum"
+   ]
+  },
+  {
+   "brand": "lg",
+   "name": "LG CordZero A9",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "120 min",
+   "weight": "Kompressor variants; quick-release battery with charging stand",
+   "sources": [
+    "https://lg.com/us/vacuum-cleaners/lg-a900bm-stick-vacuum"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Blizzard CX1",
+   "shape": "Canister vacuums",
+   "surface": "Bagless canister",
+   "balance": "1200 W",
+   "core": "Corded",
+   "weight": "Vortex motor; HEPA lifetime filter; Turbo Team powerhead",
+   "sources": [
+    "https://media.miele.com/downloads/n-/us/FS_10829400_USE_US-en-US.pdf"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Boost CX1",
+   "shape": "Canister vacuums",
+   "surface": "Bagless canister",
+   "balance": "1200 W",
+   "core": "Corded",
+   "weight": "Compact bagless; HEPA lifetime filter; auto cord rewind",
+   "sources": [
+    "https://www.mieleusa.com/product/11735570/bagless-canister-vacuum-cleaners-boost-cx1-graphite-grey"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Classic C1",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": "1200 W",
+   "core": "Corded",
+   "weight": "1200 W Vortex motor; AirClean filtration; Turbo Team etc. variants merged",
+   "sources": [
+    "https://www.bloomingdales.com/shop/product/?ID=3453239"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Compact C2",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": "1200 W",
+   "core": "Corded",
+   "weight": "Electrobrush powerhead; six suction settings; Marine Blue",
+   "sources": [
+    "https://www.mieleusa.com/cs/newsroom/miele-announces-new-additions-to-the-floor-care-category-191016"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Complete C3",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "1,200 W Vortex motor; variants (Marin, Calima, Kona…) differ by floor head and tools",
+   "sources": [
+    "https://mieleusa.com/product/10014700/canister-vacuum-cleaners-complete-c3-marin-powerline-sgje0-marine-blue",
+    "https://allaboutvacuums.com/product/complete-c3-calima-powerline-sgfe0"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Guard L1",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "About 500 g lighter than Complete C3",
+   "sources": [
+    "https://mieleusa.com/cs/vacuum-cleaning/guard-l1-canister-vacuum-cleaner-13137"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Guard M1",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Wi-Fi with Miele@home app; starts at $499",
+   "sources": [
+    "https://www.mieleusa.com/cs/vacuum-cleaning/guard-m1-canister-vacuum-cleaner-5024"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Triflex HX2",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "60 min",
+   "weight": "3-in-1 stick/handheld/extended reach; HEPA Lifetime filter",
+   "sources": [
+    "https://www.miele.ca/en/Shop/products/detail/cordless-stick-vacuum-cleaners-triflex-hx2-11827000-p"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Triflex HX2 Pro",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "120 min",
+   "weight": "Second battery included (60+60 min)",
+   "sources": [
+    "https://mieleusa.com/e/cordless-stick-vacuum-cleaner-triflex-hx2-pro-infinity-grey-pf-11827020-p"
+   ]
+  },
+  {
+   "brand": "milwaukee",
+   "name": "Milwaukee M12 Compact Vacuum",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": "29 min",
+   "weight": "0.63 qt tank; 2.25 lb; 5-year warranty",
+   "sources": [
+    "https://www.milwaukeetool.com/products/0850-20"
+   ],
+   "year": 2015
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Flow",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "22,000 Pa",
+   "core": null,
+   "weight": "FlowWash track mop with real-time self-cleaning",
+   "sources": [
+    "https://ca.narwal.com/blogs/robot-vacuum/robot-vacuum-comparison"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-wash, self-empty base",
+   "balance": "3,000 Pa",
+   "core": "210 min",
+   "weight": "Self-cleaning mops; LDS navigation",
+   "sources": [
+    "https://us.narwal.com/pages/product-help-freo"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "8,500 Pa",
+   "core": null,
+   "weight": "Zero-tangle floating brush; 120-day base station",
+   "sources": [
+    "https://ca.narwal.com/blogs/robot-vacuum/robot-vacuum-comparison"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo X Plus",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash base",
+   "balance": "7,800 Pa",
+   "core": "254 min",
+   "weight": "Zero-tangle brush; tri-laser obstacle avoidance; 7-week dust storage",
+   "sources": [
+    "https://us.narwal.com/products/freo-x-plus-robot-vacuum-and-mop",
+    "https://us.narwal.com/pages/narwal-freo-x-plus-robot-vacuum-and-mop"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo X Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "8,200 Pa",
+   "core": null,
+   "weight": "DirtSense; self-cleaning dock",
+   "sources": [
+    "https://pl.narwal.com/collections/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo X10 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "11,000 Pa",
+   "core": null,
+   "weight": "0% hair tangle brush; 120-day self-empty dock",
+   "sources": [
+    "https://ca.narwal.com/blogs/robot-vacuum/robot-vacuum-comparison"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo Z Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "12,000 Pa",
+   "core": null,
+   "weight": "Dual-camera AI obstacle avoidance; mop-washing base",
+   "sources": [
+    "https://ca.narwal.com/blogs/robot-vacuum/robot-vacuum-comparison"
+   ]
+  },
+  {
+   "brand": "narwal",
+   "name": "Narwal Freo Z10 Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "18,000 Pa",
+   "core": null,
+   "weight": "Real-time dirt sensing; hot-water mop washing dock",
+   "sources": [
+    "https://ca.narwal.com/blogs/robot-vacuum/robot-vacuum-comparison"
+   ]
+  },
+  {
+   "brand": "panasonic",
+   "name": "Panasonic MC-CG902",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister with power nozzle",
+   "balance": null,
+   "core": "Corded",
+   "weight": "HEPA media filter; 12 A motor; 24 ft cord",
+   "sources": [
+    "https://panasonic.com/ca/support/discontinued/home-appliances/mc-cg902.html"
+   ]
+  },
+  {
+   "brand": "riccar",
+   "name": "Riccar R25 Standard",
+   "shape": "Upright vacuums",
+   "surface": "Bagged upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "HEPA filtration; 35 ft cord",
+   "sources": [
+    "https://starks.com/products/riccar-r25-standard"
+   ]
+  },
+  {
+   "brand": "riccar",
+   "name": "Riccar R25D Deluxe Pet",
+   "shape": "Upright vacuums",
+   "surface": "Bagged upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Deluxe pet version of R25",
+   "sources": [
+    "https://www.qualitysewing.com/riccar-r25d-deluxe-pet-clean-air-upright.html"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Dyad Pro",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": "900 ml clean / 770 ml dirty tank",
+   "sources": [
+    "https://roborockstore.com.au/products/roborock-dyad-pro-wet-and-dry-vacuum-cleaner"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock F25 ACE Pro",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": "25,000 Pa",
+   "core": null,
+   "weight": "Top of F25 ACE line",
+   "sources": [
+    "https://global.roborock.com/pages/roborock-f25-ace-pro"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock F25 RT",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": "20,000 Pa",
+   "core": null,
+   "weight": "Anti-tangle roller; pet hair focus",
+   "sources": [
+    "https://us.roborock.com/pages/f25-series-wet-dry-vacuum"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock F25 Steam",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": "Steam cleaning for dried-on messes",
+   "sources": [
+    "https://us.roborock.com/pages/f25-series-wet-dry-vacuum"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock F25 Ultra",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": "Steam mode; cooking oil and grease in one pass",
+   "sources": [
+    "https://us.roborock.com/pages/f25-series-wet-dry-vacuum"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock H60",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "90-degree bending wand; up to 210 AW on top H60 models",
+   "sources": [
+    "https://us.roborock.com/products/roborock-h60",
+    "https://newsroom.roborock.com/gl/news/roborock-introduces-the-h60-series-stick-vacuums-with-up-to-90-of-bend-and-210aw-maximum-suction-for-ultimate-power-and-flexibility"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock H60 Hub Ultra",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum with self-empty station",
+   "balance": "210 AW",
+   "core": null,
+   "weight": "Self-emptying hub dock; 90-degree bend wand",
+   "sources": [
+    "https://us.roborock.com/products/roborock-h60-hub-ultra"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock H60 Pro",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Mid model of the H60 series",
+   "sources": [
+    "https://us.roborock.com/products/roborock-h60-pro"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Q5 Max+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty dock",
+   "balance": "5,500 Pa",
+   "core": "240 min",
+   "weight": "Auto-empty dock; 770 ml dustbin; ~350 sqm",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-q5-max-plus",
+    "https://us.roborock.com/products/roborock-q5-max-plus"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Q5 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "5,500 Pa",
+   "core": "240 min",
+   "weight": "DuoRoller brush; 770 ml dustbin",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-q5-pro"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Q7 Max",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "4,200 Pa",
+   "core": "180 min",
+   "weight": "Dual anti-tangle system; 300 g mop pressure",
+   "sources": [
+    "https://global.roborock.com/pages/roborock-q7-max",
+    "https://us.roborock.com/products/roborock-q7-max",
+    "https://us.roborock.com/products/roborock-q7-max-plus"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "12,000 Pa",
+   "core": null,
+   "weight": "Dual anti-tangle; FlexiArm edge mopping; reactive obstacle avoidance",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo Curv",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "18,500 Pa",
+   "core": null,
+   "weight": "AdaptiLift chassis; DuoDivide main brush; dual anti-tangle",
+   "sources": [
+    "https://global.roborock.com/pages/roborock-qrevo-curv"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo Curv 2 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "25,000 Pa",
+   "core": null,
+   "weight": "AdaptiLift Chassis; dual anti-tangle; automatic mop detachment",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo Edge 2 Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "25,000 Pa",
+   "core": null,
+   "weight": "Enhanced AdaptiLift Chassis; dual anti-tangle; auto mop detachment",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo Master",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "10,000 Pa",
+   "core": null,
+   "weight": "Multifunctional Dock 3.0; FlexiArm side brush and edge mopping",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Multifunctional Dock 2.0; FlexiArm edge mopping; 10 mm mop lifting",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Qrevo S Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "18,500 Pa",
+   "core": null,
+   "weight": "Multifunctional Dock; anti-tangle side brush; reactive obstacle avoidance",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S5 Max",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "2,000 Pa",
+   "core": "180 min",
+   "weight": "290 ml tank with adjustable water flow",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-s5-max"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S6 MaxV",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "2,500 Pa",
+   "core": "180 min",
+   "weight": "Dual-camera obstacle avoidance (ReactiveAI)",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-s6-maxv"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S7",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock; S7+ adds auto-empty dock)",
+   "balance": "2,500 Pa",
+   "core": "180 min",
+   "weight": "Sonic mopping, 3,000 scrubs/min",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-s7"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S7 Max Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash, dry dock",
+   "balance": "5,500 Pa",
+   "core": null,
+   "weight": "RockDock Ultra: self-empty, mop wash and dry, refill; VibraRise mop",
+   "sources": [
+    "https://newsroom.roborock.com/gl/news/roborock-introduces-s7-max-ultra-and-q-revo-with-unique-roborock-app-features-for-seamless-cleaning-experiences",
+    "https://us.roborock.com/pages/roborock-s7-max-ultra"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S7 MaxV Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash, refill dock",
+   "balance": "5,100 Pa",
+   "core": null,
+   "weight": "ReactiveAI 2.0 camera obstacle avoidance; Empty Wash Fill Dock",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-s7-maxv",
+    "https://global.roborock.com/pages/roborock-s7-maxv",
+    "https://support.roborock.com/hc/en-us/articles/6287873100441-Roborock-S7-MaxV-Ultra-FCC-User-Manual-EN-FR-ES-Latin"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S8",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop (no dock)",
+   "balance": "6,000 Pa",
+   "core": null,
+   "weight": "DuoRoller brush; VibraRise mop; obstacle avoidance",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-s8",
+    "https://global.roborock.com/pages/roborock-s8-plus"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S8 MaxV Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "10,000 Pa",
+   "core": null,
+   "weight": "FlexiArm side brush; 8-in-1 RockDock Ultra",
+   "sources": [
+    "https://www.bestbuy.com/site/reviews/roborock-s8-maxv-ultra-robot-vacuum-and-mop-with-flexiarm-design-side-brush-10000-pa-suction-and-8-in-1-rockdock-ultra-white/6579466"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock S8 Pro Ultra",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash, dry dock",
+   "balance": "6,000 Pa",
+   "core": null,
+   "weight": "DuoRoller Riser brush; VibraRise 2.0 mop; dock empties, washes, dries, refills",
+   "sources": [
+    "https://ca.roborock.com/pages/roborock-s8-pro-ultra",
+    "https://us.roborock.com/pages/roborock-s8"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Saros 10",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "7.98 cm slim; ReactiveAI 3.0; VibraRise 4.0 mopping",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Saros 10R",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "7.98 cm slim; StarSight 2.0; Multifunctional Dock 4.0 (10-in-1)",
+   "sources": [
+    "https://us.roborock.com/pages/roborock-saros-10r"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Saros 20",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "36,000 Pa",
+   "core": null,
+   "weight": "AdaptiLift Chassis 3.0; StarSight 2.0; RockDock with 100°C mop washing",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "roborock",
+   "name": "Roborock Saros Z70",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": "22,000 Pa",
+   "core": null,
+   "weight": "OmniGrip foldable 5-axis mechanical arm; 3.14-inch slim body",
+   "sources": [
+    "https://us.roborock.com/pages/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "rug-doctor",
+   "name": "Rug Doctor Mighty Pro X3",
+   "shape": "Carpet cleaners",
+   "surface": "Upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "One Pass Cleaning; two large tanks",
+   "sources": [
+    "https://www.rugdoctor.com/product/mighty-pro-x3/"
+   ]
+  },
+  {
+   "brand": "rug-doctor",
+   "name": "Rug Doctor Pet Portable Spot Cleaner",
+   "shape": "Carpet cleaners",
+   "surface": "Corded portable spot cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Dual-action pet tool; pet formula; retractable handle",
+   "sources": [
+    "https://www.rugdoctor.com/wp-content/uploads/pet-portable-spot-cleaner-manual.pdf",
+    "https://www.rugdoctor.com/product/faux-paw-pack/"
+   ]
+  },
+  {
+   "brand": "samsung",
+   "name": "Samsung Bespoke Jet AI",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum with self-empty station",
+   "balance": "280W",
+   "core": "100 min",
+   "weight": "AI floor-type detection; HexaJet motor; Clean Station",
+   "sources": [
+    "https://news.samsung.com/us/samsung-announces-bespoke-jet-ai-the-worlds-first-ul-verified-ai-powered-cordless-stick-vacuum"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "samsung",
+   "name": "Samsung Bespoke Jet Bot Combo AI+",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with clean station and auto steam",
+   "balance": "6,000 Pa",
+   "core": "180 min",
+   "weight": "Camera object recognition; steam mopping clean station",
+   "sources": [
+    "https://www.samsung.com/uk/vacuum-cleaners/robot/jet-bot-combo-ai--ai-object-recognition--satin-greige-satin-greige-vr7md97714g-eu/"
+   ]
+  },
+  {
+   "brand": "samsung",
+   "name": "Samsung Jet 75",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "60 min",
+   "weight": "Removable battery; 5-layer filtration; digital display",
+   "sources": [
+    "https://www.samsung.com/us/business/builder/our-appliances/vacuums/jet-stick/samsung-jet--75-cordless-stick-vacuum-vs20t7511t5-aa"
+   ]
+  },
+  {
+   "brand": "samsung",
+   "name": "Samsung Jet 90",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "120 min",
+   "weight": "Two removable batteries; Clean Station on Complete",
+   "sources": [
+    "https://www.samsung.com/us/home-appliances/vacuums/jet-stick/samsung-jet-90-complete-cordless-stick-vacuum-vs20r9076t3-aa/b2bapp"
+   ]
+  },
+  {
+   "brand": "sebo",
+   "name": "SEBO Airbelt D4 Premium",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Full-size; 6 L bag; 40 ft cord",
+   "sources": [
+    "https://cdn.sebo.us/corporate/canister/airbelt-d/documents/AIRBELT-D-Brochure.pdf"
+   ]
+  },
+  {
+   "brand": "sebo",
+   "name": "SEBO Airbelt E3 Premium",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Mid-size canister",
+   "sources": [
+    "https://www.natlallergy.com/find-relief-from/dust-mites/sebo-airbelt-e3-premium-canister-vacuum.html"
+   ]
+  },
+  {
+   "brand": "sebo",
+   "name": "SEBO Airbelt K3 Premium",
+   "shape": "Canister vacuums",
+   "surface": "Bagged canister",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Compact K-series; ET-1 powerbrush; 25 ft cord",
+   "sources": [
+    "https://www.sylvane.com/collections/sebo-vacuums/products/sebo-airbelt-k3-vacuum-cleaners"
+   ]
+  },
+  {
+   "brand": "sebo",
+   "name": "SEBO Automatic X4",
+   "shape": "Upright vacuums",
+   "surface": "Bagged upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Automatic height adjustment; 12 in head",
+   "sources": [
+    "https://www.bestvacuum.com/products/sebo-automatic-x4-black-onyx-upright-vacuum"
+   ]
+  },
+  {
+   "brand": "sebo",
+   "name": "SEBO Automatic X7",
+   "shape": "Upright vacuums",
+   "surface": "Bagged upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Automatic height adjustment, bagged",
+   "sources": [
+    "https://www.sebo.de/en/domestic/detail/automatic-x7.html"
+   ]
+  },
+  {
+   "brand": "sebo",
+   "name": "SEBO Felix Premium",
+   "shape": "Upright vacuums",
+   "surface": "Bagged upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Upright with canister-style tools; about 16 lb",
+   "sources": [
+    "https://www.sylvane.com/collections/all-products/products/sebo-felix-1-premium-vacuum-cleaners"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark AI Ultra Robot Vacuum",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with bagless self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "360 LiDAR home mapping; XL HEPA base holds 60 days",
+   "sources": [
+    "https://www.sharkclean.com/products/shark-ai-ultra-robot-vacuum-with-xl-hepa-self-empty-base-zidRV2502AE",
+    "https://www.sharkninja.com/shark-ai-ultra-robot-self-empty/AV2501S.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark CarpetXpert with StainStriker",
+   "shape": "Carpet cleaners",
+   "surface": "Corded upright carpet cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Built-in StainStriker handheld; 960 W; 10.3 kg",
+   "sources": [
+    "https://www.sharkninja.ca/shark-carpetxpert-with-stainstriker/EX200C.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Cordless Detect Pro with Auto-Empty System",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum with self-empty station",
+   "balance": null,
+   "core": "60 min",
+   "weight": "2 L auto-empty dock; QuadClean brushroll; odor neutralizer",
+   "sources": [
+    "https://www.sharkclean.com/products/shark-cordless-detect-pro-auto-empty-system-with-quadclean-multi-surface-brushroll-zidIW3511"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Cordless PowerDetect Clean & Empty System",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum with self-empty station",
+   "balance": null,
+   "core": "70 min",
+   "weight": "Auto-empty dock seals dirt up to 45 days",
+   "sources": [
+    "https://www.sharkninja.com/shark-cordless-powerdetect-clean-empty-system/IP3253.html",
+    "https://www.sharkninja.com/shark-powerdetect-clean-empty-system/IP3251.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Cyclone Handheld",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "1.6 lb; washable filter; Cyclone PET CH701 variant",
+   "sources": [
+    "https://www.sharkninja.ca/shark-cyclone-handheld-vacuum/CH700C.html",
+    "https://ninjakitchen.com/products/shark-cyclone-pet-handheld-vacuum-zidCH701"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark HydroVac Pro XL Cordless WD201",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": "23 min",
+   "weight": "500 ml clean tank; 3-in-1 vacuum, mop, self-clean",
+   "sources": [
+    "https://sharkclean.com.au/products/shark-hydrovac-pro-xl-cordless-3-in-1-cleaner"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark HydroVac XL WD101C",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Corded wet/dry floor cleaner",
+   "balance": null,
+   "core": "Corded",
+   "weight": "3-in-1 vacuum, mop, self-clean",
+   "sources": [
+    "https://www.sharkninja.ca/shark-hydrovac-xl/WD101C.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark ION Robot RV750",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum (no dock)",
+   "balance": null,
+   "core": null,
+   "weight": "Multi-surface brushroll; Wi-Fi connected",
+   "sources": [
+    "https://origin-www.sharkclean.com/support/product-series/1221/shark-ion-robot-vacuum-with-multi-surface-brushroll-wi-fi-connected/"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark IQ Robot",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with bagless self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Self-cleaning brushroll; IQ Navigation; base holds up to 30 days",
+   "sources": [
+    "https://origin-www.sharkclean.com/support/product-series/1222/shark-iq-robot-vacuum-with-xl-self-empty-base-self-cleaning-brushroll-advanced-navigation/",
+    "https://www.sharkclean.com/exclusive-offer/RV1001AECM/shark-iq-robot-xl-vacuum-r101ae-with-self-empty-base-wi-fi-and-home-mapping/"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Matrix Plus 2-in-1 Robot Vacuum and Mop",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Sonic mopping; self-empty base",
+   "sources": [
+    "https://www.sharkninja.com/shark-matrix-plus-2-in-1-self-empty-robot-vacuum-and-mop/RV2610WA.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Matrix Robot Vacuum",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with bagless self-empty base",
+   "balance": null,
+   "core": "90 min",
+   "weight": "Matrix Clean grid passes; 360 LiDAR; base holds 45 days",
+   "sources": [
+    "https://www.sharkninja.com/shark-matrix-self-empty-robot-vacuum/RV2310AE.html",
+    "https://www.sharkclean.com/products/shark-matrix-self-empty-robot-vacuum-zidRV2310AE"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Navigator Lift-Away NV352",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Lift-Away pod; 1.04 L dust cup; 1,200 W",
+   "sources": [
+    "https://www.sharkninja.ca/shark-navigator-lift-away-vacuum/NV352.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark PowerDetect",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Sensors adapt to floor type, edges and direction",
+   "sources": [
+    "https://www.sharkninja.com/shark-powerdetect-upright-bagless-vacuum-with-ultimate-cleaning-tools/AZ407KT1.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark PowerDetect Cordless",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "70 min",
+   "weight": "DuoClean Detect nozzle; MultiFlex wand",
+   "sources": [
+    "https://www.sharkninja.com/vacuums-air-care/vacuum-cleaners/cordless-vacuums/shark-powerdetect-cordless-stick-vacuum/IP1251.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark PowerDetect NeverTouch Pro",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "Self-empty, refill, mop wash and dry base",
+   "sources": [
+    "https://www.sharkclean.com/products/shark-detect-pro-self-empty-robot-vacuum-zidRV2820AE"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark PowerDetect Robot",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum with self-empty base",
+   "balance": null,
+   "core": null,
+   "weight": "Three Detect & React technologies",
+   "sources": [
+    "https://www.sharkninja.com/shark-powerdetect-robot/AV2820AE.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark PowerDetect ThermaCharged",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": "180 min",
+   "weight": "Heated mop wash and dry base; NeverStop battery",
+   "sources": [
+    "https://www.sharkninja.com/rv2900xe-series-robot/RV2920XE.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark PowerDetect UV Reveal",
+   "shape": "Robot vacuums",
+   "surface": "Robot vacuum-mop with self-empty, self-wash dock",
+   "balance": null,
+   "core": null,
+   "weight": "UV stain detection; heated mop pad wash and dry",
+   "sources": [
+    "https://www.sharkninja.com/vacuums-air-care/vacuum-cleaners/robot-vacuums"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Rocket Pro Cordless",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "40 min",
+   "weight": "Self-cleaning brushroll; removable hand vac",
+   "sources": [
+    "https://www.sharkninja.com/shark-rocket-pro-cordless-stick-vacuum/IZ140C.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Rotator Powered Lift-Away NR96",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Lift-Away canister with powered brushroll",
+   "sources": [
+    "https://www.buydig.com/shop/product/SRKNR96/Shark-NR96-Rotator-Powered-Lift-Away-Bagless-Canister-Vacuum"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Rotator Professional Lift-Away NV501",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "Lift-Away with Power Pet brush; can convert to canister",
+   "sources": [
+    "https://www.bestbuy.com/product/shark-rotator-professional-lift-away-nv501-bagless-upright-vacuum-red/JXJVXGWC4C",
+    "https://www.abt.com/Shark-Rotator-Professional-Lift-Away-Upright-Vacuum-NV501/p/64871.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Stratos AZ3002",
+   "shape": "Upright vacuums",
+   "surface": "Bagless upright",
+   "balance": null,
+   "core": "Corded",
+   "weight": "DuoClean PowerFins HairPro nozzle; 1.5 qt cup; 22.7 lb",
+   "sources": [
+    "https://www.sharkninja.com/shark-stratos-upright-vacuum-with-duoclean-powerfins-hairpro-odor-neutralizer-technology/AZ3002.html"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Stratos Cordless",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "60 min",
+   "weight": "Clean Sense IQ; DuoClean PowerFins HairPro; anti-odor",
+   "sources": [
+    "https://www.ninjakitchen.com/products/zidIZ862H"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "shark",
+   "name": "Shark Vertex Pro",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "60 min",
+   "weight": "DuoClean PowerFins; 1.28 L bin; MultiFlex",
+   "sources": [
+    "https://www.ninjakitchen.com/products/shark-vertex-pro-lightweight-cordless-stick-vacuum-with-duoclean-powerfins-zidIZ662H"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark WandVac",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "1.4 lb; FurFins tool",
+   "sources": [
+    "https://www.sharkclean.com/products/shark-wandvac-cordless-handheld-vacuum-zidWV201"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark WandVac Power Pet",
+   "shape": "Handheld vacuums",
+   "surface": "Cordless handheld vacuum",
+   "balance": null,
+   "core": null,
+   "weight": "Shark's most powerful cordless hand vacuum, 1.5 lb",
+   "sources": [
+    "https://www.sharkclean.com/products/shark-wandvac-power-pet-cordless-handheld-vacuum-zidWV410BL"
+   ]
+  },
+  {
+   "brand": "shark",
+   "name": "Shark WandVac System",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum (3-in-1 with wand)",
+   "balance": null,
+   "core": null,
+   "weight": "3-in-1 hand/wand/stick; charging base; PowerFins",
+   "sources": [
+    "https://ninjakitchen.ca/products/shark-ws640c-wandvac-system-ultra-lightweight-powerful-cordless-3-in-1-stick-vacuum-zidWS640C",
+    "https://sharkclean.com.au/products/ws632"
+   ]
+  },
+  {
+   "brand": "tineco",
+   "name": "Tineco Carpet One Spot",
+   "shape": "Carpet cleaners",
+   "surface": "Cordless smart spot cleaner",
+   "balance": null,
+   "core": "40 min",
+   "weight": "iLoop sensor; 1.5 L clean / 0.8 L dirty tank; self-cleaning",
+   "sources": [
+    "https://us.tineco.com/products/carpet-one-spot.html"
+   ]
+  },
+  {
+   "brand": "tineco",
+   "name": "Tineco Floor One S3",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": null,
+   "weight": "iLoop sensor; self-cleaning brush roller",
+   "sources": [
+    "https://store.tineco.com/collections/id-me/products/tineco-floor-one-s3-smart-wet-dry-vacuum-cleaner"
+   ]
+  },
+  {
+   "brand": "tineco",
+   "name": "Tineco Floor One S5 Extreme",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": null,
+   "core": "35 min",
+   "weight": "0.8 L clean / 0.72 L dirty tank; 17.4 lb",
+   "sources": [
+    "https://us.tineco.com/products/floor-one-s5-extreme.html"
+   ]
+  },
+  {
+   "brand": "tineco",
+   "name": "Tineco Floor One Switch S6",
+   "shape": "Wet/dry floor cleaners",
+   "surface": "Cordless wet/dry floor cleaner",
+   "balance": "15-30 AW",
+   "core": "30-40 min",
+   "weight": "5-in-1 SwitchPro; senses how dirty the floor is",
+   "sources": [
+    "https://us.tineco.com/support/faqs/floor-one-switch-s6/"
+   ]
+  },
+  {
+   "brand": "tineco",
+   "name": "Tineco Pure One S11",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "40 min",
+   "weight": "iLoop smart sensor; 1.6 kg body; wall dock",
+   "sources": [
+    "https://us.tineco.com/products/pure-one-s11.html"
+   ]
+  },
+  {
+   "brand": "tineco",
+   "name": "Tineco Pure One S15",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "80 min",
+   "weight": "iLoop sensor; ZeroTangle on Pet Ex; Flex/Pro/Pet variants",
+   "sources": [
+    "https://us.tineco.com/products/pure-one-s15.html"
+   ]
+  },
+  {
+   "brand": "vax",
+   "name": "Vax Platinum Power Max ECB1SPV1",
+   "shape": "Carpet cleaners",
+   "surface": "Corded upright carpet cleaner (UK)",
+   "balance": null,
+   "core": "Corded",
+   "weight": "SpinScrub brushes; 3.5 L clean tank; 1200 W",
+   "sources": [
+    "https://www.vax.co.uk/vax-platinum-power-max-carpet-cleaner"
+   ]
+  }
+ ]
+}

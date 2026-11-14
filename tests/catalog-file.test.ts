@@ -881,6 +881,38 @@ test("the DogRecs catalog: 209 sourced products in all eight categories, one pro
   } finally { await engine.close(); }
 });
 
+test("the VacuumRecs catalog: 221 sourced vacuums in all seven categories, one product per model and generation, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/vacuum.json");
+  const snapshot = catalogSnapshot(catalog, "vacuumrecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 25);
+  assert.equal(snapshot.tables.rackets.length, 221);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 221);
+  const categories = niches.vacuum.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/vacuum");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 10, `${c}: at least 10 products`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Generations are separate products, never merged (the niche's traps).
+  for (const name of ["Dyson V15 Detect", "Dyson Gen5detect", "Dyson V12 Detect Slim", "Dyson V11", "Dyson V8", "Roborock S8 MaxV Ultra", "Roborock S8 Pro Ultra",
+    "Roborock Saros 10R", "Roborock Saros 10", "Roborock Qrevo Curv", "iRobot Roomba j7+", "iRobot Roomba Combo j9+", "iRobot Roomba i7+",
+    "Shark Stratos Cordless", "Shark Navigator Lift-Away NV352", "Dreame X50 Ultra", "Dreame X40 Ultra", "Miele Complete C3"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  // Colour and retailer SKUs, region variants and "+" dock bundles merge into one product.
+  for (const name of ["Dyson Ball Animal 3 Total Clean", "Roborock S8+", "Miele Complete C3 Calima PowerLine SGFE0"]) assert(!snapshot.tables.rackets.some(r => r.name === name), name);
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 25, rackets: 221, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 25, rackets: 221, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
+
 test("the GrillRecs catalog: 248 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/grill.json");
