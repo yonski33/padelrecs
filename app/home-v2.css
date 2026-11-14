@@ -12,8 +12,7 @@
   .hv2-strip a { color: var(--bg); }
   .hv2-wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 
-  .hv2-hero { display: flex; flex-wrap: wrap; gap: 28px 48px; align-items: flex-end; padding: 34px 0 30px; }
-  .hv2-hero > div:first-child { flex: 999 1 560px; min-width: 0; }
+  .hv2-hero { padding: 34px 0 22px; max-width: 900px; }
   .hv2-live { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 4px 12px; border: 1.5px solid var(--ink); border-radius: 999px; font: 13px var(--mono); }
   .hv2-live i { width: 8px; height: 8px; border-radius: 50%; background: #2f9a4a; }
   h1 { margin: 16px 0 14px !important; font: 800 clamp(40px, 6.4vw, 76px)/1.02 var(--display) !important; letter-spacing: -.03em !important; text-wrap: balance; }
@@ -28,6 +27,20 @@
   .hv2-try span { color: var(--mute); }
   .hv2-try a { text-decoration: none; padding: 2px 10px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); }
   .hv2-try a:hover { background: var(--marker); }
+
+  /* Quick match: the sentence with tap-to-toggle pills */
+  .hv2-qm { margin: 0 0 34px; padding: 18px 22px 20px; border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 5px 5px 0 var(--ink); }
+  .hv2-qm-k { margin: 0 0 10px; font: 13px var(--mono); color: var(--mute); }
+  .hv2-sentence { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; font: 800 clamp(22px, 2.6vw, 30px)/1.2 var(--display); }
+  .hv2-pills { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+  .hv2-pills a { display: inline-block; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--bg); font: 600 16px var(--mono); text-decoration: none; }
+  .hv2-pills a:hover { background: var(--marker); }
+  .hv2-pills a.on { background: var(--acc); box-shadow: 2px 2px 0 var(--ink); }
+  .hv2-empty { color: var(--soft); }
+  .hv2-why { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .hv2-why span { font: 11.5px var(--mono); padding: 1px 8px; border: 1.5px solid var(--dash); border-radius: 999px; color: var(--soft); }
+  .hv2-why .best { border-color: var(--ink); background: var(--acc); color: var(--ink); }
+  .hv2-why .shape { border-color: var(--ink); color: var(--ink); }
 
   .hv2-grid { display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start; }
   .hv2-main { flex: 999 1 620px; min-width: 0; }
@@ -87,6 +100,9 @@
   .hv2-made { margin: 28px 0 0; font-size: 14px; }
 
   @media (max-width: 760px) {
+    .hv2-qm { padding: 14px 14px 16px; }
+    .hv2-sentence { gap: 8px; font-size: 20px; }
+    .hv2-pills a { padding: 4px 11px; font-size: 14px; }
     .hv2-row { grid-template-columns: 26px 60px minmax(0, 1fr); gap: 10px 12px; padding: 12px; }
     .hv2-pic { width: 60px; height: 72px; }
     .hv2-stats { grid-column: 2 / -1; }
