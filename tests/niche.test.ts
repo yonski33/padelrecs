@@ -983,6 +983,38 @@ test("dog: one product per model, generation and food formula, eight category pa
   }
 });
 
+test("vacuum: one product per model and generation, seven category pages with product URLs under them, robot rating icons", async () => {
+  const n = selectNiche("vacuum");
+  assert.equal(n.schema, "vacuumrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "HomeAndKitchen");
+  assert.equal(n.people.many, "owners");
+  assert.deepEqual(n.categories.map(c => c.label), ["Cleaning", "Navigation & handling", "Ease of maintenance", "Reliability", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Suction", "Runtime", "Key spec"]);
+  // The VacuumRecs scope (owner build list 2026-11-12, build asked 2026-11-14): robot, stick, upright, canister and handheld vacuums,
+  // wet/dry floor washers and carpet cleaners.
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["robot-vacuums", "stick-vacuums", "upright-vacuums", "canister-vacuums", "handheld-vacuums", "wet-dry-floor-cleaners", "carpet-cleaners"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  // Spec filters compare first words, so every category must start with a different word.
+  assert.equal(new Set(n.shapeFilter.map(s => s.split(/\s/)[0].toLowerCase())).size, n.shapeFilter.length);
+  const { shapeOf } = await import("../app/art/vacuum");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 7, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^best-/, `${list.slug}: a best-of slug`);
+    assert.match(list.slug, /vacuum|cleaner/, `${list.slug}: niche keyword in the slug`);
+    for (const t of [...(list.trait?.tags ?? []), ...(list.trait?.against ?? [])]) assert(n.tags.some(x => x.label === t), `${list.slug}: unknown tag ${t}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
+
 test("grill: one product per model and generation, eight category pages with product URLs under them, flame rating icons", async () => {
   const n = selectNiche("grill");
   assert.equal(n.schema, "grillrecs");
