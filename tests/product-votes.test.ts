@@ -58,3 +58,12 @@ test("quick ratings are rate limited per network", async () => {
     assert.equal((await castVote(db, "racket-nox", 5, {}, voteHash("device|extra", "s"), net)).status, "limited");
   } finally { await engine.close(); }
 });
+
+test("review edit tokens only fit their own review", async () => {
+  const { reviewEditToken, checkReviewEdit } = await import("../lib/form-token");
+  const t = reviewEditToken("review-1", "k");
+  assert.equal(checkReviewEdit("review-1", t, "k"), true);
+  assert.equal(checkReviewEdit("review-2", t, "k"), false);
+  assert.equal(checkReviewEdit("review-1", t, "other-key"), false);
+  assert.equal(checkReviewEdit("review-1", "", "k"), false);
+});
