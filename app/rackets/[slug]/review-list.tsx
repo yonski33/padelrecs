@@ -1,4 +1,5 @@
 import { HighlightToggle } from "../../highlight-toggle";
+import { HIGHLIGHTS_ENABLED } from "../../../lib/highlights";
 import { Fragment } from "react";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -65,7 +66,7 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     </details>;
   // The highlights switch sits beside the sort, on sites that have highlights.
   // The switch shows wherever a review on the page has highlights (saved in the database, or the padel fallback).
-  const hl = items.some(i => i.marked);
+  const hl = HIGHLIGHTS_ENABLED && items.some(i => i.marked);
   const sortArea = hl ? <div className="sort-area"><HighlightToggle/>{sortMenu}</div> : sortMenu;
 
   return <section id="reviews" className="review-list">

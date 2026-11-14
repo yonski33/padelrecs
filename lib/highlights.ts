@@ -21,7 +21,12 @@ export const showsHighlights = (niche: string) => niche in STORED;
 
 /** Segments for a review. Order: the Vertex 05 two-colour reference (toned JSON entries), then the phrases saved on the review
  *  in the database (`saved`, owner 2026-11-14), then the JSON files, then the tag patterns. */
+/** Highlights on or off for every site (owner 2026-11-14: off for now while Reddit reviews may be removed). When off, review
+ *  text shows plain and there is no Highlights switch; the saved phrases stay in the database for later. */
+export const HIGHLIGHTS_ENABLED = false;
+
 export function reviewSegments(niche: string, key: string, text: string, tags: readonly string[], toneOf: (tag: string) => string | undefined, saved?: readonly string[] | null): Segment[] {
+  if (!HIGHLIGHTS_ENABLED) return [{ text }];
   const stored = STORED[niche]?.[key];
   const toned = stored?.some(p => typeof p !== "string");
   if (saved?.length && !toned) {
