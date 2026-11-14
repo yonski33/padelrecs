@@ -342,5 +342,133 @@
   {
     "slug": "msi-mpg-271qrx-qd-oled",
     "summary": "Owners praise the colours, blacks and very smooth high refresh rates, often as a big jump over LCD. Text fringing splits opinion, with some not noticing it and one bothered a lot. A few reported glitches such as flashing, stutter at the top refresh rate or banding on grey."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg27ucwm",
+    "summary": "Owners praise sharp, clean text and vivid colours, and several report no banding or dimming trouble."
+  },
+  {
+    "slug": "ktc-m27t6",
+    "summary": "Owners like the HDR and the value, but two found the brightness dimming aggressive, and one returned it because of it."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g9-g93sc",
+    "summary": "Owners mostly report years of daily use without burn-in and love the OLED colour, but a few hit hardware failures such as a dead panel, a failed power supply or a dead DisplayPort input."
+  },
+  {
+    "slug": "acer-predator-x27u-f5",
+    "summary": "Owners mostly find it vivid, bright and very responsive, with a glossy screen, though two saw little improvement over their IPS monitors."
+  },
+  {
+    "slug": "apple-studio-display-2022",
+    "summary": "Owners are very happy with it, praising the sharp, bright picture, solid build and smooth macOS integration."
+  },
+  {
+    "slug": "ktc-m27p6",
+    "summary": "Opinions split: two owners enjoy it, while two received units with dead pixels or specks."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g9-g95sc",
+    "summary": "Owners mostly report trouble-free use over a year or more, without burn-in, and enjoy it for gaming and multitasking. A couple had gripes, from Tizen updates to a panel peeling at a corner."
+  },
+  {
+    "slug": "dell-ultrasharp-u2724de",
+    "summary": "Owners like the KVM and easy desktop-laptop switching, but two had strong IPS glow or backlight bleed, and one returned two units for it."
+  },
+  {
+    "slug": "dell-ultrasharp-u3425we",
+    "summary": "Owners find the screen gorgeous and spacious for productivity, but a couple found the KVM needs extra software and is not seamless."
+  },
+  {
+    "slug": "lg-ultragear-45gx950b-b",
+    "summary": "Owners love the immersion and size once it is set up properly, but two report it often fails to wake from sleep."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g8-g80sh-32",
+    "summary": "Owners mostly like the look, HDR and brightness, but opinions on the matte coating split: one finds it unnoticeable, another compares it to film grain."
+  },
+  {
+    "slug": "zowie-xl2566x",
+    "summary": "Owners report problems: two saw visibly darker side edges, and others described banding, a failure after two weeks, or a poor image."
+  },
+  {
+    "slug": "aoc-q27g40xmn",
+    "summary": "Owners praise the HDR with near-OLED blacks, fast motion and the value, though one went through two units with dead pixels before getting a good one."
+  },
+  {
+    "slug": "msi-mag-274qpf-x30mv",
+    "summary": "Owners mostly like the deep blacks, contrast and brightness, though one returned it because the colours looked oversaturated."
+  },
+  {
+    "slug": "asus-proart-pa32qcv",
+    "summary": "Owners mostly report Thunderbolt trouble, with the connection lost after power-off or the screen blanking when switching inputs or sleeping. Several also got units with poor uniformity."
+  },
+  {
+    "slug": "asus-proart-pa32ucdm",
+    "summary": "Owners most often mention a fan that stays audible in a quiet room, though one found a firmware update fixed it. Some praise it for colour work."
+  },
+  {
+    "slug": "dell-s3425dw",
+    "summary": "Owners are mostly happy with it as an affordable ultrawide for work and some gaming, liking the screen space and value. A couple report backlight bleed or darker edges."
+  },
+  {
+    "slug": "dell-ultrasharp-u4924dw",
+    "summary": "Owners mostly praise it for productivity, especially the built-in KVM, many ports and sharp text at native resolution. A couple find the text small or macOS scaling poor on such a wide screen."
+  },
+  {
+    "slug": "samsung-viewfinity-s8-s85th",
+    "summary": "Owners mostly report video dropping over Thunderbolt 5 on Macs, with no firmware fix yet, while USB-C, HDMI or Windows worked for some. Those who got it running like the extra width and built-in KVM."
+  },
+  {
+    "slug": "samsung-odyssey-oled-g9-g93sd",
+    "summary": "Owners are mostly happy, calling it great for work and gaming, and the matte coating copes well with bright rooms. A few complain it dims itself, and a couple hit hardware faults."
+  },
+  {
+    "slug": "asus-proart-pa278qv",
+    "summary": "Owners mostly report quality control problems, such as stuck pixels, colour tints and blemishes on arrival or after a year of use."
+  },
+  {
+    "slug": "asus-rog-strix-xg259qns",
+    "summary": "Owners praise it for very smooth, bright competitive gaming at high refresh rates. A few report small hardware faults such as coil whine or white dots."
+  },
+  {
+    "slug": "gigabyte-mo34wqc2",
+    "summary": "Owners mostly like how it looks with little tweaking, and several call the HDR impressive, though one found it more washed out than an LG OLED TV."
+  },
+  {
+    "slug": "lg-ultragear-27g850a-b",
+    "summary": "Owners mostly love the picture for an IPS, with deep blacks, little glow or bleed and clear text. Some notice ghosting in fast motion, and a couple got eye strain."
+  },
+  {
+    "slug": "alienware-aw2725d",
+    "summary": "Owners are very happy with the OLED's blacks and colour, especially coming from IPS. HDR is described as very good for a monitor, helped by the brightness firmware update."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg32ucwg",
+    "summary": "Owners are very happy, praising the colours and image quality for gaming, PS5 use and work. A couple say it is comfortable for long sessions with no eye strain."
+  },
+  {
+    "slug": "asus-rog-swift-oled-pg32ucdmr",
+    "summary": "Owners are very happy with it, most calling it an excellent OLED for gaming and work, and a few liking it more than other large OLED screens they have owned."
+  },
+  {
+    "slug": "dell-ultrasharp-u2724d",
+    "summary": "Owners generally like the picture and gaming feel, though a couple report the stand wobbles, especially when typing."
+  },
+  {
+    "slug": "dell-ultrasharp-u3824dw",
+    "summary": "Owners like the space, USB hub and KVM, but several hear a faint whine when a laptop charges over USB-C, and some find 60Hz and the cost hard to love."
+  },
+  {
+    "slug": "lg-ultragear-27gs95qe-b",
+    "summary": "Owners find it gorgeous for games, but some are bothered by text fringing or blotchy grey in dark themes when coding. Those with long use report no burn-in."
+  },
+  {
+    "slug": "msi-mag-341cqp-qd-oled-x28",
+    "summary": "Owners are mostly pleased and say it matches pricier ultrawide OLEDs for much less. A couple say scratch resistance and burn-in precautions take some living with."
+  },
+  {
+    "slug": "asus-rog-strix-oled-xg34wcdms",
+    "summary": "Owners are split: several report defects such as a dead pixel, a shifting dot or HDR artefacts, while others like the picture and refresh rate."
   }
 ]
