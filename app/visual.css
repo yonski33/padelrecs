@@ -2972,33 +2972,31 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .sbar-counts > span { font-weight: 500 !important; color: #3d393d; }
 .sbar-counts b { font-weight: 700; color: #111; margin-right: 3px; }
 
-/* Quick votes (2026-11-14 pivot): app/quick-vote.tsx on the light product page and /rate. */
-.qv { margin: 18px 0 0; padding: 16px 18px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 16px; background: #fff; }
-.qv-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
-.qv h2 { margin: 0; font-size: 17px; font-weight: 600; }
-.qv-count, .qv-note, .qv-like-you { margin: 6px 0 0; font-size: 13px; color: var(--lt-mute, #8a857c); }
-.qv-buttons { display: flex; gap: 8px; margin-top: 12px; }
-.qv-buttons button, .qv-choice button { flex: 1; padding: 10px 8px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 12px; background: #fff; color: var(--lt-ink, #262421); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
-.qv-buttons button:hover, .qv-choice button:hover { background: var(--lt-tint2, #f3f8f1); }
-.qv-buttons .qv-love[aria-pressed="true"] { background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; }
-.qv-buttons .qv-ok[aria-pressed="true"] { background: #f4e7c4; border-color: #e3cd8f; }
-.qv-buttons .qv-no[aria-pressed="true"] { background: #f6dcd6; border-color: #e6b3a8; }
-.qv-error { margin: 8px 0 0; font-size: 13px; color: #a3392b; }
-.qv-after { display: grid; gap: 10px; margin-top: 12px; }
+/* Quick ratings (2026-11-14 pivot): app/quick-vote.tsx, tap a ball under the sentiment bar, and the rows on /rate. */
+.qv-row { margin: 12px 0 2px; }
+.qv-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.qv-ask { font-size: 14px; font-weight: 600; }
+.qv-tail, .qv-thanks { font-size: 13px; color: var(--lt-mute, #8a857c); }
+.qv-thanks { margin: 6px 0 0; }
+.qv-thanks a { color: var(--lt-acc, #2f6b3a); font-weight: 600; text-decoration: none; }
+.qv-thanks a:hover { text-decoration: underline; }
+.qv-error { margin: 6px 0 0; font-size: 13px; color: #a3392b; }
+.tb { display: inline-flex; gap: 4px; }
+.tb-ball { width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: var(--score-off) center / contain no-repeat; cursor: pointer; transition: transform .15s ease; }
+.tb-ball.on { background-image: var(--score-on); }
+.tb-ball:hover { transform: translateY(-2px); }
+.tb-ball.pop { transform: translateY(-7px) scale(1.15); }
+.tb-ball:focus-visible { outline: 2px solid var(--lt-acc, #2f6b3a); outline-offset: 2px; }
+.tb-ball:disabled { cursor: progress; }
+.tb-sm .tb-ball { width: 22px; height: 22px; }
 .qv-choice > span { display: block; margin-bottom: 6px; font-size: 13px; color: var(--lt-mute, #8a857c); }
 .qv-choice > div { display: flex; flex-wrap: wrap; gap: 6px; }
-.qv-choice button { flex: 0 0 auto; padding: 6px 12px; font-size: 13px; font-weight: 500; border-radius: 999px; }
+.qv-choice button { padding: 6px 12px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 999px; background: #fff; color: var(--lt-ink, #262421); font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; }
 .qv-choice button[aria-pressed="true"] { background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; }
-.qv-split { display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; }
-.qv-split i { min-width: 0; }
-.qv-bar-love { background: var(--lt-acc, #2f6b3a); } .qv-bar-ok { background: #e3cd8f; } .qv-bar-no { background: #e6b3a8; }
 .qv-also h3 { margin: 4px 0 6px; font-size: 14px; font-weight: 600; }
 .qv-also ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
 .qv-also li { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
 .qv-also small { color: var(--lt-mute, #8a857c); }
-.qv-next { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 2px 0 0; font-size: 14px; font-weight: 500; }
-.qv-next a { color: var(--lt-acc, #2f6b3a); }
-@media (max-width: 560px) { .qv { padding: 14px; } .qv-buttons button { font-size: 13px; padding: 10px 4px; } }
 .rate-page { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
 .rate-page h1 { margin: 0; font-size: 28px; font-weight: 700; }
 .rate-sub, .rate-hint { margin: 6px 0 0; font-size: 14px; color: var(--lt-mute); }
@@ -3011,11 +3009,7 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .rate-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .rate-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--lt-line); border-radius: 12px; background: #fff; }
 .rate-list li > a { color: var(--lt-ink); font-weight: 500; text-decoration: none; }
-.rate-btns { display: flex; flex: none; gap: 4px; }
-.rate-btns button { padding: 6px 10px; border: 1px solid var(--lt-line); border-radius: 10px; background: #fff; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; }
-.rate-btns .qv-love[aria-pressed="true"] { background: var(--lt-acc); border-color: var(--lt-acc); color: #fff; }
-.rate-btns .qv-ok[aria-pressed="true"] { background: #f4e7c4; border-color: #e3cd8f; }
-.rate-btns .qv-no[aria-pressed="true"] { background: #f6dcd6; border-color: #e6b3a8; }
+.rate-list .tb { flex: none; }
 .rate-summary { position: sticky; bottom: 0; margin-top: 16px; padding: 12px 16px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; }
 .rate-summary p { margin: 0; }
-@media (max-width: 560px) { .rate-list li { flex-direction: column; align-items: stretch; } .rate-btns button { flex: 1; } }
+@media (max-width: 560px) { .rate-list li { flex-wrap: wrap; } }

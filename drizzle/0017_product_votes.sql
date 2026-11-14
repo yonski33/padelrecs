@@ -2,13 +2,13 @@ CREATE TABLE "padelrecs"."product_votes" (
 	"racket_id" text NOT NULL,
 	"voter" text NOT NULL,
 	"network" text NOT NULL,
-	"verdict" text NOT NULL,
+	"rating" integer NOT NULL,
 	"level" text,
 	"style" text,
 	"side" text,
 	"created_at" text NOT NULL,
 	"updated_at" text NOT NULL,
-	CONSTRAINT "product_vote_verdict" CHECK ("padelrecs"."product_votes"."verdict" in ('love','ok','no'))
+	CONSTRAINT "product_vote_rating" CHECK ("padelrecs"."product_votes"."rating" between 1 and 5)
 );
 --> statement-breakpoint
 ALTER TABLE "padelrecs"."product_votes" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint

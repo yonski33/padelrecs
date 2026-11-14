@@ -20,13 +20,13 @@ async function fetchFormToken(){
  try{const r=await fetch("/api/reviews",{cache:"no-store"});return r.ok?((await r.json()) as {token?:string}).token||"":"";}catch{return "";}
 }
 
-export default function ReviewForm({rackets,brands,initialRacket}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string}) {
+export default function ReviewForm({rackets,brands,initialRacket,initialRating}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string,initialRating?:string}) {
  const formToken=useRef("");
  useEffect(()=>{
   const load=()=>fetchFormToken().then(t=>{if(t)formToken.current=t;});
   load();const timer=setInterval(load,60*60_000);return ()=>clearInterval(timer);
  },[]);
- const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState("");
+ const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState(initialRating??"");
  const [tags,setTags]=useState<string[]>([]);
  const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string,shape?:string|null}>(null);
  const textarea=useRef<HTMLTextAreaElement>(null);

@@ -369,14 +369,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
               <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
             <a className="lp-stat" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
+          {/* Quick ratings (2026-11-14 pivot, owner): tap a ball right under the sentiment bar. */}
+          <QuickVote racketId={r.id} name={fullName} people={niche.people} addHref={addHref}/>
           <div className="lp-sub"><SignalPop label="How the signal works"/>{latest && <span>{`Updated ${day(latest)}`}</span>}</div>
           <p className="lp-actions">{amazon ? <a className="button amazon-out lp-buy" href={amazon.url} target="_blank" rel="sponsored nofollow noopener">Check price on Amazon <span aria-hidden="true">↗</span></a> : buy}
             {sum.total > 0 && <a className="lp-read" href="#reviews">{`Read ${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">↓</span></a>}</p>
         </div>
       </section>
-      {/* Quick votes (2026-11-14 pivot): one tap right under the header, the easiest way to add to the page. */}
-      <QuickVote racketId={r.id} name={fullName} plural={niche.words.many} people={niche.people} levels={niche.profile.playerLevel.options.map(o => o.value)}
-        styles={niche.profile.playingStyle.options.map(o => o.value)} addHref={addHref} rateHref="/rate"/>
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
         <h2 id="lp-mention-title">What people mention</h2>
         <div className="lp-mention-cols">
