@@ -2922,3 +2922,7 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
    old #827C82 and #777 were 3.9–4.5:1. Source lines, "Original source", dates and the counts under lists. */
 .lrv-orig, .lrv-card .lrv-src, .rc-card .rc-src, .lv .lv-src, .ls-ago, .lt-how, .lcx-how, .lt-row.v2 > .lt-sig small, .lrv-meta, .lp-sub, .lt-live { color: #6b666b !important; }
 .lrv-orig:hover { color: var(--lt-acc) !important; }
+/* No signal yet: one wording on every screen (owner, 2026-11-14), "new" misled on older models with few reviews. */
+.lt-row.v2 > .lt-sig small.lt-nosig { font-size: 11.5px !important; font-weight: 500; line-height: 1.25; text-align: center; white-space: normal; color: #6b666b !important; }
+.lt-row.v2 > .lt-sig small.lt-nosig::after { content: none !important; }
+@media (max-width: 720px) { .lt-row.v2 > .lt-sig small.lt-nosig { font-size: 11px !important; } }

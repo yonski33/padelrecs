@@ -32,7 +32,7 @@ function Result({ match, rank }: { match: FinderMatch<FinderCard>; rank: number 
         </span>}
         {shop && <a className="lt-shop" href={shop.url} target="_blank" rel={shop.rel}>{shop.label} <span aria-hidden="true">›</span></a>}
       </span>
-      <span className="lt-sig">{c.signal ? <><b>{c.signal}</b><small>Signal score</small></> : <small>new</small>}</span>
+      <span className="lt-sig">{c.signal ? <><b>{c.signal}</b><small>Signal score</small></> : <small className="lt-nosig" title="A signal score needs more reviews">Not enough<br/>reviews</small>}</span>
       <span className="lt-posbar">{judged > 0 && <><span className="lt-posn">{`${c.positive} positive ${c.positive === 1 ? "review" : "reviews"}`}</span>
         <span className="sbar"><span className="sbar-track" role="img" aria-label={`${c.positive} positive, ${c.mixed} mixed, ${c.negative} negative`}>
           {c.positive > 0 && <i className="s-positive" style={{ width: `${c.positive / judged * 100}%` }}/>}

@@ -7,7 +7,7 @@ import { score } from "../db/data";
 import { niche, catalogPath, hasYears, productHref } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
-import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
+import { SORTS, DEFAULT_SORT, parseSort, sortProducts, firstReviewed } from "../lib/product-sort";
 import { catalogKeyword } from "../lib/catalogue-seo";
 import { listLine } from "../lib/list-lines";
 import { shortLine } from "../lib/short-lines";
@@ -54,7 +54,8 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
   const inShape = (r: Product, c = shape) => !c || c.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase());
   const specOk = (r: Product) => specFacets.every(sp => { const want = (f.specs?.[sp.column]) ?? []; return !want.length || want.some(o => specIs((r as Record<string, unknown>)[sp.column], o)); });
   const base = matchingRackets(data.listed, f.q || "").filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && specOk(r) && tags.every(t => known(r, t)));
-  const results = sortProducts(base.filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
+  const first = firstReviewed(data);
+  const results = sortProducts(base.filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; }, x => [hasYears ? x.r.year : 0, first.get(x.r.id) ?? 0]);
 
   // Links keep the other filters; the look stays light while this is a preview.
   const params = (extra: Record<string, string | string[] | undefined>, path = basePath) => {
