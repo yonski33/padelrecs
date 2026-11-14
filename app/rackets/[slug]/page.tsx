@@ -34,7 +34,7 @@ import { listLine } from "../../../lib/list-lines";
 import { shortLine } from "../../../lib/short-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
-import { comparePairs, pairHref } from "../../../lib/compare-pairs";
+import { comparePairs, comparePick, pairHref, pairKey } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
@@ -270,7 +270,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   }
   const pos = positiveShare(s);
   const oneLine = listLine(r);
-  const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
+  // "Compare with …": the previous version, else a recent close rival (lib/compare-pairs comparePick); its own "X vs Y"
+  // page when that pair has one, else the open compare view.
+  const compareWith = comparePick(data, r) ?? similar[0]?.x;
+  const pairWith = compareWith && comparePairs(data).byKey.has(pairKey(r.slug, compareWith.slug)) ? compareWith : undefined;
   const fullName = displayName(r.name, brand?.name);
   // Pieces both layouts show (the light one is the default; ?look=classic shows the old one).
   const similarBox = similar.length > 0 && <section id="similar" className="similar">
