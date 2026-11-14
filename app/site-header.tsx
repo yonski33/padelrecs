@@ -20,7 +20,8 @@ const topLists = withModelYears(niche.topLists ?? []);
 /** "Rankings" with its lists in a dropdown. The label links to the rankings index, so it works without the menu (and on phones,
  *  where the nav scrolls sideways and has no room for a dropdown). */
 function TopMenu({ pathname, ranked }: { pathname: string; ranked: string[] }) {
-  const shown = topLists.filter(l => ranked.includes(l.slug));
+  // Last season's list ("Best of 2025") goes last, after this year's lists (owner, 2026-11-14).
+  const shown = topLists.filter(l => ranked.includes(l.slug)).sort((a, b) => Number(a.modelYearsBack !== undefined) - Number(b.modelYearsBack !== undefined));
   const [open, setOpen] = useState(false);
   const active = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   return <div className={`nav-menu${open ? " open" : ""}`} onMouseLeave={() => setOpen(false)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
