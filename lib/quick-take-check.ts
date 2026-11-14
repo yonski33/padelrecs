@@ -177,7 +177,7 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
   // Compare cards: 3+ players each (recipe §3), rivals that exist
   if (qt.compare) for (const card of qt.compare.cards) {
     need(`compare "${card.name}"`, card.reports, 3, "players");
-    if (card.slug && opts.knownSlugs && !opts.knownSlugs.has(card.slug)) errors.push(`compare "${card.name}": unknown slug ${card.slug}`);
+    if (opts.knownSlugs && !opts.knownSlugs.has(card.slug)) errors.push(`compare "${card.name}": ${card.slug} isn't in the catalog; rivals must be catalog rackets`);
     if (card.slug && card.slug === opts.selfSlug) errors.push(`compare "${card.name}": compares with itself`);
   }
   if (qt.kind === "full" && !qt.compare) warnings.push("full page without How it compares");

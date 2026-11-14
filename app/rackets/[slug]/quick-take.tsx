@@ -164,7 +164,7 @@ function Compare({ c }: { c: Ctx }) {
     <p className="lead"><Rich text={cmp.lead}/></p>
     <div className="vsgrid">{cmp.cards.map(card => {
       const p = card.slug ? c.products.get(card.slug) : undefined, n = new Set(card.reports).size;
-      return <div key={card.name} className="vscard">{c.art(card.slug, card.tile || card.name.split(" ").slice(-1)[0], "vsimg")}
+      return <div key={card.slug} className="vscard">{c.art(card.slug, card.tile || card.name.split(" ").slice(-1)[0], "vsimg")}
         <h3>{p ? <a href={p.href}>{`vs ${card.name}`}</a> : `vs ${card.name}`}<span>{`from ${n} ${n === 1 ? "player" : "players"}`}</span></h3>
         <div className="arrows">{card.arrows.map((a, i) => <span key={i} className={`ar${a.dir === "up" ? " up" : a.dir === "down" ? " dn" : ""}`}>{`${a.dir === "up" ? "↑ " : a.dir === "down" ? "↓ " : a.dir === "same" ? "= " : ""}${a.text}`}</span>)}</div>
       </div>;

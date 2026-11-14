@@ -71,8 +71,10 @@ export const quickTakeSchema = z.object({
   plays: z.object({ verdict, lead: line, court: z.object({ net: zone.optional(), overheads: zone.optional(), defence: zone.optional() }).strict().optional(), rows: z.array(row).max(8) }).strict().optional(),
   catch: z.object({ verdict, lead: line, bullets: bullets(2, 4), reports: ids, about: z.boolean().optional(), what: z.string().trim().max(60).optional(), receipts }).strict(),
   modules: z.array(moduleSchema).max(3),
-  compare: z.object({ verdict, lead: line, cards: z.array(z.object({ slug: z.string().nullable(), name: z.string().trim().min(1).max(60), tile: z.string().trim().max(8).optional(),
-    arrows: z.array(z.object({ dir: z.enum(["up", "down", "same", "none"]), text: z.string().trim().min(1).max(48) }).strict()).min(1).max(4), reports: ids }).strict()).min(2).max(4),
+  /** Rivals are rackets in the catalog only (owner 2026-11-15): a slug for the photo and link. An older version of the same
+   *  racket only when it's the direct predecessor. One card is fine; with none, leave out the section. */
+  compare: z.object({ verdict, lead: line, cards: z.array(z.object({ slug: z.string().min(1), name: z.string().trim().min(1).max(60), tile: z.string().trim().max(8).optional(),
+    arrows: z.array(z.object({ dir: z.enum(["up", "down", "same", "none"]), text: z.string().trim().min(1).max(48) }).strict()).min(1).max(4), reports: ids }).strict()).min(1).max(4),
     went: z.object({ label: z.string().trim().min(1).max(30), text: line }).strict().optional() }).strict().optional(),
   /** Only questions the rest of the page hasn't answered: 3–6 of them, or none (owner 2026-11-15). */
   answers: z.array(z.object({ q: z.string().trim().min(1).max(60), badge: z.string().trim().min(1).max(16), tone: z.enum(["yes", "maybe", "no"]), a: line, reports: ids }).strict()).max(6),

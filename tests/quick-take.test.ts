@@ -15,7 +15,7 @@ const block = (over: Partial<QuickTake> = {}): QuickTake => ({
   plays: { lead: "Quick in the hands.", court: { net: { chip: "Tricky", line: "Volleys fly.", reports: ids(0, 5) }, overheads: { chip: "Strong", line: "Big pop.", reports: ids(5, 5) } }, rows: [{ label: "Spin", chip: "Strong", line: "Bites.", reports: ids(10, 5) }] },
   catch: { lead: "The bounce. ==Most wish there was less==.", bullets: ["Volleys fly long", "Some love the pop"], reports: ids(0, 12), about: true },
   modules: [{ type: "arm", lead: "Split.", kind: ["Kind to one"], harsh: ["Sore for two"], reports: ids(0, 6) }],
-  compare: { lead: "More punch.", cards: [{ slug: "nox-at10", name: "Nox AT10", arrows: [{ dir: "up", text: "More power" }], reports: ids(0, 3) }, { slug: null, name: "ST3", arrows: [{ dir: "same", text: "Close cousins" }], reports: ids(3, 3) }] },
+  compare: { lead: "More punch.", cards: [{ slug: "nox-at10", name: "Nox AT10", arrows: [{ dir: "up", text: "More power" }], reports: ids(0, 3) }, { slug: "nox-at10", name: "Nox AT10 again", arrows: [{ dir: "same", text: "Close cousins" }], reports: ids(3, 3) }] },
   answers: [0, 1, 2, 3].map(i => ({ q: `Q${i}?`, badge: "Yes", tone: "yes" as const, a: "Players say so.", reports: ids(i, 3) })),
   tips: [{ label: "Player tip", text: "Weigh it first. Two players suggest it.", after: "arm", reports: ids(20, 2) }, { label: "Weather check", text: "Softer in summer.", after: "plays", reports: ids(22, 2) }],
   thinSpot: "only 3 players compared it with the ST3.", counts, written: "2026-11-15", ...over,
@@ -75,6 +75,13 @@ test("module triggers and gate", () => {
   assert.ok(check(weigh).errors.some(e => e.includes("doesn't mention 370")));
   assert.ok(check(block(), reports.slice(0, 15)).errors.some(e => e.includes("gate")));
   assert.ok(check(block({ modules: [{ type: "hardness", answer: "Soft", soft: ids(0, 5), medium: ids(5, 3), hard: ids(8, 2) }] })).errors.some(e => e.includes("60%")));
+});
+
+test("compare rivals must be catalog rackets", () => {
+  const cmp = block().compare!;
+  assert.ok(check(block({ compare: { ...cmp, cards: [cmp.cards[0]] } })).ok, "one card is fine");
+  assert.ok(check(block({ compare: { ...cmp, cards: [{ ...cmp.cards[0], slug: "metalbone-ctrl-3-3" }] } })).errors.some(e => e.includes("isn't in the catalog")));
+  assert.ok(!check(block({ compare: { ...cmp, cards: [{ ...cmp.cards[0], slug: null as unknown as string }] } })).ok);
 });
 
 test("verdict chips: optional, 5 words at most, checked like other text", () => {

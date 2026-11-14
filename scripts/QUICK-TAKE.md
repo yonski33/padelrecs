@@ -42,9 +42,9 @@ Text fields take `**bold**` and `==marker==` (yellow marker). Keep every line sh
              "bullets": ["…2–4"], "reports": ["every id that raises it, 3+"], "about": true, "what": "that mention the bounce",
              "receipts": [ { "id": "…", "text": "paraphrase", "verbatim": false } ] },
   "modules": [ … 1–3, see below … ],
-  "compare": { "lead": "…", "cards": [ { "slug": "nox-at10-genius-18k-2026", "name": "AT10 18K 2026", "tile": "ST3",
+  "compare": { "lead": "…", "cards": [ { "slug": "nox-at10-genius-18k-2026", "name": "AT10 18K 2026",
                  "arrows": [ { "dir": "up", "text": "More power" }, { "dir": "down", "text": "More bounce" }, { "dir": "same", "text": "Close cousins" }, { "dir": "none", "text": "Handling: split" } ],
-                 "reports": ["3+ ids of reports that compare the two"] } ],   // 2–4 cards; a rival named by fewer than 3 players is left out
+                 "reports": ["3+ ids of reports that compare the two"] } ],   // 1–4 cards, catalog rackets only; fewer than 3 players → left out
                "went": { "label": "Who went where?", "text": "Most who moved from an **AT10** stayed …" } },
   "answers": [ { "q": "Good for beginners?", "badge": "Probably not", "tone": "no", "a": "…", "reports": ["3+ ids"] } ],  // 3–6 questions the rest of the page doesn't already answer, or [] (section skipped); tone yes | maybe | no
   "tips": [ { "label": "Player tip", "text": "Ask the shop to weigh a few and pick one under 370 g. Two players suggest it.", "after": "weigh", "reports": ["2+ ids, different sources"] } ],
@@ -64,7 +64,13 @@ Each row gets a `key`: 2–4 words the line opens with, drawn bold ("You feel ev
 Rows are drawn strongest chip first. At most one `==marker==` in the whole section, on the row that decides it for most
 buyers (Counter Viper: Comfort, "==rough on the arm==").
 
-`slug` on a compare card or a version module is a catalog slug from the export (for its photo and link), or null. `tile` is
+**Compare cards: catalog rackets only** (owner 2026-11-15). Every card's `slug` must be a racket in the export's `catalog`
+(photo + link). Cite only reports that clearly name **that** racket, version and year included: "the AT10" or "a Viper"
+is a family, not a rival, and "the 18K" in a 2025 thread may be last year's. An older version of the same racket is allowed
+only when it's the direct predecessor (CTRL 3.5 → CTRL 3.4), never two generations back. One card is fine; with none, leave
+`compare` out. The "Who went where?" line names catalog rackets only, by the same rule.
+
+`slug` on a version module is a catalog slug from the export, or null. `tile` is
 the short name shown when there's no photo. Tip `after` is where the note sits: tldr, plays, catch, compare, answers, or a
 module type.
 
