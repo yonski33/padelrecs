@@ -140,18 +140,18 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
       </div>
     </div>}
     {mine && justVoted && !error && note === "details" && <div className="qv-steps" aria-live="polite">
-      <p className="qv-steps-head">{`Nice! Add a quick detail or two? All optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}`}</p>
+      <p className="qv-steps-head">{todo.length ? `Nice! Add a quick detail or two? All optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}` : "Nice! Your review is saved."}</p>
       {step < todo.length ? <div className="qv-step">
         <h3>{todo[step].question}</h3>
         <div className="qv-chips">{todo[step].options.map(o => <button type="button" key={o.value} onClick={() => answer(todo[step].field, o.value)}>{o.label}</button>)}</div>
       </div> : <div className="qv-step">
-        <h3>{`Anything that stands out? Pick up to ${MAX_TAGS}`}</h3>
+        <h3>{`Anything that stands out? Tap up to ${MAX_TAGS}, all optional`}</h3>
         <div className="qv-chips">{TAGS.map(t => { const on = tags.includes(t.label); return <button type="button" key={t.label} className={`tone-${t.tone}`} aria-pressed={on}
           disabled={!on && tags.length >= MAX_TAGS} onClick={() => toggleTag(t.label)}>{t.label}</button>; })}</div>
       </div>}
       <div className="qv-words-row">
         <button type="button" className={step >= todo.length ? "qv-post" : "qv-nah"} onClick={() => setNote("sent")}>{step >= todo.length ? "Done" : "I'm done"}</button>
-        <small>Your review is saved. Each answer is added as you tap.</small>
+        {todo.length > 0 && <small>Your review is saved. Each answer is added as you tap.</small>}
       </div>
     </div>}
     {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">Thanks! Your review goes live after a quick check.</p>}

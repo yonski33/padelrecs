@@ -383,12 +383,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </section>}
       {/* One tap (2026-11-14 pivot, owner's mockup): after what players say, right before their reviews. */}
       <QuickVote racketId={r.id} name={fullName} one={niche.words.one} people={niche.people} placeholder={`What stood out? How it plays, how it feels, who it suits…`}
-        steps={[
-          { field: "playerLevel", question: "What's your level?", options: niche.profile.playerLevel.options.map(o => ({ value: o.value, label: o.value })) },
-          { field: "timeWithRacket", question: `How long have you used it?`, options: niche.profile.timeWithRacket.options.map(o => ({ value: o.value, label: o.hint ?? o.value })) },
-          { field: "playingStyle", question: "How do you like to play?", options: niche.profile.playingStyle.options.map(o => ({ value: o.value, label: o.value })) },
-          { field: "playingSide", question: `Which ${niche.profile.playingSide.label.toLowerCase()} do you play on?`, options: niche.profile.playingSide.options.map(o => ({ value: o.value, label: o.value })) },
-        ]}/>
+steps={[]}/>
       {byVariant}
       <div className="columns lp-cols">
         <div>
