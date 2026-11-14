@@ -2943,3 +2943,9 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
   .lp-stats2 .lp-stat .lp-counts span { font-size: 13px !important; }
 }
 @media (max-width: 640px) { .lp-stats2 .lp-split > .sbar, .lp-stats2 .lp-split > [class*="sbar"] { width: 100%; } }
+/* Desktop try (owner, 2026-11-14): signal and review count side by side, then the counts and bar at the right. */
+@media (min-width: 641px) {
+  .lp-stats2 .lp-stat:first-child { order: 1; }
+  .lp-stats2 a.lp-stat { order: 2; }
+  .lp-stats2 .lp-split { order: 3; justify-items: start; }
+}
