@@ -23,11 +23,10 @@ export default async function Rate() {
     return { id: r.id, name: displayName(r.name, brand), brand, href: productHref(r) };
   });
   const brands = [...new Set(items.map(i => i.brand).filter(Boolean))].sort((a, b) => items.filter(i => i.brand === b).length - items.filter(i => i.brand === a).length || a.localeCompare(b));
-  const p = niche.profile;
   return <main className={`lt-page rate-page ${lightFont.className}`}>
     <h1>{`Rate the ${niche.words.many} you've used`}</h1>
-    <p className="rate-sub">{`One tap for every ${niche.words.one} you've used: positive, mixed or negative. No account, about 30 seconds, and it shows ${niche.people.many} like you what works.`}</p>
+    <p className="rate-sub">{`Positive, mixed or negative: one tap for each ${niche.words.one} you've used, saved straight away. Add a few words if you like. No account needed.`}</p>
     <RateGrid items={items} brands={brands} plural={niche.words.many} people={niche.people}
-      levels={p.playerLevel.options.map(o => o.value)} styles={p.playingStyle.options.map(o => o.value)} sides={p.playingSide.options.map(o => o.value)}/>
+      placeholder={niche.form.quickVote?.placeholder ?? "What stood out? How it works, how it feels, who it suits…"} nicknames={niche.form.quickVote?.nicknames ?? []}/>
   </main>;
 }
