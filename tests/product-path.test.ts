@@ -16,7 +16,11 @@ test("padel serves /rackets with no redirects but last season's ranking slugs; o
   assert.deepEqual(await config.rewrites(), icons("padel"));
   // Only the moving "best of last season" ranking: the three slugs before this year's 301 to it.
   const last = new Date().getUTCFullYear() - 1;
-  assert.deepEqual(await config.redirects(), [1, 2, 3].map(n => ({ source: `/rankings/best-padel-rackets-${last - n}`, destination: `/rankings/best-padel-rackets-${last}`, statusCode: 301 })));
+  // Plus "Most forgiving", folded into Best for control (owner 2026-11-14).
+  assert.deepEqual(await config.redirects(), [
+    { source: "/rankings/most-forgiving-padel-rackets", destination: "/rankings/best-control-padel-rackets", statusCode: 301 },
+    ...[1, 2, 3].map(n => ({ source: `/rankings/best-padel-rackets-${last - n}`, destination: `/rankings/best-padel-rackets-${last}`, statusCode: 301 })),
+  ]);
   const cached = (await config.headers()).map((h: { source: string }) => h.source);
   assert(cached.includes("/rackets") && cached.includes("/rackets/:slug*"));
 });
