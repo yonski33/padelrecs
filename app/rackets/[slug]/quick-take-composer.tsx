@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { DEFAULT_NICKNAMES, VERDICTS, loadProfile, nickname, sendVote, type Verdict } from "../../quick-vote";
 import { MAX_TAGS } from "../../../lib/tags";
 
@@ -14,6 +14,12 @@ const COLOR: Record<Verdict, string> = { positive: "var(--pos)", mixed: "var(--m
 
 export default function QuickTakeComposer({ racketId, name, tags, nicknames, hasReviews }: { racketId: string; name: string; tags: string[]; nicknames: string[]; hasReviews: boolean }) {
   const [nick, setNick] = useState(""), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [picked, setPicked] = useState<string[]>([]);
+  // Step by step (owner 2026-11-15): compact at rest; a verdict tap or focusing the box opens the words, tags and Post.
+  const [open, setOpen] = useState(false), [allTags, setAllTags] = useState(false), regionId = useId();
+  const TOP_TAGS = 6, shownTags = allTags ? tags : tags.slice(0, TOP_TAGS);
+  // "+ more tags" goes away once the rest show, so focus moves to the first new tag instead of getting lost.
+  const tagRow = useRef<HTMLDivElement>(null), focusNewTag = useRef(false);
+  useEffect(() => { if (allTags && focusNewTag.current) { focusNewTag.current = false; tagRow.current?.querySelectorAll("button")[TOP_TAGS]?.focus(); } }, [allTags]);
   const [busy, setBusy] = useState(false), [msg, setMsg] = useState(""), [error, setError] = useState(""), [posts, setPosts] = useState<Posted[]>([]);
   useEffect(() => { setNick(nickname(nicknames)); }, [nicknames]);
   function renick() {
@@ -43,7 +49,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
         note += " Your words go live after a quick check.";
       } else if (picked.length) note += " Tags go with a few words, so they weren't saved this time.";
       setPosts(ps => [{ nick: nick || "You", verdict, text: words, tags: words ? picked : [] }, ...ps]);
-      setVerdict(null); setText(""); setPicked([]); setMsg(note);
+      setVerdict(null); setText(""); setPicked([]); setAllTags(false); setMsg(note);
     } catch (e) { setError(e instanceof Error ? e.message : "Could not post that. Try again?"); }
     finally { setBusy(false); }
   }
@@ -53,15 +59,22 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
       <div className="cbox-who">Posting as <b>{nick || "…"}</b><button type="button" onClick={renick}>↻ new name</button></div>
       <div className="vbtns" role="group" aria-label={`Your verdict on the ${name}`}>
         {VERDICTS.map(v => <button key={v.key} type="button" aria-pressed={verdict === v.key} style={{ "--c": COLOR[v.key] } as React.CSSProperties}
-          onClick={() => { setVerdict(v.key); setError(""); setMsg("Your verdict counts as soon as you post. Words and tags are optional."); }}>{v.word}</button>)}
+          aria-controls={regionId} onClick={() => { setVerdict(v.key); setOpen(true); setError(""); setMsg("Your verdict counts as soon as you post. Words and tags are optional."); }}>{v.word}</button>)}
       </div>
-      <textarea rows={3} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} aria-label="Your review"
-        placeholder={`Played the ${name}? What stood out? How it plays, how it feels, who it suits…`}/>
-      <div className="ctags" aria-label={`Tags, up to ${MAX_TAGS}`}>{tags.map(t => { const on = picked.includes(t);
-        return <button key={t} type="button" aria-pressed={on} disabled={!on && picked.length >= MAX_TAGS} onClick={() => toggle(t)}>{t}</button>; })}</div>
-      <div className="cbox-foot">
-        <span role="status" className={error ? "err" : undefined}>{error || msg || "Pick a verdict to post. No account needed."}</span>
-        <button type="button" className="cpost" disabled={!verdict || busy} onClick={post}>{busy ? "Posting…" : "Post"}</button>
+      {/* One textarea that grows, so focus never jumps when the composer opens. */}
+      <textarea className={open ? "open" : undefined} rows={open ? 3 : 1} maxLength={2000} value={text} aria-label="Your review" aria-controls={regionId}
+        onFocus={() => setOpen(true)} onChange={e => { setText(e.target.value); setError(""); }}
+        placeholder={open ? `Played the ${name}? What stood out? How it plays, how it feels, who it suits…` : "Played it? Drop your take…"}/>
+      <div id={regionId} className={`cmore${open ? " open" : ""}`} role="region" aria-label="Tags and post" aria-expanded={open} inert={!open}>
+        <div className="cmore-in">
+          <div ref={tagRow} className="ctags" aria-label={`Tags, up to ${MAX_TAGS}`}>{shownTags.map(t => { const on = picked.includes(t);
+            return <button key={t} type="button" aria-pressed={on} disabled={!on && picked.length >= MAX_TAGS} onClick={() => toggle(t)}>{t}</button>; })}
+            {!allTags && tags.length > TOP_TAGS && <button type="button" className="more-tags" aria-expanded={false} onClick={() => { focusNewTag.current = true; setAllTags(true); }}>+ more tags</button>}</div>
+          <div className="cbox-foot">
+            <span role="status" className={error ? "err" : undefined}>{error || msg || "Pick a verdict to post. No account needed."}</span>
+            <button type="button" className="cpost" disabled={!verdict || busy} onClick={post}>{busy ? "Posting…" : "Post"}</button>
+          </div>
+        </div>
       </div>
     </div>
     {posts.length > 0 && <ul className="cms">{posts.map((p, i) => <li key={i} className="cm new"><div className="bub">

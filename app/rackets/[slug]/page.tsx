@@ -348,7 +348,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} signal={sig?.signal ?? null} site={niche.site.name} products={products}
       heroSpecs={[r.weight, r.balance && `Balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
-      fontClass={lightFont.variable} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []} jsonLd={qtLd}
+      fontClass={lightFont.variable} tags={(() => {
+        // Most-used tags in this racket's reviews and reports first; with none, the positive ones lead (owner 2026-11-15).
+        const used = new Map<string, number>();
+        for (const t of [...reviews, ...external].flatMap(x => x.tags)) used.set(t, (used.get(t) ?? 0) + 1);
+        return niche.tags.map((t, i) => ({ t, i })).sort((a, b) => (used.get(b.t.label) ?? 0) - (used.get(a.t.label) ?? 0)
+          || Number(b.t.tone === "pos") - Number(a.t.tone === "pos") || a.i - b.i).map(x => x.t.label);
+      })()} nicknames={niche.form.quickVote?.nicknames ?? []} jsonLd={qtLd}
       rest={<div className={`product v2 lt-page lp ${lightFont.className}`}>
         <ReviewList verdict={verdict} title={`Every ${niche.people.one} report`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}/>
         {nextBox}
