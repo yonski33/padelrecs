@@ -1,3 +1,5 @@
+import { HighlightToggle, HighlightBoot } from "../../highlight-toggle";
+import { showsHighlights } from "../../../lib/highlights";
 import { Fragment } from "react";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -62,15 +64,19 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     <summary><span className="sort-label">{showTabs ? "Sort: " : "Sorted by: "}</span><b>{sort === "newest" ? "Newest" : "Most detailed"}</b></summary>
     <div>{(["newest", "helpful"] as const).map(v => <Link key={v} href={reviewsHref(href, { sort: v, tag, variant, verdict })} scroll={false} aria-current={sort === v ? "page" : undefined}>{v === "newest" ? "Newest" : "Most detailed"}</Link>)}</div>
     </details>;
+  // The highlights switch sits beside the sort, on sites that have highlights.
+  const hl = showsHighlights(niche.id) && items.length > 0;
+  const sortArea = hl ? <div className="sort-area"><HighlightToggle/>{sortMenu}</div> : sortMenu;
 
   return <section id="reviews" className="review-list">
+    {hl && <HighlightBoot/>}
     {/* The page's "what people say" tags sit here, right above the reviews they filter. */}
     {intro}
     <div className="feed-heading">
       <div className="feed-title-row">
         <h2 className="feed-title">{title}{items.length > 0 && <span className="feed-count">{` (${items.length.toLocaleString("en-US")})`}</span>}</h2>
         {/* Under 20 reviews there are no verdict tabs, so the sort sits in the title row (owner, 2026-11-12). */}
-        {!showTabs && showSort ? <div className="feed-title-actions">{sortMenu}{addButton}</div> : addButton}
+        {!showTabs && (showSort || hl) ? <div className="feed-title-actions">{showSort ? sortArea : hl && <HighlightToggle/>}{addButton}</div> : addButton}
       </div>
       {subtitle && items.length > 0 && <p className="feed-sub m-only">{subtitle}</p>}
     </div>
@@ -86,7 +92,7 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
         <Link href={reviewsHref(href, { sort, tag, variant })} scroll={false} aria-current={!verdict ? "page" : undefined}>All <span className="c">{inScope.length}</span></Link>
         {VERDICT_FILTERS.filter(v => verdictCount(v)).map(v => <Link key={v} href={reviewsHref(href, { sort, tag, variant, verdict: v })} scroll={false} aria-current={verdict === v ? "page" : undefined}>{v[0].toUpperCase() + v.slice(1)} <span className="c">{verdictCount(v)}</span></Link>)}
       </nav>
-      {sortMenu}
+      {sortArea}
     </div>}
     {/* Phones show the first three, then "See all" opens the rest (no JavaScript). */}
     <input type="checkbox" id="all-voices" className="all-voices"/>

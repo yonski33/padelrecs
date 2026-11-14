@@ -2,7 +2,43 @@
  *  the reviews. Prototype: each tag has phrase patterns, and a review only gets highlights for tags it actually carries,
  *  so a passing "no elbow pain" in a review tagged for something else stays plain. Praise is green, complaints amber. */
 
+import padel from "../db/highlights/padel.json";
+
 export type Segment = { text: string; tone?: "pos" | "neg" };
+
+/** Phrases picked per review by a Sonnet pass (owner, 2026-11-14), keyed "p:<player review id>" / "w:<web review id>".
+ *  Each is an exact piece of the text the card shows. Reviews without an entry fall back to the tag patterns below. */
+const STORED: Record<string, Record<string, string[]>> = { padel };
+
+/** Whether a niche shows highlights (and so the on/off switch). */
+export const showsHighlights = (niche: string) => niche in STORED;
+
+/** Segments for a review: its stored phrases when it has them, else the tag patterns. */
+export function reviewSegments(niche: string, key: string, text: string, tags: readonly string[], toneOf: (tag: string) => string | undefined): Segment[] {
+  const stored = STORED[niche]?.[key];
+  if (stored) {
+    const segs = phraseSegments(text, stored);
+    if (segs.length > 1) return segs;
+  }
+  return highlightSegments(niche, text, tags, toneOf);
+}
+
+/** Marks each phrase where it first appears, skipping any that are missing or overlap an earlier one. */
+export function phraseSegments(text: string, phrases: readonly string[]): Segment[] {
+  const spans: [number, number][] = [];
+  for (const p of phrases.slice(0, MAX_HIGHLIGHTS)) {
+    const at = p ? text.indexOf(p) : -1;
+    if (at < 0 || spans.some(([a, b]) => at < b && a < at + p.length)) continue;
+    spans.push([at, at + p.length]);
+  }
+  if (!spans.length) return [{ text }];
+  spans.sort((a, b) => a[0] - b[0]);
+  const out: Segment[] = [];
+  let pos = 0;
+  for (const [a, b] of spans) { if (a > pos) out.push({ text: text.slice(pos, a) }); out.push({ text: text.slice(a, b), tone: "pos" }); pos = b; }
+  if (pos < text.length) out.push({ text: text.slice(pos) });
+  return out;
+}
 
 /** The most highlights one review gets; more than this and nothing stands out. */
 export const MAX_HIGHLIGHTS = 2;

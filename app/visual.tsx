@@ -10,7 +10,7 @@ import { displayName } from "../lib/brand-name";
 import { niche, productHref, catalogPath } from "../lib/niche";
 const catalogPathOf = () => catalogPath;
 import { plainSummary } from "../lib/plain-summary";
-import { highlightSegments } from "../lib/highlights";
+import { reviewSegments } from "../lib/highlights";
 
 const monthYear = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
 
@@ -180,8 +180,8 @@ export function Voice(props: ({ review: PlayerReview } | { entry: WebReview }) &
 }
 
 /** Review text with up to two marker highlights on what it praises or flags (lib/highlights.ts). */
-function Marked({ text, tags }: { text: string; tags: readonly string[] }) {
-  const segs = highlightSegments(niche.id, text, tags, t => niche.tags.find(x => x.label === t)?.tone);
+function Marked({ id, text, tags }: { id: string; text: string; tags: readonly string[] }) {
+  const segs = reviewSegments(niche.id, id, text, tags, t => niche.tags.find(x => x.label === t)?.tone);
   return <>{segs.map((s, i) => s.tone ? <mark key={i} className={`hl hl-${s.tone}`}>{s.text}</mark> : s.text)}</>;
 }
 
@@ -194,7 +194,7 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
       <span className="lv-icon lv-own" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="M4 17c.8-3.2 3.2-5 6-5s5.2 1.8 6 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></span>
       <div className="lv-body">
         <header><p className="lv-src"><b>{`${niche.people.One} review`}</b>{[r.alias || "Anonymous", r.playerLevel, fullDate(r.createdAt)].filter(Boolean).map(x => ` · ${x}`).join("")}</p><span className={`spill s-${v}`}>{sentimentWord[v]}</span></header>
-        <p className="lv-text"><Marked text={r.reviewText} tags={r.tags}/></p>
+        <p className="lv-text"><Marked id={`p:${r.id}`} text={r.reviewText} tags={r.tags}/></p>
         <footer><AdminEdit type="player" id={r.id}/></footer>
       </div>
     </article>;
@@ -205,7 +205,7 @@ function LightVoice(props: ({ review: PlayerReview } | { entry: WebReview })) {
     <div className="lv-body">
       {/* Source, where, when and "summarized" on one line (owner's audit, 2026-11-13); the kind of source is in the hover title. */}
       <header><p className="lv-src" title={`Summary of a ${kind}`}><b>{label.platform}</b>{[label.name, e.sourceDate && fullDate(e.sourceDate)].filter(Boolean).map(x => ` · ${x}`).join("")}{e.summary ? " · summarized" : ""}</p>{e.sentiment && <span className={`spill s-${e.sentiment}`}>{sentimentWord[e.sentiment]}</span>}</header>
-      <p className="lv-text"><Marked text={quoteText(e)} tags={e.tags}/></p>
+      <p className="lv-text"><Marked id={`w:${e.id}`} text={quoteText(e)} tags={e.tags}/></p>
       <footer><a className="lv-orig" href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{originalLinkLabel(e)} <span aria-hidden="true">↗</span></a><AdminEdit type="web" id={e.id}/></footer>
     </div>
   </article>;
