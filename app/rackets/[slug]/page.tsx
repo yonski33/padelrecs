@@ -24,6 +24,8 @@ import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
 import QuickVote from "../../quick-vote";
 import QuickTakePage from "./quick-take";
+import RacketFit from "./racket-fit";
+import { readChoice } from "../../../lib/quick-match";
 import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
 import { quickTakeFor } from "../../../db/quick-take";
@@ -342,6 +344,21 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       { "@type": "FAQPage", mainEntity: qt.answers.map(a => ({ "@type": "Question", name: a.q, acceptedAnswer: { "@type": "Answer", text: `${a.badge}. ${plainText(a.a)}` } })) },
       jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList"),
     ].filter(Boolean) };
+    // The racket fit page (owner 2026-11-15, RACKET-FIT-PAGE.md) replaces the long quick-take layout: a tight page with a fit
+    // check for the visitor's picks (?style=&level=&arm=1, the same as the home's quick match). ?layout=long shows the old one.
+    if (query.layout !== "long") {
+      const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
+      return <RacketFit qt={qt} racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
+        crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
+        reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
+          ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
+        reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} site={niche.site.name}
+        specs={[r.weight, r.balance && `balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+        buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
+        fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
+        choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined })}
+        picked={picked} jsonLd={qtLd}/>;
+    }
     return <QuickTakePage qt={qt} racketId={r.id} slug={r.slug} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
       crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),

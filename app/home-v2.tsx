@@ -1,19 +1,17 @@
 import "./home-v2.css";
 import Link from "next/link";
-import { catalog, score } from "../db/data";
+import { score } from "../db/data";
+import { matchContext } from "./match-context";
 import { displayName } from "../lib/brand-name";
-import { productSignals } from "./signals";
-import { rankedLists, listHref, topLists } from "./rankings/lists";
+import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 import { listLine } from "../lib/list-lines";
 import { shortLine } from "../lib/short-lines";
 import { shopPhoto, photoHidden } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
-import { finderPool, withRankings } from "../lib/finder";
-import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice, type Level, type LevelEvidence } from "../lib/quick-match";
+import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
-import { quickTakeHooks } from "../db/quick-take";
 import { qtFontVars } from "./qt-fonts";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
@@ -23,7 +21,6 @@ import { qtFontVars } from "./qt-fonts";
 const DAY = 86_400_000;
 const LIST_SIZE = 10;
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
-const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 
 function ago(iso: string, now: number) {
   const days = Math.floor((now - Date.parse(iso)) / DAY);
@@ -33,8 +30,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice }: { choice: QuickChoice }) {
-  const [data, sigs, takes, lists] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists()]);
-  const finder = niche.finder!;
+  const [{ data, sigs, takes, finder, bad, pool, level, signal }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -42,19 +38,9 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const total = data.reviews.length + data.external.length;
   const added = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now - 7 * DAY).length;
-
-  // The same pool and tag counting as /finder, over the models the home page shows (niche.feedMaxAgeYears).
-  const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
-  const pool = withRankings(finderPool({ ...finder, maxAgeYears: niche.feedMaxAgeYears }, data, good), finder, topLists, data, niche.tags);
-  // Level evidence: players here who gave their level and liked it (4–5), and the quick-take level band.
-  const likedBy = new Map<string, Partial<Record<Level, number>>>();
-  for (const r of data.reviews) {
-    const lv = LEVELS.find(l => LEVEL_VALUE[l] === r.playerLevel) ?? (r.playerLevel === "Competitive" ? "advanced" : undefined);
-    if (!lv || r.rating < 4) continue;
-    const m = likedBy.get(r.racketId) ?? {}; m[lv] = (m[lv] ?? 0) + 1; likedBy.set(r.racketId, m);
-  }
-  const level = (id: string): LevelEvidence | undefined => { const liked = likedBy.get(id), band = takes.get(id)?.band; return liked || band ? { liked: liked ?? {}, band } : undefined; };
-  const matches = quickMatch(pool, finder, choice, { signal: id => sigs.get(id)?.signal ?? null, negativeTags: bad, level, count: LIST_SIZE, rankWeight: finder.rankWeight });
+  const matches = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: LIST_SIZE, rankWeight: finder.rankWeight });
+  // Rows carry the picks to the racket page, so its fit check answers for this visitor (RACKET-FIT-PAGE.md).
+  const picks = isDefault(choice) ? "" : choiceHref(choice, "").replace(/^\/\??/, "?");
   const head = matchTitle(choice, niche.words.many);
 
   // Fresh off the court: the newest reports with a verdict, one per racket.
@@ -108,7 +94,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
               ...m.reasons.filter(x => x.tag !== "arm-friendly").slice(0, 2).map(x => ({ k: x.tag, t: `${x.tag} · ${x.count} players` })),
               ...(!isDefault(choice) && m.levelLiked >= 2 ? [{ k: "lvl", t: `${m.levelLiked} ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`} liked it` }] : []),
             ];
-            return <li key={r.id}><a className="hv2-row" href={productHref(r)}>
+            return <li key={r.id}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
               <span className="hv2-rank">{i + 1}</span>
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-name">{nameOf(r)}</span>{line && <span className="hv2-line">{line}</span>}

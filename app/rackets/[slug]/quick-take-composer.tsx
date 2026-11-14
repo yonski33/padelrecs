@@ -88,7 +88,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
 
 /** Trial (owner 2026-11-15, ST4 only): "Played it? [Positive] [Mixed] [Negative]" under the TL;DR. One tap is a quick vote;
  *  the full composer stays at the bottom. */
-export function QuickVoteLine({ racketId, name }: { racketId: string; name: string }) {
+export function QuickVoteLine({ racketId, name, label = "Played it?" }: { racketId: string; name: string; label?: string }) {
   const [mine, setMine] = useState<Verdict | null>(null), [note, setNote] = useState(""), [busy, setBusy] = useState(false);
   async function tap(v: typeof VERDICTS[number]) {
     if (busy) return; setBusy(true); setNote("");
@@ -97,7 +97,7 @@ export function QuickVoteLine({ racketId, name }: { racketId: string; name: stri
     } catch (e) { setNote(e instanceof Error ? e.message : "Could not save that."); } finally { setBusy(false); }
   }
   return <div className="qvl" role="group" aria-label={`Played the ${name}? Your verdict`}>
-    <span>Played it?</span>
+    {label && <span>{label}</span>}
     <div className="vbtns">{VERDICTS.map(v => <button key={v.key} type="button" aria-pressed={mine === v.key} disabled={busy}
       style={{ "--c": COLOR[v.key] } as React.CSSProperties} onClick={() => tap(v)}>{v.word}</button>)}</div>
     {note ? <small role="status">{note} <a href="#community">Add a few words ↓</a></small> : null}
