@@ -13,7 +13,7 @@ import { platformName } from "../lib/source-label";
 import { matchingRackets } from "../lib/racket-search";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
-import { qtFontVars } from "./rackets/[slug]/qt-fonts";
+import { qtFontVars } from "./qt-fonts";
 
 /** The home page in design language v2 (owner 2026-11-15, after the Claude Design home reference in
  *  site-jobs/quick-take-mockups/claude-design-home-*). PadelRecs only for now; ?home=d shows the light home. */

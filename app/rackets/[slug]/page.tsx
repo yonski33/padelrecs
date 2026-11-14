@@ -24,7 +24,7 @@ import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
 import QuickVote from "../../quick-vote";
 import QuickTakePage from "./quick-take";
-import { qtFontVars } from "./qt-fonts";
+import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
 import { quickTakeFor } from "../../../db/quick-take";
 import { tagTone } from "../../../lib/tags";
