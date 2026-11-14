@@ -183,6 +183,11 @@
       "name": "dogrecs",
       "id": "prj_TonSLKJlthPSelh2UdTwNDcKScmO",
       "domain": "www.dogrecs.com"
+    },
+    "vacuum": {
+      "name": "vacuumrecs",
+      "id": "prj_QFRgwXvDYKSMld32oA5pc9viNDNc",
+      "domain": "www.vacuumrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
