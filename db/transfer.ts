@@ -3,19 +3,22 @@ import { brands, rackets, reviews, externalReviews, racketSlugRedirects } from "
 import type { PgDatabase, PgQueryResultHKT } from "drizzle-orm/pg-core";
 import type * as schema from "./schema";
 import { SOURCE_SCHEMA } from "./migrations";
+import { TIP_KINDS } from "../lib/tips";
 const nullable=z.string().nullable();
 const category=z.number().int().min(1).max(5).nullable();
 const identity={id:z.string().min(1)};
 const racketId={racket_id:z.string().min(1)};
 const date={created_at:z.string().datetime({offset:true})};
 const tags={tags:z.array(z.string()).optional()};
+// Player tips (migration 0019); optional so snapshots taken before tips existed still import.
+const tipList=z.array(z.object({kind:z.enum(TIP_KINDS),text:z.string(),quote:z.string()}).strict()).nullable().optional();
 const tables=z.object({
  brands:z.array(z.object({...identity,name:z.string().min(1),slug:z.string().min(1)}).strict()),
  rackets:z.array(z.object({...identity,brand_id:z.string().min(1),name:z.string().min(1),slug:z.string().min(1),year:z.number().int(),image_url:nullable,shape:nullable,weight:nullable,balance:nullable,surface:nullable,core:nullable,description:nullable,
   // Optional so snapshots taken before product links existed still import.
   website_url:nullable.optional(),affiliate_url:nullable.optional(),review_summary:nullable.optional(),amazon_asin:nullable.optional(),amazon_image:nullable.optional(),amazon_checked_at:nullable.optional(),signal_override:z.number().int().nullable().optional(),...date}).strict()),
- reviews:z.array(z.object({...identity,...racketId,rating:z.number().int().min(1).max(5),power_rating:category,control_rating:category,maneuverability_rating:category,comfort_rating:category,forgiveness_rating:category,player_level:nullable,playing_side:nullable,playing_style:nullable,time_with_racket:nullable,review_text:z.string(),alias:nullable,email:nullable,variant:nullable.optional(),highlights:z.array(z.string()).nullable().optional(),status:z.enum(["pending","approved","rejected"]),...tags,...date}).strict()),
- external_reviews:z.array(z.object({...identity,...racketId,excerpt:nullable,summary:nullable.optional(),source_language:nullable.optional(),excerpt_translation:nullable.optional(),sentiment:z.enum(["positive","negative","mixed"]).nullable().optional(),source_platform:z.string(),source_name:z.string(),source_url:z.string(),source_date:nullable,external_rating:z.number().int().nullable(),variant:nullable.optional(),admin_edited_at:nullable.optional(),highlights:z.array(z.string()).nullable().optional(),...tags,...date}).strict()),
+ reviews:z.array(z.object({...identity,...racketId,rating:z.number().int().min(1).max(5),power_rating:category,control_rating:category,maneuverability_rating:category,comfort_rating:category,forgiveness_rating:category,player_level:nullable,playing_side:nullable,playing_style:nullable,time_with_racket:nullable,review_text:z.string(),alias:nullable,email:nullable,variant:nullable.optional(),highlights:z.array(z.string()).nullable().optional(),tips:tipList,status:z.enum(["pending","approved","rejected"]),...tags,...date}).strict()),
+ external_reviews:z.array(z.object({...identity,...racketId,excerpt:nullable,summary:nullable.optional(),source_language:nullable.optional(),excerpt_translation:nullable.optional(),sentiment:z.enum(["positive","negative","mixed"]).nullable().optional(),source_platform:z.string(),source_name:z.string(),source_url:z.string(),source_date:nullable,external_rating:z.number().int().nullable(),variant:nullable.optional(),admin_edited_at:nullable.optional(),highlights:z.array(z.string()).nullable().optional(),tips:tipList,...tags,...date}).strict()),
  // Optional so snapshots taken before slug redirects existed still import.
  racket_slug_redirects:z.array(z.object({slug:z.string().min(1),...racketId,...date}).strict()).optional()
 }).strict();

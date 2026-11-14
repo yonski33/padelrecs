@@ -134,6 +134,13 @@
       "when": 1794626400000,
       "tag": "0018_review_highlights",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1794716400000,
+      "tag": "0019_review_tips",
+      "breakpoints": true
     }
   ]
 }

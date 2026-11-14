@@ -1,6 +1,7 @@
-import { pgSchema, text, integer, index, check, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgSchema, text, integer, index, check, uniqueIndex, jsonb } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 import { niche } from "../lib/niche";
+import type { Tip } from "../lib/tips";
 // One Postgres schema per niche ("padelrecs", …) in the shared Supabase project. Not exposed through Supabase's
 // public Data API; all catalog access goes through Next.js. Table names say "rackets" for every niche.
 export const catalogSchema = pgSchema(niche.schema);
@@ -18,6 +19,9 @@ export const reviews = catalogSchema.table("reviews", {
  // The variant the player used, on niches with niche.variants (DiscGolfRecs: the plastic, one of the product's `core` list); null when unknown.
  // Marker highlights: 1-2 exact phrases of review_text, picked by a Sonnet pass (owner 2026-11-14); null until picked.
  highlights: text("highlights").array(),
+ // Player tips: {kind, text, quote} notes the review gives, picked by a Sonnet pass (owner 2026-11-15, scripts/TIPS.md);
+ // null until read, [] when it gives none. Every quote is an exact substring of review_text.
+ tips: jsonb("tips").$type<Tip[]>(),
  variant: text("variant"), status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull()
 }, t => [index("reviews_feed_idx").on(t.status,t.createdAt),index("reviews_racket_idx").on(t.racketId),check("review_status",sql`${t.status} in ('pending','approved','rejected')`),check("review_rating",sql`${t.rating} between 1 and 5`),...([t.powerRating,t.controlRating,t.maneuverabilityRating,t.comfortRating,t.forgivenessRating].map((column,i)=>check(`review_category_${i}`,sql`${column} is null or ${column} between 1 and 5`)))]).enableRLS();
 export const externalReviews = catalogSchema.table("external_reviews", {
@@ -34,7 +38,10 @@ export const externalReviews = catalogSchema.table("external_reviews", {
  // Set when the owner edits or confirms the review in the admin; publishing then leaves its text, sentiment and tags alone.
  adminEditedAt: text("admin_edited_at"),
  // Marker highlights: 1-2 exact phrases of the text the card shows (summary, else the excerpt or its translation); null until picked.
- highlights: text("highlights").array()
+ highlights: text("highlights").array(),
+ // Player tips (scripts/TIPS.md): null until read, [] when it gives none; each quote is an exact substring of the summary,
+ // the excerpt or its translation.
+ tips: jsonb("tips").$type<Tip[]>()
 }, t => [index("external_racket_idx").on(t.racketId),index("external_feed_idx").on(t.createdAt),check("external_review_text",sql`${t.excerpt} is not null or ${t.summary} is not null`),check("external_review_sentiment",sql`${t.sentiment} is null or ${t.sentiment} in ('positive','negative','mixed')`)]).enableRLS();
 // "Helpful" votes. The voter is a keyed hash of the visitor's network and browser, never the raw IP.
 export const reviewVotes = catalogSchema.table("review_votes", {
