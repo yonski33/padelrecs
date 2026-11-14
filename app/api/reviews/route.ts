@@ -8,7 +8,7 @@ import { variantInput, reviewVariant } from "../../../db/review-variant";
 import { reviews, rackets } from "../../../db/schema";
 import { tagsInput } from "../../../lib/tags";
 import { profileChoice } from "../../../lib/review-options";
-import { issueFormToken, checkFormToken } from "../../../lib/form-token";
+import { issueFormToken, checkFormToken, reviewEditToken, checkReviewEdit } from "../../../lib/form-token";
 import { spamScore, normalizeEmail } from "../../../lib/review-spam";
 import { clientIp, createLimiter } from "../../../lib/rate-limit";
 const rating=z.coerce.number().int().min(1).max(5);
@@ -25,7 +25,9 @@ const noStore={"Cache-Control":"no-store"};
 type Valid=z.infer<typeof input>;
 const reviewRow=(value:Valid,status:"pending"|"rejected",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,variant,status,createdAt:new Date().toISOString()});
 // Spam is answered exactly like a saved review, so a bot learns nothing from the response; only the server log says why.
-const accepted=()=>Response.json({status:"pending"},{status:201,headers:noStore});
+// Every accepted answer carries an id and edit token (the one-tap card adds details to it). Dropped and rejected posts get
+// one too, so the answer looks the same; their details just never land, since only pending reviews take them.
+const accepted=(id:string=crypto.randomUUID())=>Response.json({status:"pending",id,edit:reviewEditToken(id)},{status:201,headers:noStore});
 function dropped(reason:string){console.warn(`Review dropped (${reason})`);return accepted();}
 // A flagged submission that is still a valid review of a listed product is kept as "rejected", so the owner sees it in the
 // admin area and can approve a false positive. New products are never created for it, and a failed save is only logged.
@@ -34,7 +36,7 @@ async function rejected(reason:string,value:Valid){
  if(value.racketMode==="existing")try{
   const db=await database();
   const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
-  if(racket)await db.insert(reviews).values({...reviewRow(value,"rejected",await reviewVariant(db,niche,racket.id,value.variant)),racketId:racket.id});
+  if(racket){const row=reviewRow(value,"rejected",await reviewVariant(db,niche,racket.id,value.variant));await db.insert(reviews).values({...row,racketId:racket.id});return accepted(row.id);}
  }catch(error){console.error("Rejected review save failed",error);}
  return accepted();
 }
@@ -80,7 +82,26 @@ export async function POST(request:Request){
    });
   }
   // New reviews reach the owner in the daily digest (lib/review-digest.ts), not one email each.
-  return accepted();
+  return accepted(review.id);
  }catch(error){console.error("Review save failed",error);return Response.json({error:"Could not save the review. Please try again."},{status:500});}
+}
+// The one-tap card's optional details, added one tap at a time to the review it just posted. Only the fields below, only
+// while the review is still pending and less than an hour old, and only with the edit token the post returned.
+const EDIT_WINDOW_MS=60*60_000;
+const details=z.object({id:z.string().min(1).max(100),edit:z.string().min(1).max(200),
+ playerLevel:profileChoice("playerLevel").optional(),playingSide:profileChoice("playingSide").optional(),playingStyle:profileChoice("playingStyle").optional(),timeWithRacket:profileChoice("timeWithRacket").optional(),
+ tags:tagsInput.optional()});
+export async function PATCH(request:Request){
+ const origin=request.headers.get("origin");if(origin&&origin!==siteOrigin(request.url))return Response.json({error:"Please submit from the site."},{status:403});
+ let parsed;try{parsed=details.safeParse(await request.json());}catch{return Response.json({error:"Invalid details."},{status:400});}
+ if(!parsed.success||!checkReviewEdit(parsed.data.id,parsed.data.edit))return Response.json({error:"Invalid details."},{status:400});
+ const {id,edit:_edit,...fields}=parsed.data;void _edit;
+ const set=Object.fromEntries(Object.entries(fields).filter(([,v])=>v!==undefined));
+ if(!Object.keys(set).length)return new Response(null,{status:204,headers:noStore});
+ try{
+  const db=await database(),since=new Date(Date.now()-EDIT_WINDOW_MS).toISOString();
+  await db.update(reviews).set(set).where(and(eq(reviews.id,id),eq(reviews.status,"pending"),gte(reviews.createdAt,since)));
+  return new Response(null,{status:204,headers:noStore});
+ }catch(error){console.error("Review details failed",error);return Response.json({error:"Could not save that."},{status:500});}
 }
 export const dynamic="force-dynamic";

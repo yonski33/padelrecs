@@ -180,6 +180,7 @@ export const padel: Niche = {
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Weight as played?", "Mine weighs about "], ["Arm comfort?", "On my arm it "]],
     tips: ["What you played with before, and how this compares", "Your weight as played, if you know it", "Where it shines and where it struggles", "Arm comfort, if that matters to you", "Durability, once you’ve had it a while"],
+    quickVote: { question: "Have you played with this racket?", placeholder: "What stood out? How it plays, how it feels, who it suits…", nicknames: ["Volley", "Lob", "Smash", "Rally", "Bandeja", "Vibora", "Chiquita", "Rebound", "Topspin", "Slice", "Bajada", "Glass"] },
   },
   seo: {
     homeTitle: "PadelRecs – Real Player Reviews of Padel Rackets",

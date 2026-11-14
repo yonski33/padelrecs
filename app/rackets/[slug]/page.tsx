@@ -22,6 +22,7 @@ import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
+import QuickVote from "../../quick-vote";
 import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
@@ -380,6 +381,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {concerns.length > 0 && <div className="lp-m-row lp-m-neg"><h3>Common concerns</h3>{chips(concerns)}</div>}
         </div>
       </section>}
+      {/* One tap (2026-11-14 pivot, owner's mockup): after what players say, right before their reviews. */}
+      <QuickVote racketId={r.id} name={fullName} people={niche.people} steps={[]}
+        question={niche.form.quickVote?.question ?? `Have you used this ${niche.words.one}?`}
+        placeholder={niche.form.quickVote?.placeholder ?? "What stood out? How it works, how it feels, who it suits…"}
+        nicknames={niche.form.quickVote?.nicknames ?? []}/>
       {byVariant}
       <div className="columns lp-cols">
         <div>

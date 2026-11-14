@@ -2971,3 +2971,78 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 /* Compare pages: positive / mixed / negative counts, no shares (owner, 2026-11-14). */
 .sbar-counts > span { font-weight: 500 !important; color: #3d393d; }
 .sbar-counts b { font-weight: 700; color: #111; margin-right: 3px; }
+
+/* One-tap verdicts (2026-11-14 pivot, owner's mockup): app/quick-vote.tsx between "What players say" and the reviews, and /rate. */
+.qv { position: relative; overflow: hidden; margin: 22px 0 6px; padding: 22px 24px 20px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 20px; background: color-mix(in srgb, var(--lime-wash, #f0f6d0) 35%, #fff); }
+.qv::after { content: ""; position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: color-mix(in srgb, var(--lime-wash, #f0f6d0) 60%, transparent); pointer-events: none; }
+.qv-top { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 12px; }
+.qv-eyebrow { margin: 0 0 4px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--lt-acc, #2f6b3a); }
+.qv h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.qv-sub { margin: 4px 0 0; font-size: 14.5px; color: var(--lt-mute, #8a857c); }
+.qv-corner { flex: none; align-self: flex-start; margin-top: 26px; font-size: 13px; color: var(--lt-acc, #2f6b3a); }
+.qv-thanks, .qv-error { position: relative; z-index: 1; margin: 12px 0 0; font-size: 14px; color: var(--lt-mute, #8a857c); }
+.qv-thanks a { color: var(--lt-acc, #2f6b3a); font-weight: 600; text-decoration: none; }
+.qv-thanks a:hover { text-decoration: underline; }
+.qv-error { color: #a3392b; }
+.qv-words { position: relative; z-index: 1; display: grid; gap: 8px; margin-top: 14px; }
+.qv-words label { font-size: 14.5px; font-weight: 600; }
+.qv-words textarea { width: 100%; height: 80px; min-height: 80px; padding: 10px 12px; border: 1.5px solid var(--line-2, #e2ded5); border-radius: 10px; background: #fff; font: inherit; font-size: 14.5px; resize: vertical; }
+.qv-words textarea:focus { outline: none; border-color: var(--lt-acc, #2f6b3a); }
+.qv-words-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.qv-words-row small { font-size: 12.5px; color: var(--lt-mute, #8a857c); }
+.qv-words .qv-post, .qv-words .qv-post:hover { min-height: 0; padding: 8px 16px; border-radius: 10px; background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; font-size: 14px; }
+.qv-words .qv-nah, .qv-words .qv-nah:hover { min-height: 0; padding: 8px 6px; border: 0; background: none; color: var(--lt-mute, #8a857c); font-size: 14px; font-weight: 500; }
+.qv-words .qv-nah:hover, .qv-steps .qv-nah:hover { color: var(--lt-ink, #262421); text-decoration: underline; }
+.qv-steps { position: relative; z-index: 1; display: grid; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--lt-line, #ece9e2); }
+.qv-steps-head { margin: 0; font-size: 12.5px; color: var(--lt-mute, #8a857c); }
+.qv-step h3 { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+.qv-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.qv-chips button, .qv-chips button:hover, .qv-chips button:active, .qv-chips button:disabled { min-height: 0; padding: 7px 13px; border: 1px solid var(--line-2, #e2ded5); border-radius: 999px; background: #fff; color: var(--lt-ink, #262421); font: inherit; font-size: 13.5px; font-weight: 500; transform: none; }
+.qv-chips button:hover { border-color: var(--lt-acc, #2f6b3a); }
+.qv-chips button[aria-pressed="true"] { background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; }
+.qv-chips button:disabled { opacity: .45; cursor: not-allowed; }
+.qv-steps .qv-post, .qv-steps .qv-post:hover { min-height: 0; padding: 8px 16px; border-radius: 10px; background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; font-size: 14px; }
+.qv-steps .qv-nah, .qv-steps .qv-nah:hover { min-height: 0; padding: 8px 6px; border: 0; background: none; color: var(--lt-mute, #8a857c); font-size: 14px; font-weight: 500; }
+.qv-err { font-size: 12.5px; color: #a3392b; }
+/* The same cards as the review form's .verdict-pick: a coloured dot, the word and a hint; --c comes from .s-positive etc. */
+.vb { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.vb button, .vb button:hover, .vb button:active, .vb button:disabled { display: grid; gap: 2px; justify-items: center; min-height: 0; padding: 14px 12px; border: 1.5px solid var(--line-2, #e2ded5); border-radius: 10px; background: var(--surface, #fff); color: var(--lt-ink, #262421); font: inherit; white-space: normal; text-align: center; opacity: 1; box-shadow: none; transform: none; cursor: pointer; transition: border-color .15s, background .15s; }
+.vb button::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--c); margin-bottom: 4px; transition: transform .2s ease; }
+.vb button:hover { border-color: var(--c); }
+.vb button.pop::before { transform: scale(1.5); }
+.vb button[aria-checked="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 14%, var(--surface, #fff)); box-shadow: 0 0 0 1px var(--c); }
+.vb button:disabled { cursor: progress; }
+.vb b { font-size: 16px; font-weight: 700; }
+.vb small { font-size: 12.5px; color: var(--ink-3, #8a857c); }
+.vb-compact { display: flex; gap: 6px; margin: 0; }
+.vb-compact button, .vb-compact button:hover, .vb-compact button:active { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; }
+.vb-compact button::before { width: 9px; height: 9px; margin: 0; }
+.vb-compact b { font-size: 13px; font-weight: 600; }
+@media (max-width: 640px) {
+  .qv { padding: 18px 16px; } .qv h2 { font-size: 19px; } .qv-corner { display: none; }
+  .vb { gap: 6px; } .vb button, .vb button:hover { padding: 12px 6px; } .vb small { display: none; }
+}
+.qv-choice > span { display: block; margin-bottom: 6px; font-size: 13px; color: var(--lt-mute, #8a857c); }
+.qv-choice > div { display: flex; flex-wrap: wrap; gap: 6px; }
+.qv-choice button { padding: 6px 12px; border: 1px solid var(--lt-line, #ece9e2); border-radius: 999px; background: #fff; color: var(--lt-ink, #262421); font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; }
+.qv-choice button[aria-pressed="true"] { background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; }
+.qv-also h3 { margin: 4px 0 6px; font-size: 14px; font-weight: 600; }
+.qv-also ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.qv-also li { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
+.qv-also small { color: var(--lt-mute, #8a857c); }
+.rate-page { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
+.rate-page h1 { margin: 0; font-size: 28px; font-weight: 700; }
+.rate-sub, .rate-hint { margin: 6px 0 0; font-size: 14px; color: var(--lt-mute); }
+.rate-profile { display: grid; gap: 10px; margin-top: 18px; padding: 16px 18px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; }
+.rate-filters { display: grid; gap: 10px; margin: 18px 0 10px; }
+.rate-filters input { padding: 10px 12px; border: 1px solid var(--lt-line); border-radius: 12px; font: inherit; }
+.rate-brands { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.rate-brands button { flex: none; padding: 6px 12px; border: 1px solid var(--lt-line); border-radius: 999px; background: #fff; font: inherit; font-size: 13px; cursor: pointer; }
+.rate-brands button[aria-pressed="true"] { background: var(--lt-acc); border-color: var(--lt-acc); color: #fff; }
+.rate-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.rate-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--lt-line); border-radius: 12px; background: #fff; }
+.rate-list li > a { color: var(--lt-ink); font-weight: 500; text-decoration: none; }
+.rate-list .vb-compact { flex: none; }
+.rate-summary { position: sticky; bottom: 0; margin-top: 16px; padding: 12px 16px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; }
+.rate-summary p { margin: 0; }
+@media (max-width: 560px) { .rate-list li { flex-wrap: wrap; } }

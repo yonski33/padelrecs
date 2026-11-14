@@ -185,6 +185,7 @@ export const running: Niche = {
   form: {
     prompts: [["What did you run in before?", "Before this I ran in "], ["How many miles?", "I've put about "], ["Fit and sizing?", "For fit, I "]],
     tips: ["What you ran in before, and how this compares", "How far you've run in it, and on what kind of runs", "Fit: width, length, whether you went up half a size", "Where it shines and where it struggles", "Any blisters, rubbing or wear after the miles"],
+    quickVote: { question: "Have you run in this shoe?", placeholder: "What stood out? Fit, cushioning, ride, how it held up…", nicknames: ["Stride", "Tempo", "Pace", "Mile", "Sprint", "Trail", "Cadence", "Interval", "Taper", "Kick", "Split", "Strider"] },
   },
   seo: {
     homeTitle: "RunningRecs – Real Runner Reviews of Running Shoes",

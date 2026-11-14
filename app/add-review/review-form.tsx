@@ -2,31 +2,25 @@
 import {Fragment, useEffect, useRef, useState} from "react";
 import RacketField, {type FieldRacket} from "./racket-field";
 import {LogoIcon} from "../icons";
+import {nickname} from "../quick-vote";
 import {MAX_TAGS, TAGS} from "../../lib/tags";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
 
 // The API (app/api/reviews/route.ts) accepts exactly these niche option values.
-const {words: w, profile, form: {prompts, tips}} = niche;
-type Option = {value: string; hint?: string};
-
-// "Time with …" shows only its hint ("A few sessions"); other options show the value with the hint underneath.
-function Options({name, options}: {name: string; options: readonly Option[]}) {
- return <div className="opts">{options.map(({value, hint = ""}) =>
-  <label key={value}><input type="radio" name={name} value={value}/><span>{name === "timeWithRacket" ? hint : value}{name !== "timeWithRacket" && hint && <small>{hint}</small>}</span></label>)}</div>;
-}
+const {words: w, form: {prompts, tips}} = niche;
 
 // A signed "form opened at" token (lib/form-token.ts); refreshed hourly so a form left open for a long time still posts.
 async function fetchFormToken(){
  try{const r=await fetch("/api/reviews",{cache:"no-store"});return r.ok?((await r.json()) as {token?:string}).token||"":"";}catch{return "";}
 }
 
-export default function ReviewForm({rackets,brands,initialRacket}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string}) {
+export default function ReviewForm({rackets,brands,initialRacket,initialRating}:{rackets:FieldRacket[],brands:{name:string}[],initialRacket?:string,initialRating?:string}) {
  const formToken=useRef("");
  useEffect(()=>{
   const load=()=>fetchFormToken().then(t=>{if(t)formToken.current=t;});
   load();const timer=setInterval(load,60*60_000);return ()=>clearInterval(timer);
  },[]);
- const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState("");
+ const [text,setText]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false),[rating,setRating]=useState(initialRating??"");
  const [tags,setTags]=useState<string[]>([]);
  const [done,setDone]=useState<null|{alias:string,racket:string,slug?:string,shape?:string|null}>(null);
  const textarea=useRef<HTMLTextAreaElement>(null);
@@ -34,6 +28,8 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
  async function submit(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();setError("");
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
+  // Blank alias: the same generated nickname the one-tap card uses (owner, 2026-11-14), so both ways sign reviews alike.
+  if(!values.alias?.trim())values.alias=nickname(niche.form.quickVote?.nicknames);
   if(values.racketMode==="existing"&&!values.racketId){setError(`Pick a ${w.one} from the list as you type.`);return;}
   if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&(!hasYears||/^\d{4}$/.test(values.year||"")))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand${hasYears?", model and year":" and product name"}.`);return;}
   if(!values.rating){setError("Pick how it went overall: positive, mixed or negative.");return;}
@@ -85,23 +81,12 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
        <input type="radio" name="rating" value={n} id={`rating-${n}`} checked={rating===n} onChange={()=>setRating(n)}/><label htmlFor={`rating-${n}`} className={`s-${k}`}><b>{word}</b><small>{hint}</small></label></Fragment>)}</div>
       <p className="help">Rate how it worked for <em>you</em>, not how good it is on paper.</p>
      </div>
-     <div className="group" role="radiogroup" aria-labelledby="time-label">
-      <span className="group-label" id="time-label">{`${profile.timeWithRacket.label} `}<span className="opt">optional</span></span>
-      <Options name="timeWithRacket" options={profile.timeWithRacket.options}/>
-     </div>
-    </section>
-
-    <section className="step">
-     <h2 className="step-h"><span className="no">3</span>{`${niche.copy.ui.aboutYou} `}<small>{niche.copy.ui.aboutYouHint}</small></h2>
-     <div className="group" role="radiogroup" aria-labelledby="level-label"><span className="group-label" id="level-label">{profile.playerLevel.label}</span><Options name="playerLevel" options={profile.playerLevel.options}/></div>
-     <div className="group" role="radiogroup" aria-labelledby="side-label"><span className="group-label" id="side-label">{profile.playingSide.label}</span><Options name="playingSide" options={profile.playingSide.options}/></div>
-     <div className="group" role="radiogroup" aria-labelledby="style-label"><span className="group-label" id="style-label">{profile.playingStyle.label}</span><Options name="playingStyle" options={profile.playingStyle.options}/></div>
     </section>
 
     {/* The optional 1–5 scales (power, control…) were dropped (owner, 2026-11-12): too much effort next to the three verdicts. */}
 
     <section className="step">
-     <h2 className="step-h"><span className="no">4</span>In your own words</h2>
+     <h2 className="step-h"><span className="no">3</span>In your own words</h2>
      <label className="field" htmlFor="reviewText" style={{marginBottom:0}}>Your experience</label>
      <div className="prompts">Stuck? Try:{prompts.map(([label,start])=><button type="button" key={label} onClick={()=>addPrompt(start)}>{label}</button>)}</div>
      <textarea id="reviewText" name="reviewText" ref={textarea} value={text} onChange={e=>setText(e.target.value)} minLength={20} required placeholder="What did you like? What drove you nuts? What would you tell a friend thinking about buying it?"/>
@@ -115,9 +100,9 @@ export default function ReviewForm({rackets,brands,initialRacket}:{rackets:Field
     </section>
 
     <section className="step">
-     <h2 className="step-h"><span className="no">5</span>Sign it</h2>
+     <h2 className="step-h"><span className="no">4</span>Sign it</h2>
      <div className="form-grid">
-      <label className="field">Alias <span className="opt">optional</span><input name="alias" maxLength={50} autoComplete="nickname"/><small>Any name you like. Leave it blank and you’ll be “anonymous”. Very mysterious.</small></label>
+      <label className="field">Alias <span className="opt">optional</span><input name="alias" maxLength={50} autoComplete="nickname"/><small>Any name you like. Leave it blank and we’ll give you a random nickname.</small></label>
       <label className="field">Email <span className="opt">optional, private</span><input type="email" name="email" maxLength={254} autoComplete="email"/><small>Never shown publicly.</small></label>
      </div>
      {error&&<div className="form-error" role="alert">{error}</div>}

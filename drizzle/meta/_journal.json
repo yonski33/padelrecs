@@ -120,6 +120,13 @@
       "when": 1794540000000,
       "tag": "0016_admin_edited_at",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1794630000000,
+      "tag": "0017_product_votes",
+      "breakpoints": true
     }
   ]
 }
