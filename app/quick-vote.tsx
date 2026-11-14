@@ -19,6 +19,20 @@ const PROFILE_KEY = "rv-profile";
 /** One "a few details" question after the words: a review-form field and its chip options. */
 export type DetailStep = { field: "playerLevel" | "playingSide" | "playingStyle" | "timeWithRacket"; question: string; options: { value: string; label: string }[] };
 const PROFILE_FIELD = { playerLevel: "level", playingSide: "side", playingStyle: "style" } as const;
+// Card reviews are signed with a generated nickname (owner, 2026-11-14: like Reddit's random usernames, nothing to type).
+// One per device, kept in localStorage, so the same person shows up under the same name. Racket-sport words for now.
+const NICK_A = ["Swift", "Steady", "Lucky", "Bold", "Sunny", "Quiet", "Clever", "Brave", "Calm", "Sharp", "Happy", "Mellow", "Rapid", "Smooth", "Wild", "Cool"];
+const NICK_B = ["Volley", "Lob", "Smash", "Rally", "Spin", "Drop", "Ace", "Slice", "Serve", "Net", "Rebound", "Baseline", "Topspin", "Chiquita", "Bandeja", "Vibora"];
+export function nickname() {
+  try {
+    const known = localStorage.getItem("rv-nick");
+    if (known) return known;
+    const pick = (list: string[]) => list[Math.floor(Math.random() * list.length)];
+    const nick = `${pick(NICK_A)}${pick(NICK_B)}${Math.floor(100 + Math.random() * 900)}`;
+    localStorage.setItem("rv-nick", nick);
+    return nick;
+  } catch { return ""; }
+}
 /** The review API's minimum (app/api/reviews/route.ts). */
 const MIN_WORDS = 20;
 
@@ -59,7 +73,7 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
   // After a vote: a small "few words" box that posts a normal (moderated) review, or closes with "Nah, I'm good".
   const [note, setNote] = useState<"closed" | "open" | "details" | "sending" | "sent">("closed"), [words, setWords] = useState(""), [noteError, setNoteError] = useState("");
   const token = useRef("");
-  const [todo, setTodo] = useState<DetailStep[]>([]), [step, setStep] = useState(0), [tags, setTags] = useState<string[]>([]);
+  const [postedAs, setPostedAs] = useState(""), [todo, setTodo] = useState<DetailStep[]>([]), [step, setStep] = useState(0), [tags, setTags] = useState<string[]>([]);
   const saved = useRef<{ id: string; edit: string } | null>(null); // the posted review, which the details are added to
 
   useEffect(() => {
@@ -92,10 +106,10 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
     setNote("sending"); setNoteError("");
     try {
       if (!token.current) { const b = await (await fetch("/api/reviews", { cache: "no-store" })).json() as { token?: string }; token.current = b.token || ""; }
-      const p = loadProfile();
+      const p = loadProfile(), nick = nickname(); setPostedAs(nick);
       const known = Object.fromEntries(Object.entries({ playerLevel: p.level, playingSide: p.side, playingStyle: p.style }).filter(([, v]) => v));
       const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: text, tags: [], website: "", formToken: token.current, ...known }) });
+        body: JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: text, tags: [], website: "", formToken: token.current, alias: nick || undefined, ...known }) });
       const b = await r.json() as { id?: string; edit?: string; error?: string };
       if (!r.ok) throw new Error(b.error || "Could not post that. Please try again.");
       saved.current = b.id && b.edit ? { id: b.id, edit: b.edit } : null;
@@ -140,7 +154,7 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
       </div>
     </div>}
     {mine && justVoted && !error && note === "details" && <div className="qv-steps" aria-live="polite">
-      <p className="qv-steps-head">{todo.length ? `Nice! Add a quick detail or two? All optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}` : "Nice! Your review is saved."}</p>
+      <p className="qv-steps-head">{todo.length ? `Nice! Add a quick detail or two? All optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}` : `Nice! Your review is saved${postedAs ? ` as ${postedAs}` : ""}.`}</p>
       {step < todo.length ? <div className="qv-step">
         <h3>{todo[step].question}</h3>
         <div className="qv-chips">{todo[step].options.map(o => <button type="button" key={o.value} onClick={() => answer(todo[step].field, o.value)}>{o.label}</button>)}</div>
@@ -154,7 +168,7 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
         {todo.length > 0 && <small>Your review is saved. Each answer is added as you tap.</small>}
       </div>
     </div>}
-    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">Thanks! Your review goes live after a quick check.</p>}
+    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">{`Thanks! Your review${postedAs ? ` by ${postedAs}` : ""} goes live after a quick check.`}</p>}
     {mine && justVoted && !error && note === "closed" && <p className="qv-thanks" role="status">
       {`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}.` : "You're the first to vote."}`}
     </p>}
