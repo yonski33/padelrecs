@@ -389,7 +389,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       {byVariant}
       <div className="columns lp-cols">
         <div>
-          <ReviewList verdict={verdict} title={`Real ${niche.people.one} experiences`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}
+          <ReviewList verdict={verdict} title={`Real ${niche.people.one} experiences`} href={productHref(r)} addHref={addHref} items={items} sort={sort} tag={tag} show={show}
             variants={niche.variants && variants.length ? { label: niche.variants.label, plural: niche.variants.plural, counts: variants } : undefined} variant={variant}/>
           {faqBox}
         </div>
