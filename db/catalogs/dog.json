@@ -43,6 +43,10 @@
    "name": "Blue Buffalo"
   },
   {
+   "id": "blue-9",
+   "name": "Blue-9"
+  },
+  {
    "id": "blueberry-pet",
    "name": "Blueberry Pet"
   },
@@ -2915,6 +2919,19 @@
    "weight": "waterproof",
    "sources": [
     "https://wildone.com/products/waterproof-dog-collar"
+   ]
+  },
+  {
+   "brand": "blue-9",
+   "name": "Blue-9 Balance Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "No-pull harness",
+   "core": "Nylon",
+   "weight": "6 adjustment points, front and back rings",
+   "sources": [
+    "https://www.blue-9.com/products/bhb",
+    "https://www.harbourcitydoggear.com.au/products/blue-9-balance-harness%c2%ae"
    ]
   },
   {
