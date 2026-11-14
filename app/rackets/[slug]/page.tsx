@@ -347,6 +347,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating) }))]}
       reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} signal={sig?.signal ?? null} site={niche.site.name} products={products}
       specs={[r.shape, r.weight, r.balance && `Balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+      heroSpecs={[r.weight, r.balance && `Balance ${r.balance.toLowerCase()}`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+      buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       fontClass={lightFont.variable} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []} jsonLd={qtLd}
       rest={<div className={`product v2 lt-page lp ${lightFont.className}`}>
         <ReviewList verdict={verdict} title={`Every ${niche.people.one} report`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}/>

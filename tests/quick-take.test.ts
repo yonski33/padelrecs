@@ -43,6 +43,8 @@ test("quote marks only around a player's exact words, never our summaries", () =
 });
 
 test("claims need 3+ reports, rows 5+, tips 2 different sources", () => {
+  assert.ok(check(block({ answers: block().answers.slice(0, 2) })).errors.some(e => e.includes("3–6")));
+  assert.ok(check(block({ answers: [] })).ok);
   assert.ok(check(block({ answers: [...block().answers.slice(0, 3), { q: "One?", badge: "Yes", tone: "yes", a: "x", reports: ids(0, 2) }] })).errors.some(e => e.includes("needs 3+")));
   assert.ok(!check(block({ plays: { ...block().plays!, rows: [{ label: "Spin", chip: "Strong", line: "x", reports: ids(0, 4) }] } })).ok);
   const sameSource = reports.map(r => r.id === "r21" ? { ...r, url: "https://example.com/c/20" } : r);

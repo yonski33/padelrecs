@@ -46,7 +46,7 @@ Text fields take `**bold**` and `==marker==` (yellow marker). Keep every line sh
                  "arrows": [ { "dir": "up", "text": "More power" }, { "dir": "down", "text": "More bounce" }, { "dir": "same", "text": "Close cousins" }, { "dir": "none", "text": "Handling: split" } ],
                  "reports": ["3+ ids of reports that compare the two"] } ],   // 2–4 cards; a rival named by fewer than 3 players is left out
                "went": { "label": "Who went where?", "text": "Most who moved from an **AT10** stayed …" } },
-  "answers": [ { "q": "Good for beginners?", "badge": "Probably not", "tone": "no", "a": "…", "reports": ["3+ ids"] } ],  // 4–6; tone yes | maybe | no
+  "answers": [ { "q": "Good for beginners?", "badge": "Probably not", "tone": "no", "a": "…", "reports": ["3+ ids"] } ],  // 3–6 questions the rest of the page doesn't already answer, or [] (section skipped); tone yes | maybe | no
   "tips": [ { "label": "Player tip", "text": "Ask the shop to weigh a few and pick one under 370 g. Two players suggest it.", "after": "weigh", "reports": ["2+ ids, different sources"] } ],
   "thinSpot": "only 3 players compared it with the ST3, so take that card lightly.",
   "counts": { "reports": 137, "positive": 65, "mixed": 51, "negative": 20 },   // copy from the export

@@ -65,7 +65,8 @@ export const quickTakeSchema = z.object({
   compare: z.object({ lead: line, cards: z.array(z.object({ slug: z.string().nullable(), name: z.string().trim().min(1).max(60), tile: z.string().trim().max(8).optional(),
     arrows: z.array(z.object({ dir: z.enum(["up", "down", "same", "none"]), text: z.string().trim().min(1).max(48) }).strict()).min(1).max(4), reports: ids }).strict()).min(2).max(4),
     went: z.object({ label: z.string().trim().min(1).max(30), text: line }).strict().optional() }).strict().optional(),
-  answers: z.array(z.object({ q: z.string().trim().min(1).max(60), badge: z.string().trim().min(1).max(16), tone: z.enum(["yes", "maybe", "no"]), a: line, reports: ids }).strict()).min(3).max(6),
+  /** Only questions the rest of the page hasn't answered: 3–6 of them, or none (owner 2026-11-15). */
+  answers: z.array(z.object({ q: z.string().trim().min(1).max(60), badge: z.string().trim().min(1).max(16), tone: z.enum(["yes", "maybe", "no"]), a: line, reports: ids }).strict()).max(6),
   tips: z.array(z.object({ label: z.enum(TIP_LABELS), text: line, after: z.enum(TIP_PLACES), reports: ids }).strict()).max(4),
   /** "How we read this" ends on the page's weakest part (recipe §3). */
   thinSpot: line,

@@ -23,158 +23,204 @@ const verdictOf = (rating: number) => rating >= 4 ? "positive" : rating === 3 ? 
 const VERDICT_WORD = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as const;
 const listWords = (xs: string[]) => xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : xs[0] ?? "";
 
-export default function QuickTakePage(props: {
+/** The page, top to bottom (owner 2026-11-15: sections move often, so the order is this one list). The hero is always
+ *  first; each key is a section component below, and one that has nothing to show renders nothing. */
+export const PAGE_ORDER = ["tldr", "plays", "themes", "version", "catch", "compare", "setup", "beforeYouBuy", "answers", "community", "spot", "specs"] as const;
+export type SectionKey = typeof PAGE_ORDER[number];
+
+type Props = {
   qt: QuickTake; racketId: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
   crumbs: ReactNode; reports: QtReport[]; reviews: QtReview[]; signal: number | null; site: string;
-  products: Map<string, QtProduct>; specs: string[]; fontClass: string; tags: string[]; nicknames: string[]; rest: ReactNode; jsonLd: object;
-}) {
-  const { qt, name, shortName, reports, reviews } = props;
-  const total = reports.length;
-  const count = (k: string) => reports.filter(r => r.sentiment === k).length;
-  const [pos, mix, neg] = [count("positive"), count("mixed"), count("negative")];
-  const words = sentimentWords(pos, mix, neg);
-  const dates = reports.map(r => r.date).filter((d): d is string => !!d).sort();
-  const from = dates[0], to = dates[dates.length - 1];
-  const pills = sourcePills(reports.filter(r => r.platform !== props.site).map(r => r.platform), reviews.length, props.site);
-  const byId = new Map(reports.map(r => [r.id, r]));
-  const tipsAt = (place: string) => qt.tips.filter(t => t.after === place).map((t, i) =>
-    <div key={`${place}-${i}`} className="margin-note"><b>{t.label}</b><span><Rich text={t.text}/></span></div>);
-  const Receipts = ({ list }: { list?: { id: string; text: string; verbatim?: boolean }[] }) => {
-    const shown = (list ?? []).filter(x => byId.has(x.id));
-    if (!shown.length) return null;
-    return <details className="show"><summary>Show me what players said</summary><ul className="snips">{shown.map(x => {
-      const r = byId.get(x.id)!;
-      const where = r.platform === props.site ? `${props.site} player` : [platformName(r.platform), r.sourceName && r.sourceName !== r.platform ? r.sourceName : null].filter(Boolean).join(" · ");
-      return <li key={x.id}>{x.verbatim ? `“${x.text}”` : x.text}<small>{[where, r.date ? monthYear(r.date) : null].filter(Boolean).join(" · ")}{r.url && <> · <a href={r.url} target="_blank" rel="noopener noreferrer nofollow">original</a></>}</small></li>;
-    })}</ul></details>;
-  };
-  const productArt = (slug: string | null, tile: string, cls: string) => {
-    const p = slug ? props.products.get(slug) : undefined;
-    return p?.photo ? <img className={cls} src={p.photo} alt="" loading="lazy"/> : <span className={`${cls} none`}>{tile}</span>;
-  };
-  const before = qt.modules.filter(m => m.type === "themes" || m.type === "version");
-  const after = qt.modules.filter(m => m.type !== "themes" && m.type !== "version" && m.type !== "hardness");
-  const hardness = qt.modules.find(m => m.type === "hardness");
+  products: Map<string, QtProduct>; specs: string[]; heroSpecs: string[]; buy: { url: string; label: string; rel: string } | null;
+  fontClass: string; tags: string[]; nicknames: string[]; rest: ReactNode; jsonLd: object;
+};
+/** What every section reads: the props plus the live counts and helpers worked out once. */
+type Ctx = Props & {
+  total: number; pos: number; mix: number; neg: number; pills: string[]; from?: string; to?: string;
+  tipsAt: (place: string) => ReactNode; receipts: (list?: { id: string; text: string; verbatim?: boolean }[]) => ReactNode;
+  art: (slug: string | null, tile: string, cls: string) => ReactNode; module: <T extends Module["type"]>(t: T) => Extract<Module, { type: T }> | undefined;
+};
 
+export default function QuickTakePage(props: Props) {
+  const { qt, reports, reviews } = props;
+  const count = (k: string) => reports.filter(r => r.sentiment === k).length;
+  const dates = reports.map(r => r.date).filter((d): d is string => !!d).sort();
+  const byId = new Map(reports.map(r => [r.id, r]));
+  const ctx: Ctx = {
+    ...props, total: reports.length, pos: count("positive"), mix: count("mixed"), neg: count("negative"), from: dates[0], to: dates[dates.length - 1],
+    pills: sourcePills(reports.filter(r => r.platform !== props.site).map(r => r.platform), reviews.length, props.site),
+    tipsAt: place => qt.tips.filter(t => t.after === place).map((t, i) => <div key={`${place}-${i}`} className="margin-note"><b>{t.label}</b><span><Rich text={t.text}/></span></div>),
+    receipts: list => {
+      const shown = (list ?? []).filter(x => byId.has(x.id));
+      if (!shown.length) return null;
+      return <details className="show"><summary>Show me what players said</summary><ul className="snips">{shown.map(x => {
+        const r = byId.get(x.id)!;
+        const where = r.platform === props.site ? `${props.site} player` : [platformName(r.platform), r.sourceName && r.sourceName !== r.platform ? r.sourceName : null].filter(Boolean).join(" · ");
+        return <li key={x.id}>{x.verbatim ? `“${x.text}”` : x.text}<small>{[where, r.date ? monthYear(r.date) : null].filter(Boolean).join(" · ")}{r.url && <> · <a href={r.url} target="_blank" rel="noopener noreferrer nofollow">original</a></>}</small></li>;
+      })}</ul></details>;
+    },
+    art: (slug, tile, cls) => { const p = slug ? props.products.get(slug) : undefined;
+      return p?.photo ? <img className={cls} src={p.photo} alt="" loading="lazy"/> : <span className={`${cls} none`}>{tile}</span>; },
+    module: t => qt.modules.find(m => m.type === t) as never,
+  };
   return <main className={`qt ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="wrap">
       {props.crumbs}
-      <section className="hero">
-        <div className="shot">{props.photo ? <img src={props.photo} alt={name}/> : <span className="tile">{shortName}</span>}</div>
-        <div>
-          <h1 className="name">{`${shortName} review `}<span>{["", String(props.year), props.shape].filter(x => x !== null).join(" · ")}</span></h1>
-          <p className="hook">{qt.hook.good} <mark>{qt.hook.catch}</mark></p>
-          <div className="qt-tag"><span className="pill">What players said</span><span>{`We read ${roundedDown(total)}+ player reports so you don't have to. Here's what they told us.`}</span></div>
-          <div className="meter">
-            {props.signal !== null && <span className="ps"><b>{props.signal}</b><a href="#how-we-read">Player score</a></span>}
-            {words && <div className="sent">
-              <div className="bar" role="img" aria-label={[words.lead, ...words.rest.map(x => x.words)].join(", ")}><i style={{ flex: pos }}/><i style={{ flex: mix }}/><i style={{ flex: neg }}/></div>
-              <div className="mood">
-                <span><i style={{ "--c": `var(--${words.leadKey === "negative" ? "neg" : words.leadKey === "positive" ? "pos" : "mute"})` } as React.CSSProperties}/><b>{words.lead}</b></span>
-                {words.rest.map(x => <span key={x.key}><i style={{ "--c": `var(--${x.key === "positive" ? "pos" : x.key === "mixed" ? "mix" : "neg"})` } as React.CSSProperties}/>{x.words}</span>)}
-              </div>
-            </div>}
-          </div>
-          <div className="read">
-            {pills.map(p => <span key={p} className="src-pill"><i/>{p}</span>)}
-            {from && to && <span>Reports from <b>{`${monthYear(from)} to ${monthYear(to)}`}</b></span>}
-          </div>
-          <details className="howread" id="how-we-read"><summary>How we read this</summary><p>
-            {"We read "}<b>{`${total} reports from ${listWords(pills)}${from && to ? `, ${monthYear(from, true)} to ${monthYear(to, true)}` : ""}`}</b>
-            {". Each one was sorted as positive, mixed or negative, then by what it talks about. Every main claim has at least 3 players behind it, and quote marks only go on their actual words. We don't test rackets and no brand paid us. "}
-            {props.signal !== null && <>{"The "}<b>{`Player score (${props.signal})`}</b>{" blends how much players like it with how many of them have weighed in, compared with every other racket we track. So a racket everyone talks about can score high even when opinions are split. "}</>}
-            <b>Thin spot:</b> <Rich text={qt.thinSpot}/>
-          </p></details>
-        </div>
-      </section>
-
-      <div className="col">
-        <section id="tldr">
-          <h2>TL;DR</h2>
-          <p className="lead"><Rich text={qt.tldr.lead}/></p>
-          <div className="split">
-            <div className="tldr-box"><h3>Made for</h3><Bullets items={qt.tldr.madeFor}/></div>
-            <div className="tldr-box no"><h3>Not for</h3><Bullets items={qt.tldr.notFor}/></div>
-          </div>
-          {qt.level && <Level level={qt.level}/>}
-          {tipsAt("tldr")}
-        </section>
-
-        {qt.plays && <section id="plays">
-          <h2>How it plays</h2>
-          <p className="lead"><Rich text={qt.plays.lead}/></p>
-          {qt.plays.court && <Court court={qt.plays.court}/>}
-          {qt.plays.rows.length > 0 && <div className="rows play">{qt.plays.rows.map(r =>
-            <div key={r.label} className="r"><b>{r.label}</b><span className={chipClass(r.chip)}>{r.chip}</span><span><Rich text={r.line}/></span></div>)}</div>}
-          {hardness?.type === "hardness" && <Hardness m={hardness}/>}
-          {tipsAt("plays")}
-        </section>}
-
-        {before.map(m => <ModuleSection key={m.type} m={m} selfPhoto={props.photo} tips={tipsAt(m.type)} receipts={<Receipts list={"receipts" in m ? m.receipts : undefined}/>} art={productArt}/>)}
-
-        <section id="catch">
-          <h2>The catch</h2>
-          <p className="lead"><Rich text={qt.catch.lead}/></p>
-          <div className="box catch"><Bullets items={qt.catch.bullets}/></div>
-          <div className="from"><span>{`From ${qt.catch.about ? `about ${about(qt.catch.reports.length)}` : qt.catch.reports.length} player reports${qt.catch.what ? ` ${qt.catch.what}` : ""}`}</span></div>
-          <Receipts list={qt.catch.receipts}/>
-          {tipsAt("catch")}
-        </section>
-
-        {after.map(m => <ModuleSection key={m.type} m={m} selfPhoto={props.photo} tips={tipsAt(m.type)} receipts={<Receipts list={"receipts" in m ? m.receipts : undefined}/>} art={productArt}/>)}
-
-        {qt.compare && <section id="compare">
-          <h2>{`How the ${shortName} compares`}</h2>
-          <p className="lead"><Rich text={qt.compare.lead}/></p>
-          <div className="vsgrid">{qt.compare.cards.map(c => {
-            const p = c.slug ? props.products.get(c.slug) : undefined, n = new Set(c.reports).size;
-            return <div key={c.name} className="vscard">{productArt(c.slug, c.tile || c.name.split(" ").slice(-1)[0], "vsimg")}
-              <h3>{p ? <a href={p.href}>{`vs ${c.name}`}</a> : `vs ${c.name}`}<span>{`from ${n} ${n === 1 ? "player" : "players"}`}</span></h3>
-              <div className="arrows">{c.arrows.map((a, i) => <span key={i} className={`ar${a.dir === "up" ? " up" : a.dir === "down" ? " dn" : ""}`}>{`${a.dir === "up" ? "↑ " : a.dir === "down" ? "↓ " : a.dir === "same" ? "= " : ""}${a.text}`}</span>)}</div>
-            </div>;
-          })}</div>
-          {qt.compare.went && <p className="went"><b>{qt.compare.went.label}</b> <Rich text={qt.compare.went.text}/></p>}
-          {tipsAt("compare")}
-        </section>}
-
-        <section id="answers">
-          <h2>Quick answers</h2>
-          <p className="lead">What people ask before buying, answered by people who bought it.</p>
-          <div className="qa2">{qt.answers.map(a => <div key={a.q} className="q"><h3>{a.q}</h3>
-            <p><span className={`badge${a.tone === "maybe" ? " m" : a.tone === "no" ? " n" : ""}`}>{a.badge}</span><span><Rich text={a.a}/></span></p></div>)}</div>
-          {tipsAt("answers")}
-        </section>
-
-        <section id="community">
-          <h2>From the community{reviews.length > 0 && <span className="cs-count">{`${reviews.length} ${reviews.length === 1 ? "review" : "reviews"}`}</span>}</h2>
-          <QuickTakeComposer racketId={props.racketId} name={shortName} tags={props.tags} nicknames={props.nicknames} hasReviews={reviews.length > 0}/>
-          {reviews.length > 0 && <ul className="cms">{reviews.map(r => {
-            const v = verdictOf(r.rating);
-            const segs = r.highlights?.length ? phraseSegments(r.reviewText, r.highlights) : [{ text: r.reviewText }];
-            return <li key={r.id} className="cm"><div className="bub">
-              <div className="cm-head"><b>{r.alias || `A ${props.site} player`}</b><span>{[r.playerLevel, day(r.createdAt)].filter(Boolean).join(" · ")}</span><span className={`vchip ${v}`}>{VERDICT_WORD[v]}</span></div>
-              <p>{segs.map((s, i) => s.tone ? <mark key={i}>{s.text}</mark> : <span key={i}>{s.text}</span>)}</p>
-              {r.tags.length > 0 && <div className="cm-tags">{r.tags.map(t => <span key={t}>{t}</span>)}</div>}
-            </div></li>;
-          })}</ul>}
-          <p className="cs-more">Want to go long? <a href={`/add-review?racket=${props.racketId}`}>Write a full review</a>.</p>
-        </section>
-
-        <section id="spot"><div className="spot"><h2>Spot something wrong?</h2>
-          <p>{`Played the ${shortName} and think we got something off? Tell us. We'll fix the page and credit you by name.`}</p>
-          <div className="act"><a className="btn" href="/contact">Suggest a fix</a><small>Corrections so far: none yet. Be the first to catch us out.</small></div></div></section>
-
-        <section id="specs">
-          <h2>Specs</h2>
-          {props.specs.length > 0 && <div className="specs">{props.specs.map(s => <span key={s} className="spec">{s}</span>)}</div>}
-          <p className="how">{`Every line on this page comes from what players said on ${listWords(pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#reviews">Read every player report ↓</a></p>
-        </section>
-      </div>
+      <Hero c={ctx}/>
+      <div className="col">{PAGE_ORDER.map(k => { const S = SECTIONS[k]; return <S key={k} c={ctx}/>; })}</div>
     </div>
     <div className="qt-rest">{props.rest}</div>
   </main>;
 }
+
+function Hero({ c }: { c: Ctx }) {
+  const { qt } = c, words = sentimentWords(c.pos, c.mix, c.neg);
+  return <section className="hero">
+    <div className="shot">{c.photo ? <img src={c.photo} alt={c.name}/> : <span className="tile">{c.shortName}</span>}</div>
+    <div>
+      <h1 className="name">{`${c.shortName} review `}<span>{["", String(c.year), c.shape].filter(x => x !== null).join(" · ")}</span></h1>
+      <p className="hook">{qt.hook.good} <mark>{qt.hook.catch}</mark></p>
+      <div className="qt-tag"><span className="pill">What players said</span><span>{`We read ${roundedDown(c.total)}+ player reports so you don't have to. Here's what they told us.`}</span></div>
+      <div className="meter">
+        {c.signal !== null && <span className="ps"><b>{c.signal}</b><a href="#how-we-read">Player score</a></span>}
+        {words && <div className="sent">
+          <div className="bar" role="img" aria-label={[words.lead, ...words.rest.map(x => x.words)].join(", ")}><i style={{ flex: c.pos }}/><i style={{ flex: c.mix }}/><i style={{ flex: c.neg }}/></div>
+          <div className="mood">
+            <span><i style={{ "--c": `var(--${words.leadKey === "negative" ? "neg" : words.leadKey === "positive" ? "pos" : "mute"})` } as React.CSSProperties}/><b>{words.lead}</b></span>
+            {words.rest.map(x => <span key={x.key}><i style={{ "--c": `var(--${x.key === "positive" ? "pos" : x.key === "mixed" ? "mix" : "neg"})` } as React.CSSProperties}/>{x.words}</span>)}
+          </div>
+        </div>}
+      </div>
+      {(c.heroSpecs.length > 0 || c.buy) && <div className="hero-buy">
+        {c.heroSpecs.map(x => <span key={x} className="spec">{x}</span>)}
+        {c.buy && <a className="buy" href={c.buy.url} target="_blank" rel={c.buy.rel}>{c.buy.label} <span aria-hidden="true">↗</span></a>}
+      </div>}
+      <div className="read">
+        {c.pills.map(p => <span key={p} className="src-pill"><i/>{p}</span>)}
+        {c.from && c.to && <span>Reports from <b>{`${monthYear(c.from)} to ${monthYear(c.to)}`}</b></span>}
+      </div>
+      <details className="howread" id="how-we-read"><summary>How we read this</summary><p>
+        {"We read "}<b>{`${c.total} reports from ${listWords(c.pills)}${c.from && c.to ? `, ${monthYear(c.from, true)} to ${monthYear(c.to, true)}` : ""}`}</b>
+        {". Each one was sorted as positive, mixed or negative, then by what it talks about. Every main claim has at least 3 players behind it, and quote marks only go on their actual words. We don't test rackets and no brand paid us. "}
+        {c.signal !== null && <>{"The "}<b>{`Player score (${c.signal})`}</b>{" blends how much players like it with how many of them have weighed in, compared with every other racket we track. So a racket everyone talks about can score high even when opinions are split. "}</>}
+        <b>Thin spot:</b> <Rich text={qt.thinSpot}/>
+      </p></details>
+    </div>
+  </section>;
+}
+
+const Tldr = ({ c }: { c: Ctx }) => <section id="tldr">
+  <h2>TL;DR</h2>
+  <p className="lead"><Rich text={c.qt.tldr.lead}/></p>
+  <div className="split">
+    <div className="tldr-box"><h3>Made for</h3><Bullets items={c.qt.tldr.madeFor}/></div>
+    <div className="tldr-box no"><h3>Not for</h3><Bullets items={c.qt.tldr.notFor}/></div>
+  </div>
+  {c.qt.level && <Level level={c.qt.level}/>}
+  {c.tipsAt("tldr")}
+</section>;
+
+function Plays({ c }: { c: Ctx }) {
+  const p = c.qt.plays, hardness = c.module("hardness");
+  if (!p) return null;
+  return <section id="plays">
+    <h2>How it plays</h2>
+    <p className="lead"><Rich text={p.lead}/></p>
+    {p.court && <Court court={p.court}/>}
+    {p.rows.length > 0 && <div className="rows play">{p.rows.map(r =>
+      <div key={r.label} className="r"><b>{r.label}</b><span className={chipClass(r.chip)}>{r.chip}</span><span><Rich text={r.line}/></span></div>)}</div>}
+    {hardness && <Hardness m={hardness}/>}
+    {c.tipsAt("plays")}
+  </section>;
+}
+
+/** One module as its own section (themes, version, setup). */
+const moduleSection = (type: "themes" | "version" | "setup") => function ModuleSlot({ c }: { c: Ctx }) {
+  const m = c.module(type);
+  return m ? <ModuleSection m={m} selfPhoto={c.photo} tips={c.tipsAt(type)} receipts={c.receipts("receipts" in m ? m.receipts : undefined)} art={c.art}/> : null;
+};
+
+const Catch = ({ c }: { c: Ctx }) => <section id="catch">
+  <h2>The catch</h2>
+  <p className="lead"><Rich text={c.qt.catch.lead}/></p>
+  <div className="box catch"><Bullets items={c.qt.catch.bullets}/></div>
+  <div className="from"><span>{`From ${c.qt.catch.about ? `about ${about(c.qt.catch.reports.length)}` : c.qt.catch.reports.length} player reports${c.qt.catch.what ? ` ${c.qt.catch.what}` : ""}`}</span></div>
+  {c.receipts(c.qt.catch.receipts)}
+  {c.tipsAt("catch")}
+</section>;
+
+function Compare({ c }: { c: Ctx }) {
+  const cmp = c.qt.compare;
+  if (!cmp) return null;
+  return <section id="compare">
+    <h2>{`How the ${c.shortName} compares`}</h2>
+    <p className="lead"><Rich text={cmp.lead}/></p>
+    <div className="vsgrid">{cmp.cards.map(card => {
+      const p = card.slug ? c.products.get(card.slug) : undefined, n = new Set(card.reports).size;
+      return <div key={card.name} className="vscard">{c.art(card.slug, card.tile || card.name.split(" ").slice(-1)[0], "vsimg")}
+        <h3>{p ? <a href={p.href}>{`vs ${card.name}`}</a> : `vs ${card.name}`}<span>{`from ${n} ${n === 1 ? "player" : "players"}`}</span></h3>
+        <div className="arrows">{card.arrows.map((a, i) => <span key={i} className={`ar${a.dir === "up" ? " up" : a.dir === "down" ? " dn" : ""}`}>{`${a.dir === "up" ? "↑ " : a.dir === "down" ? "↓ " : a.dir === "same" ? "= " : ""}${a.text}`}</span>)}</div>
+      </div>;
+    })}</div>
+    {cmp.went && <p className="went"><b>{cmp.went.label}</b> <Rich text={cmp.went.text}/></p>}
+    {c.tipsAt("compare")}
+  </section>;
+}
+
+/** "Before you buy" (owner 2026-11-15): weight, durability and arm as stacked cards under one heading. */
+function BeforeYouBuy({ c }: { c: Ctx }) {
+  const cards = (["weigh", "durability", "arm"] as const).map(t => c.module(t)).filter((m): m is Extract<Module, { type: "weigh" | "durability" | "arm" }> => !!m);
+  if (!cards.length) return null;
+  return <section id="before-you-buy">
+    <h2>Before you buy</h2>
+    <div className="byb">{cards.map(m => <div key={m.type} className="byb-card" id={m.type}>
+      <ModuleSection m={m} selfPhoto={c.photo} tips={c.tipsAt(m.type)} receipts={c.receipts("receipts" in m ? m.receipts : undefined)} art={c.art} card/>
+    </div>)}</div>
+  </section>;
+}
+
+function Answers({ c }: { c: Ctx }) {
+  // Only questions the page hasn't answered already; with fewer than 3 the section is skipped (owner 2026-11-15).
+  if (c.qt.answers.length < 3) return null;
+  return <section id="answers">
+    <h2>Quick answers</h2>
+    <p className="lead">What people ask before buying, answered by people who bought it.</p>
+    <div className="qa2">{c.qt.answers.map(a => <div key={a.q} className="q"><h3>{a.q}</h3>
+      <p><span className={`badge${a.tone === "maybe" ? " m" : a.tone === "no" ? " n" : ""}`}>{a.badge}</span><span><Rich text={a.a}/></span></p></div>)}</div>
+    {c.tipsAt("answers")}
+  </section>;
+}
+
+const Community = ({ c }: { c: Ctx }) => <section id="community">
+  <h2>From the community{c.reviews.length > 0 && <span className="cs-count">{`${c.reviews.length} ${c.reviews.length === 1 ? "review" : "reviews"}`}</span>}</h2>
+  <QuickTakeComposer racketId={c.racketId} name={c.shortName} tags={c.tags} nicknames={c.nicknames} hasReviews={c.reviews.length > 0}/>
+  {c.reviews.length > 0 && <ul className="cms">{c.reviews.map(r => {
+    const v = verdictOf(r.rating);
+    const segs = r.highlights?.length ? phraseSegments(r.reviewText, r.highlights) : [{ text: r.reviewText }];
+    return <li key={r.id} className="cm"><div className="bub">
+      <div className="cm-head"><b>{r.alias || `A ${c.site} player`}</b><span>{[r.playerLevel, day(r.createdAt)].filter(Boolean).join(" · ")}</span><span className={`vchip ${v}`}>{VERDICT_WORD[v]}</span></div>
+      <p>{segs.map((s, i) => s.tone ? <mark key={i}>{s.text}</mark> : <span key={i}>{s.text}</span>)}</p>
+      {r.tags.length > 0 && <div className="cm-tags">{r.tags.map(t => <span key={t}>{t}</span>)}</div>}
+    </div></li>;
+  })}</ul>}
+  <p className="cs-more">Want to go long? <a href={`/add-review?racket=${c.racketId}`}>Write a full review</a>.</p>
+</section>;
+
+const Spot = ({ c }: { c: Ctx }) => <section id="spot"><div className="spot"><h2>Spot something wrong?</h2>
+  <p>{`Played the ${c.shortName} and think we got something off? Tell us. We'll fix the page and credit you by name.`}</p>
+  <div className="act"><a className="btn" href="/contact">Suggest a fix</a><small>Corrections so far: none yet. Be the first to catch us out.</small></div></div></section>;
+
+const Specs = ({ c }: { c: Ctx }) => <section id="specs">
+  <h2>Specs</h2>
+  {c.specs.length > 0 && <div className="specs">{c.specs.map(s => <span key={s} className="spec">{s}</span>)}</div>}
+  <p className="how">{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#reviews">Read every player report ↓</a></p>
+</section>;
+
+const SECTIONS: Record<SectionKey, (p: { c: Ctx }) => ReactNode> = {
+  tldr: Tldr, plays: Plays, themes: moduleSection("themes"), version: moduleSection("version"), catch: Catch, compare: Compare,
+  setup: moduleSection("setup"), beforeYouBuy: BeforeYouBuy, answers: Answers, community: Community, spot: Spot, specs: Specs,
+};
 
 function Level({ level }: { level: NonNullable<QuickTake["level"]> }) {
   const band = levelBand(level.from, level.to);
@@ -214,7 +260,7 @@ function Hardness({ m }: { m: Extract<Module, { type: "hardness" }> }) {
     <small>{`From ${total} players who described the feel.${m.brand ? ` The brand says: ${m.brand}.` : ""}`}</small></div>;
 }
 
-function ModuleSection({ m, selfPhoto, tips, receipts, art }: { m: Module; selfPhoto: string | null; tips: ReactNode; receipts: ReactNode; art: (slug: string | null, tile: string, cls: string) => ReactNode }) {
+function ModuleSection({ m, selfPhoto, tips, receipts, art, card }: { m: Module; selfPhoto: string | null; card?: boolean; tips: ReactNode; receipts: ReactNode; art: (slug: string | null, tile: string, cls: string) => ReactNode }) {
   if (m.type === "hardness") return null;
   const title = m.type === "version" ? m.title : MODULE_TITLES[m.type];
   const id = m.type === "version" ? "version" : m.type;
@@ -237,6 +283,7 @@ function ModuleSection({ m, selfPhoto, tips, receipts, art }: { m: Module; selfP
     foot = <div className="from"><span>{`From ${m.weights.length} players who gave their racket's weight`}</span></div>;
   }
   if (m.type === "arm") body = <div className="split"><div><h3>Easier on the arm</h3><Bullets items={m.kind}/></div><div><h3>Harder on the arm</h3><Bullets items={m.harsh}/></div></div>;
+  if (card) return <><h3 className="byb-title">{title}</h3><p className="lead"><Rich text={m.lead}/></p>{body}{tips}{foot}{receipts}</>;
   return <section id={id}>
     <h2>{title}</h2>
     <p className="lead"><Rich text={m.lead}/></p>

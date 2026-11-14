@@ -171,7 +171,7 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
   if (qt.kind === "full" && !qt.compare) warnings.push("full page without How it compares");
   // Quick answers: 3+ reports each (owner 2026-11-15), 4–6 on a full page
   qt.answers.forEach(a => need(`answer "${a.q}"`, a.reports, 3));
-  if (qt.kind === "full" && qt.answers.length < 4) errors.push(`answers: ${qt.answers.length}, a full page needs 4–6`);
+  if (qt.answers.length > 0 && qt.answers.length < 3) errors.push(`answers: ${qt.answers.length}; 3–6 questions the page hasn't answered yet, or none`);
   // Tips: 2+ different sources, at their section
   for (const t of qt.tips) {
     cite(`tip "${t.text.slice(0, 30)}…"`, t.reports);
