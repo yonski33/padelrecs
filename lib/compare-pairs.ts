@@ -46,28 +46,35 @@ export function comparePairs(data: Catalog) {
 /** "Nox AT10 Genius 12K 2026" → "nox at10 genius 12k": the model name without its year, to find earlier versions. */
 const baseName = (name: string) => name.toLowerCase().replace(/\b(19|20)\d{2}\b/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
 
-/** The same model's nearest other version (same brand, same name without the year): the latest earlier one, else the
- *  earliest later one. "Nox AT10 Genius 12K 2026" pairs with the 2025; a 2025 model with only a 2026 successor pairs with that. */
-export function previousModel<T extends Product>(product: T, candidates: T[]): T | undefined {
-  if (!hasYears) return undefined;
+/** The same model's other versions (same brand, same name without the year), e.g. Nox AT10 Genius 12K 2025 for the 2026. */
+export function otherVersions<T extends Product>(product: T, candidates: T[]): T[] {
+  if (!hasYears) return [];
   const base = baseName(product.name);
-  const same = candidates.filter(x => x.id !== product.id && x.brandId === product.brandId && x.year !== product.year && baseName(x.name) === base);
+  return candidates.filter(x => x.id !== product.id && x.brandId === product.brandId && x.year !== product.year && baseName(x.name) === base);
+}
+/** The latest earlier version, else the earliest later one: the pair that gets its own "X vs Y" page. */
+export function previousModel<T extends Product>(product: T, candidates: T[]): T | undefined {
+  const same = otherVersions(product, candidates);
   return same.filter(x => x.year < product.year).sort((p, q) => q.year - p.year)[0] ?? same.filter(x => x.year > product.year).sort((p, q) => p.year - q.year)[0];
 }
 
-/** The product page's "Compare with …" (owner, 2026-11-14): the previous version of the same model when it is listed;
- *  otherwise the most similar product (by what reviewers say) from this model year or the one before, on sites with
- *  years; otherwise the best reviewed of the three most similar. Falls back to the closest match of any age. */
-export function comparePick(data: Catalog, product: Product): Product | undefined {
+/** The product page's "Compare with …" (owner, 2026-11-14: this year's models first, people care less about older
+ *  ones). On sites with years: the same model's newer version; else the closest match (by what reviewers say) from this
+ *  year or later; else the previous version; else the closest match from the last two seasons; else the closest. On
+ *  other sites: the closest match, unless it is thinly reviewed and a near match has far more reviews. */
+export function comparePick(data: Catalog, product: Product, now = new Date()): Product | undefined {
   const pool = data.listed.filter(x => score(data, x.id).judged >= 5);
-  const version = previousModel(product, pool);
-  if (version) return version;
-  const similar = similarProducts(product, pool, tagProfiles([...data.reviews, ...data.external]), 8);
+  const similar = similarProducts(product, pool, tagProfiles([...data.reviews, ...data.external]), 12);
   const closest = comparePairs(data).partners.get(product.id)?.[0] ?? similar[0];
+  if (hasYears) {
+    const thisYear = now.getUTCFullYear(), versions = otherVersions(product, pool);
+    return versions.filter(x => x.year > product.year).sort((p, q) => p.year - q.year)[0]
+      ?? similar.find(x => x.year >= thisYear)
+      ?? versions.filter(x => x.year < product.year).sort((p, q) => q.year - p.year)[0]
+      ?? similar.find(x => x.year >= thisYear - 1)
+      ?? closest;
+  }
   if (!closest) return undefined;
-  // Sites with years: a rival from this season or the one before, not a model shoppers have moved past.
-  if (hasYears) return closest.year >= product.year - 1 ? closest : similar.find(x => x.year >= product.year - 1) ?? closest;
-  // Others: the closest match, unless it is thinly reviewed and a near match has far more reviews.
   if (score(data, closest.id).judged >= 10) return closest;
   return [...similar.slice(0, 3)].sort((p, q) => score(data, q.id).judged - score(data, p.id).judged)[0] ?? closest;
 }
