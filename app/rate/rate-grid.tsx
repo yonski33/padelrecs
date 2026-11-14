@@ -57,7 +57,7 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
     </li>)}</ul>
     {!shown.length && <p className="rate-hint">{`No ${plural} match that. Try another name.`}</p>}
     <section className="rate-summary" aria-live="polite">
-      <p><b>{rated}</b>{` ${rated === 1 ? one : plural} rated`}{rated === 0 ? " · tap a verdict on the ones you've played" : ""}</p>
+      <p><b>{rated}</b>{` ${rated === 1 ? one : plural} rated`}{rated === 0 ? " · tap a verdict on the ones you've used" : ""}</p>
       {loved.length > 0 && also.length > 0 && <div className="qv-also"><h3>{`${people.many[0].toUpperCase()}${people.many.slice(1)} who love the same ${plural} also love`}</h3>
         <ul>{also.map(a => <li key={a.id}><a href={a.href}>{a.name}</a><small>{`${a.fans} in common`}</small></li>)}</ul></div>}
     </section>

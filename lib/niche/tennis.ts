@@ -178,6 +178,7 @@ export const tennis: Niche = {
   form: {
     prompts: [["What did you switch from?", "Before this I played with "], ["Strings and tension?", "I strung it with "], ["Arm comfort?", "On my arm it "]],
     tips: ["What you played with before, and how this compares", "Your strings and tension, if you know them", "Where it shines and where it struggles", "Arm comfort, if that matters to you", "Customisation, like lead tape or a different grip"],
+    quickVote: { question: "Have you played with this racket?", placeholder: "What stood out? Power, control, feel, how it suits your game…", nicknames: ["Volley", "Lob", "Smash", "Rally", "Ace", "Slice", "Topspin", "Baseline", "Dropshot", "Serve", "Passing", "Tiebreak"] },
   },
   seo: {
     homeTitle: "TennisRecs – Real Player Reviews of Tennis Rackets",

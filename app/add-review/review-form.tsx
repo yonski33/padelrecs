@@ -29,7 +29,7 @@ export default function ReviewForm({rackets,brands,initialRacket,initialRating}:
   event.preventDefault();setError("");
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
   // Blank alias: the same generated nickname the one-tap card uses (owner, 2026-11-14), so both ways sign reviews alike.
-  if(!values.alias?.trim())values.alias=nickname();
+  if(!values.alias?.trim())values.alias=nickname(niche.form.quickVote?.nicknames);
   if(values.racketMode==="existing"&&!values.racketId){setError(`Pick a ${w.one} from the list as you type.`);return;}
   if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&(!hasYears||/^\d{4}$/.test(values.year||"")))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand${hasYears?", model and year":" and product name"}.`);return;}
   if(!values.rating){setError("Pick how it went overall: positive, mixed or negative.");return;}

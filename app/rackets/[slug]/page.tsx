@@ -382,8 +382,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div>
       </section>}
       {/* One tap (2026-11-14 pivot, owner's mockup): after what players say, right before their reviews. */}
-      <QuickVote racketId={r.id} name={fullName} one={niche.words.one} people={niche.people} placeholder={`What stood out? How it plays, how it feels, who it suits…`}
-steps={[]}/>
+      <QuickVote racketId={r.id} name={fullName} people={niche.people} steps={[]}
+        question={niche.form.quickVote?.question ?? `Have you used this ${niche.words.one}?`}
+        placeholder={niche.form.quickVote?.placeholder ?? "What stood out? How it works, how it feels, who it suits…"}
+        nicknames={niche.form.quickVote?.nicknames ?? []}/>
       {byVariant}
       <div className="columns lp-cols">
         <div>

@@ -199,6 +199,9 @@ export type Niche = {
   form: {
     prompts: [string, string][];
     tips: string[];
+    /** The one-tap card on product pages (app/quick-vote.tsx): its question, the "few words" hint, and the second half of
+     *  the generated nicknames (e.g. "Volley" in SteadyVolley482). Generic racket-sport wording when left out. */
+    quickVote?: { question: string; placeholder: string; nicknames: string[] };
   };
   seo: {
     homeTitle: string;

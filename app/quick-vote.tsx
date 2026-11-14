@@ -20,15 +20,16 @@ const PROFILE_KEY = "rv-profile";
 export type DetailStep = { field: "playerLevel" | "playingSide" | "playingStyle" | "timeWithRacket"; question: string; options: { value: string; label: string }[] };
 const PROFILE_FIELD = { playerLevel: "level", playingSide: "side", playingStyle: "style" } as const;
 // Card reviews are signed with a generated nickname (owner, 2026-11-14: like Reddit's random usernames, nothing to type).
-// One per device, kept in localStorage, so the same person shows up under the same name. Racket-sport words for now.
+// One per device, kept in localStorage, so the same person shows up under the same name. Each niche's own words.
 const NICK_A = ["Swift", "Steady", "Lucky", "Bold", "Sunny", "Quiet", "Clever", "Brave", "Calm", "Sharp", "Happy", "Mellow", "Rapid", "Smooth", "Wild", "Cool"];
-const NICK_B = ["Volley", "Lob", "Smash", "Rally", "Spin", "Drop", "Ace", "Slice", "Serve", "Net", "Rebound", "Baseline", "Topspin", "Chiquita", "Bandeja", "Vibora"];
-export function nickname() {
+/** The generic second halves, for niches without form.quickVote.nicknames. */
+export const DEFAULT_NICKNAMES = ["Volley", "Lob", "Smash", "Rally", "Spin", "Drop", "Ace", "Slice", "Serve", "Rebound", "Baseline", "Topspin"];
+export function nickname(words: string[] = DEFAULT_NICKNAMES) {
   try {
     const known = localStorage.getItem("rv-nick");
     if (known) return known;
     const pick = (list: string[]) => list[Math.floor(Math.random() * list.length)];
-    const nick = `${pick(NICK_A)}${pick(NICK_B)}${Math.floor(100 + Math.random() * 900)}`;
+    const nick = `${pick(NICK_A)}${pick(words.length ? words : DEFAULT_NICKNAMES)}${Math.floor(100 + Math.random() * 900)}`;
     localStorage.setItem("rv-nick", nick);
     return nick;
   } catch { return ""; }
@@ -65,8 +66,8 @@ export function VerdictButtons({ value, onPick, name, compact, disabled }: { val
   </div>;
 }
 
-export default function QuickVote({ racketId, name, one, people, placeholder, steps }: {
-  racketId: string; name: string; one: string; people: { one: string; many: string }; placeholder: string; steps: DetailStep[];
+export default function QuickVote({ racketId, name, question, people, placeholder, nicknames, steps }: {
+  racketId: string; name: string; question: string; people: { one: string; many: string }; placeholder: string; nicknames: string[]; steps: DetailStep[];
 }) {
   const [stats, setStats] = useState<Stats | null>(null), [mine, setMine] = useState<Verdict | null>(null), [rating, setRating] = useState(0);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [justVoted, setJustVoted] = useState(false);
@@ -106,7 +107,7 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
     setNote("sending"); setNoteError("");
     try {
       if (!token.current) { const b = await (await fetch("/api/reviews", { cache: "no-store" })).json() as { token?: string }; token.current = b.token || ""; }
-      const p = loadProfile(), nick = nickname(); setPostedAs(nick);
+      const p = loadProfile(), nick = nickname(nicknames); setPostedAs(nick);
       const known = Object.fromEntries(Object.entries({ playerLevel: p.level, playingSide: p.side, playingStyle: p.style }).filter(([, v]) => v));
       const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: text, tags: [], website: "", formToken: token.current, alias: nick || undefined, ...known }) });
@@ -137,7 +138,7 @@ export default function QuickVote({ racketId, name, one, people, placeholder, st
     <div className="qv-top">
       <div>
         <p className="qv-eyebrow">Your take · one tap</p>
-        <h2 id="qv-title">{mine ? "Thanks for your take" : `Have you played with this ${one}?`}</h2>
+        <h2 id="qv-title">{mine ? "Thanks for your take" : question}</h2>
         <p className="qv-sub">{`Tell other ${people.many} how it worked for you. No review to write.`}</p>
       </div>
       {corner && <span className="qv-corner">{corner}</span>}

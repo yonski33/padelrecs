@@ -178,6 +178,7 @@ export const golf: Niche = {
   form: {
     prompts: [["What did you play before?", "Before this I hit a "], ["How was it fitted?", "I play it at "], ["Your miss?", "My usual miss is "]],
     tips: ["What driver you played before, and how this compares", "Loft, shaft and settings you play it with", "Ball speed, carry or spin numbers if you have them", "Where it shines and where it struggles", "How it handles mishits off the toe and heel"],
+    quickVote: { question: "Have you hit this driver?", placeholder: "What stood out? Distance, forgiveness, feel, sound…", nicknames: ["Fairway", "Birdie", "Eagle", "Drive", "Draw", "Fade", "Tee", "Swing", "Green", "Divot", "Carry", "Albatross"] },
   },
   seo: {
     homeTitle: "GolfRecs – Real Golfer Reviews of Drivers",

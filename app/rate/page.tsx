@@ -10,7 +10,7 @@ import RateGrid from "./rate-grid";
 const SHOWN = 80;
 
 export const metadata: Metadata = {
-  title: { absolute: `Rate the ${niche.words.many} you've played | ${niche.site.name}` },
+  title: { absolute: `Rate the ${niche.words.many} you've used | ${niche.site.name}` },
   description: `Positive, mixed or negative: one tap for every ${niche.words.one} you've used. Takes about 30 seconds and helps ${niche.people.many} like you choose.`,
   alternates: { canonical: "/rate" },
 };
@@ -25,7 +25,7 @@ export default async function Rate() {
   const brands = [...new Set(items.map(i => i.brand).filter(Boolean))].sort((a, b) => items.filter(i => i.brand === b).length - items.filter(i => i.brand === a).length || a.localeCompare(b));
   const p = niche.profile;
   return <main className={`lt-page rate-page ${lightFont.className}`}>
-    <h1>{`Rate the ${niche.words.many} you've played`}</h1>
+    <h1>{`Rate the ${niche.words.many} you've used`}</h1>
     <p className="rate-sub">{`One tap for every ${niche.words.one} you've used: positive, mixed or negative. No account, about 30 seconds, and it shows ${niche.people.many} like you what works.`}</p>
     <RateGrid items={items} brands={brands} plural={niche.words.many} people={niche.people}
       levels={p.playerLevel.options.map(o => o.value)} styles={p.playingStyle.options.map(o => o.value)} sides={p.playingSide.options.map(o => o.value)}/>
