@@ -276,6 +276,18 @@
   },
   {
    "brand": "bissell",
+   "name": "Bissell PowerClean FurGuard Cordless",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "50 min",
+   "weight": "7.3 lb; 280W; self-cleaning brush roll; FurFinder headlights",
+   "sources": [
+    "https://www.bissell.com/en-us/product/powerclean-furguard-cordless-stick-vacuum-4039.html"
+   ]
+  },
+  {
+   "brand": "bissell",
    "name": "Bissell PowerGlide Pet Slim Cordless",
    "shape": "Cordless stick vacuums",
    "surface": "Cordless stick vacuum",
@@ -1714,6 +1726,18 @@
    "weight": "Wi-Fi with Miele@home app; starts at $499",
    "sources": [
     "https://www.mieleusa.com/cs/vacuum-cleaning/guard-m1-canister-vacuum-cleaner-5024"
+   ]
+  },
+  {
+   "brand": "miele",
+   "name": "Miele Triflex HX1",
+   "shape": "Cordless stick vacuums",
+   "surface": "Cordless stick vacuum",
+   "balance": null,
+   "core": "60 min",
+   "weight": "3-in-1 stick/handheld/extended reach; 25.2V battery",
+   "sources": [
+    "https://media.miele.com/downloads/n-/us/FS_11826990_USE_US-en-US.pdf"
    ]
   },
   {

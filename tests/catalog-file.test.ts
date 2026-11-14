@@ -881,13 +881,13 @@ test("the DogRecs catalog: 209 sourced products in all eight categories, one pro
   } finally { await engine.close(); }
 });
 
-test("the VacuumRecs catalog: 221 sourced vacuums in all seven categories, one product per model and generation, unique URLs", async () => {
+test("the VacuumRecs catalog: 223 sourced vacuums in all seven categories, one product per model and generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/vacuum.json");
   const snapshot = catalogSnapshot(catalog, "vacuumrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 25);
-  assert.equal(snapshot.tables.rackets.length, 221);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 221);
+  assert.equal(snapshot.tables.rackets.length, 223);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 223);
   const categories = niches.vacuum.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/vacuum");
   for (const r of snapshot.tables.rackets) {
@@ -908,8 +908,8 @@ test("the VacuumRecs catalog: 221 sourced vacuums in all seven categories, one p
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 25, rackets: 221, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 25, rackets: 221, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 25, rackets: 223, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 25, rackets: 223, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
