@@ -1,3 +1,4 @@
+import { hash } from "./discover";
 // "Similar" products: the ones reviewers describe the same way. Shape alone can't do this: many products have no shape on
 // file, and two rackets of one shape can still play nothing alike.
 
@@ -32,4 +33,13 @@ export function similarProducts<T extends Candidate>(product: Candidate, candida
     const v = vector(x.id), dot = [...own].reduce((a, [t, n]) => a + n * (v.get(t) ?? 0), 0);
     return { x, similarity: size(v) ? dot / (ownSize * size(v)) : 0 };
   }).filter(s => s.similarity >= MIN_SIMILARITY).sort((a, b) => b.similarity - a.similarity).slice(0, limit).map(s => s.x);
+}
+
+/** The similar products a page shows (owner 2026-11-14): `shown` drawn from the pool of closest matches by `seed`, so moving
+ *  between similar products keeps turning up new ones; none is fixed (owner: "fully dynamic"). `fixed` keeps that many of
+ *  the closest in place if ever wanted. Keeps closest-first order. */
+export function similarRotation<T extends { id: string }>(pool: T[], seed: string, shown = 4, fixed = 0): T[] {
+  const rest = pool.slice(fixed).map(x => ({ x, k: hash(`${seed}|${x.id}`) })).sort((a, b) => a.k - b.k).slice(0, shown - fixed).map(r => r.x);
+  const keep = new Set(rest.map(x => x.id));
+  return [...pool.slice(0, fixed), ...pool.slice(fixed).filter(x => keep.has(x.id))];
 }

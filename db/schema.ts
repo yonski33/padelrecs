@@ -16,6 +16,8 @@ export const rackets = catalogSchema.table("rackets", {
 export const reviews = catalogSchema.table("reviews", {
  id: text("id").primaryKey(), racketId: text("racket_id").notNull().references(() => rackets.id), rating: integer("rating").notNull(), powerRating: integer("power_rating"), controlRating: integer("control_rating"), maneuverabilityRating: integer("maneuverability_rating"), comfortRating: integer("comfort_rating"), forgivenessRating: integer("forgiveness_rating"), playerLevel: text("player_level"), playingSide: text("playing_side"), playingStyle: text("playing_style"), timeWithRacket: text("time_with_racket"), reviewText: text("review_text").notNull(), alias: text("alias"), email: text("email"),
  // The variant the player used, on niches with niche.variants (DiscGolfRecs: the plastic, one of the product's `core` list); null when unknown.
+ // Marker highlights: 1-2 exact phrases of review_text, picked by a Sonnet pass (owner 2026-11-14); null until picked.
+ highlights: text("highlights").array(),
  variant: text("variant"), status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull()
 }, t => [index("reviews_feed_idx").on(t.status,t.createdAt),index("reviews_racket_idx").on(t.racketId),check("review_status",sql`${t.status} in ('pending','approved','rejected')`),check("review_rating",sql`${t.rating} between 1 and 5`),...([t.powerRating,t.controlRating,t.maneuverabilityRating,t.comfortRating,t.forgivenessRating].map((column,i)=>check(`review_category_${i}`,sql`${column} is null or ${column} between 1 and 5`)))]).enableRLS();
 export const externalReviews = catalogSchema.table("external_reviews", {
@@ -30,7 +32,9 @@ export const externalReviews = catalogSchema.table("external_reviews", {
  // The product variant the source used, on niches with niche.variants (DiscGolfRecs: the plastic, one of the product's `core` list); null when unknown.
  variant: text("variant"), tags: text("tags").array().notNull().default(sql`'{}'::text[]`), createdAt: text("created_at").notNull(),
  // Set when the owner edits or confirms the review in the admin; publishing then leaves its text, sentiment and tags alone.
- adminEditedAt: text("admin_edited_at")
+ adminEditedAt: text("admin_edited_at"),
+ // Marker highlights: 1-2 exact phrases of the text the card shows (summary, else the excerpt or its translation); null until picked.
+ highlights: text("highlights").array()
 }, t => [index("external_racket_idx").on(t.racketId),index("external_feed_idx").on(t.createdAt),check("external_review_text",sql`${t.excerpt} is not null or ${t.summary} is not null`),check("external_review_sentiment",sql`${t.sentiment} is null or ${t.sentiment} in ('positive','negative','mixed')`)]).enableRLS();
 // "Helpful" votes. The voter is a keyed hash of the visitor's network and browser, never the raw IP.
 export const reviewVotes = catalogSchema.table("review_votes", {

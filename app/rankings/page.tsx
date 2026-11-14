@@ -53,7 +53,7 @@ export default async function TopListsIndex({ searchParams }: { searchParams: Pr
       <header className="lrx-hero">
         <h1>{`Explore ${category.split(" ")[0].toLowerCase()} `}<em>rankings</em></h1>
         <p className="lrx-sub">{`The ${w.many} real ${people.many} recommend, ranked from their reviews.`}</p>
-        <p className="lrx-meta">{`${unique.length} rankings · ${reviews.size} ${w.many} · Built from real ${people.one} reviews · No sponsored placements`}<span className="lrx-sep" aria-hidden="true">|</span><SignalPop label="How rankings work"/></p>
+        <div className="lrx-meta">{`${unique.length} rankings · ${reviews.size} ${w.many} · Built from real ${people.one} reviews · No sponsored placements`}<span className="lrx-sep" aria-hidden="true">|</span><SignalPop label="How rankings work"/></div>
       </header>
       {/* One plain grid, the type rankings first (owner, 2026-11-13): few enough lists that groups only add noise. */}
       <ul className="lrx-grid lrx-all">{[...unique.filter(l => !l.list.trait), ...unique.filter(l => l.list.trait)].map(card)}</ul>

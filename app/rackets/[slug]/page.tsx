@@ -29,7 +29,8 @@ import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 import { ratingVerdict, listYear } from "../../../lib/top-lists";
 import { rankedLists, listHref } from "../../rankings/lists";
-import { similarProducts, tagProfiles } from "../../../lib/similar";
+import { similarProducts, similarRotation, tagProfiles } from "../../../lib/similar";
+import { showsHighlights } from "../../../lib/highlights";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
 import { shortLine } from "../../../lib/short-lines";
@@ -139,18 +140,22 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     .sort((a, b) => Number(racketParts(b, data).model.toLowerCase().startsWith(firstWord)) - Number(racketParts(a, data).model.toLowerCase().startsWith(firstWord)) || b.year - a.year)
     .slice(0, 5);
   // Alternatives: what reviewers describe most like this one, with how positive their reviews are. Only products with a few judged reviews.
-  const similar = similarProducts(r, data.listed.filter(x => score(data, x.id).judged >= 5), tagProfiles([...data.reviews, ...data.external]))
-    .map(x => ({ x, sc: score(data, x.id) }));
+  // 4 drawn from the 12 closest, a new draw every minute (owner 2026-11-14: clicking between similar products kept showing
+  // the same 4; "fully dynamic"). Pages are CDN-cached for about a minute, so that's roughly per visit.
+  const similarPool = similarProducts(r, data.listed.filter(x => score(data, x.id).judged >= 5), tagProfiles([...data.reviews, ...data.external]), 12);
+  const similar = similarRotation(similarPool, `${r.id}|${Math.floor(Date.now() / 60_000)}`).map(x => ({ x, sc: score(data, x.id) }));
   const platforms = [...external.reduce((m, e) => m.set(e.sourcePlatform, (m.get(e.sourcePlatform) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
 
+  // PadelRecs also has tag-pattern highlights for reviews without saved ones (lib/highlights.ts).
+  const padelFallback = showsHighlights(niche.id);
   const terms = nicheTerms(niche);
   // Only the reviews ReviewList shows get rendered (node is called for the shown slice).
   const items: ListItem[] = [
-    ...reviews.map(x => ({ kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst light={isLight(query.look)}/>,
+    ...reviews.map(x => ({ marked: !!x.highlights?.length || padelFallback, kind: "players" as const, verdict: ratingVerdict(x.rating), date: x.createdAt, helpful: x.helpful, key: `p-${x.id}`, tags: x.tags, variant: x.variant, node: () => <Voice review={x} textFirst light={isLight(query.look)}/>,
       score: helpfulnessScore({ text: x.reviewText, tags: x.tags, ratings: categories.filter(([, key]) => x[key] != null).length, profile: [x.playerLevel, x.playingSide, x.playingStyle, x.timeWithRacket].filter(Boolean).length }, terms) })),
     // "Newest" goes by the date the review was written; one without a known date sorts last, not by when we imported it
     // (owner, 2026-11-12: the Newest order looked alphabetical).
-    ...external.map(e => ({ kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst light={isLight(query.look)}/>,
+    ...external.map(e => ({ marked: !!e.highlights?.length || padelFallback, kind: "web" as const, verdict: e.sentiment, date: e.sourceDate ?? "", older: older(e), helpful: e.helpful, key: `w-${e.id}`, tags: e.tags, variant: e.variant, node: () => <Voice entry={e} textFirst light={isLight(query.look)}/>,
       score: helpfulnessScore({ text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" "), tags: e.tags, sentiment: e.sentiment }, terms) })),
   ];
   // Specs we don't know yet are left out rather than shown as "—".
