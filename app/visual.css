@@ -2984,6 +2984,15 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .qv-thanks a { color: var(--lt-acc, #2f6b3a); font-weight: 600; text-decoration: none; }
 .qv-thanks a:hover { text-decoration: underline; }
 .qv-error { color: #a3392b; }
+.qv-words { position: relative; z-index: 1; display: grid; gap: 8px; margin-top: 14px; }
+.qv-words label { font-size: 14.5px; font-weight: 600; }
+.qv-words textarea { width: 100%; height: 80px; min-height: 80px; padding: 10px 12px; border: 1.5px solid var(--line-2, #e2ded5); border-radius: 10px; background: #fff; font: inherit; font-size: 14.5px; resize: vertical; }
+.qv-words textarea:focus { outline: none; border-color: var(--lt-acc, #2f6b3a); }
+.qv-words-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.qv-words-row small { font-size: 12.5px; color: var(--lt-mute, #8a857c); }
+.qv-words .qv-post, .qv-words .qv-post:hover { min-height: 0; padding: 8px 16px; border-radius: 10px; background: var(--lt-acc, #2f6b3a); border-color: var(--lt-acc, #2f6b3a); color: #fff; font-size: 14px; }
+.qv-words .qv-nah, .qv-words .qv-nah:hover { min-height: 0; padding: 8px 6px; border: 0; background: none; color: var(--lt-mute, #8a857c); font-size: 14px; font-weight: 500; }
+.qv-words .qv-nah:hover { color: var(--lt-ink, #262421); text-decoration: underline; }
 /* The same cards as the review form's .verdict-pick: a coloured dot, the word and a hint; --c comes from .s-positive etc. */
 .vb { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
 .vb button, .vb button:hover, .vb button:active, .vb button:disabled { display: grid; gap: 2px; justify-items: center; min-height: 0; padding: 14px 12px; border: 1.5px solid var(--line-2, #e2ded5); border-radius: 10px; background: var(--surface, #fff); color: var(--lt-ink, #262421); font: inherit; white-space: normal; text-align: center; opacity: 1; box-shadow: none; transform: none; cursor: pointer; transition: border-color .15s, background .15s; }

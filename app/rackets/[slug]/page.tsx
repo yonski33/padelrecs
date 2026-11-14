@@ -382,7 +382,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div>
       </section>}
       {/* One tap (2026-11-14 pivot, owner's mockup): after what players say, right before their reviews. */}
-      <QuickVote racketId={r.id} name={fullName} one={niche.words.one} people={niche.people} addHref={addHref}/>
+      <QuickVote racketId={r.id} name={fullName} one={niche.words.one} people={niche.people} addHref={addHref} placeholder={`What stood out? How it plays, how it feels, who it suits…`}/>
       {byVariant}
       <div className="columns lp-cols">
         <div>
