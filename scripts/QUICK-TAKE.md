@@ -1,0 +1,144 @@
+# Quick-take pages: how a block is written (owner 2026-11-15)
+
+A quick take is the editorial "what players said" page for a product: *We read the web so you don't have to.* The spec is
+site-jobs/QUICK-TAKE-RECIPE.md (sections, voice, accuracy rules, module triggers). This file is the working part: the JSON a
+writer produces, and the checks it must pass. The block is stored in `rackets.quick_take` (migration 0020), drawn by
+app/rackets/[slug]/quick-take.tsx, and products without one keep the normal page.
+
+## Steps
+
+1. Export: `NICHE=padel npx tsx --conditions=react-server --env-file-if-exists=.env.local scripts/export-quicktake-input.mts <dir>/in <slug>…`
+   (or `--top 10`). One file per product: the product, its counts, every stored report, the catalog's slugs.
+2. A Sonnet writer reads **every** report in `<dir>/in/<slug>.json` and writes `<dir>/out/<slug>.json` (format below).
+   Count first, then write: the counts decide the words.
+3. Dry run: `… scripts/save-quicktake.mts <dir>/out` (re-reads the live reports and checks everything). Fix every error.
+4. Save: the same with `--write`. Pages pick it up within a couple of minutes (the catalog cache). `--clear <slug>` removes one.
+
+## The report file
+
+Each report has `id`, `kind` (web, or own = posted on this site), `platform`, `sourceName`, `url`, `date`, `sentiment`,
+`tags`, `summary` and `words`.
+- `summary` is **our** paraphrase (or translation). Read it, never quote it.
+- `words` is the player's exact text (a web excerpt or an own review). Only `words` may go inside quote marks.
+- Cite reports by `id`. A claim's `reports` list holds every report that supports it, each id once.
+
+## The block
+
+Text fields take `**bold**` and `==marker==` (yellow marker). Keep every line short; one sentence per lead.
+
+```jsonc
+{
+  "v": 1,
+  "kind": "full",                       // "full" at 20+ reports; "short" at 8–19 (hero, TL;DR, catch, answers only)
+  "hook": { "good": "Huge sweet spot, dry touch.", "catch": "You bring the power." },  // 8–10 words; good ≤5, ONE trait (never a list of three); vary the catch; catch gets the marker
+  "tldr": { "lead": "An all-rounder that hands you free power. …",
+            "madeFor": ["**Smash lovers**: x3s and kicks come easy", "…"],   // 3–4, a kind of player or a situation, never a spec
+            "notFor": ["Fans of a **dry, calm** feel", "…"] },              // 2–3
+  "level": { "from": 1, "to": 2, "answer": "Intermediate and up.", "note": "…", "reports": ["…3+ ids"] },  // 0 beginner · 1 intermediate · 2 advanced
+  "plays": { "lead": "…",
+    "court": { "net": { "chip": "Tricky", "line": "…", "reports": ["5+ ids"] }, "overheads": {…}, "defence": {…} },  // 2+ zones with 5+ mentions
+    "rows": [ { "label": "Spin", "chip": "Strong", "line": "…", "reports": ["5+ ids"] } ] },  // Attack, Defence, Control, Power, Comfort, Sweet spot, Handling, Spin, Feel; drop <5
+  "catch": { "lead": "The bounce. About 40 players bring it up, and ==most of them wish there was less==.",
+             "bullets": ["…2–4"], "reports": ["every id that raises it, 3+"], "about": true, "what": "that mention the bounce",
+             "receipts": [ { "id": "…", "text": "paraphrase", "verbatim": false } ] },
+  "modules": [ … 1–3, see below … ],
+  "compare": { "lead": "…", "cards": [ { "slug": "nox-at10-genius-18k-2026", "name": "AT10 18K 2026",
+                 "arrows": [ { "dir": "up", "text": "More power" }, { "dir": "down", "text": "More bounce" }, { "dir": "same", "text": "Close cousins" }, { "dir": "none", "text": "Handling: split" } ],
+                 "reports": ["3+ ids of reports that compare the two"] } ],   // 1–4 cards, catalog rackets only; fewer than 3 players → left out
+               "went": { "label": "Who went where?", "text": "Most who moved from an **AT10** stayed …" } },
+  "answers": [ { "q": "Good for beginners?", "badge": "Probably not", "tone": "no", "a": "…", "reports": ["3+ ids"] } ],  // 3–6 questions the rest of the page doesn't already answer, or [] (section skipped); tone yes | maybe | no
+  "tips": [ { "label": "Player tip", "text": "Ask the shop to weigh a few and pick one under 370 g. Two players suggest it.", "after": "weigh", "reports": ["2+ ids, different sources"] } ],
+  "thinSpot": "only 3 players compared it with the ST3, so take that card lightly.",
+  "counts": { "reports": 137, "positive": 65, "mixed": 51, "negative": 20 },   // copy from the export
+  "written": "2026-11-15"
+}
+```
+
+**Verdict chips** (optional): `"verdict": { "text": "Strong overhead", "tone": "g" }` on `plays`, `catch`, `compare` and the
+`weigh`, `durability` and `arm` modules (shown as the "Before you buy" cards Weight, Durability, Your arm). At most 5 words;
+tone g (good), m (mixed) or n (neutral). Leave it out when no short honest verdict fits.
+
+**How it plays rows:** with a court map, rows for Attack/Overheads, Defence and the net are not shown (the map covers them);
+write rows only for Handling, Spin, Control, Sweet spot and Feel (plus Power or Comfort when they decide it).
+Each row gets a `key`: 2–4 words the line opens with, drawn bold ("You feel every shot", "Wide and forgiving", "The weak spot").
+Rows are drawn strongest chip first. At most one `==marker==` in the whole section, on the row that decides it for most
+buyers (Counter Viper: Comfort, "==rough on the arm==").
+
+**Compare cards: catalog rackets only** (owner 2026-11-15). Every card's `slug` must be a racket in the export's `catalog`
+(photo + link). Cite only reports that clearly name **that** racket, version and year included: "the AT10" or "a Viper"
+is a family, not a rival, and "the 18K" in a 2025 thread may be last year's. An older version of the same racket is allowed
+only when it's the direct predecessor (CTRL 3.5 → CTRL 3.4), never two generations back. One card is fine; with none, leave
+`compare` out. The "Who went where?" line names catalog rackets only, by the same rule.
+
+`slug` on a version module is a catalog slug from the export, or null. `tile` is
+the short name shown when there's no photo. Tip `after` is where the note sits: tldr, plays, catch, compare, answers, or a
+module type.
+
+### Modules (only when the trigger is met; recipe §4)
+
+| type | trigger (checked) | fields |
+|---|---|---|
+| `themes` | 4+ bars, each 8+ mentions, most first | `lead`, `bars[] {label, complaint?, reports}`, `receipts?` |
+| `setup` | 5+ players discuss weights/grip/balance | `lead`, `rows[] {label, line}`, `numbers?[] {value, note, reports}`, `note?`, `reports`, `receipts?` |
+| `version` | 10+ players compare a sibling or last year's | `title` ("12K or 18K?"), `lead`, `other {slug, short, says}`, `self {short, says}`, `pickSelf[]`, `pickOther[]`, `reports`, `receipts?` |
+| `durability` | 5+ reports of breaks, cracks, wear | `lead`, `rows[] {label, line}`, `reports`, `receipts?` |
+| `weigh` | 8+ players give their unit's weight, spanning 15 g+ | `lead`, `heavy {title, bullets}`, `light {title, bullets}`, `weights[] {grams, id}` (the report must contain the number) |
+| `arm` | 6+ players on elbow/arm comfort | `lead`, `kind[]`, `harsh[]`, `reports`, `receipts?` |
+| `hardness` | 8+ players' plain feel words, one feel 60%+ | `answer`, `soft`, `medium`, `hard` (id lists), `brand?` |
+
+## What the checker rejects (scripts/save-quicktake.mts → lib/quick-take-check.ts)
+
+- counts that don't match the database; cited ids that aren't this product's reports; an id cited twice in one list
+- quote marks around anything that isn't a player's exact `words` (receipts with `"verbatim": true` too)
+- a number of people in the text ("five players", "15 testers") bigger than the reports that line cites
+- fewer than 3 reports behind a claim, quick answer, level band or compare card; fewer than 5 behind a How it plays row or
+  court zone; tips without 2 different sources
+- more than 3 `==markers==` outside the hook; a marker inside the hook
+- modules whose trigger isn't met, two of one type, more than 3
+- "owners", "users", "copies", "Reddit reviews", "N in 10", brand-speak ("game-changer", "unleash")
+
+It warns (doesn't block) on fewer than 2 tips, a full page without plays/compare/modules, and receipts outside 6–10.
+
+## Voice (recipe §5)
+
+The good friend who is a bit wild, with a stain on his shirt, but tells you the truth. Short, punchy, a club mate, never a
+magazine. "Players said", never "owners". Share words must match the real share: almost everyone ≥85%, most 60–84%,
+about half / many 40–59%, some / about a third 20–39%, a few / a handful 5–19%, one or two <5%. Never invent a tip; a
+complaint isn't a tip. Hero and leads never lead with Reddit. The catch is never softened.
+
+## Audit rules (owner 2026-11-15): shorter, no repeats, evidence shown
+
+- **No repeats.** Each section answers a different question; a finding is stated in full once. The hook and The catch may
+  name the main catch; every other section only adds new detail (or leaves it out). The checker warns when the same pair of
+  content words ("bouncy net") shows up in 3+ sections. Fix every such warning before saving.
+- **Compare takeaway.** Each card has `takeaway`: one plain sentence, ≤10 words, above its arrows ("More power, but less
+  forgiving."). Exact model names with year in `name`.
+- **Evidence labels** are drawn automatically from the cited reports (different players): 2–4 "Reported by N players ·
+  limited evidence", 5–9 "N players", 10+ "Common · N+ players". They show on The catch, the Before you buy cards and tips,
+  so cite every report that supports them, and only those.
+- **Hedge subjective things** (arm comfort, feel, hardness): "some players found…", "opinions split…". A flat statement only
+  when 60%+ of the reports on it agree. The checker warns on flat lines in the arm/hardness modules and Feel/Comfort rows.
+- **How it plays** shows the 3 most decisive rows (strongest, most divided, weakest); the rest sit behind "+ Show all".
+  Put the important information in those.
+
+## Design language v2 (owner 2026-11-15): what changes in the block
+
+The page skin follows site-jobs/quick-take-mockups/claude-design-reference-*.html (QUICK-TAKE-RECIPE.md "Design language v2").
+Three fields read differently now:
+- `tldr.lead` is the **verdict line**: two short sentences, "Buy it for the sweet spot. Demo it first for the bounce."
+- `tldr.madeFor` / `tldr.notFor` are drawn under "👍 Get it if you…" / "👎 Skip it if you…", so each bullet continues that
+  sentence: "mishit a lot and still want depth", "want a **dry, direct** feel". A kind of player or situation, never a spec.
+- `catch.debate` (optional, use it): `{ "topic": "bounce", "for": {id, text, verbatim?}, "against": {id, text, verbatim?} }`.
+  The section becomes "The bounce debate 🔥": the lead explains the disagreement, then two real takes side by side, one it
+  worked for ("✓ worked for me") and one it didn't ("✗ not for me"). Each is a stored report, attributed automatically
+  (nickname and level for our own reviews, "Reddit · r/…" or the channel for web reports). Paraphrase by default; set
+  `verbatim` only when `text` is the player's exact words. The checker rejects a positive "against", a negative "for", or
+  the same report twice. Never invent one.
+Tips are drawn together as "Heads up ⚠️", numbered, each with its evidence label; `after` no longer moves them.
+
+## Our take is allowed (owner 2026-11-15)
+
+"In the end we are reading the reviews and giving our takes." Labelled takes are fine: the TL;DR verdict line, and
+`take` on a version module, drawn as "**Our take:** …" ("upgrade for power; stick with the 2025 if comfort matters").
+Every take must follow from the counted reports on that page: no new facts, no "we tested" (the checker rejects it), no
+invented stats. Player claims keep every accuracy rule.
