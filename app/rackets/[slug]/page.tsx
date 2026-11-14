@@ -373,8 +373,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
         <h2 id="lp-mention-title">What people mention</h2>
         <div className="lp-mention-cols">
-          {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
-          {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
+          {liked.length > 0 && <div className="lp-m-row lp-m-pos"><h3>Often liked</h3>{chips(liked)}</div>}
+          {concerns.length > 0 && <div className="lp-m-row lp-m-neg"><h3>Common concerns</h3>{chips(concerns)}</div>}
         </div>
       </section>}
       {byVariant}
