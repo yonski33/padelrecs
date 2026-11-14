@@ -2975,7 +2975,7 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 /* Marker highlights on review text (lib/highlights.ts, owner 2026-11-14): a soft yellow highlighter stroke, one colour for
    praise and complaints alike (owner's pick over green/amber). The hl-pos / hl-neg classes stay for a later tone variant. */
 .lv-text mark.hl { color: inherit; padding: 0 2px; margin: 0 -1px; border-radius: 3px 6px 4px 7px; -webkit-box-decoration-break: clone; box-decoration-break: clone;
-  background: linear-gradient(104deg, rgba(255,221,64,0) 0.4%, rgba(255,221,64,.45) 2.5%, rgba(255,221,64,.38) 96%, rgba(255,221,64,0) 99.6%); }
+  background: linear-gradient(104deg, rgba(255,226,102,0) 0.4%, rgba(255,226,102,.34) 2.5%, rgba(255,226,102,.26) 96%, rgba(255,226,102,0) 99.6%); }
 
 /* Highlights on/off switch beside the review sort (owner 2026-11-14). Off flips html.hl-off, which drops the marker. */
 .sort-area { display: flex; align-items: baseline; gap: 18px; flex: none; }
