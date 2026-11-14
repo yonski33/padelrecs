@@ -76,7 +76,7 @@ export default function QuickTakePage(props: Props) {
       <div className="col">{PAGE_ORDER.map(k => { const S = SECTIONS[k]; return <S key={k} c={ctx}/>; })}</div>
       <Footer c={ctx}/>
     </div>
-    <div className="qt-rest">{props.rest}</div>
+    {props.rest && <div className="qt-rest">{props.rest}</div>}
   </main>;
 }
 
@@ -218,7 +218,7 @@ const Spot = ({ c }: { c: Ctx }) => <section id="spot"><div className="spot"><h2
   <div className="act"><a className="btn" href="/contact">Suggest a fix</a><small>Corrections so far: none yet. Be the first to catch us out.</small></div></div></section>;
 
 /** The page footer (owner 2026-11-15: specs moved to the hero chips). */
-const Footer = ({ c }: { c: Ctx }) => <p className="how">{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#reviews">Read every player report ↓</a></p>;
+const Footer = ({ c }: { c: Ctx }) => <p className="how">{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#community">Played it? Add your take ↑</a></p>;
 
 const SECTIONS: Record<SectionKey, (p: { c: Ctx }) => ReactNode> = {
   tldr: Tldr, plays: Plays, themes: moduleSection("themes"), version: moduleSection("version"), catch: Catch, compare: Compare,

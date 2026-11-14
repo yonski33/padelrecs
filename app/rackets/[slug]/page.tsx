@@ -355,10 +355,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         return niche.tags.map((t, i) => ({ t, i })).sort((a, b) => (used.get(b.t.label) ?? 0) - (used.get(a.t.label) ?? 0)
           || Number(b.t.tone === "pos") - Number(a.t.tone === "pos") || a.i - b.i).map(x => x.t.label);
       })()} nicknames={niche.form.quickVote?.nicknames ?? []} jsonLd={qtLd}
-      rest={<div className={`product v2 lt-page lp ${lightFont.className}`}>
-        <ReviewList verdict={verdict} title={`Every ${niche.people.one} report`} href={productHref(r)} addHref={addHref} addButton={<a className="button ghost add-review" href={addHref}><PlusIcon/>Add your review</a>} items={items} sort={sort} tag={tag} show={show}/>
-        {nextBox}
-      </div>}/>;
+      // No full report list or add-review cards on quick-take pages (owner 2026-11-15): the receipts and the community
+      // section stand in for them, so the page ends with its footer line.
+      rest={null}/>;
   }
   // The light direction's product page, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
   if (isLight(query.look)) {
