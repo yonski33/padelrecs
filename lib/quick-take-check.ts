@@ -1,4 +1,4 @@
-import { gateFor, markCount, plain, quickTakeSchema, type QuickTake } from "./quick-take";
+import { COURT_ROWS, gateFor, markCount, plain, quickTakeSchema, type QuickTake } from "./quick-take";
 
 /**
  * Checks a quick-take block against the product's stored reports before it is saved (scripts/save-quicktake.mts).
@@ -39,6 +39,9 @@ function fields(qt: QuickTake): Field[] {
   const f: Field[] = [];
   const add = (where: string, text: string | undefined, reports?: string[]) => { if (text) f.push({ where, text, reports }); };
   add("hook.good", qt.hook.good); add("hook.catch", qt.hook.catch);
+  if (qt.plays?.verdict) add("plays.verdict", qt.plays.verdict.text); if (qt.catch.verdict) add("catch.verdict", qt.catch.verdict.text);
+  if (qt.compare?.verdict) add("compare.verdict", qt.compare.verdict.text);
+  qt.modules.forEach((m, i) => { if ("verdict" in m && m.verdict) add(`modules[${i}] ${m.type}.verdict`, m.verdict.text); });
   add("tldr.lead", qt.tldr.lead); qt.tldr.madeFor.forEach((t, i) => add(`tldr.madeFor[${i}]`, t)); qt.tldr.notFor.forEach((t, i) => add(`tldr.notFor[${i}]`, t));
   if (qt.level) { add("level.answer", qt.level.answer, qt.level.reports); add("level.note", qt.level.note, qt.level.reports); }
   if (qt.plays) {
@@ -124,6 +127,7 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
     zones.forEach(([k, z]) => need(`plays.court.${k}`, z!.reports, 5, "mentions"));
     if (zones.length === 1) errors.push("court map: needs 2+ zones with 5+ mentions each");
     qt.plays.rows.forEach(r => need(`plays.rows ${r.label}`, r.reports, 5, "mentions"));
+    if (zones.length) for (const r of qt.plays.rows) if (COURT_ROWS.test(r.label)) warnings.push(`plays row "${r.label}" repeats the court map and isn't shown`);
     if (qt.plays.rows.filter(r => r.chip === "Loved").length > 1) errors.push("plays: at most one Loved chip");
     if (!zones.length && !qt.plays.rows.length) errors.push("plays: needs a court map or rows");
   }

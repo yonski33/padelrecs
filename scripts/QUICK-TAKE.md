@@ -54,6 +54,13 @@ Text fields take `**bold**` and `==marker==` (yellow marker). Keep every line sh
 }
 ```
 
+**Verdict chips** (optional): `"verdict": { "text": "Strong overhead", "tone": "g" }` on `plays`, `catch`, `compare` and the
+`weigh`, `durability` and `arm` modules (shown as the "Before you buy" cards Weight, Durability, Your arm). At most 5 words;
+tone g (good), m (mixed) or n (neutral). Leave it out when no short honest verdict fits.
+
+**How it plays rows:** with a court map, rows for Attack/Overheads, Defence and the net are not shown (the map covers them);
+write rows only for Handling, Spin, Control, Sweet spot and Feel.
+
 `slug` on a compare card or a version module is a catalog slug from the export (for its photo and link), or null. `tile` is
 the short name shown when there's no photo. Tip `after` is where the note sits: tldr, plays, catch, compare, answers, or a
 module type.

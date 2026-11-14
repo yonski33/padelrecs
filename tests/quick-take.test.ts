@@ -71,6 +71,14 @@ test("module triggers and gate", () => {
   assert.ok(check(block({ modules: [{ type: "hardness", answer: "Soft", soft: ids(0, 5), medium: ids(5, 3), hard: ids(8, 2) }] })).errors.some(e => e.includes("60%")));
 });
 
+test("verdict chips: optional, 5 words at most, checked like other text", () => {
+  assert.ok(check(block({ catch: { ...block().catch, verdict: { text: "The bounce", tone: "m" } } })).ok);
+  assert.ok(!check(block({ catch: { ...block().catch, verdict: { text: "one two three four five six", tone: "m" } } })).ok);
+  assert.ok(!check(block({ catch: { ...block().catch, verdict: { text: "Loved by owners", tone: "g" } } })).ok);
+  const covered = check(block({ plays: { ...block().plays!, rows: [{ label: "Defence", chip: "Good", line: "x", reports: ids(0, 5) }] } }));
+  assert.ok(covered.ok && covered.warnings.some(w => w.includes("repeats the court map")));
+});
+
 test("banned words", () => {
   assert.ok(check(block({ tldr: { ...block().tldr, madeFor: ["AT10 owners", "b", "c"] } })).errors.some(e => e.includes("owners")));
   assert.ok(check(block({ tldr: { ...block().tldr, lead: "From Reddit reviews." } })).errors.some(e => e.includes("Reddit reviews")));

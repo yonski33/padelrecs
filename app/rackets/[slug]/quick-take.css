@@ -56,6 +56,11 @@
   .byb-card .lead { font-size: 15.5px; margin-bottom: 12px; }
   .byb-card .split > div { background: var(--bg); }
 
+  /* Verdict chip beside a heading */
+  .hchip { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 2px 10px; border-radius: 999px; font: 700 12px/1.5 var(--body); letter-spacing: .02em; background: var(--line); color: var(--ink); }
+  .hchip.g { background: var(--pos-wash); color: var(--pos); } .hchip.m { background: var(--mix-wash); color: var(--mix-ink); }
+  .col + .how { margin-top: 40px; }
+
   /* Column */
   .col { display: grid; gap: 40px; margin-top: 28px; min-width: 0; }
   section h2 { margin: 0 0 6px; font: 700 22px var(--display); letter-spacing: -.01em; }

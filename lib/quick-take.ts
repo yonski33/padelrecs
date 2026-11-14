@@ -14,11 +14,17 @@ const ids = z.array(z.string().min(1)).max(400);
 const line = z.string().trim().min(1).max(320);
 const short = z.string().trim().min(1).max(160);
 
+/** How it plays rows the court map already covers; with a map they're left out (owner 2026-11-15). */
+export const COURT_ROWS = /^(attack|overheads?|smash(es)?|defen[cs]e|at the net|net( play)?|volleys?)$/i;
+
 /** The How it plays chips, strongest first (recipe §3). */
 export const CHIPS = ["Loved", "Strong", "Good", "Decent", "Divided", "Tricky", "Limited"] as const;
 export type Chip = typeof CHIPS[number];
 export const chipTone = (c: Chip) => c === "Limited" ? "b" : ["Loved", "Strong", "Good"].includes(c) ? "g" : "m";
 
+/** A short verdict chip beside a section heading (owner 2026-11-15): ≤5 words, green, amber or neutral. Optional. */
+const verdict = z.object({ text: z.string().trim().min(1).max(40).refine(t => t.split(/\s+/).length <= 5, "5 words at most"), tone: z.enum(["g", "m", "n"]) }).strict().optional();
+export type Verdict = NonNullable<z.infer<typeof verdict>>;
 const receipt = z.object({ id: z.string().min(1), text: line, verbatim: z.boolean().optional() }).strict();
 const receipts = z.array(receipt).max(10).optional();
 const zone = z.object({ chip: z.enum(CHIPS), line, reports: ids }).strict();
@@ -34,10 +40,10 @@ export const moduleSchema = z.discriminatedUnion("type", [
     other: z.object({ slug: z.string().nullable(), short: z.string().trim().min(1).max(24), says: z.string().trim().min(1).max(40) }).strict(),
     self: z.object({ short: z.string().trim().min(1).max(24), says: z.string().trim().min(1).max(40) }).strict(),
     pickSelf: bullets(2, 4), pickOther: bullets(2, 4), reports: ids, receipts }).strict(),
-  z.object({ type: z.literal("durability"), lead: line, rows: z.array(plainRow).min(2).max(5), reports: ids, receipts }).strict(),
-  z.object({ type: z.literal("weigh"), lead: line, heavy: z.object({ title: short, bullets: bullets(1, 4) }).strict(), light: z.object({ title: short, bullets: bullets(1, 4) }).strict(),
+  z.object({ type: z.literal("durability"), verdict, lead: line, rows: z.array(plainRow).min(2).max(5), reports: ids, receipts }).strict(),
+  z.object({ type: z.literal("weigh"), verdict, lead: line, heavy: z.object({ title: short, bullets: bullets(1, 4) }).strict(), light: z.object({ title: short, bullets: bullets(1, 4) }).strict(),
     weights: z.array(z.object({ grams: z.number().int().min(250).max(450), id: z.string().min(1) }).strict()), receipts }).strict(),
-  z.object({ type: z.literal("arm"), lead: line, kind: bullets(1, 4), harsh: bullets(1, 4), reports: ids, receipts }).strict(),
+  z.object({ type: z.literal("arm"), verdict, lead: line, kind: bullets(1, 4), harsh: bullets(1, 4), reports: ids, receipts }).strict(),
   z.object({ type: z.literal("hardness"), answer: z.string().trim().min(1).max(40), soft: ids, medium: ids, hard: ids, brand: short.optional() }).strict(),
 ]);
 export type Module = z.infer<typeof moduleSchema>;
@@ -59,10 +65,10 @@ export const quickTakeSchema = z.object({
   tldr: z.object({ lead: line, madeFor: bullets(2, 4), notFor: bullets(1, 3) }).strict(),
   /** "Who's it for?": 0 beginner, 1 intermediate, 2 advanced (no Pro, recipe §4). */
   level: z.object({ from: z.number().int().min(0).max(2), to: z.number().int().min(0).max(2), answer: z.string().trim().min(1).max(60), note: line, reports: ids }).strict().optional(),
-  plays: z.object({ lead: line, court: z.object({ net: zone.optional(), overheads: zone.optional(), defence: zone.optional() }).strict().optional(), rows: z.array(row).max(8) }).strict().optional(),
-  catch: z.object({ lead: line, bullets: bullets(2, 4), reports: ids, about: z.boolean().optional(), what: z.string().trim().max(60).optional(), receipts }).strict(),
+  plays: z.object({ verdict, lead: line, court: z.object({ net: zone.optional(), overheads: zone.optional(), defence: zone.optional() }).strict().optional(), rows: z.array(row).max(8) }).strict().optional(),
+  catch: z.object({ verdict, lead: line, bullets: bullets(2, 4), reports: ids, about: z.boolean().optional(), what: z.string().trim().max(60).optional(), receipts }).strict(),
   modules: z.array(moduleSchema).max(3),
-  compare: z.object({ lead: line, cards: z.array(z.object({ slug: z.string().nullable(), name: z.string().trim().min(1).max(60), tile: z.string().trim().max(8).optional(),
+  compare: z.object({ verdict, lead: line, cards: z.array(z.object({ slug: z.string().nullable(), name: z.string().trim().min(1).max(60), tile: z.string().trim().max(8).optional(),
     arrows: z.array(z.object({ dir: z.enum(["up", "down", "same", "none"]), text: z.string().trim().min(1).max(48) }).strict()).min(1).max(4), reports: ids }).strict()).min(2).max(4),
     went: z.object({ label: z.string().trim().min(1).max(30), text: line }).strict().optional() }).strict().optional(),
   /** Only questions the rest of the page hasn't answered: 3–6 of them, or none (owner 2026-11-15). */

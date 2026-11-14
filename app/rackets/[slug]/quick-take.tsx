@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import "./quick-take.css";
-import { about, chipTone, levelBand, monthYear, roundedDown, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake } from "../../../lib/quick-take";
+import { COURT_ROWS, about, chipTone, levelBand, monthYear, roundedDown, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake, type Verdict } from "../../../lib/quick-take";
 import { phraseSegments } from "../../../lib/highlights";
 import { platformName } from "../../../lib/source-label";
 import QuickTakeComposer from "./quick-take-composer";
@@ -18,6 +18,11 @@ function Rich({ text }: { text: string }) {
 }
 const Bullets = ({ items }: { items: string[] }) => <ul>{items.map((t, i) => <li key={i}><Rich text={t}/></li>)}</ul>;
 const chipClass = (c: Chip) => `chip ${chipTone(c)}`;
+/** A section heading with its optional verdict chip. */
+const Heading = ({ text, verdict, as = "h2" }: { text: string; verdict?: Verdict; as?: "h2" | "h3" }) => {
+  const H = as;
+  return <H className={as === "h3" ? "byb-title" : undefined}>{text}{verdict && <span className={`hchip ${verdict.tone}`}>{verdict.text}</span>}</H>;
+};
 const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
 const verdictOf = (rating: number) => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 const VERDICT_WORD = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as const;
@@ -25,13 +30,13 @@ const listWords = (xs: string[]) => xs.length > 1 ? `${xs.slice(0, -1).join(", "
 
 /** The page, top to bottom (owner 2026-11-15: sections move often, so the order is this one list). The hero is always
  *  first; each key is a section component below, and one that has nothing to show renders nothing. */
-export const PAGE_ORDER = ["tldr", "plays", "themes", "version", "catch", "compare", "setup", "beforeYouBuy", "answers", "community", "spot", "specs"] as const;
+export const PAGE_ORDER = ["tldr", "plays", "themes", "version", "catch", "compare", "setup", "beforeYouBuy", "answers", "community", "spot"] as const;
 export type SectionKey = typeof PAGE_ORDER[number];
 
 type Props = {
   qt: QuickTake; racketId: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
   crumbs: ReactNode; reports: QtReport[]; reviews: QtReview[]; signal: number | null; site: string;
-  products: Map<string, QtProduct>; specs: string[]; heroSpecs: string[]; buy: { url: string; label: string; rel: string } | null;
+  products: Map<string, QtProduct>; heroSpecs: string[]; buy: { url: string; label: string; rel: string } | null;
   fontClass: string; tags: string[]; nicknames: string[]; rest: ReactNode; jsonLd: object;
 };
 /** What every section reads: the props plus the live counts and helpers worked out once. */
@@ -69,6 +74,7 @@ export default function QuickTakePage(props: Props) {
       {props.crumbs}
       <Hero c={ctx}/>
       <div className="col">{PAGE_ORDER.map(k => { const S = SECTIONS[k]; return <S key={k} c={ctx}/>; })}</div>
+      <Footer c={ctx}/>
     </div>
     <div className="qt-rest">{props.rest}</div>
   </main>;
@@ -124,11 +130,12 @@ const Tldr = ({ c }: { c: Ctx }) => <section id="tldr">
 function Plays({ c }: { c: Ctx }) {
   const p = c.qt.plays, hardness = c.module("hardness");
   if (!p) return null;
+  const rows = p.court ? p.rows.filter(r => !COURT_ROWS.test(r.label)) : p.rows;
   return <section id="plays">
-    <h2>How it plays</h2>
+    <Heading text="How it plays" verdict={p.verdict}/>
     <p className="lead"><Rich text={p.lead}/></p>
     {p.court && <Court court={p.court}/>}
-    {p.rows.length > 0 && <div className="rows play">{p.rows.map(r =>
+    {rows.length > 0 && <div className="rows play">{rows.map(r =>
       <div key={r.label} className="r"><b>{r.label}</b><span className={chipClass(r.chip)}>{r.chip}</span><span><Rich text={r.line}/></span></div>)}</div>}
     {hardness && <Hardness m={hardness}/>}
     {c.tipsAt("plays")}
@@ -142,7 +149,7 @@ const moduleSection = (type: "themes" | "version" | "setup") => function ModuleS
 };
 
 const Catch = ({ c }: { c: Ctx }) => <section id="catch">
-  <h2>The catch</h2>
+  <Heading text="The catch" verdict={c.qt.catch.verdict}/>
   <p className="lead"><Rich text={c.qt.catch.lead}/></p>
   <div className="box catch"><Bullets items={c.qt.catch.bullets}/></div>
   <div className="from"><span>{`From ${c.qt.catch.about ? `about ${about(c.qt.catch.reports.length)}` : c.qt.catch.reports.length} player reports${c.qt.catch.what ? ` ${c.qt.catch.what}` : ""}`}</span></div>
@@ -154,7 +161,7 @@ function Compare({ c }: { c: Ctx }) {
   const cmp = c.qt.compare;
   if (!cmp) return null;
   return <section id="compare">
-    <h2>{`How the ${c.shortName} compares`}</h2>
+    <Heading text={`How the ${c.shortName} compares`} verdict={cmp.verdict}/>
     <p className="lead"><Rich text={cmp.lead}/></p>
     <div className="vsgrid">{cmp.cards.map(card => {
       const p = card.slug ? c.products.get(card.slug) : undefined, n = new Set(card.reports).size;
@@ -211,15 +218,12 @@ const Spot = ({ c }: { c: Ctx }) => <section id="spot"><div className="spot"><h2
   <p>{`Played the ${c.shortName} and think we got something off? Tell us. We'll fix the page and credit you by name.`}</p>
   <div className="act"><a className="btn" href="/contact">Suggest a fix</a><small>Corrections so far: none yet. Be the first to catch us out.</small></div></div></section>;
 
-const Specs = ({ c }: { c: Ctx }) => <section id="specs">
-  <h2>Specs</h2>
-  {c.specs.length > 0 && <div className="specs">{c.specs.map(s => <span key={s} className="spec">{s}</span>)}</div>}
-  <p className="how">{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#reviews">Read every player report ↓</a></p>
-</section>;
+/** The page footer (owner 2026-11-15: specs moved to the hero chips). */
+const Footer = ({ c }: { c: Ctx }) => <p className="how">{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We don't test rackets and no brand paid for this. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#reviews">Read every player report ↓</a></p>;
 
 const SECTIONS: Record<SectionKey, (p: { c: Ctx }) => ReactNode> = {
   tldr: Tldr, plays: Plays, themes: moduleSection("themes"), version: moduleSection("version"), catch: Catch, compare: Compare,
-  setup: moduleSection("setup"), beforeYouBuy: BeforeYouBuy, answers: Answers, community: Community, spot: Spot, specs: Specs,
+  setup: moduleSection("setup"), beforeYouBuy: BeforeYouBuy, answers: Answers, community: Community, spot: Spot,
 };
 
 function Level({ level }: { level: NonNullable<QuickTake["level"]> }) {
@@ -260,6 +264,9 @@ function Hardness({ m }: { m: Extract<Module, { type: "hardness" }> }) {
     <small>{`From ${total} players who described the feel.${m.brand ? ` The brand says: ${m.brand}.` : ""}`}</small></div>;
 }
 
+/** Card titles inside "Before you buy". */
+const CARD_TITLES = { weigh: "Weight", durability: "Durability", arm: "Your arm" } as const;
+
 function ModuleSection({ m, selfPhoto, tips, receipts, art, card }: { m: Module; selfPhoto: string | null; card?: boolean; tips: ReactNode; receipts: ReactNode; art: (slug: string | null, tile: string, cls: string) => ReactNode }) {
   if (m.type === "hardness") return null;
   const title = m.type === "version" ? m.title : MODULE_TITLES[m.type];
@@ -283,7 +290,7 @@ function ModuleSection({ m, selfPhoto, tips, receipts, art, card }: { m: Module;
     foot = <div className="from"><span>{`From ${m.weights.length} players who gave their racket's weight`}</span></div>;
   }
   if (m.type === "arm") body = <div className="split"><div><h3>Easier on the arm</h3><Bullets items={m.kind}/></div><div><h3>Harder on the arm</h3><Bullets items={m.harsh}/></div></div>;
-  if (card) return <><h3 className="byb-title">{title}</h3><p className="lead"><Rich text={m.lead}/></p>{body}{tips}{foot}{receipts}</>;
+  if (card) return <><Heading as="h3" text={CARD_TITLES[m.type as "weigh"] ?? title} verdict={"verdict" in m ? m.verdict : undefined}/><p className="lead"><Rich text={m.lead}/></p>{body}{tips}{foot}{receipts}</>;
   return <section id={id}>
     <h2>{title}</h2>
     <p className="lead"><Rich text={m.lead}/></p>
