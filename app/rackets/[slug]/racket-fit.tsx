@@ -5,6 +5,7 @@ import { spans, sentimentWords, type QuickTake } from "../../../lib/quick-take";
 import { fitVerdict, bestFor, levelBacking, levelSources } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
+import { reportLevels } from "../../../db/report-levels";
 import { platformName } from "../../../lib/source-label";
 import { phraseSegments } from "../../../lib/highlights";
 import { displayName } from "../../../lib/brand-name";
@@ -23,6 +24,8 @@ function Rich({ text }: { text: string }) {
   return <>{spans(text).map((s, i) => s.mark || s.b ? <b key={i}>{s.text}</b> : <span key={i}>{s.text}</span>)}</>;
 }
 const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+/** Reports at the picked level needed before "What players said" narrows to them. */
+const LEVEL_SAID_MIN = 5;
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 
 export default async function RacketFit(props: {
@@ -37,12 +40,19 @@ export default async function RacketFit(props: {
   const verdict = picked ? fitVerdict(choice, facts) : null;
   // What backs the level band (brand, reviewers, players), with the brand's page linked (owner 2026-11-15).
   const backing = levelBacking(facts), maker = levelSources(facts).maker;
-  const byId = new Map(reports.map(r => [r.id, r]));
-  const count = (k: string) => reports.filter(r => r.sentiment === k).length;
+  // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
+  const webLevels = await reportLevels(props.racketId);
+  const levelOf = (r: QtReport) => { const v = r.level ?? webLevels.get(r.id)?.level; return v === "Competitive" ? "advanced" : v?.toLowerCase(); };
+  const byId = new Map(reports.map(r => [r.id, { ...r, level: r.level ?? webLevels.get(r.id)?.level ?? null }]));
+  // "What players at your level said" once 5+ reports at the picked level state it; else everyone (owner 2026-11-15).
+  const atLevel = picked ? reports.filter(r => levelOf(r) === choice.level) : [];
+  const levelView = atLevel.length >= LEVEL_SAID_MIN;
+  const said = levelView ? atLevel : reports;
+  const count = (k: string) => said.filter(r => r.sentiment === k).length;
   const [pos, mix, neg] = [count("positive"), count("mixed"), count("negative")];
-  const mood = sentimentWords(pos, mix, neg)?.lead.toLowerCase();
+  const mood = sentimentWords(...(["positive", "mixed", "negative"].map(k => reports.filter(r => r.sentiment === k).length) as [number, number, number]))?.lead.toLowerCase();
   const who = (id: string) => { const r = byId.get(id); if (!r) return null;
-    return r.platform === props.site ? [r.nickname || `A ${props.site} player`, r.level].filter(Boolean).join(" · ") : [platformName(r.platform), r.sourceName && r.sourceName !== r.platform ? r.sourceName : null].filter(Boolean).join(" · "); };
+    return r.platform === props.site ? [r.nickname || `A ${props.site} player`, r.level].filter(Boolean).join(" · ") : [platformName(r.platform), r.sourceName && r.sourceName !== r.platform ? r.sourceName : null, r.level].filter(Boolean).join(" · "); };
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return `${props.href}${h === "/" ? "" : h.slice(1)}`; };
   const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={at(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
   // With no picks, a tap starts from the defaults (any / intermediate / no arm) but always lands on a picked page.
@@ -75,7 +85,18 @@ export default async function RacketFit(props: {
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
   const d = qt?.catch.debate;
-  const takes = d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? [];
+  // At the visitor's level: one real quote each way from players at that level (their own words, English, card length).
+  const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240;
+  const levelTake = (ok: boolean) => {
+    const fits = (x: QtReport) => ok ? x.sentiment === "positive" : x.sentiment === "negative" || x.sentiment === "mixed";
+    const own = reviews.find(x => atLevel.some(a => a.id === x.id && fits(a)) && english(x.reviewText));
+    if (own) return { id: own.id, text: own.reviewText, verbatim: true, ok };
+    const web = atLevel.filter(fits).map(a => ({ a, w: webLevels.get(a.id) })).find(({ w }) => w?.english && english(w.excerpt));
+    return web ? { id: web.a.id, text: web.w!.excerpt!, verbatim: true, ok } : null;
+  };
+  const levelTakes = levelView ? [levelTake(true), levelTake(false)].filter((x): x is NonNullable<typeof x> => !!x) : [];
+  const takes = levelTakes.length ? levelTakes : d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? [];
+  const levelWord = choice.level === "advanced" ? "advanced players" : `${choice.level}s`;
   const tips = qt?.tips.slice(0, 2) ?? [];
   const total = reports.length;
 
@@ -123,7 +144,7 @@ export default async function RacketFit(props: {
       <div className="rf-body">
         <div className="rf-main">
           <section>
-            <div className="rf-h"><h2>What players said</h2><span>{`all ${total} reports`}</span></div>
+            <div className="rf-h"><h2>{levelView ? `What ${levelWord} said` : "What players said"}</h2><span>{levelView ? `${said.length} of ${total} reports are from ${levelWord}` : `all ${total} reports`}</span></div>
             <div className="rf-said">
               <div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
               <p className="rf-counts"><span>{`👍 ${pos} liked it`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} not for them`}</span></p>

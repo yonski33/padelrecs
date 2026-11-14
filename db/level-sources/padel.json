@@ -1,11 +1,11 @@
 {
- "_about": "Where each racket's level comes from besides player reports (owner 2026-11-15, RACKET-FIT-PAGE.md 'Racket level band: sources'). maker: the level the brand states on its own product page, with the URL. youtube: the band 2+ review channels agree on (site-jobs/youtube-pilot-levels.md, TubeAlfred read 2026-11-15; brand copy read aloud not counted). Levels: 0 beginner, 1 intermediate, 2 advanced. Maker levels read 2026-11-15 from the brand pages (no level recorded where the page had none or was unreachable: Metalbone CTRL 3.5/3.4, Counter Viper 2025, AT10 12K 2025).",
+ "_about": "Where each racket's level comes from besides player reports (owner 2026-11-15, RACKET-FIT-PAGE.md 'Racket level band: sources'). maker: the level the brand states on its own product page, with the URL. youtube: the band from the reviewers' summary in site-jobs/youtube-pilot-levels.md (TubeAlfred, 2026-11-15, quotes script-verified; channels = channel families; half steps mapped by the file's own words). Levels: 0 beginner, 1 intermediate, 2 advanced. Maker levels read 2026-11-15 from the brand pages (no level recorded where the page had none or was unreachable: Metalbone CTRL 3.5/3.4, Counter Viper 2025, AT10 12K 2025).",
  "adidas-metalbone-ctrl-2026": {
   "youtube": {
    "from": 0,
    "to": 1,
    "channels": 3,
-   "of": 4
+   "of": 3
   }
  },
  "adidas-metalbone-ctrl-3-4-2025": {
@@ -13,15 +13,15 @@
    "from": 0,
    "to": 1,
    "channels": 3,
-   "of": 4
+   "of": 3
   }
  },
  "babolat-counter-viper-2025": {
   "youtube": {
    "from": 1,
    "to": 2,
-   "channels": 2,
-   "of": 3
+   "channels": 4,
+   "of": 4
   }
  },
  "bullpadel-vertex-05-geo-2026": {
@@ -42,7 +42,7 @@
   "youtube": {
    "from": 1,
    "to": 2,
-   "channels": 2,
+   "channels": 3,
    "of": 3
   },
   "maker": {
@@ -56,8 +56,8 @@
   "youtube": {
    "from": 1,
    "to": 2,
-   "channels": 2,
-   "of": 3
+   "channels": 4,
+   "of": 4
   },
   "maker": {
    "from": 2,
@@ -68,10 +68,10 @@
  },
  "siux-electra-pro-st4-2025": {
   "youtube": {
-   "from": 0,
-   "to": 1,
-   "channels": 2,
-   "of": 3
+   "from": 1,
+   "to": 2,
+   "channels": 5,
+   "of": 5
   },
   "maker": {
    "from": 2,
@@ -86,6 +86,12 @@
    "to": 2,
    "words": "Level: Intermediate Advanced",
    "url": "https://noxsport.com/en/products/racket-at10-genius-18k-alum-by-agustin-tapia"
+  },
+  "youtube": {
+   "from": 1,
+   "to": 2,
+   "channels": 4,
+   "of": 4
   }
  },
  "bullpadel-vertex-05-hybrid-2026": {
@@ -94,6 +100,12 @@
    "to": 2,
    "words": "Player level: Professional",
    "url": "https://www.bullpadel.com/gb/5679-racket-bullpadel-vertex-05-hyb.html"
+  },
+  "youtube": {
+   "from": 0,
+   "to": 1,
+   "channels": 3,
+   "of": 3
   }
  },
  "bullpadel-neuron-02-2026": {
@@ -142,6 +154,30 @@
    "to": 2,
    "words": "for competition-ready players",
    "url": "https://www.wilson.com/en-us/products/endure-pro-v1-padel-racket-wr19030"
+  }
+ },
+ "nox-at10-genius-12k-2025": {
+  "youtube": {
+   "from": 1,
+   "to": 2,
+   "channels": 5,
+   "of": 5
+  }
+ },
+ "siux-diablo-pro-4-2025": {
+  "youtube": {
+   "from": 1,
+   "to": 2,
+   "channels": 3,
+   "of": 3
+  }
+ },
+ "adidas-metalbone-carbon-ctrl-3-4-2025": {
+  "youtube": {
+   "from": 1,
+   "to": 1,
+   "channels": 3,
+   "of": 3
   }
  }
 }

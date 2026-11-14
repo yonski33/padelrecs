@@ -141,6 +141,13 @@
       "when": 1794802800000,
       "tag": "0020_quick_take",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1794889200000,
+      "tag": "0021_report_level",
+      "breakpoints": true
     }
   ]
 }
