@@ -36,6 +36,13 @@ export const externalReviews = catalogSchema.table("external_reviews", {
 export const reviewVotes = catalogSchema.table("review_votes", {
  reviewType: text("review_type", { enum: ["player", "web"] }).notNull(), reviewId: text("review_id").notNull(), voter: text("voter").notNull(), createdAt: text("created_at").notNull()
 }, t => [uniqueIndex("review_votes_unique").on(t.reviewType, t.reviewId, t.voter), index("review_votes_voter_idx").on(t.voter, t.createdAt), check("review_vote_type", sql`${t.reviewType} in ('player','web')`)]).enableRLS();
+// Quick votes (2026-11-14 pivot): one love / ok / no per product per device, with the voter's level, style and side when
+// they gave them. voter is a keyed hash of a random device cookie; network a keyed hash of IP + browser, for rate limits.
+export const productVotes = catalogSchema.table("product_votes", {
+ racketId: text("racket_id").notNull().references(() => rackets.id), voter: text("voter").notNull(), network: text("network").notNull(),
+ verdict: text("verdict", { enum: ["love", "ok", "no"] }).notNull(), level: text("level"), style: text("style"), side: text("side"),
+ createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("product_votes_unique").on(t.racketId, t.voter), index("product_votes_voter_idx").on(t.voter), index("product_votes_network_idx").on(t.network, t.updatedAt), check("product_vote_verdict", sql`${t.verdict} in ('love','ok','no')`)]).enableRLS();
 // Old racket URLs keep working after a slug change: /rackets/<old slug> redirects to the racket's current slug.
 export const racketSlugRedirects = catalogSchema.table("racket_slug_redirects", {
  slug: text("slug").primaryKey(), racketId: text("racket_id").notNull().references(() => rackets.id), createdAt: text("created_at").notNull()

@@ -22,6 +22,7 @@ import { displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
+import QuickVote from "../../quick-vote";
 import { tagTone } from "../../../lib/tags";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
@@ -373,6 +374,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
             {sum.total > 0 && <a className="lp-read" href="#reviews">{`Read ${sum.total.toLocaleString("en-US")} ${sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">↓</span></a>}</p>
         </div>
       </section>
+      {/* Quick votes (2026-11-14 pivot): one tap right under the header, the easiest way to add to the page. */}
+      <QuickVote racketId={r.id} name={fullName} plural={niche.words.many} people={niche.people} levels={niche.profile.playerLevel.options.map(o => o.value)}
+        styles={niche.profile.playingStyle.options.map(o => o.value)} addHref={addHref} rateHref="/rate"/>
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
         <h2 id="lp-mention-title">What people mention</h2>
         <div className="lp-mention-cols">
