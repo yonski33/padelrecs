@@ -913,3 +913,36 @@ test("the GrillRecs catalog: 248 sourced products in all eight categories, one p
     assert.deepEqual(await importSnapshot(db, snapshot), { brands: 36, rackets: 248, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
+
+test("the EbikeRecs catalog: 215 sourced e-bikes and e-scooters in all seven categories, one model per generation, unique URLs", async () => {
+  const { niches } = await import("../lib/niche");
+  const catalog = await readCatalog("db/catalogs/ebike.json");
+  const snapshot = catalogSnapshot(catalog, "ebikerecs", "catalog:test", false);
+  assert.equal(snapshot.tables.brands.length, 39);
+  assert.equal(snapshot.tables.rackets.length, 215);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 215);
+  const categories = niches.ebike.specs.find(s => s.column === "shape")!.options!;
+  const { shapeOf: drawing } = await import("../app/art/ebike");
+  for (const r of snapshot.tables.rackets) {
+    assert(categories.includes(r.shape!), `${r.name}: unknown category ${r.shape}`);
+    assert(drawing(r.shape) !== "unknown", `${r.name}: no drawing for ${r.shape}`);
+    // Names carry the maker's generation, never a model year.
+    assert.doesNotMatch(r.name, /\b20[12]\d\b/, r.name);
+  }
+  for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 8, `${c}: at least 8 models`);
+  assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
+  // Generations are separate products, never merged (the niche's traps).
+  for (const name of ["Rad Power Bikes RadRunner Plus", "Rad Power Bikes RadRunner 3 Plus", "Rad Power Bikes RadRunner 2", "Rad Power Bikes RadWagon 4", "Rad Power Bikes RadWagon 5",
+    "Aventon Level.2", "Aventon Level.3", "Lectric XP 3.0", "Lectric XP4", "Lectric XP4 750", "Specialized Turbo Vado", "Specialized Turbo Vado SL", "Specialized Turbo Vado SL 2",
+    "Specialized Turbo Levo", "Specialized Turbo Levo 4", "Specialized Turbo Levo SL 2", "Tern GSD Gen 2", "Tern GSD Gen 3", "Riese & Müller Charger4", "Riese & Müller Charger5",
+    "Segway Ninebot Max G30P", "Segway Ninebot Max G2", "Segway Ninebot Max G3", "Xiaomi Electric Scooter 4 Pro", "Xiaomi Electric Scooter 4 Pro (2nd Gen)"]) {
+    assert(snapshot.tables.rackets.some(r => r.name === name), name);
+  }
+  const engine = new PGlite();
+  try {
+    for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
+    const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 39, rackets: 215, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 39, rackets: 215, reviews: 0, externalReviews: 0 });
+  } finally { await engine.close(); }
+});
