@@ -914,13 +914,13 @@ test("the GrillRecs catalog: 248 sourced products in all eight categories, one p
   } finally { await engine.close(); }
 });
 
-test("the EbikeRecs catalog: 215 sourced e-bikes and e-scooters in all seven categories, one model per generation, unique URLs", async () => {
+test("the EbikeRecs catalog: 216 sourced e-bikes and e-scooters in all seven categories, one model per generation, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   const catalog = await readCatalog("db/catalogs/ebike.json");
   const snapshot = catalogSnapshot(catalog, "ebikerecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 39);
-  assert.equal(snapshot.tables.rackets.length, 215);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 215);
+  assert.equal(snapshot.tables.rackets.length, 216);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 216);
   const categories = niches.ebike.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/ebike");
   for (const r of snapshot.tables.rackets) {
@@ -942,7 +942,7 @@ test("the EbikeRecs catalog: 215 sourced e-bikes and e-scooters in all seven cat
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 39, rackets: 215, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 39, rackets: 215, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 39, rackets: 216, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 39, rackets: 216, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });

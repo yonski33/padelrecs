@@ -1618,6 +1618,18 @@
   },
   {
    "brand": "ride1up",
+   "name": "Ride1Up 500 Series",
+   "shape": "Commuter & city",
+   "balance": null,
+   "surface": "Commuter",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://ride1up.com/wp-content/uploads/2023/07/500-Series-Manual-7.21.23.pdf"
+   ]
+  },
+  {
+   "brand": "ride1up",
    "name": "Ride1Up 700 Series",
    "shape": "Commuter & city",
    "balance": "48V 750W sustained AKM angled-gear hub",
