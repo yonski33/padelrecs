@@ -85,6 +85,14 @@ test("verdict chips: optional, 5 words at most, checked like other text", () => 
   assert.ok(covered.ok && covered.warnings.some(w => w.includes("repeats the court map")));
 });
 
+test("plays rows: key opens the line (2–4 words); one marker in the section", () => {
+  const row = (over: object) => block({ plays: { ...block().plays!, rows: [{ label: "Spin", chip: "Strong", line: "The face bites hard.", reports: ids(10, 5), ...over }] } });
+  assert.ok(check(row({ key: "The face bites" })).ok);
+  assert.ok(check(row({ key: "bites hard" })).errors.some(e => e.includes("must open with")));
+  assert.ok(check(row({ key: "Bites" })).errors.some(e => e.includes("2–4")));
+  assert.ok(check(row({ line: "==One== and ==two==." })).errors.some(e => e.includes("plays: 2 markers")));
+});
+
 test("banned words", () => {
   assert.ok(check(block({ tldr: { ...block().tldr, madeFor: ["AT10 owners", "b", "c"] } })).errors.some(e => e.includes("owners")));
   assert.ok(check(block({ tldr: { ...block().tldr, lead: "From Reddit reviews." } })).errors.some(e => e.includes("Reddit reviews")));

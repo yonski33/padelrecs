@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import "./quick-take.css";
-import { COURT_ROWS, about, chipTone, levelBand, monthYear, roundedDown, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake, type Verdict } from "../../../lib/quick-take";
+import { COURT_ROWS, about, chipRank, chipTone, levelBand, monthYear, roundedDown, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake, type Verdict } from "../../../lib/quick-take";
 import { phraseSegments } from "../../../lib/highlights";
 import { platformName } from "../../../lib/source-label";
 import QuickTakeComposer from "./quick-take-composer";
@@ -98,10 +98,8 @@ function Hero({ c }: { c: Ctx }) {
           </div>
         </div>}
       </div>
-      {(c.heroSpecs.length > 0 || c.buy) && <div className="hero-buy">
-        {c.heroSpecs.map(x => <span key={x} className="spec">{x}</span>)}
-        {c.buy && <a className="buy" href={c.buy.url} target="_blank" rel={c.buy.rel}>{c.buy.label} <span aria-hidden="true">↗</span></a>}
-      </div>}
+      {c.heroSpecs.length > 0 && <div className="hero-specs">{c.heroSpecs.map(x => <span key={x} className="spec">{x}</span>)}</div>}
+      {c.buy && <div className="hcta"><a className="buy" href={c.buy.url} target="_blank" rel={c.buy.rel}>{c.buy.label} <span aria-hidden="true">↗</span></a></div>}
       <div className="read">
         {c.pills.map(p => <span key={p} className="src-pill"><i/>{p}</span>)}
         {c.from && c.to && <span>Reports from <b>{`${monthYear(c.from)} to ${monthYear(c.to)}`}</b></span>}
@@ -130,13 +128,14 @@ const Tldr = ({ c }: { c: Ctx }) => <section id="tldr">
 function Plays({ c }: { c: Ctx }) {
   const p = c.qt.plays, hardness = c.module("hardness");
   if (!p) return null;
-  const rows = p.court ? p.rows.filter(r => !COURT_ROWS.test(r.label)) : p.rows;
+  // Rows the court map covers are left out; the rest go strongest chip first (owner 2026-11-15).
+  const rows = (p.court ? p.rows.filter(r => !COURT_ROWS.test(r.label)) : p.rows).map((r, i) => ({ r, i })).sort((a, b) => chipRank(a.r.chip) - chipRank(b.r.chip) || a.i - b.i).map(x => x.r);
   return <section id="plays">
     <Heading text="How it plays" verdict={p.verdict}/>
     <p className="lead"><Rich text={p.lead}/></p>
     {p.court && <Court court={p.court}/>}
     {rows.length > 0 && <div className="rows play">{rows.map(r =>
-      <div key={r.label} className="r"><b>{r.label}</b><span className={chipClass(r.chip)}>{r.chip}</span><span><Rich text={r.line}/></span></div>)}</div>}
+      <div key={r.label} className="r"><b>{r.label}</b><span className={chipClass(r.chip)}>{r.chip}</span><span>{r.key && r.line.startsWith(r.key) ? <><strong>{r.key}</strong><Rich text={r.line.slice(r.key.length)}/></> : <Rich text={r.line}/>}</span></div>)}</div>}
     {hardness && <Hardness m={hardness}/>}
     {c.tipsAt("plays")}
   </section>;
@@ -253,7 +252,7 @@ function Court({ court }: { court: NonNullable<NonNullable<QuickTake["plays"]>["
         return <g key={k}><text className="zn" x={cx} y="108" textAnchor="middle">{label}</text>
           <rect className={`chip-${t}`} x={cx - w / 2} y="118" width={w} height="22" rx="11"/><text className={`chip-t c-${t}`} x={cx} y="133" textAnchor="middle">{word}</text></g>; })}
     </svg>
-    <figcaption className="court-key">{zones.map(([k, label]) => court[k] && <div key={k}><b>{label}</b><span><Rich text={court[k]!.line}/></span></div>)}</figcaption>
+    <figcaption className="court-key">{zones.map(([k, label]) => <div key={k}><b>{label}</b>{court[k] ? <span><Rich text={court[k]!.line}/></span> : <span className="zone-thin">Not enough said: fewer than 5 players mention it.</span>}</div>)}</figcaption>
   </figure>;
 }
 

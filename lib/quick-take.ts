@@ -20,6 +20,8 @@ export const COURT_ROWS = /^(attack|overheads?|smash(es)?|defen[cs]e|at the net|
 /** The How it plays chips, strongest first (recipe §3). */
 export const CHIPS = ["Loved", "Strong", "Good", "Decent", "Divided", "Tricky", "Limited"] as const;
 export type Chip = typeof CHIPS[number];
+/** Rows are drawn strongest chip first. */
+export const chipRank = (c: Chip) => CHIPS.indexOf(c);
 export const chipTone = (c: Chip) => c === "Limited" ? "b" : ["Loved", "Strong", "Good"].includes(c) ? "g" : "m";
 
 /** A short verdict chip beside a section heading (owner 2026-11-15): ≤5 words, green, amber or neutral. Optional. */
@@ -28,7 +30,8 @@ export type Verdict = NonNullable<z.infer<typeof verdict>>;
 const receipt = z.object({ id: z.string().min(1), text: line, verbatim: z.boolean().optional() }).strict();
 const receipts = z.array(receipt).max(10).optional();
 const zone = z.object({ chip: z.enum(CHIPS), line, reports: ids }).strict();
-const row = z.object({ label: z.string().trim().min(1).max(40), chip: z.enum(CHIPS), line, reports: ids }).strict();
+/** A How it plays row. key: 2–4 words the line opens with, drawn bold so the rows scan (owner 2026-11-15). */
+const row = z.object({ label: z.string().trim().min(1).max(40), chip: z.enum(CHIPS), key: z.string().trim().min(1).max(40).optional(), line, reports: ids }).strict();
 const plainRow = z.object({ label: z.string().trim().min(1).max(40), line }).strict();
 const bullets = (min: number, max: number) => z.array(line).min(min).max(max);
 

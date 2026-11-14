@@ -128,6 +128,14 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
     if (zones.length === 1) errors.push("court map: needs 2+ zones with 5+ mentions each");
     qt.plays.rows.forEach(r => need(`plays.rows ${r.label}`, r.reports, 5, "mentions"));
     if (zones.length) for (const r of qt.plays.rows) if (COURT_ROWS.test(r.label)) warnings.push(`plays row "${r.label}" repeats the court map and isn't shown`);
+    for (const r of qt.plays.rows) if (r.key !== undefined) {
+      const n = r.key.split(/\s+/).length;
+      if (n < 2 || n > 4) errors.push(`plays row "${r.label}": key is ${n} words, 2–4`);
+      if (!r.line.startsWith(r.key)) errors.push(`plays row "${r.label}": the line must open with its key "${r.key}"`);
+    }
+    // At most one marker in How it plays, on the row that decides it for most buyers (owner 2026-11-15).
+    const playMarks = markCount(qt.plays.lead) + qt.plays.rows.reduce((n, r) => n + markCount(r.line), 0) + Object.values(qt.plays.court ?? {}).reduce((n, z) => n + (z ? markCount(z.line) : 0), 0);
+    if (playMarks > 1) errors.push(`plays: ${playMarks} markers, at most one`);
     if (qt.plays.rows.filter(r => r.chip === "Loved").length > 1) errors.push("plays: at most one Loved chip");
     if (!zones.length && !qt.plays.rows.length) errors.push("plays: needs a court map or rows");
   }

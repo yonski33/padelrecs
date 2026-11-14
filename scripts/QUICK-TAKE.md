@@ -59,7 +59,10 @@ Text fields take `**bold**` and `==marker==` (yellow marker). Keep every line sh
 tone g (good), m (mixed) or n (neutral). Leave it out when no short honest verdict fits.
 
 **How it plays rows:** with a court map, rows for Attack/Overheads, Defence and the net are not shown (the map covers them);
-write rows only for Handling, Spin, Control, Sweet spot and Feel.
+write rows only for Handling, Spin, Control, Sweet spot and Feel (plus Power or Comfort when they decide it).
+Each row gets a `key`: 2–4 words the line opens with, drawn bold ("You feel every shot", "Wide and forgiving", "The weak spot").
+Rows are drawn strongest chip first. At most one `==marker==` in the whole section, on the row that decides it for most
+buyers (Counter Viper: Comfort, "==rough on the arm==").
 
 `slug` on a compare card or a version module is a catalog slug from the export (for its photo and link), or null. `tile` is
 the short name shown when there's no photo. Tip `after` is where the note sits: tldr, plays, catch, compare, answers, or a
