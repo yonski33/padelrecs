@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { about, gateFor, levelBand, markCount, readQuickTake, roundedDown, sentimentWords, sourcePills, spans, quickTakeSeo, type QuickTake } from "../lib/quick-take";
+import { about, decisiveRows, evidenceLabel, gateFor, levelBand, markCount, readQuickTake, roundedDown, sentimentWords, sourcePills, spans, quickTakeSeo, type QuickTake } from "../lib/quick-take";
 import { checkQuickTake, quotedPassages, type Report } from "../lib/quick-take-check";
 
 const report = (i: number, over: Partial<Report> = {}): Report => ({ id: `r${i}`, kind: "web", platform: "Reddit", sourceName: "r/Padelracket",
@@ -15,7 +15,7 @@ const block = (over: Partial<QuickTake> = {}): QuickTake => ({
   plays: { lead: "Quick in the hands.", court: { net: { chip: "Tricky", line: "Volleys fly.", reports: ids(0, 5) }, overheads: { chip: "Strong", line: "Big pop.", reports: ids(5, 5) } }, rows: [{ label: "Spin", chip: "Strong", line: "Bites.", reports: ids(10, 5) }] },
   catch: { lead: "The bounce. ==Most wish there was less==.", bullets: ["Volleys fly long", "Some love the pop"], reports: ids(0, 12), about: true },
   modules: [{ type: "arm", lead: "Split.", kind: ["Kind to one"], harsh: ["Sore for two"], reports: ids(0, 6) }],
-  compare: { lead: "More punch.", cards: [{ slug: "nox-at10", name: "Nox AT10", arrows: [{ dir: "up", text: "More power" }], reports: ids(0, 3) }, { slug: "nox-at10", name: "Nox AT10 again", arrows: [{ dir: "same", text: "Close cousins" }], reports: ids(3, 3) }] },
+  compare: { lead: "More punch.", cards: [{ slug: "nox-at10", name: "Nox AT10", takeaway: "More power, but less forgiving.", arrows: [{ dir: "up", text: "More power" }], reports: ids(0, 3) }, { slug: "nox-at10", name: "Nox AT10 again", takeaway: "Close cousins.", arrows: [{ dir: "same", text: "Close cousins" }], reports: ids(3, 3) }] },
   answers: [0, 1, 2, 3].map(i => ({ q: `Q${i}?`, badge: "Yes", tone: "yes" as const, a: "Players say so.", reports: ids(i, 3) })),
   tips: [{ label: "Player tip", text: "Weigh it first. Two players suggest it.", after: "arm", reports: ids(20, 2) }, { label: "Weather check", text: "Softer in summer.", after: "plays", reports: ids(22, 2) }],
   thinSpot: "only 3 players compared it with the ST3.", counts, written: "2026-11-15", ...over,
@@ -98,6 +98,19 @@ test("plays rows: key opens the line (2–4 words); one marker in the section", 
   assert.ok(check(row({ key: "bites hard" })).errors.some(e => e.includes("must open with")));
   assert.ok(check(row({ key: "Bites" })).errors.some(e => e.includes("2–4")));
   assert.ok(check(row({ line: "==One== and ==two==." })).errors.some(e => e.includes("plays: 2 markers")));
+});
+
+test("audit rules: takeaway length, repeats, hedging, evidence labels, decisive rows", () => {
+  const cmp = block().compare!;
+  assert.ok(!check(block({ compare: { ...cmp, cards: [{ ...cmp.cards[0], takeaway: "one two three four five six seven eight nine ten eleven" }] } })).ok);
+  const rep = check(block({ tldr: { ...block().tldr, lead: "Bouncy at the net." }, catch: { ...block().catch, lead: "Bouncy at the net, they say." }, answers: block().answers.map((a, i) => i ? a : { ...a, a: "Bouncy at the net." }) }));
+  assert.ok(rep.warnings.some(w => w.includes('"bouncy net"')));
+  const flat = check(block({ modules: [{ type: "arm", lead: "Kind to elbows.", kind: ["Soft"], harsh: ["Hard"], reports: ids(0, 6) }] }));
+  assert.ok(flat.warnings.some(w => w.includes("flat claim")));
+  assert.equal(evidenceLabel(1), null); assert.equal(evidenceLabel(3), "Reported by 3 players · limited evidence");
+  assert.equal(evidenceLabel(7), "7 players"); assert.equal(evidenceLabel(43), "Common · 40+ players");
+  const rows = (["Good", "Loved", "Divided", "Limited", "Strong"] as const).map(chip => ({ chip }));
+  assert.deepEqual(decisiveRows(rows).map(r => r.chip), ["Loved", "Divided", "Limited"]);
 });
 
 test("banned words", () => {

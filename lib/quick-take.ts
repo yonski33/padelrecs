@@ -74,6 +74,8 @@ export const quickTakeSchema = z.object({
   /** Rivals are rackets in the catalog only (owner 2026-11-15): a slug for the photo and link. An older version of the same
    *  racket only when it's the direct predecessor. One card is fine; with none, leave out the section. */
   compare: z.object({ verdict, lead: line, cards: z.array(z.object({ slug: z.string().min(1), name: z.string().trim().min(1).max(60), tile: z.string().trim().max(8).optional(),
+    /** One plain sentence above the arrows, ≤10 words: "More power, but less forgiving." (owner 2026-11-15) */
+    takeaway: z.string().trim().min(1).max(90).refine(t => t.split(/\s+/).length <= 10, "10 words at most"),
     arrows: z.array(z.object({ dir: z.enum(["up", "down", "same", "none"]), text: z.string().trim().min(1).max(48) }).strict()).min(1).max(4), reports: ids }).strict()).min(1).max(4),
     went: z.object({ label: z.string().trim().min(1).max(30), text: line }).strict().optional() }).strict().optional(),
   /** Only questions the rest of the page hasn't answered: 3–6 of them, or none (owner 2026-11-15). */
@@ -159,4 +161,25 @@ export function quickTakeSeo(name: string, year: number, qt: QuickTake, reports:
     title: `${name} review (${year}): what players say | ${site}`,
     description: `${plain(qt.hook.good)} ${plain(qt.hook.catch)} From ${roundedDown(reports)}+ player reports.`,
   };
+}
+
+/** The evidence label on concerns, claims and tips (owner 2026-11-15), from the number of different players behind it. */
+export function evidenceLabel(players: number) {
+  if (players < 2) return null;
+  if (players <= 4) return `Reported by ${players} players · limited evidence`;
+  if (players < 10) return `${players} players`;
+  return `Common · ${Math.floor(players / 5) * 5}+ players`;
+}
+/** Different players behind a list of reports: one per source link (a Reddit comment, a video, a review here). */
+export function distinctPlayers(ids: readonly string[], urlOf: (id: string) => string | null | undefined) {
+  return new Set(ids.map(id => (urlOf(id) ?? id).replace(/[?&]lc=.*$/, "").toLowerCase())).size;
+}
+
+/** The How it plays rows shown before "+ Show all" (owner 2026-11-15): the strongest, the weakest and the most divided. */
+export function decisiveRows<R extends { chip: Chip }>(rows: R[]): R[] {
+  if (rows.length <= 3) return rows;
+  const by = [...rows].sort((a, b) => chipRank(a.chip) - chipRank(b.chip));
+  const strongest = by[0], weakest = by[by.length - 1];
+  const divided = by.find(r => r !== strongest && r !== weakest && r.chip === "Divided") ?? by.find(r => r !== strongest && r !== weakest && chipTone(r.chip) === "m") ?? by[1];
+  return by.filter(r => r === strongest || r === divided || r === weakest);
 }

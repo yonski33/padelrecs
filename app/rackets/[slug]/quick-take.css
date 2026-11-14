@@ -258,3 +258,43 @@
   }
 }
 .qt .fo .pic .none { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 14px; background: var(--line); color: var(--mute); font: 800 18px var(--display); }
+
+/* Audit batch (owner 2026-11-15): one colour system. Muted green = strength, soft coral = concern, pale yellow = tip;
+   everything else white or cream, typography only. */
+.qt {
+  --pos-wash: #eaf3ec; --neg-wash: #fbe9e4; --tip: #fff8d6;
+  .pill { background: none; padding: 0; color: var(--acc); }
+  .lband { background: var(--pos-wash); }
+  .lt.on { color: var(--pos); }
+  .chip.m, .badge.m, .hchip.m { background: var(--line); color: var(--ink); }
+  .badge { background: var(--pos-wash); color: var(--pos); }
+  .badge.n { background: var(--line); color: var(--ink); }
+  .ps > b { background: var(--pos-wash); color: var(--pos); }
+  .split > .tldr-box { background: var(--pos-wash); }
+  .split > .tldr-box.no { background: var(--neg-wash); }
+  .byb-card .split > div, .split > div { background: var(--card); }
+  .vchip.mixed { background: var(--line); color: var(--ink); }
+  /* Plain sections: no boxes around answers and compare cards, just type and space. */
+  .qa2 .q { border-color: transparent; background: none; padding: 4px 0; }
+  .margin-note { background: var(--tip); }
+
+  /* Evidence label (Reported by N players · limited evidence / Common · N+ players) */
+  .ev { display: inline-block; margin: 2px 0 6px; font: 600 12px var(--body); color: var(--mute); }
+  .margin-note .ev { display: block; margin: 4px 0 0; }
+  .from .ev { margin: 0; }
+  /* Compare: one plain takeaway above the arrows */
+  .vscard .take { margin: 0; font: 600 14.5px/1.35 var(--body); }
+  /* How it plays: the rest of the rows behind "+ Show all N" */
+  details.more-rows summary { cursor: pointer; list-style: none; padding: 10px 0; font: 600 13.5px var(--body); color: var(--acc); }
+  details.more-rows summary::-webkit-details-marker { display: none; }
+  details.more-rows[open] summary { display: none; }
+  /* Player score note */
+  .ps-label { position: relative; font: 600 13.5px var(--body); color: var(--ink); text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; outline-offset: 2px; }
+  .ps-i { margin-left: 3px; font-size: 12px; color: var(--mute); text-decoration: none; display: inline-block; }
+  .ps-note { position: absolute; left: 0; top: calc(100% + 6px); z-index: 5; width: 240px; padding: 8px 10px; border-radius: 10px; background: var(--ink); color: var(--bg); font: 500 12.5px/1.4 var(--body); text-decoration: none; opacity: 0; visibility: hidden; transition: opacity .15s; }
+  .ps-label:hover .ps-note, .ps-label:focus .ps-note, .ps-label:focus-within .ps-note { opacity: 1; visibility: visible; }
+  /* Trial: one-line vote under the TL;DR (ST4) */
+  .qvl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 16px; font: 600 14.5px var(--body); }
+  .qvl small { flex-basis: 100%; font: 500 13px var(--body); color: var(--mute); }
+}
+@media (prefers-reduced-motion: reduce) { .qt .ps-note { transition: none; } }

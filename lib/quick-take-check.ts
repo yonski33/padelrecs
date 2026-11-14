@@ -64,7 +64,7 @@ function fields(qt: QuickTake): Field[] {
   });
   if (qt.compare) {
     add("compare.lead", qt.compare.lead);
-    qt.compare.cards.forEach((c, i) => c.arrows.forEach((a, j) => add(`compare.cards[${i}].arrows[${j}]`, a.text, c.reports)));
+    qt.compare.cards.forEach((c, i) => { add(`compare.cards[${i}].takeaway`, c.takeaway, c.reports); c.arrows.forEach((a, j) => add(`compare.cards[${i}].arrows[${j}]`, a.text, c.reports)); });
     if (qt.compare.went) add("compare.went", qt.compare.went.text);
   }
   qt.answers.forEach((a, i) => { add(`answers[${i}].q`, a.q); add(`answers[${i}].badge`, a.badge, a.reports); add(`answers[${i}].a`, a.a, a.reports); });
@@ -192,6 +192,23 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
     const present = ["tldr", "catch", "answers"].includes(place) || (place === "plays" && qt.plays) || (place === "compare" && qt.compare) || types.includes(place as never);
     if (!present) errors.push(`tip "${t.text.slice(0, 30)}…": goes after "${place}", which isn't on the page`);
   }
+  // No repeats (owner 2026-11-15): a finding is said in full once. The same pair of content words ("bouncy net") in 3+
+  // sections is flagged; the hook and The catch count as one section, since both may name the main catch.
+  const STOP = new Set(("the a an and or but of to in on at it its is it's for with you your than more less as be this that from by when " +
+    "players player say says said some most few many much very just one two three four five also not no can get gets got who what how " +
+    "they them their it's isn't don't doesn't still even if so all any feel feels lot bit").split(" "));
+  const sectionOf = (where: string) => where.startsWith("hook.") || where.startsWith("catch.") ? "catch"
+    : where.startsWith("modules[") ? where.split(" ")[1]?.split(".")[0] ?? "modules" : where.split(/[.[ ]/)[0];
+  const pairs = new Map<string, Set<string>>();
+  for (const f of fs) {
+    const w = plain(f.text).toLowerCase().replace(/[^a-z0-9' ]+/g, " ").split(/\s+/).filter(x => x && !STOP.has(x));
+    for (let i = 0; i + 1 < w.length; i++) { const k = `${w[i]} ${w[i + 1]}`; if (!pairs.has(k)) pairs.set(k, new Set()); pairs.get(k)!.add(sectionOf(f.where)); }
+  }
+  for (const [g, secs] of pairs) if (secs.size >= 3) warnings.push(`repeat: "${g}" in ${secs.size} sections (${[...secs].join(", ")}); say it in full once`);
+  // Hedged wording on subjective things (arm comfort, feel, hardness): a flat line needs 60%+ agreement.
+  const HEDGE = /\b(some|many|most|a few|few|several|players?|testers?|split|divided|opinions?|for some|found|find|say|says|said|call|calls|called|felt|feels? like|reports?|one|two|three|four|five|half|third|nobody|everyone|depends)\b/i;
+  const subjective = fs.filter(f => /^modules\[\d+\] (arm|hardness)/.test(f.where) || /^plays\.rows\[\d+\] (Feel|Comfort|Hardness)/i.test(f.where));
+  for (const f of subjective) if (!HEDGE.test(plain(f.text))) warnings.push(`${f.where}: a flat claim on something subjective; hedge it ("some players found…") unless 60%+ agree`);
   if (qt.tips.length < 2) warnings.push(`${qt.tips.length} tip notes (aim for 2–4, never invented)`);
 
   // Quote marks only on verbatim text; counts in the text no bigger than the reports behind them; banned words

@@ -341,7 +341,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       { "@type": "FAQPage", mainEntity: qt.answers.map(a => ({ "@type": "Question", name: a.q, acceptedAnswer: { "@type": "Answer", text: `${a.badge}. ${plainText(a.a)}` } })) },
       jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList"),
     ].filter(Boolean) };
-    return <QuickTakePage qt={qt} racketId={r.id} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
+    return <QuickTakePage qt={qt} racketId={r.id} slug={r.slug} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
       crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
         ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating) }))]}

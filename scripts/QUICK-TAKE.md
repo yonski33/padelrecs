@@ -105,3 +105,18 @@ The good friend who is a bit wild, with a stain on his shirt, but tells you the 
 magazine. "Players said", never "owners". Share words must match the real share: almost everyone ≥85%, most 60–84%,
 about half / many 40–59%, some / about a third 20–39%, a few / a handful 5–19%, one or two <5%. Never invent a tip; a
 complaint isn't a tip. Hero and leads never lead with Reddit. The catch is never softened.
+
+## Audit rules (owner 2026-11-15): shorter, no repeats, evidence shown
+
+- **No repeats.** Each section answers a different question; a finding is stated in full once. The hook and The catch may
+  name the main catch; every other section only adds new detail (or leaves it out). The checker warns when the same pair of
+  content words ("bouncy net") shows up in 3+ sections. Fix every such warning before saving.
+- **Compare takeaway.** Each card has `takeaway`: one plain sentence, ≤10 words, above its arrows ("More power, but less
+  forgiving."). Exact model names with year in `name`.
+- **Evidence labels** are drawn automatically from the cited reports (different players): 2–4 "Reported by N players ·
+  limited evidence", 5–9 "N players", 10+ "Common · N+ players". They show on The catch, the Before you buy cards and tips,
+  so cite every report that supports them, and only those.
+- **Hedge subjective things** (arm comfort, feel, hardness): "some players found…", "opinions split…". A flat statement only
+  when 60%+ of the reports on it agree. The checker warns on flat lines in the arm/hardness modules and Feel/Comfort rows.
+- **How it plays** shows the 3 most decisive rows (strongest, most divided, weakest); the rest sit behind "+ Show all".
+  Put the important information in those.
