@@ -776,15 +776,15 @@ test("the PrintRecs catalog: 190 sourced products in all five categories, models
   } finally { await engine.close(); }
 });
 
-test("the TVRecs catalog: 219 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
+test("the TVRecs catalog: 220 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
   const { niches } = await import("../lib/niche");
   // Pre-2023 sets added because 3+ owners reviewed them (owner's standing rule, parent OK 2026-11-12).
-  const OLDER = ["LG C2", "LG C1", "LG CX", "LG C9", "LG C7", "LG G2", "Samsung S95B", "Samsung QN90B", "LG C8", "Samsung QN90A", "Sony A80J", "LG B7", "Sony A80K", "Sony A95K", "Sony A90J", "LG G1", "Sony X900H", "Sony A8H", "Sony X90J", "Sony X95K", "TCL R655", "TCL R646", "LG B6 (2016)", "LG B8", "LG B9", "LG A2", "Samsung Q90T", "LG BX", "Sony X90K", "TCL C855", "LG B2", "Hisense U8H", "Hisense U8G", "Hisense U7G"];
+  const OLDER = ["LG C2", "LG C1", "LG CX", "LG C9", "LG C7", "LG G2", "Samsung S95B", "Samsung QN90B", "LG C8", "Samsung QN90A", "Sony A80J", "LG B7", "Sony A80K", "Sony A95K", "Sony A90J", "LG G1", "Sony X900H", "Sony A8H", "Sony X90J", "Sony X95K", "TCL R655", "TCL R646", "LG B6 (2016)", "LG B8", "LG B9", "LG A2", "LG C6 (2016)", "Samsung Q90T", "LG BX", "Sony X90K", "TCL C855", "LG B2", "Hisense U8H", "Hisense U8G", "Hisense U7G"];
   const catalog = await readCatalog("db/catalogs/tv.json");
   const snapshot = catalogSnapshot(catalog, "tvrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 12);
-  assert.equal(snapshot.tables.rackets.length, 219);
-  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 219);
+  assert.equal(snapshot.tables.rackets.length, 220);
+  assert.equal(new Set(snapshot.tables.rackets.map(r => r.slug)).size, 220);
   const categories = niches.tv.specs.find(s => s.column === "shape")!.options!;
   const { shapeOf: drawing } = await import("../app/art/tv");
   for (const r of snapshot.tables.rackets) {
@@ -795,7 +795,7 @@ test("the TVRecs catalog: 219 sourced TVs in all three categories, one product p
   }
   for (const c of categories) assert(snapshot.tables.rackets.filter(r => r.shape === c).length >= 30, `${c}: at least 30 TVs`);
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));
-  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 219, "one source URL per product");
+  assert.equal(new Set(catalog.products.map(p => p.sources[0])).size, 220, "one source URL per product");
   // Model years with near-identical names are separate products, never merged (the niche's generation traps).
   for (const name of ["LG C3", "LG C4", "LG C5", "LG C6", "Samsung S90C", "Samsung S90D", "Samsung S90F", "Sony Bravia 8", "Sony Bravia 8 II",
     "Sony A80L", "TCL QM8", "TCL QM8 (2024)", "TCL QM8K", "Hisense U8K", "Hisense U8N", "Hisense U8QG", "Panasonic Z95A", "Panasonic Z95B"]) {
@@ -806,8 +806,8 @@ test("the TVRecs catalog: 219 sourced TVs in all three categories, one product p
   try {
     for (const statement of migrationSql("padelrecs")) await engine.exec(statement);
     const db = drizzle(engine) as unknown as ReturnType<typeof getDb>;
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 219, reviews: 0, externalReviews: 0 });
-    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 219, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 220, reviews: 0, externalReviews: 0 });
+    assert.deepEqual(await importSnapshot(db, snapshot), { brands: 12, rackets: 220, reviews: 0, externalReviews: 0 });
   } finally { await engine.close(); }
 });
 
