@@ -47,7 +47,9 @@ export function shares(parts: number[]) {
 export const positiveShare = (s: Pick<ScoreT, "positive" | "judged">) => s.judged >= 3 ? Math.round(s.positive / s.judged * 100) : null;
 
 /** Positive / mixed / negative as one bar. `legend` adds the three shares under it. */
-export function SentimentBar({ positive, mixed, negative, legend = false, className = "" }: { positive: number; mixed: number; negative: number; legend?: boolean; className?: string }) {
+/** legend: true lists the shares; "counts" lists the counts (compare pages, owner 2026-11-14: a share next to the
+ *  signal read like a second, competing score). */
+export function SentimentBar({ positive, mixed, negative, legend = false, className = "" }: { positive: number; mixed: number; negative: number; legend?: boolean | "counts"; className?: string }) {
   const total = positive + mixed + negative;
   if (!total) return null;
   const [p, m, n] = shares([positive, mixed, negative]);
@@ -58,7 +60,11 @@ export function SentimentBar({ positive, mixed, negative, legend = false, classN
       {mixed > 0 && <i className="s-mixed" style={{ width: `${mixed / total * 100}%` }}/>}
       {negative > 0 && <i className="s-negative" style={{ width: `${negative / total * 100}%` }}/>}
     </span>
-    {legend && <span className="sbar-legend" aria-hidden="true"><span className="s-positive">{p}% positive</span><span className="s-mixed">{m}% mixed</span><span className="s-negative">{n}% negative</span></span>}
+    {legend === "counts" ? <span className="sbar-legend sbar-counts" aria-hidden="true">
+      <span className="s-positive"><b>{positive.toLocaleString("en-US")}</b> positive</span>
+      <span className="s-mixed"><b>{mixed.toLocaleString("en-US")}</b> mixed</span>
+      <span className="s-negative"><b>{negative.toLocaleString("en-US")}</b> negative</span></span>
+      : legend && <span className="sbar-legend" aria-hidden="true"><span className="s-positive">{p}% positive</span><span className="s-mixed">{m}% mixed</span><span className="s-negative">{n}% negative</span></span>}
   </span>;
 }
 

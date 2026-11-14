@@ -68,7 +68,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
   const discussed = [...reviewed].sort((a, b) => { const x = score(data, a.id), y = score(data, b.id); return (y.count + y.web) - (x.count + x.web); });
   const similar = products[0] ? similarProducts(products[0], reviewed, tagProfiles([...data.reviews, ...data.external]), 6) : [];
   const suggestions = [...similar, ...discussed].filter((x, i, all) => !slugs.includes(x.slug) && all.indexOf(x) === i).slice(0, 4)
-    .map(x => { const sc = score(data, x.id); return { slug: x.slug, name: nameOf(data, x), href: hrefFor([...slugs, x.slug]), x, brand: brandOf(x), reviews: sc.count + sc.web, pos: positiveShare(sc) }; });
+    .map(x => { const sc = score(data, x.id); return { slug: x.slug, name: nameOf(data, x), href: hrefFor([...slugs, x.slug]), x, brand: brandOf(x), reviews: sc.count + sc.web, pos: positiveShare(sc), positive: sc.positive }; });
   const canAdd = products.length < MAX_COMPARE;
   // Other "X vs Y" pages for these products (curated pairs only), so readers and search engines find them.
   const { partners } = comparePairs(data);
@@ -124,8 +124,8 @@ export async function CompareView({ data, products, light = false }: { data: Dat
           {cols.map(c => <div key={c.r.id} className="cmp-cell cmp-verdict">
             {c.pos !== null ? <>
               {/* The signal score leads where the product has one, as on its page and the catalogue (owner, 2026-11-12). */}
-              {c.signal ? <p className="cmp-pos cmp-signal"><b>{c.signal}</b> signal</p> : <p className="cmp-pos"><b>{c.pos}%</b> positive</p>}
-              <SentimentBar positive={c.s.positive} mixed={c.s.mixed} negative={c.s.negative} legend className="stacked"/>
+              {c.signal ? <p className="cmp-pos cmp-signal"><b>{c.signal}</b> signal</p> : <p className="cmp-pos"><b>{c.s.positive}</b> positive</p>}
+              <SentimentBar positive={c.s.positive} mixed={c.s.mixed} negative={c.s.negative} legend="counts" className="stacked"/>
             </> : <p className="cmp-few">Not enough reviews to score yet</p>}
             <a className="cmp-count" href={`${productHref(c.r)}#reviews`}>{`${c.sum.total.toLocaleString("en-US")} ${c.sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">→</span></a>
           </div>)}
@@ -186,14 +186,14 @@ function Row({ label, note, group, children }: { label: string; note?: string; g
   </section>;
 }
 
-type Suggestion = { slug: string; name: string; href: string; x: Data["rackets"][number]; brand?: string; reviews: number; pos: number | null };
+type Suggestion = { slug: string; name: string; href: string; x: Data["rackets"][number]; brand?: string; reviews: number; pos: number | null; positive: number };
 function Suggestions({ items, title, compact = false }: { items: Suggestion[]; title: string; compact?: boolean }) {
   if (!items.length) return null;
   return <div className={`cmp-sugs${compact ? " compact" : ""}`}>
     <p className="cmp-sugs-title">{title}</p>
     <ul>{items.map(s => <li key={s.slug}><a href={s.href}>
       <ProductArt product={s.x} brand={s.brand}/>
-      <span className="cmp-sug-name">{s.name}<small>{[`${s.reviews} reviews`, s.pos !== null ? `${s.pos}% positive` : null].filter(Boolean).join(" · ")}</small></span>
+      <span className="cmp-sug-name">{s.name}<small>{[`${s.reviews} reviews`, s.pos !== null ? `${s.positive} positive` : null].filter(Boolean).join(" · ")}</small></span>
       <span className="cmp-sug-add" aria-hidden="true">+</span>
     </a></li>)}</ul>
   </div>;

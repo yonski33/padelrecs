@@ -2968,3 +2968,6 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
   .lp-mention .lp-m-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .lp-mention .lp-m-row h3 { padding-top: 0; }
 }
+/* Compare pages: positive / mixed / negative counts, no shares (owner, 2026-11-14). */
+.sbar-counts > span { font-weight: 500 !important; color: #3d393d; }
+.sbar-counts b { font-weight: 700; color: #111; margin-right: 3px; }
