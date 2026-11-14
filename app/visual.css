@@ -2971,3 +2971,9 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 /* Compare pages: positive / mixed / negative counts, no shares (owner, 2026-11-14). */
 .sbar-counts > span { font-weight: 500 !important; color: #3d393d; }
 .sbar-counts b { font-weight: 700; color: #111; margin-right: 3px; }
+
+/* Marker highlights on review text (lib/highlights.ts, owner 2026-11-14): a soft highlighter stroke, green for praise and
+   amber for complaints, in the "What people mention" chip colours. */
+.lv-text mark.hl { color: inherit; padding: 0 2px; margin: 0 -1px; border-radius: 3px 6px 4px 7px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.lv-text mark.hl-pos { background: linear-gradient(104deg, rgba(74,154,98,0) 0.4%, rgba(74,154,98,.22) 2.5%, rgba(74,154,98,.18) 96%, rgba(74,154,98,0) 99.6%); }
+.lv-text mark.hl-neg { background: linear-gradient(104deg, rgba(232,176,48,0) 0.4%, rgba(232,176,48,.32) 2.5%, rgba(232,176,48,.26) 96%, rgba(232,176,48,0) 99.6%); }
