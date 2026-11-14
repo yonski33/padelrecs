@@ -7,7 +7,7 @@ import { score } from "../db/data";
 import { niche, catalogPath, hasYears, productHref } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
-import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
+import { SORTS, DEFAULT_SORT, parseSort, sortProducts, firstReviewed } from "../lib/product-sort";
 import { catalogKeyword } from "../lib/catalogue-seo";
 import { listLine } from "../lib/list-lines";
 import { shortLine } from "../lib/short-lines";
@@ -17,6 +17,7 @@ import type { SpecColumn } from "../lib/niche/types";
 import { Directory, parseShow } from "./components";
 import { AutoSubmitForm } from "./auto-submit";
 import { CatRadios, type CatChoice } from "./cat-radios";
+import { siteSpecFilters, parseSf, passesSf, sfValue, type SpecFilter } from "../lib/spec-filters";
 import { ProductArt, SignalPop } from "./visual";
 import { CompareCheck, CompareTray } from "./compare/compare-pick";
 import { lightFont } from "./light-font";
@@ -25,12 +26,12 @@ import { shapeChoices, specFacets, specIs, tagCounts, consensus } from "./home-c
 const w = niche.words, fmt = (n: number) => n.toLocaleString("en-US");
 const cap = (t: string) => t ? t[0].toUpperCase() + t.slice(1) : t;
 type Product = Catalog["listed"][number];
-export type LightCatalogFilters = { q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; tag?: string[] } & { specs?: Partial<Record<SpecColumn, string[]>> };
+export type LightCatalogFilters = { q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; tag?: string[]; sf?: string[] } & { specs?: Partial<Record<SpecColumn, string[]>> };
 
 /** The light catalogue's filters from the address: single values, and lists for the checkbox groups. */
 export function lightFilters(raw: Record<string, string | string[] | undefined>): LightCatalogFilters {
   const one = (v: string | string[] | undefined) => Array.isArray(v) ? v[0] : v, all = (v: string | string[] | undefined) => v === undefined ? [] : Array.isArray(v) ? v : [v];
-  return { q: one(raw.q), brand: one(raw.brand), year: one(raw.year), shape: one(raw.shape), sort: one(raw.sort), show: one(raw.show), tag: all(raw.tag),
+  return { q: one(raw.q), brand: one(raw.brand), year: one(raw.year), shape: one(raw.shape), sort: one(raw.sort), show: one(raw.show), tag: all(raw.tag), sf: all(raw.sf),
     specs: Object.fromEntries(niche.specs.filter(s => s.column !== "shape").map(s => [s.column, all(raw[s.column])])) };
 }
 
@@ -53,13 +54,17 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
   const tags = (f.tag ?? []).filter(t => niche.tags.some(x => x.label === t));
   const inShape = (r: Product, c = shape) => !c || c.shapes.some(s => s.toLowerCase() === (r.shape ?? "").toLowerCase());
   const specOk = (r: Product) => specFacets.every(sp => { const want = (f.specs?.[sp.column]) ?? []; return !want.length || want.some(o => specIs((r as Record<string, unknown>)[sp.column], o)); });
-  const base = matchingRackets(data.listed, f.q || "").filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && specOk(r) && tags.every(t => known(r, t)));
-  const results = sortProducts(base.filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; });
+  // Spec filters (lib/spec-filters): weight bands, sizes, panel types… Each filter's counts leave out its own choice.
+  const sfWant = parseSf(f.sf ?? []), sfKeep = [...sfWant].flatMap(([id, keys]) => [...keys].map(k => `${id}:${k}`));
+  const preSf = matchingRackets(data.listed, f.q || "").filter(r => (!f.brand || r.brandId === f.brand) && (!f.year || String(r.year) === f.year) && specOk(r) && tags.every(t => known(r, t)));
+  const base = preSf.filter(r => passesSf(sfWant, r as unknown as Record<string, unknown>));
+  const first = firstReviewed(data);
+  const results = sortProducts(base.filter(r => inShape(r)).map(r => ({ r, s: score(data, r.id) })), sort, x => { const g = signals.get(x.r.id); return g && g.signal * 10_000 - g.rank; }, x => [hasYears ? x.r.year : 0, first.get(x.r.id) ?? 0]);
 
   // Links keep the other filters; the look stays light while this is a preview.
   const params = (extra: Record<string, string | string[] | undefined>, path = basePath) => {
     const q = new URLSearchParams();
-    for (const [k, v] of Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape, sort: f.sort, tag: tags, ...Object.fromEntries(specFacets.map(s => [s.column, f.specs?.[s.column]])), ...extra }))
+    for (const [k, v] of Object.entries({ q: f.q, brand: fixed.brand ? undefined : f.brand, year: f.year, shape: fixed.shape ? undefined : f.shape, sort: f.sort, tag: tags, sf: sfKeep, ...Object.fromEntries(specFacets.map(s => [s.column, f.specs?.[s.column]])), ...extra }))
       for (const x of Array.isArray(v) ? v : v ? [v] : []) q.append(k, x);
     return q.size ? `${path}?${q}` : path;
   };
@@ -76,7 +81,15 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
   // The rail's "What people mention": the liked and descriptive tags the most products are known for, with counts.
   const mention = niche.tags.filter(t => t.tone !== "neg").map(t => ({ t: t.label, n: base.filter(r => inShape(r) && known(r, t.label)).length }))
     .filter(x => x.n > 0 || tags.includes(x.t)).sort((a, b) => b.n - a.n).slice(0, 8);
-  const refined = !!(f.q || (f.brand && !fixed.brand) || f.year || tags.length || specFacets.some(s => (f.specs?.[s.column])?.length));
+  // Which spec filters show here, with each group's count (leaving out the filter's own choice); empty groups hide.
+  const inCats = (sf: SpecFilter) => !sf.categories || (!!shape && shape.shapes.some(x => sf.categories!.some(c => c.toLowerCase() === x.toLowerCase())));
+  const sfShown = siteSpecFilters.filter(inCats).map(sf => {
+    const others = new Map([...sfWant].filter(([id]) => id !== sf.id));
+    const pool = preSf.filter(r => inShape(r) && passesSf(others, r as unknown as Record<string, unknown>)).map(r => sf.classify(r as unknown as Record<string, unknown>));
+    const groups = sf.groups.map(g => ({ ...g, n: pool.filter(ks => ks.includes(g.key)).length })).filter(g => g.n > 0 || sfWant.get(sf.id)?.has(g.key));
+    return { sf, groups };
+  }).filter(x => x.groups.length > 1 || sfWant.has(x.sf.id)); // a chosen filter stays, so it can be cleared
+  const refined = !!(f.q || (f.brand && !fixed.brand) || f.year || tags.length || sfWant.size > 0 || specFacets.some(s => (f.specs?.[s.column])?.length));
   // The live counts are for what the page covers: the whole catalogue, a category or a brand.
   const scope = data.listed.filter(r => (!fixed.brand || r.brandId === fixed.brand) && (!fixed.shape || inShape(r)));
   const scopeReviews = scope.reduce((n, r) => n + (totals.get(r.id) ?? 0), 0);
@@ -88,8 +101,9 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
     {Object.entries(keep).filter(([, v]) => v).map(([k, v]) => <input key={k} type="hidden" name={k} value={v as string}/>)}
     {withTags && tags.map(t => <input key={`t${t}`} type="hidden" name="tag" value={t}/>)}
     {withTags && specFacets.flatMap(sp => (f.specs?.[sp.column] ?? []).map(o => <input key={sp.column + o} type="hidden" name={sp.column} value={o}/>))}
+    {withTags && sfKeep.map(v => <input key={`sf${v}`} type="hidden" name="sf" value={v}/>)}
   </>;
-  const clearAll = params({ q: undefined, brand: undefined, year: undefined, tag: undefined, shape: undefined, ...Object.fromEntries(specFacets.map(s => [s.column, undefined])) }, niche.typePages?.length && !fixed.brand ? catalogPath : basePath);
+  const clearAll = params({ q: undefined, brand: undefined, year: undefined, tag: undefined, sf: undefined, shape: undefined, ...Object.fromEntries(specFacets.map(s => [s.column, undefined])) }, niche.typePages?.length && !fixed.brand ? catalogPath : basePath);
   const mentionShown = mention.slice(0, 5), mentionMore = mention.slice(5);
   const check = (m: { t: string; n: number }) => <label key={m.t} className="lc-check"><input type="checkbox" name="tag" value={m.t} defaultChecked={tags.includes(m.t)}/><span>{cap(m.t)}</span><small>{fmt(m.n)}</small></label>;
   const choice = (c: (typeof cats)[number]): CatChoice => ({ key: c.key, href: catHref(c), label: c.label, n: fmt(c.n), current: shape?.key === c.key });
@@ -110,6 +124,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
             {hidden({ q: f.q, shape: fixed.shape ? undefined : f.shape, sort: f.sort }, false)}
             {mention.length > 0 && group("What people mention", <>{mentionShown.map(check)}
               {mentionMore.length > 0 && <details className="lc-showmore"><summary>Show more <span aria-hidden="true">›</span></summary>{mentionMore.map(check)}</details>}</>)}
+            {sfShown.map(({ sf, groups }) => <div key={sf.id}>{group(sf.label, groups.map(g => <label key={g.key} className="lc-check"><input type="checkbox" name="sf" value={sfValue(sf, g.key)} defaultChecked={sfWant.get(sf.id)?.has(g.key)}/><span>{g.label}</span><small>{fmt(g.n)}</small></label>))}</div>)}
             {specFacets.map(sp => { const opts = sp.options!.filter(o => data.listed.some(r => specIs((r as Record<string, unknown>)[sp.column], o))); return opts.length > 1 && <div key={sp.column}>{group(sp.label,
               opts.map(o => <label key={o} className="lc-check"><input type="checkbox" name={sp.column} value={o} defaultChecked={((f.specs?.[sp.column]) ?? []).includes(o)}/><span>{o}</span></label>))}</div>; })}
             {!fixed.brand && group("Brand", <select name="brand" defaultValue={f.brand || ""} aria-label="Brand"><option value="">All brands</option>{data.listedBrands.filter(b => scope.some(r => r.brandId === b.id)).map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select>)}

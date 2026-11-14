@@ -54,3 +54,9 @@ test("a mostly negative product doesn't top its category on volume alone",()=>{
  const s=signals(site([p("liked","road",150,20,200),p("panned","road",100,40,380)]));
  assert(s.get("liked")!.signal>s.get("panned")!.signal);
 });
+
+test("a widely reviewed product with mostly negative reviews gets a failing score, whatever its category (owner, MoneyRecs 2026-11-14)",()=>{
+ const s=signals(site([p("loved","tax",453,75,554),p("hated","tax",46,13,303),p("small","tax",9,9,26)]));
+ assert(s.get("hated")!.signal<=35, `${s.get("hated")!.signal}`);
+ assert(s.get("loved")!.signal>s.get("small")!.signal);
+});

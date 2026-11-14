@@ -47,7 +47,9 @@ export function shares(parts: number[]) {
 export const positiveShare = (s: Pick<ScoreT, "positive" | "judged">) => s.judged >= 3 ? Math.round(s.positive / s.judged * 100) : null;
 
 /** Positive / mixed / negative as one bar. `legend` adds the three shares under it. */
-export function SentimentBar({ positive, mixed, negative, legend = false, className = "" }: { positive: number; mixed: number; negative: number; legend?: boolean; className?: string }) {
+/** legend: true lists the shares; "counts" lists the counts (compare pages, owner 2026-11-14: a share next to the
+ *  signal read like a second, competing score). */
+export function SentimentBar({ positive, mixed, negative, legend = false, className = "" }: { positive: number; mixed: number; negative: number; legend?: boolean | "counts"; className?: string }) {
   const total = positive + mixed + negative;
   if (!total) return null;
   const [p, m, n] = shares([positive, mixed, negative]);
@@ -58,7 +60,11 @@ export function SentimentBar({ positive, mixed, negative, legend = false, classN
       {mixed > 0 && <i className="s-mixed" style={{ width: `${mixed / total * 100}%` }}/>}
       {negative > 0 && <i className="s-negative" style={{ width: `${negative / total * 100}%` }}/>}
     </span>
-    {legend && <span className="sbar-legend" aria-hidden="true"><span className="s-positive">{p}% positive</span><span className="s-mixed">{m}% mixed</span><span className="s-negative">{n}% negative</span></span>}
+    {legend === "counts" ? <span className="sbar-legend sbar-counts" aria-hidden="true">
+      <span className="s-positive"><b>{positive.toLocaleString("en-US")}</b> positive</span>
+      <span className="s-mixed"><b>{mixed.toLocaleString("en-US")}</b> mixed</span>
+      <span className="s-negative"><b>{negative.toLocaleString("en-US")}</b> negative</span></span>
+      : legend && <span className="sbar-legend" aria-hidden="true"><span className="s-positive">{p}% positive</span><span className="s-mixed">{m}% mixed</span><span className="s-negative">{n}% negative</span></span>}
   </span>;
 }
 
@@ -215,7 +221,7 @@ export function SignalPop({ label = "How the signal works", align = "left" }: { 
   return <details className={`sig-pop${align === "right" ? " sig-pop-right" : ""}`}><summary>{label}<span aria-hidden="true"> ⓘ</span></summary>
     <div className="sig-pop-card" role="note">
       <b>The signal score</b>
-      <p>A score out of 100 for how well reviewed a product is next to others of its kind. It rises with positive reviews and with how many there are; negative and mixed reviews take points off. The best in each category scores in the 90s.</p>
+      <p>A score out of 100 for how well reviewed a product is next to others of its kind. It rises with positive reviews and with how many there are; negative and mixed reviews take points off.</p>
       <p>So a handful of glowing reviews can’t beat a product lots of people like. No sponsored placements.</p>
     </div>
   </details>;

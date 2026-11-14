@@ -215,7 +215,7 @@ test("every niche's lists use bank tags, real spec columns and unique slugs", ()
       for (const f of l.filters ?? []) assert(n.specs.some(s => s.column === f.column), `${id}/${l.slug}: no ${f.column} spec`);
     }
   }
-  assert.equal(niches.padel.topLists?.length, 5);
+  assert.equal(niches.padel.topLists?.length, 4); // Most forgiving folded into Best for control (owner 2026-11-14)
 });
 
 test("review windows: a niche's recentMonths fills in lists that don't set their own", () => {

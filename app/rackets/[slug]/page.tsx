@@ -34,7 +34,7 @@ import { listLine } from "../../../lib/list-lines";
 import { shortLine } from "../../../lib/short-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
-import { comparePairs, pairHref } from "../../../lib/compare-pairs";
+import { comparePairs, comparePick, pairHref, pairKey } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
@@ -270,7 +270,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   }
   const pos = positiveShare(s);
   const oneLine = listLine(r);
-  const pairWith = comparePairs(data).partners.get(r.id)?.[0], compareWith = pairWith ?? similar[0]?.x;
+  // "Compare with …": the previous version, else a recent close rival (lib/compare-pairs comparePick); its own "X vs Y"
+  // page when that pair has one, else the open compare view.
+  const compareWith = comparePick(data, r) ?? similar[0]?.x;
+  const pairWith = compareWith && comparePairs(data).byKey.has(pairKey(r.slug, compareWith.slug)) ? compareWith : undefined;
   const fullName = displayName(r.name, brand?.name);
   // Pieces both layouts show (the light one is the default; ?look=classic shows the old one).
   const similarBox = similar.length > 0 && <section id="similar" className="similar">
@@ -357,7 +360,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {oneLine && <p className="lp-line">{oneLine}</p>}
           {sum.total > 0 ? <div className="lp-stats lp-stats2">
             {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>Signal score</span></div>}
-            {pos !== null && <div className="lp-stat lp-split"><b>{`${pos}% positive`}</b><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
+            {/* The counts over the bar, not a share (owner, 2026-11-14): a "% positive" read like a second score next to the signal. */}
+            {pos !== null && <div className="lp-stat lp-split"><p className="lp-counts">
+              <span className="c-pos"><b>{s.positive.toLocaleString("en-US")}</b> positive</span>
+              <span className="c-mix"><b>{s.mixed.toLocaleString("en-US")}</b> mixed</span>
+              <span className="c-neg"><b>{s.negative.toLocaleString("en-US")}</b> negative</span></p>
+              <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/></div>}
             <a className="lp-stat" href="#reviews"><b>{sum.total.toLocaleString("en-US")}</b><span>{sum.total === 1 ? "review" : "reviews"}</span></a>
           </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
           <div className="lp-sub"><SignalPop label="How the signal works"/>{latest && <span>{`Updated ${day(latest)}`}</span>}</div>
@@ -368,8 +376,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       {(liked.length > 0 || concerns.length > 0) && <section className="lp-mention" aria-labelledby="lp-mention-title">
         <h2 id="lp-mention-title">What people mention</h2>
         <div className="lp-mention-cols">
-          {liked.length > 0 && <div><h3><i className="lp-dot pos" aria-hidden="true"/>Often liked</h3>{chips(liked)}</div>}
-          {concerns.length > 0 && <div><h3><i className="lp-dot neg" aria-hidden="true"/>Common concerns</h3>{chips(concerns)}</div>}
+          {liked.length > 0 && <div className="lp-m-row lp-m-pos"><h3>Often liked</h3>{chips(liked)}</div>}
+          {concerns.length > 0 && <div className="lp-m-row lp-m-neg"><h3>Common concerns</h3>{chips(concerns)}</div>}
         </div>
       </section>}
       {byVariant}

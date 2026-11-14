@@ -36,10 +36,22 @@ const byPositive = (a: Item, b: Item) => {
 };
 const byNewest = (a: Item, b: Item) => b.r.createdAt.localeCompare(a.r.createdAt) || byName(a, b);
 
+/** When each product first came up: its earliest review, web reviews dated by their source. For "Newest". */
+export function firstReviewed(data: { external: { racketId: string; sourceDate: string | null; createdAt: string }[]; reviews: { racketId: string; createdAt: string }[] }) {
+  const first = new Map<string, number>();
+  const see = (id: string, d: string) => { const t = Date.parse(d); if (!Number.isNaN(t) && t < (first.get(id) ?? Infinity)) first.set(id, t); };
+  for (const e of data.external) see(e.racketId, e.sourceDate || e.createdAt);
+  for (const r of data.reviews) see(r.racketId, r.createdAt);
+  return first;
+}
+
 /** `signalOf`: the product's signal score (lib/signal.ts), if it has one. With it, "positive" follows the signal, so the
  *  numbers on the rows run high to low; products without one follow, most discussed first. */
-export function sortProducts<T extends Item>(list: T[], key: SortKey, signalOf?: (x: T) => number | undefined): T[] {
+export function sortProducts<T extends Item>(list: T[], key: SortKey, signalOf?: (x: T) => number | undefined, releasedOf?: (x: T) => [number, number]): T[] {
   if (key === "positive" && signalOf) return [...list].sort((a, b) => (signalOf(b) ?? -1) - (signalOf(a) ?? -1) || byDiscussed(a, b));
+  // "Newest" by when the product came out, not when it was added here (owner, 2026-11-14): its model year where the site
+  // has years, then when people first wrote about it.
+  if (key === "newest" && releasedOf) return [...list].sort((a, b) => { const x = releasedOf(a), y = releasedOf(b); return y[0] - x[0] || y[1] - x[1] || byName(a, b); });
   const cmp = { discussed: byDiscussed, positive: byPositive, newest: byNewest }[key];
   return [...list].sort(cmp);
 }

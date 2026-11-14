@@ -33,6 +33,16 @@ export const CATEGORY_TOP = 96, CATEGORY_RANGE = 4;
 export const LEADER_STEP = 0.8;
 export const STRETCH = 0.6, RANK_STEP = 0.5, RANK_STEPS = 15;
 
+/** The highest score a product's own reviews allow: its liked share (positive, plus half of mixed) in points, plus
+ *  CAP_ROOM, or only CAP_ROOM_NEGATIVE when more than half its reviews are negative. It only binds for products whose
+ *  reviews are mostly unhappy: 70% liked caps at 100, 30% liked at 60, 17% liked and mostly negative at 32. */
+export const CAP_ROOM = 30, CAP_ROOM_NEGATIVE = 15;
+export const sentimentCap = (p: { positive: number; mixed: number; judged: number }) => {
+  if (!p.judged) return TOP_SIGNAL;
+  const liked = (p.positive + 0.5 * p.mixed) / p.judged, negative = (p.judged - p.positive - p.mixed) / p.judged;
+  return 100 * liked + (negative > 0.5 ? CAP_ROOM_NEGATIVE : CAP_ROOM);
+};
+
 /** The most a product can score: 100 less points for its negative and mixed shares (0–1). */
 export const signalCeiling = (negativeShare: number, mixedShare: number) =>
   100 - NEGATIVE_WEIGHT * 100 * negativeShare - MIXED_WEIGHT * 100 * mixedShare;
@@ -85,7 +95,10 @@ export function signals(products: SignalInput[]): Map<string, Signal> {
     // A score set by hand shows whatever the review count; otherwise a product needs enough reviews.
     if (p.judged < MIN_SIGNAL_REVIEWS && !p.override) continue;
     const exact = p.override ? p.override : scaled.get(p.id)!;
-    const signal = Math.min(TOP_SIGNAL, Math.max(1, Math.round(exact)));
+    // However it compares with its category, a product's score stays within reach of its share of liked reviews
+    // (owner, 2026-11-14: TurboTax Online, 81% negative, scored 60 and ranked #2). Mostly negative products get a failing number.
+    const capped = p.override ? exact : Math.min(exact, sentimentCap(p));
+    const signal = Math.min(TOP_SIGNAL, Math.max(1, Math.round(capped)));
     const g = groups.get(p.category) ?? []; groups.set(p.category, g);
     g.push({ id: p.id, judged: p.judged, signal, exact, set: !!p.override });
   }

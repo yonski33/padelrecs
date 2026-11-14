@@ -2922,3 +2922,52 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
    old #827C82 and #777 were 3.9–4.5:1. Source lines, "Original source", dates and the counts under lists. */
 .lrv-orig, .lrv-card .lrv-src, .rc-card .rc-src, .lv .lv-src, .ls-ago, .lt-how, .lcx-how, .lt-row.v2 > .lt-sig small, .lrv-meta, .lp-sub, .lt-live { color: #6b666b !important; }
 .lrv-orig:hover { color: var(--lt-acc) !important; }
+/* No signal yet: one wording on every screen (owner, 2026-11-14), "new" misled on older models with few reviews. */
+.lt-row.v2 > .lt-sig small.lt-nosig { font-size: 11.5px !important; font-weight: 500; line-height: 1.25; text-align: center; white-space: normal; color: #6b666b !important; }
+.lt-row.v2 > .lt-sig small.lt-nosig::after { content: none !important; }
+@media (max-width: 720px) { .lt-row.v2 > .lt-sig small.lt-nosig { font-size: 11px !important; } }
+/* Product page: positive / mixed / negative counts over the bar (owner, 2026-11-14). */
+.lp-counts { display: flex; flex-wrap: wrap; gap: 2px 14px; margin: 0 0 8px; font-size: 14px; color: #3d393d; white-space: nowrap; }
+.lp-counts b { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #111; margin-right: 3px; }
+.lp-counts span { display: inline-flex; align-items: baseline; }
+.lp-counts span::before { content: ""; align-self: center; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; }
+.lp-counts .c-pos::before { background: #4a9a62; } .lp-counts .c-mix::before { background: #d9b65c; } .lp-counts .c-neg::before { background: #cf4b40; }
+@media (max-width: 640px) { .lp-counts { gap: 2px 10px; font-size: 13px; } .lp-counts b { font-size: 17px; } }
+.lp-stats2 .lp-stat .lp-counts b { font-size: 20px !important; font-weight: 700 !important; }
+.lp-stats2 .lp-stat .lp-counts span { font-size: 14px !important; color: #3d393d !important; }
+/* Phones: signal and review count side by side, the counts and bar on their own line under them. */
+@media (max-width: 640px) {
+  .lp-stats2 { grid-template-columns: 1fr 1fr !important; row-gap: 14px !important; }
+  .lp-stats2 .lp-split { grid-column: 1 / -1; order: 3; min-width: 0; padding: 12px 0 0 !important; border-left: 0 !important; border-top: 1px solid var(--lt-line); justify-items: start; }
+  .lp-stats2 .lp-stat .lp-counts b { font-size: 18px !important; }
+  .lp-stats2 .lp-stat .lp-counts span { font-size: 13px !important; }
+}
+@media (max-width: 640px) { .lp-stats2 .lp-split > .sbar, .lp-stats2 .lp-split > [class*="sbar"] { width: 100%; } }
+/* Desktop try (owner, 2026-11-14): signal and review count side by side, then the counts and bar at the right. */
+@media (min-width: 641px) {
+  .lp-stats2 .lp-stat:first-child { order: 1; }
+  .lp-stats2 a.lp-stat { order: 2; }
+  .lp-stats2 .lp-split { order: 3; justify-items: start; }
+}
+/* "What people mention", easier to scan (owner, 2026-11-14): chips tinted by kind (green liked, amber concerns) with
+   bold counts in the same colour, both rows on one grid with the labels as small quiet headers on the left; on phones
+   each label sits above its chips. */
+.lp-mention .lp-mention-cols { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 10px !important; }
+.lp-mention .lp-m-row { display: grid !important; grid-template-columns: 136px minmax(0, 1fr); align-items: start; gap: 14px; margin: 0 !important; padding: 0 !important; border: 0 !important; }
+.lp-mention .lp-m-row h3 { margin: 0 !important; padding-top: 8px; font-size: 13px !important; font-weight: 600 !important; letter-spacing: 0; color: #6b666b !important; white-space: nowrap; }
+.lp-mention .lp-m-row h3 .lp-dot { display: none; }
+.lp-mention .lp-m-row .lp-chips { margin: 0 !important; display: flex; flex-wrap: wrap; gap: 8px; }
+.lp-mention .lp-m-row .lp-chips a { border: 0 !important; font-weight: 500; }
+.lp-mention .lp-m-pos .lp-chips a { background: #e7f3ea !important; color: #1f3d28 !important; }
+.lp-mention .lp-m-pos .lp-chips a b { color: #1f6a35 !important; font-weight: 700 !important; }
+.lp-mention .lp-m-pos .lp-chips a:hover { background: #d6ebdc !important; }
+.lp-mention .lp-m-neg .lp-chips a { background: #fbf0d9 !important; color: #4d3a12 !important; }
+.lp-mention .lp-m-neg .lp-chips a b { color: #8a5a00 !important; font-weight: 700 !important; }
+.lp-mention .lp-m-neg .lp-chips a:hover { background: #f6e4bd !important; }
+@media (max-width: 640px) {
+  .lp-mention .lp-m-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .lp-mention .lp-m-row h3 { padding-top: 0; }
+}
+/* Compare pages: positive / mixed / negative counts, no shares (owner, 2026-11-14). */
+.sbar-counts > span { font-weight: 500 !important; color: #3d393d; }
+.sbar-counts b { font-weight: 700; color: #111; margin-right: 3px; }
