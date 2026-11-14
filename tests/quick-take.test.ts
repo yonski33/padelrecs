@@ -57,6 +57,12 @@ test("numbers in the text can't exceed the reports behind them; thin spot caveat
   assert.ok(check(block({ thinSpot: "only 2 players compared the ST3." })).ok);
 });
 
+test("hook: 10 words at most, the good part 5", () => {
+  assert.ok(check(block({ hook: { good: "Huge sweet spot, dry touch.", catch: "You bring the power." } })).ok);
+  assert.ok(!check(block({ hook: { good: "Huge sweet spot, quick hands, dry touch.", catch: "Just don't expect free power." } })).ok);
+  assert.ok(!check(block({ hook: { good: "Power on tap and spin for days.", catch: "Bounce." } })).ok);
+});
+
 test("markers: none inside the hook, at most 3 elsewhere", () => {
   assert.ok(!check(block({ hook: { good: "==Power==.", catch: "Bounce." } })).ok);
   const many = block({ tldr: { ...block().tldr, lead: "==a== ==b== ==c==" } });

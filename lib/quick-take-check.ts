@@ -211,6 +211,10 @@ export function checkQuickTake(input: unknown, reports: Report[], opts: { knownS
   if (qt.kind === "full" && (nReceipts < 6 || nReceipts > 10)) warnings.push(`${nReceipts} receipts on the page (aim for 6–10)`);
 
   // Marker: the hook's catch has its own; at most 3 more outside the community section (recipe §7)
+  // Hook (owner 2026-11-15): 8–10 words, one standout trait in at most 5, then the catch.
+  const words = (t: string) => plain(t).split(/\s+/).filter(Boolean).length;
+  if (words(qt.hook.good) + words(qt.hook.catch) > 10) errors.push(`hook: ${words(qt.hook.good) + words(qt.hook.catch)} words, at most 10`);
+  if (words(qt.hook.good) > 5) errors.push(`hook.good: ${words(qt.hook.good)} words, at most 5 (one standout trait)`);
   if (markCount(qt.hook.good) || markCount(qt.hook.catch)) errors.push("hook: no ==marker== inside; the catch is marked on its own");
   const marks = fs.filter(f => !f.where.startsWith("hook.")).reduce((n, f) => n + markCount(f.text), 0);
   if (marks > 3) errors.push(`${marks} markers outside the hook; at most 3`);

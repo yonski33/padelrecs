@@ -30,7 +30,7 @@ Text fields take `**bold**` and `==marker==` (yellow marker). Keep every line sh
 {
   "v": 1,
   "kind": "full",                       // "full" at 20+ reports; "short" at 8–19 (hero, TL;DR, catch, answers only)
-  "hook": { "good": "Power on tap and spin for days.", "catch": "Just be ready for the bounce." },  // catch gets the marker on its own
+  "hook": { "good": "Huge sweet spot, dry touch.", "catch": "You bring the power." },  // 8–10 words; good ≤5, ONE trait (never a list of three); vary the catch; catch gets the marker
   "tldr": { "lead": "An all-rounder that hands you free power. …",
             "madeFor": ["**Smash lovers**: x3s and kicks come easy", "…"],   // 3–4, a kind of player or a situation, never a spec
             "notFor": ["Fans of a **dry, calm** feel", "…"] },              // 2–3
