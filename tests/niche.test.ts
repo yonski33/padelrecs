@@ -951,6 +951,38 @@ test("tool: one product per model number (kits and bare tools merged), eight cat
   }
 });
 
+test("dog: one product per model, generation and food formula, eight category pages with product URLs under them, paw rating icons, no health tags", async () => {
+  const n = selectNiche("dog");
+  assert.equal(n.schema, "dogrecs");
+  assert.equal(n.productPath, "products");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "PetSupplies");
+  assert.equal(n.people.many, "owners");
+  assert.deepEqual(n.categories.map(c => c.label), ["Durability", "Dog's approval", "Ease of use", "Fit & comfort", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Sizes", "Material", "Key spec"]);
+  // The DogRecs scope (owner build list 2026-11-12, builder plan pre-approved 2026-11-14): dog gear plus dog food under strict first-hand rules.
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["dog-beds", "crates-and-carriers", "harnesses-and-leashes", "toys-and-chews", "gps-trackers-and-cameras", "grooming", "bowls-and-feeders", "dog-food"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/dog");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 8, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  // No health or medical claims on DogRecs, so no tag may suggest one.
+  for (const t of n.tags) assert.doesNotMatch(t.label, /allerg|digest|stool|itch|coat|health|vet|cure|sick|joint|weight loss/i, t.label);
+  assert.match(n.copy.about.sections.map(s => s.heading).join(" "), /Not veterinary advice/);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^(best|most)-/, `${list.slug}: a best-of slug`);
+    assert.match(list.slug, /dog/, `${list.slug}: niche keyword in the slug`);
+    for (const t of [...(list.trait?.tags ?? []), ...(list.trait?.against ?? [])]) assert(n.tags.some(x => x.label === t), `${list.slug}: unknown tag ${t}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
+
 test("grill: one product per model and generation, eight category pages with product URLs under them, flame rating icons", async () => {
   const n = selectNiche("grill");
   assert.equal(n.schema, "grillrecs");

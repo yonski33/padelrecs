@@ -1,0 +1,2987 @@
+{
+ "about": "DogRecs starter catalog (2026-11-14): dog beds, crates and carriers, harnesses/collars/leashes, toys and non-edible chews, GPS trackers and pet cameras, grooming tools, bowls/feeders/fountains and dog food; owner build list 2026-11-12, builder plan pre-approved 2026-11-14. One product per maker model or line: sizes and colours merge, each generation is its own product (Fi Series 3 vs Series 3+, Halo Collar 3/4/5, Furbo 360° vs Furbo Mini vs Mini 360°, Tractive DOG 4 vs DOG 6), and each dog food formula is its own product (bag sizes merge). No prescription or veterinary diets, medications, supplements, treats, shampoos or e-collars. Names and specs are read on the makers' own pages; where a maker site refused automated fetches (many Shopify stores, purina.com, yeti.com), on search excerpts of the maker page or a major retailer listing showing the maker's name. Specs: shape = category, surface = type, balance = sizes or life stage, core = main material or first ingredient, weight = one headline maker figure. No health claims in any field. Blank = not confirmed. Years only where a dated page shows the launch.",
+ "checked": "2026-11-14",
+ "brands": [
+  {
+   "id": "2-hounds-design",
+   "name": "2 Hounds Design"
+  },
+  {
+   "id": "acana",
+   "name": "Acana"
+  },
+  {
+   "id": "afloia",
+   "name": "Afloia"
+  },
+  {
+   "id": "amazon-basics",
+   "name": "Amazon Basics"
+  },
+  {
+   "id": "andis",
+   "name": "Andis"
+  },
+  {
+   "id": "bedsure",
+   "name": "Bedsure"
+  },
+  {
+   "id": "benebone",
+   "name": "Benebone"
+  },
+  {
+   "id": "best-friends-by-sheri",
+   "name": "Best Friends by Sheri"
+  },
+  {
+   "id": "big-barker",
+   "name": "Big Barker"
+  },
+  {
+   "id": "blue-buffalo",
+   "name": "Blue Buffalo"
+  },
+  {
+   "id": "blue-9",
+   "name": "Blue-9"
+  },
+  {
+   "id": "blueberry-pet",
+   "name": "Blueberry Pet"
+  },
+  {
+   "id": "canidae",
+   "name": "Canidae"
+  },
+  {
+   "id": "casfuy",
+   "name": "Casfuy"
+  },
+  {
+   "id": "casper",
+   "name": "Casper"
+  },
+  {
+   "id": "chris-christensen",
+   "name": "Chris Christensen"
+  },
+  {
+   "id": "chuckit",
+   "name": "Chuckit!"
+  },
+  {
+   "id": "coolaroo",
+   "name": "Coolaroo"
+  },
+  {
+   "id": "diamond",
+   "name": "Diamond"
+  },
+  {
+   "id": "diggs",
+   "name": "Diggs"
+  },
+  {
+   "id": "dogness",
+   "name": "Dogness"
+  },
+  {
+   "id": "dremel",
+   "name": "Dremel"
+  },
+  {
+   "id": "elitefield",
+   "name": "EliteField"
+  },
+  {
+   "id": "embark",
+   "name": "Embark"
+  },
+  {
+   "id": "eufy",
+   "name": "Eufy"
+  },
+  {
+   "id": "fi",
+   "name": "Fi"
+  },
+  {
+   "id": "flexi",
+   "name": "Flexi"
+  },
+  {
+   "id": "flying-pig",
+   "name": "Flying Pig"
+  },
+  {
+   "id": "frisco",
+   "name": "Frisco"
+  },
+  {
+   "id": "furbo",
+   "name": "Furbo"
+  },
+  {
+   "id": "furhaven",
+   "name": "FurHaven"
+  },
+  {
+   "id": "furminator",
+   "name": "FURminator"
+  },
+  {
+   "id": "garmin",
+   "name": "Garmin"
+  },
+  {
+   "id": "goughnuts",
+   "name": "Goughnuts"
+  },
+  {
+   "id": "gunner",
+   "name": "Gunner"
+  },
+  {
+   "id": "halo",
+   "name": "Halo"
+  },
+  {
+   "id": "halti",
+   "name": "Halti"
+  },
+  {
+   "id": "hertzko",
+   "name": "Hertzko"
+  },
+  {
+   "id": "hill-s",
+   "name": "Hill's"
+  },
+  {
+   "id": "iams",
+   "name": "Iams"
+  },
+  {
+   "id": "ifetch",
+   "name": "iFetch"
+  },
+  {
+   "id": "impact-dog-crates",
+   "name": "Impact Dog Crates"
+  },
+  {
+   "id": "instinct",
+   "name": "Instinct"
+  },
+  {
+   "id": "jolly-pets",
+   "name": "Jolly Pets"
+  },
+  {
+   "id": "julius-k9",
+   "name": "Julius-K9"
+  },
+  {
+   "id": "k-h-pet-products",
+   "name": "K&H Pet Products"
+  },
+  {
+   "id": "k9-ballistics",
+   "name": "K9 Ballistics"
+  },
+  {
+   "id": "kirkland-signature",
+   "name": "Kirkland Signature"
+  },
+  {
+   "id": "kong",
+   "name": "Kong"
+  },
+  {
+   "id": "kuranda",
+   "name": "Kuranda"
+  },
+  {
+   "id": "kurgo",
+   "name": "Kurgo"
+  },
+  {
+   "id": "lickimat",
+   "name": "LickiMat"
+  },
+  {
+   "id": "lucky-duck",
+   "name": "Lucky Duck"
+  },
+  {
+   "id": "lupine",
+   "name": "Lupine"
+  },
+  {
+   "id": "max-and-neo",
+   "name": "Max and Neo"
+  },
+  {
+   "id": "merrick",
+   "name": "Merrick"
+  },
+  {
+   "id": "midwest",
+   "name": "MidWest"
+  },
+  {
+   "id": "millers-forge",
+   "name": "Millers Forge"
+  },
+  {
+   "id": "mim-safe",
+   "name": "MIM Safe"
+  },
+  {
+   "id": "neabot",
+   "name": "Neabot"
+  },
+  {
+   "id": "neater-pet-brands",
+   "name": "Neater Pet Brands"
+  },
+  {
+   "id": "nom-nom",
+   "name": "Nom Nom"
+  },
+  {
+   "id": "nutro",
+   "name": "Nutro"
+  },
+  {
+   "id": "nylabone",
+   "name": "Nylabone"
+  },
+  {
+   "id": "ollie",
+   "name": "Ollie"
+  },
+  {
+   "id": "oneisall",
+   "name": "oneisall"
+  },
+  {
+   "id": "orijen",
+   "name": "Orijen"
+  },
+  {
+   "id": "orvis",
+   "name": "Orvis"
+  },
+  {
+   "id": "oster",
+   "name": "Oster"
+  },
+  {
+   "id": "outward-hound",
+   "name": "Outward Hound"
+  },
+  {
+   "id": "petcube",
+   "name": "Petcube"
+  },
+  {
+   "id": "petfusion",
+   "name": "PetFusion"
+  },
+  {
+   "id": "petkit",
+   "name": "Petkit"
+  },
+  {
+   "id": "petlibro",
+   "name": "Petlibro"
+  },
+  {
+   "id": "petmate",
+   "name": "Petmate"
+  },
+  {
+   "id": "petsafe",
+   "name": "PetSafe"
+  },
+  {
+   "id": "planet-dog",
+   "name": "Planet Dog"
+  },
+  {
+   "id": "purina",
+   "name": "Purina"
+  },
+  {
+   "id": "rabbitgoo",
+   "name": "Rabbitgoo"
+  },
+  {
+   "id": "royal-canin",
+   "name": "Royal Canin"
+  },
+  {
+   "id": "ruffland",
+   "name": "RuffLand"
+  },
+  {
+   "id": "ruffwear",
+   "name": "Ruffwear"
+  },
+  {
+   "id": "safari",
+   "name": "Safari"
+  },
+  {
+   "id": "shernbao",
+   "name": "Shernbao"
+  },
+  {
+   "id": "sherpa",
+   "name": "Sherpa"
+  },
+  {
+   "id": "sleepypod",
+   "name": "Sleepypod"
+  },
+  {
+   "id": "spot-tango",
+   "name": "Spot & Tango"
+  },
+  {
+   "id": "spoton",
+   "name": "SpotOn"
+  },
+  {
+   "id": "sturdi",
+   "name": "Sturdi"
+  },
+  {
+   "id": "taste-of-the-wild",
+   "name": "Taste of the Wild"
+  },
+  {
+   "id": "the-farmer-s-dog",
+   "name": "The Farmer's Dog"
+  },
+  {
+   "id": "tractive",
+   "name": "Tractive"
+  },
+  {
+   "id": "tuffy",
+   "name": "Tuffy"
+  },
+  {
+   "id": "veken",
+   "name": "Veken"
+  },
+  {
+   "id": "wahl",
+   "name": "Wahl"
+  },
+  {
+   "id": "wellness",
+   "name": "Wellness"
+  },
+  {
+   "id": "west-paw",
+   "name": "West Paw"
+  },
+  {
+   "id": "wild-one",
+   "name": "Wild One"
+  },
+  {
+   "id": "woof",
+   "name": "Woof"
+  },
+  {
+   "id": "yeti",
+   "name": "Yeti"
+  },
+  {
+   "id": "zippypaws",
+   "name": "ZippyPaws"
+  }
+ ],
+ "products": [
+  {
+   "brand": "2-hounds-design",
+   "name": "2 Hounds Design Freedom No-Pull Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "No-pull harness",
+   "core": null,
+   "weight": "front ring + back martingale loop",
+   "sources": [
+    "https://2houndsdesign.com/collections/freedom-no-pull-harness"
+   ]
+  },
+  {
+   "brand": "acana",
+   "name": "Acana Classics Red Meat Recipe",
+   "shape": "Dog food",
+   "balance": "All life stages",
+   "surface": "Dry food",
+   "core": "Raw beef",
+   "weight": "With grain",
+   "sources": [
+    "https://www.acana.com/en-US/dogs/dog-food/classics,-red-meat-recipe/ns-aca-classicred.html"
+   ]
+  },
+  {
+   "brand": "acana",
+   "name": "Acana Wholesome Grains Large Breed Adult Recipe",
+   "shape": "Dog food",
+   "balance": "Adult large breed; 22.5 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.acana.com/en-US/dogs/dog-food/wholesome-grains,-large-breed-adult-recipe/064992723361.html"
+   ]
+  },
+  {
+   "brand": "afloia",
+   "name": "Afloia LM1 Dog Grooming Kit with Vacuum",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Grooming vacuum",
+   "core": "vacuum with clipper, shedding brush, nail grinder heads; 3 suction levels; 1.5 L dust cup",
+   "weight": "Under 60 dB (retailer)",
+   "sources": [
+    "https://iheartdogs.com/afloia-dog-grooming-kit-review/"
+   ]
+  },
+  {
+   "brand": "amazon-basics",
+   "name": "Amazon Basics Foldable Metal Wire Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "22\"–48\"",
+   "surface": "Wire crate",
+   "core": "Metal wire",
+   "weight": null,
+   "sources": [
+    "https://www.amazon.com/Amazon-Basics-Foldable-Metal-Double/dp/B09G49LXL2"
+   ]
+  },
+  {
+   "brand": "andis",
+   "name": "Andis AGC2 2-Speed Detachable Blade Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "rotary motor, corded 14 ft; #10 UltraEdge blade",
+   "weight": "2,700 / 3,400 SPM",
+   "sources": [
+    "https://andis.com/shop/detail/24675/AGC2-2-Speed-Detachable-Blade-Clipper"
+   ]
+  },
+  {
+   "brand": "andis",
+   "name": "Andis ProClip AGC Super 2-Speed Detachable Blade Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "rotary motor, corded 14 ft, 17.6 oz; takes UltraEdge/CeramicEdge/M Force blades",
+   "weight": "3,400 / 4,400 SPM",
+   "sources": [
+    "https://andis.com/shop/detail/23335/",
+    "https://andis.com/shop/detail/24770/"
+   ]
+  },
+  {
+   "brand": "andis",
+   "name": "Andis ProClip Excel 5-Speed+ Detachable Blade Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "rotary motor, corded; CeramicEdge #10 blade",
+   "weight": "5 speeds, 2,500-4,500 SPM",
+   "sources": [
+    "https://andis.com/shop/detail/68515"
+   ]
+  },
+  {
+   "brand": "andis",
+   "name": "Andis Pulse ZR II Detachable Blade Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "cordless, removable lithium-ion battery, 5-speed rotary; #10 CeramicEdge blade",
+   "weight": "Up to 3 hours runtime; 2,500-4,500 SPM",
+   "sources": [
+    "https://andis.com/shop/detail/79170/pulse-zr-ii-detachable-blade-clipper"
+   ]
+  },
+  {
+   "brand": "bedsure",
+   "name": "Bedsure Large Orthopedic Washable Dog Bed",
+   "shape": "Beds",
+   "balance": "20\"–54\"",
+   "surface": "Orthopedic bed",
+   "core": "Egg-crate foam",
+   "weight": null,
+   "sources": [
+    "https://bedsurehome.com/products/large-orthopedic-washable-dog-bed"
+   ]
+  },
+  {
+   "brand": "benebone",
+   "name": "Benebone Wishbone",
+   "shape": "Toys & chews",
+   "balance": "Tiny–Giant",
+   "surface": "Chew toy",
+   "core": "nylon",
+   "weight": "real bacon flavour",
+   "sources": [
+    "https://www.benebone.com/products/wishbone"
+   ]
+  },
+  {
+   "brand": "best-friends-by-sheri",
+   "name": "Best Friends by Sheri The Original Calming Donut Dog Bed",
+   "shape": "Beds",
+   "balance": "17\"–45\" (54\" on Outward Hound)",
+   "surface": "Calming bed",
+   "core": "Poly fill (AirLoft fibers)",
+   "weight": "Up to 150 lbs (45\")",
+   "sources": [
+    "https://bestfriendsbysheri.com/products/the-original-calming-dog-bed-donut-cuddler-shag-fur-45x45",
+    "https://outwardhound.com/donut-shag-dog-bed-taupe-36x36/"
+   ]
+  },
+  {
+   "brand": "big-barker",
+   "name": "Big Barker Junior Orthopedic Dog Bed",
+   "shape": "Beds",
+   "balance": "Small, Medium",
+   "surface": "Orthopedic bed",
+   "core": "4\" orthopedic foam",
+   "weight": "10-year no-flatten warranty",
+   "sources": [
+    "https://bigbarker.com/products/barker-junior"
+   ]
+  },
+  {
+   "brand": "big-barker",
+   "name": "Big Barker Original Orthopedic Dog Bed",
+   "shape": "Beds",
+   "balance": "Large, XL, Giant",
+   "surface": "Orthopedic bed",
+   "core": "7\" orthopedic foam (3 layers)",
+   "weight": "10-year no-flatten warranty",
+   "sources": [
+    "https://bigbarker.com/products/orthomedic-dog-bed"
+   ]
+  },
+  {
+   "brand": "big-barker",
+   "name": "Big Barker OrthoLift Crate Bed",
+   "shape": "Beds",
+   "balance": "S–XXL",
+   "surface": "Crate pad",
+   "core": "4\" orthopedic foam",
+   "weight": "10-year no-flatten guarantee",
+   "sources": [
+    "https://bigbarker.com/products/big-barker-crate-bed"
+   ]
+  },
+  {
+   "brand": "blue-buffalo",
+   "name": "Blue Buffalo Life Protection Formula Adult Chicken & Brown Rice Recipe",
+   "shape": "Dog food",
+   "balance": "Adult",
+   "surface": "Dry food",
+   "core": "Deboned chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.bluebuffalo.com/dry-dog-food/life-protection-formula/chicken-brown-rice-recipe/"
+   ]
+  },
+  {
+   "brand": "blueberry-pet",
+   "name": "Blueberry Pet Classic Solid Color Dog Collar",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XS–L",
+   "surface": "Collar",
+   "core": "nylon webbing",
+   "weight": null,
+   "sources": [
+    "https://www.blueberrypet.com/collections/solid-color-dog-collars"
+   ]
+  },
+  {
+   "brand": "canidae",
+   "name": "Canidae All Life Stages Multi-Protein Recipe",
+   "shape": "Dog food",
+   "balance": "All life stages; 5, 27, 40 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://canidae.com/all-life-stages-dry-dog-food-multi-protein-recipe/"
+   ]
+  },
+  {
+   "brand": "casfuy",
+   "name": "Casfuy Dog Nail Grinder with 2 LED Light",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Nail grinder",
+   "core": "2-speed, 3 grinding ports, 2 LED lights, cordless USB rechargeable",
+   "weight": "2 speeds (8,000 / 10,000 RPM per retailer)",
+   "sources": [
+    "https://www.chewy.com/casfuy-3x-more-powerful-2-speed/dp/762910",
+    "https://www.chewy.com/casfuy-2-speed-electric-dog-nail/dp/787886"
+   ]
+  },
+  {
+   "brand": "casper",
+   "name": "Casper Dog Bed",
+   "shape": "Beds",
+   "balance": "Small, Medium, Large",
+   "surface": "Memory foam bed",
+   "core": "Memory foam + support foam",
+   "weight": null,
+   "sources": [
+    "https://casper.com/products/dog-mattresses"
+   ]
+  },
+  {
+   "brand": "chris-christensen",
+   "name": "Chris Christensen 000 7.5\" Fine/Coarse Greyhound-Style Buttercomb",
+   "shape": "Grooming",
+   "balance": "7.5 in",
+   "surface": "Comb",
+   "core": "fine/coarse combination; brass core, steel teeth (retailer)",
+   "weight": null,
+   "sources": [
+    "https://chrischristensen.com/chris-christensen-7-5-fine-coarse-greyhound-style-buttercomb/",
+    "https://www.lovegroomers.com/chris-christensen-7-5-fine-coarse-greyhound-style-buttercomb-000"
+   ]
+  },
+  {
+   "brand": "chris-christensen",
+   "name": "Chris Christensen Big G Slicker Brush",
+   "shape": "Grooming",
+   "balance": "Baby G, Medium Big G, Large Big G",
+   "surface": "Slicker brush",
+   "core": "stainless steel 27mm pins",
+   "weight": null,
+   "sources": [
+    "https://chrischristensen.com/collections/brushes-slicker-brushes/products/chris-christensen-big-g-slicker-brushes"
+   ]
+  },
+  {
+   "brand": "chuckit",
+   "name": "Chuckit! Classic Launcher",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Ball launcher",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.petmate.com/products/chuckit-classic-dog-ball-launcher"
+   ]
+  },
+  {
+   "brand": "chuckit",
+   "name": "Chuckit! Kick Fetch",
+   "shape": "Toys & chews",
+   "balance": "Small, Large",
+   "surface": "Fetch toy",
+   "core": "rubber and foam, canvas cover",
+   "weight": null,
+   "sources": [
+    "https://www.petmate.com/products/chuckit-kick-fetch-dog-toy"
+   ]
+  },
+  {
+   "brand": "chuckit",
+   "name": "Chuckit! Ultra Ball",
+   "shape": "Toys & chews",
+   "balance": "S–XXL",
+   "surface": "Fetch toy",
+   "core": "rubber",
+   "weight": "floats",
+   "sources": [
+    "https://www.petmate.com/products/chuckit-ultra-ball-dog-toy-1"
+   ]
+  },
+  {
+   "brand": "coolaroo",
+   "name": "Coolaroo Original Elevated Dog Bed",
+   "shape": "Beds",
+   "balance": "Small, Medium, Large, XL",
+   "surface": "Elevated bed",
+   "core": "HDPE fabric on powder-coated steel frame",
+   "weight": "Up to 150 lbs (XL)",
+   "sources": [
+    "https://www.coolaroousa.com/pet-products/elevated-dog-beds/Original-Elevated-Dog-Bed-Large-Aquatic-Blue_459758"
+   ]
+  },
+  {
+   "brand": "diamond",
+   "name": "Diamond Naturals All Life Stages Dog Chicken & Rice Formula",
+   "shape": "Dog food",
+   "balance": "All life stages; 40 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.diamondpet.com/dog/diamond-naturals/all-life-stages-dog-chicken-rice/"
+   ]
+  },
+  {
+   "brand": "diggs",
+   "name": "Diggs Evolv Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "Small, Medium, Intermediate, Large, XL",
+   "surface": "Wire crate",
+   "core": "Nylon-coated steel",
+   "weight": null,
+   "sources": [
+    "https://www.diggs.pet/products/evolv"
+   ]
+  },
+  {
+   "brand": "diggs",
+   "name": "Diggs Passenger Travel Carrier",
+   "shape": "Crates & carriers",
+   "balance": null,
+   "surface": "Airline carrier",
+   "core": null,
+   "weight": "5-star CPS crash rating (pets up to 18 lb)",
+   "sources": [
+    "https://www.diggs.pet/products/passenger-travel-carrier"
+   ]
+  },
+  {
+   "brand": "diggs",
+   "name": "Diggs Revol Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "Small, Medium, Intermediate, Large",
+   "surface": "Collapsible crate",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.diggs.pet/products/revol-collapsible-dog-crate"
+   ]
+  },
+  {
+   "brand": "diggs",
+   "name": "Diggs Snooz Revol Pad",
+   "shape": "Beds",
+   "balance": "S, M, Intermediate, L",
+   "surface": "Crate pad",
+   "core": "CertiPUR-US memory foam",
+   "weight": null,
+   "sources": [
+    "https://www.diggs.pet/products/snooz-dog-crate-bed"
+   ]
+  },
+  {
+   "brand": "dogness",
+   "name": "Dogness App Feeder",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Automatic feeder",
+   "core": "ABS",
+   "weight": "6 L",
+   "sources": [
+    "https://webus.dogness.com/products"
+   ]
+  },
+  {
+   "brand": "dremel",
+   "name": "Dremel PawControl 7760-PGK Pet Nail Grooming Kit",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Nail grinder",
+   "core": "4V lithium-ion cordless, 45° nail guard, 4 speed settings",
+   "weight": "4 speeds",
+   "sources": [
+    "https://www.dremel.com/ca/en/p/7760-pgk-f0137760ac",
+    "https://www.acmetools.com/dremel-pet-nail-grooming-kit-4-volt-cordless-7760-pgk/080596054380.html"
+   ]
+  },
+  {
+   "brand": "elitefield",
+   "name": "EliteField 3-Door Folding Soft Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "20\"–42\"",
+   "surface": "Soft crate",
+   "core": "Steel tubing, 600D fabric",
+   "weight": "2-year warranty",
+   "sources": [
+    "https://www.elitefieldpet.com/?mod=products_detail&id=20"
+   ]
+  },
+  {
+   "brand": "embark",
+   "name": "Embark Adventure Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "No-pull harness",
+   "core": "Oxford fabric",
+   "weight": "two leash points",
+   "sources": [
+    "https://embarkpets.com/products/no-pull-dog-harness"
+   ]
+  },
+  {
+   "brand": "eufy",
+   "name": "Eufy Pet Dog Camera D605",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Treat camera",
+   "core": "1080p, 270° rotation + 170° lens (360° coverage), 3-distance treat tossing, AI motion tracking",
+   "weight": "Built-in 16GB eMMC storage, no subscription required",
+   "sources": [
+    "https://www.eufy.com/au/products/t7200121",
+    "https://service.eufy.com/article-description/Introducing-eufy-Pet-Dog-Camera-D605"
+   ]
+  },
+  {
+   "brand": "fi",
+   "name": "Fi Mini",
+   "shape": "GPS trackers & cameras",
+   "balance": "clips to collars/harnesses 3/8\" to 1\" wide; for small dogs under 10 lb and cats",
+   "surface": "GPS tracker",
+   "core": "GPS + LTE-M (Verizon), IP68, 0.56 oz",
+   "weight": "Up to 3 weeks battery; membership required",
+   "sources": [
+    "https://www.businesswire.com/news/home/20250825403179/en/Fi-Unveils-Fi-Mini-The-Smallest-Smartest-Pet-Tracker-for-Dogs-and-Cats",
+    "https://fitracking.com/"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "fi",
+   "name": "Fi Series 3 Smart Collar",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "GPS collar",
+   "core": "GPS + LTE-M",
+   "weight": "Membership required",
+   "sources": [
+    "https://www.businesswire.com/news/home/20221012005220/en/Fi-Releases-its-GPS-integrated-AirTag-for-Dogs-Introducing-the-Fi-Series-3",
+    "https://blog.tryfi.com/how-does-the-fi-collar-gps-lte-m-tracking-work"
+   ],
+   "year": 2022
+  },
+  {
+   "brand": "fi",
+   "name": "Fi Series 3+ Smart Collar",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "GPS collar",
+   "core": "GPS + LTE-M, AI behavior detection (barking, licking, scratching, eating, drinking), Apple Watch integration",
+   "weight": "Up to 3 months battery life; membership required",
+   "sources": [
+    "https://fitracking.com/",
+    "https://blog.fitracking.com/the-first-ai-smart-collar-for-your-dog/",
+    "https://www.businesswire.com/news/home/20250529695114/en/Fi-Unleashes-the-Worlds-First-AI-Powered-Smart-Dog-Collar-Built-for-Real-Time-Health-and-Behavior-Detection"
+   ],
+   "year": 2025,
+   "slug": "fi-series-3-plus-smart-collar"
+  },
+  {
+   "brand": "flexi",
+   "name": "Flexi Classic",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XS–L (3, 5, 8 m)",
+   "surface": "Retractable leash",
+   "core": null,
+   "weight": "tape or cord",
+   "sources": [
+    "https://flexi.de/en/products/",
+    "https://flexi.de/en/products/new-classic-s-8m-cord-dog_lead"
+   ]
+  },
+  {
+   "brand": "flying-pig",
+   "name": "Flying Pig Flying One High Velocity Dog Grooming Dryer",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Dryer",
+   "core": "steel shell, 10 ft hose, adjustable heat 81-160°F",
+   "weight": "240 CFM / 28,000 FPM (retailer)",
+   "sources": [
+    "https://www.chewy.com/flying-pig-grooming-high-velocity-dog/dp/158278",
+    "https://www.walmart.ca/en/ip/Flying-Pig-High-Velocity-Dog-Pet-grooming-Dryer-wHeater-Model-Flying-One-green/4EHA1OZHHBMD"
+   ]
+  },
+  {
+   "brand": "frisco",
+   "name": "Frisco Adjustable Stainless Steel Double Elevated Dog Bowls",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Sizes incl. Large 7 cup",
+   "surface": "Elevated bowl",
+   "core": "Stainless steel",
+   "weight": null,
+   "sources": [
+    "https://www.chewy.com/frisco-adjustable-stainless-steel/dp/258604"
+   ]
+  },
+  {
+   "brand": "frisco",
+   "name": "Frisco Heavy Duty Fold & Carry Double Door Wire Crate",
+   "shape": "Crates & carriers",
+   "balance": "22\"–48\"",
+   "surface": "Wire crate",
+   "core": "Steel wire",
+   "weight": "7–11 gauge wire (by size)",
+   "sources": [
+    "https://www.chewy.com/frisco-heavy-duty-fold-carry-double/dp/137166"
+   ]
+  },
+  {
+   "brand": "frisco",
+   "name": "Frisco Paw Design Slow Feeder Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "2 cups",
+   "surface": "Slow feeder",
+   "core": "Stainless steel with silicone insert",
+   "weight": "2 cups",
+   "sources": [
+    "https://www.chewy.com/frisco-silicone-stainless-paw-steel/dp/357784"
+   ]
+  },
+  {
+   "brand": "furbo",
+   "name": "Furbo 360° Dog Camera",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Treat camera",
+   "core": "1080p Full HD, 360° rotating view, wide-angle lens, 4x digital zoom, color night vision",
+   "weight": "Furbo Nanny subscription optional (Standard plan avg $6.99/mo)",
+   "sources": [
+    "https://furbo.com/us/products/furbo-360-dog-camera",
+    "https://furbo.com/blog/en/article/furbo-announces-rotating-360-degree-camera"
+   ],
+   "year": 2022
+  },
+  {
+   "brand": "furbo",
+   "name": "Furbo Dog Camera",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Treat camera",
+   "core": "Fixed-view treat-tossing camera, 2-way audio",
+   "weight": null,
+   "sources": [
+    "https://furbo.com/blog/en/article/furbo-announces-rotating-360-degree-camera"
+   ]
+  },
+  {
+   "brand": "furbo",
+   "name": "Furbo Mini",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Pet camera",
+   "core": "1080p, 130° wide-angle lens, 4x digital zoom; no treat tossing mentioned",
+   "weight": "Works best with Furbo Nanny subscription",
+   "sources": [
+    "https://furbo.com/blog/en/article/furbo-mini-is-here",
+    "https://furbo.com/us/"
+   ],
+   "year": 2024
+  },
+  {
+   "brand": "furbo",
+   "name": "Furbo Mini 360°",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Treat camera",
+   "core": "2K video, 360° rotating view with Auto Pet Tracking, 'Lite Treat Tossing' (~10 small treats)",
+   "weight": null,
+   "sources": [
+    "https://www.furbo.com/blog/en/article/furbo-mini-360-launch",
+    "https://furbo.com/us/"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "furhaven",
+   "name": "FurHaven Sofa Dog Bed",
+   "shape": "Beds",
+   "balance": "Medium, Large, Jumbo, Jumbo Plus",
+   "surface": "Bolster bed",
+   "core": "Egg-crate, solid orthopedic, memory or cooling gel foam",
+   "weight": null,
+   "sources": [
+    "https://furhaven.com/products/shop-pet-beds-sofa-bed-plush-suede"
+   ]
+  },
+  {
+   "brand": "furminator",
+   "name": "FURminator Undercoat deShedding Tool",
+   "shape": "Grooming",
+   "balance": "Short Hair and Long Hair versions (coat under / over 2 in); small, medium, large (regionally toy and giant)",
+   "surface": "Deshedding tool",
+   "core": "stainless steel deShedding edge, FURejector hair-release button, Edge Guard",
+   "weight": null,
+   "sources": [
+    "https://www.petsmart.com/5280401.html",
+    "https://www.petsmart.com/5280400.html",
+    "https://www.petbarn.com.au/p/furminator-dog-long-hair-deshedding-tool"
+   ]
+  },
+  {
+   "brand": "garmin",
+   "name": "Garmin Alpha 300",
+   "shape": "GPS trackers & cameras",
+   "balance": "Alpha 300 and Alpha 300i (with inReach satellite messaging)",
+   "surface": "Hunting GPS",
+   "core": "3.5\" glove-friendly touchscreen handheld; USB-C; swappable batteries",
+   "weight": "Up to 55 hours handheld battery",
+   "sources": [
+    "https://garmin.com/en-US/newsroom/?p=4376"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "garmin",
+   "name": "Garmin Alpha T 20 Dog Tracking Collar",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Hunting GPS",
+   "core": "GPS tracking-only dog collar (no stimulation per hunting press), up to 9 mi range",
+   "weight": "Up to 68 hours (standard battery) / 136 hours (extended pack)",
+   "sources": [
+    "https://garmin.com/en-US/newsroom/?p=4376"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "garmin",
+   "name": "Garmin Alpha TT 25 Dog Tracking and Training Collar",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Hunting GPS",
+   "core": "GPS dog collar with stimulation, 7 multicolor LED beacons, up to 9 mi range with compatible handheld",
+   "weight": "Up to 68 hours (standard battery) / 136 hours (extended pack)",
+   "sources": [
+    "https://garmin.com/en-US/newsroom/?p=4376"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "goughnuts",
+   "name": "Goughnuts Ring",
+   "shape": "Toys & chews",
+   "balance": "S, M, L, XL",
+   "surface": "Chew toy",
+   "core": "natural rubber",
+   "weight": "guaranteed for life",
+   "sources": [
+    "https://www.goughnuts.com/rings-1"
+   ]
+  },
+  {
+   "brand": "goughnuts",
+   "name": "Goughnuts Stick",
+   "shape": "Toys & chews",
+   "balance": "S, M, L",
+   "surface": "Chew toy",
+   "core": "natural rubber",
+   "weight": "guaranteed for life",
+   "sources": [
+    "https://www.goughnuts.com/sticks-2"
+   ]
+  },
+  {
+   "brand": "gunner",
+   "name": "Gunner G1 Kennel",
+   "shape": "Crates & carriers",
+   "balance": "Small, Medium, Intermediate, Large",
+   "surface": "Heavy-duty crate",
+   "core": "Double-wall rotomolded",
+   "weight": "5-star CPS crash rating (S, M, Intermediate)",
+   "sources": [
+    "https://gunner.com/products/g1-kennel-black",
+    "https://gunner.com/blogs/pack/crash-tested-dog-crates-5-star-certified"
+   ]
+  },
+  {
+   "brand": "gunner",
+   "name": "Gunner Orthopedic Kennel Bed",
+   "shape": "Beds",
+   "balance": "Small, Medium, Intermediate, Large",
+   "surface": "Crate pad",
+   "core": "2\" cooling memory foam",
+   "weight": "1680D ballistic nylon",
+   "sources": [
+    "https://gunner.com/products/orthopedic-dog-bed"
+   ]
+  },
+  {
+   "brand": "halo",
+   "name": "Halo Collar 3",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "GPS fence collar",
+   "core": "PrecisionGPS software + active GPS antenna; up to 20 fences stored on collar",
+   "weight": null,
+   "sources": [
+    "https://www.halocollar.com/shop-wireless-dog-fence/",
+    "https://geardiary.com/2023/09/01/halo-collar-3/"
+   ],
+   "year": 2023
+  },
+  {
+   "brand": "halo",
+   "name": "Halo Collar 4",
+   "shape": "GPS trackers & cameras",
+   "balance": "neck 8\"-30.5\"",
+   "surface": "GPS fence collar",
+   "core": "Dual-frequency (L1 + L5) GPS",
+   "weight": "30+ hours battery; membership required",
+   "sources": [
+    "https://pet-insight.com/halo-unveils-halo-collar-4/",
+    "https://www.halocollar.com/"
+   ],
+   "year": 2024
+  },
+  {
+   "brand": "halo",
+   "name": "Halo Collar 5",
+   "shape": "GPS trackers & cameras",
+   "balance": "neck 8\"-30.5\"; dogs over 10 lb",
+   "surface": "GPS fence collar",
+   "core": "Precision+ dual-band GPS, 20 location updates/sec, Wi-Fi + Bluetooth chips, cellular, IP67",
+   "weight": "Up to 48 hours battery; Pack Membership required (from $9.99/mo)",
+   "sources": [
+    "https://www.halocollar.com/",
+    "https://www.halocollar.com/blog/wp-json/wp/v2/posts/1560838"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "halti",
+   "name": "Halti Headcollar",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "Head halter",
+   "core": null,
+   "weight": "padded nose band",
+   "sources": [
+    "https://companyofanimals.com/us/brand-product/halti-headcollar/"
+   ]
+  },
+  {
+   "brand": "halti",
+   "name": "Halti No Pull Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "3 sizes",
+   "surface": "No-pull harness",
+   "core": null,
+   "weight": "front control ring",
+   "sources": [
+    "https://companyofanimals.com/us/brand-product/halti-no-pull-dog-harness/"
+   ]
+  },
+  {
+   "brand": "hertzko",
+   "name": "Hertzko Self-Cleaning Slicker Brush",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Slicker brush",
+   "core": "stainless steel pins, one-button bristle retraction",
+   "weight": null,
+   "sources": [
+    "https://petsradar.com/review/hertzko-self-cleaning-slicker-brush",
+    "https://www.businessinsider.in/the-best-dog-brushes/the-best-dog-brush-overall/slideshow/71748889.cms"
+   ]
+  },
+  {
+   "brand": "hill-s",
+   "name": "Hill's Science Diet Adult Chicken & Barley Recipe",
+   "shape": "Dog food",
+   "balance": "Adult 1-6; 2, 5, 15, 35, 45 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.hillspet.com/dog-food/sd-canine-adult-dry"
+   ]
+  },
+  {
+   "brand": "hill-s",
+   "name": "Hill's Science Diet Adult Sensitive Stomach & Skin Chicken & Barley Recipe",
+   "shape": "Dog food",
+   "balance": "Adult; 4, 15.5, 30, 35, 36 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.hillspet.com/dog-food/science-diet-canine-adult-sensitive-stomach-skin-chicken-dry"
+   ]
+  },
+  {
+   "brand": "hill-s",
+   "name": "Hill's Science Diet Puppy Chicken & Brown Rice Recipe",
+   "shape": "Dog food",
+   "balance": "Puppy",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.hillspet.com/dog-food/sd-puppy-original-dry"
+   ]
+  },
+  {
+   "brand": "iams",
+   "name": "Iams Proactive Health Adult Minichunks Chicken & Whole Grain Recipe",
+   "shape": "Dog food",
+   "balance": "Adult; 5-44 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.iams.com/products/dry/iams-minichunks-chicken-whole-grains"
+   ]
+  },
+  {
+   "brand": "ifetch",
+   "name": "iFetch Ball Launcher",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Ball launcher",
+   "core": null,
+   "weight": "10, 20 or 30 ft",
+   "sources": [
+    "https://goifetch.com/products/ifetch-ball-launcher"
+   ]
+  },
+  {
+   "brand": "ifetch",
+   "name": "iFetch Too",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Ball launcher",
+   "core": null,
+   "weight": "10, 25 or 40 ft",
+   "sources": [
+    "https://goifetch.com/products/ifetch-too-ball-launcher-medium-to-large-dogs"
+   ]
+  },
+  {
+   "brand": "impact-dog-crates",
+   "name": "Impact Airline Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "34\", 40\", 40\"+",
+   "surface": "Airline crate",
+   "core": "Aluminum",
+   "weight": null,
+   "sources": [
+    "https://impactdogcrates.com/products/airline-dog-crate"
+   ]
+  },
+  {
+   "brand": "impact-dog-crates",
+   "name": "Impact Collapsible Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "24\"–54\"",
+   "surface": "Heavy-duty crate",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://impactdogcrates.com/products/collapsible-dog-crate"
+   ]
+  },
+  {
+   "brand": "impact-dog-crates",
+   "name": "Impact High Anxiety Crate",
+   "shape": "Crates & carriers",
+   "balance": "30\"–48\"+",
+   "surface": "Heavy-duty crate",
+   "core": "Aluminum",
+   "weight": "Lifetime dog damage guarantee",
+   "sources": [
+    "https://impactdogcrates.com/products/high-anxiety-crate-xl"
+   ]
+  },
+  {
+   "brand": "impact-dog-crates",
+   "name": "Impact Orthopedic Dog Bed With Memory Foam",
+   "shape": "Beds",
+   "balance": "M, L, XL",
+   "surface": "Orthopedic bed",
+   "core": "Memory foam",
+   "weight": null,
+   "sources": [
+    "https://impactdogcrates.com/products/impact-orthopedic-dog-bed"
+   ]
+  },
+  {
+   "brand": "impact-dog-crates",
+   "name": "Impact Orthopedic Dog Crate Pad",
+   "shape": "Beds",
+   "balance": "20\"–54\"",
+   "surface": "Crate pad",
+   "core": "Memory foam",
+   "weight": "Ballistic nylon cover",
+   "sources": [
+    "https://impactdogcrates.com/products/impact-orthopedic-crate-pad"
+   ]
+  },
+  {
+   "brand": "impact-dog-crates",
+   "name": "Impact Stationary Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "30\"–48\"",
+   "surface": "Heavy-duty crate",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://impactdogcrates.com/products/stationary-dog-crate"
+   ]
+  },
+  {
+   "brand": "instinct",
+   "name": "Instinct Original Grain-Free Recipe with Real Chicken",
+   "shape": "Dog food",
+   "balance": "All life stages (except large-breed growth); 4, 22.5 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "Grain-free",
+   "sources": [
+    "https://instinctpetfood.com/products/original-chicken-dry-dog-food/"
+   ]
+  },
+  {
+   "brand": "jolly-pets",
+   "name": "Jolly Pets Romp-n-Roll",
+   "shape": "Toys & chews",
+   "balance": "4.5, 6, 8 in",
+   "surface": "Tug toy",
+   "core": null,
+   "weight": "floats",
+   "sources": [
+    "https://jollypets.com/products/romp-n-roll-dog-toy"
+   ]
+  },
+  {
+   "brand": "julius-k9",
+   "name": "Julius-K9 IDC Powerharness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "Baby1–4",
+   "surface": "Adventure harness",
+   "core": null,
+   "weight": "back handle",
+   "sources": [
+    "https://julius-k9.com/idc-powerharness/",
+    "https://julius-k9.com/idc-powerharness-size-chart/"
+   ]
+  },
+  {
+   "brand": "k-h-pet-products",
+   "name": "K&H Cool Bed III Cooling Dog Bed",
+   "shape": "Beds",
+   "balance": "Small, Medium, Large",
+   "surface": "Cooling bed",
+   "core": "Water-filled cooling pad",
+   "weight": null,
+   "sources": [
+    "https://khpet.com/products/cool-bed-iii"
+   ]
+  },
+  {
+   "brand": "k-h-pet-products",
+   "name": "K&H Original Pet Cot",
+   "shape": "Beds",
+   "balance": "Small–Jumbo",
+   "surface": "Elevated bed",
+   "core": "Mesh on frame",
+   "weight": "Holds up to 300 lbs (by size)",
+   "sources": [
+    "https://khpet.com/products/original-pet-cot"
+   ]
+  },
+  {
+   "brand": "k9-ballistics",
+   "name": "K9 Ballistics Chew Proof Armored Ripstop Elevated Dog Bed",
+   "shape": "Beds",
+   "balance": "S–XXL",
+   "surface": "Elevated bed",
+   "core": "Aluminum frame, ballistic fabric",
+   "weight": "Chew proof score 10/10",
+   "sources": [
+    "https://k9ballistics.com/products/chew-proof-armored-rip-stop-elevated-dog-bed"
+   ]
+  },
+  {
+   "brand": "k9-ballistics",
+   "name": "K9 Ballistics Tough Ripstop Dog Crate Pad",
+   "shape": "Beds",
+   "balance": "XS–XXL",
+   "surface": "Crate pad",
+   "core": "Recycled polyester fiberfill",
+   "weight": "Ballistic fabric",
+   "sources": [
+    "https://k9ballistics.com/products/tough-dog-crate-pad"
+   ]
+  },
+  {
+   "brand": "k9-ballistics",
+   "name": "K9 Ballistics Tough Ripstop Rectangle Bolster Orthopedic Dog Bed",
+   "shape": "Beds",
+   "balance": "S–XXL",
+   "surface": "Bolster bed",
+   "core": "Solid foam",
+   "weight": "Chew proof score 7/10",
+   "sources": [
+    "https://k9ballistics.com/products/tough-bolster-orthopedic-dog-bed"
+   ]
+  },
+  {
+   "brand": "kirkland-signature",
+   "name": "Kirkland Signature Adult Formula Chicken, Rice and Vegetable Dog Food",
+   "shape": "Dog food",
+   "balance": "Adult; 25 lb (replaces 40 lb)",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.costco.com/p/-/kirkland-signature-adult-formula-chicken-rice-and-vegetable-dog-food-25-lbs/4000399008"
+   ]
+  },
+  {
+   "brand": "kong",
+   "name": "Kong Classic",
+   "shape": "Toys & chews",
+   "balance": "XS–XXL",
+   "surface": "Treat toy",
+   "core": "natural rubber",
+   "weight": "stuffable",
+   "sources": [
+    "https://www.kongcompany.com/kong-classic/"
+   ]
+  },
+  {
+   "brand": "kong",
+   "name": "Kong Extreme",
+   "shape": "Toys & chews",
+   "balance": "S–XXL",
+   "surface": "Chew toy",
+   "core": "natural rubber",
+   "weight": "toughest Kong rubber",
+   "sources": [
+    "https://www.kongcompany.com/kong-extreme/"
+   ]
+  },
+  {
+   "brand": "kong",
+   "name": "Kong Puppy",
+   "shape": "Toys & chews",
+   "balance": "XS–L",
+   "surface": "Treat toy",
+   "core": "natural rubber",
+   "weight": "for teething gums",
+   "sources": [
+    "https://www.kongcompany.com/kong-puppy/"
+   ]
+  },
+  {
+   "brand": "kong",
+   "name": "Kong Wobbler",
+   "shape": "Toys & chews",
+   "balance": "Small, Large",
+   "surface": "Treat toy",
+   "core": "polypropylene",
+   "weight": "dishwasher safe",
+   "sources": [
+    "https://www.kongcompany.com/kong-wobbler/"
+   ]
+  },
+  {
+   "brand": "kong",
+   "name": "Kong Wubba",
+   "shape": "Toys & chews",
+   "balance": "S, L, XL",
+   "surface": "Tug toy",
+   "core": "vinyl and nylon",
+   "weight": null,
+   "sources": [
+    "https://www.kongcompany.com/wubba/"
+   ]
+  },
+  {
+   "brand": "kong",
+   "name": "Kong ZoomGroom",
+   "shape": "Grooming",
+   "balance": "Regular and Large (catalogue size option); Raspberry / Boysenberry",
+   "surface": "Rubber brush",
+   "core": "3/4 in rubber fingers, wet or dry use",
+   "weight": null,
+   "sources": [
+    "https://www.kongcompany.com/catalogue/ZG1",
+    "https://www.kongcompany.com/catalogue/ZG2/"
+   ]
+  },
+  {
+   "brand": "kuranda",
+   "name": "Kuranda Chew Proof Aluminum Dog Bed",
+   "shape": "Beds",
+   "balance": null,
+   "surface": "Elevated bed",
+   "core": "Aluminum frame",
+   "weight": "Up to 250 lbs",
+   "sources": [
+    "https://kuranda.com/aluminum-dog-beds"
+   ]
+  },
+  {
+   "brand": "kuranda",
+   "name": "Kuranda Slimline Dog Bed",
+   "shape": "Beds",
+   "balance": null,
+   "surface": "Elevated bed",
+   "core": "40oz vinyl fabric",
+   "weight": "Up to 175 lbs",
+   "sources": [
+    "https://kuranda.com/aluminum-dog-beds"
+   ]
+  },
+  {
+   "brand": "kuranda",
+   "name": "Kuranda Standard PVC Dog Bed",
+   "shape": "Beds",
+   "balance": null,
+   "surface": "Elevated bed",
+   "core": "PVC frame",
+   "weight": "Up to 100 lbs",
+   "sources": [
+    "https://kuranda.com/standard-dog-bed-options"
+   ]
+  },
+  {
+   "brand": "kurgo",
+   "name": "Kurgo Collaps A Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Travel bowl",
+   "core": "Food-grade silicone",
+   "weight": "24 oz",
+   "sources": [
+    "https://www.kurgo.com/p/collaps-a-bowl/K00098"
+   ]
+  },
+  {
+   "brand": "kurgo",
+   "name": "Kurgo Enhanced Strength Tru-Fit Smart Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "Car harness",
+   "core": null,
+   "weight": "crash tested to 75 lb",
+   "sources": [
+    "https://www.kurgo.com/enhanced-strength-tru-fit-smart-harness"
+   ]
+  },
+  {
+   "brand": "kurgo",
+   "name": "Kurgo Tru-Fit Smart Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XS–XL",
+   "surface": "No-pull harness",
+   "core": "ripstop fabric",
+   "weight": "front and back leash points",
+   "sources": [
+    "https://www.kurgo.com/p/tru-fit-smart-dog-walking-harness/K01174"
+   ]
+  },
+  {
+   "brand": "lickimat",
+   "name": "LickiMat Classic Buddy",
+   "shape": "Toys & chews",
+   "balance": "8x8 in; XL",
+   "surface": "Lick mat",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://lickimat.com/pages/picking-the-right-lickimat-dogs"
+   ]
+  },
+  {
+   "brand": "lickimat",
+   "name": "LickiMat Classic Soother",
+   "shape": "Toys & chews",
+   "balance": "8x8 in; XL",
+   "surface": "Lick mat",
+   "core": null,
+   "weight": "freezer safe",
+   "sources": [
+    "https://lickimat.com/products/lickimat-classic-soother"
+   ]
+  },
+  {
+   "brand": "lickimat",
+   "name": "LickiMat Slomo",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Standard; Slomo XL is a separate size line",
+   "surface": "Slow feeder",
+   "core": "TPR and polypropylene",
+   "weight": null,
+   "sources": [
+    "https://lickimat.com/products/lickimat-slomo"
+   ]
+  },
+  {
+   "brand": "lucky-duck",
+   "name": "Lucky Duck Lucky Kennel",
+   "shape": "Crates & carriers",
+   "balance": "Medium, Intermediate, Large",
+   "surface": "Heavy-duty crate",
+   "core": "One-piece rotomolded shell",
+   "weight": "5-star CPS crash rating",
+   "sources": [
+    "https://luckyduck.com/products/lucky-kennel"
+   ]
+  },
+  {
+   "brand": "lupine",
+   "name": "Lupine Original Designs Collar",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "Collar",
+   "core": null,
+   "weight": "guaranteed even if chewed",
+   "sources": [
+    "https://www.lupinepet.com/products/original-designs-dog-collar"
+   ]
+  },
+  {
+   "brand": "max-and-neo",
+   "name": "Max and Neo Double Handle Reflective Leash",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "4 ft, 6 ft",
+   "surface": "Leash",
+   "core": "nylon",
+   "weight": "two padded handles",
+   "sources": [
+    "https://www.maxandneo.com/products/double-handle-heavy-duty-reflective-leash"
+   ]
+  },
+  {
+   "brand": "merrick",
+   "name": "Merrick Grain Free Real Beef & Sweet Potato Recipe",
+   "shape": "Dog food",
+   "balance": "Adult; 4, 10, 22, 30 lb",
+   "surface": "Dry food",
+   "core": "Deboned beef",
+   "weight": "Grain-free",
+   "sources": [
+    "https://www.merrickpetcare.com/shop/grain-free-texas-beef-sweet-potato-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "midwest",
+   "name": "MidWest Exercise Pen with Door",
+   "shape": "Crates & carriers",
+   "balance": "24\"–48\" tall",
+   "surface": "Playpen",
+   "core": "Steel wire",
+   "weight": null,
+   "sources": [
+    "https://www.midwesthomes4pets.com/product/dogs/pens-gates-barriers/exercise-pen-with-door/"
+   ]
+  },
+  {
+   "brand": "midwest",
+   "name": "MidWest iCrate Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "18\"–48\"",
+   "surface": "Wire crate",
+   "core": "Steel wire",
+   "weight": null,
+   "sources": [
+    "https://www.midwesthomes4pets.com/product/dogs/crates-carriers-kennels/icrate-dog-crate/"
+   ]
+  },
+  {
+   "brand": "midwest",
+   "name": "MidWest LifeStages Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "22\"–48\"",
+   "surface": "Wire crate",
+   "core": "Steel wire",
+   "weight": "Thicker wire gauge than iCrate",
+   "sources": [
+    "https://www.midwesthomes4pets.com/product/dogs/crates-carriers-kennels/lifestages-dog-crate/"
+   ]
+  },
+  {
+   "brand": "midwest",
+   "name": "MidWest Ultima Pro Dog Crate",
+   "shape": "Crates & carriers",
+   "balance": "24\"–48\"",
+   "surface": "Wire crate",
+   "core": "Professional-gauge steel",
+   "weight": "Heavy duty steel",
+   "sources": [
+    "https://www.midwesthomes4pets.com/product/dogs/crates-carriers-kennels/ultima-pro/"
+   ]
+  },
+  {
+   "brand": "millers-forge",
+   "name": "Millers Forge Pet Nail Clipper 743",
+   "shape": "Grooming",
+   "balance": "743 (plier style) and 743C (with safety stop)",
+   "surface": "Nail clippers",
+   "core": "plier-style steel clipper",
+   "weight": null,
+   "sources": [
+    "https://lcsupply.com/products/millers-forge-pet-nail-clipper"
+   ]
+  },
+  {
+   "brand": "mim-safe",
+   "name": "MIM Safe Variocage Single",
+   "shape": "Crates & carriers",
+   "balance": "XS, L, L+, XL, XXL+, Maximum",
+   "surface": "Car crate",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.mimsafe.com/produkt/variocage-single/"
+   ]
+  },
+  {
+   "brand": "neabot",
+   "name": "Neabot P1 Pro Pet Grooming Kit & Vacuum",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Grooming vacuum",
+   "core": "vacuum with clipper and brush heads, guard combs 3-24 mm",
+   "weight": null,
+   "sources": [
+    "https://www.wellbots.com/products/neabot-p1-pro-pet-grooming-kit-vacuum",
+    "https://ttpm.com/products/neabot-p1-pro-pet-grooming-kit-vacuum/"
+   ]
+  },
+  {
+   "brand": "neater-pet-brands",
+   "name": "Neater Feeder Deluxe",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Small (to 18 lb), Medium (19-40 lb), Large (over 40 lb)",
+   "surface": "Elevated bowl",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://neaterpets.com/products/deluxe-neater-feeder-dogs"
+   ]
+  },
+  {
+   "brand": "neater-pet-brands",
+   "name": "Neater Feeder Express",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Small, Medium, Large",
+   "surface": "Elevated bowl",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://neaterpets.com/products/express-neater-feeder-niner-slow-feed-bowl"
+   ]
+  },
+  {
+   "brand": "nom-nom",
+   "name": "Nom Nom Fresh Dog Food",
+   "shape": "Dog food",
+   "balance": null,
+   "surface": "Fresh food subscription",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.nomnomnow.com/"
+   ]
+  },
+  {
+   "brand": "nutro",
+   "name": "Nutro Natural Choice Adult Chicken & Brown Rice Recipe",
+   "shape": "Dog food",
+   "balance": "Adult; 5, 13, 22, 30, 36 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.nutro.com/products/dry/adult-farm-raised-chicken-brown-rice-recipe"
+   ]
+  },
+  {
+   "brand": "nylabone",
+   "name": "Nylabone Power Chew",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Chew toy",
+   "core": "nylon",
+   "weight": "made in USA",
+   "sources": [
+    "https://www.nylabone.com/products/product-type/chew-toys/power-chew/ring-power-chew-dog-toy"
+   ]
+  },
+  {
+   "brand": "ollie",
+   "name": "Ollie Fresh Dog Food",
+   "shape": "Dog food",
+   "balance": null,
+   "surface": "Fresh food subscription",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ollie.com/",
+    "https://www.ollie.com/fresh-dog-food/"
+   ]
+  },
+  {
+   "brand": "oneisall",
+   "name": "oneisall P2 Dog Clipper",
+   "shape": "Grooming",
+   "balance": "small and medium dogs; 6 guide combs",
+   "surface": "Clippers",
+   "core": "cordless",
+   "weight": "50 dB; ~3 hours run time per 3-hour charge",
+   "sources": [
+    "https://oneisall.com/products/p2-dog-clipper",
+    "https://www.oneisall.com/"
+   ]
+  },
+  {
+   "brand": "orijen",
+   "name": "Orijen Original Dry Dog Food",
+   "shape": "Dog food",
+   "balance": "All life stages; 4.5, 13, 23.5, 31 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "38% protein (min)",
+   "sources": [
+    "https://www.orijenpetfoods.com/en-US/dogs/dog-food/original/ds-ori-original-dog.html"
+   ]
+  },
+  {
+   "brand": "orvis",
+   "name": "Orvis Memory Foam Couch Dog Bed",
+   "shape": "Beds",
+   "balance": "Medium, Large, XL",
+   "surface": "Bolster bed",
+   "core": "3–4\" memory foam",
+   "weight": "CertiPUR-US foam",
+   "sources": [
+    "https://www.orvis.com/product/orvis-memory-foam-couch-dog-bed/20AM.html"
+   ]
+  },
+  {
+   "brand": "orvis",
+   "name": "Orvis ToughChew ComfortFill-Eco Couch Dog Bed",
+   "shape": "Beds",
+   "balance": "Small–XL",
+   "surface": "Chew-resistant bed",
+   "core": "Recycled polyester fill, ripstop nylon",
+   "weight": "ToughChew money-back guarantee",
+   "sources": [
+    "https://www.orvis.com/product/toughchew--comfortfill-eco-couch-dog-bed/2Z72.html"
+   ]
+  },
+  {
+   "brand": "oster",
+   "name": "Oster A6 Slim 3-Speed Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "heavy-duty motor, takes A5-style blades (sold without blade)",
+   "weight": "3 speeds, ~3,100-4,100 SPM (retailer)",
+   "sources": [
+    "https://groomersworld.co.uk/product/oster-a6-slim-3-speed-clipper",
+    "https://www.tractorsupply.com/tsc/product/oster-a6-3-speed-clipper-paw-print"
+   ]
+  },
+  {
+   "brand": "oster",
+   "name": "Oster Golden A5 Single Speed Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "high-torque universal motor; #10 blade",
+   "weight": "2,100 SPM",
+   "sources": [
+    "https://sites.salsify.com/41c9c255-1884-40e0-bc05-ad8dd5617744/c662aea6-b860-4545-ab16-2118694bf473/en-US/product/SAP_78005010003/Oster(r)-Golden-A5(r)-Single-Speed-Clipper/"
+   ]
+  },
+  {
+   "brand": "oster",
+   "name": "Oster Turbo A5 2-Speed Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "universal rotary motor; #10 detachable blade (Cryogen-X compatible)",
+   "weight": "3,000 / 4,000 SPM",
+   "sources": [
+    "https://sites.salsify.com/41c9c255-1884-40e0-bc05-ad8dd5617744/c662aea6-b860-4545-ab16-2118694bf473/en-US/product/SAP_78005314003/Oster(r)-Turbo-A5(r)-2-Speed-Clipper/"
+   ]
+  },
+  {
+   "brand": "oster",
+   "name": "Oster Volt Lithium Ion Cordless Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "cordless, detachable Li-Ion battery",
+   "weight": "Up to 2 hours run time (retailer; an older listing says 90 min)",
+   "sources": [
+    "https://ryanspet.com/oster-volt-lithium-ion-clipper",
+    "https://www.chewy.com/oster-volt-lithium-ion-cordless-pet/dp/119508"
+   ]
+  },
+  {
+   "brand": "outward-hound",
+   "name": "Outward Hound Fun Feeder Slo Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Small 3/4 cup, Medium 2 cups, Large 3-4 cups",
+   "surface": "Slow feeder",
+   "core": null,
+   "weight": "Up to 4 cups",
+   "sources": [
+    "https://outwardhound.com/fun-feeder-slo-bowl-slow-feeder-dog-bowl/"
+   ]
+  },
+  {
+   "brand": "outward-hound",
+   "name": "Outward Hound Fun Feeder Stainless Steel Slo Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "2 cups",
+   "surface": "Slow feeder",
+   "core": "Stainless steel",
+   "weight": "2 cups",
+   "sources": [
+    "https://outwardhound.com/fun-feeder-stainless-steel-slow-feeder-dog-bowl/"
+   ]
+  },
+  {
+   "brand": "outward-hound",
+   "name": "Outward Hound Hide A Squirrel",
+   "shape": "Toys & chews",
+   "balance": "S–XL",
+   "surface": "Puzzle toy",
+   "core": null,
+   "weight": "squeaky hide-and-seek",
+   "sources": [
+    "https://outwardhound.com/hide-a-squirrel-plush-puzzle-toy/"
+   ]
+  },
+  {
+   "brand": "outward-hound",
+   "name": "Outward Hound Nina Ottosson Dog Brick",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Puzzle toy",
+   "core": "plastic",
+   "weight": "level 2",
+   "sources": [
+    "https://outwardhound.com/dog-brick.html"
+   ]
+  },
+  {
+   "brand": "outward-hound",
+   "name": "Outward Hound Nina Ottosson Dog Tornado",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Puzzle toy",
+   "core": null,
+   "weight": "level 2",
+   "sources": [
+    "https://outwardhound.com/dog-tornado.html"
+   ]
+  },
+  {
+   "brand": "petcube",
+   "name": "Petcube Bites 2",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Treat camera",
+   "core": "1080p, 160° wide-angle, 4x digital zoom, night vision, Alexa built-in, treat dispenser",
+   "weight": null,
+   "sources": [
+    "https://petcube.com/support/article/bites2-specs/",
+    "https://techcrunch.com/2019/07/15/petcubes-bites-2-and-play-2-amuse-pets-and-humans-alike-with-alexa-built-in/"
+   ],
+   "year": 2019
+  },
+  {
+   "brand": "petcube",
+   "name": "Petcube Bites 2 Lite",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Treat camera",
+   "core": "1080p, 160° wide-angle, 8x digital zoom, night vision; treat toss with adjustable distance, 1.5 lb container",
+   "weight": "Petcube Care optional ($9.99/mo or Care Bundle from $5.99/mo)",
+   "sources": [
+    "https://petcube.com/bites-2-lite/",
+    "https://petcube.com/"
+   ]
+  },
+  {
+   "brand": "petcube",
+   "name": "Petcube Cam 360",
+   "shape": "GPS trackers & cameras",
+   "balance": null,
+   "surface": "Pet camera",
+   "core": "1080p, 350° pan / 55° tilt, 105° lens, 8x digital zoom; no treat tossing",
+   "weight": "No monthly fee required; Petcube Care optional",
+   "sources": [
+    "https://petcube.com/cam-360/"
+   ]
+  },
+  {
+   "brand": "petfusion",
+   "name": "PetFusion Calming Cuddler Dog Bed",
+   "shape": "Beds",
+   "balance": "One size",
+   "surface": "Calming bed",
+   "core": "2\" CertiPUR-US memory foam",
+   "weight": null,
+   "sources": [
+    "https://petmate.com/products/petfusion-calming-cuddler-dog-bed"
+   ]
+  },
+  {
+   "brand": "petfusion",
+   "name": "PetFusion Ultimate Dog Bed",
+   "shape": "Beds",
+   "balance": "Small, Large, XL, XXL",
+   "surface": "Bolster bed",
+   "core": "4\" CertiPUR-US memory foam",
+   "weight": null,
+   "sources": [
+    "https://petmate.com/products/petfusion-ultimate-dog-bed-with-memory-foam"
+   ]
+  },
+  {
+   "brand": "petkit",
+   "name": "Petkit Eversweet Solo 2",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Water fountain",
+   "core": null,
+   "weight": "2 L",
+   "sources": [
+    "https://www.petkit.com/products/eversweet-solo-2"
+   ]
+  },
+  {
+   "brand": "petkit",
+   "name": "Petkit Fresh Element Solo",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Automatic feeder",
+   "core": null,
+   "weight": "3 L (12 cups)",
+   "sources": [
+    "https://www.petkit.com/products/fresh-element-solo-eversweet-max"
+   ]
+  },
+  {
+   "brand": "petlibro",
+   "name": "Petlibro Air Smart Feeder",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Automatic feeder",
+   "core": null,
+   "weight": "2 L",
+   "sources": [
+    "https://petlibro.com/collections/air"
+   ]
+  },
+  {
+   "brand": "petlibro",
+   "name": "Petlibro Dockstream Smart Fountain",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Water fountain",
+   "core": null,
+   "weight": "2.5 L",
+   "sources": [
+    "https://petlibro.com/pages/dockstream-app-monitoring-water-fountain"
+   ]
+  },
+  {
+   "brand": "petlibro",
+   "name": "Petlibro Granary Smart Feeder",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Automatic feeder",
+   "core": null,
+   "weight": "5 L",
+   "sources": [
+    "https://petlibro.com/products/petlibro-granary-wifi-control-automatic-pet-feeder-5l-bundle",
+    "https://au.petlibro.com/products/petlibro-5g-wifi-automatic-pet-feeder"
+   ]
+  },
+  {
+   "brand": "petmate",
+   "name": "Petmate Sky Kennel",
+   "shape": "Crates & carriers",
+   "balance": "21\"–48\"",
+   "surface": "Airline crate",
+   "core": "EcoTEC plastic (90% recycled)",
+   "weight": "IATA compliant",
+   "sources": [
+    "https://petmate.com/products/petmate-sky-kennel-1"
+   ]
+  },
+  {
+   "brand": "petmate",
+   "name": "Petmate Ultra Vari Kennel",
+   "shape": "Crates & carriers",
+   "balance": "21\"–48\"",
+   "surface": "Plastic crate",
+   "core": "Plastic",
+   "weight": "Meets most air travel requirements",
+   "sources": [
+    "https://petmate.com/products/petmate-ultra-vari-kennel"
+   ]
+  },
+  {
+   "brand": "petmate",
+   "name": "Petmate Vari Kennel",
+   "shape": "Crates & carriers",
+   "balance": "19\"–40\"",
+   "surface": "Plastic crate",
+   "core": "Plastic",
+   "weight": "Meets most air travel requirements",
+   "sources": [
+    "https://petmate.com/products/petmate-vari-kennel"
+   ]
+  },
+  {
+   "brand": "petsafe",
+   "name": "PetSafe Drinkwell 360 Stainless Steel Pet Fountain",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Water fountain",
+   "core": "Stainless steel",
+   "weight": "128 oz",
+   "sources": [
+    "https://www.petsafe.com/p/drinkwell-360-fountain-stainless-steel/PWW00-13705/"
+   ]
+  },
+  {
+   "brand": "petsafe",
+   "name": "PetSafe Drinkwell Platinum Pet Fountain",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Water fountain",
+   "core": null,
+   "weight": "168 oz",
+   "sources": [
+    "https://www.petsafe.com/p/drinkwell-platinum-fountain/PWW00-13703/"
+   ]
+  },
+  {
+   "brand": "petsafe",
+   "name": "PetSafe Easy Walk Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "Petite–XL",
+   "surface": "No-pull harness",
+   "core": null,
+   "weight": "front chest leash ring",
+   "sources": [
+    "https://www.petsafe.com/p/easy-walk-harness/EWH-HC-P-BLK/"
+   ]
+  },
+  {
+   "brand": "petsafe",
+   "name": "PetSafe Gentle Leader Headcollar",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "Petite–XL",
+   "surface": "Head halter",
+   "core": "nylon",
+   "weight": "padded nose loop",
+   "sources": [
+    "https://www.petsafe.com/p/gentle-leader-headcollar/GL-Q-HC-P-BLK/"
+   ]
+  },
+  {
+   "brand": "petsafe",
+   "name": "PetSafe Smart Feed Automatic Feeder 2nd Generation",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Automatic feeder",
+   "core": null,
+   "weight": "24 cups",
+   "sources": [
+    "https://www.petsafe.com/p/smart-feed/PFD00-16828/"
+   ]
+  },
+  {
+   "brand": "planet-dog",
+   "name": "Planet Dog Orbee-Tuff Planet Ball",
+   "shape": "Toys & chews",
+   "balance": "2.25, 3, 4 in",
+   "surface": "Fetch toy",
+   "core": "TPE rubber",
+   "weight": "mint scented",
+   "sources": [
+    "https://outwardhound.com/orbee-tuff-planet-ball-treat-dispensing-dog-toy-medium/"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina Dog Chow Complete Adult with Real Chicken",
+   "shape": "Dog food",
+   "balance": "Adult",
+   "surface": "Dry food",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://purina.ca/dog-chow/dry-dog-food/complete-adult-real-chicken",
+    "https://www.purina.com/dog-chow/dry-dog-food/complete-adult-real-chicken"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina ONE Lamb & Rice Formula",
+   "shape": "Dog food",
+   "balance": "Adult; 4-40 lb",
+   "surface": "Dry food",
+   "core": "Lamb",
+   "weight": "With grain",
+   "sources": [
+    "https://www.purina.com/dogs/shop/purina-one-lamb-rice-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina Pro Plan Adult Complete Essentials Shredded Blend Chicken & Rice Formula",
+   "shape": "Dog food",
+   "balance": "Adult",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.purina.com/dogs/shop/pro-plan-complete-essentials-shredded-blend-chicken-rice-probiotics-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina Pro Plan Adult Large Breed Chicken & Rice Formula",
+   "shape": "Dog food",
+   "balance": "Adult large breed; 18, 34, 37.5, 47 lb",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://purina.com/pro-plan/dogs/dry-dog-food/specialized-nutrition-large-breed",
+    "https://www.purina.com/dogs/shop/pro-plan-specialized-nutrition-large-breed-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina Pro Plan Adult Sensitive Skin & Stomach Salmon & Rice Formula",
+   "shape": "Dog food",
+   "balance": "Adult; 4, 16, 30, 40 lb",
+   "surface": "Dry food",
+   "core": "Salmon",
+   "weight": "With grain (rice)",
+   "sources": [
+    "https://www.purina.com/pro-plan/dogs/dry-dog-food/specialized-nutrition-sensitive-skin-stomach-salmon-rice"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina Pro Plan Puppy Chicken & Rice Formula",
+   "shape": "Dog food",
+   "balance": "Puppy",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "With grain",
+   "sources": [
+    "https://www.purina.com/dogs/shop/pro-plan-development-puppy-chicken-rice-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "purina",
+   "name": "Purina Pro Plan Sport Performance 30/20 Chicken & Rice Formula",
+   "shape": "Dog food",
+   "balance": "All life stages",
+   "surface": "Dry food",
+   "core": "Chicken",
+   "weight": "30% protein / 20% fat",
+   "sources": [
+    "https://www.purina.com/dogs/shop/pro-plan-sport-performance-30-20-high-protein-chicken-rice-dry-dog-food",
+    "https://www.purina.ca/pro-plan/dogs/dry-dog-food/sport-performance-30-20-chicken-rice"
+   ]
+  },
+  {
+   "brand": "rabbitgoo",
+   "name": "Rabbitgoo No Pull Dog Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "No-pull harness",
+   "core": null,
+   "weight": "two metal leash rings",
+   "sources": [
+    "https://www.rabbitgoo.com/products/classic-no-pull-dog-harness"
+   ]
+  },
+  {
+   "brand": "royal-canin",
+   "name": "Royal Canin German Shepherd Adult Dry Dog Food",
+   "shape": "Dog food",
+   "balance": "Adult; 5.5, 17, 30 lb",
+   "surface": "Dry food",
+   "core": "Chicken by-product meal",
+   "weight": "22% protein (min)",
+   "sources": [
+    "https://www.royalcanin.com/us/dogs/products/retail-products/german-shepherd-adult-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "royal-canin",
+   "name": "Royal Canin Golden Retriever Adult Dry Dog Food",
+   "shape": "Dog food",
+   "balance": "Adult; 5, 17, 30 lb",
+   "surface": "Dry food",
+   "core": "Corn",
+   "weight": "23% protein (min)",
+   "sources": [
+    "https://www.royalcanin.com/us/dogs/products/retail-products/golden-retriever-adult-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "royal-canin",
+   "name": "Royal Canin Medium Adult Dry Dog Food",
+   "shape": "Dog food",
+   "balance": "Adult medium breed (23-55 lb), over 12 months; 4, 17, 30, 40 lb",
+   "surface": "Dry food",
+   "core": "Brewers rice",
+   "weight": "23% protein (min)",
+   "sources": [
+    "https://www.royalcanin.com/us/dogs/products/retail-products/medium-adult-dry-dog-food"
+   ]
+  },
+  {
+   "brand": "ruffland",
+   "name": "RuffLand Kennel",
+   "shape": "Crates & carriers",
+   "balance": "Mini, Small, Medium, Mid-Size, Intermediate, Large, XL",
+   "surface": "Plastic crate",
+   "core": "One-piece roto-molded polyethylene",
+   "weight": "Made in USA",
+   "sources": [
+    "https://ruffland.com/products/large-kennel"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Bivy Collapsible Dog Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": null,
+   "surface": "Travel bowl",
+   "core": "420D nylon with TPU laminate",
+   "weight": "1.8 L (7.6 cups)",
+   "sources": [
+    "https://ruffwear.com/products/bivy-portable-dog-bowl"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Crag Leash",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "6 ft",
+   "surface": "Leash",
+   "core": "reflective webbing",
+   "weight": "hand-held or waist-worn",
+   "sources": [
+    "https://ruffwear.com/products/crag-leash"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Flagline Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "Adventure harness",
+   "core": "150D polyester ripstop",
+   "weight": "three leash points",
+   "sources": [
+    "https://ruffwear.com/products/dog-harness-flagline"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Front Range Collar",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "11–26 in neck (3 sizes)",
+   "surface": "Collar",
+   "core": null,
+   "weight": "aluminum V-ring",
+   "sources": [
+    "https://ruffwear.com/products/front-range-everyday-dog-collar"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Front Range Flex Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XXXS–L/XL",
+   "surface": "No-pull harness",
+   "core": "engineered knit",
+   "weight": null,
+   "sources": [
+    "https://ruffwear.com/products/front-range-flex-harness",
+    "https://ruffwear.com/blogs/explored/how-to-decide-between-the-front-range-and-front-range-flex-harnesses"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Front Range Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XXS–L/XL",
+   "surface": "No-pull harness",
+   "core": null,
+   "weight": "two leash points",
+   "sources": [
+    "https://ruffwear.com/products/front-range-everyday-dog-harness"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Hi & Light Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XXXS–L/XL",
+   "surface": "Adventure harness",
+   "core": "150D polyester ripstop",
+   "weight": "lightweight",
+   "sources": [
+    "https://ruffwear.com/products/hi-and-light-dog-harness"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Highlands Dog Pad",
+   "shape": "Beds",
+   "balance": "Medium, Large",
+   "surface": "Travel bed",
+   "core": "Closed-cell foam + synthetic down",
+   "weight": null,
+   "sources": [
+    "https://ruffwear.com/products/highlands-camping-dog-pad"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Knot-a-Leash",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "Small, Large (5 ft)",
+   "surface": "Leash",
+   "core": "kernmantle rope",
+   "weight": "locking carabiner",
+   "sources": [
+    "https://ruffwear.com/products/knot-a-leash"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Quencher Packable Dog Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Small, Medium, Large",
+   "surface": "Travel bowl",
+   "core": "Water-resistant fabric with waterproof food-safe lining",
+   "weight": "About 1 L (Medium)",
+   "sources": [
+    "https://ruffwear.com/products/quencher-packable-dog-bowl"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Roamer Leash",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "5.5–7 ft; 7.3–11 ft",
+   "surface": "Leash",
+   "core": "Wavelength stretch webbing",
+   "weight": "hand-held or waist-worn",
+   "sources": [
+    "https://ruffwear.com/products/bungee-dog-leash-roamer"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Switchbak Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XS–L/XL",
+   "surface": "Adventure harness",
+   "core": null,
+   "weight": "two zippered pockets",
+   "sources": [
+    "https://ruffwear.com/products/switchbak-dog-harness"
+   ]
+  },
+  {
+   "brand": "ruffwear",
+   "name": "Ruffwear Web Master Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XXS–L/XL",
+   "surface": "Adventure harness",
+   "core": null,
+   "weight": "lift handle",
+   "sources": [
+    "https://ruffwear.com/products/web-master-harness"
+   ]
+  },
+  {
+   "brand": "safari",
+   "name": "Safari by Coastal Dog Self-Cleaning Slicker Brush",
+   "shape": "Grooming",
+   "balance": "Small, Medium, Large",
+   "surface": "Slicker brush",
+   "core": "stainless steel pins, push-button retraction",
+   "weight": null,
+   "sources": [
+    "https://coastalpet.com/products/detail?id=SDG09"
+   ]
+  },
+  {
+   "brand": "safari",
+   "name": "Safari by Coastal Professional Dog Nail Trimmer",
+   "shape": "Grooming",
+   "balance": "Standard (5\") and Large (6.625\")",
+   "surface": "Nail clippers",
+   "core": "stainless steel blades, safety stop",
+   "weight": null,
+   "sources": [
+    "https://coastalpet.com/products/detail?id=SDG03"
+   ]
+  },
+  {
+   "brand": "shernbao",
+   "name": "Shernbao Super Cyclone SHD-2600P High Velocity Dryer",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Dryer",
+   "core": "5.0 HP single motor, 2 heat settings (55-131°F)",
+   "weight": "Variable speed up to ~64,000 FPM (retailer)",
+   "sources": [
+    "https://www.groomerpro.eu/products/shernbao-super-cyclone-2600w-single-motor-table-dryer-smooth-airflow-adjustment"
+   ]
+  },
+  {
+   "brand": "sherpa",
+   "name": "Sherpa Original Deluxe Travel Bag Pet Carrier",
+   "shape": "Crates & carriers",
+   "balance": "Small, Medium, Large",
+   "surface": "Airline carrier",
+   "core": "Spring wire frame",
+   "weight": "Guaranteed On Board program",
+   "sources": [
+    "https://sherpapet.com/products/sherpa-original-deluxe-travel-bag-pet-carrier"
+   ]
+  },
+  {
+   "brand": "sleepypod",
+   "name": "Sleepypod Air",
+   "shape": "Crates & carriers",
+   "balance": null,
+   "surface": "Airline carrier",
+   "core": null,
+   "weight": "Crash-tested (child safety standards)",
+   "sources": [
+    "https://sleepypod.com/products/sleepypod-air"
+   ]
+  },
+  {
+   "brand": "sleepypod",
+   "name": "Sleepypod Atom",
+   "shape": "Crates & carriers",
+   "balance": null,
+   "surface": "Airline carrier",
+   "core": null,
+   "weight": "CPS certified for pets up to 12 lb",
+   "sources": [
+    "https://sleepypod.com/products/atom"
+   ]
+  },
+  {
+   "brand": "sleepypod",
+   "name": "Sleepypod Clickit Sport Plus",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "Car harness",
+   "core": null,
+   "weight": "Center for Pet Safety 5-star",
+   "sources": [
+    "https://sleepypod.com/products/sport-bundle"
+   ]
+  },
+  {
+   "brand": "sleepypod",
+   "name": "Sleepypod Mobile Pet Bed",
+   "shape": "Crates & carriers",
+   "balance": null,
+   "surface": "Carrier",
+   "core": "Ballistic nylon base",
+   "weight": "CPS certified for pets up to 15 lb",
+   "sources": [
+    "https://sleepypod.com/products/sleepypod"
+   ]
+  },
+  {
+   "brand": "spot-tango",
+   "name": "Spot & Tango Fresh Dog Food",
+   "shape": "Dog food",
+   "balance": null,
+   "surface": "Fresh food subscription",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.spotandtango.com/"
+   ]
+  },
+  {
+   "brand": "spoton",
+   "name": "SpotOn GPS Dog Fence Nova Edition",
+   "shape": "GPS trackers & cameras",
+   "balance": "dogs 15 lb+ with neck 10\"+; properties from 1/3 acre",
+   "surface": "GPS fence collar",
+   "core": "Dual-band dual-feed GPS antenna + dual-feed receiver, 151 satellites, <5 ft accuracy",
+   "weight": "No subscription needed for fencing; optional cellular plan for tracking",
+   "sources": [
+    "https://www.spotonfence.com/",
+    "https://spotonfence.com/blogs/news/launch-nova-edition-2026",
+    "https://spotoncollar.freshdesk.com/support/solutions/articles/47001287030-what-is-the-difference-between-spoton-s-nova-and-omni-editions-"
+   ],
+   "year": 2026
+  },
+  {
+   "brand": "spoton",
+   "name": "SpotOn GPS Dog Fence Omni Edition",
+   "shape": "GPS trackers & cameras",
+   "balance": "properties from 1/2 acre",
+   "surface": "GPS fence collar",
+   "core": "Dual-band dual-feed GPS antenna, single-feed receiver, 128 satellites, ~6 ft accuracy",
+   "weight": "No subscription needed for fencing; optional cellular plan for tracking",
+   "sources": [
+    "https://spotoncollar.freshdesk.com/support/solutions/articles/47001287030-what-is-the-difference-between-spoton-s-nova-and-omni-editions-",
+    "https://www.spotonfence.com/"
+   ],
+   "year": 2024
+  },
+  {
+   "brand": "sturdi",
+   "name": "Sturdi SturdiBag Pro 3.0 Pet Carrier",
+   "shape": "Crates & carriers",
+   "balance": "Small–XXL",
+   "surface": "Airline carrier",
+   "core": null,
+   "weight": "In-cabin compliant on most airlines (not XL/XXL)",
+   "sources": [
+    "https://sturdiproducts.com/products/sturdibag-pro-luxe"
+   ]
+  },
+  {
+   "brand": "taste-of-the-wild",
+   "name": "Taste of the Wild High Prairie Canine Recipe with Roasted Bison & Roasted Venison",
+   "shape": "Dog food",
+   "balance": "Adult; 5, 14, 28 lb",
+   "surface": "Dry food",
+   "core": "Water buffalo",
+   "weight": "Grain-free",
+   "sources": [
+    "https://www.tasteofthewildpetfood.com/dog/grain-free/high-prairie-with-roasted-bison-roasted-venison/"
+   ]
+  },
+  {
+   "brand": "the-farmer-s-dog",
+   "name": "The Farmer's Dog Fresh Dog Food",
+   "shape": "Dog food",
+   "balance": null,
+   "surface": "Fresh food subscription",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.thefarmersdog.com/our-food"
+   ]
+  },
+  {
+   "brand": "tractive",
+   "name": "Tractive DOG 6",
+   "shape": "GPS trackers & cameras",
+   "balance": "dogs above 4 kg; 39 g",
+   "surface": "GPS tracker",
+   "core": "LTE/4G (Cat1bis) + GPS/GLONASS/Galileo, Bluetooth, WiFi; bark monitoring",
+   "weight": "Up to 14 days battery with Power Saving Zones (6 days without); subscription required",
+   "sources": [
+    "https://tractive.com/en/pd/gps-tracker-dog",
+    "https://tractive.com/en-us/pd/gps-tracker-features",
+    "https://tractive.com/blog/en/press/tractive-unveils-next-generation-dog-tracker-with-health-and-behavior-monitoring"
+   ],
+   "year": 2025
+  },
+  {
+   "brand": "tractive",
+   "name": "Tractive DOG 6 XL",
+   "shape": "GPS trackers & cameras",
+   "balance": "dogs above 20 kg; 70 g",
+   "surface": "GPS tracker",
+   "core": "LTE/4G (Cat1bis) + GPS/GLONASS/Galileo; bark and scratch monitoring",
+   "weight": "Up to 6 weeks battery with Power Saving Zones (20 days without); subscription required",
+   "sources": [
+    "https://tractive.com/blog/en/press/tractive-launches-new-cat-and-dog-trackers-and-features",
+    "https://tractive.com/en-us/pd/gps-tracker-features"
+   ],
+   "year": 2026
+  },
+  {
+   "brand": "tractive",
+   "name": "Tractive DOG 6 XL Adventure",
+   "shape": "GPS trackers & cameras",
+   "balance": "dogs above 25 kg (55 lb+); 100 g",
+   "surface": "GPS tracker",
+   "core": "LTE/4G + GPS; reinforced casing and clips",
+   "weight": "Up to 6 weeks battery with Power Saving Zones; subscription required",
+   "sources": [
+    "https://tractive.com/en-us/pd/gps-tracker-features",
+    "https://tractive.com/en/pd/gps-tracker-dog",
+    "https://androidguys.com/news/tractive-launches-dog-6-xl-adventure-gps-tracker-with-six-week-battery-life/"
+   ],
+   "year": 2026
+  },
+  {
+   "brand": "tractive",
+   "name": "Tractive GPS DOG 4",
+   "shape": "GPS trackers & cameras",
+   "balance": "dogs above 4 kg; 35 g",
+   "surface": "GPS tracker",
+   "core": "GPS + LTE",
+   "weight": "Up to 10 days battery with Power Saving Zones (2-5 days without); subscription required",
+   "sources": [
+    "https://tractive.com/en-us/pd/gps-tracker-features"
+   ]
+  },
+  {
+   "brand": "tuffy",
+   "name": "Tuffy Mega Ring",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Tug toy",
+   "core": null,
+   "weight": "Tuff Scale 10",
+   "sources": [
+    "https://www.chewy.com/tuffys-no-stuff-mega-ring-dog-toy/dp/117837"
+   ]
+  },
+  {
+   "brand": "veken",
+   "name": "Veken 95oz Pet Fountain",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Plastic or stainless steel versions",
+   "surface": "Water fountain",
+   "core": null,
+   "weight": "95 oz (2.8 L)",
+   "sources": [
+    "https://www.amazon.com/Veken-Fountain-Automatic-Dispenser-Replacement/dp/B08NC54VZN"
+   ]
+  },
+  {
+   "brand": "wahl",
+   "name": "Wahl Arco SE Cordless Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "cordless, 5-in-1 adjustable blade (#9-#40), two NiMH batteries",
+   "weight": "About 80 min run time per battery",
+   "sources": [
+    "https://sea.wahl.com/Products/SEA-Products/Animal/Professional-Clippers/Arco-Clipper.aspx",
+    "https://revivalanimal.com/product/wahl-arco-se-clipper"
+   ]
+  },
+  {
+   "brand": "wahl",
+   "name": "Wahl Bravura Cord/Cordless Animal Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "lithium battery, cord/cordless, 5-in-1 blade (0.7-3 mm)",
+   "weight": "90 min run time from 60 min charge",
+   "sources": [
+    "https://www.wahl.co.uk/product/bravura-cord-cordless-animal-clipper/"
+   ]
+  },
+  {
+   "brand": "wahl",
+   "name": "Wahl KM10 Two Speed Professional Clipper",
+   "shape": "Grooming",
+   "balance": null,
+   "surface": "Clippers",
+   "core": "brushless DC motor, corded; #10 Competition Series blade",
+   "weight": "2 speeds, 3,000 / 3,700",
+   "sources": [
+    "https://www.wahl.co.uk/product/km10-two-speed-professional-clipper/",
+    "https://www.northamerica.covetrus.com/Product?sku=049855"
+   ]
+  },
+  {
+   "brand": "wellness",
+   "name": "Wellness CORE Original Turkey & Chicken Recipe",
+   "shape": "Dog food",
+   "balance": "Adult; 4, 12, 24, 26, 35 lb",
+   "surface": "Dry food",
+   "core": "Deboned turkey",
+   "weight": "Grain-free",
+   "sources": [
+    "https://www.wellnesspetfood.com/product-catalog/wellness-core-grain-free-original-turkey-chicken/"
+   ]
+  },
+  {
+   "brand": "west-paw",
+   "name": "West Paw Hurley",
+   "shape": "Toys & chews",
+   "balance": "XS, S, L",
+   "surface": "Chew toy",
+   "core": "Zogoflex",
+   "weight": "floats",
+   "sources": [
+    "https://www.westpaw.com/dog-toys/play/hurley-dog-bone"
+   ]
+  },
+  {
+   "brand": "west-paw",
+   "name": "West Paw Qwizl",
+   "shape": "Toys & chews",
+   "balance": "S, L",
+   "surface": "Treat toy",
+   "core": "Zogoflex",
+   "weight": null,
+   "sources": [
+    "https://www.westpaw.com/products/qwizl-treat-toy"
+   ]
+  },
+  {
+   "brand": "west-paw",
+   "name": "West Paw Toppl",
+   "shape": "Toys & chews",
+   "balance": "S, L, XL",
+   "surface": "Treat toy",
+   "core": "Zogoflex",
+   "weight": "dishwasher safe",
+   "sources": [
+    "https://www.westpaw.com/products/toppl-treat-toy"
+   ]
+  },
+  {
+   "brand": "west-paw",
+   "name": "West Paw Tux",
+   "shape": "Toys & chews",
+   "balance": "S, L",
+   "surface": "Treat toy",
+   "core": "Zogoflex",
+   "weight": "dishwasher safe",
+   "sources": [
+    "https://www.westpaw.com/products/tux-treat-toy"
+   ]
+  },
+  {
+   "brand": "west-paw",
+   "name": "West Paw Zisc",
+   "shape": "Toys & chews",
+   "balance": "S, L",
+   "surface": "Fetch toy",
+   "core": "Zogoflex",
+   "weight": "floats",
+   "sources": [
+    "https://www.westpaw.com/products/zisc-flying-disc"
+   ]
+  },
+  {
+   "brand": "wild-one",
+   "name": "Wild One Cushioned Dog Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XS–L",
+   "surface": "No-pull harness",
+   "core": null,
+   "weight": "three leash points",
+   "sources": [
+    "https://wildone.com/products/dog-harness"
+   ]
+  },
+  {
+   "brand": "wild-one",
+   "name": "Wild One Waterproof Dog Collar",
+   "shape": "Harnesses, collars & leashes",
+   "balance": "XS–XL",
+   "surface": "Collar",
+   "core": "PVC-coated nylon webbing",
+   "weight": "waterproof",
+   "sources": [
+    "https://wildone.com/products/waterproof-dog-collar"
+   ]
+  },
+  {
+   "brand": "blue-9",
+   "name": "Blue-9 Balance Harness",
+   "shape": "Harnesses, collars & leashes",
+   "balance": null,
+   "surface": "No-pull harness",
+   "core": "Nylon",
+   "weight": "6 adjustment points, front and back rings",
+   "sources": [
+    "https://www.blue-9.com/products/bhb",
+    "https://www.harbourcitydoggear.com.au/products/blue-9-balance-harness%c2%ae"
+   ]
+  },
+  {
+   "brand": "yeti",
+   "name": "Yeti Boomer Dog Bowl",
+   "shape": "Bowls, feeders & fountains",
+   "balance": "Boomer 4 (4 cups) / Boomer 8 (8 cups)",
+   "surface": "Bowl",
+   "core": "Stainless steel",
+   "weight": "4 or 8 cups",
+   "sources": [
+    "https://www.yeti.com/dogs/dog-bowls/boomer-dog-bowl-8.html",
+    "https://www.yeti.com/dogs/dog-bowls/boomer-dog-bowl-4.html"
+   ]
+  },
+  {
+   "brand": "zippypaws",
+   "name": "ZippyPaws Skinny Peltz",
+   "shape": "Toys & chews",
+   "balance": "Small, Large",
+   "surface": "Plush toy",
+   "core": null,
+   "weight": "no stuffing",
+   "sources": [
+    "https://zippypaws.com/shop/dogtoys/plush/multi-packs/skinny-peltz/skinny-peltz-large-set-of-3/"
+   ]
+  },
+  {
+   "brand": "zippypaws",
+   "name": "ZippyPaws Zippy Burrow",
+   "shape": "Toys & chews",
+   "balance": null,
+   "surface": "Puzzle toy",
+   "core": null,
+   "weight": "squeaky hide-and-seek",
+   "sources": [
+    "https://zippypaws.com/shop/dogtoys/plush/burrow/burrow-log/"
+   ]
+  },
+  {
+   "brand": "woof",
+   "name": "Woof Pupsicle",
+   "shape": "Toys & chews",
+   "balance": "S, L, XL",
+   "surface": "Treat toy",
+   "core": "Rubber",
+   "weight": "opens in the middle for filling and cleaning",
+   "sources": [
+    "https://mywoof.com/products/pupsicle"
+   ]
+  }
+ ]
+}
