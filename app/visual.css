@@ -2984,28 +2984,23 @@ main.lrv { max-width: 900px; margin-left: auto; margin-right: auto; }
 .qv-thanks a { color: var(--lt-acc, #2f6b3a); font-weight: 600; text-decoration: none; }
 .qv-thanks a:hover { text-decoration: underline; }
 .qv-error { color: #a3392b; }
-.vb { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
-.vb button, .vb button:hover, .vb button:active, .vb button:disabled { display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 0; padding: 16px 12px; border: 1.5px solid var(--lt-line, #ece9e2); border-radius: 16px; background: #fff; color: var(--lt-ink, #262421); font: inherit; white-space: normal; opacity: 1; cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
-.vb button:hover { border-color: var(--lime-line, #c7db5a); transform: translateY(-1px); }
-.vb button.pop .fb { transform: translateY(-5px) rotate(-8deg) scale(1.08); }
-.vb button[aria-checked="true"] { border-color: var(--lt-acc, #2f6b3a); background: color-mix(in srgb, var(--lime-wash, #f0f6d0) 55%, #fff); }
+/* The same cards as the review form's .verdict-pick: a coloured dot, the word and a hint; --c comes from .s-positive etc. */
+.vb { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.vb button, .vb button:hover, .vb button:active, .vb button:disabled { display: grid; gap: 2px; justify-items: center; min-height: 0; padding: 14px 12px; border: 1.5px solid var(--line-2, #e2ded5); border-radius: 10px; background: var(--surface, #fff); color: var(--lt-ink, #262421); font: inherit; white-space: normal; text-align: center; opacity: 1; box-shadow: none; transform: none; cursor: pointer; transition: border-color .15s, background .15s; }
+.vb button::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--c); margin-bottom: 4px; transition: transform .2s ease; }
+.vb button:hover { border-color: var(--c); }
+.vb button.pop::before { transform: scale(1.5); }
+.vb button[aria-checked="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 14%, var(--surface, #fff)); box-shadow: 0 0 0 1px var(--c); }
 .vb button:disabled { cursor: progress; }
-.vb-text { display: grid; gap: 2px; text-align: left; }
-.vb-text b { font-size: 16px; font-weight: 700; }
-.vb-text small { font-size: 13px; color: var(--lt-mute, #8a857c); }
-.fb { width: 42px; height: 42px; flex: none; transition: transform .2s ease; }
-.fb-ball { fill: var(--lime, #d4ea4f); stroke: var(--lime-line, #c7db5a); stroke-width: 1; }
-.fb-seam { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; opacity: .9; }
-.fb-ink { fill: var(--lime-ink-2, #2f3b0e); }
-.fb-mouth { fill: none; stroke: var(--lime-ink-2, #2f3b0e); stroke-width: 1.8; stroke-linecap: round; }
+.vb b { font-size: 16px; font-weight: 700; }
+.vb small { font-size: 12.5px; color: var(--ink-3, #8a857c); }
 .vb-compact { display: flex; gap: 6px; margin: 0; }
-.vb-compact button, .vb-compact button:hover, .vb-compact button:active { gap: 6px; padding: 5px 10px 5px 6px; border-radius: 999px; }
-.vb-compact .fb { width: 24px; height: 24px; }
-.vb-compact .vb-text b { font-size: 13px; font-weight: 600; }
+.vb-compact button, .vb-compact button:hover, .vb-compact button:active { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; }
+.vb-compact button::before { width: 9px; height: 9px; margin: 0; }
+.vb-compact b { font-size: 13px; font-weight: 600; }
 @media (max-width: 640px) {
   .qv { padding: 18px 16px; } .qv h2 { font-size: 19px; } .qv-corner { display: none; }
-  .vb { gap: 8px; } .vb button, .vb button:hover { flex-direction: column; gap: 6px; padding: 12px 6px; } .vb-text { text-align: center; } .vb-text small { display: none; }
-  .vb-compact button, .vb-compact button:hover { flex-direction: row; }
+  .vb { gap: 6px; } .vb button, .vb button:hover { padding: 12px 6px; } .vb small { display: none; }
 }
 .qv-choice > span { display: block; margin-bottom: 6px; font-size: 13px; color: var(--lt-mute, #8a857c); }
 .qv-choice > div { display: flex; flex-wrap: wrap; gap: 6px; }

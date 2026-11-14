@@ -2,15 +2,15 @@
 import { useEffect, useState } from "react";
 
 // One-tap verdicts (2026-11-14 pivot, owner's mockup): "Have you played with this racket?" between "What players say" and
-// the reviews, with the same Positive / Mixed / Negative the review form uses. Saved as 5 / 3 / 1, like a review's
+// the reviews, with the same Positive / Mixed / Negative cards the review form uses (owner: the same look, no faces). Saved as 5 / 3 / 1, like a review's
 // verdict. After a tap: a thank-you and a link to the full review form, pre-filled with the product and the verdict.
 
 export type Stats = { total: number; average: number | null; positive: number; mixed: number; negative: number; level?: { name: string; positive: number; total: number } };
 export type Profile = { level?: string; style?: string; side?: string };
 export type Verdict = "positive" | "mixed" | "negative";
 export const VERDICTS: { key: Verdict; rating: number; word: string; hint: string }[] = [
-  { key: "positive", rating: 5, word: "Positive", hint: "Worked for me" },
-  { key: "mixed", rating: 3, word: "Mixed", hint: "Some trade-offs" },
+  { key: "positive", rating: 5, word: "Positive", hint: "It worked for me" },
+  { key: "mixed", rating: 3, word: "Mixed", hint: "Some good, some bad" },
   { key: "negative", rating: 1, word: "Negative", hint: "Not for me" },
 ];
 export const verdictOf = (rating: number): Verdict => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
@@ -34,25 +34,13 @@ export function ChoiceRow({ label, options, value, onPick }: { label: string; op
     <button type="button" key={o} aria-pressed={value === o} onClick={() => onPick(o)}>{o}</button>)}</div></div>;
 }
 
-const MOUTH: Record<Verdict, string> = { positive: "M14 23.5 Q20 28.5 26 23.5", mixed: "M15 25 H25", negative: "M14 27.5 Q20 22.5 26 27.5" };
-/** A ball with a face: smiling, flat or frowning. Uses the niche's --lime colours. */
-export function FaceBall({ verdict }: { verdict: Verdict }) {
-  return <svg className="fb" viewBox="0 0 40 40" aria-hidden="true">
-    <circle cx="20" cy="20" r="18" className="fb-ball"/>
-    <path d="M7 8.5 C14.5 14.5 14.5 25.5 7 31.5 M33 8.5 C25.5 14.5 25.5 25.5 33 31.5" className="fb-seam"/>
-    <circle cx="15.5" cy="17" r="1.7" className="fb-ink"/><circle cx="24.5" cy="17" r="1.7" className="fb-ink"/>
-    <path d={MOUTH[verdict]} className="fb-mouth"/>
-  </svg>;
-}
-
 /** The three verdict cards. compact: a smaller row for /rate. */
 export function VerdictButtons({ value, onPick, name, compact, disabled }: { value: Verdict | null; onPick: (v: typeof VERDICTS[number]) => void; name: string; compact?: boolean; disabled?: boolean }) {
   const [pop, setPop] = useState<Verdict | null>(null);
   return <div className={compact ? "vb vb-compact" : "vb"} role="radiogroup" aria-label={`Your verdict on the ${name}`}>
     {VERDICTS.map(v => <button type="button" key={v.key} role="radio" aria-checked={value === v.key} disabled={disabled}
-      className={`vb-${v.key}${pop === v.key ? " pop" : ""}`} onClick={() => { setPop(v.key); setTimeout(() => setPop(null), 220); onPick(v); }}>
-      <FaceBall verdict={v.key}/>
-      <span className="vb-text"><b>{v.word}</b>{!compact && <small>{v.hint}</small>}</span>
+      className={`s-${v.key}${pop === v.key ? " pop" : ""}`} onClick={() => { setPop(v.key); setTimeout(() => setPop(null), 220); onPick(v); }}>
+      <b>{v.word}</b>{!compact && <small>{v.hint}</small>}
     </button>)}
   </div>;
 }
