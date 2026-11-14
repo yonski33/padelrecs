@@ -1,0 +1,2869 @@
+{
+ "about": "EbikeRecs starter catalog (2026-11-14): e-bikes (commuter and city, cargo, folding, electric mountain bikes, road and gravel, fat-tire and moped-style) and stand-up electric scooters; owner build queue 2026-11-12, build asked 2026-11-14. One product per model and generation: frame styles, sizes, colours, battery options and build trims of one frame share an entry; a new generation is its own entry (RadRunner Plus vs RadRunner 3 Plus, Aventon Level.2 vs Level.3, Lectric XP 3.0 vs XP4, Turbo Levo vs Turbo Levo 4, Ninebot Max G30 vs Max G2). Names follow the maker's own spelling; no model years. Names and specs are read on the makers' own pages; where a maker site refused automated fetches (most Shopify stores, specialized.com, orbea.com, santacruzbicycles.com, gazellebikes.com, urbanarrow.com) they rest on search excerpts of the maker page or the maker's public product feed. Specs: shape = category, surface = type, balance = motor, core = battery, weight = as the maker states it. Blank = not confirmed. Years only where a dated maker page shows the launch.",
+ "checked": "2026-11-14",
+ "brands": [
+  {
+   "id": "apollo",
+   "name": "Apollo"
+  },
+  {
+   "id": "aventon",
+   "name": "Aventon"
+  },
+  {
+   "id": "benno",
+   "name": "Benno"
+  },
+  {
+   "id": "brompton",
+   "name": "Brompton"
+  },
+  {
+   "id": "cannondale",
+   "name": "Cannondale"
+  },
+  {
+   "id": "canyon",
+   "name": "Canyon"
+  },
+  {
+   "id": "dualtron",
+   "name": "Dualtron"
+  },
+  {
+   "id": "emove",
+   "name": "EMOVE"
+  },
+  {
+   "id": "fiido",
+   "name": "Fiido"
+  },
+  {
+   "id": "gazelle",
+   "name": "Gazelle"
+  },
+  {
+   "id": "giant",
+   "name": "Giant"
+  },
+  {
+   "id": "gocycle",
+   "name": "Gocycle"
+  },
+  {
+   "id": "gotrax",
+   "name": "Gotrax"
+  },
+  {
+   "id": "heybike",
+   "name": "Heybike"
+  },
+  {
+   "id": "hiboy",
+   "name": "Hiboy"
+  },
+  {
+   "id": "himiway",
+   "name": "Himiway"
+  },
+  {
+   "id": "inokim",
+   "name": "Inokim"
+  },
+  {
+   "id": "kaabo",
+   "name": "Kaabo"
+  },
+  {
+   "id": "lectric-ebikes",
+   "name": "Lectric"
+  },
+  {
+   "id": "nami",
+   "name": "NAMI"
+  },
+  {
+   "id": "niu",
+   "name": "NIU"
+  },
+  {
+   "id": "orbea",
+   "name": "Orbea"
+  },
+  {
+   "id": "pivot",
+   "name": "Pivot"
+  },
+  {
+   "id": "pure-electric",
+   "name": "Pure Electric"
+  },
+  {
+   "id": "rad-power-bikes",
+   "name": "Rad Power Bikes"
+  },
+  {
+   "id": "ride1up",
+   "name": "Ride1Up"
+  },
+  {
+   "id": "riese-muller",
+   "name": "Riese & Müller"
+  },
+  {
+   "id": "santa-cruz",
+   "name": "Santa Cruz"
+  },
+  {
+   "id": "segway",
+   "name": "Segway"
+  },
+  {
+   "id": "specialized",
+   "name": "Specialized"
+  },
+  {
+   "id": "super73",
+   "name": "Super73"
+  },
+  {
+   "id": "tern",
+   "name": "Tern"
+  },
+  {
+   "id": "trek",
+   "name": "Trek"
+  },
+  {
+   "id": "unagi",
+   "name": "Unagi"
+  },
+  {
+   "id": "urban-arrow",
+   "name": "Urban Arrow"
+  },
+  {
+   "id": "varla",
+   "name": "Varla"
+  },
+  {
+   "id": "velotric",
+   "name": "Velotric"
+  },
+  {
+   "id": "xiaomi",
+   "name": "Xiaomi"
+  },
+  {
+   "id": "yuba",
+   "name": "Yuba"
+  }
+ ],
+ "products": [
+  {
+   "brand": "apollo",
+   "name": "Apollo City",
+   "shape": "Electric scooters",
+   "balance": "Dual 500 W (1000 W x2 peak)",
+   "surface": "Commuter scooter",
+   "core": "48 V 20 Ah",
+   "weight": "65 lbs",
+   "sources": [
+    "https://apolloscooters.co/products/apollo-city-24",
+    "https://apolloscooters.co/pages/tech-specs-apollo-city-2023-pro"
+   ]
+  },
+  {
+   "brand": "apollo",
+   "name": "Apollo City 2.0",
+   "shape": "Electric scooters",
+   "balance": "1200 W single motor (1900 W peak)",
+   "surface": "Commuter scooter",
+   "core": "48 V 18 Ah (864 Wh)",
+   "weight": "72 lbs",
+   "sources": [
+    "https://apolloscooters.co/products/apollo-city-2-0"
+   ]
+  },
+  {
+   "brand": "apollo",
+   "name": "Apollo Explore 2.0",
+   "shape": "Electric scooters",
+   "balance": "Single motor, 1600 W peak (one maker page says 1650 W)",
+   "surface": "Performance scooter",
+   "core": "48 V 13.5 Ah (648 Wh)",
+   "weight": "60 lbs",
+   "sources": [
+    "https://apolloscooters.co/products/apollo-explore-2-0",
+    "https://apolloscooters.co/blogs/news/apollo-scooters-launches-the-apollo-explore-2-0"
+   ]
+  },
+  {
+   "brand": "apollo",
+   "name": "Apollo Go",
+   "shape": "Electric scooters",
+   "balance": "Dual 750 W peak (1500 W combined peak)",
+   "surface": "Commuter scooter",
+   "core": "36 V 15 Ah (540 Wh)",
+   "weight": "49 lbs",
+   "sources": [
+    "https://apolloscooters.co/products/apollo-go"
+   ]
+  },
+  {
+   "brand": "apollo",
+   "name": "Apollo Phantom 2.0",
+   "shape": "Electric scooters",
+   "balance": "Dual 1750 W peak",
+   "surface": "Performance scooter",
+   "core": "52 V 27 Ah (1400 Wh)",
+   "weight": "102 lbs",
+   "sources": [
+    "https://apolloscooters.co/products/apollo-phantom-2-0",
+    "https://apolloscooters.co/pages/tech-specs-phantom-2-0-battery"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Abound LR",
+   "shape": "Cargo",
+   "balance": "750W hub (80 Nm, 1188W peak)",
+   "surface": "Longtail cargo",
+   "core": "36V 20Ah (733 Wh)",
+   "weight": "88 lb",
+   "sources": [
+    "https://www.aventon.com/products/abound-lr-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Abound SR",
+   "shape": "Cargo",
+   "balance": "750W hub (80 Nm, 1188W peak)",
+   "surface": "Compact utility",
+   "core": "36V 20Ah (733 Wh)",
+   "weight": "80 lb",
+   "sources": [
+    "https://www.aventon.com/products/abound-sr-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Aventure 3",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W hub (1440W peak in Boost)",
+   "surface": "Fat-tire cruiser",
+   "core": "36V 20Ah (733 Wh)",
+   "weight": "76 lb",
+   "sources": [
+    "https://www.aventon.com/products/aventure-3-ebike",
+    "https://www.aventon.com/products/aventure-3-step-through-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Aventure.2",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W sustained rear hub",
+   "surface": "Fat-tire cruiser",
+   "core": "720 Wh",
+   "weight": "77 lb",
+   "sources": [
+    "https://www.aventon.com/en-ca/products/aventure2-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Current ADV",
+   "shape": "Electric mountain bikes",
+   "balance": "Aventon Ultro X mid-drive (110 Nm, 750W peak)",
+   "surface": "Full-suspension e-MTB",
+   "core": "800 Wh (integrated)",
+   "weight": "56 lb",
+   "sources": [
+    "https://www.aventon.com/products/current-adv-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Level 4 ADV",
+   "shape": "Commuter & city",
+   "balance": "Aventon Ultro S mid-drive (100 Nm, 750W peak)",
+   "surface": "Commuter",
+   "core": "800 Wh",
+   "weight": "61 lb",
+   "sources": [
+    "https://www.aventon.com/products/level-4-adv-ebike",
+    "https://www.aventon.com/products/level-4-adv-step-through-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Level 4 REC",
+   "shape": "Commuter & city",
+   "balance": "750W hub (1188W peak, 1440W boost), 80 Nm",
+   "surface": "Commuter",
+   "core": "733 Wh",
+   "weight": "68.5 lb",
+   "sources": [
+    "https://www.aventon.com/products/level-4-rec-ebike",
+    "https://www.aventon.com/products/level-4-rec-step-through-ebike",
+    "https://www.aventon.com/blogs/aventon_bikes/aventon-level-4-adv-vs-rec-the-commuter-s-guide-2026"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Level.2",
+   "shape": "Commuter & city",
+   "balance": "500W sustained rear hub",
+   "surface": "Commuter",
+   "core": null,
+   "weight": "62 lb",
+   "sources": [
+    "https://www.aventon.com/products/aventon-level-commuter-ebike",
+    "https://www.aventon.com/products/aventon-level-step-through-commuter-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Level.3",
+   "shape": "Commuter & city",
+   "balance": "500W sustained rear hub (864W peak)",
+   "surface": "Commuter",
+   "core": "36V 20Ah (733 Wh)",
+   "weight": "67 lb",
+   "sources": [
+    "https://www.aventon.com/products/level-3-commuter-ebike",
+    "https://www.aventon.com/products/level-3-step-through-commuter-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Pace 5 REC",
+   "shape": "Commuter & city",
+   "balance": "750W hub (80 Nm; 1188W peak, 1440W boost)",
+   "surface": "Step-through cruiser",
+   "core": "733 Wh",
+   "weight": "60.48 lb",
+   "sources": [
+    "https://www.aventon.com/products/pace-5-rec-step-through-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Pace 500.3",
+   "shape": "Commuter & city",
+   "balance": "500W sustained rear hub",
+   "surface": "Step-through commuter",
+   "core": "48V 12.8Ah (614 Wh)",
+   "weight": "54 lb",
+   "sources": [
+    "https://www.aventon.com/en-ca/products/pace500-3-step-through-ebike",
+    "https://www.aventon.com/blogs/aventon_bikes/introducing-pace-500-3-reinvigorate-the-casual-ride-with-new-tech-and-torque-sensor"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Ramblas ADV",
+   "shape": "Electric mountain bikes",
+   "balance": "250W sustained mid-drive (750W peak, 100 Nm)",
+   "surface": "Hardtail e-MTB",
+   "core": "708 Wh",
+   "weight": "54 lb",
+   "sources": [
+    "https://www.aventon.com/products/ramblas-adv-ebike"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Sinch.2",
+   "shape": "Folding",
+   "balance": "48V 500W rear hub",
+   "surface": "Folding fat-tire",
+   "core": "48V 14Ah (672 Wh)",
+   "weight": "68 lb",
+   "sources": [
+    "https://www.aventon.com/blogs/aventon_bikes/introducing-sinch-2",
+    "https://support.aventon.com/en_US/02-battery/022-battery-specs"
+   ]
+  },
+  {
+   "brand": "aventon",
+   "name": "Aventon Soltera 3 ADV",
+   "shape": "Commuter & city",
+   "balance": "36V 250W (500W peak, 40 Nm), belt drive",
+   "surface": "Lightweight commuter",
+   "core": "36.9V 9.94Ah (366.8 Wh)",
+   "weight": "37 lb",
+   "sources": [
+    "https://www.aventon.com/products/soltera-3-ebike"
+   ]
+  },
+  {
+   "brand": "benno",
+   "name": "Benno Boost EVO 5",
+   "shape": "Cargo",
+   "balance": "Bosch Performance Speed / CX Gen4 or Performance (Sport) Gen3",
+   "surface": "Midtail utility",
+   "core": "400 Wh or 500 Wh",
+   "weight": null,
+   "sources": [
+    "https://bennobikes.com/e-bikes/boost/"
+   ]
+  },
+  {
+   "brand": "benno",
+   "name": "Benno Boost EVO 7",
+   "shape": "Cargo",
+   "balance": "Bosch Performance PX or CX Smart System Gen5",
+   "surface": "Midtail utility",
+   "core": "545 Wh",
+   "weight": null,
+   "sources": [
+    "https://bennobikes.com/e-bikes/boost/"
+   ]
+  },
+  {
+   "brand": "benno",
+   "name": "Benno eJoy",
+   "shape": "Cargo",
+   "balance": "Bosch Performance Gen3, 65Nm (Active Plus 50Nm on base)",
+   "surface": "Compact utility / step-through",
+   "core": "400 Wh or 500 Wh",
+   "weight": null,
+   "sources": [
+    "https://bennobikes.com/e-bikes/ejoy/"
+   ]
+  },
+  {
+   "brand": "benno",
+   "name": "Benno RemiDemi EVO 4",
+   "shape": "Cargo",
+   "balance": "Bosch Performance Smart System Gen4, 75Nm, 600W",
+   "surface": "Compact utility",
+   "core": "545 Wh",
+   "weight": null,
+   "sources": [
+    "https://bennobikes.com/e-bikes/remidemi/"
+   ]
+  },
+  {
+   "brand": "brompton",
+   "name": "Brompton Electric C Line",
+   "shape": "Folding",
+   "balance": "250W rear hub (e-Motiq system)",
+   "surface": "Folding compact",
+   "core": "345 Wh",
+   "weight": "38.9 lb with battery",
+   "sources": [
+    "https://us.brompton.com/stories/guides/which-brompton-electric-should-i-buy",
+    "https://www.brompton.com/p/1760/electric-c-line-e-motiq-system-4-speed-uk"
+   ]
+  },
+  {
+   "brand": "brompton",
+   "name": "Brompton Electric G Line",
+   "shape": "Folding",
+   "balance": "250W rear hub",
+   "surface": "Folding 20-inch",
+   "core": "345 Wh",
+   "weight": "35.7 lb without battery (small frame)",
+   "sources": [
+    "https://us.brompton.com/stories/guides/which-brompton-electric-should-i-buy"
+   ]
+  },
+  {
+   "brand": "brompton",
+   "name": "Brompton Electric P Line",
+   "shape": "Folding",
+   "balance": "250W rear hub",
+   "surface": "Folding compact",
+   "core": "345 Wh (front-mounted)",
+   "weight": "36.1 lb with battery",
+   "sources": [
+    "https://us.brompton.com/stories/guides/which-brompton-electric-should-i-buy"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Adventure Neo Allroad",
+   "shape": "Commuter & city",
+   "balance": "Bafang rear hub 250W (S: 750W, 28 mph)",
+   "surface": "Comfort / step-through commuter",
+   "core": "418 Wh (S: 720 Wh)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/electric/e-urban/adventure-neo-allroad",
+    "https://www.cannondale.com/en/bikes/electric/e-urban/adventure-neo-allroad/adventure-neo-allroad-eq-c68564m"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Mavaro",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX",
+   "surface": "City / commuter",
+   "core": "800 Wh (PowerTube)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/electric/e-urban/mavaro",
+    "https://www.cannondale.com/en/bikes/electric/e-urban/mavaro/mavaro-1"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Mavaro Neo",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX",
+   "surface": "City / commuter",
+   "core": "625 Wh or 750 Wh (PowerTube)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-es/bikes/electric/e-urban/mavaro-neo/mavaro-neo-1-c66112m",
+    "https://www.cannondale.com/en-nl/bikes/electric/e-urban/mavaro-neo/mavaro-neo-1"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Moterra",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX",
+   "surface": "Full-suspension e-MTB",
+   "core": "800 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/electric/e-mountain/moterra-neo/moterra-1",
+    "https://www.cannondale.com/en-us/bikes/electric/e-mountain/moterra-neo"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Moterra SL",
+   "shape": "Electric mountain bikes",
+   "balance": "Shimano EP801",
+   "surface": "Lightweight full-power e-MTB",
+   "core": "601 Wh (custom battery)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-it/bikes/electric/e-mountain/moterra-sl/moterra-sl-1-c65195u",
+    "https://www.cannondale.com/en-us/bikes/electric/e-mountain/moterra-sl"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Synapse Neo",
+   "shape": "Road & gravel",
+   "balance": "Bosch Performance Line SX (US: Performance Line Sprint, 28 mph)",
+   "surface": "Road / all-road",
+   "core": "400 Wh (Compact PowerTube)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en/bikes/electric/e-road/synapse-neo/synapse-neo",
+    "https://www.cannondale.com/en/bikes/electric/e-road/synapse-neo-allroad/synapse-neo-allroad-1"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Tesoro X",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX (25 km/h); Performance Line Speed on US Tesoro X 1",
+   "surface": "Trekking / SUV",
+   "core": "750-800 Wh (X 1); 625 Wh (X 2); 500 Wh (X 3)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/electric/e-touring/tesoro",
+    "https://www.cannondale.com/en-us/bikes/electric/e-touring/tesoro-neo-x/tesoro-neo-x-1"
+   ]
+  },
+  {
+   "brand": "cannondale",
+   "name": "Cannondale Treadwell Neo 2",
+   "shape": "Commuter & city",
+   "balance": "Hyena MRC-250 rear hub, 250W",
+   "surface": "Lightweight commuter",
+   "core": "250 Wh (internal)",
+   "weight": null,
+   "sources": [
+    "https://www.cannondale.com/en-us/bikes/electric/e-fitness/treadwell-neo/treadwell-neo-2",
+    "https://www.cannondale.com/en/bikes/electric/e-fitness/treadwell-neo/treadwell-neo-2-eq"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Grail:ON",
+   "shape": "Road & gravel",
+   "balance": "Bosch Performance Line CX",
+   "surface": "Gravel",
+   "core": "500 Wh (PowerTube)",
+   "weight": "16.3-17.1 kg (size M)",
+   "sources": [
+    "https://www.canyon.com/en-de/grail-on-cf-7-axs/3336.html",
+    "https://www.canyon.com/en-us/grail-on-cf-8-axs/3345.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Neuron:ON",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX / PX",
+   "surface": "Full-suspension e-MTB",
+   "core": "600 Wh or 800 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.canyon.com/en-be/electric-bikes/electric-mountain-bikes/neuron-on"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Pathlite:ON",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX",
+   "surface": "Trekking / SUV",
+   "core": "500-800 Wh (PowerTube, by trim)",
+   "weight": "25.94 kg (4 SUV, size M); 28.3 kg (7 SUV)",
+   "sources": [
+    "https://www.canyon.com/en-gb/pathlite-on-8-suv/3008.html",
+    "https://www.canyon.com/en-at/pathlite-on-7-suv/3006.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Precede:ON Comfort",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line, 75Nm",
+   "surface": "Comfort commuter",
+   "core": "625 Wh (PowerTube)",
+   "weight": null,
+   "sources": [
+    "https://www.canyon.com/en-fi/electric-bikes/electric-city-bike/precede-on/al/precede-on-comfort-7/3925.html"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Spectral:ON",
+   "shape": "Electric mountain bikes",
+   "balance": "DJI Avinox M2S (up to 150Nm, 1,500W peak)",
+   "surface": "Full-suspension e-MTB",
+   "core": "700 Wh",
+   "weight": "from 20.8 kg",
+   "sources": [
+    "https://www.canyon.com/en-de/mountain-ebikes-spectralon-platform/"
+   ]
+  },
+  {
+   "brand": "canyon",
+   "name": "Canyon Strive:ON",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX",
+   "surface": "Long-travel e-MTB",
+   "core": "625 Wh or 750 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.canyon.com/en-us/electric-bikes/electric-mountain-bikes/mountain-ebikes-striveon/cfr/strive-on-cfr/3429.html",
+    "https://www.canyon.com/en-at/electric-bikes/electric-mountain-bikes/mountain-ebikes-striveon/cf/strive-on-cf-9/4294.html"
+   ]
+  },
+  {
+   "brand": "dualtron",
+   "name": "Dualtron Thunder 3",
+   "shape": "Electric scooters",
+   "balance": null,
+   "surface": "Performance scooter",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.dual-tron.com/"
+   ]
+  },
+  {
+   "brand": "dualtron",
+   "name": "Dualtron Victor",
+   "shape": "Electric scooters",
+   "balance": "Dual BLDC hub, 4000 W max",
+   "surface": "Performance scooter",
+   "core": "60 V 24 Ah (CN cells) or 60 V 30 Ah (LG cells)",
+   "weight": "Approx. 33 kg",
+   "sources": [
+    "https://www.dual-tron.com/"
+   ]
+  },
+  {
+   "brand": "emove",
+   "name": "EMOVE Cruiser V2",
+   "shape": "Electric scooters",
+   "balance": "1000 W (single or dual motor)",
+   "surface": "Commuter scooter",
+   "core": "52 V 30 Ah or 60 V 30 Ah (LG 21700)",
+   "weight": "74 lbs / 85 lbs",
+   "sources": [
+    "https://voro-motors.com/product/emove-cruiser-v2/"
+   ]
+  },
+  {
+   "brand": "fiido",
+   "name": "Fiido T2",
+   "shape": "Cargo",
+   "balance": "750W US / 250W EU (60 Nm)",
+   "surface": "Longtail cargo",
+   "core": "998.4 Wh",
+   "weight": "39.5 kg (87.08 lb) with battery",
+   "sources": [
+    "https://fiido.com/products/fiido-t2-longtail-cargo-ebike-for-versatile-all-terrain"
+   ]
+  },
+  {
+   "brand": "fiido",
+   "name": "Fiido Titan",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W geared hub",
+   "surface": "Fat-tire cruiser",
+   "core": "696 Wh (up to 3 batteries, 2088 Wh)",
+   "weight": null,
+   "sources": [
+    "https://fiido.com/products/fiido-titan-robust-cargo-electric-bike-with-ul-certified",
+    "https://fiido.com/blogs/e-bikes/fiido-titan-electric-bike-comprehensive-guide"
+   ]
+  },
+  {
+   "brand": "fiido",
+   "name": "Fiido X",
+   "shape": "Folding",
+   "balance": "250W (32 Nm) EU; 350W (40 Nm) on other Fiido pages",
+   "surface": "Folding compact",
+   "core": "36V 417.6 Wh",
+   "weight": "19.8 kg",
+   "sources": [
+    "https://uk.fiido.com/products/fiido-x-folding-electric-bike",
+    "https://eu.fiido.com/pages/compare?model=c21%2Cfiido-x"
+   ]
+  },
+  {
+   "brand": "gazelle",
+   "name": "Gazelle Arroyo C8 HMB Elite",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line",
+   "surface": "Step-through comfort",
+   "core": "500 Wh (PowerTube)",
+   "weight": "23.4 kg (excl. battery)",
+   "sources": [
+    "https://gazellebikes.com/en-ca/ebikes/arroyo-c8-elite"
+   ]
+  },
+  {
+   "brand": "gazelle",
+   "name": "Gazelle Eclipse",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX, 85Nm",
+   "surface": "Trekking / commuter",
+   "core": "750 Wh (some pages 800 Wh)",
+   "weight": null,
+   "sources": [
+    "https://www.gazellebikes.com/en-gb/ebikes/eclipse-c380",
+    "https://www.gazellebikes.com/en-gb/ebikes/eclipse-t11"
+   ]
+  },
+  {
+   "brand": "gazelle",
+   "name": "Gazelle Medeo T9 HMB",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line",
+   "surface": "Commuter",
+   "core": "545 Wh (on-tube) or 400 Wh",
+   "weight": "23.1 kg (excl. battery)",
+   "sources": [
+    "https://www.gazellebikes.com/en-gb/medeo-t9-hmb-v2",
+    "https://gazellebikes.com/en-us/ebikes/gazelle-medeo-t9-hmb-v2"
+   ]
+  },
+  {
+   "brand": "gazelle",
+   "name": "Gazelle Ultimate C380 HMB",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line, 75Nm",
+   "surface": "Commuter",
+   "core": "625 Wh (Bosch Intube)",
+   "weight": "25.6 kg (excl. battery)",
+   "sources": [
+    "https://gazellebikes.com/en-ca/ebikes/ultimate-c380",
+    "https://www.gazellebikes.com/en-us/gazelle-ultimate-c380-v1"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Explore E+",
+   "shape": "Commuter & city",
+   "balance": "Giant SyncDrive Pro2, 85Nm",
+   "surface": "Trekking / commuter",
+   "core": "800 Wh (EnergyPak)",
+   "weight": null,
+   "sources": [
+    "https://www.giant-bicycles.com/gb/explore-eplus-1",
+    "https://www.giant-bicycles.com/gb/explore-eplus-1-625wh-2022"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Reign Advanced E+",
+   "shape": "Electric mountain bikes",
+   "balance": "Giant SyncDrive Pro 3, 800W peak",
+   "surface": "Long-travel e-MTB",
+   "core": "560 Wh (EnergyPak 560, +280 Wh extender)",
+   "weight": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-reign-advanced-eplus"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Revolt E+",
+   "shape": "Road & gravel",
+   "balance": "Giant SyncDrive Pro (Shimano EP8 based), 85Nm",
+   "surface": "Gravel",
+   "core": "500 Wh (EnergyPak Smart Compact 500)",
+   "weight": null,
+   "sources": [
+    "https://www.giant-bicycles.com/gb/showcase/revolt-e",
+    "https://www.giant-bicycles.com/us/revolt-eplus-pro-28mph-2021"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Stance E+",
+   "shape": "Electric mountain bikes",
+   "balance": "Giant SyncDrive Pro3X, 100Nm",
+   "surface": "Full-suspension e-MTB",
+   "core": "800 Wh (EnergyPak); 625 Wh on some trims",
+   "weight": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-stance-eplus-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Talon E+",
+   "shape": "Electric mountain bikes",
+   "balance": "Giant SyncDrive Sport 3, 85Nm",
+   "surface": "Hardtail e-MTB",
+   "core": "430 Wh (EnergyPak Smart 430)",
+   "weight": "21.7 kg (size M)",
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-talon-eplus-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Trance Advanced E+",
+   "shape": "Electric mountain bikes",
+   "balance": "Giant SyncDrive Pro 4, 120Nm, 850W peak",
+   "surface": "Full-suspension e-MTB",
+   "core": "840 Wh (EnergyPak Smart 840)",
+   "weight": null,
+   "sources": [
+    "https://www.giant-bicycles.com/us/bikes-trance-advanced-eplus-2027"
+   ]
+  },
+  {
+   "brand": "giant",
+   "name": "Giant Trance X E+",
+   "shape": "Electric mountain bikes",
+   "balance": "Giant SyncDrive Pro2, 85Nm",
+   "surface": "Full-suspension e-MTB",
+   "core": "800 Wh (EnergyPak)",
+   "weight": null,
+   "sources": [
+    "https://www.giant-bicycles.com/int/trance-x-eplus-2-2023",
+    "https://www.giant-bicycles.com/int/trance-x-advanced-eplus-1-2023"
+   ]
+  },
+  {
+   "brand": "gocycle",
+   "name": "Gocycle CXi",
+   "shape": "Cargo",
+   "balance": "500W US / 250W EU continuous front hub",
+   "surface": "Compact utility",
+   "core": "36V 10.4Ah (~375 Wh)",
+   "weight": "23 kg (51 lb)",
+   "sources": [
+    "https://gocycle.com/us/webstore/gocycles/gocycle-fc/gocycle-cxi/gocycle-cxi-green-white/",
+    "https://gocycle.com/gocycle-fc/"
+   ]
+  },
+  {
+   "brand": "gocycle",
+   "name": "Gocycle G4",
+   "shape": "Folding",
+   "balance": "Gocycle G4drive front hub",
+   "surface": "Folding compact",
+   "core": "36V 8.1Ah (~300 Wh)",
+   "weight": "17.6 kg (38.8 lb)",
+   "sources": [
+    "https://gocycle.com/eu/webstore/gocycles/gocycle-g4/gocycle-g4-blue/",
+    "https://gocycle.com/what-are-the-key-differences-between-gocycle-g4-and-g4i/"
+   ]
+  },
+  {
+   "brand": "gocycle",
+   "name": "Gocycle G4i+",
+   "shape": "Folding",
+   "balance": "G4drive front hub, 500W US / 250W EU continuous",
+   "surface": "Folding compact",
+   "core": "36V 10.4Ah (~375 Wh)",
+   "weight": "16.7 kg (36.8 lb)",
+   "sources": [
+    "https://gocycle.com/us/webstore/gocycles/gocycle-g4iplus/gocycle-g4i-red-2/"
+   ]
+  },
+  {
+   "brand": "gotrax",
+   "name": "Gotrax G4",
+   "shape": "Electric scooters",
+   "balance": "500 W",
+   "surface": "Commuter scooter",
+   "core": "36 V 10.4 Ah",
+   "weight": "37 lbs (16.78 kg)",
+   "sources": [
+    "https://gotrax.com/products/g4-electric-scooter-for-adults"
+   ]
+  },
+  {
+   "brand": "gotrax",
+   "name": "Gotrax GX2",
+   "shape": "Electric scooters",
+   "balance": "Dual 800 W",
+   "surface": "Performance scooter",
+   "core": "48 V 20 Ah (960 Wh)",
+   "weight": "76 lbs (34 kg)",
+   "sources": [
+    "https://gotrax.com/products/gx2-dual-motor-electric-scooter"
+   ]
+  },
+  {
+   "brand": "heybike",
+   "name": "Heybike Cityscape 2.0",
+   "shape": "Commuter & city",
+   "balance": "500W brushless (1200W peak)",
+   "surface": "Commuter",
+   "core": "468 Wh removable",
+   "weight": null,
+   "sources": [
+    "https://www.heybike.com/products/cityscape-2-0"
+   ]
+  },
+  {
+   "brand": "heybike",
+   "name": "Heybike Mars 2.0",
+   "shape": "Folding",
+   "balance": "750W hub (1400W peak)",
+   "surface": "Folding fat-tire",
+   "core": "600-624 Wh",
+   "weight": "75 lb",
+   "sources": [
+    "https://www.heybike.com/pages/size-fit-mars-2-0",
+    "https://www.heybike.com/blogs/heybike-blog/mars-3-0-vs-2-0-comparison-upgrade-guide"
+   ]
+  },
+  {
+   "brand": "heybike",
+   "name": "Heybike Mars 3.0",
+   "shape": "Folding",
+   "balance": "750W hub (1400W peak, 95 Nm)",
+   "surface": "Folding fat-tire, full suspension",
+   "core": "624 Wh",
+   "weight": "70 lb",
+   "sources": [
+    "https://www.heybike.com/products/mars-3-0",
+    "https://www.heybike.com/blogs/heybike-blog/mars-3-0-vs-2-0-comparison-upgrade-guide"
+   ]
+  },
+  {
+   "brand": "heybike",
+   "name": "Heybike Ranger 3.0 Pro",
+   "shape": "Folding",
+   "balance": "750W (1400W peak, 80 Nm)",
+   "surface": "Folding fat-tire",
+   "core": "720 Wh",
+   "weight": "75 lb",
+   "sources": [
+    "https://www.heybike.com/products/ranger-3-0-pro"
+   ]
+  },
+  {
+   "brand": "hiboy",
+   "name": "Hiboy S2 Max",
+   "shape": "Electric scooters",
+   "balance": "500 W (650 W peak)",
+   "surface": "Commuter scooter",
+   "core": "48 V 11.6 Ah (556.8 Wh)",
+   "weight": "40 lbs (18.8 kg)",
+   "sources": [
+    "https://www.hiboy.com/products/hiboy-s2-max-electric-scooter",
+    "https://www.hiboy.com/blogs/news/hiboy-launches-an-upgraded-version-of-the-s2-series-s2-max-in-2022"
+   ]
+  },
+  {
+   "brand": "hiboy",
+   "name": "Hiboy S2 Pro",
+   "shape": "Electric scooters",
+   "balance": "500 W (peak 600 W or 750 W, maker pages differ)",
+   "surface": "Commuter scooter",
+   "core": "36 V 11.6 Ah (417.6 Wh)",
+   "weight": "36.3 lbs (a newer maker page says 37.4 lbs)",
+   "sources": [
+    "https://www.hiboy.com/blogs/news/hiboy-s2-vs-s2-pro-vs-max-pro",
+    "https://www.hiboy.com/products/hiboy-s2-pro-refurbished-electric-scooter"
+   ]
+  },
+  {
+   "brand": "himiway",
+   "name": "Himiway A7 Pro",
+   "shape": "Commuter & city",
+   "balance": "500W M100 mid-drive (130 Nm)",
+   "surface": "Commuter",
+   "core": "720 Wh",
+   "weight": null,
+   "sources": [
+    "https://himiwaybike.com/products/himiway-a7pro-commuter-ebike"
+   ]
+  },
+  {
+   "brand": "himiway",
+   "name": "Himiway C3",
+   "shape": "Cargo",
+   "balance": null,
+   "surface": "Longtail cargo",
+   "core": "960 Wh",
+   "weight": "~80 lb",
+   "sources": [
+    "https://himiwaybike.com/products/c3cargo-ebike"
+   ]
+  },
+  {
+   "brand": "himiway",
+   "name": "Himiway D5 (Zebra)",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W",
+   "surface": "Fat-tire cruiser",
+   "core": "960 Wh",
+   "weight": "79 lb",
+   "sources": [
+    "https://himiwaybike.com/products/premium-all-terrain-electric-bike"
+   ]
+  },
+  {
+   "brand": "himiway",
+   "name": "Himiway D5 2.0",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W hub (90 Nm)",
+   "surface": "Full-suspension fat-tire",
+   "core": "720 Wh",
+   "weight": "80 lb",
+   "sources": [
+    "https://himiwaybike.com/products/himiway-d5",
+    "https://himiwaybike.com/products/d5-2",
+    "https://himiwaybike.com/blogs/d5-2-0/himiway-cruiser-vs-d5-zebra-vs-d5-2-0"
+   ]
+  },
+  {
+   "brand": "himiway",
+   "name": "Himiway D7 (Cobra)",
+   "shape": "Fat-tire & moped-style",
+   "balance": "1000W geared hub (96 Nm)",
+   "surface": "Full-suspension fat-tire",
+   "core": "960 Wh Samsung/LG integrated",
+   "weight": "88.6 lb",
+   "sources": [
+    "https://himiwaybike.com/products/himiway-d7-cobra-electric-hunting-bike"
+   ]
+  },
+  {
+   "brand": "inokim",
+   "name": "Inokim OX",
+   "shape": "Electric scooters",
+   "balance": "1000 W rated brushless gearless (one maker page says 750 W for OX Super)",
+   "surface": "Performance scooter",
+   "core": "57.6 V 20.8 Ah (Super)",
+   "weight": "62 lbs",
+   "sources": [
+    "https://inokim.com/products/ox"
+   ]
+  },
+  {
+   "brand": "kaabo",
+   "name": "Kaabo Mantis 10",
+   "shape": "Electric scooters",
+   "balance": "Dual 1000 W (Pro+/Plus); 500 W x2 Lite; single 800 W ECO 800",
+   "surface": "Performance scooter",
+   "core": "48 V 13 Ah to 60 V 24.5 Ah depending on version",
+   "weight": "25.3–31 kg depending on version",
+   "sources": [
+    "https://kaabo.com/mantis-10/"
+   ]
+  },
+  {
+   "brand": "kaabo",
+   "name": "Kaabo Wolf Warrior 11 Max",
+   "shape": "Electric scooters",
+   "balance": "Dual 1500 W",
+   "surface": "Off-road scooter",
+   "core": "60 V 36 Ah",
+   "weight": "56 kg",
+   "sources": [
+    "https://kaabo.com/wolf-warrior-11/"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric ONE",
+   "shape": "Commuter & city",
+   "balance": "750W Stealth M24 rear hub (1350W peak, 85 Nm), Pinion C1.6i gearbox + Gates belt",
+   "surface": "Commuter",
+   "core": "48V 14Ah",
+   "weight": "55 lb",
+   "sources": [
+    "https://lectricebikes.com/products/lectric-one-long-range-ebike",
+    "https://lectricebikes.com/blogs/blog/introducing-the-lectric-one"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XP 3.0",
+   "shape": "Folding",
+   "balance": null,
+   "surface": "Folding fat-tire",
+   "core": "48V 10.4Ah standard / 48V 14Ah Long-Range (672 Wh)",
+   "weight": "69.5 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xp-long-range-battery",
+    "https://lectricebikes.com/blogs/blog/ebike-weights"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XP Lite2",
+   "shape": "Folding",
+   "balance": "300W rear hub (819W peak, 28 Nm)",
+   "surface": "Folding compact",
+   "core": "48V 7.8Ah (375 Wh) / 48V 14Ah Long-Range (672 Wh)",
+   "weight": "49 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xp-lite-arctic-white",
+    "https://lectricebikes.com/products/xp-lite-arctic-white-long-range-ebike",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XP Lite3",
+   "shape": "Folding",
+   "balance": "300W motor",
+   "surface": "Folding compact",
+   "core": null,
+   "weight": "49 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xp-lite-white-ebike",
+    "https://lectricebikes.com/products/xp-lite-white-long-range-ebike",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XP4",
+   "shape": "Folding",
+   "balance": "500W rear hub",
+   "surface": "Folding fat-tire",
+   "core": "48V 10.4Ah (500 Wh)",
+   "weight": "69 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xp-black",
+    "https://lectricebikes.com/products/xp-step-thru-white",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XP4 750",
+   "shape": "Folding",
+   "balance": "750W rear hub, Stealth M24 (1310W peak, 85 Nm)",
+   "surface": "Folding fat-tire",
+   "core": "48V 17.5Ah (840 Wh)",
+   "weight": "71 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xp-black-long-range",
+    "https://lectricebikes.com/products/xp-step-thru-blue-long-range",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XPeak2",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W rear hub (1310W peak)",
+   "surface": "Fat-tire hardtail",
+   "core": "48V 15Ah (720 Wh) / 48V 20Ah Long-Range (960 Wh)",
+   "weight": "75 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xpeak-high-step-ebike",
+    "https://lectricebikes.com/products/xpeak-step-thru-long-range-ebike",
+    "https://lectricebikes.com/blogs/blog/the-all-new-xpeak-2-0",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XPedition",
+   "shape": "Cargo",
+   "balance": "750W rear hub (1310W peak, 85 Nm)",
+   "surface": "Longtail cargo",
+   "core": "48V 14Ah Long-Range (single or dual)",
+   "weight": "68 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xpedition-single-battery",
+    "https://lectricebikes.com/blogs/blog/introducing-the-lectric-xpedition-lectric-ebikes"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XPedition2",
+   "shape": "Cargo",
+   "balance": "750W M24 rear hub (1300W+ peak)",
+   "surface": "Longtail cargo",
+   "core": "48V 13Ah (624 Wh) standard; dual-battery options up to 2x 17.5Ah (1680 Wh)",
+   "weight": "74 lb",
+   "sources": [
+    "https://lectricebikes.com/blogs/blog/the-all-new-xpedition-2-0-cargo-ebike",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "lectric-ebikes",
+   "name": "Lectric XPress2",
+   "shape": "Commuter & city",
+   "balance": "750W rear hub (1310W peak)",
+   "surface": "Commuter",
+   "core": "48V 14Ah (672 Wh)",
+   "weight": "66 lb",
+   "sources": [
+    "https://lectricebikes.com/products/xpress-750-high-step-black-ebike",
+    "https://lectricebikes.com/products/xpress-750-step-thru-white-ebike",
+    "https://help.lectricebikes.com/l/en/article/c8pphxf28o-how-much-does-the-bike-weigh-xp-xp-step-thru-weight"
+   ]
+  },
+  {
+   "brand": "nami",
+   "name": "NAMI Burn-E",
+   "shape": "Electric scooters",
+   "balance": "2 x 1000 W",
+   "surface": "Performance scooter",
+   "core": "72 V 30 Ah (2190 Wh)",
+   "weight": "48.8 kg",
+   "sources": [
+    "https://nami-electric.com/produit/burn-e/"
+   ]
+  },
+  {
+   "brand": "niu",
+   "name": "NIU KQi 100P",
+   "shape": "Electric scooters",
+   "balance": "300 W (600 W max)",
+   "surface": "Commuter scooter",
+   "core": "48 V 5.2 Ah (243 Wh)",
+   "weight": "17.3 kg",
+   "sources": [
+    "https://global.niu.com/product/KQi-100"
+   ]
+  },
+  {
+   "brand": "niu",
+   "name": "NIU KQi 300P",
+   "shape": "Electric scooters",
+   "balance": "450 W (900 W max)",
+   "surface": "Commuter scooter",
+   "core": "48 V 10.4 Ah (486.7 Wh)",
+   "weight": "20.85 kg",
+   "sources": [
+    "https://global.niu.com/product/KQi-300"
+   ]
+  },
+  {
+   "brand": "niu",
+   "name": "NIU KQi Air X",
+   "shape": "Electric scooters",
+   "balance": "350 W (700 W max)",
+   "surface": "Commuter scooter",
+   "core": "48 V, 451.2 Wh",
+   "weight": "11.7 kg",
+   "sources": [
+    "https://global.niu.com/product/KQi-Air"
+   ]
+  },
+  {
+   "brand": "niu",
+   "name": "NIU KQi3 Max",
+   "shape": "Electric scooters",
+   "balance": "450 W (900 W max)",
+   "surface": "Commuter scooter",
+   "core": "48 V, 608 Wh",
+   "weight": "21.1 kg",
+   "sources": [
+    "https://global.niu.com/product/KQi3"
+   ]
+  },
+  {
+   "brand": "niu",
+   "name": "NIU KQi3 Pro",
+   "shape": "Electric scooters",
+   "balance": "350 W (700 W max)",
+   "surface": "Commuter scooter",
+   "core": "48 V, 486 Wh",
+   "weight": "20.3 kg",
+   "sources": [
+    "https://global.niu.com/product/KQi3"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Diem",
+   "shape": "Commuter & city",
+   "balance": "Shimano EP801 (Diem 10) / EP600 (Diem 20/30)",
+   "surface": "Urban / commuter",
+   "core": "630 Wh or 540 Wh (+252 Wh extender)",
+   "weight": null,
+   "sources": [
+    "https://www.orbea.com/fr-fr/ebikes/urban/diem/",
+    "https://www.orbea.com/au-en/brands/diem/"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Gain",
+   "shape": "Road & gravel",
+   "balance": "Mahle X20 (carbon) / Mahle X35+ (alloy)",
+   "surface": "Road / gravel",
+   "core": "350 Wh iX350 (X20); 248 Wh (X35+)",
+   "weight": null,
+   "sources": [
+    "https://www.orbea.com/en-us/m/gain",
+    "https://www.orbea.com/en-gb/m/gain"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Kemen Adv",
+   "shape": "Commuter & city",
+   "balance": "Shimano EP6, 85Nm",
+   "surface": "SUV trekking",
+   "core": "630 Wh (+252 Wh extender)",
+   "weight": null,
+   "sources": [
+    "https://www.orbea.com/gb-en/ebikes/urban/kemen-adv/",
+    "https://www.orbea.com/hr-en/ebikes/urban/kemen-adv/"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Kemen Tour",
+   "shape": "Commuter & city",
+   "balance": "Shimano EP6, 85Nm",
+   "surface": "Trekking / commuter",
+   "core": "630 Wh (+252 Wh extender)",
+   "weight": null,
+   "sources": [
+    "https://www.orbea.com/hr-en/ebikes/urban/kemen-tour",
+    "https://www.orbea.com/es-es/ebikes/urban/kemen-tour/"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Rise SL/LT",
+   "shape": "Electric mountain bikes",
+   "balance": "Shimano EP801 RS, 85Nm",
+   "surface": "Lightweight full-suspension e-MTB",
+   "core": "420 Wh or 630 Wh (+210 Wh extender)",
+   "weight": "from 16 kg (SL) / 17.5 kg (LT)",
+   "sources": [
+    "https://www.orbea.com/au-en/ebikes/mountain/rise",
+    "https://www.orbea.com/za-en/ebikes/mountain/rise/"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Wild",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX",
+   "surface": "Long-travel e-MTB",
+   "core": "750 Wh (625 Wh option)",
+   "weight": null,
+   "sources": [
+    "https://cms.orbea.com/en-at/m/wild"
+   ]
+  },
+  {
+   "brand": "orbea",
+   "name": "Orbea Wild TR",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX (up to 120Nm)",
+   "surface": "Full-suspension e-MTB",
+   "core": "600 Wh or 750 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.orbea.com/en-ae/m/wild-tr",
+    "https://www.orbea.com/en-at/wild-tr-m10"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Shuttle AM",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX Gen 5 (CX-R on Pro/Team)",
+   "surface": "Full-suspension e-MTB",
+   "core": "800 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.pivotcycles.com/en/bikes/shuttle-am"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Shuttle LT",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX / CX-R",
+   "surface": "Long-travel e-MTB",
+   "core": "800 Wh (600 Wh compatible)",
+   "weight": null,
+   "sources": [
+    "https://www.pivotcycles.com/en/bikes/shuttle-lt"
+   ]
+  },
+  {
+   "brand": "pivot",
+   "name": "Pivot Shuttle SL/AM",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line SX, 60Nm, 600W peak",
+   "surface": "Lightweight full-suspension e-MTB",
+   "core": "400 Wh",
+   "weight": "under 40 lbs",
+   "sources": [
+    "https://www.pivotcycles.com/en/bikes/shuttle-sl-am"
+   ]
+  },
+  {
+   "brand": "pure-electric",
+   "name": "Pure Electric Advance",
+   "shape": "Electric scooters",
+   "balance": "500 W (924 W max)",
+   "surface": "Commuter scooter",
+   "core": "37 V 9.6 Ah",
+   "weight": "16.2 kg",
+   "sources": [
+    "https://se.pureelectric.com/products/pure-advance-electric-scooter"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadCity 5 Plus",
+   "shape": "Commuter & city",
+   "balance": "750W geared hub",
+   "surface": "Commuter",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.radpowerbikes.com/blogs/the-scenic-route/meet-the-new-radcity-5-plus-electric-commuter-bike",
+    "https://press.radpowerbikes.com/202806-rad-power-bikes-reimagines-transportation-introduces-radcity-5-plus-in-north-america-and-europe-on-world-car-free-day/"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadExpand 5",
+   "shape": "Folding",
+   "balance": "750W rear hub",
+   "surface": "Folding fat-tire",
+   "core": "14Ah external battery (672 Wh)",
+   "weight": "62.5 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radexpand-electric-folding-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadExpand 5 Plus",
+   "shape": "Folding",
+   "balance": "750W geared hub (64 Nm)",
+   "surface": "Folding fat-tire",
+   "core": "15Ah Safe Shield External Battery (720 Wh)",
+   "weight": "72.5 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radexpand-plus-electric-folding-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadRover 6 Plus",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W rear geared hub (~65 Nm)",
+   "surface": "Fat-tire cruiser",
+   "core": "14Ah semi-integrated battery (672 Wh)",
+   "weight": "72.5 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radrover-plus-electric-fat-tire-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadRunner",
+   "shape": "Cargo",
+   "balance": "750W rear hub (65 Nm)",
+   "surface": "Compact utility",
+   "core": "13 Ah Safe Shield External Battery",
+   "weight": null,
+   "sources": [
+    "https://www.radpowerbikes.com/products/radrunner-electric-cargo-utility-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadRunner 2",
+   "shape": "Cargo",
+   "balance": "750W geared hub (64 Nm)",
+   "surface": "Compact utility",
+   "core": "14Ah external battery (672 Wh)",
+   "weight": "65 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radrunner-electric-utility-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadRunner 3 Plus",
+   "shape": "Cargo",
+   "balance": "750W rear hub",
+   "surface": "Compact utility",
+   "core": "14Ah semi-integrated battery (672 Wh)",
+   "weight": "75.5 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radrunner-3-plus-electric-utility-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadRunner Max",
+   "shape": "Cargo",
+   "balance": "750W rear hub (90 Nm), torque sensor",
+   "surface": "Compact utility",
+   "core": "14 Ah Safe Shield Semi-Integrated Battery (672 Wh)",
+   "weight": null,
+   "sources": [
+    "https://www.radpowerbikes.com/products/radrunner-max-electric-cargo-utility-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadRunner Plus",
+   "shape": "Cargo",
+   "balance": "750W rear hub (70 Nm)",
+   "surface": "Compact utility",
+   "core": "13 Ah Safe Shield External Battery (624 Wh)",
+   "weight": "75 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radrunner-plus-electric-cargo-utility-bike",
+    "https://www.radpowerbikes.com/products/radrunner-plus-electric-utility-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes Radster Road",
+   "shape": "Commuter & city",
+   "balance": "750W geared hub (100 Nm)",
+   "surface": "Commuter",
+   "core": "15 Ah Safe Shield Semi-Integrated Battery",
+   "weight": null,
+   "sources": [
+    "https://www.radpowerbikes.com/products/radster-road-electric-commuter-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadWagon",
+   "shape": "Cargo",
+   "balance": "750W rear hub (65 Nm)",
+   "surface": "Longtail cargo",
+   "core": "15 Ah Safe Shield Advanced External Battery",
+   "weight": null,
+   "sources": [
+    "https://www.radpowerbikes.com/products/radwagon-electric-cargo-utility-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadWagon 4",
+   "shape": "Cargo",
+   "balance": "750W rear hub",
+   "surface": "Longtail cargo",
+   "core": "14 Ah external battery (672 Wh)",
+   "weight": "76.7 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radwagon-4-electric-cargo-bike"
+   ]
+  },
+  {
+   "brand": "rad-power-bikes",
+   "name": "Rad Power Bikes RadWagon 5",
+   "shape": "Cargo",
+   "balance": "750W geared hub (90 Nm)",
+   "surface": "Longtail cargo",
+   "core": "15 Ah Safe Shield External Battery (720 Wh)",
+   "weight": "86 lb",
+   "sources": [
+    "https://www.radpowerbikes.com/products/radwagon-electric-cargo-bike"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up 500 Series",
+   "shape": "Commuter & city",
+   "balance": null,
+   "surface": "Commuter",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://ride1up.com/wp-content/uploads/2023/07/500-Series-Manual-7.21.23.pdf"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up 700 Series",
+   "shape": "Commuter & city",
+   "balance": "48V 750W sustained AKM angled-gear hub",
+   "surface": "Commuter",
+   "core": "48V 15Ah",
+   "weight": "62 lb",
+   "sources": [
+    "https://ride1up.com/product/700-series/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up CF Racer1",
+   "shape": "Road & gravel",
+   "balance": "36V 250W geared hub (42 Nm)",
+   "surface": "Road",
+   "core": "36V 7Ah (252 Wh)",
+   "weight": "28.6 lb",
+   "sources": [
+    "https://ride1up.com/product/cf-racer1/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up Portola",
+   "shape": "Folding",
+   "balance": null,
+   "surface": "Folding compact",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://ride1up.com/product/portola-02/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up Portola 02",
+   "shape": "Folding",
+   "balance": "750W AKM hub (90 Nm)",
+   "surface": "Folding compact",
+   "core": "10Ah or 15Ah",
+   "weight": "58-63 lb",
+   "sources": [
+    "https://ride1up.com/product/portola-02/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up Prodigy V2",
+   "shape": "Commuter & city",
+   "balance": "Brose TF Sprinter mid-drive 250W (90 Nm)",
+   "surface": "Commuter",
+   "core": "36V 14Ah (504 Wh)",
+   "weight": "58 lb",
+   "sources": [
+    "https://ride1up.com/product/prodigy-v2-eco/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up Revv1 DRT",
+   "shape": "Fat-tire & moped-style",
+   "balance": "52V Bafang RM G0F4 geared hub (100 Nm)",
+   "surface": "Moped-style",
+   "core": "52V 20Ah",
+   "weight": "95+ lb",
+   "sources": [
+    "https://revv1.ride1up.com/product/revv-1-drt/",
+    "https://revv1.ride1up.com/product/revv1-evo/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up Roadster V3",
+   "shape": "Commuter & city",
+   "balance": "500W MIVICE angled-gear hub (50 Nm)",
+   "surface": "Lightweight commuter",
+   "core": "36V 10Ah (360 Wh)",
+   "weight": "40 lb",
+   "sources": [
+    "https://ride1up.com/product/roadster-v3/"
+   ]
+  },
+  {
+   "brand": "ride1up",
+   "name": "Ride1Up TrailRush",
+   "shape": "Electric mountain bikes",
+   "balance": "Brose TF Sprinter mid-drive (90 Nm)",
+   "surface": "e-MTB",
+   "core": "36V 14Ah (504 Wh)",
+   "weight": "57-58 lb",
+   "sources": [
+    "https://ride1up.com/product/trailrush/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Charger4",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX (Speed on HS)",
+   "surface": "Trekking / commuter",
+   "core": "750 Wh PowerTube (625 Wh on CORE)",
+   "weight": "from 28.6 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/charger4/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Charger5",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX (Performance Line on silent CORE; Speed on HS); Pinion MGU E1.12",
+   "surface": "Trekking / commuter",
+   "core": "800 Wh PowerTube / Fit Tubepack (540 Wh on silent CORE)",
+   "weight": "from 27.5 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/charger5/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Culture",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line SX (or Sprint by market)",
+   "surface": "Lightweight city",
+   "core": "400 Wh CompactTube (+250 Wh PowerMore)",
+   "weight": "from 21.8 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/culture/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Delite4",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX (Speed on HS)",
+   "surface": "Full-suspension trekking",
+   "core": "750 Wh PowerTube",
+   "weight": "from 30 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/delite4/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Delite5",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX; Pinion MGU E1.12",
+   "surface": "Full-suspension trekking",
+   "core": "800 Wh (PowerTube / Fit Tubepack)",
+   "weight": "from 31.6 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/delite5/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Homage5",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX; Pinion E1.12 MGU",
+   "surface": "Full-suspension step-through touring",
+   "core": "800 Wh (PowerTube / Tubepack)",
+   "weight": "from 31.4 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/homage5/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Load4 75",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line",
+   "surface": "Front-box cargo (full suspension)",
+   "core": "545 Wh or 725 Wh (PowerPack Frame)",
+   "weight": "from 37.1 kg",
+   "sources": [
+    "https://www.r-m.de/en-fi/bikes/load4-75",
+    "https://www.r-m.de/bikes/load4-75"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Load5 75",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line / Performance Line Speed; Pinion MGU E1.12",
+   "surface": "Front-box cargo (full suspension)",
+   "core": "800 Wh PowerPack Frame (DualBattery 1600 Wh optional)",
+   "weight": "from 36 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/load5-75/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Multicharger3",
+   "shape": "Cargo",
+   "balance": "Bosch Performance Line PX / Cargo Line / Performance Line Speed",
+   "surface": "Midtail cargo",
+   "core": "625 Wh or 750 Wh PowerTube (+250 Wh PowerMore)",
+   "weight": "from 30.1 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/multicharger3/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Nevo4",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line CX",
+   "surface": "Step-through trekking",
+   "core": "625 Wh PowerTube",
+   "weight": "from 28.2 kg",
+   "sources": [
+    "https://www.r-m.de/en-fi/bikes/nevo4",
+    "https://r-m.de/en-en/bikes/nevo4/nevo4-vario"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Nevo5",
+   "shape": "Commuter & city",
+   "balance": "Bosch Performance Line / PX / CX / Speed; Pinion E1.12 MGU",
+   "surface": "Step-through trekking",
+   "core": "540-800 Wh (PowerTube / Fit Tubepack)",
+   "weight": "from 27.7 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/nevo5/"
+   ]
+  },
+  {
+   "brand": "riese-muller",
+   "name": "Riese & Müller Packster2 70",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line (smart system)",
+   "surface": "Front-box cargo",
+   "core": "625 Wh or 750 Wh PowerTube (DualBattery 1500 optional)",
+   "weight": "from 41.1 kg",
+   "sources": [
+    "https://www.r-m.de/en-en/bikes/packster2-70/"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Bullit 3",
+   "shape": "Electric mountain bikes",
+   "balance": "Shimano EP8 / EP801",
+   "surface": "Long-travel e-MTB (mixed wheel)",
+   "core": "630 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.santacruzbicycles.com/de-DE/bikes/bullit-3",
+    "https://www.santacruzbicycles.com/products/bullit-r-2024"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Bullit 4",
+   "year": 2025,
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX (Gen 5)",
+   "surface": "Long-travel e-MTB (mixed wheel)",
+   "core": "600 Wh (PowerTube)",
+   "weight": null,
+   "sources": [
+    "https://www.santacruzbicycles.com/it/pages/product-support/bullit-4-my-26",
+    "https://www.santacruzbicycles.com/bikes/bullit"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Heckler 9",
+   "shape": "Electric mountain bikes",
+   "balance": "Shimano DU-EP801, 85Nm",
+   "surface": "Full-suspension e-MTB",
+   "core": "720 Wh (Darfon integrated)",
+   "weight": null,
+   "sources": [
+    "https://santacruzbicycles.com/product-support/heckler-9-my24",
+    "https://www.santacruzbicycles.com/pages/product-support/heckler-9-my23"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Heckler SL",
+   "shape": "Electric mountain bikes",
+   "balance": "Fazua Ride 60",
+   "surface": "Lightweight full-suspension e-MTB",
+   "core": "430 Wh (later bikes up to 480 Wh per owners)",
+   "weight": null,
+   "sources": [
+    "https://www.santacruzbicycles.com/nl-NL/product-support/heckler-sl-1-my24"
+   ]
+  },
+  {
+   "brand": "santa-cruz",
+   "name": "Santa Cruz Vala",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance CX (BDU38)",
+   "surface": "Full-suspension e-MTB",
+   "core": "600 Wh (PowerTube)",
+   "weight": "21.5-22.4 kg",
+   "sources": [
+    "https://santacruzbicycles.com/pages/product-support/vala-1-my25"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway GT2",
+   "shape": "Electric scooters",
+   "balance": "Dual 1500 W (3000 W x2 max)",
+   "surface": "Performance scooter",
+   "core": "50.4 V 30 Ah (1512 Wh)",
+   "weight": "52.6 kg (116 lbs)",
+   "sources": [
+    "https://lv-en.segway.com/ekickscooter/products/gt2p.html",
+    "https://store.segway.com/segway-superscooter-gt2"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot E2 Plus",
+   "shape": "Electric scooters",
+   "balance": "300 W",
+   "surface": "Commuter scooter",
+   "core": "10.2 Ah (220 Wh)",
+   "weight": "31.7 lbs (14.4 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-e2-plus"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot F2",
+   "shape": "Electric scooters",
+   "balance": "350 W (700 W max)",
+   "surface": "Commuter scooter",
+   "core": "36 V 10.2 Ah (367 Wh)",
+   "weight": "37.9 lbs (17.2 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-f2"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot F2 Plus",
+   "shape": "Electric scooters",
+   "balance": "400 W (800 W max)",
+   "surface": "Commuter scooter",
+   "core": "460 Wh",
+   "weight": "Approx. 17.7 kg (39 lbs)",
+   "sources": [
+    "https://lv-en.segway.com/ekickscooter/products/f2-plus-e.html"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot F2 Pro",
+   "shape": "Electric scooters",
+   "balance": "450 W (900 W max)",
+   "surface": "Commuter scooter",
+   "core": "12.8 Ah (460 Wh)",
+   "weight": "40.8 lbs (18.5 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-f2-pro",
+    "https://lv-en.segway.com/ekickscooter/products/f2-pro-e-ii.html"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot F3",
+   "shape": "Electric scooters",
+   "balance": "450 W (1000 W max)",
+   "surface": "Commuter scooter",
+   "core": "46.8 V 10.2 Ah (477 Wh)",
+   "weight": "42.3 lbs (19.2 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-f3"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot F40",
+   "shape": "Electric scooters",
+   "balance": "350 W front hub (700 W max)",
+   "surface": "Commuter scooter",
+   "core": "36 V 10.2 Ah (367 Wh)",
+   "weight": "17.1 kg (37.7 lbs)",
+   "sources": [
+    "https://lv-en.segway.com/ekickscooter/products/f40e.html",
+    "https://store.segway.com/segway-ninebot-ekickscooter-f40"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot Max G2",
+   "shape": "Electric scooters",
+   "balance": "450 W (1000 W max)",
+   "surface": "Commuter scooter",
+   "core": "36 V 15.3 Ah (551 Wh)",
+   "weight": "53.5 lbs (24.25 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-max-g2"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot Max G3",
+   "shape": "Electric scooters",
+   "balance": "850 W (2000 W max)",
+   "surface": "Commuter scooter",
+   "core": "46.8 V 12.75 Ah (597 Wh)",
+   "weight": "54.2 lbs (24.6 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-max-g3"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot Max G30LP",
+   "shape": "Electric scooters",
+   "balance": "350 W (700 W max)",
+   "surface": "Commuter scooter",
+   "core": "36 V 10.2 Ah (367 Wh)",
+   "weight": "38.6 lbs (17.5 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-max-g30lp",
+    "https://lv-en.segway.com/ekickscooter/products/max-g30le-ii.html"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway Ninebot Max G30P",
+   "shape": "Electric scooters",
+   "balance": "350 W rear hub",
+   "surface": "Commuter scooter",
+   "core": "36 V, 551 Wh",
+   "weight": "41.2 lbs (18.7 kg)",
+   "sources": [
+    "https://store.segway.com/ninebot-kickscooter-max",
+    "https://lv-en.segway.com/ekickscooter/products/max-g30-e.html"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway P100S",
+   "shape": "Electric scooters",
+   "balance": "650 W (1350 W max)",
+   "surface": "Commuter scooter",
+   "core": "1086 Wh",
+   "weight": "32.9 kg (72.5 lbs)",
+   "sources": [
+    "https://lv-en.segway.com/ekickscooter/products/p100se.html",
+    "https://store.segway.com/segway-kickscooter-p100su"
+   ]
+  },
+  {
+   "brand": "segway",
+   "name": "Segway ZT3 Pro",
+   "shape": "Electric scooters",
+   "balance": "650 W (1600 W max)",
+   "surface": "Off-road scooter",
+   "core": "46.8 V 12.75 Ah (597 Wh)",
+   "weight": "65.5 lbs (29.7 kg)",
+   "sources": [
+    "https://store.segway.com/segway-ekickscooter-zt3-pro"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Globe Haul LT",
+   "shape": "Cargo",
+   "balance": "Globe custom tuned rear hub motor",
+   "surface": "Longtail cargo",
+   "core": "772 Wh (Globe external, UL 2271)",
+   "weight": null,
+   "sources": [
+    "https://specialized.com/haul-lt/p/277758",
+    "https://www.specialized.com/ca/en/haul-lt/p/4276253"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Globe Haul ST",
+   "shape": "Cargo",
+   "balance": "Globe custom tuned motor",
+   "surface": "Compact utility",
+   "core": "772 Wh (Globe external battery)",
+   "weight": null,
+   "sources": [
+    "https://www.specialized.com/haul-st/p/277759",
+    "https://specialized.com/specialized-globe-battery/p/4234306"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Como",
+   "shape": "Commuter & city",
+   "balance": "Specialized Turbo Full Power 2.0, 70Nm",
+   "surface": "Comfort / step-through commuter",
+   "core": "710 Wh (U2-710)",
+   "weight": null,
+   "sources": [
+    "https://www.specialized.com/turbo-como-40/p/275153",
+    "https://specialized.com/turbo-como-40-igh/p/275154"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Como SL",
+   "shape": "Commuter & city",
+   "balance": "Specialized SL 1.1 (240W max)",
+   "surface": "Lightweight comfort commuter",
+   "core": "320 Wh (SL1-320)",
+   "weight": null,
+   "sources": [
+    "https://specialized.com/turbo-como-sl-50/p/218238",
+    "https://support.specialized.com/turbo-como-sl/en/features-benefits/turbo-sl-system"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Creo 2",
+   "shape": "Road & gravel",
+   "balance": "Specialized SL 1.2 (320W)",
+   "surface": "Road / gravel",
+   "core": "320 Wh (SL1-320)",
+   "weight": "14.55 kg (Comp)",
+   "sources": [
+    "https://specialized.com/turbo-creo-2-comp/p/4277467",
+    "https://www.specialized.com/us/en/s-works-turbo-creo-2/p/4277465"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Kenevo SL 2",
+   "shape": "Electric mountain bikes",
+   "balance": "Specialized 1.2 SL Custom Rx Trail Tuned, 50Nm, 320W",
+   "surface": "Lightweight long-travel e-MTB",
+   "core": "320 Wh (SL1-320)",
+   "weight": null,
+   "sources": [
+    "https://www.specialized.com/turbo-kenevo-sl-2-comp/p/4221334",
+    "https://www.specialized.com/cl/en/turbo-kenevo-sl"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Levo",
+   "shape": "Electric mountain bikes",
+   "balance": "Specialized Turbo Full Power 2.2, 90Nm, 565W",
+   "surface": "Full-suspension e-MTB",
+   "core": "700 Wh",
+   "weight": null,
+   "sources": [
+    "https://specialized.com/za/en/turbo-levo-comp-carbon/p/216807",
+    "https://specialized.com/turbo-levo-comp-alloy/p/227276"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Levo 4",
+   "shape": "Electric mountain bikes",
+   "balance": "Specialized 3.1, 666W, 101Nm (S-Works: 3.1 S-Works, 111Nm)",
+   "surface": "Full-suspension e-MTB",
+   "core": "840 Wh (+280 Wh range extender)",
+   "weight": null,
+   "sources": [
+    "https://www.specialized.com/us/en/p/4218700",
+    "https://www.specialized.com/us/en/p/4260592"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Levo SL 2",
+   "shape": "Electric mountain bikes",
+   "balance": "Specialized SL 1.2, 50Nm, 320W",
+   "surface": "Lightweight full-suspension e-MTB",
+   "core": "320 Wh (SL1-320)",
+   "weight": "20.26 kg (Comp Alloy, S4)",
+   "sources": [
+    "https://www.specialized.com/turbo-levo-sl-2-comp/p/4277414",
+    "https://www.specialized.com/turbo-levo-sl-2-comp-alloy/p/4221354"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Tero",
+   "shape": "Electric mountain bikes",
+   "balance": "Specialized 2.0E, 50Nm, 250W nominal",
+   "surface": "Hardtail e-MTB / e-adventure",
+   "core": "530 Wh (U2-530); 710 Wh on higher trims",
+   "weight": null,
+   "sources": [
+    "https://specialized.com/turbo-tero-30/p/275157",
+    "https://www.specialized.com/turbo-tero-30-step-through/p/216848"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Tero X",
+   "shape": "Electric mountain bikes",
+   "balance": "Specialized 2.0E, 50Nm, 250W nominal",
+   "surface": "Full-suspension e-adventure",
+   "core": "530 Wh (4.0); 710 Wh (5.0/6.0)",
+   "weight": "23.6 kg (4.0, size MD)",
+   "sources": [
+    "https://www.specialized.com/turbo-tero-x-40/p/200361",
+    "https://specialized.com/au/en/p/200360"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Vado",
+   "shape": "Commuter & city",
+   "balance": "Specialized 2.0, 70Nm, 250W nominal",
+   "surface": "Commuter",
+   "core": "710 Wh (Specialized U2-710)",
+   "weight": null,
+   "sources": [
+    "https://specialized.com/gb/en/turbo-vado-40/p/188105",
+    "https://specialized.com/ae/en/turbo-vado-40-igh/p/260617"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Vado SL",
+   "shape": "Commuter & city",
+   "balance": "Specialized SL 1.1",
+   "surface": "Lightweight commuter",
+   "core": "320 Wh (SL1-320)",
+   "weight": "15.5 kg (size MD, 4.0)",
+   "sources": [
+    "https://www.specialized.com/turbo-vado-sl-40/p/216532"
+   ]
+  },
+  {
+   "brand": "specialized",
+   "name": "Specialized Turbo Vado SL 2",
+   "shape": "Commuter & city",
+   "balance": "Specialized 1.2 SL (320W)",
+   "surface": "Lightweight commuter",
+   "core": "520 Wh (SL2-520)",
+   "weight": "20.28 kg (4.0, size MD)",
+   "sources": [
+    "https://www.specialized.com/turbo-vado-sl-2-40/p/4278243",
+    "https://www.specialized.com/turbo-vado-sl-2-50/p/4278244"
+   ]
+  },
+  {
+   "brand": "super73",
+   "name": "Super73 M1D",
+   "shape": "Fat-tire & moped-style",
+   "balance": "500W",
+   "surface": "Moped-style",
+   "core": "520 Wh (modular dual-battery ready)",
+   "weight": "88 lb",
+   "sources": [
+    "https://super73.com/products/super73-m1d",
+    "https://super73.com/products/super73-m1d-se"
+   ]
+  },
+  {
+   "brand": "super73",
+   "name": "Super73 R",
+   "shape": "Fat-tire & moped-style",
+   "balance": null,
+   "surface": "Moped-style",
+   "core": null,
+   "weight": "80 lb",
+   "sources": [
+    "https://super73.com/products/super73-r-brooklyn-se-legacy",
+    "https://super73.com/products/super73-r-adventure-series-se-legacy"
+   ]
+  },
+  {
+   "brand": "super73",
+   "name": "Super73 S2",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W",
+   "surface": "Moped-style",
+   "core": "720 Wh",
+   "weight": "73 lb",
+   "sources": [
+    "https://super73.com/products/super73-s2-se-legacy",
+    "https://super73.com/products/super73-s2-laguna",
+    "https://support.super73.com/hc/en-us/articles/360041394754-How-much-does-a-SUPER73-weigh"
+   ]
+  },
+  {
+   "brand": "super73",
+   "name": "Super73 Z Miami",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W nominal (1200W peak); Core 500W",
+   "surface": "Moped-style",
+   "core": "615 Wh; Core 480 Wh",
+   "weight": "59 lb",
+   "sources": [
+    "https://super73.com/products/super73-z-miami-core-legacy",
+    "https://super73.com/products/super73-z-miami-se-legacy"
+   ]
+  },
+  {
+   "brand": "super73",
+   "name": "Super73 ZX",
+   "shape": "Fat-tire & moped-style",
+   "balance": "500W",
+   "surface": "Moped-style",
+   "core": "720 Wh (SE, PRO 500 battery on Core)",
+   "weight": "63 lb",
+   "sources": [
+    "https://super73.com/products/super73-zx-core-legacy",
+    "https://super73.com/products/super73-zx-se-legacy"
+   ]
+  },
+  {
+   "brand": "tern",
+   "name": "Tern GSD Gen 2",
+   "shape": "Cargo",
+   "balance": "Bosch",
+   "surface": "Compact longtail cargo",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://www.ternbicycles.com/en/explore/gsd-gen-2"
+   ]
+  },
+  {
+   "brand": "tern",
+   "name": "Tern GSD Gen 3",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line (85 Nm)",
+   "surface": "Compact longtail cargo",
+   "core": "Bosch PowerPack 500 or 545/540, dual-battery ready",
+   "weight": "34.64 kg (76.4 lb) (P10)",
+   "sources": [
+    "https://www.ternbicycles.com/en/bikes/473/gsd-p10",
+    "https://www.ternbicycles.com/en/bikes/473/gsd-s10"
+   ]
+  },
+  {
+   "brand": "tern",
+   "name": "Tern HSD Gen 3",
+   "shape": "Cargo",
+   "balance": "Bosch Performance (75 Nm) / Performance PX (90 Nm) by trim",
+   "surface": "Compact utility",
+   "core": "Bosch PowerPack 540 or 545",
+   "weight": "28.3 kg (62.4 lb) (P10e)",
+   "sources": [
+    "https://www.ternbicycles.com/en/bikes/473/hsd-p10e",
+    "https://www.ternbicycles.com/en/bikes/473/hsd-s9i"
+   ]
+  },
+  {
+   "brand": "tern",
+   "name": "Tern Orox",
+   "shape": "Cargo",
+   "balance": "Bosch Performance Line CX",
+   "surface": "All-terrain cargo",
+   "core": "725 Wh or 800 Wh, dual-battery ready",
+   "weight": "34.4 kg (75.8 lb) (S12 29in, M)",
+   "sources": [
+    "https://www.ternbicycles.com/en/bikes/471/orox-s12-29"
+   ]
+  },
+  {
+   "brand": "tern",
+   "name": "Tern Quick Haul",
+   "shape": "Cargo",
+   "balance": "Bosch Performance (65 Nm, P9) / Active Line Plus (50 Nm, D8)",
+   "surface": "Compact utility",
+   "core": "Bosch PowerPack 400",
+   "weight": "22.9 kg (50.5 lb) (P9)",
+   "sources": [
+    "https://www.ternbicycles.com/en/bikes/471/quick-haul-p9",
+    "https://www.ternbicycles.com/en/bikes/471/quick-haul-d8"
+   ]
+  },
+  {
+   "brand": "tern",
+   "name": "Tern Vektron Gen 4",
+   "shape": "Folding",
+   "balance": "Bosch Performance (75 Nm)",
+   "surface": "Folding compact",
+   "core": "Bosch PowerPack 545/540/400",
+   "weight": "22.2 kg (48.9 lb) (P10)",
+   "sources": [
+    "https://www.ternbicycles.com/en/bikes/474/vektron-p10",
+    "https://www.ternbicycles.com/en/bikes/474/vektron-p5i"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Allant+ Gen 2",
+   "shape": "Commuter & city",
+   "balance": "Bosch (up to 20 mph; 28 mph on 'S' trims)",
+   "surface": "Commuter",
+   "core": "up to 500 Wh (Allant+ 7/9 Gen 2); up to 625 Wh on some trims",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/gb/en_GB/allant-plus-generations/",
+    "https://www.trekbikes.com/us/en_US/allant-plus/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Checkpoint+ SL",
+   "shape": "Road & gravel",
+   "balance": "TQ-HPR60 (350W max)",
+   "surface": "Gravel",
+   "core": "360 Wh (TQ)",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/FAQ/checkpoint_plus_sl/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek District+ Gen 3",
+   "shape": "Commuter & city",
+   "balance": "Bosch Smart System Active Line 40Nm (District+ 1) / Performance Line 50Nm (District+ 2)",
+   "surface": "Commuter",
+   "core": "400 Wh integrated PowerTube",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/gb/en_GB/district-plus-generations/",
+    "https://www.trekbikes.com/us/en_US/FAQ/districtplus-1-2-2024"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Domane+ SLR",
+   "shape": "Road & gravel",
+   "balance": "TQ-HPR50",
+   "surface": "Road",
+   "core": "360 Wh (TQ)",
+   "weight": "12.59 kg (SLR 7, 54cm)",
+   "sources": [
+    "https://trekbikes.com/gb/en_GB/domane-plus-slr",
+    "https://www.trekbikes.com/us/en_US/pre-owned-bikes/pre-owned-electric-bikes/domane-slr-7--2025-54cm/p/67880/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Fetch+ 2",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line, 85Nm",
+   "surface": "Longtail cargo",
+   "core": "500 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/fetch-plus/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Fetch+ 4",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line, 85Nm",
+   "surface": "Front-box cargo",
+   "core": "750 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/fetch-plus/",
+    "https://trekbikes.com/fetch-plus-4"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Fuel EXe",
+   "shape": "Electric mountain bikes",
+   "balance": "TQ-HPR50, 50Nm, 300W peak",
+   "surface": "Lightweight full-suspension e-MTB",
+   "core": "360 Wh (+160 Wh range extender)",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/fuel-exe/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek FX+ 2",
+   "shape": "Commuter & city",
+   "balance": "Hub motor, 60Nm",
+   "surface": "Lightweight commuter",
+   "core": "540 Wh",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/fx-plus/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek FX+ 7",
+   "shape": "Commuter & city",
+   "balance": "TQ-HPR50, 50Nm",
+   "surface": "Lightweight commuter",
+   "core": "360 Wh (TQ)",
+   "weight": "19.30 kg / 42.55 lbs (L)",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/fx-plus/",
+    "https://trekbikes.com/gb/en_GB/bikes/hybrid-bikes/electric-hybrid-bikes/fx/fx-7/p/48016"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Powerfly+ FS Gen 4",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX (new)",
+   "surface": "Full-suspension e-MTB",
+   "core": "up to 800 Wh (RIB 2.0); 600 Wh on Powerfly+ FS 4",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/gb/en_GB/powerfly-plus-fs-generations/",
+    "https://www.trekbikes.com/gb/en_GB/FAQ/powerflyplus-fs-gen4/"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Rail+ Gen 5",
+   "shape": "Electric mountain bikes",
+   "balance": "Bosch Performance Line CX (new, up to 120Nm)",
+   "surface": "Full-suspension e-MTB",
+   "core": "up to 800 Wh (RIB 2.0)",
+   "weight": null,
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/rail/",
+    "https://trekbikes.com/cz/cs_CZ/kola/horsk%C3%A1-kola/horsk%C3%A1-elektrokola/rail/rail-5-gen-5/p/48458"
+   ]
+  },
+  {
+   "brand": "trek",
+   "name": "Trek Verve+ Gen 3",
+   "shape": "Commuter & city",
+   "balance": "Bosch mid-drive (Smart System)",
+   "surface": "Commuter",
+   "core": "545 Wh (Verve+ 3); 500 Wh (4S); Bosch PowerPack options",
+   "weight": "26.6 kg / 58.63 lbs (Verve+ 3)",
+   "sources": [
+    "https://www.trekbikes.com/us/en_US/verve-plus/",
+    "https://www.trekbikes.com/gb/en_GB/verve-plus-generations/"
+   ]
+  },
+  {
+   "brand": "unagi",
+   "name": "Unagi Model One Classic",
+   "shape": "Electric scooters",
+   "balance": "Dual 250 W (500 W nominal, 800 W max)",
+   "surface": "Commuter scooter",
+   "core": "259 Wh / 9 Ah",
+   "weight": "28.5 lb",
+   "sources": [
+    "https://unagiscooters.com/pages/unagi-model-one-electric-scooter/",
+    "https://unagiscooters.com/pages/compare-scooters/"
+   ]
+  },
+  {
+   "brand": "unagi",
+   "name": "Unagi Model One Voyager",
+   "shape": "Electric scooters",
+   "balance": "Dual motors, 1000 W max",
+   "surface": "Commuter scooter",
+   "core": "360 Wh / 10 Ah",
+   "weight": "29.6 lb",
+   "sources": [
+    "https://unagiscooters.com/pages/model-one-voyager/",
+    "https://unagiscooters.com/pages/compare-scooters/"
+   ]
+  },
+  {
+   "brand": "urban-arrow",
+   "name": "Urban Arrow Cargo",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line",
+   "surface": "Front-box cargo (business)",
+   "core": "500 Wh (dual optional)",
+   "weight": "50 kg (L) / 52 kg (XL), excl. box",
+   "sources": [
+    "https://www.urbanarrow.com/en/cargo",
+    "https://servicecenter.urbanarrow.com/en/the-cargo-l-xl"
+   ]
+  },
+  {
+   "brand": "urban-arrow",
+   "name": "Urban Arrow Family",
+   "shape": "Cargo",
+   "balance": "Bosch Performance Line (75Nm Smart System) or Cargo Line (85Nm)",
+   "surface": "Front-box cargo",
+   "core": "545 Wh (Smart System); older 500 Wh PowerPack",
+   "weight": null,
+   "sources": [
+    "https://www.urbanarrow.com/family"
+   ]
+  },
+  {
+   "brand": "urban-arrow",
+   "name": "Urban Arrow Shorty",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line, 85Nm (or Performance Line)",
+   "surface": "Front-box cargo (short)",
+   "core": "500 Wh (PowerPack 500)",
+   "weight": null,
+   "sources": [
+    "https://urbanarrow.com/shorty"
+   ]
+  },
+  {
+   "brand": "varla",
+   "name": "Varla Eagle One Pro",
+   "shape": "Electric scooters",
+   "balance": "Dual 1000 W hub",
+   "surface": "Off-road scooter",
+   "core": "60 V 27 Ah (1620 Wh)",
+   "weight": "90 lbs",
+   "sources": [
+    "https://varlascooter.com/products/eagle-one-pro"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Breeze 1",
+   "shape": "Commuter & city",
+   "balance": "750W",
+   "surface": "Step-through cruiser",
+   "core": null,
+   "weight": "48 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-breeze-1"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Discover 2",
+   "shape": "Commuter & city",
+   "balance": "750W (75 Nm)",
+   "surface": "Commuter",
+   "core": "48V 14.7Ah (705.6 Wh)",
+   "weight": "63 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-discover-2"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Discover 3",
+   "shape": "Commuter & city",
+   "balance": "750W (75 Nm)",
+   "surface": "Commuter",
+   "core": "48V 15.2Ah (730 Wh)",
+   "weight": "61 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-discover-3-commuter-ebike",
+    "https://www.velotricbike.com/blogs/story-landing/velotric-discover-3-vs-velotric-discover-2"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Fold 1",
+   "shape": "Folding",
+   "balance": "750W (70 Nm)",
+   "surface": "Folding fat-tire",
+   "core": "48V 608 Wh",
+   "weight": "63 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-fold-1"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Nomad 2",
+   "shape": "Fat-tire & moped-style",
+   "balance": "750W (90 Nm)",
+   "surface": "Fat-tire cruiser",
+   "core": "48V 14.7Ah (705.6 Wh)",
+   "weight": "75 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-nomad-2"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Packer 1",
+   "shape": "Cargo",
+   "balance": null,
+   "surface": "Compact utility",
+   "core": "48V 14.4Ah (691.2 Wh)",
+   "weight": "75 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-packer-1-e-bike"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Summit 1",
+   "shape": "Electric mountain bikes",
+   "balance": "750W (90 Nm)",
+   "surface": "Hardtail e-MTB",
+   "core": "48V 705.6 Wh",
+   "weight": "62 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-summit-1"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric Summit 2",
+   "shape": "Commuter & city",
+   "balance": "750W (100 Nm)",
+   "surface": "Hybrid",
+   "core": "48V 16.7Ah (801.6 Wh)",
+   "weight": "57 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-summit-2-hybrid-ebike"
+   ]
+  },
+  {
+   "brand": "velotric",
+   "name": "Velotric T1",
+   "shape": "Commuter & city",
+   "balance": "350W (600W peak)",
+   "surface": "Lightweight commuter",
+   "core": "10Ah",
+   "weight": "36 lb",
+   "sources": [
+    "https://www.velotricbike.com/products/velotric-t1-ebike"
+   ]
+  },
+  {
+   "brand": "xiaomi",
+   "name": "Xiaomi Electric Scooter 4 Pro",
+   "shape": "Electric scooters",
+   "balance": "350 W (700 W max)",
+   "surface": "Commuter scooter",
+   "core": "12400 mAh / 446 Wh",
+   "weight": "17 kg",
+   "sources": [
+    "https://www.mi.com/global/product/xiaomi-electric-scooter-4-pro/specs/"
+   ]
+  },
+  {
+   "brand": "xiaomi",
+   "name": "Xiaomi Electric Scooter 4 Pro (2nd Gen)",
+   "shape": "Electric scooters",
+   "balance": "400 W (1000 W max)",
+   "surface": "Commuter scooter",
+   "core": "10 Ah / 468 Wh",
+   "weight": "19 kg",
+   "sources": [
+    "https://www.mi.com/global/product/xiaomi-electric-scooter-4-pro-2nd-gen/specs/"
+   ]
+  },
+  {
+   "brand": "xiaomi",
+   "name": "Xiaomi Electric Scooter 4 Ultra",
+   "shape": "Electric scooters",
+   "balance": "500 W (940 W max)",
+   "surface": "Commuter scooter",
+   "core": "12000 mAh / 561.5 Wh",
+   "weight": "Approx. 24.5 kg",
+   "sources": [
+    "https://www.mi.com/global/product/xiaomi-electric-scooter-4-ultra/specs/"
+   ]
+  },
+  {
+   "brand": "xiaomi",
+   "name": "Xiaomi Electric Scooter 5 Pro",
+   "shape": "Electric scooters",
+   "balance": "400 W (1000 W max)",
+   "surface": "Commuter scooter",
+   "core": "10.2 Ah / 477 Wh",
+   "weight": "22.4 kg",
+   "sources": [
+    "https://www.mi.com/global/product/xiaomi-electric-scooter-5-pro/specs/"
+   ]
+  },
+  {
+   "brand": "xiaomi",
+   "name": "Xiaomi Mi Electric Scooter Pro 2",
+   "shape": "Electric scooters",
+   "balance": "300 W (600 W max)",
+   "surface": "Commuter scooter",
+   "core": "37 V 12400 mAh (446 Wh)",
+   "weight": "14.2 kg",
+   "sources": [
+    "https://www.mi.com/global/mi-electric-scooter-Pro2/specs/"
+   ]
+  },
+  {
+   "brand": "yuba",
+   "name": "Yuba FastRack",
+   "shape": "Cargo",
+   "balance": "Shimano Steps E7000",
+   "surface": "Longtail cargo",
+   "core": "500 Wh",
+   "weight": "76 lbs",
+   "sources": [
+    "https://yubabikes.com/product/fastrack/"
+   ]
+  },
+  {
+   "brand": "yuba",
+   "name": "Yuba Kombi E5",
+   "shape": "Cargo",
+   "balance": "Shimano STEPS E5000, 40Nm",
+   "surface": "Compact longtail",
+   "core": "418 Wh",
+   "weight": null,
+   "sources": [
+    "https://yubabikes.com/discover-the-new-yuba-cargo-bike-the-kombi-e5/",
+    "https://yubabikes.eu/faqs/whats-the-difference-between-the-kombi-e5-and-the-kombi-e6/"
+   ]
+  },
+  {
+   "brand": "yuba",
+   "name": "Yuba Mundo EP8 10S",
+   "shape": "Cargo",
+   "balance": "Shimano EP800-CRG",
+   "surface": "Longtail cargo",
+   "core": "504 Wh",
+   "weight": "67.9 lbs",
+   "sources": [
+    "https://yubabikes.com/product/mundo-ep8-10s/"
+   ]
+  },
+  {
+   "brand": "yuba",
+   "name": "Yuba Spicy Curry",
+   "shape": "Cargo",
+   "balance": "Bosch Cargo Line, 85Nm",
+   "surface": "Midtail cargo",
+   "core": "500 Wh (integrated)",
+   "weight": "70 lbs",
+   "sources": [
+    "https://yubabikes.com/product/spicy-curry/"
+   ]
+  }
+ ]
+}

@@ -224,7 +224,8 @@
     "tv": "tvrecs",
     "tool": "toolrecs",
     "grill": "grillrecs",
-    "dog": "dogrecs"
+    "dog": "dogrecs",
+    "ebike": "ebikerecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [
