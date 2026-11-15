@@ -13,7 +13,6 @@
   .hv2-logo i { width: 20px; height: 20px; border-radius: 50%; background: var(--acc); border: 2px solid var(--ink); }
   nav { display: flex; gap: 18px; font-size: 15px; flex-wrap: wrap; }
   nav a { color: var(--ink); text-decoration: none; }
-  nav a:hover, nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
   .hv2-grow { flex: 1; }
   .hv2-find { min-width: 200px; position: relative; }
   .hv2-find form { display: flex; border: 2px solid var(--ink) !important; border-radius: 8px !important; background: var(--paper) !important; box-shadow: none !important; margin: 0 !important; width: 100%; max-width: none !important; }
@@ -44,3 +43,5 @@ body:has(.v2-foot) > .site-footer { display: none; }
 .v2-footin { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .v2-foot nav { display: flex; gap: 16px; flex-wrap: wrap; font: 13px var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; }
 .v2-foot a { color: #151515; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+/* Hover is the marker only, no added underline (owner 2026-11-15): cancel the older pages' hover underlines on PadelRecs. */
+body:has(.hv2-top) :is(.ix-main h3 a, .lv-orig, .lr-main h3 a, .sig-pop summary, .lt-shop, .rc-name, .lp-rank, .lp-read, .lp-more-all):hover { text-decoration: none; }
