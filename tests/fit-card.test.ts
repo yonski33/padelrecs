@@ -80,9 +80,12 @@ test("racket page: 'matters for you' picks the arm first, at most 2 per column, 
  assert.deepEqual(marked("a ==b== c"), [{ text: "a ", mark: false }, { text: "b", mark: true }, { text: " c", mark: false }]);
 });
 
-test("racket page tiers: 10+ full, 6-9 short, under 6 none", async () => {
+test("racket page tiers come from the content: 3+ a side full, fewer short, no entry none", async () => {
  const { pageTier } = await import("../lib/racket-page");
- assert.equal(pageTier(10), "full"); assert.equal(pageTier(9), "short"); assert.equal(pageTier(6), "short"); assert.equal(pageTier(5), null);
+ const it = { title: "x", t: "==x==", src: ["a", "b"] };
+ assert.equal(pageTier({ tagline: "", bottom: "", yes: [it, it, it], no: [it, it, it] }), "full");
+ assert.equal(pageTier({ tagline: "", bottom: "", yes: [it, it, it], no: [it] }), "short");
+ assert.equal(pageTier(null), null);
 });
 
 test("racket page content follows the rules: 1-4 items a side, one highlight, <=105 chars, no 'owners' or '% liked'", async () => {

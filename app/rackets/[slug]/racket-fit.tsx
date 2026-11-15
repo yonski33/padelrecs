@@ -204,7 +204,7 @@ export default async function RacketFit(props: {
   const card = cardData ? { ...cardData, links: Object.fromEntries(cardData.catches.flatMap(c => c.alt ? [c.alt.slug] : []).flatMap(slug => {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
-  const page = pageContent(props.slug), tier = pageTier(reports.length);
+  const page = pageContent(props.slug), tier = pageTier(page);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
   const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t]?.dots ?? 0); };
   const shortOf = (r: ReturnType<typeof racketOf>) => displayName(r.name, brand(r.brandId)).replace(/\s+(19|20)\d\d$/, "");

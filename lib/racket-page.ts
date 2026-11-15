@@ -27,11 +27,11 @@ export function marked(t: string): { text: string; mark: boolean }[] {
   return t.split("==").map((text, i) => ({ text, mark: i % 2 === 1 })).filter(x => x.text);
 }
 
-/** Content tiers (owner 2026-11-15, counted on the racket's own reports): 10+ the full version (bottom line, 3 items a side
- *  and "+N more"); 6–9 a short one (bottom line, 1–2 items a side, "based on N reports"); under 6 none of it shows. */
-export const PAGE_FULL = 10, PAGE_SHORT = 6;
+/** Content tiers (owner 2026-11-15, revised: evidence quality, not report count; "meaningful 4 reports from long in-depth
+ *  YouTube" can carry an entry). Full: 3+ items a side (3 show, the rest under "+N more"); short: fewer, 1–2 a side shown with
+ *  "based on N reports"; no entry: none of it. Every item needs 2+ distinct sources (tests/fit-card.test.ts). */
 export type PageTier = "full" | "short";
-export const pageTier = (reports: number): PageTier | null => reports >= PAGE_FULL ? "full" : reports >= PAGE_SHORT ? "short" : null;
+export const pageTier = (c: PageContent | null): PageTier | null => !c ? null : c.yes.length >= 3 && c.no.length >= 3 ? "full" : "short";
 /** How many items a side the short tier shows. */
 export const SHORT_ITEMS = 2;
 
