@@ -40,11 +40,14 @@ intermediate). For `issue` add `"issue": "<kind>"`.
 4. Mixed statements give two rows only when they are about **different** attributes ("great power but my elbow hurt" →
    power +1, arm −1). The same attribute both ways ("good control, though it flies a bit on blocks") → one row with the
    overall sense, strength 0.5.
-5. At most one row per attribute per report (pick the clearest quote). At most 6 rows per report.
-6. `quote` is the evidence: an **EXACT, contiguous substring** of ONE of the stored texts (`review`, `summary`,
+5. **Comparisons and conditions are weak.** A quote that only compares or sets a condition ("slightly larger than the Pro 5",
+   "less restrictive than expected", "generous when attacking from the net", "good for a diamond") gets strength **0.5** at
+   most, praise or complaint. (The scorer also caps quotes with than / compared / expected / when / for a at 0.5.)
+6. At most one row per attribute per report (pick the clearest quote). At most 6 rows per report.
+7. `quote` is the evidence: an **EXACT, contiguous substring** of ONE of the stored texts (`review`, `summary`,
    `excerpt` or `translation`): same characters, case, punctuation, accents and spacing. Copy it; never paraphrase, fix
    typos or join pieces. At least 8 characters; usually the clause that states it (3–20 words).
-7. Summaries (`summary`) are ours and already paraphrase the source; quote them as written. Don't treat our summary's
+8. Summaries (`summary`) are ours and already paraphrase the source; quote them as written. Don't treat our summary's
    hedges ("players say") as weaker than the excerpt.
 
 Output: one JSON object mapping **every** input id to a list of rows (usually 0–3), e.g.

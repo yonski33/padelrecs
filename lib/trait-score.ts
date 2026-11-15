@@ -144,3 +144,51 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
   }
   return out;
 }
+
+// Scorer v2 (owner 2026-11-15, "score on balance, not raw counts"): from the evidence store's praise / complaint balance
+// (lib/evidence.ts evidenceBalance, one voice once, comparisons down-weighted). A trait's share is (P − C) / (P + C), pulled
+// toward the catalog median by BAL_PRIOR imaginary voices, so a much-discussed racket isn't sunk by more complaints in absolute
+// terms. The median is 3 dots and every step (scaled to the catalog's spread) is one dot; the control / power lean moves up to
+// ±1. Owner's scale: 3 floor; 2 only for complaint traits, for the WORST_SHARE_V2 of rackets with the highest complaint share
+// and at least MIN_COMPLAINTS weighted complaints; 1 only by hand. Thin data (under 2 weighted voices): the specs set the base.
+export const BAL_PRIOR = 10, BAL_STEP_K = 1.5, BAL_MIN_STEP = 0.2, BAL_POOL_MIN = 4, BAL_ENOUGH = 2, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
+export type BalanceInput = { id: string; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number }>>;
+  youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null };
+
+export function balanceScores(products: BalanceInput[], cfg: { complaint: string[] } = { complaint: COMPLAINT_TRAITS }): Map<string, Record<Trait, TraitScore | null>> {
+  const out = new Map<string, Record<Trait, TraitScore | null>>();
+  for (const p of products) out.set(p.id, Object.fromEntries(TRAITS.map(t => [t, null])) as Record<Trait, TraitScore | null>);
+  const PC = (p: BalanceInput, t: Trait) => p.balance[t] ?? { P: 0, C: 0, plusVoices: 0, minusVoices: 0 };
+  for (const t of TRAITS) {
+    const pool = products.filter(p => PC(p, t).P + PC(p, t).C >= BAL_POOL_MIN);
+    const m = median(pool.map(p => (PC(p, t).P - PC(p, t).C) / (PC(p, t).P + PC(p, t).C)));
+    const smooth = (p: BalanceInput) => (PC(p, t).P - PC(p, t).C + BAL_PRIOR * m) / (PC(p, t).P + PC(p, t).C + BAL_PRIOR);
+    const step = Math.max(BAL_MIN_STEP, BAL_STEP_K * median(pool.map(p => Math.abs(smooth(p) - m))));
+    const worst = new Set<string>();
+    if (cfg.complaint.includes(t)) {
+      const share = (p: BalanceInput) => PC(p, t).C / (PC(p, t).P + PC(p, t).C + 1);
+      products.filter(p => PC(p, t).C >= MIN_COMPLAINTS).sort((a, b) => share(b) - share(a))
+        .slice(0, Math.max(1, Math.round(WORST_SHARE_V2 * products.length))).forEach(p => worst.add(p.id));
+    }
+    for (const p of products) {
+      const { P, C, plusVoices, minusVoices } = PC(p, t);
+      const lean = specLean(p.specs)[t];
+      const o = p.override?.[t];
+      const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
+      const enough = P + C >= BAL_ENOUGH;
+      // Control vs power praise leans Control / Defence up and Power down, or the reverse (as v1).
+      const c = PC(p, "control").P + PC(p, "defence").P, w = PC(p, "power").P;
+      const styleLean = c + w >= 6 ? Math.max(-1, Math.min(1, (c / (c + w) - 0.5) * 2.5)) : 0;
+      const sb = t === "control" ? styleLean : t === "defence" ? styleLean / 2 : t === "power" ? -styleLean : 0;
+      let cont = enough ? 3 + (smooth(p) - m) / step + sb : 3 + Math.max(0, lean);
+      cont = Math.max(1, Math.min(5, cont));
+      const complaint = worst.has(p.id);
+      const dots = hand ?? Math.max(complaint ? 2 : 3, Math.min(5, Math.round(cont)));
+      const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((Math.max(complaint ? 2 : 3, cont) - 1) / 4 * 99);
+      const yt = p.youtube?.[t]?.plus ?? 0;
+      const basis: TraitScore["basis"] = enough ? "players" : lean > 0.2 ? "specs" : "none";
+      out.get(p.id)![t] = { score, dots, plus: plusVoices, minus: minusVoices, yt, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
+    }
+  }
+  return out;
+}

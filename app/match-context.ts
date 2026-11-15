@@ -15,7 +15,12 @@ import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
-import { evidenceTotals } from "../lib/evidence";
+import { evidenceBalance } from "../lib/evidence";
+import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
+import padelKnownDots from "../db/known-dots/padel.json";
+
+/** The owner's hand-set calls per site (db/known-dots), applied like admin overrides (an admin override wins). */
+const KNOWN_DOTS: Record<string, Record<string, Record<string, { dots?: number }>>> = { padel: padelKnownDots as unknown as Record<string, Record<string, { dots?: number }>> };
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -88,15 +93,25 @@ export const matchContext = cache(async () => {
   for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
     p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
-  // The evidence store (migration 0023, ENGINE-PLAN.md) when it holds rows: tags, arm words, YouTube notes and the reader
-  // pass, counted by lib/evidence.ts. Its backfill gives exactly today's counts (scripts/evidence-backfill.mts --check).
-  if (evidence.length) {
-    const totals = evidenceTotals(evidence, taggedReports);
-    for (const [id, p] of tagIn) { const t = totals.get(id); p.totals = t?.traits ?? {}; p.youtube = t && Object.keys(t.youtube).length ? t.youtube : undefined; p.tagged = t?.tagged ?? p.tagged; }
-  }
-  const traitAuto = traitScores([...tagIn.values()]);
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
-  const traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
+  let traitAuto: ReturnType<typeof traitScores>, traitMap: ReturnType<typeof traitScores>;
+  if (evidence.length) {
+    // Scorer v2 (owner 2026-11-15): the evidence store's praise / complaint balance, one voice once (lib/evidence.ts,
+    // lib/trait-score.ts balanceScores). A voice is our reviewer's nickname, a YouTube channel's video or a blog; a forum
+    // report or a YouTube comment is its own voice (the stored source name there is the forum or the channel, not the person).
+    const voice = new Map<string, string>();
+    for (const r of data.reviews) voice.set(`p:${r.id}`, r.alias ? `own:${r.alias.toLowerCase()}` : `p:${r.id}`);
+    for (const e of data.external) voice.set(`w:${e.id}`, e.sourcePlatform === "Reddit" || /[?&]lc=/.test(e.sourceUrl) || !e.sourceName ? `w:${e.id}` : `${e.sourcePlatform}:${e.sourceName.toLowerCase()}`);
+    const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref);
+    const known = KNOWN_DOTS[niche.id] ?? {};
+    const knownSet = (slug: string) => Object.fromEntries(Object.entries(known[slug] ?? {}).filter(([, e]) => typeof e?.dots === "number").map(([t, e]) => [t, e.dots!])) as Partial<Record<TraitKey, number>>;
+    const inputs = [...tagIn.values()].map(p => ({ id: p.id, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
+    traitAuto = balanceScores(inputs);
+    traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })));
+  } else {
+    traitAuto = traitScores([...tagIn.values()]);
+    traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
+  }
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
   return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits };
 });

@@ -75,3 +75,38 @@ export function sentenceWith(text: string, test: (s: string) => boolean): string
   const hit = parts.map(s => s.trim()).find(s => s.length >= 12 && test(s));
   return hit && text.includes(hit) ? hit : null;
 }
+
+/** A quote that compares or sets a condition ("slightly larger than the Pro 5", "less restrictive than expected",
+ *  "generous when attacking from the net", "good for a diamond") says less about the racket on its own: such reader rows
+ *  count at most 0.5 (owner 2026-11-15). */
+export const COMPARISON = /\b(than|compared|expected|when|for a)\b/i;
+
+export type Balance = { P: number; C: number; voices: number; plusVoices: number; minusVoices: number };
+/** Praise (P) and complaints (C) per product and trait, one voice once (owner 2026-11-15, scorer v2): a voice is a person or
+ *  channel where we know one (`voiceOf`), else the report. A voice's rows net out to praise or complaint at the strength of its
+ *  strongest row that way. YouTube channels count YT_WEIGHT. Tag, arm-word, reader and YouTube rows all count. */
+export function evidenceBalance(rows: EvidenceRow[], voiceOf: (report: string) => string, ytWeight = 2) {
+  const isTrait = (a: string): a is Trait => (TRAITS as readonly string[]).includes(a);
+  const used = new Set<string>([EXTRACTORS.tags, EXTRACTORS.armWords, EXTRACTORS.reader, EXTRACTORS.ytNotes]);
+  const by = new Map<string, { v: number; s: number }[]>();
+  for (const r of rows) {
+    if (!isTrait(r.attribute) || r.value === null || !r.value || !used.has(r.extractedBy)) continue;
+    const yt = r.extractedBy === EXTRACTORS.ytNotes;
+    const voice = yt ? r.authorKey ?? r.sourceRef : voiceOf(reportOf(r.sourceRef));
+    const s = (r.extractedBy === EXTRACTORS.reader && r.quote && COMPARISON.test(r.quote) ? Math.min(r.strength, 0.5) : r.strength) * (yt ? ytWeight : 1);
+    const k = `${r.productId}\u0000${r.attribute}\u0000${voice}`;
+    (by.get(k) ?? by.set(k, []).get(k)!).push({ v: Math.sign(r.value), s });
+  }
+  const out = new Map<string, Partial<Record<Trait, Balance>>>();
+  for (const [k, xs] of by) {
+    const [id, t] = k.split("\u0000") as [string, Trait];
+    const net = xs.reduce((a, x) => a + x.v * x.s, 0);
+    if (!net) continue;
+    const s = Math.max(...xs.filter(x => (x.v > 0) === (net > 0)).map(x => x.s));
+    const o = out.get(id) ?? out.set(id, {}).get(id)!;
+    const b = (o[t] ??= { P: 0, C: 0, voices: 0, plusVoices: 0, minusVoices: 0 });
+    b.voices++;
+    if (net > 0) { b.P += s; b.plusVoices++; } else { b.C += s; b.minusVoices++; }
+  }
+  return out;
+}
