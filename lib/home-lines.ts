@@ -1,7 +1,7 @@
 import { niche } from "./niche";
 
 /** What the site covers, as people say it: the underlined end of the home headline, "What players are saying about
- *  padel rackets". The SEO wording ("Real Player Reviews of Padel Rackets") stays in the page title and description. */
+ *  padel rackets". The SEO wording stays in the page title and description (lib/niche/padel.ts seo). */
 const topics: Record<string, string> = {
   audio: "audio gear", babygear: "baby gear", badminton: "badminton rackets", camera: "cameras", climbing: "climbing gear",
   coffee: "coffee gear", cycling: "bikes", discgolf: "discs", dog: "dog gear and food", fragrance: "fragrances", gaming: "gaming gear", golf: "drivers", grill: "grills and smokers",

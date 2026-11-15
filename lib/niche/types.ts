@@ -210,6 +210,8 @@ export type Niche = {
   topLists?: TopList[];
   /** The product finder at /finder (lib/finder.ts). Niches without one have no such page. */
   finder?: Finder;
+  /** The racket guide (/guide, lib/guide.ts): sections, copy and the catalogue filter behind each section's counts. */
+  guide?: import("../guide").GuideConfig;
   /** Amazon affiliate links on product pages (lib/amazon.ts), searched in this Amazon category ("Beauty"). They appear
    *  once the deployment also has the Amazon variables (lib/amazon-offer.ts amazonLinksOn; scripts/set-amazon-env.mjs). */
   amazon?: { searchIndex: string; marketplace?: string; /** Show Amazon's product photo on product pages, where Amazon matches the product. */ photos?: boolean };

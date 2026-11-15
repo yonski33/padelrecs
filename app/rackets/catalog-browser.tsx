@@ -7,6 +7,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { catalogView, catalogHref, readCatalogFilters, CATALOG_KEYS, CATALOG_STYLES, CATALOG_LEVELS, CATALOG_SHAPES, CATALOG_SORTS, CATALOG_PAGE,
   type CatalogFilters, type CatalogRow, type CatalogKey } from "../../lib/catalog-filter";
 import { WEIGHTS, FEELS } from "../../lib/fine-tune";
+import { BALANCES, FACES } from "../../lib/guide";
 
 export type CatalogCard = { name: string; href: string; pic: string | null; tile: string; line: string | null; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
 type F = CatalogFilters;
@@ -27,8 +28,8 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
   };
   const to = (next: F, current?: boolean) => ({ href: href(next), onClick: go(next), ...(current ? { "aria-current": "true" as const } : {}) });
   const groups: [string, CatalogKey, readonly string[]][] = [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
-  const extra: [string, CatalogKey, readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS]];
-  const moreOpen = f.more === "1" || !!f.weight || !!f.feel || f.sweet === "1";
+  const extra: [string, CatalogKey, readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS], ["Balance", "balance", BALANCES], ["Face", "face", FACES]];
+  const moreOpen = f.more === "1" || !!f.weight || !!f.feel || !!f.balance || !!f.face || f.sweet === "1";
   const active = [...CATALOG_KEYS.filter(k => f[k]).map(k => ({ label: f[k]!, next: { [k]: undefined } as F })),
     ...(f.arm === "1" ? [{ label: "arm-friendly", next: { arm: undefined } as F }] : []), ...(f.sweet === "1" ? [{ label: "bigger sweet spot", next: { sweet: undefined } as F }] : [])];
   const clearAll: F = Object.fromEntries(Object.keys(f).map(k => [k, undefined]));

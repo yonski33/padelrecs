@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(isV2 && attrProfileFor(niche) ? (niche.typePages ?? []).flatMap(t => SKIN_TYPES.map(k => ({ url: `${base}/?type=${t.slug}&amp;skin=${k}`, lastModified: latest(allNotes), changeFrequency: "daily" as const, priority: 0.6 }))) : []),
     ...(isV2 && niche.finder && !attrProfileFor(niche) ? INDEXABLE_CHOICES.map(c => ({ url: `${base}${choiceHref(c, "")}`, lastModified: latest(allNotes), changeFrequency: "daily" as const, priority: 0.7 })) : []),
     { url: `${base}/reviews`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 0.7 },
+    ...(niche.guide ? [{ url: `${base}/guide`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly" as const, priority: 0.7 }] : []),
     ...(niche.finder ? [{ url: `${base}/finder`, lastModified: latest(allNotes), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...(lists.length ? [{ url: `${base}${RANKINGS_PATH}`, lastModified: latest(lists.map(x => x.updated)), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...lists.map(x => ({ url: `${base}${rankingHref(x.list.slug)}`, lastModified: new Date(x.updated), changeFrequency: "weekly" as const, priority: 0.8 })),
