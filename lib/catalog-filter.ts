@@ -11,9 +11,12 @@ export const CATALOG_SORTS = [["score", "player score"], ["reviews", "most revie
 /** The option groups a row is tested on (arm-friendly and a bigger sweet spot are checkboxes). */
 export const CATALOG_KEYS = ["style", "level", "shape", "year", "weight", "feel"] as const;
 export type CatalogKey = (typeof CATALOG_KEYS)[number];
-/** Every query the catalogue reads; all of them live in the address. */
+/** Every built-in query the catalogue reads; all of them live in the address. A niche's spec filters (its guide config,
+ *  lib/guide.ts specGroups) add their own keys on top. */
 export const CATALOG_PARAMS = ["style", "level", "shape", "year", "arm", "weight", "feel", "sweet", "sort", "show", "more", "q", "older"] as const;
-export type CatalogFilters = Partial<Record<(typeof CATALOG_PARAMS)[number], string>>;
+export type CatalogFilters = Partial<Record<(typeof CATALOG_PARAMS)[number], string>> & { [spec: string]: string | undefined };
+/** A spec filter from the niche's guide config (balance, face…): its address key, label and values, in order. */
+export type SpecGroup = { key: string; label: string; values: readonly string[] };
 export const CATALOG_PAGE = 20;
 
 export type CatalogRow = {
@@ -24,6 +27,7 @@ export type CatalogRow = {
   shape: string | null; year: string;
   /** Arm-friendly mentions at the fit check's bar. */ arm: boolean;
   weight: string | null; feel: string | null;
+  /** The niche's spec filters (lib/guide.ts specGroups), e.g. padel balance and face, sorted from the specs. */ spec?: Record<string, string | null>;
   /** Forgiveness 4+ dots. */ sweet: boolean;
   /** The Player score. */ signal: number | null;
   /** Every report; reviews with a verdict (the "most reviewed" sort). */ n: number; judged: number;
@@ -47,28 +51,30 @@ export type CatalogView = {
 
 /** The list for the filters. One model, newest year (owner 2026-11-15, as quick match): a family's older years are hidden
  *  unless ?older=1, a search or a year pick asks for them. */
-export function catalogView(rows: CatalogRow[], f: CatalogFilters, suitsOk: number): CatalogView {
-  const tests = catalogTests(suitsOk);
+export function catalogView(rows: CatalogRow[], f: CatalogFilters, suitsOk: number, spec: readonly SpecGroup[] = []): CatalogView {
+  const tests: Record<string, (x: CatalogRow, v: string) => boolean> = { ...catalogTests(suitsOk), ...Object.fromEntries(spec.map(g => [g.key, (x: CatalogRow, v: string) => x.spec?.[g.key] === v])) };
+  const keys = [...CATALOG_KEYS, ...spec.map(g => g.key)];
   const allYears = f.older === "1" || !!f.q || !!f.year;
   const current = (x: CatalogRow) => allYears || x.newest;
-  const others = (x: CatalogRow, skip?: string) => CATALOG_KEYS.every(k => k === skip || !f[k] || tests[k](x, f[k]!)) && (skip === "arm" || f.arm !== "1" || x.arm) && (skip === "sweet" || f.sweet !== "1" || x.sweet);
+  const others = (x: CatalogRow, skip?: string) => keys.every(k => k === skip || !f[k] || tests[k](x, f[k]!)) && (skip === "arm" || f.arm !== "1" || x.arm) && (skip === "sweet" || f.sweet !== "1" || x.sweet);
   const pass = (x: CatalogRow, skip?: string) => current(x) && others(x, skip);
   const sort = CATALOG_SORTS.some(([k]) => k === f.sort) ? f.sort! : "score";
   const order = (a: CatalogRow, b: CatalogRow) => sort === "reviews" ? b.judged - a.judged : sort === "newest" ? Number(b.year) - Number(a.year) || (b.signal ?? -1) - (a.signal ?? -1) : (b.signal ?? -1) - (a.signal ?? -1) || b.judged - a.judged;
   const shown = rows.filter(x => pass(x)).sort((a, b) => order(a, b) || a.name.localeCompare(b.name));
   const show = Math.min(1000, Math.max(CATALOG_PAGE, Number(f.show) || CATALOG_PAGE));
   const years = [...new Set(rows.map(x => x.year))].sort().reverse();
-  const values: Record<CatalogKey, readonly string[]> = { style: CATALOG_STYLES, level: CATALOG_LEVELS, shape: CATALOG_SHAPES, year: years, weight: WEIGHTS, feel: FEELS };
-  const counts = Object.fromEntries(CATALOG_KEYS.map(k => [k, Object.fromEntries(values[k].map(v => [v, rows.filter(x => pass(x, k) && tests[k](x, v)).length]))]));
+  const values: Record<string, readonly string[]> = { style: CATALOG_STYLES, level: CATALOG_LEVELS, shape: CATALOG_SHAPES, year: years, weight: WEIGHTS, feel: FEELS, ...Object.fromEntries(spec.map(g => [g.key, g.values])) };
+  const counts = Object.fromEntries(keys.map(k => [k, Object.fromEntries(values[k].map(v => [v, rows.filter(x => pass(x, k) && tests[k](x, v)).length]))]));
   return { shown, sort, show, counts, olderN: rows.filter(x => !x.newest && others(x)).length, total: rows.filter(x => x.newest).length, years };
 }
 
 /** The address for the filters: every other choice kept, the "show more" count dropped unless given. */
-export function catalogHref(base: string, f: CatalogFilters, next: CatalogFilters = {}) {
-  const q = new URLSearchParams(Object.entries({ ...f, show: undefined, ...next }).filter(([k, v]) => v && (CATALOG_PARAMS as readonly string[]).includes(k)) as [string, string][]);
+export function catalogHref(base: string, f: CatalogFilters, next: CatalogFilters = {}, spec: readonly string[] = []) {
+  const known = [...CATALOG_PARAMS, ...spec] as readonly string[];
+  const q = new URLSearchParams(Object.entries({ ...f, show: undefined, ...next }).filter(([k, v]) => v && known.includes(k)) as [string, string][]);
   return q.size ? `${base}?${q}` : base;
 }
 /** The filters an address asks for (unknown keys dropped). */
-export function readCatalogFilters(q: Record<string, string | undefined>): CatalogFilters {
-  return Object.fromEntries(CATALOG_PARAMS.flatMap(k => q[k] ? [[k, q[k]]] : [])) as CatalogFilters;
+export function readCatalogFilters(q: Record<string, string | undefined>, spec: readonly string[] = []): CatalogFilters {
+  return Object.fromEntries([...CATALOG_PARAMS, ...spec].flatMap(k => q[k] ? [[k, q[k]]] : [])) as CatalogFilters;
 }

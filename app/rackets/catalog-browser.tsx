@@ -5,34 +5,36 @@
 // stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { useEffect, useState, type MouseEvent } from "react";
 import { catalogView, catalogHref, readCatalogFilters, CATALOG_KEYS, CATALOG_STYLES, CATALOG_LEVELS, CATALOG_SHAPES, CATALOG_SORTS, CATALOG_PAGE,
-  type CatalogFilters, type CatalogRow, type CatalogKey } from "../../lib/catalog-filter";
+  type CatalogFilters, type CatalogRow, type SpecGroup } from "../../lib/catalog-filter";
 import { WEIGHTS, FEELS } from "../../lib/fine-tune";
 
 export type CatalogCard = { name: string; href: string; pic: string | null; tile: string; line: string | null; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
 type F = CatalogFilters;
 
-export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one }: { rows: CatalogRow[]; cards: Record<string, CatalogCard>; f: F; base: string; suitsOk: number; many: string; one: string }) {
+export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one, spec = [] }: { rows: CatalogRow[]; cards: Record<string, CatalogCard>; f: F; base: string; suitsOk: number; many: string; one: string;
+  /** The niche's spec filters (lib/guide.ts specGroups), under "more filters". */ spec?: SpecGroup[] }) {
+  const specKeys = spec.map(g => g.key);
   const [f, setF] = useState<F>(first);
   // Back and forward step through the filters.
-  useEffect(() => { const on = () => setF(readCatalogFilters(Object.fromEntries(new URLSearchParams(location.search)))); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
-  const v = catalogView(rows, f, suitsOk);
-  const href = (next: F) => catalogHref(base, f, next);
+  useEffect(() => { const on = () => setF(readCatalogFilters(Object.fromEntries(new URLSearchParams(location.search)), specKeys)); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
+  const v = catalogView(rows, f, suitsOk, spec);
+  const href = (next: F) => catalogHref(base, f, next, specKeys);
   const go = (next: F) => (e: MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // a new tab gets the server's page
     e.preventDefault();
     // From the address, not this render's state, so two quick taps both count.
-    const url = catalogHref(base, readCatalogFilters(Object.fromEntries(new URLSearchParams(location.search))), next);
-    setF(readCatalogFilters(Object.fromEntries(new URL(url, location.origin).searchParams)));
+    const url = catalogHref(base, readCatalogFilters(Object.fromEntries(new URLSearchParams(location.search)), specKeys), next, specKeys);
+    setF(readCatalogFilters(Object.fromEntries(new URL(url, location.origin).searchParams), specKeys));
     history.pushState(null, "", url);
   };
   const to = (next: F, current?: boolean) => ({ href: href(next), onClick: go(next), ...(current ? { "aria-current": "true" as const } : {}) });
-  const groups: [string, CatalogKey, readonly string[]][] = [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
-  const extra: [string, CatalogKey, readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS]];
-  const moreOpen = f.more === "1" || !!f.weight || !!f.feel || f.sweet === "1";
-  const active = [...CATALOG_KEYS.filter(k => f[k]).map(k => ({ label: f[k]!, next: { [k]: undefined } as F })),
+  const groups: [string, string, readonly string[]][] = [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
+  const extra: [string, string, readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS], ...spec.map(g => [g.label, g.key, g.values] as [string, string, readonly string[]])];
+  const moreOpen = f.more === "1" || !!f.weight || !!f.feel || specKeys.some(k => !!f[k]) || f.sweet === "1";
+  const active = [...[...CATALOG_KEYS, ...specKeys].filter(k => f[k]).map(k => ({ label: f[k]!, next: { [k]: undefined } as F })),
     ...(f.arm === "1" ? [{ label: "arm-friendly", next: { arm: undefined } as F }] : []), ...(f.sweet === "1" ? [{ label: "bigger sweet spot", next: { sweet: undefined } as F }] : [])];
   const clearAll: F = Object.fromEntries(Object.keys(f).map(k => [k, undefined]));
-  const group = ([label, key, vals]: [string, CatalogKey, readonly string[]]) =>
+  const group = ([label, key, vals]: [string, string, readonly string[]]) =>
     <details key={key} className="ct-g" open>
       <summary><b>{label}</b>{f[key] && <span className="ct-val">{f[key]}</span>}<i aria-hidden="true"/></summary>
       <div className="ct-opts">{vals.map(val => { const on = f[key] === val, n = v.counts[key]?.[val] ?? 0;
