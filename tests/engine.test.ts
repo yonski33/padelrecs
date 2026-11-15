@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { engineBase, engineScore, engineCandidates, engineAnchors, enginePct, type EngineFacts } from "../lib/engine";
+import { engineBase, engineScore, engineCandidates, engineAnchors, enginePct, engineTraitDots, type EngineFacts } from "../lib/engine";
 import { padel } from "../lib/niche/padel";
 
 // The match engine (lib/engine) against the offline prototype the owner's yardstick checked (ENGINE-ALGO.md §5): the same
@@ -56,4 +56,13 @@ test("the owner's yardstick: 23 of 24 hold (the one open: Coello Team leads begi
     if (style === "control") check(!top.some(x => x.shape.toLowerCase().includes("diamond")), `${pick}: top 3 has no diamond`);
   }
   assert.deepEqual(fails, ["beginner+power: no 12-or-fewer-report racket in top 3 while a 40+ one waits below"]);
+});
+
+test("trait dots from the engine: a control-side racket shows 4+ control dots unless control complaints win; 2 only for complaint traits", () => {
+  const fx2 = items.map(x => ({ ...x, e: { ...x.e, voices: { ...x.e.voices, defence: { plus: 1, minus: 0 } } } }));
+  const dots = engineTraitDots(fx2, engineBase(fx2, P), P);
+  const ctrl = fx2.find(x => x.slug === "adidas-metalbone-ctrl-2026")!;
+  assert.ok(dots.get(ctrl.id)!.control.dots >= 4, "Metalbone CTRL 3.5: control side, more praise than complaints");
+  for (const [, d] of dots) { assert.ok(d.control.dots >= 3 && d.power.dots >= 3 && d.defence.dots >= 3 && d.speed.dots >= 3); }
+  assert.ok([...dots.values()].every(d => d.arm.dots >= 2 && d.forgiveness.dots >= 2));
 });

@@ -14,14 +14,18 @@
 //   display %   the cautious score placed on 45–97 between anchors taken over the 9 level × style picks
 
 export type Voices = { plus: number; minus: number };
+/** The traits a product page shows as dots (lib/trait-score.ts TRAITS). */
+export const DOT_TRAITS = ["forgiveness", "power", "control", "defence", "arm", "speed"] as const;
+export type DotTrait = (typeof DOT_TRAITS)[number];
+const COMPLAINT_DOTS: readonly DotTrait[] = ["arm", "forgiveness"], MIN_COMPLAINT_VOICES = 3;
 /** What the engine reads per product (app/match-context.ts builds it from the evidence store and the catalog). */
 export type EngineFacts = {
   /** The product's own name, for the maker's label words. */ name: string;
   year: number;
   /** Reports with a verdict. */ pos: number; mix: number; neg: number;
-  /** Praising / faulting voices per trait (lib/evidence.ts evidenceBalance). */ voices: { control: Voices; power: Voices; arm?: Voices };
-  /** The specs' lean in dots, −1…+1 (lib/trait-score.ts specLean). */ spec: { control: number; power: number; arm?: number };
-  /** An expert's 0–100 per trait, when set (admin expert grid). */ expert: { control?: number; power?: number; arm?: number };
+  /** Praising / faulting voices per trait (lib/evidence.ts evidenceBalance). */ voices: { control: Voices; power: Voices } & Partial<Record<DotTrait, Voices>>;
+  /** The specs' lean in dots, −1…+1 (lib/trait-score.ts specLean). */ spec: { control: number; power: number } & Partial<Record<DotTrait, number>>;
+  /** An expert's 0–100 per trait, when set (admin expert grid). */ expert: Partial<Record<DotTrait, number>>;
 };
 export type EngineProfile = {
   m: number; k: number; ks: number; E: number; z: number; wq: number; wf: number; wp: number; minReports: number;
@@ -135,3 +139,36 @@ export function engineAnchors<T extends { id: string; n: number; family: string;
 
 /** The verdict word from the same number. */
 export const engineKind = (pct: number | null, p: EngineProfile) => pct === null ? "thin" as const : pct >= p.cuts.good ? "good" as const : pct >= p.cuts.maybe ? "maybe" as const : "no" as const;
+
+/** Trait dots from the engine (PM / owner 2026-11-15: the dots, the copy and the ranking tell one story). Every trait: the praise
+ *  share among the voices that mention it, smoothed toward the catalog's share (+ the specs' lean) by k voices, an expert's value
+ *  as E voices; dots from where that smoothed value ranks in the catalog: the top 9% 5, the top 30% 4, else 3; 2 only for arm
+ *  and forgiveness, the bottom 6% of those whose complaints (3+) outnumber the praise. Control and power also follow the axis: a racket on the control side
+ *  (axis ≤ the control bound) shows at least 4 control dots unless its control complaints outnumber the praise, and the same
+ *  for power on the power side. The 0–99 score is the dot band's floor plus the place in the ranking, as before. */
+export function engineTraitDots(items: { id: string; n: number; e: EngineFacts }[], base: Map<string, EngineBase>, p: EngineProfile): Map<string, Record<DotTrait, { dots: number; score: number; v: number }>> {
+  const vo = (x: { e: EngineFacts }, t: DotTrait) => x.e.voices[t] ?? { plus: 0, minus: 0 };
+  const out = new Map<string, Record<DotTrait, { dots: number; score: number; v: number }>>(items.map(x => [x.id, {} as Record<DotTrait, { dots: number; score: number; v: number }>]));
+  for (const t of DOT_TRAITS) {
+    const P0 = sum(items, x => vo(x, t).plus), C0 = sum(items, x => vo(x, t).minus), share0 = P0 / Math.max(P0 + C0, 1);
+    const val = new Map(items.map(x => {
+      const { plus: Pp, minus: Cc } = vo(x, t), mu0 = clamp(share0 + 0.15 * (x.e.spec[t] ?? 0), 0.05, 0.95), e = x.e.expert[t];
+      const [Ep, Ec] = e !== undefined ? [p.E * e / 100, p.E * (1 - e / 100)] : [0, 0];
+      return [x.id, (Pp + Ep + p.k * mu0) / (Pp + Cc + Ep + Ec + p.k)] as const;
+    }));
+    const order = [...items].sort((a, b) => val.get(b.id)! - val.get(a.id)! || a.id.localeCompare(b.id)), rank = new Map(order.map((x, i) => [x.id, i]));
+    const n4 = Math.round(0.30 * items.length), n5 = Math.round(0.09 * items.length);
+    // 2 dots only where players fault the trait itself (arm, forgiveness; owner 2026-11-15: little power praise on a control
+    // racket isn't a complaint), with enough complaints to outnumber the praise.
+    const worst = new Set(COMPLAINT_DOTS.includes(t) ? order.filter(x => vo(x, t).minus > vo(x, t).plus && vo(x, t).minus >= MIN_COMPLAINT_VOICES).slice(-Math.max(1, Math.round(0.06 * items.length))).map(x => x.id) : []);
+    for (const x of items) {
+      const i = rank.get(x.id)!, { plus, minus } = vo(x, t), b = base.get(x.id);
+      let dots = worst.has(x.id) ? 2 : i < n5 ? 5 : i < n4 ? 4 : 3;
+      if (b && t === "control" && b.axis <= p.labelBounds[2] && minus <= plus) dots = Math.max(dots, 4);
+      if (b && t === "power" && b.axis >= p.labelBounds[3] && minus <= plus) dots = Math.max(dots, 4);
+      const within = 1 - i / Math.max(1, items.length - 1);
+      out.get(x.id)![t] = { dots, score: Math.round((dots - 1) * 20 + 19 * within), v: val.get(x.id)! };
+    }
+  }
+  return out;
+}

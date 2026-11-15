@@ -20,7 +20,7 @@ import { EXTRACTORS } from "../lib/evidence";
 import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts } from "../lib/fine-tune";
 import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { factsWith, matchPcts, type RankItem } from "../lib/home-rank";
-import type { EngineFacts } from "../lib/engine";
+import { engineBase, engineTraitDots, DOT_TRAITS, type EngineFacts, type DotTrait } from "../lib/engine";
 import { rowOfFamily } from "../lib/compare-pairs";
 import { matchData } from "../db/match-data";
 import type { QuickChoice } from "../lib/quick-match";
@@ -165,12 +165,6 @@ export const matchContext = cache(async () => {
     traitAuto = traitScores([...tagIn.values()]);
     traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
   }
-  const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
-  const feels = feelClasses(leans);
-  for (const id of listed) { const r = data.rackets.find(x => x.id === id);
-    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
-  // One compact item per listed racket (lib/home-rank.ts): the place inside a picked shape, the match % and the home list are
-  // worked out from these, on the server and (for chip taps) in the browser, with the same functions.
   // The match engine's facts (lib/engine): verdict counts, praising / faulting voices, the specs' lean and expert values.
   const sentOf = new Map<string, { pos: number; mix: number; neg: number }>();
   const addSent = (id: string, v: string | null | undefined) => { const x = sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }; if (v === "positive") x.pos++; else if (v === "mixed") x.mix++; else if (v === "negative") x.neg++; sentOf.set(id, x); };
@@ -178,12 +172,31 @@ export const matchContext = cache(async () => {
   for (const e of data.external) addSent(e.racketId, e.sentiment);
   const engOf = (id: string, r: (typeof data.rackets)[number]): EngineFacts => {
     const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {};
-    const vo = (k: "control" | "power" | "arm") => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
-    const exv = (k: "control" | "power" | "arm") => (ex as Record<string, { value: number } | undefined>)[k]?.value;
-    return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }), voices: { control: vo("control"), power: vo("power"), arm: vo("arm") },
-      spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, arm: t?.arm?.spec ?? 0 },
-      expert: Object.fromEntries((["control", "power", "arm"] as const).flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])) };
+    const vo = (k: DotTrait) => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
+    const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[k]?.value;
+    return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
+      voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(DOT_TRAITS.map(k => [k, vo(k)])) },
+      spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(DOT_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
+      expert: Object.fromEntries(DOT_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])) };
   };
+  // Trait dots from the engine (lib/engine engineTraitDots; PM / owner 2026-11-15, one story across the page): they replace the
+  // per-report-rate dots everywhere (racket page, filters, the fit check), and hand-set dots still win.
+  if (ENGINE) {
+    const reportsN = new Map<string, number>(); for (const x of [...data.reviews, ...data.external]) reportsN.set(x.racketId, (reportsN.get(x.racketId) ?? 0) + 1);
+    const engList = [...listed].map(id => ({ id, n: reportsN.get(id) ?? 0, e: engOf(id, data.rackets.find(x => x.id === id)!) }));
+    const dots = engineTraitDots(engList, engineBase(engList, ENGINE), ENGINE);
+    for (const id of listed) { const m = traitMap.get(id), d = dots.get(id), ex = overrides.get(id)?.expert ?? {}; if (!m || !d) continue;
+      for (const k of DOT_TRAITS) { const cur = m[k]; if (!cur) continue;
+        const hand = cur.set && !(k in ex); if (hand) continue;
+        m[k] = { ...cur, dots: d[k].dots, score: d[k].score }; } }
+  }
+
+  const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
+  const feels = feelClasses(leans);
+  for (const id of listed) { const r = data.rackets.find(x => x.id === id);
+    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
+  // One compact item per listed racket (lib/home-rank.ts): the place inside a picked shape, the match % and the home list are
+  // worked out from these, on the server and (for chip taps) in the browser, with the same functions.
   const items: RankItem[] = [...listed].map(id => {
     const t = traitMap.get(id), p = byId.get(id), r = data.rackets.find(x => x.id === id)!;
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
