@@ -231,12 +231,17 @@ export function BeforePicks({ children }: { children: ReactNode }) {
 export function FitYesNo({ yes, no }: { yes: PageItem[]; no: PageItem[] }) {
   const { p: { choice, picked } } = use(), picks = picked ? pickTags(choice) : [];
   return <div className="rp-yn">{([["yes", "✓", "Why yes", yes], ["no", "!", "Why not", no]] as const).map(([side, icon, title, items]) => {
-    const hot = mattersFor(items, picks), rest = items.slice(SHOWN_ITEMS);
+    // A "matters for you" item never hides under "+N more": it takes the place of the last untagged one shown.
+    const hot = mattersFor(items, picks), list = [...items];
+    for (const h of list.slice(SHOWN_ITEMS).filter(x => hot.has(x.title))) {
+      const out = list.slice(0, SHOWN_ITEMS).reverse().find(x => !hot.has(x.title)); if (!out) break;
+      list.splice(list.indexOf(h), 1); list.splice(list.indexOf(out), 0, h); }
+    const rest = list.slice(SHOWN_ITEMS);
     const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}{hot.has(it.title) && <span className="rp-hot">matters for you</span>}</b>
       <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
       <small>{evidenceLine(it)}</small></div>;
     return <div key={side} className={`rp-col ${side}`}><p className="rp-ch"><i aria-hidden="true">{icon}</i>{title}</p>
-      {items.slice(0, SHOWN_ITEMS).map(item)}
+      {list.slice(0, SHOWN_ITEMS).map(item)}
       {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
     </div>; })}</div>;
 }
