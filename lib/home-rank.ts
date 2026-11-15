@@ -184,6 +184,11 @@ export function alternatives(items: RankItem[], setup: RankSetup, negativeTags: 
 
 /** Each product's control ↔ power axis position, 0 control … 1 power (lib/engine engineBase), for copy and display that must
  *  tell the same story as the ranking. Empty without an engine profile. */
+/** The engine's axis next to what players alone say (playerAxis), for the content checker: a gap over 0.3 is flagged. */
+export function engineAxisCheck(items: RankItem[], engine: EngineProfile | undefined): Map<string, { axis: number; playerAxis: number | null; gap: number | null }> {
+  if (!engine) return new Map();
+  return new Map([...engBase(items, engine)].map(([id, b]) => [id, { axis: b.axis, playerAxis: b.playerAxis, gap: b.playerAxis === null ? null : Math.abs(b.axis - b.playerAxis) }]));
+}
 export function engineAxis(items: RankItem[], engine: EngineProfile | undefined): Map<string, number> {
   if (!engine) return new Map();
   return new Map([...engBase(items, engine)].map(([id, b]) => [id, b.axis]));

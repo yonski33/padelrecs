@@ -32,6 +32,9 @@ export type EngineProfile = {
   /** Share of the style fit that is the axis position (the rest: how positively players talk about the trait). */ ax: number;
   /** Maker label words (matched in the lower-cased name, as written, spaces included) for each end of the axis. */
   controlLabels: string[]; powerLabels: string[];
+  /** Labels that cap the axis at all-round (≤ allRoundCap): praise moves it inside, the shape can't push it to the power side
+   *  (owner 2026-11-15, "Yes, cap Team": Team versions are softer, beginner-friendly builds). */
+  allRoundLabels?: string[]; allRoundCap?: number;
   /** A label bounds the specs prior (control ≤ [0], power ≥ [1]) and the final axis (control ≤ [2], power ≥ [3]). */
   labelBounds: [number, number, number, number];
   /** Verdict cut-offs on the display %: Strong fit ≥ good, Worth a look ≥ maybe, else Probably not. */ cuts: { good: number; maybe: number };
@@ -40,7 +43,8 @@ export type EngineProfile = {
 };
 export type EngineStyle = "any" | "control" | "balance" | "power";
 type Trait = { v: number; sd: number };
-export type EngineBase = { axis: number; axisN: number; Q: number; sdQ: number; tr: { control: Trait; power: Trait; arm: Trait }; pop: number; n: number };
+export type EngineBase = { axis: number; axisN: number;
+  /** What players alone say, 0 control … 1 power: power praise vs control praise (base-rate scaled), no prior; null under 4 voices. */ playerAxis: number | null; Q: number; sdQ: number; tr: { control: Trait; power: Trait; arm: Trait }; pop: number; n: number };
 
 const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x));
 const sum = <T>(xs: T[], f: (x: T) => number) => xs.reduce((a, x) => a + f(x), 0);
@@ -76,6 +80,8 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     let a0 = clamp(0.5 + 0.3 * ((x.e.spec.power ?? 0) - (x.e.spec.control ?? 0)), 0.12, 0.88);
     const nm = x.e.name.toLowerCase();
     const ctl = p.controlLabels.some(w => nm.includes(w)), pow = p.powerLabels.some(w => nm.includes(w));
+    const mid = !!p.allRoundLabels?.some(w => nm.includes(w)), cap = p.allRoundCap ?? 0.55;
+    if (mid) a0 = Math.min(a0, cap);
     if (ctl) a0 = Math.min(a0, p.labelBounds[0]);
     if (pow) a0 = Math.max(a0, p.labelBounds[1]);
     const Pc = vo(x, "control").plus / base.control * base.power, Pp = vo(x, "power").plus;
@@ -87,7 +93,8 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     // inside its half, never across.
     if (ctl) axis = Math.min(axis, p.labelBounds[2]);
     if (pow) axis = Math.max(axis, p.labelBounds[3]);
-    out.set(x.id, { axis, axisN: 1 + Pp + Pc, Q, sdQ, tr: { control: trait("control"), power: trait("power"), arm: trait("arm") }, pop: Math.log1p(x.n) / Math.log1p(nmax), n: x.n });
+    if (mid) axis = Math.min(axis, cap);
+    out.set(x.id, { axis, axisN: 1 + Pp + Pc, playerAxis: Pp + Pc >= 4 ? Pp / (Pp + Pc) : null, Q, sdQ, tr: { control: trait("control"), power: trait("power"), arm: trait("arm") }, pop: Math.log1p(x.n) / Math.log1p(nmax), n: x.n });
   }
   return out;
 }
