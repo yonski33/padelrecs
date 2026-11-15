@@ -18,6 +18,7 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-hero { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 18px; }
   h1 { font: 800 clamp(32px, 4.4vw, 48px)/1.02 var(--display) !important; letter-spacing: -0.025em !important; margin: 0 !important; max-width: 680px; text-wrap: balance; }
   h1 .hl { background: var(--acc); padding: 0 6px; border: 2px solid var(--ink); border-radius: 8px; display: inline-block; transform: rotate(-1.5deg); }
+  .hv2-sub { margin: 8px 0 0; font-size: 18px; color: var(--soft) !important; text-wrap: pretty; }
   .hv2-live { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 12px; background: var(--paper); }
   .hv2-live i { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.65 0.18 145); }
 
@@ -34,6 +35,9 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-arm { display: flex; align-items: center; gap: 8px; font-size: 14px; text-decoration: none; }
   .hv2-arm i { width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: normal 700 13px var(--body); background: var(--paper); }
   .hv2-arm[aria-pressed="true"] i { background: var(--acc); }
+  .hv2-game { flex-basis: 100%; margin: 0; padding-top: 10px; border-top: 2px dashed var(--ink); font: 12px var(--mono); color: var(--mute); display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+  .hv2-game b { color: var(--ink); font-weight: 600; }
+  .hv2-game a { margin-left: auto; color: var(--ink); }
 
   /* List */
   .hv2-grid { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
@@ -58,6 +62,11 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-chip { font: 10.5px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 7px; background: var(--paper); }
   .hv2-chip.best { background: var(--acc); } .hv2-chip.arm { background: oklch(0.94 0.05 200); }
   .hv2-line { font-size: 14px; color: var(--text); text-wrap: pretty; }
+  .hv2-fit { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 3px; font-size: 13px; }
+  .hv2-fit b { font: 600 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; }
+  .hv2-fit.good b { background: oklch(0.9 0.1 145); } .hv2-fit.maybe b { background: oklch(0.93 0.12 95); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
+  .hv2-fit span { color: var(--text); }
+  .hv2-score { min-width: 34px; text-align: center; padding: 3px 6px; border: 2px solid var(--ink); border-radius: 8px; background: var(--acc); font: 800 15px var(--display); }
   .hv2-stats { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font: 11px var(--mono); min-width: 96px; white-space: nowrap; }
   .hv2-stats strong { font-size: 13px; }
   .hv2-bar { display: flex; width: 96px; height: 8px; border: 1.5px solid var(--ink); border-radius: 3px; overflow: hidden; }
@@ -90,6 +99,6 @@ body:has(main.hv2) { background: #fbfaf6; }
     .hv2-side { max-width: none; }
     .hv2-row { grid-template-columns: 22px 44px minmax(0, 1fr); gap: 10px; padding: 10px; }
     .hv2-pic { width: 44px; height: 52px; }
-    .hv2-stats { grid-column: 3; flex-direction: row; align-items: center; gap: 8px; }
+    .hv2-stats { grid-column: 3; flex-direction: row; align-items: center; gap: 8px; white-space: normal; min-width: 0; }
   }
 }

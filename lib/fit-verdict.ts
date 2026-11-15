@@ -20,7 +20,7 @@ export type FitFacts = {
   /** Place on the control / power rankings, when it's on them. */
   places?: { control?: number; power?: number };
 };
-export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[] };
+export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[]; /** One short reason for list rows (the home). */ short?: string };
 
 export const MIN_FIT_REPORTS = 20;
 /** Arm-friendly mentions needed before the fit check vouches for a sore arm. */
@@ -38,16 +38,16 @@ export function styleLean(f: FitFacts): { lean: "control" | "power" | "balance" 
   return { lean, control, power };
 }
 
-type Check = { level: "ok" | "soft" | "hard" | "unknown"; reason?: string };
+type Check = { level: "ok" | "soft" | "hard" | "unknown"; reason?: string; short?: string };
 
 function styleCheck(c: QuickChoice, f: FitFacts): Check {
   if (c.style === "any") return { level: "ok" };
   const { lean, control, power } = styleLean(f);
   if (!lean) return { level: "unknown" };
   const evidence = lean === "control" ? `${players(control)} praise the control` : lean === "power" ? `${players(power)} praise the power` : `players praise both control (${control}) and power (${power})`;
-  if (lean === c.style) return { level: "ok", reason: `Built for ${c.style === "balance" ? "a bit of everything" : c.style}: ${evidence}.` };
-  if (c.style === "balance" || lean === "balance") return { level: "soft", reason: `You want ${c.style === "balance" ? "a balance" : c.style}; it leans ${lean === "balance" ? "all-round" : lean}. ${evidence[0].toUpperCase()}${evidence.slice(1)}.` };
-  return { level: "hard", reason: `You want ${c.style}, but this one is a ${lean} racket: ${evidence}.` };
+  if (lean === c.style) return { level: "ok", reason: `Built for ${c.style === "balance" ? "a bit of everything" : c.style}: ${evidence}.`, short: c.style === "balance" ? "Suited to an all-round game" : `Suited to your ${c.style} priority` };
+  if (c.style === "balance" || lean === "balance") return { level: "soft", short: `Leans ${lean === "balance" ? "all-round" : lean}`, reason: `You want ${c.style === "balance" ? "a balance" : c.style}; it leans ${lean === "balance" ? "all-round" : lean}. ${evidence[0].toUpperCase()}${evidence.slice(1)}.` };
+  return { level: "hard", short: `A ${lean} racket`, reason: `You want ${c.style}, but this one is a ${lean} racket: ${evidence}.` };
 }
 
 const span = (b: Band) => b.from === b.to ? LEVELS[b.from] : `${LEVELS[b.from]} to ${LEVELS[b.to]}`;
@@ -90,26 +90,26 @@ function levelCheck(c: QuickChoice, f: FitFacts): Check {
   if (named.length) {
     const yes = named.filter(([, b]) => has(b, i)), no = named.filter(([, b]) => !has(b, i));
     const backing = levelBacking(f);
-    if (!no.length) return { level: "ok", reason: `Level: ${backing}. That includes you.` };
-    if (!yes.length) return { level: "hard", reason: `Level: ${backing}. Not aimed at ${who}.` };
+    if (!no.length) return { level: "ok", short: "Fits your level", reason: `Level: ${backing}. That includes you.` };
+    if (!yes.length) return { level: "hard", short: `Not aimed at ${who}`, reason: `Level: ${backing}. Not aimed at ${who}.` };
     // Sources disagree: say who, and call it a demo-first (owner: note it when player reports disagree).
     const whoNot = no.map(([w]) => w).join(" and ");
-    return { level: "soft", reason: `Level: ${backing}. ${whoNot[0].toUpperCase()}${whoNot.slice(1)} ${no.length > 1 || no[0][0] !== "the brand" ? "don't" : "doesn't"} put it at ${c.level}.` };
+    return { level: "soft", short: "Level opinions differ", reason: `Level: ${backing}. ${whoNot[0].toUpperCase()}${whoNot.slice(1)} ${no.length > 1 || no[0][0] !== "the brand" ? "don't" : "doesn't"} put it at ${c.level}.` };
   }
   // No level sources: the finder's level signal, forgiving against demanding mentions.
   const forgiving = f.tags.forgiving ?? 0, demanding = (f.tags.demanding ?? 0) + (c.level === "beginner" ? f.tags["small sweet spot"] ?? 0 : 0);
   if (c.level === "advanced") return { level: "unknown" };
   if (forgiving + demanding < 3) return { level: "unknown" };
-  if (demanding > forgiving) return { level: c.level === "beginner" ? "hard" : "soft", reason: `${players(demanding)} call it demanding, against ${forgiving} who call it forgiving.` };
-  return { level: "ok", reason: `${players(forgiving)} call it forgiving.` };
+  if (demanding > forgiving) return { level: c.level === "beginner" ? "hard" : "soft", short: "Players call it demanding", reason: `${players(demanding)} call it demanding, against ${forgiving} who call it forgiving.` };
+  return { level: "ok", short: "Players call it forgiving", reason: `${players(forgiving)} call it forgiving.` };
 }
 
 function armCheck(c: QuickChoice, f: FitFacts): Check {
   if (!c.arm) return { level: "ok" };
   const kind = f.tags["arm-friendly"] ?? 0, harsh = f.tags["vibrates on mishits"] ?? 0;
-  if (harsh > kind) return { level: "hard", reason: `Sore arm: ${players(harsh)} mention vibration, only ${kind} call it arm-friendly.` };
+  if (harsh > kind) return { level: "hard", short: "Players mention vibration", reason: `Sore arm: ${players(harsh)} mention vibration, only ${kind} call it arm-friendly.` };
   // Owner 2026-11-15: 3 arm-friendly mentions is the bar ("a racket that hurts your arm will never get 3 of 30–40 saying it's good").
-  if (kind >= ARM_BAR) return { level: "ok", reason: `${players(kind)} call it arm-friendly${harsh ? `, ${harsh} mention vibration` : ""}.` };
+  if (kind >= ARM_BAR) return { level: "ok", short: "Players call it arm-friendly", reason: `${players(kind)} call it arm-friendly${harsh ? `, ${harsh} mention vibration` : ""}.` };
   return { level: "unknown", reason: `Sore arm: only ${kind} ${kind === 1 ? "player calls" : "players call"} it arm-friendly so far, too few to vouch for it.` };
 }
 
@@ -122,9 +122,10 @@ export function fitVerdict(c: QuickChoice, f: FitFacts): FitVerdict {
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;
   if (f.reports < MIN_FIT_REPORTS || known === 0 || known < Math.ceil(asked / 2))
     return { kind: "thin", label: "Not enough reports from players like you yet", icon: "🫥", reasons: reasons(["hard", "soft", "ok"]).slice(0, 2) };
-  if (checks.some(x => x.level === "hard")) return { kind: "no", label: "Probably not your racket", icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3) };
-  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3) };
-  return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3) };
+  const short = (lv: Check["level"], mark: string) => { const x = checks.find(c => c.level === lv && c.short); return x ? `${mark} ${x.short}` : undefined; };
+  if (checks.some(x => x.level === "hard")) return { kind: "no", label: "Probably not your racket", icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3), short: short("hard", "✗") };
+  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~") };
+  return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3), short: short("ok", "✓") };
 }
 
 /** "Generally best for" chips when there are no picks: the band, the lean, arm comfort, only what the data supports. */

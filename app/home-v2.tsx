@@ -1,6 +1,5 @@
 import "./home-v2.css";
 import Link from "next/link";
-import { score } from "../db/data";
 import { matchContext } from "./match-context";
 import { displayName } from "../lib/brand-name";
 import { rankedLists, listHref } from "./rankings/lists";
@@ -12,6 +11,7 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
+import { fitVerdict, ARM_BAR } from "../lib/fit-verdict";
 import { qtFontVars } from "./qt-fonts";
 import { V2Footer } from "./v2-footer";
 
@@ -31,7 +31,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice }: { choice: QuickChoice }) {
-  const [{ data, sigs, takes, finder, bad, pool, level, signal }, lists] = await Promise.all([matchContext(), rankedLists()]);
+  const [{ data, sigs, takes, finder, bad, pool, level, signal, facts }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -48,7 +48,8 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const seen = new Set<string>();
   const fresh = [
     ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: niche.site.name.toLowerCase() })),
-    ...data.external.filter(e => e.sentiment).map(e => {
+    // Our own reviews and YouTube summaries only (owner 2026-11-15).
+    ...data.external.filter(e => e.sentiment && e.sourcePlatform === "YouTube").map(e => {
       // Our summary is a paraphrase (no quote marks); an English excerpt is the player's words (quote marks).
       const words = e.excerpt && !e.sourceLanguage ? e.excerpt : null;
       return { id: e.id, racketId: e.racketId, date: e.sourceDate || e.createdAt, text: e.summary ?? words ?? "", quote: !e.summary && !!words,
@@ -64,7 +65,8 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        <h1>Every {niche.words.one}, reviewed by <span className="hl">real players</span></h1>
+        <div><h1>Less guessing. <span className="hl">Better rackets.</span></h1>
+          <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>
         <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>
       </section>
 
@@ -74,32 +76,37 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
         <span className="hv2-qk">and I&apos;m</span>
         <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, picked && choice.level === l)}</span>)}</span>
         <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-pressed={choice.arm}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
+        {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level[0].toUpperCase() + choice.level.slice(1), STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null].filter(Boolean).join(" · ")}</b>
+          <Link href="/" scroll={false} replace>reset ↺</Link></p>}
       </section>
 
       <div className="hv2-grid">
         <section className="hv2-main" aria-live="polite">
           <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
-            <span>{picked ? <>{`ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""} · `}<Link href="/" scroll={false} replace>reset</Link></> : "ranked by player score · pick above to personalise"}</span></div>
+            <span>{picked ? `ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""}` : "ranked by player score · pick above to personalise"}</span></div>
           {matches.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
           <ol className="hv2-list">{matches.map((m, i) => {
-            const r = byId.get(m.product.id)!, s = score(data, r.id), sig = sigs.get(r.id), pic = photo(r);
+            const r = byId.get(m.product.id)!, sig = sigs.get(r.id), pic = photo(r);
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
-            const judged = s.positive + s.mixed + s.negative;
+            // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
+            const fit = picked ? fitVerdict(choice, facts(r.id)) : null;
+            const fitWord = fit && fit.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not your match" }[fit.kind] : null;
             const chips = [
               ...(i === 0 && picked ? [{ k: "best", t: "best match" }] : []),
               ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
-              ...(m.arm >= 2 && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
+              ...(m.arm >= ARM_BAR && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
             ];
             return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
               <span className="hv2-rank">{i + 1}</span>
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
-                {line && <span className="hv2-line">{line}</span>}</span>
+                {line && <span className="hv2-line">{line}</span>}
+                {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
               <span className="hv2-stats">
-                <span title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig ? <><strong>{sig.signal}</strong> player score · </> : null}{n}</span>
-                {judged > 0 && <span className="hv2-bar" role="img" aria-label={`${s.positive} positive, ${s.mixed} mixed, ${s.negative} negative`}><i className="p" style={{ flex: s.positive }}/><i className="m" style={{ flex: s.mixed }}/><i className="n" style={{ flex: s.negative }}/></span>}
+                {sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
+                <span>{sig ? "player score · " : ""}{`${n} reports`}</span>
               </span>
             </a></li>;
           })}</ol>
