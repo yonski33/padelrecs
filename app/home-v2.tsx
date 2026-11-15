@@ -125,7 +125,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
             <span>{picked ? <>{`ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
           {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
-          <ol className="hv2-list">{rows.map(({ m, fit, pct }, i) => {
+          <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ m, fit, pct }, i) => {
             const r = byId.get(m.id)!, sig = sigs.get(r.id), pic = photo(r), older = olderOf(r.id), newer = rowOf(r.id).newer;
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
@@ -136,7 +136,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
               ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
               ...(m.arm >= ARM_BAR && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
             ];
-            return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
+            return <li key={r.id} className={[i === 0 && picked ? "top" : "", newer || older.length ? "has-also" : ""].filter(Boolean).join(" ") || undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
               <span className="hv2-rank">{i + 1}</span>
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
@@ -149,8 +149,8 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
                 <span>{sig ? "player score" : `${n} reports`}</span></>}
               </span>
             </a>
-            {newer && <a className="hv2-also" href={`${productHref(newer)}${picks}`}>{`new: ${newer.year} version →`}</a>}
-            {older.length > 0 && <a className="hv2-also" href={`${productHref(older[0])}${picks}`}>{`also: ${older[0].year} version →`}</a>}</li>;
+            {newer && <a className="hv2-also a1" href={`${productHref(newer)}${picks}`}>{`new: ${newer.year} version →`}</a>}
+            {older.length > 0 && <a className={`hv2-also ${newer ? "a2" : "a1"}`} href={`${productHref(older[0])}${picks}`}>{`also: ${older[0].year} version →`}</a>}</li>;
           })}</ol>
           <a className="hv2-more" href={catalogPath}>{`see all ${data.listed.length} ${niche.words.many} →`}</a>
           </div>
@@ -167,7 +167,9 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
           </section>
           {best.length > 0 && <section>
             <h3>Best-of lists</h3>
-            <ul className="hv2-best">{best.map(l => <li key={l.list.slug}><a href={listHref(l.list.slug)}>{l.list.label.replace(/\{year\}/, String(listYear(l.list))).toLowerCase()}</a></li>)}</ul>
+            <ul className="hv2-best">{best.filter(l => l.list.modelYearsBack === undefined).map(l => <li key={l.list.slug}><a href={listHref(l.list.slug)}>{
+              // This season's overall list reads "best of <this year>" (owner 2026-11-15); last season's list stays on /rankings.
+              l.list.maxAgeYears === 0 && !l.list.trait ? `best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))).toLowerCase()}</a></li>)}</ul>
           </section>}
           <section className="hv2-own">
             <p className="t">Own a {niche.words.one}? Add your verdict.</p>

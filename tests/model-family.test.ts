@@ -14,6 +14,11 @@ test("a model's years and generations are one family, other models are not", () 
   assert.notEqual(fam("Vertex 05 Hybrid 2026"), fam("Vertex 05 Geo 2026"));
   assert.notEqual(fam("AT10 Genius 2026"), fam("EA10 Genius 2026"));
   assert.notEqual(modelFamily({ name: "Pro 2026", brandId: "a" }), modelFamily({ name: "Pro 2026", brandId: "b" }));
+  // Renamed lines (owner 2026-11-15): Nox 12K → 12K Alum Xtrem, AT10 18k → AT10 Genius 18K; the Lite and Attack stay apart.
+  assert.equal(fam("Nox AT10 Genius 12K 2025"), fam("Nox AT10 Genius 12K Alum XTREM 2026"));
+  assert.equal(fam("Nox AT10 18k 2025"), fam("Nox AT10 Genius 18K 2026"));
+  assert.notEqual(fam("Nox AT10 Genius 12K 2025"), fam("Nox AT10 Genius 12K Alum Xtrem Lite 2026"));
+  assert.notEqual(fam("Nox AT10 18k 2025"), fam("Nox AT10 Genius Attack 18K 2026"));
 });
 
 const base: FitFacts = { reports: 40, tags: { "good control": 14, "easy power": 10 }, suits: { beginner: 20, intermediate: 60, advanced: 85, basis: ["5 players"] } };
