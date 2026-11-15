@@ -18,9 +18,11 @@
 
   /* Hero + fit check */
   .rf-top { display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; margin-top: -20px; }
-  .rf-hero { flex: 1 1 380px; min-width: 0; display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 18px; align-items: start; }
-  .rf-shot { background: var(--paper); border: 2px solid var(--ink); border-radius: 12px; aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .rf-shot img { width: 80%; height: auto; max-height: 92%; object-fit: contain; }
+  .rf-hero { flex: 1 1 380px; min-width: 0; display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 20px; align-items: start; }
+  /* The racket fills its column, no card around it (owner 2026-11-15: less white space, like the mockup). */
+  .rf-shot { display: flex; align-items: flex-start; justify-content: center; }
+  .rf-shot img { width: 100%; height: auto; max-height: 300px; object-fit: contain; mix-blend-mode: multiply; }
+  .rf-shot .rf-tile { border: 2px solid var(--ink); border-radius: 12px; aspect-ratio: 4 / 5; width: 100%; display: flex; align-items: center; justify-content: center; background: var(--paper); }
   .rf-tile { font: 800 14px/1.2 var(--display); color: var(--mute); text-align: center; padding: 6px; }
   .rf-id { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .rf-chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -174,7 +176,7 @@
   .rf-foot details[open] span { display: block; margin-top: 6px; color: var(--soft); max-width: 760px; }
 
   @media (max-width: 760px) {
-    .rf-hero { grid-template-columns: 88px minmax(0, 1fr); gap: 14px; }
+    .rf-hero { grid-template-columns: 120px minmax(0, 1fr); gap: 14px; }
     .rf-side { position: static; max-width: none; }
     .rf-grid { grid-template-columns: minmax(0, 1fr); }
     .rf-grid > span:empty { display: none; }
