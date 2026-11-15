@@ -128,3 +128,8 @@ export function slimItems(items: RankItem[], setup: Pick<Finder, "questions">): 
     return { ...x, facts: { ...facts, tags: Object.fromEntries(Object.entries(tags).filter(([t]) => keep.has(t))), ...(lv ? { levels: lv } : {}) } };
   });
 }
+
+/** "Better matches for you" on a racket page: the best rows for the picks (the home list's own order), without this racket. */
+export function alternatives(items: RankItem[], setup: RankSetup, negativeTags: readonly string[], choice: QuickChoice, exclude: string, n = 4): RankedRow[] {
+  return rankHome(items, setup, negativeTags, choice, false, n + 1).rows.filter(r => r.id !== exclude).slice(0, n);
+}

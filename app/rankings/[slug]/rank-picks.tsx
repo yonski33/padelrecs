@@ -1,24 +1,16 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 // The ranking page's "your match" picks (owner 2026-11-15, mockup): with no picks yet, a style or the sore-arm box only marks
 // the choice and a level click shows the match % (the visitor isn't answered for a level they never chose). With picks, every
-// click updates the list. Picks live in the URL like the home's quick match.
+// click updates the list. Picks live in the URL like the home's quick match; ranking-picks.tsx applies them in the browser.
 const STYLES = ["any", "control", "balance", "power"] as const;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 type Pick = { style: typeof STYLES[number]; level: typeof LEVELS[number]; arm: boolean };
 
-export default function RankPicks({ href, current, finder }: { href: string; current: Pick | null; finder?: string }) {
-  const router = useRouter();
+export default function RankPicks({ current, onPick, finder }: { current: Pick | null; onPick: (p: Pick) => void; finder?: string }) {
   const [style, setStyle] = useState<Pick["style"] | null>(current?.style ?? null), [arm, setArm] = useState(current?.arm ?? false);
-  const go = (p: Pick) => {
-    const q = new URLSearchParams();
-    if (p.style !== "any") q.set("style", p.style);
-    q.set("level", p.level);
-    if (p.arm) q.set("arm", "1");
-    router.replace(`${href}?${q}`, { scroll: false });
-  };
+  const go = onPick;
   const pickStyle = (s: Pick["style"]) => { setStyle(s); if (current) go({ ...current, style: s }); };
   const pickArm = () => { setArm(a => !a); if (current) go({ ...current, arm: !arm }); };
   return <div className="rl2-picks">
