@@ -220,7 +220,12 @@
   .rv-compose textarea { width: 100%; padding: 10px 12px; resize: vertical; }
   .rv-compose textarea:focus, .rv-send input:focus { box-shadow: 0 0 0 3px var(--acc); }
   .rv-send { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .rv-send input { flex: 1 1 200px; min-width: 0; padding: 7px 10px; font-size: 16px; }
+  .rv-send input { flex: 1 1 auto; min-width: 0; padding: 7px 10px; font-size: 16px; }
+  /* The generated nickname with a "new one" button (owner 2026-11-15). */
+  .rv-nick { flex: 1 1 200px; min-width: 0; display: flex; gap: 6px; }
+  .rv-nick button { all: unset; cursor: pointer; flex: none; width: 38px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--ink); border-radius: 8px; background: var(--paper); font: 700 16px var(--body); }
+  .rv-nick button:hover { background: var(--acc); }
+  .rv-nick button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
   .rv-post { all: unset; cursor: pointer; white-space: nowrap; padding: 8px 16px; border: 2px solid var(--ink); border-radius: 8px; font: 800 15px var(--display); background: var(--acc); box-shadow: 3px 3px 0 var(--ink); }
   .rv-post:disabled { cursor: default; background: var(--line); color: var(--mute); box-shadow: none; border-color: var(--dash); }
   .rv-err { margin: 0; color: var(--neg); font-size: 14px; }
