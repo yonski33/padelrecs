@@ -11,7 +11,7 @@ import { choiceHref, readChoice, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type
 import { fineWords } from "../../../lib/fine-tune";
 import { niche } from "../../../lib/niche";
 import AskPicks, { RememberPicks } from "./ask-picks";
-import { cardLines, pickTags, type CardContent } from "../../../lib/fit-card";
+import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
 import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
 
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
@@ -74,8 +74,9 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
   const pct = verdict ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine).get(id) ?? null : null;
   const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
   usePublish(verdict ? { kind: verdict.kind, pct, word: verdictWord } : null);
-  const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (hook ? hook.good : null)) : null;
-  const consider = verdict ? (verdict.catches?.[0] ?? (hook ? hook.catch : null)) : null;
+  // Fallback (no racket lines): the fit check's own reasons, with counts in words (owner: no player numbers).
+  const why = verdict ? (verdict.fits?.slice(0, 2).map(wordCounts).join(" ") || (hook ? hook.good : null)) : null;
+  const consider = verdict ? (verdict.catches?.[0] ? wordCounts(verdict.catches[0]) : (hook ? hook.catch : null)) : null;
   // Racket-specific lines when we have them (owner 2026-11-15: real strengths and concrete catches, no level bookkeeping):
   // 2 strengths and 1 catch on a clean fit, up to 2 otherwise; a hard conflict without a racket line keeps the fit check's reason.
   const lines = verdict && card && verdict.kind !== "thin" ? cardLines(card, choice, { maxCatches: verdict.kind === "good" ? 1 : 2, hard: verdict.kind === "no" ? verdict.reasons[0] : undefined }) : null;

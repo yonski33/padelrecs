@@ -25,7 +25,7 @@ import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
-import { pageContent, pageTier, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
+import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
 import { countWord } from "../../../lib/fit-card";
 import type { QtReport, QtReview } from "./quick-take";
 
@@ -200,7 +200,10 @@ export default async function RacketFit(props: {
 
   // The fit card's racket-specific lines (lib/fit-card.ts, owner 2026-11-15): only this racket's entry goes to the browser,
   // with names and links for the rackets its catches point to. None yet: FitBox keeps the fit check's own reasons.
-  const cardData = cardContent(props.slug);
+  // The fit card's lines: the racket's own fit-card entry, else its page items (the same evidence, already counted), so a
+  // racket with page content never falls back to the generic reasons (owner 2026-11-16: one story across the page).
+  const pageForCard = pageContent(props.slug);
+  const cardData = cardContent(props.slug) ?? (pageForCard ? cardFromPage(pageForCard) : null);
   const card = cardData ? { ...cardData, links: Object.fromEntries(cardData.catches.flatMap(c => c.alt ? [c.alt.slug] : []).flatMap(slug => {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.

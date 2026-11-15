@@ -99,3 +99,10 @@ test("racket page content follows the rules: 1-4 items a side, one highlight, <=
   for (const side of [v.yes, v.no]) { assert.ok(side.length >= 1 && side.length <= 4, `${slug}: 1-4 items`); for (const i of side) { assert.equal(i.t.split("==").length, 3, `${slug}: one highlight: ${i.t}`); assert.ok(new Set(i.src).size >= 2, `${slug}: 2+ sources: ${i.t}`); } }
  }
 });
+
+test("page items stand in as fit-card lines when a racket has no fit-card entry", async () => {
+ const { cardFromPage } = await import("../lib/racket-page");
+ const c = cardFromPage({ tagline: "", bottom: "", yes: [{ title: "Precise control", t: "Players like ==its feel==.", src: ["a", "b"], for: ["control"] }], no: [{ title: "Sore arm", t: "Some got ==elbow pain==.", src: ["c", "d"], for: ["arm"] }] });
+ assert.equal(c.strengths[0].t, "Precise control: players like its feel.");
+ assert.deepEqual(c.catches[0].only, ["arm"]);
+});

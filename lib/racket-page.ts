@@ -4,6 +4,7 @@
 // "other-slug:id" for another racket's page), and its evidence line counts them.
 import padel from "../db/racket-page/padel.json";
 import { niche } from "./niche";
+import type { CardContent, CardTag } from "./fit-card";
 
 export type PageItem = { title: string; /** One line; the key phrase sits between == marks. */ t: string; src: string[];
   /** Who it matters for (lib/fit-card.ts CardTag): picks that earn the "matters for you" tag. */ for?: string[];
@@ -47,4 +48,11 @@ const W: Record<string, number> = { arm: 4, control: 3, balance: 3, power: 3, be
 export function mattersFor(items: PageItem[], picks: string[], max = 2): Set<string> {
   const score = (it: PageItem) => (it.for ?? []).reduce((a, t) => a + (picks.includes(t) ? W[t] ?? 1 : 0), 0);
   return new Set(items.map((it, i) => ({ it, i, s: score(it) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, max).map(x => x.it.title));
+}
+
+/** A racket's page items as fit-card lines (lib/fit-card.ts): "Title: line", the == marks dropped, the same tags and sources. */
+export function cardFromPage(c: PageContent): CardContent {
+  const line = (it: PageItem) => ({ t: `${it.title}: ${it.t.replace(/==/g, "").replace(/^./, x => x.toLowerCase())}`.replace(/\.$/, "") + ".",
+    for: (it.for ?? []) as CardTag[], only: it.for?.length === 1 && it.for[0] === "arm" ? ["arm" as CardTag] : undefined, src: it.src });
+  return { strengths: c.yes.map(line), catches: c.no.map(line) };
 }
