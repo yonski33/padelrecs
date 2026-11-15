@@ -16,9 +16,7 @@ export const VERDICTS: { key: Verdict; rating: number; word: string; hint: strin
 ];
 export const verdictOf = (rating: number): Verdict => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 const PROFILE_KEY = "rv-profile";
-/** One "a few details" question after the words: a review-form field and its chip options. */
-export type DetailStep = { field: "playerLevel" | "playingSide" | "playingStyle" | "timeWithRacket"; question: string; options: { value: string; label: string }[] };
-const PROFILE_FIELD = { playerLevel: "level", playingSide: "side", playingStyle: "style" } as const;
+
 // Card reviews are signed with a generated nickname (owner, 2026-11-14: like Reddit's random usernames, nothing to type).
 // One per device, kept in localStorage, so the same person shows up under the same name. Each niche's own words.
 const NICK_A = ["Swift", "Steady", "Lucky", "Bold", "Sunny", "Quiet", "Clever", "Brave", "Calm", "Sharp", "Happy", "Mellow", "Rapid", "Smooth", "Wild", "Cool"];
@@ -50,10 +48,6 @@ export async function sendVote(racketId: string, rating: number, profile: Profil
   return body.stats;
 }
 
-export function ChoiceRow({ label, options, value, onPick }: { label: string; options: string[]; value?: string; onPick: (v: string) => void }) {
-  return <div className="qv-choice"><span>{label}</span><div>{options.map(o =>
-    <button type="button" key={o} aria-pressed={value === o} onClick={() => onPick(o)}>{o}</button>)}</div></div>;
-}
 
 /** The three verdict cards. compact: a smaller row for /rate. */
 export function VerdictButtons({ value, onPick, name, compact, disabled }: { value: Verdict | null; onPick: (v: typeof VERDICTS[number]) => void; name: string; compact?: boolean; disabled?: boolean }) {
@@ -66,16 +60,70 @@ export function VerdictButtons({ value, onPick, name, compact, disabled }: { val
   </div>;
 }
 
-export default function QuickVote({ racketId, name, question, people, placeholder, nicknames, steps }: {
-  racketId: string; name: string; question: string; people: { one: string; many: string }; placeholder: string; nicknames: string[]; steps: DetailStep[];
+/** After a verdict: "Got a few words to say about it?" → "Post it" saves a normal (moderated) review right away, signed
+ *  with the device's nickname → optional tags, each added as tapped → a plain thank-you. "Nah, I'm good" closes it.
+ *  Used by the product page's card and by every row on /rate. */
+export function FollowUp({ racketId, rating, label, placeholder, nicknames, onDone }: {
+  racketId: string; rating: number; label: string; placeholder: string; nicknames: string[]; onDone?: (posted: boolean) => void;
+}) {
+  const [note, setNote] = useState<"open" | "sending" | "tags" | "sent" | "closed">("open"), [words, setWords] = useState(""), [error, setError] = useState("");
+  const [postedAs, setPostedAs] = useState(""), [tags, setTags] = useState<string[]>([]);
+  const token = useRef(""), saved = useRef<{ id: string; edit: string } | null>(null);
+  useEffect(() => {
+    // The review API wants a signed "form opened at" token (lib/form-token.ts); fetched now, while they type.
+    fetch("/api/reviews", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { token?: string } | null) => { token.current = b?.token || ""; }).catch(() => {});
+  }, []);
+  // The verdict can change while the box is open (another tap): later tags then go to the review already saved.
+  async function post() {
+    const text = words.trim();
+    if (text.length < MIN_WORDS) { setError(`A little more, please: at least ${MIN_WORDS} characters.`); return; }
+    setNote("sending"); setError("");
+    try {
+      if (!token.current) { const b = await (await fetch("/api/reviews", { cache: "no-store" })).json() as { token?: string }; token.current = b.token || ""; }
+      const p = loadProfile(), nick = nickname(nicknames); setPostedAs(nick);
+      const known = Object.fromEntries(Object.entries({ playerLevel: p.level, playingSide: p.side, playingStyle: p.style }).filter(([, v]) => v));
+      const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: text, tags: [], website: "", formToken: token.current, alias: nick || undefined, ...known }) });
+      const b = await r.json() as { id?: string; edit?: string; error?: string };
+      if (!r.ok) throw new Error(b.error || "Could not post that. Please try again.");
+      saved.current = b.id && b.edit ? { id: b.id, edit: b.edit } : null;
+      setNote("tags");
+    } catch (e) { setNote("open"); setError(e instanceof Error ? e.message : "Could not post that. Please try again."); }
+  }
+  function toggleTag(t: string) {
+    const next = tags.includes(t) ? tags.filter(x => x !== t) : [...tags, t];
+    setTags(next);
+    if (saved.current) fetch("/api/reviews", { method: "PATCH", keepalive: true, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...saved.current, tags: next }) }).catch(() => {});
+  }
+  const finish = (posted: boolean) => { setNote(posted ? "sent" : "closed"); onDone?.(posted); };
+
+  if (note === "open" || note === "sending") return <div className="qv-words">
+    <label htmlFor={`qv-words-${racketId}`}>{label}</label>
+    <textarea id={`qv-words-${racketId}`} rows={3} maxLength={2000} value={words} onChange={e => { setWords(e.target.value); setError(""); }} placeholder={placeholder} autoFocus/>
+    <div className="qv-words-row">
+      <button type="button" className="qv-post" disabled={note === "sending"} onClick={post}>{note === "sending" ? "Posting…" : "Post it"}</button>
+      <button type="button" className="qv-nah" onClick={() => finish(false)}>{"Nah, I'm good"}</button>
+      <small className={error ? "qv-err" : undefined}>{error || (words.trim().length < MIN_WORDS ? `A sentence is plenty · ${MIN_WORDS - words.trim().length} characters to go` : "Goes live after a quick check")}</small>
+    </div>
+  </div>;
+  if (note === "tags") return <div className="qv-steps" aria-live="polite">
+    <p className="qv-steps-head">{`Nice! Your review is saved${postedAs ? ` as ${postedAs}` : ""}.`}</p>
+    <div className="qv-step">
+      <h3>{`Anything that stands out? Tap up to ${MAX_TAGS}, all optional`}</h3>
+      <div className="qv-chips">{TAGS.map(t => { const on = tags.includes(t.label); return <button type="button" key={t.label} className={`tone-${t.tone}`} aria-pressed={on}
+        disabled={!on && tags.length >= MAX_TAGS} onClick={() => toggleTag(t.label)}>{t.label}</button>; })}</div>
+    </div>
+    <div className="qv-words-row"><button type="button" className="qv-post" onClick={() => finish(true)}>Done</button></div>
+  </div>;
+  return null;
+}
+
+export default function QuickVote({ racketId, name, question, people, placeholder, nicknames }: {
+  racketId: string; name: string; question: string; people: { one: string; many: string }; placeholder: string; nicknames: string[];
 }) {
   const [stats, setStats] = useState<Stats | null>(null), [mine, setMine] = useState<Verdict | null>(null), [rating, setRating] = useState(0);
-  const [busy, setBusy] = useState(false), [error, setError] = useState(""), [justVoted, setJustVoted] = useState(false);
-  // After a vote: a small "few words" box that posts a normal (moderated) review, or closes with "Nah, I'm good".
-  const [note, setNote] = useState<"closed" | "open" | "details" | "sending" | "sent">("closed"), [words, setWords] = useState(""), [noteError, setNoteError] = useState("");
-  const token = useRef("");
-  const [postedAs, setPostedAs] = useState(""), [todo, setTodo] = useState<DetailStep[]>([]), [step, setStep] = useState(0), [tags, setTags] = useState<string[]>([]);
-  const saved = useRef<{ id: string; edit: string } | null>(null); // the posted review, which the details are added to
+  const [busy, setBusy] = useState(false), [error, setError] = useState("");
+  const [phase, setPhase] = useState<"none" | "follow" | "posted" | "skipped">("none");
 
   useEffect(() => {
     fetch(`/api/racket-votes?racket=${encodeURIComponent(racketId)}`, { cache: "no-store" })
@@ -87,52 +135,13 @@ export default function QuickVote({ racketId, name, question, people, placeholde
 
   async function vote(v: typeof VERDICTS[number]) {
     const before = mine; setMine(v.key); setBusy(true); setError("");
-    try {
-      setStats(await sendVote(racketId, v.rating, loadProfile())); setRating(v.rating); setJustVoted(true);
-      if (note === "closed") {
-        setNote("open");
-        // The review API wants a signed "form opened at" token (lib/form-token.ts); fetched now, while they type.
-        fetch("/api/reviews", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { token?: string } | null) => { token.current = b?.token || ""; }).catch(() => {});
-      }
-    }
+    try { setStats(await sendVote(racketId, v.rating, loadProfile())); setRating(v.rating); if (phase === "none") setPhase("follow"); }
     catch (e) { setMine(before); setError(e instanceof Error ? e.message : "Could not save your vote."); }
     finally { setBusy(false); }
   }
 
-  // The steps still to ask: fields already known from this device's profile are skipped.
-  // "Post it" saves the review right away, so the words are kept even if they scroll on; each detail is then added to it.
-  async function wordsDone() {
-    const text = words.trim();
-    if (text.length < MIN_WORDS) { setNoteError(`A little more, please: at least ${MIN_WORDS} characters.`); return; }
-    setNote("sending"); setNoteError("");
-    try {
-      if (!token.current) { const b = await (await fetch("/api/reviews", { cache: "no-store" })).json() as { token?: string }; token.current = b.token || ""; }
-      const p = loadProfile(), nick = nickname(nicknames); setPostedAs(nick);
-      const known = Object.fromEntries(Object.entries({ playerLevel: p.level, playingSide: p.side, playingStyle: p.style }).filter(([, v]) => v));
-      const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ racketMode: "existing", racketId, rating, reviewText: text, tags: [], website: "", formToken: token.current, alias: nick || undefined, ...known }) });
-      const b = await r.json() as { id?: string; edit?: string; error?: string };
-      if (!r.ok) throw new Error(b.error || "Could not post that. Please try again.");
-      saved.current = b.id && b.edit ? { id: b.id, edit: b.edit } : null;
-      setTodo(steps.filter(st => !(st.field in PROFILE_FIELD && p[PROFILE_FIELD[st.field as keyof typeof PROFILE_FIELD]])));
-      setStep(0); setNote("details");
-    } catch (e) { setNote("open"); setNoteError(e instanceof Error ? e.message : "Could not post that. Please try again."); }
-  }
-  function addDetail(fields: Record<string, string | string[]>) {
-    if (!saved.current) return;
-    fetch("/api/reviews", { method: "PATCH", keepalive: true, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...saved.current, ...fields }) }).catch(() => {});
-  }
-  function answer(field: string, value: string) {
-    if (field in PROFILE_FIELD) saveProfile({ ...loadProfile(), [PROFILE_FIELD[field as keyof typeof PROFILE_FIELD]]: value });
-    addDetail({ [field]: value });
-    setStep(s => s + 1);
-  }
-  function toggleTag(label: string) {
-    const next = tags.includes(label) ? tags.filter(x => x !== label) : [...tags, label];
-    setTags(next); addDetail({ tags: next });
-  }
-
   const others = stats ? stats.total - (mine ? 1 : 0) : 0;
+  const counted = others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}.` : "You're the first to vote.";
   const corner = stats && stats.total > 0 ? `${stats.total.toLocaleString("en-US")} ${stats.total === 1 ? people.one : people.many} voted` : "";
   return <section className="qv" aria-labelledby="qv-title">
     <div className="qv-top">
@@ -145,33 +154,9 @@ export default function QuickVote({ racketId, name, question, people, placeholde
     </div>
     <VerdictButtons value={mine} onPick={vote} name={name} disabled={busy}/>
     {error && <p className="qv-error" role="alert">{error}</p>}
-    {mine && justVoted && !error && (note === "open" || note === "sending") && <div className="qv-words">
-      <label htmlFor="qv-words">{`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}. ` : ""}Got a few words to say about it?`}</label>
-      <textarea id="qv-words" rows={3} maxLength={2000} value={words} onChange={e => { setWords(e.target.value); setNoteError(""); }} placeholder={placeholder} autoFocus/>
-      <div className="qv-words-row">
-        <button type="button" className="qv-post" disabled={note === "sending"} onClick={wordsDone}>{note === "sending" ? "Posting…" : "Post it"}</button>
-        <button type="button" className="qv-nah" onClick={() => setNote("closed")}>{"Nah, I'm good"}</button>
-        <small>{noteError || (words.trim().length < MIN_WORDS ? `A sentence is plenty · ${MIN_WORDS - words.trim().length} characters to go` : "Goes live after a quick check")}</small>
-      </div>
-    </div>}
-    {mine && justVoted && !error && note === "details" && <div className="qv-steps" aria-live="polite">
-      <p className="qv-steps-head">{todo.length ? `Nice! Add a quick detail or two? All optional · ${Math.min(step + 1, todo.length + 1)} of ${todo.length + 1}` : `Nice! Your review is saved${postedAs ? ` as ${postedAs}` : ""}.`}</p>
-      {step < todo.length ? <div className="qv-step">
-        <h3>{todo[step].question}</h3>
-        <div className="qv-chips">{todo[step].options.map(o => <button type="button" key={o.value} onClick={() => answer(todo[step].field, o.value)}>{o.label}</button>)}</div>
-      </div> : <div className="qv-step">
-        <h3>{`Anything that stands out? Tap up to ${MAX_TAGS}, all optional`}</h3>
-        <div className="qv-chips">{TAGS.map(t => { const on = tags.includes(t.label); return <button type="button" key={t.label} className={`tone-${t.tone}`} aria-pressed={on}
-          disabled={!on && tags.length >= MAX_TAGS} onClick={() => toggleTag(t.label)}>{t.label}</button>; })}</div>
-      </div>}
-      <div className="qv-words-row">
-        <button type="button" className={step >= todo.length ? "qv-post" : "qv-nah"} onClick={() => setNote("sent")}>{step >= todo.length ? "Done" : "I'm done"}</button>
-        {todo.length > 0 && <small>Your review is saved. Each answer is added as you tap.</small>}
-      </div>
-    </div>}
-    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">{`Thanks! Your review${postedAs ? ` by ${postedAs}` : ""} goes live after a quick check.`}</p>}
-    {mine && justVoted && !error && note === "closed" && <p className="qv-thanks" role="status">
-      {`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}.` : "You're the first to vote."}`}
-    </p>}
+    {phase === "follow" && !error && <FollowUp racketId={racketId} rating={rating} label={`Thanks! ${others > 0 ? `${counted} ` : ""}Got a few words to say about it?`}
+      placeholder={placeholder} nicknames={nicknames} onDone={posted => setPhase(posted ? "posted" : "skipped")}/>}
+    {phase === "posted" && <p className="qv-thanks" role="status">Thanks! Your review goes live after a quick check.</p>}
+    {phase === "skipped" && <p className="qv-thanks" role="status">{`Thanks! ${counted}`}</p>}
   </section>;
 }

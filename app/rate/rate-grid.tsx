@@ -1,20 +1,19 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { ChoiceRow, loadProfile, saveProfile, sendVote, verdictOf, VerdictButtons, type Profile } from "../quick-vote";
+import { FollowUp, loadProfile, sendVote, verdictOf, VerdictButtons } from "../quick-vote";
 
 type Item = { id: string; name: string; brand: string; href: string };
 type Pick = { id: string; name: string; href: string; fans: number };
 
-export default function RateGrid({ items, brands, plural, people, levels, styles, sides }: {
-  items: Item[]; brands: string[]; plural: string; people: { one: string; many: string }; levels: string[]; styles: string[]; sides: string[];
+// "Rate what you've used" (2026-11-14 pivot). Each tap is saved at once; the row then opens the same "few words → tags"
+// follow-up as the product page's card, one row at a time.
+export default function RateGrid({ items, brands, plural, people, placeholder, nicknames }: {
+  items: Item[]; brands: string[]; plural: string; people: { one: string; many: string }; placeholder: string; nicknames: string[];
 }) {
-  const [profile, setProfile] = useState<Profile>({}), [votes, setVotes] = useState<Record<string, number>>({});
+  const [votes, setVotes] = useState<Record<string, number>>({}), [open, setOpen] = useState(""), [posted, setPosted] = useState<Record<string, boolean>>({});
   const [brand, setBrand] = useState(""), [query, setQuery] = useState(""), [error, setError] = useState(""), [also, setAlso] = useState<Pick[]>([]);
 
   useEffect(() => {
-    // Read after hydration: the profile lives in localStorage, which the server render can't see.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setProfile(loadProfile());
     fetch("/api/racket-votes", { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { mine?: Record<string, number> } | null) => { if (b?.mine) setVotes(b.mine); }).catch(() => {});
   }, []);
@@ -27,12 +26,15 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
     return () => clearTimeout(timer);
   }, [loved]);
 
-  function setField(field: keyof Profile, value: string) { const p = { ...profile, [field]: value }; setProfile(p); saveProfile(p); }
   async function vote(id: string, n: number) {
     const before = votes[id]; setError("");
     setVotes(prev => ({ ...prev, [id]: n }));
-    try { await sendVote(id, n, profile); }
-    catch (e) { setVotes(prev => { const next = { ...prev }; if (before) next[id] = before; else delete next[id]; return next; }); setError(e instanceof Error ? e.message : "Could not save your rating."); }
+    if (!posted[id]) setOpen(id);
+    try { await sendVote(id, n, loadProfile()); }
+    catch (e) {
+      setVotes(prev => { const next = { ...prev }; if (before) next[id] = before; else delete next[id]; return next; });
+      setOpen(o => o === id ? "" : o); setError(e instanceof Error ? e.message : "Could not save your vote.");
+    }
   }
 
   const one = plural.replace(/s$/, "");
@@ -40,24 +42,25 @@ export default function RateGrid({ items, brands, plural, people, levels, styles
   const shown = items.filter(i => (!brand || i.brand === brand) && (!q || i.name.toLowerCase().includes(q)));
   const rated = Object.keys(votes).filter(id => items.some(i => i.id === id)).length;
   return <div className="rate">
-    <section className="rate-profile" aria-label="About you">
-      <ChoiceRow label="Your level" options={levels} value={profile.level} onPick={v => setField("level", v)}/>
-      <ChoiceRow label="Your style (optional)" options={styles} value={profile.style} onPick={v => setField("style", v)}/>
-      <ChoiceRow label="Your side (optional)" options={sides} value={profile.side} onPick={v => setField("side", v)}/>
-      <p className="rate-hint">{`Remembered on this device, so every rating counts toward the right ${people.many}.`}</p>
-    </section>
     <div className="rate-filters">
-      <input type="search" placeholder={`Find a ${one}`} value={query} onChange={e => setQuery(e.target.value)} aria-label="Search"/>
-      <div className="rate-brands">{["", ...brands.slice(0, 12)].map(b => <button type="button" key={b || "all"} aria-pressed={brand === b} onClick={() => setBrand(b)}>{b || "All"}</button>)}</div>
+      <input type="search" placeholder={`Find a ${one}`} value={query} onChange={e => setQuery(e.target.value)} aria-label={`Find a ${one}`}/>
+      <div className="rate-brands">{["", ...brands.slice(0, 14)].map(b => <button type="button" key={b || "all"} aria-pressed={brand === b} onClick={() => setBrand(b)}>{b || "All brands"}</button>)}</div>
     </div>
     {error && <p className="qv-error" role="alert">{error}</p>}
-    <ul className="rate-list">{shown.map(i => <li key={i.id}>
-      <a href={i.href}>{i.name}</a>
-      <VerdictButtons compact value={votes[i.id] ? verdictOf(votes[i.id]) : null} onPick={v => vote(i.id, v.rating)} name={i.name}/>
+    <ul className="rate-list">{shown.map(i => <li key={i.id} className={open === i.id ? "is-open" : undefined}>
+      <div className="rate-row">
+        <a href={i.href}>{i.name}</a>
+        <span className="rate-right">
+          {votes[i.id] && open !== i.id && <small className="rate-saved">{posted[i.id] ? "Saved with your review" : "Saved"}</small>}
+          <VerdictButtons compact value={votes[i.id] ? verdictOf(votes[i.id]) : null} onPick={v => vote(i.id, v.rating)} name={i.name}/>
+        </span>
+      </div>
+      {open === i.id && votes[i.id] && <FollowUp key={i.id} racketId={i.id} rating={votes[i.id]} label="Saved. Got a few words to say about it?"
+        placeholder={placeholder} nicknames={nicknames} onDone={wrote => { setOpen(""); if (wrote) setPosted(p => ({ ...p, [i.id]: true })); }}/>}
     </li>)}</ul>
     {!shown.length && <p className="rate-hint">{`No ${plural} match that. Try another name.`}</p>}
     <section className="rate-summary" aria-live="polite">
-      <p><b>{rated}</b>{` ${rated === 1 ? one : plural} rated`}{rated === 0 ? " · tap a verdict on the ones you've used" : ""}</p>
+      <p>{rated === 0 ? `Tap a verdict on every ${one} you've used. Each tap is saved straight away.` : <><b>{rated}</b>{` ${rated === 1 ? one : plural} rated · each one saved as you tap`}</>}</p>
       {loved.length > 0 && also.length > 0 && <div className="qv-also"><h3>{`${people.many[0].toUpperCase()}${people.many.slice(1)} who love the same ${plural} also love`}</h3>
         <ul>{also.map(a => <li key={a.id}><a href={a.href}>{a.name}</a><small>{`${a.fans} in common`}</small></li>)}</ul></div>}
     </section>
