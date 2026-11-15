@@ -1,7 +1,16 @@
 /** The bold product title: brand + name ("ILNP Nail Polish", "Bullpadel Vertex 05"), without repeating a brand the name
  *  already carries (owner choice, 2026-11-05: the small brand line above a bare model read as duplicates on NailsRecs). */
 export function displayName(name: string, brand: string | null | undefined) {
-  return !brand || repeatsBrand(name, brand) || ownBrand(name) ? name : `${brand} ${name}`;
+  const shown = TIDY_CASE ? tidyCase(name) : name;
+  return !brand || repeatsBrand(name, brand) || ownBrand(name) ? shown : `${brand} ${shown}`;
+}
+
+/** Sites whose catalog names come in mixed casing from the sources ("Adidas metalbone 3.5", "Coello motion", "AT10 18k"):
+ *  shown title-cased with carbon grades in capitals (audit 2026-11-15, #21). Display only; the catalog keeps its names.
+ *  Not for sites whose brands are lowercase on purpose (monday.com). NICHE is inlined at build time (next.config.ts). */
+const TIDY_CASE = ["padel"].includes(process.env.NICHE ?? "");
+export function tidyCase(name: string) {
+  return name.split(/(\s+)/).map(w => /^[a-z][a-z]+$/.test(w) ? w[0].toUpperCase() + w.slice(1) : w.replace(/^(\d+)k$/, "$1K")).join("");
 }
 
 const words = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();

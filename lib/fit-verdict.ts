@@ -28,6 +28,8 @@ export type FitFacts = {
   /** With a shape picked (owner 2026-11-15: "compare it inside its own filter"): where the racket sits for the picked style
    *  among the rated rackets of that shape, 0 bottom … 1 top (app/match-context.ts styleWithin). */
   styleWithin?: { rank: number; shape: string };
+  /** Arm comfort dots (1–5, lib/trait-score.ts, an expert value wins), for the sore-arm check. */
+  armDots?: number;
 };
 /** Within a picked shape: an all-round racket this high for the picked style counts as built for it, and a racket that
  *  leans the other way this high is only a soft conflict (owner 2026-11-15, the Electra Pro ST5 and the Nox 12K). */
@@ -142,7 +144,13 @@ function armCheck(c: QuickChoice, f: FitFacts): Check {
   if (harsh > kind) return { level: "hard", short: "Players mention vibration", reason: `Sore arm: ${players(harsh)} mention vibration, only ${kind} call it arm-friendly.` };
   // Owner 2026-11-15: 3 arm-friendly mentions is the bar ("a racket that hurts your arm will never get 3 of 30–40 saying it's good").
   if (kind >= ARM_BAR) return { level: "ok", short: "Players call it arm-friendly", reason: `${players(kind)} call it arm-friendly${harsh ? `, ${harsh} mention vibration` : ""}.` };
-  return { level: "unknown", reason: `Sore arm: only ${kind} ${kind === 1 ? "player calls" : "players call"} it arm-friendly so far, too few to vouch for it.` };
+  // Sore arm (audit 2026-11-15, #16): arm complaints (2 dots or fewer on Arm comfort) push a racket out, and one nobody
+  // vouches for is a demo-first, not a strong fit. 4+ dots (players or the expert) is enough on its own.
+  if (f.armDots !== undefined && f.armDots <= 2) return { level: "hard", short: "Players report arm strain", reason: "Sore arm: players report arm or elbow strain with this one." };
+  if (f.armDots !== undefined && f.armDots >= 4) return { level: "ok", short: "Rated easy on the arm", reason: "Rated easy on the arm compared with other rackets." };
+  // Nothing known about the arm at all: unknown (with too little else, the verdict stays "not enough reports").
+  if (f.armDots === undefined && !kind && !harsh) return { level: "unknown", reason: "Sore arm: no player has said how it treats the arm yet." };
+  return { level: "soft", short: "Few players vouch for the arm", reason: `Sore arm: only ${kind} ${kind === 1 ? "player calls" : "players call"} it arm-friendly so far, too few to vouch for it. Demo it first.` };
 }
 
 /** The verdict for a visitor's picks. Probably not: a hard conflict. Maybe: one soft conflict. Good: no conflicts and at least

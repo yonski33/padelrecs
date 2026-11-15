@@ -65,7 +65,9 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
   const newestOf = (id: string) => allYears ? id : rowOf(id).shown.id;
   const order = new Map(candidates.map((m, i) => [m.product.id, i]));
   const seenModel = new Set<string>();
-  const models = candidates.flatMap(m => { const id = newestOf(m.product.id); if (seenModel.has(id)) return []; seenModel.add(id);
+  // A picked shape holds for the row too: a family whose newest year is another shape keeps the year that matched.
+  const shapeOk = (id: string) => !choice.fine?.shape || fineOf(id)?.shape === choice.fine.shape;
+  const models = candidates.flatMap(m => { const n = newestOf(m.product.id), id = shapeOk(n) ? n : m.product.id; if (seenModel.has(id)) return []; seenModel.add(id);
     return [{ id, i: order.get(id) ?? candidates.length + (order.get(m.product.id) ?? 0), arm: factsFor(choice, id).tags["arm-friendly"] ?? 0 }]; });
   const rated = models.map(m => ({ m, i: m.i, fit: pcts ? fitVerdict(choice, factsFor(choice, m.id)) : null, pct: pcts?.get(m.id) ?? null }));
   const rows = [...rated].sort((a, b) => (pcts ? (b.pct ?? -1) - (a.pct ?? -1) : 0) || a.i - b.i).slice(0, LIST_SIZE);

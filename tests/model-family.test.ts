@@ -53,3 +53,12 @@ test("a newest year without enough reports hands the row to the newest year that
   // no year has enough: the newest still shows
   assert.equal((rowOfFamily(y25, all, () => false).shown as { id: string }).id, "c");
 });
+
+test("display casing for mixed-case catalog names", async () => {
+  const { tidyCase } = await import("../lib/brand-name");
+  assert.equal(tidyCase("metalbone 3.5 2026"), "Metalbone 3.5 2026");
+  assert.equal(tidyCase("Coello motion 2025"), "Coello Motion 2025");
+  assert.equal(tidyCase("Ultimate tour X 2026"), "Ultimate Tour X 2026");
+  assert.equal(tidyCase("AT10 18k 2025"), "AT10 18K 2025");
+  assert.equal(tidyCase("Triton+ Balance 2026"), "Triton+ Balance 2026");
+});
