@@ -7,13 +7,17 @@ import CatalogV2 from "../../../rackets/catalog-v2";
 import { generateMetadata as catalogMetadata } from "../../../rackets/page";
 import { readViewKey, CATALOG_VIEW } from "../../../../lib/view-key";
 import { readCatalogFilters } from "../../../../lib/catalog-filter";
+import { specGroups } from "../../../../lib/guide";
+import { niche } from "../../../../lib/niche";
+
+const SPEC = specGroups(niche.guide).map(g => g.key);
 
 export const revalidate = 300;
 export function generateStaticParams() { return []; }
 export const generateMetadata = catalogMetadata;
 
 export default async function CatalogView({ params }: { params: Promise<{ key: string }> }) {
-  const q = readViewKey((await params).key, CATALOG_VIEW);
+  const q = readViewKey((await params).key, [...CATALOG_VIEW, ...SPEC]);
   if (!q) notFound();
-  return <CatalogV2 data={await catalog()} f={readCatalogFilters(q)}/>;
+  return <CatalogV2 data={await catalog()} f={readCatalogFilters(q, SPEC)}/>;
 }

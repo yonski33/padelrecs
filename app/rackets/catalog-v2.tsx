@@ -15,6 +15,7 @@ import { V2Footer } from "../v2-footer";
 import { matchContext } from "../match-context";
 import { listShopLink } from "../../lib/amazon-offer";
 import { catalogRows } from "./catalog-rows";
+import { specGroups } from "../../lib/guide";
 
 // The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
 // only: filters on the left (play style, level, shape, year, arm-friendly, and "more filters" for weight, feel and a bigger
@@ -47,7 +48,7 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
           <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by Player score. Narrow it down on the left.` : `Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
         <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
       </section>
-      <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one}/>
+      <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one} spec={specGroups(niche.guide)}/>
     </div>
     <V2Footer/>
   </main>;

@@ -1,7 +1,7 @@
-/* The home's Shape row (owner 2026-11-16), design v2 like the home. Text never below 16px body / 13px mono. */
+/* The home's guide row (owner 2026-11-16), design v2 like the home. Text never below 16px body / 13px mono. */
 .shr { --ink: #151515; display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
 .shr h2 { margin: 0; font: 800 26px var(--qt-display, "Archivo"), system-ui, sans-serif; letter-spacing: -0.02em; }
-.shr-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.shr-row { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 12px; }
 .shr-row a { text-decoration: none; color: var(--ink); border: 2.5px solid var(--ink); border-radius: 14px; background: #fff; box-shadow: 4px 4px 0 var(--ink); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
 .shr-row a:hover { background: oklch(0.93 0.14 100); }
 .shr-row b { font: 800 20px var(--qt-display, "Archivo"), system-ui, sans-serif; }

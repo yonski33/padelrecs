@@ -12,7 +12,7 @@ import { qtFontVars } from "./qt-fonts";
 import { homePayload } from "./home-payload";
 import { HomeMatch } from "./home-match";
 import { V2Footer } from "./v2-footer";
-import { ShapeRow } from "./guide/shape-row";
+import { GuideRow } from "./guide/guide-row";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
  *  see the rackets according to what you need, not what we set"). Choices live in the URL (?style=&level=&arm=1); the server
@@ -86,7 +86,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         </aside>
       </HomeMatch>
       {/* Below the list: the Shape row and a link to the racket guide, nothing else (owner 2026-11-16). */}
-      <ShapeRow/>
+      <GuideRow/>
     </div>
 
     <V2Footer/>

@@ -44,8 +44,8 @@
   .gd-textonly { font: 13px var(--mono); color: var(--mute); }
   .gd-kick, .gd-best { font: 13px var(--mono); color: var(--soft); }
 
-  /* 01 Shape: cards */
-  .gd-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  /* cards row (padel shape) */
+  .gd-cards { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 14px; }
   .gd-card { border: 2.5px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
   .gd-card .gd-see { margin-top: auto; padding-top: 8px; }
   .gd-icon { color: var(--ink); }
@@ -54,39 +54,38 @@
   .gd-claim { font: 800 clamp(30px, 4.6vw, 46px)/1.08 var(--display); letter-spacing: -0.02em; max-width: 820px; }
   .gd-from { font: 13px var(--mono); color: var(--soft); }
 
-  /* 02 Feel: scale */
+  /* slider scale (padel feel) */
   .gd-scale { border: 2.5px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: 5px 5px 0 var(--ink); padding: 18px 20px; }
   .gd-bar { height: 22px; border: 2px solid var(--ink); border-radius: 999px; background: linear-gradient(90deg, oklch(0.93 0.07 125), oklch(0.8 0.12 125) 50%, #1a1a1a); display: flex; justify-content: space-between; align-items: center; padding: 0 60px; }
   .gd-bar i { width: 14px; height: 14px; border: 2px solid var(--ink); border-radius: 50%; background: var(--paper); }
-  .gd-ends { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 14px; }
+  .gd-ends { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 18px; margin-top: 14px; }
   .gd-ends > div { display: flex; flex-direction: column; gap: 6px; }
-  .gd-ends > div:nth-child(2) { text-align: center; align-items: center; }
-  .gd-ends > div:nth-child(3) { text-align: right; align-items: flex-end; }
+  .gd-ends > div:last-child:not(:first-child) { text-align: right; align-items: flex-end; }
+  .gd-ends > div:not(:first-child):not(:last-child) { text-align: center; align-items: center; }
 
-  /* 03 Balance: meters */
-  .gd-meters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  /* toggles (padel balance) */
+  .gd-meters { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 14px; }
   .gd-meter { border: 2.5px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); padding: 14px 16px; display: flex; gap: 14px; }
   .gd-meter.on { background: var(--mint); }
   .gd-meter > div { display: flex; flex-direction: column; gap: 4px; }
   .gd-m { flex: none; width: 18px; height: 88px; border: 2px solid var(--ink); border-radius: 999px; position: relative; background: var(--paper); }
   .gd-m i { position: absolute; left: 50%; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: var(--ink); }
-  .gd-m.p0 i { bottom: 4px; } .gd-m.p1 i { top: 50%; margin-top: -8px; } .gd-m.p2 i { top: 4px; }
+  .gd-m i { bottom: calc(4px + var(--p, 0) * (100% - 24px)); } /* the marker climbs from the first option to the last */
 
-  /* 04 Weight / 07 Budget: bands */
-  .gd-bands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink); }
+  /* numbers: big-number columns (padel weight, budget) */
+  .gd-bands { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); border-top: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink); }
   .gd-bands > div { padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
   .gd-bands > div + div { border-left: 1.5px dashed var(--ink); }
   .gd-bands > div.on { background: var(--cream); }
   .gd-big { font: 800 clamp(34px, 5vw, 48px)/1 var(--display); letter-spacing: -0.02em; }
 
-  /* 05 Surface / 06 Face: split */
-  .gd-split { display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); border: 2.5px solid var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 5px 5px 0 var(--ink); }
-  .gd-split.n3 { --cols: 3; }
+  /* split pair (accent dotted) and dark split (accent dark): padel surface, face */
+  .gd-split { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); border: 2.5px solid var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 5px 5px 0 var(--ink); }
   .gd-split > div { padding: 20px 22px; background: var(--paper); display: flex; flex-direction: column; gap: 8px; }
   .gd-split > div + div { border-left: 2px solid var(--ink); }
-  #surface .gd-split > div.on { background: var(--mint) radial-gradient(circle, rgba(0,0,0,.18) 1px, transparent 1.4px) 0 0 / 12px 12px; }
-  #face .gd-split > div.on { background: #161616; color: #f5f3ec; }
-  #face .gd-split > div.on a { color: var(--acc); }
+  .gd-l-split .gd-split > div.on { background: var(--mint) radial-gradient(circle, rgba(0,0,0,.18) 1px, transparent 1.4px) 0 0 / 12px 12px; }
+  .gd-l-dark-split .gd-split > div.on { background: #161616; color: #f5f3ec; }
+  .gd-l-dark-split .gd-split > div.on a { color: var(--acc); }
   .gd-note { font: 800 16px var(--display); color: var(--acc); }
 
   .gd-over { margin-top: 18px; background: #161616; color: #f5f3ec; border-radius: 18px; padding: 26px 28px; transform: rotate(-0.4deg); display: flex; flex-direction: column; gap: 10px; }
@@ -101,10 +100,10 @@
 
   @media (max-width: 760px) {
     .gd-tl, .gd-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .gd-meters, .gd-bands, .gd-ends, .gd-split, .gd-split.n3 { grid-template-columns: minmax(0, 1fr); }
+    .gd-meters, .gd-bands, .gd-ends, .gd-split { grid-template-columns: minmax(0, 1fr); }
     .gd-bands > div + div { border-left: 0; border-top: 1.5px dashed var(--ink); }
     .gd-split > div + div { border-left: 0; border-top: 2px solid var(--ink); }
-    .gd-ends > div:nth-child(n) { text-align: left; align-items: flex-start; }
+    .gd-ends > div:not(:first-child) { text-align: left; align-items: flex-start; }
     .gd-bar { padding: 0 20px; }
   }
   @media (max-width: 420px) { .gd-tl, .gd-cards { grid-template-columns: minmax(0, 1fr); } }

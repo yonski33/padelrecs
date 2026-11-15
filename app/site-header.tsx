@@ -58,7 +58,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
         <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{niche.words.many}</a>
         {/* Owner 2026-11-16: "the ranking menu item as a drop down that shows all the lists" (the classic menu, v2 styling). */}
         {ranked.length ? <TopMenu pathname={pathname} ranked={ranked} v2/> : <a href={RANKINGS_PATH} aria-current={inRankings ? "page" : undefined}>rankings</a>}
-        {niche.guide && <a href="/guide" aria-current={pathname === "/guide" ? "page" : undefined}>guide</a>}
+        {niche.guide && <a href="/guide" aria-current={pathname === "/guide" ? "page" : undefined}>{niche.guide.nav ?? "guide"}</a>}
         <a href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}>latest reviews</a>
       </nav>
       <span className="hv2-grow"/>

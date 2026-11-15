@@ -5,7 +5,8 @@ import { score, type Catalog } from "../../db/data";
 import { styleLean, ARM_BAR, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import { gramsOf, weightOf } from "../../lib/fine-tune";
 import { rowOfFamily } from "../../lib/compare-pairs";
-import { balanceOf, faceOf, shapeWord } from "../../lib/guide";
+import { shapeWord, specValues } from "../../lib/guide";
+import { niche } from "../../lib/niche";
 import type { CatalogRow } from "../../lib/catalog-filter";
 import type { matchContext } from "../match-context";
 
@@ -22,7 +23,7 @@ export function catalogRows(data: Catalog, ctx: Ctx, listed: Catalog["listed"] =
     const facts = ctx.facts(r.id), sc = score(data, r.id), su = facts.suits;
     return { id: r.id, name: r.name, lean: styleLean(facts).lean, ...(su ? { suits: { beginner: su.beginner, intermediate: su.intermediate, advanced: su.advanced } } : {}),
       shape: shapeWord(r.shape), year: String(r.year), arm: (facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
-      balance: balanceOf(r.balance), face: faceOf(r.surface),
+      spec: specValues(niche.guide, r),
       sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: ctx.signal(r.id), n: facts.reports, judged: sc.judged, newest: newest.has(r.id) };
   });
 }
