@@ -95,3 +95,13 @@ export function olderInFamily<T extends Product>(product: T, candidates: T[]): T
   const key = modelFamily(product);
   return candidates.filter(x => x.id !== product.id && modelFamily(x) === key && x.year < product.year).sort((a, b) => b.year - a.year);
 }
+/** Which year of a family takes the row (owner 2026-11-15, "Yes, fall back"): the newest year with `enough` reports for a
+ *  match %, else the newest. `newer` is the family's newest year when that isn't the one shown (it gets a "new: <year> version"
+ *  link); once it has enough reports, it takes the row. */
+export function rowOfFamily<T extends Product>(product: T, candidates: T[], enough: (p: T) => boolean): { shown: T; newer: T | null } {
+  if (!hasYears) return { shown: product, newer: null };
+  const key = modelFamily(product);
+  const years = [product, ...candidates.filter(x => x.id !== product.id && modelFamily(x) === key)].sort((a, b) => b.year - a.year || b.name.localeCompare(a.name, "en", { numeric: true }));
+  const shown = years.find(enough) ?? years[0];
+  return { shown, newer: shown.id === years[0].id ? null : years[0] };
+}

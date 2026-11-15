@@ -11,8 +11,8 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
-import { fitVerdict, ARM_BAR } from "../lib/fit-verdict";
-import { newestInFamily, olderInFamily } from "../lib/compare-pairs";
+import { fitVerdict, ARM_BAR, MIN_FIT_REPORTS } from "../lib/fit-verdict";
+import { rowOfFamily, olderInFamily } from "../lib/compare-pairs";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
@@ -52,9 +52,13 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const pcts = isDefault(choice) ? null : matchPct(choice);
   // One model, newest year first (owner 2026-11-15: "2 Air Vipers and 2 Electra Pros in the top 5"): a model's years
   // (lib/compare-pairs.ts modelFamily: same brand, same name without the year and generation number) share one row, the newest year's, ranked by
-  // the newest's own % (or its own Player score order). A thin newest still shows, with no % of its own, and the row links
-  // the older years; their scores are never borrowed. Older years stay on their own pages, in search and in the rankings.
-  const newestOf = (id: string) => newestInFamily(byId.get(id)!, data.listed).id;
+  // the shown year's own % (or its own Player score order), never another year's. Older years stay on their own pages, in search and in the rankings.
+  // A newest year without enough reports for a % yet hands the row to the newest year that has them, and gets a "new:" link
+  // (owner 2026-11-15, "Yes, fall back").
+  const reportsOf = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+  const rowOf = (id: string) => rowOfFamily(byId.get(id)!, data.listed, r => (reportsOf.get(r.id) ?? 0) >= MIN_FIT_REPORTS);
+  const newestOf = (id: string) => rowOf(id).shown.id;
   const order = new Map(candidates.map((m, i) => [m.product.id, i]));
   const seenModel = new Set<string>();
   const models = candidates.flatMap(m => { const id = newestOf(m.product.id); if (seenModel.has(id)) return []; seenModel.add(id);
@@ -122,7 +126,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
           {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
           <ol className="hv2-list">{rows.map(({ m, fit, pct }, i) => {
-            const r = byId.get(m.id)!, sig = sigs.get(r.id), pic = photo(r), older = olderOf(r.id);
+            const r = byId.get(m.id)!, sig = sigs.get(r.id), pic = photo(r), older = olderOf(r.id), newer = rowOf(r.id).newer;
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
             // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
@@ -145,7 +149,8 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
                 <span>{sig ? "player score" : `${n} reports`}</span></>}
               </span>
             </a>
-            {older.length > 0 && <a className="hv2-also" href={`${productHref(older[0])}${picks}`}>{`also: ${older[0].year} version${pct === null ? ` (${data.reviews.filter(x => x.racketId === older[0].id).length + data.external.filter(x => x.racketId === older[0].id).length} reports)` : ""} →`}</a>}</li>;
+            {newer && <a className="hv2-also" href={`${productHref(newer)}${picks}`}>{`new: ${newer.year} version →`}</a>}
+            {older.length > 0 && <a className="hv2-also" href={`${productHref(older[0])}${picks}`}>{`also: ${older[0].year} version →`}</a>}</li>;
           })}</ol>
           <a className="hv2-more" href={catalogPath}>{`see all ${data.listed.length} ${niche.words.many} →`}</a>
           </div>

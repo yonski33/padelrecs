@@ -32,3 +32,19 @@ test("the style part leans on the place inside the shape", () => {
   assert.ok(matchFit(c, { ...m, styleWithin: 0.9 }) > matchFit(c, m));
   assert.ok(matchFit(c, { ...m, styleWithin: 0.1 }) < matchFit(c, m));
 });
+
+test("a newest year without enough reports hands the row to the newest year that has them, with a link to the new one", async () => {
+  const { rowOfFamily } = await import("../lib/compare-pairs");
+  const p = (id: string, year: number) => ({ id, name: `AT10 Genius 12K Alum Xtrem ${year}`, brandId: "nox", year }) as never as Parameters<typeof rowOfFamily>[0];
+  const y25 = p("a", 2025), y26 = p("b", 2026), y27 = p("c", 2027), all = [y25, y26, y27];
+  const reports: Record<string, number> = { a: 70, b: 79, c: 3 };
+  const row = rowOfFamily(y25, all, r => reports[(r as { id: string }).id] >= 6);
+  assert.equal((row.shown as { id: string }).id, "b");
+  assert.equal((row.newer as { id: string } | null)?.id, "c");
+  reports.c = 6; // once the newest has enough, it takes the row
+  const next = rowOfFamily(y26, all, r => reports[(r as { id: string }).id] >= 6);
+  assert.equal((next.shown as { id: string }).id, "c");
+  assert.equal(next.newer, null);
+  // no year has enough: the newest still shows
+  assert.equal((rowOfFamily(y25, all, () => false).shown as { id: string }).id, "c");
+});

@@ -7,7 +7,8 @@ import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
-import { newestInFamily } from "../../lib/compare-pairs";
+import { rowOfFamily } from "../../lib/compare-pairs";
+import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
 
 // Latest reviews in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/JLXnpgtRmWgg6TRbc5BgHR),
@@ -58,7 +59,11 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
   const v = (["positive", "mixed", "negative"] as const).find(x => x === search.v) ?? null;
   // One model, newest year (owner 2026-11-15, as quick match and the catalogue): reviews of a family's older years only with
   // ?older=1. The older pages and their reviews stay live there.
-  const newest = new Set(data.listed.filter(r => newestInFamily(r, data.listed).id === r.id).map(r => r.id));
+  // The year that takes the family's row (and a newer year still short of reports: its first reviews belong in a feed of
+  // what's new), as in quick match and the catalogue.
+  const reportsOf = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+  const newest = new Set(data.listed.flatMap(r => { const row = rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS); return row.shown.id === r.id ? [r.id, ...(row.newer ? [row.newer.id] : [])] : []; }));
   const older = search.older === "1", isCurrent = (id: string) => newest.has(id) || !data.listed.some(r => r.id === id);
   const inSrc = (x: Item) => (src === "all" || (src === "players" ? x.kind === "player" : x.kind === "yt")) && (!v || x.verdict === v);
   const olderN = all.filter(x => inSrc(x) && !isCurrent(x.racketId)).length;

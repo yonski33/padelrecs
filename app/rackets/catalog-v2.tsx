@@ -13,7 +13,8 @@ import { gramsOf, weightOf, WEIGHTS, FEELS } from "../../lib/fine-tune";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { matchContext } from "../match-context";
-import { newestInFamily, olderInFamily } from "../../lib/compare-pairs";
+import { rowOfFamily, olderInFamily } from "../../lib/compare-pairs";
+import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 
 // The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
 // only: filters on the left (play style, level, shape, year, arm-friendly, and "more filters" for weight, feel and a bigger
@@ -44,7 +45,12 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   };
   // One model, newest year (owner 2026-11-15, as quick match): a family's older years are hidden unless ?older=1, a search or a
   // year pick asks for them. "Newest per model", not a year cut, so a model whose newest is 2025 stays. Older pages stay live.
-  const newest = new Set(data.listed.filter(r => newestInFamily(r, data.listed).id === r.id).map(r => r.id));
+  // A newest year without enough reports yet hands the row to the newest year that has them, with a "new:" link (owner
+  // 2026-11-15, "Yes, fall back"; the same rule as quick match).
+  const reportsOf = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+  const rowOf = (r: (typeof data.listed)[number]) => rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  const newest = new Set(data.listed.filter(r => rowOf(r).shown.id === r.id).map(r => r.id));
   const allYears = f.older === "1" || !!f.q || !!f.year;
   const current = (x: Row) => allYears || newest.has(x.r.id);
   const pass = (x: Row, skip?: string) => current(x) && KEYS.every(k => k === skip || !f[k] || tests[k](x, f[k]!)) && (skip === "arm" || f.arm !== "1" || x.arm) && (skip === "sweet" || f.sweet !== "1" || x.sweet);
@@ -121,7 +127,8 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
                 <small>{x.signal !== null ? "player score" : `${x.sc.judged} reports`}</small>
               </span>
             </a>
-              {(() => { const old = allYears ? [] : olderInFamily(r, data.listed); return old.length > 0 && <a className="ct2-also" href={productHref(old[0])}>{`also: ${old[0].year} version →`}</a>; })()}</li>; })}</ol>
+              {(() => { if (allYears) return null; const old = olderInFamily(r, data.listed), nw = rowOf(r).newer;
+                return <>{nw && <a className="ct2-also" href={productHref(nw)}>{`new: ${nw.year} version →`}</a>}{old.length > 0 && <a className="ct2-also" href={productHref(old[0])}>{`also: ${old[0].year} version →`}</a>}</>; })()}</li>; })}</ol>
           {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
           {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}
           {shown.length > show && <Link className="ct2-load" href={href({ show: String(show + PAGE) })} scroll={false} replace>{`load ${Math.min(PAGE, shown.length - show)} more ↓`}</Link>}
