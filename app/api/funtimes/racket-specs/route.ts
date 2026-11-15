@@ -3,6 +3,10 @@ import { eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
 import { brands, rackets } from "../../../../db/schema";
 import { changeRacketSlug } from "../../../../db/racket-slugs";
+import { sql } from "drizzle-orm";
+import { niche } from "../../../../lib/niche";
+import { assertSchemaName } from "../../../../db/migrations";
+import { TRAITS } from "../../../../lib/trait-score";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
 const optionalText=(max:number)=>z.string().trim().max(max).transform(value=>value||null);
 const input=z.object({
@@ -20,6 +24,9 @@ export async function POST(request:Request) {
  if(!parsed.success)return adminRedirect(request,`tab=specs${selected}&result=spec-invalid`);
  try {
   const db=await database(),{id,slug,...values}=parsed.data;
+  // How it plays scores (padel, migration 0022): blank fields drop out; an empty set clears the override.
+  const traitScores=Object.fromEntries(TRAITS.map(t=>[t,raw[`trait_${t}`]]).filter(([,v])=>typeof v==="string"&&v.trim()!=="").map(([t,v])=>[t,Math.round(Number(v))]).filter(([,v])=>Number.isInteger(v)&&(v as number)>=0&&(v as number)<=99));
+  const hasTraitFields=TRAITS.some(t=>`trait_${t}` in raw);
   const [brand]=await db.select({id:brands.id}).from(brands).where(eq(brands.id,values.brandId));
   if(!brand)return adminRedirect(request,`tab=specs${selected}&result=spec-invalid`);
   // Update editable catalog fields and, if asked, the URL slug (the old one keeps redirecting). IDs, images, dates and reviews remain intact.
@@ -35,6 +42,11 @@ export async function POST(request:Request) {
    }
    return "spec-saved";
   }).catch(error=>{if(rejected)return rejected;throw error;});
+  // Saved apart from the specs, so a niche without the column (migration 0022 not applied) still saves its details.
+  if(hasTraitFields&&(result==="spec-saved"||result==="spec-slug-changed")){
+   try{await db.execute(sql`update ${sql.identifier(assertSchemaName(niche.schema))}.rackets set trait_override = ${Object.keys(traitScores).length?JSON.stringify(traitScores):null}::jsonb where id = ${id}`);}
+   catch{if(Object.keys(traitScores).length)return adminRedirect(request,`tab=specs${selected}&result=failed`);}
+  }
   return adminRedirect(request,`tab=specs${selected}&result=${result}`);
  }catch{return adminRedirect(request,`tab=specs${selected}&result=failed`);}
 }

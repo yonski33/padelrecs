@@ -9,6 +9,8 @@ import padelLevels from "../db/level-sources/padel.json";
 import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
+import { traitOverrides } from "../db/trait-override";
+import { traitScores, type TraitInput } from "../lib/trait-score";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -16,7 +18,7 @@ import { quickTakeHooks } from "../db/quick-take";
 const LEVEL_SOURCES: Record<string, Record<string, LevelSources>> = { padel: padelLevels as unknown as Record<string, LevelSources> };
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
-  const [data, sigs, takes, live] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists()]);
+  const [data, sigs, takes, live, overrides] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides()]);
   const finder = niche.finder!;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
@@ -57,5 +59,19 @@ export const matchContext = cache(async () => {
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
     return { reports, tags, band: takes.get(id)?.band, levels: sourcesOf(id), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
-  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts };
+  // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
+  // negative report), "tagged" = reports with at least one counted tag.
+  const goodSet = new Set(good), tagIn = new Map<string, TraitInput>();
+  const listed = new Set(data.listed.map(r => r.id));
+  for (const x of [...data.reviews.map(r => ({ id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags })), ...data.external.map(e => ({ id: e.racketId, v: e.sentiment, tags: e.tags }))]) {
+    if (!listed.has(x.id)) continue;
+    const counted = x.tags.filter(t => !(goodSet.has(t) && x.v === "negative"));
+    const t = tagIn.get(x.id) ?? { id: x.id, tagged: 0, tags: {}, override: overrides.get(x.id) }; tagIn.set(x.id, t);
+    if (counted.length) t.tagged++;
+    for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
+  }
+  for (const [id, o] of overrides) if (!tagIn.has(id) && listed.has(id)) tagIn.set(id, { id, tagged: 0, tags: {}, override: o });
+  const traitMap = traitScores([...tagIn.values()]);
+  const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {} });
+  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits };
 });

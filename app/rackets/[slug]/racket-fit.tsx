@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import "./racket-fit.css";
-import { spans, sentimentWords, type QuickTake } from "../../../lib/quick-take";
+import { spans, sentimentWords, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
+import { TRAITS, TRAIT_LABEL, type Trait } from "../../../lib/trait-score";
 import { fitVerdict, bestFor, levelBacking, levelSources, styleLean } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
@@ -67,21 +68,32 @@ export default async function RacketFit(props: {
   const pickHref = (c: QuickChoice) => { const h = at(c); return h.includes("?") ? h : `${h}?level=${c.level}`; };
   const pickPill = (label: string, next: QuickChoice, on: boolean) => <Link href={pickHref(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
 
-  // Six trait lines: the quick-take's own lines where it has them, else what the tag counts say. Text only, no dots.
+  // Six trait rows (owner 2026-11-15): dots from the calculated trait scores (lib/trait-score.ts, every racket alike), text
+  // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
   const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
-  const lineOf = (r?: { key?: string; line: string }) => r ? r.line : null;
-  // Dots from the quick-take's own chip for the row (Loved … Limited); none for lines worked out from tag counts.
-  const DOTS: Record<string, number> = { Loved: 5, Strong: 5, Good: 4, Decent: 3, Divided: 3, Tricky: 2, Limited: 1 };
-  const dotsOf = (r?: { chip: string }) => r ? "●".repeat(DOTS[r.chip] ?? 3) + "○".repeat(5 - (DOTS[r.chip] ?? 3)) : null;
-  const tagLine = (tag: string, say: string) => (facts.tags[tag] ?? 0) >= 3 ? `${facts.tags[tag]} players ${say}.` : null;
-  const traits = [
-    ["Forgiveness", lineOf(row("Sweet spot")) ?? tagLine("forgiving", "call it forgiving"), dotsOf(row("Sweet spot"))],
-    ["Power", lineOf(row("Power")) ?? tagLine("easy power", "mention easy power"), dotsOf(row("Power"))],
-    ["Control", lineOf(row("Control")) ?? tagLine("good control", "praise the control"), dotsOf(row("Control"))],
-    ["Defence", qt?.plays?.court?.defence?.line ?? tagLine("great in defence", "say it's great in defence"), dotsOf(qt?.plays?.court?.defence)],
-    ["Arm comfort", lineOf(row("Comfort")) ?? ((facts.tags["arm-friendly"] ?? 0) + (facts.tags["vibrates on mishits"] ?? 0) >= 3 ? `${facts.tags["arm-friendly"] ?? 0} players call it arm-friendly, ${facts.tags["vibrates on mishits"] ?? 0} mention vibration.` : null), dotsOf(row("Comfort"))],
-    ["Speed", lineOf(row("Handling")) ?? tagLine("fast at the net", "call it fast at the net"), dotsOf(row("Handling"))],
-  ].filter((t): t is [string, string, string | null] => !!t[1]);
+  const tr = ctx.traits(props.racketId), tc = (t: string) => tr.tags[t] ?? 0;
+  // "1 player mentions" / "3 players mention": the count with its verb.
+  const ppl = (k: number, verb: string) => k === 1 ? `1 player ${verb.replace(/^(\w+)/, w => w === "say" ? "says" : w === "find" ? "finds" : `${w}s`)}` : `${k} players ${verb}`;
+  // Counts in words: never "0 mention …" (owner: no slashed zeros, say "no one").
+  const countLine: Record<Trait, () => string | null> = {
+    forgiveness: () => { const p = tc("forgiving"), m = tc("small sweet spot") + tc("demanding"); return p || m ? [p ? ppl(p, "call it forgiving") : "No one calls it forgiving", m ? ppl(m, "find the sweet spot small or call it demanding") : "no one calls it demanding"].join(", ") + "." : null; },
+    power: () => { const p = tc("easy power"), s = tc("great on smashes"); return p || s ? `${p ? ppl(p, "mention easy power") : "No one mentions easy power"}${s ? `, ${ppl(s, "say it's great on smashes")}` : ""}.` : null; },
+    control: () => { const p = tc("good control"), m = tc("head-heavy"); return p || m ? `${p ? ppl(p, "praise the control") : "No one praises the control"}${m ? `, ${ppl(m, "find it head-heavy")}` : ""}.` : null; },
+    defence: () => { const p = tc("great in defence"); return p ? `${ppl(p, "say it's great in defence")}.` : null; },
+    arm: () => { const p = tc("arm-friendly"), m = tc("vibrates on mishits"); return p || m ? `${p ? ppl(p, "call it arm-friendly") : "No one calls it arm-friendly"}, ${m ? ppl(m, "mention vibration") : "no one mentions vibration"}.` : null; },
+    speed: () => { const p = tc("fast at the net"), m = tc("head-heavy") + tc("tiring in long matches"); return p || m ? `${p ? ppl(p, "call it fast at the net") : "No one calls it fast at the net"}${m ? `, ${ppl(m, "find it head-heavy or tiring")}` : ""}.` : null; },
+  };
+  const qtRow: Record<Trait, { chip: string; line: string } | undefined> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
+  const traits = TRAITS.map(t => {
+    const sc = tr.scores?.[t] ?? null, q = qtRow[t];
+    // The hand-written line must agree with the dots: a strong chip beside 1–2 dots, or a weak/divided one beside 4–5, loses.
+    const tone = q ? chipTone(q.chip as Chip) : null;
+    const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
+    // A count line says where the dots put it, so "5 players say it's great in defence" never sits beside 1 dot unexplained.
+    const counted = countLine[t](), rel = sc && !sc.set ? (sc.dots <= 2 ? " Fewer than most rackets get for their number of reports." : sc.dots >= 4 ? " More than most rackets get for their number of reports." : "") : "";
+    const text = (q && agrees ? q.line : null) ?? (counted ? counted + rel : null) ?? (sc ? null : "Not enough reports on this yet.");
+    return [TRAIT_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
+  });
 
   // Better matches: quick match with the visitor's picks (or the default order), from the catalog, without this racket.
   const others = quickMatch(ctx.pool, ctx.finder, picked ? choice : DEFAULT_CHOICE, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 5, rankWeight: ctx.finder.rankWeight })

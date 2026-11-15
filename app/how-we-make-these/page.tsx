@@ -57,6 +57,7 @@ export default async function HowWeMakeThese() {
           <div><strong>Racket A:</strong> 5 reviews, all loved it → <strong>{example(5, 0, 0)}</strong>. Promising, but too early to trust.</div>
           <div><strong>Racket B:</strong> 60 reviews, 48 loved it → <strong>{example(48, 8, 4)}</strong>. Fewer fans by percentage, but far more proof.</div>
         </div>
+        <p className="hw-sub hw-dots">{"The \"How it plays\" dots on racket pages work the same way: from player reports, we count how often each racket is called forgiving, powerful, controlled, good in defence, kind to the arm or fast, then compare it with the rest of the catalog. 5 dots means more than most rackets; no dots means too few reports to say."}</p>
       </section>
       <section>
         <h2>House rules</h2>

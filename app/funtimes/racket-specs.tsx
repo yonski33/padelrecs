@@ -3,10 +3,11 @@ import SlugField from "./slug-field";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
+import { TRAITS, TRAIT_LABEL, type Trait } from "../../lib/trait-score";
 const w = niche.words;
 
 type Racket = typeof rackets.$inferSelect;
-export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string,oldSlugs?:string[]}) {
+export default function RacketSpecs({models,brands,racketId,oldSlugs=[],traitOverride}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string,oldSlugs?:string[],traitOverride?:Partial<Record<Trait,number>>}) {
  const selected=models.find(r=>r.id===racketId);
  const photo=selected?(shopPhoto(selected)||amazonPhoto(selected)?.image):null;
  return <div className="narrow">
@@ -39,6 +40,10 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[]}:{models
     {niche.specs.map(spec=><label className="field" key={spec.column}>{spec.label}<input name={spec.column} list={spec.options?`${spec.column}-options`:undefined} maxLength={spec.max} defaultValue={selected[spec.column]||""} placeholder={spec.placeholder}/>{spec.options&&<datalist id={`${spec.column}-options`}>{spec.options.map(s=><option key={s} value={s}/>)}</datalist>}</label>)}
    </div>
    <label className="field">Signal score <span className="muted">(optional, 1–99)</span><input name="signalOverride" type="number" min={1} max={99} defaultValue={selected.signalOverride ?? ""} placeholder="Worked out from reviews"/><small>Leave blank to use the score worked out from reviews. A number here is shown everywhere and decides this product's place in the rankings.</small></label>
+   {/* Trait scores (lib/trait-score.ts): blank = worked out from player reports; a number 0–99 here wins (owner 2026-11-15). */}
+   {niche.id==="padel"&&<fieldset className="field"><legend>How it plays scores <span className="muted">(optional, 0–99 each)</span></legend><div className="form-grid">
+    {TRAITS.map(t=><label className="field" key={t}>{TRAIT_LABEL[t]}<input name={`trait_${t}`} type="number" min={0} max={99} defaultValue={traitOverride?.[t] ?? ""} placeholder="From reports"/></label>)}
+   </div><small>Leave blank to use the score worked out from player reports. 80+ shows 5 dots, 60–79 four, 40–59 three, 20–39 two, under 20 one.</small></fieldset>}
    <label className="field">Description<textarea name="description" maxLength={5000} defaultValue={selected.description||""}/></label>
    <p className="small muted">{`Blank optional fields display as “Not specified.” Saving updates the public ${w.one} page within a minute. Linked reviews stay attached; if you change the page address, the old one keeps working.`}</p>
    <button type="submit">{`Save ${w.one} details`}</button>
