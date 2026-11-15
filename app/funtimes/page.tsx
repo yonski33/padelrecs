@@ -8,6 +8,7 @@ import { getCurrentUser } from "../../lib/supabase/auth";
 import RacketPicker from "../racket-picker";
 import RacketSpecs from "./racket-specs";
 import { matchContext } from "../match-context";
+import ExpertGrid from "./expert-grid";
 import DeleteWebReview from "./delete-web-review";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
@@ -41,12 +42,12 @@ const messages: Record<string,string> = {
  "spec-slug-invalid":"That page address can't be used. Use letters, numbers and dashes. Nothing was saved.",
  failed:"Could not save your changes. Please try again."
 };
-export default async function Admin({searchParams}:{searchParams:Promise<{status?:string,tab?:string,page?:string,result?:string,racket?:string,q?:string,site?:string,sentiment?:string,source?:string,days?:string,check?:string}>}) {
+export default async function Admin({searchParams}:{searchParams:Promise<{evidence?:string,status?:string,tab?:string,page?:string,result?:string,racket?:string,q?:string,site?:string,sentiment?:string,source?:string,days?:string,check?:string}>}) {
  if (!(await isAdmin())) {
   const user = await getCurrentUser();
   return <main className="narrow"><div className="page-title"><h1>Review admin</h1></div><p>{user ? "This account does not have admin access." : "Sign in with the owner account to manage reviews."}</p>{!user && <a className="button" href="/funtimes/login">Admin sign in →</a>}<p><a href="/">Back to reviews</a></p></main>;
  }
- const q=await searchParams, web=q.tab==="web", specs=q.tab==="specs", find=q.tab==="find";
+ const q=await searchParams, web=q.tab==="web", specs=q.tab==="specs", find=q.tab==="find", expert=q.tab==="expert";
  const sites=reviewSites(), sources=allSources(), finderInput=searchInput.parse(find?q:{});
  const status = q.status==="approved"||q.status==="rejected" ? q.status : "pending";
  const page = Math.max(1, Math.min(100000, parseInt(q.page||"1",10)||1));
@@ -57,6 +58,15 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
   <AdminNav current="find"/>
   <FinderForm input={finderInput} sites={sites} sources={sources}/>
   <FinderResults input={finderInput} result={result} sites={sites} here={niche.id}/></main>;
+ }
+ if (expert) {
+  // Expert values per racket (owner 2026-11-15, ENGINE-PLAN section D): the calculated scores beside an expert's, with notes.
+  const models = await db.select().from(rackets).orderBy(rackets.name);
+  const ctx = q.racket ? await matchContext() : null, t = ctx && q.racket ? ctx.traits(q.racket) : null;
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">{`Expert values for ${w.one} traits and level.`}</p></div>
+  <AdminNav current="expert"/>
+  <ExpertGrid models={models} racketId={q.racket} auto={t?.auto ?? null} suits={ctx && q.racket ? ctx.suitsAuto(q.racket) : null} edits={t?.edits ?? null}
+   evidence={ctx && q.racket ? ctx.evidence.filter(r => r.productId === q.racket) : []} showEvidence={q.evidence} result={q.result}/></main>;
  }
  const [models, totals, queue, external, allBrands] = await Promise.all([
   db.select().from(rackets).orderBy(rackets.name),
@@ -101,7 +111,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
  </main>;
 }
 
-function AdminNav({current}:{current:"find"|"player"|"web"|"specs"}) {
+function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"}) {
  const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a><form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
+ return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{niche.id === "padel" && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
 }

@@ -11,11 +11,11 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
-import { fitVerdict, ARM_BAR } from "../lib/fit-verdict";
-import { matchScore } from "../lib/match-score";
+import { fitVerdict, ARM_BAR, FEW_FIT_REPORTS } from "../lib/fit-verdict";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
+import { SHAPES, WEIGHTS, FEELS, SHAPE_LABEL, fineEmpty, fineWords } from "../lib/fine-tune";
 import { V2Footer } from "./v2-footer";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
@@ -34,7 +34,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice }: { choice: QuickChoice }) {
-  const [{ cfg, data, sigs, takes, finder, bad, pool, level, signal, facts, traits }, lists] = await Promise.all([matchContext(), rankedLists()]);
+  const [{ cfg, data, sigs, takes, finder, bad, pool, level, signal, facts, matchPct, fineOf }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -44,12 +44,14 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const added = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now - 7 * DAY).length;
   // With picks, rows are ordered by the match % (lib/match-score.ts), which always agrees with the fit word; quick match picks
   // the candidates. Thin data has no % and goes last. No picks: quick match's own order (Player score).
-  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: isDefault(choice) ? LIST_SIZE : 40, rankWeight: finder.rankWeight, cfg });
+  // With picks, every model in the pool is a candidate (a shape pick hides other shapes, and unknown ones), ordered by the
+  // spread match % (app/match-context.ts matchPct, the same number the racket page shows). No picks: the Player score order.
+  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: isDefault(choice) ? LIST_SIZE : pool.length, rankWeight: finder.rankWeight, cfg })
+    .filter(m => isDefault(choice) || !choice.fine?.shape || fineOf(m.product.id)?.shape === choice.fine.shape);
+  const pcts = isDefault(choice) ? null : matchPct(choice);
   const rated = candidates.map((m, i) => {
-    if (isDefault(choice)) return { m, i, fit: null, pct: null };
-    const fit = fitVerdict(choice, facts(m.product.id), cfg), t = traits(m.product.id).scores, lv = level(m.product.id);
-    const pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, signal: signal(m.product.id) }, cfg.weights);
-    return { m, i, fit, pct };
+    if (!pcts) return { m, i, fit: null, pct: null };
+    return { m, i, fit: fitVerdict(choice, facts(m.product.id), cfg), pct: pcts.get(m.product.id) ?? null };
   });
   const rows = isDefault(choice) ? rated : [...rated].sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1) || a.i - b.i).slice(0, LIST_SIZE);
   const matches = rows.map(x => x.m);
@@ -89,7 +91,20 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
         <span className="hv2-qk">and I&apos;m</span>
         <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, picked && choice.level === l)}</span>)}</span>
         <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-pressed={choice.arm}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
-        {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level[0].toUpperCase() + choice.level.slice(1), STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null].filter(Boolean).join(" · ")}</b>
+        {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
+        {picked && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
+          <summary><span className="c">Not sure yet? <b>fine-tune ▾</b></span><span className="o">fewer filters ▴</span></summary>
+          <div className="hv2-fine-rows">
+            {([["Shape", "shape", SHAPES.map(v => [v, SHAPE_LABEL[v]] as const)], ["Weight", "weight", WEIGHTS.map(v => [v, v] as const)], ["Feel on impact", "feel", FEELS.map(v => [v, v] as const)]] as const).map(([label, key, opts]) => {
+              const cur = choice.fine?.[key];
+              const with_ = (v: string | undefined) => ({ ...choice, fine: { ...choice.fine, [key]: v } });
+              return <div key={key} className="hv2-fine-row"><span className="hv2-fk">{label}</span><span className="hv2-lv" role="group" aria-label={label}>
+                {opts.map(([v, l]) => <span key={v}>{pill(l, with_(cur === v ? undefined : v), cur === v)}</span>)}
+                {key !== "feel" && <span>{pill("any", with_(undefined), !cur)}</span>}</span></div>; })}
+            <Link className="hv2-arm" href={choiceHref({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} scroll={false} replace aria-pressed={!!choice.fine?.sweet}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</Link>
+          </div>
+        </details>}
+        {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level[0].toUpperCase() + choice.level.slice(1), STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
           <Link href="/" scroll={false} replace>reset ↺</Link></p>}
       </section>
 
@@ -115,9 +130,9 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="hv2-line">{line}</span>}
-                {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
+                {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}{n < FEW_FIT_REPORTS && <em className="hv2-few">{`based on fewer reports (${n})`}</em>}</span>}</span>
               <span className="hv2-stats">
-                {picked ? <span className="hv2-pct" title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+                {picked ? <span className={`hv2-pct${fit && fit.kind !== "thin" ? ` ${fit.kind}` : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
                   {pct === null ? <><b>—</b><small>not enough reports yet</small></> : <><b>{`${pct}%`}</b><small>match</small></>}</span>
                 : <>{sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
                 <span>{sig ? "player score · " : ""}{`${n} reports`}</span></>}

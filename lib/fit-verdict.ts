@@ -5,6 +5,8 @@ import type { QuickChoice } from "./quick-match";
 import { fitConfigFor, type FitConfig } from "./fit-config";
 
 const PADEL = fitConfigFor({ id: "padel" })!;
+import { niche } from "./niche";
+import { fineMismatches, type FineFacts } from "./fine-tune";
 
 /** A level range, 0 beginner … 2 advanced. */
 export type Band = { from: number; to: number };
@@ -20,13 +22,18 @@ export type FitFacts = {
   band?: Band;
   /** Maker and YouTube levels beside the players' band; see levelSources(). */
   levels?: LevelSources;
+  /** Shape, weight, feel and forgiveness for quick match's fine-tune (lib/fine-tune.ts), and the weight as the specs say it. */
+  fine?: FineFacts & { weightSpec?: string | null };
+  /** How well it suits each level, 0–100 (lib/level-suits.ts), and a line when the brand and players / reviewers disagree. */
+  suits?: { beginner: number; intermediate: number; advanced: number; basis: string[] }; levelDisagree?: string;
   /** Place on the control / power rankings, when it's on them. */
   places?: { control?: number; power?: number };
 };
 export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[]; /** One short reason for list rows (the home). */ short?: string;
   /** What fits (ok checks) and what to weigh (conflicts), for the racket page's two blocks. */ fits?: string[]; catches?: string[] };
 
-export const MIN_FIT_REPORTS = 20;
+/** The fewest reports for a verdict, and below how many it says it rests on fewer reports (per site, lib/niche fit). */
+export const MIN_FIT_REPORTS = niche.fit?.minReports ?? 20, FEW_FIT_REPORTS = niche.fit?.fewReports ?? MIN_FIT_REPORTS;
 /** Arm-friendly mentions needed before the fit check vouches for a sore arm. */
 export const ARM_BAR = 3;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
@@ -83,8 +90,19 @@ export function combinedBand(f: FitFacts): Band | undefined {
   return fits.length ? { from: fits[0], to: fits[fits.length - 1] } : undefined;
 }
 
+/** Suits scores: 62+ fits, 40–61 could (a demo-first), under 40 doesn't, but only when players or reviewers back it: the
+ *  brand's label alone never rules a racket out (owner 2026-11-15). */
+export const SUITS_OK = 62, SUITS_LOW = 40;
 function levelCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
+  if (f.suits) {
+    const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";
+    const backed = f.suits.basis.some(b => b !== "the brand");
+    if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
+    if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} Players and reviewers don't put it at ${c.level}.`.trim() };
+    if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
+    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} racket; demo it first.`.trim() };
+  }
   const src = levelSources(f);
   // Brands label most top-line rackets "Professional". Such a label says "not aimed at beginners", so it counts for a beginner;
   // it isn't counted against intermediates. A brand range that names lower levels counts in full (owner 2026-11-15).
@@ -118,8 +136,14 @@ function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
 
 /** The verdict for a visitor's picks. Probably not: a hard conflict. Maybe: one soft conflict. Good: no conflicts and at least
  *  one real reason. Too little data (few reports, or nothing known about what was asked): say so. */
+/** Fine-tune picks the racket doesn't match ("heavier than you asked for"): a soft reason only, never a hard no. */
+function fineCheck(c: QuickChoice, f: FitFacts): Check {
+  const miss = c.fine && f.fine ? fineMismatches(c.fine, f.fine, f.fine.weightSpec) : [];
+  return miss.length ? { level: "soft", short: miss[0].replace(/ \(.*\)\.$|\.$/, ""), reason: miss.join(" ") } : { level: "ok" };
+}
+
 export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = PADEL): FitVerdict {
-  const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg)];
+  const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;

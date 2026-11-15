@@ -146,7 +146,8 @@ export function traitScores(products: TraitInput[], cfg: FitConfig = PADEL): Map
 export const NET_PRIOR = 5, RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
 export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number; people?: TraitScore["people"] }>>;
   youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null;
-  /** Lab measurements as a catalog percentile per trait, 0 (lowest) – 1 (highest) (lib/evidence.ts labPercentiles). */ lab?: Partial<Record<Trait, number>> };
+  /** Lab measurements as a catalog percentile per trait, 0 (lowest) – 1 (highest) (lib/evidence.ts labPercentiles). */ lab?: Partial<Record<Trait, number>>;
+  /** An expert's 0–100 per trait (admin expert grid): wins over everything, dots from the score. */ expert?: Partial<Record<Trait, number>> };
 
 export function balanceScores(products: BalanceInput[], cfg: FitConfig = PADEL): Map<string, Record<Trait, TraitScore | null>> {
   const keys = cfg.traits.map(d => d.key);
@@ -194,6 +195,11 @@ export function balanceScores(products: BalanceInput[], cfg: FitConfig = PADEL):
       // 4–5 need praise that complaints don't outnumber; a strong lab reading counts as praise where nobody has said it yet.
       const i = rank.get(p.id)!, lab = p.lab?.[t], top = C <= P && (P > 0 || (wLab > 0 && typeof lab === "number" && lab >= (cfg.lab?.alone ?? 0.7)));
       const auto = worst.has(p.id) ? 2 : top && i < n5 ? 5 : top && i < n4 ? 4 : 3;
+      const ex = p.expert?.[t];
+      if (typeof ex === "number") {
+        out.get(p.id)![t] = { score: Math.min(99, Math.round(ex)), dots: dotsFor(ex), plus: plusVoices, minus: minusVoices, yt: p.youtube?.[t]?.plus ?? 0, spec: lean, basis: "players", set: true, ...(PC(p, t).people ? { people: PC(p, t).people } : {}) };
+        continue;
+      }
       const dots = hand ?? auto;
       // 0–99 for quick match: the band's floor plus where it sits in the praise ranking.
       const within = 1 - i / Math.max(1, products.length - 1);
