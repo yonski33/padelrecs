@@ -1,0 +1,126 @@
+{
+ "the-ordinary-niacinamide-10-zinc-1": {
+  "dry": 6
+ },
+ "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+  "combination": 8,
+  "acne": 7
+ },
+ "the-ordinary-aha-30-bha-2-peeling-solution": {
+  "dry": 4,
+  "oily": 8,
+  "combination": 7,
+  "acne": 7
+ },
+ "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser": {
+  "oily": 5
+ },
+ "supergoop-glowscreen-spf-40": {
+  "combination": 7,
+  "sensitive": 5
+ },
+ "cerave-moisturizing-cream": {
+  "combination": 6
+ },
+ "cosrx-advanced-snail-92-all-in-one-cream": {
+  "acne": 7
+ },
+ "cerave-healing-ointment": {
+  "oily": 3,
+  "combination": 5
+ },
+ "first-aid-beauty-ultra-repair-cream": {
+  "oily": 4
+ },
+ "vanicream-gentle-facial-cleanser": {
+  "acne": 7
+ },
+ "neutrogena-hydro-boost-hyaluronic-acid-water-gel": {
+  "combination": 8,
+  "sensitive": 5,
+  "acne": 7
+ },
+ "cerave-am-facial-moisturizing-lotion-with-sunscreen": {
+  "acne": 7
+ },
+ "eltamd-uv-clear-broad-spectrum-spf-46": {
+  "dry": 6,
+  "oily": 9
+ },
+ "la-roche-posay-toleriane-double-repair-face-moisturizer": {
+  "oily": 6,
+  "finish": "between"
+ },
+ "the-ordinary-azelaic-acid-suspension-10": {
+  "dry": 7,
+  "combination": 8,
+  "sensitive": 7
+ },
+ "the-ordinary-hyaluronic-acid-2-b5": {
+  "oily": 8,
+  "combination": 8,
+  "acne": 8,
+  "finish": "dewy"
+ },
+ "supergoop-unseen-sunscreen-spf-50": {
+  "dry": 5,
+  "combination": 8,
+  "acne": 7
+ },
+ "beauty-of-joseon-dynasty-cream": {
+  "oily": 4,
+  "sensitive": 8
+ },
+ "bioderma-sensibio-h2o-micellar-water": {
+  "dry": 8,
+  "oily": 8,
+  "acne": 8
+ },
+ "cerave-resurfacing-retinol-serum": {
+  "dry": 6,
+  "oily": 8,
+  "combination": 8,
+  "acne": 8
+ },
+ "cerave-daily-moisturizing-lotion": {
+  "oily": 6,
+  "sensitive": 9
+ },
+ "skin1004-madagascar-centella-ampoule": {
+  "combination": 8,
+  "sensitive": 9,
+  "finish": "between"
+ },
+ "vanicream-moisturizing-cream": {
+  "oily": 4,
+  "combination": 6,
+  "finish": "dewy"
+ },
+ "cosrx-low-ph-good-morning-gel-cleanser": {
+  "dry": 5,
+  "sensitive": 4
+ },
+ "paulas-choice-10-azelaic-acid-booster": {
+  "dry": 7,
+  "oily": 9,
+  "combination": 9,
+  "acne": 9
+ },
+ "anua-heartleaf-77-soothing-toner": {
+  "sensitive": 8,
+  "texture": "light"
+ },
+ "mario-badescu-drying-lotion": {
+  "dry": 3,
+  "oily": 7,
+  "combination": 7,
+  "sensitive": 2,
+  "texture": "light"
+ },
+ "neutrogena-oil-free-acne-wash": {
+  "dry": 3,
+  "oily": 8,
+  "sensitive": 2,
+  "acne": 7
+ }
+}

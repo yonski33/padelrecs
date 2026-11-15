@@ -32,10 +32,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // "Cleanser" → "cleanser", but acronyms stay as they are: "AI assistant", "CRM", "VPN".
 const lowerWords = (text: string) => text.replace(/\b[A-Z](?=[a-z])/g, c => c.toLowerCase());
 
-export default async function TypePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ brand?: string; sort?: string; show?: string; look?: string }> }) {
+import CatalogSkin from "../../skin/catalog-skin";
+import { attrProfileFor } from "../../../lib/attr-profile";
+import { isV2 } from "../../../lib/niche";
+
+export default async function TypePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ brand?: string; sort?: string; show?: string; look?: string } & Record<string, string | undefined>> }) {
   const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const t = pageFor(slug);
   if (!t) notFound();
+  // SkinRecs in design v2 (owner 2026-11-15): the skin catalogue with this type set; ?look=classic keeps the old page.
+  if (isV2 && attrProfileFor(niche) && f.look !== "classic") return <CatalogSkin f={f as Record<string, string>} base={`/${t.slug}`} fixedType={t.shape} title={t.label} intro={`${t.intro}. Narrow it down on the left: “good for” comes from what people with that skin type said, not from the label.`}/>;
   // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): the light catalogue with this category set.
   if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/${t.slug}`} fixed={{ shape: t.shape }}
     title={<>{"Explore all "}<em>{lowerWords(seoName(t))}</em></>} crumbs={<><a href="/">Home</a><span>/</span><a href={`${catalogPath}`}>{catalogLabel}</a><span>/</span>{t.label}</>}/>;

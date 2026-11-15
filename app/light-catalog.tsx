@@ -137,7 +137,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
       <section className="lc-list" aria-labelledby="lc-title">
         <header className="lcx-head">
           <h1 id="lc-title">{title ?? (shape ? plural(shape) : `All ${w.many}`)}</h1>
-          <p className="lcx-sub">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} · ${fmt(scopeReviews)} reviews from Reddit, YouTube and blogs`}</p>
+          <p className="lcx-sub">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} · ${fmt(scopeReviews)} reviews from players, YouTube and blogs`}</p>
         </header>
         <div className="lcx-tools">
           {/* Filters as you type (owner, 2026-11-13); the other filters ride along as hidden fields. */}

@@ -4,13 +4,14 @@ import { CompareTray } from "../../compare/compare-pick";
 import { LightCatalog, lightFilters } from "../../light-catalog";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { niche, productHref } from "../../../lib/niche";
+import { niche, productHref, isV2 } from "../../../lib/niche";
 import { catalog, score, topTags } from "../../../db/data";
 import { ProductCard, Directory, parseShow } from "../../components";
 import { sortProducts } from "../../../lib/product-sort";
 import { productSignals } from "../../signals";
 import { displayName } from "../../../lib/brand-name";
 import { catalogKeyword, listJsonLd } from "../../../lib/catalogue-seo";
+import CatalogV2 from "../../rackets/catalog-v2";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params, data = await catalog(), brand = data.brands.find(b => b.slug === slug);
@@ -18,10 +19,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { ...niche.seo.brand(brand.name), alternates: { canonical: `/brands/${brand.slug}` } };
 }
 
-export default async function Brand({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ show?: string; look?: string }> }) {
+import CatalogSkin from "../../skin/catalog-skin";
+import { attrProfileFor } from "../../../lib/attr-profile";
+
+export default async function Brand({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<Record<string, string | undefined>> }) {
   const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const brand = data.brands.find(b => b.slug === slug);
   if (!brand) notFound();
+  // Design v2 (owner 2026-11-15): the catalogue's page for this brand (filters, card rows, Player score); ?look=classic keeps the old one.
+  if (isV2 && f.look !== "classic") {
+    const jsonLd = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: displayName(r.name, brand.name), href: productHref(r) })));
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/>{attrProfileFor(niche) ? <CatalogSkin f={f as Record<string, string>} base={`/brands/${brand.slug}`} brand={brand}/> : <CatalogV2 data={data} f={f} brand={brand}/>}</>;
+  }
   // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): the light catalogue with this brand set.
   if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/brands/${brand.slug}`} fixed={{ brand: brand.id }}
     title={<>{`${brand.name} `}<em>{catalogKeyword.toLowerCase()}</em></>} crumbs={<><a href="/">Home</a><span>/</span><a href="/brands">Brands</a><span>/</span>{brand.name}</>}/>;

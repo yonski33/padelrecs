@@ -182,8 +182,8 @@ export const golf: Niche = {
   },
   seo: {
     homeTitle: "GolfRecs – Real Golfer Reviews of Drivers",
-    homeDescription: "Browse real driver reviews from golfers and opinions collected from Reddit, YouTube, golf shops and forums. Compare experiences across TaylorMade, Callaway, Ping, Titleist, Cobra, Mizuno, Srixon and more.",
-    layoutDescription: "Real golfer experiences with drivers, plus opinions from Reddit, YouTube, golf shops and forums with the source linked.",
+    homeDescription: "Browse real driver reviews from golfers and opinions collected from YouTube, golf shops and forums. Compare experiences across TaylorMade, Callaway, Ping, Titleist, Cobra, Mizuno, Srixon and more.",
+    layoutDescription: "Real golfer experiences with drivers, plus opinions from YouTube, golf shops and forums with the source linked.",
     titleTemplate: "%s | GolfRecs",
     catalog: { title: "All Drivers – Golfer Reviews and Ratings", description: "Every driver on GolfRecs with community ratings. Filter by brand and category, then read what golfers say about each one." },
     brands: { title: "Driver Brands", description: "Browse drivers by brand — TaylorMade, Callaway, Ping, Titleist, Cobra, Mizuno, Srixon and more — and read real golfer reviews of each model." },
@@ -192,12 +192,12 @@ export const golf: Niche = {
     productNotFound: "Driver not found | GolfRecs",
     productCategory: "Golf driver",
     addReview: { title: "Add a Driver Review", description: "Hit one on the course or at a fitting? Share how it played in about two minutes. No account needed." },
-    about: { title: "About", description: "Why GolfRecs exists: driver opinions are scattered across Reddit, YouTube, golf shops and forums. GolfRecs collects them and lets golfers add their own." },
+    about: { title: "About", description: "Why GolfRecs exists: driver opinions are scattered across YouTube, golf shops and forums. GolfRecs collects them and lets golfers add their own." },
     ogAlt: "GolfRecs – real golfer reviews of drivers",
     ogProductAlt: "Driver reviews on GolfRecs",
     ogEyebrow: "Golfer reviews of drivers",
     ogTitle: "Real golfer reviews of drivers",
-    ogDetail: "From golfers, Reddit, YouTube, golf shops and forums",
+    ogDetail: "From golfers, YouTube, golf shops and forums",
     ogFallbackTitle: "Driver reviews",
   },
   copy: {
@@ -216,7 +216,7 @@ export const golf: Niche = {
     about: {
       heading: "Why GolfRecs exists",
       paragraphs: [
-        "Driver reviews are scattered across Reddit, YouTube, golf shops and forums. GolfRecs puts those experiences in one place and lets golfers add their own.",
+        "Driver reviews are scattered across YouTube, golf shops and forums. GolfRecs puts those experiences in one place and lets golfers add their own.",
         "A driver that works for one golfer won’t work for everyone. Knowing someone’s swing speed, handicap, usual miss and how long they’ve played it often tells you more than a score on its own.",
       ],
       sections: [

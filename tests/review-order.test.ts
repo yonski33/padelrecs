@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spreadByProduct, helpfulnessScore, nicheTerms, helpfulRank } from "../lib/review-order";
-import { selectNiche } from "../lib/niche";
+import { selectNiche } from "../lib/niche/all";
 
 test("a day's reviews of one product are spread out, days stay newest first", () => {
   const day = (d: string, h: number) => `2026-10-${d}T${String(h).padStart(2, "0")}:00:00Z`;

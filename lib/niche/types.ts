@@ -128,6 +128,20 @@ export type Niche = {
   people: Words;
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
+  /** "v2": the 2026-11 design (quick-match home, fit pages, tight lists, the v2 brand / catalogue / reviews / about pages).
+   *  Off by default, so a site switches when its data is ready (audit 2026-11-15: no more niche.id === "padel" checks). */
+  design?: "v2";
+  /** Words the v2 pages use that are about the sport, not the product (audit 2026-11-15: no hard-coded padel copy in shared
+   *  components). Optional: lib/niche/index.ts v2copy fills plain defaults from words / people / site. */
+  v2copy?: {
+    /** "padel": "Padel rackets ranked for you…", "padel forums". */ sport: string;
+    /** The small sign-off emoji ("🎾"), or "". */ emoji: string;
+    /** The black strip over the header. */ strip: string;
+    /** The page-foot line on racket pages. */ madeBy: string;
+    /** What a forum / blog report is called on a racket page ("padel forum"). */ forum: string; blog: string;
+    /** The About page's two story paragraphs (the second's last words, "your game", are set in italics). */ aboutStory: [string, string];
+    /** A product name for form placeholders ("Metalbone CTRL 3.5 2026"). */ example: string;
+  };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
   feedMaxAgeYears?: number;
@@ -138,7 +152,19 @@ export type Niche = {
   recentMonths?: number;
   /** The fit check and match %: the fewest reports a racket needs for a verdict, and below how many the page notes it rests on
    *  fewer reports (owner 2026-11-15: padel 6 and 15). Defaults 20 / 20. */
-  fit?: { minReports: number; fewReports: number };
+  fit?: { minReports: number; fewReports: number;
+    /** Pro / competition lines (regex sources, matched on the product name, case-insensitive): with a brand "advanced" label they
+     *  are kept out of the intermediate lists, and out of the beginner lists whatever the brand says, unless players at that
+     *  level vouch for them or the expert level says otherwise (lib/level-suits.ts). */
+    proLines?: string[];
+    /** Shapes kept out of the beginner lists (lowercase spec values, e.g. "diamond"), unless beginners vouch for the racket,
+     *  the expert level includes beginner, or it is one of beginnerLines. */
+    beginnerShapesOut?: string[];
+    /** Lines the owner names as beginner-friendly (regex sources on the name): they always show for beginners. */
+    beginnerLines?: string[];
+    /** Quick match's level gate (owner 2026-11-15): a product shows for a picked level only when its suits score for that
+     *  level (lib/level-suits.ts) reaches this. Without it, level only weighs in the ranking. */
+    levelGate?: { beginner: number; intermediate: number; advanced: number } };
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */

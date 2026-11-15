@@ -1,0 +1,24 @@
+/* The design-v2 skin for pages that keep their older markup (owner 2026-11-15: compare and rate in the new design): the v2
+   palette, fonts and ink borders mapped onto the variables those pages already use. Scoped to main.pv2. */
+body:has(main.pv2) { background: #fbfaf6; }
+main.pv2 {
+  --ink: #151515; --ink-2: #2b2925; --ink-3: #5f5b53; --line: #151515; --surface: #fff; --bg: #fbfaf6; --tint: #f3f1ea;
+  --green: #2f5d14; --green-ink: #2f5d14; --green-line: #151515; --green-wash: oklch(0.97 0.04 125);
+  --lt-bg: #fbfaf6; --lt-line: #151515; --lt-ink: #151515; --lt-mute: #5f5b53; --lt-acc: #2f5d14; --lt-tint: oklch(0.95 0.06 125); --lt-tint2: oklch(0.97 0.04 125);
+  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --serif: var(--display); --sans: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif;
+  --radius: 14px; --shadow: none;
+  background: var(--bg); color: var(--ink); font-family: var(--sans);
+  h1 { font: 800 clamp(30px, 4.4vw, 46px)/1.05 var(--display) !important; letter-spacing: -0.025em !important; color: var(--ink) !important; }
+  h2, h3 { font-family: var(--display) !important; color: var(--ink); }
+  a { text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .button { background: var(--ink) !important; color: #fbfaf6 !important; border: 2px solid var(--ink) !important; border-radius: 8px !important; font-weight: 700; box-shadow: none !important; }
+  .button.ghost { background: #fff !important; color: var(--ink) !important; }
+  .cmp-head .art, .cmp-add, .cmp-sugs a, .rate-row, .cmp-more a { border: 2px solid var(--ink) !important; border-radius: 12px !important; background: #fff; }
+  .cmp-label { border-bottom: 2px dashed #c9c5ba !important; }
+  .affiliate-note { border: 2px dashed #b9b5aa; border-radius: 12px; background: #fff; }
+  .rate-brands button, .rate-profile button { color: var(--ink) !important; background: #fff !important; border: 1.5px solid var(--ink) !important; }
+  .rate-brands button[aria-pressed="true"], .rate-profile button[aria-pressed="true"] { background: var(--ink) !important; color: #fbfaf6 !important; }
+  :focus-visible { outline: 3px solid oklch(0.88 0.17 125); outline-offset: 2px; }
+  /* Phones: the add box sits below the table (.cmp-add-m), as the page intends. */
+  @media (max-width: 760px) { .cmp-add, .cmp-slot { display: none !important; } }
+}

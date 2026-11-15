@@ -180,8 +180,8 @@ export const tool: Niche = {
   },
   seo: {
     homeTitle: "ToolRecs – Real Owner Reviews of Power Tools and Battery Platforms",
-    homeDescription: "Browse real owner reviews of cordless drills, impact drivers, saws, sanders, grinders, nailers and battery outdoor tools, plus experiences collected from Reddit, YouTube and forums. Compare DeWalt, Milwaukee, Makita, Ryobi, Bosch, Ego and more, one page per model number.",
-    layoutDescription: "Real owner experiences with power tools and battery platforms, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real owner reviews of cordless drills, impact drivers, saws, sanders, grinders, nailers and battery outdoor tools, plus experiences collected from YouTube and forums. Compare DeWalt, Milwaukee, Makita, Ryobi, Bosch, Ego and more, one page per model number.",
+    layoutDescription: "Real owner experiences with power tools and battery platforms, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | ToolRecs",
     catalog: { title: "All Power Tools – Owner Reviews and Ratings", description: "Every power tool and battery platform on ToolRecs with owner ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "Power Tool Brands", description: "Browse power tools by brand — DeWalt, Milwaukee, Makita, Ryobi, Bosch, Metabo HPT, Ego, Festool and more — and read real owner reviews of each model." },
@@ -190,12 +190,12 @@ export const tool: Niche = {
     productNotFound: "Tool not found | ToolRecs",
     productCategory: "Tools",
     addReview: { title: "Add a Tool Review", description: "Own a drill, saw, nailer or battery mower? Share how it actually holds up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why ToolRecs exists: tool opinions are scattered across Reddit, YouTube and forums. ToolRecs collects owners' first-hand experiences and lets owners add their own." },
+    about: { title: "About", description: "Why ToolRecs exists: tool opinions are scattered across YouTube and forums. ToolRecs collects owners' first-hand experiences and lets owners add their own." },
     ogAlt: "ToolRecs – real owner reviews of power tools",
     ogProductAlt: "Power tool reviews on ToolRecs",
     ogEyebrow: "Owner reviews of power tools",
     ogTitle: "Power tool reviews from people who use them on the job",
-    ogDetail: "From owners, Reddit, YouTube and forums",
+    ogDetail: "From owners, YouTube and forums",
     ogFallbackTitle: "Power tool reviews",
   },
   copy: {
@@ -214,7 +214,7 @@ export const tool: Niche = {
     about: {
       heading: "Why ToolRecs exists",
       paragraphs: [
-        "Tool opinions are scattered across Reddit, YouTube and forums, and a first look rarely says whether a drill’s chuck still holds after two years on a job site or how many batteries a mower really needs. ToolRecs puts owners’ experiences in one place and lets owners add their own.",
+        "Tool opinions are scattered across YouTube and forums, and a first look rarely says whether a drill’s chuck still holds after two years on a job site or how many batteries a mower really needs. ToolRecs puts owners’ experiences in one place and lets owners add their own.",
         "A tool that suits one person won’t suit everyone. Knowing whether someone frames houses every day or hangs shelves twice a year, and which battery platform they were already on, often tells you more than a spec sheet on its own.",
       ],
       sections: [

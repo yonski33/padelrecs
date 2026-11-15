@@ -20,7 +20,9 @@ import { MIN_LIST_REVIEWS } from "./top-lists";
 /** Below this many reviews with a verdict a product shows no signal: the rankings' floor, so every ranked product has one. */
 export const MIN_SIGNAL_REVIEWS = MIN_LIST_REVIEWS;
 export const TOP_SIGNAL = 99;
-export const NEGATIVE_WEIGHT = 0.55, MIXED_WEIGHT = 0.1;
+// Owner 2026-11-15 ("lets go with A"): a mixed review costs a bit more, 0.1 → 0.25 of a point per % of mixed reviews, so a
+// racket most players are lukewarm about no longer scores like a well-liked one (Nox AT10 18k 2025: 31 / 40 / 23).
+export const NEGATIVE_WEIGHT = 0.55, MIXED_WEIGHT = 0.25;
 /** How much a mixed review counts toward the liked count, and how strongly that count weighs (1 = in step with the ceiling). */
 export const MIXED_CREDIT = 0.3, VOLUME_POWER = 0.9;
 /** How many imaginary average reviews pull a small sample's negative and mixed shares toward the site average. */

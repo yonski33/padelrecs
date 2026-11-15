@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 import { isLight } from "../../../lib/look";
 import type { Metadata } from "next";
 import { cache } from "react";
-import { notFound, redirect } from "next/navigation";
+import { notFound, redirect, permanentRedirect } from "next/navigation";
 import { catalog as loadCatalog } from "../../../db/data";
 import { comparePairs, pairHref, pairKey } from "../../../lib/compare-pairs";
 import { CompareView, compareMetadata, hrefFor, type Data } from "../view";
@@ -17,9 +17,10 @@ function resolve(data: Data, key: string) {
   const [x, y, ...more] = key.split("-vs-");
   const a = data.listed.find(r => r.slug === x), b = data.listed.find(r => r.slug === y);
   if (more.length || !a || !b || a === b) return {};
-  // The same pair in the other order, or a mix that isn't curated (redirect, not 308: the curated list changes with reviews).
+  // The same pair in the other order is the same page: a permanent 308 (audit 2026-11-15). A mix that isn't curated goes to
+  // /compare?ids= with a temporary redirect, since the curated list changes with reviews.
   const sorted = comparePairs(data).byKey.get(pairKey(a.slug, b.slug));
-  return { fallback: sorted ? pairHref(a.slug, b.slug) : hrefFor([a.slug, b.slug]) };
+  return sorted ? { fallback: pairHref(a.slug, b.slug), permanent: true } : { fallback: hrefFor([a.slug, b.slug]), permanent: false };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ pair: string }> }): Promise<Metadata> {
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
 
 export default async function ComparePairPage({ params, searchParams }: { params: Promise<{ pair: string }>; searchParams: Promise<{ look?: string }> }) {
   const [{ pair: key }, data, q] = await Promise.all([params, catalog(), searchParams]);
-  const { pair, fallback } = resolve(data, key);
-  if (!pair) { if (fallback) redirect(fallback); notFound(); }
+  const { pair, fallback, permanent } = resolve(data, key);
+  if (!pair) { if (fallback) { if (permanent) permanentRedirect(fallback); redirect(fallback); } notFound(); }
   return <CompareView data={data} products={[pair.a, pair.b]} light={isLight(q.look)}/>;
 }

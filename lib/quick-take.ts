@@ -164,7 +164,8 @@ export const monthYear = (iso: string, long = false) => new Date(iso.length === 
 export function quickTakeSeo(name: string, year: number, qt: QuickTake, reports: number, site: string) {
   return {
     title: `${name} review (${year}): what players say | ${site}`,
-    description: `${plain(qt.hook.good)} ${plain(qt.hook.catch)} From ${roundedDown(reports)}+ player reports.`,
+    // The exact count, the same number the page shows (audit 2026-11-15, #12: "65+" next to "68 reviews").
+    description: `${plain(qt.hook.good)} ${plain(qt.hook.catch)} From ${reports} player ${reports === 1 ? "report" : "reports"}.`,
   };
 }
 

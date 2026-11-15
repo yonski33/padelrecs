@@ -22,7 +22,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import readline from "node:readline";
 import { parseEnv } from "node:util";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { AMAZON_KEYS, LINK_TAG_KEY, envBody, isAssociateTag, keyStates, planProject, tagFor, tagOverrideKey, type AmazonKey, type ExistingEnv, type Step } from "../lib/amazon-env";
 import targets from "../deployment/targets.json";
 

@@ -1,57 +1,13 @@
 import type { Niche } from "./types";
-import { padel } from "./padel";
-import { pickleball } from "./pickleball";
-import { skin } from "./skin";
-import { tennis } from "./tennis";
-import { running } from "./running";
-import { golf } from "./golf";
-import { gaming } from "./gaming";
-import { discgolf } from "./discgolf";
-import { simracing } from "./simracing";
-import { cycling } from "./cycling";
-import { audio } from "./audio";
-import { monitor } from "./monitor";
-import { camera } from "./camera";
-import { ultralight } from "./ultralight";
-import { badminton } from "./badminton";
-import { fragrance } from "./fragrance";
-import { coffee } from "./coffee";
-import { climbing } from "./climbing";
-import { nails } from "./nails";
-import { kitchen } from "./kitchen";
-import { snowboard } from "./snowboard";
-import { tabletennis } from "./tabletennis";
-import { homegym } from "./homegym";
-import { money } from "./money";
-import { software } from "./software";
-import { hosting } from "./hosting";
-import { keyboard } from "./keyboard";
-import { travelgear } from "./travelgear";
-import { babygear } from "./babygear";
-import { sleep } from "./sleep";
-import { laptop } from "./laptop";
-import { print } from "./print";
-import { tv } from "./tv";
-import { tool } from "./tool";
-import { grill } from "./grill";
-import { dog } from "./dog";
 
 export type { Niche } from "./types";
 
-/** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear, sleep, laptop, print, tv, tool, grill, dog };
-export const DEFAULT_NICHE = "padel";
-
-/** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */
-export function selectNiche(id: string | undefined): Niche {
-  const key = (id || DEFAULT_NICHE).trim().toLowerCase();
-  const found = Object.hasOwn(niches, key) ? niches[key] : undefined;
-  if (!found) throw new Error(`Unknown NICHE "${id}". Known niches: ${Object.keys(niches).join(", ")}.`);
-  return found;
-}
-
-// next.config.ts inlines NICHE at build time, so browser code sees the same value as the server.
-export const niche = selectNiche(process.env.NICHE);
+// The running site's config. In Next builds "@/lib/niche/selected" is aliased to that one site's file (next.config.ts
+// turbopack.resolveAlias), so a page or browser bundle carries only its own config; under tsx (scripts, tests) it is
+// lib/niche/selected.ts, which picks the site by NICHE from every config.
+import * as picked from "@/lib/niche/selected";
+const isNiche = (v: unknown): v is Niche => !!v && typeof v === "object" && "id" in v && "site" in v;
+export const niche: Niche = Object.values(picked as Record<string, unknown>).find(isNiche)!;
 
 /** "/rackets" on PadelRecs, "/paddles" on PickleballRecs. The pages live in app/rackets; next.config.ts maps other paths onto them. */
 /** Whether product names carry a model year (padel) or not (pickleball, skincare, …). */
@@ -70,3 +26,16 @@ export function productPathIn(n: Niche, product: { slug: string; shape?: string 
 }
 /** The pill on review cards: the type page's short singular label ("Budgeting app", "IEM"), when the niche has type pages. */
 export const categoryPill = (shape: string | null | undefined) => { const t = typePageFor(shape); return t ? { label: t.one ?? t.shape, href: `/${t.slug}` } : undefined; };
+/** The one name for the 0–99 score everywhere in the UI (owner 2026-11-15: "Player score", never "signal"): "Player score",
+ *  "Sleeper score"… The code keeps calling it the signal (lib/signal.ts). */
+export const scoreLabel = `${niche.people.One} score`;
+/** The site runs the 2026-11 design (niche.design). */
+export const isV2 = niche.design === "v2";
+/** The v2 pages' sport words (niche.v2copy), with plain defaults for a site that hasn't written its own. */
+export const v2copy: NonNullable<Niche["v2copy"]> = niche.v2copy ?? {
+  sport: "", emoji: "", strip: `a free, ad-light side project · built by ${niche.people.many}`,
+  madeBy: `made by people who own too many ${niche.words.many}`, forum: "forum", blog: "blog",
+  aboutStory: [`${niche.site.name} started because we couldn't find a straight answer about which ${niche.words.one} to buy. Just spec sheets, sponsored reviews and 20-minute videos.`,
+    `So we built the thing we wanted: one place that brings ${niche.people.one} reviews, YouTube reviewers and forums together, counts it honestly, and tells you if a ${niche.words.one} fits`],
+  example: `${niche.examples.model} ${niche.examples.year}`,
+};

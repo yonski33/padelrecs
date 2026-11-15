@@ -2,6 +2,7 @@
 // page, one soft accent. A pill bar of types and rankings, a small centred hero with the search, then a compact
 // leaderboard (rank, small photo, name, one grey line, a tiny meta line, the signal) with short #1–#5 lists beside it.
 // Shown with ?home=d until the owner picks a direction; every number is counted from published reviews.
+import { newThisWeek } from "../lib/new-this-week";
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
 import { niche, productHref } from "../lib/niche";
@@ -57,7 +58,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `/?${q}#board` : "/#board"; };
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
   const everything = [...data.reviews, ...data.external];
-  const week = [...data.reviews.map(r => r.createdAt), ...data.external.map(webDate)].filter(d => Date.parse(d) >= now - 7 * DAY).length;
+  const week = newThisWeek(data, now); // one definition on every page (lib/new-this-week.ts)
 
   // Side lists: the newest opinions (one per product), then the top five of two rankings.
   const seen = new Set<string>();
@@ -75,7 +76,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, reviewed by `}<span>{`real ${p.many}`}</span></h1>
       {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). */}
-      <p className="lt-sub">{`What real ${p.many} say on Reddit, YouTube and blogs, counted and ranked.`}</p>
+      <p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
@@ -86,7 +87,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
             verdict lives in the rankings, one prominent link away. */}
         <header className="lt-listhead">
           <div><h2>{`Most talked about ${talkLabel}`}</h2>
-            <p>{`The ${w.many} people have posted about most in the last 6 months, on Reddit, YouTube and blogs.`}</p></div>
+            <p>{`The ${w.many} people have posted about most in the last 6 months, on YouTube, blogs and forums.`}</p></div>
           {picks.length > 0 && <a className="lt-explore" href={RANKINGS_PATH}>Explore rankings <span aria-hidden="true">→</span></a>}
         </header>
         {/* The categories as plain words with a count and an underline on the one picked (owner, 2026-11-12). */}

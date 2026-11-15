@@ -1,0 +1,68 @@
+import "./catalog-v2.css";
+import { niche, productHref } from "../../lib/niche";
+import { displayName } from "../../lib/brand-name";
+import { listLine } from "../../lib/list-lines";
+import { shortLine } from "../../lib/short-lines";
+import { shopPhoto, photoHidden } from "../../lib/shop-photos";
+import { amazonPhoto } from "../../lib/amazon-photos";
+import { matchingRackets } from "../../lib/racket-search";
+import { score, type Catalog } from "../../db/data";
+import { styleLean, ARM_BAR, SUITS_OK } from "../../lib/fit-verdict";
+import { gramsOf, weightOf } from "../../lib/fine-tune";
+import type { CatalogFilters, CatalogRow } from "../../lib/catalog-filter";
+import { CatalogBrowser, type CatalogCard } from "./catalog-browser";
+import { qtFontVars } from "../qt-fonts";
+import { V2Footer } from "../v2-footer";
+import { matchContext } from "../match-context";
+import { listShopLink } from "../../lib/amazon-offer";
+import { rowOfFamily } from "../../lib/compare-pairs";
+import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
+
+// The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
+// only: filters on the left (play style, level, shape, year, arm-friendly, and "more filters" for weight, feel and a bigger
+// sweet spot, like the home's fine-tune), the list as card rows ranked by Player score. Everything is in the URL, so every view
+// is a server-rendered, shareable page; a group's counts are what you'd get by picking that option. A tap filters in the browser
+// (app/rackets/catalog-browser.tsx, lib/catalog-filter.ts), with no round trip.
+type F = CatalogFilters;
+
+const shapeWord = (s: string | null | undefined) => { const x = (s ?? "").toLowerCase(); return /diamond/.test(x) ? "diamond" : /round/.test(x) ? "round" : /tear|drop/.test(x) ? "teardrop" : x ? "hybrid" : null; };
+
+/** With `brand`, the same page for one brand (/brands/<slug>, owner 2026-11-15: the brand page in the new design). */
+export default async function CatalogV2({ data: all, f, brand: only }: { data: Catalog; f: F; brand?: { id: string; name: string; slug: string } }) {
+  const data = only ? { ...all, listed: all.listed.filter(r => r.brandId === only.id) } : all;
+  const base = only ? `/brands/${only.slug}` : "/rackets";
+  const ctx = await matchContext();
+  const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
+  // One model, newest year (owner 2026-11-15, as quick match): a newest year without enough reports yet hands the row to the
+  // newest year that has them (the same rule as quick match). Older pages stay live.
+  const reportsOf = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+  const rowOf = (r: (typeof data.listed)[number]) => rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  const newest = new Set(data.listed.filter(r => rowOf(r).shown.id === r.id).map(r => r.id));
+  // Each listed racket's filter facts (lib/catalog-filter.ts), from the same data as quick match and the fit check, and its
+  // card. Both go to the browser once; filters and sort run there (app/rackets/catalog-browser.tsx).
+  const photo = (r: Catalog["listed"][number]) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
+  const listed = matchingRackets(data.listed, f.q || "");
+  const rows: CatalogRow[] = listed.map(r => {
+    const facts = ctx.facts(r.id), sc = score(data, r.id), su = facts.suits;
+    return { id: r.id, name: r.name, lean: styleLean(facts).lean, ...(su ? { suits: { beginner: su.beginner, intermediate: su.intermediate, advanced: su.advanced } } : {}),
+      shape: shapeWord(r.shape), year: String(r.year), arm: (facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
+      sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: ctx.signal(r.id), n: facts.reports, judged: sc.judged, newest: newest.has(r.id) };
+  });
+  const cards: Record<string, CatalogCard> = Object.fromEntries(listed.map(r => { const sc = score(data, r.id), shop = listShopLink(r);
+    return [r.id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic: photo(r), tile: brand(r.brandId) ?? "", line: shortLine(r) ?? listLine(r) ?? null,
+      shop: shop ? { url: shop.url, rel: shop.rel } : null, pos: sc.positive, mix: sc.mixed, neg: sc.negative }]; }));
+
+  return <main className={`ct2 ${qtFontVars}`}>
+    <div className="ct2-wrap">
+      <section className="ct2-hero">
+        <div>{only && <p className="ct2-crumbs"><a href="/">home</a> / <a href="/brands">brands</a> / {only.name.toLowerCase()}</p>}
+          {only ? <h1>{`${only.name} `}<span className="hl">{niche.words.many}</span></h1> : <h1>All <span className="hl">{niche.words.many}</span></h1>}
+          <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by Player score. Narrow it down on the left.` : `Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
+        <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
+      </section>
+      <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one}/>
+    </div>
+    <V2Footer/>
+  </main>;
+}

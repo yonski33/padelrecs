@@ -175,8 +175,8 @@ export const homegym: Niche = {
   },
   seo: {
     homeTitle: "HomeGymRecs – Real Reviews of Adjustable Dumbbells, Power Racks, Benches and Home Gym Gear",
-    homeDescription: "Browse real owner reviews of adjustable dumbbells, power racks, weight benches, barbells, plates, functional trainers, rowers and air bikes, plus opinions collected from Reddit, YouTube, retailers and forums. Compare REP Fitness, Titan, Bowflex, PowerBlock, Force USA, Bells of Steel, PRx, Ironmaster, Concept2 and more.",
-    layoutDescription: "Real experiences with home gym equipment — dumbbells, racks, benches, barbells, plates, machines and cardio gear — plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real owner reviews of adjustable dumbbells, power racks, weight benches, barbells, plates, functional trainers, rowers and air bikes, plus opinions collected from YouTube, retailers and forums. Compare REP Fitness, Titan, Bowflex, PowerBlock, Force USA, Bells of Steel, PRx, Ironmaster, Concept2 and more.",
+    layoutDescription: "Real experiences with home gym equipment — dumbbells, racks, benches, barbells, plates, machines and cardio gear — plus opinions from YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | HomeGymRecs",
     catalog: { title: "All Home Gym Equipment – Reviews and Ratings", description: "Every adjustable dumbbell, rack, bench, barbell, plate, cable machine and cardio machine on HomeGymRecs with owner ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "Home Gym Equipment Brands", description: "Browse home gym gear by brand — REP Fitness, Titan Fitness, Bowflex, PowerBlock, Force USA, Bells of Steel, PRx Performance, Ironmaster, Concept2 and more — and read real reviews of each model." },
@@ -185,12 +185,12 @@ export const homegym: Niche = {
     productNotFound: "Equipment not found | HomeGymRecs",
     productCategory: "Home gym equipment",
     addReview: { title: "Add a Home Gym Equipment Review", description: "Own adjustable dumbbells, a rack, a bench, a barbell, plates, a cable machine or a rower? Share how it works for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why HomeGymRecs exists: home gym opinions are scattered across Reddit, YouTube, retailers and forums. HomeGymRecs collects them and lets owners add their own." },
+    about: { title: "About", description: "Why HomeGymRecs exists: home gym opinions are scattered across YouTube, retailers and forums. HomeGymRecs collects them and lets owners add their own." },
     ogAlt: "HomeGymRecs – real reviews of home gym equipment",
     ogProductAlt: "Home gym equipment reviews on HomeGymRecs",
     ogEyebrow: "Real reviews of home gym equipment",
     ogTitle: "Home gym reviews from people who lift with it",
-    ogDetail: "From owners, Reddit, YouTube, retailers and forums",
+    ogDetail: "From owners, YouTube, retailers and forums",
     ogFallbackTitle: "Home gym equipment reviews",
   },
   copy: {
@@ -209,7 +209,7 @@ export const homegym: Niche = {
     about: {
       heading: "Why HomeGymRecs exists",
       paragraphs: [
-        "Home gym opinions are scattered across Reddit, YouTube, retailers and forums. HomeGymRecs puts those experiences in one place and lets owners add their own.",
+        "Home gym opinions are scattered across YouTube, retailers and forums. HomeGymRecs puts those experiences in one place and lets owners add their own.",
         "A rack that is perfect in a garage with a 9-foot ceiling won’t fit a basement, and dumbbells that are fine for curls may be slow to change between supersets. Knowing where someone trains, how they train and what they had before often tells you more than a score on its own.",
       ],
       sections: [

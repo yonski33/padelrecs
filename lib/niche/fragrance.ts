@@ -172,8 +172,8 @@ export const fragrance: Niche = {
   },
   seo: {
     homeTitle: "FragranceRecs – Real Reviews of Perfumes and Colognes",
-    homeDescription: "Browse real fragrance reviews from people who wear them, plus opinions collected from Reddit, YouTube, retailers and forums. Compare experiences with Dior, Chanel, Creed, Parfums de Marly, Lattafa, Armaf and more.",
-    layoutDescription: "Real experiences with perfumes and colognes from people who wear them, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real fragrance reviews from people who wear them, plus opinions collected from YouTube, retailers and forums. Compare experiences with Dior, Chanel, Creed, Parfums de Marly, Lattafa, Armaf and more.",
+    layoutDescription: "Real experiences with perfumes and colognes from people who wear them, plus opinions from YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | FragranceRecs",
     catalog: { title: "All Fragrances – Wearer Reviews and Ratings", description: "Every perfume and cologne on FragranceRecs with community ratings. Filter by brand and who it’s for, then read what wearers say about each one." },
     brands: { title: "Fragrance Brands", description: "Browse perfumes and colognes by brand — Dior, Chanel, Yves Saint Laurent, Creed, Parfums de Marly, Lattafa, Armaf and more — and read real reviews of each one." },
@@ -182,12 +182,12 @@ export const fragrance: Niche = {
     productNotFound: "Fragrance not found | FragranceRecs",
     productCategory: "Fragrance",
     addReview: { title: "Add a Fragrance Review", description: "Wear a perfume or cologne? Share how it smells, lasts and projects on you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why FragranceRecs exists: fragrance opinions are scattered across Reddit, YouTube, retailers and forums. FragranceRecs collects them and lets people add their own." },
+    about: { title: "About", description: "Why FragranceRecs exists: fragrance opinions are scattered across YouTube, retailers and forums. FragranceRecs collects them and lets people add their own." },
     ogAlt: "FragranceRecs – real reviews of perfumes and colognes",
     ogProductAlt: "Fragrance reviews on FragranceRecs",
     ogEyebrow: "Real reviews of perfumes and colognes",
     ogTitle: "Fragrance reviews from people who wear them",
-    ogDetail: "From wearers, Reddit, YouTube, retailers and forums",
+    ogDetail: "From wearers, YouTube, retailers and forums",
     ogFallbackTitle: "Fragrance reviews",
   },
   copy: {
@@ -206,7 +206,7 @@ export const fragrance: Niche = {
     about: {
       heading: "Why FragranceRecs exists",
       paragraphs: [
-        "Fragrance opinions are scattered across Reddit, YouTube, retailers and forums. FragranceRecs puts those experiences in one place and lets people add their own.",
+        "Fragrance opinions are scattered across YouTube, retailers and forums. FragranceRecs puts those experiences in one place and lets people add their own.",
         "A fragrance that works on one person won’t work on everyone. Skin, climate, the concentration and how someone wears it often tell you more than a score on its own.",
       ],
       sections: [

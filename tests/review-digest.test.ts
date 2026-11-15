@@ -1,7 +1,7 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
 import {collectDigest, digestEmail, sendDigest, type DigestReview} from "../lib/review-digest";
-import {niches} from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import type {ContactEmail} from "../lib/contact";
 
 const review:DigestReview={id:"rev 1",rating:4,reviewText:"Sticky rubber, a bit stiff for the first week.",alias:"Maria",email:"maria@example.com",status:"pending",createdAt:"2026-11-02T10:00:00Z",product:{name:"La Sportiva Skwama",slug:"la-sportiva-skwama",shape:null},newProduct:false};

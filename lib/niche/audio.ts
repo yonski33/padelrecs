@@ -152,8 +152,8 @@ export const audio: Niche = {
   },
   seo: {
     homeTitle: "AudioRecs – Real Listener Reviews of Headphones, IEMs and Earbuds",
-    homeDescription: "Browse real reviews of headphones, IEMs and wireless earbuds from listeners, plus opinions collected from Reddit, YouTube, audio shops and forums. Compare Sony, Sennheiser, Apple, Bose, Audio-Technica, Beyerdynamic, HIFIMAN, Moondrop and more.",
-    layoutDescription: "Real listener experiences with headphones, IEMs and earbuds, plus opinions from Reddit, YouTube, audio shops and forums with the source linked.",
+    homeDescription: "Browse real reviews of headphones, IEMs and wireless earbuds from listeners, plus opinions collected from YouTube, audio shops and forums. Compare Sony, Sennheiser, Apple, Bose, Audio-Technica, Beyerdynamic, HIFIMAN, Moondrop and more.",
+    layoutDescription: "Real listener experiences with headphones, IEMs and earbuds, plus opinions from YouTube, audio shops and forums with the source linked.",
     titleTemplate: "%s | AudioRecs",
     catalog: { title: "All Headphones, IEMs and Earbuds – Listener Reviews and Ratings", description: "Every pair of headphones, IEMs and earbuds on AudioRecs with community ratings. Filter by brand and category, then read what listeners say." },
     brands: { title: "Headphone Brands", description: "Browse headphones, IEMs and earbuds by brand — Sony, Sennheiser, Apple, Bose, Audio-Technica, Beyerdynamic, HIFIMAN, Moondrop and more — and read real listener reviews of each model." },
@@ -162,12 +162,12 @@ export const audio: Niche = {
     productNotFound: "Headphones not found | AudioRecs",
     productCategory: "Headphones",
     addReview: { title: "Add a Headphone Review", description: "Own a pair of headphones, IEMs or earbuds? Share how they sound and fit in about two minutes. No account needed." },
-    about: { title: "About", description: "Why AudioRecs exists: headphone opinions are scattered across Reddit, YouTube, audio shops and forums. AudioRecs collects them and lets listeners add their own." },
+    about: { title: "About", description: "Why AudioRecs exists: headphone opinions are scattered across YouTube, audio shops and forums. AudioRecs collects them and lets listeners add their own." },
     ogAlt: "AudioRecs – real listener reviews of headphones",
     ogProductAlt: "Headphone reviews on AudioRecs",
     ogEyebrow: "Listener reviews of headphones, IEMs and earbuds",
     ogTitle: "Headphone reviews from people who listen to them",
-    ogDetail: "From listeners, Reddit, YouTube, audio shops and forums",
+    ogDetail: "From listeners, YouTube, audio shops and forums",
     ogFallbackTitle: "Headphone reviews",
   },
   copy: {
@@ -186,7 +186,7 @@ export const audio: Niche = {
     about: {
       heading: "Why AudioRecs exists",
       paragraphs: [
-        "Headphone opinions are scattered across Reddit, YouTube, audio shops and forums. AudioRecs puts those experiences in one place and lets listeners add their own.",
+        "Headphone opinions are scattered across YouTube, audio shops and forums. AudioRecs puts those experiences in one place and lets listeners add their own.",
         "A pair that suits one listener won’t suit everyone. Knowing what someone listens to, what they drive them with, which tips or pads they use and what they had before often tells you more than a score on its own.",
       ],
       sections: [

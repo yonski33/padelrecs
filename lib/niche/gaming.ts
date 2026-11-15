@@ -190,8 +190,8 @@ export const gaming: Niche = {
   },
   seo: {
     homeTitle: "GamingRecs – Real Gamer Reviews of Gaming Gear",
-    homeDescription: "Browse real reviews of gaming mice, headsets and controllers from gamers, plus opinions collected from Reddit, YouTube, retailers and forums. Compare Logitech, Razer, SteelSeries, Corsair, ASUS, Sony and more.",
-    layoutDescription: "Real gamer experiences with mice, headsets and controllers, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real reviews of gaming mice, headsets and controllers from gamers, plus opinions collected from YouTube, retailers and forums. Compare Logitech, Razer, SteelSeries, Corsair, ASUS, Sony and more.",
+    layoutDescription: "Real gamer experiences with mice, headsets and controllers, plus opinions from YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | GamingRecs",
     catalog: { title: "All Gaming Gear – Gamer Reviews and Ratings", description: "Every mouse, headset and controller on GamingRecs with community ratings. Filter by brand and category, then read what gamers say." },
     brands: { title: "Gaming Gear Brands", description: "Browse gaming gear by brand — Logitech, Razer, SteelSeries, Corsair, ASUS, HyperX, Sony and more — and read real gamer reviews of each product." },
@@ -200,12 +200,12 @@ export const gaming: Niche = {
     productNotFound: "Product not found | GamingRecs",
     productCategory: "Gaming gear",
     addReview: { title: "Add a Gaming Gear Review", description: "Used a gaming mouse, headset or controller? Share how it held up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why GamingRecs exists: gaming gear opinions are scattered across Reddit, YouTube, retailers and forums. GamingRecs collects them and lets gamers add their own." },
+    about: { title: "About", description: "Why GamingRecs exists: gaming gear opinions are scattered across YouTube, retailers and forums. GamingRecs collects them and lets gamers add their own." },
     ogAlt: "GamingRecs – real gamer reviews of gaming gear",
     ogProductAlt: "Gaming gear reviews on GamingRecs",
     ogEyebrow: "Gamer reviews of gaming gear",
     ogTitle: "Gaming gear reviews from people who use it",
-    ogDetail: "From gamers, Reddit, YouTube, retailers and forums",
+    ogDetail: "From gamers, YouTube, retailers and forums",
     ogFallbackTitle: "Gaming gear reviews",
   },
   copy: {
@@ -224,7 +224,7 @@ export const gaming: Niche = {
     about: {
       heading: "Why GamingRecs exists",
       paragraphs: [
-        "Gaming gear opinions are scattered across Reddit, YouTube, retailers and forums. GamingRecs puts those experiences in one place and lets gamers add their own.",
+        "Gaming gear opinions are scattered across YouTube, retailers and forums. GamingRecs puts those experiences in one place and lets gamers add their own.",
         "A mouse or headset that suits one person won’t suit everyone. Knowing what someone plays, on which platform and how long they’ve used it often tells you more than a score on its own.",
       ],
       sections: [

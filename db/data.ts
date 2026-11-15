@@ -46,6 +46,8 @@ function remembered(): Promise<Loaded> {
  value.catch(() => { if (memo?.value === value) memo = null; });
  return value;
 }
+/** Drops this instance's kept copy, so the next page reads fresh (after an admin publish or edit: app/funtimes/auth.ts). */
+export function forgetCatalog() { memo = null; }
 // Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : remembered();

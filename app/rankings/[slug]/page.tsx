@@ -6,7 +6,7 @@ import { siteOgImages } from "../../site-og";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { niche, productHref } from "../../../lib/niche";
+import { niche, productHref, scoreLabel, isV2 } from "../../../lib/niche";
 import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, RANKINGS_PATH, listYear, listModelYear, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon } from "../../icons";
@@ -112,8 +112,8 @@ function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nam
   if (lead && lead[1].length >= 2 && [...brands.values()].filter(v => v.length === lead[1].length).length === 1) faq.push({ q: `Which brand has the most ${w.many} on this list?`, a:
     `${lead[0]}, with ${lead[1].length} of the ${entries.length}: ${lead[1].map(e => `${nameOf(e)} (#${e.rank})`).join(", ").replace(/, ([^,]+)$/, " and $1")}.` });
   faq.push({ q: `How is this ranking made?`, a:
-    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand experiences collected and summarized from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order follows each ${w.one}'s signal score, which rewards ${w.many} that are both well liked and widely discussed.` });
-  faq.push({ q: `What is the signal score?`, a: `A score out of 100 for how well reviewed a ${w.one} is. Negative and mixed reviews take points off, and so does having only a few reviews, so a ${w.one} many people like ranks above one a handful love. It needs at least ${MIN_SIGNAL_REVIEWS} reviews and moves as new reviews come in.` });
+    `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand experiences collected and summarized from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order follows each ${w.one}'s ${scoreLabel}, which rewards ${w.many} that are both well liked and widely discussed.` });
+  faq.push({ q: `What is the ${scoreLabel}?`, a: `A score out of 100 for how well reviewed a ${w.one} is. Negative and mixed reviews take points off, and so does having only a few reviews, so a ${w.one} many people like ranks above one a handful love. It needs at least ${MIN_SIGNAL_REVIEWS} reviews and moves as new reviews come in.` });
   faq.push({ q: `What does a ${w.one} need to make this list?`, a: [
     `At least ${min} reviews, with at least ${Math.round(MIN_POSITIVE_SHARE * 100)}% of them positive (mixed counts as half).`,
     list.trait ? `It also needs reviews that tag it ${quoted(list.trait.tags)}.` : "",
@@ -153,7 +153,7 @@ export default async function TopListPage({ params, searchParams }: { params: Pr
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
-  if (niche.id === "padel" && query.look !== "classic") return <RankingV2 {...{ data, lists, found, amazon, affiliate, faq, jsonLd }} search={query}/>;
+  if (isV2 && query.look !== "classic") return <RankingV2 {...{ data, lists, found, amazon, affiliate, faq, jsonLd }} search={query}/>;
   if (isLight(query.look)) return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
   return <main className="top-page v2">
     {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
@@ -172,7 +172,7 @@ export default async function TopListPage({ params, searchParams }: { params: Pr
       <aside className="filter-panel">
         <section className="how-box">
           <h2>How the ranking works</h2>
-          <p>{`${people.One} opinions, not sponsored placements. The order follows the signal score: positive reviews weighed with how many there are.`}</p>
+          <p>{`${people.One} opinions, not sponsored placements. The order follows the ${scoreLabel}: positive reviews weighed with how many there are.`}</p>
           <ul>
             {yearRule && <li><CalendarGlyph/>{yearRule}</li>}
             <li><PeopleGlyph/>{`${min}+ reviews to qualify`}</li>

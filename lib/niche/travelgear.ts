@@ -181,8 +181,8 @@ export const travelgear: Niche = {
   },
   seo: {
     homeTitle: "TravelGearRecs – Real Reviews of Travel Backpacks, Luggage and Packing Cubes",
-    homeDescription: "Browse real reviews of one-bag travel backpacks, carry-on and checked luggage, packing cubes, daypacks, slings and travel accessories, plus experiences collected from Reddit, YouTube and forums. Compare Peak Design, Aer, Osprey, Away, Monos, Travelpro, Eagle Creek and more.",
-    layoutDescription: "Real experiences with travel backpacks, luggage, packing cubes, daypacks and travel accessories, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real reviews of one-bag travel backpacks, carry-on and checked luggage, packing cubes, daypacks, slings and travel accessories, plus experiences collected from YouTube and forums. Compare Peak Design, Aer, Osprey, Away, Monos, Travelpro, Eagle Creek and more.",
+    layoutDescription: "Real experiences with travel backpacks, luggage, packing cubes, daypacks and travel accessories, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | TravelGearRecs",
     catalog: { title: "All Travel Gear – Reviews and Ratings", description: "Every travel backpack, suitcase, packing cube, daypack and accessory on TravelGearRecs with traveler ratings. Filter by category and brand, then read what travelers say." },
     brands: { title: "Travel Gear Brands", description: "Browse travel gear by brand — Peak Design, Aer, Osprey, Away, Monos, Travelpro, Eagle Creek and more — and read real reviews of each product." },
@@ -191,12 +191,12 @@ export const travelgear: Niche = {
     productNotFound: "Product not found | TravelGearRecs",
     productCategory: "Travel gear",
     addReview: { title: "Add a Travel Gear Review", description: "Traveled with a backpack, suitcase, packing cube or accessory? Share how it held up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why TravelGearRecs exists: travel gear opinions are scattered across Reddit, YouTube and forums. TravelGearRecs collects them and lets travelers add their own." },
+    about: { title: "About", description: "Why TravelGearRecs exists: travel gear opinions are scattered across YouTube and forums. TravelGearRecs collects them and lets travelers add their own." },
     ogAlt: "TravelGearRecs – real reviews of travel gear",
     ogProductAlt: "Travel gear reviews on TravelGearRecs",
     ogEyebrow: "Real reviews of travel gear",
     ogTitle: "Travel gear reviews from people who carry it",
-    ogDetail: "From travelers, Reddit, YouTube and forums",
+    ogDetail: "From travelers, YouTube and forums",
     ogFallbackTitle: "Travel gear reviews",
   },
   copy: {
@@ -215,7 +215,7 @@ export const travelgear: Niche = {
     about: {
       heading: "Why TravelGearRecs exists",
       paragraphs: [
-        "Travel gear opinions are scattered across Reddit, YouTube and forums, and many review videos come with a discount code. TravelGearRecs puts first-hand experiences in one place and lets travelers add their own.",
+        "Travel gear opinions are scattered across YouTube and forums, and many review videos come with a discount code. TravelGearRecs puts first-hand experiences in one place and lets travelers add their own.",
         "A bag that is perfect for one person’s month in Southeast Asia is too much for another’s weekend away. Knowing how someone travels, for how long and what they carry often tells you more than a score on its own.",
       ],
       sections: [

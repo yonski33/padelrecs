@@ -1,3 +1,5 @@
+import { revalidatePath } from "next/cache";
+import { forgetCatalog } from "../../db/data";
 import { getCurrentUser } from "../../lib/supabase/auth";
 import { allowedAdmin } from "../../lib/admin-access";
 import { siteOrigin } from "../../lib/site-url";
@@ -12,7 +14,10 @@ export async function adminWriteGuard(request: Request, contentType = "applicati
  if (!(request.headers.get("content-type") || "").startsWith(contentType)) return Response.json({error: "Use the admin form."}, {status: 415});
  return null;
 }
+/** Every admin write ends here (publish, reject, edit, specs, photos, expert values): the site shows the change at once
+ *  on this instance (the kept catalog copy is dropped) and Next's cached pages refresh (audit 2026-11-15, #9). */
 export function adminRedirect(request: Request, query: string) {
+ if (request.method === "POST") { forgetCatalog(); try { revalidatePath("/", "layout"); } catch { /* outside a request scope (tests) */ } }
  return new Response(null, {status: 303, headers: {Location: new URL(`/funtimes?${query}`, siteOrigin(request.url)).toString(), "Cache-Control": "no-store"}});
 }
 export async function readAdminForm(request: Request) {

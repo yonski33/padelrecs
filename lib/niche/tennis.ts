@@ -184,8 +184,8 @@ export const tennis: Niche = {
   },
   seo: {
     homeTitle: "TennisRecs – Real Player Reviews of Tennis Rackets",
-    homeDescription: "Browse real tennis racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Wilson, Babolat, Head, Yonex, Prince, Tecnifibre, and more.",
-    layoutDescription: "Real player experiences with tennis rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    homeDescription: "Browse real tennis racket reviews from players and opinions collected from YouTube, shops and forums. Compare experiences across Wilson, Babolat, Head, Yonex, Prince, Tecnifibre, and more.",
+    layoutDescription: "Real player experiences with tennis rackets, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | TennisRecs",
     catalog: { title: "All Tennis Rackets – Player Reviews and Ratings", description: "Every tennis racket on TennisRecs with community ratings. Filter by brand and head size, then read what players say about each one." },
     brands: { title: "Tennis Racket Brands", description: "Browse tennis rackets by brand — Wilson, Babolat, Head, Yonex, Prince, Tecnifibre and more — and read real player reviews of each model." },
@@ -194,12 +194,12 @@ export const tennis: Niche = {
     productNotFound: "Racket not found | TennisRecs",
     productCategory: "Tennis racket",
     addReview: { title: "Add a Tennis Racket Review", description: "Played with a tennis racket? Share how it felt on court in about two minutes. No account needed." },
-    about: { title: "About", description: "Why TennisRecs exists: tennis racket opinions are scattered across Reddit, YouTube, shops and forums. TennisRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why TennisRecs exists: tennis racket opinions are scattered across YouTube, shops and forums. TennisRecs collects them and lets players add their own." },
     ogAlt: "TennisRecs – real player reviews of tennis rackets",
     ogProductAlt: "Tennis racket player reviews on TennisRecs",
     ogEyebrow: "Player reviews of tennis rackets",
     ogTitle: "Real player reviews of tennis rackets",
-    ogDetail: "From players, Reddit, YouTube, shops and forums",
+    ogDetail: "From players, YouTube, shops and forums",
     ogFallbackTitle: "Tennis racket reviews",
   },
   copy: {
@@ -218,7 +218,7 @@ export const tennis: Niche = {
     about: {
       heading: "Why TennisRecs exists",
       paragraphs: [
-        "Racket reviews are scattered across Reddit, YouTube, shops and forums. TennisRecs puts those experiences in one place and lets players add their own.",
+        "Racket reviews are scattered across YouTube, shops and forums. TennisRecs puts those experiences in one place and lets players add their own.",
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, backhand, strings and time with a racket often tells you more than a score on its own.",
       ],
       sections: [

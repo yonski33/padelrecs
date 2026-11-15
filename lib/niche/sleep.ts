@@ -227,8 +227,8 @@ export const sleep: Niche = {
   },
   seo: {
     homeTitle: "SleepRecs – Real Reviews of Mattresses, Pillows, Sheets and Sleep Gear",
-    homeDescription: "Browse real sleeper reviews of mattresses, mattress toppers, pillows, sheets, weighted blankets, sleep masks, earplugs and bed cooling, plus experiences collected from Reddit, YouTube and forums. Compare Saatva, Helix, Purple, Tempur-Pedic, Casper, Brooklyn Bedding, Coop, Brooklinen, Manta, Loop, Eight Sleep and more.",
-    layoutDescription: "Real sleeper experiences with mattresses, toppers, pillows, sheets, weighted blankets and sleep gear, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real sleeper reviews of mattresses, mattress toppers, pillows, sheets, weighted blankets, sleep masks, earplugs and bed cooling, plus experiences collected from YouTube and forums. Compare Saatva, Helix, Purple, Tempur-Pedic, Casper, Brooklyn Bedding, Coop, Brooklinen, Manta, Loop, Eight Sleep and more.",
+    layoutDescription: "Real sleeper experiences with mattresses, toppers, pillows, sheets, weighted blankets and sleep gear, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | SleepRecs",
     catalog: { title: "All Sleep Products – Reviews and Ratings", description: "Every mattress, topper, pillow, sheet set, weighted blanket and sleep accessory on SleepRecs with sleeper ratings. Filter by category and brand, then read what sleepers say." },
     brands: { title: "Mattress and Bedding Brands", description: "Browse sleep products by brand — Saatva, Helix, Purple, Tempur-Pedic, Casper, Brooklyn Bedding, Coop, Brooklinen and more — and read real reviews of each product." },
@@ -237,12 +237,12 @@ export const sleep: Niche = {
     productNotFound: "Product not found | SleepRecs",
     productCategory: "Sleep",
     addReview: { title: "Add a Sleep Product Review", description: "Slept on a mattress, pillow or topper long enough to know? Share how it worked for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why SleepRecs exists: mattress and bedding opinions are scattered across Reddit, YouTube and forums, and many come with an affiliate link. SleepRecs collects sleepers' first-hand experiences and lets sleepers add their own." },
+    about: { title: "About", description: "Why SleepRecs exists: mattress and bedding opinions are scattered across YouTube and forums, and many come with an affiliate link. SleepRecs collects sleepers' first-hand experiences and lets sleepers add their own." },
     ogAlt: "SleepRecs – real reviews of mattresses and sleep gear",
     ogProductAlt: "Sleep product reviews on SleepRecs",
     ogEyebrow: "Real reviews of sleep gear",
     ogTitle: "Mattress and bedding reviews from people who sleep on them",
-    ogDetail: "From sleepers, Reddit, YouTube and forums",
+    ogDetail: "From sleepers, YouTube and forums",
     ogFallbackTitle: "Sleep gear reviews",
   },
   copy: {
@@ -261,7 +261,7 @@ export const sleep: Niche = {
     about: {
       heading: "Why SleepRecs exists",
       paragraphs: [
-        "Mattress and bedding reviews are some of the hardest to trust: many review sites earn a commission on every bed they rank, and brand reps answer questions on Reddit. SleepRecs puts sleepers’ first-hand experiences in one place and lets sleepers add their own.",
+        "Mattress and bedding reviews are some of the hardest to trust: many review sites earn a commission on every bed they rank, and brand reps answer questions in forums. SleepRecs puts sleepers’ first-hand experiences in one place and lets sleepers add their own.",
         "A mattress a back sleeper loves can hurt a side sleeper’s shoulders, and a bed that feels right in the first month can sag in the third year. Knowing how someone sleeps, how much they weigh and how long they have used it often tells you more than a score on its own.",
       ],
       sections: [

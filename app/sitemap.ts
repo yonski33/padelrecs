@@ -1,9 +1,15 @@
 import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
-import { catalogPath, niche, productHref } from "../lib/niche";
+import { catalogPath, niche, productHref, isV2 } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { comparePairs, pairHref } from "../lib/compare-pairs";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
+import { INDEXABLE_CHOICES, choiceHref } from "../lib/quick-match";
+import { attrProfileFor } from "../lib/attr-profile";
+import { SKIN_TYPES } from "../lib/skin-choice";
+
+// When the about / contact / how-we-make / affiliate pages last changed (their copy is in code): bump with an edit there.
+const COPY_UPDATED = new Date("2026-11-15T00:00:00Z");
 
 // Built per request from the public catalog, so new rackets and brands appear without a deploy.
 export const dynamic = "force-dynamic";
@@ -24,9 +30,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: `${base}/`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 1 },
     { url: `${base}${catalogPath}`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/brands`, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${base}/brands`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.6 },
+    // Quick match pages (PadelRecs): every style × level × sore arm, the indexable ones (app/page.tsx canonical).
+    // SkinRecs: one page per product type × skin type (the indexable quick-match views), "&" written as &amp; (Next prints the
+    // URL into the XML as is); racket sites: their style × level × arm.
+    ...(isV2 && attrProfileFor(niche) ? (niche.typePages ?? []).flatMap(t => SKIN_TYPES.map(k => ({ url: `${base}/?type=${t.slug}&amp;skin=${k}`, lastModified: latest(allNotes), changeFrequency: "daily" as const, priority: 0.6 }))) : []),
+    ...(isV2 && niche.finder && !attrProfileFor(niche) ? INDEXABLE_CHOICES.map(c => ({ url: `${base}${choiceHref(c, "")}`, lastModified: latest(allNotes), changeFrequency: "daily" as const, priority: 0.7 })) : []),
     { url: `${base}/reviews`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 0.7 },
-    ...(niche.finder ? [{ url: `${base}/finder`, changeFrequency: "weekly" as const, priority: 0.8 }] : []),
+    ...(niche.finder ? [{ url: `${base}/finder`, lastModified: latest(allNotes), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...(lists.length ? [{ url: `${base}${RANKINGS_PATH}`, lastModified: latest(lists.map(x => x.updated)), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...lists.map(x => ({ url: `${base}${rankingHref(x.list.slug)}`, lastModified: new Date(x.updated), changeFrequency: "weekly" as const, priority: 0.8 })),
     ...(niche.typePages ?? []).map(t => ({
@@ -54,8 +65,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
-    { url: `${base}/about`, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${base}/contact`, changeFrequency: "yearly", priority: 0.2 },
-    ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, changeFrequency: "yearly" as const, priority: 0.2 }] : []),
+    { url: `${base}/how-we-make-these`, lastModified: COPY_UPDATED, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/about`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/contact`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.2 },
+    ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, lastModified: COPY_UPDATED, changeFrequency: "yearly" as const, priority: 0.2 }] : []),
   ];
 }

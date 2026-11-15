@@ -186,7 +186,7 @@ export const money: Niche = {
   },
   seo: {
     homeTitle: "MoneyRecs – Real Experiences With Credit Cards, Banks, Brokerages and Money Apps",
-    homeDescription: "Read first-hand experiences with US credit cards, high-yield savings, checking accounts, brokerages, robo-advisors, budgeting apps, tax software and money transfer services, collected from Reddit, YouTube and forums. Not financial advice.",
+    homeDescription: "Read first-hand experiences with US credit cards, high-yield savings, checking accounts, brokerages, robo-advisors, budgeting apps, tax software and money transfer services, collected from YouTube and forums. Not financial advice.",
     layoutDescription: "First-hand experiences with credit cards, banks, brokerages, budgeting apps, tax software and money transfers, with the source linked. Not financial advice.",
     titleTemplate: "%s | MoneyRecs",
     catalog: { title: "All Financial Products – Customer Experiences", description: "Every credit card, savings and checking account, brokerage, robo-advisor, budgeting app, tax software and transfer service on MoneyRecs with customer ratings. Not financial advice." },
@@ -196,12 +196,12 @@ export const money: Niche = {
     productNotFound: "Product not found | MoneyRecs",
     productCategory: "Financial products",
     addReview: { title: "Share Your Experience With a Financial Product", description: "Used a credit card, bank, brokerage, budgeting app, tax software or transfer service? Share your own experience in about two minutes. No account needed." },
-    about: { title: "About", description: "Why MoneyRecs exists: experiences with cards, banks and money apps are scattered across Reddit, YouTube and forums. MoneyRecs collects first-hand ones. Not financial advice." },
+    about: { title: "About", description: "Why MoneyRecs exists: experiences with cards, banks and money apps are scattered across YouTube and forums. MoneyRecs collects first-hand ones. Not financial advice." },
     ogAlt: "MoneyRecs – real experiences with financial products",
     ogProductAlt: "Customer experiences on MoneyRecs",
     ogEyebrow: "Real experiences with financial products",
     ogTitle: "Cards, banks and money apps, from the people who use them",
-    ogDetail: "From customers, Reddit, YouTube and forums",
+    ogDetail: "From customers, YouTube and forums",
     ogFallbackTitle: "Financial product experiences",
   },
   copy: {
@@ -220,7 +220,7 @@ export const money: Niche = {
     about: {
       heading: "Why MoneyRecs exists",
       paragraphs: [
-        "Experiences with credit cards, banks, brokerages and money apps are scattered across Reddit, YouTube and forums, and buried under referral links. MoneyRecs puts first-hand experiences in one place and lets customers add their own.",
+        "Experiences with credit cards, banks, brokerages and money apps are scattered across YouTube and forums, and buried under referral links. MoneyRecs puts first-hand experiences in one place and lets customers add their own.",
         "MoneyRecs is not financial advice. Reviews are people’s own experiences, not recommendations for your situation. Rates, fees and terms change often; the provider’s own site is always the reference.",
       ],
       sections: [
