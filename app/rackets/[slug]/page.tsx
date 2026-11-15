@@ -31,6 +31,9 @@ import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
 import { quickTakeFor } from "../../../db/quick-take";
 import { tagTone } from "../../../lib/tags";
+import SkinFit from "../../skin/skin-fit";
+import { attrProfileFor } from "../../../lib/attr-profile";
+import { readSkinChoice } from "../../../lib/skin-choice";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor, scoreLabel, isV2 } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
@@ -336,6 +339,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // Every padel racket gets the fit page (owner 2026-11-15, "go for the rest of the catalog"); without a quick-take block the
   // lines come from tag counts, trait scores, specs and YouTube notes, and the takes from real player excerpts.
   // Escape hatches: ?layout=long, ?qt=off, ?look=classic.
+  // SkinRecs on the match engine (owner 2026-11-15): the skin fit page (app/skin/skin-fit.tsx). ?layout=long / ?look=classic keep the old one.
+  if (isV2 && attrProfileFor(niche) && query.layout !== "long" && query.look !== "classic") {
+    return <SkinFit productId={r.id} choice={readSkinChoice(query, niche.typePages ?? [])}
+      crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
+      buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
+      jsonLd={{ "@context": "https://schema.org", "@graph": jsonLd["@graph"].filter(x => x["@type"] === "BreadcrumbList" || x["@type"] === "Product") }}/>;
+  }
   if (!qt && isV2 && query.layout !== "long" && query.qt !== "off" && query.look !== "classic") {
     const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
     // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.

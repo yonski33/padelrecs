@@ -1,0 +1,26 @@
+/* SkinRecs in design v2: the shared v2 layout (home-v2.css, catalog-v2.css, racket-fit.css) with the SkinRecs berry and peach
+   in place of padel's lime, plus the pieces only skin has: the finish / texture sliders and the latest-reviews list. */
+.sk2 {
+  --acc: #f3c2a9; --marker: #fbe0d2; --tip: #fdefe7;
+  --hl: #f3c2a9;
+}
+.sk2 .hl { background: linear-gradient(transparent 55%, #f6cdb8 55%); }
+.sk2 .hv2-chip.arm, .sk2 .ct2-chip.arm { background: #f7eef4; border-color: #7d3a6e; color: #5e2a52; }
+.sk2 .sk2-types a { text-transform: none; }
+.sk2-qm { row-gap: 10px; }
+
+/* Finish and texture: one point between two ends (attribute kind "axis"). */
+.sk2 .sk2-axis { align-items: center; }
+.sk2-slider { display: inline-flex; align-items: center; gap: 8px; font: 600 12px var(--mono, ui-monospace); color: var(--mute, #6a675f); min-width: 0; }
+.sk2-slider i { position: relative; display: block; width: 120px; height: 8px; border-radius: 99px; background: linear-gradient(90deg, #e9e6dd, #f3c2a9); border: 1.5px solid var(--ink, #151515); }
+.sk2-slider u { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: #7d3a6e; border: 2px solid #fff; box-shadow: 0 0 0 1.5px var(--ink, #151515); transform: translate(-50%, -50%); }
+.sk2-pick { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* Latest reviews on the product page. */
+.sk2-latest { margin-top: 28px; }
+.sk2-revs { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sk2-revs li { border: 1.5px solid var(--line, #e3e0d7); border-left: 5px solid #c9c5ba; border-radius: 10px; padding: 12px 14px; background: #fff; }
+.sk2-revs li.positive { border-left-color: #2f7a3d; } .sk2-revs li.negative { border-left-color: #a8432a; } .sk2-revs li.mixed { border-left-color: #c9a227; }
+.sk2-revs p { margin: 0 0 4px; font-size: 15px; }
+.sk2-revs small { color: var(--mute, #6a675f); font-size: 12px; }
+@media (max-width: 640px) { .sk2-slider i { width: 84px; } .sk2 .ct2-chip, .sk2 .hv2-chip { white-space: normal; max-width: 100%; } }

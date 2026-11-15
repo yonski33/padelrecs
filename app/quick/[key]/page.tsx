@@ -7,18 +7,19 @@ import HomeV2 from "../../home-v2";
 import { homeMetadata } from "../../home-metadata";
 import { readChoiceKey, choiceKey, INDEXABLE_CHOICES } from "../../../lib/quick-match";
 import { niche, isV2 } from "../../../lib/niche";
+import { attrProfileFor } from "../../../lib/attr-profile";
 
 export const revalidate = 300;
 
 // The 31 indexable combinations are built with the site; the rest (fine-tune, older models) on first visit. A build without
 // a database (CI) builds none and still passes.
 export function generateStaticParams() {
-  if (!process.env.DATABASE_URL || !isV2 || !niche.finder) return [];
+  if (!process.env.DATABASE_URL || !isV2 || !niche.finder || attrProfileFor(niche)) return [];
   return INDEXABLE_CHOICES.map(c => ({ key: choiceKey(c, false) }));
 }
 
 const picksOf = async (params: Promise<{ key: string }>) => {
-  const k = isV2 && niche.finder ? readChoiceKey((await params).key) : null;
+  const k = isV2 && niche.finder && !attrProfileFor(niche) ? readChoiceKey((await params).key) : null;
   if (!k) notFound();
   return k;
 };
