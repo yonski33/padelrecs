@@ -13,8 +13,8 @@ import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
-import { evidenceBalance, reportOf } from "../lib/evidence";
-import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
+import { evidenceBalance, labPercentiles, reportOf } from "../lib/evidence";
+import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
 import { EXTRACTORS } from "../lib/evidence";
 import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts } from "../lib/fine-tune";
@@ -24,6 +24,7 @@ import { rowOfFamily } from "../lib/compare-pairs";
 import { matchData } from "../db/match-data";
 import type { QuickChoice } from "../lib/quick-match";
 
+import { fitConfigFor } from "../lib/fit-config";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -36,6 +37,8 @@ const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate:
 export const matchContext = cache(async () => {
   const [data, sigs, takes, live, overrides, evidence] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
+  // The site's fit rules (lib/fit-config.ts); only sites with one call this.
+  const cfg = fitConfigFor(niche)!;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
   // that one used another order, so "control" picked a different ten than the Best for control page (owner, 2026-11-15).
@@ -65,7 +68,7 @@ export const matchContext = cache(async () => {
   };
   const signal = (id: string) => sigs.get(id)?.signal ?? null;
   const listOf = (label: string) => finder.questions.find(q => q.id === "style")?.options.find(o => o.label === label)?.list;
-  const [controlList, powerList] = [listOf("Control"), listOf("Power")];
+  const [controlList, powerList] = [listOf(cfg.styleLabels.control), listOf(cfg.styleLabels.power)];
   /** The fit check's facts for one racket: its tags counted like the finder (outside the pool too), and its ranking places. */
   const facts = (id: string): FitFacts => {
     const inPool = byId.get(id);
@@ -94,7 +97,7 @@ export const matchContext = cache(async () => {
     if (counted.length) { t.tagged++; const s = taggedReports.get(x.id) ?? new Set(); s.add(x.ref); taggedReports.set(x.id, s); }
     for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
     // Arm comfort said only in words (no arm tag): read with fixed rules (lib/youtube-trait-rules.ts armFromReportText).
-    if (!x.tags.includes("arm-friendly") && !x.tags.includes("vibrates on mishits") && x.text) {
+    if (!x.tags.includes(cfg.arm.plus) && !(cfg.arm.minus && x.tags.includes(cfg.arm.minus)) && x.text) {
       const a = armFromReportText(x.text);
       if (a) { t.textArm = t.textArm ?? { plus: 0, minus: 0 }; if (a > 0) t.textArm.plus++; else t.textArm.minus++; }
     }
@@ -103,10 +106,12 @@ export const matchContext = cache(async () => {
   // YouTube reviewers' mentions (db/youtube-traits, one per channel) and the specs as a small prior (lib/trait-score.ts).
   const ytTraits = MATCH.youtubeTraits;
   for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
-    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core }; }
+    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core, surface: r.surface }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
   let traitAuto: ReturnType<typeof traitScores>, traitMap: ReturnType<typeof traitScores>;
+  /** What scorer v2 ranked (for the tuning and check scripts). */
+  let scoreInputs: BalanceInput[] = [];
   if (evidence.length) {
     // Scorer v2 (owner 2026-11-15): the evidence store's praise / complaint balance, one voice once (lib/evidence.ts,
     // lib/trait-score.ts balanceScores). A voice is our reviewer's nickname, a YouTube channel's video or a blog; a forum
@@ -114,13 +119,19 @@ export const matchContext = cache(async () => {
     const voice = new Map<string, string>();
     for (const r of data.reviews) voice.set(`p:${r.id}`, r.alias ? `own:${r.alias.toLowerCase()}` : `p:${r.id}`);
     for (const e of data.external) voice.set(`w:${e.id}`, e.sourcePlatform === "Reddit" || /[?&]lc=/.test(e.sourceUrl) || !e.sourceName ? `w:${e.id}` : `${e.sourcePlatform}:${e.sourceName.toLowerCase()}`);
-    const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref);
+    const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref, 2, cfg);
     const known = MATCH.knownDots;
     const knownSet = (slug: string) => Object.fromEntries(Object.entries(known[slug] ?? {}).filter(([, e]) => typeof e?.dots === "number").map(([t, e]) => [t, e.dots!])) as Partial<Record<TraitKey, number>>;
     const reportsOf = new Map<string, number>();
     for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
-    const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
-    traitAuto = balanceScores(inputs);
+    // Lab measurements as percentiles (sites whose profile weighs them; the maker's swing weight where no lab has one).
+    // "113", "116.8", "114-117" (midpoint) or "111 ± 3".
+    const swing = (s?: string | null) => { const m = s?.match(/^\s*(\d{2,3}(?:\.\d+)?)\s*(?:[-–]\s*(\d{2,3}(?:\.\d+)?)|±\s*\d+(?:\.\d+)?)?\s*$/); return m ? (Number(m[1]) + Number(m[2] ?? m[1])) / 2 : NaN; };
+    const specValues = Object.fromEntries(Object.entries(cfg.lab?.specMetric ?? {}).map(([m, col]) => [m, new Map(data.rackets.map(r => [r.id, swing(r[col])] as const).filter(([, v]) => Number.isFinite(v)))]));
+    const lab = cfg.lab ? labPercentiles(evidence, cfg, specValues) : new Map();
+    const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs, lab: lab.get(p.id) }));
+    scoreInputs = inputs;
+    traitAuto = balanceScores(inputs, cfg);
     // Level "suits" scores (owner 2026-11-15): players' stated levels (reader rows say what it suits; writers who state their
     // level count when they liked it, and a little against when they didn't), YouTube's band, forgiving vs demanding, and the
     // brand's label as a weak prior (db: brand-level-v1 rows, the owner's sheet).
@@ -159,10 +170,10 @@ export const matchContext = cache(async () => {
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
     const expertTraits = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.expert ?? {}).filter(([k]) => !k.startsWith("suits_")).map(([k, e]) => [k, e!.value])) as Partial<Record<TraitKey, number>>;
-    traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) }, expert: expertTraits(p.id) })));
+    traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) }, expert: expertTraits(p.id) })), cfg);
   } else {
-    traitAuto = traitScores([...tagIn.values()]);
-    traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
+    traitAuto = traitScores([...tagIn.values()], cfg);
+    traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })), cfg);
   }
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
   const feels = feelClasses(leans);
@@ -183,5 +194,5 @@ export const matchContext = cache(async () => {
   /** The level suits scores before any expert value (for the admin expert grid). */
   const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence };
+  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence, scoreInputs };
 });

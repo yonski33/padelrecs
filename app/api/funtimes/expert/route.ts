@@ -3,9 +3,10 @@ import { database } from "../../../../db/data";
 import { niche } from "../../../../lib/niche";
 import { assertSchemaName } from "../../../../db/migrations";
 import { readTraitOverride, editExpert, readExpertValue, levelToSuits, EXPERT_KEYS, type ExpertKey } from "../../../../db/trait-override";
-import { TRAITS } from "../../../../lib/trait-score";
+import { traitDefsFor } from "../../../../lib/fit-config";
 import { getCurrentUser } from "../../../../lib/supabase/auth";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
+const TRAITS = traitDefsFor(niche).map(t => t.key);
 
 // The admin expert grid (app/funtimes/expert-grid.tsx): saves one racket's expert values, or imports a filled-in expert sheet
 // (scripts/expert-gaps.mts) for many. Stored in rackets.trait_override (jsonb, migration 0022) beside the hand-set dots, with a

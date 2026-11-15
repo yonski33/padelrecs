@@ -15,9 +15,9 @@ const clean = (o: Record<string, string | null | undefined>) =>
   Object.fromEntries(Object.entries(o).filter(([, v]) => typeof v === "string" && v.trim().length > 0)) as Record<string, string>;
 const rows = [
   ...data.reviews.map(r => ({ id: `p:${r.id}`, product: name.get(r.racketId) ?? "", ...clean({ review: r.reviewText }) })),
-  ...data.external.map(e => ({ id: `w:${e.id}`, product: name.get(e.racketId) ?? "",
+  ...data.external.map(e => ({ id: `w:${e.id}`, product: name.get(e.racketId) ?? "", ...(niche.id === "padel" ? {} : { kind: e.sourcePlatform === "Blog" ? "blog" : "player" }),
     ...clean({ summary: e.summary ? plainSummary(e.summary) : null, excerpt: e.excerpt, translation: e.sourceLanguage && e.sourceLanguage !== "en" ? e.excerptTranslation : null }) })),
-].filter(r => r.product && Object.entries(r).filter(([k]) => k !== "id" && k !== "product").map(([, v]) => v).join(" ").trim().length >= 25);
+].filter(r => r.product && Object.entries(r).filter(([k]) => k !== "id" && k !== "product" && k !== "kind").map(([, v]) => v).join(" ").trim().length >= 25);
 mkdirSync(join(out, "in"), { recursive: true });
 const n = Number(size);
 for (let i = 0; i < rows.length; i += n) writeFileSync(join(out, "in", `b${String(i / n).padStart(3, "0")}.json`), JSON.stringify(rows.slice(i, i + n)));

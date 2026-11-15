@@ -10,17 +10,20 @@ import { catalog, database } from "../db/data";
 import { niche } from "../lib/niche";
 import { assertSchemaName } from "../db/migrations";
 import { EXTRACTORS, type EvidenceRow, type Strength } from "../lib/evidence";
+import { fitConfigFor } from "../lib/fit-config";
 
 const args = process.argv.slice(2), dir = args.find(a => !a.startsWith("--") && !/^\d+$/.test(a));
 if (!dir) throw new Error("Usage: check-evidence-output.mts <dir> [--sample N] [--write]");
 const sampleN = args.includes("--sample") ? Number(args[args.indexOf("--sample") + 1]) || 30 : 0;
 const data = await catalog();
-const ATTRS = new Set(["forgiveness", "power", "control", "defence", "arm", "speed", "durability", "level", "issue"]);
-const LEVELS = ["beginner", "intermediate", "advanced"], ISSUES = new Set(["weight_off_spec", "balance_off_spec", "screws_loose", "rattle", "grip", "other"]);
+const cfg = fitConfigFor(niche);
+if (!cfg) throw new Error(`${niche.id} has no site profile (lib/fit-config.ts).`);
+const ATTRS = new Set([...cfg.traits.map(t => t.key), "durability", "level", "issue"]);
+const LEVELS = ["beginner", "intermediate", "advanced"], ISSUES = new Set(["weight_off_spec", "balance_off_spec", "screws_loose", "rattle", "grip", "not_usap_approved", "other"]);
 type Report = { id: string; product: string; review?: string; summary?: string; excerpt?: string; translation?: string };
 const meta = new Map<string, { productId: string; kind: EvidenceRow["sourceKind"]; at: string | null }>([
   ...data.reviews.map(r => [`p:${r.id}`, { productId: r.racketId, kind: "own_review" as const, at: r.createdAt }] as const),
-  ...data.external.map(e => [`w:${e.id}`, { productId: e.racketId, kind: e.sourcePlatform === "YouTube" ? "youtube" as const : "player_report" as const, at: e.sourceDate || e.createdAt }] as const),
+  ...data.external.map(e => [`w:${e.id}`, { productId: e.racketId, kind: e.sourcePlatform === "YouTube" ? "youtube" as const : e.sourcePlatform === "Blog" ? "blog" as const : "player_report" as const, at: e.sourceDate || e.createdAt }] as const),
 ]);
 const rows: (EvidenceRow & { report: Report })[] = [], dropped: unknown[] = [];
 const missing: string[] = [];

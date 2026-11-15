@@ -1,6 +1,7 @@
 import type { rackets } from "../../db/schema";
 import { niche, productHref } from "../../lib/niche";
-import { TRAITS, TRAIT_LABEL, type TraitScore } from "../../lib/trait-score";
+import type { TraitScore } from "../../lib/trait-score";
+import { traitDefsFor } from "../../lib/fit-config";
 import { EXPERT_KEYS, MAX_EXPERT_NOTE, type ExpertKey, type TraitOverride } from "../../db/trait-override";
 import type { EvidenceRow } from "../../lib/evidence";
 import type { Suits } from "../../lib/level-suits";
@@ -12,7 +13,7 @@ const w = niche.words;
 // calculated one stays here. A row is flagged when the two drift more than DRIFT apart.
 export const DRIFT = 15;
 type Racket = typeof rackets.$inferSelect;
-const KEY_LABEL: Record<ExpertKey, string> = { ...Object.fromEntries(TRAITS.map(t => [t, TRAIT_LABEL[t]])) as Record<(typeof TRAITS)[number], string>,
+const KEY_LABEL: Record<ExpertKey, string> = { ...Object.fromEntries(traitDefsFor(niche).map(t => [t.key, t.label])),
   suits_beginner: "Suits beginners", suits_intermediate: "Suits intermediates", suits_advanced: "Suits advanced" };
 
 export default function ExpertGrid({ models, racketId, auto, suits, edits, evidence, showEvidence, result }: {

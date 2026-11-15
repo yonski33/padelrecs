@@ -5,7 +5,11 @@
 // band), and with nothing chosen it is simply the Player score order. Pure functions, so tests feed plain objects.
 import { matchFinder, type FinderProduct, type Reason } from "./finder";
 import type { Finder, FinderOption } from "./niche/types";
+import { fitConfigFor, type FitConfig } from "./fit-config";
+
+const PADEL = fitConfigFor({ id: "padel" })!;
 import { readFine, fineEmpty, fineParams, type FineTune } from "./fine-tune";
+import { niche } from "./niche";
 
 export const STYLES = ["any", "control", "balance", "power"] as const;
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
@@ -15,9 +19,10 @@ export type QuickChoice = { style: Style; /** Unset until the visitor taps a lev
  *  pick "intermediate" too); no level means no level gate, bonus or check. */ level?: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune };
 export const DEFAULT_CHOICE: QuickChoice = { style: "any", arm: false };
 
-/** Reads ?style=&level=&arm= (unknown values fall back to the default). */
-export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }): QuickChoice {
-  const fine = readFine(q);
+/** Reads ?style=&level=&arm= (unknown values fall back to the default), and the fine-tune on a site that has one (padel's
+ *  shapes and weights; lib/fit-config.ts fineTune). */
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
+  const fine = cfg?.fineTune ? readFine(q) : {};
   return {
     ...(fineEmpty(fine) ? {} : { fine }),
     style: STYLES.includes(q.style as Style) ? q.style as Style : DEFAULT_CHOICE.style,
@@ -36,20 +41,20 @@ export function choiceHref(c: QuickChoice, anchor = "#match") {
   return `${q.size ? `/?${q}` : "/"}${anchor}`;
 }
 
-const STYLE_LABEL: Record<Exclude<Style, "any">, string> = { control: "Control", balance: "A balance of both", power: "Power" };
 const LEVEL_LABEL: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 /** Sore elbow or wrist: rackets players call arm-friendly rank first (a strong weight, not a filter, so the list stays full),
  *  with vibration complaints counting against. */
-export const ARM_OPTION: FinderOption = { label: "Sore elbow / wrist", want: ["arm-friendly"], avoid: ["vibrates on mishits"], weight: 2.5 };
+export const armOption = (cfg: FitConfig = PADEL): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });
+export const ARM_OPTION: FinderOption = armOption();
 
 /** The finder options a choice stands for. */
-export function chosenOptions(finder: Pick<Finder, "questions">, c: QuickChoice): FinderOption[] {
+export function chosenOptions(finder: Pick<Finder, "questions">, c: QuickChoice, cfg: FitConfig = PADEL): FinderOption[] {
   const q = (id: string) => finder.questions.find(x => x.id === id);
   const opts: FinderOption[] = [];
-  if (c.style !== "any") { const o = q("style")?.options.find(x => x.label === STYLE_LABEL[c.style as Exclude<Style, "any">]); if (o) opts.push(o); }
+  if (c.style !== "any") { const o = q("style")?.options.find(x => x.label === cfg.styleLabels[c.style as Exclude<Style, "any">]); if (o) opts.push(o); }
   const lv = c.level && q("level")?.options.find(x => x.label === LEVEL_LABEL[c.level!]);
   if (lv) opts.push(lv);
-  if (c.arm) opts.push(ARM_OPTION);
+  if (c.arm) opts.push(armOption(cfg));
   return opts;
 }
 
@@ -82,13 +87,14 @@ export type QuickMatch<P> = { product: P; score: number; reasons: Reason[]; watc
 
 /** The ranked list for a choice. Nothing chosen: the Player score order (signal), as the home page always was. */
 export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Finder, "questions">, c: QuickChoice, opts: {
-  signal: (id: string) => number | null; negativeTags: readonly string[]; level: (id: string) => LevelEvidence | undefined; count: number; rankWeight?: number;
+  signal: (id: string) => number | null; negativeTags: readonly string[]; level: (id: string) => LevelEvidence | undefined; count: number; rankWeight?: number; cfg?: FitConfig;
   /** With picks, only rackets that pass the level gate are candidates. */ levelGate?: LevelGate;
 }): QuickMatch<P>[] {
+  const cfg = opts.cfg ?? PADEL;
   const extra = (p: P) => {
-    if (!c.level) return { arm: p.tags["arm-friendly"] ?? 0, levelLiked: 0, inBand: null };
+    if (!c.level) return { arm: p.tags[cfg.arm.plus] ?? 0, levelLiked: 0, inBand: null };
     const e = opts.level(p.id), i = LEVEL_INDEX[c.level];
-    return { arm: p.tags["arm-friendly"] ?? 0, levelLiked: e?.liked[c.level] ?? 0, inBand: e?.band ? i >= e.band.from && i <= e.band.to : null };
+    return { arm: p.tags[cfg.arm.plus] ?? 0, levelLiked: e?.liked[c.level] ?? 0, inBand: e?.band ? i >= e.band.from && i <= e.band.to : null };
   };
   if (isDefault(c)) {
     return pool.filter(p => opts.signal(p.id) !== null).sort((a, b) => opts.signal(b.id)! - opts.signal(a.id)! || b.reviews - a.reviews || a.id.localeCompare(b.id))
@@ -96,7 +102,7 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
   }
   // A style that stands for a ranking (Best for control / power): rackets on that live list come first, in list order, and the
   // rest still follow on their tag counts (owner 2026-11-15), instead of the finder's hard cut to the list.
-  const chosen = chosenOptions(finder, c), lists = chosen.flatMap(o => o.list ? [o.list] : []);
+  const chosen = chosenOptions(finder, c, cfg), lists = chosen.flatMap(o => o.list ? [o.list] : []);
   pool = pool.filter(p => passesLevel(opts.level(p.id), c.level, opts.levelGate));
   const matched = matchFinder(pool, chosen.map(({ list: _list, ...o }) => o), opts.negativeTags, pool.length, opts.rankWeight);
   const listBonus = (p: P) => lists.reduce((a, slug) => { const place = p.lists?.[slug]; return a + (place ? ON_LIST + LIST_PLACE * Math.max(0, 1 - (place - 1) / 10) : 0); }, 0);
