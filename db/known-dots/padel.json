@@ -1,10 +1,65 @@
 {
  "_about": "The owner's calls (known-correct set, ENGINE-PLAN.md section F, owner 2026-11-15). `dots` = a hand-set value the scorer can't reach from the evidence (applied like an admin override; an admin override still wins). `min` / `exact` = a locked check: scripts/check-known-dots.mts fails when the computed dots break it.",
- "nox-at10-genius-18k-2026": { "control": { "dots": 4, "min": 4, "note": "owner: excellent control racket; reader found bounciness complaints (27 praise / 10 complaints)" }, "defence": { "min": 4 } },
- "adidas-metalbone-ctrl-2026": { "forgiveness": { "min": 4 } },
- "adidas-metalbone-3-5-2026": { "forgiveness": { "dots": 3, "exact": 3, "note": "owner: 2 is the extreme end only; evidence reads like the Fenix Pro 5/6 and HRD+ 3.4" }, "power": { "min": 4 } },
- "siux-fenix-pro-5-2025": { "forgiveness": { "exact": 2 } },
- "siux-fenix-pro-6-2026": { "forgiveness": { "exact": 2 } },
- "adidas-metalbone-hrd-plus-3-4-2025": { "forgiveness": { "exact": 2 } },
- "babolat-counter-viper-2025": { "arm": { "exact": 2 } }
+ "nox-at10-genius-18k-2026": {
+  "control": {
+   "dots": 4,
+   "min": 4,
+   "note": "owner: excellent control racket; reader found bounciness complaints (27 praise / 10 complaints)"
+  },
+  "defence": {
+   "min": 4
+  }
+ },
+ "adidas-metalbone-ctrl-2026": {
+  "forgiveness": {
+   "min": 4
+  }
+ },
+ "adidas-metalbone-3-5-2026": {
+  "forgiveness": {
+   "dots": 3,
+   "exact": 3,
+   "note": "owner: 2 is the extreme end only; evidence reads like the Fenix Pro 5/6 and HRD+ 3.4"
+  },
+  "power": {
+   "min": 4
+  }
+ },
+ "siux-fenix-pro-5-2025": {
+  "forgiveness": {
+   "exact": 2
+  }
+ },
+ "siux-fenix-pro-6-2026": {
+  "forgiveness": {
+   "exact": 2
+  }
+ },
+ "adidas-metalbone-hrd-plus-3-4-2025": {
+  "forgiveness": {
+   "exact": 2
+  }
+ },
+ "babolat-counter-viper-2025": {
+  "arm": {
+   "exact": 2
+  }
+ },
+ "adidas-metalbone-3-4-2025": {
+  "forgiveness": {
+   "exact": 2
+  }
+ },
+ "bullpadel-vertex-04-2025": {
+  "forgiveness": {
+   "exact": 2
+  }
+ },
+ "siux-electra-pro-st4-2025": {
+  "arm": {
+   "dots": 3,
+   "exact": 3,
+   "note": "owner: 12 arm complaints out of 138 reports on a very popular racket isn't the extreme end; no complaint-rate rule separates it from the Fenix Pro 5/6 forgiveness 2s"
+  }
+ }
 }
