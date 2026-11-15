@@ -102,7 +102,7 @@ export function evidenceBalance(rows: EvidenceRow[], voiceOf: (report: string) =
     const voice = yt ? r.authorKey ?? r.sourceRef : voiceOf(reportOf(r.sourceRef));
     const s = (r.extractedBy === EXTRACTORS.reader && r.quote && COMPARISON.test(r.quote) ? Math.min(r.strength, 0.5) : r.strength) * (yt ? ytWeight : 1);
     const k = `${r.productId}\u0000${r.attribute}\u0000${voice}`;
-    if (yt || voice.startsWith("YouTube:")) voiceKinds.set(k, true);
+    if (yt || (cfg.reviewerSources ?? ["YouTube"]).some(src => voice.startsWith(`${src}:`))) voiceKinds.set(k, true);
     (by.get(k) ?? by.set(k, []).get(k)!).push({ v: Math.sign(r.value), s });
   }
   const out = new Map<string, Partial<Record<Trait, Balance>>>();

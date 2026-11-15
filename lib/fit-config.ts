@@ -39,8 +39,9 @@ export type FitConfig = {
    *  in the ranking the 4–5 bands are cut from, and the lab percentile that earns 4–5 with no praise yet. */
   lab?: { metrics: Record<string, { trait: string; sign: 1 | -1 }>; weight: number; specWeight?: number; alone?: number;
     /** A spec column that stands in for a metric where no lab row has it (pickleball: the maker's swing weight). */ specMetric?: Record<string, "balance"> };
+  /** Source platforms whose voices count as reviewers, not players, in the line under a bar (default YouTube). */ reviewerSources?: string[];
   /** Scorer v2's band cut-offs, where the site differs from padel's (lib/trait-score.ts). */
-  scale?: Partial<{ top4: number; top5: number; worst: number; minComplaints: number }>;
+  scale?: Partial<{ top4: number; top5: number; worst: number; minComplaints: number; /** Rank on the net share of praise against complaints instead of the praise rate. */ rank: "net" | "rate" }>;
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -95,14 +96,16 @@ const PADEL: FitConfig = {
 const PICKLEBALL: FitConfig = {
   traits: [
     { key: "power", label: "Power", plus: [["easy power", 1]], minus: [], noun: "the power" },
-    { key: "pop", label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop" },
+    { key: "pop", label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop", ev: [["praise the pop", "praises the pop"], ["find it low on pop", "finds it low on pop"]] },
     { key: "control", label: "Control", plus: [["good control", 1], ["great for dinks", 1]], minus: [["hard to control", 1]], noun: "the control at the kitchen" },
-    { key: "spin", label: "Spin", plus: [["lots of spin", 1]], minus: [["low spin", 1]], noun: "the spin" },
+    { key: "spin", label: "Spin", plus: [["lots of spin", 1]], minus: [["low spin", 1]], noun: "the spin", ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]] },
     { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["dead spots", 1]], noun: "the sweet spot" },
     { key: "speed", label: "Hand speed", plus: [["fast hands", 1]], minus: [], noun: "the hand speed" },
     { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [], noun: "how it treats the arm" },
   ],
-  complaint: ["forgiveness", "control", "spin"],
+  // Only faults of the paddle itself drop to 2 (owner's floor rules); "hard to control" on a paddle usually means it is
+  // poppy, not a fault.
+  complaint: ["forgiveness", "arm"],
   axis: { control: { trait: "control", tags: ["good control", "great for dinks"] }, power: { trait: "power", tags: ["easy power", "great pop"] } },
   styleLabels: { control: "Control", balance: "A bit of everything", power: "Power" },
   levelWords: { beginner: ["first paddle", "just started", "new to pickleball", "beginner"], intermediate: ["intermediate", "rec player", "3.0", "3.5"], advanced: ["advanced", "tournaments", "4.0+", "4.5", "5.0", "pro"],
@@ -152,6 +155,10 @@ const PICKLEBALL: FitConfig = {
     : [s.shape?.toLowerCase(), s.core ? `${s.core.toLowerCase()} core` : null],
   // Lab numbers from independent review sites (ENGINE-PLAN step 2, owner 2026-11-15): swing weight → hand speed (lower is
   // quicker), twist weight → forgiveness, RPM → spin, measured power and pop; plus the sites' own lab-based % scores.
+  // Review sites write as reviewers, not players.
+  reviewerSources: ["YouTube", "Blog"],
+  // Tuned against the expert's 25 paddles (db/known-dots/pickleball.json, scripts/check-expert-ratings.mts).
+  scale: { rank: "net", top4: 0.4, top5: 0.09 },
   lab: {
     metrics: {
       swing_weight: { trait: "speed", sign: -1 }, maneuverability_pct: { trait: "speed", sign: 1 },
@@ -161,7 +168,7 @@ const PICKLEBALL: FitConfig = {
       pop_mph: { trait: "pop", sign: 1 }, pop_pct: { trait: "pop", sign: 1 }, pop_pctile: { trait: "pop", sign: 1 },
       control_pct: { trait: "control", sign: 1 },
     },
-    weight: 0.5, specWeight: 0.1, alone: 0.7,
+    weight: 0.5, specWeight: 0.5, alone: 0.7,
     specMetric: { swing_weight: "balance" },
   },
 };

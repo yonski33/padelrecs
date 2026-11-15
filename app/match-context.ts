@@ -16,7 +16,7 @@ import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
 import { evidenceBalance, labPercentiles } from "../lib/evidence";
-import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
+import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import padelKnownDots from "../db/known-dots/padel.json";
 import pickleballKnownDots from "../db/known-dots/pickleball.json";
 
@@ -102,6 +102,8 @@ export const matchContext = cache(async () => {
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
   let traitAuto: ReturnType<typeof traitScores>, traitMap: ReturnType<typeof traitScores>;
+  /** What scorer v2 ranked (for the tuning and check scripts). */
+  let scoreInputs: BalanceInput[] = [];
   if (evidence.length) {
     // Scorer v2 (owner 2026-11-15): the evidence store's praise / complaint balance, one voice once (lib/evidence.ts,
     // lib/trait-score.ts balanceScores). A voice is our reviewer's nickname, a YouTube channel's video or a blog; a forum
@@ -120,6 +122,7 @@ export const matchContext = cache(async () => {
     const specValues = Object.fromEntries(Object.entries(cfg.lab?.specMetric ?? {}).map(([m, col]) => [m, new Map(data.rackets.map(r => [r.id, swing(r[col])] as const).filter(([, v]) => Number.isFinite(v)))]));
     const lab = cfg.lab ? labPercentiles(evidence, cfg, specValues) : new Map();
     const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs, lab: lab.get(p.id) }));
+    scoreInputs = inputs;
     traitAuto = balanceScores(inputs, cfg);
     traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })), cfg);
   } else {
@@ -127,5 +130,5 @@ export const matchContext = cache(async () => {
     traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })), cfg);
   }
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits };
+  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits, scoreInputs };
 });

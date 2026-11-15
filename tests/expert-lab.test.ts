@@ -29,8 +29,20 @@ test("lab percentiles: ranked within one site, lower swing weight is quicker, sm
 
 test("scorer v2 with lab: a strong lab reading lifts a paddle to 4+, padel ignores lab", () => {
   const mk = (id: string, P: number, labPower?: number) => ({ id, reports: 20, balance: { power: { P, C: 0, plusVoices: P, minusVoices: 0 } }, lab: labPower === undefined ? undefined : { power: labPower } });
-  const pool = [...Array.from({ length: 9 }, (_, i) => mk(`x${i}`, 3 + (i % 3), 0.4)), mk("banger", 3, 1)];
-  assert.ok(balanceScores(pool, pb).get("banger")!.power!.dots >= 4);
-  const padelPool = pool.map(p => ({ ...p, balance: { power: p.balance.power } }));
-  assert.equal(balanceScores(padelPool).get("banger")!.power!.dots, 3, "padel: praise rate alone");
+  // Same player praise everywhere: the strong lab reading decides who stands out.
+  const pool = [...Array.from({ length: 9 }, (_, i) => mk(`x${i}`, 4, 0.4)), mk("banger", 4, 1)];
+  const out = balanceScores(pool, pb);
+  assert.ok(out.get("banger")!.power!.dots >= 4);
+  assert.ok(out.get("banger")!.power!.score > out.get("x0")!.power!.score);
+  const noLab = pool.map(({ lab: _l, ...p }) => p);
+  assert.deepEqual([...balanceScores(pool)], [...balanceScores(noLab)], "padel: lab data changes nothing");
+});
+
+test("pickleball ranks on net share: a paddle players call underpowered stays at 3 however often power comes up", () => {
+  const mk = (id: string, P: number, C: number) => ({ id, reports: 40, balance: { power: { P, C, plusVoices: P, minusVoices: C } } });
+  const pool = [mk("soft", 12, 14), ...Array.from({ length: 8 }, (_, i) => mk(`m${i}`, 4 + i, 1)), mk("banger", 10, 0)];
+  const out = balanceScores(pool, pb);
+  assert.equal(out.get("soft")!.power!.dots, 3);
+  assert.ok(out.get("banger")!.power!.dots >= 4);
+  assert.ok(!pb.complaint.includes("control"), "hard to control is not a paddle fault");
 });

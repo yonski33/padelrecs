@@ -143,7 +143,7 @@ export function traitScores(products: TraitInput[], cfg: FitConfig = PADEL): Map
 //      RATE_PRIOR reports; the top TOP4_SHARE of the catalog get 4, the clear standouts (TOP5_SHARE) 5, and only when
 //      complaints on that trait don't outnumber praise.
 //   3: everything else (the owner's floor). 1 only by hand; hand-set dots win.
-export const RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
+export const NET_PRIOR = 5, RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
 export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number; people?: TraitScore["people"] }>>;
   youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null;
   /** Lab measurements as a catalog percentile per trait, 0 (lowest) – 1 (highest) (lib/evidence.ts labPercentiles). */ lab?: Partial<Record<Trait, number>> };
@@ -159,14 +159,20 @@ export function balanceScores(products: BalanceInput[], cfg: FitConfig = PADEL):
     const rate = (p: BalanceInput) => (PC(p, t).P + RATE_PRIOR * r0) / (p.reports + RATE_PRIOR);
     const sc = { top4: TOP4_SHARE, top5: TOP5_SHARE, worst: WORST_SHARE_V2, minComplaints: MIN_COMPLAINTS, ...cfg.scale };
     const praiseRank = new Map([...products].sort((a, b) => rate(b) - rate(a) || a.id.localeCompare(b.id)).map((p, i) => [p.id, i]));
+    // Net share (pickleball): praise against complaints among those who mention it, (P − C) / (P + C + NET_PRIOR), as a
+    // catalog percentile, in place of the praise rate per report (which dilutes the most-reviewed products).
+    const net = (p: BalanceInput, tr: Trait) => { const b = PC(p, tr); return (b.P - b.C) / (b.P + b.C + NET_PRIOR); };
+    const byNet = cfg.scale?.rank === "net" ? (() => { const xs = [...products].sort((a, b) => net(a, t) - net(b, t)); const out = new Map<string, number>();
+      for (let i = 0; i < xs.length;) { let j = i; while (j + 1 < xs.length && net(xs[j + 1], t) === net(xs[i], t)) j++; for (let k = i; k <= j; k++) out.set(xs[k].id, ((i + j) / 2) / Math.max(1, xs.length - 1)); i = j + 1; }
+      return out; })() : null;
     // The ranking the bands are cut from: the praise rate, and on a site whose profile weighs them (pickleball), the lab
     // percentile and the specs' lean, each where the product has it (padel: the praise rate alone).
     const wLab = cfg.lab?.weight ?? 0, wSpec = cfg.lab?.specWeight ?? 0;
     const key = (p: BalanceInput) => {
-      const praise = 1 - praiseRank.get(p.id)! / Math.max(1, products.length - 1);
+      const praise = byNet ? byNet.get(p.id)! : 1 - praiseRank.get(p.id)! / Math.max(1, products.length - 1);
       if (!wLab && !wSpec) return praise;
       const lab = p.lab?.[t], lean = specLean(p.specs, cfg)[t] ?? 0;
-      let sum = (1 - wLab - wSpec) * praise, w = 1 - wLab - wSpec;
+      let sum = praise, w = 1;
       if (typeof lab === "number") { sum += wLab * lab; w += wLab; }
       if (lean) { sum += wSpec * (lean + 1) / 2; w += wSpec; }
       return sum / w;
