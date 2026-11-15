@@ -12,6 +12,9 @@ import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { fitVerdict, ARM_BAR } from "../lib/fit-verdict";
+import { matchScore } from "../lib/match-score";
+
+const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
 import { V2Footer } from "./v2-footer";
 
@@ -31,7 +34,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice }: { choice: QuickChoice }) {
-  const [{ data, sigs, takes, finder, bad, pool, level, signal, facts }, lists] = await Promise.all([matchContext(), rankedLists()]);
+  const [{ data, sigs, takes, finder, bad, pool, level, signal, facts, traits }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -39,7 +42,17 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const total = data.reviews.length + data.external.length;
   const added = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now - 7 * DAY).length;
-  const matches = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: LIST_SIZE, rankWeight: finder.rankWeight });
+  // With picks, rows are ordered by the match % (lib/match-score.ts), which always agrees with the fit word; quick match picks
+  // the candidates. Thin data has no % and goes last. No picks: quick match's own order (Player score).
+  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: isDefault(choice) ? LIST_SIZE : 40, rankWeight: finder.rankWeight });
+  const rated = candidates.map((m, i) => {
+    if (isDefault(choice)) return { m, i, fit: null, pct: null };
+    const fit = fitVerdict(choice, facts(m.product.id)), t = traits(m.product.id).scores, lv = level(m.product.id);
+    const pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, signal: signal(m.product.id) });
+    return { m, i, fit, pct };
+  });
+  const rows = isDefault(choice) ? rated : [...rated].sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1) || a.i - b.i).slice(0, LIST_SIZE);
+  const matches = rows.map(x => x.m);
   // Rows carry the picks to the racket page, so its fit check answers for this visitor (RACKET-FIT-PAGE.md).
   const picks = isDefault(choice) ? "" : choiceHref(choice, "").replace(/^\/\??/, "?");
   const head = matchTitle(choice, niche.words.many);
@@ -83,18 +96,17 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
       <div className="hv2-grid">
         <section className="hv2-main" aria-live="polite">
           <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
-            <span>{picked ? `ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""}` : "ranked by player score · pick above to personalise"}</span></div>
+            <span>{picked ? <>{`ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
           {matches.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
-          <ol className="hv2-list">{matches.map((m, i) => {
+          <ol className="hv2-list">{rows.map(({ m, fit, pct }, i) => {
             const r = byId.get(m.product.id)!, sig = sigs.get(r.id), pic = photo(r);
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
             // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
-            const fit = picked ? fitVerdict(choice, facts(r.id)) : null;
             const fitWord = fit && fit.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not your match" }[fit.kind] : null;
             const chips = [
-              ...(i === 0 && picked ? [{ k: "best", t: "best match" }] : []),
+              ...(i === 0 && picked && fit?.kind === "good" ? [{ k: "best", t: "best match" }] : []),
               ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
               ...(m.arm >= ARM_BAR && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
             ];
@@ -105,8 +117,10 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
                 {line && <span className="hv2-line">{line}</span>}
                 {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
               <span className="hv2-stats">
-                {sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
-                <span>{sig ? "player score · " : ""}{`${n} reports`}</span>
+                {picked ? <span className="hv2-pct" title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+                  {pct === null ? <><b>—</b><small>not enough reports yet</small></> : <><b>{`${pct}%`}</b><small>match</small></>}</span>
+                : <>{sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
+                <span>{sig ? "player score · " : ""}{`${n} reports`}</span></>}
               </span>
             </a></li>;
           })}</ol>

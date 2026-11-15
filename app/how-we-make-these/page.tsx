@@ -59,6 +59,10 @@ export default async function HowWeMakeThese() {
         </div>
         <p className="hw-sub hw-dots">{"The \"How it plays\" dots on racket pages work the same way: from player reports, we count how often each racket is called forgiving, powerful, controlled, good in defence, kind to the arm or fast, then compare it with the rest of the catalog. 5 dots means more than most rackets; no dots means too few reports to say."}</p>
       </section>
+      <section id="match">
+        <h2 className="tight">The match %, explained</h2>
+        <p className="hw-sub">{"When you pick your style, level and arm on the home page, each racket gets a match %: how well it fits those picks, from player reports. Not a % of happy players. It weighs the racket's Control or Power score against your style, whether players and brands put it at your level, the Arm comfort score if you have a sore arm, and a little of the Player score. It always agrees with the word beside it: a Strong fit scores 70–99, Worth a look 45–69, Probably not your match 15–44. Too few reports? No % at all."}</p>
+      </section>
       <section>
         <h2>House rules</h2>
         <div className="hw-rules">{rules.map(([icon, t, b]) => <div key={t}><span>{icon}</span><div><strong>{t}</strong> {b}</div></div>)}</div>
