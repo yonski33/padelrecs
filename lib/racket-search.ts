@@ -26,7 +26,7 @@ export function matchingRackets<T extends { name: string }>(rackets: readonly T[
   const joined = words.join("");
   const prepared = rackets.map(racket => { const name = normalize(racket.name); return { racket, name, compact: name.replace(/ /g, ""), parts: name.split(" ") }; });
   const strict = prepared.filter(p => words.every(word => p.name.includes(word)) || p.compact.includes(joined));
-  const hits = strict.length ? strict : words.length ? prepared.filter(p => words.every(word => p.name.includes(word) || (word.length >= 4 && p.parts.some(part => within1(word, part))))) : [];
+  const hits = strict.length ? strict : words.length ? prepared.filter(p => words.every(word => p.name.includes(word) || (/^[a-z]{4,}$/.test(word) && p.parts.some(part => within1(word, part))))) : [];
   const rank = (p: { name: string; parts: string[] }) => p.name === normalized ? 0 : p.name.startsWith(normalized) ? 1 : words.every(w => p.parts.some(part => part.startsWith(w))) ? 2 : 3;
   const year = (p: { name: string }) => Number(p.name.match(/(?:^| )((?:19|20)\d{2})$/)?.[1] ?? 0);
   return hits.sort((a, b) => rank(a) - rank(b) || year(b) - year(a) || a.racket.name.localeCompare(b.racket.name)).map(p => p.racket);
