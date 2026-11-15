@@ -80,12 +80,13 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-line { font-size: 15.5px; line-height: 1.45; color: var(--text); text-wrap: pretty; }
   .hv2-fit { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 2px; font-size: 14px; }
   .hv2-fit b { font: 600 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 1px 9px; }
-  .hv2-fit.good b { background: oklch(0.9 0.1 145); } .hv2-fit.maybe b { background: oklch(0.93 0.12 95); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
+  .hv2-fit.good b { background: var(--marker); } .hv2-fit.maybe b { background: var(--paper); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
   .hv2-fit span { color: var(--text); }
   .hv2-pct { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 78px; padding: 6px 10px; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); line-height: 1.05; box-shadow: 2px 2px 0 var(--ink); }
   .hv2-pct b { font: 800 28px var(--display); }
   .hv2-pct small { font: 11px var(--mono); color: var(--mute); text-align: center; white-space: normal; max-width: 90px; }
-  li.top .hv2-pct { background: var(--acc); }
+  /* Good fit reads yellow everywhere (owner 2026-11-15): the % box and the fit pill; weaker fits stay white. */
+  .hv2-pct.good { background: var(--marker); }
   .hv2-what { display: inline; position: relative; }
   .hv2-what summary { display: inline; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; list-style: none; }
   .hv2-what summary::-webkit-details-marker { display: none; }
