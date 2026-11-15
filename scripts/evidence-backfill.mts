@@ -38,7 +38,9 @@ const LEVEL = ["Beginner", "Intermediate", "Advanced"];
 const reports = [
   ...data.reviews.map(r => ({ productId: r.racketId, ref: `p:${r.id}`, kind: "own_review" as const, author: r.alias ? `own:${hash(r.alias.toLowerCase())}` : null, at: r.createdAt, v: ratingVerdict(r.rating), tags: r.tags, text: r.reviewText })),
   ...data.external.map(e => ({ productId: e.racketId, ref: `w:${e.id}`, kind: e.sourcePlatform === "YouTube" ? "youtube" as const : "player_report" as const,
-    author: e.sourceName ? `${e.sourcePlatform}:${hash(e.sourceName.toLowerCase())}` : null, at: e.sourceDate || e.createdAt, v: e.sentiment, tags: e.tags,
+    // A forum report or a YouTube comment is its own voice: the stored source name there is the subreddit or the channel, not
+    // the writer, so no author key (the report is the voice, as in app/match-context.ts). Blogs and reviewers keep theirs.
+    author: e.sourcePlatform === "Reddit" || /[?&]lc=/.test(e.sourceUrl) || !e.sourceName ? null : `${e.sourcePlatform}:${hash(e.sourceName.toLowerCase())}`, at: e.sourceDate || e.createdAt, v: e.sentiment, tags: e.tags,
     text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") })),
 ];
 for (const x of reports) {
