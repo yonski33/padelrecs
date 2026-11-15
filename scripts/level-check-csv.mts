@@ -22,7 +22,7 @@ const q = (v: string | number) => /[",\n]/.test(String(v)) ? `"${String(v).repla
 const head = ["name", "slug", "reports", "brand_level", "expert_level", "pro_line", "suits_beginner", "suits_intermediate", "suits_advanced", "shows_for", "based_on", "owner_level"];
 const lines = rows.map(({ r, n }) => { const lv = ctx.level(r.id), s = lv?.suits;
   return [r.name, r.slug, n, brandOf.get(r.id) ?? "", expertOf(r.id), pro.some(re => re.test(r.name)) ? "yes" : "", s?.beginner ?? "", s?.intermediate ?? "", s?.advanced ?? "",
-    LEVELS.filter(l => passesLevel(lv, l, ctx.levelGate)).join(" + "), s?.basis.join("; ") ?? "", ""].map(q).join(","); });
+    LEVELS.filter(l => passesLevel(lv, l, ctx.levelGate)).join(" + "), ctx.facts(r.id).suits?.basis.join("; ") ?? "", ""].map(q).join(","); });
 writeFileSync(file, [head.join(","), ...lines].join("\n") + "\n");
 console.log(`${lines.length} rows → ${file}`);
 process.exit(0);
