@@ -22,9 +22,13 @@ export type FitConfig = {
   /** The specs' lean per trait in dots (each within ±1). */ specLean: (s: Specs) => Record<string, number>;
   /** The line under each bar from the counts (no zeros: "no one …"). */ lines: Record<string, (k: LineKit) => string | null>;
   /** Neutral names for where a quote comes from. */ sourceWords: { forum: string; blog: string };
+  /** Heads-up notes counted from reports (a tag, or words in the report text): shown when 2+ reports say it. */
+  headsUp?: { title: string; tags?: string[]; text?: RegExp; /** The words are the problem: skip the negation check. */ plain?: boolean }[];
   /** The product word: "racket" / "paddle". */ word: string;
+  /** The sport, lower case. */ sport: string;
   /** The footer's sign-off emoji. */ emoji: string;
-  /** Which specs to name when they lean a bar ("round, low balance"). */ specWords: (s: Specs) => (string | null | undefined)[];
+  /** How it plays dots, in words, for the how-we-make-these page. */ dotsWords: string;
+  /** Which specs to name when they lean a bar ("round, low balance"). */ specWords: (s: Specs, trait: string) => (string | null | undefined)[];
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -66,7 +70,9 @@ const PADEL: FitConfig = {
   },
   sourceWords: { forum: "padel forum", blog: "padel blog" },
   word: "racket",
+  sport: "padel",
   emoji: "🎾",
+  dotsWords: "forgiving, powerful, controlled, good in defence, kind to the arm or fast",
   specWords: s => [s.shape?.toLowerCase(), s.balance ? `${s.balance.toLowerCase()} balance` : null],
 };
 
@@ -109,9 +115,22 @@ const PICKLEBALL: FitConfig = {
     arm: ({ tc, ppl, plus, minus }) => { const p = plus ?? tc("arm-friendly"), m = minus ?? 0; return p || m ? `${p ? ppl(p, "find it kind to the arm") : "No one calls it kind to the arm"}, ${m ? ppl(m, "say it's hard on the arm") : "no one says it's hard on the arm"}.` : null; },
   },
   sourceWords: { forum: "pickleball forum", blog: "pickleball blog" },
+  // Owner 2026-11-15: delamination, dead spots, core crush and USAP approval issues, each with the 2+ source rule.
+  headsUp: [
+    { title: "Delamination reported", tags: ["delamination"], text: /\bdelaminat/i },
+    { title: "Dead spots reported", tags: ["dead spots"], text: /\bdead ?spots?\b/i },
+    { title: "Core crush reported", text: /\bcore (crush|crushed|crushing|broke|broken|went soft)|\bcrushed core\b/i },
+    // The problem is the wording itself ("not USAP approved", "disqualified …"), so no negation check here.
+    { title: "USAP approval questions", plain: true, text: /\bnot (yet )?(usap|usa ?pickleball)[ -]?(tournament[ -])?approved|\b(missing|lacks?|no|without) (the )?(usap|usa ?pickleball) approval|\bdisqualified\b[^.]{0,80}\b(usap|usa ?pickleball)|\b(usap|usa ?pickleball)\b[^.]{0,40}\b(banned|delisted|revoked|pulled|removed from)\b/i },
+  ],
   word: "paddle",
+  sport: "pickleball",
   emoji: "🏓",
-  specWords: s => [s.shape?.toLowerCase(), s.core ? `${s.core.toLowerCase()} core` : null],
+  dotsWords: "powerful, poppy, controlled at the kitchen, spinny, forgiving, fast in hand battles or kind to the arm",
+  // Only the specs that lean that bar: core and shape for most, the face for spin, swing weight for hand speed.
+  specWords: (s, t) => t === "spin" ? [s.surface ? `${s.surface.toLowerCase()} face` : null]
+    : t === "speed" ? [s.balance ? `swing weight ${s.balance}` : null, s.shape?.toLowerCase()]
+    : [s.shape?.toLowerCase(), s.core ? `${s.core.toLowerCase()} core` : null],
 };
 
 const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL };
@@ -119,3 +138,17 @@ const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBAL
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */
 export const traitDefsFor = (n: Pick<Niche, "id">): TraitDef[] => (CONFIGS[n.id] ?? PADEL).traits;
+/** Whether a report backs a heads-up: its tag, or its words without a negation just before ("no core crush", "hasn't core
+ *  crushed", "without it core crushing", "sidesteps core crush worries"). */
+export function reportSays(h: NonNullable<FitConfig["headsUp"]>[number], x: { tags: string[]; text?: string | null }): boolean {
+  if (h.tags?.some(t => x.tags.includes(t))) return true;
+  if (!h.text || !x.text) return false;
+  for (const m of x.text.matchAll(new RegExp(h.text.source, h.text.flags.includes("g") ? h.text.flags : h.text.flags + "g"))) {
+    const before = x.text.slice(Math.max(0, m.index! - 40), m.index!);
+    const after = x.text.slice(m.index! + m[0].length, m.index! + m[0].length + 25);
+    if (h.plain) return true;
+    if (/\b(no|not|non|never|without|sidesteps?|avoids?|free of|zero)\b|n['’]t\b/i.test(before) || /^\w*\s*(concerns?|worries|fears?)\b/i.test(after)) continue;
+    return true;
+  }
+  return false;
+}

@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import { Fragment } from "react";
+import { fitConfigFor } from "../lib/fit-config";
 import { spreadByProduct } from "../lib/review-order";
 import type { Metadata } from "next";
 import { catalog } from "../db/data";
@@ -35,9 +36,10 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const data = await catalog();
   // Quick match (PadelRecs): each combination is its own indexable page, "Best control padel rackets for beginners".
   const choice = readChoice(await searchParams);
-  if (niche.id === "padel" && niche.finder && !isDefault(choice)) {
-    const title = `${matchSeoTitle(choice, `padel ${niche.words.many}`)} | ${niche.site.name}`;
-    const description = `Padel rackets ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what players say about control, power, level and arm comfort. No sponsored picks.`;
+  const fit = fitConfigFor(niche);
+  if (fit && niche.finder && !isDefault(choice)) {
+    const title = `${matchSeoTitle(choice, `${fit.sport} ${niche.words.many}`)} | ${niche.site.name}`;
+    const description = `${fit.sport[0].toUpperCase()}${fit.sport.slice(1)} ${fit.word}s ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what players say about control, power, level and arm comfort. No sponsored picks.`;
     const url = choiceHref(choice, "");
     return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" } };
   }
@@ -136,7 +138,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
   // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
-  if (niche.id === "padel" && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)}/>;
+  if (fitConfigFor(niche) && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">

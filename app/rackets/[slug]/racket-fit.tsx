@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
 import type { Trait } from "../../../lib/trait-score";
-import type { TraitDef } from "../../../lib/fit-config";
+import { reportSays, type TraitDef } from "../../../lib/fit-config";
 import { fitVerdict, bestFor, levelBacking, levelSources, styleLean, MIN_FIT_REPORTS } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
@@ -118,7 +118,7 @@ export default async function RacketFit(props: {
     const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
     // A count line says where the dots put it, so "5 players say it's great in defence" never sits beside 1 dot unexplained.
     // Plain words under the bar (owner 2026-11-15): what players say, what reviewers say, and the specs when they lean it.
-    const ytN = sc?.yt ?? 0, specWords = sc && me && Math.abs(sc.spec) >= 0.3 ? cfg.specWords(me).filter(Boolean).join(", ") : "";
+    const ytN = sc?.yt ?? 0, specWords = sc && me && Math.abs(sc.spec) >= 0.3 ? cfg.specWords(me, t).filter(Boolean).join(", ") : "";
     // From the evidence store (owner 2026-11-15): everyone who praises or faults this trait, one voice once, tags, the reader
     // pass and YouTube alike: "5 players and 1 reviewer praise its defence · 6 find it demanding · diamond, high balance".
     const ev = sc?.people, evLine = ev && (ev.players.plus + ev.reviewers.plus + ev.players.minus + ev.reviewers.minus) > 0 ? (() => {
@@ -195,7 +195,14 @@ export default async function RacketFit(props: {
   // bullets; split into a title (first sentence) and a detail. Nothing real: the box is hidden.
   const split = (t: string) => { const m = /^(.+?[.!?])\s+(.+)$/.exec(t.trim()); return m ? { t: m[1], d: m[2] } : { t: t.trim(), d: "" }; };
   const heads = [...(qt?.tips.filter(x => (x.label === "Heads up" || x.label === "Weather check") && x.reports.length >= 2).map(x => split(x.text)) ?? []),
-    ...((qt?.catch.reports.length ?? 0) >= 2 ? qt!.catch.bullets.map(b => split(b)) : [])].slice(0, 3);
+    ...((qt?.catch.reports.length ?? 0) >= 2 ? qt!.catch.bullets.map(b => split(b)) : []),
+    // The site's counted heads-ups (lib/fit-config.ts): a tag or the words in a report, 2+ reports.
+    ...(cfg.headsUp ?? []).flatMap(h => {
+      const said = [...ctx.data.reviews.filter(r => r.racketId === props.racketId).map(r => ({ tags: r.tags, text: r.reviewText })),
+        ...ctx.data.external.filter(e => e.racketId === props.racketId).map(e => ({ tags: e.tags, text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") }))]
+        .filter(x => reportSays(h, x)).length;
+      return said >= 2 ? [{ t: h.title, d: `${said} reports mention it.` }] : [];
+    })].slice(0, 3);
   const tipNote = qt?.tips.find(x => (x.label === "Player tip" || x.label === "Setup tip") && x.reports.length >= 2);
   const tip = tipNote ? { ...split(tipNote.text), n: new Set(tipNote.reports).size, other: qt!.tips.find(x => x !== tipNote && (x.label === "Player tip" || x.label === "Setup tip") && x.reports.length >= 2) } : null;
   const total = reports.length;

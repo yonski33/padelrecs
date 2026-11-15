@@ -3,11 +3,11 @@ import { useState } from "react";
 import { signals, type SignalInput } from "../../lib/signal";
 
 /** "Try it": the real signal formula (lib/signal.ts), run on the real catalog plus one imaginary racket with the slider counts. */
-export default function SignalTry({ products }: { products: SignalInput[] }) {
+export default function SignalTry({ products, word = "racket" }: { products: SignalInput[]; word?: string }) {
   const [c, setC] = useState({ pos: 41, mix: 19, neg: 7 });
   const total = c.pos + c.mix + c.neg;
   const score = signals([...products, { id: "__try", category: "all", positive: c.pos, mixed: c.mix, judged: total }]).get("__try")?.signal ?? null;
-  const note = total < 5 ? "Under 5 reviews: this racket wouldn't appear in rankings yet."
+  const note = total < 5 ? `Under 5 reviews: this ${word} wouldn't appear in rankings yet.`
     : total < 15 ? `${total} reviews. The score stays modest until more people weigh in.`
     : `${total} reviews, ${Math.round(c.pos / total * 100)}% loved it. Enough people that the score can trust it.`;
   const badge = score === null ? "#fff" : score >= 85 ? "oklch(0.88 0.17 125)" : score >= 70 ? "oklch(0.93 0.14 100)" : "#fff";
