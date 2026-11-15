@@ -52,6 +52,7 @@ body:has(main.lr2) { background: #fbfaf6; }
   .lr2-watch { font: 600 12px var(--mono); }
   .lr2-k { margin: 2px 0 0; font: 11px var(--mono); color: var(--mute); }
   .lr2-empty { border: 2px dashed #b9b5aa; border-radius: 12px; padding: 28px; text-align: center; font: 800 16px var(--display); }
+  .lr2-older { display: block; text-align: center; padding: 6px; font: 600 13px var(--mono); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
   .lr2-more { display: block; text-align: center; padding: 10px; border: 2px dashed #b9b5aa; border-radius: 14px; font: 13px var(--mono); text-decoration: none; }
   .lr2-side { flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 18px; position: sticky; top: 76px; }
   .lr2-own { border: 2px solid var(--ink); border-radius: 12px; padding: 16px; background: var(--acc); box-shadow: 4px 4px 0 var(--ink); }

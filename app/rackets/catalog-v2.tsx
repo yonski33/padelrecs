@@ -13,6 +13,7 @@ import { gramsOf, weightOf, WEIGHTS, FEELS } from "../../lib/fine-tune";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { matchContext } from "../match-context";
+import { newestInFamily, olderInFamily } from "../../lib/compare-pairs";
 
 // The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
 // only: filters on the left (play style, level, shape, year, arm-friendly, and "more filters" for weight, feel and a bigger
@@ -21,7 +22,7 @@ import { matchContext } from "../match-context";
 const PAGE = 20;
 const STYLES = ["control", "balance", "power"] as const, LEVELS = ["beginner", "intermediate", "advanced"] as const, SHAPES = ["round", "teardrop", "hybrid", "diamond"] as const;
 const SORTS = [["score", "player score"], ["reviews", "most reviewed"], ["newest", "newest"]] as const;
-type F = { style?: string; level?: string; shape?: string; year?: string; arm?: string; weight?: string; feel?: string; sweet?: string; sort?: string; show?: string; more?: string; q?: string };
+type F = { style?: string; level?: string; shape?: string; year?: string; arm?: string; weight?: string; feel?: string; sweet?: string; sort?: string; show?: string; more?: string; q?: string; older?: string };
 const KEYS = ["style", "level", "shape", "year", "weight", "feel"] as const;
 
 const shapeWord = (s: string | null | undefined) => { const x = (s ?? "").toLowerCase(); return /diamond/.test(x) ? "diamond" : /round/.test(x) ? "round" : /tear|drop/.test(x) ? "teardrop" : x ? "hybrid" : null; };
@@ -41,7 +42,12 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
     style: (x, v) => x.lean === v, level: (x, v) => (x.suits?.[v as (typeof LEVELS)[number]] ?? 0) >= SUITS_OK, shape: (x, v) => x.shape === v,
     year: (x, v) => x.year === v, weight: (x, v) => x.weight === v, feel: (x, v) => x.feel === v,
   };
-  const pass = (x: Row, skip?: string) => KEYS.every(k => k === skip || !f[k] || tests[k](x, f[k]!)) && (skip === "arm" || f.arm !== "1" || x.arm) && (skip === "sweet" || f.sweet !== "1" || x.sweet);
+  // One model, newest year (owner 2026-11-15, as quick match): a family's older years are hidden unless ?older=1, a search or a
+  // year pick asks for them. "Newest per model", not a year cut, so a model whose newest is 2025 stays. Older pages stay live.
+  const newest = new Set(data.listed.filter(r => newestInFamily(r, data.listed).id === r.id).map(r => r.id));
+  const allYears = f.older === "1" || !!f.q || !!f.year;
+  const current = (x: Row) => allYears || newest.has(x.r.id);
+  const pass = (x: Row, skip?: string) => current(x) && KEYS.every(k => k === skip || !f[k] || tests[k](x, f[k]!)) && (skip === "arm" || f.arm !== "1" || x.arm) && (skip === "sweet" || f.sweet !== "1" || x.sweet);
   const sort = SORTS.some(([k]) => k === f.sort) ? f.sort! : "score";
   const order = (a: Row, b: Row) => sort === "reviews" ? b.sc.judged - a.sc.judged : sort === "newest" ? Number(b.year) - Number(a.year) || (b.signal ?? -1) - (a.signal ?? -1) : (b.signal ?? -1) - (a.signal ?? -1) || b.sc.judged - a.sc.judged;
   const shown = rows.filter(x => pass(x)).sort((a, b) => order(a, b) || a.r.name.localeCompare(b.r.name));
@@ -62,7 +68,8 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
           <span className="ct-dot" aria-hidden="true"/><span className="ct-ol">{v}</span><span className="ct-n">{n}</span></Link>; })}</div>
     </details>;
   const photo = (r: Row["r"]) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
-  const total = data.listed.length;
+  const total = data.listed.filter(r => newest.has(r.id)).length;
+  const olderN = rows.filter(x => !newest.has(x.r.id) && KEYS.every(k => !f[k] || tests[k](x, f[k]!)) && (f.arm !== "1" || x.arm) && (f.sweet !== "1" || x.sweet)).length;
 
   return <main className={`ct2 ${qtFontVars}`}>
     <div className="ct2-wrap">
@@ -92,7 +99,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
 
         <section className="ct2-main">
           <div className="ct2-bar">
-            <div className="ct2-count"><b>{active.length || f.q ? `${shown.length} ${shown.length === 1 ? niche.words.one : niche.words.many}` : `All ${total} ${niche.words.many}`}</b>
+            <div className="ct2-count"><b>{active.length || f.q || f.older === "1" ? `${shown.length} ${shown.length === 1 ? niche.words.one : niche.words.many}` : `All ${total} ${niche.words.many}`}</b>
               {active.map(a => <Link key={a.label} href={a.href} scroll={false} replace className="ct2-chipx">{a.label} <i aria-hidden="true">✕</i></Link>)}</div>
             <div className="ct2-sort"><span>sort</span>{SORTS.map(([k, label]) => <Link key={k} href={href({ sort: k === "score" ? undefined : k })} scroll={false} replace className={sort === k ? "on" : undefined} aria-current={sort === k ? "true" : undefined}>{label}</Link>)}</div>
           </div>
@@ -113,8 +120,10 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
                 {x.sc.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}
                 <small>{x.signal !== null ? "player score" : `${x.sc.judged} reports`}</small>
               </span>
-            </a></li>; })}</ol>
+            </a>
+              {(() => { const old = allYears ? [] : olderInFamily(r, data.listed); return old.length > 0 && <a className="ct2-also" href={productHref(old[0])}>{`also: ${old[0].year} version →`}</a>; })()}</li>; })}</ol>
           {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
+          {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}
           {shown.length > show && <Link className="ct2-load" href={href({ show: String(show + PAGE) })} scroll={false} replace>{`load ${Math.min(PAGE, shown.length - show)} more ↓`}</Link>}
         </section>
       </div>

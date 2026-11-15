@@ -92,6 +92,8 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-empty { border: 2px dashed #b9b5aa; border-radius: 14px; padding: 28px 16px; text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; }
   .ct2-empty b { font: 800 18px var(--display); }
   .ct2-empty a { font: 13px var(--mono); }
+  .ct2-also { display: inline-block; margin: 4px 0 2px 58px; font: 12px var(--mono); color: var(--soft); }
+  .ct2-older { display: block; margin-top: 10px; text-align: center; padding: 8px; font: 600 13px var(--mono); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
   .ct2-load { display: block; margin-top: 8px; text-align: center; padding: 10px; font: 13px var(--mono); border: 2px dashed #b9b5aa; border-radius: 14px; text-decoration: none; }
 
   @media (max-width: 760px) {

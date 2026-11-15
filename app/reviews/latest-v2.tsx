@@ -7,6 +7,7 @@ import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
+import { newestInFamily } from "../../lib/compare-pairs";
 import "./latest-v2.css";
 
 // Latest reviews in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/JLXnpgtRmWgg6TRbc5BgHR),
@@ -17,7 +18,7 @@ import "./latest-v2.css";
 const PAGE = 20, DAY = 864e5;
 const PILL = { positive: "loved it", mixed: "mixed", negative: "not for me" } as const;
 type Verdict = keyof typeof PILL;
-type Search = { src?: string; v?: string; show?: string };
+type Search = { src?: string; v?: string; show?: string; older?: string };
 
 /** The time this request renders at (a server component renders once per request). */
 const requestTime = () => Date.now();
@@ -55,12 +56,18 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
   ].filter(x => byId.has(x.racketId)).sort((a, b) => b.date.localeCompare(a.date));
   const src = search.src === "players" || search.src === "yt" ? search.src : "all";
   const v = (["positive", "mixed", "negative"] as const).find(x => x === search.v) ?? null;
-  const items = all.filter(x => (src === "all" || (src === "players" ? x.kind === "player" : x.kind === "yt")) && (!v || x.verdict === v));
+  // One model, newest year (owner 2026-11-15, as quick match and the catalogue): reviews of a family's older years only with
+  // ?older=1. The older pages and their reviews stay live there.
+  const newest = new Set(data.listed.filter(r => newestInFamily(r, data.listed).id === r.id).map(r => r.id));
+  const older = search.older === "1", isCurrent = (id: string) => newest.has(id) || !data.listed.some(r => r.id === id);
+  const inSrc = (x: Item) => (src === "all" || (src === "players" ? x.kind === "player" : x.kind === "yt")) && (!v || x.verdict === v);
+  const olderN = all.filter(x => inSrc(x) && !isCurrent(x.racketId)).length;
+  const items = all.filter(x => (older || isCurrent(x.racketId)) && (src === "all" || (src === "players" ? x.kind === "player" : x.kind === "yt")) && (!v || x.verdict === v));
   const show = Math.min(1000, Math.max(PAGE, Number(search.show) || PAGE));
   const groups: { label: string; items: { x: Item; i: number }[] }[] = [];
   items.slice(0, show).forEach((x, i) => { const label = dayGroup(x.date, now), last = groups.at(-1);
     if (last?.label === label) last.items.push({ x, i }); else groups.push({ label, items: [{ x, i }] }); });
-  const href = (next: Partial<Search>) => { const q = new URLSearchParams(Object.entries({ src: src === "all" ? undefined : src, v: v ?? undefined, ...next }).filter(([, x]) => x) as [string, string][]); return q.size ? `/reviews?${q}` : "/reviews"; };
+  const href = (next: Partial<Search>) => { const q = new URLSearchParams(Object.entries({ src: src === "all" ? undefined : src, v: v ?? undefined, older: older ? "1" : undefined, ...next }).filter(([, x]) => x) as [string, string][]); return q.size ? `/reviews?${q}` : "/reviews"; };
   const week = all.filter(x => Date.parse(x.date) >= now - 7 * DAY);
   const counts = new Map<string, number>();
   for (const x of week) counts.set(x.racketId, (counts.get(x.racketId) ?? 0) + 1);
@@ -105,6 +112,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
             </article>; })}
           </div>)}
           {items.length === 0 && <div className="lr2-empty">Nothing like that yet 🤷</div>}
+          {olderN > 0 && <Link className="lr2-older" href={href({ older: older ? undefined : "1", show: undefined })} scroll={false}>{older ? "hide older models ▴" : `show older models (${olderN} reviews) ▾`}</Link>}
           {items.length > show && <Link className="lr2-more" href={href({ show: String(show + PAGE) })} scroll={false}>load older reviews ↓</Link>}
         </section>
         <aside className="lr2-side">
