@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
 import { TRAITS, TRAIT_LABEL, type Trait } from "../../../lib/trait-score";
-import { fitVerdict, bestFor, levelBacking, levelSources, styleLean } from "../../../lib/fit-verdict";
+import { fitVerdict, bestFor, levelBacking, levelSources, styleLean, MIN_FIT_REPORTS } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
@@ -136,7 +136,8 @@ export default async function RacketFit(props: {
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
   const d = qt?.catch.debate;
   // At the visitor's level: one real quote each way from players at that level (their own words, English, card length).
-  const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240;
+  // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
+    const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
   const levelTake = (ok: boolean) => {
     const fits = (x: QtReport) => ok ? x.sentiment === "positive" : x.sentiment === "negative" || x.sentiment === "mixed";
     const own = reviews.find(x => atLevel.some(a => a.id === x.id && fits(a)) && english(x.reviewText));
@@ -188,7 +189,7 @@ export default async function RacketFit(props: {
   const total = reports.length;
 
   const lean = styleLean(facts).lean;
-  const peerSub = levelView ? `${said.length} of ${total} reviews · from players at your level` : `${total} reviews · forums, YouTube & ${props.site.toLowerCase()}`;
+  const peerSub = levelView ? `${said.length} of ${total} reviews · from players at your level` : `${total} ${total === 1 ? "review" : "reviews"} · forums, YouTube & ${props.site.toLowerCase()}`;
   const altTitle = !verdict ? "Similar rackets" : verdict.kind === "good" ? "Also worth a look" : "Better matches for you";
   const box = (on: boolean) => <i className="rf-box" aria-hidden="true">{on ? "✓" : ""}</i>;
   const armLink = (label: string) => <Link href={picked ? at({ ...base, arm: !choice.arm }) : pickHref({ ...base, arm: true })} scroll={false} replace aria-pressed={picked && choice.arm} className="rf-arm">{box(picked && choice.arm)}{label}</Link>;
@@ -202,12 +203,13 @@ export default async function RacketFit(props: {
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name}/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
             <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}</div>
-            <h1>{`${props.shortName} (${props.year})`}</h1>
+            {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
+            <h1>{`${props.shortName} review`}</h1>
             {(qt || props.line) && <p className="rf-hook">{qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             <div className="rf-meta">
               {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
               {/* The mockup's "62% liked it" is the Player score here (owner). */}
-              <a href="#reviews" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{`${ctx.signal(props.racketId) !== null ? `${ctx.signal(props.racketId)} player score · ` : ""}${total} reviews`}</a>
+              <a href="#reviews" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{`${ctx.signal(props.racketId) !== null ? `${ctx.signal(props.racketId)} player score · ` : ""}${total} ${total === 1 ? "review" : "reviews"}`}</a>
             </div>
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
@@ -224,7 +226,7 @@ export default async function RacketFit(props: {
             <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
               <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% match · ${verdictWord}`}</span></div>
             <h2>{headline}</h2>
-            <p className="rf-for">{`For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
+            <p className="rf-for">{verdict.kind === "thin" ? (total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`) : `For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
             {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ What works" : "✓ Why it fits"}</p><p>{why}</p></div>}
             {consider && <div className="rf-blk warn"><p className="rf-bk">↗ What to consider</p><p>{consider}</p></div>}
             {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
@@ -248,8 +250,8 @@ export default async function RacketFit(props: {
             <div className="rf-said">
               <div className="rf-sum">
                 {badge && <div className="rf-badge" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{badge.n}</b><span>{badge.label}</span></div>}
-                <div className="rf-sumr"><div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
-                <p className="rf-counts"><span>{`👍 ${pos} loved`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} nope`}</span></p></div>
+                {pos + mix + neg > 0 && <div className="rf-sumr"><div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
+                <p className="rf-counts"><span>{`👍 ${pos} loved`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} nope`}</span></p></div>}
               </div>
               {takes.length > 0 && <div className="rf-quotes">{takes.map(t => { const [tag, cls] = QUOTE_TAG[t.tone] ?? QUOTE_TAG.mixed; return <div key={t.id} className={cls}>
                 <span>{tag}</span>

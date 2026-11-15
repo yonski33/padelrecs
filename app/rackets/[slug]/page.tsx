@@ -26,7 +26,6 @@ import QuickVote from "../../quick-vote";
 import QuickTakePage from "./quick-take";
 import RacketFit from "./racket-fit";
 /** Beginner-friendly pilots on the fit page without a quick-take block (owner 2026-11-15, RACKET-FIT-PAGE.md). */
-const FIT_PILOTS_WITHOUT_BLOCK = new Set<string>(["siux-diablo-pro-4-2025", "adidas-metalbone-carbon-ctrl-3-4-2025"]);
 import { readChoice } from "../../../lib/quick-match";
 import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
@@ -336,11 +335,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // The editorial quick take (owner 2026-11-15, lib/quick-take.ts): when the product has a checked block, it replaces the
   // top of the page; the full list of reports follows it. ?qt=off shows the normal page.
   const qt = query.qt !== "off" ? await quickTakeFor(r.id, r.slug) : null;
-  // Beginner-friendly pilots (owner 2026-11-15) get the fit page before they have a quick-take block: lines from tag counts,
-  // takes from two real player excerpts. Only these slugs; every other product without a block keeps today's page.
-  if (!qt && FIT_PILOTS_WITHOUT_BLOCK.has(r.slug) && query.layout !== "long" && query.qt !== "off") {
+  // Every padel racket gets the fit page (owner 2026-11-15, "go for the rest of the catalog"); without a quick-take block the
+  // lines come from tag counts, trait scores, specs and YouTube notes, and the takes from real player excerpts.
+  // Escape hatches: ?layout=long, ?qt=off, ?look=classic.
+  if (!qt && niche.id === "padel" && query.layout !== "long" && query.qt !== "off" && query.look !== "classic") {
     const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
-    const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240;
+    // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
+    const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
     const pickTake = (ok: boolean) => {
       const own = reviews.filter(x => ok ? x.rating >= 4 : x.rating <= 3).filter(x => english(x.reviewText)).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
       if (own) return { id: own.id, text: own.reviewText, verbatim: true, ok };
@@ -373,7 +374,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     ].filter(Boolean) };
     // The racket fit page (owner 2026-11-15, RACKET-FIT-PAGE.md) replaces the long quick-take layout: a tight page with a fit
     // check for the visitor's picks (?style=&level=&arm=1, the same as the home's quick match). ?layout=long shows the old one.
-    if (query.layout !== "long") {
+    if (query.layout !== "long" && query.look !== "classic") {
       const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
       return <RacketFit qt={qt} racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
         crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
