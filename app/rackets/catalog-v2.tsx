@@ -111,7 +111,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
               <span className="ct2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
                 {x.signal !== null ? <b className={x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : undefined}>{x.signal}</b> : <b>–</b>}
                 {x.sc.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}
-                <small>{`player score · ${x.sc.judged}`}</small>
+                <small>{x.signal !== null ? "player score" : `${x.sc.judged} reports`}</small>
               </span>
             </a></li>; })}</ol>
           {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
