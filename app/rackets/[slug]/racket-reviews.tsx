@@ -24,7 +24,7 @@ const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
 export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
-  /** Every report's sentiment for the bar beside the count (owner's final mock: a bar, no %). */ mood?: { pos: number; mix: number; neg: number } }) {
+  /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null } }) {
   const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<typeof LEVELS[number] | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
@@ -66,16 +66,17 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   return <>
     <div className="rv-head">
       <div><h2>Reviews</h2>
-        {mood && mood.pos + mood.mix + mood.neg > 0 && <div className="rv-mood"><span>{`${total ?? cards.length} reviews`}</span>
-          <span className="rf-sbar" role="img" aria-label={`${mood.pos} positive, ${mood.mix} mixed, ${mood.neg} negative`}><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>
-          <span>players &amp; YouTube</span></div>}{!mood && <p>{total !== undefined && total !== cards.length ? `${cards.length} of the ${total} reviews · from players on padelrecs and summarised YouTube reviews (forum reports count in the score, not shown here)` : `${cards.length} total · from players on padelrecs and summarised YouTube reviews`}</p>}</div>
+        {mood && mood.pos + mood.mix + mood.neg > 0 && <div className="rv-mood">
+          {mood.score != null && <span className="rv-badge" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{mood.score}</b>Player score</span>}
+          <span className="rv-mbar"><span className="rf-sbar" role="img" aria-label={`${mood.pos} positive, ${mood.mix} mixed, ${mood.neg} negative`}><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>
+          <small>{`👍 ${mood.pos} loved · 🤷 ${mood.mix} mixed · 👎 ${mood.neg} nope · ${mood.pos + mood.mix + mood.neg} rated`}</small></span></div>}{!mood && <p>{total !== undefined && total !== cards.length ? `${cards.length} of the ${total} reviews · from players on padelrecs and summarised YouTube reviews (forum reports count in the score, not shown here)` : `${cards.length} total · from players on padelrecs and summarised YouTube reviews`}</p>}</div>
       <div className="rv-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
         <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{label}</button>)}</div>
     </div>
     <div className="rv-list">
       {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">🎾</span>
         <span>{posted === "words" ? <><strong>Thanks — your review is in.</strong> It&apos;ll show here after a quick check.</> : <><strong>Thanks — your verdict counts.</strong> Add a few words next time and it shows here too.</>}</span></div>
-      : <div className="rv-compose">
+      : <div className={`rv-compose${verdict ? "" : " one"}`}>
         <div className="rv-ct"><b>Played it?</b><span>one tap, no account</span></div>
         <div className="rv-verdicts" role="group" aria-label={`Your verdict on the ${name}`}>{VERDICTS.map(x =>
           <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}>{WORD[x.key]}</button>)}</div>

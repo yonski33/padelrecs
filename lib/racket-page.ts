@@ -6,6 +6,7 @@ import padel from "../db/racket-page/padel.json";
 import { niche } from "./niche";
 
 export type PageItem = { title: string; /** One line; the key phrase sits between == marks. */ t: string; src: string[];
+  /** Who it matters for (lib/fit-card.ts CardTag): picks that earn the "matters for you" tag. */ for?: string[];
   /** The evidence line, {n} = the number of reports ("the #1 complaint, {n} players"); default "{n} players mention it". */ ev?: string };
 export type PageContent = { tagline: string; bottom: string; yes: PageItem[]; no: PageItem[] };
 
@@ -26,5 +27,19 @@ export function marked(t: string): { text: string; mark: boolean }[] {
   return t.split("==").map((text, i) => ({ text, mark: i % 2 === 1 })).filter(x => x.text);
 }
 
+/** Below this many reports a racket shows no bottom line or Why yes / Why not (owner's build rules). */
+export const PAGE_MIN = 20;
+
+/** Engine axis cut-offs for the style chip and copy: below CONTROL a control racket, above POWER a power racket, else all-round. */
+export const AXIS_CONTROL = 0.42, AXIS_POWER = 0.58;
+
 /** How many items show before "+N more". */
 export const SHOWN_ITEMS = 3;
+
+/** "matters for you": up to 2 items per column whose tags meet the visitor's picks (owner's final mock); a sore arm first, then
+ *  the style, then the level (the fit card's order, lib/fit-card.ts), the author's order breaking ties. */
+const W: Record<string, number> = { arm: 4, control: 3, balance: 3, power: 3, beginner: 2, intermediate: 2, advanced: 2 };
+export function mattersFor(items: PageItem[], picks: string[], max = 2): Set<string> {
+  const score = (it: PageItem) => (it.for ?? []).reduce((a, t) => a + (picks.includes(t) ? W[t] ?? 1 : 0), 0);
+  return new Set(items.map((it, i) => ({ it, i, s: score(it) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, max).map(x => x.it.title));
+}

@@ -69,3 +69,24 @@ test("padel content follows the rules: ≤105 chars, sources, 2+ for tips, no ba
   if (l.tip) assert.ok(new Set(l.tip.src).size >= 2, `${slug}: tip needs 2+ sources: ${l.tip.t}`);
  }
 });
+
+test("racket page: 'matters for you' picks the arm first, at most 2 per column, and counts evidence from sources", async () => {
+ const { mattersFor, evidenceLine, marked } = await import("../lib/racket-page");
+ const items = [{ title: "A", t: "x", src: ["1"], for: ["intermediate"] }, { title: "B", t: "x", src: ["1"], for: ["control"] }, { title: "C", t: "x", src: ["1", "2", "1"], for: ["arm"] }];
+ assert.deepEqual([...mattersFor(items, ["control", "intermediate", "arm"])], ["C", "B"]);
+ assert.equal(mattersFor(items, []).size, 0);
+ assert.equal(evidenceLine(items[2]), "2 players mention it");
+ assert.equal(evidenceLine({ ...items[2], ev: "the #1 complaint, {n} players" }), "the #1 complaint, 2 players");
+ assert.deepEqual(marked("a ==b== c"), [{ text: "a ", mark: false }, { text: "b", mark: true }, { text: " c", mark: false }]);
+});
+
+test("racket page content follows the rules: 3-4 items a side, one highlight, <=105 chars, no 'owners' or '% liked'", async () => {
+ const { default: page } = await import("../db/racket-page/padel.json", { with: { type: "json" } });
+ for (const [slug, v] of Object.entries(page as Record<string, { tagline: string; bottom: string; yes: { t: string; src: string[] }[]; no: { t: string; src: string[] }[] }>)) {
+  for (const t of [v.tagline, v.bottom, ...v.yes.map(i => i.t.replace(/==/g, "")), ...v.no.map(i => i.t.replace(/==/g, ""))]) {
+   assert.ok(t.length <= 105, `${slug}: too long: ${t}`);
+   assert.ok(!/owner|% (liked|loved)|reddit|brand says/i.test(t), `${slug}: banned words: ${t}`);
+  }
+  for (const side of [v.yes, v.no]) { assert.ok(side.length >= 3 && side.length <= 4, `${slug}: 3-4 items`); for (const i of side) { assert.equal(i.t.split("==").length, 3, `${slug}: one highlight: ${i.t}`); assert.ok(i.src.length > 0); } }
+ }
+});

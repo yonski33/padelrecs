@@ -441,3 +441,28 @@
     .rp-k { display: none; }
   }
 }
+
+/* Final mock, sign-off round (owner 2026-11-15): quiet score line, older-year link, "matters for you", reviews header badge,
+   one-row "Played it?", compare tabs scroll sideways on phones. */
+.rf {
+  .rp-score { display: flex; flex-direction: column; gap: 4px; font: 12px var(--mono); color: var(--soft); text-decoration: none; align-self: flex-start; margin-top: 2px; }
+  .rp-score b { color: var(--ink); }
+  .rp-score .rf-sbar { width: 80px; height: 6px; border-width: 1px; }
+  .rp-older { font: 11px var(--mono); color: var(--soft); text-decoration: underline; align-self: center; margin-left: 4px; }
+  .rp-hot { margin-left: 8px; font: 700 10.5px var(--mono); background: var(--marker); border: 1.2px solid var(--ink); border-radius: 999px; padding: 0 7px; vertical-align: 2px; white-space: nowrap; }
+  .rv-mood { display: flex; gap: 14px; align-items: center; margin-top: 10px; color: var(--mute); }
+  .rv-badge { display: inline-flex; gap: 8px; align-items: center; border: 2px solid var(--ink); border-radius: 10px; background: var(--marker); box-shadow: 3px 3px 0 var(--ink); padding: 4px 10px; font: 700 14px var(--display); color: var(--ink); flex: none; }
+  .rv-badge b { border: 2px solid var(--ink); border-radius: 6px; background: var(--acc); padding: 0 5px; font: 800 18px var(--display); }
+  .rv-mbar { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .rv-mbar .rf-sbar { width: 100%; height: 12px; }
+  .rv-mbar small { font: 11.5px var(--mono); }
+  .rv-compose.one { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 16px; }
+  .rv-compose.one .rv-ct { display: contents; }
+  .rv-compose.one .rv-ct span { order: 3; margin-left: auto; }
+  @media (max-width: 640px) {
+    .rp-tabs { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; grid-template-columns: none; }
+    .rp-tabs button { flex: 0 0 auto; width: 46%; min-width: 150px; scroll-snap-align: start; border-bottom: 0 !important; border-right: 1.5px solid var(--line) !important; }
+    .rv-mood { flex-direction: column; align-items: stretch; gap: 10px; }
+    .rv-badge { align-self: flex-start; }
+  }
+}

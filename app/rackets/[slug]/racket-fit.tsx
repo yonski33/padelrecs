@@ -7,8 +7,9 @@ import { LEVELS, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
-import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, type SaidView, type CompareCard } from "./fit-live";
+import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, FitYesNo, BeforePicks, type SaidView, type CompareCard } from "./fit-live";
 import { homePayload } from "../../home-payload";
+import { engineAxis } from "../../../lib/home-rank";
 import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
 import { signalCategory } from "../../signals";
@@ -24,7 +25,7 @@ import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
-import { pageContent, evidenceLine, marked, SHOWN_ITEMS, type PageItem } from "../../../lib/racket-page";
+import { pageContent, PAGE_MIN, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
 import { countWord } from "../../../lib/fit-card";
 import type { QtReport, QtReview } from "./quick-take";
 
@@ -193,7 +194,10 @@ export default async function RacketFit(props: {
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
 
-  const lean = styleLean(facts).lean;
+  // The style chip follows the match engine's control ↔ power axis (one story with the fit check and the dots; maker labels
+  // bound it), with the tag-count lean only where the engine has no place for the racket.
+  const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
+  const lean = axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
   // The fit card's racket-specific lines (lib/fit-card.ts, owner 2026-11-15): only this racket's entry goes to the browser,
   // with names and links for the rackets its catches point to. None yet: FitBox keeps the fit check's own reasons.
   const cardData = cardContent(props.slug);
@@ -207,6 +211,11 @@ export default async function RacketFit(props: {
   const cardOf = (rid: string): CompareCard => { const r = racketOf(rid); return { name: displayName(r.name, brand(r.brandId)), short: shortOf(r), href: productHref(r), pic: photoOf(r), dots: dotsOf(rid) }; };
   const compareMe = cardOf(props.racketId);
   const compareCards: Record<string, CompareCard> = Object.fromEntries([...new Set([...Object.keys(payload.cards), ...similarIds])].filter(cid => ctx.data.rackets.some(r => r.id === cid)).map(cid => [cid, cardOf(cid)]));
+  // Every judged report's sentiment: the hero's quiet score line and the Reviews header (no %).
+  const mood = { pos: saidViews.none.pos, mix: saidViews.none.mix, neg: saidViews.none.neg }, rated = mood.pos + mood.mix + mood.neg;
+  // "2025 version →" (owner's final mock): the newest older year of the same model, when the catalog lists one.
+  const olderRow = ctx.data.listed.filter(x => modelFamily(x) === modelFamily(racketOf(props.racketId)) && x.year < props.year).sort((a, b) => b.year - a.year)[0];
+  const older = olderRow ? { year: olderRow.year, href: productHref(olderRow) } : null;
   return <><FitPicks first={{ choice, picked }} href={props.href}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="rf-wrap">
@@ -215,15 +224,16 @@ export default async function RacketFit(props: {
         <div className="rf-hero">
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
-            <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}</div>
+            <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
+              {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{`${props.shortName} review`}</h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
-            <div className="rf-meta">
-              {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
-              {/* The mockup's "62% liked it" is the Player score here (owner). */}
-              <a href="#reviews" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{`${ctx.signal(props.racketId) !== null ? `${ctx.signal(props.racketId)} player score · ` : ""}${total} ${total === 1 ? "review" : "reviews"}`}</a>
-            </div>
+            {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
+            <a className="rp-score" href="#reviews" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
+              <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? " player score · " : ""}${rated} rated`}</span>
+              {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>
+            {props.buy && <div className="rf-meta"><a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a></div>}
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
         </div>
@@ -231,21 +241,13 @@ export default async function RacketFit(props: {
         <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card}/>
       </section>
 
-      {page && <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>}
+      {page && total >= PAGE_MIN && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
 
       <section className="rp-body">
         <div className="rp-main">
-          {page && <div>
+          {page && total >= PAGE_MIN && <div>
             <div className="rf-h"><h2>Why yes, why not</h2><span>from player reports &amp; YouTube</span></div>
-            <div className="rp-yn">{([["yes", "✓", "Why yes"], ["no", "!", "Why not"]] as const).map(([side, icon, title]) => {
-              const items = page[side], rest = items.slice(SHOWN_ITEMS);
-              const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}</b>
-                <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
-                <small>{evidenceLine(it)}</small></div>;
-              return <div key={side} className={`rp-col ${side}`}><p className="rp-ch"><i aria-hidden="true">{icon}</i>{title}</p>
-                {items.slice(0, SHOWN_ITEMS).map(item)}
-                {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
-              </div>; })}</div>
+            <FitYesNo yes={page.yes} no={page.no}/>
           </div>}
 
           <div>
@@ -256,7 +258,7 @@ export default async function RacketFit(props: {
 
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
-              mood={{ pos: saidViews.none.pos, mix: saidViews.none.mix, neg: saidViews.none.neg }}/>
+              mood={{ ...mood, score: overallScore }}/>
           </section>
 
           {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>

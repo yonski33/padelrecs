@@ -11,7 +11,8 @@ import { choiceHref, readChoice, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type
 import { fineWords } from "../../../lib/fine-tune";
 import { niche } from "../../../lib/niche";
 import AskPicks, { RememberPicks } from "./ask-picks";
-import { cardLines, type CardContent } from "../../../lib/fit-card";
+import { cardLines, pickTags, type CardContent } from "../../../lib/fit-card";
+import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, type PageItem } from "../../../lib/racket-page";
 
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -95,7 +96,7 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
     </div> : <div className="rf-ans" aria-live="polite">
       {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>}
       <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
-        <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% match · ${verdictWord}`}</span>
+        <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
       <h2>{headline}</h2>
       <p className="rf-for">{verdict.kind === "thin" ? (total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`) : `For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
@@ -217,4 +218,25 @@ export function FitCompare({ id, items, me, rows, cards, similar }: { id: string
         </>}
     </div>
   </div>;
+}
+
+/** Children only before the visitor picks (owner's final mock: the bottom line shows before picks). Still in the HTML. */
+export function BeforePicks({ children }: { children: ReactNode }) {
+  const { p: { picked } } = use();
+  return <div hidden={picked}>{children}</div>;
+}
+
+/** "Why yes, why not" (owner's final mock): 3 items per column and "+N more" (in the HTML, opened by a tap); with picks, up to 2
+ *  items per column that speak to them get a "matters for you" tag. */
+export function FitYesNo({ yes, no }: { yes: PageItem[]; no: PageItem[] }) {
+  const { p: { choice, picked } } = use(), picks = picked ? pickTags(choice) : [];
+  return <div className="rp-yn">{([["yes", "✓", "Why yes", yes], ["no", "!", "Why not", no]] as const).map(([side, icon, title, items]) => {
+    const hot = mattersFor(items, picks), rest = items.slice(SHOWN_ITEMS);
+    const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}{hot.has(it.title) && <span className="rp-hot">matters for you</span>}</b>
+      <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
+      <small>{evidenceLine(it)}</small></div>;
+    return <div key={side} className={`rp-col ${side}`}><p className="rp-ch"><i aria-hidden="true">{icon}</i>{title}</p>
+      {items.slice(0, SHOWN_ITEMS).map(item)}
+      {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
+    </div>; })}</div>;
 }

@@ -6,6 +6,10 @@
    {
     "title": "Forgives your mishits",
     "t": "The sweet spot covers most of the face, so ==mishits still go deep==.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
     "src": [
      "research-3cc800f8-4e93-4129-9e5d-eaf2e4906507",
      "research-fed1d6b2-df18-4285-a525-c1237f8e16bd",
@@ -32,6 +36,10 @@
    {
     "title": "Easy in defence",
     "t": "Lobs, chiquitas and low balls from the back feel ==safe under pressure==.",
+    "for": [
+     "control",
+     "intermediate"
+    ],
     "src": [
      "0eb81c6f-0073-4dab-8bb2-ccace570408b",
      "41d69d5f-0a99-411a-af60-d23805612847",
@@ -46,6 +54,10 @@
    {
     "title": "Tune it with the weights",
     "t": "Weights up top add smash power; ==take them out for speed==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
     "src": [
      "research-44b2c214-49fb-4395-8dce-4385c6fc1518",
      "research-8ed78451-0c7a-496f-9f29-0eaee15f9826",
@@ -68,6 +80,9 @@
     "title": "Kind to sore arms",
     "t": "Players with sore elbows or wrists say ==it suits them==.",
     "ev": "{n} players with arm pain",
+    "for": [
+     "arm"
+    ],
     "src": [
      "f483fdb6-3129-448a-bf55-8b41017eb23c",
      "research-dba39e75-24cd-4adf-8d90-f731c5fde8c5",
@@ -81,6 +96,10 @@
     "title": "Bouncy at the net",
     "t": "The soft face launches fast blocks, so ==volleys can fly long==.",
     "ev": "the #1 complaint, {n} players",
+    "for": [
+     "control",
+     "advanced"
+    ],
     "src": [
      "research-7e2f88d0-23d7-4f5f-a80b-0aceeeb99ff2",
      "research-73293aeb-00c5-4432-8da9-b3b9eafef86f",
@@ -101,6 +120,9 @@
    {
     "title": "Smashes need help",
     "t": "Out of the box ==flat smashes lack pop==; players move the weights up top.",
+    "for": [
+     "power"
+    ],
     "src": [
      "research-3df7d121-a999-4734-b2b5-c61ff65bd6bf",
      "research-c8444438-f44e-4235-af7c-3ba16e21df2b",
@@ -112,6 +134,9 @@
    {
     "title": "Bouncier in the heat",
     "t": "A few players say it gets ==far too lively in warm weather==.",
+    "for": [
+     "control"
+    ],
     "src": [
      "research-73293aeb-00c5-4432-8da9-b3b9eafef86f",
      "research-7dd7befd-e2e7-4917-b429-05dfa9490ae0"
@@ -120,6 +145,7 @@
    {
     "title": "Check the weight screws",
     "t": "The adjustable weight screws ==broke or failed== for a few players.",
+    "for": [],
     "src": [
      "research-72bd16b1-b672-4989-a5b5-d18369f18b6e",
      "research-357fcb1c-bf6e-4544-8c1b-f7015a336829",
@@ -135,6 +161,10 @@
    {
     "title": "Huge sweet spot",
     "t": "“Almost the whole racket is sweet spot”: ==off-centre hits still land==.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
     "src": [
      "d2670b81-ad81-40e7-bf4b-196b724bf906",
      "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
@@ -155,6 +185,10 @@
    {
     "title": "Dry touch, little trampoline",
     "t": "Players like it for ==placement and deep lobs==.",
+    "for": [
+     "control",
+     "advanced"
+    ],
     "src": [
      "research-7ad825b1-76aa-458b-b148-d340ec3f5cde",
      "research-c1062c85-3cf1-42dd-bb54-f64862e2a677",
@@ -168,6 +202,10 @@
    {
     "title": "Quick in the hand",
     "t": "A low balance makes it ==easy to handle at the net==.",
+    "for": [
+     "control",
+     "balance"
+    ],
     "src": [
      "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
      "research-2785033f-2fda-41c8-ad66-293ff065e8db",
@@ -182,6 +220,9 @@
    {
     "title": "A true all-rounder",
     "t": "Players use it on ==both sides of the court==.",
+    "for": [
+     "balance"
+    ],
     "src": [
      "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
      "research-bec60964-d5f1-481b-a15d-d65228a3abb6",
@@ -194,6 +235,9 @@
    {
     "title": "No free power",
     "t": "Smashes need a full swing, and ==flat smashes get no help==.",
+    "for": [
+     "power"
+    ],
     "src": [
      "d2670b81-ad81-40e7-bf4b-196b724bf906",
      "research-f0d75cd9-b8fc-4654-9189-fb52a65a91fe",
@@ -213,6 +257,10 @@
     "title": "Heavier than the label",
     "t": "Players weighed theirs at ==380 g or more== out of the box.",
     "ev": "{n} players weighed theirs",
+    "for": [
+     "beginner",
+     "arm"
+    ],
     "src": [
      "research-0f7bd3d6-fa75-45f3-86aa-d46386b09436",
      "research-162afd07-72b0-40f5-bc3a-c8fb9b2c0be5",
@@ -224,6 +272,9 @@
     "title": "Split on sore arms",
     "t": "Some got ==elbow or shoulder pain== from the firm face; others call it arm-friendly.",
     "ev": "{n} players with arm pain",
+    "for": [
+     "arm"
+    ],
     "src": [
      "research-7df6be13-96cc-40fb-b751-99fc304a84e9",
      "research-fe349e00-deda-476c-a2b1-c10642d56c71",
@@ -241,6 +292,10 @@
    {
     "title": "Easy and forgiving",
     "t": "The sweet spot is ==bigger than the 12K's==, so mishits still play.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
     "src": [
      "d6663844-6f68-4183-b45a-7444577dd1cc",
      "deef6486-360f-44ac-8d1b-ff1e8ce1396a",
@@ -265,6 +320,9 @@
    {
     "title": "Control and touch",
     "t": "==Precise lobs and chiquitas==, and volleys go where you aim.",
+    "for": [
+     "control"
+    ],
     "src": [
      "fa415fd5-7483-449c-8855-d86147dea46b",
      "deef6486-360f-44ac-8d1b-ff1e8ce1396a",
@@ -293,6 +351,9 @@
    {
     "title": "Kind to the arm",
     "t": "Players with elbow or wrist trouble ==find it comfortable==.",
+    "for": [
+     "arm"
+    ],
     "src": [
      "c6312d1b-8097-4565-854c-bb5acf160da3",
      "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
@@ -309,6 +370,9 @@
    {
     "title": "Quick to move",
     "t": "==Easy to handle at the net== and in defence.",
+    "for": [
+     "balance"
+    ],
     "src": [
      "fa415fd5-7483-449c-8855-d86147dea46b",
      "fac5aebd-ed48-4336-9402-fb49b064122e",
@@ -331,6 +395,10 @@
    {
     "title": "Flat smashes need your arm",
     "t": "There's ==no free power==; it works when you swing it properly.",
+    "for": [
+     "power",
+     "advanced"
+    ],
     "src": [
      "6775df21-f207-438d-8801-ecfbdb0dc8f0",
      "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
@@ -356,6 +424,9 @@
    {
     "title": "Soft at pace",
     "t": "Fast shots can ==run away to the glass== or the net.",
+    "for": [
+     "advanced"
+    ],
     "src": [
      "research-66249816-dd52-4abd-9cce-05389b80318b",
      "research-04ae0c76-5990-4f4a-a942-144e47743f43",
@@ -372,6 +443,7 @@
    {
     "title": "Changes with the weather",
     "t": "==Stiff on a cold day==, perfect in the heat, players say.",
+    "for": [],
     "src": [
      "fac5aebd-ed48-4336-9402-fb49b064122e",
      "research-152cc422-9b07-455f-aa42-c9af627b2222",
@@ -388,6 +460,9 @@
    {
     "title": "Easy punch",
     "t": "Smashes and viboras get ==real power from the upper sweet spot==.",
+    "for": [
+     "power"
+    ],
     "src": [
      "21894399-5cef-475a-a3bc-8fc1dcd77685",
      "research-d8946510-bca7-44c9-a47f-c4e9c599343d",
@@ -412,6 +487,10 @@
    {
     "title": "Power without losing control",
     "t": "It adds punch but ==keeps your touch and placement==.",
+    "for": [
+     "balance",
+     "advanced"
+    ],
     "src": [
      "21894399-5cef-475a-a3bc-8fc1dcd77685",
      "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
@@ -433,6 +512,9 @@
    {
     "title": "Forgiving for a diamond",
     "t": "The sweet spot is ==bigger than players expected==.",
+    "for": [
+     "intermediate"
+    ],
     "src": [
      "research-d8946510-bca7-44c9-a47f-c4e9c599343d",
      "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
@@ -451,6 +533,10 @@
    {
     "title": "Punishes bad timing",
     "t": "==Mishits and slow defence get no help==; it takes a few sessions to settle.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
     "src": [
      "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
      "7646df23-86cc-48f4-8ef1-522a49203718",
@@ -468,6 +554,9 @@
    {
     "title": "Heavy up top",
     "t": "Many find it ==heavy or head-heavy==; one weighed 390 g+ set up.",
+    "for": [
+     "arm"
+    ],
     "src": [
      "research-025481ec-8b4f-478e-b1af-93cefa47fe46",
      "81dc96a9-af32-4849-9bd6-0358f095f30e",
@@ -484,6 +573,9 @@
    {
     "title": "Not a first racket",
     "t": "An intermediate player says it's ==“Not suitable for beginners”==.",
+    "for": [
+     "beginner"
+    ],
     "src": [
      "48da8486-f81e-4b7c-8364-db66b27fbf43",
      "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
@@ -500,6 +592,9 @@
    {
     "title": "Pinpoint control",
     "t": "Lobs and returns go where you aim: one player makes ==“0 mistakes on lobs or returns”==.",
+    "for": [
+     "control"
+    ],
     "src": [
      "fafffa88-24d8-481e-8fb1-8149b8a1de32",
      "574baabf-cfde-4384-b183-a512699d8e02",
@@ -524,6 +619,10 @@
    {
     "title": "Dry and direct",
     "t": "==No trampoline==: blocks at the net feel rock solid.",
+    "for": [
+     "control",
+     "advanced"
+    ],
     "src": [
      "56346be5-d926-4d78-9d01-822a0b660aa6",
      "research-2fdbf2ae-4af5-4460-ba40-e1aae19170b2",
@@ -537,6 +636,10 @@
    {
     "title": "Finishes for a control racket",
     "t": "==Flat smashes and bandejas== still have punch.",
+    "for": [
+     "balance",
+     "power"
+    ],
     "src": [
      "574baabf-cfde-4384-b183-a512699d8e02",
      "56346be5-d926-4d78-9d01-822a0b660aa6",
@@ -553,6 +656,9 @@
     "title": "Hard on the arm",
     "t": "Players got arm, elbow or shoulder pain, and ==most of them moved on==.",
     "ev": "the #1 complaint, {n} players",
+    "for": [
+     "arm"
+    ],
     "src": [
      "research-5f279e19-3ff0-4bd4-929e-a00ac9613780",
      "research-c9cd3e00-0284-4930-98ef-07dbb3522e4e",
@@ -571,6 +677,10 @@
    {
     "title": "Heavy and head-heavy",
     "t": "Some units weigh ==380–390 g== with grips on.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
     "src": [
      "research-02176b41-4c52-42b8-bcea-6d59f635696e",
      "research-f3ee0ce4-1904-44b3-9f4e-b9a877149049",
@@ -588,6 +698,10 @@
    {
     "title": "Stiff and demanding",
     "t": "Players see it as ==a racket for advanced players==.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
     "src": [
      "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02",
      "research-5abe0e5b-81bf-48ae-b1ce-68777a4274fd",
@@ -600,6 +714,9 @@
    {
     "title": "Rock-hard in the cold",
     "t": "A few players say it ==stiffens a lot in winter==.",
+    "for": [
+     "arm"
+    ],
     "src": [
      "research-b9999903-f1e5-441e-b353-60ff33711ad8",
      "research-670e6794-4ab7-47b7-a732-a950e61c537e"
