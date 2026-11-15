@@ -299,6 +299,9 @@
   .rf-for { margin: -8px 0 0; font-size: 15px; text-wrap: pretty; }
   .rf-blk { border: 0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
   .rf-blk.ok { background: oklch(0.95 0.05 145); } .rf-blk.warn { background: oklch(0.96 0.04 60); }
+  .rf-lines { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; text-wrap: pretty; }
+  .rf-note { display: block; margin-top: 2px; font-size: 13.5px; color: var(--soft); } .rf-note b { font-weight: 600; color: var(--ink); }
+  .rf-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   .rf-blk p.rf-bk { font: 700 15px var(--body); color: var(--ink); margin: 0; }
   .rf-afoot { border-top: 1.5px dashed var(--dash); justify-content: space-between; gap: 10px; }
   .rf-afoot > span:first-child { font: 600 12px var(--mono); color: var(--soft); white-space: pre; }

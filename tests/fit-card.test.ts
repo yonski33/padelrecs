@@ -43,6 +43,16 @@ test("a hard conflict: a racket line on the same pick replaces the generic reaso
  assert.equal(b.catches.length, 1);
 });
 
+test("a minor strength never leads", () => {
+ const c: CardContent = {strengths: [{t: "Spin", for: ["power"], minor: true, src: ["a"]}, {t: "Control", for: [], src: ["b"]}], catches: []};
+ assert.deepEqual(cardLines(c, {style: "power", level: "advanced", arm: false}).strengths.map(x => x.t), ["Control", "Spin"]);
+});
+
+test("counts in the fit check's reasons become words", () => {
+ assert.equal(plainReason("You want power, but this one is a control racket: 20 players praise the control."), "You want power, but this one is a control racket: lots of players praise the control.");
+ assert.equal(plainReason("Sore arm: 5 players mention vibration, only 1 player calls it arm-friendly."), "Sore arm: some players mention vibration, only one player calls it arm-friendly.");
+});
+
 test("plainReason drops the level bookkeeping only", () => {
  assert.equal(plainReason("Level: the brand says professional · 3 reviewers say beginner to intermediate. Suits intermediates."), "Suits intermediates.");
  assert.equal(plainReason("A pro line, built for advanced players."), "A pro line, built for advanced players.");
@@ -52,7 +62,8 @@ test("padel content follows the rules: ≤105 chars, sources, 2+ for tips, no ba
  for (const [slug, c] of Object.entries(padel as Record<string, CardContent>)) for (const l of [...c.strengths, ...c.catches]) {
   for (const t of [l.t, l.tip?.t, l.alt?.t].filter((x): x is string => !!x)) {
    assert.ok(t.length <= 105, `${slug}: too long: ${t}`);
-   assert.ok(!/reddit|% liked|brand says/i.test(t), `${slug}: banned words: ${t}`);
+   assert.ok(!/reddit|% liked|brand says|roomy/i.test(t), `${slug}: banned words: ${t}`);
+   assert.ok(!/\b\d+ (players|reviewers|testers)\b/i.test(t), `${slug}: counts in words, not numbers: ${t}`);
   }
   assert.ok(l.src.length > 0, `${slug}: no sources: ${l.t}`);
   if (l.tip) assert.ok(new Set(l.tip.src).size >= 2, `${slug}: tip needs 2+ sources: ${l.tip.t}`);

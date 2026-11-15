@@ -16,6 +16,8 @@ export type CardLine = {
   /** Shown only when one of these is picked (arm-only lines, a level that is the main catch). */
   only?: CardTag[];
   src: (string | number)[];
+  /** A side trait (spin, adjustable weights): fine second, never the lead reason (owner 2026-11-15). */
+  minor?: boolean;
   /** A player tip, heads up or weather check under a catch: 2+ sources (lib/fit-card checks). */
   tip?: CardNote;
   /** "If you want X, look at Y": a catalog racket, linked. */
@@ -51,7 +53,8 @@ export type CardCatch = CardLine & { /** The one note shown under it: the altern
  *  the generic reason; with none, the generic reason (level bookkeeping stripped) leads and one racket catch follows. */
 export function cardLines(content: CardContent, c: Pick<QuickChoice, "style" | "level" | "arm">, opts: { maxCatches?: 1 | 2; hard?: string } = {}) {
   const picks = pickTags(c), max = opts.maxCatches ?? 2;
-  const strengths = ranked(content.strengths, picks).slice(0, 2).map(x => x.l);
+  const rs = ranked(content.strengths, picks), lead0 = rs.find(x => !x.l.minor);
+  const strengths = (lead0 ? [lead0, ...rs.filter(x => x !== lead0)] : rs).slice(0, 2).map(x => x.l);
   let cs = ranked(content.catches, picks);
   const hardTag = opts.hard ? reasonTag(opts.hard, c) : null;
   // A level conflict needs a line written for that level (`only`); most lines name levels only as who they matter to.
@@ -60,7 +63,9 @@ export function cardLines(content: CardContent, c: Pick<QuickChoice, "style" | "
   if (onHard.length) cs = [...onHard, ...cs.filter(x => !onHard.includes(x))];
   const lead = opts.hard && !onHard.length ? plainReason(opts.hard) : null;
   const room = lead ? 1 : max;
-  const picked = cs.slice(0, 1).concat(room > 1 ? cs.slice(1, 2).filter(x => x.s > 0) : []).slice(0, room).map(x => x.l);
+  // A second catch that points to the same racket as the first says the same thing twice: the next one goes instead.
+  const first = cs[0], rest = cs.slice(1).filter(x => !(first?.l.alt && x.l.alt?.slug === first.l.alt.slug));
+  const picked = (first ? [first] : []).concat(room > 1 ? rest.slice(0, 1).filter(x => x.s > 0) : []).map(x => x.l);
   const catches: CardCatch[] = picked.map(l => {
     const wantsAlt = l.alt && (c.style === "any" || l.for.includes(c.style));
     return { ...l, note: wantsAlt || (l.alt && !l.tip) ? { kind: "alt" as const, alt: l.alt! } : l.tip ? { kind: "tip" as const, tip: l.tip } : undefined };
@@ -71,5 +76,15 @@ export function cardLines(content: CardContent, c: Pick<QuickChoice, "style" | "
 /** Drops the level bookkeeping a fit-check reason may start with ("Level: the brand says professional · …."): the owner
  *  wants reasons, not who-says-what. What follows ("A pro line, built for advanced players.") stays. */
 export function plainReason(reason: string) {
-  return reason.replace(/^Level:[^]*?\.\s+(?=[A-Z])/, "").trim();
+  return wordCounts(reason.replace(/^Level:[^]*?\.\s+(?=[A-Z])/, "").trim());
+}
+
+/** "12 players praise…" → "many players praise…" (owner 2026-11-15: words, not player numbers). */
+export function countWord(n: number) {
+  return n <= 1 ? "one" : n <= 3 ? "a few" : n <= 7 ? "some" : n <= 14 ? "many" : "lots of";
+}
+export function wordCounts(text: string) {
+  return text.replace(/\b(\d+) (players?|reviewers?)\b/g, (_, n: string, who: string) => {
+    const w = countWord(Number(n)); return w === "one" ? `one ${who.replace(/s$/, "")}` : `${w} ${who.endsWith("s") ? who : `${who}s`}`;
+  }).replace(/^./, ch => ch.toUpperCase());
 }
