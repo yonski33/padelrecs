@@ -1,7 +1,8 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { niche, productHref } from "../../lib/niche";
-export const metadata: Metadata = { ...niche.seo.addReview, alternates: { canonical: "/add-review" } };
+// A form, not a page to land on from search (audit 2026-11-15, #17).
+export const metadata: Metadata = { ...niche.seo.addReview, alternates: { canonical: "/add-review" }, robots: { index: false, follow: true } };
 import { catalog } from "../../db/data";
 import ReviewForm from "./review-form";
 import AddReviewV2 from "./add-v2";

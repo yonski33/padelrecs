@@ -31,15 +31,19 @@ const homeTitle = niche.seo.homeTitle;
 /** "Real Reviews of Nail Polish, Gel Polish, Top Coats and Press-On Nails": the title without the site name, the page's H1. */
 const headline = homeTitle.split(" – ").slice(1).join(" – ") || homeTitle;
 // The search snippet: what the site covers and how big it is, short enough that Google shows it whole (~155 characters).
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string }> }): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; older?: string }> }): Promise<Metadata> {
   const data = await catalog();
   // Quick match (PadelRecs): each combination is its own indexable page, "Best control padel rackets for beginners".
-  const choice = readChoice(await searchParams);
+  const q = await searchParams, choice = readChoice(q);
   if (niche.id === "padel" && niche.finder && !isDefault(choice)) {
     const title = `${matchSeoTitle(choice, `padel ${niche.words.many}`)} | ${niche.site.name}`;
     const description = `Padel rackets ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what players say about control, power, level and arm comfort. No sponsored picks.`;
-    const url = choiceHref(choice, "");
-    return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" } };
+    // Only style, level and sore arm make an indexable page (24 of them, all in the sitemap). Fine-tune picks and "show older
+    // models" are views of that page: canonical to it and noindex (audit 2026-11-15, #8).
+    const url = choiceHref({ style: choice.style, level: choice.level, arm: choice.arm }, "");
+    const extra = !!choice.fine || q.older === "1";
+    return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" },
+      ...(extra ? { robots: { index: false, follow: true } } : {}) };
   }
   const total = data.reviews.length + data.external.length;
   const short = `${headline}: ${total.toLocaleString("en-US")} reviews, ranked by what people actually say.`;
