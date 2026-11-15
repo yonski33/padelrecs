@@ -89,12 +89,6 @@
   .rf-tips p { margin: 0; font-size: 14px; }
   .rf-specs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; font: 13px var(--mono); }
   .rf-specs span { border: 1.5px solid var(--ink); border-radius: 8px; background: var(--paper); padding: 4px 10px; }
-  details.rf-all { border: 2px dashed var(--dash); border-radius: 12px; padding: 12px 16px; }
-  details.rf-all summary { cursor: pointer; font: 600 14px var(--mono); }
-  details.rf-all[open] summary { margin-bottom: 12px; }
-  .rf-cms { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
-  .rf-cms li { border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); padding: 10px 14px; }
-  .rf-cms p { margin: 0; font-size: 15px; }
   .rf-cmh { display: flex; gap: 8px; flex-wrap: wrap; font: 12px var(--mono) !important; color: var(--mute); margin-bottom: 4px !important; }
   .rf-cmh b { font: 700 14px var(--display); color: var(--ink); }
 
@@ -149,5 +143,70 @@
     .rf-side { position: static; max-width: none; }
     .rf-grid { grid-template-columns: minmax(0, 1fr); }
     .rf-grid > span { padding: 0; }
+  }
+}
+
+/* Reviews section (RACKET-REVIEWS-SECTION.md, Claude Design mockup #reviews). Nested under .rf: no .rf prefix inside. */
+.rf {
+  --v-pos: oklch(0.9 0.1 145); --v-mix: oklch(0.93 0.12 95); --v-neg: oklch(0.9 0.08 30);
+  .rf-meta a { color: inherit; }
+  .rv { border-top: 2px solid var(--ink); padding-top: 28px; margin-top: 32px; display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 80px; }
+  .rv-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+  .rv-head h2 { font: 800 28px var(--display); margin: 0; }
+  .rv-head p { margin: 2px 0 0; color: var(--soft); font-size: 15px; }
+  .rv-tabs { display: flex; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; }
+  .rv-tabs button { all: unset; cursor: pointer; white-space: nowrap; padding: 5px 12px; font-size: 13px; font-weight: 700; background: var(--paper); color: var(--ink); border-right: 1.5px solid var(--ink); }
+  .rv-tabs button:last-child { border-right: 0; }
+  .rv-tabs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .rv-tabs button:focus-visible, .rv-verdicts button:focus-visible, .rv-levels button:focus-visible, .rv-post:focus-visible, .rv-more:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .rv-list { max-width: 760px; display: flex; flex-direction: column; gap: 12px; }
+  .rv-compose { border: 2px dashed var(--ink); border-radius: 12px; background: var(--paper); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .rv-ct { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .rv-ct b { font: 800 18px var(--display); }
+  .rv-ct span, .rv-levels span { font: 11px var(--mono); color: var(--mute); }
+  .rv-levels span { font-size: 12px; margin-right: 4px; }
+  .rv-verdicts, .rv-levels { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .rv-levels { gap: 6px; }
+  .rv-verdicts button { all: unset; cursor: pointer; white-space: nowrap; border: 2px solid var(--ink); border-radius: 8px; padding: 6px 12px; font-weight: 700; font-size: 14px; background: var(--paper); }
+  .rv-verdicts button[aria-pressed="true"] { box-shadow: 3px 3px 0 var(--ink); }
+  .rv-verdicts .positive[aria-pressed="true"] { background: var(--v-pos); } .rv-verdicts .mixed[aria-pressed="true"] { background: var(--v-mix); } .rv-verdicts .negative[aria-pressed="true"] { background: var(--v-neg); }
+  .rv-levels button { all: unset; cursor: pointer; white-space: nowrap; padding: 3px 10px; border: 1.5px solid var(--ink); border-radius: 999px; font-size: 13px; background: var(--paper); }
+  .rv-levels button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .rv-compose textarea, .rv-send input { box-sizing: border-box; border: 2px solid var(--ink) !important; border-radius: 8px; font: 16px/1.5 var(--body); background: var(--bg) !important; outline: none; }  /* !important: the site's global field style */
+  .rv-compose textarea { width: 100%; padding: 10px 12px; resize: vertical; }
+  .rv-compose textarea:focus, .rv-send input:focus { box-shadow: 0 0 0 3px var(--acc); }
+  .rv-send { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .rv-send input { flex: 1 1 200px; min-width: 0; padding: 7px 10px; font-size: 16px; }
+  .rv-post { all: unset; cursor: pointer; white-space: nowrap; padding: 8px 16px; border: 2px solid var(--ink); border-radius: 8px; font: 800 15px var(--display); background: var(--acc); box-shadow: 3px 3px 0 var(--ink); }
+  .rv-post:disabled { cursor: default; background: var(--line); color: var(--mute); box-shadow: none; border-color: var(--dash); }
+  .rv-err { margin: 0; color: var(--neg); font-size: 14px; }
+  .rv-thanks { border: 2px solid var(--ink); border-radius: 12px; background: var(--acc); padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+  .rv-thanks > span:first-child { font-size: 24px; }
+  .rv-empty { margin: 0; color: var(--soft); }
+  .rv-card { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
+  .rv-card.player { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .rv-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; }
+  .rv-av { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex: none; }
+  .rv-av.a0 { background: oklch(0.92 0.08 145); } .rv-av.a1 { background: oklch(0.93 0.1 95); } .rv-av.a2 { background: oklch(0.9 0.07 250); } .rv-av.a3 { background: oklch(0.92 0.07 30); }
+  .rv-meta { color: var(--mute); } .rv-meta a { color: inherit; }
+  .rv-pill { flex: none; white-space: nowrap; font: 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; }
+  .rv-pill.positive { background: var(--v-pos); } .rv-pill.mixed { background: var(--v-mix); } .rv-pill.negative { background: var(--v-neg); }
+  .rv-when { margin-left: auto; font: 11px var(--mono); color: var(--mute); }
+  .rv-text { margin: 0; font-size: 16px; text-wrap: pretty; overflow-wrap: anywhere; }
+  .rv-yt { padding: 14px 16px; display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .rv-thumb { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border-radius: 8px; border: 2px solid var(--ink); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .rv-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .rv-play { position: relative; width: 30px; height: 22px; border-radius: 6px; background: oklch(0.6 0.2 28); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+  .rv-yb { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .rv-tag { font: 11px var(--mono); background: oklch(0.85 0.1 25); border: 1.5px solid var(--ink); border-radius: 4px; padding: 0 5px; }
+  .rv-title { font-size: 14px; color: var(--soft); }
+  .rv-yb ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 3px; font-size: 15px; }
+  .rv-yb li { text-wrap: pretty; }
+  .rv-watch { font: 12px var(--mono); align-self: flex-start; color: var(--ink); }
+  .rv-more { all: unset; cursor: pointer; text-align: center; padding: 10px; border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); font: 13px var(--mono); }
+  @media (max-width: 520px) {
+    .rv-yt { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px; }
+    .rv-thumb { max-width: 200px; }
+    .rv-card.player { padding: 12px; }
   }
 }

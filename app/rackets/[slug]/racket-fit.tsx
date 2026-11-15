@@ -7,12 +7,13 @@ import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { platformName } from "../../../lib/source-label";
-import { phraseSegments } from "../../../lib/highlights";
 import { displayName } from "../../../lib/brand-name";
 import { productHref } from "../../../lib/niche";
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
 import { amazonPhoto } from "../../../lib/amazon-photos";
-import QuickTakeComposer, { QuickVoteLine } from "./quick-take-composer";
+import { QuickVoteLine } from "./quick-take-composer";
+import RacketReviews, { type ReviewCard } from "./racket-reviews";
+import { plainSummary } from "../../../lib/plain-summary";
 import type { QtReport, QtReview } from "./quick-take";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
@@ -23,7 +24,12 @@ import type { QtReport, QtReview } from "./quick-take";
 function Rich({ text }: { text: string }) {
   return <>{spans(text).map((s, i) => s.mark || s.b ? <b key={i}>{s.text}</b> : <span key={i}>{s.text}</span>)}</>;
 }
-const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+/** "5d ago", "3 mo ago", "1 yr ago" for a card. */
+function ago(iso?: string | null) {
+  if (!iso) return null; const d = Math.max(0, (Date.now() - Date.parse(iso)) / 864e5); if (!Number.isFinite(d)) return null;
+  return d < 1 ? "today" : d < 30 ? `${Math.floor(d)}d ago` : d < 365 ? `${Math.floor(d / 30)} mo ago` : `${Math.floor(d / 365)} yr ago`;
+}
+const ratingVerdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
 /** Reports at the picked level needed before "What players said" narrows to them. */
 const LEVEL_SAID_MIN = 5;
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
@@ -96,6 +102,26 @@ export default async function RacketFit(props: {
   };
   const levelTakes = levelView ? [levelTake(true), levelTake(false)].filter((x): x is NonNullable<typeof x> => !!x) : [];
   const takes = levelTakes.length ? levelTakes : d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? [];
+  // The Reviews section's cards (RACKET-REVIEWS-SECTION.md): our own reviews and stored reports, newest first. YouTube
+  // reports get the video card; everything else is a player card. Real data only: no author handles are stored, so web
+  // reports say "A player" and link their source; a verdict pill only where the sentiment was judged.
+  const lv = (v?: string | null) => v ? (v === "Competitive" ? "competitive" : v.toLowerCase()) : null;
+  const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
+  const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
+  const dated: { at: string; card: ReviewCard }[] = [
+    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: lv(r.playerLevel), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: r.reviewText, verbatim: true } })),
+    ...ctx.data.external.filter(e => e.racketId === props.racketId).map(e => {
+      const english = !e.sourceLanguage || e.sourceLanguage === "en";
+      const text = e.summary ? plainSummary(e.summary) : (!english && e.excerptTranslation) || e.excerpt || "";
+      const verbatim = !e.summary && english && !!e.excerpt;
+      const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl };
+      const card: ReviewCard = e.sourcePlatform === "YouTube"
+        ? { ...base, kind: "youtube", who: e.sourceName, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? sentences(text).slice(0, 4) : [text] }
+        : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
+      return { at: e.sourceDate ?? "", card };
+    }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
+  ];
+  const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
   const levelWord = choice.level === "advanced" ? "advanced players" : `${choice.level}s`;
   const tips = qt?.tips.slice(0, 2) ?? [];
   const total = reports.length;
@@ -115,7 +141,7 @@ export default async function RacketFit(props: {
             {(qt || props.line) && <p className="rf-hook">{qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             <div className="rf-meta">
               {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
-              <span>{`${total} player reports${mood ? ` · ${mood}` : ""}`}</span>
+              <a href="#reviews">{`${total} player reports${mood ? ` · ${mood}` : ""}`}</a>
             </div>
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
@@ -166,15 +192,6 @@ export default async function RacketFit(props: {
 
           {props.specs.length > 0 && <section><h2 className="rf-h2">Specs</h2><p className="rf-specs">{props.specs.map(s => <span key={s}>{s}</span>)}</p></section>}
 
-          <details className="rf-all" id="community">
-            <summary>{reviews.length ? `See all ${reviews.length} ${reviews.length === 1 ? "review" : "reviews"} from players here, or add yours` : "Add your take"}</summary>
-            <QuickTakeComposer racketId={props.racketId} name={props.shortName} tags={props.tags} nicknames={props.nicknames} hasReviews={reviews.length > 0}/>
-            {reviews.length > 0 && <ul className="rf-cms">{reviews.map(r => {
-              const segs = r.highlights?.length ? phraseSegments(r.reviewText, r.highlights) : [{ text: r.reviewText }];
-              return <li key={r.id}><p className="rf-cmh"><b>{r.alias || `A ${props.site} player`}</b>{[r.playerLevel, day(r.createdAt)].filter(Boolean).join(" · ")}</p>
-                <p>{segs.map((s, i) => s.tone ? <mark key={i}>{s.text}</mark> : <span key={i}>{s.text}</span>)}</p></li>;
-            })}</ul>}
-          </details>
         </div>
 
         <aside className="rf-side">
@@ -188,9 +205,11 @@ export default async function RacketFit(props: {
                 {sig !== null && <span className="rf-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig}</span>}
               </a></li>; })}</ul>
           </section>
-          <section className="rf-vote"><h2>Played it? One tap.</h2><QuickVoteLine racketId={props.racketId} name={props.shortName} label=""/></section>
+          <section className="rf-vote"><h2>Played it? One tap.</h2><QuickVoteLine racketId={props.racketId} name={props.shortName} label="" wordsHref="#reviews"/></section>
         </aside>
       </div>
+
+      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards}/></section>
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from ${total} player reports · every source linked · `}

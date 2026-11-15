@@ -88,11 +88,13 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
 
 /** Trial (owner 2026-11-15, ST4 only): "Played it? [Positive] [Mixed] [Negative]" under the TL;DR. One tap is a quick vote;
  *  the full composer stays at the bottom. */
-export function QuickVoteLine({ racketId, name, label = "Played it?" }: { racketId: string; name: string; label?: string }) {
+export function QuickVoteLine({ racketId, name, label = "Played it?", wordsHref = "#community" }: { racketId: string; name: string; label?: string; wordsHref?: string }) {
   const [mine, setMine] = useState<Verdict | null>(null), [note, setNote] = useState(""), [busy, setBusy] = useState(false);
   async function tap(v: typeof VERDICTS[number]) {
     if (busy) return; setBusy(true); setNote("");
     try { const stats = await sendVote(racketId, v.rating, loadProfile()); setMine(v.key);
+      // The racket fit page's Reviews composer picks the same verdict (racket-reviews.tsx).
+      window.dispatchEvent(new CustomEvent("rv-verdict", { detail: v.key }));
       setNote(stats.total > 1 ? `Counted, with ${(stats.total - 1).toLocaleString("en-US")} others.` : "Counted. You're the first.");
     } catch (e) { setNote(e instanceof Error ? e.message : "Could not save that."); } finally { setBusy(false); }
   }
@@ -100,6 +102,6 @@ export function QuickVoteLine({ racketId, name, label = "Played it?" }: { racket
     {label && <span>{label}</span>}
     <div className="vbtns">{VERDICTS.map(v => <button key={v.key} type="button" aria-pressed={mine === v.key} disabled={busy}
       style={{ "--c": COLOR[v.key] } as React.CSSProperties} onClick={() => tap(v)}>{v.word}</button>)}</div>
-    {note ? <small role="status">{note} <a href="#community">Add a few words ↓</a></small> : null}
+    {note ? <small role="status">{note} <a href={wordsHref}>Add a few words ↓</a></small> : null}
   </div>;
 }
