@@ -115,6 +115,7 @@ function levelCheck(c: QuickChoice, f: FitFacts): Check {
     // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.
     const why = f.suits.basis.includes("expert") ? `Players and reviewers don't put it at ${c.level}.`
       : f.suits.basis.includes("a pro line") ? `A pro line, built for advanced players.`
+      : c.level === "beginner" && f.suits.basis.includes("its shape") ? `A diamond shape: few of them suit beginners.`
       : f.suits.basis.includes("advanced players") ? `Players and reviewers call it a ${niche.words.one} for advanced players.` : `Players and reviewers don't put it at ${c.level}.`;
     if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} ${why}`.trim() };
     if (!backed && f.suits.basis.length === 0) return { level: "unknown" };

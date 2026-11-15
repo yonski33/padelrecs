@@ -23,6 +23,10 @@ export type SuitsInput = {
   proLine?: boolean;
   /** Reports calling it demanding (tag mentions). */
   demanding?: number;
+  /** A shape kept out of the beginner lists (lib/niche fit.beginnerShapesOut: diamond). */
+  hardShape?: boolean;
+  /** A line the owner names as beginner-friendly (fit.beginnerLines). */
+  beginnerLine?: boolean;
 };
 export type Suits = Record<LevelName, number> & { basis: string[] };
 
@@ -74,6 +78,10 @@ export function levelSuits(x: SuitsInput): Suits {
   const builtForAdvanced = !!x.proLine || advVoices >= 3;
   if (builtForAdvanced && x.brand && x.brand.from === 2 && !vouch(1)) { s[1] = Math.min(s[1], 35); s[0] = Math.min(s[0], 25); }
   if (builtForAdvanced && !vouch(0)) s[0] = Math.min(s[0], 25);
+  // Diamonds (owner 2026-11-15: "very few diamond rackets can be played by beginners") stay out of the beginner lists too.
+  if (x.hardShape && !vouch(0)) { s[0] = Math.min(s[0], 25); basis.push("its shape"); }
+  // …except the lines the owner names as beginner-friendly.
+  if (x.beginnerLine) { s[0] = Math.max(s[0], 65); basis.push("the owner's beginner list"); }
   // …and it is an advanced player's racket, so it always shows for advanced players.
   if (builtForAdvanced) { s[2] = Math.max(s[2], 70); basis.push(x.proLine ? "a pro line" : "advanced players"); }
   const clamp = (v: number) => Math.round(Math.max(5, Math.min(95, v)));

@@ -29,6 +29,7 @@ import type { QuickChoice } from "../lib/quick-match";
 // The site's hand-kept match data (db/match-data.ts): owner calls, maker / YouTube levels, YouTube trait mentions.
 const MATCH = matchData(niche.id);
 const GATE = niche.fit?.levelGate;
+const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
@@ -146,10 +147,13 @@ export const matchContext = cache(async () => {
       const name = data.rackets.find(r => r.id === id)?.name ?? "";
       if (PRO_LINES.some(re => re.test(name))) x.proLine = true;
       const dem = tagIn.get(id)?.tags.demanding; if (dem) x.demanding = dem;
+      const shape = data.rackets.find(r => r.id === id)?.shape?.toLowerCase() ?? "";
+      if ((niche.fit?.beginnerShapesOut ?? []).some(s => shape.startsWith(s))) x.hardShape = true;
+      if (BEGINNER_LINES.some(re => re.test(name))) x.beginnerLine = true;
       const su = levelSuits(x), ex = overrides.get(id)?.expert;
       suitsAutoOf.set(id, { ...su, basis: [...su.basis] });
       // An expert's suits scores win, and count as backing (not the brand alone).
-      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { su.basis = su.basis.filter(b => b !== "a pro line" && b !== "advanced players"); su.basis.push("expert"); } }
+      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { su.basis = su.basis.filter(b => !["a pro line", "advanced players", "its shape", "the owner's beginner list"].includes(b)); su.basis.push("expert"); } }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.

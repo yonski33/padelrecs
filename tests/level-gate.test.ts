@@ -67,3 +67,19 @@ test("quick match only offers rackets that pass the level gate", () => {
   assert.deepEqual(ids("advanced"), ["a", "b", "c"]);
   assert.deepEqual(ids("beginner"), ["b", "c"]);
 });
+
+test("diamonds stay out of the beginner list (owner 2026-11-15), except the owner's beginner lines and vouched ones", () => {
+  for (const name of ["Head Extreme Motion 2025", "Oxdog Ultimate Tour X 2026"]) {
+    const s = levelSuits({ brand: { from: 1, to: 2 }, hardShape: true, players: [{ level: 0, liked: true }, { level: 1, liked: true }], forgiveness: { P: 20, C: 1 } });
+    assert.ok(s.beginner <= 25 && !passes(s, "beginner"), name);
+    assert.ok(passes(s, "intermediate"), `${name} still shows for intermediates`);
+  }
+  const lines = (padel.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
+  assert.ok(lines.some(re => re.test("Bullpadel Vertex 05 Women 2026")));
+  const women = levelSuits({ brand: advanced, hardShape: true, beginnerLine: true });
+  assert.ok(passes(women, "beginner"));
+  const vouched = levelSuits({ hardShape: true, players: [0, 0, 0].map(level => ({ level, liked: true })) });
+  assert.ok(vouched.beginner > 25);
+  const v = fitVerdict({ style: "power", level: "beginner", arm: false }, { reports: 40, tags: { "easy power": 9 }, suits: levelSuits({ hardShape: true, players: [{ level: 1, liked: true }] }) });
+  assert.equal(v.kind, "no"); assert.ok(v.reasons.some(r => /diamond shape/.test(r)), v.reasons.join(" | "));
+});
