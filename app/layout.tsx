@@ -1,4 +1,6 @@
-export const dynamic = "force-dynamic";
+// No global force-dynamic (audit 2026-11-15, #9): pages that read their query or cookies render per request on their
+// own (and Vercel's CDN keeps public ones for a minute, next.config.ts); the rest are cached and refreshed hourly or on an
+// admin write (app/funtimes/auth.ts adminRedirect).
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree, Source_Serif_4, Barlow_Condensed } from "next/font/google";

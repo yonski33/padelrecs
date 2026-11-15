@@ -9,6 +9,8 @@ import { V2Footer } from "../v2-footer";
 import SignalTry from "./signal-try";
 import FaqList from "./faq-list";
 import "./how.css";
+// Refreshed hourly, and on an admin write (revalidatePath in app/funtimes/auth.ts).
+export const revalidate = 3600;
 
 // "How we make these" (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/CVvBQnDCRtn2PhCdd77PA5). PadelRecs
 // only for now. Every number on it comes from the real formula (lib/signal.ts) and the real catalog.
