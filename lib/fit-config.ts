@@ -39,6 +39,7 @@ export type FitConfig = {
    *  in the ranking the 4–5 bands are cut from, and the lab percentile that earns 4–5 with no praise yet. */
   lab?: { metrics: Record<string, { trait: string; sign: 1 | -1 }>; weight: number; specWeight?: number; alone?: number;
     /** A spec column that stands in for a metric where no lab row has it (pickleball: the maker's swing weight). */ specMetric?: Record<string, "balance"> };
+  /** Quick match's "Not sure yet? fine-tune" (shape / weight / feel, lib/fine-tune.ts): padel's shapes and weights only. */ fineTune?: boolean;
   /** Source platforms whose voices count as reviewers, not players, in the line under a bar (default YouTube). */ reviewerSources?: string[];
   /** Scorer v2's band cut-offs, where the site differs from padel's (lib/trait-score.ts). */
   scale?: Partial<{ top4: number; top5: number; worst: number; minComplaints: number; /** Rank on the net share of praise against complaints instead of the praise rate. */ rank: "net" | "rate" }>;
@@ -60,6 +61,7 @@ const PADEL: FitConfig = {
   styleLabels: { control: "Control", balance: "A balance of both", power: "Power" },
   levelWords: { beginner: ["first racket", "just started", "new to padel", "beginner"], intermediate: ["intermediate", "playing a couple of years", "regular matches"], advanced: ["advanced", "tournaments", "competitive", "pro level"] },
   weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
+  fineTune: true,
   arm: { trait: "arm", plus: "arm-friendly", minus: "vibrates on mishits" },
   forgiving: { plus: "forgiving", minus: ["demanding"], beginner: ["small sweet spot"] },
   specLean: s => {

@@ -92,7 +92,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
         <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, picked && choice.level === l)}</span>)}</span>
         <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-pressed={choice.arm}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
         {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
-        {picked && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
+        {picked && cfg.fineTune && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
           <summary><span className="c">Not sure yet? <b>fine-tune ▾</b></span><span className="o">fewer filters ▴</span></summary>
           <div className="hv2-fine-rows">
             {([["Shape", "shape", SHAPES.map(v => [v, SHAPE_LABEL[v]] as const)], ["Weight", "weight", WEIGHTS.map(v => [v, v] as const)], ["Feel on impact", "feel", FEELS.map(v => [v, v] as const)]] as const).map(([label, key, opts]) => {

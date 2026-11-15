@@ -9,6 +9,7 @@ import { fitConfigFor, type FitConfig } from "./fit-config";
 
 const PADEL = fitConfigFor({ id: "padel" })!;
 import { readFine, fineEmpty, fineParams, type FineTune } from "./fine-tune";
+import { niche } from "./niche";
 
 export const STYLES = ["any", "control", "balance", "power"] as const;
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
@@ -17,9 +18,10 @@ export type Level = typeof LEVELS[number];
 export type QuickChoice = { style: Style; level: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune };
 export const DEFAULT_CHOICE: QuickChoice = { style: "any", level: "intermediate", arm: false };
 
-/** Reads ?style=&level=&arm= (unknown values fall back to the default). */
-export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }): QuickChoice {
-  const fine = readFine(q);
+/** Reads ?style=&level=&arm= (unknown values fall back to the default), and the fine-tune on a site that has one (padel's
+ *  shapes and weights; lib/fit-config.ts fineTune). */
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
+  const fine = cfg?.fineTune ? readFine(q) : {};
   return {
     ...(fineEmpty(fine) ? {} : { fine }),
     style: STYLES.includes(q.style as Style) ? q.style as Style : DEFAULT_CHOICE.style,
