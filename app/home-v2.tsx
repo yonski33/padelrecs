@@ -2,6 +2,7 @@ import "./home-v2.css";
 import Link from "next/link";
 import { matchContext } from "./match-context";
 import { listShopLink } from "../lib/amazon-offer";
+import { score } from "../db/data";
 import { displayName } from "../lib/brand-name";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
@@ -138,21 +139,23 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
               ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
               ...(m.arm >= ARM_BAR && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
             ];
-            return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
+            // The row is one link (the name's, stretched over the row) with "check price" as a quiet text link under the
+            // summary line (owner 2026-11-15: low-key, close to the text). Reviews over the sentiment bar, then the score box.
+            const shop = listShopLink(r), c = score(data, r.id);
+            return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
               <span className="hv2-rank">{i + 1}</span>
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
-              <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
+              <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${productHref(r)}${picks}`}>{nameOf(r)}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="hv2-line">{line}</span>}
+                {shop && <a className="hv2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a>}
                 {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
-              {/* The reference row (owner 2026-11-15): the score box is the only number on the right (no review count or
-                  sentiment bar in lists; counts live on the racket page): the match % with picks, the Player score without. */}
+              <span className="hv2-sent"><span><strong>{n.toLocaleString("en-US")}</strong>{` ${n === 1 ? "review" : "reviews"}`}</span>
+                {c.judged > 0 && <span className="hv2-bar" aria-label={`${c.positive} positive, ${c.mixed} mixed, ${c.negative} negative`}><i className="p" style={{ flex: c.positive }}/><i className="m" style={{ flex: c.mixed }}/><i className="n" style={{ flex: c.negative }}/></span>}</span>
               {picked ? <span className={`hv2-sc ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
                   <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "match"}</small></span>
                 : <span className={`hv2-sc ${!sig ? "none" : sig.signal >= 85 ? "hi" : sig.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
                   <b>{sig ? sig.signal : "—"}</b><small>player score</small></span>}
-            </a>
-            {/* "check price" beside the row (owner 2026-11-15): only with a shop link, sponsored, in a new tab. */}
-            {(() => { const shop = listShopLink(r); return shop && <a className="hv2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price</a>; })()}</li>;
+            </div></li>;
           })}</ol>
           {(olderN > 0 || allYears) && <Link className="hv2-older" href={`${choiceHref(choice, "")}${allYears ? "" : `${choiceHref(choice, "").includes("?") ? "&" : "?"}older=1`}#match`} scroll={false} replace>{allYears ? "hide older models ▴" : "show older models ▾"}</Link>}
           <a className="hv2-more" href={catalogPath}>{`see all ${data.listed.length} ${niche.words.many} →`}</a>

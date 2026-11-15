@@ -67,14 +67,20 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-box { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
   .hv2-list { list-style: none; margin: 0; padding: 0; }
   .hv2-list > li { border-bottom: 1px solid var(--line); }
-  .hv2-list > li { display: flex; align-items: center; background: var(--paper); }
+  .hv2-list > li { position: relative; background: var(--paper); }
   .hv2-list > li.top { background: oklch(0.98 0.04 125); }
-  .hv2-row { flex: 1; min-width: 0; text-decoration: none; display: grid; grid-template-columns: 28px 76px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px 14px; background: transparent; }
-  /* "check price" beside the score (owner 2026-11-15). */
-  .hv2-buy { flex: none; margin-right: 14px; white-space: nowrap; font: 600 12px var(--mono); text-decoration: none; border: 1.5px solid var(--ink); border-radius: 8px; padding: 5px 9px; background: var(--paper); color: var(--ink); }
-  .hv2-buy:hover { background: var(--marker) !important; }
+  .hv2-list > li:hover { background: oklch(0.97 0.04 125); }
+  .hv2-row { display: grid; grid-template-columns: 28px 76px minmax(0, 1fr) auto auto; gap: 14px; align-items: center; padding: 10px 14px; }
+  /* The name's link covers the whole row (one tap target); "check price" sits above it. */
+  .hv2-name { text-decoration: none; color: var(--ink); }
+  .hv2-name::after { content: ""; position: absolute; inset: 0; }
+  .hv2-buy { position: relative; z-index: 1; align-self: flex-start; white-space: nowrap; font: 11px var(--mono); color: var(--soft) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .hv2-buy:hover { color: var(--ink) !important; }
+  .hv2-sent { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font: 11px var(--mono); min-width: 96px; white-space: nowrap; }
+  .hv2-sent strong { font-size: 13px; }
+  .hv2-sent .hv2-bar { display: flex; width: 96px; height: 8px; border: 1.5px solid var(--ink); border-radius: 3px; overflow: hidden; }
+  .hv2-sent .hv2-bar i { display: block; } .hv2-sent .hv2-bar .p { background: oklch(0.72 0.15 145); } .hv2-sent .hv2-bar .m { background: oklch(0.85 0.14 90); } .hv2-sent .hv2-bar .n { background: oklch(0.7 0.15 30); }
 
-  .hv2-row:hover { background: oklch(0.97 0.04 125); }
   .hv2-rank { font: 800 19px var(--display); text-align: center; }
   .hv2-pic { width: 76px; height: 88px; background: none; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .hv2-pic img { height: 100%; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
@@ -142,10 +148,7 @@ body:has(main.hv2) { background: #fbfaf6; }
     .hv2-fit { font-size: 12px; gap: 4px 6px; }
     /* Filtered rows on phones: the fit tag and its reason say why; the description line waits for the racket page. */
     .hv2-list.hv2-picked .hv2-line { display: none; }
-    /* Phones: the row takes the full width; "check price" sits under the score, inside the row's bottom edge. */
-    .hv2-list > li { flex-wrap: wrap; }
-    .hv2-row { flex: 1 1 100%; }
-    .hv2-buy { margin: -12px 10px 8px auto; padding: 2px 8px; font-size: 11px; }
+    .hv2-sent { display: none; }
     .hv2-sc { min-width: 52px; } .hv2-sc b { font-size: 18px; padding: 3px 5px; } .hv2-sc small { font-size: 9px; }
     .hv2-what[open] > span { right: auto; left: 0; width: min(260px, 78vw); }
     .hv2-stats { min-width: 0; font-size: 10px; gap: 3px; }

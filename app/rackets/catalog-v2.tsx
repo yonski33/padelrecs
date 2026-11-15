@@ -114,19 +114,22 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
             const r = x.r, name = displayName(r.name, brand(r.brandId)), pic = photo(r), line = shortLine(r) ?? listLine(r);
             const chips = [...(i === 0 && sort === "score" ? [{ k: "top", t: "★ top pick" }] : []), ...(x.arm ? [{ k: "arm", t: "arm-friendly" }] : [])];
             const meta = [x.lean === "balance" ? "all-round" : x.lean, x.shape, x.year].filter(Boolean) as string[];
-            return <li key={r.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><a className="ct2-row" href={productHref(r)}>
+            // One link per row (the name's, stretched over the row) and "check price" as a quiet text link at the end of
+            // the specs row (owner 2026-11-15). Reviews over the sentiment bar, then the Player score box.
+            const shop = listShopLink(r);
+            return <li key={r.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><div className="ct2-row">
               <span className="ct2-rank">{i + 1}</span>
               <span className="ct2-pic">{pic ? <img src={pic} alt="" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{brand(r.brandId)}</span>}</span>
               <span className="ct2-body">
-                <span className="ct2-nrow"><span className="ct2-name">{name}</span>{chips.map(c => <span key={c.k} className={`ct2-chip ${c.k}`}>{c.t}</span>)}</span>
+                <span className="ct2-nrow"><a className="ct2-name" href={productHref(r)}>{name}</a>{chips.map(c => <span key={c.k} className={`ct2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="ct2-line">{line}</span>}
-                <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}</span>
+                <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}{shop && <a className="ct2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a>}</span>
               </span>
-              {/* The home's tight row (owner 2026-11-15): the Player score box is the only number on the right. */}
+              <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
+                {x.sc.judged > 0 && <span className="ct2-bar6" aria-label={`${x.sc.positive} positive, ${x.sc.mixed} mixed, ${x.sc.negative} negative`}><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}</span>
               <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
                 <b>{x.signal ?? "—"}</b><small>player score</small></span>
-            </a>
-              {(() => { const shop = listShopLink(r); return shop && <a className="ct2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price</a>; })()}</li>; })}</ol>
+            </div></li>; })}</ol>
           {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
           {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}
           {shown.length > show && <Link className="ct2-load" href={href({ show: String(show + PAGE) })} scroll={false} replace>{`load ${Math.min(PAGE, shown.length - show)} more ↓`}</Link>}
