@@ -225,7 +225,7 @@ export default async function RacketFit(props: {
             {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
             <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
-              <span className={`rf-vpill ${verdict.kind}`} title={pct === null ? undefined : `${pct}% match: how well it fits your picks, from player reports. Not a % of happy players.`}>{verdictWord ?? "Not enough reports"}</span></div>
+              <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% match · ${verdictWord}`}</span></div>
             <h2>{headline}</h2>
             <p className="rf-for">{`For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
             {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ What works" : "✓ Why it fits"}</p><p>{why}</p></div>}
