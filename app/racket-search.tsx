@@ -30,7 +30,7 @@ function highlight(name: string, query: string) {
 
 const noteCount = (n?: number) => n === undefined ? "" : n === 0 ? "no reviews yet" : `${n} ${n === 1 ? "review" : "reviews"}`;
 
-export function RacketSearch() {
+export function RacketSearch({ placeholder }: { placeholder?: string } = {}) {
   const [query, setQuery] = useState("");
   const [rackets, setRackets] = useState<SearchRacket[] | null>(null);
   const [open, setOpen] = useState(false);
@@ -79,7 +79,7 @@ export function RacketSearch() {
     <div className="search-box">
       <SearchIcon/>
       <label className="sr-only" htmlFor="search">{`Search ${w.many}`}</label>
-      <input id="search" name="q" ref={input} placeholder={`Search ${w.many} — try “${niche.examples.search}”`} autoComplete="off"
+      <input id="search" name="q" ref={input} placeholder={placeholder ?? `Search ${w.many} — try “${niche.examples.search}”`} autoComplete="off"
         role="combobox" aria-autocomplete="list" aria-expanded={expanded} aria-controls="racket-search-results"
         aria-activedescendant={expanded && active >= 0 ? `racket-search-option-${active}` : undefined}
         value={query} onFocus={() => setOpen(true)}

@@ -1,0 +1,51 @@
+/* PadelRecs header in design language v2 (owner 2026-11-15; Claude Design mockup, site-jobs/quick-take-mockups). The rules
+   sit under .hv2-top, so the light header of the other niches is untouched. !important where the light design's global
+   header and search styles would win. */
+.hv2-top {
+  --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --acc: oklch(0.88 0.17 125);
+  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
+  position: sticky; top: 0; z-index: 30;
+  .hv2-strip { background: var(--ink); color: var(--bg); font: 12px/1.5 var(--mono); padding: 6px 20px; text-align: center; }
+  .hv2-strip a { color: var(--bg); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .hv2-sh { position: static !important; border-bottom: 2px solid var(--ink) !important; background: var(--bg) !important; box-shadow: none !important; backdrop-filter: none !important; padding: 0 !important; margin: 0 !important; font: 16px/1.5 var(--body); color: var(--ink); }
+  .hv2-shin { max-width: 1140px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .hv2-logo { font: 800 20px var(--display); color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .hv2-logo i { width: 20px; height: 20px; border-radius: 50%; background: var(--acc); border: 2px solid var(--ink); }
+  nav { display: flex; gap: 18px; font-size: 15px; flex-wrap: wrap; }
+  nav a { color: var(--ink); text-decoration: none; }
+  .hv2-grow { flex: 1; }
+  .hv2-find { min-width: 320px; position: relative; }
+  .hv2-find form { display: flex; border: 2px solid var(--ink) !important; border-radius: 8px !important; background: var(--paper) !important; box-shadow: none !important; margin: 0 !important; width: 100%; max-width: none !important; }
+  .hv2-find .search-box { border: 0 !important; box-shadow: none !important; background: none !important; padding: 0 !important; min-height: 0 !important; height: auto !important; width: 100%; }
+  .hv2-find .search-box > svg { display: none; }
+  .hv2-find input { flex: 1; width: 100%; min-width: 0; border: 0 !important; outline: 0; padding: 11px 14px !important; font: 15px var(--mono) !important; color: var(--ink) !important; background: transparent !important; box-shadow: none !important; height: auto !important; }
+  .hv2-find input::placeholder { color: var(--mute); }
+  .hv2-find .search-dropdown { left: auto; right: 0; width: min(560px, calc(100vw - 32px)); top: calc(100% + 8px); }
+  .hv2-find .sug-item { grid-template-columns: 44px 1fr auto; gap: 14px; padding: 8px 12px; }
+  .hv2-find .sug-photo, .hv2-find .sug-item svg { width: 36px; height: 44px; justify-self: center; }
+  .hv2-find .sug-item .nm { font-size: 15.5px; overflow-wrap: normal; }
+  .hv2-add { background: var(--ink); color: var(--bg) !important; text-decoration: none; padding: 7px 12px; border-radius: 8px; font: 700 14px var(--body); border: 2px solid var(--ink); white-space: nowrap; }
+  :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  @media (max-width: 760px) {
+    position: static;
+    .hv2-shin { gap: 10px 16px; }
+    .hv2-grow { display: none; }
+    .hv2-add { order: 2; margin-left: auto; }
+    nav { order: 3; flex: 1 1 100%; }
+    .hv2-find { order: 4; flex: 1 1 100%; }
+  }
+}
+
+/* Site-wide hover on PadelRecs (owner 2026-11-15): the mockups' yellow marker behind any hovered link. Dark buttons keep
+   readable ink text on the marker. */
+body:has(.hv2-top) a:hover { background: oklch(0.93 0.14 100); }
+body:has(.hv2-top) :is(.hv2-add, .rf-btn, .hv2-own a, .hw-cta a, .ar-again):hover { background: oklch(0.93 0.14 100) !important; color: #151515 !important; }
+
+/* Design-v2 footer (app/v2-footer.tsx); pages that show it hide the site's. */
+body:has(.v2-foot) > .site-footer { display: none; }
+.v2-foot { border-top: 2px solid #151515; padding: 18px 20px; background: #fbfaf6; color: #151515; font: 14px/1.5 var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; }
+.v2-footin { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.v2-foot nav { display: flex; gap: 16px; flex-wrap: wrap; font: 13px var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; }
+.v2-foot a { color: #151515; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+/* Hover is the marker only, no added underline (owner 2026-11-15): cancel the older pages' hover underlines on PadelRecs. */
+body:has(.hv2-top) :is(.ix-main h3 a, .lv-orig, .lr-main h3 a, .sig-pop summary, .lt-shop, .rc-name, .lp-rank, .lp-read, .lp-more-all):hover { text-decoration: none; }

@@ -134,6 +134,27 @@
       "when": 1794626400000,
       "tag": "0018_review_highlights",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1794802800000,
+      "tag": "0020_quick_take",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1794889200000,
+      "tag": "0021_report_level",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1794889300000,
+      "tag": "0022_trait_override",
+      "breakpoints": true
     }
   ]
 }
