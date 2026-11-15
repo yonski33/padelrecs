@@ -4,7 +4,7 @@ import { catalogKeyword, catalogTitle, catalogDescription, listJsonLd } from "..
 
 test("the catalogue title and description use the keyword and live numbers", () => {
   assert.equal(catalogKeyword, "Padel Rackets");
-  assert.equal(catalogTitle(1571), "1,571 Padel Rackets Compared: Real Player Reviews");
+  assert.equal(catalogTitle(1571), "1,571 Padel Rackets, Ranked by Player Score");
   assert.match(catalogDescription(4210, ["A", "B", "C"]), /^Padel Rackets compared by 4,210 real reviews: A, B, C and more\./);
   assert(catalogDescription(4210, ["A".repeat(90), "B".repeat(90)]).length <= 160, "long names drop out to stay snippet-sized");
 });

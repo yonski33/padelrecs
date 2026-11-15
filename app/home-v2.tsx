@@ -1,6 +1,7 @@
 import "./home-v2.css";
 import Link from "next/link";
 import { matchContext } from "./match-context";
+import { score } from "../db/data";
 import { displayName } from "../lib/brand-name";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
@@ -143,12 +144,14 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
               <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="hv2-line">{line}</span>}
                 {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
-              <span className="hv2-stats">
-                {picked ? <span className={`hv2-pct${fit && fit.kind !== "thin" ? ` ${fit.kind}` : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
-                  {pct === null ? <><b>—</b><small>not enough reports yet</small></> : <><b>{`${pct}%`}</b><small>match</small></>}</span>
-                : <>{sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
-                <span>{sig ? "player score" : `${n} reports`}</span></>}
-              </span>
+              {/* The reference row (owner 2026-11-15, claude-design-home-tight-reference): reviews over a sentiment bar (counts,
+                  never a %), then the score box: the match % with picks, the Player score without. Same row either way. */}
+              {(() => { const c = score(data, r.id); return <span className="hv2-sent"><span><strong>{n.toLocaleString("en-US")}</strong>{` ${n === 1 ? "review" : "reviews"}`}</span>
+                {c.judged > 0 && <span className="hv2-bar" aria-label={`${c.positive} positive, ${c.mixed} mixed, ${c.negative} negative`}><i className="p" style={{ flex: c.positive }}/><i className="m" style={{ flex: c.mixed }}/><i className="n" style={{ flex: c.negative }}/></span>}</span>; })()}
+              {picked ? <span className={`hv2-sc ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+                  <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "match"}</small></span>
+                : <span className={`hv2-sc ${!sig ? "none" : sig.signal >= 85 ? "hi" : sig.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
+                  <b>{sig ? sig.signal : "—"}</b><small>player score</small></span>}
             </a></li>;
           })}</ol>
           {(olderN > 0 || allYears) && <Link className="hv2-older" href={`${choiceHref(choice, "")}${allYears ? "" : `${choiceHref(choice, "").includes("?") ? "&" : "?"}older=1`}#match`} scroll={false} replace>{allYears ? "hide older models ▴" : "show older models ▾"}</Link>}

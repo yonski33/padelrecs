@@ -36,7 +36,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   const rows = matchingRackets(data.listed, f.q || "").map(r => {
     const facts = ctx.facts(r.id), lean = styleLean(facts).lean, suits = facts.suits, fine = ctx.fineOf(r.id), sc = score(data, r.id);
     return { r, sc, lean, suits, shape: shapeWord(r.shape), year: String(r.year), arm: (facts.tags["arm-friendly"] ?? 0) >= ARM_BAR,
-      weight: weightOf(gramsOf(r.weight)), feel: fine?.feel ?? null, sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: sig(r.id) };
+      weight: weightOf(gramsOf(r.weight)), feel: fine?.feel ?? null, sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: sig(r.id), n: facts.reports };
   });
   type Row = (typeof rows)[number];
   const tests: Record<(typeof KEYS)[number], (x: Row, v: string) => boolean> = {
@@ -121,11 +121,12 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
                 {line && <span className="ct2-line">{line}</span>}
                 <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}</span>
               </span>
-              <span className="ct2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
-                {x.signal !== null ? <b className={x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : undefined}>{x.signal}</b> : <b>–</b>}
-                {x.sc.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}
-                <small>{x.signal !== null ? "player score" : `${x.sc.judged} reports`}</small>
-              </span>
+              {/* The home's tight row (owner 2026-11-15, "switch /rackets to the tight list too"): reviews over a sentiment
+                  bar (counts, never a %), then the Player score box. */}
+              <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
+                {x.sc.judged > 0 && <span className="ct2-bar6" aria-label={`${x.sc.positive} positive, ${x.sc.mixed} mixed, ${x.sc.negative} negative`}><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}</span>
+              <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
+                <b>{x.signal ?? "—"}</b><small>player score</small></span>
             </a></li>; })}</ol>
           {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
           {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}

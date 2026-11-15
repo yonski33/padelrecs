@@ -12,7 +12,8 @@ body:has(main.hv2) { background: #fbfaf6; }
   h1, h2, h3 { font-family: var(--display); color: var(--ink); }
   :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
 
-  .hv2-wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 64px; }
+  /* 1140px of content, as the reference (its 1140 excludes the 20px gutters). */
+  .hv2-wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 64px; }
 
   /* Hero */
   .hv2-hero { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 18px; }
@@ -57,7 +58,7 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-grid { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
   .hv2-main { flex: 999 1 580px; min-width: 0; }
   .hv2-lhead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
-  .hv2-lhead h2 { font: 800 24px var(--display); letter-spacing: -0.01em; margin: 0; }
+  .hv2-lhead h2 { font: 800 24px/1.5 var(--display); letter-spacing: -0.01em; margin: 0; }
   .hv2-lhead span { font: 12px var(--mono); color: var(--mute); }
   .hv2-lhead span a { color: var(--mute); }
   .hv2-empty { margin: 0 0 12px; color: var(--soft); }
@@ -66,11 +67,11 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-box { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
   .hv2-list { list-style: none; margin: 0; padding: 0; }
   .hv2-list > li { border-bottom: 1px solid var(--line); }
-  .hv2-row { text-decoration: none; display: grid; grid-template-columns: 28px 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 14px; background: var(--paper); }
+  .hv2-row { text-decoration: none; display: grid; grid-template-columns: 28px 76px minmax(0, 1fr) auto auto; gap: 14px; align-items: center; padding: 10px 14px; background: var(--paper); }
   .hv2-list li.top .hv2-row { background: oklch(0.98 0.04 125); }
   .hv2-row:hover { background: oklch(0.97 0.04 125); }
   .hv2-rank { font: 800 19px var(--display); text-align: center; }
-  .hv2-pic { width: 64px; height: 72px; background: none; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .hv2-pic { width: 76px; height: 88px; background: none; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .hv2-pic img { height: 100%; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
   .hv2-tile { font: 600 9px var(--mono); text-align: center; padding: 2px; }
   .hv2-body { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
@@ -81,6 +82,15 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-line { font-size: 14px; color: var(--text); text-wrap: pretty; }
   .hv2-fit { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 3px; font-size: 13px; }
   .hv2-fit b { font: 600 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; }
+  /* The reference's two right columns: reviews over a sentiment bar, then the score box. */
+  .hv2-sent { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font: 11px var(--mono); min-width: 96px; white-space: nowrap; }
+  .hv2-sent strong { font-size: 13px; }
+  .hv2-sent .hv2-bar { display: flex; width: 96px; height: 8px; border: 1.5px solid var(--ink); border-radius: 3px; overflow: hidden; }
+  .hv2-sent .hv2-bar i { display: block; } .hv2-sent .hv2-bar .p { background: oklch(0.72 0.15 145); } .hv2-sent .hv2-bar .m { background: oklch(0.85 0.14 90); } .hv2-sent .hv2-bar .n { background: oklch(0.7 0.15 30); }
+  .hv2-sc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 68px; }
+  .hv2-sc b { font: 800 22px/1 var(--display); border: 2px solid var(--ink); border-radius: 8px; padding: 4px 7px; background: var(--paper); }
+  .hv2-sc.hi b { background: var(--acc); } .hv2-sc.mid b { background: var(--marker); } .hv2-sc.none b { background: var(--tile); color: #8a867c; }
+  .hv2-sc small { font: 10.5px var(--mono); color: var(--soft); white-space: nowrap; }
   .hv2-fit.good b { background: var(--marker); } .hv2-fit.maybe b { background: var(--paper); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
   .hv2-fit span { color: var(--text); }
   .hv2-pct { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 64px; padding: 4px 8px; border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); line-height: 1.05; }
@@ -132,7 +142,8 @@ body:has(main.hv2) { background: #fbfaf6; }
     .hv2-fit { font-size: 12px; gap: 4px 6px; }
     /* Filtered rows on phones: the fit tag and its reason say why; the description line waits for the racket page. */
     .hv2-list.hv2-picked .hv2-line { display: none; }
-    .hv2-pct { min-width: 52px; padding: 3px 5px; } .hv2-pct b { font-size: 18px; } .hv2-pct small { font-size: 9px; max-width: 56px; }
+    .hv2-sent { display: none; }
+    .hv2-sc { min-width: 52px; } .hv2-sc b { font-size: 18px; padding: 3px 5px; } .hv2-sc small { font-size: 9px; }
     .hv2-what[open] > span { right: auto; left: 0; width: min(260px, 78vw); }
     .hv2-stats { min-width: 0; font-size: 10px; gap: 3px; }
   }
