@@ -3,11 +3,12 @@ import SlugField from "./slug-field";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
-import { TRAITS, TRAIT_LABEL, type Trait } from "../../lib/trait-score";
+import { TRAITS, TRAIT_LABEL, TRAIT_TAGS, MAX_TRAIT_TEXT_HINT, type Trait, type TraitScore } from "../../lib/trait-score";
+import type { TraitOverride } from "../../db/trait-override";
 const w = niche.words;
 
 type Racket = typeof rackets.$inferSelect;
-export default function RacketSpecs({models,brands,racketId,oldSlugs=[],traitOverride}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string,oldSlugs?:string[],traitOverride?:Partial<Record<Trait,number>>}) {
+export default function RacketSpecs({models,brands,racketId,oldSlugs=[],traits}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string,oldSlugs?:string[],traits?:{auto:Record<Trait,TraitScore|null>|null,tagged:number,tags:Record<string,number>,edits:TraitOverride|null}}) {
  const selected=models.find(r=>r.id===racketId);
  const photo=selected?(shopPhoto(selected)||amazonPhoto(selected)?.image):null;
  return <div className="narrow">
@@ -40,10 +41,19 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[],traitOve
     {niche.specs.map(spec=><label className="field" key={spec.column}>{spec.label}<input name={spec.column} list={spec.options?`${spec.column}-options`:undefined} maxLength={spec.max} defaultValue={selected[spec.column]||""} placeholder={spec.placeholder}/>{spec.options&&<datalist id={`${spec.column}-options`}>{spec.options.map(s=><option key={s} value={s}/>)}</datalist>}</label>)}
    </div>
    <label className="field">Signal score <span className="muted">(optional, 1–99)</span><input name="signalOverride" type="number" min={1} max={99} defaultValue={selected.signalOverride ?? ""} placeholder="Worked out from reviews"/><small>Leave blank to use the score worked out from reviews. A number here is shown everywhere and decides this product's place in the rankings.</small></label>
-   {/* Trait scores (lib/trait-score.ts): blank = worked out from player reports; a number 0–99 here wins (owner 2026-11-15). */}
-   {niche.id==="padel"&&<fieldset className="field"><legend>How it plays scores <span className="muted">(optional, 0–99 each)</span></legend><div className="form-grid">
-    {TRAITS.map(t=><label className="field" key={t}>{TRAIT_LABEL[t]}<input name={`trait_${t}`} type="number" min={0} max={99} defaultValue={traitOverride?.[t] ?? ""} placeholder="From reports"/></label>)}
-   </div><small>Leave blank to use the score worked out from player reports. 80+ shows 5 dots, 60–79 four, 40–59 three, 20–39 two, under 20 one.</small></fieldset>}
+   {/* How it plays by hand (owner 2026-11-15): per trait, auto or 1–5 dots and an optional line; the calculated value and the
+       tag counts behind it sit beside each, and every change is recorded (db/trait-override.ts). */}
+   {traits&&<fieldset className="field"><legend>How it plays <span className="muted">(dots and line under each trait)</span></legend>
+    <p className="small muted">{`Auto = worked out from ${traits.tagged} tagged player reports, against the rest of the catalog. A number here replaces the dots, even when the data is thin.`}</p>
+    {TRAITS.map(t=>{const a=traits.auto?.[t]??null,e=traits.edits?.traits[t];
+     const counts=[...TRAIT_TAGS[t].plus.map(([tag])=>`+ ${tag} ${traits.tags[tag]??0}`),...TRAIT_TAGS[t].minus.map(([tag])=>`− ${tag} ${traits.tags[tag]??0}`)].join(" · ");
+     return <div key={t} className="form-grid">
+      <label className="field">{TRAIT_LABEL[t]}<select name={`trait_${t}`} defaultValue={e?.dots?String(e.dots):""}><option value="">auto</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{`${n} ${"●".repeat(n)}${"○".repeat(5-n)}`}</option>)}</select>
+       <small>{a?`auto: ${"●".repeat(a.dots)}${"○".repeat(5-a.dots)} (score ${a.score})`:"auto: no dots (too few reports)"} · {counts}</small></label>
+      <label className="field">Line under it <span className="muted">(optional)</span><input name={`traittext_${t}`} maxLength={MAX_TRAIT_TEXT_HINT} defaultValue={e?.text??""} placeholder="Blank = the automatic line"/></label>
+     </div>;})}
+    {(traits.edits?.log.length??0)>0&&<details><summary className="small">{`Changes (${traits.edits!.log.length})`}</summary><ul className="small">{[...traits.edits!.log].reverse().slice(0,20).map((l,i)=><li key={i}>{`${l.at.slice(0,16).replace("T"," ")} · ${l.by} · ${TRAIT_LABEL[l.trait]} ${l.field}: ${l.from??"auto"} → ${l.to??"auto"}`}</li>)}</ul></details>}
+   </fieldset>}
    <label className="field">Description<textarea name="description" maxLength={5000} defaultValue={selected.description||""}/></label>
    <p className="small muted">{`Blank optional fields display as “Not specified.” Saving updates the public ${w.one} page within a minute. Linked reviews stay attached; if you change the page address, the old one keeps working.`}</p>
    <button type="submit">{`Save ${w.one} details`}</button>

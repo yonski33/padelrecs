@@ -7,6 +7,8 @@ import { sql } from "drizzle-orm";
 import { niche } from "../../../../lib/niche";
 import { assertSchemaName } from "../../../../db/migrations";
 import { TRAITS } from "../../../../lib/trait-score";
+import { readTraitOverride, editTraitOverride, MAX_TRAIT_TEXT } from "../../../../db/trait-override";
+import { getCurrentUser } from "../../../../lib/supabase/auth";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
 const optionalText=(max:number)=>z.string().trim().max(max).transform(value=>value||null);
 const input=z.object({
@@ -24,9 +26,10 @@ export async function POST(request:Request) {
  if(!parsed.success)return adminRedirect(request,`tab=specs${selected}&result=spec-invalid`);
  try {
   const db=await database(),{id,slug,...values}=parsed.data;
-  // How it plays scores (padel, migration 0022): blank fields drop out; an empty set clears the override.
-  const traitScores=Object.fromEntries(TRAITS.map(t=>[t,raw[`trait_${t}`]]).filter(([,v])=>typeof v==="string"&&v.trim()!=="").map(([t,v])=>[t,Math.round(Number(v))]).filter(([,v])=>Number.isInteger(v)&&(v as number)>=0&&(v as number)<=99));
+  // How it plays by hand (padel, migration 0022): per trait "" (auto) or 1–5 dots, and an optional line.
   const hasTraitFields=TRAITS.some(t=>`trait_${t}` in raw);
+  const nextTraits=Object.fromEntries(TRAITS.map(t=>{const d=Number(raw[`trait_${t}`]),txt=String(raw[`traittext_${t}`]??"").trim().slice(0,MAX_TRAIT_TEXT);
+   return [t,{...(Number.isInteger(d)&&d>=1&&d<=5?{dots:d}:{}),...(txt?{text:txt}:{})}];}));
   const [brand]=await db.select({id:brands.id}).from(brands).where(eq(brands.id,values.brandId));
   if(!brand)return adminRedirect(request,`tab=specs${selected}&result=spec-invalid`);
   // Update editable catalog fields and, if asked, the URL slug (the old one keeps redirecting). IDs, images, dates and reviews remain intact.
@@ -44,8 +47,14 @@ export async function POST(request:Request) {
   }).catch(error=>{if(rejected)return rejected;throw error;});
   // Saved apart from the specs, so a niche without the column (migration 0022 not applied) still saves its details.
   if(hasTraitFields&&(result==="spec-saved"||result==="spec-slug-changed")){
-   try{await db.execute(sql`update ${sql.identifier(assertSchemaName(niche.schema))}.rackets set trait_override = ${Object.keys(traitScores).length?JSON.stringify(traitScores):null}::jsonb where id = ${id}`);}
-   catch{if(Object.keys(traitScores).length)return adminRedirect(request,`tab=specs${selected}&result=failed`);}
+   const table=sql`${sql.identifier(assertSchemaName(niche.schema))}.rackets`,wanted=Object.values(nextTraits).some(e=>Object.keys(e).length);
+   try{
+    const rows=await db.execute(sql`select trait_override from ${table} where id = ${id}`);
+    const cur=readTraitOverride(((rows as unknown as {rows?:{trait_override:unknown}[]}).rows??(rows as unknown as {trait_override:unknown}[]))[0]?.trait_override);
+    // Who changed what and when (owner): the admin's email, else their user id.
+    const user=await getCurrentUser(),next=editTraitOverride(cur,nextTraits,user?.email??user?.id??"admin",new Date().toISOString());
+    if(next.log.length!==cur.log.length)await db.execute(sql`update ${table} set trait_override = ${JSON.stringify(next)}::jsonb where id = ${id}`);
+   }catch{if(wanted)return adminRedirect(request,`tab=specs${selected}&result=failed`);}
   }
   return adminRedirect(request,`tab=specs${selected}&result=${result}`);
  }catch{return adminRedirect(request,`tab=specs${selected}&result=failed`);}

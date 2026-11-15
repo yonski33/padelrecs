@@ -31,7 +31,19 @@ test("smoothing: a few reports with all mentions don't beat many reports with mo
 });
 
 test("an owner's override wins, even on thin data", () => {
-  const m = traitScores([r("a", 3, {}, { speed: 85 }), r("b", 30, { "fast at the net": 5 })]);
-  assert.deepEqual([m.get("a")!.speed!.score, m.get("a")!.speed!.dots, m.get("a")!.speed!.set], [85, 5, true]);
+  const m = traitScores([r("a", 3, {}, { speed: 5 }), r("b", 30, { "fast at the net": 5 }, { speed: 2 })]);
+  assert.deepEqual([m.get("a")!.speed!.dots, m.get("a")!.speed!.set], [5, true]);
+  assert.equal(m.get("b")!.speed!.dots, 2);
   assert.equal(dotsFor(19), 1); assert.equal(dotsFor(20), 2); assert.equal(dotsFor(99), 5);
+});
+
+test("admin edits: the override keeps dots and text, and records who changed what", async () => {
+  const { editTraitOverride, readTraitOverride } = await import("../db/trait-override");
+  const a = editTraitOverride(readTraitOverride(null), { power: { dots: 4 }, arm: { text: "Kind to the elbow." } }, "owner@x", "2026-11-15T10:00:00Z");
+  assert.deepEqual(a.traits, { power: { dots: 4 }, arm: { text: "Kind to the elbow." } });
+  assert.equal(a.log.length, 2);
+  const b = editTraitOverride(readTraitOverride(JSON.parse(JSON.stringify(a))), { power: {}, arm: { text: "Kind to the elbow." } }, "owner@x", "2026-11-15T11:00:00Z");
+  assert.deepEqual(b.traits, { arm: { text: "Kind to the elbow." } });
+  assert.deepEqual(b.log.at(-1), { at: "2026-11-15T11:00:00Z", by: "owner@x", trait: "power", field: "dots", from: "4", to: null });
+  assert.deepEqual(readTraitOverride({ traits: { power: { dots: 9 }, nope: { dots: 2 } } }).traits, {});
 });

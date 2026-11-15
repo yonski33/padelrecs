@@ -91,7 +91,8 @@ export default async function RacketFit(props: {
     const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
     // A count line says where the dots put it, so "5 players say it's great in defence" never sits beside 1 dot unexplained.
     const counted = countLine[t](), rel = sc && !sc.set ? (sc.dots <= 2 ? " Fewer than most rackets get for their number of reports." : sc.dots >= 4 ? " More than most rackets get for their number of reports." : "") : "";
-    const text = (q && agrees ? q.line : null) ?? (counted ? counted + rel : null) ?? (sc ? null : "Not enough reports on this yet.");
+    // The owner's own line (admin area) wins over everything.
+    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (counted ? counted + rel : null) ?? (sc ? null : "Not enough reports on this yet.");
     return [TRAIT_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 

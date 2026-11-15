@@ -6,7 +6,7 @@
 // smoothed toward the catalog average by PRIOR imaginary average reports, so a racket with few reports can't jump to the ends;
 // score = its percentile among the rackets with enough data (0 lowest … 99 highest); dots = 1 + score / 20.
 // Thin data gets no score: fewer than MIN_TAGGED tagged reports, or fewer than MIN_MENTIONS positive mentions of the trait.
-// A score the owner set by hand (override) wins.
+// Dots the owner set by hand in the admin area (override, 1–5) win, also on thin data.
 
 export const TRAITS = ["forgiveness", "power", "control", "defence", "arm", "speed"] as const;
 export type Trait = typeof TRAITS[number];
@@ -21,8 +21,10 @@ export const TRAIT_TAGS: Record<Trait, { plus: [string, number][]; minus: [strin
   speed: { plus: [["fast at the net", 1]], minus: [["head-heavy", 1], ["tiring in long matches", 1]] },
 };
 export const MIN_TAGGED = 8, MIN_MENTIONS = 2, PRIOR = 10;
+/** Longest hand-written line under a trait (admin area). */
+export const MAX_TRAIT_TEXT_HINT = 220;
 
-export type TraitInput = { id: string; /** Reports with at least one tag. */ tagged: number; tags: Record<string, number>; override?: Partial<Record<Trait, number>> | null };
+export type TraitInput = { id: string; /** Reports with at least one tag. */ tagged: number; tags: Record<string, number>; /** Dots (1–5) set by hand per trait. */ override?: Partial<Record<Trait, number>> | null };
 export type TraitScore = { score: number; dots: number; plus: number; minus: number; set?: boolean };
 
 export const dotsFor = (score: number) => Math.min(5, 1 + Math.floor(score / 20));
@@ -52,9 +54,10 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     }
     for (const p of products) {
       const o = p.override?.[t];
-      if (typeof o === "number" && o >= 0 && o <= 99) {
+      if (typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5) {
+        // A hand-set dot count stands for the middle of its band (3 dots = 50).
         const cur = out.get(p.id)![t];
-        out.get(p.id)![t] = { score: o, dots: dotsFor(o), plus: cur?.plus ?? mentions(p.tags, plus), minus: cur?.minus ?? minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0), set: true };
+        out.get(p.id)![t] = { score: (o - 1) * 20 + 10, dots: o, plus: cur?.plus ?? mentions(p.tags, plus), minus: cur?.minus ?? minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0), set: true };
       }
     }
   }

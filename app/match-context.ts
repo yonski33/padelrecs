@@ -66,12 +66,15 @@ export const matchContext = cache(async () => {
   for (const x of [...data.reviews.map(r => ({ id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags })), ...data.external.map(e => ({ id: e.racketId, v: e.sentiment, tags: e.tags }))]) {
     if (!listed.has(x.id)) continue;
     const counted = x.tags.filter(t => !(goodSet.has(t) && x.v === "negative"));
-    const t = tagIn.get(x.id) ?? { id: x.id, tagged: 0, tags: {}, override: overrides.get(x.id) }; tagIn.set(x.id, t);
+    const t = tagIn.get(x.id) ?? { id: x.id, tagged: 0, tags: {} }; tagIn.set(x.id, t);
     if (counted.length) t.tagged++;
     for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
   }
-  for (const [id, o] of overrides) if (!tagIn.has(id) && listed.has(id)) tagIn.set(id, { id, tagged: 0, tags: {}, override: o });
-  const traitMap = traitScores([...tagIn.values()]);
-  const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {} });
+  for (const id of listed) if (!tagIn.has(id)) tagIn.set(id, { id, tagged: 0, tags: {} });
+  // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
+  const traitAuto = traitScores([...tagIn.values()]);
+  const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
+  const traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
+  const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
   return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits };
 });
