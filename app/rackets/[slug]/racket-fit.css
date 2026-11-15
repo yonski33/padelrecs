@@ -37,10 +37,30 @@
   .rf-btn:hover { background: var(--ink) !important; }
   .rf-aff { margin: 0; font: 11px var(--mono); color: var(--mute); }
 
-  .rf-fit { flex: 1 1 420px; min-width: 0; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); overflow: hidden; display: flex; flex-direction: column; }
-  .rf-ask { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-  .rf-ask h2 { margin: 0; font: 800 22px/1.15 var(--display); }
-  .rf-ask h2 + p { margin: 2px 0 0; font-size: 14px; color: var(--soft); }
+  .rf-fit { flex: 1 1 420px; min-width: 0; border: 2.5px solid var(--ink); border-radius: 18px; background: var(--paper); box-shadow: 6px 6px 0 var(--ink); overflow: hidden; display: flex; flex-direction: column; }
+  /* Before an answer (mockup 2026-11-15): badge row, title, the two questions in a pale-green panel, "generally best for". */
+  .rf-ask { padding: 20px 22px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
+  .rf-askhead { order: 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .rf-asktitle { order: 1; }
+  .rf-q { order: 2; }
+  .rf-best { order: 3; }
+  .rf-ask .rf-lvl { order: 4; }
+  .rf-badge { font: 600 13px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 3px 10px; background: oklch(0.93 0.14 100); box-shadow: 2px 2px 0 var(--ink); }
+  .rf-last { all: unset; cursor: pointer; white-space: nowrap; font: 12px var(--mono); text-decoration: underline; text-underline-offset: 3px; }
+  .rf-last:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .rf-ask h2 { margin: 0 !important; font: 800 clamp(26px, 3vw, 34px)/1.05 var(--display) !important; letter-spacing: -0.02em; color: var(--ink) !important; }
+  .rf-ask h2 + p { margin: 6px 0 0 !important; font-size: 15px !important; color: var(--soft) !important; }
+  .rf-q { background: oklch(0.975 0.035 125); border: 1.5px solid oklch(0.88 0.08 125); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .rf-qrow { display: flex; flex-direction: column; gap: 7px; }
+  .rf-qrow > span { font-weight: 700; font-size: 15px; }
+  .rf-qrow > div { display: flex; gap: 6px; flex-wrap: wrap; }
+  .rf-qrow button { all: unset; cursor: pointer; white-space: nowrap; padding: 6px 14px; border: 1.5px solid var(--ink); border-radius: 999px; font: 600 14px var(--body); background: var(--paper); color: var(--ink); }
+  .rf-qrow button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .rf-qrow button:focus-visible, .rf-arm2:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .rf-arm2 { all: unset; cursor: pointer; display: flex; align-items: center; gap: 8px; font: 14px var(--body); color: var(--text, #2b2925); }
+  .rf-arm2 i { width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: normal 700 11px var(--body); background: var(--paper); }
+  .rf-arm2[aria-pressed="true"] i { background: var(--acc); }
+  .rf-arm2 small { font-size: inherit; color: var(--mute); }
   .rf-grid { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px 12px; align-items: center; font-size: 14px; }
   .rf-grid > span:not([class]) { font: 12px var(--mono); color: var(--mute); }
   .rf-seg { display: inline-flex; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; justify-self: start; }
@@ -53,9 +73,8 @@
   .rf-arm:hover { background: none; }
   .rf-box { width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: normal 700 12px var(--body); background: var(--paper); }
   .rf-arm[aria-pressed="true"] .rf-box { background: var(--acc); }
-  .rf-best { margin: auto 0 0; padding-top: 10px; border-top: 2px dashed var(--ink); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; }
-  .rf-best span { font: 12px var(--mono); color: var(--mute); }
-  .rf-best b { font-weight: 400; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--pos-wash); }
+  .rf-best { margin: auto 0 0 !important; padding-top: 10px; border-top: 1.5px dashed #b9b5aa; font-size: 14px; color: var(--text, #2b2925); text-wrap: pretty; }
+  .rf-best b { color: var(--ink); }
   .rf-lvl { margin: 0; font: 12px var(--mono); color: var(--soft); }
   .rf-bar { padding: 12px 16px; border-bottom: 2px dashed var(--ink); display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 14px; }
   .rf-bar .rf-seg { border-width: 1.5px; border-radius: 6px; }
