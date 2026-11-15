@@ -23,11 +23,13 @@ export type MatchInputs = {
   likedAtLevel?: number;
   /** How well it suits the picked level, 0–100 (lib/level-suits.ts); when given it replaces the band. */
   suits?: number;
+  /** Fine-tune fit 0–1 (lib/fine-tune.ts fineFit): weight, feel and sweet spot picks; null when none picked. */
+  fine?: number | null;
   signal: number | null;
 };
 export const MATCH_BANDS = { good: [70, 99], maybe: [45, 69], no: [15, 44] } as const;
 const LEVEL_INDEX = { beginner: 0, intermediate: 1, advanced: 2 } as const;
-const W = { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 };
+const W = { style: 0.4, level: 0.3, arm: 0.2, score: 0.1, fine: 0.25 };
 const part = (v: number | null) => v === null ? 0.5 : v / 99;
 
 /** 0–1: how well the data fits the picks, before it is placed in its verdict's band. */
@@ -42,6 +44,7 @@ export function matchFit(c: QuickChoice, m: Omit<MatchInputs, "verdict">): numbe
   const inBand = m.suits !== undefined ? m.suits / 100 : !m.band ? 0.5 : i >= m.band.from && i <= m.band.to ? 1 : Math.min(Math.abs(i - m.band.from), Math.abs(i - m.band.to)) === 1 ? 0.5 : 0.1;
   parts.push([W.level, Math.min(1, inBand + 0.2 * Math.min(1, (m.likedAtLevel ?? 0) / 5))]);
   if (c.arm) parts.push([W.arm, part(m.arm)]);
+  if (m.fine !== undefined && m.fine !== null) parts.push([W.fine, m.fine]);
   parts.push([W.score, part(m.signal)]);
   const total = parts.reduce((a, [w]) => a + w, 0);
   return parts.reduce((a, [w, v]) => a + w * v, 0) / total;
@@ -52,4 +55,25 @@ export function matchScore(c: QuickChoice, m: MatchInputs): number | null {
   if (m.verdict.kind === "thin") return null;
   const [lo, hi] = MATCH_BANDS[m.verdict.kind];
   return Math.round(lo + (hi - lo) * matchFit(c, m));
+}
+
+/** Spread the % inside each verdict's band across the catalog (owner 2026-11-15: "four 93% rows in a row"): rackets are ranked
+ *  in their band by fit, then the picked style's trait score, then the Player score; the % blends the fit with that rank, and a
+ *  racket never shows the same % as the one ranked just above it unless they are truly equal (or both sit at the band's floor). */
+export function spreadMatch(rows: { id: string; kind: FitVerdict["kind"]; fit: number; tie1: number; tie2: number }[]): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const kind of ["good", "maybe", "no"] as const) {
+    const [lo, hi] = MATCH_BANDS[kind];
+    const band = rows.filter(r => r.kind === kind).sort((a, b) => b.fit - a.fit || b.tie1 - a.tie1 || b.tie2 - a.tie2 || a.id.localeCompare(b.id));
+    let prev: (typeof band)[number] | null = null, prevPct = hi + 1;
+    band.forEach((r, i) => {
+      const rank = band.length > 1 ? 1 - i / (band.length - 1) : 1;
+      let pct = Math.round(lo + (hi - lo) * (0.4 * r.fit + 0.6 * rank));
+      const same = prev && prev.fit === r.fit && prev.tie1 === r.tie1 && prev.tie2 === r.tie2;
+      if (!same && pct >= prevPct) pct = Math.max(lo, prevPct - 1);
+      if (same) pct = Math.min(pct, prevPct);
+      out.set(r.id, pct); prev = r; prevPct = pct;
+    });
+  }
+  return out;
 }

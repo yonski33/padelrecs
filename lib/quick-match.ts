@@ -5,29 +5,33 @@
 // band), and with nothing chosen it is simply the Player score order. Pure functions, so tests feed plain objects.
 import { matchFinder, type FinderProduct, type Reason } from "./finder";
 import type { Finder, FinderOption } from "./niche/types";
+import { readFine, fineEmpty, fineParams, type FineTune } from "./fine-tune";
 
 export const STYLES = ["any", "control", "balance", "power"] as const;
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 export type Style = typeof STYLES[number];
 export type Level = typeof LEVELS[number];
-export type QuickChoice = { style: Style; level: Level; arm: boolean };
+export type QuickChoice = { style: Style; level: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune };
 export const DEFAULT_CHOICE: QuickChoice = { style: "any", level: "intermediate", arm: false };
 
 /** Reads ?style=&level=&arm= (unknown values fall back to the default). */
-export function readChoice(q: { style?: string; level?: string; arm?: string }): QuickChoice {
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }): QuickChoice {
+  const fine = readFine(q);
   return {
+    ...(fineEmpty(fine) ? {} : { fine }),
     style: STYLES.includes(q.style as Style) ? q.style as Style : DEFAULT_CHOICE.style,
     level: LEVELS.includes(q.level as Level) ? q.level as Level : DEFAULT_CHOICE.level,
     arm: q.arm === "1",
   };
 }
-export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && c.level === DEFAULT_CHOICE.level && !c.arm;
+export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && c.level === DEFAULT_CHOICE.level && !c.arm && fineEmpty(c.fine);
 /** The address for a choice: only what differs from the default, so "/" is the default list. */
 export function choiceHref(c: QuickChoice, anchor = "#match") {
   const q = new URLSearchParams();
   if (c.style !== DEFAULT_CHOICE.style) q.set("style", c.style);
   if (c.level !== DEFAULT_CHOICE.level) q.set("level", c.level);
   if (c.arm) q.set("arm", "1");
+  for (const [k, v] of fineParams(c.fine)) q.set(k, v);
   return `${q.size ? `/?${q}` : "/"}${anchor}`;
 }
 

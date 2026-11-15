@@ -20,6 +20,10 @@ import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
 import padelKnownDots from "../db/known-dots/padel.json";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
 import { EXTRACTORS } from "../lib/evidence";
+import { shapeOf, gramsOf, feelLean, feelClasses, fineFit, type FineFacts } from "../lib/fine-tune";
+import { fitVerdict } from "../lib/fit-verdict";
+import { matchFit, spreadMatch } from "../lib/match-score";
+import type { QuickChoice } from "../lib/quick-match";
 
 /** The owner's hand-set calls per site (db/known-dots), applied like admin overrides (an admin override wins). */
 const KNOWN_DOTS: Record<string, Record<string, Record<string, { dots?: number }>>> = { padel: padelKnownDots as unknown as Record<string, Record<string, { dots?: number }>> };
@@ -53,6 +57,8 @@ export const matchContext = cache(async () => {
   // Level as a "suits" score per level (lib/level-suits.ts, filled below from the evidence store); without it, the band the
   // sources agree on (brand, reviewers, players), like the fit check.
   const suitsOf = new Map<string, { suits: Suits; disagree: string | null }>();
+  // Fine-tune facts per racket (lib/fine-tune.ts), filled with the trait scores below.
+  const fineOf = new Map<string, FineFacts & { weightSpec: string | null }>();
   const level = (id: string): LevelEvidence | undefined => {
     const liked = likedBy.get(id), band = combinedBand({ reports: 0, tags: {}, band: takes.get(id)?.band, levels: sourcesOf(id) }), su = suitsOf.get(id);
     if (su) return { liked: liked ?? {}, band, suits: su.suits };
@@ -73,8 +79,8 @@ export const matchContext = cache(async () => {
       for (const x of notes) for (const t of x.tags) if (!(goodSet.has(t) && x.v === "negative")) tags[t] = (tags[t] ?? 0) + 1;
     }
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
-    const su = suitsOf.get(id);
-    return { reports, tags, band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    const su = suitsOf.get(id), fi = fineOf.get(id);
+    return { reports, tags, ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -145,6 +151,28 @@ export const matchContext = cache(async () => {
     traitAuto = traitScores([...tagIn.values()]);
     traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
   }
+  const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
+  const feels = feelClasses(leans);
+  for (const id of listed) { const r = data.rackets.find(x => x.id === id);
+    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
+  /** The match % for a set of picks, for every listed racket, spread inside each verdict band (lib/match-score.ts spreadMatch),
+   *  so the home list and the racket page show the same number. Null on thin data. */
+  const pctCache = new Map<string, Map<string, number | null>>();
+  const matchPct = (choice: QuickChoice): Map<string, number | null> => {
+    const key = JSON.stringify(choice);
+    const hit = pctCache.get(key); if (hit) return hit;
+    const rows = [...listed].map(id => {
+      const fv = fitVerdict(choice, facts(id)), t = traitMap.get(id), lv = level(id);
+      const fit = matchFit(choice, { control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0,
+        suits: lv?.suits?.[choice.level], signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!) });
+      const styleScore = choice.style === "power" ? t?.power?.score ?? 0 : choice.style === "control" ? t?.control?.score ?? 0 : choice.style === "balance" ? Math.min(t?.control?.score ?? 0, t?.power?.score ?? 0) : signal(id) ?? 0;
+      return { id, kind: fv.kind, fit, tie1: styleScore, tie2: signal(id) ?? 0 };
+    });
+    const spread = spreadMatch(rows);
+    const out = new Map(rows.map(r => [r.id, r.kind === "thin" ? null : spread.get(r.id) ?? null]));
+    pctCache.set(key, out);
+    return out;
+  };
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits };
+  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits, matchPct, fineOf: (id: string) => fineOf.get(id) };
 });

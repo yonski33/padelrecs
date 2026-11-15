@@ -35,6 +35,20 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-arm { display: flex; align-items: center; gap: 8px; font-size: 14px; text-decoration: none; }
   .hv2-arm i { width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: normal 700 13px var(--body); background: var(--paper); }
   .hv2-arm[aria-pressed="true"] i { background: var(--acc); }
+  /* Not sure yet? fine-tune (owner 2026-11-15) */
+  .hv2-fine { flex-basis: 100%; margin: 0; }
+  .hv2-fine summary { list-style: none; cursor: pointer; display: inline-flex; font: 13px var(--mono); color: var(--soft); }
+  .hv2-fine summary::-webkit-details-marker { display: none; }
+  .hv2-fine summary b { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .hv2-fine summary .o { display: none; color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .hv2-fine[open] summary .c { display: none; }
+  .hv2-fine[open] summary .o { display: inline; }
+  .hv2-fine summary:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .hv2-fine-rows { margin-top: 10px; padding: 12px 14px; border: 1.5px dashed var(--ink); border-radius: 10px; background: var(--bg); display: flex; flex-direction: column; gap: 10px; }
+  .hv2-fine-row { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+  .hv2-fk { min-width: 108px; font: 800 14px var(--display); }
+  .hv2-fine-rows .hv2-lv a { padding: 4px 11px; font-size: 13px; }
+  .hv2-fine-rows .hv2-arm { font-size: 13px; }
   .hv2-game { flex-basis: 100%; margin: 0; padding-top: 10px; border-top: 2px dashed var(--ink); font: 12px var(--mono); color: var(--mute); display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
   .hv2-game b { color: var(--ink); font-weight: 600; }
   .hv2-game a { margin-left: auto; color: var(--ink); }

@@ -359,7 +359,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       specs={[r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
-      choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined })}
+      choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
       picked={picked} jsonLd={{ "@context": "https://schema.org", "@graph": [jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList")].filter(Boolean) }}/>;
   }
   if (qt) {
@@ -384,7 +384,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         specs={[r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
         buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
         fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
-        choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined })}
+        choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
         picked={picked} jsonLd={qtLd}/>;
     }
     return <QuickTakePage qt={qt} racketId={r.id} slug={r.slug} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}

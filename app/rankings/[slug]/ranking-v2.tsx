@@ -8,8 +8,7 @@ import { websiteButton } from "../../../lib/product-links";
 import type { AmazonButton } from "../../../lib/amazon-offer";
 import { score, type Catalog } from "../../../db/data";
 import { readChoice, LEVELS, type QuickChoice } from "../../../lib/quick-match";
-import { fitVerdict, bestFor } from "../../../lib/fit-verdict";
-import { matchScore } from "../../../lib/match-score";
+import { bestFor } from "../../../lib/fit-verdict";
 import { qtFontVars } from "../../qt-fonts";
 import { V2Footer } from "../../v2-footer";
 import { matchContext } from "../../match-context";
@@ -86,8 +85,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         const sig = e.signal?.signal ?? null, top = e.rank <= 3;
         const best = bestFor(facts);
         let pct: number | null = null;
-        if (showPct) { const fit = fitVerdict(choice, facts), t = ctx.traits(r.id).scores, lv = ctx.level(r.id);
-          pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, suits: lv?.suits?.[choice.level], signal: ctx.signal(r.id) }); }
+        if (showPct) pct = ctx.matchPct(choice).get(r.id) ?? null;
         const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
         const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
         const total = sc.positive + sc.mixed + sc.negative;

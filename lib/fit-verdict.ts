@@ -2,6 +2,7 @@
 // visitor's quick-match picks (lib/quick-match.ts). Real data only, the same inputs as quick match: tag counts from published
 // reports, the rankings' places, the quick-take level band. No guessing: thin data says so instead of giving a verdict.
 import type { QuickChoice } from "./quick-match";
+import { fineMismatches, type FineFacts } from "./fine-tune";
 
 /** A level range, 0 beginner … 2 advanced. */
 export type Band = { from: number; to: number };
@@ -17,6 +18,8 @@ export type FitFacts = {
   band?: Band;
   /** Maker and YouTube levels beside the players' band; see levelSources(). */
   levels?: LevelSources;
+  /** Shape, weight, feel and forgiveness for quick match's fine-tune (lib/fine-tune.ts), and the weight as the specs say it. */
+  fine?: FineFacts & { weightSpec?: string | null };
   /** How well it suits each level, 0–100 (lib/level-suits.ts), and a line when the brand and players / reviewers disagree. */
   suits?: { beginner: number; intermediate: number; advanced: number; basis: string[] }; levelDisagree?: string;
   /** Place on the control / power rankings, when it's on them. */
@@ -129,8 +132,14 @@ function armCheck(c: QuickChoice, f: FitFacts): Check {
 
 /** The verdict for a visitor's picks. Probably not: a hard conflict. Maybe: one soft conflict. Good: no conflicts and at least
  *  one real reason. Too little data (few reports, or nothing known about what was asked): say so. */
+/** Fine-tune picks the racket doesn't match ("heavier than you asked for"): a soft reason only, never a hard no. */
+function fineCheck(c: QuickChoice, f: FitFacts): Check {
+  const miss = c.fine && f.fine ? fineMismatches(c.fine, f.fine, f.fine.weightSpec) : [];
+  return miss.length ? { level: "soft", short: miss[0].replace(/ \(.*\)\.$|\.$/, ""), reason: miss.join(" ") } : { level: "ok" };
+}
+
 export function fitVerdict(c: QuickChoice, f: FitFacts): FitVerdict {
-  const checks = [styleCheck(c, f), levelCheck(c, f), armCheck(c, f)];
+  const checks = [styleCheck(c, f), levelCheck(c, f), armCheck(c, f), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;
