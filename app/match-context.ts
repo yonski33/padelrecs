@@ -14,6 +14,13 @@ import { quickTakeHooks } from "../db/quick-take";
 import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
+import { evidenceRows } from "../db/evidence";
+import { evidenceBalance } from "../lib/evidence";
+import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
+import padelKnownDots from "../db/known-dots/padel.json";
+
+/** The owner's hand-set calls per site (db/known-dots), applied like admin overrides (an admin override wins). */
+const KNOWN_DOTS: Record<string, Record<string, Record<string, { dots?: number }>>> = { padel: padelKnownDots as unknown as Record<string, Record<string, { dots?: number }>> };
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -22,7 +29,7 @@ const LEVEL_SOURCES: Record<string, Record<string, LevelSources>> = { padel: pad
 const YOUTUBE_TRAITS: Record<string, Record<string, Partial<Record<Trait, { plus: number; minus: number }>>>> = { padel: padelYoutubeTraits };
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
-  const [data, sigs, takes, live, overrides] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides()]);
+  const [data, sigs, takes, live, overrides, evidence] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
@@ -67,11 +74,12 @@ export const matchContext = cache(async () => {
   // negative report), "tagged" = reports with at least one counted tag.
   const goodSet = new Set(good), tagIn = new Map<string, TraitInput>();
   const listed = new Set(data.listed.map(r => r.id));
-  for (const x of [...data.reviews.map(r => ({ id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags, text: r.reviewText })), ...data.external.map(e => ({ id: e.racketId, v: e.sentiment, tags: e.tags, text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") }))]) {
+  const taggedReports = new Map<string, Set<string>>();
+  for (const x of [...data.reviews.map(r => ({ ref: `p:${r.id}`, id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags, text: r.reviewText })), ...data.external.map(e => ({ ref: `w:${e.id}`, id: e.racketId, v: e.sentiment, tags: e.tags, text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") }))]) {
     if (!listed.has(x.id)) continue;
     const counted = x.tags.filter(t => !(goodSet.has(t) && x.v === "negative"));
     const t = tagIn.get(x.id) ?? { id: x.id, tagged: 0, tags: {} }; tagIn.set(x.id, t);
-    if (counted.length) t.tagged++;
+    if (counted.length) { t.tagged++; const s = taggedReports.get(x.id) ?? new Set(); s.add(x.ref); taggedReports.set(x.id, s); }
     for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
     // Arm comfort said only in words (no arm tag): read with fixed rules (lib/youtube-trait-rules.ts armFromReportText).
     if (!x.tags.includes("arm-friendly") && !x.tags.includes("vibrates on mishits") && x.text) {
@@ -85,9 +93,27 @@ export const matchContext = cache(async () => {
   for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
     p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
-  const traitAuto = traitScores([...tagIn.values()]);
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
-  const traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
+  let traitAuto: ReturnType<typeof traitScores>, traitMap: ReturnType<typeof traitScores>;
+  if (evidence.length) {
+    // Scorer v2 (owner 2026-11-15): the evidence store's praise / complaint balance, one voice once (lib/evidence.ts,
+    // lib/trait-score.ts balanceScores). A voice is our reviewer's nickname, a YouTube channel's video or a blog; a forum
+    // report or a YouTube comment is its own voice (the stored source name there is the forum or the channel, not the person).
+    const voice = new Map<string, string>();
+    for (const r of data.reviews) voice.set(`p:${r.id}`, r.alias ? `own:${r.alias.toLowerCase()}` : `p:${r.id}`);
+    for (const e of data.external) voice.set(`w:${e.id}`, e.sourcePlatform === "Reddit" || /[?&]lc=/.test(e.sourceUrl) || !e.sourceName ? `w:${e.id}` : `${e.sourcePlatform}:${e.sourceName.toLowerCase()}`);
+    const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref);
+    const known = KNOWN_DOTS[niche.id] ?? {};
+    const knownSet = (slug: string) => Object.fromEntries(Object.entries(known[slug] ?? {}).filter(([, e]) => typeof e?.dots === "number").map(([t, e]) => [t, e.dots!])) as Partial<Record<TraitKey, number>>;
+    const reportsOf = new Map<string, number>();
+    for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+    const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
+    traitAuto = balanceScores(inputs);
+    traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })));
+  } else {
+    traitAuto = traitScores([...tagIn.values()]);
+    traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
+  }
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
   return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits };
 });

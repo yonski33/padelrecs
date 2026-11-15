@@ -38,6 +38,9 @@ export type TraitInput = {
   specs?: Specs;
   /** Arm comfort said only in report text (no arm tag): reports kind (plus) or hard (minus) on the arm. */ textArm?: { plus: number; minus: number };
   /** Dots (1–5) set by hand per trait. */ override?: Partial<Record<Trait, number>> | null;
+  /** From the evidence store (lib/evidence.ts evidenceTotals): per trait the weighted net, praising voices and complaints.
+   *  When given it replaces `tags` and `textArm` for the trait counts (they're already in it). */
+  totals?: Partial<Record<Trait, { net: number; plus: number; minus: number }>>;
 };
 export type TraitScore = { score: number; dots: number; plus: number; minus: number; yt: number; spec: number;
   /** What set it: player reports, or (few player mentions) the specs and YouTube, or nothing (3 by default). */ basis: "players" | "specs" | "none"; set?: boolean };
@@ -69,8 +72,10 @@ export function specLean(s: Specs | undefined): Record<Trait, number> {
  *  +lean/2, Power −lean. Needs 6+ style mentions; even praise gives nothing. */
 export function styleBonus(p: TraitInput, t: Trait): number {
   if (t !== "control" && t !== "defence" && t !== "power") return 0;
-  const c = (p.tags["good control"] ?? 0) + (p.tags["great in defence"] ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0));
-  const w = (p.tags["easy power"] ?? 0) + (p.tags["great on smashes"] ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0);
+  const c = p.totals ? (p.totals.control?.plus ?? 0) + (p.totals.defence?.plus ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0))
+    : (p.tags["good control"] ?? 0) + (p.tags["great in defence"] ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0));
+  const w = p.totals ? (p.totals.power?.plus ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0)
+    : (p.tags["easy power"] ?? 0) + (p.tags["great on smashes"] ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0);
   if (c + w < 6) return 0;
   const lean = Math.max(-1, Math.min(1, (c / (c + w) - 0.5) * 2.5));
   return t === "control" ? lean : t === "defence" ? lean / 2 : -lean;
@@ -84,9 +89,14 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     const { plus, minus } = TRAIT_TAGS[t];
     const yt = (p: TraitInput) => p.youtube?.[t] ?? { plus: 0, minus: 0 };
     // Arm words without a tag count like tags (one per report).
-    const tx = (p: TraitInput) => t === "arm" ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
+    const tx = (p: TraitInput) => !p.totals && t === "arm" ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
+    // Tag counts, or the evidence store's totals (which already hold the arm words).
+    const wPlus = (p: TraitInput) => p.totals ? Math.max(0, p.totals[t]?.net ?? 0) : weighted(p.tags, plus);
+    const wMinus = (p: TraitInput) => p.totals ? Math.max(0, -(p.totals[t]?.net ?? 0)) : weighted(p.tags, minus);
+    const voices = (p: TraitInput) => p.totals ? p.totals[t]?.plus ?? 0 : people(p.tags, plus);
+    const faults = (p: TraitInput) => p.totals ? p.totals[t]?.minus ?? 0 : minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0);
     const evidence = (p: TraitInput) => p.tagged + yt(p).plus + yt(p).minus;
-    const net = (p: TraitInput) => weighted(p.tags, plus) - weighted(p.tags, minus) + tx(p).plus - tx(p).minus + YT_WEIGHT * (yt(p).plus - yt(p).minus);
+    const net = (p: TraitInput) => wPlus(p) - wMinus(p) + tx(p).plus - tx(p).minus + YT_WEIGHT * (yt(p).plus - yt(p).minus);
     const base = (p: TraitInput) => p.tagged + YT_WEIGHT * (yt(p).plus + yt(p).minus);
     // The catalog's typical share (median → 3 dots) and spread (one dot per STEP), over rackets with enough evidence.
     const pool = products.filter(p => evidence(p) >= MIN_EVIDENCE && base(p) > 0);
@@ -97,8 +107,8 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     // 2 dots is the extreme end (owner 2026-11-15: "if we set it at 2, more unforgiving rackets will have to be 1"): 8+ players
     // fault that exact trait, over 3× the praise (+1), and the racket is among the WORST_SHARE most-faulted in the catalog.
     // With too few rackets to judge the extreme end, the plain rule: 5+ complaints that outnumber praise.
-    const praiseOf = (p: TraitInput) => people(p.tags, plus) + tx(p).plus + yt(p).plus;
-    const againstOf = (p: TraitInput) => minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus + yt(p).minus;
+    const praiseOf = (p: TraitInput) => voices(p) + tx(p).plus + yt(p).plus;
+    const againstOf = (p: TraitInput) => faults(p) + tx(p).minus + yt(p).minus;
     const worst = new Set<string>();
     if (COMPLAINT_TRAITS.includes(t)) {
       if (pool.length >= 20) {
@@ -108,7 +118,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
       } else products.filter(p => againstOf(p) >= 5 && againstOf(p) > praiseOf(p)).forEach(p => worst.add(p.id));
     }
     for (const p of products) {
-      const mentions = people(p.tags, plus) + minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
+      const mentions = voices(p) + faults(p) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
       const lean = specLean(p.specs)[t];
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
@@ -129,7 +139,53 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
       const complaint = worst.has(p.id);
       const dots = hand ?? Math.max(complaint ? 2 : 3, Math.min(5, Math.round(cont)));
       const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((Math.max(complaint ? 2 : 3, cont) - 1) / 4 * 99);
-      out.get(p.id)![t] = { score, dots, plus: people(p.tags, plus) + tx(p).plus, minus: minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus, yt: yt(p).plus, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
+      out.get(p.id)![t] = { score, dots, plus: voices(p) + tx(p).plus, minus: faults(p) + tx(p).minus, yt: yt(p).plus, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
+    }
+  }
+  return out;
+}
+
+// Scorer v2 (owner 2026-11-15, split scale): dots from the evidence store (lib/evidence.ts evidenceBalance: one voice once,
+// comparisons count half).
+//   2: the extreme end of complaint traits, on balance: the WORST_SHARE_V2 of rackets with the highest complaint share
+//      C / (P + C + 1) and at least MIN_COMPLAINTS weighted complaints.
+//   4–5: the praise rate, praising voices (weighted) per report read on the racket, smoothed toward the catalog rate by
+//      RATE_PRIOR reports; the top TOP4_SHARE of the catalog get 4, the clear standouts (TOP5_SHARE) 5, and only when
+//      complaints on that trait don't outnumber praise.
+//   3: everything else (the owner's floor). 1 only by hand; hand-set dots win.
+export const RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
+export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number }>>;
+  youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null };
+
+export function balanceScores(products: BalanceInput[], cfg: { complaint: string[] } = { complaint: COMPLAINT_TRAITS }): Map<string, Record<Trait, TraitScore | null>> {
+  const out = new Map<string, Record<Trait, TraitScore | null>>();
+  for (const p of products) out.set(p.id, Object.fromEntries(TRAITS.map(t => [t, null])) as Record<Trait, TraitScore | null>);
+  const PC = (p: BalanceInput, t: Trait) => p.balance[t] ?? { P: 0, C: 0, plusVoices: 0, minusVoices: 0 };
+  for (const t of TRAITS) {
+    const reports = products.reduce((a, p) => a + p.reports, 0);
+    const r0 = reports ? products.reduce((a, p) => a + PC(p, t).P, 0) / reports : 0;
+    const rate = (p: BalanceInput) => (PC(p, t).P + RATE_PRIOR * r0) / (p.reports + RATE_PRIOR);
+    const rank = new Map([...products].sort((a, b) => rate(b) - rate(a) || a.id.localeCompare(b.id)).map((p, i) => [p.id, i]));
+    const n4 = Math.round(TOP4_SHARE * products.length), n5 = Math.round(TOP5_SHARE * products.length);
+    const worst = new Set<string>();
+    if (cfg.complaint.includes(t)) {
+      const share = (p: BalanceInput) => PC(p, t).C / (PC(p, t).P + PC(p, t).C + 1);
+      products.filter(p => PC(p, t).C >= MIN_COMPLAINTS).sort((a, b) => share(b) - share(a))
+        .slice(0, Math.max(1, Math.round(WORST_SHARE_V2 * products.length))).forEach(p => worst.add(p.id));
+    }
+    for (const p of products) {
+      const { P, C, plusVoices, minusVoices } = PC(p, t);
+      const lean = specLean(p.specs)[t];
+      const o = p.override?.[t];
+      const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
+      const i = rank.get(p.id)!, top = C <= P && P > 0;
+      const auto = worst.has(p.id) ? 2 : top && i < n5 ? 5 : top && i < n4 ? 4 : 3;
+      const dots = hand ?? auto;
+      // 0–99 for quick match: the band's floor plus where it sits in the praise ranking.
+      const within = 1 - i / Math.max(1, products.length - 1);
+      const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((dots - 1) * 20 + 19 * within);
+      const basis: TraitScore["basis"] = P + C >= 2 ? "players" : lean > 0.2 ? "specs" : "none";
+      out.get(p.id)![t] = { score, dots, plus: plusVoices, minus: minusVoices, yt: p.youtube?.[t]?.plus ?? 0, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
     }
   }
   return out;
