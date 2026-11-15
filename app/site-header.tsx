@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
 import { ChipRow } from "./chip-row";
 import { LogoIcon, PlusIcon } from "./icons";
 import { niche, catalogPath, catalogLabel } from "../lib/niche";
 import { RANKINGS_PATH, rankingHref, withModelYears } from "../lib/top-lists";
+import { qtFontVars } from "./qt-fonts";
+import "./site-header-v2.css";
 
 // Kept short: "Add a review" is the button above, and About and Brands live in the footer.
 // No "Player reviews" item any more (owner, 2026-11-12): the home page isn't a reviews feed now, and the logo goes home.
@@ -45,6 +48,22 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
   // On a product page the review form opens with that product chosen (app/add-review matches the path to a product).
   const addHref = pathname === "/" ? "/add-review" : `/add-review?from=${encodeURIComponent(pathname)}`;
+  // PadelRecs: the Claude Design header (owner 2026-11-15, "match the mockup"): the black side-project strip, then the logo dot,
+  // three plain links, search and "+ add a review". Other niches keep the light header below.
+  if (niche.id === "padel") return <div className={`hv2-top ${qtFontVars}`}>
+    <div className="hv2-strip">a free, ad-light side project · built by padel players · <a href="/about">how we make these →</a></div>
+    <header className="site-header hv2-sh"><div className="hv2-shin">
+      <Link className="hv2-logo" href="/"><i aria-hidden="true"/>{niche.site.name.toLowerCase()}</Link>
+      <nav aria-label="Main navigation">
+        <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{niche.words.many}</a>
+        <a href={RANKINGS_PATH} aria-current={inRankings ? "page" : undefined}>rankings</a>
+        <a href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}>latest reviews</a>
+      </nav>
+      <span className="hv2-grow"/>
+      <div className="hv2-find"><RacketSearch placeholder={`search ${niche.words.many}…`}/></div>
+      {!onAddPage && <a className="hv2-add" href={addHref}>+ add a review</a>}
+    </div></header>
+  </div>;
   return (
     <header className="site-header">
       <div className="wrap header-top">

@@ -355,7 +355,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
         ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
       reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} site={niche.site.name}
-      specs={[r.weight, r.balance && `balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+      specs={[r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
       choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined })}
@@ -380,7 +380,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
           ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
         reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} site={niche.site.name}
-        specs={[r.weight, r.balance && `balance ${r.balance.toLowerCase()}`, r.core && `${r.core} core`, r.surface && `${r.surface} face`].filter((x): x is string => !!x)}
+        specs={[r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
         buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
         fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
         choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined })}

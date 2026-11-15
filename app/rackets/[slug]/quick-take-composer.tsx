@@ -88,7 +88,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
 
 /** Trial (owner 2026-11-15, ST4 only): "Played it? [Positive] [Mixed] [Negative]" under the TL;DR. One tap is a quick vote;
  *  the full composer stays at the bottom. */
-export function QuickVoteLine({ racketId, name, label = "Played it?", wordsHref = "#community" }: { racketId: string; name: string; label?: string; wordsHref?: string }) {
+export function QuickVoteLine({ racketId, name, label = "Played it?", wordsHref = "#community", words }: { racketId: string; name: string; label?: string; wordsHref?: string; words?: Partial<Record<Verdict, string>> }) {
   const [mine, setMine] = useState<Verdict | null>(null), [note, setNote] = useState(""), [busy, setBusy] = useState(false);
   async function tap(v: typeof VERDICTS[number]) {
     if (busy) return; setBusy(true); setNote("");
@@ -101,7 +101,7 @@ export function QuickVoteLine({ racketId, name, label = "Played it?", wordsHref 
   return <div className="qvl" role="group" aria-label={`Played the ${name}? Your verdict`}>
     {label && <span>{label}</span>}
     <div className="vbtns">{VERDICTS.map(v => <button key={v.key} type="button" aria-pressed={mine === v.key} disabled={busy}
-      style={{ "--c": COLOR[v.key] } as React.CSSProperties} onClick={() => tap(v)}>{v.word}</button>)}</div>
+      style={{ "--c": COLOR[v.key] } as React.CSSProperties} onClick={() => tap(v)}>{words?.[v.key] ?? v.word}{mine === v.key && words ? " ✓" : ""}</button>)}</div>
     {note ? <small role="status">{note} <a href={wordsHref}>Add a few words ↓</a></small> : null}
   </div>;
 }

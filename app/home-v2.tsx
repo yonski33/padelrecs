@@ -13,8 +13,6 @@ import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { qtFontVars } from "./qt-fonts";
-import { RacketSearch } from "./racket-search";
-import { RANKINGS_PATH } from "../lib/top-lists";
 import { amazonLinksOn } from "../lib/amazon-offer";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
@@ -62,14 +60,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={choiceHref(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
   const picked = !isDefault(choice);
   return <main className={`hv2 ${qtFontVars}`}>
-    {/* The mockup's own header and footer (owner 2026-11-15: "match it 100%"); home-v2.css hides the site's on this page. */}
-    <header className="hv2-head"><div className="hv2-headin">
-      <Link className="hv2-logo" href="/"><i aria-hidden="true"/>{niche.site.name.toLowerCase()}</Link>
-      <nav aria-label="Main navigation"><a href={catalogPath}>{niche.words.many}</a><a href={RANKINGS_PATH}>rankings</a><a href="/reviews">latest reviews</a></nav>
-      <span className="hv2-grow"/>
-      <div className="hv2-find"><RacketSearch placeholder={`search ${niche.words.many}…`}/></div>
-      <a className="hv2-add" href="/add-review">+ add a review</a>
-    </div></header>
+    {/* The mockup's own footer (owner 2026-11-15: "match it 100%"); home-v2.css hides the site's on this page. The header is the site's (site-header.tsx). */}
 
     <div className="hv2-wrap">
       <section className="hv2-hero">

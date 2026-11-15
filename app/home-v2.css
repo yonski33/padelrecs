@@ -1,7 +1,7 @@
 /* PadelRecs home, design language v2 (owner 2026-11-15: "match the mockup 100%", the Claude Design home with Quick match;
    site-jobs/quick-take-mockups/claude-design-home-quickmatch-bundle.html). Cream paper, ink borders with offset shadows,
    lime accent, mono small print. The page has the mockup's own header and footer, so the site's are hidden here. */
-body:has(main.hv2) > .site-header, body:has(main.hv2) > .site-footer { display: none; }
+body:has(main.hv2) > .site-footer { display: none; }
 body:has(main.hv2) { background: #fbfaf6; }
 
 .hv2 {
@@ -12,23 +12,6 @@ body:has(main.hv2) { background: #fbfaf6; }
   a { color: var(--ink); }
   h1, h2, h3 { font-family: var(--display); color: var(--ink); }
   :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
-
-  /* Header */
-  .hv2-head { border-bottom: 2px solid var(--ink); background: var(--bg); position: sticky; top: 0; z-index: 20; }
-  .hv2-headin { max-width: 1140px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-  .hv2-logo { font: 800 20px var(--display); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-  .hv2-logo i { width: 20px; height: 20px; border-radius: 50%; background: var(--acc); border: 2px solid var(--ink); }
-  .hv2-head nav { display: flex; gap: 18px; font-size: 15px; flex-wrap: wrap; }
-  .hv2-head nav a { text-decoration: none; }
-  .hv2-head nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .hv2-grow { flex: 1; }
-  .hv2-find { min-width: 200px; position: relative; }
-  .hv2-find form { display: flex; border: 2px solid var(--ink) !important; border-radius: 8px !important; background: var(--paper) !important; box-shadow: none !important; margin: 0; width: 100%; }
-  .hv2-find input { flex: 1; min-width: 0; border: 0 !important; outline: 0; padding: 6px 12px !important; font: 13px var(--mono) !important; background: transparent !important; box-shadow: none !important; height: auto !important; }
-  .hv2-find .search-box { border: 0 !important; box-shadow: none !important; background: none !important; padding: 0 !important; min-height: 0 !important; height: auto !important; }
-  .hv2-find .search-box > svg { display: none; }
-  .hv2-find input::placeholder { color: var(--mute); }
-  .hv2-add { background: var(--ink); color: var(--bg) !important; text-decoration: none; padding: 7px 12px; border-radius: 8px; font-weight: 700; font-size: 14px; border: 2px solid var(--ink); white-space: nowrap; }
 
   .hv2-wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 64px; }
 
@@ -111,10 +94,6 @@ body:has(main.hv2) { background: #fbfaf6; }
 
   @media (max-width: 760px) {
     .hv2-side { max-width: none; }
-    .hv2-head { position: static; }
-    .hv2-headin { gap: 10px 16px; }
-    .hv2-grow { display: none; }
-    .hv2-find { order: 5; flex: 1 1 100%; }
     .hv2-row { grid-template-columns: 22px 44px minmax(0, 1fr); gap: 10px; padding: 10px; }
     .hv2-pic { width: 44px; height: 52px; }
     .hv2-stats { grid-column: 3; flex-direction: row; align-items: center; gap: 8px; }
