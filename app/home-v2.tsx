@@ -13,6 +13,9 @@ import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { qtFontVars } from "./qt-fonts";
+import { RacketSearch } from "./racket-search";
+import { RANKINGS_PATH } from "../lib/top-lists";
+import { amazonLinksOn } from "../lib/amazon-offer";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
  *  see the rackets according to what you need, not what we set"). Choices live in the URL (?style=&level=&arm=1) and the list
@@ -46,99 +49,98 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   // Fresh off the court: the newest reports with a verdict, one per racket.
   const seen = new Set<string>();
   const fresh = [
-    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, source: `${niche.site.name} player` })),
+    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: niche.site.name.toLowerCase() })),
     ...data.external.filter(e => e.sentiment).map(e => {
       // Our summary is a paraphrase (no quote marks); an English excerpt is the player's words (quote marks).
       const words = e.excerpt && !e.sourceLanguage ? e.excerpt : null;
       return { id: e.id, racketId: e.racketId, date: e.sourceDate || e.createdAt, text: e.summary ?? words ?? "", quote: !e.summary && !!words,
-        source: [platformName(e.sourcePlatform), e.sourcePlatform === "Reddit" ? e.sourceName : null].filter(Boolean).join(" · ") };
+        tag: platformName(e.sourcePlatform).toLowerCase() };
     }),
-  ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 4);
+  ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
   const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={choiceHref(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
+  const picked = !isDefault(choice);
   return <main className={`hv2 ${qtFontVars}`}>
-    <div className="hv2-strip">a free, ad-light side project · built by padel players · <a href="/about">how we make these →</a></div>
+    {/* The mockup's own header and footer (owner 2026-11-15: "match it 100%"); home-v2.css hides the site's on this page. */}
+    <header className="hv2-head"><div className="hv2-headin">
+      <Link className="hv2-logo" href="/"><i aria-hidden="true"/>{niche.site.name.toLowerCase()}</Link>
+      <nav aria-label="Main navigation"><a href={catalogPath}>{niche.words.many}</a><a href={RANKINGS_PATH}>rankings</a><a href="/reviews">latest reviews</a></nav>
+      <span className="hv2-grow"/>
+      <div className="hv2-find"><RacketSearch placeholder={`search ${niche.words.many}…`}/></div>
+      <a className="hv2-add" href="/add-review">+ add a review</a>
+    </div></header>
+
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        <p className="hv2-live"><i aria-hidden="true"/>{`${added.toLocaleString("en-US")} added this week · ${total.toLocaleString("en-US")} player reports`}</p>
-        <h1>We read the web so you <span className="hl">{"don't have to."}</span></h1>
-        <p className="hv2-sub">We dig through forums, YouTube tests, padel blogs and players&apos; own reviews, then give you the honest take. No sponsored picks.</p>
+        <h1>Every {niche.words.one}, reviewed by <span className="hl">real players</span></h1>
+        <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>
       </section>
 
       <section className="hv2-qm" id="match" aria-label="Quick match">
-        <p className="hv2-qm-k">quick match</p>
-        <div className="hv2-sentence">
-          <span>I want</span>
-          <span className="hv2-pills" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, choice.style === s)}</span>)}</span>
-          <span>and I&apos;m</span>
-          <span className="hv2-pills" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
-          <span className="hv2-pills">{pill(`${choice.arm ? "✓" : "+"} sore elbow / wrist`, { ...choice, arm: !choice.arm }, choice.arm)}</span>
-        </div>
+        <span className="hv2-qk"><b>quick match</b>I want</span>
+        <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, picked && choice.style === s)}</span>)}</span>
+        <span className="hv2-qk">and I&apos;m</span>
+        <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, picked && choice.level === l)}</span>)}</span>
+        <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-pressed={choice.arm}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
       </section>
 
       <div className="hv2-grid">
         <section className="hv2-main" aria-live="polite">
-          <h2>{head.title}</h2>
-          <div className="hv2-subrow"><p>{head.sub}</p>{!isDefault(choice) && <Link href="/#match" scroll={false} replace>reset</Link>}</div>
+          <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
+            <span>{picked ? <>{`ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""} · `}<Link href="/" scroll={false} replace>reset</Link></> : "ranked by player score · pick above to personalise"}</span></div>
           {matches.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
+          <div className="hv2-box">
           <ol className="hv2-list">{matches.map((m, i) => {
             const r = byId.get(m.product.id)!, s = score(data, r.id), sig = sigs.get(r.id), pic = photo(r);
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
             const judged = s.positive + s.mixed + s.negative;
-            // Each "why" chip shows its count (owner): tag mentions or players at this level who liked it.
-            const why = [
-              ...(i === 0 && !isDefault(choice) ? [{ k: "best", t: "best match" }] : []),
-              ...(m.arm >= 2 && (choice.arm || m.arm >= 5) ? [{ k: "arm", t: `arm-friendly · ${m.arm} players` }] : []),
-              ...m.reasons.filter(x => x.tag !== "arm-friendly").slice(0, 2).map(x => ({ k: x.tag, t: `${x.tag} · ${x.count} players` })),
-              ...(!isDefault(choice) && m.levelLiked >= 2 ? [{ k: "lvl", t: `${m.levelLiked} ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`} liked it` }] : []),
+            const chips = [
+              ...(i === 0 && picked ? [{ k: "best", t: "best match" }] : []),
+              ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
+              ...(m.arm >= 2 && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
             ];
-            return <li key={r.id}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
+            return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
               <span className="hv2-rank">{i + 1}</span>
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
-              <span className="hv2-body"><span className="hv2-name">{nameOf(r)}</span>{line && <span className="hv2-line">{line}</span>}
-                <span className="hv2-why">{why.map(w => <span key={w.k} className={w.k === "best" ? "best" : undefined}>{w.t}</span>)}{r.shape && <span className="shape">{r.shape.toLowerCase()}</span>}</span></span>
+              <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
+                {line && <span className="hv2-line">{line}</span>}</span>
               <span className="hv2-stats">
-                {sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{sig.signal}</b>player score</span>}
+                <span title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig ? <><strong>{sig.signal}</strong> player score · </> : null}{n}</span>
                 {judged > 0 && <span className="hv2-bar" role="img" aria-label={`${s.positive} positive, ${s.mixed} mixed, ${s.negative} negative`}><i className="p" style={{ flex: s.positive }}/><i className="m" style={{ flex: s.mixed }}/><i className="n" style={{ flex: s.negative }}/></span>}
-                <span className="hv2-n">{`${n} player reports`}</span>
               </span>
             </a></li>;
           })}</ol>
           <a className="hv2-more" href={catalogPath}>{`see all ${data.listed.length} ${niche.words.many} →`}</a>
+          </div>
         </section>
 
         <aside className="hv2-side">
           <section>
-            <div className="hv2-sidehead"><h2>Fresh off the court</h2><a href="/reviews">all →</a></div>
-            <ul className="hv2-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}>
-              <p className="hv2-src"><span>{f.source}</span>{ago(f.date, now)}</p>
-              <a href={productHref(r)}>{nameOf(r)}</a>
-              <p>{f.quote ? `“${clip(f.text)}”` : clip(f.text)}</p>
-            </li>; })}</ul>
+            <div className="hv2-sidehead"><h3>Fresh off the court</h3><a href="/reviews">all →</a></div>
+            <ul className="hv2-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}><a href={productHref(r)}>
+              <span className="hv2-src"><span className={`t ${f.tag}`}>{f.tag}</span>{ago(f.date, now)}</span>
+              <b>{nameOf(r)}</b>
+              <span className="hv2-q">{f.quote ? `“${clip(f.text)}”` : clip(f.text)}</span>
+            </a></li>; })}</ul>
           </section>
           {best.length > 0 && <section>
-            <h2>Best-of lists</h2>
-            <ul className="hv2-best">{best.map(l => <li key={l.list.slug}><a href={listHref(l.list.slug)}>{l.list.label.replace(/\{year\}/, String(listYear(l.list)))}<span aria-hidden="true">→</span></a></li>)}</ul>
+            <h3>Best-of lists</h3>
+            <ul className="hv2-best">{best.map(l => <li key={l.list.slug}><a href={listHref(l.list.slug)}>{l.list.label.replace(/\{year\}/, String(listYear(l.list))).toLowerCase()}</a></li>)}</ul>
           </section>}
           <section className="hv2-own">
-            <h2>Own a racket? Tell us about it.</h2>
-            <p>One tap per racket, no account. Every take sharpens the rankings.</p>
-            <a href="/rate">{"Rate what you've played"}</a>
+            <p className="t">Own a {niche.words.one}? Add your verdict.</p>
+            <p>Two minutes, no account.</p>
+            <a href="/add-review">+ add a review</a>
           </section>
         </aside>
       </div>
-
-      <section className="hv2-how" id="how-this-works">
-        <p className="hv2-how-k">{"// how this works"}</p>
-        <div>
-          <div><h3>1. We read everything</h3><p>Forums, YouTube tests, padel blogs and the reviews players post here, every one linked back to its source.</p></div>
-          <div><h3>2. We count the verdicts</h3><p>Each report is sorted as positive, mixed or negative, and by what it talks about. Quick match ranks rackets on those counts.</p></div>
-          <div><h3>3. We write one honest line</h3><p>{"Then we give our take, and say where the data is thin. We don't test rackets and no brand pays for placement."}</p></div>
-        </div>
-      </section>
-      <p className="hv2-made">made by people who own too many rackets 🎾</p>
     </div>
+
+    <footer className="hv2-foot"><div className="hv2-footin">
+      <span>we read forums, YouTube &amp; your reviews, count the verdicts, write one honest line. no sponsored picks 🎾</span>
+      <nav aria-label="Footer"><a href="/about">about</a><a href="/about">how we score</a>{amazonLinksOn() && <a href="/affiliate-disclosure">affiliate note</a>}<a href="/contact">contact</a></nav>
+    </div></footer>
   </main>;
 }
