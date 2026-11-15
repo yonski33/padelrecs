@@ -149,6 +149,8 @@ body:has(main.hv2) { background: #fbfaf6; }
     /* Filtered rows on phones: the fit tag and its reason say why; the description line waits for the racket page. */
     .hv2-list.hv2-picked .hv2-line { display: none; }
     .hv2-sent { display: none; }
+    /* Phones: no shape tag on the rows (owner 2026-11-15: "a bit too busy on mobile"). */
+    .hv2-chip.shape { display: none; }
     .hv2-sc { min-width: 52px; } .hv2-sc b { font-size: 18px; padding: 3px 5px; } .hv2-sc small { font-size: 9px; }
     .hv2-what[open] > span { right: auto; left: 0; width: min(260px, 78vw); }
     .hv2-stats { min-width: 0; font-size: 10px; gap: 3px; }
