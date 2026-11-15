@@ -1,0 +1,1791 @@
+{
+ "bullpadel-vertex-05-hybrid-2026": {
+  "strengths": [
+   {
+    "t": "Huge sweet spot: 14 players and reviewers call it forgiving. “Almost the whole racket is sweet spot.”",
+    "for": [
+     "beginner",
+     "intermediate",
+     "control",
+     "balance"
+    ],
+    "src": [
+     "d2670b81-ad81-40e7-bf4b-196b724bf906",
+     "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
+     "research-80910ecb-fc44-4a1e-a468-ddf3ce7359f1",
+     "research-2785033f-2fda-41c8-ad66-293ff065e8db",
+     "research-c1062c85-3cf1-42dd-bb54-f64862e2a677",
+     "research-aceddbe3-1940-47cd-b0e8-c4ea64908756",
+     "research-e7a29c2c-534a-43ee-99ed-69ba1985db36",
+     "research-1ddb5bdd-171e-412b-a95d-ce0373007a59",
+     "research-7d8b9c2c-ba38-43c2-8480-c4cd065fdb0f",
+     "research-69cc52ab-89c9-464b-ada3-2406a1dd910f",
+     "research-3f3ee328-ccfd-480b-8f25-08a5d499df96",
+     "research-f940a0f8-0fb5-49ef-b66b-eef496d655a3",
+     "6dab2eb2-d865-46ea-a319-58875f311117",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a"
+    ]
+   },
+   {
+    "t": "Dry touch, little trampoline: 7 players like it for placement and deep lobs.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate"
+    ],
+    "src": [
+     "research-7ad825b1-76aa-458b-b148-d340ec3f5cde",
+     "research-c1062c85-3cf1-42dd-bb54-f64862e2a677",
+     "research-202a4c2c-2a2d-43ca-b4b3-2b64f262ff44",
+     "research-7e3a6119-4122-4bf6-8d75-ae793923bf46",
+     "research-69cc52ab-89c9-464b-ada3-2406a1dd910f",
+     "research-72648831-1f7b-415e-9244-e086a821ccab",
+     "research-aceddbe3-1940-47cd-b0e8-c4ea64908756"
+    ]
+   },
+   {
+    "t": "Low balance, easy to handle: 8 players praise how quick it feels at the net.",
+    "for": [
+     "control",
+     "balance",
+     "intermediate",
+     "beginner"
+    ],
+    "src": [
+     "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
+     "research-2785033f-2fda-41c8-ad66-293ff065e8db",
+     "research-202a4c2c-2a2d-43ca-b4b3-2b64f262ff44",
+     "research-e7a29c2c-534a-43ee-99ed-69ba1985db36",
+     "research-1ddb5bdd-171e-412b-a95d-ce0373007a59",
+     "research-7d8b9c2c-ba38-43c2-8480-c4cd065fdb0f",
+     "f3dce003-7bdf-47ae-86ca-579cd4814d2e",
+     "research-3f3ee328-ccfd-480b-8f25-08a5d499df96"
+    ]
+   },
+   {
+    "t": "A true all-rounder: players use it on both sides. One calls it “just a great all rounder”.",
+    "for": [
+     "balance",
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
+     "research-bec60964-d5f1-481b-a15d-d65228a3abb6",
+     "research-3f3ee328-ccfd-480b-8f25-08a5d499df96",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "No free power: about 12 players say smashes need a full swing, and flat smashes get no help.",
+    "for": [
+     "power",
+     "advanced",
+     "balance"
+    ],
+    "src": [
+     "d2670b81-ad81-40e7-bf4b-196b724bf906",
+     "research-f0d75cd9-b8fc-4654-9189-fb52a65a91fe",
+     "research-80910ecb-fc44-4a1e-a468-ddf3ce7359f1",
+     "research-e58c9239-b2ce-4418-a1aa-288e69db24a4",
+     "research-aceddbe3-1940-47cd-b0e8-c4ea64908756",
+     "research-69cc52ab-89c9-464b-ada3-2406a1dd910f",
+     "f34ed20c-c749-4b47-989c-1b432872d57c",
+     "research-a3ac8569-2ce0-44cc-98a2-fdb0c68ea912",
+     "f3dce003-7bdf-47ae-86ca-579cd4814d2e",
+     "research-72648831-1f7b-415e-9244-e086a821ccab",
+     "6dab2eb2-d865-46ea-a319-58875f311117",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a"
+    ],
+    "alt": {
+     "slug": "bullpadel-vertex-05-geo-2026",
+     "t": "Want more punch? The Vertex 05 Geo has the higher power spot, a tester says.",
+     "src": [
+      "d2670b81-ad81-40e7-bf4b-196b724bf906",
+      "research-92ccf484-e978-4657-a00f-2b08e0510707"
+     ]
+    }
+   },
+   {
+    "t": "Often heavier than the label: 4 players weighed theirs at 380 g or more, 3 more find it heavy.",
+    "for": [
+     "beginner",
+     "arm",
+     "intermediate",
+     "control"
+    ],
+    "src": [
+     "research-0f7bd3d6-fa75-45f3-86aa-d46386b09436",
+     "research-162afd07-72b0-40f5-bc3a-c8fb9b2c0be5",
+     "research-f940a0f8-0fb5-49ef-b66b-eef496d655a3",
+     "d5e48b8c-d67a-4abd-b461-906dc7018822",
+     "research-1fe8ffd6-889e-47db-9a99-7706f2245619",
+     "research-debee0d4-961a-46c3-bc99-c8148c12853c",
+     "research-d8f8022e-2b2c-4425-a96d-902eeabb3626"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "5 players took off the Hesacore grip to cut weight. Add an overgrip so it isn't head-heavy.",
+     "src": [
+      "research-0f7bd3d6-fa75-45f3-86aa-d46386b09436",
+      "research-4bbb86e4-6bab-4c82-8e15-2c2e1a5d85ea",
+      "research-99954548-ee99-416a-bcf6-f810c862e761",
+      "research-7e3a6119-4122-4bf6-8d75-ae793923bf46",
+      "research-162afd07-72b0-40f5-bc3a-c8fb9b2c0be5",
+      "research-5567f244-8daa-47d4-a6cd-213a4b465cb3"
+     ]
+    }
+   },
+   {
+    "t": "Sore arm? It's split: 5 players got elbow or shoulder pain from the firm face, 5 call it arm-friendly.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "research-7df6be13-96cc-40fb-b751-99fc304a84e9",
+     "research-fe349e00-deda-476c-a2b1-c10642d56c71",
+     "research-6cae8b3e-306b-4cf6-9019-3839d23e76aa",
+     "research-d8f8022e-2b2c-4425-a96d-902eeabb3626",
+     "research-1fe8ffd6-889e-47db-9a99-7706f2245619",
+     "research-b8d4af5e-3a6d-4d45-9e0e-f36fdbc40559",
+     "research-e7a29c2c-534a-43ee-99ed-69ba1985db36",
+     "6dab2eb2-d865-46ea-a319-58875f311117",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a",
+     "research-162afd07-72b0-40f5-bc3a-c8fb9b2c0be5"
+    ]
+   }
+  ]
+ },
+ "adidas-metalbone-ctrl-2026": {
+  "strengths": [
+   {
+    "t": "Huge, forgiving sweet spot: about 20 players say so, and even mishits still go deep.",
+    "for": [
+     "beginner",
+     "intermediate",
+     "control",
+     "balance"
+    ],
+    "src": [
+     "research-3cc800f8-4e93-4129-9e5d-eaf2e4906507",
+     "research-fed1d6b2-df18-4285-a525-c1237f8e16bd",
+     "0eb81c6f-0073-4dab-8bb2-ccace570408b",
+     "research-72c5bfbb-c94a-4775-832e-864a2eeaf8d4",
+     "41d69d5f-0a99-411a-af60-d23805612847",
+     "research-1550964f-f4ca-4127-84b8-414715be72ac",
+     "research-d70302ae-a2bb-46a5-bbe5-70b7f4682e6a",
+     "research-2413707e-e4a6-43fb-8e81-dbdb20f6376e",
+     "research-ce87a6c1-5207-48a3-9b3e-07eebe191238",
+     "research-fcb0ef24-150d-486d-9418-7457a087ec24",
+     "research-32119045-eede-4470-bf6d-ec85bfb804f6",
+     "research-5b314c6c-3836-4026-9c13-c5ec7cfe6888",
+     "research-1e0cda34-60b3-47be-9ed6-966b9a0c11fc",
+     "research-0cd8d533-58bd-439e-b295-f2c75c27ddf5",
+     "research-ede49a90-69fb-4510-9223-b1dad56b351c",
+     "research-23d3e857-2157-4cd7-bff5-c8c54b88476a",
+     "research-8e4b0944-78dc-4a77-8ca2-0f045d9df148",
+     "research-e027e0c5-7296-4264-8f72-98b0784694fd",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6",
+     "3b8a79de-16e8-4f7e-bb83-c29a29e98b54"
+    ]
+   },
+   {
+    "t": "Easy in defence: 8 players praise it on lobs, chiquitas and low balls from the back.",
+    "for": [
+     "control",
+     "intermediate",
+     "beginner"
+    ],
+    "src": [
+     "0eb81c6f-0073-4dab-8bb2-ccace570408b",
+     "41d69d5f-0a99-411a-af60-d23805612847",
+     "research-32119045-eede-4470-bf6d-ec85bfb804f6",
+     "research-dba39e75-24cd-4adf-8d90-f731c5fde8c5",
+     "research-500db5bb-00df-4595-b2ed-5b58bce53344",
+     "research-cefd36f1-fca5-46aa-83da-9bb65b0e0f99",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6",
+     "3b8a79de-16e8-4f7e-bb83-c29a29e98b54"
+    ]
+   },
+   {
+    "t": "You tune it: 10 players put the weights up top for smash power, 5 take them out for speed.",
+    "for": [
+     "power",
+     "balance",
+     "advanced",
+     "intermediate"
+    ],
+    "src": [
+     "research-44b2c214-49fb-4395-8dce-4385c6fc1518",
+     "research-8ed78451-0c7a-496f-9f29-0eaee15f9826",
+     "research-3cc800f8-4e93-4129-9e5d-eaf2e4906507",
+     "research-fc759cfb-b1c9-4f04-ad03-7c90c3411cc5",
+     "research-08ecd9e7-8cd7-42fe-afb6-e7f2a9cd1e0d",
+     "research-500db5bb-00df-4595-b2ed-5b58bce53344",
+     "research-14a48ed0-9186-4c19-93b6-8e4190bd9654",
+     "research-001faea4-9bf6-43af-9cfb-6b307bbe3685",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6",
+     "research-bd9e5f9e-b9fc-4367-a640-66104d969339",
+     "research-20b8bcbd-2ad2-43cd-8658-c87dc6a309ef",
+     "research-4d8a900f-0884-43ef-9249-50b719f788a6",
+     "research-d4328edc-9f05-4477-a279-cf1398f9a105",
+     "research-0cd8d533-58bd-439e-b295-f2c75c27ddf5",
+     "7a5e2fa3-af38-4698-bd46-c4020a08d18c"
+    ]
+   },
+   {
+    "t": "Kind to the arm: 4 players with sore elbows or wrists say it suits them.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "f483fdb6-3129-448a-bf55-8b41017eb23c",
+     "research-dba39e75-24cd-4adf-8d90-f731c5fde8c5",
+     "research-8115afac-49e1-4e34-923f-1ccd88b05b7a",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Bouncy: 14 players find the trampoline too much. Blocks and fast volleys can fly long.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "research-7e2f88d0-23d7-4f5f-a80b-0aceeeb99ff2",
+     "research-73293aeb-00c5-4432-8da9-b3b9eafef86f",
+     "research-3df7d121-a999-4734-b2b5-c61ff65bd6bf",
+     "research-bac402ea-53fd-468a-8049-b3df5530de4f",
+     "research-32119045-eede-4470-bf6d-ec85bfb804f6",
+     "research-357fcb1c-bf6e-4544-8c1b-f7015a336829",
+     "research-7dd7befd-e2e7-4917-b429-05dfa9490ae0",
+     "research-8e4b0944-78dc-4a77-8ca2-0f045d9df148",
+     "research-e027e0c5-7296-4264-8f72-98b0784694fd",
+     "research-95ac4b42-dccc-4ebc-a157-d2982b4285e8",
+     "research-9407f561-52ff-410c-898b-d38c543263da",
+     "research-e3ebec3d-cb53-4009-82c5-6c43927251eb",
+     "research-21626553-3876-4753-9963-37e51ad1d031",
+     "10589294-07e0-4feb-9ae4-6f8bcc99314a"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "4 players say the bounce clicks after a few games; one adjusted in 2–3 games.",
+     "src": [
+      "research-2705e51b-3f3d-4131-ba21-4b1d98b9c35b",
+      "research-bdb85e1b-ee00-4992-b40f-3305ee1d5979",
+      "research-08ecd9e7-8cd7-42fe-afb6-e7f2a9cd1e0d",
+      "research-688333b9-37a1-44dd-a6f4-0fb773ccb3a1"
+     ]
+    }
+   },
+   {
+    "t": "Not a finisher out of the box: 5 players say it lacks pop, flat smashes above all.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "research-3df7d121-a999-4734-b2b5-c61ff65bd6bf",
+     "research-c8444438-f44e-4235-af7c-3ba16e21df2b",
+     "research-fc759cfb-b1c9-4f04-ad03-7c90c3411cc5",
+     "research-b21637bc-2c5f-4762-a073-f15c0261671f",
+     "research-cefd36f1-fca5-46aa-83da-9bb65b0e0f99"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "Move the weights to the top: about 10 players say it adds smash power.",
+     "src": [
+      "research-44b2c214-49fb-4395-8dce-4385c6fc1518",
+      "research-8ed78451-0c7a-496f-9f29-0eaee15f9826",
+      "research-3cc800f8-4e93-4129-9e5d-eaf2e4906507",
+      "research-fc759cfb-b1c9-4f04-ad03-7c90c3411cc5",
+      "research-08ecd9e7-8cd7-42fe-afb6-e7f2a9cd1e0d",
+      "research-14a48ed0-9186-4c19-93b6-8e4190bd9654",
+      "research-001faea4-9bf6-43af-9cfb-6b307bbe3685",
+      "25ca0bcc-1273-40fe-877b-29d867e1d0b6"
+     ]
+    }
+   },
+   {
+    "t": "Weather check: 2 players say it gets far too bouncy in warm weather.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-73293aeb-00c5-4432-8da9-b3b9eafef86f",
+     "research-7dd7befd-e2e7-4917-b429-05dfa9490ae0"
+    ]
+   },
+   {
+    "t": "Check the weight screws: 3 players had them break or fail.",
+    "for": [],
+    "src": [
+     "research-72bd16b1-b672-4989-a5b5-d18369f18b6e",
+     "research-357fcb1c-bf6e-4544-8c1b-f7015a336829",
+     "research-688333b9-37a1-44dd-a6f4-0fb773ccb3a1"
+    ]
+   }
+  ]
+ },
+ "nox-at10-18k-2025": {
+  "strengths": [
+   {
+    "t": "Easy to move all day: about 15 players praise how quick it is in defence and at the net.",
+    "for": [
+     "control",
+     "balance",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "research-457afbb6-49f0-43f9-9c43-9359cfcf2d2e",
+     "73f66e40-b66b-48bf-b36c-cd41de0d7805",
+     "research-6c27fc84-9b97-44db-bb0f-a4dc686b8720",
+     "research-05d713e6-315b-4283-8b96-7f88c1299631",
+     "976654c1-532b-4fdd-9cdc-192479c7b489",
+     "research-f431cfa4-860d-450e-bd24-a67757e9ad66",
+     "research-f52c2dd1-9d87-49bd-bfd5-0514feb00aac",
+     "research-63a3df27-3263-4add-99a6-3a8ca5153113",
+     "research-0f25254d-c859-4692-b5c1-6bfbfa25c7e1",
+     "research-690e1b51-8578-4588-943c-40e49fb602e1",
+     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
+     "research-adc6a273-fe9d-47e1-a697-7758b4e1002b",
+     "research-577147c3-467f-45ca-82c2-305038470b67",
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
+     "c32af421-3a23-4c6d-9fb9-0bd9dd1520cf",
+     "bf1d40ce-de2b-42f1-9353-2de73ffb7584"
+    ]
+   },
+   {
+    "t": "Safe in defence: 9 players say it's comfortable defending and lobbing from the back.",
+    "for": [
+     "control",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "research-fedcbc8e-f69e-47a8-9bf2-df05b996e8f7",
+     "research-6c27fc84-9b97-44db-bb0f-a4dc686b8720",
+     "976654c1-532b-4fdd-9cdc-192479c7b489",
+     "research-f61bcda1-7514-492e-9023-417153ff75f6",
+     "research-c225ad00-cb93-446f-897c-79431d1b6182",
+     "research-690e1b51-8578-4588-943c-40e49fb602e1",
+     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
+     "c32af421-3a23-4c6d-9fb9-0bd9dd1520cf"
+    ]
+   },
+   {
+    "t": "Forgiving: about 10 players praise the big sweet spot. 2 found it harsh off-centre.",
+    "for": [
+     "beginner",
+     "intermediate",
+     "control"
+    ],
+    "src": [
+     "73f66e40-b66b-48bf-b36c-cd41de0d7805",
+     "research-81fa86af-d2d3-46f9-857c-2d526cb35b5b",
+     "research-05d713e6-315b-4283-8b96-7f88c1299631",
+     "976654c1-532b-4fdd-9cdc-192479c7b489",
+     "research-63a3df27-3263-4add-99a6-3a8ca5153113",
+     "research-690e1b51-8578-4588-943c-40e49fb602e1",
+     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
+     "research-cdb1cebd-5118-4d0f-b6e1-a868f0c1712a",
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
+     "bf1d40ce-de2b-42f1-9353-2de73ffb7584",
+     "research-2847ae01-1c91-4cbc-8a7e-8e8526d488fc",
+     "research-087813a1-0c23-4acd-9807-a529eaf6be40"
+    ]
+   },
+   {
+    "t": "Kind to the arm: 4 players say so, two of them with tennis elbow.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "research-bd9515c0-746c-46e3-bd21-45bce3ab0135",
+     "research-81fa86af-d2d3-46f9-857c-2d526cb35b5b",
+     "research-5bbcd9fd-199b-43ac-815b-0f2ec382cd67",
+     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Bouncy: about 30 players find it too soft. Blocks and volleys float or fly at the glass.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "research-e3c3bc6c-8816-474a-8ff8-8c0b1f45e228",
+     "research-05d713e6-315b-4283-8b96-7f88c1299631",
+     "research-fbcbc4dd-6e29-4f1a-9792-b3aea536c6eb",
+     "research-fee5eb79-637c-4bfe-86b4-a9d999d99733",
+     "research-e2bc8845-0603-4f48-8e40-88934edde482",
+     "research-8b30f326-cc6a-4bc4-95bd-bd12d063157e",
+     "research-faee3619-4ce7-4056-9f8a-a06af97e017f",
+     "research-742a5480-63b9-4330-9257-f82cac1b99d2",
+     "research-e06d9fec-3be0-410f-8a04-57899d8127c9",
+     "research-f431cfa4-860d-450e-bd24-a67757e9ad66",
+     "research-2e8ddf60-7164-4815-b267-ff8257217cba",
+     "research-82df160a-16e4-4818-8ace-d47c4c57d861",
+     "research-9bbee0ef-a94b-4e01-a41e-1f3834f4a3fb",
+     "research-28b03f8b-53c1-4fe3-b14f-84f554ca1487",
+     "research-84ebdf37-48b1-4d13-aef4-cb77e45c0ad1",
+     "research-fd23ec1c-9e14-4de7-b6bc-5b6dc9a4b565",
+     "research-d902a4ac-6b8f-4001-9e30-85646e2b35b7",
+     "research-816ed540-a86d-4751-9bda-227639d516bc",
+     "research-6cbc2011-db49-4679-8f1c-3789ee5589cc",
+     "research-03c8ca7e-4f94-4705-9a02-2622454bcb51",
+     "research-1364a1ba-bb1a-4870-90b9-f6fd11fb192d",
+     "research-9e92f254-fcd5-4e10-ab6f-d071cc93db16",
+     "research-2847ae01-1c91-4cbc-8a7e-8e8526d488fc",
+     "research-2213f878-36bb-4bc2-8d2b-14d8f90b1f9e",
+     "research-e08d284f-2f00-4057-b1da-dbf5f1b238f8",
+     "research-632301bb-0776-482c-b62d-1cc8ac48d1fb",
+     "research-86c31c3c-d493-4667-9a0f-8567926401ea",
+     "155147c9-a2ba-455c-bdd2-92e02afe3b9d",
+     "bf1d40ce-de2b-42f1-9353-2de73ffb7584"
+    ],
+    "tip": {
+     "label": "Weather check",
+     "t": "3 players say it gets far too soft in summer heat.",
+     "src": [
+      "research-fee5eb79-637c-4bfe-86b4-a9d999d99733",
+      "research-03c8ca7e-4f94-4705-9a02-2622454bcb51",
+      "research-2213f878-36bb-4bc2-8d2b-14d8f90b1f9e"
+     ]
+    },
+    "alt": {
+     "slug": "bullpadel-vertex-05-hybrid-2026",
+     "t": "Want it drier? 2 players left it for the Vertex 05 Hybrid and like the placement.",
+     "src": [
+      "research-43885ce9-b92a-4ac6-94d5-1ecaa1fdcdcf",
+      "bullpadel-vertex-05-hybrid-2026:research-7e3a6119-4122-4bf6-8d75-ae793923bf46"
+     ]
+    }
+   },
+   {
+    "t": "No finisher: about 15 players say smashes lack power, flat ones above all.",
+    "for": [
+     "power",
+     "advanced",
+     "balance"
+    ],
+    "src": [
+     "research-fedcbc8e-f69e-47a8-9bf2-df05b996e8f7",
+     "research-8b30f326-cc6a-4bc4-95bd-bd12d063157e",
+     "research-f61bcda1-7514-492e-9023-417153ff75f6",
+     "research-ca1b647b-3c7d-4b16-9a0e-b9330ea4ddb9",
+     "research-faee3619-4ce7-4056-9f8a-a06af97e017f",
+     "research-2ad8c5bd-1ec3-4279-a0f2-44356f78e1c1",
+     "research-e1513c46-c10a-4940-8ad6-709003f6abeb",
+     "research-690e1b51-8578-4588-943c-40e49fb602e1",
+     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
+     "research-ab815024-bd93-4175-a439-bf94bda3905e",
+     "research-577147c3-467f-45ca-82c2-305038470b67",
+     "research-1b9c36b3-88a5-4d80-b867-6ce2ed04df59",
+     "research-cdb1cebd-5118-4d0f-b6e1-a868f0c1712a",
+     "research-9857c791-5fe7-43e3-9668-0588511515b1",
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
+     "research-2baf91d8-4107-4aa5-a286-8d6b2ef4c7dd",
+     "155147c9-a2ba-455c-bdd2-92e02afe3b9d"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-12k-2025",
+     "t": "Want more punch? A tester and a player point to the stiffer AT10 12K.",
+     "src": [
+      "976654c1-532b-4fdd-9cdc-192479c7b489",
+      "research-ca1b647b-3c7d-4b16-9a0e-b9330ea4ddb9"
+     ]
+    }
+   },
+   {
+    "t": "Cracks: 9 players had theirs crack or peel within months, often after a glass or racket knock.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-24479b5d-37d1-4c54-81b4-d38b984a2d9e",
+     "research-78bc29ec-8573-4dfd-87b4-85e34f4d9924",
+     "research-f431cfa4-860d-450e-bd24-a67757e9ad66",
+     "research-8e24711a-152f-4ef7-b447-5b76e14ffb99",
+     "research-eeef594e-401e-469d-a4fd-2e5887010768",
+     "research-da4c1bd3-08de-4227-bda2-c8f27da8e852",
+     "research-69e4cc23-cddc-4606-98b2-a5e3ad6ab26f",
+     "research-9857c791-5fe7-43e3-9668-0588511515b1",
+     "research-632301bb-0776-482c-b62d-1cc8ac48d1fb"
+    ]
+   }
+  ]
+ },
+ "nox-at10-genius-12k-alum-xtrem-2026": {
+  "strengths": [
+   {
+    "t": "Precise: about 20 players and reviewers praise the control. One says lobs “land where I aim them”.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "a9af3811-c1bc-4992-accb-910d125b6e02",
+     "d8b4a4e3-7491-4756-b22a-1f4e748dccf0",
+     "9ef1c538-10b2-4bc6-b0ae-f9dac691dcb1",
+     "acfeb838-f72d-43ea-af8b-b80033e399b1",
+     "8413186e-c6c7-45f7-a4d3-b29a8f5c2674",
+     "research-5957f7c6-f40c-45b1-b77a-9588650b2b4f",
+     "research-3a0b468c-0550-4654-94dd-d0e210a64eee",
+     "db929edc-0431-4cad-97ed-bdd5c6ddc196",
+     "research-7cc0f8bd-9b3f-4f94-9f2e-f65958c688ef",
+     "ca35aa83-2e22-4f42-a142-1f5707d9a766",
+     "37e1a319-0ada-4839-bd24-fa9df55dfd5d",
+     "research-8b4568f2-4b41-4ab5-88af-dfe51799ccc1",
+     "c5191fd1-1c65-4197-8fdf-ff14d8e13b98",
+     "research-53109cfe-8f97-4c22-a2c5-f67a252b1715",
+     "research-181dea1e-ede4-4d1c-b318-726ffc83832f",
+     "research-7a8b6f8b-002c-4109-9317-4b0e363b9a55",
+     "research-33aca153-d6d1-4b07-80d7-69e4512e736a",
+     "5a040dd6-a39e-493e-a943-9a4df667071f",
+     "757cacfb-8fe2-485e-82a5-2318b7192c35",
+     "3d67492d-8cc9-4be5-ab55-8d0389233a53",
+     "4d15cb1d-0b55-4056-b197-9e02a3039e0e"
+    ]
+   },
+   {
+    "t": "Quick in the hand: about 14 praise how easy it is to move in defence and at the net.",
+    "for": [
+     "control",
+     "balance",
+     "intermediate"
+    ],
+    "src": [
+     "a9af3811-c1bc-4992-accb-910d125b6e02",
+     "d8b4a4e3-7491-4756-b22a-1f4e748dccf0",
+     "e2878073-545a-4fc8-9d02-7c9015704e4d",
+     "research-b80894e5-e76f-4531-b287-3c7421769e58",
+     "research-7cc0f8bd-9b3f-4f94-9f2e-f65958c688ef",
+     "37e1a319-0ada-4839-bd24-fa9df55dfd5d",
+     "research-bdd79276-bb01-42aa-85e9-1398aef7663b",
+     "8a4de55b-5aeb-4b2d-8675-d6910ed495c9",
+     "research-dd10a3ec-5d97-4b50-9d83-aeea71f5f029",
+     "research-53109cfe-8f97-4c22-a2c5-f67a252b1715",
+     "research-57d6a1ac-12ec-4c89-b310-643890351f0b",
+     "5a040dd6-a39e-493e-a943-9a4df667071f",
+     "research-4c41f546-5d19-4dfd-9f7e-a6c26e486418",
+     "172bb457-d084-4bca-961f-0571aed35326"
+    ]
+   },
+   {
+    "t": "Grips the ball: about 14 players and reviewers praise the spin on viboras and slice.",
+    "for": [
+     "advanced",
+     "power",
+     "balance"
+    ],
+    "src": [
+     "9d6a3635-dd55-43cd-8aed-1ba2c5a087b5",
+     "d8b4a4e3-7491-4756-b22a-1f4e748dccf0",
+     "research-b3af7b35-b98a-420c-aaae-c32ae4cc25ec",
+     "acfeb838-f72d-43ea-af8b-b80033e399b1",
+     "e2878073-545a-4fc8-9d02-7c9015704e4d",
+     "8413186e-c6c7-45f7-a4d3-b29a8f5c2674",
+     "c3762b04-2232-493b-b3b7-309184497aed",
+     "ca35aa83-2e22-4f42-a142-1f5707d9a766",
+     "c5191fd1-1c65-4197-8fdf-ff14d8e13b98",
+     "fd6b0a34-14f8-4324-903f-ababba562746",
+     "f8b7d9cc-e41a-4c75-a6ac-9114ce872884",
+     "research-53109cfe-8f97-4c22-a2c5-f67a252b1715",
+     "5a040dd6-a39e-493e-a943-9a4df667071f",
+     "172bb457-d084-4bca-961f-0571aed35326"
+    ]
+   },
+   {
+    "t": "Drier than the 18K: 8 players like that it gives back exactly what you put in.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "research-3a0b468c-0550-4654-94dd-d0e210a64eee",
+     "research-b80894e5-e76f-4531-b287-3c7421769e58",
+     "research-6af45a65-55f6-43a3-a81d-269ddd68a978",
+     "research-53109cfe-8f97-4c22-a2c5-f67a252b1715",
+     "research-58c47540-54c5-4228-9f66-d1cdd040a018",
+     "research-57d6a1ac-12ec-4c89-b310-643890351f0b",
+     "research-3fe6a88d-3e32-46e5-8ba6-ab2acb4fb05c",
+     "f7505561-90cf-4382-99ef-213f5bd6b2e2"
+    ]
+   },
+   {
+    "t": "Elbow-friendly for most: 5 players with sore elbows or wrists say so. 3 got arm or hand pain.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "fd6b0a34-14f8-4324-903f-ababba562746",
+     "research-fe9f3f2c-991f-4cef-a9f6-78dd6984ed9c",
+     "research-3fe6a88d-3e32-46e5-8ba6-ab2acb4fb05c",
+     "research-86b9d3c3-ca61-44dc-91a5-31c84450da04",
+     "4d15cb1d-0b55-4056-b197-9e02a3039e0e",
+     "research-e9cd3821-969e-4a34-ad1b-e5ba34ad917e",
+     "research-4a20ad36-4964-4fe4-961a-4f5e835110e3",
+     "research-fb9d68e5-0471-424a-8b1a-43e90926fea4"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "You make the power: about 10 players and reviewers say flat smashes take real effort.",
+    "for": [
+     "power",
+     "beginner",
+     "balance"
+    ],
+    "src": [
+     "a9af3811-c1bc-4992-accb-910d125b6e02",
+     "d8b4a4e3-7491-4756-b22a-1f4e748dccf0",
+     "8413186e-c6c7-45f7-a4d3-b29a8f5c2674",
+     "research-4a20ad36-4964-4fe4-961a-4f5e835110e3",
+     "37e1a319-0ada-4839-bd24-fa9df55dfd5d",
+     "fd6b0a34-14f8-4324-903f-ababba562746",
+     "research-caa86580-29ab-4bfe-bc31-f2a6a253d55d",
+     "research-7e4338b9-e171-444a-ac11-fe4e62107f26",
+     "research-4689997b-76bd-43ca-96cc-7b02ed7a291a",
+     "757cacfb-8fe2-485e-82a5-2318b7192c35"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "2 players added small 2–4 g weights and liked the change.",
+     "src": [
+      "research-68e07af5-a8ec-4e79-8a66-1bfb5d52289d",
+      "research-57d6a1ac-12ec-4c89-b310-643890351f0b"
+     ]
+    }
+   },
+   {
+    "t": "Too stiff for some: 5 players wanted it softer, and 3 say the 18K suits them better.",
+    "for": [
+     "arm",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "research-e9cd3821-969e-4a34-ad1b-e5ba34ad917e",
+     "research-637af1e6-6d83-44d1-a998-c83485e2c192",
+     "research-0e9e5288-03f8-4810-ad1f-83a8f3bedb09",
+     "research-2b523d38-4ffb-4263-b86c-572af8c5e50e",
+     "research-70f379a0-774c-476b-9424-bf61bc1b6e1a",
+     "research-026a5f2e-0200-49bf-bd29-d490fb2588d9"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want softer? Try the AT10 18K 2026, the softer sister.",
+     "src": [
+      "research-026a5f2e-0200-49bf-bd29-d490fb2588d9",
+      "research-0e9e5288-03f8-4810-ad1f-83a8f3bedb09",
+      "research-70f379a0-774c-476b-9424-bf61bc1b6e1a"
+     ]
+    }
+   },
+   {
+    "t": "Lively on fast balls: 8 players and reviewers say quick volleys and blocks can run long.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "9d6a3635-dd55-43cd-8aed-1ba2c5a087b5",
+     "3237a620-76d1-4f44-8ef6-cb55d3da98c0",
+     "research-2533662a-5d0c-4b20-b611-84306f952032",
+     "f8b7d9cc-e41a-4c75-a6ac-9114ce872884",
+     "8a4de55b-5aeb-4b2d-8675-d6910ed495c9",
+     "research-9a28b571-a97b-4481-a47c-f2fc823c92b8",
+     "research-1ad418f5-2a4d-4eb0-87cb-c2b70c2e2fbe",
+     "research-4c41f546-5d19-4dfd-9f7e-a6c26e486418"
+    ]
+   },
+   {
+    "t": "Rewards clean contact: 8 players and reviewers say off-centre hits lose a lot.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "e2878073-545a-4fc8-9d02-7c9015704e4d",
+     "8413186e-c6c7-45f7-a4d3-b29a8f5c2674",
+     "research-a8fb50b9-19cd-4d29-94a8-930ddc01a615",
+     "db929edc-0431-4cad-97ed-bdd5c6ddc196",
+     "37e1a319-0ada-4839-bd24-fa9df55dfd5d",
+     "c5191fd1-1c65-4197-8fdf-ff14d8e13b98",
+     "research-637af1e6-6d83-44d1-a998-c83485e2c192",
+     "research-3fe6a88d-3e32-46e5-8ba6-ab2acb4fb05c"
+    ]
+   }
+  ]
+ },
+ "nox-at10-genius-12k-2025": {
+  "strengths": [
+   {
+    "t": "Real control: about 20 players and reviewers praise it. One says it improved their timing.",
+    "for": [
+     "control",
+     "balance",
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "82cddb64-2a25-4ea5-aaec-b496f9240082",
+     "9d4c8fd0-1f43-491d-9658-c939365fc30a",
+     "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
+     "d2ded1f4-fa28-4995-8f31-89a1ec5a17dd",
+     "bc7c6151-4881-4533-889b-83a17de04360",
+     "research-a40e91fd-bfef-4de9-b4a8-861f5f549f7a",
+     "2e01f500-28b3-408f-b864-fed38dd08e3c",
+     "a559d41e-aaf2-44d9-8f67-65b9ba901bf8",
+     "research-8a1b8b9d-b083-4674-a96a-7d2ca2959e13",
+     "research-a0feb018-edd1-49f6-9a77-7467a5c6713d",
+     "f0431836-4dec-4013-9c1a-6a9a2e24f689",
+     "research-96dabcce-33b5-4525-95c8-91be448d8bfe",
+     "research-a1479340-d258-4791-b432-f1af900d5d7d",
+     "f0d884f9-74b0-41e0-9955-7db08a4a8e44",
+     "research-29936667-9d1b-4d08-8866-470e44d98879",
+     "research-9385091a-4a6f-45ee-a154-bef35a909e1a",
+     "research-7addfb33-b2f7-45af-8179-fa20796d48ba",
+     "research-aa9934be-0f7b-4369-b65e-89b427be8158",
+     "research-580bbd3e-993b-4a6e-8d33-ea5a3f288269",
+     "research-433429b5-e11a-4af5-962d-d7060fb3f30e",
+     "research-a7c6d3e1-65fd-428e-b321-0820bdd3c0d1"
+    ]
+   },
+   {
+    "t": "Quick hands: about 10 players and reviewers praise how easy it is to move in defence.",
+    "for": [
+     "control",
+     "balance",
+     "intermediate"
+    ],
+    "src": [
+     "8308d740-e3d6-4556-b771-50d4ec92392a",
+     "82cddb64-2a25-4ea5-aaec-b496f9240082",
+     "d2ded1f4-fa28-4995-8f31-89a1ec5a17dd",
+     "a559d41e-aaf2-44d9-8f67-65b9ba901bf8",
+     "f0431836-4dec-4013-9c1a-6a9a2e24f689",
+     "research-96dabcce-33b5-4525-95c8-91be448d8bfe",
+     "f0d884f9-74b0-41e0-9955-7db08a4a8e44",
+     "research-7addfb33-b2f7-45af-8179-fa20796d48ba",
+     "research-402547e8-a9ad-452d-9891-9e5e9046a4a6",
+     "research-910b3492-d5ef-41a2-ae53-5ca76b378fcc",
+     "research-59e8cf6e-c4ae-4838-a858-4da3ffb1d748"
+    ]
+   },
+   {
+    "t": "More bite than the 18K: 7 players and reviewers say it attacks better and still defends.",
+    "for": [
+     "balance",
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
+     "research-a40e91fd-bfef-4de9-b4a8-861f5f549f7a",
+     "2e01f500-28b3-408f-b864-fed38dd08e3c",
+     "f0431836-4dec-4013-9c1a-6a9a2e24f689",
+     "research-9385091a-4a6f-45ee-a154-bef35a909e1a",
+     "research-562a04d0-833b-4e00-af91-4b69aef7cd57",
+     "932837fe-ca0b-4939-a348-3a4aeae4bc7c"
+    ]
+   },
+   {
+    "t": "Mostly kind to the arm: 7 players with elbow trouble did well on it. 4 got arm or wrist pain.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "research-a49325a4-b3cd-4d59-b788-c8f870a2032b",
+     "research-a40e91fd-bfef-4de9-b4a8-861f5f549f7a",
+     "research-c2eef7e0-0d4f-4c90-9cec-30f4d28f1188",
+     "research-a0feb018-edd1-49f6-9a77-7467a5c6713d",
+     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace",
+     "research-a604df7d-45b0-49ef-b87e-d77c173f753f",
+     "research-59e8cf6e-c4ae-4838-a858-4da3ffb1d748",
+     "research-edc49d82-6d13-47ae-94b6-b5fb9e43e2e3",
+     "research-1ef2137a-e3f4-488e-a551-de0a39b08be4",
+     "research-ab40b3d1-ea20-43ca-9d68-e894d2693d18",
+     "research-ff66796d-a171-43d9-b59e-d4721ca7069b"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Smashes need your muscle: about 14 players say it won't finish points, flat smashes above all.",
+    "for": [
+     "power",
+     "advanced",
+     "balance"
+    ],
+    "src": [
+     "8308d740-e3d6-4556-b771-50d4ec92392a",
+     "research-4c88cb48-6f31-4cb2-9b64-ddfd037873d9",
+     "9d4c8fd0-1f43-491d-9658-c939365fc30a",
+     "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
+     "research-d3a99536-532a-4437-b752-72644284b009",
+     "research-15ad8415-b271-468b-aac8-df66ccbc422b",
+     "research-c2eef7e0-0d4f-4c90-9cec-30f4d28f1188",
+     "research-1ef2137a-e3f4-488e-a551-de0a39b08be4",
+     "research-ab40b3d1-ea20-43ca-9d68-e894d2693d18",
+     "research-25252e82-4548-49e0-83f3-ccb62c6c3402",
+     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace",
+     "research-910b3492-d5ef-41a2-ae53-5ca76b378fcc",
+     "research-7130e4e8-3bec-4fac-990e-c9cfce2b79ff",
+     "9e36d29f-bcb9-44e1-82ca-1416337a3212"
+    ]
+   },
+   {
+    "t": "Less forgiving than the 18K: 6 players found it stiffer, needing more precision and effort.",
+    "for": [
+     "beginner",
+     "arm",
+     "intermediate"
+    ],
+    "src": [
+     "9d4c8fd0-1f43-491d-9658-c939365fc30a",
+     "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
+     "research-5e2d179a-f047-4860-a3b4-fa50e4849741",
+     "research-ff66796d-a171-43d9-b59e-d4721ca7069b",
+     "research-cb2e78f5-1919-4d5a-9062-0b7bd7f9c097",
+     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace"
+    ],
+    "alt": {
+     "slug": "nox-at10-18k-2025",
+     "t": "Want more help? Players who found it stiff point to the softer AT10 18K.",
+     "src": [
+      "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
+      "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c"
+     ]
+    }
+   },
+   {
+    "t": "A bit lively at the net: 5 players say blocks and volleys can fly off to the glass.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-a08acc2b-4ae6-41ed-a915-abf87331bf5b",
+     "research-88eb4e56-4537-43a8-99b3-82d161249289",
+     "research-5dbdb744-4428-4bbb-987a-644612295850",
+     "research-d1254954-7fab-49f9-aab2-cf0ec672ffb5",
+     "research-7130e4e8-3bec-4fac-990e-c9cfce2b79ff"
+    ]
+   },
+   {
+    "t": "Weather check: one player says it's hard to handle in the cold, another that heat softens it.",
+    "for": [],
+    "src": [
+     "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c",
+     "research-696d9a84-159e-4cd6-8709-a8490d00f3eb"
+    ]
+   }
+  ]
+ },
+ "nox-at10-genius-18k-2026": {
+  "strengths": [
+   {
+    "t": "Roomy and forgiving: about 18 players and reviewers praise a sweet spot bigger than the 12K's.",
+    "for": [
+     "beginner",
+     "intermediate",
+     "control",
+     "balance"
+    ],
+    "src": [
+     "d6663844-6f68-4183-b45a-7444577dd1cc",
+     "deef6486-360f-44ac-8d1b-ff1e8ce1396a",
+     "6775df21-f207-438d-8801-ecfbdb0dc8f0",
+     "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
+     "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+     "1b898470-3437-414d-8fa2-c9dc8b449355",
+     "research-1b95f716-b02c-4abb-85f8-3f8e00c155e8",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "08da3015-8387-4ef5-b876-8ffd938fdaa2",
+     "research-d105e635-23d0-4eed-b1b6-d46edd88dfb4",
+     "research-6bfbff40-ac18-45d4-9235-01997f2fb337",
+     "research-c62c04fa-2fb1-45ed-b5f2-6e53d5738c9c",
+     "research-b14b4d22-d4ae-4bd5-a7c9-1206326ac0a8",
+     "research-ef95cfea-5f5c-4837-9c55-f75f2f75a211",
+     "research-195a1ac5-d2ba-4679-b177-b561d7df3593",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab"
+    ]
+   },
+   {
+    "t": "Control and touch: about 20 praise precise lobs, chiquitas and placed volleys.",
+    "for": [
+     "control",
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "fa415fd5-7483-449c-8855-d86147dea46b",
+     "deef6486-360f-44ac-8d1b-ff1e8ce1396a",
+     "research-fe347270-0d1e-4d27-9a79-ba2f10618f16",
+     "46b31dee-bd85-4a64-a793-6fb639c25339",
+     "e93536fd-20c1-4070-b0c9-6573c83dd81d",
+     "1b898470-3437-414d-8fa2-c9dc8b449355",
+     "research-744316f9-ec09-4525-bb14-46e76621243d",
+     "research-f700af80-19c0-44a5-834d-d2d647c4308b",
+     "research-d912fe51-3d69-4e17-9c82-9c4b52510c33",
+     "research-1b95f716-b02c-4abb-85f8-3f8e00c155e8",
+     "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "a0277f9a-6563-455d-a452-bb2e87202881",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "9592c385-7ad2-4242-a768-789a033593d7",
+     "research-b14b4d22-d4ae-4bd5-a7c9-1206326ac0a8",
+     "research-c1e62fb1-57cf-43d7-a06c-6682b71ad766",
+     "0f469c3d-c4cb-4749-9c0b-105178323b93",
+     "127a00d7-a972-425d-b112-af4a03a3d293",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab",
+     "4501977c-12b8-4eae-a8c4-a0e65fbf9710"
+    ]
+   },
+   {
+    "t": "Quick to move: about 14 players and reviewers say it's easy to handle at the net.",
+    "for": [
+     "control",
+     "balance",
+     "intermediate"
+    ],
+    "src": [
+     "fa415fd5-7483-449c-8855-d86147dea46b",
+     "fac5aebd-ed48-4336-9402-fb49b064122e",
+     "e93536fd-20c1-4070-b0c9-6573c83dd81d",
+     "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+     "research-d912fe51-3d69-4e17-9c82-9c4b52510c33",
+     "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "9592c385-7ad2-4242-a768-789a033593d7",
+     "08da3015-8387-4ef5-b876-8ffd938fdaa2",
+     "research-b438f344-a3fa-42f2-afe9-1570e8bd2db9",
+     "research-ef95cfea-5f5c-4837-9c55-f75f2f75a211",
+     "research-152cc422-9b07-455f-aa42-c9af627b2222",
+     "4501977c-12b8-4eae-a8c4-a0e65fbf9710"
+    ]
+   },
+   {
+    "t": "Kind to the arm: 10 players, several with elbow or wrist trouble, find it comfortable.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "c6312d1b-8097-4565-854c-bb5acf160da3",
+     "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "research-5427f293-6a82-423c-8c93-102e061d83bd",
+     "research-ef95cfea-5f5c-4837-9c55-f75f2f75a211",
+     "research-b0318d6c-2b49-492c-b1b1-73b13b96b6e1",
+     "research-c9da121d-ef6b-4354-a8c4-7282885ca638",
+     "research-c1e62fb1-57cf-43d7-a06c-6682b71ad766",
+     "127a00d7-a972-425d-b112-af4a03a3d293",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flat smashes need your arm: about 20 players and reviewers say there's no free power.",
+    "for": [
+     "power",
+     "advanced",
+     "balance"
+    ],
+    "src": [
+     "6775df21-f207-438d-8801-ecfbdb0dc8f0",
+     "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
+     "e93536fd-20c1-4070-b0c9-6573c83dd81d",
+     "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+     "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "a0277f9a-6563-455d-a452-bb2e87202881",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "research-6bc8d6e8-5ee0-46db-8ed8-b0a5fcf40016",
+     "research-1a138cf5-7208-4901-8c76-73181dda375a",
+     "research-5427f293-6a82-423c-8c93-102e061d83bd",
+     "research-3baaef6b-3a37-44a5-b79a-8a8c3876c661",
+     "research-5cd57fc2-60eb-418c-b30e-af5e2d40b685",
+     "research-88b5bcba-49a1-4b8f-9b26-1f9dc85d909a",
+     "0f469c3d-c4cb-4749-9c0b-105178323b93",
+     "127a00d7-a972-425d-b112-af4a03a3d293",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab",
+     "4501977c-12b8-4eae-a8c4-a0e65fbf9710"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "Testers say it lacks punch unweighted; 2 players added the 4 g head weights.",
+     "src": [
+      "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+      "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+      "1b898470-3437-414d-8fa2-c9dc8b449355",
+      "research-c9da121d-ef6b-4354-a8c4-7282885ca638"
+     ]
+    },
+    "alt": {
+     "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+     "t": "Want more bite? 2 players say the stiffer AT10 12K 2026 has more power.",
+     "src": [
+      "research-04ae0c76-5990-4f4a-a942-144e47743f43",
+      "research-d105e635-23d0-4eed-b1b6-d46edd88dfb4"
+     ]
+    }
+   },
+   {
+    "t": "Soft at pace: 10 players say fast shots can run away to the glass or the net.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "research-66249816-dd52-4abd-9cce-05389b80318b",
+     "research-04ae0c76-5990-4f4a-a942-144e47743f43",
+     "research-1a138cf5-7208-4901-8c76-73181dda375a",
+     "research-61a1b4ff-2565-4eb8-8a18-453403867b46",
+     "research-5427f293-6a82-423c-8c93-102e061d83bd",
+     "research-d7e61e6b-690a-48d7-acb0-0246bf36a6a1",
+     "research-b0318d6c-2b49-492c-b1b1-73b13b96b6e1",
+     "research-7e7b49f9-ace5-4975-978e-f20fcd4b01b8",
+     "research-0db35c1e-b9d6-4bcc-8763-7b2195bcf761",
+     "research-8b751f00-ff84-40d6-8cfd-453af6bd405e"
+    ]
+   },
+   {
+    "t": "Weather check: 4 players say temperature changes it; one found it stiff on a cold day.",
+    "for": [],
+    "src": [
+     "fac5aebd-ed48-4336-9402-fb49b064122e",
+     "research-152cc422-9b07-455f-aa42-c9af627b2222",
+     "research-d3d1c2a5-9c43-4fd1-bd46-382bcc6392f0",
+     "research-dba76d8d-8924-45b0-8751-ee765eb28912"
+    ]
+   },
+   {
+    "t": "Sore arm? 4 players had elbow or wrist trouble, one with a 390 g setup.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "research-12a4133e-b4dc-48c8-9700-ffd60bbff9a7",
+     "research-c74baaf0-9573-44c5-84d6-4b8ccc1580cf",
+     "research-9774185d-9c27-41e4-9048-2cbbc0f77b73",
+     "research-b6138a14-bd4c-4dbb-8e8c-4ff4fe30a0fa"
+    ]
+   }
+  ]
+ },
+ "babolat-counter-viper-2025": {
+  "strengths": [
+   {
+    "t": "Pinpoint control: about 18 players and reviewers praise it. One makes “0 mistakes on lobs or returns”.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate"
+    ],
+    "src": [
+     "fafffa88-24d8-481e-8fb1-8149b8a1de32",
+     "574baabf-cfde-4384-b183-a512699d8e02",
+     "9b248e77-2462-43bb-aed4-2b013c5b8189",
+     "56346be5-d926-4d78-9d01-822a0b660aa6",
+     "81f68ce7-bac7-4c3c-b4f5-dcbea6a53f6d",
+     "research-12409c39-25b6-4821-9a04-3fea6595050c",
+     "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02",
+     "research-b9999903-f1e5-441e-b353-60ff33711ad8",
+     "research-2a6b2886-1236-4d61-aa22-cc67f4055565",
+     "research-af648693-4d4f-442e-9288-d0a3034fbb84",
+     "research-5abe0e5b-81bf-48ae-b1ce-68777a4274fd",
+     "research-d76dc6c5-aa4f-412b-8085-90081f37bde2",
+     "research-7f3535d1-d78f-43d8-a9c8-e4713fe6636d",
+     "research-7a306f9d-49e2-4b6c-8e7a-f93f09bb27c5",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c",
+     "research-054d29c4-6699-4929-bf33-b64839b778cf",
+     "research-81a547dc-6a14-4b9b-a9da-4824c55a9e94",
+     "research-78b50dcf-166f-47c6-8e95-a4d3c5582d3a"
+    ]
+   },
+   {
+    "t": "Dry and direct, no trampoline: 7 players and reviewers say blocks at the net feel solid.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "56346be5-d926-4d78-9d01-822a0b660aa6",
+     "research-2fdbf2ae-4af5-4460-ba40-e1aae19170b2",
+     "research-af648693-4d4f-442e-9288-d0a3034fbb84",
+     "research-5abe0e5b-81bf-48ae-b1ce-68777a4274fd",
+     "research-42feafd6-5c51-4bdb-9d7e-aab3f80e24a2",
+     "research-4a435327-412d-4e81-85c4-2b592fb25cbc",
+     "research-6217e954-0fb0-42ef-8606-dfc51a2febbc"
+    ]
+   },
+   {
+    "t": "Finishes for a control racket: 7 players and reviewers praise its flat smashes and bandejas.",
+    "for": [
+     "power",
+     "balance",
+     "advanced"
+    ],
+    "src": [
+     "574baabf-cfde-4384-b183-a512699d8e02",
+     "56346be5-d926-4d78-9d01-822a0b660aa6",
+     "research-12409c39-25b6-4821-9a04-3fea6595050c",
+     "research-d76dc6c5-aa4f-412b-8085-90081f37bde2",
+     "research-c7d60822-a9bb-4ff5-b6be-1080a29e4691",
+     "research-42feafd6-5c51-4bdb-9d7e-aab3f80e24a2",
+     "research-4a435327-412d-4e81-85c4-2b592fb25cbc"
+    ]
+   },
+   {
+    "t": "Forgiving for a stiff racket: 7 players and reviewers praise the sweet spot.",
+    "for": [
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "fafffa88-24d8-481e-8fb1-8149b8a1de32",
+     "574baabf-cfde-4384-b183-a512699d8e02",
+     "81f68ce7-bac7-4c3c-b4f5-dcbea6a53f6d",
+     "research-2a6b2886-1236-4d61-aa22-cc67f4055565",
+     "research-4a435327-412d-4e81-85c4-2b592fb25cbc",
+     "research-6217e954-0fb0-42ef-8606-dfc51a2febbc",
+     "research-78b50dcf-166f-47c6-8e95-a4d3c5582d3a"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Hard on the arm: 12 players got arm, elbow or shoulder pain, and most of them moved on.",
+    "for": [
+     "arm",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "research-5f279e19-3ff0-4bd4-929e-a00ac9613780",
+     "research-c9cd3e00-0284-4930-98ef-07dbb3522e4e",
+     "research-327efc5a-c33e-4f6e-809b-ad483e499f74",
+     "research-68e8b113-b94e-48db-b291-ba957312a7e3",
+     "research-ce63278e-2965-4085-b470-4af76e09f44b",
+     "research-7fecc69d-74be-47dd-bcc1-f56f5af15d79",
+     "research-cb5b8778-e7c7-407a-8daa-ba7ed0964eae",
+     "research-40e025a5-feaf-43d9-9a6b-7e888900decd",
+     "research-a03e8218-23bb-4d80-9418-2398e87df84e",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c",
+     "research-054d29c4-6699-4929-bf33-b64839b778cf",
+     "9588006b-d173-4897-a3cd-15675f836505"
+    ]
+   },
+   {
+    "t": "Heavy and head-heavy: 11 players say so; 4 weighed theirs at 380–390 g.",
+    "for": [
+     "beginner",
+     "control",
+     "arm"
+    ],
+    "src": [
+     "research-02176b41-4c52-42b8-bcea-6d59f635696e",
+     "research-f3ee0ce4-1904-44b3-9f4e-b9a877149049",
+     "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02",
+     "research-af648693-4d4f-442e-9288-d0a3034fbb84",
+     "research-c7d60822-a9bb-4ff5-b6be-1080a29e4691",
+     "research-7fecc69d-74be-47dd-bcc1-f56f5af15d79",
+     "research-7f3535d1-d78f-43d8-a9c8-e4713fe6636d",
+     "research-40e025a5-feaf-43d9-9a6b-7e888900decd",
+     "research-a03e8218-23bb-4d80-9418-2398e87df84e",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c",
+     "research-054d29c4-6699-4929-bf33-b64839b778cf"
+    ]
+   },
+   {
+    "t": "Lobs need a full swing: 3 players and reviewers say soft shots fall short if you get lazy.",
+    "for": [
+     "control",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "9b248e77-2462-43bb-aed4-2b013c5b8189",
+     "81f68ce7-bac7-4c3c-b4f5-dcbea6a53f6d",
+     "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02"
+    ]
+   },
+   {
+    "t": "Weather check: 2 players say it turns rock-hard in the cold.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "research-b9999903-f1e5-441e-b353-60ff33711ad8",
+     "research-670e6794-4ab7-47b7-a732-a950e61c537e"
+    ]
+   }
+  ]
+ },
+ "bullpadel-vertex-05-geo-2026": {
+  "strengths": [
+   {
+    "t": "Easy punch: about 18 players and reviewers praise the power, smashes above all.",
+    "for": [
+     "power",
+     "advanced",
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "21894399-5cef-475a-a3bc-8fc1dcd77685",
+     "research-d8946510-bca7-44c9-a47f-c4e9c599343d",
+     "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
+     "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
+     "7646df23-86cc-48f4-8ef1-522a49203718",
+     "81dc96a9-af32-4849-9bd6-0358f095f30e",
+     "72fe4b78-db5d-4040-b702-ac3c607c704d",
+     "research-772d943b-c2ba-4924-b8b0-595fd7d5a71e",
+     "research-0d93aec4-683c-4197-b322-8081350d15ab",
+     "research-d11ee3f7-a32b-4bc7-909a-eb1964b678da",
+     "research-b2181fe6-a5e2-4dd8-89bd-15ae8c7b213b",
+     "research-8c68ae70-5203-46a7-8f3b-0d362230071d",
+     "research-14220e21-3c15-4cb7-b045-f5d5dd41636d",
+     "bf560262-e3c1-49b2-b440-8f980cb9bceb",
+     "research-beeb6a35-021f-49e5-a338-0dadb3c877b0",
+     "research-7789dc45-ae74-4710-b508-7d864846b319",
+     "research-b4f50e7b-79a4-4a4d-b562-e429222f7185",
+     "48da8486-f81e-4b7c-8364-db66b27fbf43"
+    ]
+   },
+   {
+    "t": "Power without losing control: about 15 say it adds punch but keeps touch and placement.",
+    "for": [
+     "balance",
+     "power",
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "21894399-5cef-475a-a3bc-8fc1dcd77685",
+     "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
+     "7bf9678f-03a5-4c92-8e1f-9b6f8da98679",
+     "abe55dbe-2c8e-403c-be0e-1df5c9b2c1c6",
+     "7646df23-86cc-48f4-8ef1-522a49203718",
+     "8de74c73-f7e2-42a8-ae5c-b3e236be7c41",
+     "d4343c3c-2119-44dc-9398-ade67cfbb48d",
+     "ef6edf3e-e3b1-4dce-9735-d05f15a30956",
+     "ff212c27-7400-40a4-a1a9-dcce5f5ac24f",
+     "77dce855-af94-446f-a366-0d12150ae495",
+     "48096dd3-cb00-478d-90f7-2b6ead53fba7",
+     "72fe4b78-db5d-4040-b702-ac3c607c704d",
+     "research-0d93aec4-683c-4197-b322-8081350d15ab",
+     "5b8fcb91-074f-4a06-abba-2bf865555530",
+     "459141b3-f8c2-4837-9aff-4a3de3d4b672"
+    ]
+   },
+   {
+    "t": "Roomier than most diamonds: about 10 players and reviewers call the sweet spot forgiving.",
+    "for": [
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "research-d8946510-bca7-44c9-a47f-c4e9c599343d",
+     "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
+     "77dce855-af94-446f-a366-0d12150ae495",
+     "48096dd3-cb00-478d-90f7-2b6ead53fba7",
+     "research-0d93aec4-683c-4197-b322-8081350d15ab",
+     "c5595dc0-48e5-4cfa-905d-ed0968fa4ad5",
+     "research-266e71b0-3b11-4c3e-847f-a800833bb62c",
+     "research-8c68ae70-5203-46a7-8f3b-0d362230071d",
+     "bf560262-e3c1-49b2-b440-8f980cb9bceb",
+     "459141b3-f8c2-4837-9aff-4a3de3d4b672"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Punishes bad timing: about 11 players and reviewers say mishits and slow defence get no help.",
+    "for": [
+     "beginner",
+     "intermediate",
+     "control"
+    ],
+    "src": [
+     "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
+     "7646df23-86cc-48f4-8ef1-522a49203718",
+     "8de74c73-f7e2-42a8-ae5c-b3e236be7c41",
+     "d4343c3c-2119-44dc-9398-ade67cfbb48d",
+     "ef6edf3e-e3b1-4dce-9735-d05f15a30956",
+     "4fa26b22-16d9-45a4-9cce-79f7df4dc10e",
+     "research-0c1ca5ec-7002-43c6-9911-28aa9767c71a",
+     "research-2a0151d8-0699-42cb-81a3-71d78ece5fc5",
+     "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
+     "research-0def0963-009b-48d1-ab7c-e391ef2e4b26",
+     "research-b4f50e7b-79a4-4a4d-b562-e429222f7185"
+    ],
+    "tip": {
+     "label": "Heads up",
+     "t": "3 players needed a few sessions to settle in. Don't judge it after one.",
+     "src": [
+      "21894399-5cef-475a-a3bc-8fc1dcd77685",
+      "bf560262-e3c1-49b2-b440-8f980cb9bceb",
+      "research-b4f50e7b-79a4-4a4d-b562-e429222f7185"
+     ]
+    },
+    "alt": {
+     "slug": "bullpadel-vertex-05-hybrid-2026",
+     "t": "Want it easier? A tester calls its round sister, the Vertex 05 Hybrid, much easier to handle.",
+     "src": [
+      "bullpadel-vertex-05-hybrid-2026:d2670b81-ad81-40e7-bf4b-196b724bf906"
+     ]
+    }
+   },
+   {
+    "t": "Heavy up top: 10 find it heavy or head-heavy; one weighed 390 g+ with grip and protector.",
+    "for": [
+     "arm",
+     "beginner",
+     "control"
+    ],
+    "src": [
+     "research-025481ec-8b4f-478e-b1af-93cefa47fe46",
+     "81dc96a9-af32-4849-9bd6-0358f095f30e",
+     "77dce855-af94-446f-a366-0d12150ae495",
+     "5804efdf-697b-4a59-b346-16484da84258",
+     "research-d11ee3f7-a32b-4bc7-909a-eb1964b678da",
+     "research-b2181fe6-a5e2-4dd8-89bd-15ae8c7b213b",
+     "research-14220e21-3c15-4cb7-b045-f5d5dd41636d",
+     "research-beeb6a35-021f-49e5-a338-0dadb3c877b0",
+     "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
+     "research-489ab6cb-bd3a-4d0e-91dc-513445d09f2b"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "2 players took off the Hesacore grip and got it to about 350–355 g.",
+     "src": [
+      "research-e40dd1a3-849f-41e5-9909-8c0a9b29f10d",
+      "48da8486-f81e-4b7c-8364-db66b27fbf43"
+     ]
+    }
+   },
+   {
+    "t": "Not a first racket: players call it demanding. An intermediate owner says “Not suitable for beginners”.",
+    "for": [
+     "beginner"
+    ],
+    "only": [
+     "beginner"
+    ],
+    "src": [
+     "48da8486-f81e-4b7c-8364-db66b27fbf43",
+     "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
+     "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
+     "d4343c3c-2119-44dc-9398-ade67cfbb48d"
+    ]
+   }
+  ]
+ },
+ "adidas-metalbone-ctrl-3-4-2025": {
+  "strengths": [
+   {
+    "t": "Huge, soft sweet spot: about 18 players and reviewers say so. One calls it “one big sweet spot”.",
+    "for": [
+     "beginner",
+     "intermediate",
+     "control",
+     "balance"
+    ],
+    "src": [
+     "research-f4c424e5-6727-4ae1-ba6c-9909db5525e7",
+     "b65c3856-52e4-4efa-a62c-4142a2f9b8f0",
+     "c63b82e1-6c93-447a-968c-35367a5890c5",
+     "35eddd5a-0235-47b8-aa3d-fa8281c6f20e",
+     "958a48cc-cee5-4eab-b079-49f50c58e802",
+     "research-fe95c328-79c3-4519-809e-eb29b35fca00",
+     "research-8ac5cae5-e829-4706-9b45-4b0d3bcd105d",
+     "research-5a6fba05-d18f-43d4-b5d7-9d03aba0c661",
+     "research-8ddaee80-80ff-4c49-a274-54b3d047b4dd",
+     "research-01a794aa-d338-4222-87d3-0f8b63fd817f",
+     "research-78ee42a8-226a-4e93-bc49-e81e6d7b2b8c",
+     "research-5bfaa34e-2e2c-4b35-ab36-f7aef6ea211d",
+     "research-d439af2e-104a-4041-89ea-8d7c128a9711",
+     "research-62998c95-6dab-4d33-b63e-aaa3f9d09986",
+     "research-2b409b82-2656-4f54-90bc-90629da8b76d",
+     "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d",
+     "a9b769de-39ec-4670-bfe3-4a36fbb157e4",
+     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
+    ]
+   },
+   {
+    "t": "Easy in defence: 9 players say it's great on lobs and off the back glass.",
+    "for": [
+     "control",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "958a48cc-cee5-4eab-b079-49f50c58e802",
+     "research-8ac5cae5-e829-4706-9b45-4b0d3bcd105d",
+     "research-dfb79d6e-5c1b-47d9-a60a-88e10d861f25",
+     "research-6b3a528c-45e5-4f55-af9f-3da7f5ede180",
+     "research-eefbc890-e42c-451c-ad02-95c61b3a243e",
+     "research-456b346a-7a25-4af7-9867-c74b767ec879",
+     "research-a6847e3f-3d78-4e94-a562-c642a86d3149",
+     "a9b769de-39ec-4670-bfe3-4a36fbb157e4",
+     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
+    ]
+   },
+   {
+    "t": "Easy on the arm: 5 players say so, one plays 4 hours with no elbow pain.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "research-2c8d78b7-a261-4082-9128-2ec6718fe341",
+     "research-ba734015-42d5-4824-bbec-9a8d25eb479e",
+     "research-51376575-aa40-46c7-b670-86de653cefa8",
+     "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d",
+     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
+    ]
+   },
+   {
+    "t": "Weights up top add smash leverage: 4 players and reviewers like that setup.",
+    "for": [
+     "power",
+     "balance"
+    ],
+    "src": [
+     "b65c3856-52e4-4efa-a62c-4142a2f9b8f0",
+     "research-8f15fdd0-59b2-4487-a9ee-eac2644f6d8c",
+     "research-5bfaa34e-2e2c-4b35-ab36-f7aef6ea211d",
+     "0138f8d9-0eb4-424d-9180-192d02bd6e21"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Blocks at the net bounce: about 10 players say fast volleys and blocks fly off.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate"
+    ],
+    "src": [
+     "research-fe95c328-79c3-4519-809e-eb29b35fca00",
+     "research-d5c02926-b989-4cb6-8c35-61efe789380e",
+     "research-dfb79d6e-5c1b-47d9-a60a-88e10d861f25",
+     "research-5a6fba05-d18f-43d4-b5d7-9d03aba0c661",
+     "research-6b3a528c-45e5-4f55-af9f-3da7f5ede180",
+     "research-2c8d78b7-a261-4082-9128-2ec6718fe341",
+     "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
+     "research-143905af-cbc8-4229-9909-65e157ad07da",
+     "8b49f455-1cb5-48ed-9841-63e7a7162af2",
+     "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "3 players say it clicked once they adapted, so give it a few sessions.",
+     "src": [
+      "research-d22d2f4c-fd52-4911-975f-8d2430b91963",
+      "research-6dd19129-b747-48d1-9925-2c772a89eea6",
+      "research-01a794aa-d338-4222-87d3-0f8b63fd817f"
+     ]
+    }
+   },
+   {
+    "t": "Not a smasher: 6 players say the soft face costs smash power.",
+    "for": [
+     "power",
+     "advanced",
+     "balance"
+    ],
+    "src": [
+     "research-cf8073fa-3cf0-42c2-89ff-bcf62cdbe091",
+     "research-d5c02926-b989-4cb6-8c35-61efe789380e",
+     "research-eefbc890-e42c-451c-ad02-95c61b3a243e",
+     "research-a6847e3f-3d78-4e94-a562-c642a86d3149",
+     "a9b769de-39ec-4670-bfe3-4a36fbb157e4",
+     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
+    ],
+    "alt": {
+     "slug": "adidas-metalbone-ctrl-2026",
+     "t": "Want more pop? 2 players say the 2026 CTRL 3.5 has more power.",
+     "src": [
+      "adidas-metalbone-ctrl-2026:research-2413707e-e4a6-43fb-8e81-dbdb20f6376e",
+      "adidas-metalbone-ctrl-2026:research-ede49a90-69fb-4510-9223-b1dad56b351c"
+     ]
+    }
+   },
+   {
+    "t": "Durability: 4 players had it crack, 2 lost or broke a weight.",
+    "for": [],
+    "src": [
+     "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
+     "research-456b346a-7a25-4af7-9867-c74b767ec879",
+     "research-d14903b8-f59b-4d35-9bb6-88025d54f5ea",
+     "research-afe3d12b-929f-4f6d-8cef-52cbe5f46b69",
+     "research-43406190-9035-4575-91f2-d953df47dd65",
+     "research-62998c95-6dab-4d33-b63e-aaa3f9d09986"
+    ]
+   }
+  ]
+ },
+ "siux-electra-pro-st4-2025": {
+  "strengths": [
+   {
+    "t": "Power with control: about 20 players praise the easy power and about 15 the control.",
+    "for": [
+     "balance",
+     "power",
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "research-31164fcc-e62c-4393-81de-5ffa86c470b6",
+     "7d1d6507-9288-47c8-bd8a-a55742659356",
+     "research-dd10a44e-74be-4d36-ad34-9ffd08c55f80",
+     "research-26ec4079-a3ea-452d-bffa-9bd0300d6ae6",
+     "research-39e06717-34f7-4146-a449-66e1c03f18f8",
+     "research-70d14de6-9346-4e0a-8dd5-c052f48d319a",
+     "research-8a8701f5-6f59-4abb-8e13-e07e9d652cb2",
+     "research-8e489f39-3f8c-41ca-af0b-3018001cbfba",
+     "research-1206b9fd-c68b-4a26-9ca5-a7a489b3fc16",
+     "research-6f84da51-5eaf-48e2-8ac6-33415cd584c5",
+     "research-b7db695f-562f-4bd6-bc7b-a1ca75f4fc47",
+     "research-2103a35d-8c76-4761-8e5a-306302c27d1c",
+     "research-87c9cfcb-e490-457e-a135-4e147e2bb354",
+     "research-407783f9-9d0a-4824-ab5b-0dbcedc2d740",
+     "research-fb616530-0639-49c5-960a-43c4e6ae4b70",
+     "research-d4598065-3c79-47b6-b8ce-17748de87e83",
+     "research-ff8ee0aa-3141-4b76-bdda-2a640a63d6e8",
+     "research-e20ec251-4962-4853-a2eb-594e862f2e58",
+     "research-68afbf4a-2867-4416-9afa-4afe0248625b",
+     "research-f42ebc75-c6e9-4391-989f-452eb4f08772",
+     "dcbb071f-fd24-40ab-a86b-e23f00726f9a",
+     "58983e7a-1a60-40ab-8a1b-298f51715459",
+     "research-dc2efbef-b591-42d6-9eaf-33f9677bcacc",
+     "research-6b416336-a916-4b05-a07f-f6d38f2ab42a",
+     "research-b23410ca-d73c-4003-a7a1-251571f90dbb",
+     "research-579a669a-af31-48cb-aabd-48c44452a36d",
+     "research-65ac8aa7-4a80-47cd-a89f-4830e26c2006",
+     "f01a264b-3c19-46b1-a70f-a3a5a56762e6",
+     "research-a34cda93-a27e-407e-b227-99aed4e00a8c",
+     "research-c585b0d8-908f-4e3c-a2af-abc92eb20b0e",
+     "research-98acf17e-dfac-40b3-9396-21ebe36b5489",
+     "research-d8bc9935-4611-4b46-8844-c2b8c18cfecd"
+    ]
+   },
+   {
+    "t": "Smashes come easy: 9 players say x3s and kick smashes get out of the court.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "ffaecc53-efc3-414d-8302-c5c318c784ff",
+     "research-70d14de6-9346-4e0a-8dd5-c052f48d319a",
+     "research-8a8701f5-6f59-4abb-8e13-e07e9d652cb2",
+     "research-7fdfbd01-4c36-4e31-a96e-c92210a523e4",
+     "f01a264b-3c19-46b1-a70f-a3a5a56762e6",
+     "research-b2f6dcfd-2e83-4e0d-a203-81b22cfe2e60",
+     "research-0ebe0acd-ea9e-43fe-8105-768aa63d6b94",
+     "research-f42ebc75-c6e9-4391-989f-452eb4f08772",
+     "c3ffc0fc-fe59-4d91-8b7e-4688fc181c56"
+    ]
+   },
+   {
+    "t": "Grippy face: 8 players and reviewers praise the spin off its sandpaper-like surface.",
+    "for": [
+     "advanced",
+     "balance",
+     "power"
+    ],
+    "src": [
+     "dcbb071f-fd24-40ab-a86b-e23f00726f9a",
+     "ffaecc53-efc3-414d-8302-c5c318c784ff",
+     "58983e7a-1a60-40ab-8a1b-298f51715459",
+     "7d1d6507-9288-47c8-bd8a-a55742659356",
+     "cf3615db-ae73-4eec-b1e4-80d1d1663835",
+     "research-18711313-d2e2-4a0e-ada4-605677b70e04",
+     "research-190ff136-cee1-48fa-8dee-a1614290e9db",
+     "research-55c72697-7be4-4dfd-96df-69a874089699"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Bouncy: about 25 players wish it had less trampoline. Fast volleys and blocks fly long.",
+    "for": [
+     "control",
+     "advanced",
+     "intermediate",
+     "balance"
+    ],
+    "src": [
+     "research-d9f18376-ae99-4444-bb4c-939d07c0d4e4",
+     "research-96894b91-0a26-456c-b766-ac7800bb7e69",
+     "research-18711313-d2e2-4a0e-ada4-605677b70e04",
+     "research-7fdfbd01-4c36-4e31-a96e-c92210a523e4",
+     "research-86f3293d-f624-4107-8d0b-a55675a9d12f",
+     "research-93135096-be5d-4c17-a9ed-3d48e504bfce",
+     "research-65f81060-b722-418c-9b4c-edc0e41dae83",
+     "research-ed14bb01-e63b-4ac1-aaa0-959c0babd803",
+     "research-964b856d-36a9-48d8-abc2-75659c836c20",
+     "research-d56d2edf-7172-4c75-a6f1-0ed76c1935c2",
+     "research-8a4033eb-e9be-490a-9cec-6e3df52150a1",
+     "research-114dd52b-f429-45e6-9a9b-69a97784f9b6",
+     "research-78c15363-f64f-45b6-a634-0b0456b61037",
+     "research-9b9a4737-2825-434f-ba30-facd1d80c79b",
+     "research-ea608027-30ac-49fb-a2f2-129f29cb0c43",
+     "research-ab701962-0e73-4671-9782-b87a4c16cc56",
+     "research-0ad0809c-5932-4a06-8de7-4f99526e7615",
+     "research-2e09e5bf-b5bd-4ed8-afd6-9276ec4e7fa5",
+     "research-b44e52d8-cbe3-4f4e-9d9d-7e553f7ea064",
+     "research-e20ec251-4962-4853-a2eb-594e862f2e58",
+     "research-e4ad0756-2e29-4ca6-bcfe-43485b350419",
+     "research-a59596cd-5bcc-42f3-abb1-3ad30f7e4c7c",
+     "research-51a16902-c1fc-49df-bcdf-73d023fe7784",
+     "research-bbcc83fb-a371-4715-8344-01d66135c870",
+     "research-0ebe0acd-ea9e-43fe-8105-768aa63d6b94",
+     "research-fd2f79e5-2d1d-4d69-9114-22320d66c143",
+     "c3ffc0fc-fe59-4d91-8b7e-4688fc181c56"
+    ],
+    "tip": {
+     "label": "Weather check",
+     "t": "3 players say the cold makes it harder and less predictable.",
+     "src": [
+      "research-2f24942a-6f5d-42b9-a759-cb6b3e72e96f",
+      "research-65f81060-b722-418c-9b4c-edc0e41dae83",
+      "research-d7aa2e1c-8615-4d08-874f-1a056ac39bff"
+     ]
+    }
+   },
+   {
+    "t": "Sweet spot divides players: 10 found off-centre hits die, others call it big.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "research-cac2325f-8c4b-4097-a445-117e4de48946",
+     "research-2df00a1d-0ca6-4325-bdea-e3f39670018a",
+     "research-6013aa75-49c5-4add-90fc-d4bf327d61c7",
+     "research-d98608ea-5c10-4ecb-bc47-d3aaf7c46db9",
+     "research-0142a362-0755-42c9-9a6c-287c00cba6dc",
+     "research-1ffe2eb5-3a00-4222-9c96-ef96351b53ac",
+     "research-cfff1335-d472-4161-919c-7a652bc73901",
+     "research-87c9cfcb-e490-457e-a135-4e147e2bb354",
+     "research-9b9a4737-2825-434f-ba30-facd1d80c79b",
+     "research-c585b0d8-908f-4e3c-a2af-abc92eb20b0e"
+    ],
+    "tip": {
+     "label": "Heads up",
+     "t": "4 players say the sweet spot and rebound take a few sessions to get used to.",
+     "src": [
+      "ffaecc53-efc3-414d-8302-c5c318c784ff",
+      "research-6013aa75-49c5-4add-90fc-d4bf327d61c7",
+      "research-3f6c658a-641a-4e8f-89a4-3a41bf388acf",
+      "research-ab701962-0e73-4671-9782-b87a4c16cc56"
+     ]
+    }
+   },
+   {
+    "t": "Sore arm? 7 players got elbow or wrist pain, often with heavy 375–388 g units.",
+    "for": [
+     "arm"
+    ],
+    "only": [
+     "arm"
+    ],
+    "src": [
+     "research-252945f9-7cb7-434c-a326-759e7335b5b6",
+     "research-ecb661ac-98fe-453d-8910-584a38539fb1",
+     "research-29156e5f-64ac-4511-aaeb-7d6e779ef106",
+     "research-03a0225e-2c70-43d9-88db-6b281b512b55",
+     "research-bb9d2f73-7de6-4fa7-87de-ed6ee748b9f3",
+     "research-045fc3d8-eb26-4c6f-8914-ddd6c1de1433",
+     "research-ea608027-30ac-49fb-a2f2-129f29cb0c43"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "2 players say lighter units, 355 to under 370 g, feel faster; one has no elbow pain.",
+     "src": [
+      "research-35b44c2a-5474-4719-b48a-2a016129d557",
+      "research-9928ab3c-8418-41a9-a653-10496d7d9e73"
+     ]
+    }
+   },
+   {
+    "t": "Tough start for beginners: 3 found the sweet spot hard to find and the bounce hard to tame.",
+    "for": [
+     "beginner"
+    ],
+    "only": [
+     "beginner"
+    ],
+    "src": [
+     "research-d98608ea-5c10-4ecb-bc47-d3aaf7c46db9",
+     "research-86f3293d-f624-4107-8d0b-a55675a9d12f",
+     "research-9b9a4737-2825-434f-ba30-facd1d80c79b"
+    ]
+   },
+   {
+    "t": "Build quality: 8 players report cracks, paint chips or a rattle inside.",
+    "for": [],
+    "src": [
+     "research-5277b60e-6d2c-4751-8ad2-8d6de374c325",
+     "research-7f600967-c75a-4123-b53e-652d6a2f8384",
+     "research-007eabc5-8de2-4b8a-8d03-8155302c0bbe",
+     "research-228bccaf-866d-452e-8735-3212193e6e86",
+     "research-6f2c318d-c198-4f3e-a536-a4b42b62539c",
+     "research-04e3c4a7-a32c-4cfb-a66a-9a2b7d07d8a6",
+     "research-68afbf4a-2867-4416-9afa-4afe0248625b",
+     "research-831cd4a7-fbc9-418f-acd8-56534f9fae53"
+    ]
+   }
+  ]
+ }
+}
