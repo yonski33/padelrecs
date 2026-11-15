@@ -9,6 +9,8 @@
 //   arm    0.20  the Arm comfort trait score, only when "sore arm" is ticked
 //   score  0.10  the Player score (lib/signal.ts)
 // A part with no data counts as 0.5 (neither for nor against).
+// With a shape picked, the style part is mostly the racket's place among that shape's rackets (0.7) and the rest the
+// catalog-wide score (0.3), and the % is spread among that shape only (app/match-context.ts).
 // Then it is placed inside its verdict's band, so the % always agrees with the word beside it:
 //   Strong fit (good) 70–99 · Worth a look (maybe) 45–69 · Probably not (no) 15–44 · thin data: no % at all.
 import type { FitVerdict, Band } from "./fit-verdict";
@@ -26,6 +28,9 @@ export type MatchInputs = {
   /** Fine-tune fit 0–1 (lib/fine-tune.ts fineFit): weight, feel and sweet spot picks; null when none picked. */
   fine?: number | null;
   signal: number | null;
+  /** With a shape picked: the racket's place for the picked style among that shape's rated rackets, 0–1. The style part is
+   *  then 70% this and 30% the catalog-wide score (owner 2026-11-15: "compare it inside its own filter"). */
+  styleWithin?: number;
 };
 export const MATCH_BANDS = { good: [70, 99], maybe: [45, 69], no: [15, 44] } as const;
 const LEVEL_INDEX = { beginner: 0, intermediate: 1, advanced: 2 } as const;
@@ -38,7 +43,7 @@ export function matchFit(c: QuickChoice, m: Omit<MatchInputs, "verdict">): numbe
   if (c.style !== "any") {
     const v = c.style === "control" ? part(m.control) : c.style === "power" ? part(m.power)
       : m.control === null || m.power === null ? 0.5 : 0.5 * Math.min(m.control, m.power) / 99 + 0.5 * (1 - Math.abs(m.control - m.power) / 99);
-    parts.push([W.style, v]);
+    parts.push([W.style, m.styleWithin === undefined ? v : 0.7 * m.styleWithin + 0.3 * v]);
   }
   const i = LEVEL_INDEX[c.level];
   const inBand = m.suits !== undefined ? m.suits / 100 : !m.band ? 0.5 : i >= m.band.from && i <= m.band.to ? 1 : Math.min(Math.abs(i - m.band.from), Math.abs(i - m.band.to)) === 1 ? 0.5 : 0.1;

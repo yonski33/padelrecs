@@ -16,7 +16,7 @@ export type ExpertKey = typeof EXPERT_KEYS[number];
 export type ExpertValue = { value: number; note: string; by: string; at: string };
 export type ExpertLogEntry = { at: string; by: string; key: ExpertKey; from: number | null; to: number | null; note: string };
 export type TraitOverride = { traits: Partial<Record<Trait, TraitEdit>>; log: TraitLogEntry[]; expert?: Partial<Record<ExpertKey, ExpertValue>>; expertLog?: ExpertLogEntry[] };
-export const MAX_EXPERT_NOTE = 200;
+export const MAX_EXPERT_NOTE = 600;
 export const MAX_TRAIT_TEXT = MAX_TRAIT_TEXT_HINT, MAX_TRAIT_LOG = 50;
 
 export async function traitOverrides(): Promise<Map<string, TraitOverride>> {
@@ -92,7 +92,7 @@ export function editTraitOverride(prev: TraitOverride, next: Partial<Record<Trai
 /** An expert's level word (or range) as suits scores: "intermediate" → beginner 35 · intermediate 85 · advanced 55. */
 export function levelToSuits(raw: string | undefined | null): Partial<Record<"suits_beginner" | "suits_intermediate" | "suits_advanced", number>> | null {
   const L = ["beginner", "intermediate", "advanced"];
-  const parts = String(raw ?? "").trim().toLowerCase().split(/\s*(?:-|–|→|to)\s*/).map(x => L.indexOf(x.replace(/s$/, "")));
+  const parts = String(raw ?? "").trim().toLowerCase().split(/\s*(?:-|–|→|to)\s*/).map(x => x.replace(/s$/, "")).map(x => /^(pro|professional|elite)$/.test(x) ? 2 : L.indexOf(x)); // "pro" counts as advanced
   if (!parts.length || parts.some(i => i < 0)) return null;
   const from = Math.min(...parts), to = Math.max(...parts);
   const v = (i: number) => i >= from && i <= to ? 85 : Math.abs(i < from ? from - i : i - to) === 1 ? 45 : 20;
