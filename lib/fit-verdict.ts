@@ -112,7 +112,11 @@ function levelCheck(c: QuickChoice, f: FitFacts): Check {
     const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";
     const backed = f.suits.basis.some(b => b !== "the brand");
     if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
-    if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} Players and reviewers don't put it at ${c.level}.`.trim() };
+    // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.
+    const why = f.suits.basis.includes("expert") ? `Players and reviewers don't put it at ${c.level}.`
+      : f.suits.basis.includes("a pro line") ? `A pro line, built for advanced players.`
+      : f.suits.basis.includes("advanced players") ? `Players and reviewers call it a ${niche.words.one} for advanced players.` : `Players and reviewers don't put it at ${c.level}.`;
+    if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} ${why}`.trim() };
     if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
     return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} racket; demo it first.`.trim() };
   }

@@ -19,6 +19,10 @@ export type SuitsInput = {
   players?: { level: number; liked: boolean | null }[];
   /** Forgiveness praise and complaints (weighted, lib/evidence.ts evidenceBalance). */
   forgiveness?: { P: number; C: number };
+  /** A pro / competition line (lib/niche fit.proLines). */
+  proLine?: boolean;
+  /** Reports calling it demanding (tag mentions). */
+  demanding?: number;
 };
 export type Suits = Record<LevelName, number> & { basis: string[] };
 
@@ -59,6 +63,19 @@ export function levelSuits(x: SuitsInput): Suits {
     if (b.notForBeginners) s[0] -= 12;
     basis.push("the brand");
   }
+  // Level caps (owner 2026-11-15: pro lines "are meant for advanced players, they can never show if someone picks
+  // intermediate"). "Built for advanced": a pro line, or 3+ voices putting it at advanced (players, YouTube channels whose band
+  // is advanced only, reports calling it demanding). With the brand's "advanced" label that caps intermediate at 35; for
+  // beginners it caps at 25 whatever the brand says. Players at that level vouching (3+ voices, more for than against) lift
+  // the cap, so a brand label alone never empties a level's list. An expert level replaces all of this (app/match-context.ts).
+  const at = (lv: number) => (x.players ?? []).filter(p => p.level === lv);
+  const vouch = (lv: number) => { const v = at(lv), yes = v.filter(p => p.liked !== false).length; return yes >= 3 && yes > v.length - yes; };
+  const advVoices = at(2).filter(p => p.liked !== false).length + (x.youtube && x.youtube.from === 2 ? x.youtube.channels : 0) + (x.demanding ?? 0);
+  const builtForAdvanced = !!x.proLine || advVoices >= 3;
+  if (builtForAdvanced && x.brand && x.brand.from === 2 && !vouch(1)) { s[1] = Math.min(s[1], 35); s[0] = Math.min(s[0], 25); }
+  if (builtForAdvanced && !vouch(0)) s[0] = Math.min(s[0], 25);
+  // …and it is an advanced player's racket, so it always shows for advanced players.
+  if (builtForAdvanced) { s[2] = Math.max(s[2], 70); basis.push(x.proLine ? "a pro line" : "advanced players"); }
   const clamp = (v: number) => Math.round(Math.max(5, Math.min(95, v)));
   return { beginner: clamp(s[0]), intermediate: clamp(s[1]), advanced: clamp(s[2]), basis };
 }

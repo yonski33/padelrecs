@@ -69,6 +69,11 @@ export function levelBonus(e: LevelEvidence | undefined, level: Level) {
   return band + LIKED_WEIGHT * Math.min(LIKED_CAP, e.liked[level] ?? 0);
 }
 
+/** The level gate (owner 2026-11-15): with a gate (lib/niche fit.levelGate), a racket shows for a picked level only when its
+ *  suits score for that level reaches the bar. No suits scores: no gate (nothing to judge by). */
+export type LevelGate = Record<Level, number>;
+export const passesLevel = (e: LevelEvidence | undefined, level: Level, gate: LevelGate | undefined) => !gate || !e?.suits || e.suits[level] >= gate[level];
+
 /** Being on the chosen style's ranking puts a racket ahead of every racket that isn't; its place orders the list members. */
 const ON_LIST = 2, LIST_PLACE = 0.6;
 
@@ -77,6 +82,7 @@ export type QuickMatch<P> = { product: P; score: number; reasons: Reason[]; watc
 /** The ranked list for a choice. Nothing chosen: the Player score order (signal), as the home page always was. */
 export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Finder, "questions">, c: QuickChoice, opts: {
   signal: (id: string) => number | null; negativeTags: readonly string[]; level: (id: string) => LevelEvidence | undefined; count: number; rankWeight?: number;
+  /** With picks, only rackets that pass the level gate are candidates. */ levelGate?: LevelGate;
 }): QuickMatch<P>[] {
   const extra = (p: P) => {
     const e = opts.level(p.id), i = LEVEL_INDEX[c.level];
@@ -89,6 +95,7 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
   // A style that stands for a ranking (Best for control / power): rackets on that live list come first, in list order, and the
   // rest still follow on their tag counts (owner 2026-11-15), instead of the finder's hard cut to the list.
   const chosen = chosenOptions(finder, c), lists = chosen.flatMap(o => o.list ? [o.list] : []);
+  pool = pool.filter(p => passesLevel(opts.level(p.id), c.level, opts.levelGate));
   const matched = matchFinder(pool, chosen.map(({ list: _list, ...o }) => o), opts.negativeTags, pool.length, opts.rankWeight);
   const listBonus = (p: P) => lists.reduce((a, slug) => { const place = p.lists?.[slug]; return a + (place ? ON_LIST + LIST_PLACE * Math.max(0, 1 - (place - 1) / 10) : 0); }, 0);
   return matched.map(m => ({ ...m, score: m.score + listBonus(m.product) + levelBonus(opts.level(m.product.id), c.level), ...extra(m.product) }))

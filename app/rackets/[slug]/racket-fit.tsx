@@ -152,7 +152,7 @@ export default async function RacketFit(props: {
   type Alt = { product: { id: string }; reasons: { tag: string; count: number }[] };
   const others: Alt[] = (() => {
     if (picked) {
-      const c = quickMatch(ctx.pool, ctx.finder, choice, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 25, rankWeight: ctx.finder.rankWeight }).filter(m => m.product.id !== props.racketId);
+      const c = quickMatch(ctx.pool, ctx.finder, choice, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 25, rankWeight: ctx.finder.rankWeight, levelGate: ctx.levelGate }).filter(m => m.product.id !== props.racketId);
       return c.map((m, i) => ({ m, i, p: pctOf(m.product.id) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1) || a.i - b.i).map(x => x.m).slice(0, 4);
     }
     // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean

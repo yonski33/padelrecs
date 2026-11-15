@@ -3,7 +3,7 @@ import { catalog } from "../db/data";
 import { productSignals } from "./signals";
 import { rankedLists } from "./rankings/lists";
 import { finderPool, type FinderProduct } from "../lib/finder";
-import { LEVELS, type Level, type LevelEvidence } from "../lib/quick-match";
+import { LEVELS, passesLevel, type Level, type LevelEvidence } from "../lib/quick-match";
 import { combinedBand, type FitFacts, type LevelSources } from "../lib/fit-verdict";
 import type { Trait } from "../lib/trait-score";
 import { ratingVerdict } from "../lib/top-lists";
@@ -28,6 +28,8 @@ import type { QuickChoice } from "../lib/quick-match";
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
 // The site's hand-kept match data (db/match-data.ts): owner calls, maker / YouTube levels, YouTube trait mentions.
 const MATCH = matchData(niche.id);
+const GATE = niche.fit?.levelGate;
+const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
   const [data, sigs, takes, live, overrides, evidence] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
@@ -140,10 +142,14 @@ export const matchContext = cache(async () => {
       const x = get(id), yt = sourcesOf(id)?.youtube, f = bal.get(id)?.forgiveness;
       if (yt) x.youtube = { from: yt.from, to: yt.to, channels: yt.channels };
       if (f) x.forgiveness = { P: f.P, C: f.C };
+      // Pro / competition lines (the site's profile, lib/niche fit.proLines) and "demanding" reports feed the level caps.
+      const name = data.rackets.find(r => r.id === id)?.name ?? "";
+      if (PRO_LINES.some(re => re.test(name))) x.proLine = true;
+      const dem = tagIn.get(id)?.tags.demanding; if (dem) x.demanding = dem;
       const su = levelSuits(x), ex = overrides.get(id)?.expert;
       suitsAutoOf.set(id, { ...su, basis: [...su.basis] });
       // An expert's suits scores win, and count as backing (not the brand alone).
-      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) su.basis.push("expert"); }
+      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { su.basis = su.basis.filter(b => b !== "a pro line" && b !== "advanced players"); su.basis.push("expert"); } }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
@@ -190,12 +196,15 @@ export const matchContext = cache(async () => {
     const rows = [...listed].map(id => {
       const fv = fitVerdict(choice, factsFor(choice, id)), t = traitMap.get(id), lv = level(id);
       const fit = matchFit(choice, { control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0,
-        suits: lv?.suits?.[choice.level], signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!), styleWithin: within?.get(id) });
+        suits: lv?.suits?.[choice.level], levelGated: !!GATE, signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!), styleWithin: within?.get(id) });
       const styleScore = choice.style === "power" ? t?.power?.score ?? 0 : choice.style === "control" ? t?.control?.score ?? 0 : choice.style === "balance" ? Math.min(t?.control?.score ?? 0, t?.power?.score ?? 0) : signal(id) ?? 0;
       return { id, kind: fv.kind, fit, tie1: within?.get(id) ?? styleScore, tie2: signal(id) ?? 0 };
     });
-    const shape = choice.fine?.shape, inShape = (id: string) => fineOf.get(id)?.shape === shape;
-    const spread = shape ? new Map([...spreadMatch(rows.filter(r => inShape(r.id))), ...spreadMatch(rows.filter(r => !inShape(r.id)))]) : spreadMatch(rows);
+    // Spread among comparable rackets: the level-eligible ones (lib/quick-match.ts passesLevel) apart from the rest, and with a
+    // shape picked, that shape apart from the others, so the best rackets for the picks reach the top of their band.
+    const shape = choice.fine?.shape, group = (id: string) => `${!shape || fineOf.get(id)?.shape === shape}|${passesLevel(level(id), choice.level, GATE)}`;
+    const groups = new Map<string, typeof rows>(); for (const r of rows) groups.set(group(r.id), [...groups.get(group(r.id)) ?? [], r]);
+    const spread = new Map([...groups.values()].flatMap(g => [...spreadMatch(g)]));
     const out = new Map(rows.map(r => [r.id, r.kind === "thin" ? null : spread.get(r.id) ?? null]));
     pctCache.set(key, out);
     return out;
@@ -203,5 +212,5 @@ export const matchContext = cache(async () => {
   /** The level suits scores before any expert value (for the admin expert grid). */
   const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence };
+  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence };
 });

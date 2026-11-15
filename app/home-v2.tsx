@@ -11,7 +11,7 @@ import { shortLine } from "../lib/short-lines";
 import { shopPhoto, photoHidden } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
-import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
+import { quickMatch, matchTitle, choiceHref, isDefault, passesLevel, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { fitVerdict, ARM_BAR, MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { rowOfFamily } from "../lib/compare-pairs";
@@ -38,7 +38,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice, older: allYears = false }: { choice: QuickChoice; older?: boolean }) {
-  const [{ data, sigs, takes, finder, bad, pool, level, signal, factsFor, matchPct, fineOf }, lists] = await Promise.all([matchContext(), rankedLists()]);
+  const [{ data, sigs, takes, finder, bad, pool, levelGate, level, signal, factsFor, matchPct, fineOf }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -50,7 +50,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
   // the candidates. Thin data has no % and goes last. No picks: quick match's own order (Player score).
   // With picks, every model in the pool is a candidate (a shape pick hides other shapes, and unknown ones), ordered by the
   // spread match % (app/match-context.ts matchPct, the same number the racket page shows). No picks: the Player score order.
-  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: pool.length, rankWeight: finder.rankWeight })
+  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: pool.length, rankWeight: finder.rankWeight, levelGate })
     .filter(m => isDefault(choice) || !choice.fine?.shape || fineOf(m.product.id)?.shape === choice.fine.shape);
   const pcts = isDefault(choice) ? null : matchPct(choice);
   // One model, newest year first (owner 2026-11-15: "2 Air Vipers and 2 Electra Pros in the top 5"): a model's years
@@ -67,7 +67,9 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
   const seenModel = new Set<string>();
   // A picked shape holds for the row too: a family whose newest year is another shape keeps the year that matched.
   const shapeOk = (id: string) => !choice.fine?.shape || fineOf(id)?.shape === choice.fine.shape;
-  const models = candidates.flatMap(m => { const n = newestOf(m.product.id), id = shapeOk(n) ? n : m.product.id; if (seenModel.has(id)) return []; seenModel.add(id);
+  // So does the level gate: a family whose newest year isn't for the picked level keeps the year that is.
+  const levelOk = (id: string) => isDefault(choice) || passesLevel(level(id), choice.level, levelGate);
+  const models = candidates.flatMap(m => { const n = newestOf(m.product.id), id = shapeOk(n) && levelOk(n) ? n : m.product.id; if (seenModel.has(id)) return []; seenModel.add(id);
     return [{ id, i: order.get(id) ?? candidates.length + (order.get(m.product.id) ?? 0), arm: factsFor(choice, id).tags["arm-friendly"] ?? 0 }]; });
   const rated = models.map(m => ({ m, i: m.i, fit: pcts ? fitVerdict(choice, factsFor(choice, m.id)) : null, pct: pcts?.get(m.id) ?? null }));
   const rows = [...rated].sort((a, b) => (pcts ? (b.pct ?? -1) - (a.pct ?? -1) : 0) || a.i - b.i).slice(0, LIST_SIZE);
@@ -136,7 +138,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
             // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
-            const fitWord = fit && fit.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not your match" }[fit.kind] : null;
+            const fitWord = fit && fit.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not" }[fit.kind] : null;
             const chips = [
               ...(i === 0 && picked && fit?.kind === "good" ? [{ k: "best", t: "best match" }] : []),
               ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
@@ -151,11 +153,12 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
               <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${productHref(r)}${picks}`}>{nameOf(r)}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="hv2-line">{line}</span>}
                 {shop && <a className="hv2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a>}
-                {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
+                {/* The verdict word sits on the % box (owner 2026-11-15); here only its one short reason. */}
+                {fitWord && fit!.short && <span className={`hv2-fit ${fit!.kind}`}><span>{fit!.short}</span></span>}</span>
               <span className="hv2-sent"><span><strong>{n.toLocaleString("en-US")}</strong>{` ${n === 1 ? "review" : "reviews"}`}</span>
                 {c.judged > 0 && <span className="hv2-bar" aria-label={`${c.positive} positive, ${c.mixed} mixed, ${c.negative} negative`}><i className="p" style={{ flex: c.positive }}/><i className="m" style={{ flex: c.mixed }}/><i className="n" style={{ flex: c.negative }}/></span>}</span>
               {picked ? <span className={`hv2-sc ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
-                  <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "match"}</small></span>
+                  {fitWord && <i className={`hv2-verdict ${fit!.kind}`}>{fitWord}</i>}<b>{pct === null ? "—" : `${pct}%`}</b>{pct === null && <small>too few reports</small>}</span>
                 : <span className={`hv2-sc ${!sig ? "none" : sig.signal >= 85 ? "hi" : sig.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
                   <b>{sig ? sig.signal : "—"}</b><small>player score</small></span>}
             </div></li>;

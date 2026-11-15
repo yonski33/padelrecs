@@ -99,6 +99,9 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-sc small { font: 10.5px var(--mono); color: var(--soft); white-space: nowrap; }
   .hv2-fit.good b { background: var(--marker); } .hv2-fit.maybe b { background: var(--paper); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
   .hv2-fit span { color: var(--text); }
+  /* The fit verdict over the match % (owner 2026-11-15), in the tag colours it had under the summary. */
+  .hv2-verdict { font: 600 10.5px/1.5 var(--mono); font-style: normal; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 7px; white-space: nowrap; background: var(--paper); }
+  .hv2-verdict.good { background: var(--marker); } .hv2-verdict.no { background: oklch(0.9 0.08 30); }
   .hv2-pct { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 64px; padding: 4px 8px; border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); line-height: 1.05; }
   .hv2-pct b { font: 800 22px var(--display); }
   .hv2-pct small { font: 10px var(--mono); color: var(--mute); text-align: center; white-space: normal; max-width: 80px; }
@@ -152,6 +155,7 @@ body:has(main.hv2) { background: #fbfaf6; }
     /* Phones: no shape tag on the rows (owner 2026-11-15: "a bit too busy on mobile"). */
     .hv2-chip.shape { display: none; }
     .hv2-sc { min-width: 52px; } .hv2-sc b { font-size: 18px; padding: 3px 5px; } .hv2-sc small { font-size: 9px; }
+    .hv2-verdict { font-size: 9px; padding: 0 5px; }
     .hv2-what[open] > span { right: auto; left: 0; width: min(260px, 78vw); }
     .hv2-stats { min-width: 0; font-size: 10px; gap: 3px; }
   }
