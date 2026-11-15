@@ -145,7 +145,8 @@ export function traitScores(products: TraitInput[], cfg: FitConfig = PADEL): Map
 //   3: everything else (the owner's floor). 1 only by hand; hand-set dots win.
 export const RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
 export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number; people?: TraitScore["people"] }>>;
-  youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null };
+  youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null;
+  /** Lab measurements as a catalog percentile per trait, 0 (lowest) – 1 (highest) (lib/evidence.ts labPercentiles). */ lab?: Partial<Record<Trait, number>> };
 
 export function balanceScores(products: BalanceInput[], cfg: FitConfig = PADEL): Map<string, Record<Trait, TraitScore | null>> {
   const keys = cfg.traits.map(d => d.key);
@@ -156,20 +157,36 @@ export function balanceScores(products: BalanceInput[], cfg: FitConfig = PADEL):
     const reports = products.reduce((a, p) => a + p.reports, 0);
     const r0 = reports ? products.reduce((a, p) => a + PC(p, t).P, 0) / reports : 0;
     const rate = (p: BalanceInput) => (PC(p, t).P + RATE_PRIOR * r0) / (p.reports + RATE_PRIOR);
-    const rank = new Map([...products].sort((a, b) => rate(b) - rate(a) || a.id.localeCompare(b.id)).map((p, i) => [p.id, i]));
-    const n4 = Math.round(TOP4_SHARE * products.length), n5 = Math.round(TOP5_SHARE * products.length);
+    const sc = { top4: TOP4_SHARE, top5: TOP5_SHARE, worst: WORST_SHARE_V2, minComplaints: MIN_COMPLAINTS, ...cfg.scale };
+    const praiseRank = new Map([...products].sort((a, b) => rate(b) - rate(a) || a.id.localeCompare(b.id)).map((p, i) => [p.id, i]));
+    // The ranking the bands are cut from: the praise rate, and on a site whose profile weighs them (pickleball), the lab
+    // percentile and the specs' lean, each where the product has it (padel: the praise rate alone).
+    const wLab = cfg.lab?.weight ?? 0, wSpec = cfg.lab?.specWeight ?? 0;
+    const key = (p: BalanceInput) => {
+      const praise = 1 - praiseRank.get(p.id)! / Math.max(1, products.length - 1);
+      if (!wLab && !wSpec) return praise;
+      const lab = p.lab?.[t], lean = specLean(p.specs, cfg)[t] ?? 0;
+      let sum = (1 - wLab - wSpec) * praise, w = 1 - wLab - wSpec;
+      if (typeof lab === "number") { sum += wLab * lab; w += wLab; }
+      if (lean) { sum += wSpec * (lean + 1) / 2; w += wSpec; }
+      return sum / w;
+    };
+    const keyOf = new Map(products.map(p => [p.id, key(p)]));
+    const rank = new Map([...products].sort((a, b) => keyOf.get(b.id)! - keyOf.get(a.id)! || praiseRank.get(a.id)! - praiseRank.get(b.id)!).map((p, i) => [p.id, i]));
+    const n4 = Math.round(sc.top4 * products.length), n5 = Math.round(sc.top5 * products.length);
     const worst = new Set<string>();
     if (cfg.complaint.includes(t)) {
       const share = (p: BalanceInput) => PC(p, t).C / (PC(p, t).P + PC(p, t).C + 1);
-      products.filter(p => PC(p, t).C >= MIN_COMPLAINTS).sort((a, b) => share(b) - share(a))
-        .slice(0, Math.max(1, Math.round(WORST_SHARE_V2 * products.length))).forEach(p => worst.add(p.id));
+      products.filter(p => PC(p, t).C >= sc.minComplaints).sort((a, b) => share(b) - share(a))
+        .slice(0, Math.max(1, Math.round(sc.worst * products.length))).forEach(p => worst.add(p.id));
     }
     for (const p of products) {
       const { P, C, plusVoices, minusVoices } = PC(p, t);
       const lean = specLean(p.specs, cfg)[t] ?? 0;
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
-      const i = rank.get(p.id)!, top = C <= P && P > 0;
+      // 4–5 need praise that complaints don't outnumber; a strong lab reading counts as praise where nobody has said it yet.
+      const i = rank.get(p.id)!, lab = p.lab?.[t], top = C <= P && (P > 0 || (wLab > 0 && typeof lab === "number" && lab >= (cfg.lab?.alone ?? 0.7)));
       const auto = worst.has(p.id) ? 2 : top && i < n5 ? 5 : top && i < n4 ? 4 : 3;
       const dots = hand ?? auto;
       // 0–99 for quick match: the band's floor plus where it sits in the praise ranking.

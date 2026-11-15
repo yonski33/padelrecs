@@ -15,12 +15,16 @@ import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
-import { evidenceBalance } from "../lib/evidence";
+import { evidenceBalance, labPercentiles } from "../lib/evidence";
 import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
 import padelKnownDots from "../db/known-dots/padel.json";
+import pickleballKnownDots from "../db/known-dots/pickleball.json";
 
 /** The owner's hand-set calls per site (db/known-dots), applied like admin overrides (an admin override wins). */
-const KNOWN_DOTS: Record<string, Record<string, Record<string, { dots?: number }>>> = { padel: padelKnownDots as unknown as Record<string, Record<string, { dots?: number }>> };
+const KNOWN_DOTS: Record<string, Record<string, Record<string, { dots?: number }>>> = {
+  padel: padelKnownDots as unknown as Record<string, Record<string, { dots?: number }>>,
+  pickleball: pickleballKnownDots as unknown as Record<string, Record<string, { dots?: number }>>,
+};
 import { fitConfigFor } from "../lib/fit-config";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
@@ -105,12 +109,17 @@ export const matchContext = cache(async () => {
     const voice = new Map<string, string>();
     for (const r of data.reviews) voice.set(`p:${r.id}`, r.alias ? `own:${r.alias.toLowerCase()}` : `p:${r.id}`);
     for (const e of data.external) voice.set(`w:${e.id}`, e.sourcePlatform === "Reddit" || /[?&]lc=/.test(e.sourceUrl) || !e.sourceName ? `w:${e.id}` : `${e.sourcePlatform}:${e.sourceName.toLowerCase()}`);
-    const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref);
+    const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref, 2, cfg);
     const known = KNOWN_DOTS[niche.id] ?? {};
     const knownSet = (slug: string) => Object.fromEntries(Object.entries(known[slug] ?? {}).filter(([, e]) => typeof e?.dots === "number").map(([t, e]) => [t, e.dots!])) as Partial<Record<TraitKey, number>>;
     const reportsOf = new Map<string, number>();
     for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
-    const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
+    // Lab measurements as percentiles (sites whose profile weighs them; the maker's swing weight where no lab has one).
+    // "113", "116.8", "114-117" (midpoint) or "111 ± 3".
+    const swing = (s?: string | null) => { const m = s?.match(/^\s*(\d{2,3}(?:\.\d+)?)\s*(?:[-–]\s*(\d{2,3}(?:\.\d+)?)|±\s*\d+(?:\.\d+)?)?\s*$/); return m ? (Number(m[1]) + Number(m[2] ?? m[1])) / 2 : NaN; };
+    const specValues = Object.fromEntries(Object.entries(cfg.lab?.specMetric ?? {}).map(([m, col]) => [m, new Map(data.rackets.map(r => [r.id, swing(r[col])] as const).filter(([, v]) => Number.isFinite(v)))]));
+    const lab = cfg.lab ? labPercentiles(evidence, cfg, specValues) : new Map();
+    const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs, lab: lab.get(p.id) }));
     traitAuto = balanceScores(inputs, cfg);
     traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })), cfg);
   } else {

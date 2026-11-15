@@ -14,15 +14,19 @@ import { assertSchemaName } from "../db/migrations";
 import { displayName } from "../lib/brand-name";
 import { ratingVerdict } from "../lib/top-lists";
 import { classifyTraitNote, armFromReportText } from "../lib/youtube-trait-rules";
-import { traitScores, TRAITS, type TraitInput, type Trait } from "../lib/trait-score";
+import { traitScores, type TraitInput, type Trait } from "../lib/trait-score";
+import { fitConfigFor } from "../lib/fit-config";
 import { tagRows, evidenceTotals, sentenceWith, EXTRACTORS, type EvidenceRow } from "../lib/evidence";
 import { matchContext } from "../app/match-context";
-import levelSources from "../db/level-sources/padel.json";
+import padelLevelSources from "../db/level-sources/padel.json";
 
 const args = process.argv.slice(2), flags = new Set(args.filter(a => a.startsWith("--"))), files = args.filter(a => !a.startsWith("--"));
 const [out, ...ytFiles] = files;
-if (!out) throw new Error("Usage: evidence-backfill.mts <out.jsonl> <yt-data.jsonl> … [--check] [--write]");
-if (niche.id !== "padel") throw new Error("The backfill rules are padel's for now (NICHE=padel).");
+if (!out) throw new Error("Usage: evidence-backfill.mts <out.jsonl> [<yt-data.jsonl> …] [--check] [--write]");
+const cfg = fitConfigFor(niche);
+if (!cfg) throw new Error(`${niche.id} has no site profile (lib/fit-config.ts).`);
+const TRAITS = cfg.traits.map(t => t.key);
+const levelSources: Record<string, unknown> = niche.id === "padel" ? padelLevelSources : {};
 const data = await catalog();
 const hash = (s: string) => createHash("sha1").update(s).digest("hex").slice(0, 12);
 const good = new Set(niche.tags.filter(t => t.tone === "pos").map(t => t.label));
@@ -40,10 +44,10 @@ const reports = [
 for (const x of reports) {
   const counted = x.tags.filter(t => !(good.has(t) && x.v === "negative"));
   if (counted.length) { const s = taggedReports.get(x.productId) ?? new Set(); s.add(x.ref); taggedReports.set(x.productId, s); }
-  rows.push(...tagRows({ productId: x.productId, ref: x.ref, kind: x.kind, author: x.author, at: x.at, tags: counted }));
-  if (!x.tags.includes("arm-friendly") && !x.tags.includes("vibrates on mishits") && x.text) {
+  rows.push(...tagRows({ productId: x.productId, ref: x.ref, kind: x.kind, author: x.author, at: x.at, tags: counted }, cfg));
+  if (!x.tags.includes(cfg.arm.plus) && !(cfg.arm.minus && x.tags.includes(cfg.arm.minus)) && x.text) {
     const a = armFromReportText(x.text);
-    if (a) rows.push({ productId: x.productId, sourceKind: x.kind, sourceRef: `${x.ref}#arm-words`, authorKey: x.author, attribute: "arm", value: a, valueText: null, strength: 1,
+    if (a) rows.push({ productId: x.productId, sourceKind: x.kind, sourceRef: `${x.ref}#arm-words`, authorKey: x.author, attribute: cfg.arm.trait, value: a, valueText: null, strength: 1,
       quote: sentenceWith(x.text, s => armFromReportText(s) === a), saidAt: x.at, extractedBy: EXTRACTORS.armWords });
   }
 }
@@ -115,10 +119,10 @@ console.log(`  reports with tags: ${[...taggedReports.values()].reduce((a, s) =>
 // --check: trait scores from the evidence rows must equal today's for every listed racket.
 if (flags.has("--check")) {
   const ctx = await matchContext();
-  const totals = evidenceTotals(rows, taggedReports);
+  const totals = evidenceTotals(rows, taggedReports, cfg);
   const inputs: TraitInput[] = data.listed.map(r => ({ id: r.id, tagged: totals.get(r.id)?.tagged ?? 0, tags: {}, totals: totals.get(r.id)?.traits ?? {},
-    youtube: totals.get(r.id)?.youtube, specs: { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core } }));
-  const fresh = traitScores(inputs);
+    youtube: totals.get(r.id)?.youtube, specs: { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core, surface: r.surface } }));
+  const fresh = traitScores(inputs, cfg);
   let diff = 0;
   for (const r of data.listed) {
     const a = ctx.traits(r.id).auto, b = fresh.get(r.id);

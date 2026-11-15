@@ -34,6 +34,13 @@ export type FitConfig = {
   /** The footer's sign-off emoji. */ emoji: string;
   /** How it plays dots, in words, for the how-we-make-these page. */ dotsWords: string;
   /** Which specs to name when they lean a bar ("round, low balance"). */ specWords: (s: Specs, trait: string) => (string | null | undefined)[];
+  /** Lab measurements (evidence rows `lab:<metric>`, ENGINE-PLAN step 2): which trait each metric feeds (sign −1: lower is
+   *  more, e.g. swing weight → hand speed), how much the lab percentile and the specs' lean weigh against the praise rate
+   *  in the ranking the 4–5 bands are cut from, and the lab percentile that earns 4–5 with no praise yet. */
+  lab?: { metrics: Record<string, { trait: string; sign: 1 | -1 }>; weight: number; specWeight?: number; alone?: number;
+    /** A spec column that stands in for a metric where no lab row has it (pickleball: the maker's swing weight). */ specMetric?: Record<string, "balance"> };
+  /** Scorer v2's band cut-offs, where the site differs from padel's (lib/trait-score.ts). */
+  scale?: Partial<{ top4: number; top5: number; worst: number; minComplaints: number }>;
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -143,6 +150,20 @@ const PICKLEBALL: FitConfig = {
   specWords: (s, t) => t === "spin" ? [s.surface ? `${s.surface.toLowerCase()} face` : null]
     : t === "speed" ? [s.balance ? `swing weight ${s.balance}` : null, s.shape?.toLowerCase()]
     : [s.shape?.toLowerCase(), s.core ? `${s.core.toLowerCase()} core` : null],
+  // Lab numbers from independent review sites (ENGINE-PLAN step 2, owner 2026-11-15): swing weight → hand speed (lower is
+  // quicker), twist weight → forgiveness, RPM → spin, measured power and pop; plus the sites' own lab-based % scores.
+  lab: {
+    metrics: {
+      swing_weight: { trait: "speed", sign: -1 }, maneuverability_pct: { trait: "speed", sign: 1 },
+      twist_weight: { trait: "forgiveness", sign: 1 }, forgiveness_pct: { trait: "forgiveness", sign: 1 },
+      spin_rpm: { trait: "spin", sign: 1 }, spin_pct: { trait: "spin", sign: 1 },
+      power_mph: { trait: "power", sign: 1 }, power_pct: { trait: "power", sign: 1 }, power_pctile: { trait: "power", sign: 1 },
+      pop_mph: { trait: "pop", sign: 1 }, pop_pct: { trait: "pop", sign: 1 }, pop_pctile: { trait: "pop", sign: 1 },
+      control_pct: { trait: "control", sign: 1 },
+    },
+    weight: 0.5, specWeight: 0.1, alone: 0.7,
+    specMetric: { swing_weight: "balance" },
+  },
 };
 
 const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL };
