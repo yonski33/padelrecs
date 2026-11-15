@@ -19,4 +19,6 @@ main.pv2 {
   .rate-brands button, .rate-profile button { color: var(--ink) !important; background: #fff !important; border: 1.5px solid var(--ink) !important; }
   .rate-brands button[aria-pressed="true"], .rate-profile button[aria-pressed="true"] { background: var(--ink) !important; color: #fbfaf6 !important; }
   :focus-visible { outline: 3px solid oklch(0.88 0.17 125); outline-offset: 2px; }
+  /* Phones: the add box sits below the table (.cmp-add-m), as the page intends. */
+  @media (max-width: 760px) { .cmp-add, .cmp-slot { display: none !important; } }
 }
