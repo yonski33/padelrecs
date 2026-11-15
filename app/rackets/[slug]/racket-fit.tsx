@@ -54,11 +54,11 @@ export default async function RacketFit(props: {
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
   const trs = ctx.traits(props.racketId).scores, lvE = ctx.level(props.racketId);
   const pct = verdict ? matchScore(choice, { verdict, control: trs?.control?.score ?? null, power: trs?.power?.score ?? null, arm: trs?.arm?.score ?? null, band: lvE?.band, likedAtLevel: lvE?.liked[choice.level] ?? 0, signal: ctx.signal(props.racketId) }) : null;
-  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not" }[verdict.kind] : null;
+  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
   const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (qt ? qt.hook.good : null)) : null;
   const consider = verdict ? (verdict.catches?.[0] ?? (qt ? qt.hook.catch : null)) : null;
-  const headline = !verdict ? "" : verdict.kind === "good" ? (consider ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — demo it first." : verdict.kind === "no" ? "Probably not for you." : "Not enough reports from players like you yet.";
-  const gameWords = [choice.level, choice.style === "any" ? null : choice.style === "balance" ? "all-round" : choice.style, choice.arm ? "sore arm" : null].filter((x): x is string => !!x);
+  const headline = !verdict ? "" : verdict.kind === "good" ? (consider ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
+  const gameWords = [choice.level, choice.style === "any" ? null : choice.style, choice.arm ? "sore arm" : null].filter((x): x is string => !!x);
   // What backs the level band (brand, reviewers, players), with the brand's page linked (owner 2026-11-15).
   const backing = levelBacking(facts), maker = levelSources(facts).maker;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
@@ -198,14 +198,12 @@ export default async function RacketFit(props: {
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name}/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
             <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}</div>
-            {/* H1 keeps "<name> review" for search (owner); the big name sits under it. */}
-            <h1>{`${props.shortName} review`}</h1>
-            <p className="rf-name">{`${props.shortName} (${props.year})`}</p>
+            <h1>{`${props.shortName} (${props.year})`}</h1>
             {(qt || props.line) && <p className="rf-hook">{qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             <div className="rf-meta">
               {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
-              {ctx.signal(props.racketId) !== null && <span className="rf-sig" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{ctx.signal(props.racketId)}</span>}
-              <a href="#reviews">{`${total} player reports`}</a>
+              {/* The mockup's "62% liked it" is the Player score here (owner). */}
+              <a href="#reviews" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{`${ctx.signal(props.racketId) !== null ? `${ctx.signal(props.racketId)} player score · ` : ""}${total} reviews`}</a>
             </div>
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
@@ -227,18 +225,21 @@ export default async function RacketFit(props: {
             {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
             <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
-              <span className={`rf-vpill ${verdict.kind}`}>{pct === null ? "—" : `${pct}% match`}{verdictWord && ` · ${verdictWord}`}</span></div>
+              <span className={`rf-vpill ${verdict.kind}`} title={pct === null ? undefined : `${pct}% match: how well it fits your picks, from player reports. Not a % of happy players.`}>{verdictWord ?? "Not enough reports"}</span></div>
             <h2>{headline}</h2>
             <p className="rf-for">{`For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
-            {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ what works" : "✓ why it fits"}</p><p>{why}</p></div>}
-            {consider && <div className="rf-blk warn"><p className="rf-bk">↗ what to consider</p><p>{consider}</p></div>}
-            <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join(" · ")}</span>
-              <details className="rf-edit"><summary>edit ↗</summary><div className="rf-bar">
-                <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(st => <span key={st}>{pill(STYLE_WORD[st], { ...choice, style: st }, choice.style === st)}</span>)}</span>
-                <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
-                {armLink("sore arm")}
-              </div></details>
-              <Link href={props.href} scroll={false} replace className="rf-reset">start over</Link></div>
+            {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ What works" : "✓ Why it fits"}</p><p>{why}</p></div>}
+            {consider && <div className="rf-blk warn"><p className="rf-bk">↗ What to consider</p><p>{consider}</p></div>}
+            {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
+            <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
+            <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join("  ·  ")}</span>
+              <span className="rf-acts"><label htmlFor="rf-edit-t" className="rf-editl"><span className="o">edit ↗</span><span className="c">done ✓</span></label>
+              <Link href={props.href} scroll={false} replace className="rf-reset">start over</Link></span></div>
+            <div className="rf-bar rf-editp">
+              <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(st => <span key={st}>{pill(STYLE_WORD[st], { ...choice, style: st }, choice.style === st)}</span>)}</span>
+              <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
+              {armLink("sore arm")}
+            </div>
           </div>}
         </div>
       </section>

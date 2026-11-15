@@ -254,3 +254,63 @@
     .rv-card.player { padding: 12px; }
   }
 }
+
+/* Owner 2026-11-15: "match this exactly" (Claude Design racket page, artifact YAdDumhMiKN6gumA4wYT7a): the hero, the
+   "your match" box with soft panels, and the cards below with 2.5px borders, 18px corners and pastel quote/tip fills.
+   Overrides the rules above. */
+.rf {
+  .rf-hero { grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); gap: 22px; align-items: center; }
+  .rf-shot { aspect-ratio: 3 / 4; align-items: center; }
+  .rf-shot img { height: 100%; width: auto; max-width: 100%; max-height: none; }
+  h1 { font: 800 clamp(28px, 3.6vw, 40px)/1.04 var(--display) !important; letter-spacing: -0.02em !important; color: var(--ink) !important; text-wrap: balance; }
+  .rf-meta > a:not(.rf-btn) { font: 12px var(--mono); color: var(--soft); }
+  .rf-hook { font-size: 16px !important; line-height: 1.5 !important; }
+
+  .rf-fit { border-width: 2.5px; border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); }
+  .rf-ans { padding: 20px 22px; gap: 14px; }
+  .rf-ans .rf-k { font: 600 13px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 3px 10px; background: var(--marker); box-shadow: 2px 2px 0 var(--ink); }
+  .rf-vpill { font: 600 13px var(--mono); border: 2px solid var(--ink); border-radius: 999px; padding: 3px 12px; }
+  .rf-vpill.good { background: var(--acc); } .rf-vpill.maybe { background: var(--marker); } .rf-vpill.no { background: oklch(0.9 0.08 30); }
+  .rf-ans h2 { margin: 0; font: 800 clamp(28px, 3.4vw, 38px)/1.02 var(--display); letter-spacing: -0.02em; }
+  .rf-for { margin: -8px 0 0; font-size: 15px; text-wrap: pretty; }
+  .rf-blk { border: 0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+  .rf-blk.ok { background: oklch(0.95 0.05 145); } .rf-blk.warn { background: oklch(0.96 0.04 60); }
+  .rf-blk p.rf-bk { font: 700 15px var(--body); color: var(--ink); margin: 0; }
+  .rf-afoot { border-top: 1.5px dashed var(--dash); justify-content: space-between; gap: 10px; }
+  .rf-afoot > span:first-child { font: 600 12px var(--mono); color: var(--soft); white-space: pre; }
+  .rf-acts { display: flex; gap: 14px; align-items: baseline; }
+  .rf-editl { cursor: pointer; font: 600 13px var(--mono); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .rf-editl .c { display: none; }
+  .rf-edit-t { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+  .rf-edit-t:focus-visible + .rf-afoot .rf-editl { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .rf-edit-t:checked + .rf-afoot .rf-editl .o { display: none; } .rf-edit-t:checked + .rf-afoot .rf-editl .c { display: inline; }
+  .rf-afoot .rf-reset { margin-left: 0; font: 12px var(--mono); color: var(--mute); text-decoration: underline; }
+  .rf-editp { display: none; padding: 10px 12px; border: 0; border-radius: 10px; background: var(--tile); font-size: 13px; }
+  .rf-edit-t:checked ~ .rf-editp { display: flex; }
+
+  .rf-h h2, .rf-h2 { font-size: 24px; }
+  .rf-said, .rf-plays, .rf-box2 { border-width: 2.5px; border-radius: 18px; }
+  .rf-sum { padding: 18px 20px; gap: 14px 22px; border-bottom: 0; }
+  .rf-sbar { height: 12px; border-radius: 999px; }
+  .rf-counts { color: var(--soft); gap: 14px; }
+  .rf-quotes { padding: 0 20px 18px; gap: 10px; }
+  .rf-quotes > div { border: 0; border-radius: 10px; padding: 12px 14px; gap: 4px; }
+  .rf-quotes > div.ok { background: oklch(0.95 0.05 145); } .rf-quotes > div.no { background: oklch(0.96 0.04 30); } .rf-quotes > div.mix { background: oklch(0.96 0.06 95); }
+  .rf-quotes > div > span { font: 700 14px var(--body); }
+  .rf-quotes .mix > span { color: #8a6a10; }
+  .rf-quotes small { font: 11px var(--mono); margin-top: 2px; }
+  .rf-prow { padding: 12px 20px; }
+  .rf-segs i.on { background: oklch(0.85 0.14 90); }
+  .rf-prow:has(em.t4) .rf-segs i.on, .rf-prow:has(em.t5) .rf-segs i.on { background: oklch(0.72 0.15 145); }
+  .rf-pnote em.t4 { background: oklch(0.95 0.05 145); } .rf-pnote em.t3 { background: oklch(0.96 0.04 60); }
+  .rf-box2 { padding: 16px 18px; }
+  .rf-lab { font-size: 13px; }
+  .rf-hd { border: 0; border-radius: 10px; padding: 10px 12px; background: oklch(0.96 0.04 60); }
+  .rf-tipt { font-size: 22px; line-height: 1.1; }
+  .rf-why, .rf-also { border: 0; border-radius: 10px; padding: 10px 12px; }
+  .rf-why { background: oklch(0.95 0.05 145); } .rf-also { background: var(--tile); }
+  @media (max-width: 760px) {
+    .rf-hero { grid-template-columns: 120px minmax(0, 1fr); gap: 14px; }
+    .rf-prow { padding: 10px 14px; }
+  }
+}
