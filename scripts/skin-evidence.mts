@@ -23,6 +23,13 @@ const [step, ...rest] = process.argv.slice(2);
 const data = await catalog();
 const hash = (s: string) => createHash("sha1").update(s).digest("hex").slice(0, 12);
 const VALUE = { positive: 1, mixed: 0, negative: -1 } as const;
+/** Who said it, so one voice counts once. YouTube and blogs: the channel or site. Forum reports: the comment itself (its
+ *  permalink), never source_name, which is the subreddit there, so a whole forum would count as one voice (PM bug report
+ *  2026-11-15, same fix as sim racing). No writer handle is stored for forum reports. */
+export const forumUrlKey = (url: string) => url.trim().toLowerCase().replace(/[?#].*$/, "").replace(/\/+$/, "");
+const authorOf = (e: { sourcePlatform: string; sourceName: string | null; sourceUrl: string }) =>
+  kindOf(e.sourcePlatform) === "player_report" ? (e.sourceUrl ? `forum:${hash(forumUrlKey(e.sourceUrl))}` : null)
+    : e.sourceName ? `${e.sourcePlatform}:${hash(e.sourceName.toLowerCase())}` : null;
 const kindOf = (platform: string): SourceKind => platform === "YouTube" ? "youtube" : platform === "Blog" ? "blog" : "player_report";
 const good = new Set(niche.tags.filter(t => t.tone === "pos").map(t => t.label));
 type Report = { productId: string; ref: string; kind: SourceKind; author: string | null; at: string | null; verdict: -1 | 0 | 1 | null; tags: string[];
@@ -30,7 +37,7 @@ type Report = { productId: string; ref: string; kind: SourceKind; author: string
 const reports: Report[] = [
   ...data.reviews.map(r => ({ productId: r.racketId, ref: `p:${r.id}`, kind: "own_review" as const, author: r.alias ? `own:${hash(r.alias.toLowerCase())}` : `p:${r.id}`,
     at: r.createdAt, verdict: VALUE[ratingVerdict(r.rating)], tags: r.tags, texts: { review: r.reviewText }, formType: r.playerLevel })),
-  ...data.external.map(e => ({ productId: e.racketId, ref: `w:${e.id}`, kind: kindOf(e.sourcePlatform), author: e.sourceName ? `${e.sourcePlatform}:${hash(e.sourceName.toLowerCase())}` : null,
+  ...data.external.map(e => ({ productId: e.racketId, ref: `w:${e.id}`, kind: kindOf(e.sourcePlatform), author: authorOf(e),
     at: e.sourceDate || e.createdAt, verdict: e.sentiment ? VALUE[e.sentiment] : null, tags: e.tags,
     texts: Object.fromEntries(Object.entries({ summary: e.summary ? plainSummary(e.summary) : null, excerpt: e.excerpt, translation: e.sourceLanguage && e.sourceLanguage !== "en" ? e.excerptTranslation : null })
       .filter((x): x is [string, string] => typeof x[1] === "string" && x[1].trim().length > 0)), formType: null })),
@@ -142,5 +149,43 @@ if (step === "backfill") {
     console.log(`removed ${dup.length} word-rule rows the reader also found`);
     await save(rows.map(({ text: _t, ...r }) => r), [EX.reader]);
   }
-} else throw new Error("step: backfill | export | check");
+} else if (step === "rekey") {
+  // Re-keys the saved rows' author_key with authorOf (the forum-voice fix) in place, so the reader's rows and the word rows it
+  // replaced stay as they are. Dry run: voice counts and suits scores before / after. --write saves (owner OK needed).
+  const { evidenceRows } = await import("../db/evidence");
+  const { scoreAll } = await import("../lib/attr-score");
+  const rows = await evidenceRows();
+  const newKey = new Map(reports.map(x => [x.ref, x.author]));
+  const after = rows.map(r => { const k = newKey.get(r.sourceRef.split("#")[0]); return k !== undefined && r.sourceKind !== "maker" ? { ...r, authorKey: k } : r; });
+  const changed = rows.filter((r, i) => r.authorKey !== after[i].authorKey);
+  const voices = (rs: typeof rows) => new Set(rs.filter(r => r.sourceKind === "player_report").map(r => r.authorKey ?? r.sourceRef.split("#")[0])).size;
+  console.log(`rows ${rows.length}, re-keyed ${changed.length}; forum voices ${voices(rows)} → ${voices(after)}`);
+  const cnt = new Map(data.listed.map(r => [r.id, { n: 0, p: 0, neg: 0, j: 0 }]));
+  for (const x of reports) { const c = cnt.get(x.productId); if (c) { c.n++; if (x.verdict !== null) { c.j++; if (x.verdict > 0) c.p++; if (x.verdict < 0) c.neg++; } } }
+  const inputs = data.listed.map(r => { const c = cnt.get(r.id)!; return { id: r.id, shape: r.shape, reports: c.n, verdict: c.j ? (c.p - c.neg) / c.j : null }; });
+  const [b, a] = [scoreAll(profile, inputs, rows), scoreAll(profile, inputs, after)];
+  for (const attr of profile.attrs.filter(x => x.kind !== "fact")) {
+    let had = 0, has = 0, moved = 0, big = 0;
+    for (const p of data.listed) { const x = b.get(p.id)!.scores[attr.key], y = a.get(p.id)!.scores[attr.key]; if (x) had++; if (y) has++;
+      if (x && y && x.score !== y.score) moved++; if (x && y && Math.abs(x.score - y.score) >= 10) big++; }
+    console.log(`  ${attr.key.padEnd(18)} scored ${had} → ${has}; score changed ${moved}, by 10+ ${big}`);
+  }
+  const name = new Map(data.listed.map(r => [r.id, r.name]));
+  const ex = data.listed.map(p => ({ p, x: b.get(p.id)!.scores.suits_dry, y: a.get(p.id)!.scores.suits_dry })).filter(o => o.y && (!o.x || o.x.n !== o.y.n)).sort((m, n) => n.y!.n - m.y!.n).slice(0, 4);
+  for (const o of ex) console.log(`  e.g. dry: ${name.get(o.p.id)} ${o.x ? `${o.x.score} (${o.x.n} voices)` : "no score"} → ${o.y!.score} (${o.y!.n} voices)`);
+  if (rest.includes("--write")) {
+    const db = await database(), schema = sql.identifier(assertSchemaName(niche.schema));
+    const pairs = [...new Map(reports.filter(x => x.kind === "player_report").map(x => [x.ref, x.author])).entries()];
+    let n = 0;
+    await db.transaction(async tx => {
+      for (let i = 0; i < pairs.length; i += 500) {
+        const chunk = pairs.slice(i, i + 500);
+        const res = await tx.execute(sql`update ${schema}.evidence e set author_key = v.k from (values ${sql.join(chunk.map(([ref, k]) => sql`(${ref}, ${k})`), sql`, `)}) as v(ref, k)
+          where e.niche = ${niche.id} and e.source_kind = 'player_report' and split_part(e.source_ref, '#', 1) = v.ref and e.author_key is distinct from v.k`);
+        n += (res as unknown as { rowCount?: number; count?: number }).rowCount ?? (res as unknown as { count?: number }).count ?? 0;
+      }
+    });
+    console.log(`re-keyed ${n} rows in ${niche.schema}.evidence`);
+  }
+} else throw new Error("step: backfill | export | check | rekey");
 process.exit(0);
