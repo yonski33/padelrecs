@@ -48,7 +48,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const rated = candidates.map((m, i) => {
     if (isDefault(choice)) return { m, i, fit: null, pct: null };
     const fit = fitVerdict(choice, facts(m.product.id), cfg), t = traits(m.product.id).scores, lv = level(m.product.id);
-    const pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, signal: signal(m.product.id) });
+    const pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, signal: signal(m.product.id) }, cfg.weights);
     return { m, i, fit, pct };
   });
   const rows = isDefault(choice) ? rated : [...rated].sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1) || a.i - b.i).slice(0, LIST_SIZE);

@@ -56,3 +56,18 @@ test("pickleball heads-ups: tags or words, negations don't count, USAP needs the
   assert.ok(reportSays(usap, { tags: [], text: "It was disqualified due to not USAP approved." }));
   assert.ok(!reportSays(usap, { tags: [], text: "Great grit while remaining USAP approved." }));
 });
+
+test("pickleball level cues: rating numbers, not weights or prices", async () => {
+  const { levelCue } = await import("../lib/fit-config");
+  assert.equal(levelCue(pb, "As a 3.5 player I found it easy to reset."), "intermediate");
+  assert.equal(levelCue(pb, "My DUPR is 4.2 and this is my main paddle."), "advanced");
+  assert.equal(levelCue(pb, "I'm a 2.5, still learning."), "beginner");
+  assert.equal(levelCue(pb, "It weighs 7.8 oz and costs 2.99 to ship."), null);
+  assert.equal(levelCue(padel, "As a 3.5 player…"), null, "padel has no rating scale");
+  assert.deepEqual(pb.weights, padel.weights);
+});
+
+test("pickleball spec prior: a paddle sold in several cores or shapes gets no lean from them", () => {
+  const multi = specLean({ core: "14 or 16 mm", shape: "Hybrid, Widebody, or Elongated" }, pb);
+  assert.equal(multi.control, 0); assert.equal(multi.pop, 0); assert.equal(multi.speed, 0);
+});

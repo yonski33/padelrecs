@@ -1,3 +1,4 @@
+// The site profile (site-jobs/ENGINE-PLAN.md section C, owner 2026-11-15): one settings file per site, one format for all.
 // The fit template's per-site rules (owner 2026-11-15: "PickleballRecs gets the same template"): which traits a product has
 // and which review tags count for and against each, the spec prior, which traits can drop to 2 dots, the control / power
 // axis quick match and the fit check use, the arm tags, and the words under each bar. lib/trait-score.ts, fit-verdict,
@@ -21,6 +22,10 @@ export type FitConfig = {
   /** The fit check's fallback level signal: forgiving against demanding tags (plus more for beginners). */ forgiving: { plus: string; minus: string[]; beginner: string[] };
   /** The specs' lean per trait in dots (each within ±1). */ specLean: (s: Specs) => Record<string, number>;
   /** The line under each bar from the counts (no zeros: "no one …"). */ lines: Record<string, (k: LineKit) => string | null>;
+  /** Level words: what in a report or video states a level (guidance for the level reader, and levelCue below). */
+  levelWords: { beginner: string[]; intermediate: string[]; advanced: string[]; /** Rating numbers (DUPR, "a 3.5 player"): upper bounds for beginner and intermediate. */ rating?: { name: string; beginnerBelow: number; advancedFrom: number } };
+  /** The visitor's picks on quick match: how much each part of the match % weighs (lib/match-score.ts). */
+  weights: { style: number; level: number; arm: number; score: number };
   /** Neutral names for where a quote comes from. */ sourceWords: { forum: string; blog: string };
   /** Heads-up notes counted from reports (a tag, or words in the report text): shown when 2+ reports say it. */
   headsUp?: { title: string; tags?: string[]; text?: RegExp; /** The words are the problem: skip the negation check. */ plain?: boolean }[];
@@ -45,6 +50,8 @@ const PADEL: FitConfig = {
   complaint: ["arm", "forgiveness"],
   axis: { control: { trait: "control", tags: ["good control", "great in defence"] }, power: { trait: "power", tags: ["easy power", "great on smashes"] }, follows: "defence" },
   styleLabels: { control: "Control", balance: "A balance of both", power: "Power" },
+  levelWords: { beginner: ["first racket", "just started", "new to padel", "beginner"], intermediate: ["intermediate", "playing a couple of years", "regular matches"], advanced: ["advanced", "tournaments", "competitive", "pro level"] },
+  weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
   arm: { trait: "arm", plus: "arm-friendly", minus: "vibrates on mishits" },
   forgiving: { plus: "forgiving", minus: ["demanding"], beginner: ["small sweet spot"] },
   specLean: s => {
@@ -91,15 +98,20 @@ const PICKLEBALL: FitConfig = {
   complaint: ["forgiveness", "control", "spin"],
   axis: { control: { trait: "control", tags: ["good control", "great for dinks"] }, power: { trait: "power", tags: ["easy power", "great pop"] } },
   styleLabels: { control: "Control", balance: "A bit of everything", power: "Power" },
+  levelWords: { beginner: ["first paddle", "just started", "new to pickleball", "beginner"], intermediate: ["intermediate", "rec player", "3.0", "3.5"], advanced: ["advanced", "tournaments", "4.0+", "4.5", "5.0", "pro"],
+    rating: { name: "DUPR", beginnerBelow: 3.0, advancedFrom: 4.0 } },
+  weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
   arm: { trait: "arm", plus: "arm-friendly" },
   forgiving: { plus: "forgiving", minus: ["hard to control"], beginner: ["small sweet spot"] },
   specLean: s => {
     const o: Record<string, number> = { power: 0, pop: 0, control: 0, spin: 0, forgiveness: 0, speed: 0, arm: 0 };
     const shape = (s.shape ?? "").toLowerCase(), core = (s.core ?? "").toLowerCase(), surface = (s.surface ?? "").toLowerCase();
-    const mm = Number(core.match(/(\d{2})(\.\d)?\s*mm/)?.[1] ?? NaN);
+    // Sold in several cores or shapes ("14 or 16 mm", "Hybrid, Widebody, or Elongated"): no lean from that spec.
+    const mms = [...new Set(core.match(/\d{2}(\.\d)?/g) ?? [])], mm = mms.length === 1 ? Number(mms[0]) : NaN;
+    const oneShape = !/,|\bor\b|\//.test(shape);
     if (mm >= 16) { o.control += 0.5; o.forgiveness += 0.4; o.arm += 0.2; } else if (mm >= 13 && mm <= 14) { o.power += 0.4; o.pop += 0.5; o.control -= 0.2; }
-    if (shape.includes("elongated")) { o.power += 0.3; o.speed -= 0.2; o.forgiveness -= 0.2; }
-    if (shape.includes("standard") || shape.includes("wide")) { o.forgiveness += 0.3; o.speed += 0.3; }
+    if (oneShape && shape.includes("elongated")) { o.power += 0.3; o.speed -= 0.2; o.forgiveness -= 0.2; }
+    if (oneShape && (shape.includes("standard") || shape.includes("wide"))) { o.forgiveness += 0.3; o.speed += 0.3; }
     if (/raw/.test(surface) && /carbon/.test(surface)) o.spin += 0.5;
     const sw = Number((s.balance ?? "").match(/\d{3}/)?.[0] ?? NaN);
     if (sw <= 110) o.speed += 0.4; else if (sw >= 118) { o.speed -= 0.3; o.power += 0.2; }
@@ -151,4 +163,14 @@ export function reportSays(h: NonNullable<FitConfig["headsUp"]>[number], x: { ta
     return true;
   }
   return false;
+}
+/** A level stated as a rating number ("a 3.5 player", "DUPR 4.2", "I'm a 4.0"), or null. Words like "beginner" are left to the
+ *  reader, which keeps the exact quote. */
+export function levelCue(p: FitConfig, text: string): "beginner" | "intermediate" | "advanced" | null {
+  const r = p.levelWords.rating;
+  if (!r) return null;
+  const m = text.match(new RegExp(`\\b(?:${r.name}\\s*(?:of|rating|is|:)?\\s*|(?:i'?m|i am|as|a|an)\\s+(?:solid\\s+)?)([2-6]\\.\\d{1,2})(?!\\s*(?:oz|mm|in|"|\\$))(?:\\+)?(?:\\s*(?:player|level|rated|dupr))?`, "i"));
+  if (!m) return null;
+  const v = Number(m[1]);
+  return v < r.beginnerBelow ? "beginner" : v >= r.advancedFrom ? "advanced" : "intermediate";
 }
