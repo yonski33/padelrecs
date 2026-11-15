@@ -244,20 +244,22 @@ export default async function RacketFit(props: {
         <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card}/>
       </section>
 
-      {page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
-
+      {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
+          why not and How it plays share a group; Reviews and Specs follow. The match box floats once the hero scrolls away. */}
       <section className="rp-body">
         <div className="rp-main">
-          {page && tier && <div>
+          {page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
+          {page && tier && <div id="yes-no">
             <div className="rf-h"><h2>Why yes, why not</h2><span>{tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
             <FitYesNo yes={page.yes} no={page.no} tier={tier}/>
           </div>}
 
-          <div>
+          <div id="compare">
             {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
             <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : "from player reports, compared with other rackets"}</span></div>
             <FitCompare id={props.racketId} items={payload.items} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
           </div>
+        </div>
 
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
@@ -266,10 +268,9 @@ export default async function RacketFit(props: {
 
           {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>
             <p className="rf-specs">{props.specs.map(s => { const [k, ...v] = s.split(" "); return <span key={s}><span>{k}</span>{` ${v.join(" ")}`}</span>; })}</p></details>}
-        </div>
-
-        <aside className="rp-side"><FitSticky buy={props.buy} name={props.shortName}/></aside>
       </section>
+
+      <FitSticky buy={props.buy} name={props.shortName}/>
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from YouTube reviews, reviews sent to us and ${v2copy.forum} reports · every source linked · `}
