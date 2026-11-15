@@ -3,9 +3,14 @@ import SlugField from "./slug-field";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
-import { TRAITS, TRAIT_LABEL, TRAIT_TAGS, MAX_TRAIT_TEXT_HINT, type Trait, type TraitScore } from "../../lib/trait-score";
+import { MAX_TRAIT_TEXT_HINT, type Trait, type TraitScore } from "../../lib/trait-score";
+import { traitDefsFor } from "../../lib/fit-config";
 import type { TraitOverride } from "../../db/trait-override";
 const w = niche.words;
+// This site's trait rows (lib/fit-config.ts).
+const DEFS = traitDefsFor(niche), TRAITS = DEFS.map(d => d.key);
+const TRAIT_LABEL: Record<string, string> = Object.fromEntries(DEFS.map(d => [d.key, d.label]));
+const TRAIT_TAGS: Record<string, { plus: [string, number][]; minus: [string, number][] }> = Object.fromEntries(DEFS.map(d => [d.key, d]));
 
 type Racket = typeof rackets.$inferSelect;
 export default function RacketSpecs({models,brands,racketId,oldSlugs=[],traits}:{models:Racket[],brands:{id:string,name:string}[],racketId?:string,oldSlugs?:string[],traits?:{auto:Record<Trait,TraitScore|null>|null,tagged:number,tags:Record<string,number>,edits:TraitOverride|null}}) {

@@ -34,7 +34,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice }: { choice: QuickChoice }) {
-  const [{ data, sigs, takes, finder, bad, pool, level, signal, facts, traits }, lists] = await Promise.all([matchContext(), rankedLists()]);
+  const [{ cfg, data, sigs, takes, finder, bad, pool, level, signal, facts, traits }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -44,10 +44,10 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const added = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now - 7 * DAY).length;
   // With picks, rows are ordered by the match % (lib/match-score.ts), which always agrees with the fit word; quick match picks
   // the candidates. Thin data has no % and goes last. No picks: quick match's own order (Player score).
-  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: isDefault(choice) ? LIST_SIZE : 40, rankWeight: finder.rankWeight });
+  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: isDefault(choice) ? LIST_SIZE : 40, rankWeight: finder.rankWeight, cfg });
   const rated = candidates.map((m, i) => {
     if (isDefault(choice)) return { m, i, fit: null, pct: null };
-    const fit = fitVerdict(choice, facts(m.product.id)), t = traits(m.product.id).scores, lv = level(m.product.id);
+    const fit = fitVerdict(choice, facts(m.product.id), cfg), t = traits(m.product.id).scores, lv = level(m.product.id);
     const pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, signal: signal(m.product.id) });
     return { m, i, fit, pct };
   });
@@ -78,7 +78,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        <div><h1>Less guessing. <span className="hl">Better rackets.</span></h1>
+        <div><h1>Less guessing. <span className="hl">{`Better ${cfg.word}s.`}</span></h1>
           <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>
         <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>
       </section>

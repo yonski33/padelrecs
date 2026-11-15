@@ -9,28 +9,26 @@
 // trait (see `worst` below); 1 only by hand. With few player mentions the specs and YouTube set the base. Hand-set dots (1–5) win.
 // Pure, so tests can feed it plain objects.
 
+import { fitConfigFor, type FitConfig, type Specs } from "./fit-config";
+export type { Specs } from "./fit-config";
+
+const PADEL = fitConfigFor({ id: "padel" })!;
+/** Padel's traits (the default everywhere a site config isn't passed); other sites' lists live in lib/fit-config.ts. */
 export const TRAITS = ["forgiveness", "power", "control", "defence", "arm", "speed"] as const;
-export type Trait = typeof TRAITS[number];
-export const TRAIT_LABEL: Record<Trait, string> = { forgiveness: "Forgiveness", power: "Power", control: "Control", defence: "Defence", arm: "Arm comfort", speed: "Speed" };
+/** A trait key: padel's six, or another site's (lib/fit-config.ts). */
+export type Trait = string;
+export const TRAIT_LABEL: Record<string, string> = Object.fromEntries(PADEL.traits.map(t => [t.key, t.label]));
 /** Which tags count for and against each trait, and how much (owner 2026-11-15). */
-export const TRAIT_TAGS: Record<Trait, { plus: [string, number][]; minus: [string, number][] }> = {
-  forgiveness: { plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["demanding", 1]] },
-  power: { plus: [["easy power", 1], ["great on smashes", 1]], minus: [] },
-  control: { plus: [["good control", 1]], minus: [["head-heavy", 0.5]] },
-  defence: { plus: [["great in defence", 1], ["good control", 0.5]], minus: [] },
-  arm: { plus: [["arm-friendly", 1]], minus: [["vibrates on mishits", 1]] },
-  speed: { plus: [["fast at the net", 1]], minus: [["head-heavy", 1], ["tiring in long matches", 1]] },
-};
+export const TRAIT_TAGS: Record<string, { plus: [string, number][]; minus: [string, number][] }> = Object.fromEntries(PADEL.traits.map(t => [t.key, { plus: t.plus, minus: t.minus }]));
 /** Traits that players fault directly ("vibrates", "small sweet spot"): only these can drop to 2. Little power praise on a
  *  control racket isn't a complaint (owner 2026-11-15). */
-export const COMPLAINT_TRAITS: Trait[] = ["arm", "forgiveness"];
+export const COMPLAINT_TRAITS: Trait[] = PADEL.complaint;
 /** The share of the catalog that can sit at 2 dots for a complaint trait. */
 export const WORST_SHARE = 0.05;
 export const MIN_EVIDENCE = 8, MIN_MENTIONS = 2, PRIOR = 10, YT_WEIGHT = 2;
 /** Longest hand-written line under a trait (admin area). */
 export const MAX_TRAIT_TEXT_HINT = 220;
 
-export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null };
 export type TraitInput = {
   id: string;
   /** Reports with at least one tag. */ tagged: number; tags: Record<string, number>;
@@ -52,46 +50,36 @@ const weighted = (tags: Record<string, number>, list: [string, number][]) => lis
 const people = (tags: Record<string, number>, list: [string, number][]) => list.filter(([, w]) => w >= 1).reduce((a, [t]) => a + (tags[t] ?? 0), 0);
 const median = (xs: number[]) => { const s = [...xs].sort((a, b) => a - b); return s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : 0; };
 
-/** The specs' lean per trait in dots, each within ±1: round / low balance → control and defence; diamond / high balance →
- *  power, less speed and forgiveness; light → speed; soft core → arm comfort (owner 2026-11-15). */
-export function specLean(s: Specs | undefined): Record<Trait, number> {
-  const o: Record<Trait, number> = { forgiveness: 0, power: 0, control: 0, defence: 0, arm: 0, speed: 0 };
-  if (!s) return o;
-  const shape = (s.shape ?? "").toLowerCase(), bal = (s.balance ?? "").toLowerCase(), core = (s.core ?? "").toLowerCase();
-  if (shape.includes("round")) { o.control += 0.5; o.defence += 0.5; o.forgiveness += 0.3; }
-  if (shape.includes("diamond")) { o.power += 0.6; o.speed -= 0.3; o.forgiveness -= 0.5; o.control -= 0.3; }
-  const low = /low/.test(bal) ? (/medium|mid/.test(bal) ? 0.5 : 1) : 0, high = /high/.test(bal) ? (/medium|mid/.test(bal) ? 0.5 : 1) : 0;
-  o.control += 0.3 * low; o.defence += 0.3 * low; o.speed += 0.3 * low;
-  o.power += 0.5 * high; o.speed -= 0.3 * high; o.forgiveness -= 0.2 * high;
-  const grams = (s.weight ?? "").match(/\d{3}/g)?.map(Number) ?? [];
-  if (grams.length) { const g = grams.reduce((a, b) => a + b, 0) / grams.length; if (g <= 355) o.speed += 0.4; else if (g >= 370) { o.speed -= 0.4; o.power += 0.2; } }
-  if (/soft/.test(core)) o.arm += 0.3; else if (/hard/.test(core)) o.arm -= 0.3;
-  for (const t of TRAITS) o[t] = Math.max(-1, Math.min(1, o[t]));
-  return o;
+/** The specs' lean per trait in dots, each within ±1 (the site's rules in lib/fit-config.ts; padel: round / low balance →
+ *  control and defence; diamond / high balance → power, less speed and forgiveness; light → speed; soft core → arm comfort). */
+export function specLean(s: Specs | undefined, cfg: FitConfig = PADEL): Record<Trait, number> {
+  if (!s) return Object.fromEntries(cfg.traits.map(t => [t.key, 0]));
+  return cfg.specLean(s);
 }
 
 /** How much a racket's praise leans to control (positive) or power (negative), in dots within ±1: Control +lean, Defence
  *  +lean/2, Power −lean. Needs 6+ style mentions; even praise gives nothing. */
-export function styleBonus(p: TraitInput, t: Trait): number {
-  if (t !== "control" && t !== "defence" && t !== "power") return 0;
-  const c = p.totals ? (p.totals.control?.plus ?? 0) + (p.totals.defence?.plus ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0))
-    : (p.tags["good control"] ?? 0) + (p.tags["great in defence"] ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0));
-  const w = p.totals ? (p.totals.power?.plus ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0)
-    : (p.tags["easy power"] ?? 0) + (p.tags["great on smashes"] ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0);
+export function styleBonus(p: TraitInput, t: Trait, cfg: FitConfig = PADEL): number {
+  const { control, power, follows } = cfg.axis;
+  if (t !== control.trait && t !== follows && t !== power.trait) return 0;
+  const sum = (tags: string[]) => tags.reduce((a, tag) => a + (p.tags[tag] ?? 0), 0);
+  const ytC = YT_WEIGHT * ((p.youtube?.[control.trait]?.plus ?? 0) + (follows ? p.youtube?.[follows]?.plus ?? 0 : 0)), ytW = YT_WEIGHT * (p.youtube?.[power.trait]?.plus ?? 0);
+  const c = (p.totals ? (p.totals[control.trait]?.plus ?? 0) + (follows ? p.totals[follows]?.plus ?? 0 : 0) : sum(control.tags)) + ytC;
+  const w = (p.totals ? p.totals[power.trait]?.plus ?? 0 : sum(power.tags)) + ytW;
   if (c + w < 6) return 0;
   const lean = Math.max(-1, Math.min(1, (c / (c + w) - 0.5) * 2.5));
-  return t === "control" ? lean : t === "defence" ? lean / 2 : -lean;
+  return t === control.trait ? lean : t === follows ? lean / 2 : -lean;
 }
 
-/** Every racket's six trait scores (never null for a listed racket since 2026-11-15: thin data falls back to 3). */
-export function traitScores(products: TraitInput[]): Map<string, Record<Trait, TraitScore | null>> {
+/** Every racket's trait scores (padel: six) (never null for a listed racket since 2026-11-15: thin data falls back to 3). */
+export function traitScores(products: TraitInput[], cfg: FitConfig = PADEL): Map<string, Record<Trait, TraitScore | null>> {
   const out = new Map<string, Record<Trait, TraitScore | null>>();
-  for (const p of products) out.set(p.id, Object.fromEntries(TRAITS.map(t => [t, null])) as Record<Trait, TraitScore | null>);
-  for (const t of TRAITS) {
-    const { plus, minus } = TRAIT_TAGS[t];
+  const keys = cfg.traits.map(d => d.key);
+  for (const p of products) out.set(p.id, Object.fromEntries(keys.map(t => [t, null])) as Record<Trait, TraitScore | null>);
+  for (const { key: t, plus, minus } of cfg.traits) {
     const yt = (p: TraitInput) => p.youtube?.[t] ?? { plus: 0, minus: 0 };
     // Arm words without a tag count like tags (one per report).
-    const tx = (p: TraitInput) => !p.totals && t === "arm" ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
+    const tx = (p: TraitInput) => !p.totals && t === cfg.arm.trait ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
     // Tag counts, or the evidence store's totals (which already hold the arm words).
     const wPlus = (p: TraitInput) => p.totals ? Math.max(0, p.totals[t]?.net ?? 0) : weighted(p.tags, plus);
     const wMinus = (p: TraitInput) => p.totals ? Math.max(0, -(p.totals[t]?.net ?? 0)) : weighted(p.tags, minus);
@@ -112,7 +100,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     const praiseOf = (p: TraitInput) => voices(p) + tx(p).plus + yt(p).plus;
     const againstOf = (p: TraitInput) => faults(p) + tx(p).minus + yt(p).minus;
     const worst = new Set<string>();
-    if (COMPLAINT_TRAITS.includes(t)) {
+    if (cfg.complaint.includes(t)) {
       if (pool.length >= 20) {
         const cap = Math.max(1, Math.ceil(WORST_SHARE * products.length));
         products.filter(p => againstOf(p) >= 8 && againstOf(p) / (praiseOf(p) + 1) > 3)
@@ -121,7 +109,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     }
     for (const p of products) {
       const mentions = voices(p) + faults(p) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
-      const lean = specLean(p.specs)[t];
+      const lean = specLean(p.specs, cfg)[t] ?? 0;
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
       const enough = evidence(p) >= MIN_EVIDENCE && mentions >= MIN_MENTIONS;
@@ -133,7 +121,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
         const smooth = (net(p) + PRIOR * m) / (base(p) + PRIOR);
         // Most rackets collect "good control", so the share alone can't tell a control racket: what players praise it for
         // decides too. Control vs power praise (with reviewers) leans Control and Defence up and Power down, or the reverse.
-        cont = 3 + (smooth - m) / step + lean + styleBonus(p, t);
+        cont = 3 + (smooth - m) / step + lean + styleBonus(p, t, cfg);
       } else cont = 3 + Math.max(0, lean) + ytLean;
       cont = Math.max(1, Math.min(5, cont));
       // Owner 2026-11-15: every racket on the site is solid, so 3 is the floor. 2 only on strong specific complaints (5+ players
@@ -159,11 +147,12 @@ export const RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_
 export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number; people?: TraitScore["people"] }>>;
   youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null };
 
-export function balanceScores(products: BalanceInput[], cfg: { complaint: string[] } = { complaint: COMPLAINT_TRAITS }): Map<string, Record<Trait, TraitScore | null>> {
+export function balanceScores(products: BalanceInput[], cfg: FitConfig = PADEL): Map<string, Record<Trait, TraitScore | null>> {
+  const keys = cfg.traits.map(d => d.key);
   const out = new Map<string, Record<Trait, TraitScore | null>>();
-  for (const p of products) out.set(p.id, Object.fromEntries(TRAITS.map(t => [t, null])) as Record<Trait, TraitScore | null>);
+  for (const p of products) out.set(p.id, Object.fromEntries(keys.map(t => [t, null])) as Record<Trait, TraitScore | null>);
   const PC = (p: BalanceInput, t: Trait) => p.balance[t] ?? { P: 0, C: 0, plusVoices: 0, minusVoices: 0 };
-  for (const t of TRAITS) {
+  for (const t of keys) {
     const reports = products.reduce((a, p) => a + p.reports, 0);
     const r0 = reports ? products.reduce((a, p) => a + PC(p, t).P, 0) / reports : 0;
     const rate = (p: BalanceInput) => (PC(p, t).P + RATE_PRIOR * r0) / (p.reports + RATE_PRIOR);
@@ -177,7 +166,7 @@ export function balanceScores(products: BalanceInput[], cfg: { complaint: string
     }
     for (const p of products) {
       const { P, C, plusVoices, minusVoices } = PC(p, t);
-      const lean = specLean(p.specs)[t];
+      const lean = specLean(p.specs, cfg)[t] ?? 0;
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
       const i = rank.get(p.id)!, top = C <= P && P > 0;
