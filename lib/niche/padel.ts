@@ -8,6 +8,7 @@ const ballPickOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 
 export const padel: Niche = {
   id: "padel",
+  design: "v2",
   schema: "padelrecs",
   site: {
     name: "PadelRecs",

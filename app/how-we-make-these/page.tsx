@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { catalog, score } from "../../db/data";
-import { niche } from "../../lib/niche";
+import { niche, isV2 } from "../../lib/niche";
 import { signals, MIN_SIGNAL_REVIEWS, type SignalInput } from "../../lib/signal";
 import { signalCategory } from "../signals";
 import { qtFontVars } from "../qt-fonts";
@@ -15,7 +15,7 @@ import "./how.css";
 export const metadata: Metadata = { title: "How we make these", description: `How ${niche.site.name} turns player reviews into one honest line and a score.`, alternates: { canonical: "/how-we-make-these" } };
 
 export default async function HowWeMakeThese() {
-  if (niche.id !== "padel") notFound();
+  if (!isV2) notFound();
   const data = await catalog();
   const products: SignalInput[] = data.listed.map(r => { const s = score(data, r.id); return { id: r.id, category: signalCategory(r), positive: s.positive, mixed: s.mixed, judged: s.judged }; });
   // The two example rackets, scored by the same formula against the real catalog.

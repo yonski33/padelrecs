@@ -4,7 +4,7 @@ import { CompareTray } from "../../compare/compare-pick";
 import { LightCatalog, lightFilters } from "../../light-catalog";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { niche, productHref } from "../../../lib/niche";
+import { niche, productHref, isV2 } from "../../../lib/niche";
 import { catalog, score, topTags } from "../../../db/data";
 import { ProductCard, Directory, parseShow } from "../../components";
 import { sortProducts } from "../../../lib/product-sort";
@@ -24,7 +24,7 @@ export default async function Brand({ params, searchParams }: { params: Promise<
   const brand = data.brands.find(b => b.slug === slug);
   if (!brand) notFound();
   // Design v2 (owner 2026-11-15): the catalogue's page for this brand (filters, card rows, Player score); ?look=classic keeps the old one.
-  if (niche.id === "padel" && f.look !== "classic") {
+  if (isV2 && f.look !== "classic") {
     const jsonLd = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: displayName(r.name, brand.name), href: productHref(r) })));
     return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/><CatalogV2 data={data} f={f} brand={brand}/></>;
   }

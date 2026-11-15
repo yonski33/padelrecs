@@ -128,6 +128,9 @@ export type Niche = {
   people: Words;
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
+  /** "v2": the 2026-11 design (quick-match home, fit pages, tight lists, the v2 brand / catalogue / reviews / about pages).
+   *  Off by default, so a site switches when its data is ready (audit 2026-11-15: no more niche.id === "padel" checks). */
+  design?: "v2";
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
   feedMaxAgeYears?: number;

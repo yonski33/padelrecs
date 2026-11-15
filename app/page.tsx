@@ -18,7 +18,7 @@ import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import Link from "next/link";
-import { niche, catalogPath, productHref } from "../lib/niche";
+import { niche, catalogPath, productHref, isV2 } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const data = await catalog();
   // Quick match (PadelRecs): each combination is its own indexable page, "Best control padel rackets for beginners".
   const q = await searchParams, choice = readChoice(q);
-  if (niche.id === "padel" && niche.finder && !isDefault(choice)) {
+  if (isV2 && niche.finder && !isDefault(choice)) {
     const title = `${matchSeoTitle(choice, `padel ${niche.words.many}`)} | ${niche.site.name}`;
     const description = `Padel rackets ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what players say about control, power, level and arm comfort. No sponsored picks.`;
     // Only style, level and sore arm make an indexable page (24 of them, all in the sitemap). Fine-tune picks and "show older
@@ -140,7 +140,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
   // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
-  if (niche.id === "padel" && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)} older={params.older === "1"}/>;
+  if (isV2 && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)} older={params.older === "1"}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">

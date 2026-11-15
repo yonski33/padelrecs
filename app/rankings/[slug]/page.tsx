@@ -6,7 +6,7 @@ import { siteOgImages } from "../../site-og";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { niche, productHref, scoreLabel } from "../../../lib/niche";
+import { niche, productHref, scoreLabel, isV2 } from "../../../lib/niche";
 import { listTitle, MIN_LIST_REVIEWS, MIN_POSITIVE_SHARE, reviewWindowMonths, windowLabel, RANKINGS_PATH, listYear, listModelYear, type ListEntry } from "../../../lib/top-lists";
 import type { TopList } from "../../../lib/niche/types";
 import { ProductIcon } from "../../icons";
@@ -153,7 +153,7 @@ export default async function TopListPage({ params, searchParams }: { params: Pr
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
-  if (niche.id === "padel" && query.look !== "classic") return <RankingV2 {...{ data, lists, found, amazon, affiliate, faq, jsonLd }} search={query}/>;
+  if (isV2 && query.look !== "classic") return <RankingV2 {...{ data, lists, found, amazon, affiliate, faq, jsonLd }} search={query}/>;
   if (isLight(query.look)) return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
   return <main className="top-page v2">
     {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}

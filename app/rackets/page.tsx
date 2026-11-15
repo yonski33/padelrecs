@@ -4,7 +4,7 @@ import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import { isLight } from "../../lib/look";
 import { siteOgImages } from "../site-og";
 import type { Metadata } from "next";
-import { niche, catalogPath, hasYears, productHref } from "../../lib/niche";
+import { niche, catalogPath, hasYears, productHref, isV2 } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { catalogKeyword, catalogTitle, catalogDescription, listJsonLd, catalogCrumb } from "../../lib/catalogue-seo";
 import { rankedLists, listHref } from "../rankings/lists";
@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   // The new catalogue (padel) lists one row per model by default: the title counts what it shows.
   const reportsOf = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
-  const shown = niche.id === "padel" ? data.listed.filter(r => rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS).shown.id === r.id).length : data.listed.length;
+  const shown = isV2 ? data.listed.filter(r => rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS).shown.id === r.id).length : data.listed.length;
   const title = catalogTitle(shown);
   const description = catalogDescription(data.reviews.length + data.external.length, top.map(({ r }) => displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name)));
   return { title, description, alternates: { canonical: catalogPath }, openGraph: { title, description, url: catalogPath, type: "website", images: siteOgImages } };
@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string; style?: string; level?: string; arm?: string; weight?: string; feel?: string; sweet?: string; more?: string; older?: string }> }) {
   const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
-  if (niche.id === "padel" && f.look !== "classic") return <CatalogV2 data={data} f={f}/>;
+  if (isV2 && f.look !== "classic") return <CatalogV2 data={data} f={f}/>;
   // The light direction's catalogue, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
   if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;
   const sort = parseSort(f.sort);

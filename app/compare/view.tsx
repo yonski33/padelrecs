@@ -5,7 +5,7 @@ import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { shopPhoto } from "../../lib/shop-photos";
 import { type catalog as loadCatalog, score } from "../../db/data";
-import { niche, productHref, typePageFor, catalogPath } from "../../lib/niche";
+import { niche, productHref, typePageFor, catalogPath, isV2 } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { listLine } from "../../lib/list-lines";
 import { summary } from "../../lib/product-summary";
@@ -94,7 +94,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
 
   // light: the light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12); same content, the light look.
   // Design v2 skin on PadelRecs (owner 2026-11-15): the v2 palette, fonts and footer (app/pv2-skin.css).
-  const v2 = niche.id === "padel";
+  const v2 = isV2;
   return <><main className={`compare v2${light ? ` lt-page lcmp ${lightFont.className}` : ""}${v2 ? ` pv2 ${qtFontVars}` : ""}`}>
     {cols.some(c => c.affiliate) && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <div className="page-hero cmp-hero">

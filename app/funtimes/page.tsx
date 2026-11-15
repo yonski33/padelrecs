@@ -12,7 +12,7 @@ import DeleteWebReview from "./delete-web-review";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
-import { niche, catalogPath, productHref } from "../../lib/niche";
+import { niche, catalogPath, productHref, isV2 } from "../../lib/niche";
 import { productVariants } from "../../lib/variants";
 import { FinderForm, FinderResults, allSources } from "./finder";
 import { reviewSites, searchInput, searchReviews } from "../../db/review-search";
@@ -81,7 +81,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  <AdminNav current={specs?"specs":web?"web":"player"}/>
  <FinderForm input={finderInput} sites={sites} sources={sources}/>
  {q.result && messages[q.result] && <p role="status" className={["invalid","missing","stale","failed","spec-invalid","spec-missing","spec-slug-taken","spec-slug-invalid"].includes(q.result)?"form-error":"admin-notice"}>{messages[q.result]}</p>}
- {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket} oldSlugs={q.racket ? await oldSlugs(db, q.racket) : []} traits={q.racket && niche.id === "padel" ? (await matchContext()).traits(q.racket) : undefined}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
+ {specs ? <RacketSpecs models={models} brands={allBrands} racketId={q.racket} oldSlugs={q.racket ? await oldSlugs(db, q.racket) : []} traits={q.racket && isV2 ? (await matchContext()).traits(q.racket) : undefined}/> : web ? <div className="columns"><div><h2 className="admin-heading">Add a web review</h2><p className="small muted">Publishes immediately. Add a short excerpt and link to its original source.</p>
  <form method="post" action="/api/funtimes/external-reviews" className="review-form">
  <RacketPicker models={models} brands={allBrands} variants={variants}/>
  <label className="field">Summary <span className="muted">(our own words)</span><textarea name="summary" maxLength={1200} placeholder="Who is speaking and what they found, in our own words…"/><small>Shown first, as the card’s main text; write it in the third person (“Has played it for…”). At least 30 characters, or leave blank and add an excerpt.</small></label>
@@ -112,5 +112,5 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
 
 function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"}) {
  const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{niche.id === "padel" && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
+ return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
 }

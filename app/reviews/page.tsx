@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { catalog } from "../../db/data";
-import { niche, productHref } from "../../lib/niche";
+import { niche, productHref, isV2 } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { platformName, sourceLabel } from "../../lib/source-label";
 import { ProductArt, quoteText } from "../visual";
@@ -21,7 +21,7 @@ const word = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as c
 
 export function generateMetadata(): Metadata {
   const title = `Latest ${w.One} Reviews from Real ${people.One}s`;
-  const description = niche.id === "padel" ? `The newest ${w.one} reviews from ${niche.site.name} players, plus summaries of YouTube reviews.` : `The newest first-hand ${w.one} reviews from YouTube, blogs, forums and ${niche.site.name} ${people.many}, each linked to its source.`;
+  const description = isV2 ? `The newest ${w.one} reviews from ${niche.site.name} players, plus summaries of YouTube reviews.` : `The newest first-hand ${w.one} reviews from YouTube, blogs, forums and ${niche.site.name} ${people.many}, each linked to its source.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: "/reviews" }, openGraph: { title, description, url: "/reviews", type: "website", images: siteOgImages } };
 }
 
@@ -29,7 +29,7 @@ type Search = { type?: string; sentiment?: string; source?: string; show?: strin
 
 export default async function ReviewsPage({ searchParams }: { searchParams: Promise<Search & { src?: string; v?: string }> }) {
   // PadelRecs: the design-v2 page (owner 2026-11-15), our own reviews and YouTube summaries only.
-  if (niche.id === "padel") return <LatestReviewsV2 search={await searchParams}/>;
+  if (isV2) return <LatestReviewsV2 search={await searchParams}/>;
   const [data, f] = await Promise.all([catalog(), searchParams]);
   const now = Date.now();
   const type = niche.typePages?.find(t => t.slug === f.type);

@@ -73,3 +73,5 @@ export const categoryPill = (shape: string | null | undefined) => { const t = ty
 /** The one name for the 0–99 score everywhere in the UI (owner 2026-11-15: "Player score", never "signal"): "Player score",
  *  "Sleeper score"… The code keeps calling it the signal (lib/signal.ts). */
 export const scoreLabel = `${niche.people.One} score`;
+/** The site runs the 2026-11 design (niche.design). */
+export const isV2 = niche.design === "v2";
