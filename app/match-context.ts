@@ -20,6 +20,7 @@ import { EXTRACTORS } from "../lib/evidence";
 import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts } from "../lib/fine-tune";
 import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { factsWith, matchPcts, type RankItem } from "../lib/home-rank";
+import type { EngineFacts } from "../lib/engine";
 import { rowOfFamily } from "../lib/compare-pairs";
 import { matchData } from "../db/match-data";
 import type { QuickChoice } from "../lib/quick-match";
@@ -29,7 +30,7 @@ import type { QuickChoice } from "../lib/quick-match";
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
 // The site's hand-kept match data (db/match-data.ts): owner calls, maker / YouTube levels, YouTube trait mentions.
 const MATCH = matchData(niche.id);
-const GATE = niche.fit?.levelGate;
+const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine;
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
@@ -170,16 +171,29 @@ export const matchContext = cache(async () => {
     fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
   // One compact item per listed racket (lib/home-rank.ts): the place inside a picked shape, the match % and the home list are
   // worked out from these, on the server and (for chip taps) in the browser, with the same functions.
+  // The match engine's facts (lib/engine): verdict counts, praising / faulting voices, the specs' lean and expert values.
+  const sentOf = new Map<string, { pos: number; mix: number; neg: number }>();
+  const addSent = (id: string, v: string | null | undefined) => { const x = sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }; if (v === "positive") x.pos++; else if (v === "mixed") x.mix++; else if (v === "negative") x.neg++; sentOf.set(id, x); };
+  for (const r of data.reviews) addSent(r.racketId, ratingVerdict(r.rating));
+  for (const e of data.external) addSent(e.racketId, e.sentiment);
+  const engOf = (id: string, r: (typeof data.rackets)[number]): EngineFacts => {
+    const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {};
+    const vo = (k: "control" | "power" | "arm") => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
+    const exv = (k: "control" | "power" | "arm") => (ex as Record<string, { value: number } | undefined>)[k]?.value;
+    return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }), voices: { control: vo("control"), power: vo("power"), arm: vo("arm") },
+      spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, arm: t?.arm?.spec ?? 0 },
+      expert: Object.fromEntries((["control", "power", "arm"] as const).flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])) };
+  };
   const items: RankItem[] = [...listed].map(id => {
     const t = traitMap.get(id), p = byId.get(id), r = data.rackets.find(x => x.id === id)!;
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
-      ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id };
+      ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
   const factsFor = (choice: QuickChoice, id: string): FitFacts => factsWith(items, choice, facts(id), id);
   /** The match % for a set of picks, for every listed racket (lib/home-rank.ts matchPcts). */
-  const matchPct = (choice: QuickChoice) => matchPcts(items, choice, GATE);
+  const matchPct = (choice: QuickChoice) => matchPcts(items, choice, GATE, ENGINE);
   /** The level suits scores before any expert value (for the admin expert grid). */
   const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });

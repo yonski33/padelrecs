@@ -1,0 +1,73 @@
+{
+ "_about": "Draft yardstick for the padel match engine (owner to correct). Each check is a must-hold rule on the top lists.",
+ "beats": [
+  {
+   "pick": "intermediate+control",
+   "above": "adidas-metalbone-ctrl-2026",
+   "below": "bullpadel-hack-05-hybrid-2027",
+   "why": "owner 2026-11-15"
+  },
+  {
+   "pick": "intermediate+control",
+   "above": "nox-at10-genius-18k-2026",
+   "below": "bullpadel-hack-05-hybrid-2027",
+   "why": "owner 2026-11-15"
+  }
+ ],
+ "not_top": [
+  {
+   "pick": "intermediate+balance",
+   "slug": "wilson-blade-pro-v3-2025",
+   "top": 1,
+   "why": "owner: no business being #1"
+  },
+  {
+   "pick": "advanced+balance",
+   "slug": "bullpadel-neuron-02-edge-2027",
+   "top": 3,
+   "why": "owner: 12 reports, few-review rackets placed high"
+  },
+  {
+   "pick": "advanced+balance",
+   "slug": "head-extreme-motion-2026",
+   "top": 3,
+   "why": "owner: 11 reports"
+  },
+  {
+   "pick": "intermediate+power",
+   "slug": "adidas-metalbone-ctrl-2026",
+   "top": 5,
+   "why": "owner: not a power racket"
+  },
+  {
+   "pick": "advanced+power",
+   "slug": "adidas-metalbone-ctrl-2026",
+   "top": 10,
+   "why": "owner: not a power racket"
+  }
+ ],
+ "rules": [
+  {
+   "rule": "no_thin_top3",
+   "max_reports": 12,
+   "if_better_exists_reports": 40,
+   "why": "owner: favour well-liked rackets with lots of reviews"
+  },
+  {
+   "rule": "beginner_no_diamond",
+   "allow": [
+    "bullpadel-vertex-05-women-2026",
+    "head-coello-team-2026"
+   ],
+   "why": "owner 2026-11-15: diamonds out for beginners except Vertex Women; Team versions are beginner rackets (owner 2026-11-15)"
+  },
+  {
+   "rule": "power_top3_not_round",
+   "why": "a power pick should not lead with round (control) shapes"
+  },
+  {
+   "rule": "control_top3_not_diamond",
+   "why": "a control pick should not lead with diamonds"
+  }
+ ]
+}

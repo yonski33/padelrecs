@@ -164,7 +164,9 @@ export type Niche = {
     beginnerLines?: string[];
     /** Quick match's level gate (owner 2026-11-15): a product shows for a picked level only when its suits score for that
      *  level (lib/level-suits.ts) reaches this. Without it, level only weighs in the ranking. */
-    levelGate?: { beginner: number; intermediate: number; advanced: number } };
+    levelGate?: { beginner: number; intermediate: number; advanced: number };
+    /** The match engine (lib/engine, ENGINE-ALGO.md §5): when set, it ranks quick match and gives the % and the verdict word. */
+    engine?: import("../engine").EngineProfile };
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */

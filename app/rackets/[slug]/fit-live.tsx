@@ -5,8 +5,8 @@
 // lib/home-rank.ts matchPcts and alternatives, the same functions the server uses), then updates the address with no round
 // trip. "What players said" comes in its four level views, worked out on the server.
 import { createContext, useContext, useEffect, useState, type MouseEvent, type ReactNode } from "react";
-import { fitVerdict, MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
-import { factsWith, matchPcts, alternatives, type RankItem } from "../../../lib/home-rank";
+import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
+import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
 import { niche } from "../../../lib/niche";
@@ -14,7 +14,7 @@ import AskPicks, { RememberPicks } from "./ask-picks";
 
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
-const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate };
+const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
 const PICK_KEYS = ["style", "level", "arm"];
 
 type Picks = { choice: QuickChoice; picked: boolean };
@@ -53,10 +53,10 @@ export function FitBack({ all }: { all: { href: string; label: string } }) {
 export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree }: { id: string; items: RankItem[]; facts: FitFacts;
   hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string }) {
   const { p: { choice, picked }, set } = use(), to = useGo();
-  const verdict = picked ? fitVerdict(choice, factsWith(items, choice, facts, id)) : null;
+  const verdict = picked ? verdictFor(items, choice, facts, id, SETUP.levelGate, SETUP.engine) : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
-  const pct = verdict ? matchPcts(items, choice, SETUP.levelGate).get(id) ?? null : null;
+  const pct = verdict ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine).get(id) ?? null : null;
   const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
   const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (hook ? hook.good : null)) : null;
   const consider = verdict ? (verdict.catches?.[0] ?? (hook ? hook.catch : null)) : null;
@@ -125,7 +125,7 @@ export type AltCard = { name: string; href: string; pic: string | null; why: str
 export function FitAlts({ id, items, facts, cards, similar, brandLink, similarTitle }: { id: string; items: RankItem[]; facts: FitFacts; cards: Record<string, Omit<AltCard, "score">>;
   similar: AltCard[]; brandLink: { href: string; label: string } | null; similarTitle: string }) {
   const { p: { choice, picked } } = use();
-  const verdict = picked ? fitVerdict(choice, factsWith(items, choice, facts, id)) : null;
+  const verdict = picked ? verdictFor(items, choice, facts, id, SETUP.levelGate, SETUP.engine) : null;
   const picks = picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : "";
   const rows: AltCard[] = picked ? alternatives(items, SETUP, BAD, choice, id).flatMap(r => cards[r.id] ? [{ ...cards[r.id], score: r.pct }] : []) : similar;
   const title = !picked ? similarTitle : verdict?.kind === "good" ? "Also worth a look" : "Better matches for you";

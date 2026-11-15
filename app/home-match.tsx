@@ -16,7 +16,7 @@ const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: 
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 const FIT_WORD = { good: "Strong fit", maybe: "Worth a look", no: "Probably not" } as const;
 /** The finder plus the level gate (lib/niche fit.levelGate), as the server ranks with it. */
-const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate };
+const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
 
 const hrefOf = homeHref;
 const titleOf = (c: QuickChoice) => isDefault(c) ? niche.seo.homeTitle : `${matchSeoTitle(c, `${v2copy.sport ? `${v2copy.sport} ` : ""}${niche.words.many}`)} | ${niche.site.name}`;
