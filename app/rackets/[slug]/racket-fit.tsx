@@ -69,7 +69,9 @@ export default async function RacketFit(props: {
   const count = (k: string) => said.filter(r => r.sentiment === k).length;
   const [pos, mix, neg] = [count("positive"), count("mixed"), count("negative")];
   const who = (id: string) => { const r = byId.get(id); if (!r) return null;
-    return r.platform === props.site ? [r.nickname || `A ${props.site} player`, r.level].filter(Boolean).join(" · ") : [platformName(r.platform), r.sourceName && r.sourceName !== r.platform ? r.sourceName : null, r.level].filter(Boolean).join(" · "); };
+    // True source, neutral words (owner 2026-11-15): our own players by nickname, YouTube by channel, forums and blogs by kind.
+    const src = r.platform === props.site ? r.nickname || `A ${props.site} player` : r.platform === "YouTube" ? `YouTube · ${r.sourceName ?? "video"}` : r.platform === "Reddit" ? "padel forum" : platformName(r.platform) === "Blog" ? "padel blog" : platformName(r.platform).toLowerCase();
+    return [src, r.level?.toLowerCase()].filter(Boolean).join(" · "); };
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return `${props.href}${h === "/" ? "" : h.slice(1)}`; };
   const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={at(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
   // With no picks, a tap starts from the defaults (any / intermediate / no arm) but always lands on a picked page.
@@ -93,6 +95,8 @@ export default async function RacketFit(props: {
     speed: () => { const p = tc("fast at the net"), m = tc("head-heavy") + tc("tiring in long matches"); return p || m ? `${p ? ppl(p, "call it fast at the net") : "No one calls it fast at the net"}${m ? `, ${ppl(m, "find it head-heavy or tiring")}` : ""}.` : null; },
   };
   const qtRow: Record<Trait, { chip: string; line: string } | undefined> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
+  // Lines the owner wrote in the admin area stay even when the data is thin.
+  const manualText = new Set(TRAITS.map(t => tr.edits?.traits[t]?.text).filter((x): x is string => !!x));
   const traits = TRAITS.map(t => {
     const sc = tr.scores?.[t] ?? null, q = qtRow[t];
     // The hand-written line must agree with the dots: a strong chip beside 1–2 dots, or a weak/divided one beside 4–5, loses.
@@ -106,8 +110,13 @@ export default async function RacketFit(props: {
   });
 
   // Better matches: quick match with the visitor's picks (or the default order), from the catalog, without this racket.
-  const others = quickMatch(ctx.pool, ctx.finder, picked ? choice : DEFAULT_CHOICE, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 5, rankWeight: ctx.finder.rankWeight })
-    .filter(m => m.product.id !== props.racketId).slice(0, 4);
+  // With picks, the 4 alternatives with the best match % (the same number the home shows); without, quick match's order.
+  const pctOf = (id: string) => { const fv = fitVerdict(choice, ctx.facts(id)), ts = ctx.traits(id).scores, le = ctx.level(id);
+    return matchScore(choice, { verdict: fv, control: ts?.control?.score ?? null, power: ts?.power?.score ?? null, arm: ts?.arm?.score ?? null, band: le?.band, likedAtLevel: le?.liked[choice.level] ?? 0, signal: ctx.signal(id) }); };
+  const others = (() => {
+    const c = quickMatch(ctx.pool, ctx.finder, picked ? choice : DEFAULT_CHOICE, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: picked ? 25 : 5, rankWeight: ctx.finder.rankWeight }).filter(m => m.product.id !== props.racketId);
+    return (picked ? c.map((m, i) => ({ m, i, p: pctOf(m.product.id) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1) || a.i - b.i).map(x => x.m) : c).slice(0, 4);
+  })();
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -122,7 +131,17 @@ export default async function RacketFit(props: {
     return web ? { id: web.a.id, text: web.w!.excerpt!, verbatim: true, ok } : null;
   };
   const levelTakes = levelView ? [levelTake(true), levelTake(false)].filter((x): x is NonNullable<typeof x> => !!x) : [];
-  const takes = levelTakes.length ? levelTakes : d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? [];
+  // Quotes (owner 2026-11-15): our own players' words first, then YouTube's, then the quick-take's picks; verbatim only.
+  const pool = levelView ? atLevel : reports, inPool = new Set(pool.map(r => r.id));
+  const ownQuote = (want: string[]) => reviews.find(x => inPool.has(x.id) && want.includes(ratingVerdictOf(x.rating)) && english(x.reviewText));
+  const ytQuote = (want: string[]) => ctx.data.external.find(e => e.racketId === props.racketId && inPool.has(e.id) && e.sourcePlatform === "YouTube" && e.sentiment && want.includes(e.sentiment) && !e.sourceLanguage && english(e.excerpt));
+  const quoteOf = (want: string[]) => { const o = ownQuote(want); if (o) return { id: o.id, text: o.reviewText, verbatim: true, tone: ratingVerdictOf(o.rating) };
+    const y = ytQuote(want); return y ? { id: y.id, text: y.excerpt!, verbatim: true, tone: y.sentiment! } : null; };
+  const toneOf = (ok: boolean) => ok ? "positive" : "negative";
+  const preferred = [quoteOf(["positive"]), quoteOf(["negative", "mixed"])];
+  const fallback = (levelTakes.length ? levelTakes : d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? []).map(t => ({ id: t.id, text: t.text, verbatim: t.verbatim, tone: byId.get(t.id)?.sentiment ?? toneOf(t.ok) }));
+  const takes = [preferred[0] ?? fallback.find(t => t.tone === "positive"), preferred[1] ?? fallback.find(t => t.tone !== "positive")].filter((x): x is NonNullable<typeof x> => !!x);
+  const QUOTE_TAG: Record<string, [string, string]> = { positive: ["✓ Worked for them", "ok"], negative: ["✗ Not for them", "no"], mixed: ["~ Mixed feelings", "mix"] };
   // The Reviews section's cards (RACKET-REVIEWS-SECTION.md): our own reviews and stored reports, newest first. YouTube
   // reports get the video card; everything else is a player card. Real data only: no author handles are stored, so web
   // reports say "A player" and link their source; a verdict pill only where the sentiment was judged.
@@ -145,7 +164,13 @@ export default async function RacketFit(props: {
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
   const levelWord = choice.level === "advanced" ? "advanced players" : `${choice.level}s`;
-  const tips = qt?.tips.slice(0, 2) ?? [];
+  // Heads up and player tip (owner 2026-11-15): only from the quick-take's notes with 2+ reports behind them, and the catch's
+  // bullets; split into a title (first sentence) and a detail. Nothing real: the box is hidden.
+  const split = (t: string) => { const m = /^(.+?[.!?])\s+(.+)$/.exec(t.trim()); return m ? { t: m[1], d: m[2] } : { t: t.trim(), d: "" }; };
+  const heads = [...(qt?.tips.filter(x => (x.label === "Heads up" || x.label === "Weather check") && x.reports.length >= 2).map(x => split(x.text)) ?? []),
+    ...((qt?.catch.reports.length ?? 0) >= 2 ? qt!.catch.bullets.map(b => split(b)) : [])].slice(0, 3);
+  const tipNote = qt?.tips.find(x => (x.label === "Player tip" || x.label === "Setup tip") && x.reports.length >= 2);
+  const tip = tipNote ? { ...split(tipNote.text), n: new Set(tipNote.reports).size, other: qt!.tips.find(x => x !== tipNote && (x.label === "Player tip" || x.label === "Setup tip") && x.reports.length >= 2) } : null;
   const total = reports.length;
 
   const lean = styleLean(facts).lean;
@@ -215,23 +240,33 @@ export default async function RacketFit(props: {
             <div className="rf-said">
               <div className="rf-sum">
                 <div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
-                <p className="rf-counts"><span>{`👍 ${pos} loved it`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} nope`}</span></p>
+                <p className="rf-counts"><span>{`👍 ${pos} loved`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} nope`}</span></p>
               </div>
-              {takes.length > 0 && <div className="rf-quotes">{takes.map(t => <div key={t.id}>
-                <span className={t.ok ? "ok" : "no"}>{t.ok ? "✓ worked for them" : "✗ not for them"}</span>
+              {takes.length > 0 && <div className="rf-quotes">{takes.map(t => { const [tag, cls] = QUOTE_TAG[t.tone] ?? QUOTE_TAG.mixed; return <div key={t.id} className={cls}>
+                <span>{tag}</span>
                 <p>{t.verbatim ? `“${t.text}”` : t.text}</p>
                 <small>{who(t.id)}</small>
-              </div>)}</div>}
+              </div>; })}</div>}
             </div>
           </div>
 
-          {traits.length > 0 && <div>
-            <h2 className="rf-h2">How it plays</h2>
-            <div className="rf-traits">{traits.map(([k, v, dots]) => <div key={k}><div className="rf-th"><b>{k}</b>{dots && <span aria-label={`${dots.length - dots.replace(/●/g, "").length} of 5`}>{dots}</span>}</div><p><Rich text={v}/></p></div>)}</div>
-          </div>}
+          <div>
+            <div className="rf-h"><h2>How it plays</h2><span>from player reports, compared with other rackets</span></div>
+            <div className="rf-plays">{traits.map(([k, v, dots]) => { const n = dots ? dots.replace(/○/g, "").length : 0;
+              return <div key={k} className="rf-prow"><b>{k}</b>
+                {n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? "on" : undefined}/>)}</span> : <span className="rf-segs none"/>}
+                <span className="rf-pnote">{n ? <em className={`t${n}`}>{n === 5 ? "standout" : n === 4 ? "strong" : n === 3 ? "so-so" : "below most"}</em> : null}<span><Rich text={n || manualText.has(v) ? v : "Not enough reports yet."}/></span></span>
+              </div>; })}</div>
+          </div>
 
-          {tips.length > 0 && <div className="rf-tips">{tips.map((t, i) => <div key={i} className={t.label === "Heads up" ? "warn" : "tip"}>
-            <h3>{t.label === "Heads up" ? "Heads up ⚠️" : `${t.label} 💡`}</h3><p><Rich text={t.text}/></p></div>)}</div>}
+          {(heads.length > 0 || tip) && <div className="rf-boxes">
+            {heads.length > 0 && <div className="rf-box2"><span className="rf-lab warn">⚠ heads up</span>{heads.map((h, i) => <div key={i} className="rf-hd"><b>{h.t}</b>{h.d && <span>{h.d}</span>}</div>)}</div>}
+            {tip && <div className="rf-box2"><span className="rf-lab tip">💡 player tip</span>
+              <p className="rf-tipt">{tip.t}</p>
+              {tip.d && <div className="rf-why"><strong>Why:</strong> {tip.d}</div>}
+              {tip.other && <div className="rf-also"><strong>Also:</strong> {tip.other.text}</div>}
+              <small className="rf-src">{`from ${tip.n} player reports`}</small></div>}
+          </div>}
 
           {props.specs.length > 0 && <div><h2 className="rf-h2">Specs</h2><p className="rf-specs">{props.specs.map(s => { const [k, ...v] = s.split(" "); return <span key={s}><span>{k}</span>{` ${v.join(" ")}`}</span>; })}</p></div>}
         </div>
@@ -244,7 +279,9 @@ export default async function RacketFit(props: {
               return <li key={r.id}><a href={`${productHref(r)}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`}>
                 <span className="rf-apic">{pic ? <img src={pic} alt="" loading="lazy"/> : <span>{displayName(r.name, brand(r.brandId)).split(" ").slice(0, 2).join(" ")}</span>}</span>
                 <span className="rf-abody"><b>{displayName(r.name, brand(r.brandId))}</b>{why && <span>{why}</span>}</span>
-                {sig !== null && <span className="rf-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig}</span>}
+                {picked ? (() => { const p = pctOf(r.id);
+                  return <span className="rf-score" title="How well it fits your picks, from player reports. Not a % of happy players.">{p === null ? "—" : `${p}%`}</span>; })()
+                : sig !== null && <span className="rf-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig}</span>}
               </a></li>; })}</ul>
           </div>
           <div className="rf-vote"><p className="rf-vt">Played it? <a href="#reviews">Leave a review ↓</a></p><QuickVoteLine racketId={props.racketId} name={props.shortName} label="" wordsHref="#reviews" words={{ positive: "👍 yes", mixed: "🤷 mixed", negative: "👎 nope" }}/></div>
@@ -254,7 +291,7 @@ export default async function RacketFit(props: {
       <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards}/></section>
 
       <footer className="rf-foot" id="how-we-read">
-        <div className="rf-line">{`built from ${total} player reports · every source linked · `}
+        <div className="rf-line">{"built from YouTube reviews, reviews sent to us and padel forum reports · every source linked · "}
           <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test rackets and no brand pays for placement. `}{qt && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
           {" · "}<a href="/contact">spot something wrong?</a></div>
         <p className="rf-made">made by people who own too many rackets 🎾</p>
