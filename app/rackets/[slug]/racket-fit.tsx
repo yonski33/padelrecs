@@ -65,8 +65,12 @@ export default async function RacketFit(props: {
   const { qt, reports, reviews, choice, picked } = props;
   const [ctx, payload] = await Promise.all([matchContext(), homePayload()]);
   const facts = ctx.facts(props.racketId);
+  // The style chip follows the match engine's control ↔ power axis (one story with the fit check and the dots; maker labels
+  // bound it), with the tag-count lean only where the engine has no place for the racket.
+  const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
+  const lean = axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
-  const bf = bestFor(facts), bfArm = bf.includes("sore arms"), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b)), bfLean = bf.find(b => / players$/.test(b));
+  const bf = bestFor(facts), bfArm = bf.includes("sore arms"), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b)), bfLean = lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
   const bfWho = [bfLevel, bfLean ?? (bfLevel ? "players" : null)].filter(Boolean).join(" ");
   const bestLine = bfWho ? `${bfWho}${bfArm ? ", and sore arms" : ""}` : bfArm ? "sore arms" : null;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
@@ -194,10 +198,6 @@ export default async function RacketFit(props: {
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
 
-  // The style chip follows the match engine's control ↔ power axis (one story with the fit check and the dots; maker labels
-  // bound it), with the tag-count lean only where the engine has no place for the racket.
-  const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
-  const lean = axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
   // The fit card's racket-specific lines (lib/fit-card.ts, owner 2026-11-15): only this racket's entry goes to the browser,
   // with names and links for the rackets its catches point to. None yet: FitBox keeps the fit check's own reasons.
   const cardData = cardContent(props.slug);
