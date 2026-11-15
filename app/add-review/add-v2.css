@@ -21,13 +21,13 @@ body:has(main.ar) { background: #fbfaf6; }
   .ar-picked b { flex: 1; min-width: 0; }
   .ar-picked button { all: unset; cursor: pointer; font: 12px var(--mono); text-decoration: underline; white-space: nowrap; }
   .ar-pic { width: 36px; height: 44px; flex: none; background: var(--paper); border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .ar-pic.sm { width: 28px; height: 34px; background: var(--tile); border-radius: 4px; }
+  .ar-pic.sm { width: 40px; height: 48px; background: var(--tile); border-radius: 4px; }
   .ar-pic img { height: 88%; width: auto; max-width: 100%; object-fit: contain; }
   .ar-q, .ar-row input, .ar textarea { width: 100%; box-sizing: border-box; border: 2px solid var(--ink) !important; border-radius: 8px; outline: none; background: var(--bg) !important; color: var(--ink); box-shadow: none !important; }
-  .ar-q { padding: 9px 12px; font: 14px var(--mono); }
+  .ar-q { padding: 14px 16px; font: 16px var(--mono); border-radius: 10px; }
   .ar-q:focus, .ar-row input:focus, .ar textarea:focus { box-shadow: 0 0 0 3px var(--acc) !important; }
   .ar-matches { display: flex; flex-direction: column; margin-top: -4px; }
-  .ar-matches button { all: unset; cursor: pointer; display: flex; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 6px; font-size: 15px; }
+  .ar-matches button { all: unset; cursor: pointer; display: flex; gap: 14px; align-items: center; padding: 8px 10px; border-radius: 8px; font-size: 16px; font-weight: 600; line-height: 1.25; }
   .ar-matches button:hover, .ar-matches button:focus-visible { background: oklch(0.97 0.04 125); }
   .ar-small { margin: 0; font-size: 13px; color: var(--soft); text-wrap: pretty; }
   .ar-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }

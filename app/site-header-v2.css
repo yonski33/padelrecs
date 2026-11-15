@@ -14,12 +14,16 @@
   nav { display: flex; gap: 18px; font-size: 15px; flex-wrap: wrap; }
   nav a { color: var(--ink); text-decoration: none; }
   .hv2-grow { flex: 1; }
-  .hv2-find { min-width: 200px; position: relative; }
+  .hv2-find { min-width: 320px; position: relative; }
   .hv2-find form { display: flex; border: 2px solid var(--ink) !important; border-radius: 8px !important; background: var(--paper) !important; box-shadow: none !important; margin: 0 !important; width: 100%; max-width: none !important; }
   .hv2-find .search-box { border: 0 !important; box-shadow: none !important; background: none !important; padding: 0 !important; min-height: 0 !important; height: auto !important; width: 100%; }
   .hv2-find .search-box > svg { display: none; }
-  .hv2-find input { flex: 1; width: 100%; min-width: 0; border: 0 !important; outline: 0; padding: 6px 12px !important; font: 13px var(--mono) !important; color: var(--ink) !important; background: transparent !important; box-shadow: none !important; height: auto !important; }
+  .hv2-find input { flex: 1; width: 100%; min-width: 0; border: 0 !important; outline: 0; padding: 11px 14px !important; font: 15px var(--mono) !important; color: var(--ink) !important; background: transparent !important; box-shadow: none !important; height: auto !important; }
   .hv2-find input::placeholder { color: var(--mute); }
+  .hv2-find .search-dropdown { left: auto; right: 0; width: min(560px, calc(100vw - 32px)); top: calc(100% + 8px); }
+  .hv2-find .sug-item { grid-template-columns: 44px 1fr auto; gap: 14px; padding: 8px 12px; }
+  .hv2-find .sug-photo, .hv2-find .sug-item svg { width: 36px; height: 44px; justify-self: center; }
+  .hv2-find .sug-item .nm { font-size: 15.5px; overflow-wrap: normal; }
   .hv2-add { background: var(--ink); color: var(--bg) !important; text-decoration: none; padding: 7px 12px; border-radius: 8px; font: 700 14px var(--body); border: 2px solid var(--ink); white-space: nowrap; }
   :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
   @media (max-width: 760px) {

@@ -1,4 +1,5 @@
 "use client";
+import { matchingRackets } from "../../lib/racket-search";
 import { useState } from "react";
 import { VERDICTS, loadProfile, saveProfile, sendVote, type Verdict } from "../quick-vote";
 
@@ -23,7 +24,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times }: 
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<null | "words" | "vote">(null);
   const racket = rackets.find(x => x.id === racketId) ?? null;
   const qq = q.trim().toLowerCase();
-  const matches = rackets.filter(x => !qq || x.name.toLowerCase().includes(qq)).slice(0, qq ? 6 : 4);
+  const matches = (qq ? matchingRackets(rackets, qq) : rackets).slice(0, qq ? 8 : 4);
   const ready = !!(racket && verdict);
   const label = (opts: Opt[], v: string | null) => opts.find(o => o.value === v)?.label;
   const who = name.trim() || "Anonymous";
