@@ -38,6 +38,9 @@ export type TraitInput = {
   specs?: Specs;
   /** Arm comfort said only in report text (no arm tag): reports kind (plus) or hard (minus) on the arm. */ textArm?: { plus: number; minus: number };
   /** Dots (1–5) set by hand per trait. */ override?: Partial<Record<Trait, number>> | null;
+  /** From the evidence store (lib/evidence.ts evidenceTotals): per trait the weighted net, praising voices and complaints.
+   *  When given it replaces `tags` and `textArm` for the trait counts (they're already in it). */
+  totals?: Partial<Record<Trait, { net: number; plus: number; minus: number }>>;
 };
 export type TraitScore = { score: number; dots: number; plus: number; minus: number; yt: number; spec: number;
   /** What set it: player reports, or (few player mentions) the specs and YouTube, or nothing (3 by default). */ basis: "players" | "specs" | "none"; set?: boolean };
@@ -69,8 +72,10 @@ export function specLean(s: Specs | undefined): Record<Trait, number> {
  *  +lean/2, Power −lean. Needs 6+ style mentions; even praise gives nothing. */
 export function styleBonus(p: TraitInput, t: Trait): number {
   if (t !== "control" && t !== "defence" && t !== "power") return 0;
-  const c = (p.tags["good control"] ?? 0) + (p.tags["great in defence"] ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0));
-  const w = (p.tags["easy power"] ?? 0) + (p.tags["great on smashes"] ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0);
+  const c = p.totals ? (p.totals.control?.plus ?? 0) + (p.totals.defence?.plus ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0))
+    : (p.tags["good control"] ?? 0) + (p.tags["great in defence"] ?? 0) + YT_WEIGHT * ((p.youtube?.control?.plus ?? 0) + (p.youtube?.defence?.plus ?? 0));
+  const w = p.totals ? (p.totals.power?.plus ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0)
+    : (p.tags["easy power"] ?? 0) + (p.tags["great on smashes"] ?? 0) + YT_WEIGHT * (p.youtube?.power?.plus ?? 0);
   if (c + w < 6) return 0;
   const lean = Math.max(-1, Math.min(1, (c / (c + w) - 0.5) * 2.5));
   return t === "control" ? lean : t === "defence" ? lean / 2 : -lean;
@@ -84,9 +89,14 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     const { plus, minus } = TRAIT_TAGS[t];
     const yt = (p: TraitInput) => p.youtube?.[t] ?? { plus: 0, minus: 0 };
     // Arm words without a tag count like tags (one per report).
-    const tx = (p: TraitInput) => t === "arm" ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
+    const tx = (p: TraitInput) => !p.totals && t === "arm" ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
+    // Tag counts, or the evidence store's totals (which already hold the arm words).
+    const wPlus = (p: TraitInput) => p.totals ? Math.max(0, p.totals[t]?.net ?? 0) : weighted(p.tags, plus);
+    const wMinus = (p: TraitInput) => p.totals ? Math.max(0, -(p.totals[t]?.net ?? 0)) : weighted(p.tags, minus);
+    const voices = (p: TraitInput) => p.totals ? p.totals[t]?.plus ?? 0 : people(p.tags, plus);
+    const faults = (p: TraitInput) => p.totals ? p.totals[t]?.minus ?? 0 : minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0);
     const evidence = (p: TraitInput) => p.tagged + yt(p).plus + yt(p).minus;
-    const net = (p: TraitInput) => weighted(p.tags, plus) - weighted(p.tags, minus) + tx(p).plus - tx(p).minus + YT_WEIGHT * (yt(p).plus - yt(p).minus);
+    const net = (p: TraitInput) => wPlus(p) - wMinus(p) + tx(p).plus - tx(p).minus + YT_WEIGHT * (yt(p).plus - yt(p).minus);
     const base = (p: TraitInput) => p.tagged + YT_WEIGHT * (yt(p).plus + yt(p).minus);
     // The catalog's typical share (median → 3 dots) and spread (one dot per STEP), over rackets with enough evidence.
     const pool = products.filter(p => evidence(p) >= MIN_EVIDENCE && base(p) > 0);
@@ -97,8 +107,8 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     // 2 dots is the extreme end (owner 2026-11-15: "if we set it at 2, more unforgiving rackets will have to be 1"): 8+ players
     // fault that exact trait, over 3× the praise (+1), and the racket is among the WORST_SHARE most-faulted in the catalog.
     // With too few rackets to judge the extreme end, the plain rule: 5+ complaints that outnumber praise.
-    const praiseOf = (p: TraitInput) => people(p.tags, plus) + tx(p).plus + yt(p).plus;
-    const againstOf = (p: TraitInput) => minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus + yt(p).minus;
+    const praiseOf = (p: TraitInput) => voices(p) + tx(p).plus + yt(p).plus;
+    const againstOf = (p: TraitInput) => faults(p) + tx(p).minus + yt(p).minus;
     const worst = new Set<string>();
     if (COMPLAINT_TRAITS.includes(t)) {
       if (pool.length >= 20) {
@@ -108,7 +118,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
       } else products.filter(p => againstOf(p) >= 5 && againstOf(p) > praiseOf(p)).forEach(p => worst.add(p.id));
     }
     for (const p of products) {
-      const mentions = people(p.tags, plus) + minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
+      const mentions = voices(p) + faults(p) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
       const lean = specLean(p.specs)[t];
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
@@ -129,7 +139,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
       const complaint = worst.has(p.id);
       const dots = hand ?? Math.max(complaint ? 2 : 3, Math.min(5, Math.round(cont)));
       const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((Math.max(complaint ? 2 : 3, cont) - 1) / 4 * 99);
-      out.get(p.id)![t] = { score, dots, plus: people(p.tags, plus) + tx(p).plus, minus: minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus, yt: yt(p).plus, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
+      out.get(p.id)![t] = { score, dots, plus: voices(p) + tx(p).plus, minus: faults(p) + tx(p).minus, yt: yt(p).plus, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
     }
   }
   return out;

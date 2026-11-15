@@ -14,6 +14,8 @@ import { quickTakeHooks } from "../db/quick-take";
 import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
+import { evidenceRows } from "../db/evidence";
+import { evidenceTotals } from "../lib/evidence";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -22,7 +24,7 @@ const LEVEL_SOURCES: Record<string, Record<string, LevelSources>> = { padel: pad
 const YOUTUBE_TRAITS: Record<string, Record<string, Partial<Record<Trait, { plus: number; minus: number }>>>> = { padel: padelYoutubeTraits };
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
-  const [data, sigs, takes, live, overrides] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides()]);
+  const [data, sigs, takes, live, overrides, evidence] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
@@ -67,11 +69,12 @@ export const matchContext = cache(async () => {
   // negative report), "tagged" = reports with at least one counted tag.
   const goodSet = new Set(good), tagIn = new Map<string, TraitInput>();
   const listed = new Set(data.listed.map(r => r.id));
-  for (const x of [...data.reviews.map(r => ({ id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags, text: r.reviewText })), ...data.external.map(e => ({ id: e.racketId, v: e.sentiment, tags: e.tags, text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") }))]) {
+  const taggedReports = new Map<string, Set<string>>();
+  for (const x of [...data.reviews.map(r => ({ ref: `p:${r.id}`, id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags, text: r.reviewText })), ...data.external.map(e => ({ ref: `w:${e.id}`, id: e.racketId, v: e.sentiment, tags: e.tags, text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") }))]) {
     if (!listed.has(x.id)) continue;
     const counted = x.tags.filter(t => !(goodSet.has(t) && x.v === "negative"));
     const t = tagIn.get(x.id) ?? { id: x.id, tagged: 0, tags: {} }; tagIn.set(x.id, t);
-    if (counted.length) t.tagged++;
+    if (counted.length) { t.tagged++; const s = taggedReports.get(x.id) ?? new Set(); s.add(x.ref); taggedReports.set(x.id, s); }
     for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
     // Arm comfort said only in words (no arm tag): read with fixed rules (lib/youtube-trait-rules.ts armFromReportText).
     if (!x.tags.includes("arm-friendly") && !x.tags.includes("vibrates on mishits") && x.text) {
@@ -85,6 +88,12 @@ export const matchContext = cache(async () => {
   for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
     p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
+  // The evidence store (migration 0023, ENGINE-PLAN.md) when it holds rows: tags, arm words, YouTube notes and the reader
+  // pass, counted by lib/evidence.ts. Its backfill gives exactly today's counts (scripts/evidence-backfill.mts --check).
+  if (evidence.length) {
+    const totals = evidenceTotals(evidence, taggedReports);
+    for (const [id, p] of tagIn) { const t = totals.get(id); p.totals = t?.traits ?? {}; p.youtube = t && Object.keys(t.youtube).length ? t.youtube : undefined; p.tagged = t?.tagged ?? p.tagged; }
+  }
   const traitAuto = traitScores([...tagIn.values()]);
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
   const traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
