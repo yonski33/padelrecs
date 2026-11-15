@@ -56,7 +56,7 @@ export const matchContext = cache(async () => {
   const sourcesOf = (id: string): LevelSources | undefined => LEVEL_SOURCES[niche.id]?.[slugOf.get(id) ?? ""];
   // Level as a "suits" score per level (lib/level-suits.ts, filled below from the evidence store); without it, the band the
   // sources agree on (brand, reviewers, players), like the fit check.
-  const suitsOf = new Map<string, { suits: Suits; disagree: string | null }>();
+  const suitsOf = new Map<string, { suits: Suits; disagree: string | null }>(), suitsAutoOf = new Map<string, Suits>();
   // Fine-tune facts per racket (lib/fine-tune.ts), filled with the trait scores below.
   const fineOf = new Map<string, FineFacts & { weightSpec: string | null }>();
   const level = (id: string): LevelEvidence | undefined => {
@@ -144,9 +144,15 @@ export const matchContext = cache(async () => {
       const x = get(id), yt = sourcesOf(id)?.youtube, f = bal.get(id)?.forgiveness;
       if (yt) x.youtube = { from: yt.from, to: yt.to, channels: yt.channels };
       if (f) x.forgiveness = { P: f.P, C: f.C };
-      suitsOf.set(id, { suits: levelSuits(x), disagree: levelDisagreement(x) });
+      const su = levelSuits(x), ex = overrides.get(id)?.expert;
+      suitsAutoOf.set(id, { ...su, basis: [...su.basis] });
+      // An expert's suits scores win, and count as backing (not the brand alone).
+      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) su.basis.push("expert"); }
+      suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
-    traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })));
+    // Expert values (admin expert grid) win over the calculated score and hand-set dots.
+    const expertTraits = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.expert ?? {}).filter(([k]) => !k.startsWith("suits_")).map(([k, e]) => [k, e!.value])) as Partial<Record<TraitKey, number>>;
+    traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) }, expert: expertTraits(p.id) })));
   } else {
     traitAuto = traitScores([...tagIn.values()]);
     traitMap = traitScores([...tagIn.values()].map(p => ({ ...p, override: dotsSet(p.id) })));
@@ -173,6 +179,8 @@ export const matchContext = cache(async () => {
     pctCache.set(key, out);
     return out;
   };
+  /** The level suits scores before any expert value (for the admin expert grid). */
+  const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits, matchPct, fineOf: (id: string) => fineOf.get(id) };
+  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence };
 });

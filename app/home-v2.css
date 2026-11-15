@@ -131,3 +131,6 @@ body:has(main.hv2) { background: #fbfaf6; }
     .hv2-stats { grid-column: 3; flex-direction: row; align-items: center; gap: 8px; white-space: normal; min-width: 0; }
   }
 }
+
+/* "based on fewer reports" next to a verdict resting on few reports (owner 2026-11-15) */
+.hv2 .hv2-few { font: normal 11px var(--qt-mono, "JetBrains Mono"), monospace; color: #6a675f; }

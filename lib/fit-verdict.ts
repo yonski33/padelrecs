@@ -2,6 +2,7 @@
 // visitor's quick-match picks (lib/quick-match.ts). Real data only, the same inputs as quick match: tag counts from published
 // reports, the rankings' places, the quick-take level band. No guessing: thin data says so instead of giving a verdict.
 import type { QuickChoice } from "./quick-match";
+import { niche } from "./niche";
 import { fineMismatches, type FineFacts } from "./fine-tune";
 
 /** A level range, 0 beginner … 2 advanced. */
@@ -28,7 +29,8 @@ export type FitFacts = {
 export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[]; /** One short reason for list rows (the home). */ short?: string;
   /** What fits (ok checks) and what to weigh (conflicts), for the racket page's two blocks. */ fits?: string[]; catches?: string[] };
 
-export const MIN_FIT_REPORTS = 20;
+/** The fewest reports for a verdict, and below how many it says it rests on fewer reports (per site, lib/niche fit). */
+export const MIN_FIT_REPORTS = niche.fit?.minReports ?? 20, FEW_FIT_REPORTS = niche.fit?.fewReports ?? MIN_FIT_REPORTS;
 /** Arm-friendly mentions needed before the fit check vouches for a sore arm. */
 export const ARM_BAR = 3;
 const CONTROL = ["good control", "great in defence"], POWER = ["easy power", "great on smashes"];

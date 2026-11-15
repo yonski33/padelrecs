@@ -11,7 +11,7 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
-import { fitVerdict, ARM_BAR } from "../lib/fit-verdict";
+import { fitVerdict, ARM_BAR, FEW_FIT_REPORTS } from "../lib/fit-verdict";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
@@ -130,7 +130,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="hv2-line">{line}</span>}
-                {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}</span>}</span>
+                {fitWord && <span className={`hv2-fit ${fit!.kind}`}><b>{fitWord}</b>{fit!.short && <span>{fit!.short}</span>}{n < FEW_FIT_REPORTS && <em className="hv2-few">{`based on fewer reports (${n})`}</em>}</span>}</span>
               <span className="hv2-stats">
                 {picked ? <span className={`hv2-pct${fit && fit.kind !== "thin" ? ` ${fit.kind}` : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
                   {pct === null ? <><b>—</b><small>not enough reports yet</small></> : <><b>{`${pct}%`}</b><small>match</small></>}</span>
