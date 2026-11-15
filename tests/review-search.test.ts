@@ -6,7 +6,7 @@ import {migrationSql} from "../db/migrations";
 import {reviewSites,searchInput,searchReviews,setSentiment,reviewLinks} from "../db/review-search";
 import {checkSentiment} from "../lib/sentiment-check";
 import {planImport,webReviewId} from "../db/web-review-import";
-import {niches} from "../lib/niche";
+import { niches } from "../lib/niche/all";
 
 test("sentiment check flags complaints in positive reviews and praise in negative ones",()=>{
  const doubtful=checkSentiment("positive","Loves the feel, but it cracked after two months and they returned it.");

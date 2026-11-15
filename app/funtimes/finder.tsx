@@ -1,5 +1,5 @@
 import type {ReactNode} from "react";
-import {niches} from "../../lib/niche";
+import { niches } from "../../lib/niche/all";
 import {reviewLinks,type SearchInput,type SearchResult,type SiteRef} from "../../db/review-search";
 import SentimentButtons from "./sentiment-buttons";
 

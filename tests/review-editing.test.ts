@@ -14,7 +14,7 @@ import {POST} from "../app/api/funtimes/edit-review/route";
 import {POST as DELETE_WEB} from "../app/api/funtimes/delete-web-review/route";
 import {planImport,webReviewId} from "../db/web-review-import";
 import {reviewVariant,variantInput} from "../db/review-variant";
-import {niches} from "../lib/niche";
+import { niches } from "../lib/niche/all";
 
 const fields=(row:object)=>Object.fromEntries(Object.entries(row).map(([key,value])=>[key,value??""]));
 test("player and web edits preserve identity and dates, update public data, and reject stale forms",async()=>{

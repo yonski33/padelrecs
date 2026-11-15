@@ -208,8 +208,8 @@ export const skin: Niche = {
   },
   seo: {
     homeTitle: "SkinRecs – Real User Reviews of Skincare Products",
-    homeDescription: "Browse real skincare reviews from people who used the products, plus opinions collected from Reddit, YouTube, retailers and forums. Compare experiences across CeraVe, La Roche-Posay, The Ordinary, Paula’s Choice and more.",
-    layoutDescription: "Real experiences with skincare products from people who used them, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real skincare reviews from people who used the products, plus opinions collected from YouTube, retailers and forums. Compare experiences across CeraVe, La Roche-Posay, The Ordinary, Paula’s Choice and more.",
+    layoutDescription: "Real experiences with skincare products from people who used them, plus opinions from YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | SkinRecs",
     catalog: { title: "All Skincare Products – User Reviews and Ratings", description: "Every skincare product on SkinRecs with community ratings. Filter by brand and type, then read what people say about each one." },
     brands: { title: "Skincare Brands", description: "Browse skincare products by brand — CeraVe, La Roche-Posay, The Ordinary, Paula’s Choice, Neutrogena and more — and read real user reviews of each one." },
@@ -218,12 +218,12 @@ export const skin: Niche = {
     productNotFound: "Product not found | SkinRecs",
     productCategory: "Skincare product",
     addReview: { title: "Add a Skincare Review", description: "Used a skincare product? Share how it worked on your skin in about two minutes. No account needed." },
-    about: { title: "About", description: "Why SkinRecs exists: skincare opinions are scattered across Reddit, YouTube, retailers and forums. SkinRecs collects them and lets people add their own." },
+    about: { title: "About", description: "Why SkinRecs exists: skincare opinions are scattered across YouTube, retailers and forums. SkinRecs collects them and lets people add their own." },
     ogAlt: "SkinRecs – real user reviews of skincare products",
     ogProductAlt: "Skincare product reviews on SkinRecs",
     ogEyebrow: "Real reviews of skincare products",
     ogTitle: "Skincare reviews from people who used it",
-    ogDetail: "From users, Reddit, YouTube, retailers and forums",
+    ogDetail: "From users, YouTube, retailers and forums",
     ogFallbackTitle: "Skincare reviews",
   },
   copy: {
@@ -242,7 +242,7 @@ export const skin: Niche = {
     about: {
       heading: "Why SkinRecs exists",
       paragraphs: [
-        "Skincare opinions are scattered across Reddit, YouTube, retailers and forums. SkinRecs puts those experiences in one place and lets people add their own.",
+        "Skincare opinions are scattered across YouTube, retailers and forums. SkinRecs puts those experiences in one place and lets people add their own.",
         "A product that works for one person won’t work for everyone. Knowing someone’s skin type, what they were trying to fix and how long they used it often tells you more than a score on its own.",
       ],
       sections: [

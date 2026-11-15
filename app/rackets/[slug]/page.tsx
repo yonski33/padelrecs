@@ -1,8 +1,5 @@
 export const dynamic = "force-dynamic";
 import { isLight } from "../../../lib/look";
-import { fitConfigFor } from "../../../lib/fit-config";
-/** The balance column's own name (pickleball: swing weight), one word for the specs line. */
-const balanceWord = (niche.specs.find(x => x.column === "balance")?.label ?? "Balance").toLowerCase().replace(/ /g, "\u00a0");
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
 import { cache } from "react";
@@ -34,7 +31,7 @@ import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
 import { quickTakeFor } from "../../../db/quick-take";
 import { tagTone } from "../../../lib/tags";
-import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor } from "../../../lib/niche";
+import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor, scoreLabel, isV2 } from "../../../lib/niche";
 import { amazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
 import { ratingVerdict, listYear } from "../../../lib/top-lists";
@@ -69,20 +66,18 @@ export async function generateMetadata({params, searchParams}: {params: Promise<
   const r = data.rackets.find(x => x.slug === slug);
   if (!r) return { title: { absolute: niche.seo.productNotFound }, robots: { index: false } };
   const name = displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name);
-  const base = niche.seo.product(name), sum = summary(data, r.id);
-  // With enough reviews, the search snippet says what the page knows: how many, how positive, what people praise and
-  // complain about. Below that, the niche's generic wording.
-  // The same "% positive" as the page header and the FAQ (all reviews), not the recent-window share (audit, 2026-11-13).
-  const shown = positiveShare(score(data, r.id));
-  const rich = sum.total >= 5 && shown !== null;
-  // Just the name and "Player Reviews" (owner, 2026-11-12): short enough for Google to show whole, no repeated year.
-  const title = `${name} ${niche.people.One} Reviews`;
-  const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
-    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${shown}% positive.`,
-       // Only themes with 3+ mentions make the snippet (owner, 2026-11-12, UX audit).
-       sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).length ? `Loved for: ${sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).slice(0, 3).join(", ")}.` : "",
-       (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])
-    : base.description;
+  // Every racket page, with or without a quick take, gets the same title (audit 2026-11-15, #4): "<Racket> review (<year>):
+  // what players say | PadelRecs". Without a quick take the description is the racket's one-line verdict, its Player score
+  // and how many reports, never a "% positive", within 155 characters.
+  const reportsN = data.external.filter(e => e.racketId === r.id).length + data.reviews.filter(x => x.racketId === r.id).length;
+  const bare = hasYears ? name.replace(new RegExp(`\\s+${r.year}$`), "") : name;
+  const title = hasYears ? `${bare} review (${r.year}): what ${niche.people.many} say | ${niche.site.name}` : `${bare} review: what ${niche.people.many} say | ${niche.site.name}`;
+  const sig = (await productSignals()).get(r.id)?.signal;
+  const line = shortLine(r) ?? listLine(r) ?? (r.reviewSummary && r.reviewSummary.length <= 155 ? r.reviewSummary : null);
+  const facts = reportsN === 0 ? `No ${niche.people.one} reports yet. Be the first to review it.`
+    : sig ? `${scoreLabel} ${sig} from ${reportsN.toLocaleString("en-US")} ${reportsN === 1 ? "report" : "reports"}.` : `${reportsN.toLocaleString("en-US")} ${niche.people.one} ${reportsN === 1 ? "report" : "reports"} so far.`;
+  const generic = `What ${niche.people.many} say about the ${bare}: how it plays, who it suits and the catch.`;
+  const description = line ? fitText([line.replace(/\s*$/, "").replace(/([^.!?])$/, "$1."), facts]) : fitText([generic, facts]);
   const images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
   // Quick-take pages (recipe "SEO"): "<Racket> review (<year>): what players say | PadelRecs", the hook as the description.
   const qt = query.qt !== "off" ? await quickTakeFor(r.id, r.slug) : null;
@@ -341,7 +336,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // Every padel racket gets the fit page (owner 2026-11-15, "go for the rest of the catalog"); without a quick-take block the
   // lines come from tag counts, trait scores, specs and YouTube notes, and the takes from real player excerpts.
   // Escape hatches: ?layout=long, ?qt=off, ?look=classic.
-  if (!qt && fitConfigFor(niche) && query.layout !== "long" && query.qt !== "off" && query.look !== "classic") {
+  if (!qt && isV2 && query.layout !== "long" && query.qt !== "off" && query.look !== "classic") {
     const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
     // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
     const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
@@ -359,7 +354,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
         ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
       reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} site={niche.site.name}
-      specs={[r.weight && `weight ${r.weight}`, r.balance && `${balanceWord} ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
+      specs={[r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
       choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
@@ -384,11 +379,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
           ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
         reviews={[...reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))} site={niche.site.name}
-        specs={[r.weight && `weight ${r.weight}`, r.balance && `${balanceWord} ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
+        specs={[r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`].filter((x): x is string => !!x)}
         buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
         fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
         choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
-        picked={picked} jsonLd={qtLd}/>;
+        // The fit page doesn't show the quick take's Q&A, so no FAQPage data here (audit 2026-11-15, #5): structured data
+        // must match what the page shows. The long layout (below) shows the answers and keeps it.
+        picked={picked} jsonLd={{ "@context": "https://schema.org", "@graph": [jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList")].filter(Boolean) }}/>;
     }
     return <QuickTakePage qt={qt} racketId={r.id} slug={r.slug} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
       crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { fitConfigFor } from "../../lib/fit-config";
 import { and, count, desc, eq, notLike } from "drizzle-orm";
 import { database } from "../../db/data";
 import { reviews, rackets, externalReviews, brands } from "../../db/schema";
@@ -13,7 +12,8 @@ import DeleteWebReview from "./delete-web-review";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
-import { niche, catalogPath, productHref } from "../../lib/niche";
+import { niche, catalogPath, productHref, isV2 } from "../../lib/niche";
+import { fitConfigFor } from "../../lib/fit-config";
 import { productVariants } from "../../lib/variants";
 import { FinderForm, FinderResults, allSources } from "./finder";
 import { reviewSites, searchInput, searchReviews } from "../../db/review-search";
@@ -113,5 +113,5 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
 
 function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"}) {
  const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{niche.id === "padel" && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
+ return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
 }

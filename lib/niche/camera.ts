@@ -161,8 +161,8 @@ export const camera: Niche = {
   },
   seo: {
     homeTitle: "CameraRecs – Real Photographer Reviews of Mirrorless, Compact, Vlogging and Action Cameras",
-    homeDescription: "Browse real reviews of mirrorless, compact, vlogging and action cameras from photographers, plus opinions collected from Reddit, YouTube, camera shops and forums. Compare Sony, Canon, Nikon, Fujifilm, Panasonic, OM System, Leica, Ricoh, DJI, GoPro and more.",
-    layoutDescription: "Real photographer experiences with mirrorless, compact, vlogging and action cameras, plus opinions from Reddit, YouTube, camera shops and forums with the source linked.",
+    homeDescription: "Browse real reviews of mirrorless, compact, vlogging and action cameras from photographers, plus opinions collected from YouTube, camera shops and forums. Compare Sony, Canon, Nikon, Fujifilm, Panasonic, OM System, Leica, Ricoh, DJI, GoPro and more.",
+    layoutDescription: "Real photographer experiences with mirrorless, compact, vlogging and action cameras, plus opinions from YouTube, camera shops and forums with the source linked.",
     titleTemplate: "%s | CameraRecs",
     catalog: { title: "All Cameras – Photographer Reviews and Ratings", description: "Every mirrorless, compact, vlogging and action camera on CameraRecs with community ratings. Filter by brand and category, then read what photographers say." },
     brands: { title: "Camera Brands", description: "Browse cameras by brand — Sony, Canon, Nikon, Fujifilm, Panasonic, OM System, Leica, Ricoh, DJI, GoPro and more — and read real photographer reviews of each model." },
@@ -171,12 +171,12 @@ export const camera: Niche = {
     productNotFound: "Camera not found | CameraRecs",
     productCategory: "Cameras",
     addReview: { title: "Add a Camera Review", description: "Own a camera? Share how it shoots and handles in about two minutes. No account needed." },
-    about: { title: "About", description: "Why CameraRecs exists: camera opinions are scattered across Reddit, YouTube, camera shops and forums. CameraRecs collects them and lets photographers add their own." },
+    about: { title: "About", description: "Why CameraRecs exists: camera opinions are scattered across YouTube, camera shops and forums. CameraRecs collects them and lets photographers add their own." },
     ogAlt: "CameraRecs – real photographer reviews of cameras",
     ogProductAlt: "Camera reviews on CameraRecs",
     ogEyebrow: "Photographer reviews of cameras",
     ogTitle: "Camera reviews from people who shoot with them",
-    ogDetail: "From photographers, Reddit, YouTube, camera shops and forums",
+    ogDetail: "From photographers, YouTube, camera shops and forums",
     ogFallbackTitle: "Camera reviews",
   },
   copy: {
@@ -195,7 +195,7 @@ export const camera: Niche = {
     about: {
       heading: "Why CameraRecs exists",
       paragraphs: [
-        "Camera opinions are scattered across Reddit, YouTube, camera shops and forums. CameraRecs puts those experiences in one place and lets photographers add their own.",
+        "Camera opinions are scattered across YouTube, camera shops and forums. CameraRecs puts those experiences in one place and lets photographers add their own.",
         "A camera that suits one photographer won’t suit everyone. Knowing what someone shoots, which lenses they use and what they had before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [

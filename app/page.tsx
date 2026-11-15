@@ -1,6 +1,5 @@
 export const dynamic = "force-dynamic";
 import { Fragment } from "react";
-import { fitConfigFor } from "../lib/fit-config";
 import { spreadByProduct } from "../lib/review-order";
 import type { Metadata } from "next";
 import { catalog } from "../db/data";
@@ -13,13 +12,14 @@ import { HomeA, HomeB } from "./home-variants";
 import { HomeC } from "./home-catalog";
 import { HomeLight } from "./home-light";
 import HomeV2 from "./home-v2";
-import { readChoice, isDefault, choiceHref, matchSeoTitle } from "../lib/quick-match";
+import { readChoice } from "../lib/quick-match";
+import { homeMetadata } from "./home-metadata";
 import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import Link from "next/link";
-import { niche, catalogPath, productHref } from "../lib/niche";
+import { niche, catalogPath, productHref, isV2 } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 
@@ -29,28 +29,13 @@ const a2 = (n: number) => n >= 2 ? ", " : " ";
 const PAGE = 12;
 
 const homeTitle = niche.seo.homeTitle;
-/** "Real Reviews of Nail Polish, Gel Polish, Top Coats and Press-On Nails": the title without the site name, the page's H1. */
-const headline = homeTitle.split(" – ").slice(1).join(" – ") || homeTitle;
-// The search snippet: what the site covers and how big it is, short enough that Google shows it whole (~155 characters).
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string }> }): Promise<Metadata> {
-  const data = await catalog();
-  // Quick match (PadelRecs): each combination is its own indexable page, "Best control padel rackets for beginners".
-  const choice = readChoice(await searchParams);
-  const fit = fitConfigFor(niche);
-  if (fit && niche.finder && !isDefault(choice)) {
-    const title = `${matchSeoTitle(choice, `${fit.sport} ${niche.words.many}`)} | ${niche.site.name}`;
-    const description = `${fit.sport[0].toUpperCase()}${fit.sport.slice(1)} ${fit.word}s ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what players say about control, power, level and arm comfort. No sponsored picks.`;
-    const url = choiceHref(choice, "");
-    return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" } };
-  }
-  const total = data.reviews.length + data.external.length;
-  const short = `${headline}: ${total.toLocaleString("en-US")} reviews, ranked by what people actually say.`;
-  const description = short.length <= 160 ? short : niche.seo.homeDescription;
-  return { title: { absolute: homeTitle }, description, alternates: { canonical: "/" }, openGraph: { title: homeTitle, description, url: "/", type: "website" } };
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; older?: string }> }): Promise<Metadata> {
+  const q = await searchParams;
+  return homeMetadata(readChoice(q), q.older === "1");
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string; style?: string; level?: string; arm?: string }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string; style?: string; level?: string; arm?: string; older?: string }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -138,7 +123,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
   // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
-  if (fitConfigFor(niche) && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)}/>;
+  if (isV2 && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)} older={params.older === "1"}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { lines, listLine } from "../lib/list-lines";
 
 test("every site's lines belong to a real site and stay short", () => {

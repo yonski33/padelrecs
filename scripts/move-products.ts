@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import postgres from "postgres";
-import { niche, niches } from "../lib/niche";
+import { niche } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { assertDatabaseTarget, assertNicheSchema } from "../lib/deployment-target";
 import { readCatalog, catalogSnapshot } from "../db/catalog-file";
 import { assertSchemaName } from "../db/migrations";

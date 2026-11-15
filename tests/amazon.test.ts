@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import targets from "../deployment/targets.json";
 import { AmazonUnavailable, affiliateTag, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer, isAsin, matchesProduct, resetAmazonToken } from "../lib/amazon";

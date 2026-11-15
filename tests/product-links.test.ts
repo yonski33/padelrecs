@@ -7,7 +7,7 @@ import { migrationSql } from "../db/migrations";
 import { importSnapshot } from "../db/transfer";
 import { rackets } from "../db/schema";
 import { websiteButton } from "../lib/product-links";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import type { getDb } from "../db/index";
 
 const links = (websiteUrl: string | null, affiliateUrl: string | null = null) => ({ websiteUrl, affiliateUrl });

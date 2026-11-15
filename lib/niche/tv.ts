@@ -172,8 +172,8 @@ export const tv: Niche = {
   },
   seo: {
     homeTitle: "TVRecs – Real Owner Reviews of OLED, Mini-LED and Budget TVs",
-    homeDescription: "Browse real owner reviews of OLED, Mini-LED, QLED and budget TVs, plus experiences collected from Reddit, YouTube and forums. Compare LG, Samsung, Sony, TCL, Hisense, Panasonic, Philips, Vizio, Roku and more, one page per model and year.",
-    layoutDescription: "Real owner experiences with TVs of every kind, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real owner reviews of OLED, Mini-LED, QLED and budget TVs, plus experiences collected from YouTube and forums. Compare LG, Samsung, Sony, TCL, Hisense, Panasonic, Philips, Vizio, Roku and more, one page per model and year.",
+    layoutDescription: "Real owner experiences with TVs of every kind, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | TVRecs",
     catalog: { title: "All TVs – Owner Reviews and Ratings", description: "Every OLED, Mini-LED, QLED and budget TV on TVRecs with owner ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "TV Brands", description: "Browse TVs by brand — LG, Samsung, Sony, TCL, Hisense, Panasonic, Philips, Vizio, Roku and more — and read real owner reviews of each model." },
@@ -182,12 +182,12 @@ export const tv: Niche = {
     productNotFound: "TV not found | TVRecs",
     productCategory: "TVs",
     addReview: { title: "Add a TV Review", description: "Own a TV? Share how it actually looks in your room in about two minutes. No account needed." },
-    about: { title: "About", description: "Why TVRecs exists: TV opinions are scattered across Reddit, YouTube and forums. TVRecs collects owners' first-hand experiences and lets owners add their own." },
+    about: { title: "About", description: "Why TVRecs exists: TV opinions are scattered across YouTube and forums. TVRecs collects owners' first-hand experiences and lets owners add their own." },
     ogAlt: "TVRecs – real owner reviews of TVs",
     ogProductAlt: "TV reviews on TVRecs",
     ogEyebrow: "Owner reviews of TVs",
     ogTitle: "TV reviews from people who watch them every day",
-    ogDetail: "From owners, Reddit, YouTube and forums",
+    ogDetail: "From owners, YouTube and forums",
     ogFallbackTitle: "TV reviews",
   },
   copy: {
@@ -206,7 +206,7 @@ export const tv: Niche = {
     about: {
       heading: "Why TVRecs exists",
       paragraphs: [
-        "TV opinions are scattered across Reddit, YouTube and forums, and lab reviews rarely say how a set holds up in a real living room after a year. TVRecs puts owners’ experiences in one place and lets owners add their own.",
+        "TV opinions are scattered across YouTube and forums, and lab reviews rarely say how a set holds up in a real living room after a year. TVRecs puts owners’ experiences in one place and lets owners add their own.",
         "A TV that suits one room won’t suit every room. Knowing whether someone watches in a bright or dark room, which size they bought and what they had before often tells you more than a measurement on its own.",
       ],
       sections: [

@@ -180,8 +180,8 @@ export const ultralight: Niche = {
   },
   seo: {
     homeTitle: "UltralightRecs – Real Hiker Reviews of Ultralight Tents, Backpacks, Sleeping Pads and Quilts",
-    homeDescription: "Browse real reviews of ultralight tents, backpacks, sleeping pads, quilts, stoves, water filters, trekking poles and rain jackets from hikers and thru-hikers, plus opinions collected from Reddit, YouTube, outdoor shops and forums. Compare Durston, Zpacks, Hyperlite Mountain Gear, Gossamer Gear, Tarptent, ULA, Therm-a-Rest, NEMO, Enlightened Equipment and more.",
-    layoutDescription: "Real hiker experiences with ultralight tents, backpacks, sleeping pads, quilts and trail gear, plus opinions from Reddit, YouTube, outdoor shops and forums with the source linked.",
+    homeDescription: "Browse real reviews of ultralight tents, backpacks, sleeping pads, quilts, stoves, water filters, trekking poles and rain jackets from hikers and thru-hikers, plus opinions collected from YouTube, outdoor shops and forums. Compare Durston, Zpacks, Hyperlite Mountain Gear, Gossamer Gear, Tarptent, ULA, Therm-a-Rest, NEMO, Enlightened Equipment and more.",
+    layoutDescription: "Real hiker experiences with ultralight tents, backpacks, sleeping pads, quilts and trail gear, plus opinions from YouTube, outdoor shops and forums with the source linked.",
     titleTemplate: "%s | UltralightRecs",
     catalog: { title: "All Ultralight Gear – Hiker Reviews and Ratings", description: "Every ultralight tent, backpack, sleeping pad, quilt, stove, water filter, trekking pole and rain jacket on UltralightRecs with community ratings. Filter by brand and category, then read what hikers say." },
     brands: { title: "Ultralight Gear Brands", description: "Browse ultralight gear by brand — Durston, Zpacks, Hyperlite Mountain Gear, Gossamer Gear, Tarptent, ULA, Therm-a-Rest, NEMO, Enlightened Equipment and more — and read real hiker reviews of each model." },
@@ -190,12 +190,12 @@ export const ultralight: Niche = {
     productNotFound: "Gear not found | UltralightRecs",
     productCategory: "Backpacking gear",
     addReview: { title: "Add a Gear Review", description: "Carried a tent, pack, pad, quilt, stove, filter, poles or rain jacket? Share how it held up on trail in about two minutes. No account needed." },
-    about: { title: "About", description: "Why UltralightRecs exists: ultralight gear opinions are scattered across Reddit, YouTube, outdoor shops and forums. UltralightRecs collects them and lets hikers add their own." },
+    about: { title: "About", description: "Why UltralightRecs exists: ultralight gear opinions are scattered across YouTube, outdoor shops and forums. UltralightRecs collects them and lets hikers add their own." },
     ogAlt: "UltralightRecs – real hiker reviews of ultralight gear",
     ogProductAlt: "Ultralight gear reviews on UltralightRecs",
     ogEyebrow: "Hiker reviews of ultralight gear",
     ogTitle: "Ultralight gear reviews from people who carry it",
-    ogDetail: "From hikers, Reddit, YouTube, outdoor shops and forums",
+    ogDetail: "From hikers, YouTube, outdoor shops and forums",
     ogFallbackTitle: "Ultralight gear reviews",
   },
   copy: {
@@ -214,7 +214,7 @@ export const ultralight: Niche = {
     about: {
       heading: "Why UltralightRecs exists",
       paragraphs: [
-        "Ultralight gear opinions are scattered across Reddit, YouTube, outdoor shops and forums. UltralightRecs puts those experiences in one place and lets hikers add their own.",
+        "Ultralight gear opinions are scattered across YouTube, outdoor shops and forums. UltralightRecs puts those experiences in one place and lets hikers add their own.",
         "Gear that suits one hiker won’t suit everyone. Knowing where someone hikes, in what weather, with what base weight and what they carried before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [

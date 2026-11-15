@@ -8,6 +8,14 @@ const ballPickOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 
 export const padel: Niche = {
   id: "padel",
+  design: "v2",
+  v2copy: {
+    sport: "padel", emoji: "🎾", strip: "a free, ad-light side project · built by padel players",
+    madeBy: "made by people who own too many rackets 🎾", forum: "padel forum", blog: "padel blog",
+    aboutStory: ["padelrecs started at a club bar. Three of us had bought rackets off hype, hated two of them, and couldn't find a straight answer anywhere. Just spec sheets, sponsored reviews and 20-minute videos.",
+      "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and padel forums together, counts it honestly, and tells you if a racket fits"],
+    example: "Metalbone CTRL 3.5 2026",
+  },
   schema: "padelrecs",
   site: {
     name: "PadelRecs",
@@ -22,7 +30,13 @@ export const padel: Niche = {
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
   recentMonths: 24,
   // Owner 2026-11-15: "yes lower it to 6"; under 15 the verdict and % say they rest on fewer reports.
-  fit: { minReports: 6, fewReports: 15 },
+  fit: { minReports: 6, fewReports: 15,
+    // Owner 2026-11-15: pro lines "are meant for advanced players, they can never show if someone picks intermediate" (when the
+    // brand says advanced), and never for beginners. The owner corrects single rackets through the expert level.
+    proLines: ["\\bPro\\+?(?=\\s|$)", "\\bHRD\\+?", "\\bEdge\\b", "\\bNeuron\\b", "\\bBela\\b", "\\bMetalbone\\b(?!.*\\b(?:CTRL|Team|Youth|Junior|Light|Lite)\\b)"],
+    // Owner 2026-11-15: "very few diamond rackets can be played by beginners … like bullpadel vertex women".
+    beginnerShapesOut: ["diamond"], beginnerLines: ["\\bVertex\\b.*\\bWomen\\b"],
+    levelGate: { beginner: 60, intermediate: 60, advanced: 50 } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",
@@ -35,7 +49,7 @@ export const padel: Niche = {
     "--tint": "#f3f4ef",
     "--ink": "#16201a",
     "--ink-2": "#3c473f",
-    "--ink-3": "#6f776f",
+    "--ink-3": "#646b64", // 4.96:1 on --tint (was #6f776f, 4.18:1; audit 2026-11-15, #20)
     "--line": "#e2e4dc",
     "--line-2": "#cdd1c4",
     "--green": "#1b6b43",
@@ -43,7 +57,7 @@ export const padel: Niche = {
     "--green-wash": "#e3eee4",
     "--green-line": "#bcd5c2",
     "--on-green": "#e9f1e8",
-    "--on-green-muted": "#a9c6b2",
+    "--on-green-muted": "#cde2d3", // 4.77:1 on --green (was #a9c6b2, 3.53:1; audit 2026-11-15, #20)
     "--lime": "#d4ea4f",
     "--lime-wash": "#f0f6d0",
     "--lime-line": "#c7db5a",
@@ -186,8 +200,8 @@ export const padel: Niche = {
   },
   seo: {
     homeTitle: "PadelRecs – Real Player Reviews of Padel Rackets",
-    homeDescription: "Browse real padel racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.",
-    layoutDescription: "Real player experiences with padel rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    homeDescription: "Browse real padel racket reviews from players and opinions collected from YouTube, shops and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.",
+    layoutDescription: "Real player experiences with padel rackets, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | PadelRecs",
     catalog: { title: "All Padel Rackets – Player Reviews and Ratings", description: "Every padel racket on PadelRecs with community ratings. Filter by brand, year and shape, then read what players say about each one." },
     brands: { title: "Padel Racket Brands", description: "Browse padel rackets by brand — Nox, Bullpadel, Adidas, Head, Babolat and more — and read real player reviews of each model." },
@@ -196,12 +210,12 @@ export const padel: Niche = {
     productNotFound: "Racket not found | PadelRecs",
     productCategory: "Padel racket",
     addReview: { title: "Add a Padel Racket Review", description: "Played with a padel racket? Share how it felt on court in about two minutes. No account needed." },
-    about: { title: "About", description: "Why PadelRecs exists: padel racket opinions are scattered across Reddit, YouTube, shops and forums. PadelRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why PadelRecs exists: padel racket opinions are scattered across YouTube, shops and forums. PadelRecs collects them and lets players add their own." },
     ogAlt: "PadelRecs – real player reviews of padel rackets",
     ogProductAlt: "Padel racket player reviews on PadelRecs",
     ogEyebrow: "Player reviews of padel rackets",
     ogTitle: "Real player reviews of padel rackets",
-    ogDetail: "From players, Reddit, YouTube, shops and forums",
+    ogDetail: "From players, YouTube, shops and forums",
     ogFallbackTitle: "Padel racket reviews",
   },
   copy: {
@@ -220,12 +234,12 @@ export const padel: Niche = {
     about: {
       heading: "Why PadelRecs exists",
       paragraphs: [
-        "Racket reviews are scattered across Reddit, YouTube, shops and forums. PadelRecs puts those experiences in one place and lets players add their own.",
+        "Racket reviews are scattered across YouTube, shops and forums. PadelRecs puts those experiences in one place and lets players add their own.",
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, playing side and time with a racket often tells you more than a score on its own.",
       ],
       sections: [
         { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones players write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Racket pages link to Amazon, and PadelRecs may earn a commission when you buy through those links; that never changes a ranking." },
-        { heading: "How reviews get here", body: "Player reviews are checked for spam before they appear. Reviews from Reddit, YouTube, blogs and forums are short summaries of first-hand posts, each linked to the original." },
+        { heading: "How reviews get here", body: "Player reviews are checked for spam before they appear. Reviews from YouTube, blogs and forums are short summaries of first-hand posts, each linked to the original." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },
       ],

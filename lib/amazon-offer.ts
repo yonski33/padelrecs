@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { niche } from "./niche";
 import { affiliateTag, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer } from "./amazon";
+import { websiteButton } from "./product-links";
 
 // Each product's lookup (its Amazon item and price, or "no match") is kept for 12 hours in Next's data cache, shared by
 // every visitor and instance, so Amazon sees at most two calls per product twice a day. Amazon asks that shown prices be
@@ -53,4 +54,15 @@ export async function amazonButton(product: { name: string; brand: string | unde
     console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`);
     return search;
   }
+}
+
+/** The "check price" link on list rows (owner 2026-11-15: home and /rackets rows get one again): the racket page's link
+ *  logic without its live lookup, so a list of 20 makes no Amazon calls. The saved Amazon item when there is one, else an
+ *  Amazon search for the name (both carry the associate tag); on sites with `website` links, the product's own site. Null
+ *  when the site has no shop links. */
+export function listShopLink(product: { name: string; amazonAsin?: string | null; websiteUrl: string | null; affiliateUrl: string | null }): { url: string; rel: string } | null {
+  const tag = affiliateTag();
+  if (niche.amazon && tag) return { url: product.amazonAsin ? amazonLink(product.amazonAsin, tag, niche.amazon.marketplace) : amazonSearchLink(product.name, tag, niche.amazon.marketplace), rel: "sponsored nofollow noopener" };
+  const site = websiteButton(product);
+  return site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
 }

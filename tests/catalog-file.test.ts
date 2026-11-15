@@ -57,7 +57,7 @@ test("catalogs without model years keep the year out of names", () => {
 });
 
 test("the SkinRecs catalog: 333 sourced face products, no years in names, known types and fragrance values", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/skin.json");
   const snapshot = catalogSnapshot(catalog, "skinrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 42);
@@ -166,7 +166,7 @@ test("the GolfRecs starter catalog: sourced drivers named by generation, known c
 });
 
 test("the GamingRecs starter catalog: 294 sourced products in three known categories (monitors and keyboards moved away), no years in names, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/gaming.json");
   const snapshot = catalogSnapshot(catalog, "gamingrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 32);
@@ -185,7 +185,7 @@ test("the GamingRecs starter catalog: 294 sourced products in three known catego
 });
 
 test("the KeyboardRecs catalog: the 99 GamingRecs keyboards under their old ids and URLs plus sourced boards, kits, switches and keycaps", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const { movedKeyboardSlugs } = await import("../lib/niche/gaming-moved");
   const catalog = await readCatalog("db/catalogs/keyboard.json");
   const snapshot = catalogSnapshot(catalog, "keyboardrecs", "catalog:test", false);
@@ -282,7 +282,7 @@ test("the AudioRecs starter catalog: sourced headphones, IEMs and earbuds withou
 });
 
 test("the MonitorRecs starter catalog: the 88 GamingRecs monitors under their old URLs plus sourced non-gaming monitors, known categories, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const { movedMonitorSlugs } = await import("../lib/niche/gaming-moved");
   const catalog = await readCatalog("db/catalogs/monitor.json");
   const snapshot = catalogSnapshot(catalog, "monitorrecs", "catalog:test", false);
@@ -305,7 +305,7 @@ test("the MonitorRecs starter catalog: the 88 GamingRecs monitors under their ol
 });
 
 test("the CameraRecs starter catalog: sourced mirrorless, compact, vlogging and action cameras, known categories, no years, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/camera.json");
   const snapshot = catalogSnapshot(catalog, "camerarecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 13);
@@ -325,7 +325,7 @@ test("the CameraRecs starter catalog: sourced mirrorless, compact, vlogging and 
 });
 
 test("the UltralightRecs starter catalog: sourced tents, packs, pads and quilts, known categories, no years, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/ultralight.json");
   const snapshot = catalogSnapshot(catalog, "ultralightrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 28);
@@ -346,7 +346,7 @@ test("the UltralightRecs starter catalog: sourced tents, packs, pads and quilts,
 });
 
 test("the BadmintonRecs starter catalog: sourced Yonex, Victor and Li-Ning rackets, known series, no years or colour codes, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/badminton.json");
   const snapshot = catalogSnapshot(catalog, "badmintonrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 3);
@@ -370,7 +370,7 @@ test("the BadmintonRecs starter catalog: sourced Yonex, Victor and Li-Ning racke
 });
 
 test("the FragranceRecs starter catalog: sourced perfumes and colognes, one entry per concentration, known For values, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/fragrance.json");
   const snapshot = catalogSnapshot(catalog, "fragrancerecs", "catalog:test", false);
   assert(snapshot.tables.brands.length >= 40);
@@ -395,7 +395,7 @@ test("the FragranceRecs starter catalog: sourced perfumes and colognes, one entr
 });
 
 test("the CoffeeRecs starter catalog: sourced machines, grinders, brewers, kettles and scales, known categories, no years, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/coffee.json");
   const snapshot = catalogSnapshot(catalog, "coffeerecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 32);
@@ -416,7 +416,7 @@ test("the CoffeeRecs starter catalog: sourced machines, grinders, brewers, kettl
 });
 
 test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices, ropes, chalk bags and crash pads, known categories, no years, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/climbing.json");
   const snapshot = catalogSnapshot(catalog, "climbingrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 14);
@@ -439,7 +439,7 @@ test("the ClimbingRecs starter catalog: sourced shoes, harnesses, belay devices,
 });
 
 test("the NailsRecs starter catalog: sourced polishes, gels, coats, press-ons, treatments and cuticle oils, known categories, no shades or years, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/nails.json");
   const snapshot = catalogSnapshot(catalog, "nailsrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 23);
@@ -463,7 +463,7 @@ test("the NailsRecs starter catalog: sourced polishes, gels, coats, press-ons, t
 });
 
 test("the KitchenRecs starter catalog: sourced air fryers, ovens, blenders, mixers, processors and multicookers, known categories, no years, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/kitchen.json");
   const snapshot = catalogSnapshot(catalog, "kitchenrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 15);
@@ -490,7 +490,7 @@ test("the KitchenRecs starter catalog: sourced air fryers, ovens, blenders, mixe
 });
 
 test("the SnowboardRecs starter catalog: sourced boards and splitboards with model years, known categories, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/snowboard.json");
   const snapshot = catalogSnapshot(catalog, "snowboardrecs", "catalog:test", true);
   assert.equal(snapshot.tables.brands.length, 14);
@@ -516,7 +516,7 @@ test("the SnowboardRecs starter catalog: sourced boards and splitboards with mod
 });
 
 test("the TableTennisRecs starter catalog: sourced blades, rubbers and pre-assembled rackets, known types, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/tabletennis.json");
   const snapshot = catalogSnapshot(catalog, "tabletennisrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 11);
@@ -541,7 +541,7 @@ test("the TableTennisRecs starter catalog: sourced blades, rubbers and pre-assem
 });
 
 test("the HomeGymRecs starter catalog: sourced dumbbells, racks, benches, bars, plates, machines and cardio, known categories, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/homegym.json");
   const snapshot = catalogSnapshot(catalog, "homegymrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 10);
@@ -568,7 +568,7 @@ test("the HomeGymRecs starter catalog: sourced dumbbells, racks, benches, bars, 
 });
 
 test("the MoneyRecs starter catalog: every category, official https sources, dated rate cells and the rates-change note on every product", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/money.json");
   const snapshot = catalogSnapshot(catalog, "moneyrecs", "catalog:test", false);
   assert(snapshot.tables.rackets.length >= 90);
@@ -594,7 +594,7 @@ test("the MoneyRecs starter catalog: every category, official https sources, dat
 });
 
 test("the SoftwareRecs catalog: sourced tools in all fifteen categories (web hosting moved to HostingRecs), each with its official https website", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/software.json");
   const snapshot = catalogSnapshot(catalog, "softwarerecs", "catalog:test", false);
   const categories = niches.software.specs.find(s => s.column === "shape")!.options!;
@@ -616,7 +616,7 @@ test("the SoftwareRecs catalog: sourced tools in all fifteen categories (web hos
 });
 
 test("hosting catalog: 110 services in all ten categories, each linking to the provider's own site, free plan only as Yes or No", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/hosting.json");
   const snapshot = catalogSnapshot(catalog, "hostingrecs", "catalog:test", false);
   const categories = niches.hosting.specs.find(s => s.column === "shape")!.options!;
@@ -637,7 +637,7 @@ test("hosting catalog: 110 services in all ten categories, each linking to the p
 });
 
 test("the TravelGearRecs catalog: 197 sourced products in all five categories, sizes and generations kept apart, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/travelgear.json");
   const snapshot = catalogSnapshot(catalog, "travelgearrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 37);
@@ -664,7 +664,7 @@ test("the TravelGearRecs catalog: 197 sourced products in all five categories, s
 });
 
 test("the BabyGearRecs catalog: 292 sourced products in all eight categories, generations kept apart, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/babygear.json");
   const snapshot = catalogSnapshot(catalog, "babygearrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 58);
@@ -690,7 +690,7 @@ test("the BabyGearRecs catalog: 292 sourced products in all eight categories, ge
 });
 
 test("the SleepRecs catalog: 238 sourced products in all seven categories, tiers and versions kept apart, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/sleep.json");
   const snapshot = catalogSnapshot(catalog, "sleeprecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 44);
@@ -716,7 +716,7 @@ test("the SleepRecs catalog: 238 sourced products in all seven categories, tiers
 });
 
 test("the LaptopRecs catalog: 289 sourced laptops in all seven categories, one per model and generation, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/laptop.json");
   const snapshot = catalogSnapshot(catalog, "laptoprecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 14);
@@ -744,7 +744,7 @@ test("the LaptopRecs catalog: 289 sourced laptops in all seven categories, one p
 });
 
 test("the PrintRecs catalog: 190 sourced products in all five categories, models and revisions kept apart, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/print.json");
   const snapshot = catalogSnapshot(catalog, "printrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 15);
@@ -777,7 +777,7 @@ test("the PrintRecs catalog: 190 sourced products in all five categories, models
 });
 
 test("the TVRecs catalog: 214 sourced TVs in all three categories, one product per model and year with sizes merged, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   // Pre-2023 sets added because 3+ owners reviewed them (owner's standing rule, parent OK 2026-11-12).
   const OLDER = ["LG C2", "LG C1", "LG CX", "LG C9", "LG C7", "LG G2", "Samsung S95B", "Samsung QN90B", "LG C8", "Samsung QN90A", "Sony A80J", "LG B7", "Sony A80K", "Sony A95K", "Sony A90J", "LG G1", "Sony X900H", "Sony A8H", "Sony X90J", "Sony X95K", "TCL R655", "Samsung Q90T", "LG BX", "Sony X90K", "TCL C855", "LG B2", "Hisense U8H", "Hisense U8G", "Hisense U7G"];
   const catalog = await readCatalog("db/catalogs/tv.json");
@@ -812,7 +812,7 @@ test("the TVRecs catalog: 214 sourced TVs in all three categories, one product p
 });
 
 test("the ToolRecs catalog: 231 sourced tools and platforms in all eight categories, one product per model number, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/tool.json");
   const snapshot = catalogSnapshot(catalog, "toolrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 12);
@@ -848,7 +848,7 @@ test("the ToolRecs catalog: 231 sourced tools and platforms in all eight categor
 });
 
 test("the DogRecs catalog: 209 sourced products in all eight categories, one product per model, generation and food formula, no health claims, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/dog.json");
   const snapshot = catalogSnapshot(catalog, "dogrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 101);
@@ -882,7 +882,7 @@ test("the DogRecs catalog: 209 sourced products in all eight categories, one pro
 });
 
 test("the GrillRecs catalog: 248 sourced products in all eight categories, one product per model and generation, unique URLs", async () => {
-  const { niches } = await import("../lib/niche");
+  const { niches } = await import("../lib/niche/all");
   const catalog = await readCatalog("db/catalogs/grill.json");
   const snapshot = catalogSnapshot(catalog, "grillrecs", "catalog:test", false);
   assert.equal(snapshot.tables.brands.length, 36);

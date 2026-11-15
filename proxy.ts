@@ -4,6 +4,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { niche } from "./lib/niche";
 import type { Niche } from "./lib/niche/types";
 import { productRedirect, productSlugIn } from "./lib/product-redirect";
+import { isV2 } from "./lib/niche";
+import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } from "./lib/quick-match";
 
 // Only these paths depend on who is signed in. The admin area lives at /funtimes, not /admin (which is an ordinary 404).
 const PRIVATE = /^\/(?:funtimes|auth|api\/funtimes)(?:\/|$)/;
@@ -31,6 +33,21 @@ export async function proxy(request:NextRequest) {
  if(niche.categoryPaths){
   const moved=await productMove(request,niche,async()=>(await import("./lib/product-lookup")).productLookup());
   if(moved)return moved;
+ }
+ // The quick-match home (batch D): "/" and its picks are served from one cached page per combination (app/quick/[key]).
+ // Other home views (?home=, ?type=, ?feed=, ?q=) stay with app/page.tsx. /quick/<key> itself is only ever a rewrite target.
+ if(isV2&&niche.finder){
+  const {pathname,searchParams}=request.nextUrl;
+  if(pathname==="/"&&!OTHER_HOME_PARAMS.some(k=>searchParams.has(k))){
+   const url=request.nextUrl.clone();
+   url.pathname=`/quick/${choiceKey(readChoice(Object.fromEntries(searchParams)),searchParams.get("older")==="1")}`;url.search="";
+   return NextResponse.rewrite(url);
+  }
+  if(pathname.startsWith("/quick/")){
+   const k=readChoiceKey(pathname.slice(7));
+   const url=request.nextUrl.clone();url.pathname="/";url.search=k?homeHref(k.choice,k.older).replace(/^\/\??/,""):"";
+   return NextResponse.redirect(url,301);
+  }
  }
  if(!PRIVATE.test(request.nextUrl.pathname)) {
   // Public pages need no session; their CDN caching is set in next.config.ts.

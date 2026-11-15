@@ -1,6 +1,7 @@
 import { ratingVerdict, verdictWord } from "./verdict";
 import { CONTACT_FROM_ADDRESS, sendWithResend, type ContactEmail } from "./contact";
-import { niches, productPathIn, type Niche } from "./niche";
+import { productPathIn, type Niche } from "./niche";
+import { niches } from "./niche/all";
 
 // One email a day to the owner's inbox (CONTACT_TO) listing the reviews visitors submitted through the site form on every
 // Recs site in the last 24 hours. It replaced the per-review email: ~30 sites sharing one Resend account ran into its daily

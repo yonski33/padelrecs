@@ -20,7 +20,9 @@ test("a value needs a note, every change is logged, and the specs form keeps exp
 test("an expert level becomes suits scores", () => {
   assert.deepEqual(levelToSuits("intermediate"), { suits_beginner: 45, suits_intermediate: 85, suits_advanced: 45 });
   assert.deepEqual(levelToSuits("beginner-intermediate"), { suits_beginner: 85, suits_intermediate: 85, suits_advanced: 45 });
-  assert.equal(levelToSuits("pro"), null);
+  // The owner's sheet writes "Advanced-Pro": pro counts as advanced (2026-11-15).
+  assert.deepEqual(levelToSuits("Advanced-Pro"), { suits_beginner: 20, suits_intermediate: 45, suits_advanced: 85 });
+  assert.equal(levelToSuits("expert"), null);
 });
 
 test("an expert value wins over the calculated trait score", () => {

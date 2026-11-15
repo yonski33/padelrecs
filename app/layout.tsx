@@ -1,4 +1,6 @@
-export const dynamic = "force-dynamic";
+// The layout reads the rankings for the header menu from the database. Pages render per request unless they opt into a
+// cache (the quick-match home, app/quick/[key]); a build without a database (CI) skips the read, so env-less builds pass.
+// Vercel's CDN keeps public pages for a minute (next.config.ts); an admin write refreshes at once (app/funtimes/auth.ts).
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree, Source_Serif_4, Barlow_Condensed } from "next/font/google";
@@ -26,7 +28,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
   twitter: { card: "summary_large_image" } };
 
 export default async function Layout({children}: {children: React.ReactNode}) {
-  const ranked = await rankedSlugs();
+  const ranked = process.env.DATABASE_URL ? await rankedSlugs() : [];
   return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}<head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/></head>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
     <SiteHeader ranked={ranked}/>
     <div className="site">{children}</div>

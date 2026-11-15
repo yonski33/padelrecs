@@ -5,7 +5,7 @@ import { drizzle } from "drizzle-orm/pglite";
 import { migrationSql } from "../db/migrations";
 import { importSnapshot, parseSnapshot } from "../db/transfer";
 import { fixture } from "./fixture";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { parseCandidates, planImport, siteState, applyImport, markPublished, webReviewId } from "../db/web-review-import";
 import { catalog } from "../db/data";
 import type { getDb } from "../db/index";

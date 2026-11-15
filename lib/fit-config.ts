@@ -60,7 +60,7 @@ const PADEL: FitConfig = {
   axis: { control: { trait: "control", tags: ["good control", "great in defence"] }, power: { trait: "power", tags: ["easy power", "great on smashes"] }, follows: "defence" },
   styleLabels: { control: "Control", balance: "A balance of both", power: "Power" },
   levelWords: { beginner: ["first racket", "just started", "new to padel", "beginner"], intermediate: ["intermediate", "playing a couple of years", "regular matches"], advanced: ["advanced", "tournaments", "competitive", "pro level"] },
-  weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
+  weights: { style: 0.4, level: 0.3, arm: 0.35, score: 0.1 },
   fineTune: true,
   arm: { trait: "arm", plus: "arm-friendly", minus: "vibrates on mishits" },
   forgiving: { plus: "forgiving", minus: ["demanding"], beginner: ["small sweet spot"] },
@@ -112,7 +112,7 @@ const PICKLEBALL: FitConfig = {
   styleLabels: { control: "Control", balance: "A bit of everything", power: "Power" },
   levelWords: { beginner: ["first paddle", "just started", "new to pickleball", "beginner"], intermediate: ["intermediate", "rec player", "3.0", "3.5"], advanced: ["advanced", "tournaments", "4.0+", "4.5", "5.0", "pro"],
     rating: { name: "DUPR", beginnerBelow: 3.0, advancedFrom: 4.0 } },
-  weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
+  weights: { style: 0.4, level: 0.3, arm: 0.35, score: 0.1 },
   arm: { trait: "arm", plus: "arm-friendly" },
   forgiving: { plus: "forgiving", minus: ["hard to control"], beginner: ["small sweet spot"] },
   specLean: s => {

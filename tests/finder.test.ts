@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { decodeAnswers, encodeAnswers, finderPool, matchFinder, visibleQuestions, type FinderProduct } from "../lib/finder";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 
 const product = (id: string, year = 2026) => ({ id, slug: id, name: id, brandId: "b", year, shape: null, weight: null, balance: null, core: null, surface: null });
 const web = (racketId: string, sentiment: "positive" | "mixed" | "negative", tags: string[], i: number) =>

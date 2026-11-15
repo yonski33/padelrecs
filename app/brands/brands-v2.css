@@ -1,0 +1,39 @@
+/* Brands index, design v2 (owner 2026-11-15, Claude Design mockup). Scoped to .bv2; never write .bv2 inside the nest. */
+body:has(main.bv2) { background: #fbfaf6; }
+.bv2 {
+  --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --soft: #4a4740; --acc: oklch(0.88 0.17 125);
+  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
+  background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body);
+  a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  p { margin: 0; }
+  .bv2-wrap { max-width: 1140px; margin: 0 auto; padding: 24px 20px 64px; display: flex; flex-direction: column; gap: 26px; }
+  .bv2-hero { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; }
+  .bv2-hero > div { display: flex; flex-direction: column; gap: 10px; }
+  .bv2-crumbs { font: 13px var(--mono); color: var(--soft); }
+  .bv2-crumbs a { color: var(--soft); }
+  h1 { font: 800 clamp(34px, 5vw, 54px)/1 var(--display) !important; letter-spacing: -0.025em !important; margin: 0 !important; color: var(--ink) !important; }
+  h1 .hl { background: var(--acc); padding: 0 8px; border: 2px solid var(--ink); border-radius: 10px; display: inline-block; transform: rotate(-1.5deg); }
+  .bv2-sub { font-size: 17px; max-width: 560px; text-wrap: pretty; }
+  .bv2-sort { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+  .bv2-sort span { font: 12px var(--mono); color: var(--mute); margin-right: 2px; }
+  .bv2-sort a { white-space: nowrap; padding: 4px 11px; border: 1.5px solid var(--ink); border-radius: 999px; font-weight: 600; text-decoration: none; background: var(--paper); }
+  .bv2-sort a[aria-current] { background: var(--ink); color: var(--bg); }
+  .bv2-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .bv2-card { text-decoration: none; border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); display: flex; flex-direction: column; overflow: hidden; transition: box-shadow .12s, transform .12s; }
+  .bv2-card:hover { background: var(--paper) !important; box-shadow: 5px 5px 0 var(--ink); transform: translate(-2px, -2px); }
+  .bv2-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 14px 16px 6px; }
+  .bv2-top > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .bv2-top b { font: 800 22px/1.1 var(--display); }
+  .bv2-top small { font: 11px var(--mono); color: var(--mute); white-space: nowrap; }
+  .bv2-top i { font: normal 600 12px var(--mono); }
+  .bv2-strip { position: relative; display: flex; align-items: flex-end; justify-content: center; margin: 4px 10px 10px; padding: 10px 8px 8px; border-radius: 12px; height: 96px; box-sizing: border-box; }
+  .bv2-slot { width: 46px; margin: 0 -4px; display: flex; align-items: flex-end; justify-content: center; }
+  .bv2-slot img { height: 100%; width: auto; mix-blend-mode: multiply; }
+  .bv2-mono { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 800 40px var(--display); letter-spacing: -0.03em; opacity: 0.85; }
+  .bv2-cta { border: 2.5px solid var(--ink); border-radius: 18px; padding: 18px 20px; background: var(--acc); box-shadow: 5px 5px 0 var(--ink); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+  .bv2-cta > div { flex: 1 1 300px; }
+  .bv2-cta .t { font: 800 20px/1.2 var(--display); }
+  .bv2-cta p:not(.t) { font-size: 15px; margin-top: 2px; }
+  .bv2-cta a { text-decoration: none; white-space: nowrap; padding: 9px 14px; border-radius: 8px; border: 2px solid var(--ink); background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; }
+}

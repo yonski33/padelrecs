@@ -20,10 +20,10 @@ export type ReviewCard = {
 const PAGE = 8, MIN_WORDS = 20;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for me" };
-const PILL: Record<Verdict, string> = { positive: "👍 liked it", mixed: "🤷 mixed", negative: "👎 not for them" };
+const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
-export default function RacketReviews({ racketId, name, cards, nicknames = [], site = "padelrecs", emoji = "🎾" }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; site?: string; emoji?: string }) {
+export default function RacketReviews({ racketId, name, cards, nicknames = [], total }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number }) {
   const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<typeof LEVELS[number] | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
@@ -64,12 +64,12 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], s
 
   return <>
     <div className="rv-head">
-      <div><h2>Reviews</h2><p>{`${cards.length} total · from players on ${site} and summarised YouTube reviews`}</p></div>
+      <div><h2>Reviews</h2><p>{total !== undefined && total !== cards.length ? `${cards.length} of the ${total} reviews · from players on padelrecs and summarised YouTube reviews (forum reports count in the score, not shown here)` : `${cards.length} total · from players on padelrecs and summarised YouTube reviews`}</p></div>
       <div className="rv-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
         <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{label}</button>)}</div>
     </div>
     <div className="rv-list">
-      {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">{emoji}</span>
+      {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">🎾</span>
         <span>{posted === "words" ? <><strong>Thanks — your review is in.</strong> It&apos;ll show here after a quick check.</> : <><strong>Thanks — your verdict counts.</strong> Add a few words next time and it shows here too.</>}</span></div>
       : <div className="rv-compose">
         <div className="rv-ct"><b>Played it? Add yours.</b><span>no account · only the verdict is required</span></div>

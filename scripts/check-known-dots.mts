@@ -1,6 +1,6 @@
 // The owner's calls (db/known-dots/<niche>.json) as a locked check against the live evidence (ENGINE-PLAN.md section F):
 // fails when computed dots break a `min` / `exact`. Prints both the auto dots (from evidence alone) and the shown dots
-// (with hand-set calls), so a call that only holds by hand is visible.
+// (with hand-set calls), so a call that only holds by hand is visible. Also checks every expert trait value is the one shown.
 //   NICHE=padel npx tsx --conditions=react-server --env-file=.env.local scripts/check-known-dots.mts
 import { readFileSync } from "node:fs";
 import { catalog } from "../db/data";
@@ -22,5 +22,17 @@ for (const [slug, traits] of Object.entries(known)) {
     console.log(`${ok ? "ok  " : "FAIL"} ${slug} ${trait}: shown ${shown} (auto ${auto})${want.min !== undefined ? ` want ≥${want.min}` : ""}${want.exact !== undefined ? ` want ${want.exact}` : ""}${want.dots !== undefined ? " · hand-set" : ""}`);
   }
 }
+// Expert values (admin grid / scripts/import-expert-sheet.mts, owner 2026-11-15) must be what the site shows.
+let experts = 0;
+for (const r of data.rackets) {
+  const t = ctx.traits(r.id), ex = t.edits?.expert ?? {};
+  for (const [k, e] of Object.entries(ex)) {
+    if (!e || k.startsWith("suits_")) continue; experts++;
+    const shown = t.scores?.[k as keyof NonNullable<typeof t.scores>]?.score;
+    // Scores top out at 99.
+    if (shown !== Math.min(99, e.value)) { fail++; console.log(`FAIL ${r.slug} ${k}: shown ${shown}, expert ${e.value}`); }
+  }
+}
+console.log(`${experts} expert trait values checked`);
 console.log(fail ? `${fail} known calls broken` : "all known calls hold");
 process.exit(fail ? 1 : 0);

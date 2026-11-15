@@ -72,7 +72,7 @@
   .rf-arm { display: flex; align-items: center; gap: 8px; font-size: 14px; text-decoration: none; justify-self: start; }
   .rf-arm:hover { background: none; }
   .rf-box { width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: normal 700 12px var(--body); background: var(--paper); }
-  .rf-arm[aria-pressed="true"] .rf-box { background: var(--acc); }
+  .rf-arm[aria-pressed="true"] .rf-box, .rf-arm[aria-current="true"] .rf-box { background: var(--acc); }
   .rf-best { margin: auto 0 0 !important; padding-top: 10px; border-top: 1.5px dashed #b9b5aa; font-size: 14px; color: var(--text, #2b2925); text-wrap: pretty; }
   .rf-best b { color: var(--ink); }
   .rf-lvl { margin: 0; font: 12px var(--mono); color: var(--soft); }

@@ -188,8 +188,8 @@ export const laptop: Niche = {
   },
   seo: {
     homeTitle: "LaptopRecs – Real Owner Reviews of Gaming, Business and Everyday Laptops",
-    homeDescription: "Browse real owner reviews of ultrabooks, gaming laptops, business laptops, creator laptops, 2-in-1s, Chromebooks and MacBooks, plus experiences collected from Reddit, YouTube and forums. Compare Apple, Lenovo ThinkPad and Legion, Dell, HP, ASUS ROG, Razer, MSI, Framework and more.",
-    layoutDescription: "Real owner experiences with laptops of every kind, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real owner reviews of ultrabooks, gaming laptops, business laptops, creator laptops, 2-in-1s, Chromebooks and MacBooks, plus experiences collected from YouTube and forums. Compare Apple, Lenovo ThinkPad and Legion, Dell, HP, ASUS ROG, Razer, MSI, Framework and more.",
+    layoutDescription: "Real owner experiences with laptops of every kind, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | LaptopRecs",
     catalog: { title: "All Laptops – Owner Reviews and Ratings", description: "Every ultrabook, gaming, business, creator, 2-in-1, Chromebook and MacBook on LaptopRecs with owner ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "Laptop Brands", description: "Browse laptops by brand — Apple, Lenovo, Dell, HP, ASUS, Acer, MSI, Razer, Microsoft, Framework and more — and read real owner reviews of each model." },
@@ -198,12 +198,12 @@ export const laptop: Niche = {
     productNotFound: "Laptop not found | LaptopRecs",
     productCategory: "Laptops",
     addReview: { title: "Add a Laptop Review", description: "Own a laptop? Share how it actually works for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why LaptopRecs exists: laptop opinions are scattered across Reddit, YouTube and forums. LaptopRecs collects owners' first-hand experiences and lets owners add their own." },
+    about: { title: "About", description: "Why LaptopRecs exists: laptop opinions are scattered across YouTube and forums. LaptopRecs collects owners' first-hand experiences and lets owners add their own." },
     ogAlt: "LaptopRecs – real owner reviews of laptops",
     ogProductAlt: "Laptop reviews on LaptopRecs",
     ogEyebrow: "Owner reviews of laptops",
     ogTitle: "Laptop reviews from people who use them every day",
-    ogDetail: "From owners, Reddit, YouTube and forums",
+    ogDetail: "From owners, YouTube and forums",
     ogFallbackTitle: "Laptop reviews",
   },
   copy: {
@@ -222,7 +222,7 @@ export const laptop: Niche = {
     about: {
       heading: "Why LaptopRecs exists",
       paragraphs: [
-        "Laptop opinions are scattered across Reddit, YouTube and forums, and launch-day reviews rarely say how a laptop holds up after a year. LaptopRecs puts owners’ experiences in one place and lets owners add their own.",
+        "Laptop opinions are scattered across YouTube and forums, and launch-day reviews rarely say how a laptop holds up after a year. LaptopRecs puts owners’ experiences in one place and lets owners add their own.",
         "A laptop that suits one person won’t suit everyone. Knowing what someone uses it for, which configuration they bought and what they had before often tells you more than a benchmark or a score on its own.",
       ],
       sections: [
