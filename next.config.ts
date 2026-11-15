@@ -44,6 +44,9 @@ const config:NextConfig={
  async headers(){
   const cdn=[{key:"Vercel-CDN-Cache-Control",value:"max-age=60, stale-while-revalidate=600"}];
   const missing=[{type:"header" as const,key:"rsc"}];
-  return ["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact","/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}));
+  // Product photos (public/photos) rarely change and keep their file name when they do: a week in browsers and the CDN,
+  // then a day served stale while it refreshes (audit 2026-11-15, #10: they were max-age=0).
+  const photos={source:"/photos/:path*",headers:[{key:"Cache-Control",value:"public, max-age=604800, stale-while-revalidate=86400"}]};
+  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact","/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
  }};
 export default config;

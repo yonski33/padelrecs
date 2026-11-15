@@ -39,7 +39,7 @@ export default async function BrandsV2({ data, sort }: { data: Catalog; sort?: s
       <ul className="bv2-grid">{brands.map(({ b, count, pics }, i) => <li key={b.id}><a className="bv2-card" href={`/brands/${b.slug}`}>
         <span className="bv2-top"><span><b>{b.name}</b><small>{`${count} ${count === 1 ? w.one : w.many}`}</small></span><i aria-hidden="true">→</i></span>
         <span className="bv2-strip" style={{ background: TINTS[i % TINTS.length] }}>
-          {pics.length ? pics.map((p, j) => <span key={p.r.id} className="bv2-slot" style={{ height: HEIGHTS[j] }}><img src={p.src} alt="" loading={i < 6 ? "eager" : "lazy"}/></span>)
+          {pics.length ? pics.map((p, j) => <span key={p.r.id} className="bv2-slot" style={{ height: HEIGHTS[j] }}><img src={p.src} alt="" width={408} height={620} decoding="async" loading={i < 6 ? "eager" : "lazy"}/></span>)
             : <span className="bv2-mono" aria-hidden="true">{b.name}</span>}
         </span>
       </a></li>)}</ul>

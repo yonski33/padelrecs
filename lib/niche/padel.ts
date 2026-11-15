@@ -43,7 +43,7 @@ export const padel: Niche = {
     "--tint": "#f3f4ef",
     "--ink": "#16201a",
     "--ink-2": "#3c473f",
-    "--ink-3": "#6f776f",
+    "--ink-3": "#646b64", // 4.96:1 on --tint (was #6f776f, 4.18:1; audit 2026-11-15, #20)
     "--line": "#e2e4dc",
     "--line-2": "#cdd1c4",
     "--green": "#1b6b43",
@@ -51,7 +51,7 @@ export const padel: Niche = {
     "--green-wash": "#e3eee4",
     "--green-line": "#bcd5c2",
     "--on-green": "#e9f1e8",
-    "--on-green-muted": "#a9c6b2",
+    "--on-green-muted": "#cde2d3", // 4.77:1 on --green (was #a9c6b2, 3.53:1; audit 2026-11-15, #20)
     "--lime": "#d4ea4f",
     "--lime-wash": "#f0f6d0",
     "--lime-line": "#c7db5a",

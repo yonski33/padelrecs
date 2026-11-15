@@ -90,7 +90,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
   ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
-  const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={choiceHref(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
+  const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={choiceHref(next)} scroll={false} replace aria-current={(on) ? "true" : undefined} className={on ? "on" : undefined}>{label}</Link>;
   const picked = !isDefault(choice);
   return <main className={`hv2 ${qtFontVars}`}>
     {/* The mockup's own footer (owner 2026-11-15: "match it 100%"); home-v2.css hides the site's on this page. The header is the site's (site-header.tsx). */}
@@ -107,7 +107,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
         <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, picked && choice.style === s)}</span>)}</span>
         <span className="hv2-qk">and I&apos;m</span>
         <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, picked && choice.level === l)}</span>)}</span>
-        <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-pressed={choice.arm}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
+        <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-current={(choice.arm) ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
         {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
         {picked && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
           <summary><span className="c">Not sure yet? <b>fine-tune ▾</b></span><span className="o">fewer filters ▴</span></summary>
@@ -118,7 +118,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
               return <div key={key} className="hv2-fine-row"><span className="hv2-fk">{label}</span><span className="hv2-lv" role="group" aria-label={label}>
                 {opts.map(([v, l]) => <span key={v}>{pill(l, with_(cur === v ? undefined : v), cur === v)}</span>)}
                 {key !== "feel" && <span>{pill("any", with_(undefined), !cur)}</span>}</span></div>; })}
-            <Link className="hv2-arm" href={choiceHref({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} scroll={false} replace aria-pressed={!!choice.fine?.sweet}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</Link>
+            <Link className="hv2-arm" href={choiceHref({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} scroll={false} replace aria-current={(!!choice.fine?.sweet) ? "true" : undefined}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</Link>
           </div>
         </details>}
         {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level[0].toUpperCase() + choice.level.slice(1), STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
@@ -147,7 +147,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
             const shop = listShopLink(r), c = score(data, r.id);
             return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
               <span className="hv2-rank">{i + 1}</span>
-              <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
+              <span className="hv2-pic">{pic ? <img src={pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${productHref(r)}${picks}`}>{nameOf(r)}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="hv2-line">{line}</span>}
                 {shop && <a className="hv2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a>}

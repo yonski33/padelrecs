@@ -123,7 +123,7 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
             const shop = listShopLink(r);
             return <li key={r.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><div className="ct2-row">
               <span className="ct2-rank">{i + 1}</span>
-              <span className="ct2-pic">{pic ? <img src={pic} alt="" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{brand(r.brandId)}</span>}</span>
+              <span className="ct2-pic">{pic ? <img src={pic} alt="" width={408} height={620} decoding="async" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{brand(r.brandId)}</span>}</span>
               <span className="ct2-body">
                 <span className="ct2-nrow"><a className="ct2-name" href={productHref(r)}>{name}</a>{chips.map(c => <span key={c.k} className={`ct2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="ct2-line">{line}</span>}
