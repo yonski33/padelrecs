@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { VERDICTS, loadProfile, saveProfile, sendVote, type Verdict } from "../../quick-vote";
+import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } from "../../quick-vote";
 
 // The racket page's Reviews section (owner 2026-11-15, site-jobs/RACKET-REVIEWS-SECTION.md, Claude Design mockup): all /
 // players / youtube tabs, a "Played it? Add yours." composer and the feed, newest first, 8 at a time. Real data only: the
@@ -23,10 +23,15 @@ const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 
 const PILL: Record<Verdict, string> = { positive: "👍 liked it", mixed: "🤷 mixed", negative: "👎 not for them" };
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
-export default function RacketReviews({ racketId, name, cards }: { racketId: string; name: string; cards: ReviewCard[] }) {
+export default function RacketReviews({ racketId, name, cards, nicknames = [] }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[] }) {
   const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<typeof LEVELS[number] | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
+  // A nickname fitting the site, filled in by default (owner 2026-11-15: like the old card, e.g. "SteadyVolley482"): the same one
+  // per device (localStorage), editable, and a new one on tap. Read after the first render so server and client HTML match.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { setNick(nickname(nicknames)); }, [nicknames]);
+  const newNick = () => { try { localStorage.removeItem("rv-nick"); } catch { /* storage off */ } setNick(nickname(nicknames)); };
   // The side column's one-tap verdict pre-selects it here (racket-fit.tsx scrolls down).
   useEffect(() => {
     const pick = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; if (VERDICTS.some(x => x.key === v)) { setVerdict(v); setPosted(null); } };
@@ -75,7 +80,8 @@ export default function RacketReviews({ racketId, name, cards }: { racketId: str
         <textarea rows={4} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} aria-label="Your review (optional)"
           placeholder="What would you tell a friend thinking of buying it? What surprised you? What did you come from?"/>
         <div className="rv-send">
-          <input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} placeholder="name or nickname (optional)" aria-label="Name or nickname (optional)"/>
+          <span className="rv-nick"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} placeholder="name or nickname (optional)" aria-label="Your nickname (optional, change it if you like)"/>
+            <button type="button" onClick={newNick} title="Another nickname" aria-label="Another nickname">↻</button></span>
           <button type="button" className="rv-post" disabled={!verdict || busy} onClick={post}>{busy ? "posting…" : verdict ? "Post review →" : "pick a verdict"}</button>
         </div>
         {error && <p className="rv-err" role="alert">{error}</p>}

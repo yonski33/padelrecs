@@ -320,7 +320,7 @@ export default async function RacketFit(props: {
         </aside>
       </section>
 
-      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards}/></section>
+      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames}/></section>
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{"built from YouTube reviews, reviews sent to us and padel forum reports · every source linked · "}
