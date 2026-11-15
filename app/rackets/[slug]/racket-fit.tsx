@@ -1,13 +1,14 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import "./racket-fit.css";
-import { spans, sentimentWords, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
+import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
 import { TRAITS, TRAIT_LABEL, type Trait } from "../../../lib/trait-score";
 import { fitVerdict, bestFor, levelBacking, levelSources, styleLean } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
+import { matchScore } from "../../../lib/match-score";
 import { platformName } from "../../../lib/source-label";
 import { displayName } from "../../../lib/brand-name";
 import { productHref, niche, catalogPath } from "../../../lib/niche";
@@ -46,6 +47,15 @@ export default async function RacketFit(props: {
   const ctx = await matchContext();
   const facts = ctx.facts(props.racketId);
   const verdict = picked ? fitVerdict(choice, facts) : null;
+  // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
+  // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
+  const trs = ctx.traits(props.racketId).scores, lvE = ctx.level(props.racketId);
+  const pct = verdict ? matchScore(choice, { verdict, control: trs?.control?.score ?? null, power: trs?.power?.score ?? null, arm: trs?.arm?.score ?? null, band: lvE?.band, likedAtLevel: lvE?.liked[choice.level] ?? 0, signal: ctx.signal(props.racketId) }) : null;
+  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not" }[verdict.kind] : null;
+  const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (qt ? qt.hook.good : null)) : null;
+  const consider = verdict ? (verdict.catches?.[0] ?? (qt ? qt.hook.catch : null)) : null;
+  const headline = !verdict ? "" : verdict.kind === "good" ? (consider ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — demo it first." : verdict.kind === "no" ? "Probably not for you." : "Not enough reports from players like you yet.";
+  const gameWords = [choice.level, choice.style === "any" ? null : choice.style === "balance" ? "all-round" : choice.style, choice.arm ? "sore arm" : null].filter((x): x is string => !!x);
   // What backs the level band (brand, reviewers, players), with the brand's page linked (owner 2026-11-15).
   const backing = levelBacking(facts), maker = levelSources(facts).maker;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
@@ -58,7 +68,6 @@ export default async function RacketFit(props: {
   const said = levelView ? atLevel : reports;
   const count = (k: string) => said.filter(r => r.sentiment === k).length;
   const [pos, mix, neg] = [count("positive"), count("mixed"), count("negative")];
-  const mood = sentimentWords(...(["positive", "mixed", "negative"].map(k => reports.filter(r => r.sentiment === k).length) as [number, number, number]))?.lead.toLowerCase();
   const who = (id: string) => { const r = byId.get(id); if (!r) return null;
     return r.platform === props.site ? [r.nickname || `A ${props.site} player`, r.level].filter(Boolean).join(" · ") : [platformName(r.platform), r.sourceName && r.sourceName !== r.platform ? r.sourceName : null, r.level].filter(Boolean).join(" · "); };
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return `${props.href}${h === "/" ? "" : h.slice(1)}`; };
@@ -154,11 +163,14 @@ export default async function RacketFit(props: {
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name}/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
             <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}</div>
-            <h1>{`${props.shortName} (${props.year})`}</h1>
+            {/* H1 keeps "<name> review" for search (owner); the big name sits under it. */}
+            <h1>{`${props.shortName} review`}</h1>
+            <p className="rf-name">{`${props.shortName} (${props.year})`}</p>
             {(qt || props.line) && <p className="rf-hook">{qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             <div className="rf-meta">
               {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
-              <a href="#reviews">{`${total} reviews${mood ? ` · ${mood}` : ""}`}</a>
+              {ctx.signal(props.racketId) !== null && <span className="rf-sig" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{ctx.signal(props.racketId)}</span>}
+              <a href="#reviews">{`${total} player reports`}</a>
             </div>
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
@@ -178,20 +190,21 @@ export default async function RacketFit(props: {
             </div>
             {backing && <p className="rf-lvl">{`level: ${backing}`}{maker && <> · <a href={maker.url} target="_blank" rel="noopener nofollow">brand page ↗</a></>}</p>}
             {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
-          </div> : <>
-            <div className="rf-bar"><span className="rf-k">fit check</span>
-              <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, choice.style === s)}</span>)}</span>
-              <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
-              {armLink("sore arm")}
-            </div>
-            <div className="rf-verdict" aria-live="polite">
-              <span className="rf-icon" aria-hidden="true">{verdict.icon}</span>
-              <div><h2>{verdict.label}</h2>
-                {verdict.reasons.length > 0 && <ul>{verdict.reasons.map(r => <li key={r}>{r}</li>)}</ul>}
-                {maker && <p className="rf-lvl"><a href={maker.url} target="_blank" rel="noopener nofollow">{`brand page: “${maker.words}” ↗`}</a></p>}
-                <Link href={props.href} scroll={false} replace className="rf-reset">start over</Link></div>
-            </div>
-          </>}
+          </div> : <div className="rf-ans" aria-live="polite">
+            <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
+              <span className={`rf-vpill ${verdict.kind}`}>{pct === null ? "—" : `${pct}% match`}{verdictWord && ` · ${verdictWord}`}</span></div>
+            <h2>{headline}</h2>
+            <p className="rf-for">{`For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
+            {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ what works" : "✓ why it fits"}</p><p>{why}</p></div>}
+            {consider && <div className="rf-blk warn"><p className="rf-bk">↗ what to consider</p><p>{consider}</p></div>}
+            <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join(" · ")}</span>
+              <details className="rf-edit"><summary>edit ↗</summary><div className="rf-bar">
+                <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(st => <span key={st}>{pill(STYLE_WORD[st], { ...choice, style: st }, choice.style === st)}</span>)}</span>
+                <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
+                {armLink("sore arm")}
+              </div></details>
+              <Link href={props.href} scroll={false} replace className="rf-reset">start over</Link></div>
+          </div>}
         </div>
       </section>
 

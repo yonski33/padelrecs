@@ -20,7 +20,8 @@ export type FitFacts = {
   /** Place on the control / power rankings, when it's on them. */
   places?: { control?: number; power?: number };
 };
-export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[]; /** One short reason for list rows (the home). */ short?: string };
+export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[]; /** One short reason for list rows (the home). */ short?: string;
+  /** What fits (ok checks) and what to weigh (conflicts), for the racket page's two blocks. */ fits?: string[]; catches?: string[] };
 
 export const MIN_FIT_REPORTS = 20;
 /** Arm-friendly mentions needed before the fit check vouches for a sore arm. */
@@ -122,10 +123,11 @@ export function fitVerdict(c: QuickChoice, f: FitFacts): FitVerdict {
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;
   if (f.reports < MIN_FIT_REPORTS || known === 0 || known < Math.ceil(asked / 2))
     return { kind: "thin", label: "Not enough reports from players like you yet", icon: "🫥", reasons: reasons(["hard", "soft", "ok"]).slice(0, 2) };
+  const fits = reasons(["ok"]), catches = [...reasons(["hard"]), ...reasons(["soft"])];
   const short = (lv: Check["level"], mark: string) => { const x = checks.find(c => c.level === lv && c.short); return x ? `${mark} ${x.short}` : undefined; };
-  if (checks.some(x => x.level === "hard")) return { kind: "no", label: "Probably not your racket", icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3), short: short("hard", "✗") };
-  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~") };
-  return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3), short: short("ok", "✓") };
+  if (checks.some(x => x.level === "hard")) return { kind: "no", label: "Probably not your racket", icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3), short: short("hard", "✗"), fits, catches };
+  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~"), fits, catches };
+  return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3), short: short("ok", "✓"), fits, catches };
 }
 
 /** "Generally best for" chips when there are no picks: the band, the lean, arm comfort, only what the data supports. */
