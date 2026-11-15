@@ -34,7 +34,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const choice: QuickChoice = readChoice(search), picked = !!search.level && (LEVELS as readonly string[]).includes(search.level);
   const showPct = picked && search.pct !== "0";
   const href = listHref(list.slug);
-  const picks = picked ? `?${new URLSearchParams([...(choice.style !== "any" ? [["style", choice.style]] : []), ["level", choice.level], ...(choice.arm ? [["arm", "1"]] : [])])}` : "";
+  const picks = picked ? `?${new URLSearchParams([...(choice.style !== "any" ? [["style", choice.style]] : []), ["level", choice.level!], ...(choice.arm ? [["arm", "1"]] : [])])}` : "";
   // "The 10 best padel rackets overall in 2026": the label after "Best" is the highlighted part.
   const year = listYear(list), many = `${niche.seo.productCategory.toLowerCase()}s`;
   const hl = list.label.replace(/^best\s+/i, "").toLowerCase();
@@ -75,7 +75,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
           <span><strong>{"#1 for everyone isn't always #1 for you."}</strong>{" Answer 2 questions to see your match % on every racket."}</span>
           <label htmlFor="rl2-edit" className="rl2-go"><span>find my match →</span></label>
         </span>}
-        <div className="rl2-pane"><RankPicks href={href} current={picked ? choice : null} finder={niche.finder ? "/finder" : undefined}/></div>
+        <div className="rl2-pane"><RankPicks href={href} current={picked ? { ...choice, level: choice.level! } : null} finder={niche.finder ? "/finder" : undefined}/></div>
       </section>
 
       <ol className="rl2-list">{entries.map((e, i) => {

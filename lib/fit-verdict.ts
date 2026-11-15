@@ -1,7 +1,7 @@
 // The racket page's fit check (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md): "is this the right racket for you?" for the
 // visitor's quick-match picks (lib/quick-match.ts). Real data only, the same inputs as quick match: tag counts from published
 // reports, the rankings' places, the quick-take level band. No guessing: thin data says so instead of giving a verdict.
-import type { QuickChoice } from "./quick-match";
+import type { QuickChoice, Level } from "./quick-match";
 import { niche } from "./niche";
 import { fineMismatches, type FineFacts } from "./fine-tune";
 
@@ -106,13 +106,21 @@ export function combinedBand(f: FitFacts): Band | undefined {
 /** Suits scores: 62+ fits, 40–61 could (a demo-first), under 40 doesn't, but only when players or reviewers back it: the
  *  brand's label alone never rules a racket out (owner 2026-11-15). */
 export const SUITS_OK = 62, SUITS_LOW = 40;
-function levelCheck(c: QuickChoice, f: FitFacts): Check {
+function levelCheck(choice: QuickChoice, f: FitFacts): Check {
+  // No level picked yet: nothing to check (owner 2026-11-15).
+  if (!choice.level) return { level: "unknown" };
+  const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
     const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";
     const backed = f.suits.basis.some(b => b !== "the brand");
     if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
-    if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} Players and reviewers don't put it at ${c.level}.`.trim() };
+    // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.
+    const why = f.suits.basis.includes("expert") ? `Players and reviewers don't put it at ${c.level}.`
+      : f.suits.basis.includes("a pro line") ? `A pro line, built for advanced players.`
+      : c.level === "beginner" && f.suits.basis.includes("its shape") ? `A diamond shape: few of them suit beginners.`
+      : f.suits.basis.includes("advanced players") ? `Players and reviewers call it a ${niche.words.one} for advanced players.` : `Players and reviewers don't put it at ${c.level}.`;
+    if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} ${why}`.trim() };
     if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
     return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} racket; demo it first.`.trim() };
   }

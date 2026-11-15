@@ -14,7 +14,7 @@ for (const level of ["beginner", "intermediate", "advanced"] as const) {
   const choice: QuickChoice = { style: "any", level, arm: false };
   const kinds: Record<string, number> = {}, levelHard: string[] = [];
   for (const r of data.listed) { const f = fitVerdict(choice, ctx.facts(r.id) as never); kinds[f.kind] = (kinds[f.kind] ?? 0) + 1; }
-  const cands = quickMatch(ctx.pool, ctx.finder, choice, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 40, rankWeight: ctx.finder.rankWeight });
+  const cands = quickMatch(ctx.pool, ctx.finder, choice, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 40, rankWeight: ctx.finder.rankWeight, levelGate: ctx.levelGate });
   const rated = cands.map(m => { const fit = fitVerdict(choice, ctx.facts(m.product.id) as never), t = ctx.traits(m.product.id).scores, lv = ctx.level(m.product.id);
     return { slug: slug.get(m.product.id), kind: fit.kind, short: fit.short, pct: matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[level] ?? 0, signal: ctx.signal(m.product.id), ...(lv && "suits" in lv ? { suits: (lv as { suits?: Record<string, number> }).suits?.[level] } : {}) } as never) }; });
   const top = [...rated].sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1)).slice(0, 10);

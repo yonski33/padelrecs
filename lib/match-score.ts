@@ -25,6 +25,9 @@ export type MatchInputs = {
   likedAtLevel?: number;
   /** How well it suits the picked level, 0–100 (lib/level-suits.ts); when given it replaces the band. */
   suits?: number;
+  /** The level is a gate here (lib/quick-match.ts passesLevel): rackets that reach this % already suit the level, so the
+   *  level part is left out and the % ranks them on the rest (owner 2026-11-15: "not a 30% weight"). */
+  levelGated?: boolean;
   /** Fine-tune fit 0–1 (lib/fine-tune.ts fineFit): weight, feel and sweet spot picks; null when none picked. */
   fine?: number | null;
   signal: number | null;
@@ -46,9 +49,9 @@ export function matchFit(c: QuickChoice, m: Omit<MatchInputs, "verdict">): numbe
       : m.control === null || m.power === null ? 0.5 : 0.5 * Math.min(m.control, m.power) / 99 + 0.5 * (1 - Math.abs(m.control - m.power) / 99);
     parts.push([W.style, m.styleWithin === undefined ? v : 0.7 * m.styleWithin + 0.3 * v]);
   }
-  const i = LEVEL_INDEX[c.level];
+  const i = c.level ? LEVEL_INDEX[c.level] : -1;
   const inBand = m.suits !== undefined ? m.suits / 100 : !m.band ? 0.5 : i >= m.band.from && i <= m.band.to ? 1 : Math.min(Math.abs(i - m.band.from), Math.abs(i - m.band.to)) === 1 ? 0.5 : 0.1;
-  parts.push([W.level, Math.min(1, inBand + 0.2 * Math.min(1, (m.likedAtLevel ?? 0) / 5))]);
+  if (c.level && !(m.levelGated && m.suits !== undefined)) parts.push([W.level, Math.min(1, inBand + 0.2 * Math.min(1, (m.likedAtLevel ?? 0) / 5))]);
   if (c.arm) parts.push([W.arm, part(m.arm)]);
   if (m.fine !== undefined && m.fine !== null) parts.push([W.fine, m.fine]);
   parts.push([W.score, part(m.signal)]);

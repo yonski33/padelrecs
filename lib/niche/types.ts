@@ -152,7 +152,19 @@ export type Niche = {
   recentMonths?: number;
   /** The fit check and match %: the fewest reports a racket needs for a verdict, and below how many the page notes it rests on
    *  fewer reports (owner 2026-11-15: padel 6 and 15). Defaults 20 / 20. */
-  fit?: { minReports: number; fewReports: number };
+  fit?: { minReports: number; fewReports: number;
+    /** Pro / competition lines (regex sources, matched on the product name, case-insensitive): with a brand "advanced" label they
+     *  are kept out of the intermediate lists, and out of the beginner lists whatever the brand says, unless players at that
+     *  level vouch for them or the expert level says otherwise (lib/level-suits.ts). */
+    proLines?: string[];
+    /** Shapes kept out of the beginner lists (lowercase spec values, e.g. "diamond"), unless beginners vouch for the racket,
+     *  the expert level includes beginner, or it is one of beginnerLines. */
+    beginnerShapesOut?: string[];
+    /** Lines the owner names as beginner-friendly (regex sources on the name): they always show for beginners. */
+    beginnerLines?: string[];
+    /** Quick match's level gate (owner 2026-11-15): a product shows for a picked level only when its suits score for that
+     *  level (lib/level-suits.ts) reaches this. Without it, level only weighs in the ranking. */
+    levelGate?: { beginner: number; intermediate: number; advanced: number } };
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */

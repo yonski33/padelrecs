@@ -19,7 +19,9 @@ test("choices read from and write to the URL; unknown values fall back", () => {
   assert.deepEqual(readChoice({ style: "nope", level: "pro" }), DEFAULT_CHOICE);
   assert.equal(choiceHref(DEFAULT_CHOICE), "/#match");
   assert.equal(choiceHref({ style: "power", level: "advanced", arm: true }, ""), "/?style=power&level=advanced&arm=1");
-  assert.ok(isDefault(readChoice({ level: "intermediate" })));
+  assert.ok(!isDefault(readChoice({ level: "intermediate" })) && isDefault(readChoice({ style: "any" })));
+  assert.equal(readChoice({ style: "power" }).level, undefined, "picking a style does not pick a level");
+  assert.equal(choiceHref(readChoice({ style: "power" })), "/?style=power#match");
 });
 
 test("nothing chosen: Player score order", () => {

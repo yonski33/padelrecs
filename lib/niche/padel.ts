@@ -30,7 +30,13 @@ export const padel: Niche = {
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
   recentMonths: 24,
   // Owner 2026-11-15: "yes lower it to 6"; under 15 the verdict and % say they rest on fewer reports.
-  fit: { minReports: 6, fewReports: 15 },
+  fit: { minReports: 6, fewReports: 15,
+    // Owner 2026-11-15: pro lines "are meant for advanced players, they can never show if someone picks intermediate" (when the
+    // brand says advanced), and never for beginners. The owner corrects single rackets through the expert level.
+    proLines: ["\\bPro\\+?(?=\\s|$)", "\\bHRD\\+?", "\\bEdge\\b", "\\bNeuron\\b", "\\bBela\\b", "\\bMetalbone\\b(?!.*\\b(?:CTRL|Team|Youth|Junior|Light|Lite)\\b)"],
+    // Owner 2026-11-15: "very few diamond rackets can be played by beginners … like bullpadel vertex women".
+    beginnerShapesOut: ["diamond"], beginnerLines: ["\\bVertex\\b.*\\bWomen\\b"],
+    levelGate: { beginner: 60, intermediate: 60, advanced: 50 } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",
