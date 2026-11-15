@@ -181,3 +181,10 @@ export function slimItems(items: RankItem[], setup: Pick<Finder, "questions">): 
 export function alternatives(items: RankItem[], setup: RankSetup, negativeTags: readonly string[], choice: QuickChoice, exclude: string, n = 4): RankedRow[] {
   return rankHome(items, setup, negativeTags, choice, false, n + 1).rows.filter(r => r.id !== exclude).slice(0, n);
 }
+
+/** Each product's control ↔ power axis position, 0 control … 1 power (lib/engine engineBase), for copy and display that must
+ *  tell the same story as the ranking. Empty without an engine profile. */
+export function engineAxis(items: RankItem[], engine: EngineProfile | undefined): Map<string, number> {
+  if (!engine) return new Map();
+  return new Map([...engBase(items, engine)].map(([id, b]) => [id, b.axis]));
+}
