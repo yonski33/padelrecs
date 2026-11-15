@@ -13,7 +13,7 @@ import { gramsOf, weightOf, WEIGHTS, FEELS } from "../../lib/fine-tune";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { matchContext } from "../match-context";
-import { rowOfFamily, olderInFamily } from "../../lib/compare-pairs";
+import { rowOfFamily } from "../../lib/compare-pairs";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 
 // The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
@@ -126,9 +126,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
                 {x.sc.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}
                 <small>{x.signal !== null ? "player score" : `${x.sc.judged} reports`}</small>
               </span>
-            </a>
-              {(() => { if (allYears) return null; const old = olderInFamily(r, data.listed), nw = rowOf(r).newer;
-                return <>{nw && <a className="ct2-also" href={productHref(nw)}>{`new: ${nw.year} version →`}</a>}{old.length > 0 && <a className="ct2-also" href={productHref(old[0])}>{`also: ${old[0].year} version →`}</a>}</>; })()}</li>; })}</ol>
+            </a></li>; })}</ol>
           {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
           {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}
           {shown.length > show && <Link className="ct2-load" href={href({ show: String(show + PAGE) })} scroll={false} replace>{`load ${Math.min(PAGE, shown.length - show)} more ↓`}</Link>}

@@ -138,9 +138,5 @@ body:has(main.hv2) { background: #fbfaf6; }
   }
 }
 
-/* One row per model (owner 2026-11-15): the older year's link under the newest's row. */
-.hv2 .hv2-list > li { position: relative; }
-.hv2 .hv2-list > li.has-also .hv2-row { padding-bottom: 22px; }
-.hv2 .hv2-also { position: absolute; bottom: 5px; font-size: 11px !important; z-index: 1; font: 12px var(--qt-mono, "JetBrains Mono"), monospace; color: #4a4740; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-.hv2 .hv2-also.a1 { left: 118px; } .hv2 .hv2-also.a2 { left: 270px; }
-@media (max-width: 760px) { .hv2 .hv2-also.a1 { left: 84px; } .hv2 .hv2-also.a2 { left: 220px; } }
+/* "show older models" under the list (owner 2026-11-15): older years only on request, never as links in the rows. */
+.hv2 .hv2-older { display: block; text-align: center; padding: 8px; border-top: 1px solid #e3e0d7; font: 600 12px var(--qt-mono, "JetBrains Mono"), monospace; color: #4a4740; }

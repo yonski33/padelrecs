@@ -12,7 +12,7 @@ import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { fitVerdict, ARM_BAR, MIN_FIT_REPORTS } from "../lib/fit-verdict";
-import { rowOfFamily, olderInFamily } from "../lib/compare-pairs";
+import { rowOfFamily } from "../lib/compare-pairs";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
@@ -34,7 +34,7 @@ function ago(iso: string, now: number) {
 /** A quote cut at a word boundary, still the player's own words. */
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
-export default async function HomeV2({ choice }: { choice: QuickChoice }) {
+export default async function HomeV2({ choice, older: allYears = false }: { choice: QuickChoice; older?: boolean }) {
   const [{ data, sigs, takes, finder, bad, pool, level, signal, factsFor, matchPct, fineOf }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
@@ -58,14 +58,15 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   const reportsOf = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
   const rowOf = (id: string) => rowOfFamily(byId.get(id)!, data.listed, r => (reportsOf.get(r.id) ?? 0) >= MIN_FIT_REPORTS);
-  const newestOf = (id: string) => rowOf(id).shown.id;
+  // "show older models" (?older=1, owner 2026-11-15): every year as its own row. The rows never link other years.
+  const newestOf = (id: string) => allYears ? id : rowOf(id).shown.id;
   const order = new Map(candidates.map((m, i) => [m.product.id, i]));
   const seenModel = new Set<string>();
   const models = candidates.flatMap(m => { const id = newestOf(m.product.id); if (seenModel.has(id)) return []; seenModel.add(id);
     return [{ id, i: order.get(id) ?? candidates.length + (order.get(m.product.id) ?? 0), arm: factsFor(choice, id).tags["arm-friendly"] ?? 0 }]; });
   const rated = models.map(m => ({ m, i: m.i, fit: pcts ? fitVerdict(choice, factsFor(choice, m.id)) : null, pct: pcts?.get(m.id) ?? null }));
   const rows = [...rated].sort((a, b) => (pcts ? (b.pct ?? -1) - (a.pct ?? -1) : 0) || a.i - b.i).slice(0, LIST_SIZE);
-  const olderOf = (id: string) => olderInFamily(byId.get(id)!, data.listed);
+  const olderN = allYears ? 0 : candidates.filter(m => newestOf(m.product.id) !== m.product.id).length;
   // Rows carry the picks to the racket page, so its fit check answers for this visitor (RACKET-FIT-PAGE.md).
   const picks = isDefault(choice) ? "" : choiceHref(choice, "").replace(/^\/\??/, "?");
   const head = matchTitle(choice, niche.words.many);
@@ -126,7 +127,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
           {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
           <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ m, fit, pct }, i) => {
-            const r = byId.get(m.id)!, sig = sigs.get(r.id), pic = photo(r), older = olderOf(r.id), newer = rowOf(r.id).newer;
+            const r = byId.get(m.id)!, sig = sigs.get(r.id), pic = photo(r);
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
             // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
@@ -136,7 +137,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
               ...(r.shape ? [{ k: "shape", t: r.shape.toLowerCase() }] : []),
               ...(m.arm >= ARM_BAR && choice.arm ? [{ k: "arm", t: "arm-friendly" }] : []),
             ];
-            return <li key={r.id} className={[i === 0 && picked ? "top" : "", newer || older.length ? "has-also" : ""].filter(Boolean).join(" ") || undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
+            return <li key={r.id} className={i === 0 && picked ? "top" : undefined}><a className="hv2-row" href={`${productHref(r)}${picks}`}>
               <span className="hv2-rank">{i + 1}</span>
               <span className="hv2-pic">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{nameOf(r).split(" ").slice(0, 2).join(" ")}</span>}</span>
               <span className="hv2-body"><span className="hv2-nrow"><span className="hv2-name">{nameOf(r)}</span>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
@@ -148,10 +149,9 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
                 : <>{sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
                 <span>{sig ? "player score" : `${n} reports`}</span></>}
               </span>
-            </a>
-            {newer && <a className="hv2-also a1" href={`${productHref(newer)}${picks}`}>{`new: ${newer.year} version →`}</a>}
-            {older.length > 0 && <a className={`hv2-also ${newer ? "a2" : "a1"}`} href={`${productHref(older[0])}${picks}`}>{`also: ${older[0].year} version →`}</a>}</li>;
+            </a></li>;
           })}</ol>
+          {(olderN > 0 || allYears) && <Link className="hv2-older" href={`${choiceHref(choice, "")}${allYears ? "" : `${choiceHref(choice, "").includes("?") ? "&" : "?"}older=1`}#match`} scroll={false} replace>{allYears ? "hide older models ▴" : "show older models ▾"}</Link>}
           <a className="hv2-more" href={catalogPath}>{`see all ${data.listed.length} ${niche.words.many} →`}</a>
           </div>
         </section>

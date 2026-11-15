@@ -48,7 +48,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string; style?: string; level?: string; arm?: string }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string; style?: string; level?: string; arm?: string; older?: string }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -136,7 +136,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
   // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
-  if (niche.id === "padel" && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)}/>;
+  if (niche.id === "padel" && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)} older={params.older === "1"}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">
