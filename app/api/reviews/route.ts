@@ -11,6 +11,7 @@ import { profileChoice } from "../../../lib/review-options";
 import { issueFormToken, checkFormToken, reviewEditToken, checkReviewEdit } from "../../../lib/form-token";
 import { spamScore, normalizeEmail } from "../../../lib/review-spam";
 import { clientIp, createLimiter } from "../../../lib/rate-limit";
+import { makeNickname } from "../../../lib/nickname";
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===null?undefined:v,rating.optional());
 const input=z.object({
@@ -23,7 +24,7 @@ const input=z.object({
 }).and(racketSelection);
 const noStore={"Cache-Control":"no-store"};
 type Valid=z.infer<typeof input>;
-const reviewRow=(value:Valid,status:"pending"|"rejected",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||null,variant,status,createdAt:new Date().toISOString()});
+const reviewRow=(value:Valid,status:"pending"|"rejected",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||makeNickname(niche.form.quickVote?.nicknames),variant,status,createdAt:new Date().toISOString()});
 // Spam is answered exactly like a saved review, so a bot learns nothing from the response; only the server log says why.
 // Every accepted answer carries an id and edit token (the one-tap card adds details to it). Dropped and rejected posts get
 // one too, so the answer looks the same; their details just never land, since only pending reviews take them.

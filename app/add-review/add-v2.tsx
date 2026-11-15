@@ -2,7 +2,7 @@
 import { niche, v2copy } from "../../lib/niche";
 import { matchingRackets } from "../../lib/racket-search";
 import { useState } from "react";
-import { VERDICTS, loadProfile, saveProfile, sendVote, type Verdict } from "../quick-vote";
+import { VERDICTS, loadProfile, nickname, saveProfile, sendVote, type Verdict } from "../quick-vote";
 
 // Add a review in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/VexiJKZHN4whPpvvtVDM4k),
 // PadelRecs only. Two required taps (racket, verdict), the rest optional. Same flow as the rest of the site: the verdict is a
@@ -44,7 +44,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times }: 
         const token = ((await (await fetch("/api/reviews", { cache: "no-store" })).json()) as { token?: string }).token || "";
         const ratings = Object.fromEntries(TRAITS.filter(([n]) => r[n]).map(([n, key]) => [key, r[n]]));
         const res = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-          racketMode: "existing", racketId: racket!.id, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: name.trim() || undefined,
+          racketMode: "existing", racketId: racket!.id, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: name.trim() || nickname(niche.form.quickVote?.nicknames) || undefined,
           ...(level ? { playerLevel: level } : {}), ...(side ? { playingSide: side } : {}), ...(time ? { timeWithRacket: time } : {}), ...ratings }) });
         const b = await res.json() as { error?: string };
         if (!res.ok) throw new Error(b.error || "Your verdict counted, but the words didn't post. Try again?");
@@ -100,7 +100,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times }: 
           <div className="ar-h"><h2>5. In your words</h2><span>optional</span></div>
           <div className="ar-prompts">{PROMPTS.map(p => <button key={p} type="button" onClick={() => setText(t => (t ? t.trimEnd() + " " : "") + p[0].toUpperCase() + p.slice(1) + ": ")}>+ {p}</button>)}</div>
           <textarea rows={5} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} placeholder="What would you tell a friend thinking of buying it?" aria-label="Your review"/>
-          <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = anonymous)" aria-label="Show my name as"/></div>
+          <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = we pick one for you)" aria-label="Show my name as"/></div>
         </div>
       </section>
       <aside className="ar-side">

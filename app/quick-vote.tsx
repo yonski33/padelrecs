@@ -21,15 +21,13 @@ export type DetailStep = { field: "playerLevel" | "playingSide" | "playingStyle"
 const PROFILE_FIELD = { playerLevel: "level", playingSide: "side", playingStyle: "style" } as const;
 // Card reviews are signed with a generated nickname (owner, 2026-11-14: like Reddit's random usernames, nothing to type).
 // One per device, kept in localStorage, so the same person shows up under the same name. Each niche's own words.
-const NICK_A = ["Swift", "Steady", "Lucky", "Bold", "Sunny", "Quiet", "Clever", "Brave", "Calm", "Sharp", "Happy", "Mellow", "Rapid", "Smooth", "Wild", "Cool"];
-/** The generic second halves, for niches without form.quickVote.nicknames. */
-export const DEFAULT_NICKNAMES = ["Volley", "Lob", "Smash", "Rally", "Spin", "Drop", "Ace", "Slice", "Serve", "Rebound", "Baseline", "Topspin"];
+import { DEFAULT_NICKNAMES, makeNickname } from "../lib/nickname";
+export { DEFAULT_NICKNAMES };
 export function nickname(words: string[] = DEFAULT_NICKNAMES) {
   try {
     const known = localStorage.getItem("rv-nick");
     if (known) return known;
-    const pick = (list: string[]) => list[Math.floor(Math.random() * list.length)];
-    const nick = `${pick(NICK_A)}${pick(words.length ? words : DEFAULT_NICKNAMES)}${Math.floor(100 + Math.random() * 900)}`;
+    const nick = makeNickname(words);
     localStorage.setItem("rv-nick", nick);
     return nick;
   } catch { return ""; }
