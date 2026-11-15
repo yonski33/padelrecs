@@ -1,7 +1,7 @@
 // The racket page's fit check (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md): "is this the right racket for you?" for the
 // visitor's quick-match picks (lib/quick-match.ts). Real data only, the same inputs as quick match: tag counts from published
 // reports, the rankings' places, the quick-take level band. No guessing: thin data says so instead of giving a verdict.
-import type { QuickChoice } from "./quick-match";
+import type { QuickChoice, Level } from "./quick-match";
 import { niche } from "./niche";
 import { fineMismatches, type FineFacts } from "./fine-tune";
 
@@ -106,7 +106,10 @@ export function combinedBand(f: FitFacts): Band | undefined {
 /** Suits scores: 62+ fits, 40–61 could (a demo-first), under 40 doesn't, but only when players or reviewers back it: the
  *  brand's label alone never rules a racket out (owner 2026-11-15). */
 export const SUITS_OK = 62, SUITS_LOW = 40;
-function levelCheck(c: QuickChoice, f: FitFacts): Check {
+function levelCheck(choice: QuickChoice, f: FitFacts): Check {
+  // No level picked yet: nothing to check (owner 2026-11-15).
+  if (!choice.level) return { level: "unknown" };
+  const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
     const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";

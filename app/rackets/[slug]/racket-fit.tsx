@@ -81,7 +81,7 @@ export default async function RacketFit(props: {
   const levelOf = (r: QtReport) => { const v = r.level ?? webLevels.get(r.id)?.level; return v === "Competitive" ? "advanced" : v?.toLowerCase(); };
   const byId = new Map(reports.map(r => [r.id, { ...r, level: r.level ?? webLevels.get(r.id)?.level ?? null }]));
   // "What players at your level said" once 5+ reports at the picked level state it; else everyone (owner 2026-11-15).
-  const atLevel = picked ? reports.filter(r => levelOf(r) === choice.level) : [];
+  const atLevel = picked && choice.level ? reports.filter(r => levelOf(r) === choice.level) : [];
   const levelView = atLevel.length >= LEVEL_SAID_MIN;
   const said = levelView ? atLevel : reports;
   const count = (k: string) => said.filter(r => r.sentiment === k).length;
@@ -99,9 +99,9 @@ export default async function RacketFit(props: {
     return [src, r.level?.toLowerCase()].filter(Boolean).join(" · "); };
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return `${props.href}${h === "/" ? "" : h.slice(1)}`; };
   const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={at(next)} scroll={false} replace aria-current={(on) ? "true" : undefined} className={on ? "on" : undefined}>{label}</Link>;
-  // With no picks, a tap starts from the defaults (any / intermediate / no arm) but always lands on a picked page.
+  // With no picks, a tap starts from the defaults (any style / no level / no arm) but always lands on a picked page.
   const base = picked ? choice : DEFAULT_CHOICE;
-  const pickHref = (c: QuickChoice) => { const h = at(c); return h.includes("?") ? h : `${h}?level=${c.level}`; };
+  const pickHref = (c: QuickChoice) => { const h = at(c); return h.includes("?") ? h : `${h}?style=any`; };
 
   // Six trait rows (owner 2026-11-15): dots from the calculated trait scores (lib/trait-score.ts, every racket alike), text
   // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
@@ -265,7 +265,7 @@ export default async function RacketFit(props: {
             {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
             {facts.levelDisagree && <p className="rf-lvl">{facts.levelDisagree}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
-            <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>
+            {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>}
             <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
               <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% match · ${verdictWord}`}</span>
                 {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>

@@ -11,7 +11,7 @@ import { shortLine } from "../lib/short-lines";
 import { shopPhoto, photoHidden } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
-import { quickMatch, matchTitle, choiceHref, isDefault, passesLevel, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
+import { quickMatch, matchTitle, choiceHref, isDefault, passesLevel, levelPeople, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { fitVerdict, ARM_BAR, MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { rowOfFamily } from "../lib/compare-pairs";
@@ -106,9 +106,9 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
 
       <section className="hv2-qm" id="match" aria-label="Quick match">
         <span className="hv2-qk"><b>quick match</b>I want</span>
-        <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, picked && choice.style === s)}</span>)}</span>
+        <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, choice.style === s)}</span>)}</span>
         <span className="hv2-qk">and I&apos;m</span>
-        <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, picked && choice.level === l)}</span>)}</span>
+        <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
         <Link className="hv2-arm" href={choiceHref({ ...choice, arm: !choice.arm })} scroll={false} replace aria-current={(choice.arm) ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</Link>
         {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
         {picked && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
@@ -123,14 +123,14 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
             <Link className="hv2-arm" href={choiceHref({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} scroll={false} replace aria-current={(!!choice.fine?.sweet) ? "true" : undefined}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</Link>
           </div>
         </details>}
-        {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level[0].toUpperCase() + choice.level.slice(1), STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
+        {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level ? choice.level[0].toUpperCase() + choice.level.slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
           <Link href="/" scroll={false} replace>reset ↺</Link></p>}
       </section>
 
       <div className="hv2-grid">
         <section className="hv2-main" aria-live="polite">
           <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
-            <span>{picked ? <>{`ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
+            <span>{picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
           {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
           <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ m, fit, pct }, i) => {

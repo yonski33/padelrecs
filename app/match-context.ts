@@ -199,8 +199,8 @@ export const matchContext = cache(async () => {
     const within = styleWithin(choice);
     const rows = [...listed].map(id => {
       const fv = fitVerdict(choice, factsFor(choice, id)), t = traitMap.get(id), lv = level(id);
-      const fit = matchFit(choice, { control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0,
-        suits: lv?.suits?.[choice.level], levelGated: !!GATE, signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!), styleWithin: within?.get(id) });
+      const fit = matchFit(choice, { control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: choice.level ? lv?.liked[choice.level] ?? 0 : 0,
+        suits: choice.level ? lv?.suits?.[choice.level] : undefined, levelGated: !!GATE, signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!), styleWithin: within?.get(id) });
       const styleScore = choice.style === "power" ? t?.power?.score ?? 0 : choice.style === "control" ? t?.control?.score ?? 0 : choice.style === "balance" ? Math.min(t?.control?.score ?? 0, t?.power?.score ?? 0) : signal(id) ?? 0;
       return { id, kind: fv.kind, fit, tie1: within?.get(id) ?? styleScore, tie2: signal(id) ?? 0 };
     });
