@@ -42,7 +42,7 @@ test("balance: one voice once, comparisons count half, and the 2-dot rule needs 
   const b = evidenceBalance([row("a", "w:1", "control", 1), row("a", "w:2", "control", 1), row("a", "w:3", "control", -1, "a bit less precise than the Pro 5")], ref => ref === "w:2" ? "w:1" : ref);
   assert.deepEqual(b.get("a")!.control, { P: 1, C: 0.5, voices: 2, plusVoices: 1, minusVoices: 1 });
   // 40 rackets: one with many forgiveness complaints drops to 2, a well-liked one rises, the rest sit at the 3 floor or above.
-  const inputs = Array.from({ length: 40 }, (_, i) => ({ id: `r${i}`, balance: { forgiveness: i === 0 ? { P: 1, C: 12, plusVoices: 1, minusVoices: 12 } : i === 1 ? { P: 20, C: 0, plusVoices: 20, minusVoices: 0 } : { P: 4, C: 3, plusVoices: 4, minusVoices: 3 } } }));
+  const inputs = Array.from({ length: 40 }, (_, i) => ({ id: `r${i}`, reports: 20, balance: { forgiveness: i === 0 ? { P: 1, C: 12, plusVoices: 1, minusVoices: 12 } : i === 1 ? { P: 20, C: 0, plusVoices: 20, minusVoices: 0 } : { P: 4, C: 3, plusVoices: 4, minusVoices: 3 } } }));
   const s = balanceScores(inputs);
   assert.equal(s.get("r0")!.forgiveness!.dots, 2);
   assert.ok(s.get("r1")!.forgiveness!.dots >= 4);

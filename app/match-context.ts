@@ -105,7 +105,9 @@ export const matchContext = cache(async () => {
     const bal = evidenceBalance(evidence, ref => voice.get(ref) ?? ref);
     const known = KNOWN_DOTS[niche.id] ?? {};
     const knownSet = (slug: string) => Object.fromEntries(Object.entries(known[slug] ?? {}).filter(([, e]) => typeof e?.dots === "number").map(([t, e]) => [t, e.dots!])) as Partial<Record<TraitKey, number>>;
-    const inputs = [...tagIn.values()].map(p => ({ id: p.id, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
+    const reportsOf = new Map<string, number>();
+    for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+    const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
     traitAuto = balanceScores(inputs);
     traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })));
   } else {

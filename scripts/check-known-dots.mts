@@ -15,7 +15,7 @@ for (const [slug, traits] of Object.entries(known)) {
   if (!r) { console.log(`MISSING ${slug}`); fail++; continue; }
   const t = ctx.traits(r.id);
   for (const [trait, want] of Object.entries(traits)) {
-    const shown = t.scores?.[trait]?.dots, auto = t.auto?.[trait]?.dots;
+    const k = trait as keyof NonNullable<typeof t.scores>, shown = t.scores?.[k]?.dots, auto = t.auto?.[k]?.dots;
     const ok = shown !== undefined && (want.min === undefined || shown >= want.min) && (want.exact === undefined || shown === want.exact);
     if (!ok) fail++;
     console.log(`${ok ? "ok  " : "FAIL"} ${slug} ${trait}: shown ${shown} (auto ${auto})${want.min !== undefined ? ` want ≥${want.min}` : ""}${want.exact !== undefined ? ` want ${want.exact}` : ""}${want.dots !== undefined ? " · hand-set" : ""}`);
