@@ -41,6 +41,16 @@ const ratingVerdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? 
 const LEVEL_SAID_MIN = 5;
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 
+/** The line under a bar from the evidence store: [praise (many, one), fault (many, one)] per trait. */
+const EV_WORDS: Record<Trait, [[string, string], [string, string]]> = {
+  forgiveness: [["praise the sweet spot", "praises the sweet spot"], ["find it demanding", "finds it demanding"]],
+  power: [["praise the power", "praises the power"], ["want more power", "wants more power"]],
+  control: [["praise the control", "praises the control"], ["find it hard to control", "finds it hard to control"]],
+  defence: [["praise its defence", "praises its defence"], ["struggle with it in defence", "struggles with it in defence"]],
+  arm: [["find it kind to the arm", "finds it kind to the arm"], ["say it's hard on the arm", "says it's hard on the arm"]],
+  speed: [["call it quick in the hand", "calls it quick in the hand"], ["find it heavy or slow", "finds it heavy or slow"]],
+};
+
 export default async function RacketFit(props: {
   /** The quick-take block; null for the beginner pilots that have none yet (their lines come from tag counts). */
   qt: QuickTake | null; line?: string | null; quotes?: { id: string; text: string; verbatim: boolean; ok: boolean }[]; racketId: string; slug: string; href: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
@@ -116,7 +126,16 @@ export default async function RacketFit(props: {
     // Plain words under the bar (owner 2026-11-15): what players say, what reviewers say, and the specs when they lean it.
     const NOUN: Record<Trait, string> = { forgiveness: "the sweet spot", power: "the power", control: "the control", defence: "its defence", arm: "how it treats the arm", speed: "how quick it is" };
     const ytN = sc?.yt ?? 0, specWords = sc && Math.abs(sc.spec) >= 0.3 ? [me?.shape?.toLowerCase(), me?.balance ? `${me.balance.toLowerCase()} balance` : null].filter(Boolean).join(", ") : "";
-    const counted = [countLine[t]()?.replace(/\.$/, ""), ytN ? `${ytN} ${ytN === 1 ? "reviewer praises" : "reviewers praise"} ${NOUN[t]}` : null, specWords || null].filter(Boolean).join(" · ");
+    // From the evidence store (owner 2026-11-15): everyone who praises or faults this trait, one voice once, tags, the reader
+    // pass and YouTube alike: "5 players and 1 reviewer praise its defence · 6 find it demanding · diamond, high balance".
+    const ev = sc?.people, evLine = ev && (ev.players.plus + ev.reviewers.plus + ev.players.minus + ev.reviewers.minus) > 0 ? (() => {
+      const who = [ev.players.plus ? `${ev.players.plus} ${ev.players.plus === 1 ? "player" : "players"}` : null, ev.reviewers.plus ? `${ev.reviewers.plus} ${ev.reviewers.plus === 1 ? "reviewer" : "reviewers"}` : null].filter(Boolean).join(" and ");
+      const nPlus = ev.players.plus + ev.reviewers.plus, nMinus = ev.players.minus + ev.reviewers.minus;
+      const [praise, fault] = EV_WORDS[t];
+      return [nPlus ? `${who} ${nPlus === 1 ? praise[1] : praise[0]}` : `No one ${praise[1]}`, nMinus ? `${nMinus} ${nMinus === 1 ? fault[1] : fault[0]}` : null].filter(Boolean).join(" · ");
+    })() : null;
+    const counted = ev ? [evLine, specWords || null].filter(Boolean).join(" · ")
+      : [countLine[t]()?.replace(/\.$/, ""), ytN ? `${ytN} ${ytN === 1 ? "reviewer praises" : "reviewers praise"} ${NOUN[t]}` : null, specWords || null].filter(Boolean).join(" · ");
     // Few player mentions (owner 2026-11-15): say what the dots rest on instead of showing a dash.
     const thinWords = sc?.basis === "specs" ? "Based on specs and reviewers — few player reports on this yet." : "Not many players mention this yet.";
     const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? (counted ? `${counted}.` : null) ?? thinWords;
