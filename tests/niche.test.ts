@@ -1011,3 +1011,33 @@ test("grill: one product per model and generation, eight category pages with pro
     assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
   }
 });
+
+test("ebike: one model per generation, seven category pages with model URLs under them, battery rating icons", async () => {
+  const n = selectNiche("ebike");
+  assert.equal(n.schema, "ebikerecs");
+  assert.equal(n.productPath, "models");
+  assert.equal(n.productYears, false);
+  assert.equal(n.categoryPaths, true);
+  assert.equal(n.amazon?.searchIndex, "SportsAndOutdoors");
+  assert.equal(n.people.many, "riders");
+  assert.deepEqual(n.categories.map(c => c.label), ["Motor & power", "Ride & handling", "Range & battery", "Build & reliability", "Value"]);
+  assert.deepEqual(n.specs.map(s => s.label), ["Category", "Type", "Motor", "Battery", "Weight"]);
+  // The EbikeRecs scope (owner build queue 2026-11-12, build asked 2026-11-14): e-bikes and e-scooters; e-bikes are not on CyclingRecs.
+  assert.deepEqual(n.typePages?.map(t => t.slug), ["commuter-ebikes", "cargo-ebikes", "folding-ebikes", "electric-mountain-bikes", "road-and-gravel-ebikes", "fat-tire-ebikes", "electric-scooters"]);
+  assert.deepEqual(n.typePages?.map(t => t.shape), n.shapeFilter);
+  assert.deepEqual(n.specs[0].options, n.shapeFilter);
+  const { shapeOf } = await import("../app/art/ebike");
+  const drawings = n.shapeFilter.map(s => shapeOf(s));
+  assert(!drawings.includes("unknown"), "every category has a drawing");
+  assert.equal(new Set(drawings).size, 7, "and no two share one");
+  assert.equal(new Set(n.tags.map(t => t.label)).size, n.tags.length, "no duplicate tags");
+  assert.match(n.copy.about.sections.map(s => s.body).join(" "), /RadRunner Plus and RadRunner 3 Plus/);
+  for (const list of n.topLists ?? []) {
+    assert.match(list.slug, /^(best|most)-/, `${list.slug}: a best-of slug`);
+    assert.match(list.slug, /ebike|bike|scooter/, `${list.slug}: niche keyword in the slug`);
+    for (const t of [...(list.trait?.tags ?? []), ...(list.trait?.against ?? [])]) assert(n.tags.some(x => x.label === t), `${list.slug}: unknown tag ${t}`);
+  }
+  for (const key of ["--score-on", "--score-off", "--score-pick-on", "--score-pick-off"] as const) {
+    assert.match(n.theme[key], /^url\("data:image\/svg\+xml,%3Csvg [^"<>#]*%3C\/svg%3E"\)$/);
+  }
+});
