@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./compare.css";
+import "../pv2-skin.css";
+import { qtFontVars } from "../qt-fonts";
+import { V2Footer } from "../v2-footer";
+import { shopPhoto } from "../../lib/shop-photos";
 import { type catalog as loadCatalog, score } from "../../db/data";
 import { niche, productHref, typePageFor, catalogPath } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
@@ -8,7 +12,7 @@ import { summary } from "../../lib/product-summary";
 import { similarProducts, tagProfiles } from "../../lib/similar";
 import { amazonButton } from "../../lib/amazon-offer";
 import { websiteButton } from "../../lib/product-links";
-import { ProductArt, SentimentBar, positiveShare, SignalPop } from "../visual";
+import { ProductArt, SentimentBar, positiveShare } from "../visual";
 import { CompareAdd } from "./compare-add";
 import { lightFont } from "../light-font";
 import { productSignals } from "../signals";
@@ -42,9 +46,13 @@ export function compareMetadata(data: Data, products: Data["rackets"], canonical
   const names = products.map(r => nameOf(data, r));
   const title = products.length >= 2 ? `${names.join(" vs ")}: Compared by Real Reviews` : `Compare ${w.Many} by Real ${niche.people.One} Reviews`;
   const description = products.length >= 2
-    ? `${names.join(" vs ")} side by side: how positive their reviews are, what reviewers praise and complain about, and key specs.`
-    : `Pick two or three ${w.many} and see them side by side: share of positive reviews, most-mentioned praise and complaints, and specs.`;
-  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical }, openGraph: { title, description, url: canonical, type: "website" },
+    ? `${names.join(" vs ")} side by side: Player score, what players praise and complain about, and key specs.`
+    : `Pick two or three ${w.many} and see them side by side: Player score, most-mentioned praise and complaints, and specs.`;
+  // og:image (audit 2026-11-15): the first product's photo, else the site card.
+  const photo = products.map(r => shopPhoto(r)).find(Boolean);
+  const images = [photo ?? "/opengraph-image"];
+  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical }, openGraph: { title, description, url: canonical, type: "website", images },
+    twitter: { card: "summary_large_image", title, description, images },
     ...(index ? {} : { robots: { index: false, follow: true } }) };
 }
 
@@ -85,15 +93,16 @@ export async function CompareView({ data, products, light = false }: { data: Dat
   const addCell = (key: string) => canAdd ? <div key={key} className="cmp-cell cmp-slot" aria-hidden="true"/> : null;
 
   // light: the light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12); same content, the light look.
-  return <main className={`compare v2${light ? ` lt-page lcmp ${lightFont.className}` : ""}`}>
+  // Design v2 skin on PadelRecs (owner 2026-11-15): the v2 palette, fonts and footer (app/pv2-skin.css).
+  const v2 = niche.id === "padel";
+  return <><main className={`compare v2${light ? ` lt-page lcmp ${lightFont.className}` : ""}${v2 ? ` pv2 ${qtFontVars}` : ""}`}>
     {cols.some(c => c.affiliate) && <p className="affiliate-note compact">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}
     <div className="page-hero cmp-hero">
       {light && products.length >= 2 && <p className="lf-kicker">{`Compared from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real ${niche.people.one} reviews`}</p>}
       <h1>{products.length >= 2 ? products.map(r => nameOf(data, r)).join(" vs ") : `Compare ${w.many}`}</h1>
       <p>{products.length >= 2
         ? `Side by side from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real reviews. Every count is the same as on each ${w.one}’s page.`
-        : `Pick two or three ${w.many} to see them side by side: how positive their reviews are, what reviewers praise and complain about, and their specs.`}</p>
-      {light && products.length >= 2 && <SignalPop/>}
+        : `Pick two or three ${w.many} to see them side by side: Player score, what players praise and complain about, and their specs.`}</p>
     </div>
 
     {products.length === 0 ? <section className="cmp-start">
@@ -123,8 +132,8 @@ export async function CompareView({ data, products, light = false }: { data: Dat
         <Row label={light ? "" : "Reviews"}>
           {cols.map(c => <div key={c.r.id} className="cmp-cell cmp-verdict">
             {c.pos !== null ? <>
-              {/* The signal score leads where the product has one, as on its page and the catalogue (owner, 2026-11-12). */}
-              {c.signal ? <p className="cmp-pos cmp-signal"><b>{c.signal}</b> signal</p> : <p className="cmp-pos"><b>{c.s.positive}</b> positive</p>}
+              {/* The Player score leads where the product has one, as on its page and the catalogue (one word everywhere, 2026-11-15). */}
+              {c.signal ? <p className="cmp-pos cmp-signal" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{c.signal}</b> Player score</p> : <p className="cmp-few">No Player score yet</p>}
               <SentimentBar positive={c.s.positive} mixed={c.s.mixed} negative={c.s.negative} legend="counts" className="stacked"/>
             </> : <p className="cmp-few">Not enough reviews to score yet</p>}
             <a className="cmp-count" href={`${productHref(c.r)}#reviews`}>{`${c.sum.total.toLocaleString("en-US")} ${c.sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">→</span></a>
@@ -175,8 +184,8 @@ export async function CompareView({ data, products, light = false }: { data: Dat
         <span>{nameOf(data, r)} <i>vs</i> {nameOf(data, x)}</span>
       </a></li>)}</ul>
     </section>}
-    <p className="cmp-foot">{`Shares count reviews with a clear verdict from the recent window, like each ${w.one}’s page. Tags are counted over the same reviews. `}<a href={catalogPath}>{`All ${w.many}`}</a></p>
-  </main>;
+    <p className="cmp-foot">{`Counts use reviews with a clear verdict from the recent window, like each ${w.one}’s page. Tags are counted over the same reviews. `}<a href={catalogPath}>{`All ${w.many}`}</a></p>
+  </main>{v2 && <V2Footer/>}</>;
 }
 
 function Row({ label, note, group, children }: { label: string; note?: string; group?: boolean; children: React.ReactNode }) {
@@ -193,7 +202,7 @@ function Suggestions({ items, title, compact = false }: { items: Suggestion[]; t
     <p className="cmp-sugs-title">{title}</p>
     <ul>{items.map(s => <li key={s.slug}><a href={s.href}>
       <ProductArt product={s.x} brand={s.brand}/>
-      <span className="cmp-sug-name">{s.name}<small>{[`${s.reviews} reviews`, s.pos !== null ? `${s.positive} positive` : null].filter(Boolean).join(" · ")}</small></span>
+      <span className="cmp-sug-name">{s.name}<small>{`${s.reviews} reviews`}</small></span>
       <span className="cmp-sug-add" aria-hidden="true">+</span>
     </a></li>)}</ul>
   </div>;

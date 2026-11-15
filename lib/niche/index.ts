@@ -70,3 +70,6 @@ export function productPathIn(n: Niche, product: { slug: string; shape?: string 
 }
 /** The pill on review cards: the type page's short singular label ("Budgeting app", "IEM"), when the niche has type pages. */
 export const categoryPill = (shape: string | null | undefined) => { const t = typePageFor(shape); return t ? { label: t.one ?? t.shape, href: `/${t.slug}` } : undefined; };
+/** The one name for the 0–99 score everywhere in the UI (owner 2026-11-15: "Player score", never "signal"): "Player score",
+ *  "Sleeper score"… The code keeps calling it the signal (lib/signal.ts). */
+export const scoreLabel = `${niche.people.One} score`;

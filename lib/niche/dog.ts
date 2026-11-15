@@ -189,8 +189,8 @@ export const dog: Niche = {
   },
   seo: {
     homeTitle: "DogRecs – Real Owner Reviews of Dog Gear and Dog Food",
-    homeDescription: "Browse real dog-owner reviews of beds, crates, harnesses, leashes, toys, GPS trackers, grooming tools, bowls and dog food, plus experiences collected from Reddit, YouTube and forums. Compare Kong, Ruffwear, Fi, Furbo, Purina and more.",
-    layoutDescription: "Real dog-owner experiences with dog gear and dog food, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real dog-owner reviews of beds, crates, harnesses, leashes, toys, GPS trackers, grooming tools, bowls and dog food, plus experiences collected from YouTube and forums. Compare Kong, Ruffwear, Fi, Furbo, Purina and more.",
+    layoutDescription: "Real dog-owner experiences with dog gear and dog food, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | DogRecs",
     catalog: { title: "All Dog Products – Owner Reviews and Ratings", description: "Every dog product on DogRecs with owner ratings. Filter by brand and category, then read what owners say about their own dogs." },
     brands: { title: "Dog Product Brands", description: "Browse dog gear and dog food by brand — Kong, Ruffwear, West Paw, Fi, Furbo, Purina and more — and read real owner reviews of each product." },
@@ -199,12 +199,12 @@ export const dog: Niche = {
     productNotFound: "Product not found | DogRecs",
     productCategory: "Dog products",
     addReview: { title: "Add a Dog Product Review", description: "Own a harness, crate, toy or tracker your dog uses every day? Share how it actually holds up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why DogRecs exists: dog gear opinions are scattered across Reddit, YouTube and forums. DogRecs collects owners' first-hand experiences and lets owners add their own." },
+    about: { title: "About", description: "Why DogRecs exists: dog gear opinions are scattered across YouTube and forums. DogRecs collects owners' first-hand experiences and lets owners add their own." },
     ogAlt: "DogRecs – real owner reviews of dog gear",
     ogProductAlt: "Dog product reviews on DogRecs",
     ogEyebrow: "Owner reviews of dog gear",
     ogTitle: "Dog gear reviews from people who walk, feed and clean up after their dogs",
-    ogDetail: "From owners, Reddit, YouTube and forums",
+    ogDetail: "From owners, YouTube and forums",
     ogFallbackTitle: "Dog product reviews",
   },
   copy: {
@@ -223,7 +223,7 @@ export const dog: Niche = {
     about: {
       heading: "Why DogRecs exists",
       paragraphs: [
-        "Dog gear opinions are scattered across Reddit, YouTube and forums, and a product page rarely says whether a “tough” toy survives a week with a power chewer or whether a harness still fits after a winter of pulling. DogRecs puts owners’ experiences in one place and lets owners add their own.",
+        "Dog gear opinions are scattered across YouTube and forums, and a product page rarely says whether a “tough” toy survives a week with a power chewer or whether a harness still fits after a winter of pulling. DogRecs puts owners’ experiences in one place and lets owners add their own.",
         "What suits one dog won’t suit every dog. Knowing whether a review comes from the owner of a ten-pound terrier or a hundred-pound shepherd, a puppy or a senior, often tells you more than a star rating on its own.",
       ],
       sections: [

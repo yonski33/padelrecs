@@ -156,8 +156,8 @@ export const monitor: Niche = {
   },
   seo: {
     homeTitle: "MonitorRecs – Real Owner Reviews of Gaming, Ultrawide, Office and Mac Monitors",
-    homeDescription: "Browse real reviews of gaming, ultrawide, productivity, Mac and portable monitors from owners, plus opinions collected from Reddit, YouTube, retailers and forums. Compare Dell, Alienware, LG, ASUS, Samsung, MSI, BenQ, Apple and more.",
-    layoutDescription: "Real owner experiences with gaming, ultrawide, office, Mac and portable monitors, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real reviews of gaming, ultrawide, productivity, Mac and portable monitors from owners, plus opinions collected from YouTube, retailers and forums. Compare Dell, Alienware, LG, ASUS, Samsung, MSI, BenQ, Apple and more.",
+    layoutDescription: "Real owner experiences with gaming, ultrawide, office, Mac and portable monitors, plus opinions from YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | MonitorRecs",
     catalog: { title: "All Monitors – Owner Reviews and Ratings", description: "Every gaming, ultrawide, productivity, Mac and portable monitor on MonitorRecs with community ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "Monitor Brands", description: "Browse monitors by brand — Dell, Alienware, LG, ASUS, Samsung, MSI, BenQ, Apple and more — and read real owner reviews of each model." },
@@ -166,12 +166,12 @@ export const monitor: Niche = {
     productNotFound: "Monitor not found | MonitorRecs",
     productCategory: "Monitors",
     addReview: { title: "Add a Monitor Review", description: "Own a monitor? Share how it looks and holds up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why MonitorRecs exists: monitor opinions are scattered across Reddit, YouTube, retailers and forums. MonitorRecs collects them and lets owners add their own." },
+    about: { title: "About", description: "Why MonitorRecs exists: monitor opinions are scattered across YouTube, retailers and forums. MonitorRecs collects them and lets owners add their own." },
     ogAlt: "MonitorRecs – real owner reviews of monitors",
     ogProductAlt: "Monitor reviews on MonitorRecs",
     ogEyebrow: "Owner reviews of monitors",
     ogTitle: "Monitor reviews from people who stare at them all day",
-    ogDetail: "From owners, Reddit, YouTube, retailers and forums",
+    ogDetail: "From owners, YouTube, retailers and forums",
     ogFallbackTitle: "Monitor reviews",
   },
   copy: {
@@ -190,7 +190,7 @@ export const monitor: Niche = {
     about: {
       heading: "Why MonitorRecs exists",
       paragraphs: [
-        "Monitor opinions are scattered across Reddit, YouTube, retailers and forums. MonitorRecs puts those experiences in one place and lets owners add their own.",
+        "Monitor opinions are scattered across YouTube, retailers and forums. MonitorRecs puts those experiences in one place and lets owners add their own.",
         "A monitor that suits one person won’t suit everyone. Knowing what someone uses it for, what it’s connected to and what they had before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [

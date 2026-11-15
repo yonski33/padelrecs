@@ -21,7 +21,7 @@ const word = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as c
 
 export function generateMetadata(): Metadata {
   const title = `Latest ${w.One} Reviews from Real ${people.One}s`;
-  const description = niche.id === "padel" ? `The newest ${w.one} reviews from ${niche.site.name} players, plus summaries of YouTube reviews.` : `The newest first-hand ${w.one} reviews from Reddit, YouTube, blogs and ${niche.site.name} ${people.many}, each linked to its source.`;
+  const description = niche.id === "padel" ? `The newest ${w.one} reviews from ${niche.site.name} players, plus summaries of YouTube reviews.` : `The newest first-hand ${w.one} reviews from YouTube, blogs, forums and ${niche.site.name} ${people.many}, each linked to its source.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: "/reviews" }, openGraph: { title, description, url: "/reviews", type: "website", images: siteOgImages } };
 }
 
@@ -52,7 +52,7 @@ export default async function ReviewsPage({ searchParams }: { searchParams: Prom
     <p className="crumbs"><a href="/">Home</a><span>/</span>Reviews</p>
     <header className="lrv-hero">
       <h1>Latest reviews</h1>
-      <p className="lrv-sub">{`Fresh experiences from real ${people.many}, collected from Reddit, YouTube and blogs and linked to their sources.`}</p>
+      <p className="lrv-sub">{`Fresh experiences from real ${people.many}, collected from YouTube, blogs and forums and linked to their sources.`}</p>
       <p className="lrv-meta">Updated continuously · Most recent first</p>
     </header>
     <div className="lrv-bar">

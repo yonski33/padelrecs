@@ -132,7 +132,7 @@ type Sec = { id: string; show: (c: Ctx) => boolean; toc: (c: Ctx) => string; tit
 function Tally({ c }: { c: Ctx }) {
   const words = sentimentWords(c.pos, c.mix, c.neg), judged = c.pos + c.mix + c.neg;
   if (!words || !judged) return null;
-  const rows = [["liked it", c.pos, "pos"], ["mixed", c.mix, "mix"], ["not for them", c.neg, "neg"]] as const;
+  const rows = [["loved it", c.pos, "pos"], ["mixed", c.mix, "mix"], ["not for them", c.neg, "neg"]] as const;
   return <div className="tally" role="img" aria-label={[words.lead, ...words.rest.map(x => x.words)].join(", ")}>
     <p>{`what ${judged} players said · `}<b>{words.lead.toLowerCase()}</b></p>
     {rows.map(([label, n, k]) => <div key={k} className="trow"><span>{label}</span><span className="tbar"><i className={k} style={{ width: `${n / judged * 100}%` }}/></span><span>{n}</span></div>)}

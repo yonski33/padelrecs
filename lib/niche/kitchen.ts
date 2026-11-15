@@ -174,8 +174,8 @@ export const kitchen: Niche = {
   },
   seo: {
     homeTitle: "KitchenRecs – Real Reviews of Air Fryers, Countertop Ovens, Blenders and Stand Mixers",
-    homeDescription: "Browse real owner reviews of air fryers, toaster and countertop ovens, blenders, stand mixers, food processors and multicookers, plus opinions collected from Reddit, YouTube, retailers and forums. Compare Ninja, Instant Pot, Cosori, Breville, Vitamix, KitchenAid, Kenwood, Philips and more.",
-    layoutDescription: "Real experiences with air fryers, countertop ovens, blenders, stand mixers, food processors and multicookers, plus opinions from Reddit, YouTube, retailers and forums with the source linked.",
+    homeDescription: "Browse real owner reviews of air fryers, toaster and countertop ovens, blenders, stand mixers, food processors and multicookers, plus opinions collected from YouTube, retailers and forums. Compare Ninja, Instant Pot, Cosori, Breville, Vitamix, KitchenAid, Kenwood, Philips and more.",
+    layoutDescription: "Real experiences with air fryers, countertop ovens, blenders, stand mixers, food processors and multicookers, plus opinions from YouTube, retailers and forums with the source linked.",
     titleTemplate: "%s | KitchenRecs",
     catalog: { title: "All Kitchen Appliances – Reviews and Ratings", description: "Every air fryer, countertop oven, blender, stand mixer, food processor and multicooker on KitchenRecs with owner ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "Kitchen Appliance Brands", description: "Browse countertop appliances by brand — Ninja, Instant Pot, Cosori, Breville, Vitamix, Blendtec, Nutribullet, KitchenAid, Kenwood, Philips and more — and read real reviews of each model." },
@@ -184,12 +184,12 @@ export const kitchen: Niche = {
     productNotFound: "Appliance not found | KitchenRecs",
     productCategory: "Kitchen appliances",
     addReview: { title: "Add a Kitchen Appliance Review", description: "Own an air fryer, countertop oven, blender, stand mixer, food processor or multicooker? Share how it works for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why KitchenRecs exists: kitchen appliance opinions are scattered across Reddit, YouTube, retailers and forums. KitchenRecs collects them and lets owners add their own." },
+    about: { title: "About", description: "Why KitchenRecs exists: kitchen appliance opinions are scattered across YouTube, retailers and forums. KitchenRecs collects them and lets owners add their own." },
     ogAlt: "KitchenRecs – real reviews of kitchen appliances",
     ogProductAlt: "Kitchen appliance reviews on KitchenRecs",
     ogEyebrow: "Real reviews of kitchen appliances",
     ogTitle: "Kitchen appliance reviews from people who cook with them",
-    ogDetail: "From owners, Reddit, YouTube, retailers and forums",
+    ogDetail: "From owners, YouTube, retailers and forums",
     ogFallbackTitle: "Kitchen appliance reviews",
   },
   copy: {
@@ -208,7 +208,7 @@ export const kitchen: Niche = {
     about: {
       heading: "Why KitchenRecs exists",
       paragraphs: [
-        "Kitchen appliance opinions are scattered across Reddit, YouTube, retailers and forums. KitchenRecs puts those experiences in one place and lets owners add their own.",
+        "Kitchen appliance opinions are scattered across YouTube, retailers and forums. KitchenRecs puts those experiences in one place and lets owners add their own.",
         "An air fryer that is perfect for one person is too small for a family of five, and a blender that is fine for smoothies may not survive nut butter. Knowing who someone cooks for, what they make and what they had before often tells you more than a score on its own.",
       ],
       sections: [

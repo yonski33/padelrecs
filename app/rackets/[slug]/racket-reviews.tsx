@@ -20,7 +20,7 @@ export type ReviewCard = {
 const PAGE = 8, MIN_WORDS = 20;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for me" };
-const PILL: Record<Verdict, string> = { positive: "👍 liked it", mixed: "🤷 mixed", negative: "👎 not for them" };
+const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
 export default function RacketReviews({ racketId, name, cards, nicknames = [] }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[] }) {

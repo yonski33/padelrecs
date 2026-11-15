@@ -75,7 +75,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, reviewed by `}<span>{`real ${p.many}`}</span></h1>
       {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). */}
-      <p className="lt-sub">{`What real ${p.many} say on Reddit, YouTube and blogs, counted and ranked.`}</p>
+      <p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
@@ -86,7 +86,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
             verdict lives in the rankings, one prominent link away. */}
         <header className="lt-listhead">
           <div><h2>{`Most talked about ${talkLabel}`}</h2>
-            <p>{`The ${w.many} people have posted about most in the last 6 months, on Reddit, YouTube and blogs.`}</p></div>
+            <p>{`The ${w.many} people have posted about most in the last 6 months, on YouTube, blogs and forums.`}</p></div>
           {picks.length > 0 && <a className="lt-explore" href={RANKINGS_PATH}>Explore rankings <span aria-hidden="true">→</span></a>}
         </header>
         {/* The categories as plain words with a count and an underline on the one picked (owner, 2026-11-12). */}

@@ -180,8 +180,8 @@ export const hosting: Niche = {
   },
   seo: {
     homeTitle: "HostingRecs – Real Reviews of Web Hosting, VPS, Cloud, Website Builders, Domains and Email Hosting",
-    homeDescription: "Browse real customer reviews of shared hosting, managed WordPress, VPS and cloud providers, static hosting, server panels, dedicated servers, website builders, domain registrars and email hosting, plus experiences collected from Reddit, YouTube and forums. Compare Hostinger, SiteGround, Hetzner, DigitalOcean, Vercel, Cloudflare and more.",
-    layoutDescription: "Real experiences with web hosts, VPS and cloud providers, website builders, domain registrars and email hosting, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real customer reviews of shared hosting, managed WordPress, VPS and cloud providers, static hosting, server panels, dedicated servers, website builders, domain registrars and email hosting, plus experiences collected from YouTube and forums. Compare Hostinger, SiteGround, Hetzner, DigitalOcean, Vercel, Cloudflare and more.",
+    layoutDescription: "Real experiences with web hosts, VPS and cloud providers, website builders, domain registrars and email hosting, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | HostingRecs",
     catalog: { title: "All Hosting Services – Reviews and Ratings", description: "Every web host, cloud provider, website builder, registrar and email host on HostingRecs with customer ratings. Filter by category and provider, then read what customers say." },
     brands: { title: "Hosting Providers", description: "Browse hosting by provider — Hostinger, SiteGround, Hetzner, DigitalOcean, Cloudflare, Google, Microsoft and more — and read real reviews of each service." },
@@ -195,7 +195,7 @@ export const hosting: Niche = {
     ogProductAlt: "Hosting reviews on HostingRecs",
     ogEyebrow: "Real reviews of web hosting",
     ogTitle: "Hosting reviews from people who run their own sites",
-    ogDetail: "From customers, Reddit, YouTube and forums",
+    ogDetail: "From customers, YouTube and forums",
     ogFallbackTitle: "Hosting reviews",
   },
   copy: {
@@ -214,7 +214,7 @@ export const hosting: Niche = {
     about: {
       heading: "Why HostingRecs exists",
       paragraphs: [
-        "Search for the best web host and most of what you find is a ranked list that pays per signup — hosting has some of the biggest affiliate payouts on the web. HostingRecs collects first-hand experiences from Reddit, YouTube and forums instead, and lets customers add their own.",
+        "Search for the best web host and most of what you find is a ranked list that pays per signup — hosting has some of the biggest affiliate payouts on the web. HostingRecs collects first-hand experiences from YouTube and forums instead, and lets customers add their own.",
         "A host that is perfect for a personal blog can be painful for a busy store, and an intro price says little about the renewal bill. Knowing what someone hosts, on which plan and for how long often tells you more than a score on its own.",
       ],
       sections: [

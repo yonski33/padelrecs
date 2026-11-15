@@ -190,8 +190,8 @@ export const software: Niche = {
   },
   seo: {
     homeTitle: "SoftwareRecs – Real Reviews of AI Tools, Password Managers, VPNs and Work Apps",
-    homeDescription: "Browse real user reviews of AI assistants, AI coding tools, note-taking apps, project management tools, password managers, website builders, email marketing, CRM, accounting software and VPNs, plus opinions collected from Reddit, YouTube and forums. Compare ChatGPT, Claude, Cursor, Notion, 1Password, Shopify and more.",
-    layoutDescription: "Real experiences with software and AI tools — assistants, coding tools, notes, project management, password managers, website builders and VPNs — plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real user reviews of AI assistants, AI coding tools, note-taking apps, project management tools, password managers, website builders, email marketing, CRM, accounting software and VPNs, plus opinions collected from YouTube and forums. Compare ChatGPT, Claude, Cursor, Notion, 1Password, Shopify and more.",
+    layoutDescription: "Real experiences with software and AI tools — assistants, coding tools, notes, project management, password managers, website builders and VPNs — plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | SoftwareRecs",
     catalog: { title: "All Software and AI Tools – Reviews and Ratings", description: "Every AI tool, app and online service on SoftwareRecs with user ratings. Filter by category and brand, then read what users say." },
     brands: { title: "Software Companies", description: "Browse software by company — OpenAI, Anthropic, Google, Notion, 1Password, Shopify, Proton and more — and read real reviews of each tool." },
@@ -205,7 +205,7 @@ export const software: Niche = {
     ogProductAlt: "Software reviews on SoftwareRecs",
     ogEyebrow: "Real reviews of software and AI tools",
     ogTitle: "Software reviews from people who use it every day",
-    ogDetail: "From users, Reddit, YouTube and forums",
+    ogDetail: "From users, YouTube and forums",
     ogFallbackTitle: "Software reviews",
   },
   copy: {
@@ -224,7 +224,7 @@ export const software: Niche = {
     about: {
       heading: "Why SoftwareRecs exists",
       paragraphs: [
-        "Search for the best VPN, password manager or AI tool and most of what you find is a ranked list that pays per signup. SoftwareRecs collects first-hand experiences from Reddit, YouTube and forums instead, and lets users add their own.",
+        "Search for the best VPN, password manager or AI tool and most of what you find is a ranked list that pays per signup. SoftwareRecs collects first-hand experiences from YouTube and forums instead, and lets users add their own.",
         "A tool that is perfect for a solo freelancer can be painful for a 200-person company, and a free plan that is fine for notes may not survive a team. Knowing how someone uses a tool, on which plan and for how long often tells you more than a score on its own.",
       ],
       sections: [

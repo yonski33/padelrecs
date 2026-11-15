@@ -4,7 +4,7 @@
 // picks it; every number is counted from published reviews.
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
-import { niche, productHref } from "../lib/niche";
+import { niche, productHref, scoreLabel } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
 import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
@@ -73,10 +73,10 @@ function IndexRow({ data, r, rank, signal, tags }: { data: Catalog; r: Product; 
       <h3><a href={href}>{name}</a></h3>
       {specs && <p className="ix-specs">{specs}</p>}
       {line && <p className="ix-line">{line}</p>}
-      <p className="ix-n">{pos !== null && <b>{`${pos}% positive`}</b>}{pos !== null && " · "}{`${fmt(total)} ${total === 1 ? "opinion" : "opinions"}`}</p>
+      <p className="ix-n">{`${fmt(total)} ${total === 1 ? "opinion" : "opinions"}`}</p>
       {pos !== null && <SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
     </div>
-    <a className="ix-sig" href={`${href}#reviews`} aria-label={signal ? `Signal ${signal}` : "Reviews"}>{signal ? <><b>{signal}</b><span>Signal</span></> : <span className="ix-few">Too few to score</span>}</a>
+    <a className="ix-sig" href={`${href}#reviews`} aria-label={signal ? `${scoreLabel} ${signal}` : "Reviews"}>{signal ? <><b>{signal}</b><span>{scoreLabel}</span></> : <span className="ix-few">Too few to score</span>}</a>
   </article>;
 }
 
@@ -158,7 +158,7 @@ export function HomeC({ data, f, signals, now, basePath = "/", keep = {} }: { da
         <Select name="brand" label="Brand" value={f.brand} options={data.listedBrands.map(b => ({ value: b.id, label: b.name }))}/>
         {shapes.length > 1 && <Select name="shape" label={niche.specs.find(s => s.column === "shape")?.label ?? "Type"} value={f.shape} options={shapes.map(c => ({ value: c.key, label: c.label }))}/>}
         {specFacets.map(sp => { const opts = sp.options!.filter(o => data.listed.some(r => specIs(spec(r, sp.column), o))); return opts.length > 1 && <Select key={sp.column} name={sp.column} label={sp.label} value={f[sp.column]} options={opts.map(o => ({ value: o, label: o }))}/>; })}
-        <label className="ix-sel ix-sort"><span className="sr-only">Sort</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{`Sort: ${s.value === DEFAULT_SORT ? "Signal ↓" : s.label}`}</option>)}</select></label>
+        <label className="ix-sel ix-sort"><span className="sr-only">Sort</span><select name="sort" defaultValue={sort === DEFAULT_SORT ? "" : sort}>{SORTS.map(s => <option key={s.value} value={s.value === DEFAULT_SORT ? "" : s.value}>{`Sort: ${s.value === DEFAULT_SORT ? `${scoreLabel} ↓` : s.label}`}</option>)}</select></label>
         <noscript><button className="button">Show</button></noscript>
       </AutoSubmitForm>
       {refined && <p className="ix-refined">{`${fmt(results.length)} ${results.length === 1 ? w.one : w.many} match · `}<a href={reset}>Reset filters</a></p>}

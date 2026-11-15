@@ -168,8 +168,8 @@ export const climbing: Niche = {
   },
   seo: {
     homeTitle: "ClimbingRecs – Real Climber Reviews of Climbing Shoes, Harnesses, Belay Devices and Crash Pads",
-    homeDescription: "Browse real reviews of climbing shoes, harnesses, belay devices, ropes, chalk bags and crash pads from climbers, plus opinions collected from Reddit, YouTube, climbing retailers and forums. Compare Scarpa, Evolv, Black Diamond, Petzl, Mad Rock, Butora, So iLL, Edelrid, Beal, Organic and more.",
-    layoutDescription: "Real climber experiences with climbing shoes, harnesses, belay devices, ropes, chalk bags and crash pads, plus opinions from Reddit, YouTube, climbing retailers and forums with the source linked.",
+    homeDescription: "Browse real reviews of climbing shoes, harnesses, belay devices, ropes, chalk bags and crash pads from climbers, plus opinions collected from YouTube, climbing retailers and forums. Compare Scarpa, Evolv, Black Diamond, Petzl, Mad Rock, Butora, So iLL, Edelrid, Beal, Organic and more.",
+    layoutDescription: "Real climber experiences with climbing shoes, harnesses, belay devices, ropes, chalk bags and crash pads, plus opinions from YouTube, climbing retailers and forums with the source linked.",
     titleTemplate: "%s | ClimbingRecs",
     catalog: { title: "All Climbing Gear – Climber Reviews and Ratings", description: "Every climbing shoe, harness, belay device, rope, chalk bag and crash pad on ClimbingRecs with community ratings. Filter by brand and category, then read what climbers say." },
     brands: { title: "Climbing Gear Brands", description: "Browse climbing gear by brand — Scarpa, Evolv, Black Diamond, Petzl, Mad Rock, Butora, So iLL, Edelrid, Beal, Organic and more — and read real climber reviews of each model." },
@@ -178,12 +178,12 @@ export const climbing: Niche = {
     productNotFound: "Climbing gear not found | ClimbingRecs",
     productCategory: "Climbing equipment",
     addReview: { title: "Add a Climbing Gear Review", description: "Climb in a pair of shoes, a harness or with a belay device? Share how it works for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why ClimbingRecs exists: climbing gear opinions are scattered across Reddit, YouTube, climbing retailers and forums. ClimbingRecs collects them and lets climbers add their own." },
+    about: { title: "About", description: "Why ClimbingRecs exists: climbing gear opinions are scattered across YouTube, climbing retailers and forums. ClimbingRecs collects them and lets climbers add their own." },
     ogAlt: "ClimbingRecs – real climber reviews of climbing gear",
     ogProductAlt: "Climbing gear reviews on ClimbingRecs",
     ogEyebrow: "Climber reviews of climbing gear",
     ogTitle: "Climbing gear reviews from people who climb in it",
-    ogDetail: "From climbers, Reddit, YouTube, climbing retailers and forums",
+    ogDetail: "From climbers, YouTube, climbing retailers and forums",
     ogFallbackTitle: "Climbing gear reviews",
   },
   copy: {
@@ -202,7 +202,7 @@ export const climbing: Niche = {
     about: {
       heading: "Why ClimbingRecs exists",
       paragraphs: [
-        "Climbing gear opinions are scattered across Reddit, YouTube, climbing retailers and forums. ClimbingRecs puts those experiences in one place and lets climbers add their own.",
+        "Climbing gear opinions are scattered across YouTube, climbing retailers and forums. ClimbingRecs puts those experiences in one place and lets climbers add their own.",
         "Gear that suits one climber won’t suit everyone. Knowing someone’s foot shape and size, what they climb and what they used before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [

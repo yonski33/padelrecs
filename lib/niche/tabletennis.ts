@@ -173,8 +173,8 @@ export const tabletennis: Niche = {
   },
   seo: {
     homeTitle: "TableTennisRecs – Real Player Reviews of Table Tennis Blades, Rubbers and Rackets",
-    homeDescription: "Browse real table tennis blade, rubber and racket reviews from players and opinions collected from Reddit, forums, YouTube and shops. Compare Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA, Victas and more.",
-    layoutDescription: "Real player experiences with table tennis blades, rubbers and rackets, plus opinions from Reddit, forums, YouTube and shops with the source linked.",
+    homeDescription: "Browse real table tennis blade, rubber and racket reviews from players and opinions collected from forums, YouTube and shops. Compare Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA, Victas and more.",
+    layoutDescription: "Real player experiences with table tennis blades, rubbers and rackets, plus opinions from forums, YouTube and shops with the source linked.",
     titleTemplate: "%s | TableTennisRecs",
     catalog: { title: "All Table Tennis Equipment – Player Reviews and Ratings", description: "Every table tennis blade, rubber and pre-assembled racket on TableTennisRecs with community ratings. Filter by brand and type, then read what players say." },
     brands: { title: "Table Tennis Brands", description: "Browse table tennis blades and rubbers by brand — Butterfly, Stiga, DHS, Yasaka, Tibhar, XIOM, Donic, Nittaku, Andro, JOOLA, Victas — and read real player reviews of each model." },
@@ -183,12 +183,12 @@ export const tabletennis: Niche = {
     productNotFound: "Product not found | TableTennisRecs",
     productCategory: "Table tennis equipment",
     addReview: { title: "Add a Table Tennis Review", description: "Played with a blade, rubber or racket? Share how it plays for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why TableTennisRecs exists: table tennis equipment opinions are scattered across Reddit, forums, YouTube and shops. TableTennisRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why TableTennisRecs exists: table tennis equipment opinions are scattered across forums, YouTube and shops. TableTennisRecs collects them and lets players add their own." },
     ogAlt: "TableTennisRecs – real player reviews of table tennis equipment",
     ogProductAlt: "Table tennis equipment player reviews on TableTennisRecs",
     ogEyebrow: "Player reviews of table tennis equipment",
     ogTitle: "Real player reviews of blades and rubbers",
-    ogDetail: "From players, Reddit, forums, YouTube and shops",
+    ogDetail: "From players, forums, YouTube and shops",
     ogFallbackTitle: "Table tennis equipment reviews",
   },
   copy: {
@@ -207,7 +207,7 @@ export const tabletennis: Niche = {
     about: {
       heading: "Why TableTennisRecs exists",
       paragraphs: [
-        "Blade and rubber reviews are scattered across Reddit, forums, YouTube and shops. TableTennisRecs puts those experiences in one place and lets players add their own.",
+        "Blade and rubber reviews are scattered across forums, YouTube and shops. TableTennisRecs puts those experiences in one place and lets players add their own.",
         "A setup that works for one player won’t work for everyone. Knowing someone’s level, grip and style, what the rubber was paired with and how long they played it often tells you more than a score on its own.",
       ],
       sections: [

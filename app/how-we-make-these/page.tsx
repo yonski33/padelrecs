@@ -23,7 +23,7 @@ export default async function HowWeMakeThese() {
   const steps = [
     ["Collect", "Player reviews sent through this site, YouTube reviews we watch and summarise, and what players write in public padel forums.", "oklch(0.88 0.17 125)"],
     ["Tag the verdict", "Each review becomes one of three: loved it, mixed, or not for me. We also note the player's level and what they liked or hated.", "oklch(0.93 0.14 100)"],
-    ["Count it", "Verdicts roll up into a signal score per racket. More reviews = more confidence.", "oklch(0.94 0.05 200)"],
+    ["Count it", "Verdicts roll up into a Player score per racket. More reviews = more confidence.", "oklch(0.94 0.05 200)"],
     ["Write one honest line", "We sum up what people keep saying, the good and the catch, so you can scan instead of reading 60 reviews.", "oklch(0.92 0.06 30)"],
   ];
   const rules = [
@@ -50,8 +50,8 @@ export default async function HowWeMakeThese() {
         <ol className="hw-steps">{steps.map(([t, b, bg], i) => <li key={t}><span style={{ background: bg }}>{i + 1}</span><div><b>{t}</b><p>{b}</p></div></li>)}</ol>
       </section>
       <section id="signal">
-        <h2 className="tight">The signal score, explained</h2>
-        <p className="hw-sub">{"It's the share of players who loved the racket, held back while only a few people have spoken. So a handful of glowing reviews can't beat a crowd of good ones."}</p>
+        <h2 className="tight">The Player score, explained</h2>
+        <p className="hw-sub">{"It blends how much players love the racket with how many have weighed in, held back while only a few people have spoken. So a handful of glowing reviews can't beat a crowd of good ones. It's not a % of happy players."}</p>
         <SignalTry products={products}/>
         <div className="hw-ex">
           <div><strong>Racket A:</strong> 5 reviews, all loved it → <strong>{example(5, 0, 0)}</strong>. Promising, but too early to trust.</div>

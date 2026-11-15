@@ -189,8 +189,8 @@ export const running: Niche = {
   },
   seo: {
     homeTitle: "RunningRecs – Real Runner Reviews of Running Shoes",
-    homeDescription: "Browse real running shoe reviews from runners and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nike, ASICS, Brooks, HOKA, Saucony, New Balance, adidas, On and more.",
-    layoutDescription: "Real runner experiences with running shoes, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    homeDescription: "Browse real running shoe reviews from runners and opinions collected from YouTube, shops and forums. Compare experiences across Nike, ASICS, Brooks, HOKA, Saucony, New Balance, adidas, On and more.",
+    layoutDescription: "Real runner experiences with running shoes, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | RunningRecs",
     catalog: { title: "All Running Shoes – Runner Reviews and Ratings", description: "Every running shoe on RunningRecs with community ratings. Filter by brand and category, then read what runners say about each one." },
     brands: { title: "Running Shoe Brands", description: "Browse running shoes by brand — Nike, ASICS, Brooks, HOKA, Saucony, New Balance, adidas, On and more — and read real runner reviews of each model." },
@@ -199,12 +199,12 @@ export const running: Niche = {
     productNotFound: "Shoe not found | RunningRecs",
     productCategory: "Running shoe",
     addReview: { title: "Add a Running Shoe Review", description: "Run in a pair? Share how it felt on the road or trail in about two minutes. No account needed." },
-    about: { title: "About", description: "Why RunningRecs exists: running shoe opinions are scattered across Reddit, YouTube, shops and forums. RunningRecs collects them and lets runners add their own." },
+    about: { title: "About", description: "Why RunningRecs exists: running shoe opinions are scattered across YouTube, shops and forums. RunningRecs collects them and lets runners add their own." },
     ogAlt: "RunningRecs – real runner reviews of running shoes",
     ogProductAlt: "Running shoe reviews on RunningRecs",
     ogEyebrow: "Runner reviews of running shoes",
     ogTitle: "Real runner reviews of running shoes",
-    ogDetail: "From runners, Reddit, YouTube, shops and forums",
+    ogDetail: "From runners, YouTube, shops and forums",
     ogFallbackTitle: "Running shoe reviews",
   },
   copy: {
@@ -223,7 +223,7 @@ export const running: Niche = {
     about: {
       heading: "Why RunningRecs exists",
       paragraphs: [
-        "Running shoe reviews are scattered across Reddit, YouTube, shops and forums. RunningRecs puts those experiences in one place and lets runners add their own.",
+        "Running shoe reviews are scattered across YouTube, shops and forums. RunningRecs puts those experiences in one place and lets runners add their own.",
         "A shoe that works for one runner won’t work for everyone. Knowing someone’s mileage, gait, foot shape and how far they’ve gone in a pair often tells you more than a score on its own.",
       ],
       sections: [

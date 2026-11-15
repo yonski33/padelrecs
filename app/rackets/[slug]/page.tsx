@@ -75,7 +75,7 @@ export async function generateMetadata({params, searchParams}: {params: Promise<
   // Just the name and "Player Reviews" (owner, 2026-11-12): short enough for Google to show whole, no repeated year.
   const title = `${name} ${niche.people.One} Reviews`;
   const description = r.reviewSummary && r.reviewSummary.length <= 170 ? r.reviewSummary : rich
-    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}, ${shown}% positive.`,
+    ? fitText([`${sum.total.toLocaleString("en-US")} real reviews of ${name}.`,
        // Only themes with 3+ mentions make the snippet (owner, 2026-11-12, UX audit).
        sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).length ? `Loved for: ${sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 3).slice(0, 3).join(", ")}.` : "",
        (sum.tagCounts.get(sum.complaints[0]) ?? 0) >= 3 ? `Most common complaint: ${sum.complaints[0]}.` : ""])

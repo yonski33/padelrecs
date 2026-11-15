@@ -144,8 +144,8 @@ export const badminton: Niche = {
   },
   seo: {
     homeTitle: "BadmintonRecs – Real Player Reviews of Badminton Rackets",
-    homeDescription: "Browse real badminton racket reviews from players and opinions collected from Reddit, forums, YouTube and shops. Compare experiences across Yonex, Victor, Li-Ning and more.",
-    layoutDescription: "Real player experiences with badminton rackets, plus opinions from Reddit, forums, YouTube and shops with the source linked.",
+    homeDescription: "Browse real badminton racket reviews from players and opinions collected from forums, YouTube and shops. Compare experiences across Yonex, Victor, Li-Ning and more.",
+    layoutDescription: "Real player experiences with badminton rackets, plus opinions from forums, YouTube and shops with the source linked.",
     titleTemplate: "%s | BadmintonRecs",
     catalog: { title: "All Badminton Rackets – Player Reviews and Ratings", description: "Every badminton racket on BadmintonRecs with community ratings. Filter by brand and series, then read what players say about each one." },
     brands: { title: "Badminton Racket Brands", description: "Browse badminton rackets by brand — Yonex, Victor, Li-Ning and more — and read real player reviews of each model." },
@@ -154,12 +154,12 @@ export const badminton: Niche = {
     productNotFound: "Racket not found | BadmintonRecs",
     productCategory: "Badminton racket",
     addReview: { title: "Add a Badminton Racket Review", description: "Played with a badminton racket? Share how it felt on court in about two minutes. No account needed." },
-    about: { title: "About", description: "Why BadmintonRecs exists: badminton racket opinions are scattered across Reddit, forums, YouTube and shops. BadmintonRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why BadmintonRecs exists: badminton racket opinions are scattered across forums, YouTube and shops. BadmintonRecs collects them and lets players add their own." },
     ogAlt: "BadmintonRecs – real player reviews of badminton rackets",
     ogProductAlt: "Badminton racket player reviews on BadmintonRecs",
     ogEyebrow: "Player reviews of badminton rackets",
     ogTitle: "Real player reviews of badminton rackets",
-    ogDetail: "From players, Reddit, forums, YouTube and shops",
+    ogDetail: "From players, forums, YouTube and shops",
     ogFallbackTitle: "Badminton racket reviews",
   },
   copy: {
@@ -178,7 +178,7 @@ export const badminton: Niche = {
     about: {
       heading: "Why BadmintonRecs exists",
       paragraphs: [
-        "Racket reviews are scattered across Reddit, forums, YouTube and shops. BadmintonRecs puts those experiences in one place and lets players add their own.",
+        "Racket reviews are scattered across forums, YouTube and shops. BadmintonRecs puts those experiences in one place and lets players add their own.",
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, whether they play singles or doubles, their strings and their time with a racket often tells you more than a score on its own.",
       ],
       sections: [

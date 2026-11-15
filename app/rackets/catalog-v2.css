@@ -13,6 +13,8 @@ body:has(main.ct2) { background: #fbfaf6; }
   h1 { font: 800 clamp(34px, 4.6vw, 50px)/1 var(--display) !important; letter-spacing: -0.025em !important; margin: 0 !important; color: var(--ink) !important; }
   h1 .hl { background: var(--acc); padding: 0 6px; border: 2px solid var(--ink); border-radius: 8px; display: inline-block; transform: rotate(-1.5deg); }
   .ct2-hero p { margin: 10px 0 0 !important; font-size: 17px !important; max-width: 560px; text-wrap: pretty; color: var(--ink) !important; }
+  .ct2-crumbs { margin: 0 0 10px !important; font: 13px var(--mono) !important; color: var(--soft) !important; }
+  .ct2-crumbs a { color: var(--soft); }
   .ct2-meta { font: 12px var(--mono); color: var(--soft); }
   .ct2-meta a { color: var(--soft); }
 

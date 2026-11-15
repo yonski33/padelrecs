@@ -7,7 +7,7 @@
 // Every number is counted from published reviews.
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
-import { niche, catalogPath, productHref } from "../lib/niche";
+import { niche, catalogPath, productHref, scoreLabel } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { sourceLabel, platformName } from "../lib/source-label";
 import { ProductArt, SentimentBar, Arrow, SignalInfo, BrowseTile, browseTiles } from "./visual";
@@ -77,7 +77,7 @@ function RankedTable({ all, picks, signals }: Props) {
           <td className="hv-rank">{e.rank}</td>
           <td><a className="hv-prod" href={productHref(e.product)}>{full && <ProductArt product={full} brand={brandOf(e.product.brandId)}/>}<span>{displayName(e.product.name, brandOf(e.product.brandId))}</span></a></td>
           <td className="hv-sig">{sig?.signal ?? "—"}</td>
-          <td className="hv-bar"><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/><small>{`${Math.round(100 * s.positive / Math.max(1, s.judged))}% positive`}</small></td>
+          <td className="hv-bar"><SentimentBar positive={s.positive} mixed={s.mixed} negative={s.negative}/><small>{`${fmt(s.positive)} positive`}</small></td>
           <td className="hv-num">{fmt(s.judged)}</td>
           <td className="hv-tags">{e.pros[0] && <span className="chip-liked">{e.pros[0].label}</span>}{e.con && <span className="chip-watch">{e.con.label}</span>}</td>
         </tr>; })}</tbody>
@@ -100,11 +100,11 @@ function HowItWorks() {
   return <section className="hv-how" aria-labelledby="hv-how-title">
     <h2 id="hv-how-title">How it works</h2>
     <ol>
-      <li><b>We read the threads</b><span>{`Reddit, YouTube, forums and blogs, plus reviews ${niche.people.many} write here.`}</span></li>
+      <li><b>We read the threads</b><span>{`YouTube, forums and blogs, plus reviews ${niche.people.many} write here.`}</span></li>
       <li><b>We summarize first-hand experiences</b><span>Only people who used it, each linked to the original, read as positive, mixed or negative.</span></li>
-      <li><b>We rank by signal</b><span>Positive reviews weighed by how many there are. No sponsored picks.</span></li>
+      <li><b>{`We rank by ${scoreLabel}`}</b><span>Positive reviews weighed by how many there are. No sponsored picks.</span></li>
     </ol>
-    <a className="section-link" href="/about#signal">How the signal works<Arrow/></a>
+    <a className="section-link" href="/about#signal">{`How the ${scoreLabel} works`}<Arrow/></a>
   </section>;
 }
 
@@ -131,7 +131,7 @@ export function HomeB(props: Props) {
           <span className="rank-badge">{String(e.rank).padStart(2, "0")}</span>
           {full && <ProductArt product={full} brand={brandOf(e.product.brandId)} eager/>}
           <span className="pcard-body"><span className="pcard-name">{displayName(e.product.name, brandOf(e.product.brandId))}</span>
-            <span className="hv-card-data"><b>{sig?.signal ?? "—"}</b><span>signal</span><span>{`${Math.round(100 * s.positive / Math.max(1, s.judged))}% positive · ${fmt(s.judged)} reviews`}</span></span></span>
+            <span className="hv-card-data"><b>{sig?.signal ?? "—"}</b><span>{scoreLabel}</span><span>{`${fmt(s.judged)} reviews`}</span></span></span>
         </a></li>; })}</ol>
     </section>}
     <div className="hv-split"><Stream {...props}/><HowItWorks/></div>

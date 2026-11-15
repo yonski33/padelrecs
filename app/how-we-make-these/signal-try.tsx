@@ -9,7 +9,7 @@ export default function SignalTry({ products }: { products: SignalInput[] }) {
   const score = signals([...products, { id: "__try", category: "all", positive: c.pos, mixed: c.mix, judged: total }]).get("__try")?.signal ?? null;
   const note = total < 5 ? "Under 5 reviews: this racket wouldn't appear in rankings yet."
     : total < 15 ? `${total} reviews. The score stays modest until more people weigh in.`
-    : `${total} reviews, ${Math.round(c.pos / total * 100)}% loved it. Enough people that the score can trust it.`;
+    : `${total} reviews, ${c.pos} loved it. Enough people that the score can trust it.`;
   const badge = score === null ? "#fff" : score >= 85 ? "oklch(0.88 0.17 125)" : score >= 70 ? "oklch(0.93 0.14 100)" : "#fff";
   const row = (k: keyof typeof c, label: string) => <label key={k}><span>{label}</span>
     <input type="range" min={0} max={60} value={c[k]} onChange={e => setC(x => ({ ...x, [k]: +e.target.value }))}/><b>{c[k]}</b></label>;

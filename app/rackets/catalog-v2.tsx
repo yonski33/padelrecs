@@ -29,7 +29,10 @@ const KEYS = ["style", "level", "shape", "year", "weight", "feel"] as const;
 
 const shapeWord = (s: string | null | undefined) => { const x = (s ?? "").toLowerCase(); return /diamond/.test(x) ? "diamond" : /round/.test(x) ? "round" : /tear|drop/.test(x) ? "teardrop" : x ? "hybrid" : null; };
 
-export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
+/** With `brand`, the same page for one brand (/brands/<slug>, owner 2026-11-15: the brand page in the new design). */
+export default async function CatalogV2({ data: all, f, brand: only }: { data: Catalog; f: F; brand?: { id: string; name: string; slug: string } }) {
+  const data = only ? { ...all, listed: all.listed.filter(r => r.brandId === only.id) } : all;
+  const base = only ? `/brands/${only.slug}` : "/rackets";
   const ctx = await matchContext();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const sig = (id: string) => ctx.signal(id);
@@ -60,7 +63,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   const shown = rows.filter(x => pass(x)).sort((a, b) => order(a, b) || a.r.name.localeCompare(b.r.name));
   const show = Math.min(1000, Math.max(PAGE, Number(f.show) || PAGE));
   // Links keep every other choice; a picked option links to itself turned off.
-  const href = (next: Partial<F>) => { const q = new URLSearchParams(Object.entries({ ...f, show: undefined, ...next }).filter(([, v]) => v) as [string, string][]); return q.size ? `/rackets?${q}` : "/rackets"; };
+  const href = (next: Partial<F>) => { const q = new URLSearchParams(Object.entries({ ...f, show: undefined, ...next }).filter(([, v]) => v) as [string, string][]); return q.size ? `${base}?${q}` : base; };
   const years = [...new Set(rows.map(x => x.year))].sort().reverse();
   const groups: [string, (typeof KEYS)[number], readonly string[]][] = [["Play style", "style", STYLES], ["Level", "level", LEVELS], ["Shape", "shape", SHAPES], ...(years.length > 1 ? [["Year", "year", years] as [string, "year", string[]]] : [])];
   const extra: [string, (typeof KEYS)[number], readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS]];
@@ -81,15 +84,16 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   return <main className={`ct2 ${qtFontVars}`}>
     <div className="ct2-wrap">
       <section className="ct2-hero">
-        <div><h1>All <span className="hl">{niche.words.many}</span></h1>
-          <p>{`Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
+        <div>{only && <p className="ct2-crumbs"><a href="/">home</a> / <a href="/brands">brands</a> / {only.name.toLowerCase()}</p>}
+          {only ? <h1>{`${only.name} `}<span className="hl">{niche.words.many}</span></h1> : <h1>All <span className="hl">{niche.words.many}</span></h1>}
+          <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by Player score. Narrow it down on the left.` : `Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
         <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
       </section>
       <div className="ct2-grid">
         <aside className="ct2-side" aria-label="Filters">
           <input type="checkbox" id="ct2-ft" className="ct2-ft"/>
           <div className="ct2-sh"><label htmlFor="ct2-ft" className="ct2-badge">filters<span className="ct2-mtog" aria-hidden="true"> ▾</span></label>
-            {active.length > 0 && <Link href="/rackets" scroll={false} replace className="ct2-clear">clear all</Link>}</div>
+            {active.length > 0 && <Link href={base} scroll={false} replace className="ct2-clear">clear all</Link>}</div>
           <div className="ct2-groups">
             {groups.map(group)}
             <Link href={href({ arm: f.arm === "1" ? undefined : "1" })} scroll={false} replace className={`ct2-check${f.arm === "1" ? " on" : ""}`} aria-current={f.arm === "1" ? "true" : undefined}>
@@ -130,7 +134,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
               <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
                 <b>{x.signal ?? "—"}</b><small>player score</small></span>
             </div></li>; })}</ol>
-          {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
+          {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href={base} scroll={false} replace>clear filters</Link></div>}
           {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}
           {shown.length > show && <Link className="ct2-load" href={href({ show: String(show + PAGE) })} scroll={false} replace>{`load ${Math.min(PAGE, shown.length - show)} more ↓`}</Link>}
         </section>

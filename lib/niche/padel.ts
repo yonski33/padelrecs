@@ -186,8 +186,8 @@ export const padel: Niche = {
   },
   seo: {
     homeTitle: "PadelRecs – Real Player Reviews of Padel Rackets",
-    homeDescription: "Browse real padel racket reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.",
-    layoutDescription: "Real player experiences with padel rackets, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    homeDescription: "Browse real padel racket reviews from players and opinions collected from YouTube, shops and forums. Compare experiences across Nox, Bullpadel, Adidas, Head, and more.",
+    layoutDescription: "Real player experiences with padel rackets, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | PadelRecs",
     catalog: { title: "All Padel Rackets – Player Reviews and Ratings", description: "Every padel racket on PadelRecs with community ratings. Filter by brand, year and shape, then read what players say about each one." },
     brands: { title: "Padel Racket Brands", description: "Browse padel rackets by brand — Nox, Bullpadel, Adidas, Head, Babolat and more — and read real player reviews of each model." },
@@ -196,12 +196,12 @@ export const padel: Niche = {
     productNotFound: "Racket not found | PadelRecs",
     productCategory: "Padel racket",
     addReview: { title: "Add a Padel Racket Review", description: "Played with a padel racket? Share how it felt on court in about two minutes. No account needed." },
-    about: { title: "About", description: "Why PadelRecs exists: padel racket opinions are scattered across Reddit, YouTube, shops and forums. PadelRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why PadelRecs exists: padel racket opinions are scattered across YouTube, shops and forums. PadelRecs collects them and lets players add their own." },
     ogAlt: "PadelRecs – real player reviews of padel rackets",
     ogProductAlt: "Padel racket player reviews on PadelRecs",
     ogEyebrow: "Player reviews of padel rackets",
     ogTitle: "Real player reviews of padel rackets",
-    ogDetail: "From players, Reddit, YouTube, shops and forums",
+    ogDetail: "From players, YouTube, shops and forums",
     ogFallbackTitle: "Padel racket reviews",
   },
   copy: {
@@ -220,12 +220,12 @@ export const padel: Niche = {
     about: {
       heading: "Why PadelRecs exists",
       paragraphs: [
-        "Racket reviews are scattered across Reddit, YouTube, shops and forums. PadelRecs puts those experiences in one place and lets players add their own.",
+        "Racket reviews are scattered across YouTube, shops and forums. PadelRecs puts those experiences in one place and lets players add their own.",
         "A racket that works for one player won’t work for everyone. Knowing someone’s level, playing side and time with a racket often tells you more than a score on its own.",
       ],
       sections: [
         { heading: "Players, not promotions", body: "No sponsored rankings. No paid placements. Rankings are counted from reviews: the ones players write here and the ones collected and summarized from around the web. Each is read as positive, mixed or negative. Racket pages link to Amazon, and PadelRecs may earn a commission when you buy through those links; that never changes a ranking." },
-        { heading: "How reviews get here", body: "Player reviews are checked for spam before they appear. Reviews from Reddit, YouTube, blogs and forums are short summaries of first-hand posts, each linked to the original." },
+        { heading: "How reviews get here", body: "Player reviews are checked for spam before they appear. Reviews from YouTube, blogs and forums are short summaries of first-hand posts, each linked to the original." },
         { heading: "Adding your experience", body: "You don’t need an account. Reviews are held for moderation before appearing publicly. Write about rackets you’ve actually played with and be specific about what worked for you." },
         { heading: "Your privacy", body: "An alias is optional. If you leave an email address, it is stored privately with your submission and never included in public reviews. Leave it blank if you prefer." },
       ],

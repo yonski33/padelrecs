@@ -178,8 +178,8 @@ export const grill: Niche = {
   },
   seo: {
     homeTitle: "GrillRecs – Real Owner Reviews of Pellet Grills, Smokers, Kamados and Griddles",
-    homeDescription: "Browse real owner reviews of pellet grills, smokers, kamados, gas and charcoal grills, griddles and pizza ovens, plus experiences collected from Reddit, YouTube and forums. Compare Traeger, Weber, Big Green Egg, Kamado Joe, Blackstone, Recteq, Ooni and more, one page per model and generation.",
-    layoutDescription: "Real owner experiences with grills, smokers, griddles and pizza ovens, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real owner reviews of pellet grills, smokers, kamados, gas and charcoal grills, griddles and pizza ovens, plus experiences collected from YouTube and forums. Compare Traeger, Weber, Big Green Egg, Kamado Joe, Blackstone, Recteq, Ooni and more, one page per model and generation.",
+    layoutDescription: "Real owner experiences with grills, smokers, griddles and pizza ovens, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | GrillRecs",
     catalog: { title: "All Grills – Owner Reviews and Ratings", description: "Every grill, smoker, griddle and pizza oven on GrillRecs with owner ratings. Filter by brand and category, then read what owners say." },
     brands: { title: "Grill Brands", description: "Browse grills by brand — Traeger, Weber, Big Green Egg, Kamado Joe, Blackstone, Recteq, Pit Boss, Ooni and more — and read real owner reviews of each model." },
@@ -188,12 +188,12 @@ export const grill: Niche = {
     productNotFound: "Grill not found | GrillRecs",
     productCategory: "Grills",
     addReview: { title: "Add a Grill Review", description: "Own a grill, smoker, griddle or pizza oven? Share how it actually cooks in about two minutes. No account needed." },
-    about: { title: "About", description: "Why GrillRecs exists: grill opinions are scattered across Reddit, YouTube and forums. GrillRecs collects owners' first-hand experiences and lets owners add their own." },
+    about: { title: "About", description: "Why GrillRecs exists: grill opinions are scattered across YouTube and forums. GrillRecs collects owners' first-hand experiences and lets owners add their own." },
     ogAlt: "GrillRecs – real owner reviews of grills and smokers",
     ogProductAlt: "Grill reviews on GrillRecs",
     ogEyebrow: "Owner reviews of grills",
     ogTitle: "Grill reviews from people who cook on them every weekend",
-    ogDetail: "From owners, Reddit, YouTube and forums",
+    ogDetail: "From owners, YouTube and forums",
     ogFallbackTitle: "Grill reviews",
   },
   copy: {
@@ -212,7 +212,7 @@ export const grill: Niche = {
     about: {
       heading: "Why GrillRecs exists",
       paragraphs: [
-        "Grill opinions are scattered across Reddit, YouTube and forums, and a first look rarely says how a smoker holds temperature in January or whether the firebox rusts through after two summers. GrillRecs puts owners’ experiences in one place and lets owners add their own.",
+        "Grill opinions are scattered across YouTube and forums, and a first look rarely says how a smoker holds temperature in January or whether the firebox rusts through after two summers. GrillRecs puts owners’ experiences in one place and lets owners add their own.",
         "A grill that suits one cook won’t suit every cook. Knowing whether someone smokes brisket overnight or sears weeknight steaks, what climate they cook in and what they had before often tells you more than a spec sheet on its own.",
       ],
       sections: [

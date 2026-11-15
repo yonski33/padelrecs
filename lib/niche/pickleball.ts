@@ -180,8 +180,8 @@ export const pickleball: Niche = {
   },
   seo: {
     homeTitle: "PickleballRecs – Real Player Reviews of Pickleball Paddles",
-    homeDescription: "Browse real pickleball paddle reviews from players and opinions collected from Reddit, YouTube, shops, and forums. Compare experiences across Joola, Selkirk, Six Zero, CRBN, and more.",
-    layoutDescription: "Real player experiences with pickleball paddles, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    homeDescription: "Browse real pickleball paddle reviews from players and opinions collected from YouTube, shops and forums. Compare experiences across Joola, Selkirk, Six Zero, CRBN, and more.",
+    layoutDescription: "Real player experiences with pickleball paddles, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | PickleballRecs",
     catalog: { title: "All Pickleball Paddles – Player Reviews and Ratings", description: "Every pickleball paddle on PickleballRecs with community ratings. Filter by brand and shape, then read what players say about each one." },
     brands: { title: "Pickleball Paddle Brands", description: "Browse pickleball paddles by brand — Joola, Selkirk, Six Zero, CRBN, Engage and more — and read real player reviews of each model." },
@@ -190,12 +190,12 @@ export const pickleball: Niche = {
     productNotFound: "Paddle not found | PickleballRecs",
     productCategory: "Pickleball paddle",
     addReview: { title: "Add a Pickleball Paddle Review", description: "Played with a pickleball paddle? Share how it felt on court in about two minutes. No account needed." },
-    about: { title: "About", description: "Why PickleballRecs exists: pickleball paddle opinions are scattered across Reddit, YouTube, shops and forums. PickleballRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why PickleballRecs exists: pickleball paddle opinions are scattered across YouTube, shops and forums. PickleballRecs collects them and lets players add their own." },
     ogAlt: "PickleballRecs – real player reviews of pickleball paddles",
     ogProductAlt: "Pickleball paddle player reviews on PickleballRecs",
     ogEyebrow: "Player reviews of pickleball paddles",
     ogTitle: "Real player reviews of pickleball paddles",
-    ogDetail: "From players, Reddit, YouTube, shops and forums",
+    ogDetail: "From players, YouTube, shops and forums",
     ogFallbackTitle: "Pickleball paddle reviews",
   },
   copy: {
@@ -214,7 +214,7 @@ export const pickleball: Niche = {
     about: {
       heading: "Why PickleballRecs exists",
       paragraphs: [
-        "Paddle reviews are scattered across Reddit, YouTube, shops and forums. PickleballRecs puts those experiences in one place and lets players add their own.",
+        "Paddle reviews are scattered across YouTube, shops and forums. PickleballRecs puts those experiences in one place and lets players add their own.",
         "A paddle that works for one player won’t work for everyone. Knowing someone’s level, whether they play singles or doubles, and how long they’ve used a paddle often tells you more than a score on its own.",
       ],
       sections: [

@@ -136,8 +136,8 @@ export const cycling: Niche = {
   },
   seo: {
     homeTitle: "CyclingRecs – Real Rider Reviews of Road, Gravel and Mountain Bikes",
-    homeDescription: "Browse real reviews of road, gravel and mountain bikes from riders, plus opinions collected from Reddit, YouTube, bike shops and forums. Compare Trek, Specialized, Canyon, Giant, Cannondale, Santa Cruz, Cervélo, BMC, Yeti, Pivot and more.",
-    layoutDescription: "Real rider experiences with road, gravel and mountain bikes, plus opinions from Reddit, YouTube, bike shops and forums with the source linked.",
+    homeDescription: "Browse real reviews of road, gravel and mountain bikes from riders, plus opinions collected from YouTube, bike shops and forums. Compare Trek, Specialized, Canyon, Giant, Cannondale, Santa Cruz, Cervélo, BMC, Yeti, Pivot and more.",
+    layoutDescription: "Real rider experiences with road, gravel and mountain bikes, plus opinions from YouTube, bike shops and forums with the source linked.",
     titleTemplate: "%s | CyclingRecs",
     catalog: { title: "All Bikes – Rider Reviews and Ratings", description: "Every road, gravel and mountain bike on CyclingRecs with community ratings. Filter by brand and category, then read what riders say." },
     brands: { title: "Bike Brands", description: "Browse bikes by brand — Trek, Specialized, Canyon, Giant, Cannondale, Santa Cruz, Cervélo, BMC, Yeti, Pivot and more — and read real rider reviews of each model." },
@@ -146,12 +146,12 @@ export const cycling: Niche = {
     productNotFound: "Bike not found | CyclingRecs",
     productCategory: "Bicycle",
     addReview: { title: "Add a Bike Review", description: "Own or rented a road, gravel or mountain bike? Share how it rides in about two minutes. No account needed." },
-    about: { title: "About", description: "Why CyclingRecs exists: bike opinions are scattered across Reddit, YouTube, bike shops and forums. CyclingRecs collects them and lets riders add their own." },
+    about: { title: "About", description: "Why CyclingRecs exists: bike opinions are scattered across YouTube, bike shops and forums. CyclingRecs collects them and lets riders add their own." },
     ogAlt: "CyclingRecs – real rider reviews of bikes",
     ogProductAlt: "Bike reviews on CyclingRecs",
     ogEyebrow: "Rider reviews of road, gravel and mountain bikes",
     ogTitle: "Bike reviews from people who ride them",
-    ogDetail: "From riders, Reddit, YouTube, bike shops and forums",
+    ogDetail: "From riders, YouTube, bike shops and forums",
     ogFallbackTitle: "Bike reviews",
   },
   copy: {
@@ -170,7 +170,7 @@ export const cycling: Niche = {
     about: {
       heading: "Why CyclingRecs exists",
       paragraphs: [
-        "Bike opinions are scattered across Reddit, YouTube, bike shops and forums. CyclingRecs puts those experiences in one place and lets riders add their own.",
+        "Bike opinions are scattered across YouTube, bike shops and forums. CyclingRecs puts those experiences in one place and lets riders add their own.",
         "A bike that suits one rider won’t suit everyone. Knowing where someone rides, how far, which build they have and what they rode before often tells you more than a score on its own.",
       ],
       sections: [
