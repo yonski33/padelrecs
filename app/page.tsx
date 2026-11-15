@@ -12,13 +12,14 @@ import { HomeA, HomeB } from "./home-variants";
 import { HomeC } from "./home-catalog";
 import { HomeLight } from "./home-light";
 import HomeV2 from "./home-v2";
-import { readChoice, isDefault, choiceHref, matchSeoTitle } from "../lib/quick-match";
+import { readChoice } from "../lib/quick-match";
+import { homeMetadata } from "./home-metadata";
 import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import Link from "next/link";
-import { niche, catalogPath, productHref, isV2, v2copy } from "../lib/niche";
+import { niche, catalogPath, productHref, isV2 } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 
@@ -28,27 +29,9 @@ const a2 = (n: number) => n >= 2 ? ", " : " ";
 const PAGE = 12;
 
 const homeTitle = niche.seo.homeTitle;
-/** "Real Reviews of Nail Polish, Gel Polish, Top Coats and Press-On Nails": the title without the site name, the page's H1. */
-const headline = homeTitle.split(" – ").slice(1).join(" – ") || homeTitle;
-// The search snippet: what the site covers and how big it is, short enough that Google shows it whole (~155 characters).
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; older?: string }> }): Promise<Metadata> {
-  const data = await catalog();
-  // Quick match (PadelRecs): each combination is its own indexable page, "Best control padel rackets for beginners".
-  const q = await searchParams, choice = readChoice(q);
-  if (isV2 && niche.finder && !isDefault(choice)) {
-    const title = `${matchSeoTitle(choice, `${v2copy.sport ? `${v2copy.sport} ` : ""}${niche.words.many}`)} | ${niche.site.name}`;
-    const description = `${(v2copy.sport ? `${v2copy.sport} ${niche.words.many}` : niche.words.Many).replace(/^./, c => c.toUpperCase())} ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what ${niche.people.many} say about control, power, level and arm comfort. No sponsored picks.`;
-    // Only style, level and sore arm make an indexable page (24 of them, all in the sitemap). Fine-tune picks and "show older
-    // models" are views of that page: canonical to it and noindex (audit 2026-11-15, #8).
-    const url = choiceHref({ style: choice.style, level: choice.level, arm: choice.arm }, "");
-    const extra = !!choice.fine || q.older === "1";
-    return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" },
-      ...(extra ? { robots: { index: false, follow: true } } : {}) };
-  }
-  const total = data.reviews.length + data.external.length;
-  const short = `${headline}: ${total.toLocaleString("en-US")} reviews, ranked by what people actually say.`;
-  const description = short.length <= 160 ? short : niche.seo.homeDescription;
-  return { title: { absolute: homeTitle }, description, alternates: { canonical: "/" }, openGraph: { title: homeTitle, description, url: "/", type: "website" } };
+  const q = await searchParams;
+  return homeMetadata(readChoice(q), q.older === "1");
 }
 
 export default async function Home({ searchParams }: {

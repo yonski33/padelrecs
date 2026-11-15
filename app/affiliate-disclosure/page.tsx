@@ -4,6 +4,9 @@ import { niche, isV2 } from "../../lib/niche";
 import { amazonLinksOn } from "../../lib/amazon-offer";
 import AffiliateV2 from "./affiliate-v2";
 
+// Static (no database read of its own); refreshed hourly so the header menu the layout bakes in stays current.
+export const revalidate = 3600;
+
 // Only sites showing Amazon links (amazonLinksOn: niche config plus the associate tag) have affiliate links to disclose;
 // elsewhere this address is a 404.
 const site = niche.site.name;
