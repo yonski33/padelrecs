@@ -8,6 +8,7 @@ import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
+import AskPicks from "./ask-picks";
 import { matchScore } from "../../../lib/match-score";
 import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
@@ -87,7 +88,6 @@ export default async function RacketFit(props: {
   // With no picks, a tap starts from the defaults (any / intermediate / no arm) but always lands on a picked page.
   const base = picked ? choice : DEFAULT_CHOICE;
   const pickHref = (c: QuickChoice) => { const h = at(c); return h.includes("?") ? h : `${h}?level=${c.level}`; };
-  const pickPill = (label: string, next: QuickChoice, on: boolean) => <Link href={pickHref(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
 
   // Six trait rows (owner 2026-11-15): dots from the calculated trait scores (lib/trait-score.ts, every racket alike), text
   // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
@@ -213,14 +213,7 @@ export default async function RacketFit(props: {
           {!verdict ? <div className="rf-ask">
             <div><h2>Is this the right racket for you?</h2>
               <p>{`Two taps. We'll check it against ${total} player reviews.`}</p></div>
-            <div className="rf-grid">
-              <span>I want</span>
-              <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pickPill(STYLE_WORD[s], { ...base, style: s }, false)}</span>)}</span>
-              <span>I&apos;m</span>
-              <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pickPill(l, { ...base, level: l }, false)}</span>)}</span>
-              <span/>
-              {armLink("I have a sore elbow / wrist")}
-            </div>
+            <AskPicks href={props.href}/>
             {backing && <p className="rf-lvl">{`level: ${backing}`}{maker && <> · <a href={maker.url} target="_blank" rel="noopener nofollow">brand page ↗</a></>}</p>}
             {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
