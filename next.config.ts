@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
-import { selectNiche } from "./lib/niche";
+import { selectNiche } from "./lib/niche/all";
 const root=fileURLToPath(new URL(".",import.meta.url));
 // Which Recs site this deployment is (lib/niche); an unknown NICHE fails the build here.
 const niche=selectNiche(process.env.NICHE);
@@ -37,7 +37,8 @@ const config:NextConfig={
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },
- turbopack:{root},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
+ // Only the running site's config goes into the build (lib/niche/index.ts): "@/lib/niche/selected" becomes lib/niche/<id>.ts.
+ turbopack:{root,resolveAlias:{"@/lib/niche/selected":`./lib/niche/${niche.id}.ts`}},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
  // Public pages look the same for everyone: Vercel's CDN may serve a copy up to a minute old and refresh it in the background.
  // Admin, sign-in and write endpoints are excluded, and client-side navigation payloads (RSC requests) are never cached.
  async headers(){

@@ -9,6 +9,13 @@ const ballPickOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 export const padel: Niche = {
   id: "padel",
   design: "v2",
+  v2copy: {
+    sport: "padel", emoji: "🎾", strip: "a free, ad-light side project · built by padel players",
+    madeBy: "made by people who own too many rackets 🎾", forum: "padel forum", blog: "padel blog",
+    aboutStory: ["padelrecs started at a club bar. Three of us had bought rackets off hype, hated two of them, and couldn't find a straight answer anywhere. Just spec sheets, sponsored reviews and 20-minute videos.",
+      "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and padel forums together, counts it honestly, and tells you if a racket fits"],
+    example: "Metalbone CTRL 3.5 2026",
+  },
   schema: "padelrecs",
   site: {
     name: "PadelRecs",

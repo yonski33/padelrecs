@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { v2copy, niche } from "../../../lib/niche";
 import "./quick-take.css";
 import { COURT_ROWS, chipRank, chipTone, decisiveRows, distinctPlayers, evidenceLabel, levelBand, monthYear, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake, type Verdict } from "../../../lib/quick-take";
 import { phraseSegments } from "../../../lib/highlights";
@@ -74,7 +75,7 @@ export default function QuickTakePage(props: Props) {
   const toc = shown.filter(k => k !== "spot").map((k, i) => ({ k, n: String(i + 1).padStart(2, "0"), label: SECTIONS[k].toc(ctx) }));
   return <main className={`qt ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
-    <div className="qt-strip">a free, ad-light side project · built by padel players · <a href="#how-we-read">how we make these →</a></div>
+    <div className="qt-strip">{`${v2copy.strip} · `}<a href="#how-we-read">how we make these →</a></div>
     <div className="wrap">
       {props.crumbs}
       <Hero c={ctx}/>
@@ -113,8 +114,8 @@ function Hero({ c }: { c: Ctx }) {
       </div>
       <details className="howread" id="how-we-read"><summary>how we read this</summary><p>
         {"We read "}<b>{`${c.total} reports from ${listWords(c.pills)}${c.from && c.to ? `, ${monthYear(c.from, true)} to ${monthYear(c.to, true)}` : ""}`}</b>
-        {". Each one was sorted as positive, mixed or negative, then by what it talks about. Every main claim has at least 3 players behind it, and quote marks only go on their actual words. We don't test rackets and no brand paid us. "}
-        {c.signal !== null && <>{"The "}<b>{`Player score (${c.signal})`}</b>{" blends how much players like it with how many of them have weighed in, compared with every other racket we track. So a racket everyone talks about can score high even when opinions are split. "}</>}
+        {`. Each one was sorted as positive, mixed or negative, then by what it talks about. Every main claim has at least 3 players behind it, and quote marks only go on their actual words. We don't test ${niche.words.many} and no brand paid us. `}
+        {c.signal !== null && <>{"The "}<b>{`Player score (${c.signal})`}</b>{` blends how much players like it with how many of them have weighed in, compared with every other ${niche.words.one} we track. So a ${niche.words.one} everyone talks about can score high even when opinions are split. `}</>}
         <b>Thin spot:</b> <Rich text={qt.thinSpot}/>
       </p></details>
     </div>
@@ -238,8 +239,8 @@ const SpotBody = ({ c }: { c: Ctx }) => <div className="spot"><h2>Spot something
 
 /** The page footer (owner 2026-11-15: specs moved to the hero chips). */
 const Footer = ({ c }: { c: Ctx }) => <footer className="qt-foot">
-  <p>{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We read what players say and give our honest take. We don't test rackets and no brand pays for placement. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#community">Played it? Add your take ↑</a></p>
-  <p className="made">made by people who own too many rackets 🎾</p>
+  <p>{`Every line on this page comes from what players said on ${listWords(c.pills.map(p => p.replace(/ (testers|players)$/, "")))}. We read what players say and give our honest take. We don't test ${niche.words.many} and no brand pays for placement. Updated ${new Date(c.qt.written).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · `}<a href="#community">Played it? Add your take ↑</a></p>
+  <p className="made">{v2copy.madeBy}</p>
 </footer>;
 
 const moduleSec = (type: "themes" | "version" | "setup"): Sec => ({

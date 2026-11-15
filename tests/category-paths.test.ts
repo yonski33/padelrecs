@@ -2,7 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readdirSync } from "node:fs";
 import { NextRequest } from "next/server";
-import { niches, productPathIn } from "../lib/niche";
+import { productPathIn } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { readCatalog, catalogSnapshot } from "../db/catalog-file";
 import { productMove } from "../proxy";
 

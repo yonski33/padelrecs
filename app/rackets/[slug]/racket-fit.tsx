@@ -15,7 +15,7 @@ import { score } from "../../../db/data";
 import { signalCategory } from "../../signals";
 import { platformName } from "../../../lib/source-label";
 import { displayName } from "../../../lib/brand-name";
-import { productHref, niche, catalogPath } from "../../../lib/niche";
+import { productHref, niche, catalogPath, v2copy } from "../../../lib/niche";
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
@@ -95,7 +95,7 @@ export default async function RacketFit(props: {
   const badge = levelScore !== null ? { n: levelScore, label: `Player score · ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}` } : overallScore !== null ? { n: overallScore, label: "Player score" } : null;
   const who = (id: string) => { const r = byId.get(id); if (!r) return null;
     // True source, neutral words (owner 2026-11-15): our own players by nickname, YouTube by channel, forums and blogs by kind.
-    const src = r.platform === props.site ? r.nickname || `A ${props.site} player` : r.platform === "YouTube" ? `YouTube · ${r.sourceName ?? "video"}` : r.platform === "Reddit" ? "padel forum" : platformName(r.platform) === "Blog" ? "padel blog" : platformName(r.platform).toLowerCase();
+    const src = r.platform === props.site ? r.nickname || `A ${props.site} player` : r.platform === "YouTube" ? `YouTube · ${r.sourceName ?? "video"}` : r.platform === "Reddit" ? v2copy.forum : platformName(r.platform) === "Blog" ? v2copy.blog : platformName(r.platform).toLowerCase();
     return [src, r.level?.toLowerCase()].filter(Boolean).join(" · "); };
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return `${props.href}${h === "/" ? "" : h.slice(1)}`; };
   const pill = (label: string, next: QuickChoice, on: boolean) => <Link href={at(next)} scroll={false} replace aria-pressed={on} className={on ? "on" : undefined}>{label}</Link>;
@@ -232,7 +232,7 @@ export default async function RacketFit(props: {
 
   const lean = styleLean(facts).lean;
   const peerSub = levelView ? `${said.length} of ${total} reviews · from players at your level` : `${total} ${total === 1 ? "review" : "reviews"} · forums, YouTube & ${props.site.toLowerCase()}`;
-  const altTitle = !verdict ? "Similar rackets" : verdict.kind === "good" ? "Also worth a look" : "Better matches for you";
+  const altTitle = !verdict ? `Similar ${niche.words.many}` : verdict.kind === "good" ? "Also worth a look" : "Better matches for you";
   const box = (on: boolean) => <i className="rf-box" aria-hidden="true">{on ? "✓" : ""}</i>;
   const armLink = (label: string) => <Link href={picked ? at({ ...base, arm: !choice.arm }) : pickHref({ ...base, arm: true })} scroll={false} replace aria-pressed={picked && choice.arm} className="rf-arm">{box(picked && choice.arm)}{label}</Link>;
 
@@ -348,10 +348,10 @@ export default async function RacketFit(props: {
       <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}/></section>
 
       <footer className="rf-foot" id="how-we-read">
-        <div className="rf-line">{"built from YouTube reviews, reviews sent to us and padel forum reports · every source linked · "}
-          <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test rackets and no brand pays for placement. `}{qt && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
+        <div className="rf-line">{`built from YouTube reviews, reviews sent to us and ${v2copy.forum} reports · every source linked · `}
+          <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test ${niche.words.many} and no brand pays for placement. `}{qt && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
           {" · "}<a href="/contact">spot something wrong?</a></div>
-        <p className="rf-made">made by people who own too many rackets 🎾</p>
+        <p className="rf-made">{v2copy.madeBy}</p>
       </footer>
     </div>
   </main><V2Footer/></>;
