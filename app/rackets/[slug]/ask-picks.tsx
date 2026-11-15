@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 // The racket page's fit check before an answer (owner 2026-11-15, Claude Design mockup): two numbered questions as pills and
 // the optional sore-arm box. The answer loads once both a style and a level are picked, never for a level the visitor didn't
@@ -19,21 +18,14 @@ function readSaved(): Saved | null {
 }
 function saveProfile(p: Saved) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch { /* storage off */ } }
 
-export default function AskPicks({ href }: { href: string }) {
-  const router = useRouter();
+export default function AskPicks({ onPick }: { onPick: (p: Saved) => void }) {
   const [style, setStyle] = useState<Style | null>(null), [level, setLevel] = useState<Level | null>(null), [arm, setArm] = useState(false);
   const [saved, setSaved] = useState<Saved | null>(null);
   // Browser storage is read after the first render, so the server and client HTML match.
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setSaved(readSaved()); }, []);
-  const go = (p: Saved) => {
-    saveProfile(p);
-    const q = new URLSearchParams();
-    if (p.style !== "any") q.set("style", p.style);
-    q.set("level", p.level);
-    if (p.arm) q.set("arm", "1");
-    router.replace(`${href}?${q}`, { scroll: false });
-  };
+  // Applied in the browser (fit-live.tsx): the verdict for the picks shows with no round trip.
+  const go = (p: Saved) => { saveProfile(p); onPick(p); };
   const pickStyle = (s: Style) => { setStyle(s); if (level) go({ style: s, level, arm }); };
   const pickLevel = (l: Level) => { setLevel(l); if (style) go({ style, level: l, arm }); };
   return <>

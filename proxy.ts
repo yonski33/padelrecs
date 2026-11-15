@@ -5,7 +5,10 @@ import { niche } from "./lib/niche";
 import type { Niche } from "./lib/niche/types";
 import { productRedirect, productSlugIn } from "./lib/product-redirect";
 import { isV2 } from "./lib/niche";
+import { attrProfileFor } from "./lib/attr-profile";
 import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } from "./lib/quick-match";
+import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIEW } from "./lib/view-key";
+import { catalogPath } from "./lib/niche";
 
 // Only these paths depend on who is signed in. The admin area lives at /funtimes, not /admin (which is an ordinary 404).
 const PRIVATE = /^\/(?:funtimes|auth|api\/funtimes)(?:\/|$)/;
@@ -36,7 +39,8 @@ export async function proxy(request:NextRequest) {
  }
  // The quick-match home (batch D): "/" and its picks are served from one cached page per combination (app/quick/[key]).
  // Other home views (?home=, ?type=, ?feed=, ?q=) stay with app/page.tsx. /quick/<key> itself is only ever a rewrite target.
- if(isV2&&niche.finder){
+ // SkinRecs (an attribute profile, lib/attr-profile.ts) has its own quick match on app/page.tsx (app/skin/home-skin.tsx).
+ if(isV2&&niche.finder&&!attrProfileFor(niche)){
   const {pathname,searchParams}=request.nextUrl;
   if(pathname==="/"&&!OTHER_HOME_PARAMS.some(k=>searchParams.has(k))){
    const url=request.nextUrl.clone();
@@ -47,6 +51,23 @@ export async function proxy(request:NextRequest) {
    const k=readChoiceKey(pathname.slice(7));
    const url=request.nextUrl.clone();url.pathname="/";url.search=k?homeHref(k.choice,k.older).replace(/^\/\??/,""):"";
    return NextResponse.redirect(url,301);
+  }
+ }
+ // The catalogue, the rankings and the racket pages (speed batch): an address with a simple query is served from one cached
+ // page per view (app/v/…, lib/view-key.ts); anything else renders per request as before. /v/… is only ever a rewrite target.
+ if(isV2&&niche.finder){
+  const {pathname,searchParams}=request.nextUrl;
+  const to=(path:string)=>{const url=request.nextUrl.clone();url.pathname=path;url.search="";return NextResponse.rewrite(url);};
+  const ranking=/^\/rankings\/([a-z0-9-]+)$/.exec(pathname),racket=pathname.startsWith(`${catalogPath}/`)?/^([a-z0-9-]+)$/.exec(pathname.slice(catalogPath.length+1)):null;
+  if(pathname===catalogPath){const k=viewKey(searchParams,CATALOG_VIEW);if(k)return to(`/v/rackets/${k}`);}
+  else if(ranking){const k=viewKey(searchParams,RANKING_VIEW);if(k)return to(`/v/rankings/${ranking[1]}/${k}`);}
+  else if(racket){const k=viewKey(searchParams,RACKET_VIEW);if(k)return to(`/v/racket/${racket[1]}/${k}`);}
+  else if(pathname.startsWith("/v/")){
+   const m=/^\/v\/(?:(rackets)\/([^/]+)|(rankings)\/([a-z0-9-]+)\/([^/]+)|(racket)\/([a-z0-9-]+)\/([^/]+))$/.exec(pathname);
+   const back=(path:string,q:Record<string,string>|null)=>{const url=request.nextUrl.clone();url.pathname=path;url.search=q?viewQuery(q):"";return NextResponse.redirect(url,301);};
+   if(m?.[1])return back(catalogPath,readViewKey(m[2],CATALOG_VIEW));
+   if(m?.[3])return back(`/rankings/${m[4]}`,readViewKey(m[5],RANKING_VIEW));
+   if(m?.[6])return back(`${catalogPath}/${m[7]}`,readViewKey(m[8],RACKET_VIEW));
   }
  }
  if(!PRIVATE.test(request.nextUrl.pathname)) {

@@ -19,6 +19,8 @@ import { browseTiles, BrowseTile, Arrow, CategoryTabs, SignalInfo } from "../vis
 import { CompareTray } from "../compare/compare-pick";
 import { LightCatalog, lightFilters } from "../light-catalog";
 import CatalogV2 from "./catalog-v2";
+import CatalogSkin from "../skin/catalog-skin";
+import { attrProfileFor } from "../../lib/attr-profile";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -37,6 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string; style?: string; level?: string; arm?: string; weight?: string; feel?: string; sweet?: string; more?: string; older?: string }> }) {
   const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
+  if (isV2 && f.look !== "classic" && attrProfileFor(niche)) return <CatalogSkin f={f as Record<string, string>} base={catalogPath}/>;
   if (isV2 && f.look !== "classic") return <CatalogV2 data={data} f={f}/>;
   // The light direction's catalogue, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
   if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;

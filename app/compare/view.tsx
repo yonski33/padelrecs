@@ -5,7 +5,7 @@ import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { shopPhoto } from "../../lib/shop-photos";
 import { type catalog as loadCatalog, score } from "../../db/data";
-import { niche, productHref, typePageFor, catalogPath, isV2 } from "../../lib/niche";
+import { niche, productHref, typePageFor, catalogPath, isV2, scoreLabel } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { listLine } from "../../lib/list-lines";
 import { summary } from "../../lib/product-summary";
@@ -46,8 +46,8 @@ export function compareMetadata(data: Data, products: Data["rackets"], canonical
   const names = products.map(r => nameOf(data, r));
   const title = products.length >= 2 ? `${names.join(" vs ")}: Compared by Real Reviews` : `Compare ${w.Many} by Real ${niche.people.One} Reviews`;
   const description = products.length >= 2
-    ? `${names.join(" vs ")} side by side: Player score, what players praise and complain about, and key specs.`
-    : `Pick two or three ${w.many} and see them side by side: Player score, most-mentioned praise and complaints, and specs.`;
+    ? `${names.join(" vs ")} side by side: ${scoreLabel}, what ${niche.people.many} praise and complain about, and key specs.`
+    : `Pick two or three ${w.many} and see them side by side: ${scoreLabel}, most-mentioned praise and complaints, and specs.`;
   // og:image (audit 2026-11-15): the first product's photo, else the site card.
   const photo = products.map(r => shopPhoto(r)).find(Boolean);
   const images = [photo ?? "/opengraph-image"];
@@ -102,7 +102,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
       <h1>{products.length >= 2 ? products.map(r => nameOf(data, r)).join(" vs ") : `Compare ${w.many}`}</h1>
       <p>{products.length >= 2
         ? `Side by side from ${cols.reduce((a, c) => a + c.sum.total, 0).toLocaleString("en-US")} real reviews. Every count is the same as on each ${w.one}’s page.`
-        : `Pick two or three ${w.many} to see them side by side: Player score, what players praise and complain about, and their specs.`}</p>
+        : `Pick two or three ${w.many} to see them side by side: ${scoreLabel}, what ${niche.people.many} praise and complain about, and their specs.`}</p>
     </div>
 
     {products.length === 0 ? <section className="cmp-start">
@@ -133,7 +133,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
           {cols.map(c => <div key={c.r.id} className="cmp-cell cmp-verdict">
             {c.pos !== null ? <>
               {/* The Player score leads where the product has one, as on its page and the catalogue (one word everywhere, 2026-11-15). */}
-              {c.signal ? <p className="cmp-pos cmp-signal" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{c.signal}</b> Player score</p> : <p className="cmp-few">No Player score yet</p>}
+              {c.signal ? <p className="cmp-pos cmp-signal" title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}><b>{c.signal}</b> {scoreLabel}</p> : <p className="cmp-few">No Player score yet</p>}
               <SentimentBar positive={c.s.positive} mixed={c.s.mixed} negative={c.s.negative} legend="counts" className="stacked"/>
             </> : <p className="cmp-few">Not enough reviews to score yet</p>}
             <a className="cmp-count" href={`${productHref(c.r)}#reviews`}>{`${c.sum.total.toLocaleString("en-US")} ${c.sum.total === 1 ? "review" : "reviews"}`} <span aria-hidden="true">→</span></a>
