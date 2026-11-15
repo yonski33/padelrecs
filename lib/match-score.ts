@@ -7,7 +7,7 @@
 //   level  0.30  the agreed level band (lib/fit-verdict.ts combinedBand): inside 1, next to it 0.5, further 0.1; plus up to
 //                +0.2 when players at that level liked it (5+ of them = full)
 //   arm    0.20  the Arm comfort trait score, only when "sore arm" is ticked
-//   score  0.10  the Player score (lib/signal.ts)
+//   score  0.50  the Player score (lib/signal.ts): liked share and volume
 // A part with no data counts as 0.5 (neither for nor against).
 // With a shape picked, the style part is mostly the racket's place among that shape's rackets (0.7) and the rest the
 // catalog-wide score (0.3), and the % is spread among that shape only (app/match-context.ts).
@@ -38,7 +38,10 @@ export type MatchInputs = {
 export const MATCH_BANDS = { good: [70, 99], maybe: [45, 69], no: [15, 44] } as const;
 const LEVEL_INDEX = { beginner: 0, intermediate: 1, advanced: 2 } as const;
 // arm 0.35 (audit 2026-11-15, #16: a sore arm should move the list, not nudge it).
-const W = { style: 0.4, level: 0.3, arm: 0.35, score: 0.1, fine: 0.25 };
+// score 0.35 (owner 2026-11-15: "favour highly liked rackets with lots of reviews"): the Player score already blends the liked
+// share with how many players weighed in, so it is the volume signal; it was 0.10 (0.35 and 0.5 tried: 0.5 puts the well-reviewed
+// favourites on top of advanced + balance).
+export const W = { style: 0.4, level: 0.3, arm: 0.35, score: 0.5, fine: 0.25 };
 const part = (v: number | null) => v === null ? 0.5 : v / 99;
 
 /** 0–1: how well the data fits the picks, before it is placed in its verdict's band. */

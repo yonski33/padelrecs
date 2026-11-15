@@ -179,7 +179,10 @@ export function fitVerdict(c: QuickChoice, f: FitFacts): FitVerdict {
   const fits = reasons(["ok"]), catches = [...reasons(["hard"]), ...reasons(["soft"])];
   const short = (lv: Check["level"], mark: string) => { const x = checks.find(c => c.level === lv && c.short); return x ? `${mark} ${x.short}` : undefined; };
   if (checks.some(x => x.level === "hard")) return { kind: "no", label: "Probably not your racket", icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3), short: short("hard", "✗"), fits, catches };
-  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~"), fits, catches };
+  // A Strong fit needs the site's "few reports" line (padel 15; owner 2026-11-15: "we are placing in high places rackets with
+  // very few reviews"): under it, every check passing still says "Worth a look", based on fewer reports.
+  const few = f.reports < FEW_FIT_REPORTS;
+  if (few || checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~"), fits, catches };
   return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3), short: short("ok", "✓"), fits, catches };
 }
 
