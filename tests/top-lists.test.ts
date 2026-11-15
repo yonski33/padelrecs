@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { niches } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { rankList, aboveAverage, likedScore, matchesFilters, ratingVerdict, listTotals, MIN_POSITIVE_SHARE, listTitle, rankingHref, reviewWindowMonths, withNicheWindow, withModelYears, listYear, windowLabel, type ListInput, type Verdict } from "../lib/top-lists";
 import type { TopList } from "../lib/niche/types";
 

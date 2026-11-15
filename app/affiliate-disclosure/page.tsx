@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { niche } from "../../lib/niche";
+import { niche, isV2 } from "../../lib/niche";
 import { amazonLinksOn } from "../../lib/amazon-offer";
 import AffiliateV2 from "./affiliate-v2";
 
@@ -17,7 +17,7 @@ const UPDATED = "October 25, 2026";
 
 export default async function AffiliateDisclosure({ searchParams }: { searchParams: Promise<{ look?: string }> }) {
   if (!amazonLinksOn()) notFound();
-  if (niche.id === "padel" && (await searchParams).look !== "classic") return <AffiliateV2 updated={UPDATED}/>;
+  if (isV2 && (await searchParams).look !== "classic") return <AffiliateV2 updated={UPDATED}/>;
   return <main className="narrow prose">
     <p className="eyebrow">Affiliate disclosure</p>
     <h1>How {site} makes money</h1>

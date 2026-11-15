@@ -171,8 +171,8 @@ export const nails: Niche = {
   },
   seo: {
     homeTitle: "NailsRecs – Real Reviews of Nail Polish, Gel Polish, Top Coats and Press-On Nails",
-    homeDescription: "Browse real reviews of nail polish, gel polish, base and top coats, press-on nails, nail strengtheners and cuticle oils, plus opinions collected from Reddit, YouTube, beauty retailers and forums. Compare OPI, Essie, Sally Hansen, Holo Taco, CND, Olive & June, KISS, Aprés and more.",
-    layoutDescription: "Real experiences with nail polish, gel polish, base and top coats, press-on nails, nail treatments and cuticle oils, plus opinions from Reddit, YouTube, beauty retailers and forums with the source linked.",
+    homeDescription: "Browse real reviews of nail polish, gel polish, base and top coats, press-on nails, nail strengtheners and cuticle oils, plus opinions collected from YouTube, beauty retailers and forums. Compare OPI, Essie, Sally Hansen, Holo Taco, CND, Olive & June, KISS, Aprés and more.",
+    layoutDescription: "Real experiences with nail polish, gel polish, base and top coats, press-on nails, nail treatments and cuticle oils, plus opinions from YouTube, beauty retailers and forums with the source linked.",
     titleTemplate: "%s | NailsRecs",
     catalog: { title: "All Nail Products – Reviews and Ratings", description: "Every nail polish, gel polish, base and top coat, press-on, nail treatment and cuticle oil on NailsRecs with community ratings. Filter by brand and category, then read what users say." },
     brands: { title: "Nail Brands", description: "Browse nail products by brand — OPI, Essie, Sally Hansen, Holo Taco, CND, Olive & June, KISS, Aprés, Static Nails, Seche and more — and read real reviews of each line." },
@@ -181,12 +181,12 @@ export const nails: Niche = {
     productNotFound: "Nail product not found | NailsRecs",
     productCategory: "Nail care",
     addReview: { title: "Add a Nail Product Review", description: "Used a nail polish, gel, top coat, press-on or treatment? Share how it worked for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why NailsRecs exists: nail product opinions are scattered across Reddit, YouTube, beauty retailers and forums. NailsRecs collects them and lets people add their own." },
+    about: { title: "About", description: "Why NailsRecs exists: nail product opinions are scattered across YouTube, beauty retailers and forums. NailsRecs collects them and lets people add their own." },
     ogAlt: "NailsRecs – real reviews of nail products",
     ogProductAlt: "Nail product reviews on NailsRecs",
     ogEyebrow: "Real reviews of nail products",
     ogTitle: "Nail product reviews from people who wear them",
-    ogDetail: "From users, Reddit, YouTube, beauty retailers and forums",
+    ogDetail: "From users, YouTube, beauty retailers and forums",
     ogFallbackTitle: "Nail product reviews",
   },
   copy: {
@@ -205,7 +205,7 @@ export const nails: Niche = {
     about: {
       heading: "Why NailsRecs exists",
       paragraphs: [
-        "Nail product opinions are scattered across Reddit, YouTube, beauty retailers and forums. NailsRecs puts those experiences in one place and lets people add their own.",
+        "Nail product opinions are scattered across YouTube, beauty retailers and forums. NailsRecs puts those experiences in one place and lets people add their own.",
         "A polish that lasts a week on one person chips in a day on someone else. Knowing someone’s natural nails, how they apply it and what they used before often tells you more than a swatch or a score on its own.",
       ],
       sections: [

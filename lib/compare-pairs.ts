@@ -82,7 +82,17 @@ export function comparePick(data: Catalog, product: Product, now = new Date()): 
 /** A model family (owner 2026-11-15, quick match shows one row per model): the name without years and generation numbers,
  *  so Metalbone HRD+ 3.4 2025 → 3.5 2026, Electra Pro ST4 → ST5, Fenix Pro 5 → 6, Hack 04 → 05 and Neuron → Neuron 02 are one
  *  family. Carbon grades (12K, 18K) and model codes (AT10, EA10) stay part of the name. */
-export const modelFamily = (p: { name: string; brandId: string }) => `${p.brandId}:${p.name.toLowerCase().replace(/\b(19|20)\d{2}\b/g, " ").replace(/\b(?:v|st|gen ?)?\d+(?:\.\d+)?\b(?![k+])/g, " ").replace(/[^a-z0-9+]+/g, " ").trim()}`;
+/** Model lines a maker renamed between years, as family names (after the clean-up below) mapped to the newer line's; code
+ *  aliases rather than catalog renames (owner 2026-11-15). Nox: the 12K became the 12K Alum Xtrem in 2026, the AT10 18k the
+ *  AT10 Genius 18K. */
+const FAMILY_ALIASES: Record<string, string> = {
+  "nox at10 genius 12k": "nox at10 genius 12k alum xtrem",
+  "nox at10 18k": "nox at10 genius 18k",
+};
+export const modelFamily = (p: { name: string; brandId: string }) => {
+  const name = p.name.toLowerCase().replace(/\b(19|20)\d{2}\b/g, " ").replace(/\b(?:v|st|gen ?)?\d+(?:\.\d+)?\b(?![k+])/g, " ").replace(/[^a-z0-9+]+/g, " ").trim();
+  return `${p.brandId}:${FAMILY_ALIASES[name] ?? name}`;
+};
 /** The newest year of each racket's family among `candidates` (the highest name when two share the newest year). */
 export function newestInFamily<T extends Product>(product: T, candidates: T[]): T {
   if (!hasYears) return product;

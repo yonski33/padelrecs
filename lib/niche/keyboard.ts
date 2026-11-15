@@ -172,8 +172,8 @@ export const keyboard: Niche = {
   },
   seo: {
     homeTitle: "KeyboardRecs – Real Reviews of Mechanical Keyboards, Switches and Keycaps",
-    homeDescription: "Browse real reviews of mechanical, rapid trigger, low-profile and ergonomic keyboards, custom kits, switches and keycaps, plus experiences collected from Reddit, YouTube and forums. Compare Keychron, Wooting, NuPhy, Razer, Logitech, Corsair and more.",
-    layoutDescription: "Real experiences with mechanical, rapid trigger and ergonomic keyboards, kits, switches and keycaps, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real reviews of mechanical, rapid trigger, low-profile and ergonomic keyboards, custom kits, switches and keycaps, plus experiences collected from YouTube and forums. Compare Keychron, Wooting, NuPhy, Razer, Logitech, Corsair and more.",
+    layoutDescription: "Real experiences with mechanical, rapid trigger and ergonomic keyboards, kits, switches and keycaps, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | KeyboardRecs",
     catalog: { title: "All Keyboards, Switches and Keycaps – Reviews and Ratings", description: "Every keyboard, kit, switch and keycap set on KeyboardRecs with community ratings. Filter by category and brand, then read what owners say." },
     brands: { title: "Keyboard Brands", description: "Browse keyboards by brand — Keychron, Wooting, NuPhy, Razer, Logitech, Corsair, Gateron and more — and read real reviews of each product." },
@@ -182,12 +182,12 @@ export const keyboard: Niche = {
     productNotFound: "Product not found | KeyboardRecs",
     productCategory: "Keyboards",
     addReview: { title: "Add a Keyboard Review", description: "Used a keyboard, kit, switch or keycap set? Share how it feels and holds up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why KeyboardRecs exists: keyboard opinions are scattered across Reddit, YouTube and forums. KeyboardRecs collects them and lets owners add their own." },
+    about: { title: "About", description: "Why KeyboardRecs exists: keyboard opinions are scattered across YouTube and forums. KeyboardRecs collects them and lets owners add their own." },
     ogAlt: "KeyboardRecs – real reviews of keyboards",
     ogProductAlt: "Keyboard reviews on KeyboardRecs",
     ogEyebrow: "Real reviews of keyboards",
     ogTitle: "Keyboard reviews from people who type on them",
-    ogDetail: "From owners, Reddit, YouTube and forums",
+    ogDetail: "From owners, YouTube and forums",
     ogFallbackTitle: "Keyboard reviews",
   },
   copy: {
@@ -206,7 +206,7 @@ export const keyboard: Niche = {
     about: {
       heading: "Why KeyboardRecs exists",
       paragraphs: [
-        "Keyboard opinions are scattered across Reddit, YouTube and forums, and most review videos come with a discount code. KeyboardRecs puts first-hand experiences in one place and lets owners add their own.",
+        "Keyboard opinions are scattered across YouTube and forums, and most review videos come with a discount code. KeyboardRecs puts first-hand experiences in one place and lets owners add their own.",
         "A board that sounds perfect to one person is too loud for another. Knowing what someone uses it for, which switches they run and how long they’ve had it often tells you more than a score on its own.",
       ],
       sections: [

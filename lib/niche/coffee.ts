@@ -165,8 +165,8 @@ export const coffee: Niche = {
   },
   seo: {
     homeTitle: "CoffeeRecs – Real Home Barista Reviews of Espresso Machines, Grinders and Coffee Gear",
-    homeDescription: "Browse real reviews of espresso machines, coffee grinders, pour-over drippers, kettles and scales from home baristas, plus opinions collected from Reddit, YouTube, coffee retailers and forums. Compare Breville, Baratza, Fellow, Hario, Timemore, Comandante, 1Zpresso, Niche, Lelit, Profitec, Rancilio, Gaggia and more.",
-    layoutDescription: "Real home barista experiences with espresso machines, grinders, brewers, kettles and scales, plus opinions from Reddit, YouTube, coffee retailers and forums with the source linked.",
+    homeDescription: "Browse real reviews of espresso machines, coffee grinders, pour-over drippers, kettles and scales from home baristas, plus opinions collected from YouTube, coffee retailers and forums. Compare Breville, Baratza, Fellow, Hario, Timemore, Comandante, 1Zpresso, Niche, Lelit, Profitec, Rancilio, Gaggia and more.",
+    layoutDescription: "Real home barista experiences with espresso machines, grinders, brewers, kettles and scales, plus opinions from YouTube, coffee retailers and forums with the source linked.",
     titleTemplate: "%s | CoffeeRecs",
     catalog: { title: "All Coffee Gear – Home Barista Reviews and Ratings", description: "Every espresso machine, grinder, brewer, kettle and scale on CoffeeRecs with community ratings. Filter by brand and category, then read what home baristas say." },
     brands: { title: "Coffee Gear Brands", description: "Browse coffee gear by brand — Breville, Baratza, Fellow, Hario, Timemore, Comandante, 1Zpresso, Niche, Lelit, Profitec, Rancilio, Gaggia and more — and read real home barista reviews of each model." },
@@ -175,12 +175,12 @@ export const coffee: Niche = {
     productNotFound: "Coffee gear not found | CoffeeRecs",
     productCategory: "Coffee equipment",
     addReview: { title: "Add a Coffee Gear Review", description: "Own an espresso machine, grinder, brewer, kettle or scale? Share how it works for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why CoffeeRecs exists: coffee gear opinions are scattered across Reddit, YouTube, coffee retailers and forums. CoffeeRecs collects them and lets home baristas add their own." },
+    about: { title: "About", description: "Why CoffeeRecs exists: coffee gear opinions are scattered across YouTube, coffee retailers and forums. CoffeeRecs collects them and lets home baristas add their own." },
     ogAlt: "CoffeeRecs – real home barista reviews of coffee gear",
     ogProductAlt: "Coffee gear reviews on CoffeeRecs",
     ogEyebrow: "Home barista reviews of coffee gear",
     ogTitle: "Coffee gear reviews from people who brew with it",
-    ogDetail: "From home baristas, Reddit, YouTube, coffee retailers and forums",
+    ogDetail: "From home baristas, YouTube, coffee retailers and forums",
     ogFallbackTitle: "Coffee gear reviews",
   },
   copy: {
@@ -199,7 +199,7 @@ export const coffee: Niche = {
     about: {
       heading: "Why CoffeeRecs exists",
       paragraphs: [
-        "Coffee gear opinions are scattered across Reddit, YouTube, coffee retailers and forums. CoffeeRecs puts those experiences in one place and lets home baristas add their own.",
+        "Coffee gear opinions are scattered across YouTube, coffee retailers and forums. CoffeeRecs puts those experiences in one place and lets home baristas add their own.",
         "Gear that suits one person won’t suit everyone. Knowing what someone drinks, what grinder or machine they pair it with and what they used before often tells you more than a spec sheet or a score on its own.",
       ],
       sections: [

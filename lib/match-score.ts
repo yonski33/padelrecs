@@ -34,7 +34,8 @@ export type MatchInputs = {
 };
 export const MATCH_BANDS = { good: [70, 99], maybe: [45, 69], no: [15, 44] } as const;
 const LEVEL_INDEX = { beginner: 0, intermediate: 1, advanced: 2 } as const;
-const W = { style: 0.4, level: 0.3, arm: 0.2, score: 0.1, fine: 0.25 };
+// arm 0.35 (audit 2026-11-15, #16: a sore arm should move the list, not nudge it).
+const W = { style: 0.4, level: 0.3, arm: 0.35, score: 0.1, fine: 0.25 };
 const part = (v: number | null) => v === null ? 0.5 : v / 99;
 
 /** 0–1: how well the data fits the picks, before it is placed in its verdict's band. */

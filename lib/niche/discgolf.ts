@@ -192,8 +192,8 @@ export const discgolf: Niche = {
   },
   seo: {
     homeTitle: "DiscGolfRecs – Real Player Reviews of Disc Golf Discs",
-    homeDescription: "Browse real disc golf disc reviews from players and opinions collected from Reddit, YouTube, disc golf shops and forums. Compare drivers, midranges and putters from Innova, Discraft, MVP, Axiom, Latitude 64, Dynamic Discs, Westside, Kastaplast, Discmania and more.",
-    layoutDescription: "Real player experiences with disc golf discs, plus opinions from Reddit, YouTube, disc golf shops and forums with the source linked.",
+    homeDescription: "Browse real disc golf disc reviews from players and opinions collected from YouTube, disc golf shops and forums. Compare drivers, midranges and putters from Innova, Discraft, MVP, Axiom, Latitude 64, Dynamic Discs, Westside, Kastaplast, Discmania and more.",
+    layoutDescription: "Real player experiences with disc golf discs, plus opinions from YouTube, disc golf shops and forums with the source linked.",
     titleTemplate: "%s | DiscGolfRecs",
     catalog: { title: "All Discs – Player Reviews and Ratings", description: "Every disc on DiscGolfRecs with community ratings. Filter by brand and type, then read what players say about each mold." },
     brands: { title: "Disc Golf Brands", description: "Browse discs by brand — Innova, Discraft, MVP, Axiom, Latitude 64, Dynamic Discs, Westside, Kastaplast, Discmania and more — and read real player reviews of each mold." },
@@ -202,12 +202,12 @@ export const discgolf: Niche = {
     productNotFound: "Disc not found | DiscGolfRecs",
     productCategory: "Disc golf disc",
     addReview: { title: "Add a Disc Review", description: "Bagged one, or tried it in fieldwork? Share how it flies in about two minutes. No account needed." },
-    about: { title: "About", description: "Why DiscGolfRecs exists: disc opinions are scattered across Reddit, YouTube, disc golf shops and forums. DiscGolfRecs collects them and lets players add their own." },
+    about: { title: "About", description: "Why DiscGolfRecs exists: disc opinions are scattered across YouTube, disc golf shops and forums. DiscGolfRecs collects them and lets players add their own." },
     ogAlt: "DiscGolfRecs – real player reviews of disc golf discs",
     ogProductAlt: "Disc reviews on DiscGolfRecs",
     ogEyebrow: "Player reviews of disc golf discs",
     ogTitle: "Real player reviews of disc golf discs",
-    ogDetail: "From players, Reddit, YouTube, disc golf shops and forums",
+    ogDetail: "From players, YouTube, disc golf shops and forums",
     ogFallbackTitle: "Disc reviews",
   },
   copy: {
@@ -226,7 +226,7 @@ export const discgolf: Niche = {
     about: {
       heading: "Why DiscGolfRecs exists",
       paragraphs: [
-        "Disc reviews are scattered across Reddit, YouTube, disc golf shops and forums. DiscGolfRecs puts those experiences in one place and lets players add their own.",
+        "Disc reviews are scattered across YouTube, disc golf shops and forums. DiscGolfRecs puts those experiences in one place and lets players add their own.",
         "A disc that flies one way for one player can fly very differently for another. Knowing someone’s arm speed, throwing hand, the plastic they threw and how beat in it is often tells you more than a score on its own.",
       ],
       sections: [

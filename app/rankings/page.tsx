@@ -5,7 +5,7 @@ import { siteOgImages } from "../site-og";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { niche } from "../../lib/niche";
+import { niche, isV2 } from "../../lib/niche";
 import { RANKINGS_PATH, listYear } from "../../lib/top-lists";
 import { BrowseTile } from "../visual";
 import { rankedLists, listHref, longDate, currentYear } from "./lists";
@@ -33,7 +33,7 @@ export default async function TopListsIndex({ searchParams }: { searchParams: Pr
   if (!lists.length) notFound();
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
-  if (niche.id === "padel" && f.look !== "classic") return <RankingsHubV2 data={data} lists={lists}/>;
+  if (isV2 && f.look !== "classic") return <RankingsHubV2 data={data} lists={lists}/>;
   // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): each ranking as a calm card with its top three.
   if (isLight(f.look)) {
     const seen = new Set<string>(), unique = lists.filter(l => !seen.has(l.list.slug) && seen.add(l.list.slug));

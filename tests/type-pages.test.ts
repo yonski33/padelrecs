@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { niches, niche } from "../lib/niche";
+import { niche } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import { hubTitle, hubDescription } from "../lib/type-pages";
 
 test("every type hub has a plural keyword phrase for its title, and no two hubs on a site share one", () => {

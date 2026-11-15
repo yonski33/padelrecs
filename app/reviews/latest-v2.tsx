@@ -8,6 +8,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { rowOfFamily } from "../../lib/compare-pairs";
+import { newThisWeek } from "../../lib/new-this-week";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
 
@@ -85,7 +86,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
       <section className="lr2-hero">
         <div><h1>Latest reviews</h1>
           <p>{"Straight from players who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes."}</p></div>
-        <p className="lr2-live"><i aria-hidden="true"/>{`${week.length} new this week`}</p>
+        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} new this week`}</p>
       </section>
       <div className="lr2-bar">
         <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", "from players"], ["yt", "youtube summaries"]] as const).map(([k, label]) =>
@@ -98,7 +99,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
           {groups.map(g => <div key={g.label} className="lr2-day">
             <div className="lr2-dh"><span>{g.label}</span><i aria-hidden="true"/><small>{`${g.items.length} ${g.items.length === 1 ? "review" : "reviews"}`}</small></div>
             {g.items.map(({ x, i }) => { const r = byId.get(x.racketId)!, pic = photo(r), href = productHref(r); return <article key={x.key}>
-              <a className="lr2-pic" href={href} tabIndex={-1} aria-hidden="true">{pic && <img src={pic} alt="" loading={i < 4 ? "eager" : "lazy"}/>}</a>
+              <a className="lr2-pic" href={href} tabIndex={-1} aria-hidden="true">{pic && <img src={pic} alt="" width={408} height={620} decoding="async" loading={i < 4 ? "eager" : "lazy"}/>}</a>
               <div className="lr2-body">
                 <div className="lr2-head"><a className="lr2-name" href={href}>{nameOf(x.racketId)}</a>
                   {x.verdict && <span className={`lr2-pill ${x.verdict}${i % 2 ? " r" : ""}`}>{PILL[x.verdict]}</span>}</div>

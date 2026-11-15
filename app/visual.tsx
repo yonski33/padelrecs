@@ -7,7 +7,7 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { shopPhoto } from "../lib/shop-photos";
 import { sourceLabel, summaryKind, originalLinkLabel } from "../lib/source-label";
 import { displayName } from "../lib/brand-name";
-import { niche, productHref, catalogPath } from "../lib/niche";
+import { niche, productHref, catalogPath, scoreLabel } from "../lib/niche";
 const catalogPathOf = () => catalogPath;
 import { plainSummary } from "../lib/plain-summary";
 import { reviewSegments } from "../lib/highlights";
@@ -44,7 +44,7 @@ export function shares(parts: number[]) {
   return out;
 }
 
-/** "% positive" once at least three reviews are judged; null below that, so one review never reads as a verdict. */
+/** The positive share once at least three reviews are judged (null below), for sorting and thresholds only: never shown. */
 export const positiveShare = (s: Pick<ScoreT, "positive" | "judged">) => s.judged >= 3 ? Math.round(s.positive / s.judged * 100) : null;
 
 /** Positive / mixed / negative as one bar. `legend` adds the three shares under it. */
@@ -53,19 +53,18 @@ export const positiveShare = (s: Pick<ScoreT, "positive" | "judged">) => s.judge
 export function SentimentBar({ positive, mixed, negative, legend = false, className = "" }: { positive: number; mixed: number; negative: number; legend?: boolean | "counts"; className?: string }) {
   const total = positive + mixed + negative;
   if (!total) return null;
-  const [p, m, n] = shares([positive, mixed, negative]);
-  const label = `${p}% positive, ${m}% mixed, ${n}% negative`;
+  // Counts, never shares (owner 2026-11-15: no "% positive" anywhere; a share reads like a second score).
+  const label = `${positive} positive, ${mixed} mixed, ${negative} negative`;
   return <span className={`sbar ${className}`}>
     <span className="sbar-track" role="img" aria-label={label}>
       {positive > 0 && <i className="s-positive" style={{ width: `${positive / total * 100}%` }}/>}
       {mixed > 0 && <i className="s-mixed" style={{ width: `${mixed / total * 100}%` }}/>}
       {negative > 0 && <i className="s-negative" style={{ width: `${negative / total * 100}%` }}/>}
     </span>
-    {legend === "counts" ? <span className="sbar-legend sbar-counts" aria-hidden="true">
+    {legend ? <span className="sbar-legend sbar-counts" aria-hidden="true">
       <span className="s-positive"><b>{positive.toLocaleString("en-US")}</b> positive</span>
       <span className="s-mixed"><b>{mixed.toLocaleString("en-US")}</b> mixed</span>
-      <span className="s-negative"><b>{negative.toLocaleString("en-US")}</b> negative</span></span>
-      : legend && <span className="sbar-legend" aria-hidden="true"><span className="s-positive">{p}% positive</span><span className="s-mixed">{m}% mixed</span><span className="s-negative">{n}% negative</span></span>}
+      <span className="s-negative"><b>{negative.toLocaleString("en-US")}</b> negative</span></span> : null}
   </span>;
 }
 
@@ -220,18 +219,19 @@ export function SentimentBand({ positive, mixed, negative }: { positive: number;
   const total = positive + mixed + negative;
   if (!total) return null;
   const [p, m, n] = shares([positive, mixed, negative]);
-  const parts = [["positive", positive, p, "Positive"], ["mixed", mixed, m, "Mixed"], ["negative", negative, n, "Negative"]] as const;
-  return <div className="sband" role="img" aria-label={`${p}% positive, ${m}% mixed, ${n}% negative`}>
-    {parts.map(([k, count, pct, word]) => count > 0 && <i key={k} className={`s-${k}`} style={{ width: `${count / total * 100}%` }}>{pct >= 14 ? `${pct}% ${word}` : pct >= 7 ? `${pct}%` : ""}</i>)}
+  const parts = [["positive", positive, p, "positive"], ["mixed", mixed, m, "mixed"], ["negative", negative, n, "negative"]] as const;
+  // Counts inside the segments, never shares (owner 2026-11-15).
+  return <div className="sband" role="img" aria-label={`${positive} positive, ${mixed} mixed, ${negative} negative`}>
+    {parts.map(([k, count, pct, word]) => count > 0 && <i key={k} className={`s-${k}`} style={{ width: `${count / total * 100}%` }}>{pct >= 14 ? `${count} ${word}` : pct >= 7 ? `${count}` : ""}</i>)}
   </div>;
 }
 
 /** "How the signal works" as a small pop-up with the short explanation (owner, 2026-11-13), instead of a trip to the
  *  About page. No JavaScript. */
-export function SignalPop({ label = "How the signal works", align = "left" }: { label?: string; align?: "left" | "right" }) {
+export function SignalPop({ label = `How the ${scoreLabel} works`, align = "left" }: { label?: string; align?: "left" | "right" }) {
   return <details className={`sig-pop${align === "right" ? " sig-pop-right" : ""}`}><summary>{label}<span aria-hidden="true"> ⓘ</span></summary>
     <div className="sig-pop-card" role="note">
-      <b>The signal score</b>
+      <b>{`The ${scoreLabel}`}</b>
       <p>A score out of 100 for how well reviewed a product is next to others of its kind. It rises with positive reviews and with how many there are; negative and mixed reviews take points off.</p>
       <p>So a handful of glowing reviews can’t beat a product lots of people like. No sponsored placements.</p>
     </div>

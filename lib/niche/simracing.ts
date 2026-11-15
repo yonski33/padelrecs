@@ -196,8 +196,8 @@ export const simracing: Niche = {
   },
   seo: {
     homeTitle: "SimRacingRecs – Real Driver Reviews of Sim Racing Gear",
-    homeDescription: "Browse real reviews of sim racing wheelbases, steering wheels, pedals, cockpits and shifters from sim racers, plus opinions collected from Reddit, YouTube, sim racing shops and forums. Compare Fanatec, MOZA, Simucube, Simagic, Thrustmaster, Logitech, Asetek, Heusinkveld and more.",
-    layoutDescription: "Real sim racer experiences with wheelbases, wheels, pedals, cockpits and shifters, plus opinions from Reddit, YouTube, sim racing shops and forums with the source linked.",
+    homeDescription: "Browse real reviews of sim racing wheelbases, steering wheels, pedals, cockpits and shifters from sim racers, plus opinions collected from YouTube, sim racing shops and forums. Compare Fanatec, MOZA, Simucube, Simagic, Thrustmaster, Logitech, Asetek, Heusinkveld and more.",
+    layoutDescription: "Real sim racer experiences with wheelbases, wheels, pedals, cockpits and shifters, plus opinions from YouTube, sim racing shops and forums with the source linked.",
     titleTemplate: "%s | SimRacingRecs",
     catalog: { title: "All Sim Racing Gear – Driver Reviews and Ratings", description: "Every wheelbase, wheel, pedal set, cockpit and shifter on SimRacingRecs with community ratings. Filter by brand and category, then read what sim racers say." },
     brands: { title: "Sim Racing Brands", description: "Browse sim racing gear by brand — Fanatec, MOZA, Simucube, Simagic, Thrustmaster, Logitech, Asetek, Heusinkveld, Sim-Lab, Trak Racer, Next Level Racing and more — and read real driver reviews of each product." },
@@ -206,12 +206,12 @@ export const simracing: Niche = {
     productNotFound: "Product not found | SimRacingRecs",
     productCategory: "Sim racing gear",
     addReview: { title: "Add a Sim Racing Gear Review", description: "Raced on a wheelbase, wheel, pedal set, cockpit or shifter? Share how it held up in about two minutes. No account needed." },
-    about: { title: "About", description: "Why SimRacingRecs exists: sim racing gear opinions are scattered across Reddit, YouTube, sim racing shops and forums. SimRacingRecs collects them and lets sim racers add their own." },
+    about: { title: "About", description: "Why SimRacingRecs exists: sim racing gear opinions are scattered across YouTube, sim racing shops and forums. SimRacingRecs collects them and lets sim racers add their own." },
     ogAlt: "SimRacingRecs – real driver reviews of sim racing gear",
     ogProductAlt: "Sim racing gear reviews on SimRacingRecs",
     ogEyebrow: "Driver reviews of sim racing gear",
     ogTitle: "Sim racing gear reviews from people who race on it",
-    ogDetail: "From sim racers, Reddit, YouTube, sim racing shops and forums",
+    ogDetail: "From sim racers, YouTube, sim racing shops and forums",
     ogFallbackTitle: "Sim racing gear reviews",
   },
   copy: {
@@ -230,7 +230,7 @@ export const simracing: Niche = {
     about: {
       heading: "Why SimRacingRecs exists",
       paragraphs: [
-        "Sim racing gear opinions are scattered across Reddit, YouTube, sim racing shops and forums. SimRacingRecs puts those experiences in one place and lets sim racers add their own.",
+        "Sim racing gear opinions are scattered across YouTube, sim racing shops and forums. SimRacingRecs puts those experiences in one place and lets sim racers add their own.",
         "A wheelbase or pedal set that suits one driver won’t suit everyone. Knowing which sims someone races, on which platform, what it’s mounted to and what they upgraded from often tells you more than a score on its own.",
       ],
       sections: [

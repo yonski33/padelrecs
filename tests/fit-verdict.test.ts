@@ -84,3 +84,13 @@ test("brand's own short term in the backing line", () => {
   const g: FitFacts = { ...ctrl, band: { from: 1, to: 2 }, levels: { maker: { from: 1, to: 2, words: "Level: Intermediate - Advanced", url: "https://e.com" } } };
   assert.equal(levelBacking(g), "the brand and players say intermediate to advanced", "agreeing sources share one range");
 });
+
+test("sore arm: complaints push a racket out, unvouched is a demo-first, 4+ arm dots or 3 arm-friendly reports are fine", () => {
+  const c = { style: "any", level: "advanced", arm: true } as const;
+  const base = { reports: 40, tags: {}, suits: { beginner: 20, intermediate: 70, advanced: 85, basis: ["5 players"] } };
+  assert.equal(fitVerdict(c, { ...base, armDots: 2 }).kind, "no");
+  assert.equal(fitVerdict(c, { ...base, armDots: 3 }).kind, "maybe");
+  assert.equal(fitVerdict(c, { ...base, armDots: 4 }).kind, "good");
+  assert.equal(fitVerdict(c, { ...base, armDots: 3, tags: { "arm-friendly": 3 } }).kind, "good");
+  assert.equal(fitVerdict(c, { ...base, armDots: 4, tags: { "vibrates on mishits": 2, "arm-friendly": 1 } }).kind, "no");
+});

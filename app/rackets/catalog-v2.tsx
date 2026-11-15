@@ -13,7 +13,8 @@ import { gramsOf, weightOf, WEIGHTS, FEELS } from "../../lib/fine-tune";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { matchContext } from "../match-context";
-import { rowOfFamily, olderInFamily } from "../../lib/compare-pairs";
+import { listShopLink } from "../../lib/amazon-offer";
+import { rowOfFamily } from "../../lib/compare-pairs";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 
 // The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
@@ -28,7 +29,10 @@ const KEYS = ["style", "level", "shape", "year", "weight", "feel"] as const;
 
 const shapeWord = (s: string | null | undefined) => { const x = (s ?? "").toLowerCase(); return /diamond/.test(x) ? "diamond" : /round/.test(x) ? "round" : /tear|drop/.test(x) ? "teardrop" : x ? "hybrid" : null; };
 
-export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
+/** With `brand`, the same page for one brand (/brands/<slug>, owner 2026-11-15: the brand page in the new design). */
+export default async function CatalogV2({ data: all, f, brand: only }: { data: Catalog; f: F; brand?: { id: string; name: string; slug: string } }) {
+  const data = only ? { ...all, listed: all.listed.filter(r => r.brandId === only.id) } : all;
+  const base = only ? `/brands/${only.slug}` : "/rackets";
   const ctx = await matchContext();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const sig = (id: string) => ctx.signal(id);
@@ -36,7 +40,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   const rows = matchingRackets(data.listed, f.q || "").map(r => {
     const facts = ctx.facts(r.id), lean = styleLean(facts).lean, suits = facts.suits, fine = ctx.fineOf(r.id), sc = score(data, r.id);
     return { r, sc, lean, suits, shape: shapeWord(r.shape), year: String(r.year), arm: (facts.tags["arm-friendly"] ?? 0) >= ARM_BAR,
-      weight: weightOf(gramsOf(r.weight)), feel: fine?.feel ?? null, sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: sig(r.id) };
+      weight: weightOf(gramsOf(r.weight)), feel: fine?.feel ?? null, sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: sig(r.id), n: facts.reports };
   });
   type Row = (typeof rows)[number];
   const tests: Record<(typeof KEYS)[number], (x: Row, v: string) => boolean> = {
@@ -59,7 +63,7 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   const shown = rows.filter(x => pass(x)).sort((a, b) => order(a, b) || a.r.name.localeCompare(b.r.name));
   const show = Math.min(1000, Math.max(PAGE, Number(f.show) || PAGE));
   // Links keep every other choice; a picked option links to itself turned off.
-  const href = (next: Partial<F>) => { const q = new URLSearchParams(Object.entries({ ...f, show: undefined, ...next }).filter(([, v]) => v) as [string, string][]); return q.size ? `/rackets?${q}` : "/rackets"; };
+  const href = (next: Partial<F>) => { const q = new URLSearchParams(Object.entries({ ...f, show: undefined, ...next }).filter(([, v]) => v) as [string, string][]); return q.size ? `${base}?${q}` : base; };
   const years = [...new Set(rows.map(x => x.year))].sort().reverse();
   const groups: [string, (typeof KEYS)[number], readonly string[]][] = [["Play style", "style", STYLES], ["Level", "level", LEVELS], ["Shape", "shape", SHAPES], ...(years.length > 1 ? [["Year", "year", years] as [string, "year", string[]]] : [])];
   const extra: [string, (typeof KEYS)[number], readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS]];
@@ -80,15 +84,16 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
   return <main className={`ct2 ${qtFontVars}`}>
     <div className="ct2-wrap">
       <section className="ct2-hero">
-        <div><h1>All <span className="hl">{niche.words.many}</span></h1>
-          <p>{`Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
+        <div>{only && <p className="ct2-crumbs"><a href="/">home</a> / <a href="/brands">brands</a> / {only.name.toLowerCase()}</p>}
+          {only ? <h1>{`${only.name} `}<span className="hl">{niche.words.many}</span></h1> : <h1>All <span className="hl">{niche.words.many}</span></h1>}
+          <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by Player score. Narrow it down on the left.` : `Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
         <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
       </section>
       <div className="ct2-grid">
         <aside className="ct2-side" aria-label="Filters">
           <input type="checkbox" id="ct2-ft" className="ct2-ft"/>
           <div className="ct2-sh"><label htmlFor="ct2-ft" className="ct2-badge">filters<span className="ct2-mtog" aria-hidden="true"> ▾</span></label>
-            {active.length > 0 && <Link href="/rackets" scroll={false} replace className="ct2-clear">clear all</Link>}</div>
+            {active.length > 0 && <Link href={base} scroll={false} replace className="ct2-clear">clear all</Link>}</div>
           <div className="ct2-groups">
             {groups.map(group)}
             <Link href={href({ arm: f.arm === "1" ? undefined : "1" })} scroll={false} replace className={`ct2-check${f.arm === "1" ? " on" : ""}`} aria-current={f.arm === "1" ? "true" : undefined}>
@@ -113,23 +118,23 @@ export default async function CatalogV2({ data, f }: { data: Catalog; f: F }) {
             const r = x.r, name = displayName(r.name, brand(r.brandId)), pic = photo(r), line = shortLine(r) ?? listLine(r);
             const chips = [...(i === 0 && sort === "score" ? [{ k: "top", t: "★ top pick" }] : []), ...(x.arm ? [{ k: "arm", t: "arm-friendly" }] : [])];
             const meta = [x.lean === "balance" ? "all-round" : x.lean, x.shape, x.year].filter(Boolean) as string[];
-            return <li key={r.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><a className="ct2-row" href={productHref(r)}>
+            // One link per row (the name's, stretched over the row) and "check price" as a quiet text link at the end of
+            // the specs row (owner 2026-11-15). Reviews over the sentiment bar, then the Player score box.
+            const shop = listShopLink(r);
+            return <li key={r.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><div className="ct2-row">
               <span className="ct2-rank">{i + 1}</span>
-              <span className="ct2-pic">{pic ? <img src={pic} alt="" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{brand(r.brandId)}</span>}</span>
+              <span className="ct2-pic">{pic ? <img src={pic} alt="" width={408} height={620} decoding="async" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{brand(r.brandId)}</span>}</span>
               <span className="ct2-body">
-                <span className="ct2-nrow"><span className="ct2-name">{name}</span>{chips.map(c => <span key={c.k} className={`ct2-chip ${c.k}`}>{c.t}</span>)}</span>
+                <span className="ct2-nrow"><a className="ct2-name" href={productHref(r)}>{name}</a>{chips.map(c => <span key={c.k} className={`ct2-chip ${c.k}`}>{c.t}</span>)}</span>
                 {line && <span className="ct2-line">{line}</span>}
-                <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}</span>
+                <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}{shop && <a className="ct2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a>}</span>
               </span>
-              <span className="ct2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
-                {x.signal !== null ? <b className={x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : undefined}>{x.signal}</b> : <b>–</b>}
-                {x.sc.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}
-                <small>{x.signal !== null ? "player score" : `${x.sc.judged} reports`}</small>
-              </span>
-            </a>
-              {(() => { if (allYears) return null; const old = olderInFamily(r, data.listed), nw = rowOf(r).newer;
-                return <>{nw && <a className="ct2-also" href={productHref(nw)}>{`new: ${nw.year} version →`}</a>}{old.length > 0 && <a className="ct2-also" href={productHref(old[0])}>{`also: ${old[0].year} version →`}</a>}</>; })()}</li>; })}</ol>
-          {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href="/rackets" scroll={false} replace>clear filters</Link></div>}
+              <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
+                {x.sc.judged > 0 && <span className="ct2-bar6" aria-label={`${x.sc.positive} positive, ${x.sc.mixed} mixed, ${x.sc.negative} negative`}><i className="p" style={{ flex: x.sc.positive }}/><i className="m" style={{ flex: x.sc.mixed }}/><i className="n" style={{ flex: x.sc.negative }}/></span>}</span>
+              <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
+                <b>{x.signal ?? "—"}</b><small>player score</small></span>
+            </div></li>; })}</ol>
+          {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><Link href={base} scroll={false} replace>clear filters</Link></div>}
           {!f.q && !f.year && olderN > 0 && <Link className="ct2-older" href={href({ older: f.older === "1" ? undefined : "1" })} scroll={false} replace>{f.older === "1" ? "hide older models ▴" : `show older models (${olderN}) ▾`}</Link>}
           {shown.length > show && <Link className="ct2-load" href={href({ show: String(show + PAGE) })} scroll={false} replace>{`load ${Math.min(PAGE, shown.length - show)} more ↓`}</Link>}
         </section>

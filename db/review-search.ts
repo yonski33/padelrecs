@@ -1,7 +1,8 @@
 import {sql,type SQL} from "drizzle-orm";
 import {z} from "zod";
 import targets from "../deployment/targets.json";
-import {niches,productPathIn,type Niche} from "../lib/niche";
+import { productPathIn, type Niche } from "../lib/niche";
+import { niches } from "../lib/niche/all";
 import {assertSchemaName} from "./migrations";
 import {checkSentiment,DOUBT_SQL,PRAISE_SQL,type SentimentCheck} from "../lib/sentiment-check";
 

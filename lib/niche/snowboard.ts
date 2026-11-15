@@ -170,8 +170,8 @@ export const snowboard: Niche = {
   },
   seo: {
     homeTitle: "SnowboardRecs – Real Reviews of All-Mountain, Freestyle and Freeride Snowboards",
-    homeDescription: "Browse real rider reviews of all-mountain, freestyle, freeride and powder snowboards and splitboards, plus opinions collected from Reddit, YouTube, shops and forums. Compare Burton, Lib Tech, GNU, Jones, CAPiTA, Never Summer, Ride, Salomon and more by model year.",
-    layoutDescription: "Real experiences with snowboards and splitboards, plus opinions from Reddit, YouTube, shops and forums with the source linked.",
+    homeDescription: "Browse real rider reviews of all-mountain, freestyle, freeride and powder snowboards and splitboards, plus opinions collected from YouTube, shops and forums. Compare Burton, Lib Tech, GNU, Jones, CAPiTA, Never Summer, Ride, Salomon and more by model year.",
+    layoutDescription: "Real experiences with snowboards and splitboards, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | SnowboardRecs",
     catalog: { title: "All Snowboards – Reviews and Ratings", description: "Every snowboard and splitboard on SnowboardRecs with rider ratings. Filter by brand, category and model year, then read what riders say." },
     brands: { title: "Snowboard Brands", description: "Browse snowboards by brand — Burton, Lib Tech, GNU, Jones, CAPiTA, Never Summer, Ride, Salomon, Rome, Arbor, Yes., Nitro, K2 and Bataleon — and read real reviews of each model." },
@@ -180,12 +180,12 @@ export const snowboard: Niche = {
     productNotFound: "Board not found | SnowboardRecs",
     productCategory: "Snowboards",
     addReview: { title: "Add a Snowboard Review", description: "Ride a snowboard or splitboard? Share how it rides for you in about two minutes. No account needed." },
-    about: { title: "About", description: "Why SnowboardRecs exists: snowboard opinions are scattered across Reddit, YouTube, shops and forums. SnowboardRecs collects them and lets riders add their own." },
+    about: { title: "About", description: "Why SnowboardRecs exists: snowboard opinions are scattered across YouTube, shops and forums. SnowboardRecs collects them and lets riders add their own." },
     ogAlt: "SnowboardRecs – real reviews of snowboards",
     ogProductAlt: "Snowboard reviews on SnowboardRecs",
     ogEyebrow: "Real reviews of snowboards",
     ogTitle: "Snowboard reviews from people who ride them",
-    ogDetail: "From riders, Reddit, YouTube, shops and forums",
+    ogDetail: "From riders, YouTube, shops and forums",
     ogFallbackTitle: "Snowboard reviews",
   },
   copy: {
@@ -204,7 +204,7 @@ export const snowboard: Niche = {
     about: {
       heading: "Why SnowboardRecs exists",
       paragraphs: [
-        "Snowboard opinions are scattered across Reddit, YouTube, shops and forums. SnowboardRecs puts those experiences in one place and lets riders add their own.",
+        "Snowboard opinions are scattered across YouTube, shops and forums. SnowboardRecs puts those experiences in one place and lets riders add their own.",
         "A board that is perfect for one rider is a handful for another. Knowing someone's level, where they ride, their size and what they rode before often tells you more than a score on its own.",
       ],
       sections: [

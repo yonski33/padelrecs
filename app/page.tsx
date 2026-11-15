@@ -18,7 +18,7 @@ import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
 import { ChipRow } from "./chip-row";
 import Link from "next/link";
-import { niche, catalogPath, productHref } from "../lib/niche";
+import { niche, catalogPath, productHref, isV2, v2copy } from "../lib/niche";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 
@@ -31,15 +31,19 @@ const homeTitle = niche.seo.homeTitle;
 /** "Real Reviews of Nail Polish, Gel Polish, Top Coats and Press-On Nails": the title without the site name, the page's H1. */
 const headline = homeTitle.split(" – ").slice(1).join(" – ") || homeTitle;
 // The search snippet: what the site covers and how big it is, short enough that Google shows it whole (~155 characters).
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string }> }): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; older?: string }> }): Promise<Metadata> {
   const data = await catalog();
   // Quick match (PadelRecs): each combination is its own indexable page, "Best control padel rackets for beginners".
-  const choice = readChoice(await searchParams);
-  if (niche.id === "padel" && niche.finder && !isDefault(choice)) {
-    const title = `${matchSeoTitle(choice, `padel ${niche.words.many}`)} | ${niche.site.name}`;
-    const description = `Padel rackets ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what players say about control, power, level and arm comfort. No sponsored picks.`;
-    const url = choiceHref(choice, "");
-    return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" } };
+  const q = await searchParams, choice = readChoice(q);
+  if (isV2 && niche.finder && !isDefault(choice)) {
+    const title = `${matchSeoTitle(choice, `${v2copy.sport ? `${v2copy.sport} ` : ""}${niche.words.many}`)} | ${niche.site.name}`;
+    const description = `${(v2copy.sport ? `${v2copy.sport} ${niche.words.many}` : niche.words.Many).replace(/^./, c => c.toUpperCase())} ranked for you from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} player reports: what ${niche.people.many} say about control, power, level and arm comfort. No sponsored picks.`;
+    // Only style, level and sore arm make an indexable page (24 of them, all in the sitemap). Fine-tune picks and "show older
+    // models" are views of that page: canonical to it and noindex (audit 2026-11-15, #8).
+    const url = choiceHref({ style: choice.style, level: choice.level, arm: choice.arm }, "");
+    const extra = !!choice.fine || q.older === "1";
+    return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" },
+      ...(extra ? { robots: { index: false, follow: true } } : {}) };
   }
   const total = data.reviews.length + data.external.length;
   const short = `${headline}: ${total.toLocaleString("en-US")} reviews, ranked by what people actually say.`;
@@ -48,7 +52,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 }
 
 export default async function Home({ searchParams }: {
-  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string; style?: string; level?: string; arm?: string }>;
+  searchParams: Promise<{ source?: string | string[]; show?: string | string[]; feed?: string | string[]; type?: string | string[]; home?: string | string[]; q?: string; brand?: string; year?: string; shape?: string; balance?: string; sort?: string; style?: string; level?: string; arm?: string; older?: string }>;
 }) {
   const [all, params] = await Promise.all([catalog(), searchParams]);
   const now = new Date();
@@ -136,7 +140,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
   // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
-  if (niche.id === "padel" && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)}/>;
+  if (isV2 && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)} older={params.older === "1"}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
     return <main className="home v2 home-d">

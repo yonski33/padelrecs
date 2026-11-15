@@ -214,8 +214,8 @@ export const babygear: Niche = {
   },
   seo: {
     homeTitle: "BabyGearRecs – Real Reviews of Strollers, Car Seats, Carriers and Baby Gear",
-    homeDescription: "Browse real parent reviews of strollers, car seats, baby carriers, high chairs, cribs and bassinets, baby monitors, breast pumps and bottles, plus experiences collected from Reddit, YouTube and forums. Compare UPPAbaby, Nuna, Doona, Chicco, Graco, Britax, Cybex, BabyBjörn, Nanit, Spectra and more.",
-    layoutDescription: "Real parent experiences with strollers, car seats, carriers, high chairs, cribs, monitors and breast pumps, plus opinions from Reddit, YouTube and forums with the source linked.",
+    homeDescription: "Browse real parent reviews of strollers, car seats, baby carriers, high chairs, cribs and bassinets, baby monitors, breast pumps and bottles, plus experiences collected from YouTube and forums. Compare UPPAbaby, Nuna, Doona, Chicco, Graco, Britax, Cybex, BabyBjörn, Nanit, Spectra and more.",
+    layoutDescription: "Real parent experiences with strollers, car seats, carriers, high chairs, cribs, monitors and breast pumps, plus opinions from YouTube and forums with the source linked.",
     titleTemplate: "%s | BabyGearRecs",
     catalog: { title: "All Baby Gear – Reviews and Ratings", description: "Every stroller, car seat, carrier, high chair, crib, monitor, pump and bottle on BabyGearRecs with parent ratings. Filter by category and brand, then read what parents say." },
     brands: { title: "Baby Gear Brands", description: "Browse baby gear by brand — UPPAbaby, Nuna, Doona, Chicco, Graco, Britax, Cybex, BabyBjörn and more — and read real reviews of each product." },
@@ -224,12 +224,12 @@ export const babygear: Niche = {
     productNotFound: "Product not found | BabyGearRecs",
     productCategory: "Baby gear",
     addReview: { title: "Add a Baby Gear Review", description: "Used a stroller, car seat, carrier, monitor or pump? Share how it worked for your family in about two minutes. No account needed." },
-    about: { title: "About", description: "Why BabyGearRecs exists: baby gear opinions are scattered across Reddit, YouTube and forums. BabyGearRecs collects parents' first-hand experiences and lets parents add their own." },
+    about: { title: "About", description: "Why BabyGearRecs exists: baby gear opinions are scattered across YouTube and forums. BabyGearRecs collects parents' first-hand experiences and lets parents add their own." },
     ogAlt: "BabyGearRecs – real reviews of baby gear",
     ogProductAlt: "Baby gear reviews on BabyGearRecs",
     ogEyebrow: "Real reviews of baby gear",
     ogTitle: "Baby gear reviews from parents who use it",
-    ogDetail: "From parents, Reddit, YouTube and forums",
+    ogDetail: "From parents, YouTube and forums",
     ogFallbackTitle: "Baby gear reviews",
   },
   copy: {
@@ -248,7 +248,7 @@ export const babygear: Niche = {
     about: {
       heading: "Why BabyGearRecs exists",
       paragraphs: [
-        "Baby gear opinions are scattered across Reddit, YouTube and forums, and many reviews come with a registry or affiliate link. BabyGearRecs puts parents’ first-hand experiences in one place and lets parents add their own.",
+        "Baby gear opinions are scattered across YouTube and forums, and many reviews come with a registry or affiliate link. BabyGearRecs puts parents’ first-hand experiences in one place and lets parents add their own.",
         "A stroller that is perfect for a city walk-up is too much for another family’s small car, and a carrier one parent loves gives another back pain. Knowing how a family lives, how old the child was and how long they used it often tells you more than a score on its own.",
       ],
       sections: [

@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
-import { selectNiche } from "./lib/niche";
+import { selectNiche } from "./lib/niche/all";
 const root=fileURLToPath(new URL(".",import.meta.url));
 // Which Recs site this deployment is (lib/niche); an unknown NICHE fails the build here.
 const niche=selectNiche(process.env.NICHE);
@@ -37,12 +37,16 @@ const config:NextConfig={
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },
- turbopack:{root},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
+ // Only the running site's config goes into the build (lib/niche/index.ts): "@/lib/niche/selected" becomes lib/niche/<id>.ts.
+ turbopack:{root,resolveAlias:{"@/lib/niche/selected":`./lib/niche/${niche.id}.ts`}},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
  // Public pages look the same for everyone: Vercel's CDN may serve a copy up to a minute old and refresh it in the background.
  // Admin, sign-in and write endpoints are excluded, and client-side navigation payloads (RSC requests) are never cached.
  async headers(){
   const cdn=[{key:"Vercel-CDN-Cache-Control",value:"max-age=60, stale-while-revalidate=600"}];
   const missing=[{type:"header" as const,key:"rsc"}];
-  return ["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}));
+  // Product photos (public/photos) rarely change and keep their file name when they do: a week in browsers and the CDN,
+  // then a day served stale while it refreshes (audit 2026-11-15, #10: they were max-age=0).
+  const photos={source:"/photos/:path*",headers:[{key:"Cache-Control",value:"public, max-age=604800, stale-while-revalidate=86400"}]};
+  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact","/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
  }};
 export default config;
