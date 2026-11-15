@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { niche } from "../../lib/niche";
 import { amazonLinksOn } from "../../lib/amazon-offer";
+import AffiliateV2 from "./affiliate-v2";
 
 // Only sites showing Amazon links (amazonLinksOn: niche config plus the associate tag) have affiliate links to disclose;
 // elsewhere this address is a 404.
@@ -14,8 +15,9 @@ export function generateMetadata(): Metadata {
 
 const UPDATED = "October 25, 2026";
 
-export default function AffiliateDisclosure() {
+export default async function AffiliateDisclosure({ searchParams }: { searchParams: Promise<{ look?: string }> }) {
   if (!amazonLinksOn()) notFound();
+  if (niche.id === "padel" && (await searchParams).look !== "classic") return <AffiliateV2 updated={UPDATED}/>;
   return <main className="narrow prose">
     <p className="eyebrow">Affiliate disclosure</p>
     <h1>How {site} makes money</h1>

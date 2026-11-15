@@ -16,6 +16,7 @@ import { AutoSubmitForm } from "../auto-submit";
 import { browseTiles, BrowseTile, Arrow, CategoryTabs, SignalInfo } from "../visual";
 import { CompareTray } from "../compare/compare-pick";
 import { LightCatalog, lightFilters } from "../light-catalog";
+import CatalogV2 from "./catalog-v2";
 
 const w = niche.words, shapeSpec = niche.specs.find(s => s.column === "shape");
 
@@ -27,8 +28,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title, description, alternates: { canonical: catalogPath }, openGraph: { title, description, url: catalogPath, type: "website", images: siteOgImages } };
 }
 
-export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string }> }) {
+export default async function Rackets({ searchParams }: { searchParams: Promise<{ q?: string; brand?: string; year?: string; shape?: string; sort?: string; show?: string; look?: string; style?: string; level?: string; arm?: string; weight?: string; feel?: string; sweet?: string; more?: string }> }) {
   const [data, f, { lists }, sig] = await Promise.all([catalog(), searchParams, rankedLists(), productSignals()]);
+  // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
+  if (niche.id === "padel" && f.look !== "classic") return <CatalogV2 data={data} f={f}/>;
   // The light direction's catalogue, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12).
   if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)}/>;
   const sort = parseSort(f.sort);

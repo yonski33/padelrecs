@@ -132,5 +132,3 @@ body:has(main.hv2) { background: #fbfaf6; }
   }
 }
 
-/* "based on fewer reports" next to a verdict resting on few reports (owner 2026-11-15) */
-.hv2 .hv2-few { font: normal 11px var(--qt-mono, "JetBrains Mono"), monospace; color: #6a675f; }
