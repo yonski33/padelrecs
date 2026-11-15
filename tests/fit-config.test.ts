@@ -11,7 +11,7 @@ const p = (id: string, tags: Record<string, number>, specs?: TraitInput["specs"]
 test("padel is the default: passing its config changes nothing", () => {
   const pool = [p("a", { "good control": 9, forgiving: 4 }, { shape: "Round", balance: "Low" }), p("b", { "easy power": 12, "small sweet spot": 6 }, { shape: "Diamond" }), p("c", { "arm-friendly": 3 })];
   assert.deepEqual([...traitScores(pool, padel)], [...traitScores(pool)]);
-  assert.equal(fitConfigFor({ id: "tennis" }), undefined);
+  assert.equal(fitConfigFor({ id: "golf" }), undefined);
 });
 
 test("pickleball: seven traits, every listed paddle scored, floor 3", () => {

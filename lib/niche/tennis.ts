@@ -25,6 +25,8 @@ export const tennis: Niche = {
   // Makers name generations (Wilson V10, Babolat Gen9), not years, so names carry the maker's generation instead of a year.
   productYears: false,
   productPath: "rackets",
+  // Fit verdict from 6 reports, as on padel (median tennis racket has 8).
+  fit: { minReports: 6, fewReports: 15 },
   amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, clay-court terracotta, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).

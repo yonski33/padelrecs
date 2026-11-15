@@ -175,7 +175,90 @@ const PICKLEBALL: FitConfig = {
   },
 };
 
-const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL };
+// TennisRecs (owner 2026-11-15, data and profile only; the design switch waits for the final padel template): seven traits
+// from the racket tag bank. Spec columns are shared with padel: shape holds head size, core the string pattern, surface the
+// stiffness (RA). Feel (crisp ↔ soft) and swing (compact ↔ full) are kept as reader evidence until the engine scores axes.
+const sqIn = (s: string) => Number(s.match(/(\d{2,3})\s*sq/)?.[1] ?? NaN);
+/** Unstrung grams ("326 g strung" ≈ 311 g unstrung). */
+const unstrung = (s: string) => { const g = Number(s.match(/(\d{3})\s*g/)?.[1] ?? NaN); return /strung/.test(s) && !/unstrung/.test(s) ? g - 15 : g; };
+/** Points head-light (negative = head-heavy), from "7 pts HL", "1 pts HH" or a balance point in mm / cm for a 27" frame. */
+export function tennisPtsHL(s: string): number {
+  const pts = s.match(/(\d+(?:\.\d+)?)\s*pts?\s*(HL|HH|EB)/i);
+  if (pts) return pts[2].toUpperCase() === "HH" ? -Number(pts[1]) : pts[2].toUpperCase() === "EB" ? 0 : Number(pts[1]);
+  if (/\beven\b/i.test(s)) return 0;
+  const mm = s.match(/(\d{3}(?:\.\d+)?)\s*mm/)?.[1], cm = s.match(/(\d{2}(?:\.\d+)?)\s*cm/)?.[1];
+  const at = mm ? Number(mm) : cm ? Number(cm) * 10 : NaN;
+  return Number.isFinite(at) ? Math.round((342.9 - at) / 3.175) : NaN;
+}
+const TENNIS: FitConfig = {
+  traits: [
+    { key: "power", label: "Power", plus: [["easy power", 1], ["great on serve", 0.5]], minus: [["underpowered", 1]], noun: "the power",
+      ev: [["praise the power", "praises the power"], ["find it underpowered", "finds it underpowered"]] },
+    { key: "control", label: "Control", plus: [["good control", 1]], minus: [], noun: "the control",
+      ev: [["praise the control", "praises the control"], ["find it hard to control", "finds it hard to control"]] },
+    { key: "spin", label: "Spin", plus: [["great spin", 1]], minus: [], noun: "the spin",
+      ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]] },
+    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1], ["soft", 0.5]], minus: [["harsh on the arm", 1]], noun: "how it treats the arm" },
+    { key: "maneuverability", label: "Maneuverability", plus: [["maneuverable", 1]], minus: [["hard to swing", 1]], noun: "how quick it swings",
+      ev: [["call it quick to swing", "calls it quick to swing"], ["find it hard to swing", "finds it hard to swing"]] },
+    { key: "stability", label: "Stability", plus: [["stable", 1]], minus: [["unstable vs heavy balls", 1]], noun: "the stability",
+      ev: [["call it stable", "calls it stable"], ["find it unstable vs heavy balls", "finds it unstable vs heavy balls"]] },
+    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1]], noun: "the sweet spot",
+      ev: [["call it forgiving", "calls it forgiving"], ["find the sweet spot small", "finds the sweet spot small"]] },
+  ],
+  complaint: ["arm", "forgiveness"],
+  axis: { control: { trait: "control", tags: ["good control"] }, power: { trait: "power", tags: ["easy power", "great on serve"] } },
+  styleLabels: { control: "Control", balance: "A bit of both", power: "Power" },
+  levelWords: { beginner: ["first racket", "just started", "new to tennis", "beginner"], intermediate: ["intermediate", "club player", "3.0", "3.5"], advanced: ["advanced", "tournaments", "college", "4.0+", "4.5", "5.0"],
+    rating: { name: "NTRP", beginnerBelow: 3.0, advancedFrom: 4.0 } },
+  weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
+  arm: { trait: "arm", plus: "arm-friendly", minus: "harsh on the arm" },
+  forgiving: { plus: "forgiving", minus: ["hard to swing"], beginner: ["small sweet spot"] },
+  specLean: s => {
+    const o: Record<string, number> = { power: 0, control: 0, spin: 0, arm: 0, maneuverability: 0, stability: 0, forgiveness: 0 };
+    const head = sqIn(s.shape ?? ""), g = unstrung(s.weight ?? ""), hl = tennisPtsHL(s.balance ?? ""), pattern = (s.core ?? "").replace(/\s/g, "").toLowerCase();
+    const ra = Number((s.surface ?? "").match(/(\d{2})\s*RA/i)?.[1] ?? NaN);
+    if (head >= 104) { o.power += 0.4; o.forgiveness += 0.5; o.control -= 0.3; } else if (head >= 100) { o.power += 0.2; o.forgiveness += 0.2; }
+    else if (head <= 97) { o.control += 0.4; o.forgiveness -= 0.4; o.power -= 0.2; }
+    // Sold in several patterns ("16x19 or 18x20"): no lean from the pattern.
+    const pats = [...new Set(pattern.match(/\d{2}x\d{2}/g) ?? [])];
+    if (pats.length === 1) { const p = pats[0]; if (p.startsWith("18x")) { o.control += 0.4; o.spin -= 0.3; } else if (p === "16x18" || p === "16x17" || p === "14x18") o.spin += 0.5; else if (p === "16x19") o.spin += 0.2; }
+    if (ra >= 68) { o.arm -= 0.5; o.power += 0.2; } else if (ra >= 66) o.arm -= 0.2; else if (ra <= 62) o.arm += 0.4;
+    if (g <= 285) { o.maneuverability += 0.5; o.stability -= 0.4; } else if (g >= 315) { o.stability += 0.5; o.maneuverability -= 0.4; }
+    if (hl >= 6) o.maneuverability += 0.3; else if (hl <= 0) { o.maneuverability -= 0.3; o.power += 0.2; }
+    return clamp(o);
+  },
+  lines: {
+    power: ({ tc, ppl }) => { const p = tc("easy power"), s = tc("great on serve"), m = tc("underpowered"); return p || s || m ? `${p ? ppl(p, "mention easy power") : "No one mentions easy power"}${s ? `, ${ppl(s, "say it's great on serve")}` : ""}${m ? `, ${ppl(m, "find it underpowered")}` : ""}.` : null; },
+    control: ({ tc, ppl }) => { const p = tc("good control"); return p ? `${ppl(p, "praise the control")}.` : null; },
+    spin: ({ tc, ppl }) => { const p = tc("great spin"); return p ? `${ppl(p, "praise the spin")}.` : null; },
+    arm: ({ tc, ppl, plus, minus }) => { const p = plus ?? tc("arm-friendly"), m = minus ?? tc("harsh on the arm"); return p || m ? `${p ? ppl(p, "find it kind to the arm") : "No one calls it kind to the arm"}, ${m ? ppl(m, "say it's harsh on the arm") : "no one says it's harsh on the arm"}.` : null; },
+    maneuverability: ({ tc, ppl }) => { const p = tc("maneuverable"), m = tc("hard to swing"); return p || m ? `${p ? ppl(p, "call it quick to swing") : "No one calls it quick to swing"}${m ? `, ${ppl(m, "find it hard to swing")}` : ""}.` : null; },
+    stability: ({ tc, ppl }) => { const p = tc("stable"), m = tc("unstable vs heavy balls"); return p || m ? `${p ? ppl(p, "call it stable") : "No one calls it stable"}${m ? `, ${ppl(m, "find it unstable against heavy balls")}` : ""}.` : null; },
+    forgiveness: ({ tc, ppl }) => { const p = tc("forgiving"), m = tc("small sweet spot"); return p || m ? [p ? ppl(p, "call it forgiving") : "No one calls it forgiving", m ? ppl(m, "find the sweet spot small") : "no one finds the sweet spot small"].join(", ") + "." : null; },
+  },
+  sourceWords: { forum: "tennis forum", blog: "tennis blog" },
+  headsUp: [
+    { title: "Durability problems reported", tags: ["durability issues"], text: /\b(frame|throat|hoop|racket|racquet) (cracked|snapped|broke)\b|\bcracked (the |its |my )?(frame|throat|hoop)\b|\bgrommets? (broke|cracked|wore through)\b/i },
+  ],
+  word: "racket",
+  sport: "tennis",
+  emoji: "🎾",
+  dotsWords: "powerful, controlled, spinny, kind to the arm, quick to swing, stable or forgiving",
+  specWords: (s, t) => t === "arm" ? [s.surface ? `${s.surface} stiffness` : null]
+    : t === "spin" ? [s.core ? `${s.core} pattern` : null]
+    : t === "maneuverability" || t === "stability" ? [s.weight, s.balance]
+    : t === "control" ? [s.shape, s.core ? `${s.core} pattern` : null]
+    : [s.shape, s.surface ? `${s.surface} stiffness` : null],
+  // Tennis shops' playtests and blogs write as reviewers, like YouTube.
+  reviewerSources: ["YouTube", "Blog", "Tennis shop"],
+  // Pickleball's band cut-offs to start with; tennis has no expert set yet to tune against.
+  scale: { rank: "net", top4: 0.4, top5: 0.09 },
+  // Swingweights quoted in playtests and reviews (lower is quicker to swing).
+  lab: { metrics: { swing_weight: { trait: "maneuverability", sign: -1 } }, weight: 0.5, specWeight: 0.5, alone: 0.7 },
+};
+
+const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS };
 /** The site's fit rules, or undefined for sites that keep the old pages. */
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */
