@@ -119,3 +119,25 @@ export function matchSeoTitle(c: QuickChoice, many: string) {
   const who = [c.level ? levelPeople(c.level) : c.arm ? "players" : null, c.arm ? "with a sore elbow or wrist" : null].filter(Boolean).join(" ");
   return who ? `Best ${what} for ${who}` : `Best ${what}`;
 }
+
+/** The home's cache key for picks plus "show older models" (batch D): proxy.ts rewrites a home address to
+ *  /quick/<key>, one cached page per combination. "power.beginner.1.round.-.-.0.0" = style.level.arm.shape.weight.feel.sweet.older. */
+export function choiceKey(c: QuickChoice, older: boolean) {
+  const f = c.fine ?? {};
+  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0].join(".");
+}
+/** The picks a key stands for, or null when it isn't the canonical key of any (so each page has one address). */
+export function readChoiceKey(key: string): { choice: QuickChoice; older: boolean } | null {
+  const [style, level, arm, shape, weight, feel, sweet, older] = key.split(".");
+  const v = (x: string | undefined) => x === "-" ? undefined : x;
+  const choice = readChoice({ style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined });
+  const out = { choice, older: older === "1" };
+  return choiceKey(choice, out.older) === key ? out : null;
+}
+/** The 31 indexable picks: style × (no level or one) × sore arm, without the default one ("/"). */
+export const INDEXABLE_CHOICES: QuickChoice[] = STYLES.flatMap(style => [undefined, ...LEVELS].flatMap(level => [false, true].map(arm => ({ style, ...(level ? { level } : {}), arm }))))
+  .filter(c => !isDefault(c));
+/** The home address for picks plus "show older models" (?older=1). */
+export const homeHref = (c: QuickChoice, older: boolean) => { const base = choiceHref(c, ""); return older ? `${base}${base.includes("?") ? "&" : "?"}older=1` : base; };
+/** The quick-match home's own query (proxy.ts): any other of these is another home view (app/page.tsx), not a cached page. */
+export const OTHER_HOME_PARAMS = ["home", "type", "feed", "q"] as const;

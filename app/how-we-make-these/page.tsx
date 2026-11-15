@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+// Reads the catalog on every request (the layout no longer forces it, see app/layout.tsx).
+export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { catalog, score } from "../../db/data";
 import { niche, isV2, v2copy } from "../../lib/niche";
