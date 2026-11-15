@@ -81,7 +81,9 @@ export function sentenceWith(text: string, test: (s: string) => boolean): string
  *  count at most 0.5 (owner 2026-11-15). */
 export const COMPARISON = /\b(than|compared|expected|when|for a)\b/i;
 
-export type Balance = { P: number; C: number; voices: number; plusVoices: number; minusVoices: number };
+export type Balance = { P: number; C: number; voices: number; plusVoices: number; minusVoices: number;
+  /** People counted for the line under a bar: players (and our reviewers) and YouTube reviewers, praising or faulting. */
+  people: { players: { plus: number; minus: number }; reviewers: { plus: number; minus: number } } };
 /** Praise (P) and complaints (C) per product and trait, one voice once (owner 2026-11-15, scorer v2): a voice is a person or
  *  channel where we know one (`voiceOf`), else the report. A voice's rows net out to praise or complaint at the strength of its
  *  strongest row that way. YouTube channels count YT_WEIGHT. Tag, arm-word, reader and YouTube rows all count. */
@@ -89,12 +91,14 @@ export function evidenceBalance(rows: EvidenceRow[], voiceOf: (report: string) =
   const isTrait = (a: string): a is Trait => (TRAITS as readonly string[]).includes(a);
   const used = new Set<string>([EXTRACTORS.tags, EXTRACTORS.armWords, EXTRACTORS.reader, EXTRACTORS.ytNotes]);
   const by = new Map<string, { v: number; s: number }[]>();
+  const voiceKinds = new Map<string, boolean>(); // voice key → a YouTube reviewer (channel notes or a channel's video summary)
   for (const r of rows) {
     if (!isTrait(r.attribute) || r.value === null || !r.value || !used.has(r.extractedBy)) continue;
     const yt = r.extractedBy === EXTRACTORS.ytNotes;
     const voice = yt ? r.authorKey ?? r.sourceRef : voiceOf(reportOf(r.sourceRef));
     const s = (r.extractedBy === EXTRACTORS.reader && r.quote && COMPARISON.test(r.quote) ? Math.min(r.strength, 0.5) : r.strength) * (yt ? ytWeight : 1);
     const k = `${r.productId}\u0000${r.attribute}\u0000${voice}`;
+    if (yt || voice.startsWith("YouTube:")) voiceKinds.set(k, true);
     (by.get(k) ?? by.set(k, []).get(k)!).push({ v: Math.sign(r.value), s });
   }
   const out = new Map<string, Partial<Record<Trait, Balance>>>();
@@ -104,8 +108,10 @@ export function evidenceBalance(rows: EvidenceRow[], voiceOf: (report: string) =
     if (!net) continue;
     const s = Math.max(...xs.filter(x => (x.v > 0) === (net > 0)).map(x => x.s));
     const o = out.get(id) ?? out.set(id, {}).get(id)!;
-    const b = (o[t] ??= { P: 0, C: 0, voices: 0, plusVoices: 0, minusVoices: 0 });
+    const b = (o[t] ??= { P: 0, C: 0, voices: 0, plusVoices: 0, minusVoices: 0, people: { players: { plus: 0, minus: 0 }, reviewers: { plus: 0, minus: 0 } } });
     b.voices++;
+    const who = voiceKinds.get(k) ? b.people.reviewers : b.people.players;
+    if (net > 0) who.plus++; else who.minus++;
     if (net > 0) { b.P += s; b.plusVoices++; } else { b.C += s; b.minusVoices++; }
   }
   return out;

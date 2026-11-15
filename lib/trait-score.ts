@@ -43,7 +43,9 @@ export type TraitInput = {
   totals?: Partial<Record<Trait, { net: number; plus: number; minus: number }>>;
 };
 export type TraitScore = { score: number; dots: number; plus: number; minus: number; yt: number; spec: number;
-  /** What set it: player reports, or (few player mentions) the specs and YouTube, or nothing (3 by default). */ basis: "players" | "specs" | "none"; set?: boolean };
+  /** What set it: player reports, or (few player mentions) the specs and YouTube, or nothing (3 by default). */ basis: "players" | "specs" | "none"; set?: boolean;
+  /** Scorer v2: people behind it, one voice once (players incl. our reviewers, and YouTube reviewers), for the line under the bar. */
+  people?: { players: { plus: number; minus: number }; reviewers: { plus: number; minus: number } } };
 
 export const dotsFor = (score: number) => Math.min(5, 1 + Math.floor(score / 20));
 const weighted = (tags: Record<string, number>, list: [string, number][]) => list.reduce((a, [t, w]) => a + w * (tags[t] ?? 0), 0);
@@ -154,7 +156,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
 //      complaints on that trait don't outnumber praise.
 //   3: everything else (the owner's floor). 1 only by hand; hand-set dots win.
 export const RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
-export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number }>>;
+export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number; people?: TraitScore["people"] }>>;
   youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null };
 
 export function balanceScores(products: BalanceInput[], cfg: { complaint: string[] } = { complaint: COMPLAINT_TRAITS }): Map<string, Record<Trait, TraitScore | null>> {
@@ -185,7 +187,7 @@ export function balanceScores(products: BalanceInput[], cfg: { complaint: string
       const within = 1 - i / Math.max(1, products.length - 1);
       const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((dots - 1) * 20 + 19 * within);
       const basis: TraitScore["basis"] = P + C >= 2 ? "players" : lean > 0.2 ? "specs" : "none";
-      out.get(p.id)![t] = { score, dots, plus: plusVoices, minus: minusVoices, yt: p.youtube?.[t]?.plus ?? 0, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
+      out.get(p.id)![t] = { score, dots, plus: plusVoices, minus: minusVoices, yt: p.youtube?.[t]?.plus ?? 0, spec: lean, basis, ...(PC(p, t).people ? { people: PC(p, t).people } : {}), ...(hand !== null ? { set: true } : {}) };
     }
   }
   return out;
