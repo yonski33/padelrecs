@@ -7,6 +7,8 @@
   position: sticky; top: 0; z-index: 30;
   .hv2-strip { background: var(--ink); color: var(--bg); font: 12px/1.5 var(--mono); padding: 6px 20px; text-align: center; }
   .hv2-strip a { color: var(--bg); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  /* The yellow hover marker needs ink text on the black strip (owner 2026-11-15: white on yellow was unreadable). */
+  .hv2-strip a:hover { color: var(--ink); }
   .hv2-sh { position: static !important; border-bottom: 2px solid var(--ink) !important; background: var(--bg) !important; box-shadow: none !important; backdrop-filter: none !important; padding: 0 !important; margin: 0 !important; font: 16px/1.5 var(--body); color: var(--ink); }
   .hv2-shin { max-width: 1140px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
   .hv2-logo { font: 800 20px var(--display); color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 8px; }

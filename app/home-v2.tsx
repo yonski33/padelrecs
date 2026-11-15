@@ -135,7 +135,7 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
                 {picked ? <span className={`hv2-pct${fit && fit.kind !== "thin" ? ` ${fit.kind}` : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
                   {pct === null ? <><b>—</b><small>not enough reports yet</small></> : <><b>{`${pct}%`}</b><small>match</small></>}</span>
                 : <>{sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
-                <span>{sig ? "player score · " : ""}{`${n} reports`}</span></>}
+                <span>{sig ? "player score" : `${n} reports`}</span></>}
               </span>
             </a></li>;
           })}</ol>
