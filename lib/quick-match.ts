@@ -5,29 +5,33 @@
 // band), and with nothing chosen it is simply the Player score order. Pure functions, so tests feed plain objects.
 import { matchFinder, type FinderProduct, type Reason } from "./finder";
 import type { Finder, FinderOption } from "./niche/types";
+import { readFine, fineEmpty, fineParams, type FineTune } from "./fine-tune";
 
 export const STYLES = ["any", "control", "balance", "power"] as const;
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 export type Style = typeof STYLES[number];
 export type Level = typeof LEVELS[number];
-export type QuickChoice = { style: Style; level: Level; arm: boolean };
+export type QuickChoice = { style: Style; level: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune };
 export const DEFAULT_CHOICE: QuickChoice = { style: "any", level: "intermediate", arm: false };
 
 /** Reads ?style=&level=&arm= (unknown values fall back to the default). */
-export function readChoice(q: { style?: string; level?: string; arm?: string }): QuickChoice {
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }): QuickChoice {
+  const fine = readFine(q);
   return {
+    ...(fineEmpty(fine) ? {} : { fine }),
     style: STYLES.includes(q.style as Style) ? q.style as Style : DEFAULT_CHOICE.style,
     level: LEVELS.includes(q.level as Level) ? q.level as Level : DEFAULT_CHOICE.level,
     arm: q.arm === "1",
   };
 }
-export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && c.level === DEFAULT_CHOICE.level && !c.arm;
+export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && c.level === DEFAULT_CHOICE.level && !c.arm && fineEmpty(c.fine);
 /** The address for a choice: only what differs from the default, so "/" is the default list. */
 export function choiceHref(c: QuickChoice, anchor = "#match") {
   const q = new URLSearchParams();
   if (c.style !== DEFAULT_CHOICE.style) q.set("style", c.style);
   if (c.level !== DEFAULT_CHOICE.level) q.set("level", c.level);
   if (c.arm) q.set("arm", "1");
+  for (const [k, v] of fineParams(c.fine)) q.set(k, v);
   return `${q.size ? `/?${q}` : "/"}${anchor}`;
 }
 
@@ -50,13 +54,16 @@ export function chosenOptions(finder: Pick<Finder, "questions">, c: QuickChoice)
 
 /** What we know about a racket's level fit: players who gave their level (and whether they liked it), and the quick-take
  *  level band (0 beginner … 2 advanced) where a block exists. */
-export type LevelEvidence = { liked: Partial<Record<Level, number>>; band?: { from: number; to: number } };
+export type LevelEvidence = { liked: Partial<Record<Level, number>>; band?: { from: number; to: number };
+  /** 0–100 per level (lib/level-suits.ts); when present it ranks instead of the band. */ suits?: Record<Level, number> };
 const LEVEL_INDEX: Record<Level, number> = { beginner: 0, intermediate: 1, advanced: 2 };
 /** How much the level evidence moves a match: inside the band helps, outside it hurts; each player at that level who liked
  *  it adds a little (capped), so a racket nobody at your level reviewed isn't pushed down for it. */
 const BAND_WEIGHT = 0.25, LIKED_WEIGHT = 0.04, LIKED_CAP = 5;
 export function levelBonus(e: LevelEvidence | undefined, level: Level) {
   if (!e) return 0;
+  // Ranked by how well it suits that level (owner 2026-11-15): 50 is neutral, 100 is +2× the old band weight; never a cut.
+  if (e.suits) return 2 * BAND_WEIGHT * (e.suits[level] - 50) / 50 + LIKED_WEIGHT * Math.min(LIKED_CAP, e.liked[level] ?? 0);
   const i = LEVEL_INDEX[level];
   const band = e.band ? (i >= e.band.from && i <= e.band.to ? BAND_WEIGHT : -BAND_WEIGHT) : 0;
   return band + LIKED_WEIGHT * Math.min(LIKED_CAP, e.liked[level] ?? 0);

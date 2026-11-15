@@ -22,6 +22,7 @@ export const EXTRACTORS = {
   /** The catalog's spec columns. */ specs: "specs-v1",
   /** A maker's stated level (db/level-sources). */ makerLevel: "maker-level-v1",
   /** The Sonnet reader pass over report text (scripts/evidence-rules.md). */ reader: "reader-v1",
+  /** The brand's stated level, from the owner's sheet (scripts/import-brand-levels.mts). */ brandLevel: "brand-level-v1",
 } as const;
 
 /** The report a row comes from ("p:12#tag:good control" → "p:12"), so one report can't count twice for a trait. */

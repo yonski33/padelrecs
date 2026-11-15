@@ -136,6 +136,9 @@ export type Niche = {
    *  (unless a list sets reviewYears). Web reviews are dated by their source, not by when we quoted them; older reviews
    *  stay on product and brand pages and in search. 12 for fast-moving tech, 24 for sports gear, 36 for slow-moving lines. */
   recentMonths?: number;
+  /** The fit check and match %: the fewest reports a racket needs for a verdict, and below how many the page notes it rests on
+   *  fewer reports (owner 2026-11-15: padel 6 and 15). Defaults 20 / 20. */
+  fit?: { minReports: number; fewReports: number };
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */
   productPath: string;
   /** Name of one rating icon, used in "Tap a ball". */

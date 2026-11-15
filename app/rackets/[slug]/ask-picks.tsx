@@ -1,30 +1,59 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// The "Is this the right racket for you?" pills (owner 2026-11-15): tapping a style or the sore-arm box only marks it; the
-// verdict loads once a level is picked, so the visitor isn't sent to an answer for a level they never chose.
+// The racket page's fit check before an answer (owner 2026-11-15, Claude Design mockup): two numbered questions as pills and
+// the optional sore-arm box. The answer loads once both a style and a level are picked, never for a level the visitor didn't
+// choose. The last answers stay in this browser, so "use my last answers" fills them in on the next racket.
 const STYLES = ["any", "control", "balance", "power"] as const;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
+type Style = typeof STYLES[number]; type Level = typeof LEVELS[number];
+type Saved = { style: Style; level: Level; arm: boolean };
+const KEY = "padelrecs-profile";
+
+function readSaved(): Saved | null {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null") as Partial<Saved> | null;
+    return s && STYLES.includes(s.style as Style) && LEVELS.includes(s.level as Level) ? { style: s.style as Style, level: s.level as Level, arm: !!s.arm } : null;
+  } catch { return null; }
+}
+function saveProfile(p: Saved) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch { /* storage off */ } }
 
 export default function AskPicks({ href }: { href: string }) {
   const router = useRouter();
-  const [style, setStyle] = useState<typeof STYLES[number]>("any"), [arm, setArm] = useState(false);
-  const go = (level: string) => {
+  const [style, setStyle] = useState<Style | null>(null), [level, setLevel] = useState<Level | null>(null), [arm, setArm] = useState(false);
+  const [saved, setSaved] = useState<Saved | null>(null);
+  // Browser storage is read after the first render, so the server and client HTML match.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { setSaved(readSaved()); }, []);
+  const go = (p: Saved) => {
+    saveProfile(p);
     const q = new URLSearchParams();
-    if (style !== "any") q.set("style", style);
-    q.set("level", level);
-    if (arm) q.set("arm", "1");
+    if (p.style !== "any") q.set("style", p.style);
+    q.set("level", p.level);
+    if (p.arm) q.set("arm", "1");
     router.replace(`${href}?${q}`, { scroll: false });
   };
-  return <div className="rf-grid">
-    <span>I want</span>
-    <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>
-      <button type="button" aria-pressed={style === s} className={style === s ? "on" : undefined} onClick={() => setStyle(s)}>{s}</button></span>)}</span>
-    <span>I&apos;m</span>
-    <span className="rf-lv" role="group" aria-label="Your level: picking one shows the answer">{LEVELS.map(l => <span key={l}>
-      <button type="button" onClick={() => go(l)}>{l}</button></span>)}</span>
-    <span/>
-    <button type="button" className="rf-arm" aria-pressed={arm} onClick={() => setArm(a => !a)}><i className="rf-box" aria-hidden="true">{arm ? "✓" : ""}</i>I have a sore elbow / wrist</button>
-  </div>;
+  const pickStyle = (s: Style) => { setStyle(s); if (level) go({ style: s, level, arm }); };
+  const pickLevel = (l: Level) => { setLevel(l); if (style) go({ style, level: l, arm }); };
+  return <>
+    <div className="rf-askhead"><span className="rf-badge">⚡ fit check</span>
+      {saved && <button type="button" className="rf-last" onClick={() => go(saved)} title={`${saved.style} · ${saved.level}${saved.arm ? " · sore arm" : ""}`}>↺ use my last answers</button>}</div>
+    {/* The title (racket-fit.tsx) sits between the badge row and the questions: .rf-ask orders them with CSS. */}
+    <div className="rf-q">
+      <div className="rf-qrow"><span>1. What do you want more of?</span>
+        <div role="group" aria-label="What you want more of">{STYLES.map(s =>
+          <button key={s} type="button" aria-pressed={style === s} onClick={() => pickStyle(s)}>{s}</button>)}</div></div>
+      <div className="rf-qrow"><span>2. What&apos;s your level?</span>
+        <div role="group" aria-label="Your level">{LEVELS.map(l =>
+          <button key={l} type="button" aria-pressed={level === l} onClick={() => pickLevel(l)}>{l}</button>)}</div></div>
+      <button type="button" className="rf-arm2" aria-pressed={arm} onClick={() => setArm(a => !a)}><i aria-hidden="true">{arm ? "✓" : ""}</i><span>I have a sore elbow / wrist <small>(optional)</small></span></button>
+    </div>
+  </>;
+}
+
+/** Keeps the picks a visitor answered with (also from the edit bar's links), for "use my last answers" on the next racket. */
+export function RememberPicks(p: Saved) {
+  useEffect(() => { saveProfile(p); }, [p.style, p.level, p.arm]); // eslint-disable-line react-hooks/exhaustive-deps
+  return null;
 }

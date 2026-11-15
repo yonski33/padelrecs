@@ -3,13 +3,13 @@ import Link from "next/link";
 import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
 import { TRAITS, TRAIT_LABEL, type Trait } from "../../../lib/trait-score";
-import { fitVerdict, bestFor, levelBacking, levelSources, styleLean, MIN_FIT_REPORTS } from "../../../lib/fit-verdict";
+import { fitVerdict, bestFor, styleLean, MIN_FIT_REPORTS, FEW_FIT_REPORTS } from "../../../lib/fit-verdict";
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
-import AskPicks from "./ask-picks";
-import { matchScore } from "../../../lib/match-score";
+import AskPicks, { RememberPicks } from "./ask-picks";
+import { fineWords } from "../../../lib/fine-tune";
 import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
 import { signalCategory } from "../../signals";
@@ -63,15 +63,16 @@ export default async function RacketFit(props: {
   const verdict = picked ? fitVerdict(choice, facts) : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
-  const trs = ctx.traits(props.racketId).scores, lvE = ctx.level(props.racketId);
-  const pct = verdict ? matchScore(choice, { verdict, control: trs?.control?.score ?? null, power: trs?.power?.score ?? null, arm: trs?.arm?.score ?? null, band: lvE?.band, likedAtLevel: lvE?.liked[choice.level] ?? 0, signal: ctx.signal(props.racketId) }) : null;
+  const pct = verdict && picked ? ctx.matchPct(choice).get(props.racketId) ?? null : null;
   const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
   const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (qt ? qt.hook.good : null)) : null;
   const consider = verdict ? (verdict.catches?.[0] ?? (qt ? qt.hook.catch : null)) : null;
   const headline = !verdict ? "" : verdict.kind === "good" ? (consider ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
-  const gameWords = [choice.level, choice.style === "any" ? null : choice.style, choice.arm ? "sore arm" : null].filter((x): x is string => !!x);
-  // What backs the level band (brand, reviewers, players), with the brand's page linked (owner 2026-11-15).
-  const backing = levelBacking(facts), maker = levelSources(facts).maker;
+  const gameWords = [choice.level, choice.style === "any" ? null : choice.style, choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter((x): x is string => !!x);
+  // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
+  const bf = bestFor(facts), bfArm = bf.includes("sore arms"), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b)), bfLean = bf.find(b => / players$/.test(b));
+  const bfWho = [bfLevel, bfLean ?? (bfLevel ? "players" : null)].filter(Boolean).join(" ");
+  const bestLine = bfWho ? `${bfWho}${bfArm ? ", and sore arms" : ""}` : bfArm ? "sore arms" : null;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
   const webLevels = await reportLevels(props.racketId);
   const levelOf = (r: QtReport) => { const v = r.level ?? webLevels.get(r.id)?.level; return v === "Competitive" ? "advanced" : v?.toLowerCase(); };
@@ -144,8 +145,7 @@ export default async function RacketFit(props: {
 
   // Better matches: quick match with the visitor's picks (or the default order), from the catalog, without this racket.
   // With picks, the 4 alternatives with the best match % (the same number the home shows); without, quick match's order.
-  const pctOf = (id: string) => { const fv = fitVerdict(choice, ctx.facts(id)), ts = ctx.traits(id).scores, le = ctx.level(id);
-    return matchScore(choice, { verdict: fv, control: ts?.control?.score ?? null, power: ts?.power?.score ?? null, arm: ts?.arm?.score ?? null, band: le?.band, likedAtLevel: le?.liked[choice.level] ?? 0, signal: ctx.signal(id) }); };
+  const pctOf = (id: string) => ctx.matchPct(choice).get(id) ?? null;
   const others = (() => {
     const c = quickMatch(ctx.pool, ctx.finder, picked ? choice : DEFAULT_CHOICE, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: picked ? 25 : 5, rankWeight: ctx.finder.rankWeight }).filter(m => m.product.id !== props.racketId);
     return (picked ? c.map((m, i) => ({ m, i, p: pctOf(m.product.id) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1) || a.i - b.i).map(x => x.m) : c).slice(0, 4);
@@ -236,14 +236,16 @@ export default async function RacketFit(props: {
 
         <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
           {!verdict ? <div className="rf-ask">
-            <div><h2>Is this the right racket for you?</h2>
-              <p>{`Two taps. We'll check it against ${total} player reviews.`}</p></div>
+            <div className="rf-asktitle"><h2>Is this the right racket for you?</h2>
+              <p>{`Two taps and we'll check it against ${total} player ${total === 1 ? "review" : "reviews"}.`}</p></div>
             <AskPicks href={props.href}/>
-            {backing && <p className="rf-lvl">{`level: ${backing}`}{maker && <> · <a href={maker.url} target="_blank" rel="noopener nofollow">brand page ↗</a></>}</p>}
-            {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
+            {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
+            {facts.levelDisagree && <p className="rf-lvl">{facts.levelDisagree}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
+            <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>
             <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
-              <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% match · ${verdictWord}`}</span></div>
+              <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% match · ${verdictWord}`}</span>
+                {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
             <h2>{headline}</h2>
             <p className="rf-for">{verdict.kind === "thin" ? (total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`) : `For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
             {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ What works" : "✓ Why it fits"}</p><p>{why}</p></div>}
@@ -318,7 +320,7 @@ export default async function RacketFit(props: {
         </aside>
       </section>
 
-      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards}/></section>
+      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames}/></section>
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{"built from YouTube reviews, reviews sent to us and padel forum reports · every source linked · "}

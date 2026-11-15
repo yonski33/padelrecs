@@ -157,7 +157,8 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
 //   3: everything else (the owner's floor). 1 only by hand; hand-set dots win.
 export const RATE_PRIOR = 10, TOP4_SHARE = 0.30, TOP5_SHARE = 0.09, WORST_SHARE_V2 = 0.06, MIN_COMPLAINTS = 9;
 export type BalanceInput = { id: string; reports: number; balance: Partial<Record<Trait, { P: number; C: number; plusVoices: number; minusVoices: number; people?: TraitScore["people"] }>>;
-  youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null };
+  youtube?: Partial<Record<Trait, { plus: number; minus: number }>>; specs?: Specs; override?: Partial<Record<Trait, number>> | null;
+  /** An expert's 0–100 per trait (admin expert grid): wins over everything, dots from the score. */ expert?: Partial<Record<Trait, number>> };
 
 export function balanceScores(products: BalanceInput[], cfg: { complaint: string[] } = { complaint: COMPLAINT_TRAITS }): Map<string, Record<Trait, TraitScore | null>> {
   const out = new Map<string, Record<Trait, TraitScore | null>>();
@@ -182,6 +183,11 @@ export function balanceScores(products: BalanceInput[], cfg: { complaint: string
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
       const i = rank.get(p.id)!, top = C <= P && P > 0;
       const auto = worst.has(p.id) ? 2 : top && i < n5 ? 5 : top && i < n4 ? 4 : 3;
+      const ex = p.expert?.[t];
+      if (typeof ex === "number") {
+        out.get(p.id)![t] = { score: Math.min(99, Math.round(ex)), dots: dotsFor(ex), plus: plusVoices, minus: minusVoices, yt: p.youtube?.[t]?.plus ?? 0, spec: lean, basis: "players", set: true, ...(PC(p, t).people ? { people: PC(p, t).people } : {}) };
+        continue;
+      }
       const dots = hand ?? auto;
       // 0–99 for quick match: the band's floor plus where it sits in the praise ranking.
       const within = 1 - i / Math.max(1, products.length - 1);
