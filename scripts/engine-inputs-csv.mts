@@ -27,10 +27,10 @@ for (const e of ctx.evidence) if (e.attribute === "level" && e.value !== null &&
   const v = voices.get(e.productId) ?? [0, 0, 0]; v[Math.max(0, Math.min(2, Math.round(e.value)))]++; voices.set(e.productId, v); }
 
 // The 9 level × style picks, no sore arm, no fine-tune: the live % for every racket and the home list's rank (row years only).
-const setup = { ...niche.finder!, levelGate: niche.fit?.levelGate }, bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
+const setup = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine }, bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 const combos = LEVELS.flatMap(level => (["control", "balance", "power"] as const).map(style => ({ key: `${level.slice(0, 3)}_${style}`, choice: { style, level, arm: false } as QuickChoice })));
 const match = combos.map(({ key, choice }) => {
-  const pct = matchPcts(items, choice, setup.levelGate);
+  const pct = matchPcts(items, choice, setup.levelGate, setup.engine);
   const rank = new Map(rankHome(items, setup, bad, choice, false, 10_000).rows.map((r, i) => [r.id, i + 1]));
   return { key, pct, rank };
 });

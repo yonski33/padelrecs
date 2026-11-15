@@ -28,12 +28,31 @@
   .hv2-find .sug-item .nm { font-size: 15.5px; overflow-wrap: normal; }
   .hv2-add { background: var(--ink); color: var(--bg) !important; text-decoration: none; padding: 7px 12px; border-radius: 8px; font: 700 14px var(--body); border: 2px solid var(--ink); white-space: nowrap; }
   :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  /* Rankings dropdown (owner 2026-11-16): every best-of list, then "all rankings →". Hover or click on desktop, Esc closes;
+     on phones the caret opens it as a full-width section of the menu. The links are in the HTML either way. */
+  nav .nav-menu { position: relative; display: inline-flex; align-items: center; gap: 2px; }
+  nav .nav-menu > a { padding-right: 0; }
+  nav .nav-caret { display: inline-flex; align-items: center; padding: 4px 4px; min-height: 0; height: auto; background: none; border: 0; color: var(--ink); cursor: pointer; box-shadow: none; }
+  nav .nav-caret svg { width: 10px; height: 6px; transition: transform .15s; }
+  nav .nav-menu.open .nav-caret svg { transform: rotate(180deg); }
+  nav .nav-sub { display: none; position: absolute; z-index: 40; top: calc(100% + 8px); left: -10px; min-width: 230px; padding: 6px; background: var(--paper);
+    border: 2px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  nav .nav-sub::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+  nav .nav-sub a { display: block; padding: 7px 10px; border-radius: 6px; font: 13px/1.4 var(--mono); color: var(--ink); white-space: nowrap; }
+  nav .nav-sub a[aria-current="page"] { background: var(--acc); }
+  nav .nav-sub .nav-sub-all { margin-top: 4px; padding-top: 9px; border-top: 2px dashed var(--ink); border-radius: 0 0 6px 6px; font-weight: 700; }
+  @media (min-width: 761px) {
+    nav .nav-menu:hover .nav-sub, nav .nav-menu.open .nav-sub, nav .nav-menu:focus-within .nav-sub { display: block; }
+  }
   @media (max-width: 760px) {
     position: static;
     .hv2-shin { gap: 10px 16px; }
     .hv2-grow { display: none; }
     .hv2-add { order: 2; margin-left: auto; }
     nav { order: 3; flex: 1 1 100%; }
+    nav .nav-menu { flex-wrap: wrap; }
+    nav .nav-menu.open { flex: 1 1 100%; }
+    nav .nav-menu.open .nav-sub { display: block; position: static; flex: 1 1 100%; margin-top: 8px; box-shadow: 3px 3px 0 var(--ink); }
     .hv2-find { order: 4; flex: 1 1 100%; }
   }
 }

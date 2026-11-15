@@ -22,20 +22,20 @@ const topLists = withModelYears(niche.topLists ?? []);
 
 /** "Rankings" with its lists in a dropdown. The label links to the rankings index, so it works without the menu (and on phones,
  *  where the nav scrolls sideways and has no room for a dropdown). */
-function TopMenu({ pathname, ranked }: { pathname: string; ranked: string[] }) {
+function TopMenu({ pathname, ranked, v2 = false }: { pathname: string; ranked: string[]; v2?: boolean }) {
   // Last season's list ("Best of 2025") goes last, after this year's lists (owner, 2026-11-14).
   const shown = topLists.filter(l => ranked.includes(l.slug)).sort((a, b) => Number(a.modelYearsBack !== undefined) - Number(b.modelYearsBack !== undefined));
   const [open, setOpen] = useState(false);
   const active = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   return <div className={`nav-menu${open ? " open" : ""}`} onMouseLeave={() => setOpen(false)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
     onKeyDown={e => { if (e.key === "Escape") setOpen(false); }}>
-    <a href={RANKINGS_PATH} aria-current={active ? "page" : undefined}>Rankings</a>
+    <a href={RANKINGS_PATH} aria-current={active ? "page" : undefined}>{v2 ? "rankings" : "Rankings"}</a>
     {shown.length > 0 && <button type="button" className="nav-caret" aria-expanded={open} aria-controls="rankings-menu" aria-label="Show the rankings" onClick={() => setOpen(o => !o)}>
       <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
     </button>}
     <div className="nav-sub" id="rankings-menu">
-      {shown.map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{l.label}</a>)}
-      <a href={RANKINGS_PATH} className="nav-sub-all">All lists</a>
+      {shown.map(l => <a key={l.slug} href={rankingHref(l.slug)} aria-current={pathname === rankingHref(l.slug) ? "page" : undefined}>{v2 ? l.label.toLowerCase() : l.label}</a>)}
+      <a href={RANKINGS_PATH} className="nav-sub-all">{v2 ? "all rankings →" : "All lists"}</a>
     </div>
   </div>;
 }
@@ -56,7 +56,8 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
       <Link className="hv2-logo" href="/"><i aria-hidden="true"/>{niche.site.name.toLowerCase()}</Link>
       <nav aria-label="Main navigation">
         <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{niche.words.many}</a>
-        <a href={RANKINGS_PATH} aria-current={inRankings ? "page" : undefined}>rankings</a>
+        {/* Owner 2026-11-16: "the ranking menu item as a drop down that shows all the lists" (the classic menu, v2 styling). */}
+        {ranked.length ? <TopMenu pathname={pathname} ranked={ranked} v2/> : <a href={RANKINGS_PATH} aria-current={inRankings ? "page" : undefined}>rankings</a>}
         <a href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}>latest reviews</a>
       </nav>
       <span className="hv2-grow"/>
