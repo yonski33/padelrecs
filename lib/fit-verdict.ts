@@ -171,17 +171,20 @@ function fineCheck(c: QuickChoice, f: FitFacts): Check {
   return miss.length ? { level: "soft", short: miss[0].replace(/ \(.*\)\.$|\.$/, ""), reason: miss.join(" ") } : { level: "ok" };
 }
 
-export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = PADEL): FitVerdict {
+/** With `as` (the match engine's word, lib/engine engineKind), the verdict says that word and picks its reasons for it; without,
+ *  the checks decide it as before. */
+export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = PADEL, as?: FitVerdict["kind"]): FitVerdict {
   const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;
-  if (f.reports < MIN_FIT_REPORTS || known === 0 || known < Math.ceil(asked / 2))
+  if (as === "thin" || (!as && (f.reports < MIN_FIT_REPORTS || known === 0 || known < Math.ceil(asked / 2))))
     return { kind: "thin", label: "Not enough reports from players like you yet", icon: "🫥", reasons: reasons(["hard", "soft", "ok"]).slice(0, 2) };
   const fits = reasons(["ok"]), catches = [...reasons(["hard"]), ...reasons(["soft"])];
   const short = (lv: Check["level"], mark: string) => { const x = checks.find(c => c.level === lv && c.short); return x ? `${mark} ${x.short}` : undefined; };
-  if (checks.some(x => x.level === "hard")) return { kind: "no", label: `Probably not your ${cfg.word}`, icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3), short: short("hard", "✗"), fits, catches };
-  if (checks.some(x => x.level === "soft")) return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~"), fits, catches };
+  const kind = as ?? (checks.some(x => x.level === "hard") ? "no" : checks.some(x => x.level === "soft") ? "maybe" : "good");
+  if (kind === "no") return { kind: "no", label: `Probably not your ${cfg.word}`, icon: "🤔", reasons: [...reasons(["hard"]), ...reasons(["soft", "ok"])].slice(0, 3), short: short("hard", "✗") ?? short("soft", "~"), fits, catches };
+  if (kind === "maybe") return { kind: "maybe", label: "Maybe, demo it first", icon: "🤷", reasons: [...reasons(["soft"]), ...reasons(["ok"]), ...reasons(["unknown"])].slice(0, 3), short: short("ok", "✓") ?? short("soft", "~"), fits, catches };
   return { kind: "good", label: "Good match for you", icon: "👍", reasons: [...reasons(["ok"]).slice(0, 2), ...reasons(["unknown"]), ...reasons(["ok"]).slice(2)].slice(0, 3), short: short("ok", "✓"), fits, catches };
 }
 

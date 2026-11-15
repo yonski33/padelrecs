@@ -26,7 +26,7 @@ function fromLocation(): State {
 export function RankingPicks({ items, first, href, children }: { items: RankItem[]; first: State; href: string; children: ReactNode }) {
   const [s, setS] = useState(first);
   useEffect(() => { const on = () => setS(fromLocation()); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
-  const pcts = useMemo(() => s.choice && s.showPct ? matchPcts(items, s.choice, niche.fit?.levelGate) : null, [items, s]);
+  const pcts = useMemo(() => s.choice && s.showPct ? matchPcts(items, s.choice, niche.fit?.levelGate, niche.fit?.engine) : null, [items, s]);
   const set = (next: State) => {
     setS(next);
     const q = new URLSearchParams(picksQuery(next.choice).slice(1)); if (next.choice && !next.showPct) q.set("pct", "0");

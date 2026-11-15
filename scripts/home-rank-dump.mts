@@ -12,7 +12,7 @@ const { items, cards } = JSON.parse(json) as typeof payload;
 const bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 const slugOf = (href: string) => href.split("/").pop();
 const out = RANK_CASES.map(({ choice, older }) => {
-  const { rows, olderN } = rankHome(items, { ...niche.finder!, levelGate: niche.fit?.levelGate }, bad, choice, older);
+  const { rows, olderN } = rankHome(items, { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine }, bad, choice, older);
   return { choice, older, olderN, rows: rows.map(r => ({ id: r.id, slug: slugOf(cards[r.id].href), pct: r.pct, kind: r.fit?.kind ?? null, short: r.fit?.short ?? null, arm: r.arm })) };
 });
 writeFileSync(process.argv[2], JSON.stringify(out, null, 1));

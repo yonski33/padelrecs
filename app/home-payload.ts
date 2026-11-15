@@ -6,7 +6,7 @@ import { listLine } from "../lib/list-lines";
 import { shortLine } from "../lib/short-lines";
 import { shopPhoto, photoHidden } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
-import { productHref } from "../lib/niche";
+import { productHref, niche } from "../lib/niche";
 import { slimItems, type RankItem } from "../lib/home-rank";
 
 /** What one home row shows. */
@@ -23,8 +23,10 @@ export async function homePayload(): Promise<HomePayload> {
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const reports = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
-  // A row is a pool racket (every year, with "show older models") or the year that takes its family's row.
-  const shown = new Set(items.flatMap(x => x.pool ? [x.id, x.row] : []));
+  // A row is a pool racket (every year, with "show older models") or the year that takes its family's row; with the match
+  // engine (lib/engine), any racket with enough reports can take one.
+  const minEngine = niche.fit?.engine?.minReports;
+  const shown = new Set(items.flatMap(x => x.pool ? [x.id, x.row] : minEngine !== undefined && x.facts.reports >= minEngine ? [x.id] : []));
   const cards = Object.fromEntries([...shown].map(id => {
     const r = byId.get(id)!, c = score(data, id), shop = listShopLink(r);
     const pic = photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
