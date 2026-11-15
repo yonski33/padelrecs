@@ -12,8 +12,10 @@ import "./latest-v2.css";
 // Latest reviews in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/JLXnpgtRmWgg6TRbc5BgHR),
 // PadelRecs only. Owner: only our own players' reviews and the YouTube video summaries here, no forum (Reddit) or blog
 // reports. Filters live in the URL (?src=players|yt&v=positive|mixed|negative), so every view is server-rendered.
+// Second pass (owner 2026-11-15, updated mockup): the feed is grouped by day, each card has the racket photo on the left, a tilted
+// verdict sticker, the player's words first and who wrote them under it; YouTube cards show "the gist" box.
 const PAGE = 20, DAY = 864e5;
-const PILL = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for me" } as const;
+const PILL = { positive: "loved it", mixed: "mixed", negative: "not for me" } as const;
 type Verdict = keyof typeof PILL;
 type Search = { src?: string; v?: string; show?: string };
 
@@ -24,7 +26,13 @@ function ago(iso: string | null | undefined, now: number) {
   return d < 1 / 24 ? "just now" : d < 1 ? `${Math.floor(d * 24)}h ago` : d < 30 ? `${Math.floor(d)}d ago` : d < 365 ? `${Math.floor(d / 30)} mo ago` : `${Math.floor(d / 365)} yr ago`;
 }
 const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
-const videoId = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
+/** The day group a review falls in: today, yesterday, this week, this month, then month by month. */
+function dayGroup(iso: string, now: number) {
+  const t = Date.parse(iso), start = new Date(now); start.setHours(0, 0, 0, 0);
+  const s = start.getTime();
+  if (t >= s) return "today"; if (t >= s - DAY) return "yesterday"; if (t >= s - 6 * DAY) return "earlier this week"; if (t >= s - 29 * DAY) return "earlier this month";
+  return new Date(t).toLocaleDateString("en-GB", { month: "long", year: "numeric" }).toLowerCase();
+}
 
 export default async function LatestReviewsV2({ search }: { search: Search }) {
   const data = await catalog();
@@ -33,22 +41,25 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const timeWord = new Map(niche.profile.timeWithRacket?.options.map(o => [o.value, (o as { display?: string }).display ?? o.value.toLowerCase()]) ?? []);
   type Item = { key: string; racketId: string; date: string; verdict: Verdict | null; kind: "player" | "yt" } & (
-    { kind: "player"; who: string; meta: string; text: string; tags: string[] } | { kind: "yt"; who: string; url: string; video: string | null; comment: boolean; points: string[] });
+    { kind: "player"; who: string; meta: string[]; text: string; tags: string[] } | { kind: "yt"; who: string; url: string; comment: boolean; points: string[] });
   const all: Item[] = [
     ...data.reviews.map(r => ({ key: `p-${r.id}`, racketId: r.racketId, date: r.createdAt, kind: "player" as const,
       verdict: (r.rating >= 4 ? "positive" : r.rating === 3 ? "mixed" : "negative") as Verdict,
-      who: r.alias || `A ${niche.site.name} player`, meta: [r.playerLevel?.toLowerCase(), r.playingSide ? `${r.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · "),
+      who: r.alias || `A ${niche.site.name} player`, meta: [r.playerLevel?.toLowerCase(), r.playingSide ? `${r.playingSide.toLowerCase()} side` : null].filter((x): x is string => !!x),
       text: r.reviewText, tags: [r.timeWithRacket ? `played ${timeWord.get(r.timeWithRacket) ?? r.timeWithRacket.toLowerCase()}` : null, ...r.tags].filter((x): x is string => !!x).slice(0, 4) })),
     ...data.external.filter(e => e.sourcePlatform === "YouTube" && (e.summary || e.excerptTranslation || e.excerpt)).map(e => {
       const comment = /[?&]lc=/.test(e.sourceUrl), text = e.summary ? plainSummary(e.summary) : e.excerptTranslation || e.excerpt || "";
       return { key: `w-${e.id}`, racketId: e.racketId, date: e.sourceDate || e.createdAt, kind: "yt" as const, verdict: (e.sentiment ?? null) as Verdict | null,
-        who: e.sourceName, url: e.sourceUrl, video: videoId(e.sourceUrl), comment, points: e.summary && !comment ? sentences(text).slice(0, 4) : [text] };
+        who: e.sourceName, url: e.sourceUrl, comment, points: e.summary && !comment ? sentences(text).slice(0, 4) : [text] };
     }),
   ].filter(x => byId.has(x.racketId)).sort((a, b) => b.date.localeCompare(a.date));
   const src = search.src === "players" || search.src === "yt" ? search.src : "all";
   const v = (["positive", "mixed", "negative"] as const).find(x => x === search.v) ?? null;
   const items = all.filter(x => (src === "all" || (src === "players" ? x.kind === "player" : x.kind === "yt")) && (!v || x.verdict === v));
   const show = Math.min(1000, Math.max(PAGE, Number(search.show) || PAGE));
+  const groups: { label: string; items: { x: Item; i: number }[] }[] = [];
+  items.slice(0, show).forEach((x, i) => { const label = dayGroup(x.date, now), last = groups.at(-1);
+    if (last?.label === label) last.items.push({ x, i }); else groups.push({ label, items: [{ x, i }] }); });
   const href = (next: Partial<Search>) => { const q = new URLSearchParams(Object.entries({ src: src === "all" ? undefined : src, v: v ?? undefined, ...next }).filter(([, x]) => x) as [string, string][]); return q.size ? `/reviews?${q}` : "/reviews"; };
   const week = all.filter(x => Date.parse(x.date) >= now - 7 * DAY);
   const counts = new Map<string, number>();
@@ -72,26 +83,27 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
       </div>
       <div className="lr2-grid">
         <section className="lr2-feed">
-          {items.slice(0, show).map((x, i) => { const r = byId.get(x.racketId)!, pic = photo(r); return <article key={x.key}>
-            <a className="lr2-top" href={productHref(r)}>
-              <span className="lr2-pic">{pic && <img src={pic} alt="" loading={i < 4 ? "eager" : "lazy"}/>}</span>
-              <span className="lr2-name">{nameOf(x.racketId)}</span>
-              {x.verdict && <span className={`lr2-pill ${x.verdict}`}>{PILL[x.verdict]}</span>}
-            </a>
-            {x.kind === "player" ? <div className="lr2-player">
-              <div className="lr2-who"><span className={`lr2-av a${i % 4}`} aria-hidden="true">{x.who[0]?.toUpperCase()}</span><strong>{x.who}</strong>{x.meta && <span className="lr2-meta">{x.meta}</span>}<span className="lr2-when">{ago(x.date, now)}</span></div>
-              <p>{x.text}</p>
-              {x.tags.length > 0 && <div className="lr2-tags">{x.tags.map(t => <span key={t}>{t}</span>)}</div>}
-            </div> : <div className="lr2-yt">
-              <a className="lr2-thumb" href={x.url} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${x.who}`}>{x.video && <img src={`https://i.ytimg.com/vi/${x.video}/mqdefault.jpg`} alt="" loading="lazy"/>}<span aria-hidden="true">▶</span></a>
-              <div>
-                <div className="lr2-who"><span className="lr2-tag">youtube</span><strong>{x.who}</strong><span className="lr2-when">{ago(x.date, now)}</span></div>
-                <p className="lr2-k">{x.comment ? "// a viewer's comment under the video, summarised" : "// our summary"}</p>
-                {x.points.length > 1 ? <ul>{x.points.map((p, j) => <li key={j}>{p}</li>)}</ul> : <p className="lr2-one">{x.points[0]}</p>}
-                <a className="lr2-watch" href={x.url} target="_blank" rel="noopener nofollow">{x.comment ? "see the comment on youtube ↗" : "watch on youtube ↗"}</a>
+          {groups.map(g => <div key={g.label} className="lr2-day">
+            <div className="lr2-dh"><span>{g.label}</span><i aria-hidden="true"/><small>{`${g.items.length} ${g.items.length === 1 ? "review" : "reviews"}`}</small></div>
+            {g.items.map(({ x, i }) => { const r = byId.get(x.racketId)!, pic = photo(r), href = productHref(r); return <article key={x.key}>
+              <a className="lr2-pic" href={href} tabIndex={-1} aria-hidden="true">{pic && <img src={pic} alt="" loading={i < 4 ? "eager" : "lazy"}/>}</a>
+              <div className="lr2-body">
+                <div className="lr2-head"><a className="lr2-name" href={href}>{nameOf(x.racketId)}</a>
+                  {x.verdict && <span className={`lr2-pill ${x.verdict}${i % 2 ? " r" : ""}`}>{PILL[x.verdict]}</span>}</div>
+                {x.kind === "player" ? <>
+                  <p className="lr2-text">{x.text}</p>
+                  <div className="lr2-who"><span className={`lr2-av a${i % 4}`} aria-hidden="true">{x.who[0]?.toUpperCase()}</span><strong>{x.who}</strong>
+                    {x.meta.map(m => <span key={m}>{`· ${m}`}</span>)}<span className="lr2-when">{ago(x.date, now)}</span></div>
+                  {x.tags.length > 0 && <div className="lr2-tags">{x.tags.map(t => <span key={t}>{t}</span>)}</div>}
+                </> : <>
+                  <div className="lr2-gist"><p className="lr2-k">{x.comment ? "a viewer's comment, summarised" : x.points.length > 1 ? `the gist, in ${x.points.length} lines` : "the gist"}</p>
+                    {x.points.map((p, j) => <p key={j} className="lr2-pt"><span aria-hidden="true">→</span>{p}</p>)}</div>
+                  <div className="lr2-who"><span className="lr2-yt" aria-hidden="true">▶</span><strong>{x.who}</strong><span>· youtube</span>
+                    <a className="lr2-watch" href={x.url} target="_blank" rel="noopener nofollow">{x.comment ? "see the comment ↗" : "watch ↗"}</a><span className="lr2-when">{ago(x.date, now)}</span></div>
+                </>}
               </div>
-            </div>}
-          </article>; })}
+            </article>; })}
+          </div>)}
           {items.length === 0 && <div className="lr2-empty">Nothing like that yet 🤷</div>}
           {items.length > show && <Link className="lr2-more" href={href({ show: String(show + PAGE) })} scroll={false}>load older reviews ↓</Link>}
         </section>
