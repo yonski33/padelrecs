@@ -9,6 +9,9 @@ import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
 import { matchScore } from "../../../lib/match-score";
+import { signals } from "../../../lib/signal";
+import { score } from "../../../db/data";
+import { signalCategory } from "../../signals";
 import { platformName } from "../../../lib/source-label";
 import { displayName } from "../../../lib/brand-name";
 import { productHref, niche, catalogPath } from "../../../lib/niche";
@@ -68,6 +71,13 @@ export default async function RacketFit(props: {
   const said = levelView ? atLevel : reports;
   const count = (k: string) => said.filter(r => r.sentiment === k).length;
   const [pos, mix, neg] = [count("positive"), count("mixed"), count("negative")];
+  // The badge in "What players said" (owner 2026-11-15): the Player score, not a %. At a level (5+ level-tagged reports), the
+  // same formula (lib/signal.ts) run on only those reports against the rest of the catalog; else the overall score.
+  const overallScore = ctx.signal(props.racketId);
+  const levelScore = levelView ? signals(ctx.data.listed.map(r => { const sc = score(ctx.data, r.id);
+    return r.id === props.racketId ? { id: r.id, category: signalCategory(r), positive: pos, mixed: mix, judged: pos + mix + neg }
+      : { id: r.id, category: signalCategory(r), positive: sc.positive, mixed: sc.mixed, judged: sc.judged, override: r.signalOverride }; })).get(props.racketId)?.signal ?? null : null;
+  const badge = levelScore !== null ? { n: levelScore, label: `Player score · ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}` } : overallScore !== null ? { n: overallScore, label: "Player score" } : null;
   const who = (id: string) => { const r = byId.get(id); if (!r) return null;
     // True source, neutral words (owner 2026-11-15): our own players by nickname, YouTube by channel, forums and blogs by kind.
     const src = r.platform === props.site ? r.nickname || `A ${props.site} player` : r.platform === "YouTube" ? `YouTube · ${r.sourceName ?? "video"}` : r.platform === "Reddit" ? "padel forum" : platformName(r.platform) === "Blog" ? "padel blog" : platformName(r.platform).toLowerCase();
@@ -239,8 +249,9 @@ export default async function RacketFit(props: {
             <div className="rf-h"><h2>{levelView ? `What ${levelWord} said` : "What players said"}</h2><span>{peerSub}</span></div>
             <div className="rf-said">
               <div className="rf-sum">
-                <div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
-                <p className="rf-counts"><span>{`👍 ${pos} loved`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} nope`}</span></p>
+                {badge && <div className="rf-badge" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{badge.n}</b><span>{badge.label}</span></div>}
+                <div className="rf-sumr"><div className="rf-sbar" role="img" aria-label={`${pos} positive, ${mix} mixed, ${neg} negative`}><i className="p" style={{ flex: pos }}/><i className="m" style={{ flex: mix }}/><i className="n" style={{ flex: neg }}/></div>
+                <p className="rf-counts"><span>{`👍 ${pos} loved`}</span><span>{`🤷 ${mix} mixed`}</span><span>{`👎 ${neg} nope`}</span></p></div>
               </div>
               {takes.length > 0 && <div className="rf-quotes">{takes.map(t => { const [tag, cls] = QUOTE_TAG[t.tone] ?? QUOTE_TAG.mixed; return <div key={t.id} className={cls}>
                 <span>{tag}</span>
