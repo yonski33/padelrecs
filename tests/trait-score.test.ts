@@ -67,3 +67,10 @@ test("admin edits: the override keeps dots and text, and records who changed wha
   assert.deepEqual(b.log.at(-1), { at: "2026-11-15T11:00:00Z", by: "owner@x", trait: "power", field: "dots", from: "4", to: null });
   assert.deepEqual(readTraitOverride({ traits: { power: { dots: 9 }, nope: { dots: 2 } } }).traits, {});
 });
+
+test("2 is the extreme end: the Metalbone 3.5 (9 complaints, 2 praise) stays at 3, the hardest rackets drop to 2", () => {
+  const field = Array.from({ length: 30 }, (_, i) => r(`f${i}`, 40, { forgiving: 5 + (i % 4), "small sweet spot": i % 3 }));
+  const m = traitScores([...field, r("metalbone-3-5", 26, { forgiving: 2, demanding: 6, "small sweet spot": 3 }), r("technical-viper", 31, { demanding: 15, "small sweet spot": 10 })]);
+  assert.equal(m.get("metalbone-3-5")!.forgiveness!.dots, 3);
+  assert.equal(m.get("technical-viper")!.forgiveness!.dots, 2);
+});

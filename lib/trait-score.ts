@@ -5,8 +5,8 @@
 //   3. the specs (shape, balance, weight, core) as a small prior, never more than ±1 dot on their own.
 // Fixed scale, no percentile: the catalog median share is 3 dots, and every STEP (scaled to the trait's spread) above or
 // below it is one dot, so many rackets can share 4–5 when players praise them. A racket's share is smoothed toward the median
-// by PRIOR imaginary reports. 3 is the floor (every racket here is solid); 2 needs 5+ players faulting that exact trait, more
-// than praise it; 1 only by hand. With few player mentions the specs and YouTube set the base. Hand-set dots (1–5) win.
+// by PRIOR imaginary reports. 3 is the floor (every racket here is solid); 2 is the extreme end of complaints about that exact
+// trait (see `worst` below); 1 only by hand. With few player mentions the specs and YouTube set the base. Hand-set dots (1–5) win.
 // Pure, so tests can feed it plain objects.
 
 export const TRAITS = ["forgiveness", "power", "control", "defence", "arm", "speed"] as const;
@@ -24,6 +24,8 @@ export const TRAIT_TAGS: Record<Trait, { plus: [string, number][]; minus: [strin
 /** Traits that players fault directly ("vibrates", "small sweet spot"): only these can drop to 2. Little power praise on a
  *  control racket isn't a complaint (owner 2026-11-15). */
 export const COMPLAINT_TRAITS: Trait[] = ["arm", "forgiveness"];
+/** The share of the catalog that can sit at 2 dots for a complaint trait. */
+export const WORST_SHARE = 0.05;
 export const MIN_EVIDENCE = 8, MIN_MENTIONS = 2, PRIOR = 10, YT_WEIGHT = 2;
 /** Longest hand-written line under a trait (admin area). */
 export const MAX_TRAIT_TEXT_HINT = 220;
@@ -92,13 +94,25 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     const m = median(shares);
     const spread = median(shares.map(x => Math.abs(x - m)));
     const step = Math.max(0.04, 1.2 * spread);
+    // 2 dots is the extreme end (owner 2026-11-15: "if we set it at 2, more unforgiving rackets will have to be 1"): 8+ players
+    // fault that exact trait, over 3× the praise (+1), and the racket is among the WORST_SHARE most-faulted in the catalog.
+    // With too few rackets to judge the extreme end, the plain rule: 5+ complaints that outnumber praise.
+    const praiseOf = (p: TraitInput) => people(p.tags, plus) + tx(p).plus + yt(p).plus;
+    const againstOf = (p: TraitInput) => minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus + yt(p).minus;
+    const worst = new Set<string>();
+    if (COMPLAINT_TRAITS.includes(t)) {
+      if (pool.length >= 20) {
+        const cap = Math.max(1, Math.ceil(WORST_SHARE * products.length));
+        products.filter(p => againstOf(p) >= 8 && againstOf(p) / (praiseOf(p) + 1) > 3)
+          .sort((a, b) => againstOf(b) / (praiseOf(b) + 1) - againstOf(a) / (praiseOf(a) + 1)).slice(0, cap).forEach(p => worst.add(p.id));
+      } else products.filter(p => againstOf(p) >= 5 && againstOf(p) > praiseOf(p)).forEach(p => worst.add(p.id));
+    }
     for (const p of products) {
       const mentions = people(p.tags, plus) + minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
       const lean = specLean(p.specs)[t];
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
       const enough = evidence(p) >= MIN_EVIDENCE && mentions >= MIN_MENTIONS;
-      const praise = people(p.tags, plus) + tx(p).plus + yt(p).plus, against = minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus + yt(p).minus;
       // Thin player data: the specs and YouTube reviewers set the base, never below 3 (owner 2026-11-15).
       const ytLean = 0.5 * (yt(p).plus - yt(p).minus);
       const basis: TraitScore["basis"] = enough ? "players" : lean > 0.2 || yt(p).plus + yt(p).minus > 0 ? "specs" : "none";
@@ -112,7 +126,7 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
       cont = Math.max(1, Math.min(5, cont));
       // Owner 2026-11-15: every racket on the site is solid, so 3 is the floor. 2 only on strong specific complaints (5+ players
       // fault that exact trait, more than praise it); 1 never automatically, only by hand.
-      const complaint = COMPLAINT_TRAITS.includes(t) && against >= 5 && against > praise;
+      const complaint = worst.has(p.id);
       const dots = hand ?? Math.max(complaint ? 2 : 3, Math.min(5, Math.round(cont)));
       const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((Math.max(complaint ? 2 : 3, cont) - 1) / 4 * 99);
       out.get(p.id)![t] = { score, dots, plus: people(p.tags, plus) + tx(p).plus, minus: minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus, yt: yt(p).plus, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
