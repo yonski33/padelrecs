@@ -176,10 +176,17 @@ export function FitAlts({ id, items, facts, cards, similar, brandLink, similarTi
 export function FitSticky({ buy, name }: { buy: { url: string; label: string; rel: string } | null; name: string }) {
   const { p: { picked } } = use(), { result } = useContext(ResultCtx);
   const shown = picked && result && result.kind !== "thin" && result.pct !== null ? result : null;
-  return <div className="rp-stick" aria-label={`Your match with the ${name}`}>
+  // Shown once the hero (and its fit box) has scrolled out of view (the final mock: a floating card on desktop, a bar on phones).
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const hero = document.querySelector(".rf-top"); if (!hero) return;
+    const io = new IntersectionObserver(([e]) => setOn(!e.isIntersecting && e.boundingClientRect.top < 0));
+    io.observe(hero); return () => io.disconnect();
+  }, []);
+  return <div className={`rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
     <div className="rp-sk">
       <span className="rp-k">⚡ your match</span>
-      {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}>{`${shown.pct}% · ${shown.word}`}</a>
+      {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}><b>{`${shown.pct}%`}</b><span className="rp-vw">{shown.word}</span></a>
         : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>
     {buy && <a className="rf-btn rp-buy" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a>}
