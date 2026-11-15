@@ -50,13 +50,16 @@ export function chosenOptions(finder: Pick<Finder, "questions">, c: QuickChoice)
 
 /** What we know about a racket's level fit: players who gave their level (and whether they liked it), and the quick-take
  *  level band (0 beginner … 2 advanced) where a block exists. */
-export type LevelEvidence = { liked: Partial<Record<Level, number>>; band?: { from: number; to: number } };
+export type LevelEvidence = { liked: Partial<Record<Level, number>>; band?: { from: number; to: number };
+  /** 0–100 per level (lib/level-suits.ts); when present it ranks instead of the band. */ suits?: Record<Level, number> };
 const LEVEL_INDEX: Record<Level, number> = { beginner: 0, intermediate: 1, advanced: 2 };
 /** How much the level evidence moves a match: inside the band helps, outside it hurts; each player at that level who liked
  *  it adds a little (capped), so a racket nobody at your level reviewed isn't pushed down for it. */
 const BAND_WEIGHT = 0.25, LIKED_WEIGHT = 0.04, LIKED_CAP = 5;
 export function levelBonus(e: LevelEvidence | undefined, level: Level) {
   if (!e) return 0;
+  // Ranked by how well it suits that level (owner 2026-11-15): 50 is neutral, 100 is +2× the old band weight; never a cut.
+  if (e.suits) return 2 * BAND_WEIGHT * (e.suits[level] - 50) / 50 + LIKED_WEIGHT * Math.min(LIKED_CAP, e.liked[level] ?? 0);
   const i = LEVEL_INDEX[level];
   const band = e.band ? (i >= e.band.from && i <= e.band.to ? BAND_WEIGHT : -BAND_WEIGHT) : 0;
   return band + LIKED_WEIGHT * Math.min(LIKED_CAP, e.liked[level] ?? 0);

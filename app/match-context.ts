@@ -15,9 +15,11 @@ import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
-import { evidenceBalance } from "../lib/evidence";
+import { evidenceBalance, reportOf } from "../lib/evidence";
 import { balanceScores, type Trait as TraitKey } from "../lib/trait-score";
 import padelKnownDots from "../db/known-dots/padel.json";
+import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
+import { EXTRACTORS } from "../lib/evidence";
 
 /** The owner's hand-set calls per site (db/known-dots), applied like admin overrides (an admin override wins). */
 const KNOWN_DOTS: Record<string, Record<string, Record<string, { dots?: number }>>> = { padel: padelKnownDots as unknown as Record<string, Record<string, { dots?: number }>> };
@@ -48,9 +50,12 @@ export const matchContext = cache(async () => {
   }
   const slugOf = new Map(data.rackets.map(r => [r.id, r.slug]));
   const sourcesOf = (id: string): LevelSources | undefined => LEVEL_SOURCES[niche.id]?.[slugOf.get(id) ?? ""];
-  // The band quick match ranks with is the one the sources agree on (brand, reviewers, players), like the fit check.
+  // Level as a "suits" score per level (lib/level-suits.ts, filled below from the evidence store); without it, the band the
+  // sources agree on (brand, reviewers, players), like the fit check.
+  const suitsOf = new Map<string, { suits: Suits; disagree: string | null }>();
   const level = (id: string): LevelEvidence | undefined => {
-    const liked = likedBy.get(id), band = combinedBand({ reports: 0, tags: {}, band: takes.get(id)?.band, levels: sourcesOf(id) });
+    const liked = likedBy.get(id), band = combinedBand({ reports: 0, tags: {}, band: takes.get(id)?.band, levels: sourcesOf(id) }), su = suitsOf.get(id);
+    if (su) return { liked: liked ?? {}, band, suits: su.suits };
     return liked || band ? { liked: liked ?? {}, band } : undefined;
   };
   const signal = (id: string) => sigs.get(id)?.signal ?? null;
@@ -68,7 +73,8 @@ export const matchContext = cache(async () => {
       for (const x of notes) for (const t of x.tags) if (!(goodSet.has(t) && x.v === "negative")) tags[t] = (tags[t] ?? 0) + 1;
     }
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
-    return { reports, tags, band: takes.get(id)?.band, levels: sourcesOf(id), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    const su = suitsOf.get(id);
+    return { reports, tags, band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -109,6 +115,31 @@ export const matchContext = cache(async () => {
     for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
     const inputs = [...tagIn.values()].map(p => ({ id: p.id, reports: reportsOf.get(p.id) ?? 0, balance: bal.get(p.id) ?? {}, youtube: p.youtube, specs: p.specs }));
     traitAuto = balanceScores(inputs);
+    // Level "suits" scores (owner 2026-11-15): players' stated levels (reader rows say what it suits; writers who state their
+    // level count when they liked it, and a little against when they didn't), YouTube's band, forgiving vs demanding, and the
+    // brand's label as a weak prior (db: brand-level-v1 rows, the owner's sheet).
+    const likedRef = new Map<string, boolean | null>();
+    for (const r of data.reviews) likedRef.set(`p:${r.id}`, r.rating >= 4 ? true : r.rating <= 2 ? false : null);
+    for (const e of data.external) likedRef.set(`w:${e.id}`, e.sentiment === "positive" ? true : e.sentiment === "negative" ? false : null);
+    const sIn = new Map<string, SuitsInput>(), get = (id: string) => sIn.get(id) ?? sIn.set(id, { players: [] }).get(id)!;
+    const seenVoice = new Set<string>();
+    for (const r of evidence) {
+      if (r.attribute !== "level" || r.value === null) continue;
+      if (r.extractedBy === EXTRACTORS.brandLevel) {
+        const [from, to] = (r.valueText ?? "").split("-").map(Number);
+        if (Number.isInteger(from) && Number.isInteger(to)) get(r.productId).brand = { from, to, notForBeginners: /not (suitable |recommended |aimed |meant )?for beginners|no (apta|recomendada) para principiantes/i.test(r.quote ?? "") };
+      } else if (r.extractedBy === EXTRACTORS.reader || r.extractedBy === EXTRACTORS.level) {
+        const ref = reportOf(r.sourceRef), v = `${r.productId}|${voice.get(ref) ?? ref}`;
+        if (seenVoice.has(v)) continue; seenVoice.add(v);
+        get(r.productId).players!.push({ level: Math.max(0, Math.min(2, Math.round(r.value))), liked: r.extractedBy === EXTRACTORS.reader ? null : likedRef.get(ref) ?? null });
+      }
+    }
+    for (const id of listed) {
+      const x = get(id), yt = sourcesOf(id)?.youtube, f = bal.get(id)?.forgiveness;
+      if (yt) x.youtube = { from: yt.from, to: yt.to, channels: yt.channels };
+      if (f) x.forgiveness = { P: f.P, C: f.C };
+      suitsOf.set(id, { suits: levelSuits(x), disagree: levelDisagreement(x) });
+    }
     traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) } })));
   } else {
     traitAuto = traitScores([...tagIn.values()]);

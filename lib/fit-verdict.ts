@@ -17,6 +17,8 @@ export type FitFacts = {
   band?: Band;
   /** Maker and YouTube levels beside the players' band; see levelSources(). */
   levels?: LevelSources;
+  /** How well it suits each level, 0–100 (lib/level-suits.ts), and a line when the brand and players / reviewers disagree. */
+  suits?: { beginner: number; intermediate: number; advanced: number; basis: string[] }; levelDisagree?: string;
   /** Place on the control / power rankings, when it's on them. */
   places?: { control?: number; power?: number };
 };
@@ -81,8 +83,19 @@ export function combinedBand(f: FitFacts): Band | undefined {
   return fits.length ? { from: fits[0], to: fits[fits.length - 1] } : undefined;
 }
 
+/** Suits scores: 62+ fits, 40–61 could (a demo-first), under 40 doesn't, but only when players or reviewers back it: the
+ *  brand's label alone never rules a racket out (owner 2026-11-15). */
+export const SUITS_OK = 62, SUITS_LOW = 40;
 function levelCheck(c: QuickChoice, f: FitFacts): Check {
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
+  if (f.suits) {
+    const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";
+    const backed = f.suits.basis.some(b => b !== "the brand");
+    if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
+    if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} Players and reviewers don't put it at ${c.level}.`.trim() };
+    if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
+    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} racket; demo it first.`.trim() };
+  }
   const src = levelSources(f);
   // Brands label most top-line rackets "Professional". Such a label says "not aimed at beginners", so it counts for a beginner;
   // it isn't counted against intermediates. A brand range that names lower levels counts in full (owner 2026-11-15).

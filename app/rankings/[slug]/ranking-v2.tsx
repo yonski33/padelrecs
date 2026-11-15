@@ -87,7 +87,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         const best = bestFor(facts);
         let pct: number | null = null;
         if (showPct) { const fit = fitVerdict(choice, facts), t = ctx.traits(r.id).scores, lv = ctx.level(r.id);
-          pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, signal: ctx.signal(r.id) }); }
+          pct = matchScore(choice, { verdict: fit, control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0, suits: lv?.suits?.[choice.level], signal: ctx.signal(r.id) }); }
         const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
         const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
         const total = sc.positive + sc.mixed + sc.negative;

@@ -21,6 +21,8 @@ export type MatchInputs = {
   band?: Band;
   /** Players at the picked level who liked it. */
   likedAtLevel?: number;
+  /** How well it suits the picked level, 0–100 (lib/level-suits.ts); when given it replaces the band. */
+  suits?: number;
   signal: number | null;
 };
 export const MATCH_BANDS = { good: [70, 99], maybe: [45, 69], no: [15, 44] } as const;
@@ -37,7 +39,7 @@ export function matchFit(c: QuickChoice, m: Omit<MatchInputs, "verdict">): numbe
     parts.push([W.style, v]);
   }
   const i = LEVEL_INDEX[c.level];
-  const inBand = !m.band ? 0.5 : i >= m.band.from && i <= m.band.to ? 1 : Math.min(Math.abs(i - m.band.from), Math.abs(i - m.band.to)) === 1 ? 0.5 : 0.1;
+  const inBand = m.suits !== undefined ? m.suits / 100 : !m.band ? 0.5 : i >= m.band.from && i <= m.band.to ? 1 : Math.min(Math.abs(i - m.band.from), Math.abs(i - m.band.to)) === 1 ? 0.5 : 0.1;
   parts.push([W.level, Math.min(1, inBand + 0.2 * Math.min(1, (m.likedAtLevel ?? 0) / 5))]);
   if (c.arm) parts.push([W.arm, part(m.arm)]);
   parts.push([W.score, part(m.signal)]);

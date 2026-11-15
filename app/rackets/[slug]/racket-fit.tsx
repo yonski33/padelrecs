@@ -64,7 +64,7 @@ export default async function RacketFit(props: {
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
   const trs = ctx.traits(props.racketId).scores, lvE = ctx.level(props.racketId);
-  const pct = verdict ? matchScore(choice, { verdict, control: trs?.control?.score ?? null, power: trs?.power?.score ?? null, arm: trs?.arm?.score ?? null, band: lvE?.band, likedAtLevel: lvE?.liked[choice.level] ?? 0, signal: ctx.signal(props.racketId) }) : null;
+  const pct = verdict ? matchScore(choice, { verdict, control: trs?.control?.score ?? null, power: trs?.power?.score ?? null, arm: trs?.arm?.score ?? null, band: lvE?.band, likedAtLevel: lvE?.liked[choice.level] ?? 0, suits: lvE?.suits?.[choice.level], signal: ctx.signal(props.racketId) }) : null;
   const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
   const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (qt ? qt.hook.good : null)) : null;
   const consider = verdict ? (verdict.catches?.[0] ?? (qt ? qt.hook.catch : null)) : null;
@@ -145,7 +145,7 @@ export default async function RacketFit(props: {
   // Better matches: quick match with the visitor's picks (or the default order), from the catalog, without this racket.
   // With picks, the 4 alternatives with the best match % (the same number the home shows); without, quick match's order.
   const pctOf = (id: string) => { const fv = fitVerdict(choice, ctx.facts(id)), ts = ctx.traits(id).scores, le = ctx.level(id);
-    return matchScore(choice, { verdict: fv, control: ts?.control?.score ?? null, power: ts?.power?.score ?? null, arm: ts?.arm?.score ?? null, band: le?.band, likedAtLevel: le?.liked[choice.level] ?? 0, signal: ctx.signal(id) }); };
+    return matchScore(choice, { verdict: fv, control: ts?.control?.score ?? null, power: ts?.power?.score ?? null, arm: ts?.arm?.score ?? null, band: le?.band, likedAtLevel: le?.liked[choice.level] ?? 0, suits: le?.suits?.[choice.level], signal: ctx.signal(id) }); };
   const others = (() => {
     const c = quickMatch(ctx.pool, ctx.finder, picked ? choice : DEFAULT_CHOICE, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: picked ? 25 : 5, rankWeight: ctx.finder.rankWeight }).filter(m => m.product.id !== props.racketId);
     return (picked ? c.map((m, i) => ({ m, i, p: pctOf(m.product.id) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1) || a.i - b.i).map(x => x.m) : c).slice(0, 4);
@@ -240,6 +240,7 @@ export default async function RacketFit(props: {
               <p>{`Two taps. We'll check it against ${total} player reviews.`}</p></div>
             <AskPicks href={props.href}/>
             {backing && <p className="rf-lvl">{`level: ${backing}`}{maker && <> · <a href={maker.url} target="_blank" rel="noopener nofollow">brand page ↗</a></>}</p>}
+            {facts.levelDisagree && <p className="rf-lvl">{facts.levelDisagree}</p>}
             {bestFor(facts).length > 0 && <p className="rf-best"><span>generally best for:</span>{bestFor(facts).map(b => <b key={b}>{b}</b>)}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
             <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
