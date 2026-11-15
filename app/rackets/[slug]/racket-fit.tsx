@@ -6,6 +6,7 @@ import { fitVerdict, bestFor, levelBacking, levelSources, styleLean } from "../.
 import { quickMatch, choiceHref, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
+import { V2Footer } from "../../v2-footer";
 import { platformName } from "../../../lib/source-label";
 import { displayName } from "../../../lib/brand-name";
 import { productHref, niche, catalogPath } from "../../../lib/niche";
@@ -107,8 +108,9 @@ export default async function RacketFit(props: {
   const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
   const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
   const dated: { at: string; card: ReviewCard }[] = [
-    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: lv(r.playerLevel), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: r.reviewText, verbatim: true } })),
-    ...ctx.data.external.filter(e => e.racketId === props.racketId).map(e => {
+    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: lv(r.playerLevel), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: r.reviewText, verbatim: false } })),
+    // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
+    ...ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube").map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
       const text = e.summary ? plainSummary(e.summary) : (!english && e.excerptTranslation) || e.excerpt || "";
       const verbatim = !e.summary && english && !!e.excerpt;
@@ -130,7 +132,7 @@ export default async function RacketFit(props: {
   const box = (on: boolean) => <i className="rf-box" aria-hidden="true">{on ? "✓" : ""}</i>;
   const armLink = (label: string) => <Link href={picked ? at({ ...base, arm: !choice.arm }) : pickHref({ ...base, arm: true })} scroll={false} replace aria-pressed={picked && choice.arm} className="rf-arm">{box(picked && choice.arm)}{label}</Link>;
 
-  return <main className={`rf ${props.fontClass}`}>
+  return <><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="rf-wrap">
       {picked ? <a className="rf-back" href={choiceHref(choice)}>← back to your matches</a> : <a className="rf-back" href={catalogPath}>{`← all ${niche.words.many}`}</a>}
@@ -232,5 +234,5 @@ export default async function RacketFit(props: {
         <p className="rf-made">made by people who own too many rackets 🎾</p>
       </footer>
     </div>
-  </main>;
+  </main><V2Footer/></>;
 }

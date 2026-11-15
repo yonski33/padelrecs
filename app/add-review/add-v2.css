@@ -1,0 +1,84 @@
+/* Add a review, design v2 (Claude Design mockup). Scoped to .ar; never write .ar inside the nest. */
+body:has(main.ar) { background: #fbfaf6; }
+.ar {
+  --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --soft: #4a4740; --tile: #f3f1ea; --acc: oklch(0.88 0.17 125); --neg: #a8432a;
+  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
+  max-width: 1040px; margin: 0 auto; padding: 28px 20px 64px; color: var(--ink); font: 16px/1.5 var(--body);
+  a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .ar-head { margin-bottom: 22px; }
+  h1 { font: 800 clamp(32px, 4.4vw, 46px)/1.02 var(--display) !important; letter-spacing: -0.025em !important; margin: 0 !important; color: var(--ink) !important; }
+  .ar-head p { margin: 6px 0 0; font-size: 16px; max-width: 560px; text-wrap: pretty; color: var(--ink) !important; }
+  .ar-grid { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+  .ar-steps { flex: 999 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ar-card { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .ar-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .ar-h h2 { font: 800 19px var(--display) !important; margin: 0 !important; color: var(--ink) !important; }
+  .ar-h span { font: 11px var(--mono); color: var(--mute); }
+  .ar-h span.req { color: var(--neg); }
+  .ar-picked { display: flex; gap: 12px; align-items: center; border: 2px solid var(--ink); border-radius: 10px; padding: 8px 12px; background: oklch(0.97 0.04 125); }
+  .ar-picked b { flex: 1; min-width: 0; }
+  .ar-picked button { all: unset; cursor: pointer; font: 12px var(--mono); text-decoration: underline; white-space: nowrap; }
+  .ar-pic { width: 36px; height: 44px; flex: none; background: var(--paper); border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .ar-pic.sm { width: 28px; height: 34px; background: var(--tile); border-radius: 4px; }
+  .ar-pic img { height: 88%; width: auto; max-width: 100%; object-fit: contain; }
+  .ar-q, .ar-row input, .ar textarea { width: 100%; box-sizing: border-box; border: 2px solid var(--ink) !important; border-radius: 8px; outline: none; background: var(--bg) !important; color: var(--ink); box-shadow: none !important; }
+  .ar-q { padding: 9px 12px; font: 14px var(--mono); }
+  .ar-q:focus, .ar-row input:focus, .ar textarea:focus { box-shadow: 0 0 0 3px var(--acc) !important; }
+  .ar-matches { display: flex; flex-direction: column; margin-top: -4px; }
+  .ar-matches button { all: unset; cursor: pointer; display: flex; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 6px; font-size: 15px; }
+  .ar-matches button:hover, .ar-matches button:focus-visible { background: oklch(0.97 0.04 125); }
+  .ar-small { margin: 0; font-size: 13px; color: var(--soft); text-wrap: pretty; }
+  .ar-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+  .ar-verdicts button { all: unset; cursor: pointer; border: 2px solid var(--ink); border-radius: 10px; padding: 12px; text-align: center; background: var(--paper); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .ar-verdicts button span { font-size: 26px; line-height: 1; }
+  .ar-verdicts button b { font: 800 16px var(--display); white-space: nowrap; }
+  .ar-verdicts button[aria-pressed="true"] { box-shadow: 3px 3px 0 var(--ink); }
+  .ar-verdicts .positive[aria-pressed="true"] { background: oklch(0.9 0.1 145); } .ar-verdicts .mixed[aria-pressed="true"] { background: oklch(0.93 0.12 95); } .ar-verdicts .negative[aria-pressed="true"] { background: oklch(0.9 0.08 30); }
+  .ar-row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 10px; align-items: center; }
+  .ar-row > span { font: 12px var(--mono); color: var(--mute); }
+  .ar-row input { padding: 7px 10px; font: 15px var(--body); }
+  .ar-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ar-pills button { all: unset; cursor: pointer; white-space: nowrap; padding: 4px 11px; border: 1.5px solid var(--ink); border-radius: 999px; font-size: 14px; background: var(--paper); }
+  .ar-pills button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .ar-trait { display: grid; grid-template-columns: 110px auto minmax(0, 1fr); gap: 10px; align-items: center; }
+  .ar-trait b { font-size: 15px; }
+  .ar-trait > div { display: flex; gap: 4px; }
+  .ar-trait > div button { all: unset; cursor: pointer; width: 22px; height: 22px; border: 2px solid var(--ink); border-radius: 50%; background: var(--paper); box-sizing: border-box; }
+  .ar-trait > div button[aria-pressed="true"] { background: oklch(0.72 0.15 145); }
+  .ar-trait > span { font: 12px var(--mono); color: var(--soft); }
+  .ar-prompts { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ar-prompts button { all: unset; cursor: pointer; white-space: nowrap; padding: 2px 9px; border: 1.5px dashed var(--ink); border-radius: 6px; font-size: 13px; }
+  .ar-prompts button:hover { background: oklch(0.93 0.14 100); }
+  .ar textarea { padding: 10px 12px; font: 16px/1.5 var(--body); resize: vertical; }
+  .ar-side { flex: 1 1 300px; max-width: 360px; display: flex; flex-direction: column; gap: 12px; position: sticky; top: 100px; }
+  .ar-k { margin: 0; font: 12px var(--mono); color: var(--mute); }
+  .ar-pv { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
+  .ar-pvh { display: flex; gap: 10px; align-items: center; padding: 8px 14px; border-bottom: 1.5px dashed #c9c5ba; background: var(--tile); }
+  .ar-pvh b { font-size: 14px; flex: 1; min-width: 0; }
+  .ar-pill { flex: none; white-space: nowrap; font: 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--paper); }
+  .ar-pill.positive { background: oklch(0.9 0.1 145); } .ar-pill.mixed { background: oklch(0.93 0.12 95); } .ar-pill.negative { background: oklch(0.9 0.08 30); }
+  .ar-pvb { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .ar-who { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+  .ar-who > span:first-child { width: 28px; height: 28px; border-radius: 50%; background: oklch(0.88 0.12 100); border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+  .ar-who .m { color: var(--mute); }
+  .ar-pvb > p { margin: 0; font-size: 15px; text-wrap: pretty; overflow-wrap: anywhere; } .ar-pvb > p.ph { color: #8a867c; }
+  .ar-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ar-tags span { font: 11px var(--mono); border: 1.5px solid #c9c5ba; border-radius: 6px; padding: 0 6px; color: var(--soft); }
+  .ar-submit { all: unset; cursor: pointer; text-align: center; padding: 12px; border: 2px solid var(--ink); border-radius: 10px; background: var(--acc); font: 800 17px var(--display); box-shadow: 4px 4px 0 var(--ink); }
+  .ar-submit:disabled { cursor: not-allowed; background: #eeece5; color: #8a867c; box-shadow: none; }
+  .ar-err { margin: 0; color: var(--neg); font-size: 14px; }
+  .ar-done { max-width: 620px; margin: 40px auto 0; border: 2px solid var(--ink); border-radius: 14px; background: var(--acc); box-shadow: 5px 5px 0 var(--ink); padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .ar-done > div:first-child { font-size: 40px; line-height: 1; }
+  .ar-done h1 { font-size: 34px !important; line-height: 1.05 !important; }
+  .ar-done p { margin: 0; font-size: 16px; }
+  .ar-done > div:last-child { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .ar-again { all: unset; cursor: pointer; white-space: nowrap; padding: 9px 14px; border-radius: 8px; border: 2px solid var(--ink); background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; }
+  .ar-done a { text-decoration: none; padding: 9px 14px; border-radius: 8px; border: 2px solid var(--ink); background: var(--paper); font-weight: 700; font-size: 14px; }
+  @media (max-width: 760px) {
+    .ar-side { position: static; max-width: none; }
+    .ar-row, .ar-trait { grid-template-columns: 1fr; gap: 6px; }
+    .ar-trait { grid-template-columns: 96px auto minmax(0, 1fr); }
+  }
+}

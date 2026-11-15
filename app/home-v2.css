@@ -1,7 +1,6 @@
 /* PadelRecs home, design language v2 (owner 2026-11-15: "match the mockup 100%", the Claude Design home with Quick match;
    site-jobs/quick-take-mockups/claude-design-home-quickmatch-bundle.html). Cream paper, ink borders with offset shadows,
    lime accent, mono small print. The page has the mockup's own header and footer, so the site's are hidden here. */
-body:has(main.hv2) > .site-footer { display: none; }
 body:has(main.hv2) { background: #fbfaf6; }
 
 .hv2 {
@@ -86,11 +85,6 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-own p { margin: 0 0 12px; font-size: 14px; }
   .hv2-own p.t { font: 800 18px/1.2 var(--display); margin: 0 0 4px; }
   .hv2-own a { display: inline-block; background: var(--ink); color: var(--bg); text-decoration: none; padding: 7px 12px; border-radius: 8px; font-weight: 700; font-size: 14px; }
-
-  /* Footer */
-  .hv2-foot { border-top: 2px solid var(--ink); padding: 18px 20px; }
-  .hv2-footin { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; }
-  .hv2-foot nav { display: flex; gap: 16px; flex-wrap: wrap; font: 13px var(--mono); }
 
   @media (max-width: 760px) {
     .hv2-side { max-width: none; }

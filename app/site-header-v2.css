@@ -32,3 +32,15 @@
     .hv2-find { order: 4; flex: 1 1 100%; }
   }
 }
+
+/* Site-wide hover on PadelRecs (owner 2026-11-15): the mockups' yellow marker behind any hovered link. Dark buttons keep
+   readable ink text on the marker. */
+body:has(.hv2-top) a:hover { background: oklch(0.93 0.14 100); }
+body:has(.hv2-top) :is(.hv2-add, .rf-btn, .hv2-own a, .hw-cta a, .ar-again):hover { background: oklch(0.93 0.14 100) !important; color: #151515 !important; }
+
+/* Design-v2 footer (app/v2-footer.tsx); pages that show it hide the site's. */
+body:has(.v2-foot) > .site-footer { display: none; }
+.v2-foot { border-top: 2px solid #151515; padding: 18px 20px; background: #fbfaf6; color: #151515; font: 14px/1.5 var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; }
+.v2-footin { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.v2-foot nav { display: flex; gap: 16px; flex-wrap: wrap; font: 13px var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; }
+.v2-foot a { color: #151515; text-decoration-thickness: 2px; text-underline-offset: 3px; }

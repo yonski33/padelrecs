@@ -13,7 +13,7 @@ import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { qtFontVars } from "./qt-fonts";
-import { amazonLinksOn } from "../lib/amazon-offer";
+import { V2Footer } from "./v2-footer";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
  *  see the rackets according to what you need, not what we set"). Choices live in the URL (?style=&level=&arm=1) and the list
@@ -129,9 +129,6 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
       </div>
     </div>
 
-    <footer className="hv2-foot"><div className="hv2-footin">
-      <span>we read forums, YouTube &amp; your reviews, count the verdicts, write one honest line. no sponsored picks 🎾</span>
-      <nav aria-label="Footer"><a href="/about">about</a><a href="/about">how we score</a>{amazonLinksOn() && <a href="/affiliate-disclosure">affiliate note</a>}<a href="/contact">contact</a></nav>
-    </div></footer>
+    <V2Footer/>
   </main>;
 }
