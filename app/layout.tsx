@@ -1,6 +1,7 @@
-// No global force-dynamic (audit 2026-11-15, #9): pages that read their query or cookies render per request on their
-// own (and Vercel's CDN keeps public ones for a minute, next.config.ts); the rest are cached and refreshed hourly or on an
-// admin write (app/funtimes/auth.ts adminRedirect).
+// Every page renders per request (the layout reads the rankings for the header menu from the database), and a build
+// never touches the database, so CI and env-less builds pass. Vercel's CDN keeps public pages for a minute
+// (next.config.ts); an admin write refreshes at once (app/funtimes/auth.ts adminRedirect).
+import { connection } from "next/server";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree, Source_Serif_4, Barlow_Condensed } from "next/font/google";
@@ -28,6 +29,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
   twitter: { card: "summary_large_image" } };
 
 export default async function Layout({children}: {children: React.ReactNode}) {
+  await connection(); // per request, never at build time (no DATABASE_URL in CI)
   const ranked = await rankedSlugs();
   return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}<head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/></head>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
     <SiteHeader ranked={ranked}/>
