@@ -1,16 +1,30 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { traitScores, dotsFor, MIN_TAGGED, type TraitInput } from "../lib/trait-score";
+import { traitScores, dotsFor, MIN_EVIDENCE as MIN_TAGGED, type TraitInput } from "../lib/trait-score";
 
 const r = (id: string, tagged: number, tags: Record<string, number>, override?: TraitInput["override"]): TraitInput => ({ id, tagged, tags, override });
 
-test("ranks against the catalog: most power mentions per report scores highest", () => {
-  const m = traitScores([r("a", 40, { "easy power": 20 }), r("b", 40, { "easy power": 8 }), r("c", 40, { "easy power": 3 })]);
-  assert.equal(m.get("a")!.power!.score, 99);
-  assert.equal(m.get("c")!.power!.score, 0);
-  assert.ok(m.get("b")!.power!.score > 0 && m.get("b")!.power!.score < 99);
+test("fixed scale: a typical racket is 3 dots, clearly praised ones 4-5, and many can share 5", () => {
+  // Balanced praise (control as often as power), so the style lean stays out of it.
+  const typical = Array.from({ length: 9 }, (_, i) => r(`t${i}`, 40, { "easy power": 8 + (i % 3), "good control": 8 + (i % 3) }));
+  const m = traitScores([...typical, r("a", 40, { "easy power": 30, "good control": 30 }), r("b", 40, { "easy power": 29, "good control": 29 })]);
+  assert.equal(m.get("t4")!.power!.dots, 3);
   assert.equal(m.get("a")!.power!.dots, 5);
-  assert.equal(m.get("c")!.power!.dots, 1);
+  assert.equal(m.get("b")!.power!.dots, 5, "no percentile: two standouts both get 5");
+});
+
+test("a round, low-balance racket praised for control gets Control 4+ (owner's sanity check)", () => {
+  const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "good control": 12 + i, "easy power": 10 }));
+  const ctrl: TraitInput = { ...r("ctrl", 50, { "good control": 24, "great in defence": 8, "easy power": 4 }), specs: { shape: "Round", balance: "Low" } };
+  const s = traitScores([...field, ctrl]).get("ctrl")!;
+  assert.ok(s.control!.dots >= 4 && s.defence!.dots >= 4, `control ${s.control!.dots}, defence ${s.defence!.dots}`);
+});
+
+test("specs alone move a trait at most one dot", () => {
+  const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "easy power": 10, "good control": 10, "fast at the net": 6 }));
+  const d: TraitInput = { ...r("d", 40, { "easy power": 10, "good control": 10, "fast at the net": 6 }), specs: { shape: "Diamond", balance: "High", weight: "375 g" } };
+  const s = traitScores([...field, d]).get("d")!;
+  assert.equal(s.power!.dots, 4); assert.equal(s.speed!.dots, 2);
 });
 
 test("negatives count against: vibration lowers arm comfort", () => {
@@ -25,9 +39,15 @@ test("thin data: no score under the report or mention bar", () => {
   assert.ok(m.get("ok")!.forgiveness);
 });
 
-test("smoothing: a few reports with all mentions don't beat many reports with most", () => {
-  const m = traitScores([r("few", 8, { "good control": 8 }), r("many", 80, { "good control": 70 }), r("low", 60, { "good control": 6 })]);
+test("smoothing: a few reports with all mentions stay close to the middle", () => {
+  const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "good control": 10 + i, "easy power": 10 + i }));
+  const m = traitScores([...field, r("few", 8, { "good control": 6, "easy power": 6 }), r("many", 80, { "good control": 60, "easy power": 60 })]);
   assert.ok(m.get("many")!.control!.score > m.get("few")!.control!.score);
+});
+
+test("1 dot needs complaints: without any, a weak trait stops at 2", () => {
+  const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "easy power": 20 + i }));
+  assert.equal(traitScores([...field, r("weak", 40, { "easy power": 2 })]).get("weak")!.power!.dots, 2);
 });
 
 test("an owner's override wins, even on thin data", () => {

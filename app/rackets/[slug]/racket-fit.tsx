@@ -107,15 +107,18 @@ export default async function RacketFit(props: {
   const qtRow: Record<Trait, { chip: string; line: string } | undefined> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
   // Lines the owner wrote in the admin area stay even when the data is thin.
   const manualText = new Set(TRAITS.map(t => tr.edits?.traits[t]?.text).filter((x): x is string => !!x));
+  const me = ctx.data.rackets.find(x => x.id === props.racketId);
   const traits = TRAITS.map(t => {
     const sc = tr.scores?.[t] ?? null, q = qtRow[t];
     // The hand-written line must agree with the dots: a strong chip beside 1–2 dots, or a weak/divided one beside 4–5, loses.
     const tone = q ? chipTone(q.chip as Chip) : null;
     const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
     // A count line says where the dots put it, so "5 players say it's great in defence" never sits beside 1 dot unexplained.
-    const counted = countLine[t](), rel = sc && !sc.set ? (sc.dots <= 2 ? " Fewer than most rackets get for their number of reports." : sc.dots >= 4 ? " More than most rackets get for their number of reports." : "") : "";
-    // The owner's own line (admin area) wins over everything.
-    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (counted ? counted + rel : null) ?? (sc ? null : "Not enough reports on this yet.");
+    // Plain words under the bar (owner 2026-11-15): what players say, what reviewers say, and the specs when they lean it.
+    const NOUN: Record<Trait, string> = { forgiveness: "the sweet spot", power: "the power", control: "the control", defence: "its defence", arm: "how it treats the arm", speed: "how quick it is" };
+    const ytN = sc?.yt ?? 0, specWords = sc && Math.abs(sc.spec) >= 0.3 ? [me?.shape?.toLowerCase(), me?.balance ? `${me.balance.toLowerCase()} balance` : null].filter(Boolean).join(", ") : "";
+    const counted = [countLine[t]()?.replace(/\.$/, ""), ytN ? `${ytN} ${ytN === 1 ? "reviewer praises" : "reviewers praise"} ${NOUN[t]}` : null, specWords || null].filter(Boolean).join(" · ");
+    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (counted ? `${counted}.` : null) ?? (sc ? null : "Not enough reports on this yet.");
     return [TRAIT_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 

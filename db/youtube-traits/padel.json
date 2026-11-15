@@ -1,0 +1,376 @@
+{
+ "siux-electra-pro-st4-2025": {
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  },
+  "control": {
+   "plus": 5,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 2
+  },
+  "power": {
+   "plus": 3,
+   "minus": 2
+  },
+  "defence": {
+   "plus": 3,
+   "minus": 1
+  },
+  "forgiveness": {
+   "plus": 1,
+   "minus": 1
+  }
+ },
+ "nox-at10-18k-2025": {
+  "defence": {
+   "plus": 3,
+   "minus": 0
+  },
+  "forgiveness": {
+   "plus": 1,
+   "minus": 1
+  },
+  "power": {
+   "plus": 3,
+   "minus": 0
+  },
+  "control": {
+   "plus": 1,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "nox-at10-genius-12k-2025": {
+  "power": {
+   "plus": 3,
+   "minus": 0
+  },
+  "control": {
+   "plus": 2,
+   "minus": 1
+  },
+  "arm": {
+   "plus": 2,
+   "minus": 0
+  },
+  "defence": {
+   "plus": 3,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "nox-at10-genius-12k-alum-xtrem-2026": {
+  "speed": {
+   "plus": 2,
+   "minus": 0
+  },
+  "defence": {
+   "plus": 2,
+   "minus": 0
+  },
+  "control": {
+   "plus": 2,
+   "minus": 0
+  },
+  "power": {
+   "plus": 2,
+   "minus": 0
+  },
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "nox-at10-genius-18k-2026": {
+  "arm": {
+   "plus": 2,
+   "minus": 1
+  },
+  "forgiveness": {
+   "plus": 1,
+   "minus": 0
+  },
+  "power": {
+   "plus": 2,
+   "minus": 0
+  },
+  "control": {
+   "plus": 1,
+   "minus": 1
+  },
+  "defence": {
+   "plus": 2,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "adidas-metalbone-ctrl-3-4-2025": {
+  "defence": {
+   "plus": 1,
+   "minus": 0
+  },
+  "power": {
+   "plus": 2,
+   "minus": 0
+  },
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  },
+  "control": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "adidas-metalbone-ctrl-2026": {
+  "power": {
+   "plus": 3,
+   "minus": 0
+  },
+  "control": {
+   "plus": 2,
+   "minus": 1
+  },
+  "defence": {
+   "plus": 3,
+   "minus": 0
+  },
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "babolat-counter-viper-2025": {
+  "control": {
+   "plus": 2,
+   "minus": 0
+  },
+  "defence": {
+   "plus": 2,
+   "minus": 0
+  },
+  "power": {
+   "plus": 4,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 0
+  },
+  "forgiveness": {
+   "plus": 1,
+   "minus": 0
+  },
+  "arm": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "bullpadel-vertex-05-geo-2026": {
+  "power": {
+   "plus": 2,
+   "minus": 0
+  },
+  "defence": {
+   "plus": 3,
+   "minus": 0
+  }
+ },
+ "bullpadel-vertex-05-hybrid-2026": {
+  "defence": {
+   "plus": 4,
+   "minus": 0
+  },
+  "arm": {
+   "plus": 1,
+   "minus": 0
+  },
+  "control": {
+   "plus": 2,
+   "minus": 1
+  },
+  "power": {
+   "plus": 2,
+   "minus": 0
+  }
+ },
+ "siux-diablo-pro-4-2025": {
+  "arm": {
+   "plus": 2,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "adidas-metalbone-carbon-ctrl-3-4-2025": {
+  "control": {
+   "plus": 2,
+   "minus": 0
+  },
+  "defence": {
+   "plus": 1,
+   "minus": 0
+  },
+  "power": {
+   "plus": 0,
+   "minus": 1
+  },
+  "arm": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "oxdog-ultimate-tour-x-2026": {
+  "power": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "bullpadel-vertex-05-2026": {
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  },
+  "power": {
+   "plus": 2,
+   "minus": 0
+  },
+  "forgiveness": {
+   "plus": 1,
+   "minus": 0
+  },
+  "speed": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "head-coello-motion-2026": {
+  "power": {
+   "plus": 1,
+   "minus": 0
+  },
+  "control": {
+   "plus": 1,
+   "minus": 0
+  },
+  "forgiveness": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "head-coello-pro-2026": {
+  "speed": {
+   "plus": 0,
+   "minus": 1
+  },
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "wilson-endure-pro-v1-2026": {
+  "power": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "head-radical-pro-2026": {
+  "control": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "starvie-triton-plus-balance-2026": {
+  "power": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "adidas-metalbone-hrd-plus-3-5-2026": {
+  "forgiveness": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "bullpadel-vertex-04-2025": {
+  "forgiveness": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "nox-at10-genius-12k-alum-xtrem-lite-2026": {
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "bullpadel-neuron-02-edge-2027": {
+  "control": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "babolat-counter-viper-2026": {
+  "power": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "adidas-metalbone-3-5-2026": {
+  "arm": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "nox-ea10-ventus-hybrid-12k-2026": {
+  "power": {
+   "plus": 1,
+   "minus": 0
+  },
+  "control": {
+   "plus": 1,
+   "minus": 0
+  },
+  "arm": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "oxdog-hyper-pro-plus-2-0-2026": {
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  }
+ },
+ "oxdog-ultimate-pro-light-2026": {
+  "control": {
+   "plus": 1,
+   "minus": 0
+  }
+ },
+ "oxdog-ultimate-pro-2025": {
+  "arm": {
+   "plus": 0,
+   "minus": 1
+  }
+ }
+}

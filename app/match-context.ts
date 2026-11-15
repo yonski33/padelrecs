@@ -6,6 +6,8 @@ import { finderPool, type FinderProduct } from "../lib/finder";
 import { LEVELS, type Level, type LevelEvidence } from "../lib/quick-match";
 import { combinedBand, type FitFacts, type LevelSources } from "../lib/fit-verdict";
 import padelLevels from "../db/level-sources/padel.json";
+import padelYoutubeTraits from "../db/youtube-traits/padel.json";
+import type { Trait } from "../lib/trait-score";
 import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
@@ -16,6 +18,7 @@ import { traitScores, type TraitInput } from "../lib/trait-score";
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
 /** Maker and YouTube levels by product slug (db/level-sources/<niche>.json), beside the players' band. */
 const LEVEL_SOURCES: Record<string, Record<string, LevelSources>> = { padel: padelLevels as unknown as Record<string, LevelSources> };
+const YOUTUBE_TRAITS: Record<string, Record<string, Partial<Record<Trait, { plus: number; minus: number }>>>> = { padel: padelYoutubeTraits };
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
   const [data, sigs, takes, live, overrides] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides()]);
@@ -71,6 +74,10 @@ export const matchContext = cache(async () => {
     for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
   }
   for (const id of listed) if (!tagIn.has(id)) tagIn.set(id, { id, tagged: 0, tags: {} });
+  // YouTube reviewers' mentions (db/youtube-traits, one per channel) and the specs as a small prior (lib/trait-score.ts).
+  const ytTraits = YOUTUBE_TRAITS[niche.id] ?? {};
+  for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
+    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
   const traitAuto = traitScores([...tagIn.values()]);
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
