@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic";
-import { pageContent, PAGE_MIN } from "../../../lib/racket-page";
+import { pageContent, pageTier } from "../../../lib/racket-page";
 import { isLight } from "../../../lib/look";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
@@ -76,7 +76,7 @@ export async function generateMetadata({params, searchParams}: {params: Promise<
   const reportsN = data.external.filter(e => e.racketId === r.id).length + data.reviews.filter(x => x.racketId === r.id).length;
   // Racket pages with their own words (lib/racket-page.ts, owner's final mock): "<Brand Model Year> review" and the bottom line.
   const pc = pageContent(r.slug);
-  if (pc && reportsN >= PAGE_MIN) {
+  if (pc && pageTier(reportsN)) {
     const t = `${name} review`, images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
     return { title: { absolute: t }, description: pc.bottom, alternates: { canonical: productHref(r) }, openGraph: { title: t, description: pc.bottom, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
   }

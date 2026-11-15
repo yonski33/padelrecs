@@ -25,7 +25,7 @@ import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
-import { pageContent, PAGE_MIN, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
+import { pageContent, pageTier, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
 import { countWord } from "../../../lib/fit-card";
 import type { QtReport, QtReview } from "./quick-take";
 
@@ -204,7 +204,7 @@ export default async function RacketFit(props: {
   const card = cardData ? { ...cardData, links: Object.fromEntries(cardData.catches.flatMap(c => c.alt ? [c.alt.slug] : []).flatMap(slug => {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
-  const page = pageContent(props.slug);
+  const page = pageContent(props.slug), tier = pageTier(reports.length);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
   const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t]?.dots ?? 0); };
   const shortOf = (r: ReturnType<typeof racketOf>) => displayName(r.name, brand(r.brandId)).replace(/\s+(19|20)\d\d$/, "");
@@ -241,13 +241,13 @@ export default async function RacketFit(props: {
         <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card}/>
       </section>
 
-      {page && total >= PAGE_MIN && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
+      {page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
 
       <section className="rp-body">
         <div className="rp-main">
-          {page && total >= PAGE_MIN && <div>
-            <div className="rf-h"><h2>Why yes, why not</h2><span>from player reports &amp; YouTube</span></div>
-            <FitYesNo yes={page.yes} no={page.no}/>
+          {page && tier && <div>
+            <div className="rf-h"><h2>Why yes, why not</h2><span>{tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
+            <FitYesNo yes={page.yes} no={page.no} tier={tier}/>
           </div>}
 
           <div>

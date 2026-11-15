@@ -27,8 +27,13 @@ export function marked(t: string): { text: string; mark: boolean }[] {
   return t.split("==").map((text, i) => ({ text, mark: i % 2 === 1 })).filter(x => x.text);
 }
 
-/** Below this many reports a racket shows no bottom line or Why yes / Why not (owner's build rules). */
-export const PAGE_MIN = 20;
+/** Content tiers (owner 2026-11-15, counted on the racket's own reports): 10+ the full version (bottom line, 3 items a side
+ *  and "+N more"); 6–9 a short one (bottom line, 1–2 items a side, "based on N reports"); under 6 none of it shows. */
+export const PAGE_FULL = 10, PAGE_SHORT = 6;
+export type PageTier = "full" | "short";
+export const pageTier = (reports: number): PageTier | null => reports >= PAGE_FULL ? "full" : reports >= PAGE_SHORT ? "short" : null;
+/** How many items a side the short tier shows. */
+export const SHORT_ITEMS = 2;
 
 /** Engine axis cut-offs for the style chip and copy: below CONTROL a control racket, above POWER a power racket, else all-round. */
 export const AXIS_CONTROL = 0.42, AXIS_POWER = 0.58;

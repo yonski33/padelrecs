@@ -80,13 +80,19 @@ test("racket page: 'matters for you' picks the arm first, at most 2 per column, 
  assert.deepEqual(marked("a ==b== c"), [{ text: "a ", mark: false }, { text: "b", mark: true }, { text: " c", mark: false }]);
 });
 
-test("racket page content follows the rules: 3-4 items a side, one highlight, <=105 chars, no 'owners' or '% liked'", async () => {
+test("racket page tiers: 10+ full, 6-9 short, under 6 none", async () => {
+ const { pageTier } = await import("../lib/racket-page");
+ assert.equal(pageTier(10), "full"); assert.equal(pageTier(9), "short"); assert.equal(pageTier(6), "short"); assert.equal(pageTier(5), null);
+});
+
+test("racket page content follows the rules: 1-4 items a side, one highlight, <=105 chars, no 'owners' or '% liked'", async () => {
  const { default: page } = await import("../db/racket-page/padel.json", { with: { type: "json" } });
  for (const [slug, v] of Object.entries(page as Record<string, { tagline: string; bottom: string; yes: { t: string; src: string[] }[]; no: { t: string; src: string[] }[] }>)) {
   for (const t of [v.tagline, v.bottom, ...v.yes.map(i => i.t.replace(/==/g, "")), ...v.no.map(i => i.t.replace(/==/g, ""))]) {
    assert.ok(t.length <= 105, `${slug}: too long: ${t}`);
    assert.ok(!/owner|% (liked|loved)|reddit|brand says/i.test(t), `${slug}: banned words: ${t}`);
   }
-  for (const side of [v.yes, v.no]) { assert.ok(side.length >= 3 && side.length <= 4, `${slug}: 3-4 items`); for (const i of side) { assert.equal(i.t.split("==").length, 3, `${slug}: one highlight: ${i.t}`); assert.ok(i.src.length > 0); } }
+  // Full tier: 3–4 a side; short tier (6–9 reports): 1–2. Every item rests on 2+ different reports.
+  for (const side of [v.yes, v.no]) { assert.ok(side.length >= 1 && side.length <= 4, `${slug}: 1-4 items`); for (const i of side) { assert.equal(i.t.split("==").length, 3, `${slug}: one highlight: ${i.t}`); assert.ok(new Set(i.src).size >= 2, `${slug}: 2+ sources: ${i.t}`); } }
  }
 });

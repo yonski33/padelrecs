@@ -12,7 +12,7 @@ import { fineWords } from "../../../lib/fine-tune";
 import { niche } from "../../../lib/niche";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, type CardContent } from "../../../lib/fit-card";
-import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, type PageItem } from "../../../lib/racket-page";
+import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
 
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -228,11 +228,11 @@ export function BeforePicks({ children }: { children: ReactNode }) {
 
 /** "Why yes, why not" (owner's final mock): 3 items per column and "+N more" (in the HTML, opened by a tap); with picks, up to 2
  *  items per column that speak to them get a "matters for you" tag. */
-export function FitYesNo({ yes, no }: { yes: PageItem[]; no: PageItem[] }) {
+export function FitYesNo({ yes, no, tier = "full" }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier }) {
   const { p: { choice, picked } } = use(), picks = picked ? pickTags(choice) : [];
   return <div className="rp-yn">{([["yes", "✓", "Why yes", yes], ["no", "!", "Why not", no]] as const).map(([side, icon, title, items]) => {
     // A "matters for you" item never hides under "+N more": it takes the place of the last untagged one shown.
-    const hot = mattersFor(items, picks), list = [...items];
+    const hot = mattersFor(items, picks), list = tier === "short" ? items.slice(0, SHORT_ITEMS) : [...items];
     for (const h of list.slice(SHOWN_ITEMS).filter(x => hot.has(x.title))) {
       const out = list.slice(0, SHOWN_ITEMS).reverse().find(x => !hot.has(x.title)); if (!out) break;
       list.splice(list.indexOf(h), 1); list.splice(list.indexOf(out), 0, h); }
