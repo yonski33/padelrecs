@@ -15,6 +15,7 @@ import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type Qui
 import { niche, catalogPath, productHref } from "../lib/niche";
 import { fitVerdict, ARM_BAR, MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { rowOfFamily } from "../lib/compare-pairs";
+import { newThisWeek } from "../lib/new-this-week";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
@@ -44,7 +45,7 @@ export default async function HomeV2({ choice, older: allYears = false }: { choi
   const photo = (r: (typeof data.rackets)[number]) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const total = data.reviews.length + data.external.length;
-  const added = [...data.reviews, ...data.external].filter(x => Date.parse(x.createdAt) >= now - 7 * DAY).length;
+  const added = newThisWeek(data, now);
   // With picks, rows are ordered by the match % (lib/match-score.ts), which always agrees with the fit word; quick match picks
   // the candidates. Thin data has no % and goes last. No picks: quick match's own order (Player score).
   // With picks, every model in the pool is a candidate (a shape pick hides other shapes, and unknown ones), ordered by the

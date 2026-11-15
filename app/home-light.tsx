@@ -2,6 +2,7 @@
 // page, one soft accent. A pill bar of types and rankings, a small centred hero with the search, then a compact
 // leaderboard (rank, small photo, name, one grey line, a tiny meta line, the signal) with short #1–#5 lists beside it.
 // Shown with ?home=d until the owner picks a direction; every number is counted from published reviews.
+import { newThisWeek } from "../lib/new-this-week";
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
 import { niche, productHref } from "../lib/niche";
@@ -57,7 +58,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
   const link = (extra: Record<string, string | undefined>) => { const q = new URLSearchParams(Object.entries({ ...keep, ...f, show: undefined, ...extra }).filter(([, v]) => v) as [string, string][]); return q.size ? `/?${q}#board` : "/#board"; };
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name;
   const everything = [...data.reviews, ...data.external];
-  const week = [...data.reviews.map(r => r.createdAt), ...data.external.map(webDate)].filter(d => Date.parse(d) >= now - 7 * DAY).length;
+  const week = newThisWeek(data, now); // one definition on every page (lib/new-this-week.ts)
 
   // Side lists: the newest opinions (one per product), then the top five of two rankings.
   const seen = new Set<string>();

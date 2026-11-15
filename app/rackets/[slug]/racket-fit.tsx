@@ -18,6 +18,9 @@ import { displayName } from "../../../lib/brand-name";
 import { productHref, niche, catalogPath } from "../../../lib/niche";
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
 import { amazonPhoto } from "../../../lib/amazon-photos";
+import { similarProducts, tagProfiles } from "../../../lib/similar";
+import { rowOfFamily, modelFamily } from "../../../lib/compare-pairs";
+import { SUITS_OK } from "../../../lib/fit-verdict";
 import { QuickVoteLine } from "./quick-take-composer";
 import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
@@ -146,10 +149,30 @@ export default async function RacketFit(props: {
   // Better matches: quick match with the visitor's picks (or the default order), from the catalog, without this racket.
   // With picks, the 4 alternatives with the best match % (the same number the home shows); without, quick match's order.
   const pctOf = (id: string) => ctx.matchPct(choice).get(id) ?? null;
-  const others = (() => {
-    const c = quickMatch(ctx.pool, ctx.finder, picked ? choice : DEFAULT_CHOICE, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: picked ? 25 : 5, rankWeight: ctx.finder.rankWeight }).filter(m => m.product.id !== props.racketId);
-    return (picked ? c.map((m, i) => ({ m, i, p: pctOf(m.product.id) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1) || a.i - b.i).map(x => x.m) : c).slice(0, 4);
+  type Alt = { product: { id: string }; reasons: { tag: string; count: number }[] };
+  const others: Alt[] = (() => {
+    if (picked) {
+      const c = quickMatch(ctx.pool, ctx.finder, choice, { signal: ctx.signal, negativeTags: ctx.bad, level: ctx.level, count: 25, rankWeight: ctx.finder.rankWeight }).filter(m => m.product.id !== props.racketId);
+      return c.map((m, i) => ({ m, i, p: pctOf(m.product.id) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1) || a.i - b.i).map(x => x.m).slice(0, 4);
+    }
+    // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean
+    // and a level in common, one row per model (the year that takes the family's row), described most like this one by
+    // players; the best Player scores fill in when too few are close.
+    const me = ctx.data.rackets.find(r => r.id === props.racketId)!, myShape = ctx.fineOf(me.id)?.shape ?? null, myLean = styleLean(facts).lean;
+    const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
+    const myLevels = levelsOf(me.id);
+    const reportsOf = (id: string) => ctx.facts(id).reports;
+    const base = ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(me) && reportsOf(x.id) >= MIN_FIT_REPORTS
+      && rowOfFamily(x, ctx.data.listed, y => reportsOf(y.id) >= MIN_FIT_REPORTS).shown.id === x.id && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
+    const sameLean = (x: (typeof base)[number]) => !myLean || styleLean(ctx.facts(x.id)).lean === myLean;
+    const sameLevel = (x: (typeof base)[number]) => !myLevels.length || levelsOf(x.id).some(l => myLevels.includes(l));
+    // Strictest first; with fewer than 4, the level and then the style lean are let go (the shape always holds).
+    const pool = [base.filter(x => sameLean(x) && sameLevel(x)), base.filter(sameLean), base].find(p => p.length >= 4) ?? base;
+    const close = similarProducts(me, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 4);
+    const fill = [...pool].sort((a, b) => (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).filter(x => !close.includes(x));
+    return [...close, ...fill].slice(0, 4).map(x => ({ product: { id: x.id }, reasons: [] }));
   })();
+  const brandRow = ctx.data.rackets.find(r => r.id === props.racketId)!, brandOf = ctx.data.brands.find(b => b.id === brandRow.brandId);
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -283,8 +306,10 @@ export default async function RacketFit(props: {
           </div>
 
           <div>
-            <div className="rf-h"><h2>How it plays</h2><span>from player reports, compared with other rackets</span></div>
-            <div className="rf-plays">{traits.map(([k, v, dots]) => { const n = dots ? dots.replace(/○/g, "").length : 0;
+            {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15: one review read "Power: standout"):
+                every claim needs 3+ players. */}
+            <div className="rf-h"><h2>How it plays</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : "from player reports, compared with other rackets"}</span></div>
+            <div className="rf-plays">{traits.map(([k, v, dots]) => { const n = total < 3 ? 0 : dots ? dots.replace(/○/g, "").length : 0;
               return <div key={k} className="rf-prow"><b>{k}</b>
                 {n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? "on" : undefined}/>)}</span> : <span className="rf-segs none"/>}
                 <span className="rf-pnote">{n ? <em className={`t${n}`}>{n === 5 ? "standout" : n === 4 ? "strong" : n === 3 ? "solid" : "players complain"}</em> : null}<span><Rich text={v}/></span></span>
@@ -305,7 +330,7 @@ export default async function RacketFit(props: {
 
         <aside className="rf-side">
           <div>
-            <div className="rf-h"><h2>{altTitle}</h2><a href={choiceHref(picked ? choice : DEFAULT_CHOICE)}>all →</a></div>
+            <div className="rf-h"><h2>{altTitle}</h2>{picked ? <a href={choiceHref(choice)}>all →</a> : brandOf && <a href={`/brands/${brandOf.slug}`}>{`all ${brandOf.name} →`}</a>}</div>
             <ul className="rf-alts">{others.map(m => { const r = racketOf(m.product.id), sig = ctx.signal(r.id), pic = photoOf(r), top = m.reasons[0];
               const why = top ? `${top.tag} · ${top.count} players` : ctx.takes.get(r.id)?.hook ?? null;
               return <li key={r.id}><a href={`${productHref(r)}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`}>
@@ -320,7 +345,7 @@ export default async function RacketFit(props: {
         </aside>
       </section>
 
-      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames}/></section>
+      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}/></section>
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{"built from YouTube reviews, reviews sent to us and padel forum reports · every source linked · "}

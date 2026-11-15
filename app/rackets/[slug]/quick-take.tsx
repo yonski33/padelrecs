@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import "./quick-take.css";
-import { COURT_ROWS, chipRank, chipTone, decisiveRows, distinctPlayers, evidenceLabel, levelBand, monthYear, roundedDown, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake, type Verdict } from "../../../lib/quick-take";
+import { COURT_ROWS, chipRank, chipTone, decisiveRows, distinctPlayers, evidenceLabel, levelBand, monthYear, sentimentWords, sourcePills, spans, MODULE_TITLES, type Chip, type Module, type QuickTake, type Verdict } from "../../../lib/quick-take";
 import { phraseSegments } from "../../../lib/highlights";
 import { platformName } from "../../../lib/source-label";
 import QuickTakeComposer, { QuickVoteLine } from "./quick-take-composer";
@@ -100,7 +100,7 @@ function Hero({ c }: { c: Ctx }) {
       <div className="pills">{[c.shape, String(c.year), ...c.heroSpecs].filter(Boolean).map(x => <span key={x} className="mpill">{x!.toLowerCase()}</span>)}</div>
       <h1 className="name">{`${c.shortName} review`}</h1>
       <p className="hook">{qt.hook.good} <mark>{qt.hook.catch}</mark></p>
-      <p className="intro">We read <mark>{`${roundedDown(c.total)}+ player reports`}</mark> so you don't have to. Here's what they told us.</p>
+      <p className="intro">We read <mark>{`${c.total} player reports`}</mark> so you don't have to. Here's what they told us.</p>
       <p className="byline">Compiled by the {c.site} crew · last edit {day(qt.written)} · <a href="/contact">suggest a fix</a></p>
       <div className="cta">
         {c.buy && <a className="btn ink" href={c.buy.url} target="_blank" rel={c.buy.rel}>{c.buy.label} ↗</a>}

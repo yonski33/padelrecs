@@ -8,6 +8,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { rowOfFamily } from "../../lib/compare-pairs";
+import { newThisWeek } from "../../lib/new-this-week";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
 
@@ -85,7 +86,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
       <section className="lr2-hero">
         <div><h1>Latest reviews</h1>
           <p>{"Straight from players who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes."}</p></div>
-        <p className="lr2-live"><i aria-hidden="true"/>{`${week.length} new this week`}</p>
+        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} new this week`}</p>
       </section>
       <div className="lr2-bar">
         <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", "from players"], ["yt", "youtube summaries"]] as const).map(([k, label]) =>
