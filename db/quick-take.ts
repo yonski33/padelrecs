@@ -26,13 +26,13 @@ export async function quickTakeFor(racketId: string, slug: string): Promise<Quic
 
 /** Every product's quick-take hook and level band, by product id (the home list uses the hook as the product's line and the
  *  band for level fit). Empty when the column is missing. Only blocks that still validate count. */
-export async function quickTakeHooks(): Promise<Map<string, { hook: string; band?: { from: number; to: number } }>> {
+export async function quickTakeHooks(): Promise<Map<string, { hook: string; good: string; catch: string; band?: { from: number; to: number } }>> {
   try {
     const db = await database();
     const rows = await db.execute(sql`select id, quick_take from ${sql.identifier(assertSchemaName(niche.schema))}.rackets where quick_take is not null`);
     const list = (rows as unknown as { rows?: { id: string; quick_take: unknown }[] }).rows ?? (rows as unknown as { id: string; quick_take: unknown }[]);
-    const out = new Map<string, { hook: string; band?: { from: number; to: number } }>();
-    for (const r of list) { const qt = readQuickTake(r.quick_take); if (qt) out.set(r.id, { hook: `${qt.hook.good} ${qt.hook.catch}`, band: qt.level ? { from: qt.level.from, to: qt.level.to } : undefined }); }
+    const out = new Map<string, { hook: string; good: string; catch: string; band?: { from: number; to: number } }>();
+    for (const r of list) { const qt = readQuickTake(r.quick_take); if (qt) out.set(r.id, { hook: `${qt.hook.good} ${qt.hook.catch}`, good: qt.hook.good, catch: qt.hook.catch, band: qt.level ? { from: qt.level.from, to: qt.level.to } : undefined }); }
     return out;
   } catch { return new Map(); }
 }

@@ -23,6 +23,7 @@ import { websiteButton } from "../../../lib/product-links";
 import { ProductArt, SentimentBar, Arrow, SignalInfo, SignalPop } from "../../visual";
 import { score, type Catalog, type Score } from "../../../db/data";
 import { type Signal, MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
+import RankingV2, { type Search } from "./ranking-v2";
 type Product = Catalog["rackets"][number];
 
 const w = niche.words, people = niche.people;
@@ -126,7 +127,7 @@ function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nam
   return faq;
 }
 
-export default async function TopListPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ look?: string }> }) {
+export default async function TopListPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ look?: string } & Search> }) {
   const [{ slug }, { data, lists }, query] = await Promise.all([params, rankedLists(), searchParams]);
   const found = lists.find(x => x.list.slug === slug);
   if (!found) notFound();
@@ -151,6 +152,8 @@ export default async function TopListPage({ params, searchParams }: { params: Pr
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
+  // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
+  if (niche.id === "padel" && query.look !== "classic") return <RankingV2 {...{ data, lists, found, amazon, affiliate, faq, jsonLd }} search={query}/>;
   if (isLight(query.look)) return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
   return <main className="top-page v2">
     {affiliate && <p className="affiliate-note">Quick note: Some links are affiliate links. We earn a tiny commission if you buy (at no cost to you). Keeps the lights on!</p>}

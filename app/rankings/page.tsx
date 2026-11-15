@@ -13,6 +13,7 @@ import { FinderInvite } from "../finder/invite";
 import { ProductArt, SignalPop } from "../visual";
 import { productHref } from "../../lib/niche";
 import { lightFont } from "../light-font";
+import RankingsHubV2 from "./rankings-v2";
 
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
@@ -31,6 +32,8 @@ export default async function TopListsIndex({ searchParams }: { searchParams: Pr
   const [{ data, lists }, f] = await Promise.all([rankedLists(), searchParams]);
   if (!lists.length) notFound();
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
+  // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
+  if (niche.id === "padel" && f.look !== "classic") return <RankingsHubV2 data={data} lists={lists}/>;
   // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): each ranking as a calm card with its top three.
   if (isLight(f.look)) {
     const seen = new Set<string>(), unique = lists.filter(l => !seen.has(l.list.slug) && seen.add(l.list.slug));
