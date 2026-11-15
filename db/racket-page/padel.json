@@ -3276,6 +3276,976 @@
    }
   ]
  },
+ "siux-fenix-pro-6-2026": {
+  "tagline": "A hard-hitting power diamond built for smashes. The catch: hard on the arm and in defence.",
+  "bottom": "For attacking players who finish points overhead. Skip it with a sore arm or if you defend a lot.",
+  "yes": [
+   {
+    "title": "Huge smash power",
+    "t": "Overheads and víboras come off the face with ==serious power==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "656d5a1b-26e4-4c14-b72e-164b3d72cc0e",
+     "313f9b38-b23e-4656-add5-02bbe0788011",
+     "research-d913a6cc-d448-4279-ab7d-14e7c89590e5",
+     "research-c40f8467-d327-42a0-ba98-4bcb6d4253b1",
+     "research-4f065ba0-238e-426a-8abf-d51189b90a8b",
+     "research-55f2c38a-ac3d-4c41-acf7-44827ba00fb4",
+     "5911a8e0-e0a5-4bcd-88c3-fce681398aef",
+     "8d092fde-1752-4c16-8f7b-bc42f8914084",
+     "research-b5e6f849-31e9-4429-9e38-a0ae8377a6ea",
+     "737c7249-06f7-475d-8030-d59fc53900e9",
+     "research-53a76f6e-da00-429a-8c27-b4801c914ade"
+    ]
+   },
+   {
+    "title": "Direct, little trampoline",
+    "t": "The touch is ==direct and dry==, with little bounce off the face.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "313f9b38-b23e-4656-add5-02bbe0788011",
+     "research-9604135e-f1b9-4cd1-86e8-e83c10d8539c",
+     "research-4f065ba0-238e-426a-8abf-d51189b90a8b",
+     "5911a8e0-e0a5-4bcd-88c3-fce681398aef",
+     "research-d5aabbe6-8254-42a5-beda-a6d7b575b39e"
+    ]
+   },
+   {
+    "title": "Light units move well",
+    "t": "A light unit is ==easy to move for a diamond==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-ba999e83-5ccd-43e2-84b0-ce0d52708c1d",
+     "research-59dbd164-048e-479d-bbc6-51afe4b2e051",
+     "research-bc40db81-cd85-4e3e-a1b3-918c1d56de00",
+     "research-aa5f4061-433e-40eb-9a5d-dcc61f7869b6",
+     "research-d5aabbe6-8254-42a5-beda-a6d7b575b39e"
+    ]
+   },
+   {
+    "title": "Lots of spin",
+    "t": "The rough 3D face puts ==plenty of bite on the ball==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "656d5a1b-26e4-4c14-b72e-164b3d72cc0e",
+     "801ff7d7-6917-45e7-a10f-02ff8745f3c1",
+     "8d092fde-1752-4c16-8f7b-bc42f8914084",
+     "research-b5e6f849-31e9-4429-9e38-a0ae8377a6ea"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Hard on the arm",
+    "t": "Several players got ==elbow or shoulder pain== with it.",
+    "for": [
+     "arm"
+    ],
+    "ev": "{n} players with arm pain",
+    "src": [
+     "research-8ae18e59-feb5-4a89-a081-df5d2e3ffe6f",
+     "research-8ccd49ef-9734-4c6f-82ba-cc20f5141848",
+     "research-f3478060-9e9d-4961-95c9-e8d7c9d9f714",
+     "research-32aa3469-568d-4132-b403-092210734c79",
+     "research-0facea1f-1678-48e5-a7ad-e7e63067caa2"
+    ]
+   },
+   {
+    "title": "Tough in defence",
+    "t": "Defending deep from the glass ==takes real work==.",
+    "for": [
+     "control",
+     "intermediate"
+    ],
+    "src": [
+     "5911a8e0-e0a5-4bcd-88c3-fce681398aef",
+     "research-75e1101d-9a32-4303-ac97-1129dc64cc8a",
+     "research-8ccd49ef-9734-4c6f-82ba-cc20f5141848",
+     "737c7249-06f7-475d-8030-d59fc53900e9",
+     "research-be2b193f-436c-4654-ade2-3367141f4eab",
+     "f657e86f-c5f7-4b1f-8251-7a08e85a6258"
+    ]
+   },
+   {
+    "title": "Build quality varies",
+    "t": "Cracks, paint chips and ==uneven units== come up often.",
+    "for": [],
+    "src": [
+     "801ff7d7-6917-45e7-a10f-02ff8745f3c1",
+     "research-020db7de-0921-49d6-a4d0-665cdfa4b387",
+     "research-f0f9ebc7-73fd-47fe-a438-4fca651eed93",
+     "8d092fde-1752-4c16-8f7b-bc42f8914084",
+     "research-21432d0c-36a0-4229-8596-e9ee4a58563b",
+     "research-4aa980f7-f7c0-4872-9e66-49efc13433a7"
+    ]
+   },
+   {
+    "title": "Head-heavy",
+    "t": "The high balance feels ==slow in quick net exchanges==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "313f9b38-b23e-4656-add5-02bbe0788011",
+     "research-e2f88b4d-e4ee-4a3a-a9d1-a8a4f04dfbb8",
+     "8d092fde-1752-4c16-8f7b-bc42f8914084",
+     "research-53a76f6e-da00-429a-8c27-b4801c914ade",
+     "f657e86f-c5f7-4b1f-8251-7a08e85a6258"
+    ]
+   }
+  ]
+ },
+ "head-coello-motion-2026": {
+  "tagline": "A power diamond that's easier to handle than the Pro. The catch: head-heavy at the net.",
+  "bottom": "For attacking intermediates and up who want a more manageable Pro. Not for beginners.",
+  "yes": [
+   {
+    "title": "Easy power",
+    "t": "Smashes and víboras get ==depth without a big swing==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "6208504d-dd87-4d11-8485-3b3acd51cd85",
+     "research-bbc1dee6-880b-46ed-b3b9-8e2269434dfe",
+     "ea66b770-d027-40dc-bc3f-9a7ef0855e0e",
+     "5028f2b0-5f27-4289-901a-2a23754c3a62",
+     "e353dc2e-5720-4244-8997-da7e1f364424",
+     "9b0e6666-2dfa-4a2c-b49d-6071f552ea90",
+     "research-05733756-c72b-472b-89f2-7a1d9773b672"
+    ]
+   },
+   {
+    "title": "Easier than the Pro",
+    "t": "Players find it ==easier to handle and time volleys than the Pro==.",
+    "for": [
+     "power",
+     "intermediate"
+    ],
+    "src": [
+     "bd19bc99-e89b-4c63-b133-0bd83347ac9e",
+     "3e75976f-72c7-4c4b-afdb-be9193474587",
+     "e353dc2e-5720-4244-8997-da7e1f364424"
+    ]
+   },
+   {
+    "title": "Decent sweet spot",
+    "t": "Players find a ==generous sweet spot for a diamond==, though two say it's small.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-f590e983-dc28-450f-b6e4-c22274bb7dfe",
+     "research-893aafa3-9093-4603-9a07-6b951cff139d",
+     "ea66b770-d027-40dc-bc3f-9a7ef0855e0e",
+     "e353dc2e-5720-4244-8997-da7e1f364424",
+     "research-05733756-c72b-472b-89f2-7a1d9773b672"
+    ]
+   },
+   {
+    "title": "No vibration",
+    "t": "Volleys feel ==comfortable, with little vibration==.",
+    "for": [],
+    "src": [
+     "6f6a74ad-7f89-41e1-9348-86dc4f59fc1b",
+     "5463035a-fe73-47e4-8a7d-a1a564c49110",
+     "research-6df7f31f-7c8a-4456-8694-10e77f7e1690",
+     "research-8bc2e0a5-7fea-4fd1-adf4-ee6cea89d89e"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Head-heavy at the net",
+    "t": "The weight up top makes ==quick net exchanges harder==.",
+    "for": [
+     "control"
+    ],
+    "ev": "the #1 complaint, {n} players",
+    "src": [
+     "bd19bc99-e89b-4c63-b133-0bd83347ac9e",
+     "bd1f32c6-fd2f-471b-ba92-daba7c74c723",
+     "3e75976f-72c7-4c4b-afdb-be9193474587",
+     "5463035a-fe73-47e4-8a7d-a1a564c49110",
+     "e353dc2e-5720-4244-8997-da7e1f364424",
+     "research-de194366-573f-4e6f-ba75-1619800d00a3",
+     "9b0e6666-2dfa-4a2c-b49d-6071f552ea90"
+    ]
+   },
+   {
+    "title": "Can fly long",
+    "t": "A lively rebound can send ==volleys, lobs and víboras long==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-7a8b732c-7352-4d0a-a61b-9085fc1dfcfa",
+     "5463035a-fe73-47e4-8a7d-a1a564c49110",
+     "research-daf2e3cf-7d6c-4b8f-9b90-b3628eacb425"
+    ]
+   },
+   {
+    "title": "Not for beginners",
+    "t": "Players see it as a racket for ==experienced players, not beginners==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "bd19bc99-e89b-4c63-b133-0bd83347ac9e",
+     "3e75976f-72c7-4c4b-afdb-be9193474587",
+     "9b0e6666-2dfa-4a2c-b49d-6071f552ea90"
+    ]
+   },
+   {
+    "title": "Arm pain for some",
+    "t": "A few players got ==elbow, wrist or shoulder pain==.",
+    "for": [
+     "arm"
+    ],
+    "ev": "{n} players with arm pain",
+    "src": [
+     "research-2702f4f2-d1ba-4fb7-bd76-650a64c9975a",
+     "research-b15d13e1-024d-4246-af9b-bbc9be193846",
+     "research-07b26ffa-a0df-408b-8dd9-e9d4f169375d"
+    ]
+   }
+  ]
+ },
+ "adidas-metalbone-hrd-plus-3-5-2026": {
+  "tagline": "A heavy-hitting power diamond for smashes. The catch: it punishes mishits and slow defence.",
+  "bottom": "For skilled attackers who finish overhead. Skip it if you need forgiveness or play mostly defence.",
+  "yes": [
+   {
+    "title": "Big smash power",
+    "t": "Smashes and víboras ==fly with little effort==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "b0973023-d9d3-4965-81bc-baec395232f7",
+     "b9e8ec70-09a9-485c-bdfb-52be9d3d5466",
+     "5e19e008-23d5-4200-a214-fc7a7fa048f9",
+     "b90be747-6d83-434f-aa94-83af12f6de70",
+     "4d971ebf-ba55-45cf-9348-5ac46613dc6f",
+     "6cc45f50-0d84-4de6-9533-394258fe5826",
+     "research-23a03639-fa1b-4a05-9cf3-9630182591f0",
+     "98125f7c-4164-43af-ba2a-300a7d8cf1ad",
+     "0001bef9-32a1-4a02-9d58-66d752435783",
+     "research-a5d18d87-1749-4e45-b323-6e82f6717786"
+    ]
+   },
+   {
+    "title": "Firm, precise blocks",
+    "t": "The firm face gives ==precise, stable blocks==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "b9e8ec70-09a9-485c-bdfb-52be9d3d5466",
+     "b90be747-6d83-434f-aa94-83af12f6de70",
+     "6cc45f50-0d84-4de6-9533-394258fe5826",
+     "0c5944b9-e24c-44f6-8c3f-88f948244c89"
+    ]
+   },
+   {
+    "title": "Kinder than last year",
+    "t": "Impact feels ==more comfortable than the 2025 HRD==.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "38c7979c-b399-45a0-b8db-b9bd9d6b699e",
+     "b9e8ec70-09a9-485c-bdfb-52be9d3d5466"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Punishes mishits",
+    "t": "Off-centre hits lose depth and ==defence takes extra work==.",
+    "for": [
+     "intermediate"
+    ],
+    "ev": "the #1 complaint, {n} players",
+    "src": [
+     "7b6ed979-e177-4ee8-941e-7cb0723bce2b",
+     "research-2d997495-4289-4e89-b72a-390fe6692ba2",
+     "4f7b8219-9942-44fb-beca-2757161c58d5",
+     "b90be747-6d83-434f-aa94-83af12f6de70",
+     "4d971ebf-ba55-45cf-9348-5ac46613dc6f",
+     "6cc45f50-0d84-4de6-9533-394258fe5826",
+     "0c5944b9-e24c-44f6-8c3f-88f948244c89",
+     "research-14ad7e4a-9c20-44e3-ab57-f206829d746c"
+    ]
+   },
+   {
+    "title": "Heavy, slow head",
+    "t": "Head-heavy, so it's ==slow in fast exchanges==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "b0973023-d9d3-4965-81bc-baec395232f7",
+     "5e19e008-23d5-4200-a214-fc7a7fa048f9",
+     "4f7b8219-9942-44fb-beca-2757161c58d5",
+     "98125f7c-4164-43af-ba2a-300a7d8cf1ad",
+     "research-0321e1df-5478-406a-b28f-e6b4653aa68e",
+     "7732e4b9-27bf-4840-b1cb-a66094009aed"
+    ]
+   },
+   {
+    "title": "Volleys can fly",
+    "t": "A lively face sends ==blocks and volleys long==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-27589e45-a203-40d7-958a-c4dced6638ed",
+     "0001bef9-32a1-4a02-9d58-66d752435783",
+     "research-14ad7e4a-9c20-44e3-ab57-f206829d746c"
+    ]
+   },
+   {
+    "title": "For skilled hitters",
+    "t": "Players see it as a racket for ==skilled attackers, not beginners==.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "4d971ebf-ba55-45cf-9348-5ac46613dc6f",
+     "dd608745-2ab3-4541-8688-e1ec7e5de3e7",
+     "research-14ad7e4a-9c20-44e3-ab57-f206829d746c"
+    ]
+   }
+  ]
+ },
+ "nox-at10-genius-12k-alum-xtrem-lite-2026": {
+  "tagline": "A light, quick control racket that's easy on the arm. The catch: smashes lack punch.",
+  "bottom": "For control players and sore arms who play at the net. Hard hitters will want the standard 12K.",
+  "yes": [
+   {
+    "title": "Very quick in the hand",
+    "t": "A low balance makes it ==very quick on volleys==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "9cc13e35-244e-4eb6-a871-1a287d31b627",
+     "a4ffbde2-e659-4e28-80a8-f0a70f197e82",
+     "4ad531e8-0e9b-4db9-a49a-03aa2f4e85b5",
+     "e45e73b5-158f-495d-a9e0-c63b41528b7a",
+     "7599ccd8-6354-4173-a1fc-cb5d7dde96d7",
+     "research-09175d1d-b1f0-4863-b32e-93b1e9b82910",
+     "research-c61120dd-be39-465c-8ffa-10ce1567c2eb",
+     "research-671ce649-ee97-4249-82e8-d7e1d2802c78",
+     "e2f87cbb-fb7a-48ca-bdce-c0a2f33547c5"
+    ]
+   },
+   {
+    "title": "Kind to the arm",
+    "t": "Players with elbow or wrist trouble ==find it comfortable==.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "9cc13e35-244e-4eb6-a871-1a287d31b627",
+     "research-cc31c71a-26f6-409a-8e7c-4c745ced0dbb",
+     "e2f87cbb-fb7a-48ca-bdce-c0a2f33547c5"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little smash power",
+    "t": "Smashes and finishing shots ==lack punch==, as the soft face absorbs pace.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "af669a6e-0249-4fbd-8ac5-bee3818ff5c5",
+     "4ad531e8-0e9b-4db9-a49a-03aa2f4e85b5",
+     "e45e73b5-158f-495d-a9e0-c63b41528b7a",
+     "research-cc31c71a-26f6-409a-8e7c-4c745ced0dbb",
+     "7599ccd8-6354-4173-a1fc-cb5d7dde96d7",
+     "research-cf2e6504-3e71-4deb-988d-6a640a186d99",
+     "research-e02af2c9-be1f-4501-801c-c023c53cb2a3",
+     "e2f87cbb-fb7a-48ca-bdce-c0a2f33547c5"
+    ]
+   },
+   {
+    "title": "Volleys can float",
+    "t": "Fast, hard volleys ==can float long==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "a4ffbde2-e659-4e28-80a8-f0a70f197e82",
+     "e45e73b5-158f-495d-a9e0-c63b41528b7a",
+     "4458fae1-2ea1-4cfa-80e4-cadeed4b2590"
+    ]
+   }
+  ]
+ },
+ "bullpadel-vertex-05-women-2026": {
+  "tagline": "A light, quick all-rounder that's easy to handle. The catch: flat smashes need extra effort.",
+  "bottom": "For players who want a quick, easy racket for touch and placement. Hard hitters should look elsewhere.",
+  "yes": [
+   {
+    "title": "Quick and light",
+    "t": "Light handling makes it ==quick at the net==.",
+    "for": [
+     "balance"
+    ],
+    "src": [
+     "d6901f2b-346b-4168-b6fa-e9c86634f9df",
+     "b3078989-d1a0-45b4-a047-d36651b1bdd2",
+     "7237f1d7-3e78-45a9-8bcf-29af2f9da0ce",
+     "496bb625-1a42-4fa3-b6f0-ff51f92b5746",
+     "31f360e0-f7a8-407d-ac67-a028f555362f",
+     "5bf4d706-c94d-4fd9-97b3-08811885060f"
+    ]
+   },
+   {
+    "title": "Easy to place",
+    "t": "Lobs, chiquitas and bandejas are ==easy to place==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "b3078989-d1a0-45b4-a047-d36651b1bdd2",
+     "496bb625-1a42-4fa3-b6f0-ff51f92b5746",
+     "52c41dd7-9eb0-424b-a4cd-b8e04eff345a",
+     "31f360e0-f7a8-407d-ac67-a028f555362f",
+     "ac7f86c9-fe70-4746-a224-843066f66db5",
+     "e1a3f37c-7f77-4978-960b-3d95a9c6d3e0"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Light on flat power",
+    "t": "Flat smashes and fast exchanges ==need extra effort==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "b3078989-d1a0-45b4-a047-d36651b1bdd2",
+     "31f360e0-f7a8-407d-ac67-a028f555362f",
+     "ac7f86c9-fe70-4746-a224-843066f66db5",
+     "e1a3f37c-7f77-4978-960b-3d95a9c6d3e0"
+    ]
+   },
+   {
+    "title": "Stiffer than before",
+    "t": "Players find the 2026 model ==stiffer than earlier ones==.",
+    "for": [],
+    "src": [
+     "research-7ab3222d-a569-4315-bf6a-bff9fdf796ce",
+     "research-32fe9bc7-7fb2-4c4b-8075-87aed184a7c4"
+    ]
+   }
+  ]
+ },
+ "kuikma-hybrid-carbon-2026": {
+  "tagline": "A balanced all-round racket with a dry, firm feel. The catch: it needs good technique.",
+  "bottom": "For intermediates and up with solid technique who want value. Skip it with a sore arm.",
+  "yes": [
+   {
+    "title": "Power and control",
+    "t": "Players find a ==good balance of power and control==.",
+    "for": [
+     "balance"
+    ],
+    "src": [
+     "research-b4be757c-51f8-42a7-80c5-15591cfdeffb",
+     "research-11c95824-7dc1-4ebe-9c2f-2d18abb7f028"
+    ]
+   },
+   {
+    "title": "Dry, confident control",
+    "t": "The dry, firm face gives ==confident control==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "6e3e8d5b-90ac-4100-bbfe-2371e756c921",
+     "c888b687-1cb9-45de-b385-6ab0a6499447"
+    ]
+   },
+   {
+    "title": "Good value",
+    "t": "For the price, players say ==little beats it==.",
+    "for": [],
+    "src": [
+     "research-d501f8b1-7f81-4ae1-9f11-cafad366c447",
+     "research-e5646925-09b3-4c3c-b82e-020dfefd1262"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Needs good technique",
+    "t": "The hard feel ==rewards good technique== and punishes the rest.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "6e3e8d5b-90ac-4100-bbfe-2371e756c921",
+     "122fda72-6635-48fe-b1f6-29b676dd34f9"
+    ]
+   },
+   {
+    "title": "Heavy units",
+    "t": "Units can run heavy, ==around 380 g==.",
+    "for": [],
+    "src": [
+     "research-0a7ad2c2-468a-43d9-a17a-6a089a1e8589",
+     "research-f6c4f54a-e858-4ff7-a22b-dba484fcb5d0",
+     "research-d33635c4-d0ab-40cd-b7a5-9acf317d8e9c"
+    ]
+   },
+   {
+    "title": "Hard on some arms",
+    "t": "A few players got ==wrist, shoulder or elbow trouble==.",
+    "for": [
+     "arm"
+    ],
+    "ev": "{n} players with arm pain",
+    "src": [
+     "research-0a7ad2c2-468a-43d9-a17a-6a089a1e8589",
+     "research-c3d619d5-5a79-4344-b3d9-70f902ee2e2a"
+    ]
+   }
+  ]
+ },
+ "head-extreme-motion-2026": {
+  "tagline": "A light power diamond with strong overheads. The catch: a firm face and a smaller sweet spot.",
+  "bottom": "For attacking players who want a lighter Extreme Pro. Skip it if you want a soft, forgiving face.",
+  "yes": [
+   {
+    "title": "Strong overheads",
+    "t": "Kick smashes and víboras are ==a real weapon==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "c0939163-b04d-481c-b229-5c9b4577272c",
+     "bc5a6107-562e-4f34-a9bd-857f796927f8",
+     "6c900fd3-e717-4ae5-a584-2845372144bc",
+     "bb474600-ebd5-44e2-adf7-fe9e551c1272"
+    ]
+   },
+   {
+    "title": "Lighter than the Pro",
+    "t": "Lighter than the Pro, so it's ==quicker to move in defence==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "6c900fd3-e717-4ae5-a584-2845372144bc",
+     "bb474600-ebd5-44e2-adf7-fe9e551c1272"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Smaller sweet spot",
+    "t": "The sweet spot is ==smaller and less forgiving==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "bc5a6107-562e-4f34-a9bd-857f796927f8",
+     "research-bc2787e7-99f1-4b39-87e0-90946753174d"
+    ]
+   },
+   {
+    "title": "A firm racket",
+    "t": "Players find it ==firm, with no trampoline==, and one found it too hard.",
+    "for": [],
+    "src": [
+     "research-1ee54f0d-e0b1-43a8-84a6-2eb3312d221d",
+     "research-3ec89c82-ea7a-4450-867e-145a1427af15",
+     "research-f5e76e78-9e04-4124-84b9-e767ce27a30f"
+    ]
+   }
+  ]
+ },
+ "babolat-technical-viper-3-0-2026": {
+  "tagline": "A stiff power diamond with explosive smashes. The catch: very demanding, with a small sweet spot.",
+  "bottom": "For strong, skilled attackers. Skip it unless you have the technique and the arm for a stiff diamond.",
+  "yes": [
+   {
+    "title": "Explosive smashes",
+    "t": "Centred smashes come off with ==massive speed==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "660a514b-be82-4ebd-80f8-39d64b5716d2",
+     "7d74dd94-c2b3-4e7c-86ad-5b4ffca1a4c6",
+     "f9e27684-8825-4e43-9496-49153702dd49",
+     "5366c310-22b5-4788-bd09-b8deebab97bd",
+     "c6c33bb5-dd9f-4bfd-8a50-f1f93480ec74",
+     "c362348a-0c1f-43ec-8226-6d335652ec51"
+    ]
+   },
+   {
+    "title": "Fast, low volleys",
+    "t": "Timed volleys come off the face ==fast and low==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "660a514b-be82-4ebd-80f8-39d64b5716d2",
+     "f9e27684-8825-4e43-9496-49153702dd49",
+     "5366c310-22b5-4788-bd09-b8deebab97bd",
+     "c362348a-0c1f-43ec-8226-6d335652ec51"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Very demanding",
+    "t": "A stiff, technical racket that ==needs a strong arm==.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "660a514b-be82-4ebd-80f8-39d64b5716d2",
+     "7d74dd94-c2b3-4e7c-86ad-5b4ffca1a4c6",
+     "f796d408-62dc-469d-af4d-17d539dcc95c",
+     "5366c310-22b5-4788-bd09-b8deebab97bd",
+     "c6c33bb5-dd9f-4bfd-8a50-f1f93480ec74",
+     "c362348a-0c1f-43ec-8226-6d335652ec51",
+     "research-c9de84b6-5db4-4492-9198-0eeb7de72b99"
+    ]
+   },
+   {
+    "title": "Small sweet spot",
+    "t": "The sweet spot is ==small==, and off-centre hits are punished.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "f9e27684-8825-4e43-9496-49153702dd49",
+     "f796d408-62dc-469d-af4d-17d539dcc95c",
+     "c6c33bb5-dd9f-4bfd-8a50-f1f93480ec74",
+     "c362348a-0c1f-43ec-8226-6d335652ec51",
+     "research-c9de84b6-5db4-4492-9198-0eeb7de72b99"
+    ]
+   }
+  ]
+ },
+ "oxdog-pure-tour-x-2026": {
+  "tagline": "A precise, low-bounce control racket that spares the arm. The catch: it feels heavy.",
+  "bottom": "For control players and sore arms who want little trampoline. Skip it if you want a light racket.",
+  "yes": [
+   {
+    "title": "Precise control",
+    "t": "Lobs and net shots ==go where you aim==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "7c0dd389-7913-4a3c-9239-601e9abeac37",
+     "research-e38a026d-8a66-4422-8e64-eecf611b0402",
+     "research-e09d3499-a1b7-4bee-ac5f-0deb4b7be0ae"
+    ]
+   },
+   {
+    "title": "Kind to the arm",
+    "t": "Players coming back from elbow, wrist or shoulder pain ==play pain-free==.",
+    "for": [
+     "arm"
+    ],
+    "ev": "{n} players with arm pain",
+    "src": [
+     "research-970f6286-1c93-47d5-9dbb-bc1fc3055258",
+     "research-e38a026d-8a66-4422-8e64-eecf611b0402",
+     "research-7b4bd028-ff40-49f2-a38d-ab42aff053b8"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Feels heavy",
+    "t": "Players find it ==heavy overall==; one found it tiring in long matches.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "cc4614e1-ee20-425d-b92c-6f6655c84781",
+     "research-bc702559-1a92-4d17-bc7d-c19bcb7029d7"
+    ]
+   }
+  ]
+ },
+ "nox-at10-genius-18k-alum-2027": {
+  "tagline": "A calm, controlled teardrop with quick handling. The catch: it's not a power racket.",
+  "bottom": "For control players who want quick handling and calm depth. Skip it if you want big smash power.",
+  "yes": [
+   {
+    "title": "Calm, easy control",
+    "t": "Slow balls and lobs get ==calm, predictable control==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "3cb460f2-5cf7-4343-b5d5-ff880f292d4e",
+     "4cfbbbe8-35d3-443b-b25b-64fc3ffd48e0",
+     "727bc652-2bbf-4d58-b753-4df318fed3f7",
+     "research-33ce5fca-4ee3-4c71-9eef-c158a1ac2c5b"
+    ]
+   },
+   {
+    "title": "Quick in the hand",
+    "t": "Volleys feel ==light and quick in the hand==.",
+    "for": [],
+    "src": [
+     "3cb460f2-5cf7-4343-b5d5-ff880f292d4e",
+     "4cfbbbe8-35d3-443b-b25b-64fc3ffd48e0",
+     "727bc652-2bbf-4d58-b753-4df318fed3f7"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Not a power racket",
+    "t": "It's built for control, so ==smashes need a full swing==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "3cb460f2-5cf7-4343-b5d5-ff880f292d4e",
+     "4cfbbbe8-35d3-443b-b25b-64fc3ffd48e0",
+     "727bc652-2bbf-4d58-b753-4df318fed3f7"
+    ]
+   }
+  ]
+ },
+ "starvie-astrum-plus-2026": {
+  "tagline": "A firm all-round teardrop with good placement. The catch: it feels head-heavy.",
+  "bottom": "For players who want a firm feel and good placement. Demo it first if you dislike head weight.",
+  "yes": [
+   {
+    "title": "Good placement",
+    "t": "Players like the ==control and shot placement==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-48f05e99-f48d-41c3-820c-30b858c7a880",
+     "research-779200d0-1f3e-49f4-87e1-24b386d83e80"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Head-heavy",
+    "t": "Players find the balance ==noticeably head-heavy==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-ce033508-c5cf-427f-9941-8eff79378710",
+     "research-15b9e278-264a-4d65-b271-f4203b12e24e"
+    ]
+   },
+   {
+    "title": "Compact sweet spot",
+    "t": "Two reviewers find the sweet spot ==small and unforgiving off-centre==.",
+    "for": [],
+    "src": [
+     "5102dfeb-7a5b-4e42-9897-6944fda68d93",
+     "d43372a8-4d96-4463-948f-f62a2f03a7bb"
+    ]
+   }
+  ]
+ },
+ "head-gravity-motion-2026": {
+  "tagline": "A soft, forgiving control racket that's gentle on the arm. The catch: little finishing power.",
+  "bottom": "For patient right-side players and sore arms who want easy defence. Skip it if you need finishing power.",
+  "yes": [
+   {
+    "title": "Huge sweet spot",
+    "t": "Off-centre hits still play: ==a huge sweet spot==.",
+    "for": [],
+    "src": [
+     "6440c09c-641a-40e0-b665-fa4b3cf974b3",
+     "2008a230-b512-4898-af61-7d58fc2868e8",
+     "44ad1571-ac6f-441e-8306-105bd7b745cf"
+    ]
+   },
+   {
+    "title": "Gentle on the arm",
+    "t": "A soft core and ==muffled, arm-friendly feel==.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "c739b6f2-6bf3-43f7-b004-45f552c27e1c",
+     "e30cceec-87b1-41b2-b078-51e2a5926913",
+     "2008a230-b512-4898-af61-7d58fc2868e8"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little finishing power",
+    "t": "Overheads and smashes ==lack finishing power==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "6440c09c-641a-40e0-b665-fa4b3cf974b3",
+     "c739b6f2-6bf3-43f7-b004-45f552c27e1c",
+     "e30cceec-87b1-41b2-b078-51e2a5926913",
+     "2008a230-b512-4898-af61-7d58fc2868e8"
+    ]
+   },
+   {
+    "title": "A lively face",
+    "t": "The rebound means the ball ==can fly long==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "0cdd7592-70af-4bbd-ac44-7d0a54ff27dc",
+     "c739b6f2-6bf3-43f7-b004-45f552c27e1c"
+    ]
+   }
+  ]
+ },
+ "head-radical-team-2026": {
+  "tagline": "A soft, forgiving control racket for placement. The catch: little punch for hard hitters.",
+  "bottom": "For beginners, club players and sore arms who want easy placement. Skip it if you hit hard.",
+  "yes": [
+   {
+    "title": "Easy to place",
+    "t": "Players find it ==easy to guide the ball== from the back court.",
+    "for": [
+     "control",
+     "beginner"
+    ],
+    "src": [
+     "9ef033c0-d400-40da-a6a5-c9ad591f62a9",
+     "8f9943ef-e4af-4c3a-8d20-27012cf13efa"
+    ]
+   },
+   {
+    "title": "Soft and comfortable",
+    "t": "A ==soft, comfortable feel== that's easy on the arm.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "9ef033c0-d400-40da-a6a5-c9ad591f62a9",
+     "8f9943ef-e4af-4c3a-8d20-27012cf13efa",
+     "research-b101da74-e43d-4bef-a85c-1dc98a98ca0c"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Lacks punch",
+    "t": "Hard hitters find the face ==too soft and short on punch==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "9ef033c0-d400-40da-a6a5-c9ad591f62a9",
+     "142739bb-3dc3-4899-9d41-cd12547e9e88",
+     "8f9943ef-e4af-4c3a-8d20-27012cf13efa"
+    ]
+   }
+  ]
+ },
+ "oxdog-ultimate-pro-2026": {
+  "tagline": "A punchy power diamond that still moves well. The catch: a high sweet spot.",
+  "bottom": "For attackers who want a diamond that still moves well at the net. Skip it if you need forgiveness.",
+  "yes": [
+   {
+    "title": "Attacking punch",
+    "t": "Overheads and volleys get ==good punch==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "f297099d-b95a-4157-8400-1fe60ff41846",
+     "research-35a92f87-d449-4dc7-9248-493cb127d5f3",
+     "43c30be0-4e28-4765-80f1-57ab71d5eea2"
+    ]
+   },
+   {
+    "title": "Moves well for a diamond",
+    "t": "It ==handles fast exchanges and defence== well for a diamond.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "f297099d-b95a-4157-8400-1fe60ff41846",
+     "43c30be0-4e28-4765-80f1-57ab71d5eea2"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "High sweet spot",
+    "t": "The sweet spot ==sits high==, so off-centre blocks and lobs suffer.",
+    "for": [],
+    "src": [
+     "research-35a92f87-d449-4dc7-9248-493cb127d5f3",
+     "be5b04a5-66fe-4e6f-a485-1b6eb8bb12e0"
+    ]
+   }
+  ]
+ },
+ "nox-at10-pro-cup-hard-2026": {
+  "tagline": "A solid all-round teardrop with controlled volleys. The catch: little smash power for some.",
+  "bottom": "For intermediates who want a firm, controlled all-rounder. Big hitters will want more pop.",
+  "yes": [
+   {
+    "title": "Solid at the net",
+    "t": "Players find it ==solid on volleys and blocks==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "0713e682-b7fe-4c86-9f36-c13aef5ce0cc",
+     "bfca335d-a85a-4025-ba22-6a0bd35c65cd"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little smash power",
+    "t": "Some players find it ==short on smash power==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-7427771e-cb46-4a56-b300-6f128758de78",
+     "0713e682-b7fe-4c86-9f36-c13aef5ce0cc"
+    ]
+   }
+  ]
+ },
  "siux-electra-pro-st5-2026": {
   "tagline": "A versatile all-rounder with extra punch. The catch: a small sweet spot that punishes mishits.",
   "bottom": "For intermediate-plus and advanced players who want punch and control. Skip it if you want forgiveness.",
