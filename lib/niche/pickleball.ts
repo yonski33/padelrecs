@@ -118,6 +118,9 @@ export const pickleball: Niche = {
     { label: "firm", tone: "neutral" },
     { label: "soft", tone: "neutral" },
   ],
+  // Same bar as padel (owner via the recs PM 2026-11-15: "fit bar = 6, same rules as padel"); under 15 the verdict and % say
+  // they rest on fewer reports.
+  fit: { minReports: 6, fewReports: 15 },
   finder: {
     title: "Pickleball Paddle Finder Quiz",
     heading: "Which pickleball paddle is right for you?",

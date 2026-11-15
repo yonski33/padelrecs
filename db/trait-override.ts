@@ -2,7 +2,11 @@ import { sql } from "drizzle-orm";
 import { database } from "./data";
 import { niche } from "../lib/niche";
 import { assertSchemaName } from "./migrations";
-import { TRAITS, MAX_TRAIT_TEXT_HINT, type Trait } from "../lib/trait-score";
+import { MAX_TRAIT_TEXT_HINT, type Trait } from "../lib/trait-score";
+import { traitDefsFor } from "../lib/fit-config";
+
+/** This site's trait keys (lib/fit-config.ts). */
+const TRAITS = traitDefsFor(niche).map(t => t.key);
 
 /** "How it plays" set by hand in the admin area (owner 2026-11-15), stored per racket in rackets.trait_override (jsonb,
  *  migration 0022): dots 1–5 and/or a line of text per trait, plus a short record of who changed what and when. Read with raw

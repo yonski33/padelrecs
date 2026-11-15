@@ -1,0 +1,554 @@
+{
+ "_about": "PickleballRecs known-correct set (ENGINE-PLAN.md section F, step 3): a pickleball expert's ratings of 25 paddles, 1–10 per trait (×2 = dots on the site's 1–5 scale), with level and notes. Calibration targets, not hand-set dots: scripts/check-expert-ratings.mts reports rank correlation per trait and paddles more than 1 dot off. Entries may also carry padel-style `dots` / `min` / `exact` calls (scripts/check-known-dots.mts).",
+ "_scale": "1-10",
+ "vatic-pro-prism-flash": {
+  "power": {
+   "expert": 5
+  },
+  "control": {
+   "expert": 10
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 5
+  },
+  "forgiveness": {
+   "expert": 7
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Beginner-Intermediate",
+  "_note": "Scored the 16mm (also sold in 14mm). Soft cold-pressed-style control paddle with very low lab power and pop, praised for easy dinks and resets; grit wears within months. Great first or step-up paddle for players who bring their own pace."
+ },
+ "six-zero-coral-pro-16mm": {
+  "power": {
+   "expert": 7
+  },
+  "control": {
+   "expert": 9
+  },
+  "spin": {
+   "expert": 8
+  },
+  "pop": {
+   "expert": 7
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Scored the Hybrid (also Widebody and Elongated). Soft-dense full-foam all-court paddle with moderate power, durable grit and easy resets; dead spots near the top edge are the most common complaint. Suits placement and kitchen players."
+ },
+ "11six24-vapor-power-2": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 7
+  },
+  "spin": {
+   "expert": 10
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 8
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Stiff, crisp Gen 4 power hybrid with very high spin from durable HexGrit and a generous sweet spot; pop can be hard to control on resets. A good fit for attackers who still want some forgiveness, often better with weight added."
+ },
+ "six-zero-ruby": {
+  "power": {
+   "expert": 5
+  },
+  "control": {
+   "expert": 10
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 5
+  },
+  "forgiveness": {
+   "expert": 9
+  },
+  "speed": {
+   "expert": 6
+  },
+  "_level": "Intermediate",
+  "_note": "Scored the 16mm (also 14mm). Plush aramid-face control paddle with low lab power and pop, good spin and stability; reports of grit and pop fading after several months. Best for soft-game players who value touch over put-aways."
+ },
+ "11six24-ultre-power-2": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 10
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Advanced",
+  "_note": "One of the hottest paddles in the set, with elite spin, a large sweet spot and very lively pop off a stiff, muted face. Rewards aggressive 4.0+ players; drops and resets take adjustment."
+ },
+ "vatic-pro-v-sol-pro": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 8
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 7
+  },
+  "speed": {
+   "expert": 8
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Scored the Flash hybrid (also V7 and Bloom). Light, quick full-foam power paddle with big pop at a budget price; the grit fades and a few units disbonded. Best for hand-battle players who can tame the pop."
+ },
+ "six-zero-coral-16mm": {
+  "power": {
+   "expert": 7
+  },
+  "control": {
+   "expert": 9
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 7
+  },
+  "forgiveness": {
+   "expert": 7
+  },
+  "speed": {
+   "expert": 8
+  },
+  "_level": "Intermediate",
+  "_note": "Scored the Hybrid (also Widebody and Elongated). Soft-dense full-foam all-court paddle that keeps power manageable with forgiving drops and resets; edge-guard separation and dead spots are reported over time. Suits players moving off poppier paddles."
+ },
+ "six-zero-double-black-diamond-control": {
+  "power": {
+   "expert": 5
+  },
+  "control": {
+   "expert": 9
+  },
+  "spin": {
+   "expert": 7
+  },
+  "pop": {
+   "expert": 6
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Scored the 16mm (also 14mm). Thermoformed raw-carbon control paddle that feels crisp and quick with a stable face; very powerful for its 2023 release but below today's foam-core field. Suits players who want fast hands and touch with some pop."
+ },
+ "honolulu-j6cr": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 7
+  },
+  "spin": {
+   "expert": 9
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 8
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Stiff, hollow full-foam elongated power paddle with strong pop, spin and reach; grit consistency between units is the main complaint. Best for aggressive drivers and singles players."
+ },
+ "honolulu-j2cr": {
+  "power": {
+   "expert": 8
+  },
+  "control": {
+   "expert": 7
+  },
+  "spin": {
+   "expert": 9
+  },
+  "pop": {
+   "expert": 8
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 10
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Very light, quick full-foam hybrid with high pop and spin from the Crystal Blue Endurance grit; grit is applied inconsistently on some units. Great for fast-hands net players; lead tape helps stability."
+ },
+ "11six24-vapor-power": {
+  "power": {
+   "expert": 7
+  },
+  "control": {
+   "expert": 8
+  },
+  "spin": {
+   "expert": 8
+  },
+  "pop": {
+   "expert": 6
+  },
+  "forgiveness": {
+   "expert": 10
+  },
+  "speed": {
+   "expert": 6
+  },
+  "_level": "Intermediate",
+  "_note": "Gen 3 thermoformed hybrid with easy linear power and one of the highest twist weights in its class, so mishits stay stable; some find it stiff on the arm. A forgiving all-court choice for developing players."
+ },
+ "bread-butter-loco-hybrid": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 7
+  },
+  "pop": {
+   "expert": 8
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Stiff, hollow full-foam power hybrid with very high pop and a big sweet spot; dinks and resets take time to dial in and the grit wears fairly fast. Built for attacking players."
+ },
+ "joola-perseus-pro-iv": {
+  "power": {
+   "expert": 8
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 6
+  },
+  "_level": "Advanced",
+  "_note": "Scored the 16mm (also 14mm). Gen 3 elongated power paddle with strong pop and plow-through from a high swing weight; core crush and edge-guard issues are frequently reported. Best for advanced bangers and singles players."
+ },
+ "11six24-hurache-x-power-2": {
+  "power": {
+   "expert": 10
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 9
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 6
+  },
+  "_level": "Advanced",
+  "_note": "Elongated Gen 4 power paddle with top-tier lab power, heavy spin and durable HexGrit but a narrower sweet spot; some delamination and top-face dead zones are reported. For advanced drivers who hit the center consistently."
+ },
+ "pickleball-apes-pulse": {
+  "power": {
+   "expert": 6
+  },
+  "control": {
+   "expert": 10
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 6
+  },
+  "forgiveness": {
+   "expert": 10
+  },
+  "speed": {
+   "expert": 8
+  },
+  "_level": "Beginner-Intermediate",
+  "_note": "Scored the Pulse V widebody (the Pulse also comes in elongated and hybrid shapes). Soft, dense control paddle with a huge stable sweet spot and modest power; several core-crush reports, usually replaced quickly. Ideal for soft-game and developing players."
+ },
+ "vatic-pro-saga": {
+  "power": {
+   "expert": 8
+  },
+  "control": {
+   "expert": 9
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 6
+  },
+  "forgiveness": {
+   "expert": 7
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate",
+  "_note": "Scored the Flash SH 16mm (also 14mm and V7 and Bloom shapes). Plush, Prism-like feel with more drive power but low pop, so it stays easy at the kitchen. Good value for control players who want extra put-away."
+ },
+ "spartus-apollo": {
+  "power": {
+   "expert": 5
+  },
+  "control": {
+   "expert": 10
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 5
+  },
+  "forgiveness": {
+   "expert": 10
+  },
+  "speed": {
+   "expert": 10
+  },
+  "_level": "Beginner-Intermediate",
+  "_note": "Kevlar widebody with the highest twist weight in this set and a very light swing, so it stays stable and blocks bangers easily; low lab power and pop. Reviewers rave about its grip on the ball, and it is a top forgiving pick for beginners and soft-game players."
+ },
+ "crbn2-trufoam-genesis": {
+  "power": {
+   "expert": 6
+  },
+  "control": {
+   "expert": 8
+  },
+  "spin": {
+   "expert": 6
+  },
+  "pop": {
+   "expert": 8
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate",
+  "_note": "14mm full-foam square widebody with a dense, muted feel, good spin and a large sweet spot; the lab shows more pop than its feel suggests. Some units rattled and one report says it softens in heat. Suits all-court players who like feedback."
+ },
+ "enhance-mpp-turbo": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 9
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Scored the original hybrid (also elongated, widebody and an ArmorGrit version). Budget full-foam power paddle with lab power and pop near premium paddles; delamination is the main complaint. Great value for aggressive intermediates."
+ },
+ "luzz-pro-4-inferno": {
+  "power": {
+   "expert": 10
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 7
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 5
+  },
+  "_level": "Advanced",
+  "_note": "Head-heavy full-foam elongated with near-top lab power and pop but a slow swing; rattling and delamination reports. For advanced hard hitters who want maximum put-away power."
+ },
+ "luzz-cannon": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 8
+  },
+  "pop": {
+   "expert": 8
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 5
+  },
+  "_level": "Advanced",
+  "_note": "Lab data is from the Luzz Pro Cannon (Gen 3). Stiff, head-heavy budget banger with big power, pop and spin and a small sweet spot; it gets hotter after break-in and core crush is reported. Not for beginners."
+ },
+ "spartus-olympus": {
+  "power": {
+   "expert": 6
+  },
+  "control": {
+   "expert": 8
+  },
+  "spin": {
+   "expert": 8
+  },
+  "pop": {
+   "expert": 7
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 7
+  },
+  "_level": "Intermediate",
+  "_note": "14mm Gen 3 hybrid with easy power and surprising control for its pop; durability is a real concern, with core crush and lost pop within months. Suits intermediates who accept a shorter lifespan."
+ },
+ "ronbus-quanta-r4-16": {
+  "power": {
+   "expert": 8
+  },
+  "control": {
+   "expert": 7
+  },
+  "spin": {
+   "expert": 8
+  },
+  "pop": {
+   "expert": 8
+  },
+  "forgiveness": {
+   "expert": 5
+  },
+  "speed": {
+   "expert": 10
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "The fastest paddle in the set, a very low swing weight full-foam hybrid with high pop; the low twist weight shows on mishits and it is often weighted up. Great value for fast-hands net players."
+ },
+ "spartus-spitfire-elongated": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 10
+  },
+  "pop": {
+   "expert": 8
+  },
+  "forgiveness": {
+   "expert": 6
+  },
+  "speed": {
+   "expert": 6
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Budget full-foam elongated with very high spin and strong drive power; some find it head heavy or too poppy for resets. Best for aggressive baseline players and singles."
+ },
+ "vatic-pro-v-sol-tour": {
+  "power": {
+   "expert": 9
+  },
+  "control": {
+   "expert": 6
+  },
+  "spin": {
+   "expert": 10
+  },
+  "pop": {
+   "expert": 9
+  },
+  "forgiveness": {
+   "expert": 8
+  },
+  "speed": {
+   "expert": 8
+  },
+  "_level": "Intermediate-Advanced",
+  "_note": "Scored the Flash SH hybrid (also elongated and Bloom widebody). Stiff full-foam power paddle with top-tier pop and spin at a budget price; many report grit going smooth fast despite EverGrit. Suits attackers who want V-Sol Pro power plus more spin."
+ }
+}

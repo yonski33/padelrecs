@@ -8,7 +8,9 @@ import { catalog, database } from "../db/data";
 import { niche } from "../lib/niche";
 import { assertSchemaName } from "../db/migrations";
 import { readTraitOverride, editExpert, readExpertValue, levelToSuits, type ExpertKey } from "../db/trait-override";
-import { TRAITS } from "../lib/trait-score";
+import { traitDefsFor } from "../lib/fit-config";
+
+const TRAITS = traitDefsFor(niche).map(t => t.key) as ExpertKey[];
 
 const args = process.argv.slice(2), write = args.includes("--write");
 const [file, prefix] = args.filter(a => !a.startsWith("--"));
@@ -32,7 +34,7 @@ for (const l of lines) {
   const next: Partial<Record<ExpertKey, { value: number | null; note: string }>> = {};
   for (const t of TRAITS) { const v = readExpertValue(l[col(`expert_${t}`)]); if (v !== null) next[t] = { value: v, note }; else if ((l[col(`expert_${t}`)] ?? "").trim()) bad.push(`${slug} ${t}`); }
   const suits = levelToSuits(l[col("expert_level")]);
-  if (suits) for (const [k, v] of Object.entries(suits)) next[k as ExpertKey] = { value: v, note }; else bad.push(`${slug} level "${l[col("expert_level")]}"`);
+  if (suits) for (const [k, v] of Object.entries(suits)) next[k as ExpertKey] = { value: v, note }; else if ((l[col("expert_level")] ?? "").trim()) bad.push(`${slug} level "${l[col("expert_level")]}"`);
   const res = await db.execute(sql`select trait_override from ${table} where id = ${id}`);
   const list = (res as unknown as { rows?: { trait_override: unknown }[] }).rows ?? (res as unknown as { trait_override: unknown }[]);
   const cur = readTraitOverride(list[0]?.trait_override), out = editExpert(cur, next, by, at);

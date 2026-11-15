@@ -69,7 +69,7 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
 export function verdictFor(items: RankItem[], choice: QuickChoice, facts: FitFacts, id: string, gate?: LevelGate, engine?: EngineProfile): FitVerdict {
   const f = factsWith(items, choice, facts, id);
   if (!engine) return fitVerdict(choice, f);
-  return fitVerdict(choice, f, engineKind(engineView(items, choice, gate, engine).get(id)?.pct ?? null, engine));
+  return fitVerdict(choice, f, undefined, engineKind(engineView(items, choice, gate, engine).get(id)?.pct ?? null, engine));
 }
 
 /** With a shape picked (owner 2026-11-15: "it should also be compared inside its own filter"): each rated racket's place for

@@ -19,6 +19,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { ...niche.seo.brand(brand.name), alternates: { canonical: `/brands/${brand.slug}` } };
 }
 
+import CatalogSkin from "../../skin/catalog-skin";
+import { attrProfileFor } from "../../../lib/attr-profile";
+
 export default async function Brand({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<Record<string, string | undefined>> }) {
   const [{ slug }, f, data, sig] = await Promise.all([params, searchParams, catalog(), productSignals()]);
   const brand = data.brands.find(b => b.slug === slug);
@@ -26,7 +29,7 @@ export default async function Brand({ params, searchParams }: { params: Promise<
   // Design v2 (owner 2026-11-15): the catalogue's page for this brand (filters, card rows, Player score); ?look=classic keeps the old one.
   if (isV2 && f.look !== "classic") {
     const jsonLd = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: displayName(r.name, brand.name), href: productHref(r) })));
-    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/><CatalogV2 data={data} f={f} brand={brand}/></>;
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }}/>{attrProfileFor(niche) ? <CatalogSkin f={f as Record<string, string>} base={`/brands/${brand.slug}`} brand={brand}/> : <CatalogV2 data={data} f={f} brand={brand}/>}</>;
   }
   // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): the light catalogue with this brand set.
   if (isLight(f.look)) return <LightCatalog data={data} signals={sig} f={lightFilters(f as Record<string, string | string[] | undefined>)} basePath={`/brands/${brand.slug}`} fixed={{ brand: brand.id }}
