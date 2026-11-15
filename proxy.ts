@@ -5,6 +5,7 @@ import { niche } from "./lib/niche";
 import type { Niche } from "./lib/niche/types";
 import { productRedirect, productSlugIn } from "./lib/product-redirect";
 import { isV2 } from "./lib/niche";
+import { attrProfileFor } from "./lib/attr-profile";
 import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } from "./lib/quick-match";
 
 // Only these paths depend on who is signed in. The admin area lives at /funtimes, not /admin (which is an ordinary 404).
@@ -36,7 +37,8 @@ export async function proxy(request:NextRequest) {
  }
  // The quick-match home (batch D): "/" and its picks are served from one cached page per combination (app/quick/[key]).
  // Other home views (?home=, ?type=, ?feed=, ?q=) stay with app/page.tsx. /quick/<key> itself is only ever a rewrite target.
- if(isV2&&niche.finder){
+ // SkinRecs (an attribute profile, lib/attr-profile.ts) has its own quick match on app/page.tsx (app/skin/home-skin.tsx).
+ if(isV2&&niche.finder&&!attrProfileFor(niche)){
   const {pathname,searchParams}=request.nextUrl;
   if(pathname==="/"&&!OTHER_HOME_PARAMS.some(k=>searchParams.has(k))){
    const url=request.nextUrl.clone();

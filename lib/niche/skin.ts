@@ -18,6 +18,16 @@ const ogDrop = (on: boolean) => on
 
 export const skin: Niche = {
   id: "skin",
+  // Design v2 on the match engine (owner 2026-11-15, "lets start skinrecs already"): quick match by skin type, the suits / axis /
+  // fact scores of lib/attr-profile.ts, and the skin pages in app/skin/.
+  design: "v2",
+  v2copy: {
+    sport: "", emoji: "🧴", strip: "a free, ad-light side project · built by people with too many half-used bottles",
+    madeBy: "made by people with too many half-used bottles 🧴", forum: "skincare forum", blog: "beauty blog",
+    aboutStory: ["skinrecs started with a bathroom shelf of half-used bottles. Every product promised the same things, every review site sold the same picks, and nobody said which ones work for skin like ours.",
+      "So we built the thing we wanted: one place that brings user reviews, YouTube reviewers and beauty blogs together, reads what people with each skin type say, and tells you if a product fits your skin"],
+    example: "CeraVe Moisturizing Cream",
+  },
   schema: "skinrecs",
   site: {
     name: "SkinRecs",
