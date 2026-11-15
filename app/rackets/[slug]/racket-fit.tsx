@@ -7,7 +7,7 @@ import { LEVELS, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
-import { FitPicks, FitBack, FitBox, FitSaid, FitAlts, type SaidView, type AltCard } from "./fit-live";
+import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, type SaidView, type CompareCard } from "./fit-live";
 import { homePayload } from "../../home-payload";
 import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
@@ -20,11 +20,12 @@ import { amazonPhoto } from "../../../lib/amazon-photos";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
 import { rowOfFamily, modelFamily } from "../../../lib/compare-pairs";
 import { SUITS_OK } from "../../../lib/fit-verdict";
-import { QuickVoteLine } from "./quick-take-composer";
 import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
+import { pageContent, evidenceLine, marked, SHOWN_ITEMS, type PageItem } from "../../../lib/racket-page";
+import { countWord } from "../../../lib/fit-card";
 import type { QtReport, QtReview } from "./quick-take";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
@@ -78,43 +79,23 @@ export default async function RacketFit(props: {
   // Six trait rows (owner 2026-11-15): dots from the calculated trait scores (lib/trait-score.ts, every racket alike), text
   // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
   const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
-  const tr = ctx.traits(props.racketId), tc = (t: string) => tr.tags[t] ?? 0;
-  // "1 player mentions" / "3 players mention": the count with its verb.
-  const ppl = (k: number, verb: string) => k === 1 ? `1 player ${verb.replace(/^(\w+)/, w => w === "say" ? "says" : w === "find" ? "finds" : `${w}s`)}` : `${k} players ${verb}`;
-  // Counts in words: never "0 mention …" (owner: no slashed zeros, say "no one").
-  const countLine: Record<Trait, () => string | null> = {
-    forgiveness: () => { const p = tc("forgiving"), m = tc("small sweet spot") + tc("demanding"); return p || m ? [p ? ppl(p, "call it forgiving") : "No one calls it forgiving", m ? ppl(m, "find the sweet spot small or call it demanding") : "no one calls it demanding"].join(", ") + "." : null; },
-    power: () => { const p = tc("easy power"), s = tc("great on smashes"); return p || s ? `${p ? ppl(p, "mention easy power") : "No one mentions easy power"}${s ? `, ${ppl(s, "say it's great on smashes")}` : ""}.` : null; },
-    control: () => { const p = tc("good control"), m = tc("head-heavy"); return p || m ? `${p ? ppl(p, "praise the control") : "No one praises the control"}${m ? `, ${ppl(m, "find it head-heavy")}` : ""}.` : null; },
-    defence: () => { const p = tc("great in defence"); return p ? `${ppl(p, "say it's great in defence")}.` : null; },
-    // Arm counts include reports that say it in words without a tag (the same counts as the bar).
-    arm: () => { const p = tr.scores?.arm?.plus ?? tc("arm-friendly"), m = tr.scores?.arm?.minus ?? tc("vibrates on mishits"); return p || m ? `${p ? ppl(p, "find it kind to the arm") : "No one calls it kind to the arm"}, ${m ? ppl(m, "say it's hard on the arm") : "no one says it's hard on the arm"}.` : null; },
-    speed: () => { const p = tc("fast at the net"), m = tc("head-heavy") + tc("tiring in long matches"); return p || m ? `${p ? ppl(p, "call it fast at the net") : "No one calls it fast at the net"}${m ? `, ${ppl(m, "find it head-heavy or tiring")}` : ""}.` : null; },
-  };
+  const tr = ctx.traits(props.racketId);
   const qtRow: Record<Trait, { chip: string; line: string } | undefined> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
-  const me = ctx.data.rackets.find(x => x.id === props.racketId);
   const traits = TRAITS.map(t => {
     const sc = tr.scores?.[t] ?? null, q = qtRow[t];
     // The hand-written line must agree with the dots: a strong chip beside 1–2 dots, or a weak/divided one beside 4–5, loses.
     const tone = q ? chipTone(q.chip as Chip) : null;
     const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
-    // A count line says where the dots put it, so "5 players say it's great in defence" never sits beside 1 dot unexplained.
-    // Plain words under the bar (owner 2026-11-15): what players say, what reviewers say, and the specs when they lean it.
-    const NOUN: Record<Trait, string> = { forgiveness: "the sweet spot", power: "the power", control: "the control", defence: "its defence", arm: "how it treats the arm", speed: "how quick it is" };
-    const ytN = sc?.yt ?? 0, specWords = sc && Math.abs(sc.spec) >= 0.3 ? [me?.shape?.toLowerCase(), me?.balance ? `${me.balance.toLowerCase()} balance` : null].filter(Boolean).join(", ") : "";
-    // From the evidence store (owner 2026-11-15): everyone who praises or faults this trait, one voice once, tags, the reader
-    // pass and YouTube alike: "5 players and 1 reviewer praise its defence · 6 find it demanding · diamond, high balance".
-    const ev = sc?.people, evLine = ev && (ev.players.plus + ev.reviewers.plus + ev.players.minus + ev.reviewers.minus) > 0 ? (() => {
-      const who = [ev.players.plus ? `${ev.players.plus} ${ev.players.plus === 1 ? "player" : "players"}` : null, ev.reviewers.plus ? `${ev.reviewers.plus} ${ev.reviewers.plus === 1 ? "reviewer" : "reviewers"}` : null].filter(Boolean).join(" and ");
-      const nPlus = ev.players.plus + ev.reviewers.plus, nMinus = ev.players.minus + ev.reviewers.minus;
-      const [praise, fault] = EV_WORDS[t];
-      return [nPlus ? `${who} ${nPlus === 1 ? praise[1] : praise[0]}` : `No one ${praise[1]}`, nMinus ? `${nMinus} ${nMinus === 1 ? fault[1] : fault[0]}` : null].filter(Boolean).join(" · ");
-    })() : null;
-    const counted = ev ? [evLine, specWords || null].filter(Boolean).join(" · ")
-      : [countLine[t]()?.replace(/\.$/, ""), ytN ? `${ytN} ${ytN === 1 ? "reviewer praises" : "reviewers praise"} ${NOUN[t]}` : null, specWords || null].filter(Boolean).join(" · ");
+    const ev = sc?.people;
     // Few player mentions (owner 2026-11-15): say what the dots rest on instead of showing a dash.
     const thinWords = sc?.basis === "specs" ? "Based on specs and reviewers — few player reports on this yet." : "Not many players mention this yet.";
-    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? (counted ? `${counted}.` : null) ?? thinWords;
+    // A short note in words (owner 2026-11-15: no player numbers, "a short note each"): the quick-take's line when it agrees,
+    // else which way most players lean, said with a count word.
+    const cap = (x: string) => x[0].toUpperCase() + x.slice(1);
+    const short = ev ? (() => { const nP = ev.players.plus + ev.reviewers.plus, nM = ev.players.minus + ev.reviewers.minus, [praise, fault] = EV_WORDS[t];
+      if (nP < 2 && nM < 2) return null;
+      return nP >= nM ? `${cap(countWord(nP))} players ${praise[0]}${nM >= 2 ? `; ${countWord(nM)} ${fault[0]}` : ""}.` : `${cap(countWord(nM))} players ${fault[0]}${nP >= 2 ? `; ${countWord(nP)} ${praise[0]}` : ""}.`; })() : null;
+    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? short ?? thinWords;
     return [TRAIT_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
@@ -138,14 +119,10 @@ export default async function RacketFit(props: {
     const fill = [...pool].sort((a, b) => (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).filter(x => !close.includes(x));
     return [...close, ...fill].slice(0, 4).map(x => x.id);
   })();
-  const brandRow = ctx.data.rackets.find(r => r.id === props.racketId)!, brandOf = ctx.data.brands.find(b => b.id === brandRow.brandId);
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
   // The cards the alternatives use: similar rackets (no picks) here; with picks, the home's cards (lib/home-rank.ts rows).
-  const similar: AltCard[] = similarIds.map(sid => { const r = racketOf(sid);
-    return { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic: photoOf(r), why: ctx.takes.get(r.id)?.hook ?? null, score: ctx.signal(r.id) }; });
-  const altCards: Record<string, Omit<AltCard, "score">> = Object.fromEntries(Object.entries(payload.cards).map(([cid, c]) => [cid, { name: c.name, href: c.href, pic: c.pic, why: ctx.takes.get(cid)?.hook ?? null }]));
   const d = qt?.catch.debate;
   const overallScore = ctx.signal(props.racketId);
   const total = reports.length;
@@ -215,13 +192,6 @@ export default async function RacketFit(props: {
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
-  // Heads up and player tip (owner 2026-11-15): only from the quick-take's notes with 2+ reports behind them, and the catch's
-  // bullets; split into a title (first sentence) and a detail. Nothing real: the box is hidden.
-  const split = (t: string) => { const m = /^(.+?[.!?])\s+(.+)$/.exec(t.trim()); return m ? { t: m[1], d: m[2] } : { t: t.trim(), d: "" }; };
-  const heads = [...(qt?.tips.filter(x => (x.label === "Heads up" || x.label === "Weather check") && x.reports.length >= 2).map(x => split(x.text)) ?? []),
-    ...((qt?.catch.reports.length ?? 0) >= 2 ? qt!.catch.bullets.map(b => split(b)) : [])].slice(0, 3);
-  const tipNote = qt?.tips.find(x => (x.label === "Player tip" || x.label === "Setup tip") && x.reports.length >= 2);
-  const tip = tipNote ? { ...split(tipNote.text), n: new Set(tipNote.reports).size, other: qt!.tips.find(x => x !== tipNote && (x.label === "Player tip" || x.label === "Setup tip") && x.reports.length >= 2) } : null;
 
   const lean = styleLean(facts).lean;
   // The fit card's racket-specific lines (lib/fit-card.ts, owner 2026-11-15): only this racket's entry goes to the browser,
@@ -229,6 +199,14 @@ export default async function RacketFit(props: {
   const cardData = cardContent(props.slug);
   const card = cardData ? { ...cardData, links: Object.fromEntries(cardData.catches.flatMap(c => c.alt ? [c.alt.slug] : []).flatMap(slug => {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
+  // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
+  const page = pageContent(props.slug);
+  // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
+  const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t]?.dots ?? 0); };
+  const shortOf = (r: ReturnType<typeof racketOf>) => displayName(r.name, brand(r.brandId)).replace(/\s+(19|20)\d\d$/, "");
+  const cardOf = (rid: string): CompareCard => { const r = racketOf(rid); return { name: displayName(r.name, brand(r.brandId)), short: shortOf(r), href: productHref(r), pic: photoOf(r), dots: dotsOf(rid) }; };
+  const compareMe = cardOf(props.racketId);
+  const compareCards: Record<string, CompareCard> = Object.fromEntries([...new Set([...Object.keys(payload.cards), ...similarIds])].filter(cid => ctx.data.rackets.some(r => r.id === cid)).map(cid => [cid, cardOf(cid)]));
   return <><FitPicks first={{ choice, picked }} href={props.href}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="rf-wrap">
@@ -240,7 +218,7 @@ export default async function RacketFit(props: {
             <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{`${props.shortName} review`}</h1>
-            {(qt || props.line) && <p className="rf-hook">{qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
+            {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             <div className="rf-meta">
               {props.buy && <a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
               {/* The mockup's "62% liked it" is the Player score here (owner). */}
@@ -253,41 +231,40 @@ export default async function RacketFit(props: {
         <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card}/>
       </section>
 
-      <section className="rf-body">
-        <div className="rf-main">
-          <FitSaid views={saidViews}/>
+      {page && <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>}
 
-          <div>
-            {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15: one review read "Power: standout"):
-                every claim needs 3+ players. */}
-            <div className="rf-h"><h2>How it plays</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : "from player reports, compared with other rackets"}</span></div>
-            <div className="rf-plays">{traits.map(([k, v, dots]) => { const n = total < 3 ? 0 : dots ? dots.replace(/○/g, "").length : 0;
-              return <div key={k} className="rf-prow"><b>{k}</b>
-                {n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? "on" : undefined}/>)}</span> : <span className="rf-segs none"/>}
-                <span className="rf-pnote">{n ? <em className={`t${n}`}>{n === 5 ? "standout" : n === 4 ? "strong" : n === 3 ? "solid" : "players complain"}</em> : null}<span><Rich text={v}/></span></span>
+      <section className="rp-body">
+        <div className="rp-main">
+          {page && <div>
+            <div className="rf-h"><h2>Why yes, why not</h2><span>from player reports &amp; YouTube</span></div>
+            <div className="rp-yn">{([["yes", "✓", "Why yes"], ["no", "!", "Why not"]] as const).map(([side, icon, title]) => {
+              const items = page[side], rest = items.slice(SHOWN_ITEMS);
+              const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}</b>
+                <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
+                <small>{evidenceLine(it)}</small></div>;
+              return <div key={side} className={`rp-col ${side}`}><p className="rp-ch"><i aria-hidden="true">{icon}</i>{title}</p>
+                {items.slice(0, SHOWN_ITEMS).map(item)}
+                {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
               </div>; })}</div>
-          </div>
-
-          {(heads.length > 0 || tip) && <div className="rf-boxes">
-            {heads.length > 0 && <div className="rf-box2"><span className="rf-lab warn">⚠ heads up</span>{heads.map((h, i) => <div key={i} className="rf-hd"><b>{h.t}</b>{h.d && <span>{h.d}</span>}</div>)}</div>}
-            {tip && <div className="rf-box2"><span className="rf-lab tip">💡 player tip</span>
-              <p className="rf-tipt">{tip.t}</p>
-              {tip.d && <div className="rf-why"><strong>Why:</strong> {tip.d}</div>}
-              {tip.other && <div className="rf-also"><strong>Also:</strong> {tip.other.text}</div>}
-              <small className="rf-src">{`from ${tip.n} player reports`}</small></div>}
           </div>}
 
-          {props.specs.length > 0 && <div><h2 className="rf-h2">Specs</h2><p className="rf-specs">{props.specs.map(s => { const [k, ...v] = s.split(" "); return <span key={s}><span>{k}</span>{` ${v.join(" ")}`}</span>; })}</p></div>}
+          <div>
+            {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
+            <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : "from player reports, compared with other rackets"}</span></div>
+            <FitCompare id={props.racketId} items={payload.items} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
+          </div>
+
+          <section id="reviews" className="rv">
+            <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
+              mood={{ pos: saidViews.none.pos, mix: saidViews.none.mix, neg: saidViews.none.neg }}/>
+          </section>
+
+          {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>
+            <p className="rf-specs">{props.specs.map(s => { const [k, ...v] = s.split(" "); return <span key={s}><span>{k}</span>{` ${v.join(" ")}`}</span>; })}</p></details>}
         </div>
 
-        <aside className="rf-side">
-          <FitAlts id={props.racketId} items={payload.items} facts={facts} cards={altCards} similar={similar} similarTitle={`Similar ${niche.words.many}`}
-            brandLink={brandOf ? { href: `/brands/${brandOf.slug}`, label: `all ${brandOf.name} →` } : null}/>
-          <div className="rf-vote"><p className="rf-vt">Played it? <a href="#reviews">Leave a review ↓</a></p><QuickVoteLine racketId={props.racketId} name={props.shortName} label="" wordsHref="#reviews" words={{ positive: "👍 yes", mixed: "🤷 mixed", negative: "👎 nope" }}/></div>
-        </aside>
+        <aside className="rp-side"><FitSticky buy={props.buy} name={props.shortName}/></aside>
       </section>
-
-      <section id="reviews" className="rv"><RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}/></section>
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from YouTube reviews, reviews sent to us and ${v2copy.forum} reports · every source linked · `}

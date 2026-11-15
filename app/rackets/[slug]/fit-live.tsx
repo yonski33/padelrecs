@@ -31,7 +31,17 @@ export function FitPicks({ first, href, children }: { first: Picks; href: string
     const h = choiceHref(next.choice, "");
     history.pushState(null, "", !next.picked ? href : h === "/" ? `${href}?style=any` : `${href}${h.slice(1)}`);
   };
-  return <Ctx.Provider value={{ p, set, href }}>{children}</Ctx.Provider>;
+  const [result, setResult] = useState<FitResult | null>(null);
+  return <Ctx.Provider value={{ p, set, href }}><ResultCtx.Provider value={{ result, setResult }}>{children}</ResultCtx.Provider></Ctx.Provider>;
+}
+
+/** The fit check's answer as FitBox works it out, shared so the sticky box shows the same % and word (one source). */
+export type FitResult = { kind: "good" | "maybe" | "no" | "thin"; pct: number | null; word: string | null };
+const ResultCtx = createContext<{ result: FitResult | null; setResult: (r: FitResult | null) => void }>({ result: null, setResult: () => {} });
+function usePublish(r: FitResult | null) {
+  const { setResult } = useContext(ResultCtx), key = r ? `${r.kind}|${r.pct}|${r.word}` : "";
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { setResult(r); }, [key]);
 }
 
 /** The picks' address on this page, and a click that applies them here. */
@@ -62,6 +72,7 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
   const pct = verdict ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine).get(id) ?? null : null;
   const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
+  usePublish(verdict ? { kind: verdict.kind, pct, word: verdictWord } : null);
   const why = verdict ? (verdict.fits?.slice(0, 2).join(" ") || (hook ? hook.good : null)) : null;
   const consider = verdict ? (verdict.catches?.[0] ?? (hook ? hook.catch : null)) : null;
   // Racket-specific lines when we have them (owner 2026-11-15: real strengths and concrete catches, no level bookkeeping):
@@ -155,5 +166,55 @@ export function FitAlts({ id, items, facts, cards, similar, brandLink, similarTi
       {picked ? <span className="rf-score" title="How well it fits your picks, from player reports. Not a % of happy players.">{r.score === null ? "—" : `${r.score}%`}</span>
         : r.score !== null && <span className="rf-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{r.score}</span>}
     </a></li>)}</ul>
+  </div>;
+}
+
+/** The sticky "your match" box beside the page (owner's final mock): the % and verdict word once picked, "Check your fit ↑"
+ *  before, and Check price. On phones it is a bar fixed to the bottom of the screen (racket-fit.css). */
+export function FitSticky({ buy, name }: { buy: { url: string; label: string; rel: string } | null; name: string }) {
+  const { p: { picked } } = use(), { result } = useContext(ResultCtx);
+  const shown = picked && result && result.kind !== "thin" && result.pct !== null ? result : null;
+  return <div className="rp-stick" aria-label={`Your match with the ${name}`}>
+    <div className="rp-sk">
+      <span className="rp-k">⚡ your match</span>
+      {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}>{`${shown.pct}% · ${shown.word}`}</a>
+        : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
+    </div>
+    {buy && <a className="rf-btn rp-buy" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a>}
+  </div>;
+}
+
+/** One racket in the compare tabs: its name, link, photo and the six trait dots (0 = not rated), in TRAITS order. */
+export type CompareCard = { name: string; short: string; href: string; pic: string | null; dots: number[] };
+const DIFF: [string, string][] = [["forgiveness", "more forgiving"], ["power", "more power"], ["control", "more control"], ["defence", "better in defence"], ["arm", "easier on the arm"], ["speed", "quicker"]];
+/** "more power": the trait where the other racket is furthest ahead; "similar" when it is ahead nowhere. */
+const diffWord = (me: number[], other: number[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[best][1]; };
+const Segs = ({ n }: { n: number }) => n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? `on t${n}` : undefined}/>)}</span> : <span className="rf-segs none"/>;
+
+/** "How it plays & compares" (owner's final mock): tab one is this racket's six trait bars with a short note each; the other
+ *  tabs set it beside an alternative. With picks, the alternatives are the visitor's better matches (lib/home-rank.ts, the
+ *  home's order); without, similar rackets from the server. */
+export function FitCompare({ id, items, me, rows, cards, similar }: { id: string; items: RankItem[]; me: CompareCard;
+  rows: { label: string; note: string }[]; cards: Record<string, CompareCard>; similar: string[] }) {
+  const { p: { choice, picked } } = use();
+  const alts = (picked ? alternatives(items, SETUP, BAD, choice, id, 6).map(r => r.id) : similar).filter(x => cards[x] && x !== id).slice(0, 3);
+  const [tab, setTab] = useState<string>("me");
+  const cur = tab !== "me" && alts.includes(tab) ? cards[tab] : null;
+  return <div className="rp-cmp">
+    <div className="rp-tabs" role="tablist" aria-label="Compare">
+      <button type="button" role="tab" aria-selected={!cur} onClick={() => setTab("me")}>
+        <span className="rp-tpic">{me.pic && <img src={me.pic} alt="" width={36} height={54} loading="lazy"/>}</span><span><b>This racket</b><small>how it plays</small></span></button>
+      {alts.map(a => <button key={a} type="button" role="tab" aria-selected={cur === cards[a]} onClick={() => setTab(a)}>
+        <span className="rp-tpic">{cards[a].pic && <img src={cards[a].pic!} alt="" width={36} height={54} loading="lazy"/>}</span>
+        <span><b>{cards[a].short}</b><small>{diffWord(me.dots, cards[a].dots)}</small></span></button>)}
+    </div>
+    <div className="rp-panel" role="tabpanel">
+      {!cur ? rows.map((r, i) => <div key={r.label} className="rp-row"><b>{r.label}</b><Segs n={me.dots[i]}/><span className="rp-note">{r.note.split("==").map((x, j) => j % 2 ? <mark key={j}>{x}</mark> : <span key={j}>{x}</span>)}</span></div>)
+        : <>
+          <div className="rp-row rp-vs"><span/><span>{me.short}</span><a href={`${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`}>{`${cur.short} →`}</a></div>
+          {rows.map((r, i) => <div key={r.label} className="rp-row rp-two"><b>{r.label}</b><Segs n={me.dots[i]}/><Segs n={cur.dots[i]}/></div>)}
+          <p className="rp-cnote">Dots from player reports, compared across every racket we track.</p>
+        </>}
+    </div>
   </div>;
 }

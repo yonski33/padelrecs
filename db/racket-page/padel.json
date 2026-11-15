@@ -1,0 +1,610 @@
+{
+ "adidas-metalbone-ctrl-2026": {
+  "tagline": "A forgiving control racket with a soft core. The catch: a bouncy face at the net.",
+  "bottom": "A safe, forgiving pick for most intermediates who play from the back. Demo it if you live at the net.",
+  "yes": [
+   {
+    "title": "Forgives your mishits",
+    "t": "The sweet spot covers most of the face, so ==mishits still go deep==.",
+    "src": [
+     "research-3cc800f8-4e93-4129-9e5d-eaf2e4906507",
+     "research-fed1d6b2-df18-4285-a525-c1237f8e16bd",
+     "0eb81c6f-0073-4dab-8bb2-ccace570408b",
+     "research-72c5bfbb-c94a-4775-832e-864a2eeaf8d4",
+     "41d69d5f-0a99-411a-af60-d23805612847",
+     "research-1550964f-f4ca-4127-84b8-414715be72ac",
+     "research-d70302ae-a2bb-46a5-bbe5-70b7f4682e6a",
+     "research-2413707e-e4a6-43fb-8e81-dbdb20f6376e",
+     "research-ce87a6c1-5207-48a3-9b3e-07eebe191238",
+     "research-fcb0ef24-150d-486d-9418-7457a087ec24",
+     "research-32119045-eede-4470-bf6d-ec85bfb804f6",
+     "research-5b314c6c-3836-4026-9c13-c5ec7cfe6888",
+     "research-1e0cda34-60b3-47be-9ed6-966b9a0c11fc",
+     "research-0cd8d533-58bd-439e-b295-f2c75c27ddf5",
+     "research-ede49a90-69fb-4510-9223-b1dad56b351c",
+     "research-23d3e857-2157-4cd7-bff5-c8c54b88476a",
+     "research-8e4b0944-78dc-4a77-8ca2-0f045d9df148",
+     "research-e027e0c5-7296-4264-8f72-98b0784694fd",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6",
+     "3b8a79de-16e8-4f7e-bb83-c29a29e98b54"
+    ]
+   },
+   {
+    "title": "Easy in defence",
+    "t": "Lobs, chiquitas and low balls from the back feel ==safe under pressure==.",
+    "src": [
+     "0eb81c6f-0073-4dab-8bb2-ccace570408b",
+     "41d69d5f-0a99-411a-af60-d23805612847",
+     "research-32119045-eede-4470-bf6d-ec85bfb804f6",
+     "research-dba39e75-24cd-4adf-8d90-f731c5fde8c5",
+     "research-500db5bb-00df-4595-b2ed-5b58bce53344",
+     "research-cefd36f1-fca5-46aa-83da-9bb65b0e0f99",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6",
+     "3b8a79de-16e8-4f7e-bb83-c29a29e98b54"
+    ]
+   },
+   {
+    "title": "Tune it with the weights",
+    "t": "Weights up top add smash power; ==take them out for speed==.",
+    "src": [
+     "research-44b2c214-49fb-4395-8dce-4385c6fc1518",
+     "research-8ed78451-0c7a-496f-9f29-0eaee15f9826",
+     "research-3cc800f8-4e93-4129-9e5d-eaf2e4906507",
+     "research-fc759cfb-b1c9-4f04-ad03-7c90c3411cc5",
+     "research-08ecd9e7-8cd7-42fe-afb6-e7f2a9cd1e0d",
+     "research-500db5bb-00df-4595-b2ed-5b58bce53344",
+     "research-14a48ed0-9186-4c19-93b6-8e4190bd9654",
+     "research-001faea4-9bf6-43af-9cfb-6b307bbe3685",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6",
+     "research-bd9e5f9e-b9fc-4367-a640-66104d969339",
+     "research-20b8bcbd-2ad2-43cd-8658-c87dc6a309ef",
+     "research-4d8a900f-0884-43ef-9249-50b719f788a6",
+     "research-d4328edc-9f05-4477-a279-cf1398f9a105",
+     "research-0cd8d533-58bd-439e-b295-f2c75c27ddf5",
+     "7a5e2fa3-af38-4698-bd46-c4020a08d18c"
+    ]
+   },
+   {
+    "title": "Kind to sore arms",
+    "t": "Players with sore elbows or wrists say ==it suits them==.",
+    "ev": "{n} players with arm pain",
+    "src": [
+     "f483fdb6-3129-448a-bf55-8b41017eb23c",
+     "research-dba39e75-24cd-4adf-8d90-f731c5fde8c5",
+     "research-8115afac-49e1-4e34-923f-1ccd88b05b7a",
+     "25ca0bcc-1273-40fe-877b-29d867e1d0b6"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Bouncy at the net",
+    "t": "The soft face launches fast blocks, so ==volleys can fly long==.",
+    "ev": "the #1 complaint, {n} players",
+    "src": [
+     "research-7e2f88d0-23d7-4f5f-a80b-0aceeeb99ff2",
+     "research-73293aeb-00c5-4432-8da9-b3b9eafef86f",
+     "research-3df7d121-a999-4734-b2b5-c61ff65bd6bf",
+     "research-bac402ea-53fd-468a-8049-b3df5530de4f",
+     "research-32119045-eede-4470-bf6d-ec85bfb804f6",
+     "research-357fcb1c-bf6e-4544-8c1b-f7015a336829",
+     "research-7dd7befd-e2e7-4917-b429-05dfa9490ae0",
+     "research-8e4b0944-78dc-4a77-8ca2-0f045d9df148",
+     "research-e027e0c5-7296-4264-8f72-98b0784694fd",
+     "research-95ac4b42-dccc-4ebc-a157-d2982b4285e8",
+     "research-9407f561-52ff-410c-898b-d38c543263da",
+     "research-e3ebec3d-cb53-4009-82c5-6c43927251eb",
+     "research-21626553-3876-4753-9963-37e51ad1d031",
+     "10589294-07e0-4feb-9ae4-6f8bcc99314a"
+    ]
+   },
+   {
+    "title": "Smashes need help",
+    "t": "Out of the box ==flat smashes lack pop==; players move the weights up top.",
+    "src": [
+     "research-3df7d121-a999-4734-b2b5-c61ff65bd6bf",
+     "research-c8444438-f44e-4235-af7c-3ba16e21df2b",
+     "research-fc759cfb-b1c9-4f04-ad03-7c90c3411cc5",
+     "research-b21637bc-2c5f-4762-a073-f15c0261671f",
+     "research-cefd36f1-fca5-46aa-83da-9bb65b0e0f99"
+    ]
+   },
+   {
+    "title": "Bouncier in the heat",
+    "t": "A few players say it gets ==far too lively in warm weather==.",
+    "src": [
+     "research-73293aeb-00c5-4432-8da9-b3b9eafef86f",
+     "research-7dd7befd-e2e7-4917-b429-05dfa9490ae0"
+    ]
+   },
+   {
+    "title": "Check the weight screws",
+    "t": "The adjustable weight screws ==broke or failed== for a few players.",
+    "src": [
+     "research-72bd16b1-b672-4989-a5b5-d18369f18b6e",
+     "research-357fcb1c-bf6e-4544-8c1b-f7015a336829",
+     "research-688333b9-37a1-44dd-a6f4-0fb773ccb3a1"
+    ]
+   }
+  ]
+ },
+ "bullpadel-vertex-05-hybrid-2026": {
+  "tagline": "A big sweet spot and a dry, precise touch. The catch: you bring the power.",
+  "bottom": "A forgiving all-rounder for intermediates who like a dry touch. Power players should look at the Geo.",
+  "yes": [
+   {
+    "title": "Huge sweet spot",
+    "t": "“Almost the whole racket is sweet spot”: ==off-centre hits still land==.",
+    "src": [
+     "d2670b81-ad81-40e7-bf4b-196b724bf906",
+     "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
+     "research-80910ecb-fc44-4a1e-a468-ddf3ce7359f1",
+     "research-2785033f-2fda-41c8-ad66-293ff065e8db",
+     "research-c1062c85-3cf1-42dd-bb54-f64862e2a677",
+     "research-aceddbe3-1940-47cd-b0e8-c4ea64908756",
+     "research-e7a29c2c-534a-43ee-99ed-69ba1985db36",
+     "research-1ddb5bdd-171e-412b-a95d-ce0373007a59",
+     "research-7d8b9c2c-ba38-43c2-8480-c4cd065fdb0f",
+     "research-69cc52ab-89c9-464b-ada3-2406a1dd910f",
+     "research-3f3ee328-ccfd-480b-8f25-08a5d499df96",
+     "research-f940a0f8-0fb5-49ef-b66b-eef496d655a3",
+     "6dab2eb2-d865-46ea-a319-58875f311117",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a"
+    ]
+   },
+   {
+    "title": "Dry touch, little trampoline",
+    "t": "Players like it for ==placement and deep lobs==.",
+    "src": [
+     "research-7ad825b1-76aa-458b-b148-d340ec3f5cde",
+     "research-c1062c85-3cf1-42dd-bb54-f64862e2a677",
+     "research-202a4c2c-2a2d-43ca-b4b3-2b64f262ff44",
+     "research-7e3a6119-4122-4bf6-8d75-ae793923bf46",
+     "research-69cc52ab-89c9-464b-ada3-2406a1dd910f",
+     "research-72648831-1f7b-415e-9244-e086a821ccab",
+     "research-aceddbe3-1940-47cd-b0e8-c4ea64908756"
+    ]
+   },
+   {
+    "title": "Quick in the hand",
+    "t": "A low balance makes it ==easy to handle at the net==.",
+    "src": [
+     "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
+     "research-2785033f-2fda-41c8-ad66-293ff065e8db",
+     "research-202a4c2c-2a2d-43ca-b4b3-2b64f262ff44",
+     "research-e7a29c2c-534a-43ee-99ed-69ba1985db36",
+     "research-1ddb5bdd-171e-412b-a95d-ce0373007a59",
+     "research-7d8b9c2c-ba38-43c2-8480-c4cd065fdb0f",
+     "f3dce003-7bdf-47ae-86ca-579cd4814d2e",
+     "research-3f3ee328-ccfd-480b-8f25-08a5d499df96"
+    ]
+   },
+   {
+    "title": "A true all-rounder",
+    "t": "Players use it on ==both sides of the court==.",
+    "src": [
+     "research-2ec0fa68-01f7-41c8-96da-530c4480de0d",
+     "research-bec60964-d5f1-481b-a15d-d65228a3abb6",
+     "research-3f3ee328-ccfd-480b-8f25-08a5d499df96",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "No free power",
+    "t": "Smashes need a full swing, and ==flat smashes get no help==.",
+    "src": [
+     "d2670b81-ad81-40e7-bf4b-196b724bf906",
+     "research-f0d75cd9-b8fc-4654-9189-fb52a65a91fe",
+     "research-80910ecb-fc44-4a1e-a468-ddf3ce7359f1",
+     "research-e58c9239-b2ce-4418-a1aa-288e69db24a4",
+     "research-aceddbe3-1940-47cd-b0e8-c4ea64908756",
+     "research-69cc52ab-89c9-464b-ada3-2406a1dd910f",
+     "f34ed20c-c749-4b47-989c-1b432872d57c",
+     "research-a3ac8569-2ce0-44cc-98a2-fdb0c68ea912",
+     "f3dce003-7bdf-47ae-86ca-579cd4814d2e",
+     "research-72648831-1f7b-415e-9244-e086a821ccab",
+     "6dab2eb2-d865-46ea-a319-58875f311117",
+     "796b2dcc-38af-43d5-b3ed-596c56da076a"
+    ]
+   },
+   {
+    "title": "Heavier than the label",
+    "t": "Players weighed theirs at ==380 g or more== out of the box.",
+    "ev": "{n} players weighed theirs",
+    "src": [
+     "research-0f7bd3d6-fa75-45f3-86aa-d46386b09436",
+     "research-162afd07-72b0-40f5-bc3a-c8fb9b2c0be5",
+     "research-f940a0f8-0fb5-49ef-b66b-eef496d655a3",
+     "d5e48b8c-d67a-4abd-b461-906dc7018822"
+    ]
+   },
+   {
+    "title": "Split on sore arms",
+    "t": "Some got ==elbow or shoulder pain== from the firm face; others call it arm-friendly.",
+    "ev": "{n} players with arm pain",
+    "src": [
+     "research-7df6be13-96cc-40fb-b751-99fc304a84e9",
+     "research-fe349e00-deda-476c-a2b1-c10642d56c71",
+     "research-6cae8b3e-306b-4cf6-9019-3839d23e76aa",
+     "research-d8f8022e-2b2c-4425-a96d-902eeabb3626",
+     "research-1fe8ffd6-889e-47db-9a99-7706f2245619"
+    ]
+   }
+  ]
+ },
+ "nox-at10-genius-18k-2026": {
+  "tagline": "Soft, forgiving and easy to place. The catch: flat smashes need your arm.",
+  "bottom": "A comfortable control racket for intermediates and sore arms. Hard hitters will miss the 12K's punch.",
+  "yes": [
+   {
+    "title": "Easy and forgiving",
+    "t": "The sweet spot is ==bigger than the 12K's==, so mishits still play.",
+    "src": [
+     "d6663844-6f68-4183-b45a-7444577dd1cc",
+     "deef6486-360f-44ac-8d1b-ff1e8ce1396a",
+     "6775df21-f207-438d-8801-ecfbdb0dc8f0",
+     "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
+     "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+     "1b898470-3437-414d-8fa2-c9dc8b449355",
+     "research-1b95f716-b02c-4abb-85f8-3f8e00c155e8",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "08da3015-8387-4ef5-b876-8ffd938fdaa2",
+     "research-d105e635-23d0-4eed-b1b6-d46edd88dfb4",
+     "research-6bfbff40-ac18-45d4-9235-01997f2fb337",
+     "research-c62c04fa-2fb1-45ed-b5f2-6e53d5738c9c",
+     "research-b14b4d22-d4ae-4bd5-a7c9-1206326ac0a8",
+     "research-ef95cfea-5f5c-4837-9c55-f75f2f75a211",
+     "research-195a1ac5-d2ba-4679-b177-b561d7df3593",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab"
+    ]
+   },
+   {
+    "title": "Control and touch",
+    "t": "==Precise lobs and chiquitas==, and volleys go where you aim.",
+    "src": [
+     "fa415fd5-7483-449c-8855-d86147dea46b",
+     "deef6486-360f-44ac-8d1b-ff1e8ce1396a",
+     "research-fe347270-0d1e-4d27-9a79-ba2f10618f16",
+     "46b31dee-bd85-4a64-a793-6fb639c25339",
+     "e93536fd-20c1-4070-b0c9-6573c83dd81d",
+     "1b898470-3437-414d-8fa2-c9dc8b449355",
+     "research-744316f9-ec09-4525-bb14-46e76621243d",
+     "research-f700af80-19c0-44a5-834d-d2d647c4308b",
+     "research-d912fe51-3d69-4e17-9c82-9c4b52510c33",
+     "research-1b95f716-b02c-4abb-85f8-3f8e00c155e8",
+     "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "a0277f9a-6563-455d-a452-bb2e87202881",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "9592c385-7ad2-4242-a768-789a033593d7",
+     "research-b14b4d22-d4ae-4bd5-a7c9-1206326ac0a8",
+     "research-c1e62fb1-57cf-43d7-a06c-6682b71ad766",
+     "0f469c3d-c4cb-4749-9c0b-105178323b93",
+     "127a00d7-a972-425d-b112-af4a03a3d293",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab",
+     "4501977c-12b8-4eae-a8c4-a0e65fbf9710"
+    ]
+   },
+   {
+    "title": "Kind to the arm",
+    "t": "Players with elbow or wrist trouble ==find it comfortable==.",
+    "src": [
+     "c6312d1b-8097-4565-854c-bb5acf160da3",
+     "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "research-5427f293-6a82-423c-8c93-102e061d83bd",
+     "research-ef95cfea-5f5c-4837-9c55-f75f2f75a211",
+     "research-b0318d6c-2b49-492c-b1b1-73b13b96b6e1",
+     "research-c9da121d-ef6b-4354-a8c4-7282885ca638",
+     "research-c1e62fb1-57cf-43d7-a06c-6682b71ad766",
+     "127a00d7-a972-425d-b112-af4a03a3d293",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab"
+    ]
+   },
+   {
+    "title": "Quick to move",
+    "t": "==Easy to handle at the net== and in defence.",
+    "src": [
+     "fa415fd5-7483-449c-8855-d86147dea46b",
+     "fac5aebd-ed48-4336-9402-fb49b064122e",
+     "e93536fd-20c1-4070-b0c9-6573c83dd81d",
+     "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+     "research-d912fe51-3d69-4e17-9c82-9c4b52510c33",
+     "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "9592c385-7ad2-4242-a768-789a033593d7",
+     "08da3015-8387-4ef5-b876-8ffd938fdaa2",
+     "research-b438f344-a3fa-42f2-afe9-1570e8bd2db9",
+     "research-ef95cfea-5f5c-4837-9c55-f75f2f75a211",
+     "research-152cc422-9b07-455f-aa42-c9af627b2222",
+     "4501977c-12b8-4eae-a8c4-a0e65fbf9710"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Flat smashes need your arm",
+    "t": "There's ==no free power==; it works when you swing it properly.",
+    "src": [
+     "6775df21-f207-438d-8801-ecfbdb0dc8f0",
+     "07b2633e-8bf4-43a4-acfb-9bacd4870da3",
+     "e93536fd-20c1-4070-b0c9-6573c83dd81d",
+     "9b49b88d-9182-41ed-b5b4-b8eebdb87fb5",
+     "800904f5-472f-4cd7-b9d7-a41f2b90e236",
+     "c928c322-f077-468d-9742-0cc82d75ddd8",
+     "8c63c03d-3492-4fce-8e95-436ffe88c45b",
+     "a0277f9a-6563-455d-a452-bb2e87202881",
+     "b884b719-b926-4c99-9d0a-8ac69ffbe673",
+     "research-6bc8d6e8-5ee0-46db-8ed8-b0a5fcf40016",
+     "research-1a138cf5-7208-4901-8c76-73181dda375a",
+     "research-5427f293-6a82-423c-8c93-102e061d83bd",
+     "research-3baaef6b-3a37-44a5-b79a-8a8c3876c661",
+     "research-5cd57fc2-60eb-418c-b30e-af5e2d40b685",
+     "research-88b5bcba-49a1-4b8f-9b26-1f9dc85d909a",
+     "0f469c3d-c4cb-4749-9c0b-105178323b93",
+     "127a00d7-a972-425d-b112-af4a03a3d293",
+     "9a7fdf95-6208-4f50-8511-f5020093fcab",
+     "4501977c-12b8-4eae-a8c4-a0e65fbf9710"
+    ]
+   },
+   {
+    "title": "Soft at pace",
+    "t": "Fast shots can ==run away to the glass== or the net.",
+    "src": [
+     "research-66249816-dd52-4abd-9cce-05389b80318b",
+     "research-04ae0c76-5990-4f4a-a942-144e47743f43",
+     "research-1a138cf5-7208-4901-8c76-73181dda375a",
+     "research-61a1b4ff-2565-4eb8-8a18-453403867b46",
+     "research-5427f293-6a82-423c-8c93-102e061d83bd",
+     "research-d7e61e6b-690a-48d7-acb0-0246bf36a6a1",
+     "research-b0318d6c-2b49-492c-b1b1-73b13b96b6e1",
+     "research-7e7b49f9-ace5-4975-978e-f20fcd4b01b8",
+     "research-0db35c1e-b9d6-4bcc-8763-7b2195bcf761",
+     "research-8b751f00-ff84-40d6-8cfd-453af6bd405e"
+    ]
+   },
+   {
+    "title": "Changes with the weather",
+    "t": "==Stiff on a cold day==, perfect in the heat, players say.",
+    "src": [
+     "fac5aebd-ed48-4336-9402-fb49b064122e",
+     "research-152cc422-9b07-455f-aa42-c9af627b2222",
+     "research-d3d1c2a5-9c43-4fd1-bd46-382bcc6392f0",
+     "research-dba76d8d-8924-45b0-8751-ee765eb28912"
+    ]
+   }
+  ]
+ },
+ "bullpadel-vertex-05-geo-2026": {
+  "tagline": "Easy punch overhead, with more control than most diamonds. The catch: bad timing gets punished.",
+  "bottom": "A power diamond for intermediate and advanced attackers. Beginners and pure defenders: look elsewhere.",
+  "yes": [
+   {
+    "title": "Easy punch",
+    "t": "Smashes and viboras get ==real power from the upper sweet spot==.",
+    "src": [
+     "21894399-5cef-475a-a3bc-8fc1dcd77685",
+     "research-d8946510-bca7-44c9-a47f-c4e9c599343d",
+     "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
+     "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
+     "7646df23-86cc-48f4-8ef1-522a49203718",
+     "81dc96a9-af32-4849-9bd6-0358f095f30e",
+     "72fe4b78-db5d-4040-b702-ac3c607c704d",
+     "research-772d943b-c2ba-4924-b8b0-595fd7d5a71e",
+     "research-0d93aec4-683c-4197-b322-8081350d15ab",
+     "research-d11ee3f7-a32b-4bc7-909a-eb1964b678da",
+     "research-b2181fe6-a5e2-4dd8-89bd-15ae8c7b213b",
+     "research-8c68ae70-5203-46a7-8f3b-0d362230071d",
+     "research-14220e21-3c15-4cb7-b045-f5d5dd41636d",
+     "bf560262-e3c1-49b2-b440-8f980cb9bceb",
+     "research-beeb6a35-021f-49e5-a338-0dadb3c877b0",
+     "research-7789dc45-ae74-4710-b508-7d864846b319",
+     "research-b4f50e7b-79a4-4a4d-b562-e429222f7185",
+     "48da8486-f81e-4b7c-8364-db66b27fbf43"
+    ]
+   },
+   {
+    "title": "Power without losing control",
+    "t": "It adds punch but ==keeps your touch and placement==.",
+    "src": [
+     "21894399-5cef-475a-a3bc-8fc1dcd77685",
+     "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
+     "7bf9678f-03a5-4c92-8e1f-9b6f8da98679",
+     "abe55dbe-2c8e-403c-be0e-1df5c9b2c1c6",
+     "7646df23-86cc-48f4-8ef1-522a49203718",
+     "8de74c73-f7e2-42a8-ae5c-b3e236be7c41",
+     "d4343c3c-2119-44dc-9398-ade67cfbb48d",
+     "ef6edf3e-e3b1-4dce-9735-d05f15a30956",
+     "ff212c27-7400-40a4-a1a9-dcce5f5ac24f",
+     "77dce855-af94-446f-a366-0d12150ae495",
+     "48096dd3-cb00-478d-90f7-2b6ead53fba7",
+     "72fe4b78-db5d-4040-b702-ac3c607c704d",
+     "research-0d93aec4-683c-4197-b322-8081350d15ab",
+     "5b8fcb91-074f-4a06-abba-2bf865555530",
+     "459141b3-f8c2-4837-9aff-4a3de3d4b672"
+    ]
+   },
+   {
+    "title": "Forgiving for a diamond",
+    "t": "The sweet spot is ==bigger than players expected==.",
+    "src": [
+     "research-d8946510-bca7-44c9-a47f-c4e9c599343d",
+     "31adaf7f-997c-42b3-91f7-b2c6551c31bf",
+     "77dce855-af94-446f-a366-0d12150ae495",
+     "48096dd3-cb00-478d-90f7-2b6ead53fba7",
+     "research-0d93aec4-683c-4197-b322-8081350d15ab",
+     "c5595dc0-48e5-4cfa-905d-ed0968fa4ad5",
+     "research-266e71b0-3b11-4c3e-847f-a800833bb62c",
+     "research-8c68ae70-5203-46a7-8f3b-0d362230071d",
+     "bf560262-e3c1-49b2-b440-8f980cb9bceb",
+     "459141b3-f8c2-4837-9aff-4a3de3d4b672"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Punishes bad timing",
+    "t": "==Mishits and slow defence get no help==; it takes a few sessions to settle.",
+    "src": [
+     "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
+     "7646df23-86cc-48f4-8ef1-522a49203718",
+     "8de74c73-f7e2-42a8-ae5c-b3e236be7c41",
+     "d4343c3c-2119-44dc-9398-ade67cfbb48d",
+     "ef6edf3e-e3b1-4dce-9735-d05f15a30956",
+     "4fa26b22-16d9-45a4-9cce-79f7df4dc10e",
+     "research-0c1ca5ec-7002-43c6-9911-28aa9767c71a",
+     "research-2a0151d8-0699-42cb-81a3-71d78ece5fc5",
+     "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
+     "research-0def0963-009b-48d1-ab7c-e391ef2e4b26",
+     "research-b4f50e7b-79a4-4a4d-b562-e429222f7185"
+    ]
+   },
+   {
+    "title": "Heavy up top",
+    "t": "Many find it ==heavy or head-heavy==; one weighed 390 g+ set up.",
+    "src": [
+     "research-025481ec-8b4f-478e-b1af-93cefa47fe46",
+     "81dc96a9-af32-4849-9bd6-0358f095f30e",
+     "77dce855-af94-446f-a366-0d12150ae495",
+     "5804efdf-697b-4a59-b346-16484da84258",
+     "research-d11ee3f7-a32b-4bc7-909a-eb1964b678da",
+     "research-b2181fe6-a5e2-4dd8-89bd-15ae8c7b213b",
+     "research-14220e21-3c15-4cb7-b045-f5d5dd41636d",
+     "research-beeb6a35-021f-49e5-a338-0dadb3c877b0",
+     "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
+     "research-489ab6cb-bd3a-4d0e-91dc-513445d09f2b"
+    ]
+   },
+   {
+    "title": "Not a first racket",
+    "t": "An intermediate player says it's ==“Not suitable for beginners”==.",
+    "src": [
+     "48da8486-f81e-4b7c-8364-db66b27fbf43",
+     "research-dd1a26b5-bc5a-417d-9c29-71ec8b68c4fa",
+     "fd65166b-5b3d-4ad1-ba48-2b148741b74c",
+     "d4343c3c-2119-44dc-9398-ade67cfbb48d"
+    ]
+   }
+  ]
+ },
+ "babolat-counter-viper-2025": {
+  "tagline": "Pinpoint control and a dry, solid feel. The catch: it's hard on the arm.",
+  "bottom": "A stiff control racket for advanced right-side players with healthy arms. Sore elbows should skip it.",
+  "yes": [
+   {
+    "title": "Pinpoint control",
+    "t": "Lobs and returns go where you aim: one player makes ==“0 mistakes on lobs or returns”==.",
+    "src": [
+     "fafffa88-24d8-481e-8fb1-8149b8a1de32",
+     "574baabf-cfde-4384-b183-a512699d8e02",
+     "9b248e77-2462-43bb-aed4-2b013c5b8189",
+     "56346be5-d926-4d78-9d01-822a0b660aa6",
+     "81f68ce7-bac7-4c3c-b4f5-dcbea6a53f6d",
+     "research-12409c39-25b6-4821-9a04-3fea6595050c",
+     "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02",
+     "research-b9999903-f1e5-441e-b353-60ff33711ad8",
+     "research-2a6b2886-1236-4d61-aa22-cc67f4055565",
+     "research-af648693-4d4f-442e-9288-d0a3034fbb84",
+     "research-5abe0e5b-81bf-48ae-b1ce-68777a4274fd",
+     "research-d76dc6c5-aa4f-412b-8085-90081f37bde2",
+     "research-7f3535d1-d78f-43d8-a9c8-e4713fe6636d",
+     "research-7a306f9d-49e2-4b6c-8e7a-f93f09bb27c5",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c",
+     "research-054d29c4-6699-4929-bf33-b64839b778cf",
+     "research-81a547dc-6a14-4b9b-a9da-4824c55a9e94",
+     "research-78b50dcf-166f-47c6-8e95-a4d3c5582d3a"
+    ]
+   },
+   {
+    "title": "Dry and direct",
+    "t": "==No trampoline==: blocks at the net feel rock solid.",
+    "src": [
+     "56346be5-d926-4d78-9d01-822a0b660aa6",
+     "research-2fdbf2ae-4af5-4460-ba40-e1aae19170b2",
+     "research-af648693-4d4f-442e-9288-d0a3034fbb84",
+     "research-5abe0e5b-81bf-48ae-b1ce-68777a4274fd",
+     "research-42feafd6-5c51-4bdb-9d7e-aab3f80e24a2",
+     "research-4a435327-412d-4e81-85c4-2b592fb25cbc",
+     "research-6217e954-0fb0-42ef-8606-dfc51a2febbc"
+    ]
+   },
+   {
+    "title": "Finishes for a control racket",
+    "t": "==Flat smashes and bandejas== still have punch.",
+    "src": [
+     "574baabf-cfde-4384-b183-a512699d8e02",
+     "56346be5-d926-4d78-9d01-822a0b660aa6",
+     "research-12409c39-25b6-4821-9a04-3fea6595050c",
+     "research-d76dc6c5-aa4f-412b-8085-90081f37bde2",
+     "research-c7d60822-a9bb-4ff5-b6be-1080a29e4691",
+     "research-42feafd6-5c51-4bdb-9d7e-aab3f80e24a2",
+     "research-4a435327-412d-4e81-85c4-2b592fb25cbc"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Hard on the arm",
+    "t": "Players got arm, elbow or shoulder pain, and ==most of them moved on==.",
+    "ev": "the #1 complaint, {n} players",
+    "src": [
+     "research-5f279e19-3ff0-4bd4-929e-a00ac9613780",
+     "research-c9cd3e00-0284-4930-98ef-07dbb3522e4e",
+     "research-327efc5a-c33e-4f6e-809b-ad483e499f74",
+     "research-68e8b113-b94e-48db-b291-ba957312a7e3",
+     "research-ce63278e-2965-4085-b470-4af76e09f44b",
+     "research-7fecc69d-74be-47dd-bcc1-f56f5af15d79",
+     "research-cb5b8778-e7c7-407a-8daa-ba7ed0964eae",
+     "research-40e025a5-feaf-43d9-9a6b-7e888900decd",
+     "research-a03e8218-23bb-4d80-9418-2398e87df84e",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c",
+     "research-054d29c4-6699-4929-bf33-b64839b778cf",
+     "9588006b-d173-4897-a3cd-15675f836505"
+    ]
+   },
+   {
+    "title": "Heavy and head-heavy",
+    "t": "Some units weigh ==380–390 g== with grips on.",
+    "src": [
+     "research-02176b41-4c52-42b8-bcea-6d59f635696e",
+     "research-f3ee0ce4-1904-44b3-9f4e-b9a877149049",
+     "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02",
+     "research-af648693-4d4f-442e-9288-d0a3034fbb84",
+     "research-c7d60822-a9bb-4ff5-b6be-1080a29e4691",
+     "research-7fecc69d-74be-47dd-bcc1-f56f5af15d79",
+     "research-7f3535d1-d78f-43d8-a9c8-e4713fe6636d",
+     "research-40e025a5-feaf-43d9-9a6b-7e888900decd",
+     "research-a03e8218-23bb-4d80-9418-2398e87df84e",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c",
+     "research-054d29c4-6699-4929-bf33-b64839b778cf"
+    ]
+   },
+   {
+    "title": "Stiff and demanding",
+    "t": "Players see it as ==a racket for advanced players==.",
+    "src": [
+     "research-a98aaffd-9c56-4b9e-901d-59721f4c4f02",
+     "research-5abe0e5b-81bf-48ae-b1ce-68777a4274fd",
+     "research-ce63278e-2965-4085-b470-4af76e09f44b",
+     "research-25453d2e-ff0c-40c8-b16f-87aa6dc797bb",
+     "research-40e025a5-feaf-43d9-9a6b-7e888900decd",
+     "research-dd989bc5-da65-4455-a7b9-56064aa3288c"
+    ]
+   },
+   {
+    "title": "Rock-hard in the cold",
+    "t": "A few players say it ==stiffens a lot in winter==.",
+    "src": [
+     "research-b9999903-f1e5-441e-b353-60ff33711ad8",
+     "research-670e6794-4ab7-47b7-a732-a950e61c537e"
+    ]
+   }
+  ]
+ }
+}
