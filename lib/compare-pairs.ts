@@ -78,3 +78,30 @@ export function comparePick(data: Catalog, product: Product, now = new Date()): 
   if (score(data, closest.id).judged >= 10) return closest;
   return [...similar.slice(0, 3)].sort((p, q) => score(data, q.id).judged - score(data, p.id).judged)[0] ?? closest;
 }
+
+/** A model family (owner 2026-11-15, quick match shows one row per model): the name without years and generation numbers,
+ *  so Metalbone HRD+ 3.4 2025 → 3.5 2026, Electra Pro ST4 → ST5, Fenix Pro 5 → 6, Hack 04 → 05 and Neuron → Neuron 02 are one
+ *  family. Carbon grades (12K, 18K) and model codes (AT10, EA10) stay part of the name. */
+export const modelFamily = (p: { name: string; brandId: string }) => `${p.brandId}:${p.name.toLowerCase().replace(/\b(19|20)\d{2}\b/g, " ").replace(/\b(?:v|st|gen ?)?\d+(?:\.\d+)?\b(?![k+])/g, " ").replace(/[^a-z0-9+]+/g, " ").trim()}`;
+/** The newest year of each racket's family among `candidates` (the highest name when two share the newest year). */
+export function newestInFamily<T extends Product>(product: T, candidates: T[]): T {
+  if (!hasYears) return product;
+  const key = modelFamily(product);
+  return [product, ...candidates.filter(x => x.id !== product.id && modelFamily(x) === key)].sort((a, b) => b.year - a.year || b.name.localeCompare(a.name, "en", { numeric: true }))[0];
+}
+/** The family's older years, newest first. */
+export function olderInFamily<T extends Product>(product: T, candidates: T[]): T[] {
+  if (!hasYears) return [];
+  const key = modelFamily(product);
+  return candidates.filter(x => x.id !== product.id && modelFamily(x) === key && x.year < product.year).sort((a, b) => b.year - a.year);
+}
+/** Which year of a family takes the row (owner 2026-11-15, "Yes, fall back"): the newest year with `enough` reports for a
+ *  match %, else the newest. `newer` is the family's newest year when that isn't the one shown (it gets a "new: <year> version"
+ *  link); once it has enough reports, it takes the row. */
+export function rowOfFamily<T extends Product>(product: T, candidates: T[], enough: (p: T) => boolean): { shown: T; newer: T | null } {
+  if (!hasYears) return { shown: product, newer: null };
+  const key = modelFamily(product);
+  const years = [product, ...candidates.filter(x => x.id !== product.id && modelFamily(x) === key)].sort((a, b) => b.year - a.year || b.name.localeCompare(a.name, "en", { numeric: true }));
+  const shown = years.find(enough) ?? years[0];
+  return { shown, newer: shown.id === years[0].id ? null : years[0] };
+}

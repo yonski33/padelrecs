@@ -11,7 +11,8 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { platformName } from "../lib/source-label";
 import { quickMatch, matchTitle, choiceHref, isDefault, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
 import { niche, catalogPath, productHref } from "../lib/niche";
-import { fitVerdict, ARM_BAR } from "../lib/fit-verdict";
+import { fitVerdict, ARM_BAR, MIN_FIT_REPORTS } from "../lib/fit-verdict";
+import { rowOfFamily, olderInFamily } from "../lib/compare-pairs";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 import { qtFontVars } from "./qt-fonts";
@@ -34,7 +35,7 @@ function ago(iso: string, now: number) {
 const clip = (t: string, n = 140) => t.length <= n ? t : `${t.slice(0, t.lastIndexOf(" ", n))}…`;
 
 export default async function HomeV2({ choice }: { choice: QuickChoice }) {
-  const [{ data, sigs, takes, finder, bad, pool, level, signal, facts, matchPct, fineOf }, lists] = await Promise.all([matchContext(), rankedLists()]);
+  const [{ data, sigs, takes, finder, bad, pool, level, signal, factsFor, matchPct, fineOf }, lists] = await Promise.all([matchContext(), rankedLists()]);
   const now = Date.now();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOf = (r: { name: string; brandId: string }) => displayName(r.name, brand(r.brandId));
@@ -46,15 +47,25 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
   // the candidates. Thin data has no % and goes last. No picks: quick match's own order (Player score).
   // With picks, every model in the pool is a candidate (a shape pick hides other shapes, and unknown ones), ordered by the
   // spread match % (app/match-context.ts matchPct, the same number the racket page shows). No picks: the Player score order.
-  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: isDefault(choice) ? LIST_SIZE : pool.length, rankWeight: finder.rankWeight })
+  const candidates = quickMatch(pool, finder, choice, { signal, negativeTags: bad, level, count: pool.length, rankWeight: finder.rankWeight })
     .filter(m => isDefault(choice) || !choice.fine?.shape || fineOf(m.product.id)?.shape === choice.fine.shape);
   const pcts = isDefault(choice) ? null : matchPct(choice);
-  const rated = candidates.map((m, i) => {
-    if (!pcts) return { m, i, fit: null, pct: null };
-    return { m, i, fit: fitVerdict(choice, facts(m.product.id)), pct: pcts.get(m.product.id) ?? null };
-  });
-  const rows = isDefault(choice) ? rated : [...rated].sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1) || a.i - b.i).slice(0, LIST_SIZE);
-  const matches = rows.map(x => x.m);
+  // One model, newest year first (owner 2026-11-15: "2 Air Vipers and 2 Electra Pros in the top 5"): a model's years
+  // (lib/compare-pairs.ts modelFamily: same brand, same name without the year and generation number) share one row, the newest year's, ranked by
+  // the shown year's own % (or its own Player score order), never another year's. Older years stay on their own pages, in search and in the rankings.
+  // A newest year without enough reports for a % yet hands the row to the newest year that has them, and gets a "new:" link
+  // (owner 2026-11-15, "Yes, fall back").
+  const reportsOf = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
+  const rowOf = (id: string) => rowOfFamily(byId.get(id)!, data.listed, r => (reportsOf.get(r.id) ?? 0) >= MIN_FIT_REPORTS);
+  const newestOf = (id: string) => rowOf(id).shown.id;
+  const order = new Map(candidates.map((m, i) => [m.product.id, i]));
+  const seenModel = new Set<string>();
+  const models = candidates.flatMap(m => { const id = newestOf(m.product.id); if (seenModel.has(id)) return []; seenModel.add(id);
+    return [{ id, i: order.get(id) ?? candidates.length + (order.get(m.product.id) ?? 0), arm: factsFor(choice, id).tags["arm-friendly"] ?? 0 }]; });
+  const rated = models.map(m => ({ m, i: m.i, fit: pcts ? fitVerdict(choice, factsFor(choice, m.id)) : null, pct: pcts?.get(m.id) ?? null }));
+  const rows = [...rated].sort((a, b) => (pcts ? (b.pct ?? -1) - (a.pct ?? -1) : 0) || a.i - b.i).slice(0, LIST_SIZE);
+  const olderOf = (id: string) => olderInFamily(byId.get(id)!, data.listed);
   // Rows carry the picks to the racket page, so its fit check answers for this visitor (RACKET-FIT-PAGE.md).
   const picks = isDefault(choice) ? "" : choiceHref(choice, "").replace(/^\/\??/, "?");
   const head = matchTitle(choice, niche.words.many);
@@ -112,10 +123,10 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
         <section className="hv2-main" aria-live="polite">
           <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
             <span>{picked ? <>{`ranked for ${choice.level === "advanced" ? "advanced players" : `${choice.level}s`}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
-          {matches.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
+          {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
           <div className="hv2-box">
           <ol className="hv2-list">{rows.map(({ m, fit, pct }, i) => {
-            const r = byId.get(m.product.id)!, sig = sigs.get(r.id), pic = photo(r);
+            const r = byId.get(m.id)!, sig = sigs.get(r.id), pic = photo(r), older = olderOf(r.id), newer = rowOf(r.id).newer;
             const n = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
             const line = takes.get(r.id)?.hook ?? shortLine(r) ?? listLine(r);
             // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
@@ -137,7 +148,9 @@ export default async function HomeV2({ choice }: { choice: QuickChoice }) {
                 : <>{sig && <span className="hv2-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{sig.signal}</span>}
                 <span>{sig ? "player score" : `${n} reports`}</span></>}
               </span>
-            </a></li>;
+            </a>
+            {newer && <a className="hv2-also" href={`${productHref(newer)}${picks}`}>{`new: ${newer.year} version →`}</a>}
+            {older.length > 0 && <a className="hv2-also" href={`${productHref(older[0])}${picks}`}>{`also: ${older[0].year} version →`}</a>}</li>;
           })}</ol>
           <a className="hv2-more" href={catalogPath}>{`see all ${data.listed.length} ${niche.words.many} →`}</a>
           </div>

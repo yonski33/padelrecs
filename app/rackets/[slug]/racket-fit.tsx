@@ -60,7 +60,7 @@ export default async function RacketFit(props: {
   const { qt, reports, reviews, choice, picked } = props;
   const ctx = await matchContext();
   const facts = ctx.facts(props.racketId);
-  const verdict = picked ? fitVerdict(choice, facts) : null;
+  const verdict = picked ? fitVerdict(choice, ctx.factsFor(choice, props.racketId)) : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
   const pct = verdict && picked ? ctx.matchPct(choice).get(props.racketId) ?? null : null;

@@ -132,3 +132,6 @@ body:has(main.hv2) { background: #fbfaf6; }
   }
 }
 
+/* One row per model (owner 2026-11-15): the older year's link under the newest's row. */
+.hv2 .hv2-also { display: inline-block; margin: 4px 0 0 64px; font: 12px var(--qt-mono, "JetBrains Mono"), monospace; color: #4a4740; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+@media (max-width: 760px) { .hv2 .hv2-also { margin-left: 40px; } }

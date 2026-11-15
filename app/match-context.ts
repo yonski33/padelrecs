@@ -21,7 +21,7 @@ import padelKnownDots from "../db/known-dots/padel.json";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
 import { EXTRACTORS } from "../lib/evidence";
 import { shapeOf, gramsOf, feelLean, feelClasses, fineFit, type FineFacts } from "../lib/fine-tune";
-import { fitVerdict } from "../lib/fit-verdict";
+import { fitVerdict, styleLean, MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { matchFit, spreadMatch } from "../lib/match-score";
 import type { QuickChoice } from "../lib/quick-match";
 
@@ -161,20 +161,45 @@ export const matchContext = cache(async () => {
   const feels = feelClasses(leans);
   for (const id of listed) { const r = data.rackets.find(x => x.id === id);
     fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
+  /** With a shape picked (owner 2026-11-15: "it should also be compared inside its own filter"): each rated racket's place for
+   *  the picked style among the rated rackets of that shape, 0 bottom … 1 top. Half the style's trait score, half how many
+   *  players praise that style, each as a percentile (ties share it). Rated = enough reports for a verdict. */
+  const withinCache = new Map<string, Map<string, number>>();
+  const styleWithin = (choice: QuickChoice): Map<string, number> | null => {
+    const shape = choice.fine?.shape; if (!shape || choice.style === "any") return null;
+    const key = `${shape}:${choice.style}`, hit = withinCache.get(key); if (hit) return hit;
+    const ids = [...listed].filter(id => fineOf.get(id)?.shape === shape && facts(id).reports >= MIN_FIT_REPORTS);
+    const pick = (c: number | undefined, p: number | undefined) => choice.style === "power" ? p ?? 0 : choice.style === "control" ? c ?? 0 : Math.min(c ?? 0, p ?? 0);
+    const trait = new Map(ids.map(id => { const t = traitMap.get(id); return [id, pick(t?.control?.score, t?.power?.score)] as const; }));
+    const praise = new Map(ids.map(id => { const l = styleLean(facts(id)); return [id, pick(l.control, l.power)] as const; }));
+    const pctl = (m: Map<string, number>, id: string) => { const v = m.get(id)!; let below = 0, same = 0; for (const x of m.values()) { if (x < v) below++; else if (x === v) same++; }
+      return ids.length > 1 ? (below + (same - 1) / 2) / (ids.length - 1) : 1; };
+    const out = new Map(ids.map(id => [id, 0.5 * pctl(trait, id) + 0.5 * pctl(praise, id)]));
+    withinCache.set(key, out);
+    return out;
+  };
+  /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
+  const factsFor = (choice: QuickChoice, id: string): FitFacts => {
+    const f = facts(id), r = styleWithin(choice)?.get(id);
+    return r === undefined ? f : { ...f, styleWithin: { rank: r, shape: choice.fine!.shape! } };
+  };
   /** The match % for a set of picks, for every listed racket, spread inside each verdict band (lib/match-score.ts spreadMatch),
-   *  so the home list and the racket page show the same number. Null on thin data. */
+   *  so the home list and the racket page show the same number. Null on thin data. With a shape picked, the % is spread among
+   *  that shape's rackets only (the others are spread on their own), so the best of the shape reach the top of its band. */
   const pctCache = new Map<string, Map<string, number | null>>();
   const matchPct = (choice: QuickChoice): Map<string, number | null> => {
     const key = JSON.stringify(choice);
     const hit = pctCache.get(key); if (hit) return hit;
+    const within = styleWithin(choice);
     const rows = [...listed].map(id => {
-      const fv = fitVerdict(choice, facts(id)), t = traitMap.get(id), lv = level(id);
+      const fv = fitVerdict(choice, factsFor(choice, id)), t = traitMap.get(id), lv = level(id);
       const fit = matchFit(choice, { control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, band: lv?.band, likedAtLevel: lv?.liked[choice.level] ?? 0,
-        suits: lv?.suits?.[choice.level], signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!) });
+        suits: lv?.suits?.[choice.level], signal: signal(id), fine: fineFit(choice.fine, fineOf.get(id)!), styleWithin: within?.get(id) });
       const styleScore = choice.style === "power" ? t?.power?.score ?? 0 : choice.style === "control" ? t?.control?.score ?? 0 : choice.style === "balance" ? Math.min(t?.control?.score ?? 0, t?.power?.score ?? 0) : signal(id) ?? 0;
-      return { id, kind: fv.kind, fit, tie1: styleScore, tie2: signal(id) ?? 0 };
+      return { id, kind: fv.kind, fit, tie1: within?.get(id) ?? styleScore, tie2: signal(id) ?? 0 };
     });
-    const spread = spreadMatch(rows);
+    const shape = choice.fine?.shape, inShape = (id: string) => fineOf.get(id)?.shape === shape;
+    const spread = shape ? new Map([...spreadMatch(rows.filter(r => inShape(r.id))), ...spreadMatch(rows.filter(r => !inShape(r.id)))]) : spreadMatch(rows);
     const out = new Map(rows.map(r => [r.id, r.kind === "thin" ? null : spread.get(r.id) ?? null]));
     pctCache.set(key, out);
     return out;
@@ -182,5 +207,5 @@ export const matchContext = cache(async () => {
   /** The level suits scores before any expert value (for the admin expert grid). */
   const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence };
+  return { data, sigs, takes, finder, bad, pool: pool as FinderProduct[], level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence };
 });

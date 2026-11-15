@@ -25,7 +25,13 @@ export type FitFacts = {
   suits?: { beginner: number; intermediate: number; advanced: number; basis: string[] }; levelDisagree?: string;
   /** Place on the control / power rankings, when it's on them. */
   places?: { control?: number; power?: number };
+  /** With a shape picked (owner 2026-11-15: "compare it inside its own filter"): where the racket sits for the picked style
+   *  among the rated rackets of that shape, 0 bottom … 1 top (app/match-context.ts styleWithin). */
+  styleWithin?: { rank: number; shape: string };
 };
+/** Within a picked shape: an all-round racket this high for the picked style counts as built for it, and a racket that
+ *  leans the other way this high is only a soft conflict (owner 2026-11-15, the Electra Pro ST5 and the Nox 12K). */
+export const WITHIN_OK = 0.6, WITHIN_SOFT = 0.4;
 export type FitVerdict = { kind: "good" | "maybe" | "no" | "thin"; label: string; icon: string; reasons: string[]; /** One short reason for list rows (the home). */ short?: string;
   /** What fits (ok checks) and what to weigh (conflicts), for the racket page's two blocks. */ fits?: string[]; catches?: string[] };
 
@@ -54,6 +60,13 @@ function styleCheck(c: QuickChoice, f: FitFacts): Check {
   if (!lean) return { level: "unknown" };
   const evidence = lean === "control" ? `${players(control)} praise the control` : lean === "power" ? `${players(power)} praise the power` : `players praise both control (${control}) and power (${power})`;
   if (lean === c.style) return { level: "ok", reason: `Built for ${c.style === "balance" ? "a bit of everything" : c.style}: ${evidence}.`, short: c.style === "balance" ? "Suited to an all-round game" : `Suited to your ${c.style} priority` };
+  // Inside a picked shape, the racket is weighed against that shape's rackets, not the whole catalog.
+  const w = f.styleWithin, among = w && `${w.shape === "hybrid" ? "teardrop / hybrid" : w.shape} rackets`;
+  const strong = c.style === "balance" ? "most all-round" : c.style === "power" ? "most powerful" : "most controlled";
+  if (w && (c.style === "balance" || lean === "balance") && w.rank >= WITHIN_OK)
+    return { level: "ok", short: `Among the ${strong} ${among}`, reason: `Among the ${strong} ${among}: ${evidence}.` };
+  if (w && c.style !== "balance" && lean !== "balance" && w.rank >= WITHIN_SOFT)
+    return { level: "soft", short: `Leans ${lean}, mid-pack for ${c.style} among ${among}`, reason: `It leans ${lean} (${evidence}), but for ${c.style} it sits mid-pack among ${among}.` };
   if (c.style === "balance" || lean === "balance") return { level: "soft", short: `Leans ${lean === "balance" ? "all-round" : lean}`, reason: `You want ${c.style === "balance" ? "a balance" : c.style}; it leans ${lean === "balance" ? "all-round" : lean}. ${evidence[0].toUpperCase()}${evidence.slice(1)}.` };
   return { level: "hard", short: `A ${lean} racket`, reason: `You want ${c.style}, but this one is a ${lean} racket: ${evidence}.` };
 }
