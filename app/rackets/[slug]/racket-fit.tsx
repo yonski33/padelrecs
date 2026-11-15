@@ -101,12 +101,11 @@ export default async function RacketFit(props: {
     power: () => { const p = tc("easy power"), s = tc("great on smashes"); return p || s ? `${p ? ppl(p, "mention easy power") : "No one mentions easy power"}${s ? `, ${ppl(s, "say it's great on smashes")}` : ""}.` : null; },
     control: () => { const p = tc("good control"), m = tc("head-heavy"); return p || m ? `${p ? ppl(p, "praise the control") : "No one praises the control"}${m ? `, ${ppl(m, "find it head-heavy")}` : ""}.` : null; },
     defence: () => { const p = tc("great in defence"); return p ? `${ppl(p, "say it's great in defence")}.` : null; },
-    arm: () => { const p = tc("arm-friendly"), m = tc("vibrates on mishits"); return p || m ? `${p ? ppl(p, "call it arm-friendly") : "No one calls it arm-friendly"}, ${m ? ppl(m, "mention vibration") : "no one mentions vibration"}.` : null; },
+    // Arm counts include reports that say it in words without a tag (the same counts as the bar).
+    arm: () => { const p = tr.scores?.arm?.plus ?? tc("arm-friendly"), m = tr.scores?.arm?.minus ?? tc("vibrates on mishits"); return p || m ? `${p ? ppl(p, "find it kind to the arm") : "No one calls it kind to the arm"}, ${m ? ppl(m, "say it's hard on the arm") : "no one says it's hard on the arm"}.` : null; },
     speed: () => { const p = tc("fast at the net"), m = tc("head-heavy") + tc("tiring in long matches"); return p || m ? `${p ? ppl(p, "call it fast at the net") : "No one calls it fast at the net"}${m ? `, ${ppl(m, "find it head-heavy or tiring")}` : ""}.` : null; },
   };
   const qtRow: Record<Trait, { chip: string; line: string } | undefined> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
-  // Lines the owner wrote in the admin area stay even when the data is thin.
-  const manualText = new Set(TRAITS.map(t => tr.edits?.traits[t]?.text).filter((x): x is string => !!x));
   const me = ctx.data.rackets.find(x => x.id === props.racketId);
   const traits = TRAITS.map(t => {
     const sc = tr.scores?.[t] ?? null, q = qtRow[t];
@@ -118,7 +117,9 @@ export default async function RacketFit(props: {
     const NOUN: Record<Trait, string> = { forgiveness: "the sweet spot", power: "the power", control: "the control", defence: "its defence", arm: "how it treats the arm", speed: "how quick it is" };
     const ytN = sc?.yt ?? 0, specWords = sc && Math.abs(sc.spec) >= 0.3 ? [me?.shape?.toLowerCase(), me?.balance ? `${me.balance.toLowerCase()} balance` : null].filter(Boolean).join(", ") : "";
     const counted = [countLine[t]()?.replace(/\.$/, ""), ytN ? `${ytN} ${ytN === 1 ? "reviewer praises" : "reviewers praise"} ${NOUN[t]}` : null, specWords || null].filter(Boolean).join(" · ");
-    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (counted ? `${counted}.` : null) ?? (sc ? null : "Not enough reports on this yet.");
+    // Few player mentions (owner 2026-11-15): say what the dots rest on instead of showing a dash.
+    const thinWords = sc?.basis === "specs" ? "Based on specs and reviewers — few player reports on this yet." : "Not many players mention this yet.";
+    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? (counted ? `${counted}.` : null) ?? thinWords;
     return [TRAIT_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
@@ -263,7 +264,7 @@ export default async function RacketFit(props: {
             <div className="rf-plays">{traits.map(([k, v, dots]) => { const n = dots ? dots.replace(/○/g, "").length : 0;
               return <div key={k} className="rf-prow"><b>{k}</b>
                 {n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? "on" : undefined}/>)}</span> : <span className="rf-segs none"/>}
-                <span className="rf-pnote">{n ? <em className={`t${n}`}>{n === 5 ? "standout" : n === 4 ? "strong" : n === 3 ? "so-so" : "below most"}</em> : null}<span><Rich text={n || manualText.has(v) ? v : "Not enough reports yet."}/></span></span>
+                <span className="rf-pnote">{n ? <em className={`t${n}`}>{n === 5 ? "standout" : n === 4 ? "strong" : n === 3 ? "solid" : "players complain"}</em> : null}<span><Rich text={v}/></span></span>
               </div>; })}</div>
           </div>
 

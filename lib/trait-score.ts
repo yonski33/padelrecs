@@ -5,8 +5,8 @@
 //   3. the specs (shape, balance, weight, core) as a small prior, never more than ±1 dot on their own.
 // Fixed scale, no percentile: the catalog median share is 3 dots, and every STEP (scaled to the trait's spread) above or
 // below it is one dot, so many rackets can share 4–5 when players praise them. A racket's share is smoothed toward the median
-// by PRIOR imaginary reports, so thin data stays near 3. Thin data gets no dots at all: fewer than MIN_EVIDENCE reports and
-// reviewers, or fewer than MIN_MENTIONS mentions of the trait. Dots the owner set by hand (override, 1–5) win.
+// by PRIOR imaginary reports. 3 is the floor (every racket here is solid); 2 needs 5+ players faulting that exact trait, more
+// than praise it; 1 only by hand. With few player mentions the specs and YouTube set the base. Hand-set dots (1–5) win.
 // Pure, so tests can feed it plain objects.
 
 export const TRAITS = ["forgiveness", "power", "control", "defence", "arm", "speed"] as const;
@@ -21,6 +21,9 @@ export const TRAIT_TAGS: Record<Trait, { plus: [string, number][]; minus: [strin
   arm: { plus: [["arm-friendly", 1]], minus: [["vibrates on mishits", 1]] },
   speed: { plus: [["fast at the net", 1]], minus: [["head-heavy", 1], ["tiring in long matches", 1]] },
 };
+/** Traits that players fault directly ("vibrates", "small sweet spot"): only these can drop to 2. Little power praise on a
+ *  control racket isn't a complaint (owner 2026-11-15). */
+export const COMPLAINT_TRAITS: Trait[] = ["arm", "forgiveness"];
 export const MIN_EVIDENCE = 8, MIN_MENTIONS = 2, PRIOR = 10, YT_WEIGHT = 2;
 /** Longest hand-written line under a trait (admin area). */
 export const MAX_TRAIT_TEXT_HINT = 220;
@@ -31,9 +34,11 @@ export type TraitInput = {
   /** Reports with at least one tag. */ tagged: number; tags: Record<string, number>;
   /** YouTube channels that praise (plus) or fault (minus) each trait. */ youtube?: Partial<Record<Trait, { plus: number; minus: number }>>;
   specs?: Specs;
+  /** Arm comfort said only in report text (no arm tag): reports kind (plus) or hard (minus) on the arm. */ textArm?: { plus: number; minus: number };
   /** Dots (1–5) set by hand per trait. */ override?: Partial<Record<Trait, number>> | null;
 };
-export type TraitScore = { score: number; dots: number; plus: number; minus: number; yt: number; spec: number; set?: boolean };
+export type TraitScore = { score: number; dots: number; plus: number; minus: number; yt: number; spec: number;
+  /** What set it: player reports, or (few player mentions) the specs and YouTube, or nothing (3 by default). */ basis: "players" | "specs" | "none"; set?: boolean };
 
 export const dotsFor = (score: number) => Math.min(5, 1 + Math.floor(score / 20));
 const weighted = (tags: Record<string, number>, list: [string, number][]) => list.reduce((a, [t, w]) => a + w * (tags[t] ?? 0), 0);
@@ -69,15 +74,17 @@ export function styleBonus(p: TraitInput, t: Trait): number {
   return t === "control" ? lean : t === "defence" ? lean / 2 : -lean;
 }
 
-/** Every racket's six trait scores; null where the data is too thin (and no override). */
+/** Every racket's six trait scores (never null for a listed racket since 2026-11-15: thin data falls back to 3). */
 export function traitScores(products: TraitInput[]): Map<string, Record<Trait, TraitScore | null>> {
   const out = new Map<string, Record<Trait, TraitScore | null>>();
   for (const p of products) out.set(p.id, Object.fromEntries(TRAITS.map(t => [t, null])) as Record<Trait, TraitScore | null>);
   for (const t of TRAITS) {
     const { plus, minus } = TRAIT_TAGS[t];
     const yt = (p: TraitInput) => p.youtube?.[t] ?? { plus: 0, minus: 0 };
+    // Arm words without a tag count like tags (one per report).
+    const tx = (p: TraitInput) => t === "arm" ? p.textArm ?? { plus: 0, minus: 0 } : { plus: 0, minus: 0 };
     const evidence = (p: TraitInput) => p.tagged + yt(p).plus + yt(p).minus;
-    const net = (p: TraitInput) => weighted(p.tags, plus) - weighted(p.tags, minus) + YT_WEIGHT * (yt(p).plus - yt(p).minus);
+    const net = (p: TraitInput) => weighted(p.tags, plus) - weighted(p.tags, minus) + tx(p).plus - tx(p).minus + YT_WEIGHT * (yt(p).plus - yt(p).minus);
     const base = (p: TraitInput) => p.tagged + YT_WEIGHT * (yt(p).plus + yt(p).minus);
     // The catalog's typical share (median → 3 dots) and spread (one dot per STEP), over rackets with enough evidence.
     const pool = products.filter(p => evidence(p) >= MIN_EVIDENCE && base(p) > 0);
@@ -86,22 +93,29 @@ export function traitScores(products: TraitInput[]): Map<string, Record<Trait, T
     const spread = median(shares.map(x => Math.abs(x - m)));
     const step = Math.max(0.04, 1.2 * spread);
     for (const p of products) {
-      const mentions = people(p.tags, plus) + minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + yt(p).plus + yt(p).minus;
+      const mentions = people(p.tags, plus) + minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).plus + tx(p).minus + yt(p).plus + yt(p).minus;
       const lean = specLean(p.specs)[t];
       const o = p.override?.[t];
       const hand = typeof o === "number" && Number.isInteger(o) && o >= 1 && o <= 5 ? o : null;
       const enough = evidence(p) >= MIN_EVIDENCE && mentions >= MIN_MENTIONS;
-      if (!enough && hand === null) continue;
-      const smooth = base(p) + PRIOR > 0 ? (net(p) + PRIOR * m) / (base(p) + PRIOR) : m;
-      // Most rackets collect "good control", so the share alone can't tell a control racket: what players praise it for
-      // decides too. Control vs power praise (with reviewers) leans Control and Defence up and Power down, or the reverse.
-      const cont = Math.max(1, Math.min(5, 3 + (smooth - m) / step + lean + styleBonus(p, t)));
-      // 1 dot needs real complaints (2+ against it); without any, a weak trait stops at 2 (owner 2026-11-15).
-      const against = minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + yt(p).minus;
-      const floor = against >= 2 ? 1 : 2;
-      const dots = hand ?? Math.max(floor, Math.min(5, Math.round(cont)));
-      const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((cont - 1) / 4 * 99);
-      out.get(p.id)![t] = { score, dots, plus: people(p.tags, plus), minus: minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0), yt: yt(p).plus, spec: lean, ...(hand !== null ? { set: true } : {}) };
+      const praise = people(p.tags, plus) + tx(p).plus + yt(p).plus, against = minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus + yt(p).minus;
+      // Thin player data: the specs and YouTube reviewers set the base, never below 3 (owner 2026-11-15).
+      const ytLean = 0.5 * (yt(p).plus - yt(p).minus);
+      const basis: TraitScore["basis"] = enough ? "players" : lean > 0.2 || yt(p).plus + yt(p).minus > 0 ? "specs" : "none";
+      let cont: number;
+      if (enough) {
+        const smooth = (net(p) + PRIOR * m) / (base(p) + PRIOR);
+        // Most rackets collect "good control", so the share alone can't tell a control racket: what players praise it for
+        // decides too. Control vs power praise (with reviewers) leans Control and Defence up and Power down, or the reverse.
+        cont = 3 + (smooth - m) / step + lean + styleBonus(p, t);
+      } else cont = 3 + Math.max(0, lean) + ytLean;
+      cont = Math.max(1, Math.min(5, cont));
+      // Owner 2026-11-15: every racket on the site is solid, so 3 is the floor. 2 only on strong specific complaints (5+ players
+      // fault that exact trait, more than praise it); 1 never automatically, only by hand.
+      const complaint = COMPLAINT_TRAITS.includes(t) && against >= 5 && against > praise;
+      const dots = hand ?? Math.max(complaint ? 2 : 3, Math.min(5, Math.round(cont)));
+      const score = hand !== null ? (hand - 1) * 20 + 10 : Math.round((Math.max(complaint ? 2 : 3, cont) - 1) / 4 * 99);
+      out.get(p.id)![t] = { score, dots, plus: people(p.tags, plus) + tx(p).plus, minus: minus.reduce((a, [tag]) => a + (p.tags[tag] ?? 0), 0) + tx(p).minus, yt: yt(p).plus, spec: lean, basis, ...(hand !== null ? { set: true } : {}) };
     }
   }
   return out;

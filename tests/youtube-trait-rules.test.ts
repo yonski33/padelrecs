@@ -15,3 +15,10 @@ test("YouTube notes become trait mentions, negations first", () => {
   assert.equal(get("style", "Power comes very easily with little effort.").power, 1);
   assert.deepEqual(classifyTraitNote("level", "For advanced players."), []);
 });
+
+test("arm comfort from report words: relief is praise, pain is a complaint", async () => {
+  const { armFromReportText } = await import("../lib/youtube-trait-rules");
+  assert.equal(armFromReportText("Switched from the Nox and the elbow pain went away."), 1);
+  assert.equal(armFromReportText("Felt it in my arm from the first session, rough on the elbow."), -1);
+  assert.equal(armFromReportText("Great control on lobs."), 0);
+});

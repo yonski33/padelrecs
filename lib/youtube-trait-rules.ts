@@ -31,3 +31,13 @@ export function classifyTraitNote(kind: string, text: string): [Trait, number][]
   }
   return out;
 }
+
+/** Arm comfort from a player report's own words (summary or excerpt), for reports without an arm tag (owner 2026-11-15: the
+ *  Counter Viper's arm complaints were only in the text). +1 kind to the arm, −1 hard on it, 0 nothing clear. Relief first:
+ *  "the elbow pain went away" is praise, not a complaint. */
+export function armFromReportText(text: string): number {
+  if (!/\b(arm|elbow|wrist|shoulder|tendon|vibrat)/i.test(text)) return 0;
+  if (/(pain|ache|problem|issue)s? (went|has gone|is gone|disappeared|stopped|vanished)|no (more )?(arm |elbow |wrist )?(pain|issues|problems)|(kind|easy|gentle|great|good|better|friendly) (to|on|for) (the |my |your )?(arm|elbow|wrist)|arm[- ]friendly|no vibration|(does not|doesn'?t|did not|didn'?t) vibrate|absorbs?/i.test(text)) return 1;
+  if (/(hurt|pain|ache|sore|injur|strain|rough|hard|tough|harsh|felt it)[a-z ,]*(arm|elbow|wrist|shoulder|tendon)|(arm|elbow|wrist|shoulder|tendon)[a-z ,]*(hurt|pain|ache|sore|injur|strain|problem|issue)|vibrat|tennis elbow|epicondyl/i.test(text)) return -1;
+  return 0;
+}

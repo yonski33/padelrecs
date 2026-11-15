@@ -20,36 +20,36 @@ test("a round, low-balance racket praised for control gets Control 4+ (owner's s
   assert.ok(s.control!.dots >= 4 && s.defence!.dots >= 4, `control ${s.control!.dots}, defence ${s.defence!.dots}`);
 });
 
-test("specs alone move a trait at most one dot", () => {
+test("specs alone move a trait up at most one dot, and never below 3", () => {
   const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "easy power": 10, "good control": 10, "fast at the net": 6 }));
   const d: TraitInput = { ...r("d", 40, { "easy power": 10, "good control": 10, "fast at the net": 6 }), specs: { shape: "Diamond", balance: "High", weight: "375 g" } };
   const s = traitScores([...field, d]).get("d")!;
-  assert.equal(s.power!.dots, 4); assert.equal(s.speed!.dots, 2);
+  assert.equal(s.power!.dots, 4); assert.equal(s.speed!.dots, 3);
 });
-
 test("negatives count against: vibration lowers arm comfort", () => {
   const m = traitScores([r("a", 30, { "arm-friendly": 6 }), r("b", 30, { "arm-friendly": 6, "vibrates on mishits": 6 })]);
   assert.ok(m.get("a")!.arm!.score > m.get("b")!.arm!.score);
 });
 
-test("thin data: no score under the report or mention bar", () => {
-  const m = traitScores([r("thin", MIN_TAGGED - 1, { forgiving: 6 }), r("one", 30, { forgiving: 1 }), r("ok", 30, { forgiving: 6 }), r("ok2", 30, { forgiving: 3 })]);
-  assert.equal(m.get("thin")!.forgiveness, null);
-  assert.equal(m.get("one")!.forgiveness, null);
-  assert.ok(m.get("ok")!.forgiveness);
+test("thin data: never blank; specs and reviewers set the base, else 3", () => {
+  const m = traitScores([r("thin", MIN_TAGGED - 1, { forgiving: 6 }), { ...r("round", 3, {}), specs: { shape: "Round", balance: "Low" } }, { ...r("yt", 2, {}), youtube: { power: { plus: 2, minus: 0 } } }]);
+  assert.deepEqual([m.get("thin")!.forgiveness!.dots, m.get("thin")!.forgiveness!.basis], [3, "none"]);
+  assert.deepEqual([m.get("round")!.control!.dots, m.get("round")!.control!.basis], [4, "specs"]);
+  assert.equal(m.get("yt")!.power!.dots, 4);
 });
-
 test("smoothing: a few reports with all mentions stay close to the middle", () => {
   const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "good control": 10 + i, "easy power": 10 + i }));
   const m = traitScores([...field, r("few", 8, { "good control": 6, "easy power": 6 }), r("many", 80, { "good control": 60, "easy power": 60 })]);
   assert.ok(m.get("many")!.control!.score > m.get("few")!.control!.score);
 });
 
-test("1 dot needs complaints: without any, a weak trait stops at 2", () => {
-  const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "easy power": 20 + i }));
-  assert.equal(traitScores([...field, r("weak", 40, { "easy power": 2 })]).get("weak")!.power!.dots, 2);
+test("3 is the floor; 2 only when 5+ players fault that exact trait, more than praise it; 1 only by hand", () => {
+  const field = Array.from({ length: 9 }, (_, i) => r(`f${i}`, 40, { "easy power": 20 + i, "good control": 20 + i, "arm-friendly": 6 }));
+  const m = traitScores([...field, r("weak", 40, { "easy power": 2, "good control": 2 }), r("harsh", 40, { "vibrates on mishits": 7, "arm-friendly": 1 }), r("hand", 40, {}, { power: 1 })]);
+  assert.equal(m.get("weak")!.power!.dots, 3, "little power praise isn't a complaint");
+  assert.equal(m.get("harsh")!.arm!.dots, 2);
+  assert.equal(m.get("hand")!.power!.dots, 1);
 });
-
 test("an owner's override wins, even on thin data", () => {
   const m = traitScores([r("a", 3, {}, { speed: 5 }), r("b", 30, { "fast at the net": 5 }, { speed: 2 })]);
   assert.deepEqual([m.get("a")!.speed!.dots, m.get("a")!.speed!.set], [5, true]);

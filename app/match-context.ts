@@ -13,6 +13,7 @@ import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
 import { traitOverrides } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
+import { armFromReportText } from "../lib/youtube-trait-rules";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -66,12 +67,17 @@ export const matchContext = cache(async () => {
   // negative report), "tagged" = reports with at least one counted tag.
   const goodSet = new Set(good), tagIn = new Map<string, TraitInput>();
   const listed = new Set(data.listed.map(r => r.id));
-  for (const x of [...data.reviews.map(r => ({ id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags })), ...data.external.map(e => ({ id: e.racketId, v: e.sentiment, tags: e.tags }))]) {
+  for (const x of [...data.reviews.map(r => ({ id: r.racketId, v: ratingVerdict(r.rating), tags: r.tags, text: r.reviewText })), ...data.external.map(e => ({ id: e.racketId, v: e.sentiment, tags: e.tags, text: [e.summary, e.excerptTranslation ?? e.excerpt].filter(Boolean).join(" ") }))]) {
     if (!listed.has(x.id)) continue;
     const counted = x.tags.filter(t => !(goodSet.has(t) && x.v === "negative"));
     const t = tagIn.get(x.id) ?? { id: x.id, tagged: 0, tags: {} }; tagIn.set(x.id, t);
     if (counted.length) t.tagged++;
     for (const tag of counted) t.tags[tag] = (t.tags[tag] ?? 0) + 1;
+    // Arm comfort said only in words (no arm tag): read with fixed rules (lib/youtube-trait-rules.ts armFromReportText).
+    if (!x.tags.includes("arm-friendly") && !x.tags.includes("vibrates on mishits") && x.text) {
+      const a = armFromReportText(x.text);
+      if (a) { t.textArm = t.textArm ?? { plus: 0, minus: 0 }; if (a > 0) t.textArm.plus++; else t.textArm.minus++; }
+    }
   }
   for (const id of listed) if (!tagIn.has(id)) tagIn.set(id, { id, tagged: 0, tags: {} });
   // YouTube reviewers' mentions (db/youtube-traits, one per channel) and the specs as a small prior (lib/trait-score.ts).
