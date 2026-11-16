@@ -6,7 +6,7 @@ import { join, resolve } from "node:path";
 
 // Vercel cost cuts (owner 2026-11-16): previews only on request, long cache times with on-demand refresh.
 const ROOT = resolve(import.meta.dirname, "..");
-const builds = (env: Record<string, string>) => spawnSync("bash", ["scripts/vercel-ignore.sh"], { cwd: ROOT, env: { PATH: process.env.PATH!, ...env } }).status === 1;
+const builds = (env: Record<string, string>) => spawnSync("bash", ["scripts/vercel-ignore.sh"], { cwd: ROOT, env: { PATH: process.env.PATH, ...env } as unknown as NodeJS.ProcessEnv }).status === 1;
 
 test("previews build only on request (preview/… branch or [preview]), and only PadelRecs; production only the kept sites", () => {
   assert.equal(builds({ NICHE: "padel", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "fix-x", VERCEL_GIT_COMMIT_MESSAGE: "Fix x" }), false);
