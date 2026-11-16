@@ -1,6 +1,6 @@
 import type { SkinContext } from "./context";
 import { skinPicked, type SkinChoice } from "../../lib/skin-choice";
-import { attrWords, verdictOf, type AttrMatch } from "../../lib/attr-score";
+import { attrWords, verdictOf, FEW_VOICES, type AttrMatch } from "../../lib/attr-score";
 
 export type SkinRow = { r: SkinContext["data"]["listed"][number]; m: AttrMatch | null; pct: number | null; signal: number | null; ff: boolean; reason: string | null };
 
@@ -20,6 +20,8 @@ export function rankSkin(ctx: SkinContext, c: SkinChoice, only?: (r: SkinRow["r"
 export function reasonOf(ctx: SkinContext, m: AttrMatch): string | null {
   const part = [...m.parts].filter(p => p.key.startsWith("suits_")).sort((a, b) => b.score - a.score)[0];
   if (!part) return m.parts.find(p => p.key === "finish") ? `${m.parts.find(p => p.key === "finish")!.label}` : null;
+  // Few people of that type so far: say so, without a verdict word.
+  if (part.n < FEW_VOICES) return `${part.n} ${part.n === 1 ? "person" : "people"} with ${part.label} so far`;
   const a = ctx.profile.attrs.find(x => x.key === part.key)!;
   const w = attrWords(a, { score: part.score, n: part.n });
   return `${w === "not for" ? "not for" : `${w} for`} ${part.label} · ${part.n} ${part.n === 1 ? "person" : "people"} with ${part.label}`;

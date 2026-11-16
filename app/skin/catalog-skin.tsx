@@ -13,7 +13,7 @@ import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { skinContext } from "./context";
 import { fitWord, reasonOf } from "./rank";
-import type { AttrChoice } from "../../lib/attr-score";
+import { FEW_VOICES, type AttrChoice } from "../../lib/attr-score";
 
 // The SkinRecs catalogue in design v2 (owner 2026-11-15, same layout as padel's app/rackets/catalog-v2.tsx): filters on the
 // left from the match engine's scores — "good for <skin type>" means people with that skin type rate it well (suits score 65+
@@ -32,7 +32,7 @@ export default async function CatalogSkin({ f, base, fixedType, brand: only, tit
   const pool = matchingRackets(data.listed, f.q || "").filter(r => (!fixedType || r.shape === fixedType) && (!only || r.brandId === only.id));
   const rows = pool.map(r => {
     const a = ctx.attrs.get(r.id)!, c = ctx.counts.get(r.id)!;
-    const good = (k: string) => (a.scores[`suits_${k}`]?.score ?? 0) >= GOOD;
+    const good = (k: string) => { const s = a.scores[`suits_${k}`]; return !!s && s.score >= GOOD && s.n >= FEW_VOICES; };
     const fin = a.scores.finish?.score ?? null, tex = a.scores.texture?.score ?? null;
     return { r, a, c, signal: ctx.signal(r.id), good, finish: fin === null ? null : fin <= 40 ? "matte" : fin >= 60 ? "dewy" : null, texture: tex === null ? null : tex <= 40 ? "light" : tex >= 60 ? "rich" : null,
       ff: a.facts.fragrance_free === "free", type: niche.typePages?.find(t => t.shape === r.shape)?.slug ?? null };

@@ -18,6 +18,7 @@ import { photoOf, shortDate } from "../rankings-v2";
 import { homePayload } from "../../home-payload";
 import { RankingPicks, MatchBox, PickLink, RowPct } from "./ranking-picks";
 import { attrProfileFor } from "../../../lib/attr-profile";
+import { FEW_VOICES } from "../../../lib/attr-score";
 import { skinContext } from "../../skin/context";
 import { scoreLabel } from "../../../lib/niche";
 
@@ -37,7 +38,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const skin = !!attrProfileFor(niche);
   const [ctx, payload] = skin ? [null, { items: [] }] : await Promise.all([matchContext(), homePayload()]);
   const sk = skin ? await skinContext() : null;
-  const skinBest = (id: string) => { const a = sk?.attrs.get(id); return a ? sk!.profile.attrs.filter(x => x.kind === "suits" && (a.scores[x.key]?.score ?? 0) >= 65)
+  const skinBest = (id: string) => { const a = sk?.attrs.get(id); return a ? sk!.profile.attrs.filter(x => x.kind === "suits" && (a.scores[x.key]?.score ?? 0) >= 65 && (a.scores[x.key]?.n ?? 0) >= FEW_VOICES)
     .sort((x, y) => a.scores[y.key]!.score - a.scores[x.key]!.score).slice(0, 3).map(x => x.label.toLowerCase()) : []; };
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
