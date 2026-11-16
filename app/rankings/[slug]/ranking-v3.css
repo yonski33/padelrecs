@@ -125,3 +125,53 @@
     .rk3-all { font-size: 13px; }
   }
 }
+
+/* After the list (owner 2026-11-16, the mock's "keep the journey going"): compare the top three, more top 10s, still deciding,
+   then the full FAQ in one box. Colours from the site tokens (padel's values as the fallback). */
+.rk3 {
+  .rk3-next { display: flex; flex-direction: column; gap: 28px; margin-top: 28px; }
+  .rk3-next h2, .rk3-faq h2 { font: 800 26px var(--display); letter-spacing: -0.02em; margin: 0; }
+  .rk3-cta { border: 2.5px solid var(--ink); border-radius: 18px; background: var(--lime); box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; justify-content: space-between; }
+  .rk3-cta > div:first-child { flex: 1 1 260px; display: flex; flex-direction: column; gap: 2px; }
+  .rk3-cta b { font: 800 22px/1.15 var(--display); letter-spacing: -0.02em; }
+  .rk3-cta span { font-size: 15px; }
+  .rk3-cta-b { display: flex; gap: 8px; flex-wrap: wrap; }
+  .rk3-cta-b a { text-decoration: none; white-space: nowrap; padding: 9px 14px; border: 2px solid var(--ink); border-radius: 8px; background: var(--paper); color: var(--ink); font: 800 15px var(--display); }
+  .rk3-cta-b a.dark { background: var(--ink); color: var(--bg); }
+  .rk3-more, .rk3-deciding { display: flex; flex-direction: column; gap: 12px; }
+  .rk3-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .rk3-h a { font: 600 13px var(--mono); }
+  .rk3-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .rk3-tiles a { text-decoration: none; color: var(--ink); border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--site-shadow, var(--ink)); padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: transform .12s, box-shadow .12s; }
+  .rk3-tiles a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--site-shadow, var(--ink)); }
+  .rk3-tiles .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .rk3-tiles .t b { font: 800 18px/1.15 var(--display); letter-spacing: -0.01em; }
+  .rk3-tiles .t small { font: 11.5px var(--mono); color: var(--soft); }
+  .rk3-tiles .pics { flex: none; position: relative; width: 78px; height: 62px; }
+  .rk3-tiles .pics img { position: absolute; height: 56px; width: auto; mix-blend-mode: multiply; }
+  .rk3-tiles .pics .p0 { left: 24px; top: 0; height: 62px; z-index: 1; } .rk3-tiles .pics .p1 { left: 0; top: 6px; transform: rotate(-8deg); } .rk3-tiles .pics .p2 { left: 46px; top: 6px; transform: rotate(8deg); }
+  .rk3-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .rk3-cards a { text-decoration: none; color: var(--ink); border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .rk3-cards a:hover { background: var(--site-wash, oklch(0.96 0.06 125)); }
+  .rk3-cards a.turn { background: var(--site-soso, oklch(0.93 0.14 100)); }
+  .rk3-cards small { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--soft); }
+  .rk3-cards b { font: 800 19px/1.15 var(--display); }
+  .rk3-cards span { font-size: 14px; color: var(--text); text-wrap: pretty; }
+  .rk3-cards em { margin-top: 6px; font: normal 600 13px var(--mono); }
+  .rk3-faq { margin-top: 28px; max-width: none; display: flex; flex-direction: column; gap: 10px; }
+  .rk3-faq .box { border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); overflow: hidden; }
+  .rk3-faq.rl2-faq details { border-top: 0; padding: 0; margin: 0; }
+  .rk3-faq.rl2-faq summary { margin: 0; line-height: 1.4; }
+  .rk3-faq.rl2-faq details + details { border-top: 1.5px dashed var(--site-line, #c9c5ba); }
+  .rk3-faq summary { list-style: none; display: flex; justify-content: space-between; gap: 12px; padding: 11px 16px; font-weight: 700; font-size: 15px; }
+  .rk3-faq summary::-webkit-details-marker { display: none; }
+  .rk3-faq summary i::before { content: "+"; font: normal 400 15px var(--mono); }
+  .rk3-faq details[open] summary i::before { content: "−"; }
+  .rk3-faq p { margin: 0; padding: 0 16px 12px; font-size: 14.5px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+  @media (max-width: 640px) {
+    .rk3-cta-b { flex-direction: column; width: 100%; } .rk3-cta-b a { text-align: center; }
+    .rk3-tiles { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 6px 10px 2px; margin-right: -16px; }
+    .rk3-tiles a { scroll-snap-align: start; }
+    .rk3-cards { grid-template-columns: minmax(0, 1fr); }
+  }
+}
