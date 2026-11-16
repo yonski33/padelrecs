@@ -104,7 +104,8 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         </div>
         <div className="rk3-foot">
           <span className={`rk3-sc${tone(x.sig)}`}><b>{x.sig ?? "–"}</b><small>{scoreLabel.toLowerCase()}</small></span>
-          {buy(x, "rk3-buy")}
+          {/* Rows #2 on: padel's quiet "check price ↗" link; only the #1 card keeps the button (owner 2026-11-16). */}
+          {buy(x, "rk3-link")}
         </div>
       </li>)}</ol>}
 

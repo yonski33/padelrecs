@@ -100,7 +100,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
           {x.best && <span className="rb-best">{`best for ${x.best}`}</span>}
         </div>
         <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score</small></span>
-        {x.shop ? <a className="bp-btn rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
+        {x.shop ? <a className="rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
       </li>)}</ol>}
       <Link className="rb-all" href={RANKINGS_PATH}>see all rankings →</Link>
 

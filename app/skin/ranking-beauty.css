@@ -42,7 +42,9 @@
 .rb-list li + li { border-top: 1.5px dashed var(--dash); }
 .rb-rank { font: 32px/1 var(--serif); text-align: center; color: var(--mute); } .rb-rank.near { color: var(--ink); }
 .rb-list .rb-pic { width: 58px; height: 74px; }
-.rb-buy { font-size: 13.5px; padding: 8px 15px; }
+/* Rows #2 on: the quiet "check price ↗" link; only the #1 card keeps the button (owner 2026-11-16). */
+.rb-buy { position: relative; z-index: 1; white-space: nowrap; font: 12px var(--mono); color: var(--mute) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.rb-buy:hover { color: var(--ink) !important; }
 .rb-all { align-self: center; font: 500 13.5px var(--mono); }
 .rb-own { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; } .rb-own p { margin: 0 !important; } .rb-own .bp-btn { margin-left: auto; }
 .rb-faq { margin-top: 30px; } .rb-faq h2 { font-size: 34px; }
@@ -64,6 +66,6 @@
   .rb-list .rb-pic { width: 52px; height: 66px; border-radius: 12px; grid-row: 1; }
   .rb-list .rb-body { grid-column: 2 / -1; } .rb-name { font-size: 15.5px; } .rb-line { font-size: 14px; } .rb-best { font-size: 11px; }
   .rb-scw.col { grid-column: 2; flex-direction: row; gap: 8px; min-width: 0; } .rb-scw.col .rb-sc { width: 34px; height: 34px; font-size: 19px; }
-  .rb-buy { grid-column: 3; justify-self: end; font-size: 13px; padding: 6px 12px; }
+  .rb-buy { grid-column: 3; justify-self: end; }
   .rb-own .bp-btn { margin-left: 0; }
 }
