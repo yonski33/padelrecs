@@ -108,9 +108,9 @@
   .bc-sc:not(.pct) ~ small::before { content: "user score · "; }
 }
 
-/* Row typography (owner 2026-11-16): the serif title, dark underlined price link, "best for …" line. */
-.bc-name { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; }
+/* Row typography (owner 2026-11-16): the title in Figtree bold 16px as in the mockup (owner: the serif names were hard to read), dark underlined price link, "best for …" line. */
+.bc-name { font-family: var(--sans); font-weight: 700; font-size: 16px; line-height: 1.25; }
 .bc-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .bc-best { display: block; font: 11.5px var(--mono); color: var(--mute); }
-@media (max-width: 560px) { .bc-name { font-size: 18px; } }
+@media (max-width: 640px) { .bc-name { font-size: 15.5px; } }
 @media (max-width: 640px) { .bc-best { display: none; } }
