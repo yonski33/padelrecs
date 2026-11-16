@@ -524,8 +524,8 @@
   .rf-reasonl { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: -6px 0 0; }
   .rf-reasonl a { font-size: 16px; color: var(--ink); }
   /* The try-instead line in the site's highlight yellow, the other racket's name bold (owner 2026-11-16). */
-  .rf-reasonl .rf-alt { background: var(--marker); padding: 1px 6px; border-radius: 4px; text-decoration: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; line-height: 1.6; }
-  .rf-reasonl .rf-alt:hover { background: oklch(0.88 0.16 100); }
+  .rf-reasonl .rf-alt { background: oklch(0.975 0.05 100); padding: 1px 6px; border-radius: 4px; text-decoration: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; line-height: 1.6; }
+  .rf-reasonl .rf-alt:hover { background: var(--marker); }
   .rf-reasonl .rf-alt b { font-weight: 800; }
   .rf-reasonl .rf-seewhy { font: 600 14px var(--mono); }
   .rf-blk { border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; margin: 0; border: 0; }
