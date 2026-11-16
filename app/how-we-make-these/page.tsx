@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { catalog, score } from "../../db/data";
 import { niche, isV2, v2copy, scoreLabel } from "../../lib/niche";
+import { fitConfigFor } from "../../lib/fit-config";
 import { attrProfileFor } from "../../lib/attr-profile";
 import { signals, MIN_SIGNAL_REVIEWS, type SignalInput } from "../../lib/signal";
 import { signalCategory } from "../signals";
@@ -28,7 +29,8 @@ export default async function HowWeMakeThese() {
   // The two example rackets, scored by the same formula against the real catalog.
   const example = (pos: number, mix: number, neg: number) => signals([...products, { id: "__ex", category: "all", positive: pos, mixed: mix, judged: pos + mix + neg }]).get("__ex")?.signal ?? "–";
   // SkinRecs (attribute profile): its own words for the score, the dots and the match (padel's text is unchanged).
-  const skin = !!attrProfileFor(niche), scoreName = skin ? scoreLabel : "Player score";
+  const quick = fitConfigFor(niche)?.quick;
+  const skin = !!attrProfileFor(niche), scoreName = skin ? scoreLabel : quick && v2copy.score ? `${v2copy.score[0].toUpperCase()}${v2copy.score.slice(1)}` : "Player score";
   const steps = [
     ["Collect", skin ? "Reviews sent through this site, YouTube reviews and beauty blogs we summarise, and what people write in public skincare forums." : `Player reviews sent through this site, YouTube reviews we watch and summarise, and what players write in public ${v2copy.sport ? `${v2copy.sport} ` : ""}forums.`, "oklch(0.88 0.17 125)"],
     ["Tag the verdict", skin ? "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's own skin type, when they say it, and what they liked or hated." : "Each review becomes one of three: loved it, mixed, or not for me. We also note the player's level and what they liked or hated.", "oklch(0.93 0.14 100)"],
@@ -70,7 +72,7 @@ export default async function HowWeMakeThese() {
       </section>
       <section id="match">
         <h2 className="tight">The match %, explained</h2>
-        <p className="hw-sub">{skin ? `When you pick your skin type, sensitive or acne-prone, and a finish on the home page, each ${w.one} gets a match %: how well it fits your skin, from what people with your skin type said. Not a % of happy users. It weighs "who it suits" for your skin type most, then sensitive and acne-prone if ticked, then finish or texture, and a little of the ${scoreName}. A Strong fit scores 75 or more, Worth a look 55–74. Too few people with your skin type? No % at all. Fragrance-free is a filter, not a score.` : `When you pick your style, level and arm on the home page, each ${w.one} gets a match %: how well it fits those picks, from player reports. Not a % of happy players. It weighs the ${w.one}'s Control or Power score against your style, whether players and brands put it at your level, the Arm comfort score if you have a sore arm, and a little of the Player score. It always agrees with the word beside it: a Strong fit scores 70–99, Worth a look 45–69, Probably not your match 15–44. Too few reports? No % at all.`}</p>
+        <p className="hw-sub">{skin ? `When you pick your skin type, sensitive or acne-prone, and a finish on the home page, each ${w.one} gets a match %: how well it fits your skin, from what people with your skin type said. Not a % of happy users. It weighs "who it suits" for your skin type most, then sensitive and acne-prone if ticked, then finish or texture, and a little of the ${scoreName}. A Strong fit scores 75 or more, Worth a look 55–74. Too few people with your skin type? No % at all. Fragrance-free is a filter, not a score.` : quick ? `When you pick a ${w.one} type, your level and ${quick.arm} on the home page, each ${w.one} gets a match %: how well it fits those picks, from player reports, YouTube reviewers and the flight numbers. Not a % of happy players. It weighs whether players put it at your level, how it suits a slower arm if you tick that, the stability you pick (if any), and a little of the ${scoreName}. The type you pick is a filter, not a score. A Strong fit scores 75 or more, Worth a look 55–74. Too few reports? No % at all.` : `When you pick your style, level and arm on the home page, each ${w.one} gets a match %: how well it fits those picks, from player reports. Not a % of happy players. It weighs the ${w.one}'s Control or Power score against your style, whether players and brands put it at your level, the Arm comfort score if you have a sore arm, and a little of the Player score. It always agrees with the word beside it: a Strong fit scores 70–99, Worth a look 45–69, Probably not your match 15–44. Too few reports? No % at all.`}</p>
       </section>
       <section>
         <h2>House rules</h2>
