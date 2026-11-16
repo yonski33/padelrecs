@@ -49,7 +49,9 @@ import { summary } from "../../../lib/product-summary";
 import { comparePairs, comparePick, pairHref, pairKey, modelFamily } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../../similar-section";
-import { tint, tileWord, worksWith, platformsOf, expertLine, type RigPart } from "../../../lib/similar-picks";
+import { tint, tileWord, worksWith, expertLine, type RigPart } from "../../../lib/similar-picks";
+import { platformsOf as simPlatforms } from "../../../lib/attr-profile-simracing";
+import { evidenceRows } from "../../../db/evidence";
 import { withModelYears, rankingHref } from "../../../lib/top-lists";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
@@ -316,8 +318,13 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   };
   const groupWord = (typePage?.label ?? niche.words.many).toLowerCase();
   const firstList = withModelYears(niche.topLists ?? []).find(l => typePage && l.slug.includes(typePage.slug)) ?? withModelYears(niche.topLists ?? [])[0];
-  const works = niche.similar?.pairs === "works" ? (() => {
-    const part = (x: (typeof data.listed)[number]): RigPart => ({ id: x.id, type: x.shape, brand: data.brands.find(y => y.id === x.brandId)?.name ?? null, platforms: platformsOf(x.core), signal: sigs.get(x.id)?.signal ?? null });
+  // Platforms: the owner's sheet first (evidence rows, extracted_by "owner-sheet-v1", attribute "platform"), the catalogue's
+  // `core` column where a product has none (SimRacingRecs session, 2026-11-16: the same rule as lib/simracing-fit.ts).
+  const sheet = niche.similar?.pairs === "works" ? new Map((await evidenceRows()).filter(e => e.extractedBy === "owner-sheet-v1" && e.attribute === "platform" && e.valueText)
+    .map(e => [e.productId, e.valueText!] as const)) : null;
+  const works = sheet ? (() => {
+    const part = (x: (typeof data.listed)[number]): RigPart => ({ id: x.id, type: x.shape, brand: data.brands.find(y => y.id === x.brandId)?.name ?? null,
+      platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null });
     return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3).map(part));
   })() : [];
   const simTabs: SimilarTab[] = niche.similar ? [
@@ -325,6 +332,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       // One card per model (the best liked year), never another year of this one.
       items: [...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1))
         .filter(({ x }, i, all) => modelFamily(x) !== modelFamily(r) && all.findIndex(y => modelFamily(y.x) === modelFamily(x)) === i)
+        // SimRacingRecs wheelbases keep the same drive (rackets.balance: direct, belt, gear) when two or more share it.
+        .filter(({ x }, _i, all) => niche.similar?.pairs !== "works" || r.shape !== "Wheelbase" || !r.balance || all.filter(y => y.x.balance === r.balance).length < 2 || x.balance === r.balance)
         .map(({ x }, i) => oldItem(x, i, loved?.get(x.id)?.loved ?? null)),
       more: firstList ? { href: rankingHref(firstList.slug), label: `all ${groupWord}, ranked →` } : null },
     ...(works.length ? [{ key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
