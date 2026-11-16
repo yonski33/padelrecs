@@ -1,0 +1,282 @@
+[
+ {
+  "id": "beauty-of-joseon-calming-barrier-serum-green-tea-ha-panthenol",
+  "name": "Beauty of Joseon Calming Barrier Serum: Green Tea-HA + Panthenol",
+  "brand": "Beauty of Joseon",
+  "category": "Serum",
+  "maker_url": "https://beautyofjoseon.com/products/calming-barrier-serum"
+ },
+ {
+  "id": "the-inkey-list-glycolic-acid-toner",
+  "name": "The INKEY List Glycolic Acid Toner",
+  "brand": "The INKEY List",
+  "category": "Exfoliant",
+  "maker_url": "https://www.theinkeylist.com/products/glycolic-acid-toner"
+ },
+ {
+  "id": "the-inkey-list-succinic-acid-treatment",
+  "name": "The INKEY List Succinic Acid Treatment",
+  "brand": "The INKEY List",
+  "category": "Treatment",
+  "maker_url": "https://www.theinkeylist.com/products/succinic-acid"
+ },
+ {
+  "id": "la-roche-posay-anthelios-melt-in-milk-sunscreen-spf-60",
+  "name": "La Roche-Posay Anthelios Melt-In Milk Sunscreen SPF 60",
+  "brand": "La Roche-Posay",
+  "category": "Sunscreen",
+  "maker_url": "https://www.laroche-posay.us/our-products/sun/body-sunscreen/anthelios-melt-in-milk-sunscreen-spf-60-antheliosmeltinmilk.html"
+ },
+ {
+  "id": "la-roche-posay-effaclar-gel-cleanser-for-oily-skin",
+  "name": "La Roche-Posay Effaclar Gel Cleanser for Oily Skin",
+  "brand": "La Roche-Posay",
+  "category": "Cleanser",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/acne-products/effaclar-gel-facial-wash-for-oily-skin-effaclargelcleanser.html"
+ },
+ {
+  "id": "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser",
+  "name": "La Roche-Posay Toleriane Hydrating Gentle Facial Cleanser",
+  "brand": "La Roche-Posay",
+  "category": "Cleanser",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-wash/toleriane-hydrating-gentle-facial-cleanser-tolerianehydratinggentlefacialcleanser.html"
+ },
+ {
+  "id": "la-roche-posay-cicaplast-balm-b5",
+  "name": "La Roche-Posay Cicaplast Balm B5+",
+  "brand": "La Roche-Posay",
+  "category": "Balm & ointment",
+  "maker_url": "https://www.laroche-posay.us/our-products/body/body-lotion/cicaplast-balm-b5-for-dry-skin-irritations-cicaplastbalmb5.html"
+ },
+ {
+  "id": "aveeno-positively-radiant-daily-moisturizer-spf-30",
+  "name": "Aveeno Positively Radiant Daily Moisturizer SPF 30",
+  "brand": "Aveeno",
+  "category": "Sunscreen",
+  "maker_url": "https://www.aveeno.com/products/positively-radiant-daily-face-moisturizer-broad-spectrum-spf-30"
+ },
+ {
+  "id": "the-inkey-list-beta-hydroxy-acid-bha-serum",
+  "name": "The INKEY List Beta Hydroxy Acid (BHA) Serum",
+  "brand": "The INKEY List",
+  "category": "Exfoliant",
+  "maker_url": "https://www.theinkeylist.com/products/beta-hydroxy-acid-serum"
+ },
+ {
+  "id": "neutrogena-oil-free-acne-wash",
+  "name": "Neutrogena Oil-Free Acne Wash",
+  "brand": "Neutrogena",
+  "category": "Cleanser",
+  "maker_url": "https://www.neutrogena.com/products/skincare/neutrogena-oil-free-acne-wash/6818662"
+ },
+ {
+  "id": "naturium-azelaic-acid-emulsion-10",
+  "name": "Naturium Azelaic Acid Emulsion 10%",
+  "brand": "Naturium",
+  "category": "Treatment",
+  "maker_url": "https://www.naturium.com/products/azelaic-acid-emulsion-10"
+ },
+ {
+  "id": "the-inkey-list-tranexamic-acid-serum",
+  "name": "The INKEY List Tranexamic Acid Serum",
+  "brand": "The INKEY List",
+  "category": "Serum",
+  "maker_url": "https://www.theinkeylist.com/products/tranexamic-acid-serum"
+ },
+ {
+  "id": "the-ordinary-aha-30-bha-2-peeling-solution",
+  "name": "The Ordinary AHA 30% + BHA 2% Peeling Solution",
+  "brand": "The Ordinary",
+  "category": "Exfoliant",
+  "maker_url": "https://theordinary.com/en-us/aha-30-bha-2-peeling-solution-exfoliator-100400.html"
+ },
+ {
+  "id": "cerave-skin-renewing-vitamin-c-serum",
+  "name": "CeraVe Skin Renewing Vitamin C Serum",
+  "brand": "CeraVe",
+  "category": "Serum",
+  "maker_url": "https://www.cerave.com/skincare/facial-serums/skin-renewing-vitamin-c-serum"
+ },
+ {
+  "id": "cetaphil-hydrating-eye-gel-cream",
+  "name": "Cetaphil Hydrating Eye Gel-Cream",
+  "brand": "Cetaphil",
+  "category": "Eye cream",
+  "maker_url": "https://www.cetaphil.com/us/products/product-categories/eye-creams/hydrating-eye-gel-cream/302993889168.html"
+ },
+ {
+  "id": "paulas-choice-10-niacinamide-booster",
+  "name": "Paula's Choice 10% Niacinamide Booster",
+  "brand": "Paula's Choice",
+  "category": "Serum",
+  "maker_url": "https://www.paulaschoice.com/10pct-niacinamide-booster/798.html"
+ },
+ {
+  "id": "eucerin-clear-skin-spf-50-face-sunscreen",
+  "name": "Eucerin Clear Skin SPF 50 Face Sunscreen",
+  "brand": "Eucerin",
+  "category": "Sunscreen",
+  "maker_url": "https://www.eucerinus.com/products/sun-protection/clear-skin-spf-50-face-sunscreen"
+ },
+ {
+  "id": "bioderma-hydrabio-serum",
+  "name": "Bioderma Hydrabio Serum",
+  "brand": "Bioderma",
+  "category": "Serum",
+  "maker_url": "https://www.bioderma.us/en/p/hydrabio-serum.html"
+ },
+ {
+  "id": "torriden-dive-in-cleansing-foam",
+  "name": "Torriden DIVE-IN Cleansing Foam",
+  "brand": "Torriden",
+  "category": "Cleanser",
+  "maker_url": "https://torriden.us/products/dive-in-cleansing-foam"
+ },
+ {
+  "id": "la-roche-posay-retinol-b3-pure-retinol-serum",
+  "name": "La Roche-Posay Retinol B3 Pure Retinol Serum",
+  "brand": "La Roche-Posay",
+  "category": "Treatment",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-serum/retinol-b3-pure-retinol-serum-3337875694469.html"
+ },
+ {
+  "id": "cerave-acne-foaming-cream-cleanser",
+  "name": "CeraVe Acne Foaming Cream Cleanser",
+  "brand": "CeraVe",
+  "category": "Cleanser",
+  "maker_url": "https://www.cerave.com/skincare/cleansers/acne-benzoyl-peroxide-cleanser"
+ },
+ {
+  "id": "cerave-hydrating-hyaluronic-acid-serum",
+  "name": "CeraVe Hydrating Hyaluronic Acid Serum",
+  "brand": "CeraVe",
+  "category": "Serum",
+  "maker_url": "https://www.cerave.com/skincare/facial-serums/hydrating-hyaluronic-acid-serum"
+ },
+ {
+  "id": "bioderma-hydrabio-toner",
+  "name": "Bioderma Hydrabio Toner",
+  "brand": "Bioderma",
+  "category": "Toner",
+  "maker_url": "https://www.bioderma.us/en/p/hydrabio-toner.html"
+ },
+ {
+  "id": "cerave-hydrating-facial-cleanser",
+  "name": "CeraVe Hydrating Facial Cleanser",
+  "brand": "CeraVe",
+  "category": "Cleanser",
+  "maker_url": "https://www.cerave.com/skincare/cleansers/hydrating-facial-cleanser"
+ },
+ {
+  "id": "eucerin-immersive-hydration-moisture-boost-serum",
+  "name": "Eucerin Immersive Hydration Moisture Boost Serum",
+  "brand": "Eucerin",
+  "category": "Serum",
+  "maker_url": "https://www.eucerinus.com/products/immersive-hydration/immersive-hydration-moisture-boost-serum"
+ },
+ {
+  "id": "cosrx-advanced-snail-96-mucin-power-essence",
+  "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+  "brand": "COSRX",
+  "category": "Serum",
+  "maker_url": "https://www.cosrx.com/products/advanced-snail-96-mucin-power-essence-new-original"
+ },
+ {
+  "id": "paulas-choice-skin-balancing-pore-reducing-toner",
+  "name": "Paula's Choice SKIN BALANCING Pore-Reducing Toner",
+  "brand": "Paula's Choice",
+  "category": "Toner",
+  "maker_url": "https://www.paulaschoice.com/skin-balancing-pore-reducing-toner/135.html"
+ },
+ {
+  "id": "cosrx-advanced-snail-92-all-in-one-cream",
+  "name": "COSRX Advanced Snail 92 All in One Cream",
+  "brand": "COSRX",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cosrx.com/products/advanced-snail-92-all-in-one-cream"
+ },
+ {
+  "id": "the-ordinary-granactive-retinoid-2-emulsion",
+  "name": "The Ordinary Granactive Retinoid 2% Emulsion",
+  "brand": "The Ordinary",
+  "category": "Treatment",
+  "maker_url": "https://theordinary.com/en-us/granactive-retinoid-2-emulsion-serum-100419.html"
+ },
+ {
+  "id": "paulas-choice-clinical-0-3-retinol-2-bakuchiol-treatment",
+  "name": "Paula's Choice CLINICAL 0.3% Retinol + 2% Bakuchiol Treatment",
+  "brand": "Paula's Choice",
+  "category": "Treatment",
+  "maker_url": "https://www.paulaschoice.com/clinical-0.3pct-retinol-and-2pct-bakuchiol-treatment/81B.html"
+ },
+ {
+  "id": "the-ordinary-hyaluronic-acid-2-b5",
+  "name": "The Ordinary Hyaluronic Acid 2% + B5",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/hyaluronic-acid-2-b5-serum-with-ceramides-100637.html"
+ },
+ {
+  "id": "the-ordinary-uv-filters-spf-45-serum",
+  "name": "The Ordinary UV Filters SPF 45 Serum",
+  "brand": "The Ordinary",
+  "category": "Sunscreen",
+  "maker_url": "https://theordinary.com/en-us/uv-filters-spf-45-serum-100720.html"
+ },
+ {
+  "id": "paulas-choice-skin-balancing-oil-reducing-cleanser",
+  "name": "Paula's Choice SKIN BALANCING Oil-Reducing Cleanser",
+  "brand": "Paula's Choice",
+  "category": "Cleanser",
+  "maker_url": "https://www.paulaschoice.com/skin-balancing-oil-reducing-cleanser/115.html"
+ },
+ {
+  "id": "neutrogena-ultra-sheer-dry-touch-sunscreen-lotion-spf-55",
+  "name": "Neutrogena Ultra Sheer Dry-Touch Sunscreen Lotion SPF 55",
+  "brand": "Neutrogena",
+  "category": "Sunscreen",
+  "maker_url": "https://www.neutrogena.com/products/sun/ultra-sheer-dry-touch-sunscreen-broad-spectrum-spf-55/6868790"
+ },
+ {
+  "id": "cerave-pm-facial-moisturizing-lotion",
+  "name": "CeraVe PM Facial Moisturizing Lotion",
+  "brand": "CeraVe",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/pm-facial-moisturizing-lotion"
+ },
+ {
+  "id": "paulas-choice-calm-ultra-gentle-cleanser",
+  "name": "Paula's Choice CALM Ultra Gentle Cleanser",
+  "brand": "Paula's Choice",
+  "category": "Cleanser",
+  "maker_url": "https://www.paulaschoice.com/calm-ultra-gentle-cleanser/9190.html"
+ },
+ {
+  "id": "the-ordinary-glucoside-foaming-cleanser",
+  "name": "The Ordinary Glucoside Foaming Cleanser",
+  "brand": "The Ordinary",
+  "category": "Cleanser",
+  "maker_url": "https://theordinary.com/en-us/glucoside-foaming-face-cleanser-100616.html"
+ },
+ {
+  "id": "eltamd-skin-recovery-essence-toner",
+  "name": "EltaMD Skin Recovery Essence Toner",
+  "brand": "EltaMD",
+  "category": "Toner",
+  "maker_url": "https://www.eltamd.com/products/eltamd-skin-recovery-toner"
+ },
+ {
+  "id": "the-inkey-list-oat-cleansing-balm",
+  "name": "The INKEY List Oat Cleansing Balm",
+  "brand": "The INKEY List",
+  "category": "Cleanser",
+  "maker_url": "https://www.theinkeylist.com/products/oat-cleansing-balm-150ml"
+ },
+ {
+  "id": "paulas-choice-c15-super-booster",
+  "name": "Paula's Choice C15 Super Booster",
+  "brand": "Paula's Choice",
+  "category": "Serum",
+  "maker_url": "https://www.paulaschoice.com/c15-brightening-super-booster/808.html"
+ }
+]

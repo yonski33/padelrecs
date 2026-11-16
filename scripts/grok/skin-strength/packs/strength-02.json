@@ -1,0 +1,282 @@
+[
+ {
+  "id": "the-ordinary-salicylic-acid-2-masque",
+  "name": "The Ordinary Salicylic Acid 2% Masque",
+  "brand": "The Ordinary",
+  "category": "Mask",
+  "maker_url": "https://theordinary.com/en-us/salicylic-acid-2-face-masque-100443.html"
+ },
+ {
+  "id": "drunk-elephant-beste-no-9-jelly-cleanser",
+  "name": "Drunk Elephant Beste No.9 Jelly Cleanser",
+  "brand": "Drunk Elephant",
+  "category": "Cleanser",
+  "maker_url": "https://www.drunkelephant.com/collections/cleansers/beste-no.-9-jelly-cleanser-999DE00000101.html"
+ },
+ {
+  "id": "the-ordinary-caffeine-solution-5-egcg",
+  "name": "The Ordinary Caffeine Solution 5% + EGCG",
+  "brand": "The Ordinary",
+  "category": "Eye cream",
+  "maker_url": "https://theordinary.com/en-us/caffeine-solution-5-egcg-eye-serum-100412.html"
+ },
+ {
+  "id": "the-ordinary-natural-moisturizing-factors-beta-glucan",
+  "name": "The Ordinary Natural Moisturizing Factors + Beta Glucan",
+  "brand": "The Ordinary",
+  "category": "Moisturizer",
+  "maker_url": "https://theordinary.com/en-us/natural-moisturizing-factors-beta-glucan-moisturizer-100612.html"
+ },
+ {
+  "id": "avene-retrinal-0-1-intensive-cream",
+  "name": "Av\u00e8ne RetrinAL 0.1 Intensive Cream",
+  "brand": "Av\u00e8ne",
+  "category": "Treatment",
+  "maker_url": "https://www.aveneusa.com/retrinal-0-1-intensive-multi-corrective-cream"
+ },
+ {
+  "id": "drunk-elephant-b-hydra-intensive-hydration-serum",
+  "name": "Drunk Elephant B-Hydra Intensive Hydration Serum",
+  "brand": "Drunk Elephant",
+  "category": "Serum",
+  "maker_url": "https://www.drunkelephant.com/collections/serums/b-hydra-intensive-hydration-serum-with-hyaluronic-acid-856556004180.html"
+ },
+ {
+  "id": "avene-tolerance-extremely-gentle-cleanser",
+  "name": "Av\u00e8ne Tolerance Extremely Gentle Cleanser",
+  "brand": "Av\u00e8ne",
+  "category": "Cleanser",
+  "maker_url": "https://www.aveneusa.com/tolerance-extremely-gentle-cleanser"
+ },
+ {
+  "id": "vanicream-facial-moisturizer-with-sunscreen-spf-30",
+  "name": "Vanicream Facial Moisturizer with Sunscreen SPF 30",
+  "brand": "Vanicream",
+  "category": "Sunscreen",
+  "maker_url": "https://www.vanicream.com/product/facial-moisturizer-with-spf"
+ },
+ {
+  "id": "neutrogena-hydro-boost-eye-gel-cream",
+  "name": "Neutrogena Hydro Boost Eye Gel-Cream",
+  "brand": "Neutrogena",
+  "category": "Eye cream",
+  "maker_url": "https://www.neutrogena.com/products/skincare/neutrogena-hydro-boost-eye-gel-cream/6811049"
+ },
+ {
+  "id": "beauty-of-joseon-apricot-blossom-peeling-gel",
+  "name": "Beauty of Joseon Apricot Blossom Peeling Gel",
+  "brand": "Beauty of Joseon",
+  "category": "Exfoliant",
+  "maker_url": "https://beautyofjoseon.com/products/apricot-blossom-peeling-gel"
+ },
+ {
+  "id": "paulas-choice-c5-super-boost-eye-cream",
+  "name": "Paula's Choice C5 Super Boost Eye Cream",
+  "brand": "Paula's Choice",
+  "category": "Eye cream",
+  "maker_url": "https://www.paulaschoice.com/c5-super-boost-eye-cream/101.html"
+ },
+ {
+  "id": "paulas-choice-skin-perfecting-2-bha-gel-exfoliant",
+  "name": "Paula's Choice SKIN PERFECTING 2% BHA Gel Exfoliant",
+  "brand": "Paula's Choice",
+  "category": "Exfoliant",
+  "maker_url": "https://www.paulaschoice.com/skin-perfecting-2pct-bha-gel-exfoliant/204.html"
+ },
+ {
+  "id": "hada-labo-tokyo-age-correcting-eye-cream",
+  "name": "Hada Labo Tokyo Age Correcting Eye Cream",
+  "brand": "Hada Labo Tokyo",
+  "category": "Eye cream",
+  "maker_url": "https://hadalabotokyo.com/products/age-correcting-eye-cream-3-pack"
+ },
+ {
+  "id": "cetaphil-deep-hydration-refreshing-eye-serum",
+  "name": "Cetaphil Deep Hydration Refreshing Eye Serum",
+  "brand": "Cetaphil",
+  "category": "Eye cream",
+  "maker_url": "https://www.cetaphil.com/us/products/product-categories/eye-creams/deep-hydration-refreshing-eye-serum/302990100624.html"
+ },
+ {
+  "id": "neutrogena-clear-face-oil-free-sunscreen-spf-50",
+  "name": "Neutrogena Clear Face Oil-Free Sunscreen SPF 50",
+  "brand": "Neutrogena",
+  "category": "Sunscreen",
+  "maker_url": "https://www.neutrogena.com/products/sun/clear-face-break-out-free-liquid-lotion-sunscreen-broad-spectrum-spf-50/6811282"
+ },
+ {
+  "id": "neutrogena-hydro-boost-hyaluronic-acid-water-gel",
+  "name": "Neutrogena Hydro Boost Hyaluronic Acid Water Gel",
+  "brand": "Neutrogena",
+  "category": "Moisturizer",
+  "maker_url": "https://www.neutrogena.com/products/skincare/neutrogena-hydro-boost-water-gel-with-hyaluronic-acid/6811047"
+ },
+ {
+  "id": "tatcha-the-water-cream",
+  "name": "Tatcha The Water Cream",
+  "brand": "Tatcha",
+  "category": "Moisturizer",
+  "maker_url": "https://tatcha.com/products/the-water-cream-lightweight-moisturizer"
+ },
+ {
+  "id": "avene-cicalfate-restorative-protective-cream",
+  "name": "Av\u00e8ne Cicalfate+ Restorative Protective Cream",
+  "brand": "Av\u00e8ne",
+  "category": "Moisturizer",
+  "maker_url": "https://www.aveneusa.com/cicalfateplus-restorative-protective-cream-40ml"
+ },
+ {
+  "id": "cosrx-advanced-snail-peptide-eye-cream",
+  "name": "COSRX Advanced Snail Peptide Eye Cream",
+  "brand": "COSRX",
+  "category": "Eye cream",
+  "maker_url": "https://www.cosrx.com/products/advanced-snail-peptide-eye-cream"
+ },
+ {
+  "id": "beauty-of-joseon-light-on-serum-centella-vita-c",
+  "name": "Beauty of Joseon Light On Serum: Centella + Vita C",
+  "brand": "Beauty of Joseon",
+  "category": "Serum",
+  "maker_url": "https://beautyofjoseon.com/products/light-on-serum-centella-vita-c"
+ },
+ {
+  "id": "cosrx-the-ceramide-skin-barrier-moisturizer",
+  "name": "COSRX The Ceramide Skin Barrier Moisturizer",
+  "brand": "COSRX",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cosrx.com/products/the-ceramide-skin-barrier-moisturizer"
+ },
+ {
+  "id": "beauty-of-joseon-red-bean-water-gel",
+  "name": "Beauty of Joseon Red Bean Water Gel",
+  "brand": "Beauty of Joseon",
+  "category": "Moisturizer",
+  "maker_url": "https://beautyofjoseon.com/products/red-bean-water-gel"
+ },
+ {
+  "id": "beauty-of-joseon-day-dew-sunscreen",
+  "name": "Beauty of Joseon Day Dew Sunscreen",
+  "brand": "Beauty of Joseon",
+  "category": "Sunscreen",
+  "maker_url": "https://beautyofjoseon.com/products/day-dew-sunscreen"
+ },
+ {
+  "id": "cosrx-the-niacinamide-15-serum",
+  "name": "COSRX The Niacinamide 15 Serum",
+  "brand": "COSRX",
+  "category": "Serum",
+  "maker_url": "https://www.cosrx.com/products/the-niacinamide-15-serum-\ubc88\ub4e4"
+ },
+ {
+  "id": "hada-labo-tokyo-skin-plumping-gel-cream",
+  "name": "Hada Labo Tokyo Skin Plumping Gel Cream",
+  "brand": "Hada Labo Tokyo",
+  "category": "Moisturizer",
+  "maker_url": "https://hadalabotokyo.com/products/hada-labo-tokyo-skin-plumping-gel-cream-with-hyaluronic-acid"
+ },
+ {
+  "id": "the-inkey-list-salicylic-acid-cleanser",
+  "name": "The INKEY List Salicylic Acid Cleanser",
+  "brand": "The INKEY List",
+  "category": "Cleanser",
+  "maker_url": "https://www.theinkeylist.com/products/salicylic-acid-cleanser"
+ },
+ {
+  "id": "cosrx-aha-7-whitehead-power-liquid",
+  "name": "COSRX AHA 7 Whitehead Power Liquid",
+  "brand": "COSRX",
+  "category": "Exfoliant",
+  "maker_url": "https://www.cosrx.com/products/aha-7-whitehead-power-liquid-copy"
+ },
+ {
+  "id": "the-ordinary-soothing-barrier-support-serum",
+  "name": "The Ordinary Soothing & Barrier Support Serum",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/soothing-barrier-support-serum-100634.html"
+ },
+ {
+  "id": "cosrx-the-retinol-0-1-cream",
+  "name": "COSRX The Retinol 0.1 Cream",
+  "brand": "COSRX",
+  "category": "Treatment",
+  "maker_url": "https://www.cosrx.com/products/the-retinol-0-1-cream_new-bundle"
+ },
+ {
+  "id": "eltamd-skin-recovery-light-moisturizer",
+  "name": "EltaMD Skin Recovery Light Moisturizer",
+  "brand": "EltaMD",
+  "category": "Moisturizer",
+  "maker_url": "https://www.eltamd.com/products/eltamd-skin-recovery-light-moisturizer"
+ },
+ {
+  "id": "cosrx-acne-pimple-master-patch",
+  "name": "COSRX Acne Pimple Master Patch",
+  "brand": "COSRX",
+  "category": "Treatment",
+  "maker_url": "https://www.cosrx.com/products/acne-pimple-master-patch"
+ },
+ {
+  "id": "glow-recipe-plum-plump-hyaluronic-cream",
+  "name": "Glow Recipe Plum Plump Hyaluronic Cream",
+  "brand": "Glow Recipe",
+  "category": "Moisturizer",
+  "maker_url": "https://www.glowrecipe.com/products/plum-plump-hyaluronic-cream"
+ },
+ {
+  "id": "the-ordinary-salicylic-acid-2-anhydrous-solution",
+  "name": "The Ordinary Salicylic Acid 2% Anhydrous Solution",
+  "brand": "The Ordinary",
+  "category": "Exfoliant",
+  "maker_url": "https://theordinary.com/en-us/salicylic-acid-2-anhydrous-solution-exfoliator-100442.html"
+ },
+ {
+  "id": "anua-niacinamide-10-txa-4-serum",
+  "name": "Anua Niacinamide 10% + TXA 4% Serum",
+  "brand": "Anua",
+  "category": "Serum",
+  "maker_url": "https://anua.us/products/niacinamide-10-txa-4-serum-2"
+ },
+ {
+  "id": "anua-peach-70-niacinamide-serum",
+  "name": "Anua Peach 70% Niacinamide Serum",
+  "brand": "Anua",
+  "category": "Serum",
+  "maker_url": "https://anua.us/products/peach-70-niacinamide-serum-30ml"
+ },
+ {
+  "id": "beauty-of-joseon-ground-rice-and-honey-glow-mask",
+  "name": "Beauty of Joseon Ground Rice and Honey Glow Mask",
+  "brand": "Beauty of Joseon",
+  "category": "Mask",
+  "maker_url": "https://beautyofjoseon.com/products/ground-rice-and-honey-glow-mask"
+ },
+ {
+  "id": "anua-rice-70-glow-milky-toner",
+  "name": "Anua Rice 70 Glow Milky Toner",
+  "brand": "Anua",
+  "category": "Toner",
+  "maker_url": "https://anua.us/products/rice-70-glow-milky-toner"
+ },
+ {
+  "id": "beauty-of-joseon-glow-replenishing-rice-milk",
+  "name": "Beauty of Joseon Glow Replenishing Rice Milk",
+  "brand": "Beauty of Joseon",
+  "category": "Toner",
+  "maker_url": "https://beautyofjoseon.com/products/glow-replenishing-rice-milk"
+ },
+ {
+  "id": "the-ordinary-vitamin-c-suspension-23-ha-spheres-2",
+  "name": "The Ordinary Vitamin C Suspension 23% + HA Spheres 2%",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/vitamin-c-suspension-23-ha-spheres-2-vitamin-c-100451.html"
+ },
+ {
+  "id": "anua-heartleaf-77-clear-pad",
+  "name": "Anua Heartleaf 77 Clear Pad",
+  "brand": "Anua",
+  "category": "Toner",
+  "maker_url": "https://anua.us/products/heartleaf-77-toner-pad-160ml"
+ }
+]

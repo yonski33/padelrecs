@@ -6,7 +6,7 @@
 import { useMemo, type ReactNode } from "react";
 import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
-import { rankSkin, wireCtx } from "./rank";
+import { rankSkin, effectiveChoice, wireCtx } from "./rank";
 import { skinHomeTitle, MATCH_NOTE } from "./titles";
 import { unpack, type SkinPack } from "./pack";
 import { attrProfileFor } from "../../lib/attr-profile";
@@ -28,7 +28,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
   const [choice, set] = useInstantView(first, fromUrl, c => skinHref(c), "replace");
   const { ctx, cards } = useMemo(() => { const u = unpack(pack); return { ctx: wireCtx(attrProfileFor(niche)!, u.items), cards: u.cards }; }, [pack]);
   const go = (next: SkinChoice) => instantClick(() => { set(next); document.title = skinHomeTitle(next); });
-  const picked = skinPicked(choice);
+  const picked = skinPicked(effectiveChoice(choice)); // "just everyday" alone reads like no pick (same order and header)
   const rows = rankSkin(ctx, choice).slice(0, LIST_SIZE);
   const allOfType = counts[choice.type ?? ""] ?? 0;
   const pickQ = skinQuery({ ...choice, type: null, typeSlug: null }).size ? `?${skinQuery({ ...choice, type: null, typeSlug: null })}` : "";

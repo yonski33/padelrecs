@@ -60,6 +60,12 @@ const SKIN: AttrProfile = {
     { key: "fragrance_free", label: "Fragrance-free", kind: "fact" },
     { key: "spf", label: "SPF", kind: "fact", appliesTo: ["Sunscreen"] },
     { key: "price", label: "Price", kind: "fact" },
+    // Match tuning (owner OK 2026-11-17): how strong the actives are (strong / moderate / gentle; the reason in the row's
+    // text), a leave-on acid (AHA/BHA/PHA), and "body-first" for products mostly used on the body. Owner rows win; until
+    // filled, lib/skin-safety.ts stands in from the name.
+    { key: "strength", label: "Strength", kind: "fact" },
+    { key: "acid", label: "Leave-on acid", kind: "fact" },
+    { key: "use", label: "Use", kind: "fact" },
   ],
 };
 

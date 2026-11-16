@@ -1,0 +1,282 @@
+[
+ {
+  "id": "the-ordinary-granactive-retinoid-5-in-squalane",
+  "name": "The Ordinary Granactive Retinoid 5% in Squalane",
+  "brand": "The Ordinary",
+  "category": "Treatment",
+  "maker_url": "https://theordinary.com/en-us/granactive-retinoid-5-in-squalane-serum-100421.html"
+ },
+ {
+  "id": "byoma-creamy-jelly-cleanser",
+  "name": "Byoma Creamy Jelly Cleanser",
+  "brand": "Byoma",
+  "category": "Cleanser",
+  "maker_url": "https://www.byoma.com/products/creamy-jelly-cleanser"
+ },
+ {
+  "id": "paulas-choice-resist-advanced-replenishing-toner",
+  "name": "Paula's Choice RESIST Advanced Replenishing Toner",
+  "brand": "Paula's Choice",
+  "category": "Toner",
+  "maker_url": "https://www.paulaschoice.com/resist-advanced-replenishing-toner/767.html"
+ },
+ {
+  "id": "anua-azelaic-acid-10-hyaluron-redness-soothing-serum",
+  "name": "Anua Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+  "brand": "Anua",
+  "category": "Treatment",
+  "maker_url": "https://anua.us/products/azelaic-acid-10-hyaluron-redness-soothing-serum"
+ },
+ {
+  "id": "stratia-lipid-gold",
+  "name": "Stratia Lipid Gold",
+  "brand": "Stratia",
+  "category": "Moisturizer",
+  "maker_url": "https://www.stratiaskin.com/products/lipid-gold"
+ },
+ {
+  "id": "missha-time-revolution-the-first-essence-5x",
+  "name": "Missha Time Revolution The First Essence 5X",
+  "brand": "Missha",
+  "category": "Toner",
+  "maker_url": "https://misshaus.com/products/time-revolution-the-first-essence-5x"
+ },
+ {
+  "id": "aveeno-calm-restore-oat-gel-moisturizer",
+  "name": "Aveeno Calm + Restore Oat Gel Moisturizer",
+  "brand": "Aveeno",
+  "category": "Moisturizer",
+  "maker_url": "https://www.aveeno.com/products/calm-restore-oat-gel-moisturizer-sensitive-skin"
+ },
+ {
+  "id": "the-inkey-list-10-niacinamide-serum",
+  "name": "The INKEY List 10% Niacinamide Serum",
+  "brand": "The INKEY List",
+  "category": "Serum",
+  "maker_url": "https://www.theinkeylist.com/products/niacinamide-serum"
+ },
+ {
+  "id": "starface-hydro-stars-salicylic-acid",
+  "name": "Starface Hydro-Stars + Salicylic Acid",
+  "brand": "Starface",
+  "category": "Treatment",
+  "maker_url": "https://starface.world/products/salicylic-acid-hydro-stars"
+ },
+ {
+  "id": "the-ordinary-salicylic-acid-2-solution",
+  "name": "The Ordinary Salicylic Acid 2% Solution",
+  "brand": "The Ordinary",
+  "category": "Exfoliant",
+  "maker_url": "https://theordinary.com/en-us/salicylic-acid-2-solution-exfoliator-100619.html"
+ },
+ {
+  "id": "eltamd-am-restore-moisturizer",
+  "name": "EltaMD AM Restore Moisturizer",
+  "brand": "EltaMD",
+  "category": "Moisturizer",
+  "maker_url": "https://www.eltamd.com/products/eltamd-am-restore-moisturizer"
+ },
+ {
+  "id": "starface-star-wash-salicylic-acid",
+  "name": "Starface Star Wash + Salicylic Acid",
+  "brand": "Starface",
+  "category": "Cleanser",
+  "maker_url": "https://starface.world/products/star-wash-salicylic-acid"
+ },
+ {
+  "id": "cerave-resurfacing-retinol-serum",
+  "name": "CeraVe Resurfacing Retinol Serum",
+  "brand": "CeraVe",
+  "category": "Treatment",
+  "maker_url": "https://www.cerave.com/skincare/facial-serums/resurfacing-retinol-serum"
+ },
+ {
+  "id": "missha-artemisia-calming-essence",
+  "name": "Missha Artemisia Calming Essence",
+  "brand": "Missha",
+  "category": "Toner",
+  "maker_url": "https://misshaus.com/products/artemisia-calming-essence-150-ml"
+ },
+ {
+  "id": "haruharu-wonder-black-rice-moisture-airyfit-daily-sunscreen",
+  "name": "Haruharu Wonder Black Rice Moisture Airyfit Daily Sunscreen",
+  "brand": "Haruharu Wonder",
+  "category": "Sunscreen",
+  "maker_url": "https://www.haruharuwonder.com/products/haruharuwonder-black-rice-moisture-airyfit-daily-sunscreen-unscented-spf50-50ml"
+ },
+ {
+  "id": "mixsoon-bean-cream",
+  "name": "mixsoon Bean Cream",
+  "brand": "mixsoon",
+  "category": "Moisturizer",
+  "maker_url": "https://mixsoon.us/products/mixsoon-1-1-bean-cream-50ml"
+ },
+ {
+  "id": "mario-badescu-enzyme-cleansing-gel",
+  "name": "Mario Badescu Enzyme Cleansing Gel",
+  "brand": "Mario Badescu",
+  "category": "Cleanser",
+  "maker_url": "https://mariobadescu.com/products/enzyme-cleansing-gel"
+ },
+ {
+  "id": "sunday-riley-u-f-o-acne-treatment-face-oil",
+  "name": "Sunday Riley U.F.O. Acne Treatment Face Oil",
+  "brand": "Sunday Riley",
+  "category": "Treatment",
+  "maker_url": "https://sundayriley.com/products/ufo-acne-treatment-face-oil"
+ },
+ {
+  "id": "sunday-riley-auto-correct-brightening-depuffing-eye-cream",
+  "name": "Sunday Riley Auto Correct Brightening + Depuffing Eye Cream",
+  "brand": "Sunday Riley",
+  "category": "Eye cream",
+  "maker_url": "https://sundayriley.com/products/autocorrect-brightening-eye-cream"
+ },
+ {
+  "id": "mixsoon-bifida-toner",
+  "name": "mixsoon Bifida Toner",
+  "brand": "mixsoon",
+  "category": "Toner",
+  "maker_url": "https://mixsoon.us/products/mixsoon-bifida-toner-150ml"
+ },
+ {
+  "id": "mario-badescu-glycolic-acid-toner",
+  "name": "Mario Badescu Glycolic Acid Toner",
+  "brand": "Mario Badescu",
+  "category": "Exfoliant",
+  "maker_url": "https://mariobadescu.com/products/glycolic-acid-toner"
+ },
+ {
+  "id": "numbuzin-no-9-nad-retinal-volumetox-eye-cream",
+  "name": "numbuzin No.9 NAD+ Retinal Volumetox Eye Cream",
+  "brand": "numbuzin",
+  "category": "Eye cream",
+  "maker_url": "https://numbuzinus.com/products/no-9-nad-retinal-volumetox-eye-cream"
+ },
+ {
+  "id": "skin1004-madagascar-centella-ampoule",
+  "name": "SKIN1004 Madagascar Centella Ampoule",
+  "brand": "SKIN1004",
+  "category": "Serum",
+  "maker_url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+ },
+ {
+  "id": "axis-y-pha-resurfacing-glow-peel",
+  "name": "AXIS-Y PHA Resurfacing Glow Peel",
+  "brand": "AXIS-Y",
+  "category": "Exfoliant",
+  "maker_url": "https://axis-y.com/products/pha-resurfacing-glow-peel-1"
+ },
+ {
+  "id": "axis-y-vegan-collagen-eye-serum",
+  "name": "AXIS-Y Vegan Collagen Eye Serum",
+  "brand": "AXIS-Y",
+  "category": "Eye cream",
+  "maker_url": "https://axis-y.com/products/vegan-collagen-eye-serum"
+ },
+ {
+  "id": "torriden-dive-in-soothing-cream",
+  "name": "Torriden DIVE-IN Soothing Cream",
+  "brand": "Torriden",
+  "category": "Moisturizer",
+  "maker_url": "https://torriden.us/products/dive-in-soothing-cream"
+ },
+ {
+  "id": "sunday-riley-pink-drink-firming-resurfacing-essence",
+  "name": "Sunday Riley Pink Drink Firming Resurfacing Essence",
+  "brand": "Sunday Riley",
+  "category": "Toner",
+  "maker_url": "https://sundayriley.com/products/pink-drink-firming-resurfacing-essence"
+ },
+ {
+  "id": "peach-slices-acne-spot-dots",
+  "name": "Peach Slices Acne Spot Dots",
+  "brand": "Peach Slices",
+  "category": "Treatment",
+  "maker_url": "https://peachslices.com/products/acne-spot-dots"
+ },
+ {
+  "id": "cerave-healing-ointment",
+  "name": "CeraVe Healing Ointment",
+  "brand": "CeraVe",
+  "category": "Balm & ointment",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/healing-ointment"
+ },
+ {
+  "id": "axis-y-dark-spot-correcting-glow-serum",
+  "name": "AXIS-Y Dark Spot Correcting Glow Serum",
+  "brand": "AXIS-Y",
+  "category": "Serum",
+  "maker_url": "https://axis-y.com/products/dark-spot-correcting-glow-serum-1"
+ },
+ {
+  "id": "kravebeauty-kale-lalu-yaha",
+  "name": "KraveBeauty Kale-lalu-yAHA",
+  "brand": "KraveBeauty",
+  "category": "Exfoliant",
+  "maker_url": "https://kravebeauty.com/products/kale-lalu-yaha"
+ },
+ {
+  "id": "hada-labo-tokyo-gentle-hydrating-facial-cleanser",
+  "name": "Hada Labo Tokyo Gentle Hydrating Facial Cleanser",
+  "brand": "Hada Labo Tokyo",
+  "category": "Cleanser",
+  "maker_url": "https://hadalabotokyo.com/products/hada-labo-tokyo-gentle-hydrating-cleanser-with-hyaluronic-acid"
+ },
+ {
+  "id": "cosrx-one-step-original-clear-pad",
+  "name": "COSRX One Step Original Clear Pad",
+  "brand": "COSRX",
+  "category": "Exfoliant",
+  "maker_url": "https://www.cosrx.com/products/one-step-original-clear-skin-calming-pad-new"
+ },
+ {
+  "id": "skin1004-poremizing-quick-clay-stick-mask",
+  "name": "SKIN1004 Poremizing Quick Clay Stick Mask",
+  "brand": "SKIN1004",
+  "category": "Mask",
+  "maker_url": "https://www.skin1004.com/products/poremizing-quick-clay-stick-mask"
+ },
+ {
+  "id": "skin1004-tea-trica-bha-foam",
+  "name": "SKIN1004 Tea-Trica BHA Foam",
+  "brand": "SKIN1004",
+  "category": "Cleanser",
+  "maker_url": "https://www.skin1004.com/products/tea-trica-bha-foam"
+ },
+ {
+  "id": "anua-8-hyaluronic-acid-moisturizing-gentle-gel-cleanser",
+  "name": "Anua 8 Hyaluronic Acid Moisturizing Gentle Gel Cleanser",
+  "brand": "Anua",
+  "category": "Cleanser",
+  "maker_url": "https://anua.us/products/8-hyaluronic-acid-moisturizing-gentle-gel-cleanser"
+ },
+ {
+  "id": "cetaphil-healthy-renew-night-cream",
+  "name": "Cetaphil Healthy Renew Night Cream",
+  "brand": "Cetaphil",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cetaphil.com/us/products/skin-concern/healthy-aging/healthy-renew-night-cream/302990260014.html"
+ },
+ {
+  "id": "eltamd-skin-recovery-night-mask",
+  "name": "EltaMD Skin Recovery Night Mask",
+  "brand": "EltaMD",
+  "category": "Mask",
+  "maker_url": "https://www.eltamd.com/products/eltamd-skin-recovery-night-mask"
+ },
+ {
+  "id": "torriden-balanceful-toner-pad",
+  "name": "Torriden BALANCEFUL Toner Pad",
+  "brand": "Torriden",
+  "category": "Toner",
+  "maker_url": "https://torriden.us/products/balanceful-toner-pad"
+ },
+ {
+  "id": "the-inkey-list-omega-water-cream",
+  "name": "The INKEY List Omega Water Cream",
+  "brand": "The INKEY List",
+  "category": "Moisturizer",
+  "maker_url": "https://www.theinkeylist.com/products/omega-water-cream"
+ }
+]

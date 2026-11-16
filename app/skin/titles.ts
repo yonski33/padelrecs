@@ -6,7 +6,7 @@ export const MATCH_NOTE = "How well it fits the skin and goal you picked, from w
 
 /** "Best moisturizers for dry skin, fragrance-free | SkinRecs"; the site's home title without picks. */
 export function skinHomeTitle(c: SkinChoice) {
-  if (!skinPicked(c) && !c.type) return niche.seo.homeTitle;
+  if (!skinPicked(c.goal === "daily" ? { ...c, goal: null } : c) && !c.type) return niche.seo.homeTitle;
   const what = c.typeSlug ? niche.typePages!.find(t => t.slug === c.typeSlug)!.label.toLowerCase() : "skincare";
   return `Best ${what}${c.skin || c.concerns.length ? ` for ${skinWords(c)[0]}` : ""}${c.finish ? `, ${c.finish} finish` : ""}${c.ff ? ", fragrance-free" : ""} | ${niche.site.name}`;
 }

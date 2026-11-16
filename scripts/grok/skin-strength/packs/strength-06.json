@@ -1,0 +1,282 @@
+[
+ {
+  "id": "cerave-daily-moisturizing-lotion",
+  "name": "CeraVe Daily Moisturizing Lotion",
+  "brand": "CeraVe",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/daily-moisturizing-lotion"
+ },
+ {
+  "id": "beauty-of-joseon-ginseng-essence-water",
+  "name": "Beauty of Joseon Ginseng Essence Water",
+  "brand": "Beauty of Joseon",
+  "category": "Toner",
+  "maker_url": "https://beautyofjoseon.com/products/ginseng-essence-water"
+ },
+ {
+  "id": "anua-heartleaf-pore-control-cleansing-oil",
+  "name": "Anua Heartleaf Pore Control Cleansing Oil",
+  "brand": "Anua",
+  "category": "Cleanser",
+  "maker_url": "https://anua.us/products/heartleaf-pore-control-cleansing-oil-200ml"
+ },
+ {
+  "id": "avene-tolerance-control-soothing-skin-recovery-cream",
+  "name": "Av\u00e8ne Tolerance Control Soothing Skin Recovery Cream",
+  "brand": "Av\u00e8ne",
+  "category": "Moisturizer",
+  "maker_url": "https://www.aveneusa.com/tolerance-control-cream"
+ },
+ {
+  "id": "paulas-choice-skin-perfecting-8-aha-gel-exfoliant",
+  "name": "Paula's Choice SKIN PERFECTING 8% AHA Gel Exfoliant",
+  "brand": "Paula's Choice",
+  "category": "Exfoliant",
+  "maker_url": "https://www.paulaschoice.com/skin-perfecting-8pct-aha-gel-exfoliant/190.html"
+ },
+ {
+  "id": "naturium-retinaldehyde-cream-serum",
+  "name": "Naturium Retinaldehyde Cream Serum",
+  "brand": "Naturium",
+  "category": "Treatment",
+  "maker_url": "https://www.naturium.com/products/retinaldehyde-cream-serum-0-10"
+ },
+ {
+  "id": "axis-y-complete-no-stress-physical-sunscreen",
+  "name": "AXIS-Y Complete No-Stress Physical Sunscreen",
+  "brand": "AXIS-Y",
+  "category": "Sunscreen",
+  "maker_url": "https://axis-y.com/products/complete-no-stress-physical-sunscreen"
+ },
+ {
+  "id": "neutrogena-ultra-gentle-daily-cleanser",
+  "name": "Neutrogena Ultra Gentle Daily Cleanser",
+  "brand": "Neutrogena",
+  "category": "Cleanser",
+  "maker_url": "https://www.neutrogena.com/products/skincare/neutrogena-ultra-gentle-daily-cleanser-for-sensitive-skin/6887295"
+ },
+ {
+  "id": "cerave-moisturizing-cream",
+  "name": "CeraVe Moisturizing Cream",
+  "brand": "CeraVe",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/moisturizing-cream"
+ },
+ {
+  "id": "la-roche-posay-toleriane-double-repair-face-moisturizer",
+  "name": "La Roche-Posay Toleriane Double Repair Face Moisturizer",
+  "brand": "La Roche-Posay",
+  "category": "Moisturizer",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-moisturizer/toleriane-double-repair-face-moisturizer-tolerianedoublerepair.html"
+ },
+ {
+  "id": "paulas-choice-skin-recovery-enriched-calming-toner",
+  "name": "Paula's Choice SKIN RECOVERY Enriched Calming Toner",
+  "brand": "Paula's Choice",
+  "category": "Toner",
+  "maker_url": "https://www.paulaschoice.com/skin-recovery-enriched-calming-toner/125.html"
+ },
+ {
+  "id": "cetaphil-gentle-skin-cleanser",
+  "name": "Cetaphil Gentle Skin Cleanser",
+  "brand": "Cetaphil",
+  "category": "Cleanser",
+  "maker_url": "https://www.cetaphil.com/us/products/product-categories/all-cleansers/cetaphil-gentle-skin-cleanser/302990110227.html"
+ },
+ {
+  "id": "the-ordinary-glycolic-acid-7-exfoliating-toner",
+  "name": "The Ordinary Glycolic Acid 7% Exfoliating Toner",
+  "brand": "The Ordinary",
+  "category": "Toner",
+  "maker_url": "https://theordinary.com/en-us/glycolic-acid-7-exfoliating-toner-100418.html"
+ },
+ {
+  "id": "beauty-of-joseon-relief-sun-aqua-fresh-rice-b5-spf-50",
+  "name": "Beauty of Joseon Relief Sun Aqua-Fresh: Rice + B5 SPF 50+",
+  "brand": "Beauty of Joseon",
+  "category": "Sunscreen",
+  "maker_url": "https://beautyofjoseon.com/products/relief-sun-aqua-fresh"
+ },
+ {
+  "id": "supergoop-glowscreen-spf-40",
+  "name": "Supergoop! Glowscreen SPF 40",
+  "brand": "Supergoop!",
+  "category": "Sunscreen",
+  "maker_url": "https://www.supergoop.com/products/glowscreen-spf-40"
+ },
+ {
+  "id": "the-ordinary-natural-moisturizing-factors-ha",
+  "name": "The Ordinary Natural Moisturizing Factors + HA",
+  "brand": "The Ordinary",
+  "category": "Moisturizer",
+  "maker_url": "https://theordinary.com/en-us/natural-moisturizing-factors-ha-moisturizer-100435.html"
+ },
+ {
+  "id": "cerave-hydrating-cream-to-foam-cleanser",
+  "name": "CeraVe Hydrating Cream-to-Foam Cleanser",
+  "brand": "CeraVe",
+  "category": "Cleanser",
+  "maker_url": "https://www.cerave.com/skincare/cleansers/hydrating-cream-to-foam-cleanser"
+ },
+ {
+  "id": "glow-recipe-watermelon-glow-pha-bha-pore-tight-toner",
+  "name": "Glow Recipe Watermelon Glow PHA+BHA Pore-Tight Toner",
+  "brand": "Glow Recipe",
+  "category": "Toner",
+  "maker_url": "https://www.glowrecipe.com/products/watermelon-glow-pha-bha-pore-tight-toner"
+ },
+ {
+  "id": "missha-all-around-safe-block-essence-sun-spf-45",
+  "name": "Missha All Around Safe Block Essence Sun SPF 45",
+  "brand": "Missha",
+  "category": "Sunscreen",
+  "maker_url": "https://misshaus.com/products/missha-official-essence-sunscreen-spf43-50ml-otc-lotion-type-sunscreen-lightweight-daily-use-for-the-whole-family"
+ },
+ {
+  "id": "paulas-choice-calm-rescue-and-repair-weightless-moisturizer",
+  "name": "Paula's Choice CALM Rescue and Repair Weightless Moisturizer",
+  "brand": "Paula's Choice",
+  "category": "Moisturizer",
+  "maker_url": "https://www.paulaschoice.com/calm-rescue-and-repair-weightless-moisturizer/9220.html"
+ },
+ {
+  "id": "tatcha-the-rice-wash",
+  "name": "Tatcha The Rice Wash",
+  "brand": "Tatcha",
+  "category": "Cleanser",
+  "maker_url": "https://tatcha.com/products/rice-wash-soft-cream-cleanser"
+ },
+ {
+  "id": "cosrx-aloe-soothing-sun-cream-spf-50",
+  "name": "COSRX Aloe Soothing Sun Cream SPF 50",
+  "brand": "COSRX",
+  "category": "Sunscreen",
+  "maker_url": "https://www.cosrx.com/products/aloe-soothing-sun-cream-spf50-pa-_cpnp"
+ },
+ {
+  "id": "torriden-solid-in-ceramide-cream",
+  "name": "Torriden SOLID-IN Ceramide Cream",
+  "brand": "Torriden",
+  "category": "Moisturizer",
+  "maker_url": "https://torriden.us/products/solid-in-cream"
+ },
+ {
+  "id": "the-ordinary-glycolipid-cream",
+  "name": "The Ordinary Glycolipid Cream Cleanser",
+  "brand": null,
+  "category": "Cleanser",
+  "maker_url": null
+ },
+ {
+  "id": "sunday-riley-blue-moon-clean-rinse-cleansing-balm",
+  "name": "Sunday Riley Blue Moon Clean Rinse Cleansing Balm",
+  "brand": "Sunday Riley",
+  "category": "Cleanser",
+  "maker_url": "https://sundayriley.com/products/blue-moon-cleansing-balm"
+ },
+ {
+  "id": "la-roche-posay-hyalu-b5-pure-hyaluronic-acid-serum",
+  "name": "La Roche-Posay Hyalu B5 Pure Hyaluronic Acid Serum",
+  "brand": "La Roche-Posay",
+  "category": "Serum",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-serum/hyalu-b5-pure-hyaluronic-acid-serum-hyaluB5serum.html"
+ },
+ {
+  "id": "beauty-of-joseon-red-bean-refreshing-pore-mask",
+  "name": "Beauty of Joseon Red Bean Refreshing Pore Mask",
+  "brand": "Beauty of Joseon",
+  "category": "Mask",
+  "maker_url": "https://beautyofjoseon.com/products/red-bean-refreshing-pore-mask"
+ },
+ {
+  "id": "supergoop-play-everyday-lotion-spf-50",
+  "name": "Supergoop! PLAY Everyday Lotion SPF 50",
+  "brand": "Supergoop!",
+  "category": "Sunscreen",
+  "maker_url": "https://www.supergoop.com/products/everyday-sunscreen"
+ },
+ {
+  "id": "paulas-choice-clinical-1-retinol-treatment",
+  "name": "Paula's Choice CLINICAL 1% Retinol Treatment",
+  "brand": "Paula's Choice",
+  "category": "Treatment",
+  "maker_url": "https://www.paulaschoice.com/clinical-1pct-retinol-treatment/801.html"
+ },
+ {
+  "id": "la-roche-posay-toleriane-double-repair-facial-moisturizer-with-spf-30",
+  "name": "La Roche-Posay Toleriane Double Repair Facial Moisturizer with SPF 30",
+  "brand": "La Roche-Posay",
+  "category": "Sunscreen",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-moisturizer/toleriane-double-repair-facial-moisturizer-with-spf-3337875545846.html"
+ },
+ {
+  "id": "eltamd-uv-clear-broad-spectrum-spf-46",
+  "name": "EltaMD UV Clear Broad-Spectrum SPF 46",
+  "brand": "EltaMD",
+  "category": "Sunscreen",
+  "maker_url": "https://www.eltamd.com/products/uv-clear-broad-spectrum-spf-46"
+ },
+ {
+  "id": "the-ordinary-multi-peptide-ha-serum",
+  "name": "The Ordinary Multi-Peptide + HA Serum",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/multi-peptide-ha-serum-100613.html"
+ },
+ {
+  "id": "peach-lily-glass-skin-refining-serum",
+  "name": "Peach & Lily Glass Skin Refining Serum",
+  "brand": "Peach & Lily",
+  "category": "Serum",
+  "maker_url": "https://www.peachandlily.com/products/glass-skin-refining-serum"
+ },
+ {
+  "id": "drunk-elephant-c-firma-fresh-day-serum",
+  "name": "Drunk Elephant C-Firma Fresh Day Serum",
+  "brand": "Drunk Elephant",
+  "category": "Serum",
+  "maker_url": "https://www.drunkelephant.com/collections/serums/c-firma-fresh-vitamin-c-day-serum-812343034358.html"
+ },
+ {
+  "id": "paulas-choice-peptide-booster",
+  "name": "Paula's Choice Peptide Booster",
+  "brand": "Paula's Choice",
+  "category": "Serum",
+  "maker_url": "https://www.paulaschoice.com/pro-collagen-multi-peptide-booster/3020.html"
+ },
+ {
+  "id": "cerave-am-facial-moisturizing-lotion-with-sunscreen",
+  "name": "CeraVe AM Facial Moisturizing Lotion with Sunscreen",
+  "brand": "CeraVe",
+  "category": "Sunscreen",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/am-facial-moisturizing-lotion-with-sunscreen"
+ },
+ {
+  "id": "cerave-foaming-facial-cleanser",
+  "name": "CeraVe Foaming Facial Cleanser",
+  "brand": "CeraVe",
+  "category": "Cleanser",
+  "maker_url": "https://www.cerave.com/skincare/cleansers/foaming-facial-cleanser"
+ },
+ {
+  "id": "naturium-multi-peptide-moisturizer",
+  "name": "Naturium Multi-Peptide Moisturizer",
+  "brand": "Naturium",
+  "category": "Moisturizer",
+  "maker_url": "https://www.naturium.com/products/multi-peptide-moisturizer"
+ },
+ {
+  "id": "axis-y-spot-the-difference-blemish-treatment",
+  "name": "AXIS-Y Spot The Difference Blemish Treatment",
+  "brand": "AXIS-Y",
+  "category": "Treatment",
+  "maker_url": "https://axis-y.com/products/spot-the-difference-blemish-treatment"
+ },
+ {
+  "id": "anua-heartleaf-70-intense-calming-cream",
+  "name": "Anua Heartleaf 70% Intense Calming Cream",
+  "brand": "Anua",
+  "category": "Moisturizer",
+  "maker_url": "https://anua.us/products/heartleaf-70-intense-calming-cream-50ml"
+ }
+]

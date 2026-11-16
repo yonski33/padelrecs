@@ -1,0 +1,282 @@
+[
+ {
+  "id": "glow-recipe-watermelon-glow-jelly-sheet-mask",
+  "name": "Glow Recipe Watermelon Glow Jelly Sheet Mask",
+  "brand": "Glow Recipe",
+  "category": "Mask",
+  "maker_url": "https://www.glowrecipe.com/products/watermelon-jelly-sheet-mask"
+ },
+ {
+  "id": "cosrx-full-fit-propolis-honey-overnight-mask",
+  "name": "COSRX Full Fit Propolis Honey Overnight Mask",
+  "brand": "COSRX",
+  "category": "Mask",
+  "maker_url": "https://www.cosrx.com/products/full-fit-propolis-honey-overnight-mask_cpnp"
+ },
+ {
+  "id": "glow-recipe-blackberry-retinol-blemish-serum",
+  "name": "Glow Recipe Blackberry Retinol Blemish Serum",
+  "brand": "Glow Recipe",
+  "category": "Treatment",
+  "maker_url": "https://www.glowrecipe.com/products/blackberry-retinol-blemish-serum"
+ },
+ {
+  "id": "hada-labo-tokyo-lotion-no-1-super-hydrator",
+  "name": "Hada Labo Tokyo Lotion No. 1 Super Hydrator",
+  "brand": "Hada Labo Tokyo",
+  "category": "Toner",
+  "maker_url": "https://hadalabotokyo.com/products/hada-labo-tokyo-lotion-no-1-super-hydrator-water-light-hydrating-facial-toner-lotion-5-1-fl-oz"
+ },
+ {
+  "id": "torriden-dive-in-mask",
+  "name": "Torriden DIVE-IN Mask",
+  "brand": "Torriden",
+  "category": "Mask",
+  "maker_url": "https://torriden.us/products/dive-in-mask"
+ },
+ {
+  "id": "the-inkey-list-bio-active-ceramide-moisturiser",
+  "name": "The INKEY List Bio-Active Ceramide Moisturiser",
+  "brand": "The INKEY List",
+  "category": "Moisturizer",
+  "maker_url": "https://www.theinkeylist.com/products/bio-active-ceramide-moisturiser"
+ },
+ {
+  "id": "the-ordinary-lactic-acid-10-ha",
+  "name": "The Ordinary Lactic Acid 10% + HA",
+  "brand": "The Ordinary",
+  "category": "Exfoliant",
+  "maker_url": "https://theordinary.com/en-us/lactic-acid-10-ha-exfoliator-100426.html"
+ },
+ {
+  "id": "the-ordinary-matrixyl-10-ha",
+  "name": "The Ordinary Matrixyl 10% + HA",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/matrixyl-10-ha-serum-100431.html"
+ },
+ {
+  "id": "mario-badescu-super-collagen-mask",
+  "name": "Mario Badescu Super Collagen Mask",
+  "brand": "Mario Badescu",
+  "category": "Mask",
+  "maker_url": "https://mariobadescu.com/products/super-collagen-mask"
+ },
+ {
+  "id": "skin1004-centella-air-fit-suncream-plus",
+  "name": "SKIN1004 Centella Air-Fit Suncream Plus",
+  "brand": "SKIN1004",
+  "category": "Sunscreen",
+  "maker_url": "https://www.skin1004.com/products/skin1004-madagascar-centella-air-fit-suncream-plus"
+ },
+ {
+  "id": "cetaphil-daily-facial-cleanser",
+  "name": "Cetaphil Daily Facial Cleanser",
+  "brand": "Cetaphil",
+  "category": "Cleanser",
+  "maker_url": "https://www.cetaphil.com/us/products/facial/cetaphil-daily-facial-cleanser-fragrance-free/302993927402.html"
+ },
+ {
+  "id": "anua-3-ceramide-panthenol-moisture-barrier-cream",
+  "name": "Anua 3 Ceramide Panthenol Moisture Barrier Cream",
+  "brand": "Anua",
+  "category": "Moisturizer",
+  "maker_url": "https://anua.us/products/3-ceramide-panthenol-moisture-barrier-cream"
+ },
+ {
+  "id": "peach-slices-redness-relief-azelaic-acid-serum",
+  "name": "Peach Slices Redness Relief Azelaic Acid Serum",
+  "brand": "Peach Slices",
+  "category": "Treatment",
+  "maker_url": "https://peachslices.com/products/redness-relief-azelaic-acid-serum"
+ },
+ {
+  "id": "the-ordinary-retinol-0-5-in-squalane",
+  "name": "The Ordinary Retinol 0.5% in Squalane",
+  "brand": "The Ordinary",
+  "category": "Treatment",
+  "maker_url": "https://theordinary.com/en-us/retinol-05-in-squalane-serum-100440.html"
+ },
+ {
+  "id": "skin1004-centella-light-cleansing-oil",
+  "name": "SKIN1004 Centella Light Cleansing Oil",
+  "brand": "SKIN1004",
+  "category": "Cleanser",
+  "maker_url": "https://www.skin1004.com/products/skin1004-madagascar-centella-light-cleansing-oil"
+ },
+ {
+  "id": "naturium-tranexamic-topical-acid-5",
+  "name": "Naturium Tranexamic Topical Acid 5%",
+  "brand": "Naturium",
+  "category": "Serum",
+  "maker_url": "https://www.naturium.com/products/tranexamic-topical-acid-5"
+ },
+ {
+  "id": "the-ordinary-ascorbyl-glucoside-solution-12",
+  "name": "The Ordinary Ascorbyl Glucoside Solution 12%",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/ascorbyl-glucoside-solution-12-vitamin-c-100405.html"
+ },
+ {
+  "id": "cosrx-ultra-light-invisible-sunscreen-spf-50",
+  "name": "COSRX Ultra-Light Invisible Sunscreen SPF 50",
+  "brand": "COSRX",
+  "category": "Sunscreen",
+  "maker_url": "https://www.cosrx.com/products/ultra-light-invisible-sunscreen-spf50-pa"
+ },
+ {
+  "id": "la-roche-posay-toleriane-double-repair-matte-face-moisturizer-spf-30",
+  "name": "La Roche-Posay Toleriane Double Repair Matte Face Moisturizer SPF 30",
+  "brand": "La Roche-Posay",
+  "category": "Sunscreen",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-moisturizer/toleriane-double-repair-matte-face-moisturizer-spf-30-for-oily-skin-3606000638709.html"
+ },
+ {
+  "id": "tatcha-the-silk-sunscreen-spf-50",
+  "name": "Tatcha The Silk Sunscreen SPF 50",
+  "brand": "Tatcha",
+  "category": "Sunscreen",
+  "maker_url": "https://tatcha.com/products/the-silk-sunscreen-spf-50"
+ },
+ {
+  "id": "axis-y-quinoa-one-step-balanced-gel-cleanser",
+  "name": "AXIS-Y Quinoa One Step Balanced Gel Cleanser",
+  "brand": "AXIS-Y",
+  "category": "Cleanser",
+  "maker_url": "https://axis-y.com/products/quinoa-one-step-balanced-gel-cleanser"
+ },
+ {
+  "id": "glow-recipe-guava-vitamin-c-bright-eye-gel-cream",
+  "name": "Glow Recipe Guava Vitamin C Bright-Eye Gel Cream",
+  "brand": "Glow Recipe",
+  "category": "Eye cream",
+  "maker_url": "https://www.glowrecipe.com/products/guava-vitamin-c-bright-eye-gel-cream"
+ },
+ {
+  "id": "cosrx-the-retinol-0-5-oil",
+  "name": "COSRX The Retinol 0.5 Oil",
+  "brand": "COSRX",
+  "category": "Treatment",
+  "maker_url": "https://www.cosrx.com/products/the-retinol-0-5-oil-\ubc88\ub4e4"
+ },
+ {
+  "id": "cerave-acne-control-gel",
+  "name": "CeraVe Acne Control Gel",
+  "brand": "CeraVe",
+  "category": "Treatment",
+  "maker_url": "https://www.cerave.com/skincare/acne/acne-control-gel"
+ },
+ {
+  "id": "missha-time-revolution-night-repair-ampoule-5x",
+  "name": "Missha Time Revolution Night Repair Ampoule 5X",
+  "brand": "Missha",
+  "category": "Serum",
+  "maker_url": "https://misshaus.com/products/time-revolution-night-repair-ampoule-5x"
+ },
+ {
+  "id": "glow-recipe-watermelon-glow-niacinamide-dew-balm-spf-45",
+  "name": "Glow Recipe Watermelon Glow Niacinamide Dew Balm SPF 45",
+  "brand": "Glow Recipe",
+  "category": "Sunscreen",
+  "maker_url": "https://www.glowrecipe.com/products/watermelon-glow-dew-balm-spf-45"
+ },
+ {
+  "id": "missha-super-aqua-ultra-hyalron-cream",
+  "name": "Missha Super Aqua Ultra Hyalron Cream",
+  "brand": "Missha",
+  "category": "Moisturizer",
+  "maker_url": "https://misshaus.com/products/super-aqua-ultra-hyalron-cream-1"
+ },
+ {
+  "id": "skin1004-hyalu-cica-moisture-cream",
+  "name": "SKIN1004 Hyalu-Cica Moisture Cream",
+  "brand": "SKIN1004",
+  "category": "Moisturizer",
+  "maker_url": "https://www.skin1004.com/products/madagascar-centella-hyalu-cica-moisture-cream-75ml"
+ },
+ {
+  "id": "the-inkey-list-retinol-eye-cream",
+  "name": "The INKEY List Retinol Eye Cream",
+  "brand": "The INKEY List",
+  "category": "Eye cream",
+  "maker_url": "https://www.theinkeylist.com/products/retinol-eye-cream"
+ },
+ {
+  "id": "the-ordinary-multi-peptide-eye-serum",
+  "name": "The Ordinary Multi-Peptide Eye Serum",
+  "brand": "The Ordinary",
+  "category": "Eye cream",
+  "maker_url": "https://theordinary.com/en-us/multi-peptide-eye-serum-100620.html"
+ },
+ {
+  "id": "beauty-of-joseon-revive-eye-serum-ginseng-retinal",
+  "name": "Beauty of Joseon Revive Eye Serum: Ginseng + Retinal",
+  "brand": "Beauty of Joseon",
+  "category": "Eye cream",
+  "maker_url": "https://beautyofjoseon.com/products/revive-eye-serum-ginseng-retinal"
+ },
+ {
+  "id": "dr-jart-cicapair-tiger-grass-cream",
+  "name": "Dr. Jart+ Cicapair Tiger Grass Cream",
+  "brand": "Dr. Jart+",
+  "category": "Moisturizer",
+  "maker_url": "https://www.drjart.com/product/28258/94008/moisturisers/cicapair-tiger-grass-cream"
+ },
+ {
+  "id": "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant",
+  "name": "Paula's Choice SKIN PERFECTING 2% BHA Liquid Exfoliant",
+  "brand": "Paula's Choice",
+  "category": "Exfoliant",
+  "maker_url": "https://www.paulaschoice.com/skin-perfecting-2pct-bha-liquid-exfoliant/201.html"
+ },
+ {
+  "id": "tatcha-the-dewy-skin-cream",
+  "name": "Tatcha The Dewy Skin Cream",
+  "brand": "Tatcha",
+  "category": "Moisturizer",
+  "maker_url": "https://tatcha.com/products/the-dewy-skin-cream"
+ },
+ {
+  "id": "cosrx-the-6-peptide-skin-booster-serum",
+  "name": "COSRX The 6 Peptide Skin Booster Serum",
+  "brand": "COSRX",
+  "category": "Serum",
+  "maker_url": "https://www.cosrx.com/products/the-6-peptide-skin-booster-serum-bundle"
+ },
+ {
+  "id": "beauty-of-joseon-green-plum-refreshing-toner-aha-bha",
+  "name": "Beauty of Joseon Green Plum Refreshing Toner: AHA + BHA",
+  "brand": "Beauty of Joseon",
+  "category": "Toner",
+  "maker_url": "https://beautyofjoseon.com/products/green-plum-refreshing-toner-aha-bha"
+ },
+ {
+  "id": "skin1004-centella-ampoule-foam",
+  "name": "SKIN1004 Centella Ampoule Foam",
+  "brand": "SKIN1004",
+  "category": "Cleanser",
+  "maker_url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule-foam"
+ },
+ {
+  "id": "mario-badescu-facial-spray-with-aloe-herbs-and-rosewater",
+  "name": "Mario Badescu Facial Spray with Aloe, Herbs and Rosewater",
+  "brand": "Mario Badescu",
+  "category": "Toner",
+  "maker_url": "https://mariobadescu.com/products/facial-spray-with-aloe-herbs-and-rosewater"
+ },
+ {
+  "id": "la-roche-posay-effaclar-medicated-gel-cleanser",
+  "name": "La Roche-Posay Effaclar Medicated Gel Cleanser",
+  "brand": "La Roche-Posay",
+  "category": "Cleanser",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/acne-products/effaclar-medicated-acne-face-wash-effaclaracnewash.html"
+ },
+ {
+  "id": "skin1004-hyalu-cica-water-fit-sun-serum",
+  "name": "SKIN1004 Hyalu-Cica Water-Fit Sun Serum",
+  "brand": "SKIN1004",
+  "category": "Sunscreen",
+  "maker_url": "https://www.skin1004.com/products/hyalu-cica-water-fit-sun-serum-uv"
+ }
+]

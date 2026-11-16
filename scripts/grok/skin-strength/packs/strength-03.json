@@ -1,0 +1,282 @@
+[
+ {
+  "id": "anua-heartleaf-77-soothing-toner",
+  "name": "Anua Heartleaf 77 Soothing Toner",
+  "brand": "Anua",
+  "category": "Toner",
+  "maker_url": "https://anua.us/products/heartleaf-77-soothing-toner"
+ },
+ {
+  "id": "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+  "name": "Anua Heartleaf Quercetinol Pore Deep Cleansing Foam",
+  "brand": "Anua",
+  "category": "Cleanser",
+  "maker_url": "https://anua.us/products/heartleaf-quercetinol-pore-deep-cleansing-foam"
+ },
+ {
+  "id": "the-ordinary-retinal-0-2-emulsion",
+  "name": "The Ordinary Retinal 0.2% Emulsion",
+  "brand": "The Ordinary",
+  "category": "Treatment",
+  "maker_url": "https://theordinary.com/en-us/retinal-02-emulsion-100646.html"
+ },
+ {
+  "id": "anua-nano-retinol-0-3-niacin-renewing-serum",
+  "name": "Anua Nano Retinol 0.3% + Niacin Renewing Serum",
+  "brand": "Anua",
+  "category": "Treatment",
+  "maker_url": "https://anua.us/products/nano-retinol-0-3-niacin-renewing-serum"
+ },
+ {
+  "id": "skin1004-probio-cica-bakuchiol-eye-cream",
+  "name": "SKIN1004 Probio-Cica Bakuchiol Eye Cream",
+  "brand": "SKIN1004",
+  "category": "Eye cream",
+  "maker_url": "https://www.skin1004.com/products/probio-cica-bakuchiol-eye-cream"
+ },
+ {
+  "id": "anua-retinol-0-1-caffeine-revitalizing-eye-cream",
+  "name": "Anua Retinol 0.1 Caffeine Revitalizing Eye Cream",
+  "brand": "Anua",
+  "category": "Eye cream",
+  "maker_url": "https://anua.us/products/retinol-0-1-caffeine-revitalizing-eye-cream"
+ },
+ {
+  "id": "skin1004-poremizing-clear-toner",
+  "name": "SKIN1004 Poremizing Clear Toner",
+  "brand": "SKIN1004",
+  "category": "Toner",
+  "maker_url": "https://www.skin1004.com/products/poremizing-clear-toner"
+ },
+ {
+  "id": "the-ordinary-saccharomyces-ferment-30-milky-toner",
+  "name": "The Ordinary Saccharomyces Ferment 30% Milky Toner",
+  "brand": "The Ordinary",
+  "category": "Toner",
+  "maker_url": "https://theordinary.com/en-us/saccharomyces-ferment-30-milky-toner-100647.html"
+ },
+ {
+  "id": "eltamd-uv-aox-elements-broad-spectrum-spf-50",
+  "name": "EltaMD UV AOX Elements Broad-Spectrum SPF 50",
+  "brand": "EltaMD",
+  "category": "Sunscreen",
+  "maker_url": "https://www.eltamd.com/products/eltamd-uv-aox-elements-broad-spectrum-spf-50"
+ },
+ {
+  "id": "supergoop-bright-eyed-mineral-eye-cream-spf-40",
+  "name": "Supergoop! Bright-Eyed Mineral Eye Cream SPF 40",
+  "brand": "Supergoop!",
+  "category": "Eye cream",
+  "maker_url": "https://www.supergoop.com/products/bright-eyed-100-mineral-eye-cream-spf-40"
+ },
+ {
+  "id": "supergoop-every-single-face-watery-lotion-spf-50",
+  "name": "Supergoop! Every. Single. Face. Watery Lotion SPF 50",
+  "brand": "Supergoop!",
+  "category": "Sunscreen",
+  "maker_url": "https://www.supergoop.com/products/every-single-face-2-pack"
+ },
+ {
+  "id": "torriden-dive-in-toner",
+  "name": "Torriden DIVE-IN Toner",
+  "brand": "Torriden",
+  "category": "Toner",
+  "maker_url": "https://torriden.us/products/dive-in-toner"
+ },
+ {
+  "id": "eltamd-uv-restore-broad-spectrum-spf-40",
+  "name": "EltaMD UV Restore Broad-Spectrum SPF 40",
+  "brand": "EltaMD",
+  "category": "Sunscreen",
+  "maker_url": "https://www.eltamd.com/products/eltamd-uv-restore-broad-spectrum-spf-40"
+ },
+ {
+  "id": "kravebeauty-matcha-hemp-hydrating-cleanser",
+  "name": "KraveBeauty Matcha Hemp Hydrating Cleanser",
+  "brand": "KraveBeauty",
+  "category": "Cleanser",
+  "maker_url": "https://kravebeauty.com/products/matcha-hemp-hydrating-cleanser"
+ },
+ {
+  "id": "supergoop-superscreen-hydrating-daily-cream-spf-40",
+  "name": "Supergoop! Superscreen Hydrating Daily Cream SPF 40",
+  "brand": "Supergoop!",
+  "category": "Sunscreen",
+  "maker_url": "https://www.supergoop.com/products/superscreen-daily-moisturizer"
+ },
+ {
+  "id": "skin1004-centella-soothing-cream",
+  "name": "SKIN1004 Centella Soothing Cream",
+  "brand": "SKIN1004",
+  "category": "Moisturizer",
+  "maker_url": "https://www.skin1004.com/products/skin1004-madagascar-centella-soothing-cream"
+ },
+ {
+  "id": "the-inkey-list-pha-toner",
+  "name": "The INKEY List PHA Toner",
+  "brand": "The INKEY List",
+  "category": "Toner",
+  "maker_url": "https://www.theinkeylist.com/products/pha-toner"
+ },
+ {
+  "id": "the-inkey-list-polyglutamic-acid-serum",
+  "name": "The INKEY List Polyglutamic Acid Serum",
+  "brand": "The INKEY List",
+  "category": "Serum",
+  "maker_url": "https://www.theinkeylist.com/products/polyglutamic-acid-serum"
+ },
+ {
+  "id": "eltamd-skin-recovery-amino-acid-foaming-cleanser",
+  "name": "EltaMD Skin Recovery Amino Acid Foaming Cleanser",
+  "brand": "EltaMD",
+  "category": "Cleanser",
+  "maker_url": "https://www.eltamd.com/products/skin-recovery-amino-acid-foaming-cleanser"
+ },
+ {
+  "id": "the-inkey-list-advanced-0-2-retinal-serum",
+  "name": "The INKEY List Advanced 0.2% Retinal Serum",
+  "brand": "The INKEY List",
+  "category": "Treatment",
+  "maker_url": "https://www.theinkeylist.com/products/advanced-retinal"
+ },
+ {
+  "id": "beauty-of-joseon-matte-sun-stick-mugwort-camelia-spf-50",
+  "name": "Beauty of Joseon Matte Sun Stick: Mugwort + Camelia SPF 50+",
+  "brand": "Beauty of Joseon",
+  "category": "Sunscreen",
+  "maker_url": "https://beautyofjoseon.com/products/matte-sun-stick-mugwort-camelia"
+ },
+ {
+  "id": "eltamd-uv-daily-broad-spectrum-spf-40",
+  "name": "EltaMD UV Daily Broad-Spectrum SPF 40",
+  "brand": "EltaMD",
+  "category": "Sunscreen",
+  "maker_url": "https://www.eltamd.com/products/uv-daily-broad-spectrum-spf-40"
+ },
+ {
+  "id": "aveeno-calm-restore-triple-oat-serum",
+  "name": "Aveeno Calm + Restore Triple Oat Serum",
+  "brand": "Aveeno",
+  "category": "Serum",
+  "maker_url": "https://www.aveeno.com/products/calm-restore-triple-oat-serum-for-sensitive-skin"
+ },
+ {
+  "id": "medicube-pdrn-pink-peptide-serum",
+  "name": "Medicube PDRN Pink Peptide Serum",
+  "brand": "Medicube",
+  "category": "Serum",
+  "maker_url": "https://medicube.us/products/rose-pdrn-pink-peptide-serum"
+ },
+ {
+  "id": "glow-recipe-avocado-ceramide-moisture-barrier-cleanser",
+  "name": "Glow Recipe Avocado Ceramide Moisture Barrier Cleanser",
+  "brand": "Glow Recipe",
+  "category": "Cleanser",
+  "maker_url": "https://www.glowrecipe.com/products/avocado-ceramide-moisture-barrier-cleanser"
+ },
+ {
+  "id": "naturium-dew-glow-moisturizer-spf-50",
+  "name": "Naturium Dew-Glow Moisturizer SPF 50",
+  "brand": "Naturium",
+  "category": "Sunscreen",
+  "maker_url": "https://www.naturium.com/products/dew-glow-moisturizer-spf-50-original"
+ },
+ {
+  "id": "naturium-purple-ginseng-cleansing-balm",
+  "name": "Naturium Purple Ginseng Cleansing Balm",
+  "brand": "Naturium",
+  "category": "Cleanser",
+  "maker_url": "https://www.naturium.com/products/purple-ginseng-cleansing-balm"
+ },
+ {
+  "id": "naturium-vitamin-c-super-serum-plus",
+  "name": "Naturium Vitamin C Super Serum Plus",
+  "brand": "Naturium",
+  "category": "Serum",
+  "maker_url": "https://www.naturium.com/products/vitamin-c-super-serum-plus"
+ },
+ {
+  "id": "naturium-retinol-complex-serum",
+  "name": "Naturium Retinol Complex Serum",
+  "brand": "Naturium",
+  "category": "Treatment",
+  "maker_url": "https://www.naturium.com/products/retinol-complex-serum"
+ },
+ {
+  "id": "naturium-bha-liquid-exfoliant-2",
+  "name": "Naturium BHA Liquid Exfoliant 2%",
+  "brand": "Naturium",
+  "category": "Exfoliant",
+  "maker_url": "https://www.naturium.com/products/bha-liquid-exfoliant-2"
+ },
+ {
+  "id": "naturium-multi-peptide-eye-cream",
+  "name": "Naturium Multi-Peptide Eye Cream",
+  "brand": "Naturium",
+  "category": "Eye cream",
+  "maker_url": "https://www.naturium.com/products/multi-peptide-eye-cream"
+ },
+ {
+  "id": "naturium-glycolic-acid-resurfacing-gel-10",
+  "name": "Naturium Glycolic Acid Resurfacing Gel 10%",
+  "brand": "Naturium",
+  "category": "Exfoliant",
+  "maker_url": "https://www.naturium.com/products/glycolic-acid-resurfacing-gel-10"
+ },
+ {
+  "id": "the-inkey-list-caffeine-eye-cream",
+  "name": "The INKEY List Caffeine Eye Cream",
+  "brand": "The INKEY List",
+  "category": "Eye cream",
+  "maker_url": "https://www.theinkeylist.com/products/caffeine-eye-cream"
+ },
+ {
+  "id": "drunk-elephant-a-passioni-retinol-cream",
+  "name": "Drunk Elephant A-Passioni Retinol Cream",
+  "brand": "Drunk Elephant",
+  "category": "Treatment",
+  "maker_url": "https://www.drunkelephant.com/collections/masks/a-passioni-retinol-cream-999DE00000100.html"
+ },
+ {
+  "id": "bioderma-sebium-h2o-micellar-water",
+  "name": "Bioderma S\u00e9bium H2O Micellar Water",
+  "brand": "Bioderma",
+  "category": "Cleanser",
+  "maker_url": "https://www.bioderma.us/en/p/sebium-h2o-micellar-water.html"
+ },
+ {
+  "id": "kravebeauty-oat-so-simple-water-cream",
+  "name": "KraveBeauty Oat So Simple Water Cream",
+  "brand": "KraveBeauty",
+  "category": "Moisturizer",
+  "maker_url": "https://kravebeauty.com/products/oat-so-simple-water-cream"
+ },
+ {
+  "id": "kravebeauty-beet-the-sun-spf-40",
+  "name": "KraveBeauty Beet the Sun SPF 40",
+  "brand": "KraveBeauty",
+  "category": "Sunscreen",
+  "maker_url": "https://kravebeauty.com/products/beet-the-sun-spf-40-sunscreen"
+ },
+ {
+  "id": "laneige-water-bank-blue-hyaluronic-cream-moisturizer",
+  "name": "Laneige Water Bank Blue Hyaluronic Cream Moisturizer",
+  "brand": "Laneige",
+  "category": "Moisturizer",
+  "maker_url": "https://us.laneige.com/products/water-bank-blue-hyaluronic-cream-moisturizer"
+ },
+ {
+  "id": "naturium-plant-ceramide-rich-moisture-cream",
+  "name": "Naturium Plant Ceramide Rich Moisture Cream",
+  "brand": "Naturium",
+  "category": "Moisturizer",
+  "maker_url": "https://www.naturium.com/products/plant-ceramide-rich-moisture-cream"
+ },
+ {
+  "id": "cosrx-salicylic-acid-daily-gentle-cleanser",
+  "name": "COSRX Salicylic Acid Daily Gentle Cleanser",
+  "brand": "COSRX",
+  "category": "Cleanser",
+  "maker_url": "https://www.cosrx.com/products/salicylic-acid-daily-gentle-cleanser"
+ }
+]
