@@ -4,7 +4,7 @@ import { hasAttribution } from "../lib/voice";
 import page from "../db/racket-page/discgolf.json";
 import card from "../db/fit-card/discgolf.json";
 import type { CardContent } from "../lib/fit-card";
-import type { PageContent } from "../lib/racket-page";
+import { evidenceLine, type PageContent } from "../lib/racket-page";
 
 // DiscGolfRecs disc pages: drafted by Grok from an evidence pack (pilot, owner 2026-11-16), validated and spot-checked by us; the
 // same rules as the pickleball pages (tests/pickleball-content.test.ts), with the niche's own words: "disc", never "racket" / "paddle".
@@ -82,4 +82,12 @@ test("disc golf content: no unconditioned yes/no clash, tagline catch is the big
     const a = words(cat!), b = words(`${v.no[0].title} ${v.no[0].t}`);
     assert.ok([...a].some(w => b.has(w)), `${slug}: the tagline's catch should be the biggest catch (${v.no[0].title})`);
   }
+});
+
+test("disc golf hides item counts under 5; padel and pickleball keep every count", () => {
+  const item = (n: number) => ({ title: "x", t: "a ==b== c", src: Array.from({ length: n }, (_, i) => `r${i}`) });
+  assert.equal(evidenceLine(item(4), "players", "discgolf"), null);
+  assert.equal(evidenceLine(item(5), "players", "discgolf"), "5 players mention it");
+  assert.equal(evidenceLine(item(2), "players", "padel"), "2 players mention it");
+  assert.equal(evidenceLine({ ...item(3), ev: "the #1 complaint, {n} players" }, "players", "discgolf"), "the #1 complaint, 3 players");
 });
