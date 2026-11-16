@@ -12,6 +12,8 @@ export function curatedFor(c: Pick<QuickChoice, "style" | "level" | "arm">, site
   if (c.style === "any" || !c.level) return [];
   return (SITES[site]?.lists[curatedKey(c)] ?? []).map(e => e.slug);
 }
+/** Every slug on any of the site's curated lists. */
+export const curatedSlugs = (site = niche.id) => [...new Set(Object.values(SITES[site]?.lists ?? {}).flat().map(e => e.slug))];
 export const hasCurated = (site = niche.id) => !!SITES[site];
 /** The display % for curated place i (0-based) of n: 97 for #1, stepping down evenly to about 80. */
 export const curatedPct = (i: number, n: number) => Math.round(97 - (n > 1 ? i * 17 / (n - 1) : 0));

@@ -114,6 +114,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       <div className="hv2-box">
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm }, i) => {
         const r = cards[id], sig = signalOf(id);
+        if (!r) return null; // a row without its card (never expected): skip it rather than fail the page
         // With picks the match % is the star; the product's own score stays as a small neutral pill under it (owner 2026-11-16).
         // The mockup's after-pick column (owner 2026-11-16): the match % box, "your match", then a small pill with the product's
         // own score, tinted by it like the box (green 85+, yellow 70+). No verdict chip here: the box says it.

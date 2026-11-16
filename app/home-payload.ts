@@ -1,3 +1,4 @@
+import { curatedSlugs } from "../lib/curated";
 import { matchContext } from "./match-context";
 import { rowLine } from "../lib/row-line";
 import { listShopLink } from "../lib/amazon-offer";
@@ -48,7 +49,9 @@ const payloadOf = sameInputs((ctx: Awaited<ReturnType<typeof matchContext>>): Ho
   // A row is a pool racket (every year, with "show older models") or the year that takes its family's row; with the match
   // engine (lib/engine), any racket with enough reports can take one.
   const minEngine = niche.fit?.engine?.minReports;
-  const shown = new Set(items.flatMap(x => x.pool ? [x.id, x.row] : minEngine !== undefined && x.facts.reports >= minEngine ? [x.id] : []));
+  // Curated picks (lib/curated.ts) lead their lists whatever their reports, so they need a card too.
+  const curated = new Set(curatedSlugs());
+  const shown = new Set(items.flatMap(x => x.pool ? [x.id, x.row] : (minEngine !== undefined && x.facts.reports >= minEngine) || (x.slug && curated.has(x.slug)) ? [x.id] : []));
   const cards = Object.fromEntries([...shown].map(id => {
     const r = byId.get(id)!, c = score(data, id), shop = listShopLink(r);
     const pic = photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
