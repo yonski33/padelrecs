@@ -5,10 +5,11 @@ import { notFound } from "next/navigation";
 import { catalog } from "../../../../db/data";
 import CatalogV2 from "../../../rackets/catalog-v2";
 import { generateMetadata as catalogMetadata } from "../../../rackets/page";
-import { readViewKey, CATALOG_VIEW } from "../../../../lib/view-key";
+import { readViewKey, CATALOG_VIEW, SKIN_CATALOG_VIEW } from "../../../../lib/view-key";
 import { readCatalogFilters } from "../../../../lib/catalog-filter";
 import { specGroups } from "../../../../lib/guide";
-import { niche } from "../../../../lib/niche";
+import { niche, catalogPath } from "../../../../lib/niche";
+import { attrProfileFor } from "../../../../lib/attr-profile";
 
 const SPEC = specGroups(niche.guide).map(g => g.key);
 
@@ -17,6 +18,13 @@ export function generateStaticParams() { return []; }
 export const generateMetadata = catalogMetadata;
 
 export default async function CatalogView({ params }: { params: Promise<{ key: string }> }) {
+  // SkinRecs (an attribute profile) has its own filters and catalogue (owner 2026-11-16; padel's 500'd there, #374).
+  if (attrProfileFor(niche)) {
+    const q = readViewKey((await params).key, SKIN_CATALOG_VIEW);
+    if (!q) notFound();
+    const { default: CatalogSkin } = await import("../../../skin/catalog-skin");
+    return <CatalogSkin f={q} base={catalogPath}/>;
+  }
   const q = readViewKey((await params).key, [...CATALOG_VIEW, ...SPEC]);
   if (!q) notFound();
   return <CatalogV2 data={await catalog()} f={readCatalogFilters(q, SPEC)}/>;

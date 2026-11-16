@@ -3,8 +3,8 @@
 // then an ISR page the CDN serves. A query with anything else (free text, an unknown key) is left alone and renders per
 // request as before. Pure, so tests feed plain objects.
 
-/** Query values the key can hold: short plain words and numbers. */
-const TOKEN = /^[a-z0-9-]{1,40}$/;
+/** Query values the key can hold: short plain words and numbers (and SkinRecs' price bands, "$" to "$$$"). */
+const TOKEN = /^[a-z0-9$-]{1,40}$/;
 
 /** The key for a query, or null when the query can't be one (an unknown key or a value that isn't a plain token). Keys are
  *  sorted and empty values dropped, so one view has one key; no query is "-". */
@@ -31,3 +31,12 @@ export const viewQuery = (q: Record<string, string>) => { const s = new URLSearc
 export const CATALOG_VIEW = ["style", "level", "shape", "year", "arm", "weight", "feel", "sweet", "sort", "show", "more", "older"] as const;
 export const RANKING_VIEW = ["style", "level", "arm", "pct"] as const;
 export const RACKET_VIEW = ["style", "level", "arm", "shape", "weight", "feel", "sweet"] as const;
+
+/** SkinRecs (an attribute profile, lib/attr-profile.ts) holds its own picks and filters, never padel's (owner 2026-11-16: the
+ *  padel views 500'd there, #374): the home's quick match and the product page's skin check (lib/skin-choice.ts), and the
+ *  catalogue's filters on /products, each type page and each brand page (app/skin/catalog-skin-browser.tsx). Rankings take
+ *  no picks there, so only the plain list is cached. */
+export const SKIN_HOME_VIEW = ["type", "skin", "sens", "acne", "finish", "ff", "nc", "goal", "tex", "budget"] as const;
+export const SKIN_PRODUCT_VIEW = ["skin", "sens", "acne", "finish", "ff", "nc", "goal", "tex", "budget"] as const;
+export const SKIN_CATALOG_VIEW = ["type", "skin", "sens", "acne", "finish", "texture", "price", "ff", "sort", "show"] as const;
+export const SKIN_RANKING_VIEW = [] as const;
