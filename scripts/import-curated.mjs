@@ -17,7 +17,7 @@ export function listOf(file) {
   const picks = Array.isArray(file?.picks) ? file.picks : [];
   const seen = new Set();
   return picks.filter(p => p?.slug && !seen.has(p.slug) && seen.add(p.slug))
-    .map(p => ({ slug: p.slug, ...(p.reason ? { note: String(p.reason) } : {}), ...(p.source ? { src: String(p.source) } : {}), ...(p.exception ? { exception: String(p.exception) } : {}) }));
+    .map(p => ({ slug: p.slug, ...(p.owner ? { owner: true } : {}), ...(p.reason ? { note: String(p.reason) } : {}), ...(p.source ? { src: String(p.source) } : {}), ...(p.exception ? { exception: String(p.exception) } : {}) }));
 }
 
 /** The owner's rule (2026-11-17, "we always pick the new version, if it has enough reviews"): a slug becomes the newest year of
@@ -39,10 +39,16 @@ function main() {
   let catalog = [];
   try { catalog = JSON.parse(readFileSync(join(dir, `${s}-curated-pack.json`), "utf8")).catalog ?? []; } catch { console.log(`! no ${s}-curated-pack.json in the folder: slugs kept as written`); }
   let changed = 0;
-  for (const f of readdirSync(dir).filter(f => /^curated-.+\.json$/.test(f)).sort()) {
-    const file = JSON.parse(readFileSync(join(dir, f), "utf8")), key = keyOf(file.combo);
+  // The owner's final file (curated-final.json: { lists: { combo: [{ slug }] } }) wins over the per-list drafts; every pick in
+  // it is the owner's, kept exactly as written (no newest-model swap: owner picks are exact).
+  let files;
+  try { const fin = JSON.parse(readFileSync(join(dir, "curated-final.json"), "utf8"));
+    files = Object.entries(fin.lists ?? {}).map(([combo, picks]) => ({ name: `curated-final.json ${combo}`, file: { combo, picks: picks.map(p => ({ ...p, owner: true })) } })); }
+  catch { files = readdirSync(dir).filter(f => /^curated-(?!final).+\.json$/.test(f)).sort().map(f => ({ name: f, file: JSON.parse(readFileSync(join(dir, f), "utf8")) })); }
+  for (const { name: f, file } of files) {
+    const key = keyOf(file.combo);
     if (!key || !(key in doc.lists)) { console.log(`skip ${f}: unknown combo ${file.combo}`); continue; }
-    const list = listOf(file).map(e => { const n = newestOf(e.slug, catalog); if (n !== e.slug) console.log(`  ${e.slug} → ${n} (newest with 10+ reviews)`); return { ...e, slug: n }; })
+    const list = listOf(file).map(e => { const n = e.owner ? e.slug : newestOf(e.slug, catalog); if (n !== e.slug) console.log(`  ${e.slug} → ${n} (newest with 10+ reviews)`); return { ...e, slug: n }; })
       .filter((e, i, all) => all.findIndex(o => o.slug === e.slug) === i), before = (doc.lists[key] ?? []).map(e => e.slug).join(",");
     if (list.length !== 10) console.log(`! ${key}: ${list.length} picks (10 expected)`);
     if (before === list.map(e => e.slug).join(",")) continue;

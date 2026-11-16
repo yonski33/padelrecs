@@ -71,6 +71,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
   const pill = (label: string, next: QuickChoice, on: boolean) => <a href={`${hrefOf(next, older)}#match`} onClick={go(next)} aria-current={on ? "true" : undefined} className={on ? "on" : undefined}>{label}</a>;
   // Rows carry the picks to the racket page, so its fit check answers for this visitor (RACKET-FIT-PAGE.md).
   const picks = picked ? choiceHref(choice, "").replace(/^\/\??/, "?") : "";
+  const note = picked ? niche.pickNotes?.find(n => n.style === choice.style && n.level === choice.level) : undefined;
   return <>
     <section className="hv2-qm" id="match" aria-label="Quick match">
       {QUICK ? <>
@@ -111,6 +112,8 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
         <span>{M ? (picked ? [choice.level ? `ranked for ${levelPeople(choice.level)}` : "pick a level to sharpen this", choice.arm ? "arm-friendly first" : null].filter(Boolean).join(" · ") : M.listSub)
           : picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? ` · ${QUICK?.armChip ?? "arm-friendly"} first` : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : `ranked by ${SCORE_WORD} · pick above to personalise`}</span></div>
+      {note && (() => { const next = { ...choice, style: note.link.style as QuickChoice["style"], level: note.link.level as QuickChoice["level"] };
+        return <p className="hv2-note" role="note">{note.text} <a href={`${hrefOf(next, older)}#match`} onClick={go(next)}>{note.link.label}</a></p>; })()}
       {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
       <div className="hv2-box">
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm, low }, i) => {

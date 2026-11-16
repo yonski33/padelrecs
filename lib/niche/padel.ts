@@ -122,6 +122,9 @@ export const padel: Niche = {
     ] },
     sideSuffix: " side",
   },
+  // Owner 2026-11-17: power + beginner gets a heads-up and a one-tap switch to balance.
+  pickNotes: [{ style: "power", level: "beginner", text: "Power rackets are hard to learn on. These are the easiest of them; most beginners do better with balance.",
+    link: { label: "see balance rackets for beginners →", style: "balance", level: "beginner" } }],
   specs: [
     { column: "shape", label: "Shape", max: 100, placeholder: "e.g. Round", options: ["Round", "Teardrop", "Diamond", "Hybrid"] },
     { column: "weight", label: "Weight", max: 120, placeholder: "e.g. 365 g or 355–375 g" },

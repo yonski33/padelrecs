@@ -682,15 +682,7 @@
   ],
   "power/advanced/arm-off": [
    {
-    "slug": "adidas-metalbone-3-5-2026",
-    "owner": true
-   },
-   {
     "slug": "siux-fenix-pro-6-2026",
-    "owner": true
-   },
-   {
-    "slug": "head-coello-pro-2026",
     "owner": true
    },
    {
@@ -702,19 +694,27 @@
     "owner": true
    },
    {
+    "slug": "babolat-viper-soft-juan-lebron-3-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-geo-2026",
+    "owner": true
+   },
+   {
+    "slug": "head-coello-pro-2026",
+    "owner": true
+   },
+   {
     "slug": "bullpadel-xplo-2026",
     "owner": true
    },
    {
     "slug": "head-coello-motion-2026",
-    "owner": true
-   },
-   {
-    "slug": "babolat-technical-viper-soft-3-0-2026",
-    "owner": true
-   },
-   {
-    "slug": "babolat-viper-soft-juan-lebron-3-0-2026",
     "owner": true
    },
    {
