@@ -71,3 +71,14 @@ test("beginner rule: no high-balance racket in a beginner engine list ahead of a
     assert.ok(firstHH < 0 || eng.slice(firstHH).every(x => byId.get(x.id)!.headHeavy || byId.get(x.id)!.facts.fine?.shape === "diamond"), curatedKey(c));
   }
 });
+
+test("the importer picks the newest year with 10+ reviews, else the newest (owner: 'we always pick the new version')", async () => {
+  const { newestOf } = await import("../scripts/import-curated.mjs");
+  const cat = [{ slug: "bullpadel-vertex-05-hybrid-2027", reviews: 3 }, { slug: "bullpadel-vertex-05-hybrid-2026", reviews: 49 },
+    { slug: "bullpadel-vertex-04-hybrid-2025", reviews: 35 }, { slug: "x-new-2027", reviews: 2 }, { slug: "x-new-2026", reviews: 4 }];
+  assert.equal(newestOf("bullpadel-vertex-05-hybrid-2027", cat), "bullpadel-vertex-05-hybrid-2026");
+  assert.equal(newestOf("bullpadel-vertex-05-hybrid-2026", cat), "bullpadel-vertex-05-hybrid-2026");
+  assert.equal(newestOf("bullpadel-vertex-04-hybrid-2025", cat), "bullpadel-vertex-04-hybrid-2025", "another generation is another model");
+  assert.equal(newestOf("x-new-2026", cat), "x-new-2027", "no year with 10+: the newest");
+  assert.equal(newestOf("unknown-2026", cat), "unknown-2026");
+});
