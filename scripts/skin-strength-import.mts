@@ -12,11 +12,16 @@ import { withSafety } from "../lib/skin-safety";
 const TAG = "owner-strength-grok-v1";
 type Row = { id: string; strength: string | null; reason?: string; acid: string | null; acid_ingredients?: string[]; inci_url?: string; unsure?: boolean; leave_on?: boolean };
 // Corrections from the 1-in-5 spot-check (2026-11-17): U.F.O. carries 1.5% salicylic acid as its labelled active, which the
-// INCI copy the reply used left out.
-const FIXES: Record<string, Partial<Row>> = { "sunday-riley-u-f-o-acne-treatment-face-oil": { acid: "bha", acid_ingredients: ["Salicylic Acid 1.5% (active)"] } };
+// INCI copy the reply used left out (BHA 1%+, so strong on its own).
+const FIXES: Record<string, Partial<Row>> = { "sunday-riley-u-f-o-acne-treatment-face-oil": { acid: "bha", acid_ingredients: ["Salicylic Acid 1.5% (active)"], strength: "strong", reason: "bha 1.5% (labelled active)" } };
+// Essential oils are fragrance, not strength (owner 2026-11-17): the fragrance fact and its sensitive cap cover them. A call that
+// rests only on essential oils is re-rated from its actives: moderate when it lists an acid, else gentle.
+const oilsOnly = (r: Row) => /essential oil/i.test(r.reason ?? "") && !FIXES[r.id]?.strength;
+const rerate = (r: Row): Row => oilsOnly(r) && r.strength !== "gentle"
+  ? { ...r, strength: r.acid && r.acid !== "none" ? "moderate" : "gentle", reason: `${r.reason} (oils count as fragrance, not strength)` } : r;
 const files = process.argv.slice(2).filter(a => !a.startsWith("--"));
 // The match reads `acid` as a leave-on acid: a rinse-off cleanser or mask with an acid is stored as "none".
-const rows = files.flatMap(f => JSON.parse(readFileSync(f, "utf8")) as Row[]).map(r => ({ ...r, ...FIXES[r.id] }))
+const rows = files.flatMap(f => JSON.parse(readFileSync(f, "utf8")) as Row[]).map(r => rerate({ ...r, ...FIXES[r.id] }))
   .filter(r => !r.unsure && r.strength && r.acid).map(r => r.leave_on === false && r.acid !== "none" ? { ...r, acid: "none", reason: `${r.reason ?? ""} (rinse-off ${r.acid})` } : r);
 const listed = (await catalog()).rackets, ids = new Set(listed.map(r => r.id));
 const facts = rows.flatMap(r => {
