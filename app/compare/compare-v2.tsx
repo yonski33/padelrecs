@@ -21,6 +21,7 @@ import { CompareMatch, MatchPct } from "./compare-match";
 import type { Data } from "./view";
 import { isV2 } from "../../lib/niche";
 import { attrProfileFor } from "../../lib/attr-profile";
+import { SHAPE_LABEL, weightOf, weightWord } from "../../lib/fine-tune";
 
 /** The v2 compare page: v2 sites with the match engine, two or three products (?look=classic keeps the older page). */
 export const compareV2For = (count: number, look?: string) => isV2 && !!niche.fit?.engine && !attrProfileFor(niche) && count >= 2 && look !== "classic";
@@ -47,7 +48,7 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
     const sc = ctx.traits(r.id).scores, reports = ctx.facts(r.id).reports;
     const take = ctx.takes.get(r.id), page = pageContent(r.slug);
     return { r, name, short: name.replace(/\s\d{4}$/, ""), href: productHref(r), pic: photoOf(r), s, reports, signal: sigs.get(r.id)?.signal ?? null,
-      dots: DOTS.map(t => sc?.[t.key as Trait]?.dots ?? 0),
+      dots: DOTS.map(t => sc?.[t.key as Trait]?.dots ?? 0), fine: ctx.fineOf(r.id) ?? null,
       catchLine: take?.catch ? plain(take.catch) : page?.no[0] ? plain(page.no[0].t) : null,
       shop: amazon ? { url: amazon.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null };
   }));
@@ -55,6 +56,14 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   const pickFor = (i: number) => {
     const me = cols[i].dots, gaps = me.map((v, k) => ({ k, g: v ? v - Math.max(...cols.filter((_, j) => j !== i).map(c => c.dots[k] || 0)) : 0 })).filter(x => x.g > 0).sort((a, b) => b.g - a.g || a.k - b.k);
     return gaps.slice(0, 2).map(x => IF_YOU[x.k]);
+  };
+  // No lead over the others shown (owner 2026-11-17, "plays close to the others" said nothing): the product's own strongest
+  // trait (4+ dots) and what it is ("in a light diamond racket"), from its dots and specs; a dash when neither is known.
+  const ownFor = (i: number) => {
+    const c = cols[i], top = Math.max(...c.dots), k = top >= 4 ? c.dots.indexOf(top) : -1;
+    const wt = c.fine?.grams != null ? weightOf(c.fine.grams) : null, sh = c.fine?.shape ? SHAPE_LABEL[c.fine.shape]?.split(" / ")[0]?.toLowerCase() : null;
+    const what = sh || wt && wt !== "medium" ? `a ${[wt && wt !== "medium" ? weightWord(wt) : null, sh].filter(Boolean).join(" ")} ${w.one}` : null;
+    return k >= 0 ? `${IF_YOU[k]}${what ? `, in ${what}` : ""}` : what ? `want ${what}` : null;
   };
   // "▲ best" in a trait row: a single leader with enough reports.
   const bestIn = (k: number) => { const vals = cols.map(c => c.dots[k] || 0), top = Math.max(...vals);
@@ -90,7 +99,8 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
             {c.shop && <a className="cv-buy" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
           </>))}</div>
           <div className="cv-r"><div className="cv-l"><b>Pick it if you…</b></div>{cols.map((c, i) => { const p = pickFor(i);
-            return cell(c.r.id, p.length ? <span className="cv-mk">{p.join(" and ")}</span> : <span className="cv-none">plays close to the others</span>); })}</div>
+            const own = p.length ? null : ownFor(i);
+            return cell(c.r.id, p.length ? <span className="cv-mk">{p.join(" and ")}</span> : own ? <span className="cv-mk">{own}</span> : <span className="cv-none">—</span>); })}</div>
           <div className="cv-r"><div className="cv-l"><b>The catch</b></div>{cols.map(c => cell(c.r.id, c.catchLine ? <span className="cv-catch">{c.catchLine}</span> : <span className="cv-none">—</span>))}</div>
           <div className="cv-r cv-g"><div className="cv-gl">{`how it plays · from ${niche.people.one} reviews`}</div></div>
           {DOTS.map((t, k) => { const b = bestIn(k);

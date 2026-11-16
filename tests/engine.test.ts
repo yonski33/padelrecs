@@ -18,9 +18,9 @@ const P = padel.fit!.engine!;
 // parity runs on the prototype's own numbers: the engine's maths is unchanged, only the site's settings moved.
 const PROTO = { ...P, allRoundLabels: [], z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, armShare: 0.3,
   controlLabels: [" ctrl", "control", "comfort", " soft", " light", " lite"],
-  levelShare: undefined, balanceSquared: false, anyByQuality: false, anchorsPerStyle: false, hardCap: undefined, familyBestWithin: undefined, tieByReports: false };
+  levelShare: undefined, balanceSquared: false, shapeBounds: undefined, balanceFlat: undefined, anyByQuality: false, anchorsPerStyle: false, hardCap: undefined, familyBestWithin: undefined, tieByReports: false };
 const GATE = padel.fit!.levelGate as Record<string, number>;
-const items = fx.items.map(x => ({ ...x, id: x.slug, e: { name: x.name, year: x.year, pos: x.pos, mix: x.mix, neg: x.neg, voices: x.voices, spec: x.spec, expert: x.expert } as EngineFacts }));
+const items = fx.items.map(x => ({ ...x, id: x.slug, e: { name: x.name, year: x.year, pos: x.pos, mix: x.mix, neg: x.neg, voices: x.voices, spec: x.spec, expert: x.expert, shape: x.shape.toLowerCase() } as EngineFacts }));
 const base = engineBase(items, P), protoBase = engineBase(items, PROTO);
 const passes = (x: Item, level: string) => (x.suits[level] ?? 0) >= fx.gate[level];
 /** The prototype's list (its gate, no level term), for the parity test. */
@@ -53,9 +53,9 @@ test("the engine reproduces the prototype's lists for the 9 picks (order, cautio
   }
 });
 
-// With the Team cap, Coello Team no longer leads beginner + power; the one open check is now Metalbone CTRL 3.5 at #5 for
-// intermediate + power (few power rackets pass the intermediate gate).
-test("the owner's yardstick: 23 of 24 hold (open: Metalbone CTRL 3.5 #5 for intermediate + power)", () => {
+// All hold since the diamond bound and the flat balance middle (owner 2026-11-17), including the owner's balance ·
+// intermediate case (Metalbone CTRL 3.5 above the Oxdog Ultimate Tour X diamond and the Nox 12K Alum XTREM).
+test("the owner's yardstick: all hold", () => {
   const fails: string[] = [];
   const check = (ok: boolean, msg: string) => { if (!ok) fails.push(msg); };
   for (const b of Y.beats) {
@@ -70,7 +70,7 @@ test("the owner's yardstick: 23 of 24 hold (open: Metalbone CTRL 3.5 #5 for inte
     if (style === "power" && level !== "beginner") check(!top.some(x => x.shape.toLowerCase().startsWith("round")), `${pick}: top 3 has no round shape`);
     if (style === "control") check(!top.some(x => x.shape.toLowerCase().includes("diamond")), `${pick}: top 3 has no diamond`);
   }
-  assert.deepEqual(fails, ["intermediate+power: adidas-metalbone-ctrl-2026 not in top 5"]);
+  assert.deepEqual(fails, []);
 });
 
 test("trait dots from the engine: a control-side racket shows 4+ control dots unless control complaints win; 2 only for complaint traits", () => {
