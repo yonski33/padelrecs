@@ -121,7 +121,7 @@ export default async function CatalogSkin({ f, base, fixedType, brand: only, tit
               </span>
               <span className="bc-score">
                 {matching ? <span className={`bc-sc pct ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : "lo"}`} title="How well it fits your skin, from what people with your skin type said.">{pct === null ? "—" : `${pct}%`}</span>
-                  : <span className={`bc-sc ${x.signal === null ? "none" : x.signal >= 88 ? "hi" : x.signal >= 82 ? "mid" : "lo"}`} title="Skin score: not a % of happy users. It blends how much people like it with how many have weighed in.">{x.signal ?? "—"}</span>}
+                  : <span className={`bc-sc ${x.signal === null ? "none" : x.signal >= 88 ? "hi" : x.signal >= 82 ? "mid" : "lo"}`} title="User score: not a % of happy users. It blends how much people like it with how many have weighed in.">{x.signal ?? "—"}</span>}
                 {x.c.positive + x.c.mixed + x.c.negative > 0 && <span className="bp-mood" aria-label={`${x.c.positive} positive, ${x.c.mixed} mixed, ${x.c.negative} negative`}><i className="p" style={{ flex: x.c.positive }}/><i className="m" style={{ flex: x.c.mixed }}/><i className="n" style={{ flex: x.c.negative }}/></span>}
                 <small>{matching ? (pct === null ? "too few reports" : "match") : `${x.c.n.toLocaleString("en-US")} ${x.c.n === 1 ? "review" : "reviews"}`}</small>
               </span>

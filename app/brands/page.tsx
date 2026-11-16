@@ -7,6 +7,7 @@ import { ProductArt, productPhoto, Arrow } from "../visual";
 import { lightFont } from "../light-font";
 import { productSignals } from "../signals";
 import BrandsV2 from "./brands-v2";
+import { attrProfileFor } from "../../lib/attr-profile";
 const w = niche.words;
 export const metadata: Metadata = { ...niche.seo.brands, alternates: { canonical: "/brands" } };
 
@@ -14,6 +15,8 @@ export const metadata: Metadata = { ...niche.seo.brands, alternates: { canonical
  *  and how many reviews. */
 export default async function Brands({ searchParams }: { searchParams: Promise<{ look?: string; sort?: string }> }) {
   const [data, f] = await Promise.all([catalog(), searchParams]);
+  // Skin pages load only on SkinRecs, so other sites' routes don't load the beauty pages (app/skin/).
+  if (isV2 && f.look !== "classic" && attrProfileFor(niche)) { const { default: BrandsBeauty } = await import("../skin/brands-beauty"); return <BrandsBeauty data={data} sort={f.sort}/>; }
   if (isV2 && f.look !== "classic") return <BrandsV2 data={data} sort={f.sort}/>;
   const reviewsOf = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reviewsOf.set(x.racketId, (reviewsOf.get(x.racketId) ?? 0) + 1);

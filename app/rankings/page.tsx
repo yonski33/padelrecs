@@ -14,6 +14,7 @@ import { ProductArt, SignalPop } from "../visual";
 import { productHref } from "../../lib/niche";
 import { lightFont } from "../light-font";
 import RankingsHubV2 from "./rankings-v2";
+import { attrProfileFor } from "../../lib/attr-profile";
 
 const w = niche.words, people = niche.people;
 // "Padel racket" → "Padel Racket".
@@ -33,6 +34,8 @@ export default async function TopListsIndex({ searchParams }: { searchParams: Pr
   if (!lists.length) notFound();
   const updated = lists.reduce((a, l) => l.updated > a ? l.updated : a, "");
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
+  // Skin pages load only on SkinRecs, so other sites' routes don't load the beauty pages (app/skin/).
+  if (isV2 && f.look !== "classic" && attrProfileFor(niche)) { const { default: HubBeauty } = await import("../skin/hub-beauty"); return <HubBeauty data={data} lists={lists}/>; }
   if (isV2 && f.look !== "classic") return <RankingsHubV2 data={data} lists={lists}/>;
   // The light direction, the default since 2026-11-12 (?look=classic shows the old page) (owner, 2026-11-12): each ranking as a calm card with its top three.
   if (isLight(f.look)) {

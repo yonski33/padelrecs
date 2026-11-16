@@ -21,7 +21,7 @@ import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
 import { V2Footer } from "../v2-footer";
 
 /** The SkinRecs product page in the beauty design (owner 2026-11-16, Claude Design "SkinRecs product page"): hero with the
- *  skin score; a skin check (1. skin type, 2. what you want it to do, optional "reacts easily") answered from people with your
+ *  user score; a skin check (1. skin type, 2. what you want it to do, optional "reacts easily") answered from people with your
  *  skin; the bottom line; Why yes / why not with "for your skin" tags; How it feels & compares (drops and sliders, tabs against
  *  close alternatives with "stay with this one / pick X if you…"); reviews; ingredients & details; a floating match card. Picks
  *  live in the URL (?skin=&goal=&sens=1), so each answer is a server-rendered, shareable page. Every number is a real count. */
@@ -191,7 +191,7 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
             {brand && <div className="bp-brand">{brand.name}</div>}
             <h1>{title || name}</h1>
             {hook && <p className="bp-hook">{hook}</p>}
-            <a className="bp-score" href="#reviews"><span>{signal !== null && <strong>{signal}</strong>}{`${signal !== null ? " skin score · " : ""}${rated} rated`}</span>{rated > 0 && bar(6)}</a>
+            <a className="bp-score" href="#reviews"><span>{signal !== null && <strong>{signal}</strong>}{`${signal !== null ? " user score · " : ""}${rated} rated`}</span>{rated > 0 && bar(6)}</a>
             {buy && <div className="bp-buyrow"><a className="bp-btn" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a></div>}
             {buy && <p className="bp-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
@@ -245,7 +245,7 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
       <section id="reviews" className="bp-col bp-rv rf">
         <RacketReviews racketId={r.id} name={title || name} cards={cards} nicknames={niche.form.quickVote?.nicknames ?? []} total={c.n}
           mood={{ pos: c.positive, mix: c.mixed, neg: c.negative, score: signal }}
-          words={{ levelLead: "My skin is", levels: skinOpts, score: "Skin score", ask: "Tried it?", people: "people", peopleTab: "people" }}/>
+          words={{ levelLead: "My skin is", levels: skinOpts, score: "User score", ask: "Tried it?", people: "people", peopleTab: "people" }}/>
       </section>
 
       {specs.length > 0 && <section className="bp-col"><details className="bp-specs"><summary><span>Ingredients &amp; details</span><i aria-hidden="true"/></summary>

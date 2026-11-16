@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { niche, isV2 } from "../../lib/niche";
 import { amazonLinksOn } from "../../lib/amazon-offer";
 import AffiliateV2 from "./affiliate-v2";
+import { attrProfileFor } from "../../lib/attr-profile";
 
 // Static (no database read of its own); refreshed hourly so the header menu the layout bakes in stays current.
 export const revalidate = 3600;
@@ -20,7 +21,11 @@ const UPDATED = "October 25, 2026";
 
 export default async function AffiliateDisclosure({ searchParams }: { searchParams: Promise<{ look?: string }> }) {
   if (!amazonLinksOn()) notFound();
-  if (isV2 && (await searchParams).look !== "classic") return <AffiliateV2 updated={UPDATED}/>;
+  if (isV2 && (await searchParams).look !== "classic") {
+    // Skin pages load only on SkinRecs, so other sites' routes don't load the beauty pages (app/skin/).
+    if (attrProfileFor(niche)) { const { default: AffiliateBeauty } = await import("../skin/affiliate-beauty"); return <AffiliateBeauty updated={UPDATED}/>; }
+    return <AffiliateV2 updated={UPDATED}/>;
+  }
   return <main className="narrow prose">
     <p className="eyebrow">Affiliate disclosure</p>
     <h1>How {site} makes money</h1>

@@ -13,7 +13,7 @@ import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
  *  come from the real formula (lib/signal.ts) and catalogue, as on padel's page; the rules say what the site really does
  *  (site reviews are checked before they count, not each one read by a person). */
 /** The name the owner's designs use for the 0-99 score on every SkinRecs page. */
-const scoreLabel = "Skin score";
+const scoreLabel = "User score";
 const GREEN = "oklch(0.86 0.07 155)", MARK = "oklch(0.92 0.14 98)", PAPER = "#fffdfa";
 
 export default async function ScoreBeauty() {

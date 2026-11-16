@@ -22,7 +22,7 @@ import { SKIN_TYPES, GOALS, TEXTURES, BUDGETS, skinHref, skinPicked, skinQuery, 
  *  ("My skin is … and I want to …"), an optional fine-tune, the ranked list with category pills, then textures, rankings, how
  *  we score and questions. Picks live in the URL; every number is from the catalog and lib/attr-score.ts. */
 const LIST_SIZE = 8, DAY = 86_400_000;
-const MATCH_NOTE = "How well it fits the skin and goal you picked, from what people with your skin type said. Not a quality score: the skin score is separate.";
+const MATCH_NOTE = "How well it fits the skin and goal you picked, from what people with your skin type said. Not a quality score: the user score is separate.";
 const GOAL_LABEL: Record<(typeof GOALS)[number], string> = { hydrate: "hydrate", calm: "calm", clear: "clear skin", daily: "just everyday" };
 const CATS = ["moisturizers", "serums", "cleansers", "sunscreens", "toners", "treatments"];
 const TINTS = ["oklch(0.9 0.06 20)", "oklch(0.93 0.05 155)", "oklch(0.94 0.045 45)", "oklch(0.92 0.14 98)"];
@@ -89,7 +89,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
   ];
 
   const title = picked ? `Top ${catWord} for ${choice.skin ? `your ${choice.skin} skin` : "you"}` : `Top ${catWord} right now`;
-  const subtitle = !picked ? "ranked by skin score · pick above for your match %"
+  const subtitle = !picked ? "ranked by user score · pick above for your match %"
     : [choice.goal && choice.goal !== "daily" ? `ranked to ${GOAL_LABEL[choice.goal]}` : !choice.goal ? "pick a goal to sharpen this" : null, sens ? "gentle first" : null].filter(Boolean).join(" · ") || "ranked by your match";
 
   return <main className={`bh ${bpFontVars}`}>

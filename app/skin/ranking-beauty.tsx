@@ -19,7 +19,7 @@ import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
 
 /** A SkinRecs ranking in the owner's beauty design (Claude Design "SkinRecs rankings", 2026-11-16): the lists as tabs, a big
  *  serif title, a "find my match" nudge to the home's quick match, the #1 as a card, the rest as rows with "best for" (from who
- *  it suits: people with that skin type rating it well) and the skin score. The order is the list's own. FAQ stays for search. */
+ *  it suits: people with that skin type rating it well) and the user score. The order is the list's own. FAQ stays for search. */
 const DOT = (n: number) => n >= 88 ? "hi" : n >= 84 ? "mid" : "lo";
 const andJoin = (xs: string[]) => xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} & ${xs[xs.length - 1]}`;
 
@@ -66,7 +66,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
       <section className="rb-hero">
         <h1>{`The ${entries.length} best ${noun}`}<em>{hl}</em>{/\d{4}/.test(hl) ? "" : ` in ${year}`}</h1>
         <p>{`${entries.length} ${typePage ? hl : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} reviews. Not by us, not by brands.`}</p>
-        <span className="rb-meta">{`ranked by skin score and how many people reviewed it${updated ? ` · updated ${shortDate(updated)}` : ""}`}{affiliate && " · some links are affiliate, they don't change the order"}</span>
+        <span className="rb-meta">{`ranked by user score and how many people reviewed it${updated ? ` · updated ${shortDate(updated)}` : ""}`}{affiliate && " · some links are affiliate, they don't change the order"}</span>
       </section>
       {tabs.length > 1 && <nav className="bp-picks rb-tabs" aria-label="Rankings">{tabs.map(l =>
         <Link key={l.list.slug} href={listHref(l.list.slug)} className={`bp-pick${l.list.slug === list.slug ? " on" : ""}`} aria-current={l.list.slug === list.slug ? "page" : undefined}>
@@ -84,7 +84,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
           {top.best && <span className="rb-best">{`best for ${top.best}`}</span>}
         </div>
         <div className="rb-side">
-          <span className="rb-scw">{scoreBadge(top.sig, true)}<small>skin<br/>score</small></span>
+          <span className="rb-scw">{scoreBadge(top.sig, true)}<small>user<br/>score</small></span>
           {top.shop && <a className="bp-btn" href={top.shop.url} target="_blank" rel={top.shop.rel}>check price ↗</a>}
           <a className="rb-why" href={top.url}>See why →</a>
         </div>
@@ -99,7 +99,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
           {x.line && <span className="rb-line">{x.line}</span>}
           {x.best && <span className="rb-best">{`best for ${x.best}`}</span>}
         </div>
-        <span className="rb-scw col">{scoreBadge(x.sig)}<small>skin score</small></span>
+        <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score</small></span>
         {x.shop ? <a className="bp-btn rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
       </li>)}</ol>}
       <Link className="rb-all" href={RANKINGS_PATH}>see all rankings →</Link>
@@ -108,7 +108,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
 
       <section className="bh-faq rb-faq" id="how-we-rank"><h2>Common questions</h2>
         <div className="bp-card">{faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary><p>{f.a}</p></details>)}
-          <details><summary><span>How is the skin score worked out?</span><i aria-hidden="true"/></summary>
+          <details><summary><span>How is the user score worked out?</span><i aria-hidden="true"/></summary>
             <p>{`How much people like it, adjusted for how many spoke up: 5 glowing reviews can't beat 60 good ones. At least ${min} reviews to be ranked. `}<a href="/how-we-make-these">Full method →</a></p></details></div>
       </section>
     </div>
