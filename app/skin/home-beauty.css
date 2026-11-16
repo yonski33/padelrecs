@@ -163,3 +163,6 @@
 .bh-spill { display: inline-flex; align-items: baseline; gap: 4px; margin-top: 3px; padding: 0 7px; border: 1.5px solid var(--ink); border-radius: 999px; font: 500 10.5px var(--sans); white-space: nowrap; }
 .bh-spill b { font-size: 12px; }
 @media (max-width: 640px) { .bh-name { font-size: 18px; } }
+/* Phones keep the match % only (the mockup's phone row has no score pill; there is no room beside the reviews and link). */
+@media (max-width: 640px) { .bh-spill { display: none; } }
+@media (max-width: 640px) { .bh-best { display: none; } }

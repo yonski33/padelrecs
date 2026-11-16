@@ -175,3 +175,5 @@ body:has(main.ct2) { background: #fbfaf6; }
 .ct2 .ct2-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.012em; }
 .ct2 .ct2-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .ct2 .ct2-best { display: block; font: 11.5px var(--mono); color: var(--soft); }
+/* Phones: no "best for" line (the mockup's phone row), so rows stay as tall as before. */
+@media (max-width: 640px) { .ct2 .ct2-best { display: none; } }
