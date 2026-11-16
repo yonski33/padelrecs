@@ -58,7 +58,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const [first, ...rest] = rows;
   const tone = (n: number | null) => n === null ? "" : n >= 90 ? " t90" : n >= 85 ? " t85" : "";
   const buy = (x: typeof rows[number], cls: string) => x.shop ? <a className={cls} href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : null;
-  const tag = (rank: number) => rank === 2 ? <span className="rk3-tag ru">runner-up</span> : rank === 3 ? <span className="rk3-tag">#3</span> : null;
+  const tag = (rank: number) => rank === 2 ? <span className="rk3-tag ru">runner-up</span> : null;
 
   return <main className={`rl2 rk3 ${qtFontVars}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -68,6 +68,8 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         {/* A product-type list on SkinRecs is its own noun ("The 10 best moisturizers"), not "skincare products moisturizers". */}
         <h1>{`The ${entries.length} best ${skin && list.filters?.some(f => f.column === "shape") ? "" : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
         <p className="rk3-sub">{`${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. Not by us, not by brands.`}</p>
+        {/* How the order is made, in one quiet line (owner 2026-11-16). SkinRecs words it as "skin score" and "people". */}
+        <span className="rk3-note">{skin ? "ranked by skin score and how many people reviewed it" : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>
       {tabs.length > 1 && <nav className="rk3-tabs" aria-label="Rankings">{tabs.map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</a>)}</nav>}
       <div className="rk3-you"><b>{"#1 for everyone isn't always #1 for you."}</b><Link href="/#match">find my match →</Link></div>
