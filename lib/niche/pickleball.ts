@@ -227,6 +227,13 @@ export const pickleball: Niche = {
     { slug: "best-spin-pickleball-paddles", label: "Best for spin", title: "Best Pickleball Paddles for Spin", minReviews: 10,
       intro: "Paddles players say put lots of spin on the ball.",
       trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin" } },
+    // For a kind of player (owner's mock, via the recs PM 2026-11-16): the home quick match's order for the pick, with the
+    // level gate for beginners. No "under $100" list: we hold no prices.
+    { slug: "best-pickleball-paddles-for-tennis-elbow", label: "Best for tennis elbow", title: "Best Pickleball Paddles for Tennis Elbow", minReviews: 10,
+      intro: "Paddles players with arm pain keep recommending: soft, stable and kind to the elbow.", picks: { arm: true },
+      trait: { tags: ["arm-friendly", "soft"], minShare: 0.1, noun: "arm comfort or a soft feel" } },
+    { slug: "best-pickleball-paddles-for-beginners", label: "Best for beginners", title: "Best Pickleball Paddles for Beginners", minReviews: 10,
+      intro: "Big sweet spots that forgive mishits while you learn.", picks: { level: "beginner" } },
   ],
   sourcePlatforms: ["Reddit", "YouTube", "Pickleball shop", "Forum", "Blog"],
   examples: { brand: "Joola", model: "Perseus 16mm", year: 2025, search: "joola" },
