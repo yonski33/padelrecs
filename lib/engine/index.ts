@@ -59,6 +59,13 @@ export type EngineProfile = {
   /** Fine-tune as a penalty only (audit 2026-11-16): fit −= this × (1 − fineFit), so a mismatch can never raise the %. Unset:
    *  the fineShare blend. */ finePenalty?: number;
   /** With "sore arm": small demotions of the cautious score for a thin (14 mm) core and a firm feel (PickleballRecs). */ armSpecDemote?: { core14: number; firm: number };
+  // The DiscGolfRecs match audit (Grok 2026-11-16, owner OK 2026-11-17). Unset: as before.
+  /** A hard reason (with hardCap) also takes this off the cautious score, and the product sorts after every other row. */ hardPenalty?: number;
+  /** The display scale: the floor anchor maps to `base`, the best to base + span, clamped at max (default 45 / 50 / 97). */ display?: { base: number; span: number; max: number };
+  /** "Any" style: a stability window at this share of the fit, around `target` (or `lowTarget` for a beginner or a slower arm),
+   *  so a well-suited product can reach Strong fit without a style pick. */ anyWindow?: { share: number; target: number; lowTarget: number };
+  /** "Any" style gets its own display anchors (floor and ceiling); the style picks stay pooled. */ anyOwnAnchors?: boolean;
+  /** Maker label words match as a whole last word of a name of 3+ words ("Discraft Zone OS", not the mold "Discraft XS"). */ labelLastWord?: boolean;
 };
 export type EngineStyle = "any" | "control" | "balance" | "power" | "spin";
 const AXIS_STYLES = ["control", "balance", "power"];
@@ -100,8 +107,9 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     // The style axis, 0 control … 1 power: the specs' prior and the maker's own label (worth ks voices), moved by what
     // players praise (control praise in power units) and by an expert's power vs control values.
     let a0 = clamp(0.5 + 0.3 * ((x.e.spec.power ?? 0) - (x.e.spec.control ?? 0)), 0.12, 0.88);
-    const nm = x.e.name.toLowerCase();
-    const ctl = p.controlLabels.some(w => nm.includes(w)), pow = p.powerLabels.some(w => nm.includes(w));
+    const nm = x.e.name.toLowerCase(), words = nm.split(/\s+/);
+    const has = (w: string) => p.labelLastWord ? words.length >= 3 && words.at(-1) === w.trim() : nm.includes(w);
+    const ctl = p.controlLabels.some(has), pow = p.powerLabels.some(has);
     const mid = !!p.allRoundLabels?.some(w => nm.includes(w)), cap = p.allRoundCap ?? 0.55;
     if (mid) a0 = Math.min(a0, cap);
     if (ctl) a0 = Math.min(a0, p.labelBounds[0]);
@@ -124,7 +132,11 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
 }
 
 /** The fit to a style pick, 0–1, and its uncertainty. "any" is neutral (the list then follows quality and popularity). */
-export function engineFit(e: EngineBase, style: EngineStyle, p: EngineProfile): [number, number] {
+export function engineFit(e: EngineBase, style: EngineStyle, p: EngineProfile, low = false): [number, number] {
+  if (style === "any" && p.anyWindow) {
+    const w = p.anyWindow, t = low ? w.lowTarget : w.target, win = clamp(1 - 2 * Math.abs(e.axis - t), 0, 1);
+    return [(1 - w.share) * 0.5 + w.share * win, w.share * Math.sqrt(e.axis * (1 - e.axis) / e.axisN)];
+  }
   if (style === "any") return p.anyByQuality ? [e.Q, e.sdQ] : [0.5, 0];
   // Off the axis (pickleball's spin): how positively players talk about that trait.
   if (!AXIS_STYLES.includes(style)) { const t = e.tr[style]; return t ? [t.v, t.sd] : [0.5, 0]; }
@@ -135,10 +147,11 @@ export function engineFit(e: EngineBase, style: EngineStyle, p: EngineProfile): 
   return [p.ax * ax + (1 - p.ax) * sent, Math.sqrt((p.ax * sda) ** 2 + ((1 - p.ax) * ss) ** 2)];
 }
 
-export type EnginePick = { style: EngineStyle; arm?: boolean; fine?: number | null; /** suits[picked level], 0–100, with a level picked. */ suits?: number | null };
+export type EnginePick = { style: EngineStyle; arm?: boolean; fine?: number | null; /** suits[picked level], 0–100, with a level picked. */ suits?: number | null;
+  /** A beginner or a slower arm (anyWindow's lowTarget). */ low?: boolean };
 /** The score and the cautious score (what lists are ordered by). */
 export function engineScore(e: EngineBase, pick: EnginePick, p: EngineProfile): { score: number; cautious: number } {
-  let [F, sF] = engineFit(e, pick.style, p);
+  let [F, sF] = engineFit(e, pick.style, p, !!pick.low);
   // The level as a score (audit 2026-11-16): fit = (1 − levelShare) × style + levelShare × suits / 100.
   if (p.levelShare && pick.suits !== undefined && pick.suits !== null) { F = (1 - p.levelShare) * F + p.levelShare * pick.suits / 100; sF = (1 - p.levelShare) * sF; }
   // Sore arm and fine-tune picks (not in the prototype): a share of the fit, with their uncertainty.
@@ -153,7 +166,8 @@ export function engineScore(e: EngineBase, pick: EnginePick, p: EngineProfile): 
 }
 
 /** The display %: the cautious score placed on the 45–97 scale between the anchors. */
-export const enginePct = (cautious: number, a: { lo: number; hi: number }) => Math.round(clamp(45 + 50 * (cautious - a.lo) / Math.max(a.hi - a.lo, 1e-9), 25, 97));
+export const enginePct = (cautious: number, a: { lo: number; hi: number }, d: { base: number; span: number; max: number } = { base: 45, span: 50, max: 97 }) =>
+  Math.round(clamp(d.base + d.span * (cautious - a.lo) / Math.max(a.hi - a.lo, 1e-9), 25, d.max));
 
 /** Candidates for a list: enough reports, passing the level gate; one row per model (the newest year that passes), unless
  *  every year is asked for. `family` is the model's row id (lib/compare-pairs.ts rowOfFamily). */
@@ -179,8 +193,9 @@ export function engineAnchors<T extends { id: string; n: number; family: string;
   const styles = p.styles ?? (["control", "balance", "power"] as const);
   const pair = (xs: number[]) => { xs.sort((a, b) => a - b); return { lo: xs[Math.floor(0.1 * xs.length)] ?? 0, hi: xs.at(-1) ?? 1 }; };
   const scores = (style: EngineStyle) => ["beginner", "intermediate", "advanced"].flatMap(level => engineCandidates(items, y => passes(y, level), p.minReports)
-    .map(x => engineScore(base.get(x.id)!, { style, suits: p.levelShare ? suitsOf?.(x, level) : undefined }, p).cautious));
+    .map(x => engineScore(base.get(x.id)!, { style, suits: p.levelShare ? suitsOf?.(x, level) : undefined, low: level === "beginner" }, p).cautious));
   const pooled = pair(styles.flatMap(st => scores(st)));
+  if (p.anyOwnAnchors && !p.anchorsPerStyle) return { ...pooled, byStyle: { any: pair(scores("any")) } };
   if (!p.anchorsPerStyle) return pooled;
   // Each style's own floor, one shared ceiling: styles start from where their own lists start, and only the very best fit of
   // any style reaches the top of the scale (a per-style ceiling put every style's #1 at 95).

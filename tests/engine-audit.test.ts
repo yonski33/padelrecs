@@ -100,13 +100,19 @@ test("audit 10: Bullpadel's 'Geometric' is a diamond", () => {
   assert.equal(shapeOf("Teardrop"), "hybrid");
 });
 
-test("the tuning pass is padel and pickleball only: the other engine sites keep their settings", () => {
+test("the tuning pass is padel and pickleball only (disc golf has its own, tests/discgolf-match-audit.test.ts): tennis and sim racing keep their settings", () => {
   const NEW = ["levelShare", "balanceSquared", "anyByQuality", "anchorsPerStyle", "hardCap", "familyBestWithin", "tieByReports"];
-  for (const n of [discgolf, tennis, simracing]) {
+  for (const n of [tennis, simracing]) {
     const e = n.fit?.engine; if (!e) continue;
     for (const k of NEW) assert.equal((e as Record<string, unknown>)[k], undefined, `${n.id}.${k}`);
     assert.deepEqual([e.z, e.wq, e.wf, e.wp, e.armShare], [1.5, 0.30, 0.55, 0.15, 0.3], n.id);
   }
   assert.equal(skin.fit?.engine, undefined);
   for (const n of [padel, pickleball]) assert.equal(n.fit?.engine?.hardCap, 54, n.id);
+  // The disc golf pass's own settings are disc golf only.
+  for (const n of [padel, pickleball, tennis, simracing]) {
+    for (const k of ["hardPenalty", "display", "anyWindow", "labelLastWord", "anyOwnAnchors"]) assert.equal((n.fit?.engine as Record<string, unknown> | undefined)?.[k], undefined, `${n.id}.${k}`);
+    assert.ok(!n.finder?.questions.some(q => q.options.some(o => o.level)), `${n.id} finder level answers`);
+  }
+  assert.equal(discgolf.fit?.engine?.hardCap, 54);
 });

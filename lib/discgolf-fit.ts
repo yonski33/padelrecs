@@ -72,8 +72,10 @@ export const DISCGOLF_FIT: FitConfig = {
   scale: { rank: "net", top4: 0.4, top5: 0.09 },
   quick: { types: DISC_TYPES.map(([key, shape, many]) => ({ key, shape, many })), want: "I need a", arm: "slower arm speed", armChip: "slow-arm friendly",
     stabilityLabel: "Stability", flightLabel: "speed · glide · turn · fade",
-    // "Slow-arm friendly" only where the flight numbers agree: a speed 10+ disc needs more arm to fly as rated.
-    armSpecOk: s => { const f = flightOf(s.weight); return !!f && f.speed <= 9; },
+    // "Slow-arm friendly" only where the flight numbers agree: speed 9 or less and turn + fade 2 or less (match audit 2026-11-16:
+    // Firebird 9/3/0/4 and Resistor had the chip); a page that tells slow arms to skip it also drops it (app/home-payload.ts).
+    leanFor: { control: "turnovers and hyzer flips", balance: "straight lines", power: "forehands, wind and a reliable fade" },
+    armSpecOk: s => { const f = flightOf(s.weight); return !!f && f.speed <= 9 && f.turn + f.fade <= 2; },
     beginnerShapeNote: "A distance driver: few of them fly well for beginners." },
   evidenceAdapter: discgolfEvidence,
 };

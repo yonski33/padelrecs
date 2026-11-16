@@ -59,6 +59,7 @@ export type FitConfig = {
   quick?: { types: { key: string; shape: string; many: string }[]; want: string; arm: string; armChip: string; stabilityLabel: string;
     /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string;
     /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean;
+    /** "Generally best for" words per stability (DiscGolfRecs: "turnovers and hyzer flips"), instead of "control players". */ leanFor?: Partial<Record<"control" | "balance" | "power", string>>;
     /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */

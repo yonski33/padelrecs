@@ -83,7 +83,9 @@ export type FinderOption = { label: string; hint?: string; want?: string[]; avoi
   /** Only products whose shape column starts with one of these, when enough of them qualify. */
   shapes?: string[];
   /** A ranking (top list slug) this answer stands for: only products on it, higher on it first, when enough of them qualify. */
-  list?: string };
+  list?: string;
+  /** The level this answer stands for (DiscGolfRecs, match audit 2026-11-16): the quiz then uses the match's level gate and
+   *  its hard rules for that level (lib/finder.ts matchFinder). */ level?: "beginner" | "intermediate" | "advanced" };
 export type FinderQuestion = { id: string; question: string; options: FinderOption[];
   /** Only asked after one of these answers to an earlier question, for questions that fit one category. */
   onlyIf?: { question: string; labels: string[] } };

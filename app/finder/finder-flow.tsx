@@ -58,7 +58,7 @@ export function FinderFlow({ cards, negativeTags }: { cards: FinderCard[]; negat
   const shown = useMemo(() => visibleQuestions(finder, answers), [finder, answers]);
   const done = step >= shown.length;
   const given = useMemo(() => shown.flatMap(i => answers[i] === null ? [] : [questions[i].options[answers[i]!]]), [shown, answers, questions]);
-  const matches = useMemo(() => done ? matchFinder(cards, given, negativeTags, undefined, finder.rankWeight) : [], [done, cards, given, negativeTags, finder.rankWeight]);
+  const matches = useMemo(() => done ? matchFinder(cards, given, negativeTags, undefined, finder.rankWeight, niche.fit?.levelGate) : [], [done, cards, given, negativeTags, finder.rankWeight]);
   const shapes = given.flatMap(o => o.shapes ?? []);
   const offShape = shapes.length > 0 && matches.some(m => !fitsShape(m.product.shape, shapes));
   const remember = (next: (number | null)[], finished: boolean) => {

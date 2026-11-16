@@ -32,6 +32,9 @@ export type FitFacts = {
   styleWithin?: { rank: number; shape: string };
   /** Arm comfort dots (1–5, lib/trait-score.ts, an expert value wins), for the sore-arm check. */
   armDots?: number;
+  /** A site's own hard rules (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts): the reason it is wrong for a beginner
+   *  or a slower arm (the page says skip it, or it is too fast). Each is a hard level / arm reason, so the engine caps it. */
+  hard?: { beginner?: string; arm?: string };
 };
 /** Within a picked shape: an all-round racket this high for the picked style counts as built for it, and a racket that
  *  leans the other way this high is only a soft conflict (owner 2026-11-15, the Electra Pro ST5 and the Nox 12K). */
@@ -125,6 +128,7 @@ export const SUITS_OK = 62, SUITS_LOW = 40;
 function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   // No level picked yet: nothing to check (owner 2026-11-15).
   if (!choice.level) return { level: "unknown" };
+  if (choice.level === "beginner" && f.hard?.beginner) return { level: "hard", short: "Not a first disc", reason: f.hard.beginner };
   const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
@@ -163,6 +167,7 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
 
 function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   if (!c.arm) return { level: "ok" };
+  if (f.hard?.arm) return { level: "hard", short: "Needs more arm speed", reason: f.hard.arm };
   // A type-picker site's arm pick is a slower arm (DiscGolfRecs): read from its arm dots (players, the flight numbers, the expert).
   if (cfg.quick) {
     const L = cfg.quick.arm[0].toUpperCase() + cfg.quick.arm.slice(1);
@@ -221,7 +226,8 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   const band = combinedBand(f);
   if (band) out.push(band.from === band.to ? LEVELS[band.from] : `${LEVELS[band.from]} → ${LEVELS[band.to]}`);
   const { lean } = styleLean(f, cfg);
-  if (lean) out.push(lean === "balance" ? "all-round players" : `${lean} players`);
+  // A type-picker site says it in its own sport's terms (DiscGolfRecs: what the stability is good for).
+  if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
   if (kind >= 5 && kind > 2 * harsh) out.push(cfg.quick ? "slower arms" : "sore arms");
   return out;

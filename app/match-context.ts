@@ -27,6 +27,7 @@ import { matchData } from "../db/match-data";
 import type { QuickChoice } from "../lib/quick-match";
 
 import { fitConfigFor } from "../lib/fit-config";
+import { discRules, type SiteRules } from "../lib/discgolf-hard";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -35,6 +36,8 @@ const MATCH = matchData(niche.id);
 const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = ENGINE?.traits ?? DOT_TRAITS;
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
+/** A site's own hard rules and level floors (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts); none elsewhere. */
+const RULES: ((d: { slug: string; weight: string | null }) => SiteRules) | undefined = niche.id === "discgolf" ? discRules : undefined;
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 // Built once per server instance and kept (db/keep.ts), not once per page: it takes seconds over a big catalog (owner
 // 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
@@ -44,6 +47,8 @@ const keptContext = kept(async () => {
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
+  const rulesMemo = new Map<string, SiteRules>();
+  const rulesOf = (id: string): SiteRules => { let r = rulesMemo.get(id); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }) : {}; rulesMemo.set(id, r); } return r; };
   // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
   const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -90,7 +95,8 @@ const keptContext = kept(async () => {
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
     const su = suitsOf.get(id), fi = fineOf.get(id);
     const armDots = traitMap?.get(id)?.arm?.dots;
-    return { reports, tags, ...(armDots ? { armDots } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    const hard = RULES && rulesOf(id).hard;
+    return { reports, tags, ...(armDots ? { armDots } : {}), ...(hard ? { hard } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -187,6 +193,9 @@ const keptContext = kept(async () => {
         continue;
       }
       if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] + sp[`suits_${l}`]!) / 2); su.basis.push("the specs"); }
+      // A site's level floor (DiscGolfRecs: a speed ≤ 7 disc suits advanced players at least 50, lib/discgolf-hard.ts).
+      const floor = RULES && rulesOf(id).suitsFloor;
+      if (floor) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.max(su[l], floor[l] ?? 0);
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
@@ -233,7 +242,7 @@ const keptContext = kept(async () => {
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
       ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}),
-      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}) };
+      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}), ...(RULES && rulesOf(id).flags ? { flags: rulesOf(id).flags } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
   const factsFor = (choice: QuickChoice, id: string): FitFacts => factsWith(items, choice, facts(id), id);

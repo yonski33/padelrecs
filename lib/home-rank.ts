@@ -28,6 +28,9 @@ export type RankItem = {
   eng?: EngineFacts;
   /** The product type key (type-picker sites, lib/fit-config.ts quick.types): the picked type filters on it. */
   kind?: string;
+  /** A site's ranking flags (DiscGolfRecs, lib/discgolf-hard.ts): a specialty disc is never #1 for "any"; without flight
+   *  numbers it isn't ranked. */
+  flags?: { specialty?: true; noFlight?: true };
 };
 /** The finder's questions, plus the level gate (lib/niche fit.levelGate): with a level picked, only rackets whose suits score
  *  reaches the bar are candidates, and the % is spread within that eligible set (owner 2026-11-15). */
@@ -54,21 +57,24 @@ const engAnchors = (items: RankItem[], p: EngineProfile, gate: LevelGate | undef
 const engPick = (choice: QuickChoice) => ({ style: choice.style, arm: choice.arm, fine: undefined as number | null | undefined });
 /** The engine's cautious score and % for every product with enough reports, for these picks. A product the level gate keeps
  *  out says "Probably not" (its % held under that line). */
-function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, { cautious: number; pct: number }> {
+function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, { cautious: number; pct: number; hard?: boolean }> {
   return cached(items, `eng:view:${JSON.stringify([choice, gate ?? null])}`, () => {
-    const base = engBase(items, p), all = engAnchors(items, p, gate), anchors = all.byStyle?.[choice.style] ?? all, out = new Map<string, { cautious: number; pct: number }>();
+    const base = engBase(items, p), all = engAnchors(items, p, gate), anchors = all.byStyle?.[choice.style] ?? all, out = new Map<string, { cautious: number; pct: number; hard?: boolean }>();
     const fineOf = (x: RankItem) => { const fi = choice.fine && { ...choice.fine, shape: undefined }; return fi && x.facts.fine ? fineFit(fi, x.facts.fine) : null; };
     for (const x of engItems(items)) {
       if (x.n < p.minReports) continue;
       const suits = choice.level ? x.it.level?.suits?.[choice.level] : undefined;
-      let { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it), suits }, p);
+      let { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it), suits, low: choice.level === "beginner" || choice.arm }, p);
       // Sore arm (PickleballRecs, audit 2026-11-16): a thin 14 mm core and a firm feel pass on more shock.
       if (choice.arm && p.armSpecDemote) { const fi = x.it.facts.fine; if (fi?.core === "14mm") cautious -= p.armSpecDemote.core14; if (fi?.feel === "firm") cautious -= p.armSpecDemote.firm; }
-      let pct = enginePct(cautious, anchors);
+      // A hard reason on level or arm (audit 2026-11-16): never Strong fit, the hard reason leads the verdict. With hardPenalty
+      // (DiscGolfRecs) it also costs score and the row goes after every other one.
+      const hard = p.hardCap !== undefined && hardOnLevelOrArm(choice, x.it.facts);
+      if (hard && p.hardPenalty) cautious -= p.hardPenalty;
+      let pct = enginePct(cautious, anchors, p.display);
       if (choice.level && !passesLevel(x.it.level, choice.level, gate)) pct = Math.min(pct, p.cuts.maybe - 1);
-      // A hard reason on level or arm (audit 2026-11-16): never Strong fit, the hard reason leads the verdict.
-      if (p.hardCap !== undefined && hardOnLevelOrArm(choice, x.it.facts)) pct = Math.min(pct, p.hardCap);
-      out.set(x.id, { cautious, pct });
+      if (hard) pct = Math.min(pct, p.hardCap!);
+      out.set(x.id, { cautious, pct, ...(hard && p.hardPenalty ? { hard: true } : {}) });
     }
     return out;
   });
@@ -131,10 +137,12 @@ export function matchPcts(items: RankItem[], choice: QuickChoice, gate?: LevelGa
 function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, older: boolean, size: number): { rows: RankedRow[]; olderN: number } {
   const p = setup.engine!, view = engineView(items, choice, setup.levelGate, p), shape = choice.fine?.shape, all = engItems(items);
   // A picked type (type-picker sites) is a hard filter, never a score.
-  const ok = (x: EngItem) => view.has(x.id) && (!choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
+  const ok = (x: EngItem) => view.has(x.id) && !x.it.flags?.noFlight && (!choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
   const best = p.familyBestWithin !== undefined ? { pct: (x: EngItem) => view.get(x.id)!.pct, within: p.familyBestWithin } : undefined;
-  const cands = engineCandidates(all, ok, p.minReports, older, best).sort((a, b) => view.get(b.id)!.cautious - view.get(a.id)!.cautious
-    || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
+  const cands = engineCandidates(all, ok, p.minReports, older, best).sort((a, b) => Number(!!view.get(a.id)!.hard) - Number(!!view.get(b.id)!.hard)
+    || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
+  // A specialty disc (DiscGolfRecs: a roller / turnover disc, turn ≤ −4) is never the #1 for "any stability".
+  if (choice.style === "any" && cands[0]?.it.flags?.specialty) { const i = cands.findIndex(x => !x.it.flags?.specialty); if (i > 0) cands.unshift(...cands.splice(i, 1)); }
   const rows = cands.slice(0, size).map(x => { const v = verdictFor(items, choice, x.it.facts, x.id, setup.levelGate, p);
     return { id: x.id, pct: view.get(x.id)!.pct, fit: { kind: v.kind, short: v.short }, arm: x.it.facts.tags["arm-friendly"] ?? 0 }; });
   return { rows, olderN: older ? 0 : engineCandidates(all, ok, p.minReports, true).length - cands.length };
@@ -147,7 +155,7 @@ function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, ol
 export function rankHome(items: RankItem[], setup: RankSetup, negativeTags: readonly string[], choice: QuickChoice, older: boolean, size = LIST_SIZE): { rows: RankedRow[]; olderN: number } {
   const byId = byIdOf(items);
   if (setup.engine && !isDefault(choice)) return rankEngine(items, setup, choice, older, size);
-  const pool = cached(items, "pool", () => items.flatMap(x => x.pool ? [{ ...x.pool, id: x.id, tags: x.facts.tags }] : []));
+  const pool = cached(items, "pool", () => items.flatMap(x => x.pool && !x.flags?.noFlight ? [{ ...x.pool, id: x.id, tags: x.facts.tags }] : []));
   const level = (id: string) => byId.get(id)?.level, signal = (id: string) => byId.get(id)?.signal ?? null;
   const shapeOf = (id: string) => byId.get(id)?.facts.fine?.shape;
   const candidates = quickMatch(pool, setup, choice, { signal, negativeTags, level, count: pool.length, rankWeight: setup.rankWeight, levelGate: setup.levelGate })

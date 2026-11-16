@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 // The racket page's fit check before an answer (owner 2026-11-15, Claude Design mockup): two numbered questions as pills and
 // the optional sore-arm box. The answer loads once both a style and a level are picked, never for a level the visitor didn't
 // choose. The last answers stay in this browser, so "use my last answers" fills them in on the next racket.
-import { STYLES, LEVELS, levelLabel, type Style, type Level } from "../../../lib/quick-match";
+import { STYLES, LEVELS, levelLabel, styleWordOf, ARM_PICK, type Style, type Level } from "../../../lib/quick-match";
 import { niche } from "../../../lib/niche";
 type Saved = { style: Style; level: Level; arm: boolean };
 import { SAVED_PICKS_KEY } from "../../../lib/saved-picks";
@@ -35,11 +35,11 @@ export default function AskPicks({ onPick }: { onPick: (p: Saved) => void }) {
     <div className="rf-q">
       <div className="rf-qrow"><span>1. What do you want more of?</span>
         <div role="group" aria-label="What you want more of">{STYLES.map(s =>
-          <button key={s} type="button" aria-pressed={style === s} onClick={() => pickStyle(s)}>{s}</button>)}</div></div>
+          <button key={s} type="button" aria-pressed={style === s} onClick={() => pickStyle(s)}>{styleWordOf(s)}</button>)}</div></div>
       <div className="rf-qrow"><span>2. What&apos;s your level?</span>
         <div role="group" aria-label="Your level">{LEVELS.map(l =>
           <button key={l} type="button" aria-pressed={level === l} onClick={() => pickLevel(l)}>{levelLabel(l)}</button>)}</div></div>
-      <button type="button" className="rf-arm2" aria-pressed={arm} onClick={() => setArm(a => !a)}><i aria-hidden="true">{arm ? "✓" : ""}</i><span>I have a sore elbow / wrist <small>(optional)</small></span></button>
+      <button type="button" className="rf-arm2" aria-pressed={arm} onClick={() => setArm(a => !a)}><i aria-hidden="true">{arm ? "✓" : ""}</i><span>{`I have a ${ARM_PICK}`} <small>(optional)</small></span></button>
     </div>
   </>;
 }
