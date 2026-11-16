@@ -4,9 +4,9 @@
 body:has(main.hv2) { background: #fbfaf6; }
 
 .hv2 {
-  --bg: #fbfaf6; --paper: #ffffff; --ink: #151515; --mute: #6a675f; --soft: #4a4740; --text: #2b2925; --line: #e3e0d7; --tile: #f3f1ea;
-  --acc: oklch(0.88 0.17 125); --marker: oklch(0.93 0.14 100);
-  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
+  --bg: #fbfaf6; --paper: #ffffff; --ink: var(--site-ink, #151515); --mute: var(--site-mute, #6a675f); --soft: var(--site-soft, #4a4740); --text: var(--site-text, #2b2925); --line: #e3e0d7; --tile: #f3f1ea;
+  --acc: var(--site-acc, oklch(0.88 0.17 125)); --good: var(--site-good, oklch(0.88 0.17 125)); --marker: var(--site-marker, oklch(0.93 0.14 100)); --soso: var(--site-soso, oklch(0.93 0.14 100));
+  --display: var(--site-display, var(--qt-display, "Archivo")), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body);
   a { color: var(--ink); }
   h1, h2, h3 { font-family: var(--display); color: var(--ink); }
@@ -68,8 +68,8 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-list { list-style: none; margin: 0; padding: 0; }
   .hv2-list > li { border-bottom: 1px solid var(--line); }
   .hv2-list > li { position: relative; background: var(--paper); }
-  .hv2-list > li.top { background: oklch(0.98 0.04 125); }
-  .hv2-list > li:hover { background: oklch(0.97 0.04 125); }
+  .hv2-list > li.top { background: var(--site-wash, oklch(0.98 0.04 125)); }
+  .hv2-list > li:hover { background: var(--site-wash, oklch(0.97 0.04 125)); }
   .hv2-row { display: grid; grid-template-columns: 28px 76px minmax(0, 1fr) auto auto; gap: 14px; align-items: center; padding: 10px 14px; }
   /* The name's link covers the whole row (one tap target); "check price" sits above it. */
   .hv2-name { text-decoration: none; color: var(--ink); }
@@ -95,23 +95,23 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-fit b { font: 600 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; }
   .hv2-sc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 68px; }
   .hv2-sc b { font: 800 22px/1 var(--display); border: 2px solid var(--ink); border-radius: 8px; padding: 4px 7px; background: var(--paper); }
-  .hv2-sc.hi b { background: var(--acc); } .hv2-sc.mid b { background: var(--marker); } .hv2-sc.none b { background: var(--tile); color: #8a867c; }
+  .hv2-sc.hi b { background: var(--good); } .hv2-sc.mid b { background: var(--soso); } .hv2-sc.none b { background: var(--tile); color: #8a867c; }
   .hv2-sc small { font: 10.5px var(--mono); color: var(--soft); white-space: nowrap; }
-  .hv2-fit.good b { background: var(--marker); } .hv2-fit.maybe b { background: var(--paper); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
+  .hv2-fit.good b { background: var(--soso); } .hv2-fit.maybe b { background: var(--paper); } .hv2-fit.no b { background: oklch(0.9 0.08 30); }
   .hv2-fit span { color: var(--text); }
   /* The fit verdict over the match % (owner 2026-11-15), in the tag colours it had under the summary. */
   .hv2-verdict { font: 600 10.5px/1.5 var(--mono); font-style: normal; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 7px; white-space: nowrap; background: var(--paper); }
-  .hv2-verdict.good { background: var(--marker); } .hv2-verdict.no { background: oklch(0.9 0.08 30); }
+  .hv2-verdict.good { background: var(--soso); } .hv2-verdict.no { background: oklch(0.9 0.08 30); }
   .hv2-pct { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 64px; padding: 4px 8px; border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); line-height: 1.05; }
   .hv2-pct b { font: 800 22px var(--display); }
   .hv2-pct small { font: 10px var(--mono); color: var(--mute); text-align: center; white-space: normal; max-width: 80px; }
   /* Good fit reads yellow everywhere (owner 2026-11-15): the % box and the fit pill; weaker fits stay white. */
-  .hv2-pct.good { background: var(--marker); }
+  .hv2-pct.good { background: var(--soso); }
   .hv2-what { display: inline; position: relative; }
   .hv2-what summary { display: inline; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; list-style: none; }
   .hv2-what summary::-webkit-details-marker { display: none; }
   .hv2-what[open] > span { position: absolute; right: 0; top: 1.6em; z-index: 5; width: 260px; padding: 10px 12px; border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); color: var(--ink); font: 13px/1.4 var(--body); box-shadow: 3px 3px 0 var(--ink); white-space: normal; }
-  .hv2-score { min-width: 34px; text-align: center; padding: 3px 6px; border: 2px solid var(--ink); border-radius: 8px; background: var(--acc); font: 800 15px var(--display); }
+  .hv2-score { min-width: 34px; text-align: center; padding: 3px 6px; border: 2px solid var(--ink); border-radius: 8px; background: var(--good); font: 800 15px var(--display); }
   .hv2-stats { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font: 11px var(--mono); min-width: 96px; white-space: nowrap; }
   .hv2-stats strong { font-size: 13px; }
   .hv2-bar { display: flex; width: 96px; height: 8px; border: 1.5px solid var(--ink); border-radius: 3px; overflow: hidden; }

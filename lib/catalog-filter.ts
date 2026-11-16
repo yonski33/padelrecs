@@ -2,11 +2,11 @@
 // renders the first view from these; the browser re-runs them on every tap (app/rackets/catalog-browser.tsx), with no round
 // trip (owner 2026-11-15: "/rackets … still slow on every tap"). One implementation, so a tap and a direct visit to the same
 // address always show the same list. A new engine plugs in by changing the rows (or the order), not the page.
-import { WEIGHTS, FEELS } from "./fine-tune";
+import { WEIGHTS, FEELS, CATALOG_SHAPE_LIST } from "./fine-tune";
 
 export const CATALOG_STYLES = ["control", "balance", "power"] as const;
 export const CATALOG_LEVELS = ["beginner", "intermediate", "advanced"] as const;
-export const CATALOG_SHAPES = ["round", "teardrop", "hybrid", "diamond"] as const;
+export const CATALOG_SHAPES: readonly string[] = CATALOG_SHAPE_LIST;
 export const CATALOG_SORTS = [["score", "player score"], ["reviews", "most reviewed"], ["newest", "newest"]] as const;
 /** The option groups a row is tested on (arm-friendly and a bigger sweet spot are checkboxes). */
 export const CATALOG_KEYS = ["style", "level", "shape", "year", "weight", "feel"] as const;

@@ -7,7 +7,7 @@ import { productRedirect, productSlugIn } from "./lib/product-redirect";
 import { isV2 } from "./lib/niche";
 import { attrProfileFor } from "./lib/attr-profile";
 import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } from "./lib/quick-match";
-import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIEW } from "./lib/view-key";
+import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIEW, SKIN_HOME_VIEW, SKIN_CATALOG_VIEW, SKIN_PRODUCT_VIEW, SKIN_RANKING_VIEW } from "./lib/view-key";
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
@@ -35,6 +35,34 @@ export async function productMove(request:NextRequest, niche:Niche, lookup:()=>P
  }
 }
 
+const TYPE_SLUGS=new Set((niche.typePages??[]).map(t=>t.slug));
+/** SkinRecs: an address with a simple query → its cached view (app/v/…); a direct visit to /v/… → its address (301). */
+export function skinView(request:NextRequest) {
+ const {pathname,searchParams}=request.nextUrl;
+ const to=(path:string)=>{const url=request.nextUrl.clone();url.pathname=path;url.search="";return NextResponse.rewrite(url);};
+ const back=(path:string,q:Record<string,string>|null)=>{const url=request.nextUrl.clone();url.pathname=path;url.search=q?viewQuery(q):"";return NextResponse.redirect(url,301);};
+ const key=(allowed:readonly string[],path:(k:string)=>string)=>{const k=viewKey(searchParams,allowed);return k?to(path(k)):null;};
+ const seg=pathname.split("/").slice(1);
+ if(pathname==="/")return key(SKIN_HOME_VIEW,k=>`/v/home/${k}`);
+ if(pathname===catalogPath)return key(SKIN_CATALOG_VIEW,k=>`/v/rackets/${k}`);
+ if(seg.length===1&&TYPE_SLUGS.has(seg[0]))return key(SKIN_CATALOG_VIEW,k=>`/v/type/${seg[0]}/${k}`);
+ if(seg.length===2&&/^[a-z0-9-]+$/.test(seg[1])&&(niche.categoryPaths?TYPE_SLUGS.has(seg[0]):`/${seg[0]}`===catalogPath))return key(SKIN_PRODUCT_VIEW,k=>`/v/racket/${seg[1]}/${k}`);
+ if(seg.length===2&&seg[0]==="brands"&&/^[a-z0-9-]+$/.test(seg[1]))return key(SKIN_CATALOG_VIEW,k=>`/v/brand/${seg[1]}/${k}`);
+ if(seg.length===2&&seg[0]==="rankings"&&/^[a-z0-9-]+$/.test(seg[1]))return key(SKIN_RANKING_VIEW,k=>`/v/rankings/${seg[1]}/${k}`);
+ if(seg[0]==="v"){
+  const [,kind,a,b]=seg;
+  if(kind==="home"&&a&&!b)return back("/",readViewKey(a,SKIN_HOME_VIEW));
+  if(kind==="rackets"&&a&&!b)return back(catalogPath,readViewKey(a,SKIN_CATALOG_VIEW));
+  if(kind==="type"&&a&&b&&TYPE_SLUGS.has(a))return back(`/${a}`,readViewKey(b,SKIN_CATALOG_VIEW));
+  if(kind==="brand"&&a&&b)return back(`/brands/${a}`,readViewKey(b,SKIN_CATALOG_VIEW));
+  if(kind==="rankings"&&a&&b)return back(`/rankings/${a}`,null);
+  // A product's address needs its type: its old address answers with a 301 to it (productMove), picks kept.
+  if(kind==="racket"&&a&&b)return back(`/rackets/${a}`,readViewKey(b,SKIN_PRODUCT_VIEW));
+  return back(catalogPath,null);
+ }
+ return null;
+}
+
 export async function proxy(request:NextRequest) {
  if(niche.categoryPaths){
   const moved=await productMove(request,niche,async()=>(await import("./lib/product-lookup")).productLookup());
@@ -58,9 +86,13 @@ export async function proxy(request:NextRequest) {
  }
  // The catalogue, the rankings and the racket pages (speed batch): an address with a simple query is served from one cached
  // page per view (app/v/…, lib/view-key.ts); anything else renders per request as before. /v/… is only ever a rewrite target.
- // Those cached views are the racket pages: SkinRecs (an attribute profile) renders its own, so /products and every ranking
- // list 500'd there (owner 2026-11-16).
- if(isV2&&attrProfileFor(niche)&&request.nextUrl.pathname.startsWith("/v/")){const url=request.nextUrl.clone();url.pathname=catalogPath;url.search="";return NextResponse.redirect(url,301);}
+ // SkinRecs (an attribute profile) has its own views, keyed on its own picks and filters (owner 2026-11-16: "SkinRecs has the
+ // same slowness padel had"; padel's views 500'd there, #374): the home, /products, each type and brand page, each product
+ // page and each ranking. The pages render the skin designs; filters and picks then work in the browser (app/instant-view.ts).
+ if(isV2&&attrProfileFor(niche)){
+  const skin=skinView(request);
+  if(skin)return skin;
+ }
  if(isV2&&niche.finder&&!attrProfileFor(niche)){
   const {pathname,searchParams}=request.nextUrl;
   const to=(path:string)=>{const url=request.nextUrl.clone();url.pathname=path;url.search="";return NextResponse.rewrite(url);};

@@ -3,9 +3,10 @@
 // server for the address's picks; a tap here changes the picks in the browser and works out every row's match % from the
 // catalog items sent once with the page (lib/home-rank.ts matchPcts, the same function the server uses), then updates the
 // address, with no round trip. The list's order is always its own (Player score); picks only add the %.
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
-import { niche } from "../../../lib/niche";
+import { niche, mockLook } from "../../../lib/niche";
 import { LEVELS, STYLES, type QuickChoice, type Level } from "../../../lib/quick-match";
 import RankPicks from "./rank-picks";
 
@@ -24,14 +25,9 @@ function fromLocation(): State {
 }
 
 export function RankingPicks({ items, first, href, children }: { items: RankItem[]; first: State; href: string; children: ReactNode }) {
-  const [s, setS] = useState(first);
-  useEffect(() => { const on = () => setS(fromLocation()); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
+  // Back and forward step through the picks (app/instant-view.ts).
+  const [s, set] = useInstantView(first, fromLocation, next => { const q = new URLSearchParams(picksQuery(next.choice).slice(1)); if (next.choice && !next.showPct) q.set("pct", "0"); return q.size ? `${href}?${q}` : href; });
   const pcts = useMemo(() => s.choice && s.showPct ? matchPcts(items, s.choice, niche.fit?.levelGate, niche.fit?.engine) : null, [items, s]);
-  const set = (next: State) => {
-    setS(next);
-    const q = new URLSearchParams(picksQuery(next.choice).slice(1)); if (next.choice && !next.showPct) q.set("pct", "0");
-    history.pushState(null, "", q.size ? `${href}?${q}` : href);
-  };
   return <Ctx.Provider value={{ s, set, pct: id => pcts?.get(id) ?? null, picks: picksQuery(s.choice), href }}>{children}</Ctx.Provider>;
 }
 
@@ -64,7 +60,7 @@ export function MatchBox({ finder }: { finder?: string }) {
       </span>
       {s.showPct && <p className="rl2-note">{`match % = ${MATCH_NOTE.toLowerCase()}`}</p>}
     </> : <span className="rl2-none">
-      <span><strong>{"#1 for everyone isn't always #1 for you."}</strong>{" Answer 2 questions to see your match % on every racket."}</span>
+      <span><strong>{"#1 for everyone isn't always #1 for you."}</strong>{!mockLook && " Answer 2 questions to see your match % on every racket."}</span>
       <label htmlFor="rl2-edit" className="rl2-go"><span>find my match →</span></label>
     </span>}
     <div className="rl2-pane"><RankPicks key={JSON.stringify(c)} current={c} onPick={p => set({ choice: p, showPct: true })} finder={finder}/></div>

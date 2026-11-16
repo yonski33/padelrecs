@@ -175,3 +175,8 @@
   .bs-try label { grid-template-columns: 96px minmax(0, 1fr) 32px; }
   .lr2.bl { padding: 20px 16px 56px; }
 }
+
+/* Phones (owner's mobile mockup): the verdict sits under the product name. */
+@media (max-width: 640px) {
+  .lr2.bl .lr2-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+}

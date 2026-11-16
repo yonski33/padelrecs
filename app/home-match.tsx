@@ -3,17 +3,23 @@
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
-import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
+import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
-import { SHAPES, WEIGHTS, FEELS, SHAPE_LABEL, fineEmpty, fineWords } from "../lib/fine-tune";
+import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
 import type { HomePayload } from "./home-payload";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
-const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
+/** A site's own home mock (niche.v2home; PickleballRecs): every row has the match box, "check price" is a button. */
+const M = niche.v2home;
+/** The fine-tune's rows on this site (lib/fine-tune.ts): [label, URL key, options as [value, label]]. */
+const FINE_GROUPS = FINE_ROWS.map(k => k === "shape" ? ["Shape", "shape", FINE_SHAPES.map(v => [v, SHAPE_LABEL[v]] as const)] as const
+  : k === "weight" ? ["Weight", "weight", WEIGHTS.map(v => [v, weightWord(v)] as const)] as const
+  : k === "feel" ? ["Feel on impact", "feel", FEELS.map(v => [v, v] as const)] as const : ["Core thickness", "core", CORES.map(v => [v, v] as const)] as const);
 const FIT_WORD = { good: "Strong fit", maybe: "Worth a look", no: "Probably not" } as const;
 /** The finder plus the level gate (lib/niche fit.levelGate), as the server ranks with it. */
 const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
@@ -27,16 +33,9 @@ function fromLocation(): { choice: QuickChoice; older: boolean } {
 
 /** The picks, then the list beside `children` (the server-rendered sidebar). */
 export function HomeMatch({ payload, choice: first, older: firstOlder, listed, children }: { payload: HomePayload; choice: QuickChoice; older: boolean; listed: number; children: ReactNode }) {
-  const [{ choice, older }, set] = useState({ choice: first, older: firstOlder });
-  // Back and forward step through the picks.
-  useEffect(() => { const on = () => set(fromLocation()); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
-  const go = (next: QuickChoice, nextOlder = older) => (e: MouseEvent<HTMLAnchorElement>) => {
-    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // a new tab gets the server's page
-    e.preventDefault();
-    set({ choice: next, older: nextOlder });
-    history.pushState(null, "", hrefOf(next, nextOlder));
-    document.title = titleOf(next);
-  };
+  // Back and forward step through the picks (app/instant-view.ts).
+  const [{ choice, older }, set] = useInstantView({ choice: first, older: firstOlder }, fromLocation, v => hrefOf(v.choice, v.older));
+  const go = (next: QuickChoice, nextOlder = older) => instantClick(() => { set({ choice: next, older: nextOlder }); document.title = titleOf(next); });
   const { rows, olderN } = rankHome(payload.items, SETUP, BAD, choice, older);
   const byId = new Map(payload.items.map(x => [x.id, x]));
   const picked = !isDefault(choice);
@@ -47,31 +46,33 @@ export function HomeMatch({ payload, choice: first, older: firstOlder, listed, c
   return <>
     <section className="hv2-qm" id="match" aria-label="Quick match">
       <span className="hv2-qk"><b>quick match</b>I want</span>
-      <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, choice.style === s)}</span>)}</span>
+      <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, choice.style === s && (!M || picked))}</span>)}</span>
       <span className="hv2-qk">and I&apos;m</span>
-      <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
+      <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(levelLabel(l), { ...choice, level: l }, choice.level === l)}</span>)}</span>
       <a className="hv2-arm" href={`${hrefOf({ ...choice, arm: !choice.arm }, older)}#match`} onClick={go({ ...choice, arm: !choice.arm })} aria-current={choice.arm ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</a>
       {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
-      {picked && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
-        <summary><span className="c">Not sure yet? <b>fine-tune ▾</b></span><span className="o">fewer filters ▴</span></summary>
+      {(M ? !!choice.level : picked) && <details className={`hv2-fine${M ? " m" : ""}`} open={!fineEmpty(choice.fine)}>
+        <summary><span className="c">Not sure yet? <b>{(() => { const n = FINE_GROUPS.filter(([, k]) => choice.fine?.[k]).length; return M && n ? `fine-tune (${n}) ▾` : "fine-tune ▾"; })()}</b></span><span className="o">{M ? <>Not sure yet? <b>fewer filters ▴</b></> : "fewer filters ▴"}</span>
+          {M && <em className="hv2-fhint">{(() => { const n = FINE_GROUPS.filter(([, k]) => choice.fine?.[k]).length; return n ? `match % includes ${n} extra filter${n > 1 ? "s" : ""}` : `${FINE_GROUPS.map(([l]) => l.split(" ")[0].toLowerCase()).join(", ").replace(/, ([^,]*)$/, " & $1")}, all optional`; })()}</em>}</summary>
         <div className="hv2-fine-rows">
-          {([["Shape", "shape", SHAPES.map(v => [v, SHAPE_LABEL[v]] as const)], ["Weight", "weight", WEIGHTS.map(v => [v, v] as const)], ["Feel on impact", "feel", FEELS.map(v => [v, v] as const)]] as const).map(([label, key, opts]) => {
+          {FINE_GROUPS.map(([label, key, opts]) => {
             const cur = choice.fine?.[key];
             const with_ = (v: string | undefined) => ({ ...choice, fine: { ...choice.fine, [key]: v } });
             return <div key={key} className="hv2-fine-row"><span className="hv2-fk">{label}</span><span className="hv2-lv" role="group" aria-label={label}>
               {opts.map(([v, l]) => <span key={v}>{pill(l, with_(cur === v ? undefined : v), cur === v)}</span>)}
               {key !== "feel" && <span>{pill("any", with_(undefined), !cur)}</span>}</span></div>; })}
-          <a className="hv2-arm" href={`${hrefOf({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } }, older)}#match`} onClick={go({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} aria-current={choice.fine?.sweet ? "true" : undefined}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</a>
+          {FINE_SWEET && <a className="hv2-arm" href={`${hrefOf({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } }, older)}#match`} onClick={go({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} aria-current={choice.fine?.sweet ? "true" : undefined}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</a>}
         </div>
       </details>}
-      {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level ? choice.level[0].toUpperCase() + choice.level.slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
+      {picked && !M && <p className="hv2-game">{"Your game: "}<b>{[choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
         <a href="/" onClick={go({ style: "any", level: "intermediate", arm: false }, false)}>reset ↺</a></p>}
     </section>
 
     <div className="hv2-grid">
     <section className="hv2-main" aria-live="polite">
       <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
-        <span>{picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
+        <span>{M ? (picked ? [choice.level ? `ranked for ${levelPeople(choice.level)}` : "pick a level to sharpen this", choice.arm ? "arm-friendly first" : null].filter(Boolean).join(" · ") : M.listSub)
+          : picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? " · arm-friendly first" : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : "ranked by player score · pick above to personalise"}</span></div>
       {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
       <div className="hv2-box">
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm }, i) => {
@@ -85,6 +86,18 @@ export function HomeMatch({ payload, choice: first, older: firstOlder, listed, c
         ];
         // The row is one link (the name's, stretched over the row) with "check price" as a quiet text link under the
         // summary line (owner 2026-11-15: low-key, close to the text). Reviews over the sentiment bar, then the score box.
+        if (M) return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row m">
+          <span className="hv2-rank">{i + 1}</span>
+          <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
+          <span className="hv2-body"><span className="hv2-nrow"><b className="hv2-rk" aria-hidden="true">{`#${i + 1}`}</b><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
+            {r.line && <span className="hv2-line">{r.line}</span>}</span>
+          <span className="hv2-sent"><span>{`${r.n.toLocaleString("en-US")} ${r.n === 1 ? "review" : "reviews"}`}</span>
+            {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
+          <span className="hv2-btnc">{r.shop && <a className="hv2-btn" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
+          <span className={`hv2-sc ${!picked || pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE}
+            aria-label={!picked ? "Pick a style or level above for your match %" : pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+            <b>{picked && pct !== null ? `${pct}%` : "—"}</b><small>match</small></span>
+        </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>

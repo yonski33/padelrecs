@@ -2,9 +2,8 @@
 // visitor's quick-match picks (lib/quick-match.ts). Real data only, the same inputs as quick match: tag counts from published
 // reports, the rankings' places, the quick-take level band. No guessing: thin data says so instead of giving a verdict.
 import type { QuickChoice, Level } from "./quick-match";
-import { fitConfigFor, type FitConfig } from "./fit-config";
+import { fitConfigFor, SITE_FIT, type FitConfig } from "./fit-config";
 
-const PADEL = fitConfigFor({ id: "padel" })!;
 import { niche } from "./niche";
 import { fineMismatches, type FineFacts } from "./fine-tune";
 
@@ -48,7 +47,7 @@ const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const n = (f: FitFacts, tags: string[]) => tags.reduce((a, t) => a + (f.tags[t] ?? 0), 0);
 
 /** Where the racket sits: control, power or in between, from what players praise (and the rankings it's on). */
-export function styleLean(f: FitFacts, cfg: FitConfig = PADEL): { lean: "control" | "power" | "balance" | null; control: number; power: number } {
+export function styleLean(f: FitFacts, cfg: FitConfig = SITE_FIT): { lean: "control" | "power" | "balance" | null; control: number; power: number } {
   const control = n(f, cfg.axis.control.tags), power = n(f, cfg.axis.power.tags);
   if (control + power < 5) return { lean: f.places?.control && !f.places.power ? "control" : f.places?.power && !f.places.control ? "power" : null, control, power };
   const lean = control >= power * 1.5 ? "control" : power >= control * 1.5 ? "power" : "balance";
@@ -59,6 +58,15 @@ type Check = { level: "ok" | "soft" | "hard" | "unknown"; reason?: string; short
 
 function styleCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   if (c.style === "any") return { level: "ok" };
+  // A pick off the control–power axis (pickleball's spin): that trait's own praise against its complaints, said plainly.
+  if (c.style !== "control" && c.style !== "balance" && c.style !== "power") {
+    const t = cfg.traits.find(x => x.key === c.style); if (!t) return { level: "unknown" };
+    const plus = n(f, t.plus.map(([tag]) => tag)), minus = n(f, t.minus.map(([tag]) => tag)), word = t.label.toLowerCase();
+    if (plus + minus < 3) return { level: "unknown" };
+    if (minus > plus) return { level: "hard", short: `Low on ${word}`, reason: `You want ${word}, but it's low on ${word}.` };
+    if (plus >= 3 && plus >= 2 * minus) return { level: "ok", short: `Strong ${word}`, reason: `Strong ${word}.` };
+    return { level: "soft", short: `${t.label} opinions differ`, reason: `${t.label} splits opinion.` };
+  }
   const { lean } = styleLean(f, cfg);
   if (!lean) return { level: "unknown" };
   // Said as a statement (owner 2026-11-16, expert voice, lib/voice.ts): what it is, not how many players praise what.
@@ -171,7 +179,7 @@ function fineCheck(c: QuickChoice, f: FitFacts): Check {
 
 /** With `as` (the match engine's word, lib/engine engineKind), the verdict says that word and picks its reasons for it; without,
  *  the checks decide it as before. */
-export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = PADEL, as?: FitVerdict["kind"]): FitVerdict {
+export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT, as?: FitVerdict["kind"]): FitVerdict {
   const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
@@ -187,7 +195,7 @@ export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = PADEL, 
 }
 
 /** "Generally best for" chips when there are no picks: the band, the lean, arm comfort, only what the data supports. */
-export function bestFor(f: FitFacts, cfg: FitConfig = PADEL): string[] {
+export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   const out: string[] = [];
   const band = combinedBand(f);
   if (band) out.push(band.from === band.to ? LEVELS[band.from] : `${LEVELS[band.from]} → ${LEVELS[band.to]}`);

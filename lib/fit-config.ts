@@ -7,7 +7,9 @@ import type { Niche } from "./niche/types";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
-  /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)]. */ ev?: [[string, string], [string, string]] };
+  /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)]. */ ev?: [[string, string], [string, string]];
+  /** The compare tabs (racket page): what the other one is when it leads on this trait ("more power"), and the player's need it
+   *  answers ("win points with smashes"). */ diff?: string; ifYou?: string };
 export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
@@ -17,7 +19,11 @@ export type FitConfig = {
   /** Quick match's control / power axis: the traits and the tags that praise each (the "lean"), and the trait that follows
    *  control at half strength (padel: defence). */
   axis: { control: { trait: string; tags: string[] }; power: { trait: string; tags: string[] }; follows?: string };
-  /** The finder's style option labels for quick match's three styles. */ styleLabels: { control: string; balance: string; power: string };
+  /** The finder's style option labels for quick match's styles. */ styleLabels: { control: string; balance: string; power: string; spin?: string };
+  /** Quick match's style picks after "any" (default control / balance / power). A pick that isn't on the control–power axis
+   *  (pickleball's spin) is matched on that trait alone. */ styles?: ("control" | "balance" | "power" | "spin")[];
+  /** How the level picks read (pickleball: the DUPR-style 2.5 / 3.5 / 4.5+); default the level word. */
+  levelLabels?: { beginner: string; intermediate: string; advanced: string };
   /** Sore arm: the tag that praises arm comfort and the one that faults it (if the site has one). */ arm: { trait: string; plus: string; minus?: string };
   /** The fit check's fallback level signal: forgiving against demanding tags (plus more for beginners). */ forgiving: { plus: string; minus: string[]; beginner: string[] };
   /** The specs' lean per trait in dots (each within ±1). */ specLean: (s: Specs) => Record<string, number>;
@@ -49,12 +55,12 @@ const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o
 
 const PADEL: FitConfig = {
   traits: [
-    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["demanding", 1]], noun: "the sweet spot", qtRow: "Sweet spot" },
-    { key: "power", label: "Power", plus: [["easy power", 1], ["great on smashes", 1]], minus: [], noun: "the power", qtRow: "Power" },
-    { key: "control", label: "Control", plus: [["good control", 1]], minus: [["head-heavy", 0.5]], noun: "the control", qtRow: "Control" },
-    { key: "defence", label: "Defence", plus: [["great in defence", 1], ["good control", 0.5]], minus: [], noun: "its defence", qtRow: "court.defence" },
-    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [["vibrates on mishits", 1]], noun: "how it treats the arm", qtRow: "Comfort" },
-    { key: "speed", label: "Speed", plus: [["fast at the net", 1]], minus: [["head-heavy", 1], ["tiring in long matches", 1]], noun: "how quick it is", qtRow: "Handling" },
+    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["demanding", 1]], noun: "the sweet spot", qtRow: "Sweet spot", diff: "more forgiving", ifYou: "want margin for error" },
+    { key: "power", label: "Power", plus: [["easy power", 1], ["great on smashes", 1]], minus: [], noun: "the power", qtRow: "Power", diff: "more power", ifYou: "win points with smashes" },
+    { key: "control", label: "Control", plus: [["good control", 1]], minus: [["head-heavy", 0.5]], noun: "the control", qtRow: "Control", diff: "more control", ifYou: "want precise, predictable shots" },
+    { key: "defence", label: "Defence", plus: [["great in defence", 1], ["good control", 0.5]], minus: [], noun: "its defence", qtRow: "court.defence", diff: "better in defence", ifYou: "play a lot from the back" },
+    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [["vibrates on mishits", 1]], noun: "how it treats the arm", qtRow: "Comfort", diff: "easier on the arm", ifYou: "care about arm comfort" },
+    { key: "speed", label: "Speed", plus: [["fast at the net", 1]], minus: [["head-heavy", 1], ["tiring in long matches", 1]], noun: "how quick it is", qtRow: "Handling", diff: "quicker", ifYou: "want fast hands at the net" },
   ],
   complaint: ["arm", "forgiveness"],
   axis: { control: { trait: "control", tags: ["good control", "great in defence"] }, power: { trait: "power", tags: ["easy power", "great on smashes"] }, follows: "defence" },
@@ -97,19 +103,20 @@ const PADEL: FitConfig = {
 // thickness, balance holds swing weight, surface the face material.
 const PICKLEBALL: FitConfig = {
   traits: [
-    { key: "power", label: "Power", plus: [["easy power", 1]], minus: [], noun: "the power" },
-    { key: "pop", label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop", ev: [["praise the pop", "praises the pop"], ["find it low on pop", "finds it low on pop"]] },
-    { key: "control", label: "Control", plus: [["good control", 1], ["great for dinks", 1]], minus: [["hard to control", 1]], noun: "the control at the kitchen" },
-    { key: "spin", label: "Spin", plus: [["lots of spin", 1]], minus: [["low spin", 1]], noun: "the spin", ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]] },
-    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["dead spots", 1]], noun: "the sweet spot" },
-    { key: "speed", label: "Hand speed", plus: [["fast hands", 1]], minus: [], noun: "the hand speed" },
-    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [], noun: "how it treats the arm" },
+    { key: "power", label: "Power", plus: [["easy power", 1]], minus: [], noun: "the power", diff: "more power", ifYou: "win points with drives and put-aways" },
+    { key: "pop", label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop", ev: [["praise the pop", "praises the pop"], ["find it low on pop", "finds it low on pop"]], diff: "more pop", ifYou: "want pop on speed-ups" },
+    { key: "control", label: "Control", plus: [["good control", 1], ["great for dinks", 1]], minus: [["hard to control", 1]], noun: "the control at the kitchen", diff: "more control", ifYou: "want soft, precise dinks and resets" },
+    { key: "spin", label: "Spin", plus: [["lots of spin", 1]], minus: [["low spin", 1]], noun: "the spin", ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]], diff: "more spin", ifYou: "want spin on serves and rolls" },
+    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["dead spots", 1]], noun: "the sweet spot",
+      ev: [["praise the sweet spot", "praises the sweet spot"], ["mention dead spots or a small sweet spot", "mentions dead spots or a small sweet spot"]], diff: "more forgiving", ifYou: "want margin for error" },
+    { key: "speed", label: "Hand speed", plus: [["fast hands", 1]], minus: [], noun: "the hand speed", diff: "quicker in the hands", ifYou: "want fast hands at the kitchen" },
+    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [], noun: "how it treats the arm", diff: "easier on the arm", ifYou: "care about arm comfort" },
   ],
   // Only faults of the paddle itself drop to 2 (owner's floor rules); "hard to control" on a paddle usually means it is
   // poppy, not a fault.
   complaint: ["forgiveness", "arm"],
   axis: { control: { trait: "control", tags: ["good control", "great for dinks"] }, power: { trait: "power", tags: ["easy power", "great pop"] } },
-  styleLabels: { control: "Control", balance: "A bit of everything", power: "Power" },
+  styleLabels: { control: "Control", balance: "A bit of everything", power: "Power", spin: "Spin" },
   levelWords: { beginner: ["first paddle", "just started", "new to pickleball", "beginner"], intermediate: ["intermediate", "rec player", "3.0", "3.5"], advanced: ["advanced", "tournaments", "4.0+", "4.5", "5.0", "pro"],
     rating: { name: "DUPR", beginnerBelow: 3.0, advancedFrom: 4.0 } },
   weights: { style: 0.4, level: 0.3, arm: 0.35, score: 0.1 },
@@ -263,6 +270,8 @@ const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBAL
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */
 export const traitDefsFor = (n: Pick<Niche, "id">): TraitDef[] => (CONFIGS[n.id] ?? PADEL).traits;
+/** The running site's rules (padel's on a site without its own): the default for the shared fit, match and score code. */
+export const SITE_FIT: FitConfig = CONFIGS[process.env.NICHE ?? "padel"] ?? PADEL; // by NICHE, as lib/fine-tune.ts
 /** Whether a report backs a heads-up: its tag, or its words without a negation just before ("no core crush", "hasn't core
  *  crushed", "without it core crushing", "sidesteps core crush worries"). */
 export function reportSays(h: NonNullable<FitConfig["headsUp"]>[number], x: { tags: string[]; text?: string | null }): boolean {
