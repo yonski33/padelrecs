@@ -56,7 +56,7 @@ test("7 normal_skin_scored: normal-skin cleansers have a %, and it isn't just th
   assert.ok(rows.some(r => r.pct !== r.signal));
 });
 
-test("8 ff_integrity: fragrance-free never lists the products with essential oils in their INCI", { todo: "passes once the owner-OKed fragrance fix (Cicapair, Pink Drink, Haruharu toner → oils) is written and the snapshot refreshed" }, () => {
+test("8 ff_integrity: fragrance-free never lists the products with essential oils in their INCI", () => {
   const names = rank({ ff: "1", skin: "dry" }).map(r => r.r.name).join(" | ");
   for (const re of [/Cicapair/, /Pink Drink/, /Haruharu Wonder Black Rice Hyaluronic Toner/]) assert.doesNotMatch(names, re);
 });
