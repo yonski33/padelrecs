@@ -193,6 +193,8 @@ export const discgolf: Niche = {
     ],
   },
   // /rankings pages (lib/top-lists.ts): one list per disc type. Few discs have many reviews yet, so the minimums are low.
+  // "Similar products" at the foot of product pages (owner 2026-11-16).
+  similar: { mode: "tabs", pairs: "bag", pairLabel: "complete your bag", look: "disc" },
   topLists: [
     { slug: "best-disc-golf-distance-drivers", formerSlugs: ["best-distance-drivers"], label: "Distance drivers", title: "Best Disc Golf Distance Drivers", minReviews: 6,
       intro: "The disc golf distance drivers players are most consistently happy with.", filters: [{ column: "shape", include: ["Distance driver"] }] },

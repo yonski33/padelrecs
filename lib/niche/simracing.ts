@@ -171,6 +171,8 @@ export const simracing: Niche = {
       ] },
     ],
   },
+  // "Similar products" at the foot of product pages (owner 2026-11-16).
+  similar: { mode: "tabs", pairs: "works", pairLabel: "works with" },
   topLists: [
     { slug: "best-sim-racing-wheelbases", label: "Wheelbases", title: "Best Sim Racing Wheelbases", minReviews: 10,
       intro: "The wheelbases and wheel sets sim racers are most consistently happy with.", filters: [{ column: "shape", include: ["Wheelbase"] }] },

@@ -1,0 +1,55 @@
+/* "Similar products" (app/similar-section.tsx), after the owner's Claude Design mockups (2026-11-16). Uses the racket page's
+   tokens where they exist (.rf), with the mockup's own values as fallbacks on other pages. */
+.sp-sim {
+  --s-ink: var(--ink, #151515); --s-paper: var(--paper, #fff); --s-soft: var(--soft, #4a4740); --s-text: var(--text, #2b2925);
+  --s-acc: var(--acc, oklch(0.88 0.17 125)); --s-marker: var(--marker, oklch(0.93 0.14 100));
+  --s-display: var(--display, "Archivo", system-ui, sans-serif); --s-mono: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  width: 100%; max-width: 880px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; color: var(--s-ink);
+}
+.sp-sim .sp-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px 16px; flex-wrap: wrap; }
+.sp-sim .sp-head > div:first-child { display: flex; flex-direction: column; gap: 2px; }
+.sp-sim h2 { font: var(--sp-h2-w, 800) var(--sp-h2-size, 28px)/1.1 var(--s-display); letter-spacing: -0.02em; margin: 0; color: var(--s-ink); }
+.sp-sim .sp-sub { font: 12px var(--s-mono); color: var(--s-soft); }
+/* Tabs: one bordered strip, the picked one inked (mockups); the radius per site (--sp-tabs-r: 8px, a pill on SkinRecs). */
+.sp-sim .sp-tabs { display: flex; border: 2px solid var(--s-ink); border-radius: var(--sp-tabs-r, 8px); overflow: hidden; }
+.sp-sim .sp-tabs button { all: unset; padding: 6px 14px; font-size: 14px; font-weight: 700; white-space: nowrap; cursor: pointer; background: var(--s-paper); color: var(--s-ink); }
+.sp-sim .sp-tabs button[aria-selected="true"] { background: var(--s-ink); color: #fbfaf6; }
+.sp-sim .sp-tabs button:focus-visible { outline: 3px solid var(--s-acc); outline-offset: -3px; }
+.sp-sim .sp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.sp-sim .sp-card { text-decoration: none; border: 2px solid var(--s-ink); border-radius: var(--sp-card-r, 12px); background: var(--s-paper); box-shadow: 4px 4px 0 var(--sp-shadow, var(--s-ink)); padding: 12px;
+  display: flex; flex-direction: column; gap: 8px; color: var(--s-ink); transition: transform .12s, box-shadow .12s; }
+.sp-sim .sp-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--sp-shadow, var(--s-ink)); background: var(--s-paper); }
+.sp-sim .sp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.sp-sim .sp-tag { width: 48px; height: 48px; border-radius: var(--sp-tile-r, 9px); border: 2px solid var(--s-ink); display: flex; align-items: center; justify-content: center;
+  font: 600 9.5px/1.1 var(--s-mono); text-align: center; box-sizing: border-box; text-transform: uppercase; overflow: hidden; padding: 2px; }
+.sp-sim .sp-badge { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.sp-sim .sp-badge b { font: var(--sp-h2-w, 800) 20px/1 var(--s-display); letter-spacing: -0.02em; border: 2px solid var(--s-ink); border-radius: var(--sp-badge-r, 6px); padding: 3px 7px; background: var(--s-acc); }
+.sp-sim .sp-badge b.plain { background: var(--s-paper); }
+.sp-sim .sp-badge small { font: 10px var(--s-mono); color: var(--s-soft); }
+.sp-sim .sp-name { font-weight: 700; font-size: 15.5px; line-height: 1.25; }
+.sp-sim .sp-why { align-self: flex-start; white-space: nowrap; font: 600 11px var(--s-mono); border: 1.5px solid var(--s-ink); border-radius: 999px; padding: 0 8px; background: var(--s-marker); }
+.sp-sim .sp-line { font-size: 14px; line-height: 1.4; color: var(--s-text); text-wrap: pretty; }
+.sp-sim .sp-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-top: 4px; }
+.sp-sim .sp-go { font: 600 12.5px var(--s-mono); }
+.sp-sim .sp-price { font: 600 12px var(--s-mono); }
+.sp-sim .sp-more { align-self: flex-end; font: 600 13.5px var(--s-mono); color: var(--s-ink); }
+@media (max-width: 560px) {
+  .sp-sim { margin-top: 28px; }
+  .sp-sim { --sp-h2-size: 24px; }
+  .sp-sim .sp-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sp-sim .sp-card { padding: 10px; box-shadow: 3px 3px 0 var(--sp-shadow, var(--s-ink)); }
+  .sp-sim .sp-why { white-space: normal; }
+}
+
+/* Per-site looks from the mockups (lib/niche similar.look): SkinRecs is softer (pill tabs, round cards, serif heading), the
+   disc golf tile is a disc. Colours and fonts come from each site's own tokens. */
+.sp-sim.sp-soft { --sp-tabs-r: 999px; --sp-card-r: 22px; --sp-tile-r: 12px; --sp-badge-r: 999px; --sp-h2-size: 34px; --sp-h2-w: 400;
+  --s-display: var(--serif, "Instrument Serif", Georgia, serif); --s-acc: oklch(0.9 0.06 20); --sp-shadow: oklch(0.84 0.07 20); --s-soft: var(--mute, #64574f); }
+.sp-sim.sp-soft h2 { letter-spacing: -0.01em; }
+.sp-sim.sp-disc { --sp-card-r: 14px; --sp-tile-r: 50%; --sp-shadow: oklch(0.55 0.09 160); }
+@media (max-width: 560px) { .sp-sim.sp-soft { --sp-h2-size: 28px; } }
+/* The old product page (TennisRecs, SimRacingRecs): the section's own row under the two columns. */
+.sp-wrap { padding: 0 16px; margin-bottom: 32px; }
+/* Titles in the site's display font, bold and a little tighter; SkinRecs' serif stays regular weight (owner 2026-11-16). */
+.sp-sim .sp-name { font-family: var(--s-display); font-weight: 800; letter-spacing: -0.012em; }
+.sp-sim.sp-soft .sp-name { font-weight: 400; font-size: 18px; letter-spacing: 0; }

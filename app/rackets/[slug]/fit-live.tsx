@@ -17,6 +17,7 @@ import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/
 import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
 import { fitReasonParts, type ReasonPart } from "../../../lib/fit-reason";
 import { RANK_SETUP, NEGATIVE_TAGS, sameChoice, type RankSeed } from "../../../lib/rank-seed";
+import { SimilarSection, type SimilarTab } from "../../similar-section";
 
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability words, arm pick and compare words. Unset: padel's. */
 const CFG = fitConfigFor(niche), QUICK = CFG?.quick ? CFG : null;
@@ -304,4 +305,14 @@ export function FitYesNo({ yes, no, tier = "full" }: { yes: PageItem[]; no: Page
       {list.slice(0, SHOWN_ITEMS).map(item)}
       {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
     </div>; })}</div>;
+}
+
+/** "Similar products" on the racket page (app/similar-section.tsx): with picks, each card's badge is the visitor's match % (from
+ *  the engine's items, once loaded) and the cards carry the picks to their pages; without, the Player score. */
+export function FitSimilar({ title, tabs, scoreLabel, look }: { title: string; tabs: SimilarTab[]; scoreLabel: string; look?: "soft" | "disc" }) {
+  const { p: { choice, picked } } = use(), { items } = useContext(ItemsCtx);
+  const ids = tabs.flatMap(t => t.items.map(x => x.id));
+  const pct = picked && items ? (() => { const m = matchPcts(items, choice, SETUP.levelGate, SETUP.engine); return Object.fromEntries(ids.map(id => [id, m.get(id) ?? null])); })() : null;
+  const picksHref = picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : "";
+  return <SimilarSection title={title} tabs={tabs} scoreLabel={scoreLabel} look={look} pct={pct} picksHref={picksHref}/>;
 }

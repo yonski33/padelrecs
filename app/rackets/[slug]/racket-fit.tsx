@@ -8,7 +8,12 @@ import { LEVELS, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
-import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, FitYesNo, BeforePicks, type SaidView, type CompareCard } from "./fit-live";
+import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, FitYesNo, FitSimilar, BeforePicks, type SaidView, type CompareCard } from "./fit-live";
+import type { SimilarItem, SimilarTab } from "../../similar-section";
+import { aheadWord, tint, completeBag, flightOf, expertLine, type Disc } from "../../../lib/similar-picks";
+import { withModelYears, rankingHref as listHref } from "../../../lib/top-lists";
+import { shortLine } from "../../../lib/short-lines";
+import { listLine } from "../../../lib/list-lines";
 import { homePayload } from "../../home-payload";
 import { rankSeed } from "../../../lib/rank-seed";
 import { engineAxis } from "../../../lib/home-rank";
@@ -114,7 +119,9 @@ export default async function RacketFit(props: {
     const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
     const myLevels = levelsOf(me.id);
     const reportsOf = (id: string) => ctx.facts(id).reports;
-    const base = ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(me) && reportsOf(x.id) >= MIN_FIT_REPORTS
+    // A type-picker site (DiscGolfRecs) keeps to the disc's own type (putter, mid …); padel and pickleball items have none.
+    const kindOf = (id: string) => payload.items.find(x => x.id === id)?.kind, myKind = kindOf(me.id);
+    const base = ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(me) && reportsOf(x.id) >= MIN_FIT_REPORTS && (!myKind || kindOf(x.id) === myKind)
       && rowOfFamily(x, ctx.data.listed, y => reportsOf(y.id) >= MIN_FIT_REPORTS).shown.id === x.id && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
     const sameLean = (x: (typeof base)[number]) => !myLean || styleLean(ctx.facts(x.id)).lean === myLean;
     const sameLevel = (x: (typeof base)[number]) => !myLevels.length || levelsOf(x.id).some(l => myLevels.includes(l));
@@ -219,6 +226,39 @@ export default async function RacketFit(props: {
   // "2025 version →" (owner's final mock): the newest older year of the same model, when the catalog lists one.
   const olderRow = ctx.data.listed.filter(x => modelFamily(x) === modelFamily(racketOf(props.racketId)) && x.year < props.year).sort((a, b) => b.year - a.year)[0];
   const older = olderRow ? { year: olderRow.year, href: productHref(olderRow) } : null;
+  // "Similar products" at the foot of the page (owner 2026-11-16, app/similar-section.tsx): the similar rackets above as cards,
+  // each with the trait it is furthest ahead on, and on DiscGolfRecs a second tab with the discs that complete the bag.
+  const simCfg = niche.similar;
+  const dotWords = SITE_FIT.traits.filter(t => !t.hidden).map(t => t.diff ?? `more ${t.label.toLowerCase()}`);
+  const kindOfId = (id: string) => payload.items.find(x => x.id === id)?.kind;
+  const quickTypes = QUICK?.quick?.types ?? [];
+  const typeOf = (kind: string | undefined) => quickTypes.find(t => t.key === kind);
+  const tagOf = (id: string) => { const c = payload.cards[id]; return c?.flight ? c.flight.join(" ") : c?.shape ?? racketOf(id).shape?.toLowerCase() ?? niche.words.one; };
+  // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
+  const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
+    .map(expertLine).find((t): t is string => !!t) ?? null;
+  const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
+  const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
+  const myKindType = typeOf(kindOfId(props.racketId));
+  const groupWord = myKindType ? myKindType.many.toLowerCase() : `${leanWord ? `${leanWord} ` : ""}${niche.words.many}`;
+  const listFor = (word: string | undefined) => withModelYears(niche.topLists ?? []).find(l => word && l.slug.includes(word)) ?? withModelYears(niche.topLists ?? [])[0];
+  const simList = listFor(myKindType?.key ?? (lean && lean !== "balance" ? lean : undefined));
+  const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
+    items: byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))),
+    more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
+  if (simCfg?.pairs === "bag") {
+    const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
+    const mine = levelsOf(props.racketId);
+    const discs: Disc[] = payload.items.filter(x => x.kind && payload.cards[x.id] && x.facts.reports >= MIN_FIT_REPORTS).map(x => ({ id: x.id, kind: x.kind!, flight: flightOf(payload.cards[x.id].flight),
+      signal: x.signal, levelOk: !mine.length || levelsOf(x.id).some(l => mine.includes(l)) }));
+    const me = discs.find(d => d.id === props.racketId);
+    const bag = me ? completeBag(me, discs, k => (typeOf(k)?.shape ?? k).toLowerCase()) : [];
+    const beginners = withModelYears(niche.topLists ?? []).find(l => l.slug.includes("beginner"));
+    simTabs.push({ key: "pairs", label: simCfg.pairLabel ?? "complete your bag", sub: `what ${niche.people.many} carry next to the ${props.shortName}`,
+      items: bag.map((b, i) => ({ ...simItem(b.id, i, b.why), tag: ({ distance: "driver", midrange: "mid", fairway: "fairway" } as Record<string, string>)[kindOfId(b.id) ?? ""] ?? kindOfId(b.id) ?? tagOf(b.id) })),
+      more: beginners ? { href: listHref(beginners.slug), label: `${beginners.label.toLowerCase()}, ranked →` } : null });
+  }
+
   return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="rf-wrap">
@@ -268,6 +308,8 @@ export default async function RacketFit(props: {
 
           {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>
             <p className="rf-specs">{props.specs.map(s => { const [k, ...v] = s.split(" "); return <span key={s}><span>{k}</span>{` ${v.join(" ")}`}</span>; })}</p></details>}
+
+          {simTabs.length > 0 && <FitSimilar title="Also worth a look" tabs={simTabs} scoreLabel={SCORE_WORD} look={simCfg?.look}/>}
       </section>
 
       <FitSticky buy={props.buy} name={props.shortName}/>

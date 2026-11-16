@@ -186,6 +186,8 @@ export const padel: Niche = {
   },
   // /rankings pages (lib/top-lists.ts). Model years are real here, so lists keep to the current and previous model year (maxAgeYears 1: 2025–2026 in 2026; owner decision 2026-10-25, so the site doesn't look outdated). Tags come from the bank above. The catalogue has no player-level field, so the
   // fourth list is "most forgiving" from review tags rather than "best for intermediate players".
+  // "Similar products" at the foot of product pages (owner 2026-11-16).
+  similar: { mode: "single" },
   topLists: [
     // This season's models only: padel players mostly buy the current year. Last season's get their own list below.
     { slug: "best-padel-rackets", label: "Best overall", title: "Best Padel Rackets", minReviews: 10, maxAgeYears: 0,

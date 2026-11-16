@@ -164,6 +164,8 @@ export const tennis: Niche = {
     ],
   },
   // /rankings pages (lib/top-lists.ts). Lists go by review tags; head sizes are written too many ways to filter on.
+  // "Similar products" at the foot of product pages (owner 2026-11-16).
+  similar: { mode: "single" },
   topLists: [
     { slug: "best-tennis-rackets", label: "Best overall", title: "Best Tennis Rackets", minReviews: 10,
       intro: "The rackets players are most consistently happy with." },

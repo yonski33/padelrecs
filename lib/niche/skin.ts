@@ -200,6 +200,8 @@ export const skin: Niche = {
   },
   // /rankings pages (lib/top-lists.ts). Skincare formulas change slowly, so reviews from the last 5 years count (reviewYears).
   // One list per product type that has enough reviews, plus two by skin concern.
+  // "Similar products" at the foot of product pages (owner 2026-11-16).
+  similar: { mode: "tabs", pairs: "routine", pairLabel: "pairs well with", look: "soft" },
   topLists: [
     { slug: "best-face-moisturizers", formerSlugs: ["best-moisturizers"], label: "Moisturizers", title: "Best Face Moisturizers", minReviews: 10, reviewYears: 5,
       intro: "The face moisturizers users are most consistently happy with.", filters: [{ column: "shape", include: ["Moisturizer"] }] },
