@@ -342,197 +342,100 @@
  "nox-at10-18k-2025": {
   "strengths": [
    {
-    "t": "Easy to move all day: quick in defence and at the net.",
-    "for": [
-     "control",
-     "balance",
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Fast in defence: light handling snaps from back glass to net in transition.",
+    "for": [],
     "src": [
-     "research-457afbb6-49f0-43f9-9c43-9359cfcf2d2e",
      "73f66e40-b66b-48bf-b36c-cd41de0d7805",
-     "research-6c27fc84-9b97-44db-bb0f-a4dc686b8720",
-     "research-05d713e6-315b-4283-8b96-7f88c1299631",
      "976654c1-532b-4fdd-9cdc-192479c7b489",
-     "research-f431cfa4-860d-450e-bd24-a67757e9ad66",
-     "research-f52c2dd1-9d87-49bd-bfd5-0514feb00aac",
-     "research-63a3df27-3263-4add-99a6-3a8ca5153113",
+     "research-690e1b51-8578-4588-943c-40e49fb602e1",
+     "research-05d713e6-315b-4283-8b96-7f88c1299631",
+     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
      "research-0f25254d-c859-4692-b5c1-6bfbfa25c7e1",
-     "research-690e1b51-8578-4588-943c-40e49fb602e1",
-     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
-     "research-adc6a273-fe9d-47e1-a697-7758b4e1002b",
-     "research-577147c3-467f-45ca-82c2-305038470b67",
-     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
-     "c32af421-3a23-4c6d-9fb9-0bd9dd1520cf",
-     "bf1d40ce-de2b-42f1-9353-2de73ffb7584"
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3"
     ]
    },
    {
-    "t": "Safe in defence: comfortable defending and lobbing from the back.",
+    "t": "Spin on demand: with good technique it lifts slice and kick shots well.",
+    "for": [],
+    "src": [
+     "research-f680baa6-ca96-4c9e-9ff0-d2c5db69089f",
+     "research-1aa5a85e-925c-4adf-a740-878fe24f8401",
+     "976654c1-532b-4fdd-9cdc-192479c7b489",
+     "research-690e1b51-8578-4588-943c-40e49fb602e1",
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
+     "research-1b12f9a3-2dfe-4da8-82ab-9a07e7299609"
+    ]
+   },
+   {
+    "t": "Generous margin: a large sweet spot helps on lobs and medium-pace balls.",
     "for": [
-     "control",
-     "beginner",
      "intermediate"
     ],
     "src": [
-     "research-fedcbc8e-f69e-47a8-9bf2-df05b996e8f7",
-     "research-6c27fc84-9b97-44db-bb0f-a4dc686b8720",
      "976654c1-532b-4fdd-9cdc-192479c7b489",
-     "research-f61bcda1-7514-492e-9023-417153ff75f6",
-     "research-c225ad00-cb93-446f-897c-79431d1b6182",
      "research-690e1b51-8578-4588-943c-40e49fb602e1",
-     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
-     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
-     "c32af421-3a23-4c6d-9fb9-0bd9dd1520cf"
-    ]
-   },
-   {
-    "t": "Forgiving: a big sweet spot, though it can feel harsh off-centre.",
-    "for": [
-     "beginner",
-     "intermediate",
-     "control"
-    ],
-    "src": [
-     "73f66e40-b66b-48bf-b36c-cd41de0d7805",
-     "research-81fa86af-d2d3-46f9-857c-2d526cb35b5b",
      "research-05d713e6-315b-4283-8b96-7f88c1299631",
-     "976654c1-532b-4fdd-9cdc-192479c7b489",
-     "research-63a3df27-3263-4add-99a6-3a8ca5153113",
-     "research-690e1b51-8578-4588-943c-40e49fb602e1",
      "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
-     "research-cdb1cebd-5118-4d0f-b6e1-a868f0c1712a",
      "research-0eef4326-8c10-436d-9197-2584d322b0e3",
-     "bf1d40ce-de2b-42f1-9353-2de73ffb7584",
-     "research-2847ae01-1c91-4cbc-8a7e-8e8526d488fc",
-     "research-087813a1-0c23-4acd-9807-a529eaf6be40"
-    ]
-   },
-   {
-    "t": "Kind to the arm: comfortable even with tennis elbow.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "research-bd9515c0-746c-46e3-bd21-45bce3ab0135",
-     "research-81fa86af-d2d3-46f9-857c-2d526cb35b5b",
-     "research-5bbcd9fd-199b-43ac-815b-0f2ec382cd67",
-     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f"
+     "research-b67060ef-d1a7-4304-8c61-2129aadf7a48"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Too soft at speed: blocks and volleys float or fly at the glass.",
+    "t": "Soft on smashes: flat overheads lack a finishing edge; kick versions fare better.",
     "for": [
-     "control",
-     "advanced",
-     "intermediate",
-     "balance"
+     "power"
     ],
     "src": [
-     "research-e3c3bc6c-8816-474a-8ff8-8c0b1f45e228",
-     "research-05d713e6-315b-4283-8b96-7f88c1299631",
-     "research-fbcbc4dd-6e29-4f1a-9792-b3aea536c6eb",
-     "research-fee5eb79-637c-4bfe-86b4-a9d999d99733",
      "research-e2bc8845-0603-4f48-8e40-88934edde482",
-     "research-8b30f326-cc6a-4bc4-95bd-bd12d063157e",
-     "research-faee3619-4ce7-4056-9f8a-a06af97e017f",
-     "research-742a5480-63b9-4330-9257-f82cac1b99d2",
-     "research-e06d9fec-3be0-410f-8a04-57899d8127c9",
-     "research-f431cfa4-860d-450e-bd24-a67757e9ad66",
-     "research-2e8ddf60-7164-4815-b267-ff8257217cba",
-     "research-82df160a-16e4-4818-8ace-d47c4c57d861",
-     "research-9bbee0ef-a94b-4e01-a41e-1f3834f4a3fb",
-     "research-28b03f8b-53c1-4fe3-b14f-84f554ca1487",
-     "research-84ebdf37-48b1-4d13-aef4-cb77e45c0ad1",
-     "research-fd23ec1c-9e14-4de7-b6bc-5b6dc9a4b565",
-     "research-d902a4ac-6b8f-4001-9e30-85646e2b35b7",
-     "research-816ed540-a86d-4751-9bda-227639d516bc",
-     "research-6cbc2011-db49-4679-8f1c-3789ee5589cc",
-     "research-03c8ca7e-4f94-4705-9a02-2622454bcb51",
-     "research-1364a1ba-bb1a-4870-90b9-f6fd11fb192d",
-     "research-9e92f254-fcd5-4e10-ab6f-d071cc93db16",
-     "research-2847ae01-1c91-4cbc-8a7e-8e8526d488fc",
-     "research-2213f878-36bb-4bc2-8d2b-14d8f90b1f9e",
-     "research-e08d284f-2f00-4057-b1da-dbf5f1b238f8",
-     "research-632301bb-0776-482c-b62d-1cc8ac48d1fb",
-     "research-86c31c3c-d493-4667-9a0f-8567926401ea",
-     "155147c9-a2ba-455c-bdd2-92e02afe3b9d",
-     "bf1d40ce-de2b-42f1-9353-2de73ffb7584"
-    ],
-    "tip": {
-     "label": "Weather check",
-     "t": "A few players say it gets far too soft in summer heat.",
-     "src": [
-      "research-fee5eb79-637c-4bfe-86b4-a9d999d99733",
-      "research-03c8ca7e-4f94-4705-9a02-2622454bcb51",
-      "research-2213f878-36bb-4bc2-8d2b-14d8f90b1f9e"
-     ]
-    },
-    "alt": {
-     "slug": "bullpadel-vertex-05-hybrid-2026",
-     "t": "Want it drier? The Vertex 05 Hybrid gives firmer, more precise placement.",
-     "src": [
-      "research-43885ce9-b92a-4ac6-94d5-1ecaa1fdcdcf",
-      "bullpadel-vertex-05-hybrid-2026:research-7e3a6119-4122-4bf6-8d75-ae793923bf46"
-     ]
-    }
-   },
-   {
-    "t": "No finisher: smashes lack power, flat ones above all.",
-    "for": [
-     "power",
-     "advanced",
-     "balance"
-    ],
-    "src": [
+     "research-e1513c46-c10a-4940-8ad6-709003f6abeb",
+     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
+     "research-c225ad00-cb93-446f-897c-79431d1b6182",
      "research-fedcbc8e-f69e-47a8-9bf2-df05b996e8f7",
      "research-8b30f326-cc6a-4bc4-95bd-bd12d063157e",
      "research-f61bcda1-7514-492e-9023-417153ff75f6",
-     "research-ca1b647b-3c7d-4b16-9a0e-b9330ea4ddb9",
-     "research-faee3619-4ce7-4056-9f8a-a06af97e017f",
-     "research-2ad8c5bd-1ec3-4279-a0f2-44356f78e1c1",
-     "research-e1513c46-c10a-4940-8ad6-709003f6abeb",
-     "research-690e1b51-8578-4588-943c-40e49fb602e1",
-     "research-ebcc11e6-63c6-4b47-8b09-0f8c981df24f",
-     "research-ab815024-bd93-4175-a439-bf94bda3905e",
-     "research-577147c3-467f-45ca-82c2-305038470b67",
-     "research-1b9c36b3-88a5-4d80-b867-6ce2ed04df59",
-     "research-cdb1cebd-5118-4d0f-b6e1-a868f0c1712a",
-     "research-9857c791-5fe7-43e3-9668-0588511515b1",
-     "research-0eef4326-8c10-436d-9197-2584d322b0e3",
-     "research-2baf91d8-4107-4aa5-a286-8d6b2ef4c7dd",
-     "155147c9-a2ba-455c-bdd2-92e02afe3b9d"
+     "research-ca1b647b-3c7d-4b16-9a0e-b9330ea4ddb9"
     ],
     "alt": {
-     "slug": "nox-at10-genius-12k-2025",
-     "t": "Want more punch? The stiffer AT10 12K hits harder.",
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more smash power? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
      "src": [
-      "976654c1-532b-4fdd-9cdc-192479c7b489",
+      "research-f61bcda1-7514-492e-9023-417153ff75f6",
       "research-ca1b647b-3c7d-4b16-9a0e-b9330ea4ddb9"
      ]
     }
    },
    {
-    "t": "Cracks: it can crack or peel within months, often after a knock.",
+    "t": "Springy at pace: trampoline bounce is hard to tame in fast rallies, worse in the heat.",
     "for": [
-     "beginner"
+     "control"
     ],
+    "src": [
+     "research-f680baa6-ca96-4c9e-9ff0-d2c5db69089f",
+     "research-fee5eb79-637c-4bfe-86b4-a9d999d99733",
+     "research-1364a1ba-bb1a-4870-90b9-f6fd11fb192d",
+     "research-05d713e6-315b-4283-8b96-7f88c1299631",
+     "research-0f25254d-c859-4692-b5c1-6bfbfa25c7e1",
+     "research-2847ae01-1c91-4cbc-8a7e-8e8526d488fc",
+     "research-e3c3bc6c-8816-474a-8ff8-8c0b1f45e228"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-12k-2025",
+     "t": "Want a firmer hit? The Nox AT10 Genius 12K 2025 is known for firm control.",
+     "src": [
+      "research-fee5eb79-637c-4bfe-86b4-a9d999d99733",
+      "research-1364a1ba-bb1a-4870-90b9-f6fd11fb192d"
+     ]
+    }
+   },
+   {
+    "t": "Fragile frame: some frames cracked or broke within months, often after a knock.",
+    "for": [],
     "src": [
      "research-24479b5d-37d1-4c54-81b4-d38b984a2d9e",
      "research-78bc29ec-8573-4dfd-87b4-85e34f4d9924",
-     "research-f431cfa4-860d-450e-bd24-a67757e9ad66",
-     "research-8e24711a-152f-4ef7-b447-5b76e14ffb99",
-     "research-eeef594e-401e-469d-a4fd-2e5887010768",
-     "research-da4c1bd3-08de-4227-bda2-c8f27da8e852",
-     "research-69e4cc23-cddc-4606-98b2-a5e3ad6ab26f",
-     "research-9857c791-5fe7-43e3-9668-0588511515b1",
-     "research-632301bb-0776-482c-b62d-1cc8ac48d1fb"
+     "research-eeef594e-401e-469d-a4fd-2e5887010768"
     ]
    }
   ]
@@ -796,191 +699,120 @@
  "nox-at10-genius-12k-2025": {
   "strengths": [
    {
-    "t": "Real control: precise, and it can sharpen your timing.",
-    "for": [
-     "control",
-     "balance",
-     "intermediate",
-     "advanced"
-    ],
+    "t": "Agile in defence: quick handling sets up blocks and low digs with little fuss.",
+    "for": [],
     "src": [
+     "8308d740-e3d6-4556-b771-50d4ec92392a",
      "82cddb64-2a25-4ea5-aaec-b496f9240082",
-     "9d4c8fd0-1f43-491d-9658-c939365fc30a",
      "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
      "d2ded1f4-fa28-4995-8f31-89a1ec5a17dd",
      "bc7c6151-4881-4533-889b-83a17de04360",
-     "research-a40e91fd-bfef-4de9-b4a8-861f5f549f7a",
+     "a559d41e-aaf2-44d9-8f67-65b9ba901bf8",
+     "f0431836-4dec-4013-9c1a-6a9a2e24f689",
+     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace",
+     "f0d884f9-74b0-41e0-9955-7db08a4a8e44",
+     "research-c2eef7e0-0d4f-4c90-9cec-30f4d28f1188"
+    ]
+   },
+   {
+    "t": "Precise at the net: volleys, víboras and blocks go where you aim.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "82cddb64-2a25-4ea5-aaec-b496f9240082",
+     "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
+     "d2ded1f4-fa28-4995-8f31-89a1ec5a17dd",
      "2e01f500-28b3-408f-b864-fed38dd08e3c",
      "a559d41e-aaf2-44d9-8f67-65b9ba901bf8",
-     "research-8a1b8b9d-b083-4674-a96a-7d2ca2959e13",
-     "research-a0feb018-edd1-49f6-9a77-7467a5c6713d",
      "f0431836-4dec-4013-9c1a-6a9a2e24f689",
-     "research-96dabcce-33b5-4525-95c8-91be448d8bfe",
-     "research-a1479340-d258-4791-b432-f1af900d5d7d",
      "f0d884f9-74b0-41e0-9955-7db08a4a8e44",
-     "research-29936667-9d1b-4d08-8866-470e44d98879",
-     "research-9385091a-4a6f-45ee-a154-bef35a909e1a",
-     "research-7addfb33-b2f7-45af-8179-fa20796d48ba",
-     "research-aa9934be-0f7b-4369-b65e-89b427be8158",
-     "research-580bbd3e-993b-4a6e-8d33-ea5a3f288269",
-     "research-433429b5-e11a-4af5-962d-d7060fb3f30e",
      "research-a7c6d3e1-65fd-428e-b321-0820bdd3c0d1"
     ]
    },
    {
-    "t": "Quick hands: easy to move in defence and on volleys.",
+    "t": "Broad sweet spot: contact stays useful across a wide area on blocks and volleys.",
     "for": [
-     "control",
-     "balance",
      "intermediate"
     ],
     "src": [
-     "8308d740-e3d6-4556-b771-50d4ec92392a",
-     "82cddb64-2a25-4ea5-aaec-b496f9240082",
-     "d2ded1f4-fa28-4995-8f31-89a1ec5a17dd",
-     "a559d41e-aaf2-44d9-8f67-65b9ba901bf8",
-     "f0431836-4dec-4013-9c1a-6a9a2e24f689",
-     "research-96dabcce-33b5-4525-95c8-91be448d8bfe",
-     "f0d884f9-74b0-41e0-9955-7db08a4a8e44",
-     "research-7addfb33-b2f7-45af-8179-fa20796d48ba",
-     "research-402547e8-a9ad-452d-9891-9e5e9046a4a6",
-     "research-910b3492-d5ef-41a2-ae53-5ca76b378fcc",
-     "research-59e8cf6e-c4ae-4838-a858-4da3ffb1d748"
-    ]
-   },
-   {
-    "t": "More attack than the 18K: hits harder and still defends well.",
-    "for": [
-     "balance",
-     "power",
-     "advanced"
-    ],
-    "src": [
      "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
-     "research-a40e91fd-bfef-4de9-b4a8-861f5f549f7a",
-     "2e01f500-28b3-408f-b864-fed38dd08e3c",
-     "f0431836-4dec-4013-9c1a-6a9a2e24f689",
-     "research-9385091a-4a6f-45ee-a154-bef35a909e1a",
-     "research-562a04d0-833b-4e00-af91-4b69aef7cd57",
-     "932837fe-ca0b-4939-a348-3a4aeae4bc7c"
-    ]
-   },
-   {
-    "t": "Mostly kind to the arm: fine for many with elbow trouble, though it can cause pain.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "research-a49325a4-b3cd-4d59-b788-c8f870a2032b",
-     "research-a40e91fd-bfef-4de9-b4a8-861f5f549f7a",
-     "research-c2eef7e0-0d4f-4c90-9cec-30f4d28f1188",
-     "research-a0feb018-edd1-49f6-9a77-7467a5c6713d",
-     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace",
-     "research-a604df7d-45b0-49ef-b87e-d77c173f753f",
-     "research-59e8cf6e-c4ae-4838-a858-4da3ffb1d748",
-     "research-edc49d82-6d13-47ae-94b6-b5fb9e43e2e3",
-     "research-1ef2137a-e3f4-488e-a551-de0a39b08be4",
-     "research-ab40b3d1-ea20-43ca-9d68-e894d2693d18",
-     "research-ff66796d-a171-43d9-b59e-d4721ca7069b"
+     "d2ded1f4-fa28-4995-8f31-89a1ec5a17dd",
+     "bc7c6151-4881-4533-889b-83a17de04360",
+     "research-e4e324fa-4f61-43e3-9761-bcea265048ae",
+     "research-a7c6d3e1-65fd-428e-b321-0820bdd3c0d1"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Firmer and more technical than the 18K: you make the pace. A beginner found it hard on the arm.",
+    "t": "Needs your own pace: lobs and flat smashes ask for a long, committed swing.",
     "for": [
-     "beginner"
-    ],
-    "only": [
-     "beginner"
+     "power"
     ],
     "src": [
+     "8308d740-e3d6-4556-b771-50d4ec92392a",
      "9d4c8fd0-1f43-491d-9658-c939365fc30a",
-     "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
-     "research-5e2d179a-f047-4860-a3b4-fa50e4849741",
+     "research-d3a99536-532a-4437-b752-72644284b009",
+     "2e01f500-28b3-408f-b864-fed38dd08e3c",
+     "research-15ad8415-b271-468b-aac8-df66ccbc422b",
+     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace",
+     "research-4c88cb48-6f31-4cb2-9b64-ddfd037873d9",
+     "research-1ef2137a-e3f4-488e-a551-de0a39b08be4",
+     "research-ab40b3d1-ea20-43ca-9d68-e894d2693d18",
+     "research-25252e82-4548-49e0-83f3-ccb62c6c3402",
      "research-ff66796d-a171-43d9-b59e-d4721ca7069b",
      "research-cb2e78f5-1919-4d5a-9062-0b7bd7f9c097"
     ],
     "alt": {
-     "slug": "nox-at10-18k-2025",
-     "t": "Want more help? The softer AT10 18K is easier on mishits.",
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more free pace? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
      "src": [
-      "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
-      "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c"
+      "research-4c88cb48-6f31-4cb2-9b64-ddfd037873d9",
+      "research-25252e82-4548-49e0-83f3-ccb62c6c3402"
      ]
     }
    },
    {
-    "t": "Smashes need your muscle: it won't finish points, flat smashes above all.",
-    "for": [
-     "power",
-     "advanced",
-     "balance"
-    ],
+    "t": "Tighter than the 2024: the 2025 gives less margin than last year's, and less still in the cold.",
+    "for": [],
     "src": [
-     "8308d740-e3d6-4556-b771-50d4ec92392a",
-     "research-4c88cb48-6f31-4cb2-9b64-ddfd037873d9",
-     "9d4c8fd0-1f43-491d-9658-c939365fc30a",
-     "87e27838-a08d-452f-b6e8-9ed6a87cf5df",
-     "research-d3a99536-532a-4437-b752-72644284b009",
-     "research-15ad8415-b271-468b-aac8-df66ccbc422b",
-     "research-c2eef7e0-0d4f-4c90-9cec-30f4d28f1188",
-     "research-1ef2137a-e3f4-488e-a551-de0a39b08be4",
-     "research-ab40b3d1-ea20-43ca-9d68-e894d2693d18",
-     "research-25252e82-4548-49e0-83f3-ccb62c6c3402",
+     "research-d7387b7f-adcf-459a-b0f7-7a977caeee56",
+     "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c",
      "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace",
-     "research-910b3492-d5ef-41a2-ae53-5ca76b378fcc",
-     "research-7130e4e8-3bec-4fac-990e-c9cfce2b79ff",
-     "9e36d29f-bcb9-44e1-82ca-1416337a3212"
-    ]
-   },
-   {
-    "t": "Less forgiving than the 18K: stiffer, needing more precision and effort.",
-    "for": [
-     "beginner",
-     "arm",
-     "intermediate"
-    ],
-    "src": [
-     "9d4c8fd0-1f43-491d-9658-c939365fc30a",
-     "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
-     "research-5e2d179a-f047-4860-a3b4-fa50e4849741",
-     "research-ff66796d-a171-43d9-b59e-d4721ca7069b",
-     "research-cb2e78f5-1919-4d5a-9062-0b7bd7f9c097",
-     "research-4fcd44d8-bfe6-4c04-9c4d-1cbd5f46aace"
+     "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac"
     ],
     "alt": {
      "slug": "nox-at10-18k-2025",
-     "t": "Want more help? The softer AT10 18K is easier on mishits.",
+     "t": "Want more margin? The Nox AT10 Genius 18K 2025 is a softer, forgiving control teardrop.",
      "src": [
-      "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
-      "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c"
+      "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c",
+      "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac"
      ]
     }
    },
    {
-    "t": "A bit lively at the net: blocks and volleys can fly off to the glass.",
+    "t": "Mixed on the arm: splits opinion: smooth for some, it can bring elbow or wrist ache to others.",
     "for": [
-     "control"
+     "arm"
     ],
     "src": [
-     "research-a08acc2b-4ae6-41ed-a915-abf87331bf5b",
-     "research-88eb4e56-4537-43a8-99b3-82d161249289",
-     "research-5dbdb744-4428-4bbb-987a-644612295850",
-     "research-d1254954-7fab-49f9-aab2-cf0ec672ffb5",
-     "research-7130e4e8-3bec-4fac-990e-c9cfce2b79ff"
-    ]
-   },
-   {
-    "t": "Weather check: it gets harder to handle in the cold, softer in the heat.",
-    "for": [],
-    "src": [
-     "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c",
-     "research-696d9a84-159e-4cd6-8709-a8490d00f3eb"
-    ]
+     "research-edc49d82-6d13-47ae-94b6-b5fb9e43e2e3",
+     "research-1ef2137a-e3f4-488e-a551-de0a39b08be4",
+     "research-ab40b3d1-ea20-43ca-9d68-e894d2693d18",
+     "research-ff66796d-a171-43d9-b59e-d4721ca7069b"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore arm? The Oxdog Hyper Pro 2.0 2026 is known for being arm-friendly.",
+     "src": [
+      "research-edc49d82-6d13-47ae-94b6-b5fb9e43e2e3",
+      "research-ff66796d-a171-43d9-b59e-d4721ca7069b"
+     ]
+    }
    }
   ]
  },
@@ -1545,383 +1377,224 @@
  "adidas-metalbone-ctrl-3-4-2025": {
   "strengths": [
    {
-    "t": "Big, soft sweet spot: close to one big sweet spot.",
+    "t": "Huge sweet spot: a wide, central hitting zone keeps mishits in play.",
     "for": [
-     "beginner",
-     "intermediate",
-     "control",
-     "balance"
-    ],
-    "src": [
-     "research-f4c424e5-6727-4ae1-ba6c-9909db5525e7",
-     "b65c3856-52e4-4efa-a62c-4142a2f9b8f0",
-     "c63b82e1-6c93-447a-968c-35367a5890c5",
-     "35eddd5a-0235-47b8-aa3d-fa8281c6f20e",
-     "958a48cc-cee5-4eab-b079-49f50c58e802",
-     "research-fe95c328-79c3-4519-809e-eb29b35fca00",
-     "research-8ac5cae5-e829-4706-9b45-4b0d3bcd105d",
-     "research-5a6fba05-d18f-43d4-b5d7-9d03aba0c661",
-     "research-8ddaee80-80ff-4c49-a274-54b3d047b4dd",
-     "research-01a794aa-d338-4222-87d3-0f8b63fd817f",
-     "research-78ee42a8-226a-4e93-bc49-e81e6d7b2b8c",
-     "research-5bfaa34e-2e2c-4b35-ab36-f7aef6ea211d",
-     "research-d439af2e-104a-4041-89ea-8d7c128a9711",
-     "research-62998c95-6dab-4d33-b63e-aaa3f9d09986",
-     "research-2b409b82-2656-4f54-90bc-90629da8b76d",
-     "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d",
-     "a9b769de-39ec-4670-bfe3-4a36fbb157e4",
-     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
-    ]
-   },
-   {
-    "t": "Easy in defence: great on lobs and off the back glass.",
-    "for": [
-     "control",
      "beginner",
      "intermediate"
     ],
     "src": [
+     "b65c3856-52e4-4efa-a62c-4142a2f9b8f0",
+     "c63b82e1-6c93-447a-968c-35367a5890c5",
      "958a48cc-cee5-4eab-b079-49f50c58e802",
-     "research-8ac5cae5-e829-4706-9b45-4b0d3bcd105d",
-     "research-dfb79d6e-5c1b-47d9-a60a-88e10d861f25",
-     "research-6b3a528c-45e5-4f55-af9f-3da7f5ede180",
-     "research-eefbc890-e42c-451c-ad02-95c61b3a243e",
-     "research-456b346a-7a25-4af7-9867-c74b767ec879",
-     "research-a6847e3f-3d78-4e94-a562-c642a86d3149",
-     "a9b769de-39ec-4670-bfe3-4a36fbb157e4",
-     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
-    ]
-   },
-   {
-    "t": "Easy on the arm: long sessions without elbow pain.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "research-2c8d78b7-a261-4082-9128-2ec6718fe341",
-     "research-ba734015-42d5-4824-bbec-9a8d25eb479e",
-     "research-51376575-aa40-46c7-b670-86de653cefa8",
+     "research-2b409b82-2656-4f54-90bc-90629da8b76d",
      "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d",
-     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
+     "research-62998c95-6dab-4d33-b63e-aaa3f9d09986",
+     "research-5bfaa34e-2e2c-4b35-ab36-f7aef6ea211d",
+     "research-78ee42a8-226a-4e93-bc49-e81e6d7b2b8c",
+     "research-fe95c328-79c3-4519-809e-eb29b35fca00",
+     "research-5a6fba05-d18f-43d4-b5d7-9d03aba0c661",
+     "research-8ac5cae5-e829-4706-9b45-4b0d3bcd105d",
+     "research-8ddaee80-80ff-4c49-a274-54b3d047b4dd"
     ]
    },
    {
-    "t": "Weights up top add smash power when you want it.",
-    "for": [
-     "power",
-     "balance"
-    ],
+    "t": "Calm at the back: defensive lobs and blocks come easily under pressure.",
+    "for": [],
     "src": [
      "b65c3856-52e4-4efa-a62c-4142a2f9b8f0",
-     "research-8f15fdd0-59b2-4487-a9ee-eac2644f6d8c",
-     "research-5bfaa34e-2e2c-4b35-ab36-f7aef6ea211d",
-     "0138f8d9-0eb4-424d-9180-192d02bd6e21"
+     "958a48cc-cee5-4eab-b079-49f50c58e802",
+     "research-6b3a528c-45e5-4f55-af9f-3da7f5ede180",
+     "research-a6847e3f-3d78-4e94-a562-c642a86d3149",
+     "research-dfb79d6e-5c1b-47d9-a60a-88e10d861f25",
+     "research-eefbc890-e42c-451c-ad02-95c61b3a243e",
+     "research-8ac5cae5-e829-4706-9b45-4b0d3bcd105d"
+    ]
+   },
+   {
+    "t": "Accurate placement: shots stay on target even when you speed up the swing.",
+    "for": [
+     "control"
     ],
-    "minor": true
+    "src": [
+     "research-cf8073fa-3cf0-42c2-89ff-bcf62cdbe091",
+     "research-bc9a96ce-498f-49fd-987c-8c14de4d3350",
+     "35eddd5a-0235-47b8-aa3d-fa8281c6f20e",
+     "research-52c65e5e-412f-456e-98ee-3e8562f3c5ce",
+     "research-1a30aad7-21be-4470-a64f-58062d38a163",
+     "research-6dd19129-b747-48d1-9925-2c772a89eea6"
+    ]
    }
   ],
   "catches": [
    {
-    "t": "Blocks at the net bounce: fast volleys and blocks can fly off.",
+    "t": "Bouncy at the net: fast volleys and blocks fly off the soft bed; the 2026 is calmer.",
     "for": [
-     "control",
-     "advanced",
-     "intermediate"
+     "control"
     ],
     "src": [
+     "research-abcd6233-98b7-4eee-9866-93ca784575e5",
+     "research-6b3a528c-45e5-4f55-af9f-3da7f5ede180",
+     "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d",
+     "research-2c8d78b7-a261-4082-9128-2ec6718fe341",
+     "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
      "research-fe95c328-79c3-4519-809e-eb29b35fca00",
      "research-d5c02926-b989-4cb6-8c35-61efe789380e",
      "research-dfb79d6e-5c1b-47d9-a60a-88e10d861f25",
      "research-5a6fba05-d18f-43d4-b5d7-9d03aba0c661",
-     "research-6b3a528c-45e5-4f55-af9f-3da7f5ede180",
-     "research-2c8d78b7-a261-4082-9128-2ec6718fe341",
-     "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
-     "research-143905af-cbc8-4229-9909-65e157ad07da",
-     "8b49f455-1cb5-48ed-9841-63e7a7162af2",
-     "research-6bfd63c1-7942-4cc4-a2df-a4db1f9dfd8d"
+     "research-143905af-cbc8-4229-9909-65e157ad07da"
     ],
-    "tip": {
-     "label": "Player tip",
-     "t": "A few players say it clicked once they adapted, so give it a few sessions.",
+    "alt": {
+     "slug": "bullpadel-neuron-02-2026",
+     "t": "Want a firmer net feel? The Bullpadel Neuron 02 2026 is known for firm control at the net.",
      "src": [
-      "research-d22d2f4c-fd52-4911-975f-8d2430b91963",
-      "research-6dd19129-b747-48d1-9925-2c772a89eea6",
-      "research-01a794aa-d338-4222-87d3-0f8b63fd817f"
+      "research-dfb79d6e-5c1b-47d9-a60a-88e10d861f25",
+      "research-5a6fba05-d18f-43d4-b5d7-9d03aba0c661"
      ]
     }
    },
    {
-    "t": "Not a smasher: the soft face costs smash power.",
+    "t": "Fragile parts: plastic top weights can snap or fall out; some frames cracked.",
+    "for": [],
+    "src": [
+     "research-62998c95-6dab-4d33-b63e-aaa3f9d09986",
+     "research-d14903b8-f59b-4d35-9bb6-88025d54f5ea",
+     "research-afe3d12b-929f-4f6d-8cef-52cbe5f46b69",
+     "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
+     "research-43406190-9035-4575-91f2-d953df47dd65"
+    ]
+   },
+   {
+    "t": "Soft for big hitters: an aggressive game can run short on smash power.",
     "for": [
-     "power",
-     "advanced",
-     "balance"
+     "power"
     ],
     "src": [
      "research-cf8073fa-3cf0-42c2-89ff-bcf62cdbe091",
-     "research-d5c02926-b989-4cb6-8c35-61efe789380e",
-     "research-eefbc890-e42c-451c-ad02-95c61b3a243e",
      "research-a6847e3f-3d78-4e94-a562-c642a86d3149",
-     "a9b769de-39ec-4670-bfe3-4a36fbb157e4",
-     "8b49f455-1cb5-48ed-9841-63e7a7162af2"
+     "research-d5c02926-b989-4cb6-8c35-61efe789380e",
+     "research-eefbc890-e42c-451c-ad02-95c61b3a243e"
     ],
     "alt": {
      "slug": "adidas-metalbone-ctrl-2026",
-     "t": "Want more pop? The 2026 CTRL 3.5 has more power.",
+     "t": "Want more pop? The Adidas Metalbone CTRL 2026 keeps the round shape and is known for easy power.",
      "src": [
-      "adidas-metalbone-ctrl-2026:research-2413707e-e4a6-43fb-8e81-dbdb20f6376e",
-      "adidas-metalbone-ctrl-2026:research-ede49a90-69fb-4510-9223-b1dad56b351c"
+      "research-a6847e3f-3d78-4e94-a562-c642a86d3149",
+      "research-d5c02926-b989-4cb6-8c35-61efe789380e"
      ]
     }
-   },
-   {
-    "t": "Durability: it can crack, and the weights can come loose or break.",
-    "for": [],
-    "src": [
-     "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
-     "research-456b346a-7a25-4af7-9867-c74b767ec879",
-     "research-d14903b8-f59b-4d35-9bb6-88025d54f5ea",
-     "research-afe3d12b-929f-4f6d-8cef-52cbe5f46b69",
-     "research-43406190-9035-4575-91f2-d953df47dd65",
-     "research-62998c95-6dab-4d33-b63e-aaa3f9d09986"
-    ]
    }
   ]
  },
  "siux-electra-pro-st4-2025": {
   "strengths": [
    {
-    "t": "Power with control: easy power, with real control too.",
+    "t": "Power with control: pop on smashes and x3s without giving up placement on lobs.",
     "for": [
-     "balance",
      "power",
-     "intermediate",
      "advanced"
     ],
     "src": [
      "research-31164fcc-e62c-4393-81de-5ffa86c470b6",
-     "7d1d6507-9288-47c8-bd8a-a55742659356",
-     "research-dd10a44e-74be-4d36-ad34-9ffd08c55f80",
-     "research-26ec4079-a3ea-452d-bffa-9bd0300d6ae6",
      "research-39e06717-34f7-4146-a449-66e1c03f18f8",
-     "research-70d14de6-9346-4e0a-8dd5-c052f48d319a",
-     "research-8a8701f5-6f59-4abb-8e13-e07e9d652cb2",
-     "research-8e489f39-3f8c-41ca-af0b-3018001cbfba",
-     "research-1206b9fd-c68b-4a26-9ca5-a7a489b3fc16",
-     "research-6f84da51-5eaf-48e2-8ac6-33415cd584c5",
-     "research-b7db695f-562f-4bd6-bc7b-a1ca75f4fc47",
+     "f01a264b-3c19-46b1-a70f-a3a5a56762e6",
      "research-2103a35d-8c76-4761-8e5a-306302c27d1c",
-     "research-87c9cfcb-e490-457e-a135-4e147e2bb354",
-     "research-407783f9-9d0a-4824-ab5b-0dbcedc2d740",
-     "research-fb616530-0639-49c5-960a-43c4e6ae4b70",
-     "research-d4598065-3c79-47b6-b8ce-17748de87e83",
-     "research-ff8ee0aa-3141-4b76-bdda-2a640a63d6e8",
-     "research-e20ec251-4962-4853-a2eb-594e862f2e58",
      "research-68afbf4a-2867-4416-9afa-4afe0248625b",
-     "research-f42ebc75-c6e9-4391-989f-452eb4f08772",
-     "dcbb071f-fd24-40ab-a86b-e23f00726f9a",
-     "58983e7a-1a60-40ab-8a1b-298f51715459",
-     "research-dc2efbef-b591-42d6-9eaf-33f9677bcacc",
-     "research-6b416336-a916-4b05-a07f-f6d38f2ab42a",
-     "research-b23410ca-d73c-4003-a7a1-251571f90dbb",
      "research-579a669a-af31-48cb-aabd-48c44452a36d",
-     "research-65ac8aa7-4a80-47cd-a89f-4830e26c2006",
-     "f01a264b-3c19-46b1-a70f-a3a5a56762e6",
-     "research-a34cda93-a27e-407e-b227-99aed4e00a8c",
-     "research-c585b0d8-908f-4e3c-a2af-abc92eb20b0e",
-     "research-98acf17e-dfac-40b3-9396-21ebe36b5489",
-     "research-d8bc9935-4611-4b46-8844-c2b8c18cfecd"
-    ]
-   },
-   {
-    "t": "Smashes come easy: x3s and kick smashes get out of the court.",
-    "for": [
-     "power",
-     "advanced"
-    ],
-    "src": [
-     "ffaecc53-efc3-414d-8302-c5c318c784ff",
-     "research-70d14de6-9346-4e0a-8dd5-c052f48d319a",
-     "research-8a8701f5-6f59-4abb-8e13-e07e9d652cb2",
-     "research-7fdfbd01-4c36-4e31-a96e-c92210a523e4",
-     "f01a264b-3c19-46b1-a70f-a3a5a56762e6",
-     "research-b2f6dcfd-2e83-4e0d-a203-81b22cfe2e60",
      "research-0ebe0acd-ea9e-43fe-8105-768aa63d6b94",
-     "research-f42ebc75-c6e9-4391-989f-452eb4f08772",
-     "c3ffc0fc-fe59-4d91-8b7e-4688fc181c56"
+     "research-dd10a44e-74be-4d36-ad34-9ffd08c55f80",
+     "research-dc2efbef-b591-42d6-9eaf-33f9677bcacc",
+     "research-407783f9-9d0a-4824-ab5b-0dbcedc2d740"
     ]
    },
    {
-    "t": "Lots of spin from the sandpaper-like face.",
-    "for": [
-     "advanced",
-     "balance",
-     "power"
-    ],
+    "t": "Quick for a power frame: handles well on reflex volleys and moves easily in defence.",
+    "for": [],
     "src": [
-     "dcbb071f-fd24-40ab-a86b-e23f00726f9a",
-     "ffaecc53-efc3-414d-8302-c5c318c784ff",
      "58983e7a-1a60-40ab-8a1b-298f51715459",
+     "research-0ebe0acd-ea9e-43fe-8105-768aa63d6b94",
+     "research-7898850f-a071-4221-bf1b-6b7e7f40db32",
+     "research-2df00a1d-0ca6-4325-bdea-e3f39670018a",
+     "research-dd10a44e-74be-4d36-ad34-9ffd08c55f80",
+     "research-dc2efbef-b591-42d6-9eaf-33f9677bcacc",
+     "research-30fca510-647c-4d0d-99a0-f968ff6bffa1",
+     "research-407783f9-9d0a-4824-ab5b-0dbcedc2d740"
+    ]
+   },
+   {
+    "t": "Deep lobs: trampoline bounce adds output from the back when you defend.",
+    "for": [],
+    "src": [
      "7d1d6507-9288-47c8-bd8a-a55742659356",
-     "cf3615db-ae73-4eec-b1e4-80d1d1663835",
-     "research-18711313-d2e2-4a0e-ada4-605677b70e04",
-     "research-190ff136-cee1-48fa-8dee-a1614290e9db",
-     "research-55c72697-7be4-4dfd-96df-69a874089699"
-    ],
-    "minor": true
+     "research-39e06717-34f7-4146-a449-66e1c03f18f8",
+     "research-30fca510-647c-4d0d-99a0-f968ff6bffa1",
+     "research-ab701962-0e73-4671-9782-b87a4c16cc56"
+    ]
    }
   ],
   "catches": [
    {
-    "t": "Lively and demanding at speed: the bounce and sweet spot take good technique.",
+    "t": "Springy at the net: a bouncy bed can blunt touch on volleys and chiquitas.",
     "for": [
-     "intermediate"
-    ],
-    "only": [
-     "intermediate"
+     "control"
     ],
     "src": [
-     "research-29669675-2fe4-4802-b8e6-6bc63a059a29",
-     "research-6013aa75-49c5-4add-90fc-d4bf327d61c7",
-     "research-3f6c658a-641a-4e8f-89a4-3a41bf388acf",
-     "research-ab701962-0e73-4671-9782-b87a4c16cc56",
-     "research-86f3293d-f624-4107-8d0b-a55675a9d12f",
-     "research-9b9a4737-2825-434f-ba30-facd1d80c79b",
-     "research-2e09e5bf-b5bd-4ed8-afd6-9276ec4e7fa5"
-    ]
-   },
-   {
-    "t": "Bouncy: a lot of trampoline, so fast volleys and blocks fly long.",
-    "for": [
-     "control",
-     "advanced",
-     "intermediate",
-     "balance"
-    ],
-    "src": [
-     "research-d9f18376-ae99-4444-bb4c-939d07c0d4e4",
-     "research-96894b91-0a26-456c-b766-ac7800bb7e69",
-     "research-18711313-d2e2-4a0e-ada4-605677b70e04",
-     "research-7fdfbd01-4c36-4e31-a96e-c92210a523e4",
-     "research-86f3293d-f624-4107-8d0b-a55675a9d12f",
-     "research-93135096-be5d-4c17-a9ed-3d48e504bfce",
-     "research-65f81060-b722-418c-9b4c-edc0e41dae83",
-     "research-ed14bb01-e63b-4ac1-aaa0-959c0babd803",
-     "research-964b856d-36a9-48d8-abc2-75659c836c20",
-     "research-d56d2edf-7172-4c75-a6f1-0ed76c1935c2",
-     "research-8a4033eb-e9be-490a-9cec-6e3df52150a1",
-     "research-114dd52b-f429-45e6-9a9b-69a97784f9b6",
-     "research-78c15363-f64f-45b6-a634-0b0456b61037",
-     "research-9b9a4737-2825-434f-ba30-facd1d80c79b",
-     "research-ea608027-30ac-49fb-a2f2-129f29cb0c43",
-     "research-ab701962-0e73-4671-9782-b87a4c16cc56",
-     "research-0ad0809c-5932-4a06-8de7-4f99526e7615",
-     "research-2e09e5bf-b5bd-4ed8-afd6-9276ec4e7fa5",
-     "research-b44e52d8-cbe3-4f4e-9d9d-7e553f7ea064",
-     "research-e20ec251-4962-4853-a2eb-594e862f2e58",
-     "research-e4ad0756-2e29-4ca6-bcfe-43485b350419",
-     "research-a59596cd-5bcc-42f3-abb1-3ad30f7e4c7c",
-     "research-51a16902-c1fc-49df-bcdf-73d023fe7784",
-     "research-bbcc83fb-a371-4715-8344-01d66135c870",
+     "f01a264b-3c19-46b1-a70f-a3a5a56762e6",
+     "research-68afbf4a-2867-4416-9afa-4afe0248625b",
      "research-0ebe0acd-ea9e-43fe-8105-768aa63d6b94",
-     "research-fd2f79e5-2d1d-4d69-9114-22320d66c143",
-     "c3ffc0fc-fe59-4d91-8b7e-4688fc181c56"
+     "research-96894b91-0a26-456c-b766-ac7800bb7e69",
+     "research-ab701962-0e73-4671-9782-b87a4c16cc56",
+     "research-65f81060-b722-418c-9b4c-edc0e41dae83"
     ],
-    "tip": {
-     "label": "Weather check",
-     "t": "A few players say the cold makes it harder and less predictable.",
+    "alt": {
+     "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+     "t": "Want a crisper hit? The Nox AT10 Genius 12K Alum XTREM 2026 is known for firm control.",
      "src": [
-      "research-2f24942a-6f5d-42b9-a759-cb6b3e72e96f",
-      "research-65f81060-b722-418c-9b4c-edc0e41dae83",
-      "research-d7aa2e1c-8615-4d08-874f-1a056ac39bff"
+      "research-0ebe0acd-ea9e-43fe-8105-768aa63d6b94",
+      "research-96894b91-0a26-456c-b766-ac7800bb7e69"
      ]
     }
    },
    {
-    "t": "The sweet spot splits opinion: some find off-centre hits die, others call it big.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "research-cac2325f-8c4b-4097-a445-117e4de48946",
-     "research-2df00a1d-0ca6-4325-bdea-e3f39670018a",
-     "research-6013aa75-49c5-4add-90fc-d4bf327d61c7",
-     "research-d98608ea-5c10-4ecb-bc47-d3aaf7c46db9",
-     "research-0142a362-0755-42c9-9a6c-287c00cba6dc",
-     "research-1ffe2eb5-3a00-4222-9c96-ef96351b53ac",
-     "research-cfff1335-d472-4161-919c-7a652bc73901",
-     "research-87c9cfcb-e490-457e-a135-4e147e2bb354",
-     "research-9b9a4737-2825-434f-ba30-facd1d80c79b",
-     "research-c585b0d8-908f-4e3c-a2af-abc92eb20b0e"
-    ],
-    "tip": {
-     "label": "Heads up",
-     "t": "Some players say the sweet spot and rebound take a few sessions to get used to.",
-     "src": [
-      "ffaecc53-efc3-414d-8302-c5c318c784ff",
-      "research-6013aa75-49c5-4add-90fc-d4bf327d61c7",
-      "research-3f6c658a-641a-4e8f-89a4-3a41bf388acf",
-      "research-ab701962-0e73-4671-9782-b87a4c16cc56"
-     ]
-    }
-   },
-   {
-    "t": "Sore arm? It can cause elbow or wrist pain, often with heavy 375–388 g units.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "research-252945f9-7cb7-434c-a326-759e7335b5b6",
-     "research-ecb661ac-98fe-453d-8910-584a38539fb1",
-     "research-29156e5f-64ac-4511-aaeb-7d6e779ef106",
-     "research-03a0225e-2c70-43d9-88db-6b281b512b55",
-     "research-bb9d2f73-7de6-4fa7-87de-ed6ee748b9f3",
-     "research-045fc3d8-eb26-4c6f-8914-ddd6c1de1433",
-     "research-ea608027-30ac-49fb-a2f2-129f29cb0c43"
-    ],
-    "tip": {
-     "label": "Player tip",
-     "t": "A few players say lighter units, 355 to under 370 g, feel faster and easier on the elbow.",
-     "src": [
-      "research-35b44c2a-5474-4719-b48a-2a016129d557",
-      "research-9928ab3c-8418-41a9-a653-10496d7d9e73"
-     ]
-    }
-   },
-   {
-    "t": "Tough start for beginners: the sweet spot is hard to find, the bounce hard to tame.",
-    "for": [
-     "beginner"
-    ],
-    "only": [
-     "beginner"
-    ],
-    "src": [
-     "research-d98608ea-5c10-4ecb-bc47-d3aaf7c46db9",
-     "research-86f3293d-f624-4107-8d0b-a55675a9d12f",
-     "research-9b9a4737-2825-434f-ba30-facd1d80c79b"
-    ]
-   },
-   {
-    "t": "Build quality: cracks, paint chips and inside rattles are common.",
+    "t": "Modest sweet spot: off-centre and tip hits lose output fast on this frame.",
     "for": [],
     "src": [
-     "research-5277b60e-6d2c-4751-8ad2-8d6de374c325",
-     "research-7f600967-c75a-4123-b53e-652d6a2f8384",
-     "research-007eabc5-8de2-4b8a-8d03-8155302c0bbe",
-     "research-228bccaf-866d-452e-8735-3212193e6e86",
-     "research-6f2c318d-c198-4f3e-a536-a4b42b62539c",
-     "research-04e3c4a7-a32c-4cfb-a66a-9a2b7d07d8a6",
-     "research-68afbf4a-2867-4416-9afa-4afe0248625b",
-     "research-831cd4a7-fbc9-418f-acd8-56534f9fae53"
-    ]
+     "research-6ef534e3-8df5-4897-be65-8c6104113e21",
+     "research-2df00a1d-0ca6-4325-bdea-e3f39670018a",
+     "research-d98608ea-5c10-4ecb-bc47-d3aaf7c46db9",
+     "research-0142a362-0755-42c9-9a6c-287c00cba6dc",
+     "research-cac2325f-8c4b-4097-a445-117e4de48946"
+    ],
+    "alt": {
+     "slug": "nox-at10-18k-2025",
+     "t": "Want more margin? The Nox AT10 Genius 18K 2025 is a forgiving control teardrop.",
+     "src": [
+      "research-d98608ea-5c10-4ecb-bc47-d3aaf7c46db9",
+      "research-cac2325f-8c4b-4097-a445-117e4de48946"
+     ]
+    }
+   },
+   {
+    "t": "Mixed on a sore elbow: splits opinion: it can feel too hard, more so in winter or on a heavy unit.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "research-29156e5f-64ac-4511-aaeb-7d6e779ef106",
+     "research-d7aa2e1c-8615-4d08-874f-1a056ac39bff",
+     "research-ecb661ac-98fe-453d-8910-584a38539fb1",
+     "research-252945f9-7cb7-434c-a326-759e7335b5b6"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is known for being arm-friendly.",
+     "src": [
+      "research-29156e5f-64ac-4511-aaeb-7d6e779ef106",
+      "research-252945f9-7cb7-434c-a326-759e7335b5b6"
+     ]
+    }
    }
   ]
  },
@@ -2382,39 +2055,29 @@
  "bullpadel-vertex-05-2026": {
   "strengths": [
    {
-    "t": "Control for a diamond: precise placement and solid blocks.",
+    "t": "Dry, accurate response: lobs, bandejas and blocks land where you aim.",
     "for": [
-     "control",
-     "intermediate",
-     "advanced",
-     "balance"
+     "control"
     ],
     "src": [
      "52724a8b-9ced-4bf4-a493-656a1e2463d0",
      "ba51530e-56b2-455e-9edc-0315073a3346",
      "6e59f21e-3007-428e-ad01-59f0b6d9d020",
-     "7ce8ccc1-fb47-4660-a777-79e8d595a108",
      "cdc4a9ad-658c-4ffa-b733-f105d6c6c85e",
      "9d118ff5-3c77-4570-845d-993228543ba4",
      "4c2e768d-b972-454b-9145-de496d4a100d",
      "4ade8f1c-7f1c-4e95-a4f3-b77796c44f25",
-     "727160bc-eddb-4d29-8143-d500f70bd988",
      "e5e2fcc7-f67b-4873-b604-7226201f7211",
-     "6a51fe92-7b1e-44ab-9ca7-05899616118b",
-     "2ab9c625-1fe1-4a65-a780-70b15398b1ea",
-     "f955665a-aec2-4d18-8049-da9cc915430e",
      "ec816424-106a-4127-9f45-4337a40eb65d",
-     "cb9819e7-5f14-4a4d-b066-9e97b0fea8bd",
-     "research-0d7fd9d8-b8b8-4302-87ff-b7556bc99b05",
-     "research-9b45a323-e946-4408-a8ec-a1f336a9e623"
+     "f955665a-aec2-4d18-8049-da9cc915430e",
+     "research-9b45a323-e946-4408-a8ec-a1f336a9e623",
+     "cb9819e7-5f14-4a4d-b066-9e97b0fea8bd"
     ]
    },
    {
-    "t": "Forgiving for a diamond: the sweet spot is bigger and easier than you'd expect.",
+    "t": "Forgiving for a diamond: a generous, easy-to-find hitting zone helps on mishits.",
     "for": [
-     "intermediate",
-     "balance",
-     "beginner"
+     "intermediate"
     ],
     "src": [
      "ba51530e-56b2-455e-9edc-0315073a3346",
@@ -2425,106 +2088,81 @@
      "6a51fe92-7b1e-44ab-9ca7-05899616118b",
      "2ab9c625-1fe1-4a65-a780-70b15398b1ea",
      "f955665a-aec2-4d18-8049-da9cc915430e",
-     "research-1375af3f-3eea-412f-ab78-ab49eb29c157",
-     "research-0d7fd9d8-b8b8-4302-87ff-b7556bc99b05"
+     "research-1375af3f-3eea-412f-ab78-ab49eb29c157"
     ]
    },
    {
-    "t": "Easy in defence: it defends well for a diamond.",
-    "for": [
-     "control",
-     "intermediate"
-    ],
+    "t": "Easy in defence: light handling for its shape keeps stretched digs alive.",
+    "for": [],
     "src": [
      "52724a8b-9ced-4bf4-a493-656a1e2463d0",
      "addcba7c-1708-4d4e-afa9-fed8a192aeac",
-     "4c2e768d-b972-454b-9145-de496d4a100d",
-     "4ade8f1c-7f1c-4e95-a4f3-b77796c44f25",
+     "6e59f21e-3007-428e-ad01-59f0b6d9d020",
      "6a51fe92-7b1e-44ab-9ca7-05899616118b",
-     "research-c6a8b5e4-583f-47d3-8b7e-5125285fc10b",
+     "4659af61-4fed-46ab-9669-5a21c05a05c8",
+     "research-9b45a323-e946-4408-a8ec-a1f336a9e623",
      "research-0f424841-8802-4227-96f9-11a872da3f4f",
-     "research-9b45a323-e946-4408-a8ec-a1f336a9e623"
-    ]
-   },
-   {
-    "t": "Punch when you commit: smashes and viboras get real depth.",
-    "for": [
-     "power",
-     "balance",
-     "advanced"
-    ],
-    "src": [
-     "d48e8f62-13aa-4e8d-b5dc-59d472be1e9e",
-     "7ce8ccc1-fb47-4660-a777-79e8d595a108",
-     "e5e2fcc7-f67b-4873-b604-7226201f7211",
-     "a6caff9f-e78d-4f01-a79e-71c77a86de77",
-     "d4bda7f5-5e8d-4a5b-8427-5e2130d05086",
-     "183da658-3b31-437e-bc0e-1769c8888bd3"
+     "research-c6a8b5e4-583f-47d3-8b7e-5125285fc10b"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Not a free-power diamond: smashes need a full, clean swing to get out.",
+    "t": "Little free pace: low-speed shots and distant smashes need a full, committed stroke.",
     "for": [
      "power"
     ],
     "src": [
+     "52724a8b-9ced-4bf4-a493-656a1e2463d0",
+     "ba51530e-56b2-455e-9edc-0315073a3346",
+     "cdc4a9ad-658c-4ffa-b733-f105d6c6c85e",
      "research-3c02304d-a61b-4269-ae28-18bd4bb7425e",
+     "6a51fe92-7b1e-44ab-9ca7-05899616118b",
+     "ec816424-106a-4127-9f45-4337a40eb65d",
+     "f955665a-aec2-4d18-8049-da9cc915430e",
      "research-beb252e6-8890-4ee2-9a6a-24a8b12507fa"
     ],
     "alt": {
-     "slug": "bullpadel-vertex-05-geo-2026",
-     "t": "Want more punch? Its sister, the Vertex 05 Geo, is the most powerful Vertex.",
+     "slug": "siux-fenix-pro-6-2026",
+     "t": "Want more free power? The Siux Fenix Pro 6 2026 is a head-heavy diamond known for easy power.",
      "src": [
-      "bullpadel-vertex-05-geo-2026:research-b2181fe6-a5e2-4dd8-89bd-15ae8c7b213b",
-      "bullpadel-vertex-05-geo-2026:research-0c1ca5ec-7002-43c6-9911-28aa9767c71a"
+      "research-3c02304d-a61b-4269-ae28-18bd4bb7425e",
+      "ec816424-106a-4127-9f45-4337a40eb65d"
      ]
     }
    },
    {
-    "t": "Head-heavy: it can feel sluggish or hard on the wrist late in matches.",
-    "for": [
-     "arm",
-     "control"
-    ],
+    "t": "Weighty at the net: fast volley exchanges can leave you late on some setups.",
+    "for": [],
     "src": [
-     "d48e8f62-13aa-4e8d-b5dc-59d472be1e9e",
      "d4bda7f5-5e8d-4a5b-8427-5e2130d05086",
+     "b0771f47-a4cf-4831-a53b-d221d0c9fec1",
      "research-03f4b453-b132-4f63-8ebb-f1de93bca166",
-     "research-81f7cb25-14e2-4c24-8072-d3c16230629f",
-     "74b7855b-f355-4c7d-b8ff-04ce5b77aa24"
-    ]
-   },
-   {
-    "t": "Still a diamond: it rewards commitment, and one switcher says the first two weeks were rough.",
-    "for": [
-     "beginner"
-    ],
-    "only": [
-     "beginner"
-    ],
-    "src": [
-     "d4bda7f5-5e8d-4a5b-8427-5e2130d05086",
-     "research-fce908a6-ad41-4c74-a7cc-7a01bc09bd65",
-     "183da658-3b31-437e-bc0e-1769c8888bd3",
-     "74b7855b-f355-4c7d-b8ff-04ce5b77aa24"
+     "research-81f7cb25-14e2-4c24-8072-d3c16230629f"
     ],
     "alt": {
-     "slug": "bullpadel-vertex-05-hybrid-2026",
-     "t": "Want it easier? Its round sister, the Vertex 05 Hybrid, is more forgiving.",
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want quicker hands? The Nox AT10 Genius 18K 2026 is a teardrop known for speed at the net.",
      "src": [
-      "098feafe-b146-4c1e-a311-c93f11a3d4a0",
-      "bullpadel-vertex-05-hybrid-2026:d2670b81-ad81-40e7-bf4b-196b724bf906"
+      "d4bda7f5-5e8d-4a5b-8427-5e2130d05086",
+      "research-81f7cb25-14e2-4c24-8072-d3c16230629f"
      ]
     }
+   },
+   {
+    "t": "Wears in fast: the sandy face rubs smooth and the core can soften within a month.",
+    "for": [],
+    "src": [
+     "research-10c3915c-fd6a-475a-8d8b-227854eacaed",
+     "research-d57f27d3-1407-4e56-b03d-dc0ca236954d"
+    ]
    }
   ]
  },
  "adidas-metalbone-hrd-plus-3-4-2025": {
   "strengths": [
    {
-    "t": "Big finishing power on smashes and volleys.",
+    "t": "Big overhead weapon: flat and kick smashes finish points with ease on clean contact.",
     "for": [
      "power",
      "advanced"
@@ -2532,151 +2170,121 @@
     "src": [
      "81240d79-16da-46d3-b1f8-f03cb6c1b74c",
      "db110071-f9b7-4499-8595-49f367b02b59",
-     "5f7c48f0-c6a2-4ecb-b795-e7a952e709c6",
      "68c58b25-2b64-4ff5-ac94-2491199f6b9f",
      "83010e52-120c-4c1e-be76-90b072a0aa23",
-     "7cee5ed7-499b-4c1c-90ce-5d823be86722",
      "be540749-dc17-45cd-bea9-1c955b1adf2e",
      "cf75bd67-5eb4-4f0b-9797-5473d823411d",
      "0d52d81a-df45-4b63-98a0-18cfbefcbc98",
      "caed22bd-256c-4b76-82e5-fa78a8fe5011",
      "research-562a4fcf-c93f-4b59-aff9-6226cfd4607d",
-     "research-3f1b87a4-266c-4a29-879b-f3759756025a",
-     "research-def7c68f-8a75-4808-88cc-96346ec19bb2",
-     "c9430ee8-7a05-4b16-9f86-97e2a80a1514",
      "a101a7f6-2952-4b99-b336-ea9ddd90f413",
-     "research-1f4d90cb-3169-48ea-ac95-6ee12fad2c25",
-     "research-6e456cf2-1857-4f71-8375-6466127a1f1e",
-     "research-01b4deac-cbd4-49ac-8339-205a293ec47b"
+     "research-6e456cf2-1857-4f71-8375-6466127a1f1e"
     ]
    },
    {
-    "t": "Solid blocks and control for a power racket, precise when you're fresh.",
+    "t": "Punchy volleys: net balls come off heavy and penetrating when you step in.",
     "for": [
-     "balance",
-     "advanced",
+     "power"
+    ],
+    "src": [
+     "5f7c48f0-c6a2-4ecb-b795-e7a952e709c6",
+     "68c58b25-2b64-4ff5-ac94-2491199f6b9f",
+     "83010e52-120c-4c1e-be76-90b072a0aa23",
+     "be540749-dc17-45cd-bea9-1c955b1adf2e",
+     "cf75bd67-5eb4-4f0b-9797-5473d823411d",
+     "a43e4cb9-9d28-4022-84aa-fb3b717c2f8a",
+     "a101a7f6-2952-4b99-b336-ea9ddd90f413"
+    ]
+   },
+   {
+    "t": "Composed under fire: blocks and lob placement stay controlled against heavy balls.",
+    "for": [
      "control"
     ],
     "src": [
      "81240d79-16da-46d3-b1f8-f03cb6c1b74c",
      "db110071-f9b7-4499-8595-49f367b02b59",
-     "37795d5f-cf58-4e0f-ba31-71b07ec47b09",
-     "0d52d81a-df45-4b63-98a0-18cfbefcbc98",
      "caed22bd-256c-4b76-82e5-fa78a8fe5011",
      "a43e4cb9-9d28-4022-84aa-fb3b717c2f8a",
-     "research-bf5adb32-1ba2-43c4-af03-a20ad4ac51c1",
-     "research-1f0d9b7b-0d35-4614-b3db-bbd588ecd68a",
-     "research-1f4d90cb-3169-48ea-ac95-6ee12fad2c25"
-    ]
-   },
-   {
-    "t": "The sweet spot is friendlier than on older HRDs.",
-    "for": [
-     "intermediate",
-     "balance"
-    ],
-    "src": [
-     "37795d5f-cf58-4e0f-ba31-71b07ec47b09",
-     "7cee5ed7-499b-4c1c-90ce-5d823be86722",
-     "be540749-dc17-45cd-bea9-1c955b1adf2e",
-     "0d52d81a-df45-4b63-98a0-18cfbefcbc98",
-     "c9430ee8-7a05-4b16-9f86-97e2a80a1514",
-     "research-63f66cff-700a-442b-b365-1c2a896ffa39",
-     "a101a7f6-2952-4b99-b336-ea9ddd90f413"
+     "research-bf5adb32-1ba2-43c4-af03-a20ad4ac51c1"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Stiff and demanding: it punishes off-centre hits and tired days. Built for advanced players.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Slow in defence: the high balance and long handle cost reaction time in quick exchanges.",
+    "for": [],
     "src": [
-     "5f7c48f0-c6a2-4ecb-b795-e7a952e709c6",
+     "68c58b25-2b64-4ff5-ac94-2491199f6b9f",
+     "83010e52-120c-4c1e-be76-90b072a0aa23",
+     "7cee5ed7-499b-4c1c-90ce-5d823be86722",
+     "0d52d81a-df45-4b63-98a0-18cfbefcbc98",
+     "caed22bd-256c-4b76-82e5-fa78a8fe5011",
+     "c9430ee8-7a05-4b16-9f86-97e2a80a1514",
+     "a101a7f6-2952-4b99-b336-ea9ddd90f413",
+     "research-bf5adb32-1ba2-43c4-af03-a20ad4ac51c1",
+     "research-84644a8c-70c6-4d41-b8f9-d848c6ced152"
+    ],
+    "alt": {
+     "slug": "head-extreme-motion-2025",
+     "t": "Want quicker hands? The Head Extreme Motion 2025 is a diamond known for speed at the net.",
+     "src": [
+      "7cee5ed7-499b-4c1c-90ce-5d823be86722",
+      "c9430ee8-7a05-4b16-9f86-97e2a80a1514"
+     ]
+    }
+   },
+   {
+    "t": "Demanding sweet spot: splits opinion: off-centre hits die and tired days get punished.",
+    "for": [],
+    "src": [
+     "81240d79-16da-46d3-b1f8-f03cb6c1b74c",
+     "db110071-f9b7-4499-8595-49f367b02b59",
      "83010e52-120c-4c1e-be76-90b072a0aa23",
      "0f91a068-e1a2-40c2-80d7-985e90a5e9c6",
-     "research-bf5adb32-1ba2-43c4-af03-a20ad4ac51c1",
      "research-8fed1e4e-703d-4a70-83bc-7658bb0428ae",
-     "a101a7f6-2952-4b99-b336-ea9ddd90f413",
      "research-9b19fdb5-7654-4414-8afd-00af26e807bd",
-     "research-1f0d9b7b-0d35-4614-b3db-bbd588ecd68a",
-     "research-84644a8c-70c6-4d41-b8f9-d848c6ced152"
-    ]
+     "research-1f0d9b7b-0d35-4614-b3db-bbd588ecd68a"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more margin? The Siux Electra Pro ST4 2025 is a power hybrid known for control.",
+     "src": [
+      "research-8fed1e4e-703d-4a70-83bc-7658bb0428ae",
+      "research-9b19fdb5-7654-4414-8afd-00af26e807bd"
+     ]
+    }
    },
    {
-    "t": "Hard work in defence: lobs fall short and defending takes real effort.",
+    "t": "Tough on a sore arm: firm and head-heavy, it can flare a sore elbow or shoulder.",
     "for": [
-     "control"
-    ],
-    "src": [
-     "a43e4cb9-9d28-4022-84aa-fb3b717c2f8a",
-     "research-562a4fcf-c93f-4b59-aff9-6226cfd4607d",
-     "research-8fed1e4e-703d-4a70-83bc-7658bb0428ae",
-     "a101a7f6-2952-4b99-b336-ea9ddd90f413",
-     "research-88aeb5ea-9728-413d-b6fe-0d29f5cd9572"
-    ]
-   },
-   {
-    "t": "Lively at the net: blocks and loose volleys can be too bouncy.",
-    "for": [
-     "control",
-     "advanced"
-    ],
-    "src": [
-     "research-562a4fcf-c93f-4b59-aff9-6226cfd4607d",
-     "research-042c2fba-23fe-4043-a2a8-ebb01b2c777f",
-     "research-f2e819de-7f38-46e6-ae40-2c40ff660fcb",
-     "research-5c978c7e-af78-4611-a6fd-eb9f398f6891"
-    ]
-   },
-   {
-    "t": "Sore arm? It can cause elbow, wrist or shoulder pain, sometimes fast.",
-    "for": [
-     "arm"
-    ],
-    "only": [
      "arm"
     ],
     "src": [
      "research-2e59e4ab-3949-42b5-8130-450f0b81c6d5",
      "research-81cc6726-c2c9-4442-99df-1c6a51637f1d",
-     "research-a8b24389-3ea3-4115-8bb8-0ee1b3aeccde"
-    ]
+     "research-a8b24389-3ea3-4115-8bb8-0ee1b3aeccde",
+     "research-84644a8c-70c6-4d41-b8f9-d848c6ced152",
+     "research-01b4deac-cbd4-49ac-8339-205a293ec47b"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is a teardrop known for arm comfort.",
+     "src": [
+      "research-81cc6726-c2c9-4442-99df-1c6a51637f1d",
+      "research-84644a8c-70c6-4d41-b8f9-d848c6ced152"
+     ]
+    }
    }
   ]
  },
  "adidas-metalbone-3-4-2025": {
   "strengths": [
    {
-    "t": "Free power: clean hits fly with little effort.",
-    "for": [
-     "power",
-     "intermediate"
-    ],
-    "src": [
-     "f9d7d958-e48b-4def-8faa-db33dfa373d4",
-     "research-baa4d0dc-bd33-42ce-8607-d6ae924f25a9",
-     "002096ed-6078-4de1-b857-8c4f6bc9c1fb",
-     "research-1d3b4fdf-da64-4bcd-81cd-10b0f5c1e28b",
-     "research-a3048763-b0f5-41b7-9c53-ea0c6892866c",
-     "research-5029dea2-acd4-4fc0-8a8b-9107808de5c9",
-     "research-523b0795-0cc7-4864-93cc-deb2b0a7b322",
-     "research-0da28b29-469e-4cca-8358-0b03d6b75aab",
-     "research-f5c5bde3-7241-420e-b368-a7a96d96532b",
-     "research-bd848659-ff79-4188-a9d8-923e61bd14f6",
-     "research-0ded252b-e9e1-4093-8ad8-f6e38a5e6d33",
-     "1a51b532-49c6-4ba8-b691-665bca26e642",
-     "af0d97c4-870a-41d5-992b-29659de5d226"
-    ]
-   },
-   {
-    "t": "Explosive overheads: the long handle adds leverage on smashes.",
+    "t": "Explosive overheads: the longer 2025 handle adds leverage on smashes and víboras.",
     "for": [
      "power",
      "advanced"
@@ -2686,89 +2294,103 @@
      "f9d7d958-e48b-4def-8faa-db33dfa373d4",
      "9e1ff00a-a084-4e42-b39a-81e1ce679620",
      "002096ed-6078-4de1-b857-8c4f6bc9c1fb",
-     "research-0b2fa24f-6494-4253-8af0-351d2bfbea92"
+     "research-bd848659-ff79-4188-a9d8-923e61bd14f6",
+     "research-5029dea2-acd4-4fc0-8a8b-9107808de5c9",
+     "research-1217cfb4-41ee-40fc-97fe-5d6eedcc71d5",
+     "research-a3048763-b0f5-41b7-9c53-ea0c6892866c",
+     "research-0da28b29-469e-4cca-8358-0b03d6b75aab",
+     "research-2acead95-d1f2-4e89-a32d-637c97f13686",
+     "research-0ded252b-e9e1-4093-8ad8-f6e38a5e6d33"
     ]
    },
    {
-    "t": "Defends better than most diamonds.",
-    "for": [
-     "balance",
-     "control"
-    ],
+    "t": "Sweet contact feel: clean hits sink in and fire back with extra pace.",
+    "for": [],
     "src": [
-     "efaeaa2b-c411-44f4-9553-ab27a8824a03",
-     "research-4dfb795e-6b5a-4423-89fd-b1caa2445773",
-     "research-bd848659-ff79-4188-a9d8-923e61bd14f6"
+     "research-cba8124f-2652-4066-b2b7-6744d9477f97",
+     "002096ed-6078-4de1-b857-8c4f6bc9c1fb",
+     "research-4056a03e-4e53-406f-88ed-1c4986ff7aff",
+     "research-a5bb44d4-c0c1-4ab9-9de4-26ad51d8cad6"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Head-heavy and lively: best for an advanced left-side smasher.",
+    "t": "Bouncy at the net: fast volleys and blocks can spring off unpredictably.",
     "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
+     "control"
     ],
     "src": [
-     "research-934ee143-75d6-4025-95be-24eaaa1c9694",
-     "research-a2347c3a-b372-44a6-ae33-1d4c8df8a1b7",
-     "research-cba8124f-2652-4066-b2b7-6744d9477f97",
-     "002096ed-6078-4de1-b857-8c4f6bc9c1fb",
-     "research-5029dea2-acd4-4fc0-8a8b-9107808de5c9",
-     "1a51b532-49c6-4ba8-b691-665bca26e642",
-     "af0d97c4-870a-41d5-992b-29659de5d226"
-    ]
-   },
-   {
-    "t": "Bouncy: blocks and fast volleys are hard to control.",
-    "for": [
-     "control",
-     "intermediate"
-    ],
-    "src": [
-     "research-4056a03e-4e53-406f-88ed-1c4986ff7aff",
-     "research-eb8c29ec-72a7-4b1c-b798-d2f67fd724cd",
-     "research-a63691c0-0fb8-4756-8442-539446f52b63",
-     "research-372eb960-407b-45a7-bd82-ce020d0049b7",
-     "research-79f6110d-c1ca-4d3e-9426-7ab23f46f4b2",
      "research-1217cfb4-41ee-40fc-97fe-5d6eedcc71d5",
      "research-6c0d2aee-fb02-461a-bdf5-bbfa1e1546ac",
-     "research-0ded252b-e9e1-4093-8ad8-f6e38a5e6d33",
-     "1a51b532-49c6-4ba8-b691-665bca26e642"
-    ]
+     "research-79f6110d-c1ca-4d3e-9426-7ab23f46f4b2",
+     "research-372eb960-407b-45a7-bd82-ce020d0049b7",
+     "research-a63691c0-0fb8-4756-8442-539446f52b63",
+     "research-523b0795-0cc7-4864-93cc-deb2b0a7b322",
+     "research-0ded252b-e9e1-4093-8ad8-f6e38a5e6d33"
+    ],
+    "alt": {
+     "slug": "adidas-metalbone-carbon-ctrl-3-4-2025",
+     "t": "Want a steadier net game? The Adidas Metalbone Carbon CTRL 3.4 2025 is known for good control.",
+     "src": [
+      "research-6c0d2aee-fb02-461a-bdf5-bbfa1e1546ac",
+      "research-79f6110d-c1ca-4d3e-9426-7ab23f46f4b2"
+     ]
+    }
    },
    {
-    "t": "Sore arm? It can cause elbow or forearm pain, sometimes fast.",
+    "t": "Hard on a sore arm: head weight can tire the elbow and forearm, more with the weights in.",
     "for": [
-     "arm"
-    ],
-    "only": [
      "arm"
     ],
     "src": [
      "research-baa4d0dc-bd33-42ce-8607-d6ae924f25a9",
+     "research-7d8e96d1-ae89-46d7-b23d-8a9f04fd6e2f",
      "research-a5bb44d4-c0c1-4ab9-9de4-26ad51d8cad6",
      "research-c48cd0e5-2347-4fef-87c4-f360a08f49f1",
      "research-eff6e6e1-2206-45ed-844b-6d86f395c746",
-     "research-7d8e96d1-ae89-46d7-b23d-8a9f04fd6e2f",
      "research-da473da0-389a-42d3-a126-170e2a640460"
-    ]
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is a teardrop known for arm comfort.",
+     "src": [
+      "research-a5bb44d4-c0c1-4ab9-9de4-26ad51d8cad6",
+      "research-eff6e6e1-2206-45ed-844b-6d86f395c746"
+     ]
+    }
+   },
+   {
+    "t": "Small sweet spot: off-centre balls die under pressure, on lobs as well as smashes.",
+    "for": [],
+    "src": [
+     "f9d7d958-e48b-4def-8faa-db33dfa373d4",
+     "9e1ff00a-a084-4e42-b39a-81e1ce679620",
+     "research-cba8124f-2652-4066-b2b7-6744d9477f97",
+     "research-1217cfb4-41ee-40fc-97fe-5d6eedcc71d5",
+     "research-9ca1f668-dc74-4658-b603-fca8a6653d5b"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want power with more margin? The Siux Electra Pro ST4 2025 is a power hybrid known for control.",
+     "src": [
+      "research-1217cfb4-41ee-40fc-97fe-5d6eedcc71d5",
+      "research-9ca1f668-dc74-4658-b603-fca8a6653d5b"
+     ]
+    }
    }
   ]
  },
  "bullpadel-neuron-02-edge-2026": {
   "strengths": [
    {
-    "t": "Control with extra punch: more pop without losing placement.",
+    "t": "Extra punch, kept precision: víboras and flat smashes carry real weight and still land on target.",
     "for": [
-     "control",
-     "balance",
-     "advanced",
-     "intermediate"
+     "power",
+     "advanced"
     ],
     "src": [
      "1b99afcd-43c3-4ec8-8709-6be523c50d83",
@@ -2778,228 +2400,207 @@
      "faf52d12-58aa-429b-80cd-19d1e899aaed",
      "4edf2f97-dfef-4695-b151-1f324e5c1c64",
      "f9593679-2779-4b5e-8db0-9e6413b88595",
+     "35e58888-1eec-488f-a3c8-92f4d69a5133",
      "471bf9e9-8a1b-4b5e-be00-81610a06d836",
      "c72b75cb-139e-4626-80f7-033f63f7209d",
-     "9bd80531-151c-4a92-9baf-58880061b47a",
      "3c66b388-3c90-452a-a014-a1d25c8509c5",
      "ec824335-ae00-4027-aa06-f240bb8e5678",
-     "research-94309e65-b7c2-4d3f-a8cc-3a3de7810749",
-     "research-44a6204a-c983-4ad6-a229-13df84f8212a",
-     "research-5d39291b-1a23-4799-bd24-7b3f54d04109",
-     "research-f7e80d3d-689f-4757-98ed-17e019f58a7c"
+     "9bd80531-151c-4a92-9baf-58880061b47a"
     ]
    },
    {
-    "t": "Strong smashes for a control racket, flat and kick alike.",
+    "t": "Precise from the back: lobs and baseline touch stay controlled when you supply the stroke.",
     "for": [
-     "power",
-     "advanced",
-     "balance"
+     "control"
     ],
     "src": [
      "1b99afcd-43c3-4ec8-8709-6be523c50d83",
-     "research-3f4f9026-d793-4491-a94f-453e9b58038a",
-     "d36b64cd-3829-4f47-816f-21d38c05474b",
-     "faf52d12-58aa-429b-80cd-19d1e899aaed",
-     "4edf2f97-dfef-4695-b151-1f324e5c1c64",
-     "f9593679-2779-4b5e-8db0-9e6413b88595",
-     "35e58888-1eec-488f-a3c8-92f4d69a5133",
-     "471bf9e9-8a1b-4b5e-be00-81610a06d836",
-     "9bd80531-151c-4a92-9baf-58880061b47a",
-     "ec824335-ae00-4027-aa06-f240bb8e5678"
+     "8b69f762-581f-4975-b68a-9d971ac4ceae",
+     "fa949167-24f5-4008-ac76-e9607ed185e5",
+     "58ea157e-79ec-4cae-ad02-b88d24ec1dcd",
+     "8002ac3f-82e1-4719-a1ce-c5db17cb3b99",
+     "research-fb481671-25ef-465b-8c1e-5f80746a1655"
     ]
    },
    {
-    "t": "Quick and precise in defence, with accurate lobs.",
-    "for": [
-     "control",
-     "intermediate"
-    ],
+    "t": "Steady blocks: contact feels solid and stable against pace at the net.",
+    "for": [],
     "src": [
-     "8b69f762-581f-4975-b68a-9d971ac4ceae",
-     "58ea157e-79ec-4cae-ad02-b88d24ec1dcd",
-     "research-b5bade06-03ed-4f3e-a95d-f96ac4e00427",
+     "faf52d12-58aa-429b-80cd-19d1e899aaed",
+     "471bf9e9-8a1b-4b5e-be00-81610a06d836",
+     "3c66b388-3c90-452a-a014-a1d25c8509c5",
      "8002ac3f-82e1-4719-a1ce-c5db17cb3b99",
-     "research-fb481671-25ef-465b-8c1e-5f80746a1655",
-     "research-b8e1d692-8e12-43f8-8cd8-0c574eec8513"
+     "research-5d39291b-1a23-4799-bd24-7b3f54d04109"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Stiff, dry and demanding: off-centre hits die. Built for advanced players.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "fa949167-24f5-4008-ac76-e9607ed185e5",
-     "5682d7dc-265c-4d5d-a594-ddf79e7c73d2",
-     "35e58888-1eec-488f-a3c8-92f4d69a5133",
-     "research-b5bade06-03ed-4f3e-a95d-f96ac4e00427",
-     "research-477578f3-5f69-411f-b154-0dc557f01206",
-     "research-b8e1d692-8e12-43f8-8cd8-0c574eec8513",
-     "research-32cc5a91-2c3f-48be-9806-883abf8b0778",
-     "e03c022e-4682-4f11-8627-877dd1ff4f10",
-     "research-51058434-9866-42d3-9039-41af21baf584",
-     "research-a08d4dd2-3e41-4b0d-b0c6-70b8c1e4c04d"
-    ]
-   },
-   {
-    "t": "Control first: it lacks the pop of a real power racket.",
+    "t": "Little free rebound: lobs and low-pace shots need a long, active stroke.",
     "for": [
      "power"
     ],
     "src": [
-     "research-c7cc0520-6094-4549-9f26-3e0aacaeaedf",
-     "research-95ab29a0-5f55-4e96-8893-dfca46c4506a",
-     "research-44a6204a-c983-4ad6-a229-13df84f8212a"
-    ]
+     "8b69f762-581f-4975-b68a-9d971ac4ceae",
+     "fa949167-24f5-4008-ac76-e9607ed185e5",
+     "5682d7dc-265c-4d5d-a594-ddf79e7c73d2",
+     "faf52d12-58aa-429b-80cd-19d1e899aaed",
+     "4edf2f97-dfef-4695-b151-1f324e5c1c64",
+     "471bf9e9-8a1b-4b5e-be00-81610a06d836",
+     "c72b75cb-139e-4626-80f7-033f63f7209d",
+     "8002ac3f-82e1-4719-a1ce-c5db17cb3b99",
+     "research-477578f3-5f69-411f-b154-0dc557f01206",
+     "research-b8e1d692-8e12-43f8-8cd8-0c574eec8513"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more free pace? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
+     "src": [
+      "fa949167-24f5-4008-ac76-e9607ed185e5",
+      "research-c7cc0520-6094-4549-9f26-3e0aacaeaedf"
+     ]
+    }
    },
    {
-    "t": "Head-heavy: it can feel big, slow or sluggish.",
-    "for": [
-     "control"
-    ],
+    "t": "Small sweet spot: off-centre hits die or vibrate in an instant.",
+    "for": [],
     "src": [
-     "research-969ff46e-c358-49f6-b070-ddcb2bf31039",
-     "research-51058434-9866-42d3-9039-41af21baf584",
-     "research-c5418f4f-425f-4fa5-a382-7b1197ee1367"
-    ]
+     "fa949167-24f5-4008-ac76-e9607ed185e5",
+     "58ea157e-79ec-4cae-ad02-b88d24ec1dcd",
+     "35e58888-1eec-488f-a3c8-92f4d69a5133",
+     "3c66b388-3c90-452a-a014-a1d25c8509c5",
+     "e03c022e-4682-4f11-8627-877dd1ff4f10",
+     "research-b5bade06-03ed-4f3e-a95d-f96ac4e00427",
+     "research-477578f3-5f69-411f-b154-0dc557f01206",
+     "research-51058434-9866-42d3-9039-41af21baf584"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want more margin? The Nox AT10 Genius 18K 2026 is a control teardrop known for being forgiving.",
+     "src": [
+      "research-b5bade06-03ed-4f3e-a95d-f96ac4e00427",
+      "research-477578f3-5f69-411f-b154-0dc557f01206"
+     ]
+    }
    },
    {
-    "t": "Sore arm? It can feel too stiff and cause elbow pain.",
+    "t": "Not a first racket: very firm and dry, it asks for advanced technique and a trained arm.",
     "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
+     "beginner"
     ],
     "src": [
-     "research-36e9e988-5115-4e5c-863e-0b18fc5a5e13",
+     "5682d7dc-265c-4d5d-a594-ddf79e7c73d2",
+     "research-b5bade06-03ed-4f3e-a95d-f96ac4e00427",
      "research-32cc5a91-2c3f-48be-9806-883abf8b0778",
-     "e03c022e-4682-4f11-8627-877dd1ff4f10"
-    ]
+     "research-51058434-9866-42d3-9039-41af21baf584",
+     "research-a08d4dd2-3e41-4b0d-b0c6-70b8c1e4c04d"
+    ],
+    "alt": {
+     "slug": "bullpadel-neuron-02-2026",
+     "t": "Want the easier sibling? The Bullpadel Neuron 02 2026 is a control hybrid known for fast hands.",
+     "src": [
+      "5682d7dc-265c-4d5d-a594-ddf79e7c73d2",
+      "research-32cc5a91-2c3f-48be-9806-883abf8b0778"
+     ]
+    }
    }
   ]
  },
  "siux-fenix-pro-5-2025": {
   "strengths": [
    {
-    "t": "Explosive smashes: big vibora and smash power.",
+    "t": "Big smash power: overheads and attacking volleys come off hard and heavy.",
     "for": [
      "power",
      "advanced"
     ],
     "src": [
-     "6c2d6c6e-ff9a-41be-a3b7-193e0c892c20",
-     "d8248f0b-e327-4ea1-89aa-55bfcbd6b3c8",
-     "17e3b605-737b-4901-9571-3ac86e27b7ee",
-     "32851146-0def-4bc4-a9f0-fdbda9115332",
      "research-6ee5ed40-39c5-45c0-83df-148224baf428",
-     "7666e677-dd7f-4ef7-b467-c4f652b4fcb3",
-     "accc29c6-d841-4a7a-b058-29992af3a06f",
+     "research-05907154-ef2f-4db6-a10c-81941906d2a1",
+     "research-66a33e62-a5aa-4f3d-aec4-e4a6f5d1bdcb",
+     "research-e07319f5-59f3-4ba6-9337-81585b857afd",
+     "research-3cfcd16f-51ad-450d-9db8-417e31fb4f8b",
+     "research-29af7588-9fc4-4885-81f4-09de1311c0cf",
+     "research-1df38020-3fbb-4e20-a552-13294b8dde81",
+     "research-e88ca5d7-4bb6-4851-bdda-5d98d4144636",
      "research-4f20c920-f636-486c-8ad3-a52013a9a3ad",
      "research-9df2b9cc-b96d-4059-a111-e12aab0e6ee1",
      "research-bcb614ab-e30e-4aa2-a908-44d5fafd1c59",
-     "research-1df38020-3fbb-4e20-a552-13294b8dde81",
-     "research-e88ca5d7-4bb6-4851-bdda-5d98d4144636",
-     "research-29af7588-9fc4-4885-81f4-09de1311c0cf",
-     "research-05907154-ef2f-4db6-a10c-81941906d2a1",
-     "research-3cfcd16f-51ad-450d-9db8-417e31fb4f8b"
+     "research-0c760424-ee85-432e-979c-6eb0e5df1021"
     ]
    },
    {
-    "t": "Dry and predictable: a firm feel with little bounce.",
+    "t": "Control for a diamond: placement stays precise for such a powerful frame.",
     "for": [
-     "control",
-     "advanced"
+     "control"
     ],
     "src": [
      "research-6ee5ed40-39c5-45c0-83df-148224baf428",
-     "5c441391-2645-410b-b7f1-c5cb0891bb49",
-     "accc29c6-d841-4a7a-b058-29992af3a06f",
-     "research-0c760424-ee85-432e-979c-6eb0e5df1021",
-     "research-0552bc24-cc43-4e86-b02e-608f782049f4",
-     "research-141d4f0f-9dd7-4cf7-844a-59fe40442b00"
+     "research-66a33e62-a5aa-4f3d-aec4-e4a6f5d1bdcb",
+     "research-3cfcd16f-51ad-450d-9db8-417e31fb4f8b",
+     "research-29af7588-9fc4-4885-81f4-09de1311c0cf",
+     "research-1df38020-3fbb-4e20-a552-13294b8dde81",
+     "research-b8a1825c-8b7f-4458-b5e1-2c1873cb638a",
+     "research-9df2b9cc-b96d-4059-a111-e12aab0e6ee1"
     ]
    },
    {
-    "t": "Control for a power racket: easier to control than the ST4.",
-    "for": [
-     "balance",
-     "intermediate"
-    ],
+    "t": "Dry, crisp feel: the EVA Hard core keeps trampoline out of the response.",
+    "for": [],
     "src": [
-     "5c441391-2645-410b-b7f1-c5cb0891bb49",
-     "research-66a33e62-a5aa-4f3d-aec4-e4a6f5d1bdcb",
-     "research-b8a1825c-8b7f-4458-b5e1-2c1873cb638a",
-     "research-9df2b9cc-b96d-4059-a111-e12aab0e6ee1",
-     "research-1df38020-3fbb-4e20-a552-13294b8dde81",
-     "research-29af7588-9fc4-4885-81f4-09de1311c0cf"
+     "research-6ee5ed40-39c5-45c0-83df-148224baf428",
+     "research-0552bc24-cc43-4e86-b02e-608f782049f4",
+     "research-141d4f0f-9dd7-4cf7-844a-59fe40442b00",
+     "research-0c760424-ee85-432e-979c-6eb0e5df1021"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Hard and demanding: mishits die and volleys fly. Built for advanced players.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "06049551-f57c-4b5b-b2d3-a4d05ebc5d17",
-     "6a2cd45e-d0ec-482d-b230-cb8301ed5df9",
-     "research-2a154f2d-7a67-4cb5-b331-52ba9bbc0350",
-     "research-03e63295-6dca-4b8a-b836-8e2b29bb74ec",
-     "research-73f8bf12-247c-4483-8a31-017bff111916",
-     "research-0678945e-5c04-4e53-86b8-bf9250205e5a",
-     "research-8f084548-1f87-438b-ba8a-c5e4d25ba702",
-     "research-aa352ced-4f36-4976-a79d-b441069049ef",
-     "research-141d4f0f-9dd7-4cf7-844a-59fe40442b00"
-    ]
-   },
-   {
-    "t": "Tough in defence: control at the back takes work.",
-    "for": [
-     "control"
-    ],
-    "src": [
-     "research-4f20c920-f636-486c-8ad3-a52013a9a3ad",
-     "research-a0824d6e-bc1e-4cb2-addc-5d670b829a19",
-     "research-d5c84563-d484-4cfa-8ca1-0698b98ae2ee",
-     "research-8f084548-1f87-438b-ba8a-c5e4d25ba702",
-     "research-3cfcd16f-51ad-450d-9db8-417e31fb4f8b",
-     "research-0552bc24-cc43-4e86-b02e-608f782049f4"
-    ]
-   },
-   {
-    "t": "Head-heavy: it can feel heavy and clunky.",
-    "for": [
-     "arm",
-     "intermediate"
-    ],
-    "src": [
-     "06049551-f57c-4b5b-b2d3-a4d05ebc5d17",
-     "6a2cd45e-d0ec-482d-b230-cb8301ed5df9",
-     "research-f8a51b5c-98c9-4967-9c6b-7582840276fb",
-     "research-05907154-ef2f-4db6-a10c-81941906d2a1"
-    ]
-   },
-   {
-    "t": "Cracks: frames can crack within weeks, even from smashes.",
+    "t": "Slow to recover: the high balance makes back-glass defence hard work.",
     "for": [],
     "src": [
-     "research-2812ce65-fd65-459e-b30a-db582b536f35",
+     "research-f8a51b5c-98c9-4967-9c6b-7582840276fb",
+     "research-05907154-ef2f-4db6-a10c-81941906d2a1",
+     "research-a0824d6e-bc1e-4cb2-addc-5d670b829a19",
+     "research-0552bc24-cc43-4e86-b02e-608f782049f4",
+     "research-3cfcd16f-51ad-450d-9db8-417e31fb4f8b"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want quicker defence? The Nox AT10 Genius 18K 2026 is a teardrop known for speed at the net.",
+     "src": [
+      "research-a0824d6e-bc1e-4cb2-addc-5d670b829a19",
+      "research-3cfcd16f-51ad-450d-9db8-417e31fb4f8b"
+     ]
+    }
+   },
+   {
+    "t": "Not a first racket: a hard, less forgiving response punishes unsure technique.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-0678945e-5c04-4e53-86b8-bf9250205e5a",
+     "research-03e63295-6dca-4b8a-b836-8e2b29bb74ec",
+     "research-73f8bf12-247c-4483-8a31-017bff111916",
+     "research-b9fe9468-eece-4133-980b-8f641c97e158"
+    ],
+    "alt": {
+     "slug": "adidas-metalbone-ctrl-2026",
+     "t": "Still learning? The Adidas Metalbone CTRL 2026 is a round racket known for being forgiving.",
+     "src": [
+      "research-0678945e-5c04-4e53-86b8-bf9250205e5a",
+      "research-73f8bf12-247c-4483-8a31-017bff111916"
+     ]
+    }
+   },
+   {
+    "t": "Fragile frame: some frames cracked on smashes within months without hard knocks.",
+    "for": [],
+    "src": [
      "research-5adf13b5-3058-4be5-883c-eeeed25be9a7",
+     "research-2812ce65-fd65-459e-b30a-db582b536f35",
      "research-ab9174f2-482d-4f2d-878d-5c7f75dbe20c",
      "research-6af72714-77f1-4c4b-b5a5-ba44048669c6"
     ]
@@ -3009,11 +2610,9 @@
  "adidas-metalbone-carbon-ctrl-3-4-2025": {
   "strengths": [
    {
-    "t": "Real control: precise placement, lobs and blocks.",
+    "t": "Precise placement: a dry response puts lobs and volleys on target.",
     "for": [
-     "control",
-     "intermediate",
-     "balance"
+     "control"
     ],
     "src": [
      "06a60371-272d-43d0-b1ab-cdac4e337419",
@@ -3022,115 +2621,106 @@
      "8038a1e1-508c-4769-be8f-be0532646e40",
      "e61873f7-d322-4e75-9059-1b3c0907f1ab",
      "3796e369-a641-4ada-a8f7-6b0fd261b9d2",
-     "research-91e134e9-4ce4-4e3c-a565-6670ddbcea84",
-     "ee80844e-0e9f-4161-b0be-42b6dfed8745",
      "28d9ec19-fcaa-4b5f-947e-6363626a0d6f",
-     "research-a3a50b05-0ca8-40e0-a361-552dc7e91e04",
-     "research-f82ea400-a911-446e-89a6-90bb622f0131",
-     "research-27681e07-77b2-4dfa-bb3c-ba59858f6ef7",
-     "research-20166fd8-4840-467a-98fb-e38b1356d44a",
-     "research-eafd8db1-f3dc-4a05-860d-8a8dbde4bf52",
-     "research-248250c1-de23-494d-a38e-b7a51e732469",
      "research-2b6326b3-8e06-431d-89b7-87ce6c8d476d",
-     "research-5b026d96-2940-4e69-8e83-ee79d915b503",
-     "f4778983-cfa1-4242-b326-a5a72d44144f"
+     "research-248250c1-de23-494d-a38e-b7a51e732469",
+     "research-eafd8db1-f3dc-4a05-860d-8a8dbde4bf52",
+     "research-a3a50b05-0ca8-40e0-a361-552dc7e91e04",
+     "research-27681e07-77b2-4dfa-bb3c-ba59858f6ef7"
     ]
    },
    {
-    "t": "Light and quick: easy handling at the back and the net.",
-    "for": [
-     "control",
-     "balance"
-    ],
+    "t": "Light in the hand: agile handling speeds up volleys and back-court digs.",
+    "for": [],
     "src": [
      "fbfd173c-2bd2-44af-8699-39fcb09aa0dc",
      "796c5f18-c593-49b8-8532-a0fa354c659f",
+     "8038a1e1-508c-4769-be8f-be0532646e40",
      "e61873f7-d322-4e75-9059-1b3c0907f1ab",
+     "09f2bca9-72f5-4d7d-8d69-791fe5d43eae",
      "7d00a54b-c2e2-432b-9172-453b2df8ae3a",
      "ee80844e-0e9f-4161-b0be-42b6dfed8745",
-     "research-179f8769-2fca-4896-83b6-785938f6768d"
+     "research-179f8769-2fca-4896-83b6-785938f6768d",
+     "research-c8758452-9c32-436b-ab11-b0bd9d054081"
     ]
    },
    {
-    "t": "Forgiving sweet spot: easy to find and good to learn with.",
+    "t": "Easy on the arm: the 6K face and soft core keep vibration away on hard balls.",
     "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "3796e369-a641-4ada-a8f7-6b0fd261b9d2",
-     "09f2bca9-72f5-4d7d-8d69-791fe5d43eae",
-     "research-3bfb97bf-cf6f-4318-bfa3-d801d85efa3b",
-     "research-c8758452-9c32-436b-ab11-b0bd9d054081",
-     "research-c95503d8-2f51-4153-a0ea-97d74ee44af6",
-     "research-248250c1-de23-494d-a38e-b7a51e732469",
-     "f4778983-cfa1-4242-b326-a5a72d44144f"
-    ]
-   },
-   {
-    "t": "Arm-friendly: very little vibration.",
-    "for": [
-     "arm"
-    ],
-    "only": [
      "arm"
     ],
     "src": [
      "06a60371-272d-43d0-b1ab-cdac4e337419",
      "796c5f18-c593-49b8-8532-a0fa354c659f",
+     "research-f5aaaf8a-9cfb-406f-b756-6ff07e4f24c4",
      "research-20166fd8-4840-467a-98fb-e38b1356d44a"
+    ],
+    "only": [
+     "arm"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Little free power: returns off the glass and blocks lack punch.",
+    "t": "Little free power: volleys and smashes need your own arm speed, more so in the cold.",
     "for": [
-     "power",
-     "balance",
-     "advanced"
+     "power"
     ],
     "src": [
-     "837c0406-9c13-485d-ace2-42c0cacd87ff",
+     "06a60371-272d-43d0-b1ab-cdac4e337419",
+     "796c5f18-c593-49b8-8532-a0fa354c659f",
+     "e61873f7-d322-4e75-9059-1b3c0907f1ab",
      "3796e369-a641-4ada-a8f7-6b0fd261b9d2",
+     "28d9ec19-fcaa-4b5f-947e-6363626a0d6f",
+     "research-f5aaaf8a-9cfb-406f-b756-6ff07e4f24c4",
+     "research-20166fd8-4840-467a-98fb-e38b1356d44a",
      "research-57f1d3ae-efc0-496b-af2d-d956b27ee264",
-     "research-a3a50b05-0ca8-40e0-a361-552dc7e91e04",
      "research-57b29b89-a72c-47ea-a80a-b8943018fce9",
      "research-179f8769-2fca-4896-83b6-785938f6768d",
-     "research-20166fd8-4840-467a-98fb-e38b1356d44a",
-     "research-c8758452-9c32-436b-ab11-b0bd9d054081",
      "research-2b6326b3-8e06-431d-89b7-87ce6c8d476d",
-     "research-f5aaaf8a-9cfb-406f-b756-6ff07e4f24c4",
-     "research-5b026d96-2940-4e69-8e83-ee79d915b503",
-     "research-21c36d47-0d86-408b-9750-b51b6cadbccf"
-    ]
+     "research-21c36d47-0d86-408b-9750-b51b6cadbccf",
+     "research-c8758452-9c32-436b-ab11-b0bd9d054081",
+     "research-a3a50b05-0ca8-40e0-a361-552dc7e91e04"
+    ],
+    "alt": {
+     "slug": "adidas-metalbone-ctrl-2026",
+     "t": "Want more pop? The Adidas Metalbone CTRL 2026 is a round control racket known for easy power.",
+     "src": [
+      "research-179f8769-2fca-4896-83b6-785938f6768d",
+      "research-21c36d47-0d86-408b-9750-b51b6cadbccf"
+     ]
+    }
    },
    {
-    "t": "Blocks can bounce: they can fly to the glass, especially for beginners.",
+    "t": "Lively at the net: trampoline can send blocks into the glass in fast exchanges.",
     "for": [
-     "control",
-     "beginner"
+     "control"
     ],
     "src": [
+     "research-e32da9f3-b1e8-45ca-9084-bae7e6cc57ee",
      "research-57f1d3ae-efc0-496b-af2d-d956b27ee264",
      "research-1ab34969-6fab-4f7b-8e6a-a17aec49ff46",
      "research-571b3d8e-4334-4edb-9275-1591052cfd97",
      "research-e63c7db1-6d2d-43c4-93c9-a9978426992a",
      "research-910c82be-04c4-4fe5-bfd3-16043c2cfa62",
-     "research-e32da9f3-b1e8-45ca-9084-bae7e6cc57ee",
      "research-e5ad0d58-7f5f-493b-90e8-7df565decea3"
-    ]
+    ],
+    "alt": {
+     "slug": "bullpadel-neuron-02-2026",
+     "t": "Want steadier blocks? The Bullpadel Neuron 02 2026 is known for firm control at the net.",
+     "src": [
+      "research-910c82be-04c4-4fe5-bfd3-16043c2cfa62",
+      "research-e5ad0d58-7f5f-493b-90e8-7df565decea3"
+     ]
+    }
    },
    {
-    "t": "Sore arm? It can cause shoulder and wrist pain.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
+    "t": "Needs clean contact: splits opinion: high or off-centre hits can lose much of their response.",
+    "for": [],
     "src": [
-     "research-348c0e1b-007e-4196-aff2-5cb90b3a7c9b"
+     "fbfd173c-2bd2-44af-8699-39fcb09aa0dc",
+     "837c0406-9c13-485d-ace2-42c0cacd87ff",
+     "ee80844e-0e9f-4161-b0be-42b6dfed8745"
     ]
    }
   ]
@@ -3138,253 +2728,231 @@
  "siux-diablo-pro-4-2025": {
   "strengths": [
    {
-    "t": "Big, forgiving sweet spot that's easy to find.",
-    "for": [
-     "beginner",
-     "intermediate",
-     "control",
-     "balance"
-    ],
+    "t": "Huge sweet spot: contact feels clean across most of the face, even on stretched lobs.",
+    "for": [],
     "src": [
      "1509a0c0-9e2a-4160-a2fa-60478f64b1d7",
      "dd2eab6d-ddae-468a-9141-6880c83faa22",
      "4d7aa5ed-659d-4a9c-8499-cfc4c904b072",
-     "research-14aed3d0-062b-44b4-beaa-39bbcda53da8",
      "cf83e118-0a59-4629-b709-d5b4c5f2ff3f",
-     "research-683d28e0-0413-4500-97e6-ba286a8fd2a8",
-     "research-7e7b1a28-2545-4225-9047-21f4479b2c82",
      "06be8725-3fd9-4b54-b546-694b0d23f93e",
      "research-ac1632e4-b00d-4579-90e5-46ce5f239aae",
-     "research-c1d5317e-a589-43ee-a630-5592083410a1",
-     "research-fd904829-b5ef-4bae-9def-528a8755bb7e",
-     "research-38a70d21-e5c3-4c01-aa86-4b2e1fcf62ff",
-     "research-f28a31fa-6c5e-444a-877e-68c54957f9ee",
-     "research-0243ab14-93f5-4790-8738-e8903e5ebfb5"
-    ]
-   },
-   {
-    "t": "Easy in defence: lobs and backhands from the back come easily.",
-    "for": [
-     "control",
-     "intermediate"
-    ],
-    "src": [
-     "1509a0c0-9e2a-4160-a2fa-60478f64b1d7",
-     "4d7aa5ed-659d-4a9c-8499-cfc4c904b072",
-     "research-4d199164-ec06-4fe6-9c96-af1e6b82d7e6",
-     "df3fbc07-fc2c-42d4-9444-c94c04a30ad5",
      "research-7e7b1a28-2545-4225-9047-21f4479b2c82",
-     "052662c2-9784-427a-8ddd-e75b13c80176",
-     "research-ac1632e4-b00d-4579-90e5-46ce5f239aae",
-     "research-0243ab14-93f5-4790-8738-e8903e5ebfb5"
-    ]
-   },
-   {
-    "t": "Control and touch: precise placement and a soft feel.",
-    "for": [
-     "control",
-     "advanced"
-    ],
-    "src": [
-     "research-14aed3d0-062b-44b4-beaa-39bbcda53da8",
-     "df3fbc07-fc2c-42d4-9444-c94c04a30ad5",
-     "cf83e118-0a59-4629-b709-d5b4c5f2ff3f",
-     "research-3d50aae7-d09c-4738-8cd5-24e7f0ff0492",
-     "052662c2-9784-427a-8ddd-e75b13c80176",
+     "research-683d28e0-0413-4500-97e6-ba286a8fd2a8",
+     "research-0243ab14-93f5-4790-8738-e8903e5ebfb5",
+     "research-fd904829-b5ef-4bae-9def-528a8755bb7e",
      "research-c1d5317e-a589-43ee-a630-5592083410a1",
-     "research-d2b6c9ba-2d60-4267-bdd7-6e51189030bf",
-     "research-4b304fdd-64d2-44c8-9c1a-e8a22024401e",
-     "research-03211af5-642a-40db-af18-6c18a7f24942",
-     "research-0ab34ca7-e64d-43d6-9c46-b22d2831fd68"
+     "research-14aed3d0-062b-44b4-beaa-39bbcda53da8",
+     "research-f28a31fa-6c5e-444a-877e-68c54957f9ee"
     ]
    },
    {
-    "t": "Light and quick: very easy to move.",
+    "t": "Precise placement: touch shots and slices go where you aim.",
     "for": [
-     "balance",
      "control"
     ],
     "src": [
+     "d0ecfccc-842d-4483-9dbb-cb96f33e8e8c",
      "4d7aa5ed-659d-4a9c-8499-cfc4c904b072",
-     "research-4d199164-ec06-4fe6-9c96-af1e6b82d7e6",
-     "research-8c74d4a0-5724-4167-b609-723f1bf17bb7",
+     "df3fbc07-fc2c-42d4-9444-c94c04a30ad5",
+     "cf83e118-0a59-4629-b709-d5b4c5f2ff3f",
+     "052662c2-9784-427a-8ddd-e75b13c80176",
+     "research-0ab34ca7-e64d-43d6-9c46-b22d2831fd68",
+     "research-d2b6c9ba-2d60-4267-bdd7-6e51189030bf",
+     "research-c1d5317e-a589-43ee-a630-5592083410a1",
+     "research-3d50aae7-d09c-4738-8cd5-24e7f0ff0492",
+     "research-14aed3d0-062b-44b4-beaa-39bbcda53da8"
+    ]
+   },
+   {
+    "t": "Calm in defence: easy handling and rebound make lobs from the back glass simple.",
+    "for": [],
+    "src": [
+     "1509a0c0-9e2a-4160-a2fa-60478f64b1d7",
+     "dd2eab6d-ddae-468a-9141-6880c83faa22",
+     "df3fbc07-fc2c-42d4-9444-c94c04a30ad5",
+     "cf83e118-0a59-4629-b709-d5b4c5f2ff3f",
+     "research-ac1632e4-b00d-4579-90e5-46ce5f239aae",
+     "research-7e7b1a28-2545-4225-9047-21f4479b2c82",
      "research-683d28e0-0413-4500-97e6-ba286a8fd2a8",
-     "research-f28a31fa-6c5e-444a-877e-68c54957f9ee"
+     "research-0243ab14-93f5-4790-8738-e8903e5ebfb5",
+     "research-4d199164-ec06-4fe6-9c96-af1e6b82d7e6"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Not a big hitter: no huge power on smashes.",
+    "t": "Modest top-end pace: flat smashes and high wall exits lack a final kick.",
     "for": [
      "power"
     ],
     "src": [
-     "research-4d199164-ec06-4fe6-9c96-af1e6b82d7e6",
+     "dd2eab6d-ddae-468a-9141-6880c83faa22",
+     "4d7aa5ed-659d-4a9c-8499-cfc4c904b072",
      "research-683d28e0-0413-4500-97e6-ba286a8fd2a8",
-     "research-3d50aae7-d09c-4738-8cd5-24e7f0ff0492",
      "research-4b304fdd-64d2-44c8-9c1a-e8a22024401e",
-     "research-872c2b98-749f-4f00-865e-d7aecd6e8a3e"
-    ]
+     "research-4d199164-ec06-4fe6-9c96-af1e6b82d7e6",
+     "research-3d50aae7-d09c-4738-8cd5-24e7f0ff0492"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more finishing power? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
+     "src": [
+      "research-4b304fdd-64d2-44c8-9c1a-e8a22024401e",
+      "research-4d199164-ec06-4fe6-9c96-af1e6b82d7e6"
+     ]
+    }
    },
    {
-    "t": "Soft and bouncy: it can give too much rebound for precise shots.",
+    "t": "Springy at high pace: fast attacks get less predictable as the soft bed rebounds.",
     "for": [
-     "control",
-     "advanced"
+     "control"
     ],
     "src": [
+     "1509a0c0-9e2a-4160-a2fa-60478f64b1d7",
+     "cf83e118-0a59-4629-b709-d5b4c5f2ff3f",
      "research-66b81ae6-87b7-4bc0-b18a-03eab40591f9",
      "research-ef06c4bf-25bb-4162-81dc-1fc7fe1e8c07",
-     "research-0243ab14-93f5-4790-8738-e8903e5ebfb5",
-     "research-15aee455-66f4-4775-92fc-385b7a310a79"
-    ]
+     "research-0243ab14-93f5-4790-8738-e8903e5ebfb5"
+    ],
+    "alt": {
+     "slug": "bullpadel-neuron-02-2026",
+     "t": "Want a firmer hit? The Bullpadel Neuron 02 2026 is known for firm control at the net.",
+     "src": [
+      "research-66b81ae6-87b7-4bc0-b18a-03eab40591f9",
+      "research-ef06c4bf-25bb-4162-81dc-1fc7fe1e8c07"
+     ]
+    }
    },
    {
-    "t": "Sold as a pro racket, yet it can work for newer players, or feel too advanced.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "research-7493869f-eb88-4a8e-af72-d2edd7439534",
-     "research-38a70d21-e5c3-4c01-aa86-4b2e1fcf62ff",
-     "research-23bf6d39-7f43-4614-9555-66bde9e855e3",
-     "research-059d327d-ef90-4b22-9e1d-0499d622c6a2"
-    ]
-   },
-   {
-    "t": "Glossy face: it scratches fast, and frames can crack.",
+    "t": "Slick face: fresh balls slide off the smooth gloss, so spin takes work.",
     "for": [],
     "src": [
-     "research-04b5bb08-b474-49e6-a76b-5c8d5b5901fe",
-     "research-8bbb0b42-5777-4c14-b0d1-faf04a39159b",
-     "research-f28a31fa-6c5e-444a-877e-68c54957f9ee",
-     "research-40ab1f96-38f2-442c-a41e-369dbf17699f",
-     "research-872c2b98-749f-4f00-865e-d7aecd6e8a3e"
-    ]
+     "1509a0c0-9e2a-4160-a2fa-60478f64b1d7",
+     "research-7e7b1a28-2545-4225-9047-21f4479b2c82",
+     "research-8bbb0b42-5777-4c14-b0d1-faf04a39159b"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+     "t": "Want more bite? The Nox AT10 Genius 12K Alum XTREM 2026 is known for good spin.",
+     "src": [
+      "research-7e7b1a28-2545-4225-9047-21f4479b2c82",
+      "research-8bbb0b42-5777-4c14-b0d1-faf04a39159b"
+     ]
+    }
    }
   ]
  },
  "head-extreme-motion-2025": {
   "strengths": [
    {
-    "t": "Quick for a diamond: it handles like a hybrid.",
+    "t": "Quick for a diamond: light handling keeps you early at the net and on resets.",
+    "for": [],
+    "src": [
+     "0f0f00cf-9f1c-4abd-96ac-fd2b5fd9fd00",
+     "b5b71b0d-1b05-4b71-9dbb-7b26895f1b6e",
+     "ac41491a-f104-485b-81e2-19be05cce5b2",
+     "research-6e3315f8-993a-40b8-9ca6-a1cb0fd7bbde",
+     "research-015921c5-e1b0-433e-8c98-4fc49ef538f5",
+     "research-05d33a78-7615-4d45-83ef-f2cf6a1ab803",
+     "research-aadf2098-a7bd-4e47-921e-392b01d94da0",
+     "research-2219f08a-c9c3-4dba-a956-141d895319ae",
+     "research-e1f34a65-e064-445b-b417-2534227fcb06",
+     "research-b813e33a-d31c-46b0-ba84-04af46ed5e59",
+     "research-af8135e9-972c-4df1-be8c-7ff420691e64",
+     "research-6aea5cbb-04d5-4d3e-9725-3f9cfbc39e06",
+     "research-978cc7fa-b5cb-4e8c-b818-96a91d32c012"
+    ]
+   },
+   {
+    "t": "Controlled from the back: placement stays predictable on baseline shots and blocks.",
     "for": [
-     "control",
-     "balance",
-     "intermediate"
+     "control"
     ],
     "src": [
      "0f0f00cf-9f1c-4abd-96ac-fd2b5fd9fd00",
      "b5b71b0d-1b05-4b71-9dbb-7b26895f1b6e",
-     "research-978cc7fa-b5cb-4e8c-b818-96a91d32c012",
-     "research-6aea5cbb-04d5-4d3e-9725-3f9cfbc39e06",
-     "research-015921c5-e1b0-433e-8c98-4fc49ef538f5",
-     "research-b813e33a-d31c-46b0-ba84-04af46ed5e59",
-     "ac41491a-f104-485b-81e2-19be05cce5b2",
-     "research-2219f08a-c9c3-4dba-a956-141d895319ae",
-     "research-aadf2098-a7bd-4e47-921e-392b01d94da0",
-     "research-af8135e9-972c-4df1-be8c-7ff420691e64",
-     "501d47fe-5197-4c28-a1e0-3dda2f35d68f",
-     "research-e1f34a65-e064-445b-b417-2534227fcb06"
-    ]
-   },
-   {
-    "t": "Power with control: a good mix of punch and placement.",
-    "for": [
-     "balance",
-     "power",
-     "advanced"
-    ],
-    "src": [
-     "research-1d2348fa-9470-4035-b62c-37d0f2f7aaf3",
-     "cda3785c-48c5-4c1d-b253-5fd1aa9fd333",
-     "0f0f00cf-9f1c-4abd-96ac-fd2b5fd9fd00",
-     "research-978cc7fa-b5cb-4e8c-b818-96a91d32c012",
-     "research-05d33a78-7615-4d45-83ef-f2cf6a1ab803",
-     "research-015921c5-e1b0-433e-8c98-4fc49ef538f5",
-     "research-b813e33a-d31c-46b0-ba84-04af46ed5e59",
-     "research-09ddf9d8-4749-4317-907c-73f1daae7c39",
-     "research-7c9ae126-c5ec-427a-83d6-fce1e80fe08f",
      "research-72cac6b9-ff0c-4ddf-bdad-bf81246cbca5",
-     "research-cb730263-eb59-4bf5-9868-a87b600a15ef",
-     "501d47fe-5197-4c28-a1e0-3dda2f35d68f",
-     "1d88aeed-5c8a-4f2d-b69e-88d64bb2c27b"
+     "research-6e3315f8-993a-40b8-9ca6-a1cb0fd7bbde",
+     "research-1bad5376-84b0-4b1b-b69c-20513ebfc1b6",
+     "research-1d2348fa-9470-4035-b62c-37d0f2f7aaf3",
+     "research-3b00f219-21bc-492f-b717-be620e7da4a0",
+     "research-be4b6499-d52c-4942-a251-39119556762f",
+     "research-751f624b-a1b5-4af9-bd87-03d6718d58c5",
+     "research-b813e33a-d31c-46b0-ba84-04af46ed5e59"
     ]
    },
    {
-    "t": "Defends well for a diamond: the back glass is easier than you'd expect.",
+    "t": "Friendly sweet spot: mishits still come off usefully for this shape.",
     "for": [
-     "control",
      "intermediate"
     ],
     "src": [
-     "cda3785c-48c5-4c1d-b253-5fd1aa9fd333",
-     "research-05d33a78-7615-4d45-83ef-f2cf6a1ab803",
-     "research-b813e33a-d31c-46b0-ba84-04af46ed5e59",
+     "b5b71b0d-1b05-4b71-9dbb-7b26895f1b6e",
+     "ac41491a-f104-485b-81e2-19be05cce5b2",
+     "research-6e3315f8-993a-40b8-9ca6-a1cb0fd7bbde",
      "research-1bad5376-84b0-4b1b-b69c-20513ebfc1b6",
-     "501d47fe-5197-4c28-a1e0-3dda2f35d68f"
-    ]
-   },
-   {
-    "t": "Easy on the arm: no elbow pain.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "research-1db600e0-f2d6-4a0d-8e74-270e414b3c8b",
-     "research-8ff60db8-927b-4543-a045-681fb3841bfb",
-     "research-015921c5-e1b0-433e-8c98-4fc49ef538f5",
-     "research-be4b6499-d52c-4942-a251-39119556762f",
-     "research-2e14c5a5-69bf-4121-871f-b6863023f2da"
+     "research-914de9ff-737f-4b83-849a-3bd693d4f5c9",
+     "research-e1f34a65-e064-445b-b417-2534227fcb06",
+     "research-8ff60db8-927b-4543-a045-681fb3841bfb"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Still a head-heavy diamond: some newer players struggled, though one first-timer loved it.",
+    "t": "Needs your own pace: lobs and volleys fall short unless you step in.",
     "for": [
-     "beginner"
-    ],
-    "only": [
-     "beginner"
+     "power"
     ],
     "src": [
-     "research-b29947f5-3cb2-4426-9b1b-d6846d61696c",
-     "research-914de9ff-737f-4b83-849a-3bd693d4f5c9",
-     "research-2e14c5a5-69bf-4121-871f-b6863023f2da",
-     "research-aadf2098-a7bd-4e47-921e-392b01d94da0",
-     "research-b693a068-33d0-4759-b751-48562f6ab983"
-    ]
-   },
-   {
-    "t": "Lobs can fall short: lobs and baseline shots need extra force.",
-    "for": [
-     "control"
-    ],
-    "src": [
+     "b5b71b0d-1b05-4b71-9dbb-7b26895f1b6e",
      "research-ea0088ba-cecb-4d53-9ed6-f19683e4de7c",
-     "research-2e14c5a5-69bf-4121-871f-b6863023f2da"
-    ]
+     "research-2e14c5a5-69bf-4121-871f-b6863023f2da",
+     "research-2219f08a-c9c3-4dba-a956-141d895319ae",
+     "research-751f624b-a1b5-4af9-bd87-03d6718d58c5",
+     "research-6aea5cbb-04d5-4d3e-9725-3f9cfbc39e06",
+     "research-09ddf9d8-4749-4317-907c-73f1daae7c39"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more free pace? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
+     "src": [
+      "research-ea0088ba-cecb-4d53-9ed6-f19683e4de7c",
+      "research-2219f08a-c9c3-4dba-a956-141d895319ae"
+     ]
+    }
    },
    {
-    "t": "Head-heavy: it can tire the arm over several days in a row.",
+    "t": "Mixed on a sore elbow: splits opinion: the high balance can bring arm or shoulder ache.",
     "for": [
-     "arm",
-     "intermediate"
+     "arm"
     ],
     "src": [
-     "research-3b00f219-21bc-492f-b717-be620e7da4a0",
+     "research-4d5b6e6a-fe9e-4043-a4da-01a100b91035",
+     "research-5f8f3a8f-48d2-4388-afd6-79bc56fe2990",
      "research-46aba1cd-27b9-4f70-930b-2b0db43b1e01",
      "research-b693a068-33d0-4759-b751-48562f6ab983"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "nox-at10-18k-2025",
+     "t": "Want a medium balance? The Nox AT10 Genius 18K 2025 is a teardrop known for a soft feel.",
+     "src": [
+      "research-46aba1cd-27b9-4f70-930b-2b0db43b1e01",
+      "research-b693a068-33d0-4759-b751-48562f6ab983"
+     ]
+    }
+   },
+   {
+    "t": "Stiff on mishits: splits opinion: off-centre hits can move the frame and sting.",
+    "for": [],
+    "src": [
+     "research-5f8f3a8f-48d2-4388-afd6-79bc56fe2990",
+     "research-2e14c5a5-69bf-4121-871f-b6863023f2da",
+     "research-aadf2098-a7bd-4e47-921e-392b01d94da0",
+     "research-b29947f5-3cb2-4426-9b1b-d6846d61696c"
     ]
    }
   ]
@@ -3760,103 +3328,91 @@
  "babolat-air-viper-2025": {
   "strengths": [
    {
-    "t": "Light and fast at the net: quick and direct.",
-    "for": [
-     "balance",
-     "control",
-     "advanced"
-    ],
+    "t": "Lightning at the net: a low-mass build whips through volleys and resets.",
+    "for": [],
     "src": [
-     "research-d2b39ac4-356e-4029-b5f9-040e13be1051",
-     "research-b2752d2b-6559-4d54-82e5-0337a22ad85d",
-     "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57",
+     "research-aa7456ac-b195-4038-ba1b-513fbee71963",
      "research-c4a71ebf-1c7b-4d2c-b541-269cb9e2f293",
      "research-ff48c7b7-32ff-4d92-a7c1-d1a56a70bfd7",
-     "research-a67719ca-f763-44cd-a573-635200e53f87",
      "research-535205db-c952-4f93-827d-e2acb9c21123",
-     "8b4c9db7-aa0b-4e54-9a19-73748771d0c5",
-     "5aaf1f03-babe-4d7d-abf6-b31ef3dbbe7c"
+     "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57",
+     "research-d2b39ac4-356e-4029-b5f9-040e13be1051",
+     "research-d10fc377-233b-4ac8-8f37-897194f55f7f",
+     "research-a67719ca-f763-44cd-a573-635200e53f87"
     ]
    },
    {
-    "t": "Pop on smashes and volleys when you hit it clean.",
+    "t": "Pop on flat smashes: full swings turn into real pace on overheads.",
     "for": [
      "power",
      "advanced"
     ],
     "src": [
-     "research-805ee618-a478-408e-a417-13ae84c42f6e",
      "research-9701ecfd-8d65-4181-8e41-4c0de80abf86",
      "research-c4a71ebf-1c7b-4d2c-b541-269cb9e2f293",
      "research-ff48c7b7-32ff-4d92-a7c1-d1a56a70bfd7",
-     "research-76ebd5b5-03ba-4b84-9b19-6f8f9a0b10a3"
-    ]
-   },
-   {
-    "t": "A bigger sweet spot than older Air Vipers.",
-    "for": [
-     "intermediate",
-     "balance"
-    ],
-    "src": [
-     "research-6ebc10ef-a15c-47f5-979b-4c1f5e6b57c6",
-     "research-577765c1-09db-49f6-9300-6287629eaefc",
-     "research-b2752d2b-6559-4d54-82e5-0337a22ad85d",
-     "research-9701ecfd-8d65-4181-8e41-4c0de80abf86",
-     "5aaf1f03-babe-4d7d-abf6-b31ef3dbbe7c"
+     "research-76ebd5b5-03ba-4b84-9b19-6f8f9a0b10a3",
+     "research-f8c59d40-18d3-42eb-82b0-b5c5d5ee9516",
+     "research-805ee618-a478-408e-a417-13ae84c42f6e"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Stiff, light and punishing off-centre: it needs good technique.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Punishing sweet spot: off-centre balls can go anywhere, worst under tournament pressure.",
+    "for": [],
     "src": [
-     "research-f8c59d40-18d3-42eb-82b0-b5c5d5ee9516",
-     "research-c964a855-96a1-4a61-b0af-757e48c78a0d",
      "research-6e3aa9ec-eca9-4cb5-bc62-a4ab400164f2",
-     "research-046fd24b-5f09-43f0-bfaf-facf6155e715",
      "research-b08c1a89-59c5-4274-854b-55c94de0707d",
-     "research-69269a72-b89c-4d4e-a0d2-fe6a5ca0a551",
-     "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57",
-     "research-2d474357-561a-4150-a919-3c826c8ec219",
-     "research-d10fc377-233b-4ac8-8f37-897194f55f7f",
-     "research-76ebd5b5-03ba-4b84-9b19-6f8f9a0b10a3"
-    ]
-   },
-   {
-    "t": "Hard to control at speed: fast volleys float and long rallies feel shaky.",
-    "for": [
-     "control"
-    ],
-    "src": [
-     "research-0ec67b88-6ae1-4716-bcb7-5fbd5d5516ac",
-     "research-d2b39ac4-356e-4029-b5f9-040e13be1051",
      "research-c964a855-96a1-4a61-b0af-757e48c78a0d",
-     "research-6e3aa9ec-eca9-4cb5-bc62-a4ab400164f2",
-     "research-e80da87e-95f3-43d2-b12f-75552541468a"
-    ]
+     "research-ff48c7b7-32ff-4d92-a7c1-d1a56a70bfd7",
+     "research-2d474357-561a-4150-a919-3c826c8ec219",
+     "research-9c5975d1-1269-4e61-a0ee-e5feff6a4d71",
+     "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57",
+     "research-f8c59d40-18d3-42eb-82b0-b5c5d5ee9516",
+     "research-d10fc377-233b-4ac8-8f37-897194f55f7f"
+    ],
+    "alt": {
+     "slug": "nox-at10-18k-2025",
+     "t": "Want more margin? The Nox AT10 Genius 18K 2025 is a forgiving control teardrop.",
+     "src": [
+      "research-c964a855-96a1-4a61-b0af-757e48c78a0d",
+      "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57"
+     ]
+    }
    },
    {
-    "t": "Sore arm? It can cause forearm, wrist or elbow pain.",
+    "t": "Tough on a sore arm: a stiff, unforgiving feel can jar the elbow or wrist.",
     "for": [
      "arm"
     ],
-    "only": [
-     "arm"
-    ],
     "src": [
+     "research-2d474357-561a-4150-a919-3c826c8ec219",
+     "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57",
      "research-046fd24b-5f09-43f0-bfaf-facf6155e715",
      "research-dd9c3890-5d93-41e4-951d-f37c9562f57f",
-     "research-fcef4544-4c6f-46e0-b155-b280ec8b9d57",
-     "8b4c9db7-aa0b-4e54-9a19-73748771d0c5"
+     "research-69269a72-b89c-4d4e-a0d2-fe6a5ca0a551"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is a teardrop known for arm comfort.",
+     "src": [
+      "research-046fd24b-5f09-43f0-bfaf-facf6155e715",
+      "research-dd9c3890-5d93-41e4-951d-f37c9562f57f"
+     ]
+    }
+   },
+   {
+    "t": "Wears in quickly: grit and paint wear off fast, and the core softens with use and heat.",
+    "for": [],
+    "src": [
+     "research-0afadba5-9827-4492-b61e-d66b442846a7",
+     "research-aa7456ac-b195-4038-ba1b-513fbee71963",
+     "research-535205db-c952-4f93-827d-e2acb9c21123",
+     "research-ec7bfb3e-cad9-4cfd-bfb0-8f8c5af5f54a"
     ]
    }
   ]
@@ -3864,11 +3420,9 @@
  "bullpadel-vertex-04-hybrid-2025": {
   "strengths": [
    {
-    "t": "Control and accuracy: precise and dependable.",
+    "t": "Placement you can trust: volleys and bandejas go where you aim at slow or fast pace.",
     "for": [
-     "control",
-     "intermediate",
-     "balance"
+     "control"
     ],
     "src": [
      "e8c95236-5324-48aa-bf62-93a11cf7eb21",
@@ -3876,216 +3430,217 @@
      "9a977f6f-015c-4eea-96cc-23af08b081f0",
      "10b8340d-e748-4af3-a742-3ddbd6b39e68",
      "8e5f6694-a104-4bd1-85d8-c387cc3ae391",
-     "research-36b9f97d-751a-4e5c-9d70-c0fb32a528e1",
-     "research-263737cc-8fd1-415b-9e39-ab1b665ce9b1",
-     "research-bb56e177-a389-4dc2-a303-88e3662287d5",
      "research-a455312d-f365-43a7-bfb1-7994a482fe1d",
-     "research-092f8063-c897-423e-97dc-90728157d6fd",
      "research-5a3a65a9-396a-4dfd-9f44-761427bfc1c9",
-     "research-b6a0d95a-89a4-4063-87d8-1c2892e08220"
+     "research-092f8063-c897-423e-97dc-90728157d6fd",
+     "research-bb56e177-a389-4dc2-a303-88e3662287d5",
+     "research-b6a0d95a-89a4-4063-87d8-1c2892e08220",
+     "research-263737cc-8fd1-415b-9e39-ab1b665ce9b1"
     ]
    },
    {
-    "t": "Forgiving: the sweet spot feels huge.",
-    "for": [
-     "beginner",
-     "intermediate",
-     "control"
-    ],
+    "t": "Dry, honest response: the 12K face follows your effort with little trampoline.",
+    "for": [],
     "src": [
-     "research-36b9f97d-751a-4e5c-9d70-c0fb32a528e1",
-     "research-263737cc-8fd1-415b-9e39-ab1b665ce9b1",
-     "research-e3b25fab-4551-4087-ab4f-5f0de4e42023",
-     "research-36d4d7b8-5b15-4f93-a6a8-7941e2c7756c",
-     "research-a455312d-f365-43a7-bfb1-7994a482fe1d",
-     "research-a8b4042f-68e7-42c7-8008-a645146b2036"
-    ]
-   },
-   {
-    "t": "Dry and firm, no trampoline: the ball goes where you aim.",
-    "for": [
-     "control",
-     "advanced"
-    ],
-    "src": [
+     "research-c4fd1194-95cd-4ca2-8878-b8dbaaadf9a4",
      "research-59533219-d2f8-477d-a6c4-301b3dc756c7",
      "research-bb56e177-a389-4dc2-a303-88e3662287d5",
      "research-453be3c6-3f82-477e-baf2-106df86188de",
-     "research-c4fd1194-95cd-4ca2-8878-b8dbaaadf9a4",
      "research-b6a0d95a-89a4-4063-87d8-1c2892e08220"
     ]
    },
    {
-    "t": "Comfortable: easy on the arm.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
+    "t": "Steady in defence: back-court play stays composed and well placed.",
+    "for": [],
     "src": [
-     "research-ad5ebd4c-0f7d-45a5-8863-6e59a4316f52",
-     "research-a8b4042f-68e7-42c7-8008-a645146b2036"
+     "3f0cb73a-c703-4ca5-9025-c1fb48b21f25",
+     "9a977f6f-015c-4eea-96cc-23af08b081f0",
+     "8e5f6694-a104-4bd1-85d8-c387cc3ae391",
+     "research-59533219-d2f8-477d-a6c4-301b3dc756c7"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Not much power: smashes and blocked volleys drop short.",
+    "t": "Small sweet spot: off-centre contact is penalised, so a miss can end the point.",
+    "for": [],
+    "src": [
+     "e8c95236-5324-48aa-bf62-93a11cf7eb21",
+     "9a977f6f-015c-4eea-96cc-23af08b081f0",
+     "10b8340d-e748-4af3-a742-3ddbd6b39e68",
+     "research-c4fd1194-95cd-4ca2-8878-b8dbaaadf9a4",
+     "research-5a3a65a9-396a-4dfd-9f44-761427bfc1c9",
+     "research-477fff92-1729-4977-8168-bc190b928fe9",
+     "research-f3960151-826c-47a8-a1a1-feb2b62d8af1"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want more margin? The Nox AT10 Genius 18K 2026 is a control teardrop known for being forgiving.",
+     "src": [
+      "research-5a3a65a9-396a-4dfd-9f44-761427bfc1c9",
+      "research-477fff92-1729-4977-8168-bc190b928fe9"
+     ]
+    }
+   },
+   {
+    "t": "Supply your own pace: wall exits, blocks and smashes need deliberate force from you.",
     "for": [
-     "power",
-     "advanced"
+     "power"
     ],
     "src": [
+     "e8c95236-5324-48aa-bf62-93a11cf7eb21",
+     "3f0cb73a-c703-4ca5-9025-c1fb48b21f25",
+     "10b8340d-e748-4af3-a742-3ddbd6b39e68",
+     "research-13afc0ec-a5e5-4919-9bcc-94c3a9474a75",
      "research-1c19ab9e-08b8-41ff-9349-707c4b32b8d0",
      "research-ad5ebd4c-0f7d-45a5-8863-6e59a4316f52",
-     "research-13afc0ec-a5e5-4919-9bcc-94c3a9474a75",
-     "32813a0f-0d83-4046-a4dd-bee54494f355"
-    ]
+     "research-b6a0d95a-89a4-4063-87d8-1c2892e08220"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more free pace? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
+     "src": [
+      "research-13afc0ec-a5e5-4919-9bcc-94c3a9474a75",
+      "research-ad5ebd4c-0f7d-45a5-8863-6e59a4316f52"
+     ]
+    }
    },
    {
-    "t": "Firmer, with a higher sweet spot: it takes focus to find early on.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "research-98a7d5b6-a659-4bc1-83d1-8e809c0907cd",
-     "research-477fff92-1729-4977-8168-bc190b928fe9",
-     "research-f3960151-826c-47a8-a1a1-feb2b62d8af1",
-     "research-5a3a65a9-396a-4dfd-9f44-761427bfc1c9"
-    ]
-   },
-   {
-    "t": "Sore arm? The 2025 can cause elbow pain where the 2024 didn't.",
+    "t": "Firmer than the 2024: the 2025 can bother a sore elbow more than last year's version.",
     "for": [
      "arm"
+    ],
+    "src": [
+     "research-ba3a9ab2-80d2-4e9a-9579-2b5243e7b818",
+     "research-f2bf17eb-ae64-4126-97a6-b5fe19e0b31f",
+     "research-092f8063-c897-423e-97dc-90728157d6fd"
     ],
     "only": [
      "arm"
     ],
-    "src": [
-     "research-ba3a9ab2-80d2-4e9a-9579-2b5243e7b818"
-    ]
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is a teardrop known for arm comfort.",
+     "src": [
+      "research-ba3a9ab2-80d2-4e9a-9579-2b5243e7b818",
+      "research-092f8063-c897-423e-97dc-90728157d6fd"
+     ]
+    }
    }
   ]
  },
  "babolat-technical-viper-2025": {
   "strengths": [
    {
-    "t": "Big smash power: a top power diamond.",
+    "t": "Left-side finisher: high balls end in bandejas, víboras and flat smashes.",
     "for": [
      "power",
      "advanced"
     ],
     "src": [
+     "b96865e3-938b-487c-b5ba-c4108c0e8f6a",
      "f607b91b-3875-4798-8582-cbc9c8573b32",
-     "a76040f0-1339-4827-afbe-c744ebedc71c",
      "56dda192-87e0-4352-81c0-114079e74911",
      "0a410840-5a5e-48f3-ad34-b37e0275c61e",
      "7143b5f1-5167-499c-a49d-71a7c2920d33",
      "ae6b5d9d-b39e-4290-92ea-582147c06635",
      "e8bda986-bfd5-4fd6-9af1-3ef76636c1e9",
-     "research-3baacea4-7a6d-4974-a140-312d5a77c429",
-     "research-5934129c-cede-4d4f-94d2-e656f358c3fc",
-     "research-7c066574-8f16-4ae4-b5a8-18a28486a447"
+     "research-7c066574-8f16-4ae4-b5a8-18a28486a447",
+     "research-5934129c-cede-4d4f-94d2-e656f358c3fc"
     ]
    },
    {
-    "t": "Dry and precise when you time it: pinpoint placement.",
+    "t": "Dry, precise feel: hard contact places the ball exactly when timing is right.",
     "for": [
-     "advanced",
-     "balance",
      "control"
     ],
     "src": [
-     "research-f9bca594-c961-4a0b-9e76-a56f4a6fc15c",
+     "a76040f0-1339-4827-afbe-c744ebedc71c",
+     "0a410840-5a5e-48f3-ad34-b37e0275c61e",
+     "7143b5f1-5167-499c-a49d-71a7c2920d33",
+     "ae6b5d9d-b39e-4290-92ea-582147c06635",
      "research-d6717cac-cf9e-4207-a4b8-6f2454e8b7a7",
-     "research-04f783e6-6f41-47ba-8405-bfda53573f8c",
-     "research-fb15647a-89ec-409c-99d9-4232893281f1",
-     "research-a1ae1783-8cbe-4d69-a18a-abda3e9dee22"
+     "research-f9bca594-c961-4a0b-9e76-a56f4a6fc15c",
+     "research-a1ae1783-8cbe-4d69-a18a-abda3e9dee22",
+     "research-fb15647a-89ec-409c-99d9-4232893281f1"
     ]
    },
    {
-    "t": "Lots of spin: the rough face bites on kick smashes.",
-    "for": [
-     "power",
-     "advanced"
-    ],
-    "minor": true,
+    "t": "Grippy rough face: sandy plus 3D texture adds bite on víboras and bandejas.",
+    "for": [],
     "src": [
      "b96865e3-938b-487c-b5ba-c4108c0e8f6a",
+     "f607b91b-3875-4798-8582-cbc9c8573b32",
      "0a410840-5a5e-48f3-ad34-b37e0275c61e",
      "93fb0e82-47b1-4e42-8a6f-3c91511a0ee1",
-     "research-3baacea4-7a6d-4974-a140-312d5a77c429",
      "research-16b21556-7474-4534-9719-f1518cb34282"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Stiff, head-heavy and a small sweet spot: unforgiving.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Tiny margin for error: mishits are punished hard by the small sweet spot.",
+    "for": [],
     "src": [
      "f607b91b-3875-4798-8582-cbc9c8573b32",
      "a76040f0-1339-4827-afbe-c744ebedc71c",
-     "research-64593c2c-e6ed-4a31-9395-4ea259cba495",
-     "research-426b6f56-e205-4abf-91d4-9d7027a3bb60",
-     "research-86b21b22-3865-4750-aa54-be43582eb05b",
-     "research-e498097e-5049-4e55-b3bc-5e2f41305d6a",
+     "93fb0e82-47b1-4e42-8a6f-3c91511a0ee1",
+     "research-f9bca594-c961-4a0b-9e76-a56f4a6fc15c",
      "research-a1ae1783-8cbe-4d69-a18a-abda3e9dee22",
+     "research-64593c2c-e6ed-4a31-9395-4ea259cba495",
+     "research-e498097e-5049-4e55-b3bc-5e2f41305d6a",
      "research-92c4ac85-5e8f-4608-9c72-31b35f2cebb4",
      "research-35d4e4a7-6d1a-4dc4-b5f2-457227658d35",
      "research-b499d1ff-560c-47e6-a8dd-af92039bcb4d",
-     "22a15b2a-09d5-4ad8-93a5-245cbd80c971"
-    ]
+     "research-9938fde0-ddd4-4a6f-b41d-cbe9be005b71"
+    ],
+    "alt": {
+     "slug": "babolat-counter-viper-2025",
+     "t": "Want more margin? The Babolat Counter Viper 2025 is a control teardrop known for good control.",
+     "src": [
+      "research-64593c2c-e6ed-4a31-9395-4ea259cba495",
+      "research-35d4e4a7-6d1a-4dc4-b5f2-457227658d35"
+     ]
+    }
    },
    {
-    "t": "Tough in defence: the weight and small sweet spot make defending hard.",
-    "for": [
-     "control"
-    ],
+    "t": "Little help in defence: low and medium-pace balls need arm speed to get out.",
+    "for": [],
     "src": [
+     "research-b008283a-b46f-404a-a3ef-8bb88a1115a1",
+     "b96865e3-938b-487c-b5ba-c4108c0e8f6a",
+     "f607b91b-3875-4798-8582-cbc9c8573b32",
+     "a76040f0-1339-4827-afbe-c744ebedc71c",
+     "research-86b21b22-3865-4750-aa54-be43582eb05b",
+     "0a410840-5a5e-48f3-ad34-b37e0275c61e",
+     "93fb0e82-47b1-4e42-8a6f-3c91511a0ee1",
      "research-426b6f56-e205-4abf-91d4-9d7027a3bb60",
-     "research-e498097e-5049-4e55-b3bc-5e2f41305d6a",
-     "research-f1da5352-6af6-49b1-b40e-02a519be77ac",
-     "research-35d4e4a7-6d1a-4dc4-b5f2-457227658d35",
      "research-b499d1ff-560c-47e6-a8dd-af92039bcb4d"
     ]
    },
    {
-    "t": "Sore arm? It can take a toll on the elbow and arm.",
+    "t": "Hard on the arm: brick-like stiffness can take a toll on elbow and shoulder.",
     "for": [
      "arm"
+    ],
+    "src": [
+     "research-d6717cac-cf9e-4207-a4b8-6f2454e8b7a7",
+     "research-5934129c-cede-4d4f-94d2-e656f358c3fc",
+     "research-669f3b8c-566f-4a88-92de-b57476fe4b10",
+     "research-b499d1ff-560c-47e6-a8dd-af92039bcb4d",
+     "research-3baacea4-7a6d-4974-a140-312d5a77c429"
     ],
     "only": [
      "arm"
     ],
-    "src": [
-     "research-5934129c-cede-4d4f-94d2-e656f358c3fc",
-     "research-669f3b8c-566f-4a88-92de-b57476fe4b10",
-     "research-b499d1ff-560c-47e6-a8dd-af92039bcb4d",
-     "22a15b2a-09d5-4ad8-93a5-245cbd80c971"
-    ]
-   },
-   {
-    "t": "Durability: it can crack.",
-    "for": [],
-    "src": [
-     "research-7c066574-8f16-4ae4-b5a8-18a28486a447",
-     "research-387c18a4-c5f5-4b09-adab-c96f3bc687db"
-    ]
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is a teardrop known for arm comfort.",
+     "src": [
+      "research-5934129c-cede-4d4f-94d2-e656f358c3fc",
+      "research-669f3b8c-566f-4a88-92de-b57476fe4b10"
+     ]
+    }
    }
   ]
  },
@@ -4317,138 +3872,102 @@
  "head-coello-motion-2025": {
   "strengths": [
    {
-    "t": "Big power: strong smashes and fast ball exit.",
+    "t": "Pro-level punch: víboras and smashes leave like missiles from a 360 g frame.",
     "for": [
      "power",
      "advanced"
     ],
     "src": [
      "d9484824-a1f8-4e05-80c3-1d92f125d8bc",
-     "878696d1-319c-4ed3-9aba-b5a91483c9b1",
+     "e1578ed2-3eef-4735-85c3-a7a379016b33",
+     "2514cf16-6224-4e3e-873b-d4ea41f9b28a",
      "f0da85cd-2fe8-4a69-bc24-7256d7db2cc8",
      "3661459a-caae-4fb1-8672-d89285165a6f",
      "4d8962a6-f520-4435-bd12-407cf8d1072b",
-     "research-6d92dc86-8b26-4301-b863-99da254fa645",
-     "34156173-1fe6-4139-a9d4-b536016a24d8",
-     "cd38dcf1-d3de-43eb-a8c9-e89f6cd9a0ab",
-     "research-a9386952-4050-4bf3-93d1-831469e9612b"
+     "research-2bb46e44-a516-4d57-883e-725921786c89",
+     "561bd427-4be6-4507-899f-83649bf329ed",
+     "research-a9386952-4050-4bf3-93d1-831469e9612b",
+     "research-c54f3534-5942-4f28-a7b2-b3680fc4d2ae"
     ]
    },
    {
-    "t": "Quick for a power diamond: it moves better than the Coello Pro.",
-    "for": [
-     "power",
-     "balance",
-     "intermediate"
-    ],
+    "t": "A friendlier Coello: a lower balance than the Pro cuts fatigue over long sessions.",
+    "for": [],
     "src": [
-     "d9484824-a1f8-4e05-80c3-1d92f125d8bc",
      "e1578ed2-3eef-4735-85c3-a7a379016b33",
      "2514cf16-6224-4e3e-873b-d4ea41f9b28a",
      "878696d1-319c-4ed3-9aba-b5a91483c9b1",
-     "3661459a-caae-4fb1-8672-d89285165a6f",
-     "research-8012fe78-decf-4e1d-b645-89f287f00ad7",
+     "f0da85cd-2fe8-4a69-bc24-7256d7db2cc8",
      "34156173-1fe6-4139-a9d4-b536016a24d8",
-     "561bd427-4be6-4507-899f-83649bf329ed",
+     "13c41890-ba4a-4285-8124-cb6b0eeda082",
      "research-c54f3534-5942-4f28-a7b2-b3680fc4d2ae"
     ]
    },
    {
-    "t": "Control: the ball goes where you want.",
+    "t": "Control for a power frame: heavy shots still go where you aim.",
     "for": [
-     "balance",
      "control"
     ],
     "src": [
-     "2514cf16-6224-4e3e-873b-d4ea41f9b28a",
-     "cd38dcf1-d3de-43eb-a8c9-e89f6cd9a0ab",
-     "13c41890-ba4a-4285-8124-cb6b0eeda082",
-     "research-c8ada8cb-57ac-4b7c-8670-dc853e3d92e6",
-     "research-a83e350c-5bb6-419c-aab6-0ca2400d5834",
-     "research-8a63927d-149f-4fb3-865a-fe0c54402b21"
-    ]
-   },
-   {
-    "t": "Arm-friendly: pain-free even with elbow trouble.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "research-c529cca0-a94e-487a-bc18-6f6c2e12c5ea",
-     "34156173-1fe6-4139-a9d4-b536016a24d8",
-     "cd38dcf1-d3de-43eb-a8c9-e89f6cd9a0ab",
-     "research-a585d031-d009-4cb1-a76c-c7eb1faaae14",
-     "research-c54f3534-5942-4f28-a7b2-b3680fc4d2ae"
+     "d9484824-a1f8-4e05-80c3-1d92f125d8bc",
+     "research-8a63927d-149f-4fb3-865a-fe0c54402b21",
+     "research-c8ada8cb-57ac-4b7c-8670-dc853e3d92e6"
     ]
    }
   ],
   "catches": [
    {
-    "t": "High balance and hard: demanding, with a heavy, hammer-like swing.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Punishes mishits: off-centre contact gets little free exit, and output can vary.",
+    "for": [],
     "src": [
-     "e1578ed2-3eef-4735-85c3-a7a379016b33",
-     "f0da85cd-2fe8-4a69-bc24-7256d7db2cc8",
-     "research-d7f86a6a-2033-4823-82c7-485787a3c87b",
-     "research-37a2cd62-99ed-4590-a766-7a27aa534800",
-     "research-a9386952-4050-4bf3-93d1-831469e9612b",
-     "2c2027c3-3de1-4727-af51-b468fa61b434"
-    ]
-   },
-   {
-    "t": "Inconsistent: ball output and sweet spot can vary.",
-    "for": [
-     "control"
-    ],
-    "src": [
-     "research-45d76ac7-d5f4-4b70-bcc2-ef271227210a",
+     "878696d1-319c-4ed3-9aba-b5a91483c9b1",
+     "3661459a-caae-4fb1-8672-d89285165a6f",
+     "cd38dcf1-d3de-43eb-a8c9-e89f6cd9a0ab",
      "research-eb91670d-3113-48f1-9271-c6dc2bfb91b3",
-     "2c2027c3-3de1-4727-af51-b468fa61b434"
-    ]
-   },
-   {
-    "t": "Units vary: some come in heavier and very head-heavy.",
-    "for": [
-     "arm",
-     "intermediate"
+     "research-45d76ac7-d5f4-4b70-bcc2-ef271227210a",
+     "research-8012fe78-decf-4e1d-b645-89f287f00ad7"
     ],
-    "src": [
-     "research-6d92dc86-8b26-4301-b863-99da254fa645",
-     "research-d7f86a6a-2033-4823-82c7-485787a3c87b",
-     "research-eb91670d-3113-48f1-9271-c6dc2bfb91b3"
-    ],
-    "tip": {
-     "label": "Player tip",
-     "t": "Weigh your unit before you buy: one player's first, at 360 g, was perfect.",
+    "alt": {
+     "slug": "adidas-metalbone-ctrl-2026",
+     "t": "Want power with margin? The Adidas Metalbone CTRL 2026 is a round racket known for being forgiving.",
      "src": [
-      "research-d7f86a6a-2033-4823-82c7-485787a3c87b",
-      "research-44a6f526-35ce-42e9-b2c5-70a9150d7bc9"
+      "cd38dcf1-d3de-43eb-a8c9-e89f6cd9a0ab",
+      "research-8012fe78-decf-4e1d-b645-89f287f00ad7"
      ]
     }
    },
    {
-    "t": "Sore arm? It can hurt the elbow or shoulder after a while.",
+    "t": "Inconsistent units: head weight changes from one racket to the next, so weigh before buying.",
+    "for": [],
+    "src": [
+     "research-6d92dc86-8b26-4301-b863-99da254fa645",
+     "research-eb91670d-3113-48f1-9271-c6dc2bfb91b3",
+     "research-c54f3534-5942-4f28-a7b2-b3680fc4d2ae",
+     "research-d7f86a6a-2033-4823-82c7-485787a3c87b",
+     "research-44a6f526-35ce-42e9-b2c5-70a9150d7bc9"
+    ]
+   },
+   {
+    "t": "Mixed on the elbow: splits opinion: comfortable for some, it can flare a sore arm over time.",
     "for": [
-     "arm"
-    ],
-    "only": [
      "arm"
     ],
     "src": [
      "research-8d58f7a7-0d40-4ad5-a655-008a3575f861",
      "research-27060909-a1b1-45d8-b5bd-0ede3eb29bc2",
      "research-8a63927d-149f-4fb3-865a-fe0c54402b21"
-    ]
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore elbow? The Oxdog Hyper Pro 2.0 2026 is a teardrop known for arm comfort.",
+     "src": [
+      "research-27060909-a1b1-45d8-b5bd-0ede3eb29bc2",
+      "research-8a63927d-149f-4fb3-865a-fe0c54402b21"
+     ]
+    }
    }
   ]
  },
@@ -4566,12 +4085,9 @@
  "bullpadel-neuron-02-2026": {
   "strengths": [
    {
-    "t": "Precise control: accurate placement and solid blocks.",
+    "t": "Pinpoint placement: lobs, blocks and víboras land precisely even at high pace.",
     "for": [
-     "control",
-     "intermediate",
-     "advanced",
-     "balance"
+     "control"
     ],
     "src": [
      "9abe3bb8-27c9-40f4-bd78-1a00a2ccd3b4",
@@ -4581,80 +4097,59 @@
      "6aa8a117-5543-4ed6-b435-72629fcafaba",
      "9eb20a3a-85d7-4a00-8c08-2227b8cd892d",
      "2f530c4c-c1b9-4b37-8064-ac7f50a081aa",
-     "research-ae0360bb-79aa-4c4c-aeda-0854da9b145b",
-     "research-1cfa1251-554f-4e03-9030-f9637f3cfe93",
-     "research-4b363462-faff-49fe-820b-0eb23bcb987d",
-     "8c76a12f-6bf1-4379-bad8-a886a78ca8a9",
      "13faad3d-c97a-4b01-aa42-e2f20065e537",
-     "research-471de3b2-0cab-4a86-be47-4dc3e84474d3",
-     "c9ded08a-44fa-4425-a31f-7ca42c3c0a2b",
-     "e55017e7-be4e-4d52-82a6-151fb50fc699",
-     "81dad6fa-7c12-4ae2-9f34-154fc109a364"
+     "research-4b363462-faff-49fe-820b-0eb23bcb987d",
+     "research-1cfa1251-554f-4e03-9030-f9637f3cfe93"
     ]
    },
    {
-    "t": "Quick in the hand: light and fast in volley exchanges.",
-    "for": [
-     "control",
-     "balance"
-    ],
+    "t": "Feather-light handling: volley exchanges and defensive lifts feel quick and easy.",
+    "for": [],
     "src": [
+     "4c1cdb9a-6195-4fde-9d05-dec6f3e45a1e",
      "6aa8a117-5543-4ed6-b435-72629fcafaba",
      "6dabfb9d-6a0d-4e90-8625-daabdee707e3",
      "2f530c4c-c1b9-4b37-8064-ac7f50a081aa",
      "1e604560-0228-491b-880d-22373667006b",
      "51c496e9-6841-4153-9851-b0dd71da9f59",
      "research-80a22e1e-c9bf-4ae4-b757-eedfad502ad3",
-     "research-b9ce5dc5-dc79-423b-9efe-51d697c42e29",
-     "e55017e7-be4e-4d52-82a6-151fb50fc699",
-     "81dad6fa-7c12-4ae2-9f34-154fc109a364"
+     "research-b9ce5dc5-dc79-423b-9efe-51d697c42e29"
     ]
    },
    {
-    "t": "Easy in defence: easy lifts and deep lobs.",
-    "for": [
-     "control",
-     "intermediate"
-    ],
+    "t": "Predictable rebound: shots come off direct, without trampoline.",
+    "for": [],
     "src": [
-     "4c1cdb9a-6195-4fde-9d05-dec6f3e45a1e",
-     "6aa8a117-5543-4ed6-b435-72629fcafaba",
-     "9eb20a3a-85d7-4a00-8c08-2227b8cd892d",
-     "research-80a22e1e-c9bf-4ae4-b757-eedfad502ad3",
-     "c9ded08a-44fa-4425-a31f-7ca42c3c0a2b",
-     "81dad6fa-7c12-4ae2-9f34-154fc109a364"
-    ]
-   },
-   {
-    "t": "Easier than the Edge: lighter and more forgiving.",
-    "for": [
-     "intermediate",
-     "arm"
-    ],
-    "minor": true,
-    "src": [
-     "f4df7e7f-5647-47d4-8a64-2616c342ce9c",
-     "research-1fac4658-449c-4fe8-8f30-ce39b49ffcde",
-     "research-6c6af188-7824-4f89-b9a3-03e944eaf48d"
+     "9abe3bb8-27c9-40f4-bd78-1a00a2ccd3b4",
+     "research-471de3b2-0cab-4a86-be47-4dc3e84474d3",
+     "research-4b363462-faff-49fe-820b-0eb23bcb987d",
+     "research-1cfa1251-554f-4e03-9030-f9637f3cfe93"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Little power: a control racket that lacks pop.",
+    "t": "Little free power: flat smashes and passive volleys need a full swing for depth.",
     "for": [
-     "power",
-     "balance"
+     "power"
     ],
     "src": [
-     "research-bff86246-3bca-4414-99ad-ff4235b17843",
+     "6c43d2c3-4807-4b41-b8d9-349549d4cce8",
+     "4c1cdb9a-6195-4fde-9d05-dec6f3e45a1e",
+     "3640dfdb-d07b-49df-812c-3d1438910e08",
+     "2f530c4c-c1b9-4b37-8064-ac7f50a081aa",
+     "1e604560-0228-491b-880d-22373667006b",
+     "51c496e9-6841-4153-9851-b0dd71da9f59",
      "f4df7e7f-5647-47d4-8a64-2616c342ce9c",
+     "13faad3d-c97a-4b01-aa42-e2f20065e537",
      "research-25ab8764-693c-4a42-9ac2-f31167583d7e",
-     "research-80a22e1e-c9bf-4ae4-b757-eedfad502ad3"
+     "research-80a22e1e-c9bf-4ae4-b757-eedfad502ad3",
+     "research-b9ce5dc5-dc79-423b-9efe-51d697c42e29",
+     "research-bff86246-3bca-4414-99ad-ff4235b17843"
     ],
     "alt": {
-     "slug": "bullpadel-neuron-02-edge-2026",
-     "t": "Want more pop? Its sister, the Neuron 02 Edge, hits harder.",
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more punch? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
      "src": [
       "f4df7e7f-5647-47d4-8a64-2616c342ce9c",
       "research-25ab8764-693c-4a42-9ac2-f31167583d7e"
@@ -4662,20 +4157,31 @@
     }
    },
    {
-    "t": "Firm and precise: it can feel stiff, and it's not for beginners.",
+    "t": "Not a first racket: a firm, exacting response asks for sound technique.",
     "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
+     "beginner"
     ],
     "src": [
      "d1688a14-656c-4d50-8440-821a6a4e9271",
      "research-4b363462-faff-49fe-820b-0eb23bcb987d",
-     "research-ea86b635-6e0a-4485-9146-9ff699c190dc",
-     "research-b9ce5dc5-dc79-423b-9efe-51d697c42e29"
+     "research-bff86246-3bca-4414-99ad-ff4235b17843"
+    ],
+    "alt": {
+     "slug": "nox-at10-18k-2025",
+     "t": "Still learning? The Nox AT10 Genius 18K 2025 is a softer, forgiving control teardrop.",
+     "src": [
+      "d1688a14-656c-4d50-8440-821a6a4e9271",
+      "research-4b363462-faff-49fe-820b-0eb23bcb987d"
+     ]
+    }
+   },
+   {
+    "t": "Hard on the wallet: the launch price feels high for what you get.",
+    "for": [],
+    "src": [
+     "9eb20a3a-85d7-4a00-8c08-2227b8cd892d",
+     "1e604560-0228-491b-880d-22373667006b",
+     "research-e7d4f97d-d188-4e56-b184-fe825843c884"
     ]
    }
   ]
@@ -5233,77 +4739,87 @@
  "bullpadel-vertex-04-2024": {
   "strengths": [
    {
-    "t": "Versatile: a great all-round diamond.",
-    "for": [
-     "balance",
-     "control",
-     "intermediate",
-     "advanced"
-    ],
+    "t": "Handy for a diamond: less tip-heavy than the Vertex 03, so it moves well in defence and at the net.",
+    "for": [],
     "src": [
      "67ba5c1b-1213-40d5-bdc9-30b6a0bc5b07",
-     "e0927c0e-9985-49bd-b30e-fb7dd5fd89a2",
-     "228d6124-2074-4894-b674-021a974657b3",
      "research-62902543-1ca3-4032-a09b-86fb990d08e5",
      "0b42e52c-1f2b-4e64-af19-fa830098e0a9",
      "fe3aba97-9aa3-4696-8c07-332bb74e3042",
-     "research-1c2dea5e-d69e-426e-ba30-424903d4aeb8",
-     "research-8605621d-8b98-46bd-b4ea-703c7dec72ab",
-     "research-ab71a8a3-ad7e-4b78-8390-c65304a3c833",
+     "research-00dc8398-b98f-4258-b9ce-da9afe3173e3",
+     "research-8605621d-8b98-46bd-b4ea-703c7dec72ab"
+    ]
+   },
+   {
+    "t": "Precise placement: short strokes put volleys, lobs and bandejas exactly where you aim.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "e0927c0e-9985-49bd-b30e-fb7dd5fd89a2",
+     "228d6124-2074-4894-b674-021a974657b3",
+     "0b42e52c-1f2b-4e64-af19-fa830098e0a9",
+     "research-a85574ec-b710-4351-8fe0-ac8b77a8ea32",
      "research-ebf1eb37-f1df-4de1-ac79-0365d5c1d809"
     ]
    },
    {
-    "t": "Control and placement for a diamond.",
-    "for": [
-     "control",
-     "advanced"
-    ],
-    "src": [
-     "e0927c0e-9985-49bd-b30e-fb7dd5fd89a2",
-     "research-62902543-1ca3-4032-a09b-86fb990d08e5",
-     "0b42e52c-1f2b-4e64-af19-fa830098e0a9",
-     "research-ebf1eb37-f1df-4de1-ac79-0365d5c1d809",
-     "research-a85574ec-b710-4351-8fe0-ac8b77a8ea32"
-    ]
-   },
-   {
-    "t": "Forgiving for a diamond: a broad sweet spot.",
-    "for": [
-     "intermediate"
-    ],
+    "t": "Bite on víboras: the rough face adds spin on bandejas, víboras and slice.",
+    "for": [],
     "src": [
      "67ba5c1b-1213-40d5-bdc9-30b6a0bc5b07",
-     "e0927c0e-9985-49bd-b30e-fb7dd5fd89a2"
+     "0b42e52c-1f2b-4e64-af19-fa830098e0a9",
+     "fe3aba97-9aa3-4696-8c07-332bb74e3042"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Still a diamond: newer players can find it hard to control.",
-    "for": [
-     "beginner"
-    ],
-    "only": [
-     "beginner"
-    ],
-    "src": [
-     "research-a388cf49-1dd5-489f-a7f5-9cbbd2ad9c46",
-     "research-8ef4c044-088f-4870-b5af-a2c8e9a17172",
-     "research-a04e0144-94f5-45e2-b11a-8e27a95c9e6d",
-     "research-b2b2d40d-a84e-48a2-85c5-83532a5eb395"
-    ]
-   },
-   {
-    "t": "Short of smash power: it takes effort to hit hard.",
+    "t": "Work for pace: smashes and back-glass exits need a long, full swing; the 03 hits harder.",
     "for": [
      "power"
     ],
     "src": [
+     "0b42e52c-1f2b-4e64-af19-fa830098e0a9",
      "research-351e39ab-580f-48af-add5-88711e44da69",
      "research-c6062f1f-b2d8-4d92-a386-de81a398a2bd",
-     "research-a85574ec-b710-4351-8fe0-ac8b77a8ea32",
      "research-e96b0127-9f30-4c17-82bb-8c8613aa7bbe"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more pop? The Siux Electra Pro ST4 is a power hybrid known for easy power.",
+     "src": [
+      "research-c6062f1f-b2d8-4d92-a386-de81a398a2bd",
+      "research-e96b0127-9f30-4c17-82bb-8c8613aa7bbe"
+     ]
+    }
+   },
+   {
+    "t": "Not a first racket: a hard-to-find sweet spot punishes off-centre hits and loose technique.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-8ef4c044-088f-4870-b5af-a2c8e9a17172",
+     "research-a85574ec-b710-4351-8fe0-ac8b77a8ea32",
+     "research-a04e0144-94f5-45e2-b11a-8e27a95c9e6d",
+     "research-b2b2d40d-a84e-48a2-85c5-83532a5eb395"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Still learning? The Nox AT10 Genius 18K is a forgiving control teardrop.",
+     "src": [
+      "research-8ef4c044-088f-4870-b5af-a2c8e9a17172",
+      "research-a04e0144-94f5-45e2-b11a-8e27a95c9e6d"
+     ]
+    }
+   },
+   {
+    "t": "Fast-ball blocks: blocks against very hard balls can feel less solid than on the Vertex 03.",
+    "for": [],
+    "src": [
+     "67ba5c1b-1213-40d5-bdc9-30b6a0bc5b07",
+     "research-00dc8398-b98f-4258-b9ce-da9afe3173e3"
     ]
    }
   ]
@@ -5311,34 +4827,29 @@
  "bullpadel-neuron-2025": {
   "strengths": [
    {
-    "t": "Precise control on lobs, volleys and in defence.",
+    "t": "Precise placement: lobs, volleys and blocks go exactly where you aim.",
     "for": [
-     "control",
-     "intermediate",
-     "advanced",
-     "balance"
+     "control"
     ],
     "src": [
      "aedb73ac-b359-4da0-aa27-1420a026b1e4",
      "2619b7e5-9d0b-43cf-8b30-295aa8906201",
-     "research-2f781273-4c25-47cb-b3dc-6310c3e2f090",
      "912725d4-e59f-4763-af4f-87705fa84b0a",
      "62420f4d-3839-4fe1-bf6a-bc60a023a168",
      "6c962db2-d23b-4b01-814a-a1acd049d704",
      "e6691fd3-a0f8-4363-9ab7-e27139ebe334",
      "68550f72-30a6-4c44-b914-e1d20ac333b4",
      "research-691f3f65-aa66-420e-a014-884cfb94f826",
-     "research-e65cfad4-4693-4343-9085-1827bfae8fa1",
-     "research-9aa297f3-680a-4e06-b99c-5ff6c376f5b0"
+     "research-44502f10-a185-49c4-a555-f22bc866341f",
+     "research-9aa297f3-680a-4e06-b99c-5ff6c376f5b0",
+     "research-2f781273-4c25-47cb-b3dc-6310c3e2f090"
     ]
    },
    {
-    "t": "Light and quick: easy to move and fast to prepare volleys.",
-    "for": [
-     "control",
-     "balance"
-    ],
+    "t": "Quick at the net: a low balance makes volley preparation fast.",
+    "for": [],
     "src": [
+     "15448fe7-9435-467b-86c8-4b9a27333c2f",
      "a4d1624f-daa9-469a-8e19-cefef0e562d3",
      "62420f4d-3839-4fe1-bf6a-bc60a023a168",
      "6c962db2-d23b-4b01-814a-a1acd049d704",
@@ -5346,66 +4857,61 @@
      "68550f72-30a6-4c44-b914-e1d20ac333b4",
      "research-691f3f65-aa66-420e-a014-884cfb94f826",
      "research-e65cfad4-4693-4343-9085-1827bfae8fa1",
-     "research-264b9d8b-7777-48df-98c3-7ca397d7db99",
-     "research-44502f10-a185-49c4-a555-f22bc866341f"
+     "research-44502f10-a185-49c4-a555-f22bc866341f",
+     "research-264b9d8b-7777-48df-98c3-7ca397d7db99"
     ]
    },
    {
-    "t": "Easy in defence: good on low balls and lobs.",
+    "t": "Easy on the arm: blocks and volleys stay low on vibration.",
     "for": [
-     "control",
-     "intermediate"
-    ],
-    "src": [
-     "912725d4-e59f-4763-af4f-87705fa84b0a",
-     "6c962db2-d23b-4b01-814a-a1acd049d704",
-     "7c13c83f-0076-462b-8d84-0dbf6de62193",
-     "research-edf3f4da-f303-4f8d-b40f-00f0874c8224"
-    ]
-   },
-   {
-    "t": "Comfortable: easy on the arm.",
-    "for": [
-     "arm"
-    ],
-    "only": [
      "arm"
     ],
     "src": [
      "aedb73ac-b359-4da0-aa27-1420a026b1e4",
-     "research-afdc827e-b690-4160-a706-87fa6712c80b"
+     "68550f72-30a6-4c44-b914-e1d20ac333b4",
+     "research-afdc827e-b690-4160-a706-87fa6712c80b",
+     "research-edf3f4da-f303-4f8d-b40f-00f0874c8224"
+    ],
+    "only": [
+     "arm"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Little finishing power: overheads lack punch, on the left above all.",
+    "t": "Short on free power: overheads and slow defence need extra follow-through, worse on the left.",
     "for": [
-     "power",
-     "balance"
+     "power"
     ],
     "src": [
+     "aedb73ac-b359-4da0-aa27-1420a026b1e4",
      "a4d1624f-daa9-469a-8e19-cefef0e562d3",
-     "research-edf3f4da-f303-4f8d-b40f-00f0874c8224",
-     "research-783d92a8-9afe-4b76-a40d-d07662f6fc2c",
+     "62420f4d-3839-4fe1-bf6a-bc60a023a168",
+     "6c962db2-d23b-4b01-814a-a1acd049d704",
+     "7c13c83f-0076-462b-8d84-0dbf6de62193",
+     "e6691fd3-a0f8-4363-9ab7-e27139ebe334",
+     "68550f72-30a6-4c44-b914-e1d20ac333b4",
+     "research-e65cfad4-4693-4343-9085-1827bfae8fa1",
      "research-44502f10-a185-49c4-a555-f22bc866341f",
-     "research-9aa297f3-680a-4e06-b99c-5ff6c376f5b0"
-    ]
+     "research-9aa297f3-680a-4e06-b99c-5ff6c376f5b0",
+     "research-edf3f4da-f303-4f8d-b40f-00f0874c8224"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more free power? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
+     "src": [
+      "research-783d92a8-9afe-4b76-a40d-d07662f6fc2c",
+      "research-44502f10-a185-49c4-a555-f22bc866341f"
+     ]
+    }
    },
    {
-    "t": "Firm at first: it can feel too stiff for beginners, fine for intermediates.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Needs clean contact: passive blocks and recoveries ask for centred, committed strokes.",
+    "for": [],
     "src": [
-     "research-2f781273-4c25-47cb-b3dc-6310c3e2f090",
-     "research-edf3f4da-f303-4f8d-b40f-00f0874c8224",
-     "research-5fdbbe23-2c6c-4a8a-be56-6bee1751786d"
+     "6f93bebe-bfa6-4dc8-a0d3-14f3f5e40b02",
+     "2619b7e5-9d0b-43cf-8b30-295aa8906201",
+     "62420f4d-3839-4fe1-bf6a-bc60a023a168"
     ]
    }
   ]
@@ -5413,74 +4919,87 @@
  "bullpadel-hack-04-hybrid-2025": {
   "strengths": [
    {
-    "t": "Control and defence: easy lobs and precise placement.",
+    "t": "Controlled defence: lobs and back-glass shots stay well placed at any pace.",
     "for": [
-     "control",
-     "intermediate",
-     "balance"
+     "control"
     ],
     "src": [
      "4c40e4d9-3bfc-4bab-9f20-3ac0076ca424",
      "4975c35c-707c-410e-9420-e03884e8f627",
      "3dc39fb7-6b1f-4800-810a-85bc1bc37457",
      "35137fd2-170b-476b-a910-14bbbc0193b7",
-     "research-b9b66da9-cdea-41c7-9f32-5a97db2f9132",
-     "research-75b320ac-d7af-4069-b99d-c6c61430d83d",
      "a37c29f9-9103-4d10-a1c0-997bfd9c2473",
      "69f41059-b983-4c19-ab91-89f238fb2aa8",
      "5be8e4d1-05ff-4911-aa0c-3158427fd7a5",
-     "research-ca624dd6-a89e-45a5-bc23-a01713a7fb2b",
-     "research-2646f7a5-89fa-4efc-9120-dbb8d5b3508c",
      "research-133e1821-899f-449c-a3ea-a19830f5a17a",
-     "research-2998894d-7fa9-489f-ae2b-6ec7f1365ab5",
-     "d03fdcdb-5db9-4783-8071-1ea1e9631320"
-    ]
-   },
-   {
-    "t": "Forgiving: a generous sweet spot.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "src": [
-     "4975c35c-707c-410e-9420-e03884e8f627",
-     "3dc39fb7-6b1f-4800-810a-85bc1bc37457",
-     "a37c29f9-9103-4d10-a1c0-997bfd9c2473",
-     "d03fdcdb-5db9-4783-8071-1ea1e9631320"
-    ]
-   },
-   {
-    "t": "Dry and firm, no trampoline: a direct feel.",
-    "for": [
-     "control",
-     "advanced"
-    ],
-    "src": [
-     "3dc39fb7-6b1f-4800-810a-85bc1bc37457",
-     "research-d3fbc7d5-4275-4202-8c20-566e883d1188",
-     "research-7eb48539-5456-468b-b7ff-81a2b87bac42",
-     "research-44ed8837-c508-4020-81be-da9ddc9ab5d5",
      "research-2998894d-7fa9-489f-ae2b-6ec7f1365ab5"
+    ]
+   },
+   {
+    "t": "Dry, firm response: the Tricarbon face keeps trampoline out, unlike bouncier rivals.",
+    "for": [],
+    "src": [
+     "3dc39fb7-6b1f-4800-810a-85bc1bc37457",
+     "35137fd2-170b-476b-a910-14bbbc0193b7",
+     "69f41059-b983-4c19-ab91-89f238fb2aa8",
+     "research-133e1821-899f-449c-a3ea-a19830f5a17a",
+     "research-44ed8837-c508-4020-81be-da9ddc9ab5d5",
+     "research-2998894d-7fa9-489f-ae2b-6ec7f1365ab5",
+     "research-7eb48539-5456-468b-b7ff-81a2b87bac42",
+     "research-d3fbc7d5-4275-4202-8c20-566e883d1188"
+    ]
+   },
+   {
+    "t": "Easy handling: a grip-biased balance makes it quick to manoeuvre for its weight.",
+    "for": [],
+    "src": [
+     "3dc39fb7-6b1f-4800-810a-85bc1bc37457",
+     "35137fd2-170b-476b-a910-14bbbc0193b7",
+     "a37c29f9-9103-4d10-a1c0-997bfd9c2473",
+     "69f41059-b983-4c19-ab91-89f238fb2aa8",
+     "5be8e4d1-05ff-4911-aa0c-3158427fd7a5",
+     "research-ca624dd6-a89e-45a5-bc23-a01713a7fb2b"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Not a big hitter: it lacks some power on volleys and overheads.",
+    "t": "Modest finishing power: smashes trail the diamond Hack 04, and slow shots need longer swings.",
     "for": [
-     "power",
-     "advanced"
+     "power"
     ],
     "src": [
+     "4c40e4d9-3bfc-4bab-9f20-3ac0076ca424",
+     "4975c35c-707c-410e-9420-e03884e8f627",
+     "35137fd2-170b-476b-a910-14bbbc0193b7",
+     "69f41059-b983-4c19-ab91-89f238fb2aa8",
      "research-43c2cb99-4290-4043-a6d0-118a3424096d",
      "research-44ed8837-c508-4020-81be-da9ddc9ab5d5"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more finishing power? The Siux Electra Pro ST4 2025 is a power hybrid known for easy power.",
+     "src": [
+      "research-43c2cb99-4290-4043-a6d0-118a3424096d",
+      "research-44ed8837-c508-4020-81be-da9ddc9ab5d5"
+     ]
+    }
+   },
+   {
+    "t": "Can sail: fast volleys and long swings can send the ball to the back glass.",
+    "for": [],
+    "src": [
+     "4975c35c-707c-410e-9420-e03884e8f627",
+     "35137fd2-170b-476b-a910-14bbbc0193b7",
+     "research-37586cdc-9472-4093-b773-359584ef1f17"
     ]
    },
    {
-    "t": "Durability: a defect can show up within a couple of months.",
+    "t": "Weak spin help: the near-smooth face offers little bite on slice.",
     "for": [],
     "src": [
-     "research-4114c44c-a663-49c8-a3cc-bc9758388010"
+     "a37c29f9-9103-4d10-a1c0-997bfd9c2473",
+     "5be8e4d1-05ff-4911-aa0c-3158427fd7a5"
     ]
    }
   ]
@@ -5488,45 +5007,8 @@
  "babolat-viper-soft-juan-lebron-3-0-2026": {
   "strengths": [
    {
-    "t": "Power that's easier to use: friendlier than the hard Lebrón Viper.",
-    "for": [
-     "power",
-     "intermediate",
-     "balance"
-    ],
-    "src": [
-     "c1631156-d5e7-40d2-9bfb-ece28a80b30f",
-     "research-f1e6f014-f873-4728-8ef7-414609c04293",
-     "a7a3c345-63d0-4a68-a603-00291fd9c80d",
-     "b899ba79-a61c-4600-b8f0-78c2c4c95e35",
-     "45fb7f49-fc83-4af7-915b-70074de2d016",
-     "5d03878d-209a-4f26-999a-004bc2afc0c1",
-     "b9762464-d75a-4897-83ea-2034ecbdbcaa",
-     "research-350a3619-91c5-4c42-925e-f20aea70256a",
-     "research-359c3564-288b-48ec-b7be-dbf58054e5f9"
-    ]
-   },
-   {
-    "t": "Big power on smashes and volleys.",
-    "for": [
-     "power",
-     "advanced"
-    ],
-    "src": [
-     "research-75d693af-5227-4f4f-9dea-e7a70d598ac9",
-     "research-fbc27918-bb16-4850-bed0-ab5e51e0e641",
-     "research-5462bc04-5371-47ba-87db-578dcfb56474",
-     "research-35f2faa8-f7aa-4c66-a158-51db9042b179",
-     "02c69978-4658-47ff-872f-ac66b2ba9193",
-     "6ad7739a-619c-4a71-9da8-0595a71f6f9f"
-    ]
-   },
-   {
-    "t": "Forgiving for a diamond: a bigger sweet spot.",
-    "for": [
-     "intermediate",
-     "balance"
-    ],
+    "t": "More margin than Viper: a larger, more forgiving sweet spot than the hard Lebrón Viper.",
+    "for": [],
     "src": [
      "627101b6-2385-43c3-8f7a-26975cbe0360",
      "c1631156-d5e7-40d2-9bfb-ece28a80b30f",
@@ -5535,49 +5017,92 @@
      "45fb7f49-fc83-4af7-915b-70074de2d016",
      "5d03878d-209a-4f26-999a-004bc2afc0c1",
      "b9762464-d75a-4897-83ea-2034ecbdbcaa",
-     "research-350a3619-91c5-4c42-925e-f20aea70256a"
+     "research-5462bc04-5371-47ba-87db-578dcfb56474",
+     "research-350a3619-91c5-4c42-925e-f20aea70256a",
+     "research-359c3564-288b-48ec-b7be-dbf58054e5f9"
+    ]
+   },
+   {
+    "t": "Ready ball exit: depth and overhead punch arrive with less effort, from the back or at the net.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "c1631156-d5e7-40d2-9bfb-ece28a80b30f",
+     "a7a3c345-63d0-4a68-a603-00291fd9c80d",
+     "5d03878d-209a-4f26-999a-004bc2afc0c1",
+     "b9762464-d75a-4897-83ea-2034ecbdbcaa",
+     "research-fbc27918-bb16-4850-bed0-ab5e51e0e641",
+     "research-35f2faa8-f7aa-4c66-a158-51db9042b179",
+     "research-75d693af-5227-4f4f-9dea-e7a70d598ac9",
+     "research-5462bc04-5371-47ba-87db-578dcfb56474"
+    ]
+   },
+   {
+    "t": "Help in defence: lighter handling makes lobs, blocks and chiquitas easier than on the hard Viper.",
+    "for": [],
+    "src": [
+     "c1631156-d5e7-40d2-9bfb-ece28a80b30f",
+     "a7a3c345-63d0-4a68-a603-00291fd9c80d",
+     "b899ba79-a61c-4600-b8f0-78c2c4c95e35",
+     "45fb7f49-fc83-4af7-915b-70074de2d016",
+     "5d03878d-209a-4f26-999a-004bc2afc0c1",
+     "research-68cdfc62-cb14-4861-a1f8-17c7919f76d1",
+     "research-83b2a389-7ab3-452e-b6f8-c7874504d12f"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Still a firm, head-heavy diamond: demanding to handle.",
+    "t": "Not truly soft: despite the name it feels medium-hard rather than plush.",
     "for": [
-     "beginner",
-     "intermediate",
-     "control"
-    ],
-    "only": [
-     "beginner",
-     "intermediate",
-     "control"
+     "arm"
     ],
     "src": [
+     "c1631156-d5e7-40d2-9bfb-ece28a80b30f",
+     "a7a3c345-63d0-4a68-a603-00291fd9c80d",
+     "b899ba79-a61c-4600-b8f0-78c2c4c95e35",
+     "45fb7f49-fc83-4af7-915b-70074de2d016",
+     "5d03878d-209a-4f26-999a-004bc2afc0c1",
      "research-f1d2256e-6ef9-4641-bd9e-14cc44e730a2",
-     "b9762464-d75a-4897-83ea-2034ecbdbcaa",
-     "research-68cdfc62-cb14-4861-a1f8-17c7919f76d1",
-     "6ad7739a-619c-4a71-9da8-0595a71f6f9f"
-    ]
+     "research-75d693af-5227-4f4f-9dea-e7a70d598ac9",
+     "research-5462bc04-5371-47ba-87db-578dcfb56474",
+     "research-2e220977-d94a-4d4c-a4af-59d444998d3c",
+     "research-359c3564-288b-48ec-b7be-dbf58054e5f9",
+     "research-f1e6f014-f873-4728-8ef7-414609c04293"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Want a gentler feel? The Oxdog Hyper Pro 2.0 is known for arm comfort.",
+     "src": [
+      "research-f1d2256e-6ef9-4641-bd9e-14cc44e730a2",
+      "research-2e220977-d94a-4d4c-a4af-59d444998d3c"
+     ]
+    }
    },
    {
-    "t": "Durability: paint can flake, and it can break.",
+    "t": "Fragile finish: the paint can chip or flake, and frames can break.",
     "for": [],
     "src": [
-     "research-6ff00b3d-269c-4823-bd7c-4410ec79e80f",
      "research-75d693af-5227-4f4f-9dea-e7a70d598ac9",
-     "research-aaa7613f-de3e-480e-ab80-a7090c99d441"
+     "research-aaa7613f-de3e-480e-ab80-a7090c99d441",
+     "research-6ff00b3d-269c-4823-bd7c-4410ec79e80f"
     ]
    },
    {
-    "t": "Sore arm? It can feel harsh on full-power smashes.",
+    "t": "Weight up top: the high balance loads the forearm and asks for early preparation.",
     "for": [
      "arm"
     ],
+    "src": [
+     "b9762464-d75a-4897-83ea-2034ecbdbcaa",
+     "research-68cdfc62-cb14-4861-a1f8-17c7919f76d1"
+    ],
     "only": [
      "arm"
-    ],
-    "src": [
-     "research-2e220977-d94a-4d4c-a4af-59d444998d3c"
     ]
    }
   ]
@@ -5683,11 +5208,9 @@
  "bullpadel-vertex-04-2025": {
   "strengths": [
    {
-    "t": "Smash power: strong overheads.",
+    "t": "Overhead punch: smashes and big hits carry real weight, helped by the high balance.",
     "for": [
-     "power",
-     "advanced",
-     "balance"
+     "power"
     ],
     "src": [
      "480c9192-c600-43eb-8440-346a7a40a4dd",
@@ -5695,19 +5218,19 @@
      "e2149fbc-5f93-42ac-bf19-25d57767eb97",
      "34b73d44-b54c-49fb-9309-8b466d56cf81",
      "593756f8-fdc2-4545-9b83-2208f58d543c",
+     "research-1c89c5ad-49ae-437a-9d02-506fa53773da",
      "research-493c2447-ae6b-477c-b606-3a32e44c43d6",
-     "research-350e537c-d0e3-4f55-a916-bb347399f729",
      "research-42c98d15-f9fb-43d2-81c1-fa4ea39f920b",
+     "research-271dcb3d-8315-4743-98ec-6df2830fc3f8",
+     "research-350e537c-d0e3-4f55-a916-bb347399f729",
      "research-7211286e-c7aa-43ef-9a48-e53c92d2e09e",
-     "research-1c89c5ad-49ae-437a-9d02-506fa53773da"
+     "research-6f0295c5-6ba3-4c0e-9373-01069995352e"
     ]
    },
    {
-    "t": "Control and spin for a diamond: solid blocks, viboras and kick smashes.",
+    "t": "Precise placement: blocks, volleys and víboras land where you aim with predictable control.",
     "for": [
-     "control",
-     "balance",
-     "advanced"
+     "control"
     ],
     "src": [
      "480c9192-c600-43eb-8440-346a7a40a4dd",
@@ -5717,63 +5240,80 @@
      "79fc4147-57de-4b25-bb91-620d59f91391",
      "4f09e05e-2066-422d-9948-0ee109bdd28f",
      "f30c3d15-9e24-4f53-967b-244d2ead5ae9",
-     "research-6f0295c5-6ba3-4c0e-9373-01069995352e",
-     "research-5b41f23f-753c-4aa8-b7dc-cce33ad0fcba"
+     "research-5b41f23f-753c-4aa8-b7dc-cce33ad0fcba",
+     "research-6f0295c5-6ba3-4c0e-9373-01069995352e"
     ]
    },
    {
-    "t": "Quick for a diamond: it handles well.",
-    "for": [
-     "balance",
-     "intermediate"
-    ],
+    "t": "Spin bite: víboras, kick smashes and slice grab plenty of spin.",
+    "for": [],
     "src": [
      "c1aec23d-99de-4da2-b1ad-a6b0975ce7c2",
-     "f30c3d15-9e24-4f53-967b-244d2ead5ae9",
-     "research-5b41f23f-753c-4aa8-b7dc-cce33ad0fcba"
+     "c957ffc8-dc02-4f81-9dad-97652941f5df",
+     "93da63a2-caf9-460e-b72b-3189d696fcf5",
+     "34b73d44-b54c-49fb-9309-8b466d56cf81",
+     "79fc4147-57de-4b25-bb91-620d59f91391",
+     "4f09e05e-2066-422d-9948-0ee109bdd28f",
+     "f30c3d15-9e24-4f53-967b-244d2ead5ae9"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Small, high sweet spot: demanding, and it costs you in defence.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Small margin: mishits and side contact lose depth fast, most of all in defence.",
+    "for": [],
     "src": [
-     "593756f8-fdc2-4545-9b83-2208f58d543c",
-     "research-350e537c-d0e3-4f55-a916-bb347399f729",
-     "research-42c98d15-f9fb-43d2-81c1-fa4ea39f920b",
+     "480c9192-c600-43eb-8440-346a7a40a4dd",
+     "93da63a2-caf9-460e-b72b-3189d696fcf5",
+     "34b73d44-b54c-49fb-9309-8b466d56cf81",
+     "f30c3d15-9e24-4f53-967b-244d2ead5ae9",
      "research-1c89c5ad-49ae-437a-9d02-506fa53773da",
+     "research-42c98d15-f9fb-43d2-81c1-fa4ea39f920b",
      "research-271dcb3d-8315-4743-98ec-6df2830fc3f8"
-    ]
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want more margin? The Nox AT10 Genius 18K is a forgiving control teardrop.",
+     "src": [
+      "research-42c98d15-f9fb-43d2-81c1-fa4ea39f920b",
+      "research-271dcb3d-8315-4743-98ec-6df2830fc3f8"
+     ]
+    }
    },
    {
-    "t": "Defence can suffer: chiquitas and lobs get harder.",
+    "t": "Flat hits vary: splits opinion: flat smashes can lack punch, most of all next to a Coello Motion.",
     "for": [
-     "control"
+     "power"
     ],
     "src": [
-     "research-350e537c-d0e3-4f55-a916-bb347399f729"
+     "c957ffc8-dc02-4f81-9dad-97652941f5df",
+     "79fc4147-57de-4b25-bb91-620d59f91391",
+     "4f09e05e-2066-422d-9948-0ee109bdd28f",
+     "research-6d07c4af-f8de-495f-a010-702cd9aaf609",
+     "research-5b41f23f-753c-4aa8-b7dc-cce33ad0fcba"
     ]
    },
    {
-    "t": "Sore arm? Splits opinion: easy on the arm for some, painful after long heavy use for others.",
+    "t": "Heavy on the arm: the head weight can tire the arm over a season of hard play.",
     "for": [
      "arm"
+    ],
+    "src": [
+     "34b73d44-b54c-49fb-9309-8b466d56cf81",
+     "research-1c89c5ad-49ae-437a-9d02-506fa53773da",
+     "research-7211286e-c7aa-43ef-9a48-e53c92d2e09e"
     ],
     "only": [
      "arm"
     ],
-    "src": [
-     "research-493c2447-ae6b-477c-b606-3a32e44c43d6",
-     "research-7211286e-c7aa-43ef-9a48-e53c92d2e09e"
-    ]
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore arm? The Oxdog Hyper Pro 2.0 is known for arm comfort.",
+     "src": [
+      "research-1c89c5ad-49ae-437a-9d02-506fa53773da",
+      "research-7211286e-c7aa-43ef-9a48-e53c92d2e09e"
+     ]
+    }
    }
   ]
  },
@@ -6059,92 +5599,76 @@
  "bullpadel-hack-04-2025": {
   "strengths": [
    {
-    "t": "Power and spin on volleys, viboras and smashes.",
+    "t": "Net and víbora control: volleys, blocks and víboras go where you aim with a firm, dry contact.",
     "for": [
-     "power",
-     "advanced",
-     "balance"
+     "control"
     ],
+    "src": [
+     "01d1529f-0a5d-456e-877f-62da1bd0226d",
+     "118cf168-1e25-49f8-a042-74d20f0a3b1a",
+     "59fe2e8b-74e7-427d-aa47-e13749503d53",
+     "7ad49221-9198-44a9-a83a-522874ca9d9b",
+     "22b73021-bd25-4d67-b67e-f4fb17cb8953",
+     "research-933c8773-799e-47f0-ae6b-84996e4ac0d8"
+    ]
+   },
+   {
+    "t": "Spin bite: sliced wall attacks, bandejas and víboras carry heavy spin.",
+    "for": [],
     "src": [
      "ec20f974-1e6d-411e-9d17-ea99401198ca",
      "9ec1f399-5af8-42eb-ad72-091d677dc560",
      "01d1529f-0a5d-456e-877f-62da1bd0226d",
      "4d70ab01-fcb1-43ee-af65-2edf63be8ffe",
-     "118cf168-1e25-49f8-a042-74d20f0a3b1a",
-     "af9ec321-bb4f-42ec-a524-06167b99490d",
-     "59fe2e8b-74e7-427d-aa47-e13749503d53",
-     "60b93ca7-fc52-4e05-bc6c-5859915214b1",
-     "research-382cf84d-3204-4cd4-9027-a6a34b62d89a"
-    ]
-   },
-   {
-    "t": "Control: good speed control on volleys.",
-    "for": [
-     "control",
-     "balance",
-     "intermediate"
-    ],
-    "src": [
-     "01d1529f-0a5d-456e-877f-62da1bd0226d",
-     "7ad49221-9198-44a9-a83a-522874ca9d9b",
-     "60b93ca7-fc52-4e05-bc6c-5859915214b1",
-     "research-933c8773-799e-47f0-ae6b-84996e4ac0d8",
-     "22b73021-bd25-4d67-b67e-f4fb17cb8953",
-     "research-18b72c44-ae4f-4299-9a61-6ba2860edaca"
-    ]
-   },
-   {
-    "t": "Comfortable: easy on the arm.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "ec20f974-1e6d-411e-9d17-ea99401198ca",
-     "research-c3d9ea50-8430-40be-9d66-f3fa7f19a77b"
+     "118cf168-1e25-49f8-a042-74d20f0a3b1a"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Head-heavy diamond: it needs a strong arm, more so without the Hesacore.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
-    "only": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Small margin: late or off-centre contact leaves the ball short, lobs included.",
+    "for": [],
     "src": [
-     "02686db7-3598-40a1-ac57-00dab119fa85",
-     "4d70ab01-fcb1-43ee-af65-2edf63be8ffe",
+     "ec20f974-1e6d-411e-9d17-ea99401198ca",
      "118cf168-1e25-49f8-a042-74d20f0a3b1a",
-     "c48b1109-d046-490d-ab93-2f9ead106e3a",
      "59fe2e8b-74e7-427d-aa47-e13749503d53",
-     "7ad49221-9198-44a9-a83a-522874ca9d9b",
-     "59c4f06f-bd8e-408a-9b4d-8804bd0ba42d",
-     "22b73021-bd25-4d67-b67e-f4fb17cb8953"
+     "22b73021-bd25-4d67-b67e-f4fb17cb8953",
+     "research-4ffa2a86-aa8b-4a20-bae7-960fac2c53aa"
     ],
-    "tip": {
-     "label": "Heads up",
-     "t": "A few testers took off the Hesacore and added two overgrips, and say it handles better.",
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want more margin? The Nox AT10 Genius 18K is a forgiving control teardrop.",
      "src": [
       "118cf168-1e25-49f8-a042-74d20f0a3b1a",
-      "22b73021-bd25-4d67-b67e-f4fb17cb8953"
+      "research-4ffa2a86-aa8b-4a20-bae7-960fac2c53aa"
      ]
     }
    },
    {
-    "t": "Deep defence is hard: very dry, with little help.",
+    "t": "Work on slow balls: defence and slower shots need a longer swing; little comes for free.",
     "for": [
-     "control"
+     "power"
     ],
     "src": [
+     "02686db7-3598-40a1-ac57-00dab119fa85",
+     "59fe2e8b-74e7-427d-aa47-e13749503d53",
+     "7ad49221-9198-44a9-a83a-522874ca9d9b",
      "research-dd006394-ebd0-426c-85a7-34dfecc90b31",
      "research-933c8773-799e-47f0-ae6b-84996e4ac0d8"
+    ]
+   },
+   {
+    "t": "Tiring up top: repeated overheads and quick exchanges wear the arm down in long matches.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "118cf168-1e25-49f8-a042-74d20f0a3b1a",
+     "c48b1109-d046-490d-ab93-2f9ead106e3a",
+     "59c4f06f-bd8e-408a-9b4d-8804bd0ba42d"
+    ],
+    "only": [
+     "arm"
     ]
    }
   ]
@@ -6241,77 +5765,77 @@
  "bullpadel-xplo-2026": {
   "strengths": [
    {
-    "t": "Attacking power: strong smashes and deep bandejas.",
+    "t": "Power that stays controlled: high contact fires the ball through without losing direction.",
     "for": [
      "power",
-     "advanced",
-     "balance"
-    ],
-    "src": [
-     "be5575db-56ba-4a94-909d-dd2b46f41d11",
-     "7adb5999-bc44-4624-852b-68cf9742e534",
-     "0b8da4c6-c474-40cd-ae8e-96583db54890",
-     "622e2a7e-d748-4028-a8d2-14ce2e5e318e",
-     "research-3cd96432-54e5-421a-abd2-114875100194",
-     "a968c902-ff85-4a2e-a5d2-603788876416",
-     "cbf3c686-6e91-43c9-8257-f3c4aaa525f3",
-     "research-5cd72bc2-f27b-466c-801d-c13383a5a27e",
-     "research-4322dbf8-8784-473d-950c-54a09fb82d5a"
-    ]
-   },
-   {
-    "t": "Forgiving face: the sweet spot is big.",
-    "for": [
-     "intermediate",
-     "balance"
-    ],
-    "src": [
-     "acc1a79d-a644-424c-9a56-f439702c45d2",
-     "8a22e297-c42d-4500-865f-a433ae2255f6",
-     "research-5cd72bc2-f27b-466c-801d-c13383a5a27e",
-     "research-dcfbeb1e-cd1c-4c51-a5a6-50a2b9087dca"
-    ]
-   },
-   {
-    "t": "Easy to handle: it moves better than you'd expect.",
-    "for": [
-     "balance",
-     "intermediate"
+     "advanced"
     ],
     "src": [
      "69a13786-ecea-4dc8-bcad-e4a1a4ceb757",
-     "a795cc68-038f-4fc9-b136-84bfc6547a4a",
-     "research-3cd96432-54e5-421a-abd2-114875100194",
-     "research-5cd72bc2-f27b-466c-801d-c13383a5a27e"
+     "b760d67e-d94f-4042-a0df-92262eef81d1",
+     "0b8da4c6-c474-40cd-ae8e-96583db54890",
+     "622e2a7e-d748-4028-a8d2-14ce2e5e318e",
+     "acc1a79d-a644-424c-9a56-f439702c45d2",
+     "cbf3c686-6e91-43c9-8257-f3c4aaa525f3",
+     "research-5cd72bc2-f27b-466c-801d-c13383a5a27e",
+     "research-4322dbf8-8784-473d-950c-54a09fb82d5a",
+     "research-3cd96432-54e5-421a-abd2-114875100194"
+    ]
+   },
+   {
+    "t": "Solid at the net: volleys and blocks feel firm and stable against pace.",
+    "for": [],
+    "src": [
+     "be5575db-56ba-4a94-909d-dd2b46f41d11",
+     "0b8da4c6-c474-40cd-ae8e-96583db54890",
+     "4ce4cb81-cc14-40c6-aa35-10a190964ddc"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Head-heavy diamond: the balance and sweet spot take getting used to.",
-    "for": [
-     "beginner"
-    ],
-    "only": [
-     "beginner"
-    ],
-    "src": [
-     "research-ea2690ce-7b35-48a3-85b8-dae58eb9c62e",
-     "research-c357b85d-4877-4834-905e-c8aa8cf18dda",
-     "research-4322dbf8-8784-473d-950c-54a09fb82d5a",
-     "95b28ab3-9944-4f78-8330-f60df2dc0a15"
-    ]
-   },
-   {
-    "t": "Fast balls are hard to control: defence takes real work.",
-    "for": [
-     "control"
-    ],
+    "t": "Heavy in quick exchanges: rushed net reactions and defence need early preparation.",
+    "for": [],
     "src": [
      "b760d67e-d94f-4042-a0df-92262eef81d1",
      "0b8da4c6-c474-40cd-ae8e-96583db54890",
      "622e2a7e-d748-4028-a8d2-14ce2e5e318e",
-     "4ce4cb81-cc14-40c6-aa35-10a190964ddc"
+     "8a22e297-c42d-4500-865f-a433ae2255f6",
+     "4ce4cb81-cc14-40c6-aa35-10a190964ddc",
+     "research-ea2690ce-7b35-48a3-85b8-dae58eb9c62e"
+    ],
+    "alt": {
+     "slug": "nox-at10-genius-18k-2026",
+     "t": "Want quicker defence? The Nox AT10 Genius 18K 2026 is a teardrop known for speed at the net.",
+     "src": [
+      "0b8da4c6-c474-40cd-ae8e-96583db54890",
+      "4ce4cb81-cc14-40c6-aa35-10a190964ddc"
+     ]
+    }
+   },
+   {
+    "t": "Exacting on contact: splits opinion: mishits can be punished; the 2026 zone is a touch smaller.",
+    "for": [],
+    "src": [
+     "21c2c613-5573-44a5-86d0-66cd8576dcb8",
+     "4ce4cb81-cc14-40c6-aa35-10a190964ddc",
+     "research-c357b85d-4877-4834-905e-c8aa8cf18dda"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want power with more margin? The Siux Electra Pro ST4 2025 is a power hybrid known for control.",
+     "src": [
+      "4ce4cb81-cc14-40c6-aa35-10a190964ddc",
+      "research-c357b85d-4877-4834-905e-c8aa8cf18dda"
+     ]
+    }
+   },
+   {
+    "t": "Slippery face: the shallow texture lets the ball slide, so spin takes work.",
+    "for": [],
+    "src": [
+     "be5575db-56ba-4a94-909d-dd2b46f41d11",
+     "a795cc68-038f-4fc9-b136-84bfc6547a4a"
     ]
    }
   ]
@@ -6319,93 +5843,100 @@
  "bullpadel-neuron-2024": {
   "strengths": [
    {
-    "t": "Precise control: accurate placement and defence.",
+    "t": "Precise placement: lobs, glass recoveries and blocks land where you aim.",
     "for": [
-     "control",
-     "intermediate",
-     "advanced",
-     "balance"
+     "control"
     ],
     "src": [
      "5e3b9f37-bea0-4244-9269-aa250d7d30a6",
      "c5a62284-e7aa-47e4-b53a-ad92b3b3c3f0",
      "36bf5a7c-5384-4c71-8819-c7ea5ddadc94",
      "a6df3ca1-d579-4ad9-b253-bc8f9997c825",
-     "0701535d-8e76-4fd3-82ef-1b8d4f1cc200",
-     "research-6e8694a1-2b98-464a-bfcb-8fdebc58c83b",
      "cfa773cc-44c2-4487-a047-4754ac4ed7b1",
      "c4bf5dac-3be0-475f-89f2-980b6b72ecef",
      "9b52edf3-4399-4762-beed-0d86b59c91a5",
-     "research-8ad101d3-2f92-4ea4-8ec1-64126f985753",
      "2bec15d6-9a72-4913-a4d4-19b4a370a7b1",
-     "research-8d27f077-f248-484e-8778-624f4f66061d",
+     "research-6e8694a1-2b98-464a-bfcb-8fdebc58c83b",
+     "research-8ad101d3-2f92-4ea4-8ec1-64126f985753",
      "research-7aeff7e0-fc57-4e78-9a63-528a47bf4d2e"
     ]
    },
    {
-    "t": "Quick and light: easy handling at the net.",
-    "for": [
-     "control",
-     "balance"
-    ],
+    "t": "Quick in hand: light, fast handling at the net and on low pickups.",
+    "for": [],
     "src": [
      "5e3b9f37-bea0-4244-9269-aa250d7d30a6",
      "c5a62284-e7aa-47e4-b53a-ad92b3b3c3f0",
      "36bf5a7c-5384-4c71-8819-c7ea5ddadc94",
+     "0701535d-8e76-4fd3-82ef-1b8d4f1cc200",
+     "af876572-b441-4bf0-852d-de6fd1c70a1b",
      "c4bf5dac-3be0-475f-89f2-980b6b72ecef",
-     "research-8d27f077-f248-484e-8778-624f4f66061d"
+     "research-8d27f077-f248-484e-8778-624f4f66061d",
+     "research-5fc38078-98fe-4912-a90e-d330d2f8fcd2"
     ]
    },
    {
-    "t": "Forgiving: it defends well off-centre.",
+    "t": "Calm defence: off-centre recoveries still find their target under pressure.",
     "for": [
-     "beginner",
      "intermediate"
     ],
     "src": [
      "0701535d-8e76-4fd3-82ef-1b8d4f1cc200",
-     "research-6e8694a1-2b98-464a-bfcb-8fdebc58c83b",
      "73ade6c9-4945-4e84-bbb7-7f9031098bb7",
-     "research-8d27f077-f248-484e-8778-624f4f66061d"
+     "research-8d27f077-f248-484e-8778-624f4f66061d",
+     "research-6e8694a1-2b98-464a-bfcb-8fdebc58c83b"
     ]
    }
   ],
   "catches": [
    {
-    "t": "Little power: smashes lack punch.",
+    "t": "Short on punch: flat smashes and volleys need extra arm effort to end points.",
     "for": [
-     "power",
-     "balance"
+     "power"
     ],
+    "src": [
+     "5e3b9f37-bea0-4244-9269-aa250d7d30a6",
+     "c5a62284-e7aa-47e4-b53a-ad92b3b3c3f0",
+     "36bf5a7c-5384-4c71-8819-c7ea5ddadc94",
+     "a6df3ca1-d579-4ad9-b253-bc8f9997c825",
+     "af876572-b441-4bf0-852d-de6fd1c70a1b",
+     "cfa773cc-44c2-4487-a047-4754ac4ed7b1",
+     "c4bf5dac-3be0-475f-89f2-980b6b72ecef",
+     "9b52edf3-4399-4762-beed-0d86b59c91a5",
+     "2bec15d6-9a72-4913-a4d4-19b4a370a7b1",
+     "research-8d27f077-f248-484e-8778-624f4f66061d",
+     "research-c6d5b854-feb1-4963-8443-77ef2c10ebb3",
+     "research-7aeff7e0-fc57-4e78-9a63-528a47bf4d2e",
+     "research-c9fd3a3b-910e-40ed-9e8f-1a831ffda6ca"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more pop? The Siux Electra Pro ST4 is a power hybrid known for easy power.",
+     "src": [
+      "research-8d27f077-f248-484e-8778-624f4f66061d",
+      "research-c9fd3a3b-910e-40ed-9e8f-1a831ffda6ca"
+     ]
+    }
+   },
+   {
+    "t": "Smooth face: little grip for slice and topspin; spin comes from your wrist.",
+    "for": [],
     "src": [
      "c5a62284-e7aa-47e4-b53a-ad92b3b3c3f0",
-     "0701535d-8e76-4fd3-82ef-1b8d4f1cc200",
-     "research-8d27f077-f248-484e-8778-624f4f66061d",
-     "research-c9fd3a3b-910e-40ed-9e8f-1a831ffda6ca",
-     "research-7aeff7e0-fc57-4e78-9a63-528a47bf4d2e"
+     "36bf5a7c-5384-4c71-8819-c7ea5ddadc94",
+     "a6df3ca1-d579-4ad9-b253-bc8f9997c825",
+     "cfa773cc-44c2-4487-a047-4754ac4ed7b1",
+     "c4bf5dac-3be0-475f-89f2-980b6b72ecef",
+     "c3d47575-a21f-4b23-b7af-757e835cbd53"
     ]
    },
    {
-    "t": "The sweet spot splits opinion: it can feel small and cost you overheads.",
-    "for": [
-     "beginner",
-     "intermediate"
-    ],
+    "t": "Fragile finish: the finish can scratch and frames can crack after knocks.",
+    "for": [],
     "src": [
-     "research-c6d5b854-feb1-4963-8443-77ef2c10ebb3",
-     "research-b1cfeed5-7f1a-461d-9f6d-f66610c46f4d"
-    ]
-   },
-   {
-    "t": "Sore arm? Mishits can send vibration into the arm.",
-    "for": [
-     "arm"
-    ],
-    "only": [
-     "arm"
-    ],
-    "src": [
-     "9b52edf3-4399-4762-beed-0d86b59c91a5"
+     "c5a62284-e7aa-47e4-b53a-ad92b3b3c3f0",
+     "2bec15d6-9a72-4913-a4d4-19b4a370a7b1",
+     "research-32f241e0-83d3-4a08-b72d-f88c74c3f438"
     ]
    }
   ]
@@ -8120,6 +7651,494 @@
     "src": [
      "https://www.padelful.com/es/palas/wilson-optix-v2-power-blue-2026",
      "https://padelguru.app/racket/wilson-optix-v2-power-blue"
+    ]
+   }
+  ]
+ },
+ "adidas-metalbone-carbon-3-4-2025": {
+  "strengths": [
+   {
+    "t": "Agile at the net: volleys and fast blocks stay nimble and controlled.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "3648505e-1d3b-45ce-b447-d9680913e092",
+     "research-38b81067-a491-4cfa-8903-41635f1a2972",
+     "f01d9863-0043-4a45-a248-6accf17e3c5c",
+     "efa8cca6-3fc0-416e-8888-1aac552216bd",
+     "8ca3790c-700b-4e96-9726-32bba680aabc",
+     "research-96a81ec8-d8ed-47e4-b687-6d8f83b4cae4"
+    ]
+   },
+   {
+    "t": "Overhead pace: centred smashes carry strong pace, and depth comes readily.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "03317d76-eb52-47c2-baf3-cd8f44188cb8",
+     "f01d9863-0043-4a45-a248-6accf17e3c5c",
+     "b1e814cf-7d41-41b2-b80c-daa87f26c342",
+     "efa8cca6-3fc0-416e-8888-1aac552216bd",
+     "8ca3790c-700b-4e96-9726-32bba680aabc"
+    ]
+   },
+   {
+    "t": "Easy on the arm: contact stays free of vibration, kind to a sore shoulder.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "3648505e-1d3b-45ce-b447-d9680913e092",
+     "research-b672372b-f57e-4e8b-9681-e260df4b8131"
+    ],
+    "only": [
+     "arm"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Small margin: mishits lose depth and control on a tight sweet spot.",
+    "for": [],
+    "src": [
+     "1472fa95-4114-4dcc-9c51-75a5c18d483c",
+     "3648505e-1d3b-45ce-b447-d9680913e092",
+     "b1e814cf-7d41-41b2-b80c-daa87f26c342",
+     "efa8cca6-3fc0-416e-8888-1aac552216bd",
+     "8ca3790c-700b-4e96-9726-32bba680aabc",
+     "research-dcb1532e-c4c9-4169-8f4c-61fbc13a4f29"
+    ],
+    "alt": {
+     "slug": "adidas-metalbone-ctrl-2026",
+     "t": "Want more margin? The Adidas Metalbone CTRL is a forgiving round racket.",
+     "src": [
+      "efa8cca6-3fc0-416e-8888-1aac552216bd",
+      "research-dcb1532e-c4c9-4169-8f4c-61fbc13a4f29"
+     ]
+    }
+   },
+   {
+    "t": "Work in defence: passive lobs and late adjustments need an extra push.",
+    "for": [],
+    "src": [
+     "f01d9863-0043-4a45-a248-6accf17e3c5c",
+     "efa8cca6-3fc0-416e-8888-1aac552216bd",
+     "8ca3790c-700b-4e96-9726-32bba680aabc"
+    ]
+   }
+  ]
+ },
+ "bullpadel-hack-04-hybrid-2026": {
+  "strengths": [
+   {
+    "t": "Precise placement: bandejas, víboras and back-court balls go where you aim.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "7523347b-4a88-43f8-b944-6faf62f7818c",
+     "research-961ab5aa-2dc8-45a1-bb7a-314bcc4ff1f9",
+     "research-89b8ae22-c283-4283-9601-1278c89bb8fa",
+     "research-87045e37-e9c3-4b2f-9710-509aa23db70f",
+     "research-dd68e4d0-b6eb-433d-86b8-9203a81460f3",
+     "research-1d5331d0-b9c2-4c2d-a6dd-4c64f3c993b0"
+    ]
+   },
+   {
+    "t": "Calm defence: lobs and back-glass balls come back easily off a generous sweet spot.",
+    "for": [],
+    "src": [
+     "6284c372-5de6-43c4-bad0-2dd46ef406c2",
+     "3e905517-be1f-4759-987f-1285c5c5a177",
+     "research-961ab5aa-2dc8-45a1-bb7a-314bcc4ff1f9",
+     "research-89b8ae22-c283-4283-9601-1278c89bb8fa",
+     "research-1c45b15d-67d3-4b53-8f5c-2f63195a1f32",
+     "research-c22d3eef-8876-4e58-bf03-9491bf76cef0"
+    ]
+   },
+   {
+    "t": "Quick handling: moves fast at the net and on wristy defensive adjustments.",
+    "for": [],
+    "src": [
+     "5632f550-4eb5-4a4e-91fe-d2e807b04778",
+     "research-89b8ae22-c283-4283-9601-1278c89bb8fa",
+     "research-87045e37-e9c3-4b2f-9710-509aa23db70f",
+     "research-1d5331d0-b9c2-4c2d-a6dd-4c64f3c993b0"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Moderate punch: hits less hard than the standard Hack; smashes need high contact.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "6284c372-5de6-43c4-bad0-2dd46ef406c2",
+     "3e905517-be1f-4759-987f-1285c5c5a177",
+     "research-dd68e4d0-b6eb-433d-86b8-9203a81460f3"
+    ],
+    "alt": {
+     "slug": "siux-electra-pro-st4-2025",
+     "t": "Want more pop? The Siux Electra Pro ST4 is a power hybrid known for easy power.",
+     "src": [
+      "3e905517-be1f-4759-987f-1285c5c5a177",
+      "research-dd68e4d0-b6eb-433d-86b8-9203a81460f3"
+     ]
+    }
+   },
+   {
+    "t": "Lively on fast balls: fast volleys can fly long without early preparation.",
+    "for": [],
+    "src": [
+     "5632f550-4eb5-4a4e-91fe-d2e807b04778",
+     "research-961ab5aa-2dc8-45a1-bb7a-314bcc4ff1f9"
+    ]
+   }
+  ]
+ },
+ "head-coello-pro-2025": {
+  "strengths": [
+   {
+    "t": "Overhead cannon: smashes and net volleys hit with huge pace on clean, high contact.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "b25cdf25-b973-4828-8c5a-85aba7aed614",
+     "92f878bd-46cb-41bb-becf-a4f6349bc2fa",
+     "6b66dfba-a265-4ce5-ab90-a51ae6fd8413",
+     "7633c6db-aadf-4e93-8e32-7cbcb466617b",
+     "7e0a90fc-3272-4a55-ba90-0905631f46be",
+     "f65ea0d3-7ae5-4b35-9461-dd209098f487",
+     "research-c58242c1-3455-408e-ad18-39d2254d3df7",
+     "research-41f068a8-1bb2-46f8-a797-eb450e213475",
+     "research-3c6f1309-b9d0-4e8d-a8ee-75bc1b7de4ac"
+    ]
+   },
+   {
+    "t": "Solid on blocks: extra mass holds steady against heavy pace at the net.",
+    "for": [],
+    "src": [
+     "7633c6db-aadf-4e93-8e32-7cbcb466617b",
+     "7e0a90fc-3272-4a55-ba90-0905631f46be"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Heavy to wield: the weight wears on the arm and slows quick volley exchanges.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "b25cdf25-b973-4828-8c5a-85aba7aed614",
+     "92f878bd-46cb-41bb-becf-a4f6349bc2fa",
+     "7e0a90fc-3272-4a55-ba90-0905631f46be",
+     "research-c58242c1-3455-408e-ad18-39d2254d3df7",
+     "research-41f068a8-1bb2-46f8-a797-eb450e213475",
+     "research-3c6f1309-b9d0-4e8d-a8ee-75bc1b7de4ac"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Sore arm? The Oxdog Hyper Pro 2.0 is a teardrop known for arm comfort.",
+     "src": [
+      "b25cdf25-b973-4828-8c5a-85aba7aed614",
+      "research-3c6f1309-b9d0-4e8d-a8ee-75bc1b7de4ac"
+     ]
+    }
+   },
+   {
+    "t": "Demanding sweet spot: a high, small hitting zone punishes off-centre lobs and defence.",
+    "for": [],
+    "src": [
+     "6b66dfba-a265-4ce5-ab90-a51ae6fd8413",
+     "f65ea0d3-7ae5-4b35-9461-dd209098f487",
+     "research-c58242c1-3455-408e-ad18-39d2254d3df7"
+    ]
+   }
+  ]
+ },
+ "bullpadel-hack-04-2026": {
+  "strengths": [
+   {
+    "t": "Volley control: fast volleys and víboras stay predictable, not spat long.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "533e44d5-5e26-48c2-a9c1-33212e61957a",
+     "87f39a3f-34ad-4335-93b5-03e79cea690c",
+     "bfeae558-77c8-441d-bfcb-28cb97a8f831",
+     "5e157212-9d2c-4680-aa28-24e0f7b75676",
+     "research-e9265bcf-21f7-47f6-b98a-3f731820f7a0"
+    ]
+   },
+   {
+    "t": "Quick for a diamond: a lower balance than the 2025 speeds up defensive scrambles.",
+    "for": [],
+    "src": [
+     "8f8028a2-5fb9-4a74-8976-f3351e86e0a8",
+     "5e157212-9d2c-4680-aa28-24e0f7b75676",
+     "research-c770d7b0-55a7-4fcb-af3c-3668fc079173",
+     "research-e9265bcf-21f7-47f6-b98a-3f731820f7a0"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Less smash whip: the lighter head gives less overhead punch than last year's Hack.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "8f8028a2-5fb9-4a74-8976-f3351e86e0a8",
+     "5e157212-9d2c-4680-aa28-24e0f7b75676",
+     "research-a1890031-af62-45d4-9022-416e3911ce1a"
+    ],
+    "alt": {
+     "slug": "siux-fenix-pro-6-2026",
+     "t": "Want smash power? The Siux Fenix Pro 6 is a head-heavy power diamond.",
+     "src": [
+      "8f8028a2-5fb9-4a74-8976-f3351e86e0a8",
+      "5e157212-9d2c-4680-aa28-24e0f7b75676"
+     ]
+    }
+   },
+   {
+    "t": "Tight timing: a high sweet spot asks for clean timing, less forgiving than the Vertex.",
+    "for": [],
+    "src": [
+     "87f39a3f-34ad-4335-93b5-03e79cea690c",
+     "4801c69a-cf1a-426e-a3a3-a0e1b48a9e50",
+     "research-a1890031-af62-45d4-9022-416e3911ce1a"
+    ]
+   },
+   {
+    "t": "Dry contact: feels drier and stiffer than the Hybrid and the Vertex 05.",
+    "for": [],
+    "src": [
+     "533e44d5-5e26-48c2-a9c1-33212e61957a",
+     "bfeae558-77c8-441d-bfcb-28cb97a8f831"
+    ]
+   }
+  ]
+ },
+ "head-extreme-pro-2025": {
+  "strengths": [
+   {
+    "t": "Smash finisher: flat smashes, víboras and por tres end points with ease.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "12e43dd7-d362-44a5-8850-ce75d53279ff",
+     "612d3a6a-d9a2-4a2b-8b98-0a0c011bf439",
+     "53ebe9e2-f115-4d53-8f10-daca558ab3fd",
+     "1ff19c67-8f3d-4046-90a2-dee0b869cb4b",
+     "8581064f-26e2-4a50-8918-03f75527702a",
+     "research-3517cd40-e472-4bbc-8d6f-61ad54619a01"
+    ]
+   },
+   {
+    "t": "Accurate for a cannon: fast-ball blocks and back-court shots stay on target for a power frame.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "612d3a6a-d9a2-4a2b-8b98-0a0c011bf439",
+     "f12f3ba8-8174-43c2-86b6-a3ec48dfccda",
+     "research-3517cd40-e472-4bbc-8d6f-61ad54619a01"
+    ]
+   },
+   {
+    "t": "Spin bite: the 3D texture grips sliced víboras and keeps bajadas low.",
+    "for": [],
+    "src": [
+     "12e43dd7-d362-44a5-8850-ce75d53279ff",
+     "f12f3ba8-8174-43c2-86b6-a3ec48dfccda"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Stiff touch: a dry, medium-hard response, firmer than the Coello Pro and older model.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "612d3a6a-d9a2-4a2b-8b98-0a0c011bf439",
+     "53ebe9e2-f115-4d53-8f10-daca558ab3fd",
+     "1ff19c67-8f3d-4046-90a2-dee0b869cb4b",
+     "f12f3ba8-8174-43c2-86b6-a3ec48dfccda",
+     "8581064f-26e2-4a50-8918-03f75527702a"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "oxdog-hyper-pro-2-0-2026",
+     "t": "Want a kinder feel? The Oxdog Hyper Pro 2.0 is a teardrop known for arm comfort.",
+     "src": [
+      "1ff19c67-8f3d-4046-90a2-dee0b869cb4b",
+      "8581064f-26e2-4a50-8918-03f75527702a"
+     ]
+    }
+   },
+   {
+    "t": "Slow in quick exchanges: tip weight makes fast net exchanges a struggle and takes effort to handle.",
+    "for": [],
+    "src": [
+     "612d3a6a-d9a2-4a2b-8b98-0a0c011bf439",
+     "1ff19c67-8f3d-4046-90a2-dee0b869cb4b",
+     "8581064f-26e2-4a50-8918-03f75527702a",
+     "research-3dc083d0-322a-49f7-8fd1-3763c951f404"
+    ]
+   }
+  ]
+ },
+ "bullpadel-xplo-comfort-2025": {
+  "strengths": [
+   {
+    "t": "Kind to the arm: the softer Fibrix face stays gentle on a sore elbow or forearm.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "bfbe28c9-785e-4605-b218-da0ab4f352e9",
+     "ea3df21b-2e1e-419c-a75f-27e770e67961",
+     "38475256-b27c-45f6-bc37-ca6076132636",
+     "research-ea4c6730-60f4-41b2-84d8-3c58acb79532"
+    ],
+    "only": [
+     "arm"
+    ]
+   },
+   {
+    "t": "Steady at the net: blocks and volleys stay controlled instead of flying out.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "d88b77c1-4ba5-4b16-9539-b9dc265ef46f",
+     "bfbe28c9-785e-4605-b218-da0ab4f352e9",
+     "38475256-b27c-45f6-bc37-ca6076132636"
+    ]
+   },
+   {
+    "t": "Easy back-court exit: the ball leaves readily at slow pace, even in cold weather.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "d88b77c1-4ba5-4b16-9539-b9dc265ef46f",
+     "bfbe28c9-785e-4605-b218-da0ab4f352e9"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Smash needs the tip: real overhead power needs contact high on the face; flat hits lack punch.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "bfbe28c9-785e-4605-b218-da0ab4f352e9",
+     "ea3df21b-2e1e-419c-a75f-27e770e67961"
+    ],
+    "alt": {
+     "slug": "siux-fenix-pro-6-2026",
+     "t": "Want more smash? The Siux Fenix Pro 6 is a head-heavy power diamond.",
+     "src": [
+      "bfbe28c9-785e-4605-b218-da0ab4f352e9",
+      "ea3df21b-2e1e-419c-a75f-27e770e67961"
+     ]
+    }
+   },
+   {
+    "t": "Weak bite: the face does little to grip the ball, so spin needs extra wrist.",
+    "for": [],
+    "src": [
+     "bfbe28c9-785e-4605-b218-da0ab4f352e9",
+     "38475256-b27c-45f6-bc37-ca6076132636"
+    ]
+   },
+   {
+    "t": "Muted feedback: can feel dull and a bit clunky to a crisp, fast-hitting player.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "ea3df21b-2e1e-419c-a75f-27e770e67961",
+     "research-06225634-780f-46df-9c20-0fbb9add1e4b"
+    ]
+   }
+  ]
+ },
+ "bullpadel-vertex-05-women-2027": {
+  "strengths": [
+   {
+    "t": "Quick at the net: fast volleys and wristy shots come easily; the head never feels heavy.",
+    "for": [],
+    "src": [
+     "13036a5f-8a4b-4a16-b575-88a3fcbf71e9",
+     "b7f03b4c-1f4d-4c5b-b814-e457e5a7335a",
+     "b0d4efb1-c5cf-431b-941e-a521e616005c",
+     "486b1228-8766-4be3-97bc-b3c41291856b"
+    ]
+   },
+   {
+    "t": "Spin bite: the sandy Fibrix face grips víboras and kick smashes.",
+    "for": [],
+    "src": [
+     "13036a5f-8a4b-4a16-b575-88a3fcbf71e9",
+     "b7f03b4c-1f4d-4c5b-b814-e457e5a7335a",
+     "b0d4efb1-c5cf-431b-941e-a521e616005c"
+    ]
+   },
+   {
+    "t": "Overhead pop: overheads get ready pace without a big swing.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "2d990a8b-e645-4fe4-b4cb-bda3594ef021",
+     "486b1228-8766-4be3-97bc-b3c41291856b"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "No brute force: net volleys and big hits lack raw punch; it favours placement over force.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "b0d4efb1-c5cf-431b-941e-a521e616005c",
+     "486b1228-8766-4be3-97bc-b3c41291856b"
+    ],
+    "alt": {
+     "slug": "adidas-metalbone-3-4-2025",
+     "t": "Want raw power? The Adidas Metalbone 3.4 is a power diamond known for smashes.",
+     "src": [
+      "b0d4efb1-c5cf-431b-941e-a521e616005c",
+      "486b1228-8766-4be3-97bc-b3c41291856b"
+     ]
+    }
+   },
+   {
+    "t": "Stiffest Vertex Woman: the firmer build can punish off-centre and slow balls from the baseline.",
+    "for": [],
+    "src": [
+     "13036a5f-8a4b-4a16-b575-88a3fcbf71e9",
+     "b7f03b4c-1f4d-4c5b-b814-e457e5a7335a"
     ]
    }
   ]
