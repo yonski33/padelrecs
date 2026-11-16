@@ -9,6 +9,7 @@ import { amazonPhoto } from "../lib/amazon-photos";
 import { productHref, niche } from "../lib/niche";
 import { slimItems, type RankItem } from "../lib/home-rank";
 import { fitConfigFor } from "../lib/fit-config";
+import { sameInputs } from "../db/same-inputs";
 
 const FLIGHT = !!fitConfigFor(niche)?.quick?.flightLabel, ARM_SPEC = fitConfigFor(niche)?.quick?.armSpecOk;
 
@@ -21,8 +22,10 @@ export type HomeCard = { name: string; href: string; pic: string | null; line: s
  *  listed racket (lib/home-rank.ts) and a card for each racket that can take a row. */
 export type HomePayload = { items: RankItem[]; cards: Record<string, HomeCard> };
 
-export async function homePayload(): Promise<HomePayload> {
-  const { data, takes, finder, items } = await matchContext();
+export async function homePayload(): Promise<HomePayload> { return payloadOf(await matchContext()); }
+/** Built again only when the match context is a new copy (db/same-inputs.ts). */
+const payloadOf = sameInputs((ctx: Awaited<ReturnType<typeof matchContext>>): HomePayload => {
+  const { data, takes, finder, items } = ctx;
   const slim = slimItems(items, finder);
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
@@ -41,4 +44,4 @@ export async function homePayload(): Promise<HomePayload> {
       ...(ARM_SPEC ? { armOk: ARM_SPEC(r) } : {}) }] as const;
   }));
   return { items: slim, cards };
-}
+});
