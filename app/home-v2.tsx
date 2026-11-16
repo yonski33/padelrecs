@@ -10,7 +10,7 @@ import { niche, productHref, v2copy } from "../lib/niche";
 import { newThisWeek } from "../lib/new-this-week";
 
 import { qtFontVars } from "./qt-fonts";
-import { homePayload } from "./home-payload";
+import { homePayload, homeSeed } from "./home-payload";
 import { HomeMatch } from "./home-match";
 import { V2Footer } from "./v2-footer";
 import { GuideRow } from "./guide/guide-row";
@@ -80,7 +80,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       </section>
 
       {/* The picks and the list re-rank in the browser on a tap (app/home-match.tsx); this render is the address's own list. */}
-      <HomeMatch payload={payload} choice={choice} older={older} listed={data.listed.length}>
+      <HomeMatch seed={homeSeed(payload, choice, older)} listed={data.listed.length}>
         <aside className="hv2-side">
           <section>
             <div className="hv2-sidehead"><h3>{`Fresh off the ${v2copy.venue ?? "court"}`}</h3><a href="/reviews">all →</a></div>

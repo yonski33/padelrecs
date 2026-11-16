@@ -3,7 +3,7 @@
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
 import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
@@ -11,7 +11,8 @@ import { ARM_BAR } from "../lib/fit-verdict";
 import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
 import { fitConfigFor } from "../lib/fit-config";
-import type { HomePayload } from "./home-payload";
+import type { HomePayload, HomeSeed } from "./home-payload";
+import { sameChoice } from "../lib/rank-seed";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -38,12 +39,24 @@ function fromLocation(): { choice: QuickChoice; older: boolean } {
 }
 
 /** The picks, then the list beside `children` (the server-rendered sidebar). */
-export function HomeMatch({ payload, choice: first, older: firstOlder, listed, children }: { payload: HomePayload; choice: QuickChoice; older: boolean; listed: number; children: ReactNode }) {
+export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: number; children: ReactNode }) {
   // Back and forward step through the picks (app/instant-view.ts).
-  const [{ choice, older }, set] = useInstantView({ choice: first, older: firstOlder }, fromLocation, v => hrefOf(v.choice, v.older));
+  const [{ choice, older }, set] = useInstantView({ choice: seed.choice, older: seed.older }, fromLocation, v => hrefOf(v.choice, v.older));
+  // The page carries only its own rows (owner 2026-11-16: homes were 340–950 KB); the whole payload, for re-ranking on a tap,
+  // loads from one cached address once the page is up. Until it arrives the list keeps the page's rows.
+  const [payload, setPayload] = useState<HomePayload | null>(null);
+  useEffect(() => {
+    let live = true;
+    fetch("/api/home-payload").then(r => r.ok ? r.json() : null).then((p: HomePayload | null) => { if (live && p?.items?.length) setPayload(p); }, () => {});
+    return () => { live = false; };
+  }, []);
+  const own = !payload || (sameChoice(choice, seed.choice) && older === seed.older);
   const go = (next: QuickChoice, nextOlder = older) => instantClick(() => { set({ choice: next, older: nextOlder }); document.title = titleOf(next); });
-  const { rows, olderN } = rankHome(payload.items, SETUP, BAD, choice, older);
-  const byId = new Map(payload.items.map(x => [x.id, x]));
+  const { rows, olderN } = own ? seed : rankHome(payload.items, SETUP, BAD, choice, older);
+  const cards = own ? seed.cards : payload.cards;
+  const byId = own ? null : new Map(payload.items.map(x => [x.id, x]));
+  const signalOf = (id: string) => byId ? byId.get(id)?.signal ?? null : seed.signal[id] ?? null;
+  const armOf = (id: string) => byId ? byId.get(id)?.arm ?? 0 : seed.arm[id] ?? 0;
   const picked = !isDefault(choice);
   const head = matchTitle(choice, niche.words.many);
   const pill = (label: string, next: QuickChoice, on: boolean) => <a href={`${hrefOf(next, older)}#match`} onClick={go(next)} aria-current={on ? "true" : undefined} className={on ? "on" : undefined}>{label}</a>;
@@ -92,13 +105,13 @@ export function HomeMatch({ payload, choice: first, older: firstOlder, listed, c
       {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
       <div className="hv2-box">
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm }, i) => {
-        const r = payload.cards[id], sig = byId.get(id)?.signal ?? null;
+        const r = cards[id], sig = signalOf(id);
         // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
         const fitWord = fit && fit.kind !== "thin" ? FIT_WORD[fit.kind] : null;
         const chips = [
           ...(i === 0 && picked && fit?.kind === "good" ? [{ k: "best", t: "best match" }] : []),
           ...(r.shape ? [{ k: "shape", t: r.shape }] : []),
-          ...(choice.arm && (QUICK ? (byId.get(id)?.arm ?? 0) >= 70 && r.armOk !== false : arm >= ARM_BAR) ? [{ k: "arm", t: QUICK?.armChip ?? "arm-friendly" }] : []),
+          ...(choice.arm && (QUICK ? armOf(id) >= 70 && r.armOk !== false : arm >= ARM_BAR) ? [{ k: "arm", t: QUICK?.armChip ?? "arm-friendly" }] : []),
         ];
         // The row is one link (the name's, stretched over the row) with "check price" as a quiet text link under the
         // summary line (owner 2026-11-15: low-key, close to the text). Reviews over the sentiment bar, then the score box.
