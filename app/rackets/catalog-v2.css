@@ -153,13 +153,20 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-sc small { font-size: 10.5px; color: var(--soft); }
   .ct2-load, .ct2-empty { border-color: #b9bdc9; }
   .ct2-note { margin: 12px 0 0; font: 12px var(--mono); color: var(--mute); }
+  .ct2-rk, .ct2-ps { display: none; }
   @media (max-width: 760px) {
-    .ct2-row { grid-template-columns: 22px 48px minmax(0, 1fr) auto; gap: 10px; padding: 10px 10px 10px 8px; }
-    .ct2-list li.first .ct2-rank, .ct2-list li.top .ct2-rank { font-size: 19px; }
-    .ct2-rank { font-size: 16px; }
-    .ct2-pic { width: 48px; height: 60px; }
+    /* Phone mock: filters shown as closed groups; each card "#1 name", chips, line, specs, then score · reviews. */
+    .ct2-groups { display: block; }
+    .ct2-mtog { display: none; }
+    .ct2-row { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "pic body" "pic sc"; gap: 8px 12px; padding: 12px 14px 12px 10px; align-items: start; }
+    .ct2-rank { display: none; }
+    .ct2-pic { grid-area: pic; } .ct2-body { grid-area: body; }
+    .ct2-rk { display: inline; font: 800 15.5px var(--display); }
+    .ct2-sc { grid-area: sc; flex-direction: row; justify-content: flex-start; gap: 8px; min-width: 0; }
+    .ct2-sc .ct2-bar6 { display: none; }
+    .ct2-ps { display: inline; }
+    .ct2-pic { width: 44px; height: 64px; }
     .ct2-name { font-size: 15.5px; }
-    .ct2-sc { min-width: 60px; } .ct2-sc b { font-size: 19px; padding: 4px 6px; } .ct2-sc small { font-size: 9.5px; }
-    .ct2-sc .ct2-bar6 { width: 52px; }
+    .ct2-sc b { font-size: 17px; padding: 3px 6px; } .ct2-sc small { font-size: 10.5px; }
   }
 }

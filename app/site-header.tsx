@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { RacketSearch } from "./racket-search";
 import { ChipRow } from "./chip-row";
 import { LogoIcon, PlusIcon } from "./icons";
-import { niche, catalogPath, catalogLabel, isV2, v2copy } from "../lib/niche";
+import { niche, catalogPath, catalogLabel, isV2, v2copy, mockLook } from "../lib/niche";
 import { RANKINGS_PATH, rankingHref, withModelYears } from "../lib/top-lists";
 import { qtFontVars } from "./qt-fonts";
 import "./site-header-v2.css";
@@ -54,7 +54,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   // three plain links, search and "+ add a review". Other niches keep the light header below.
   if (isV2) return <div className={`hv2-top ${qtFontVars}`}>
     <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">how we make these →</a></div>
-    <header className="site-header hv2-sh"><div className="hv2-shin">
+    <header className={`site-header hv2-sh${mockLook ? " hv2-sh-m" : ""}`}><div className="hv2-shin">
       <Link className="hv2-logo" href="/">{v2copy.logo === "icon" ? <img className="hv2-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/> : <i aria-hidden="true"/>}{niche.site.name.toLowerCase()}</Link>
       <nav aria-label="Main navigation">
         <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{niche.words.many}</a>

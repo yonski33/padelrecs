@@ -77,3 +77,7 @@ body:has(.v2-foot) > .site-footer { display: none; }
 .v2-foot a { color: var(--site-ink, #151515); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 /* Hover is the marker only, no added underline (owner 2026-11-15): cancel the older pages' hover underlines on PadelRecs. */
 body:has(.hv2-top) :is(.ix-main h3 a, .lv-orig, .lr-main h3 a, .sig-pop summary, .lt-shop, .rc-name, .lp-rank, .lp-read, .lp-more-all):hover { text-decoration: none; }
+
+/* The site's own phone mock (lib/niche mockLook; PickleballRecs): logo and "+ add a review" on top, the links under them,
+   no search box. */
+@media (max-width: 760px) { .hv2-sh.hv2-sh-m .hv2-find { display: none; } }

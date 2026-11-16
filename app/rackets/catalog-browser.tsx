@@ -21,6 +21,8 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
   const specKeys = spec.map(g => g.key);
   const [f, setF] = useState<F>(first);
   // Back and forward step through the filters.
+  // The site's own phone mock (mockLook): the filter groups start closed on a phone, except one with a pick.
+  useEffect(() => { if (mockLook && matchMedia("(max-width: 760px)").matches) document.querySelectorAll<HTMLDetailsElement>(".ct2-m .ct-g").forEach(d => { if (!d.querySelector(".ct-opt.on")) d.open = false; }); }, []);
   useEffect(() => { const on = () => setF(readCatalogFilters(Object.fromEntries(new URLSearchParams(location.search)), specKeys)); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
   const v = catalogView(rows, f, suitsOk, spec);
   const href = (next: F) => catalogHref(base, f, next, specKeys);
@@ -83,7 +85,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           <span className="ct2-rank">{i + 1}</span>
           <span className="ct2-pic">{c.pic ? <img src={c.pic} alt="" width={408} height={620} decoding="async" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{c.tile}</span>}</span>
           <span className="ct2-body">
-            <span className="ct2-nrow"><a className="ct2-name" href={c.href}>{c.name}</a>{chips.map(ch => <span key={ch.k} className={`ct2-chip ${ch.k}`}>{ch.t}</span>)}</span>
+            <span className="ct2-nrow">{mockLook && <b className="ct2-rk" aria-hidden="true">{`#${i + 1}`}</b>}<a className="ct2-name" href={c.href}>{c.name}</a>{chips.map(ch => <span key={ch.k} className={`ct2-chip ${ch.k}`}>{ch.t}</span>)}</span>
             {c.line && <span className="ct2-line">{c.line}</span>}
             <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}{c.shop && <a className="ct2-buy" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}</span>
           </span>
@@ -92,7 +94,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
             <b>{x.signal ?? "—"}</b>{mockLook ? <>
               {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
-              <small>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>player score</small>}</span>
+              <small><span className="ct2-ps">player score · </span>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>player score</small>}</span>
         </div></li>; })}</ol>
       {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}

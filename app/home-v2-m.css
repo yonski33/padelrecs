@@ -110,11 +110,24 @@
   .hv2-faq p { margin: 0; padding: 0 16px 12px; font-size: 15px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
   .hv2-faq p a { font-weight: 700; }
 
+  .hv2-rk { display: none; }
   @media (max-width: 760px) {
-    .hv2-row.m { grid-template-columns: 18px 44px minmax(0, 1fr) auto; gap: 8px; }
-    .hv2-row.m .hv2-pic { width: 44px; height: 64px; }
-    .hv2-row.m .hv2-btnc { display: none; }
-    .hv2-row.m .hv2-sc { min-width: 52px; }
+    /* Phone mock: the photo on the left; "#1 name", the chip and the line; then the match box, reviews and check price. */
+    .hv2-row.m { grid-template-columns: 44px auto minmax(0, 1fr) auto; grid-template-areas: "pic body body body" "pic sc sent btn"; gap: 10px 12px; align-items: start; }
+    .hv2-row.m .hv2-rank { display: none; }
+    .hv2-row.m .hv2-pic { grid-area: pic; width: 44px; height: 64px; }
+    .hv2-row.m .hv2-body { grid-area: body; }
+    .hv2-row.m .hv2-rk { display: inline; font: 800 15.5px var(--display); margin-right: 2px; }
+    .hv2-row.m .hv2-nrow { gap: 4px 6px; }
+    .hv2-row.m .hv2-name { font-size: 15.5px; }
+    .hv2-row.m .hv2-line { font-size: 13.5px; }
+    .hv2-row.m .hv2-sc { grid-area: sc; min-width: 0; flex-direction: row; align-self: center; }
+    .hv2-row.m .hv2-sc small { display: none; }
+    .hv2-row.m .hv2-sc b { font-size: 15px; padding: 2px 6px; }
+    .hv2-row.m .hv2-sent { grid-area: sent; display: flex; min-width: 0; align-self: center; font: 11px var(--mono); color: var(--soft); }
+    .hv2-row.m .hv2-sent .hv2-bar { display: none; }
+    .hv2-row.m .hv2-btnc { grid-area: btn; display: block; align-self: center; }
+    .hv2-row.m .hv2-btn { padding: 6px 12px; font-size: 13px; }
     .hv2-fine.m .hv2-fhint { display: none; }
     .shr-m .shr-row, .hv2-rtgrid { grid-template-columns: minmax(0, 1fr); }
     .hv2-rtgrid a { height: auto; min-height: 96px; }
