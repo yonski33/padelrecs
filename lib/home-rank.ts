@@ -2,6 +2,7 @@
 // listed racket. The server builds the items (app/match-context.ts) and renders the first list; the browser re-ranks the
 // same items when a chip is tapped (app/home-match.tsx), with no round trip (batch D, owner 2026-11-15). One implementation,
 // so a tap and a direct visit to the same address always give the same list.
+import { curatedFor, curatedPct } from "./curated";
 import type { Finder } from "./niche/types";
 import { hardOnLevelOrArm } from "./fit-verdict";
 import { quickMatch, isDefault, passesLevel, ARM_OPTION, type QuickChoice, type LevelEvidence, type LevelGate, type Level } from "./quick-match";
@@ -28,6 +29,8 @@ export type RankItem = {
   eng?: EngineFacts;
   /** The product type key (type-picker sites, lib/fit-config.ts quick.types): the picked type filters on it. */
   kind?: string;
+  /** The product slug, on sites with curated lists (lib/curated.ts). */ slug?: string;
+  /** A high (or medium-high) balance spec, on sites with curated lists: the beginner rule. */ headHeavy?: boolean;
   /** A site's ranking flags (DiscGolfRecs, lib/discgolf-hard.ts): a specialty disc is never #1 for "any"; without flight
    *  numbers it isn't ranked. */
   flags?: { specialty?: true; noFlight?: true };
@@ -57,12 +60,17 @@ const engAnchors = (items: RankItem[], p: EngineProfile, gate: LevelGate | undef
 const engPick = (choice: QuickChoice) => ({ style: choice.style, arm: choice.arm, fine: undefined as number | null | undefined });
 /** The engine's cautious score and % for every product with enough reports, for these picks. A product the level gate keeps
  *  out says "Probably not" (its % held under that line). */
-function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, { cautious: number; pct: number; hard?: boolean }> {
+type EngView = { cautious: number; pct: number; hard?: boolean; curated?: boolean };
+function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, EngView> {
   return cached(items, `eng:view:${JSON.stringify([choice, gate ?? null])}`, () => {
-    const base = engBase(items, p), all = engAnchors(items, p, gate), anchors = all.byStyle?.[choice.style] ?? all, out = new Map<string, { cautious: number; pct: number; hard?: boolean }>();
+    const base = engBase(items, p), all = engAnchors(items, p, gate), anchors = all.byStyle?.[choice.style] ?? all, out = new Map<string, EngView>();
     const fineOf = (x: RankItem) => { const fi = choice.fine && { ...choice.fine, shape: undefined }; return fi && x.facts.fine ? fineFit(fi, x.facts.fine) : null; };
+    // Curated top 10 (owner 2026-11-17): these products lead in this order whatever their reports or level gate.
+    const cur = curatedFor(choice), curIx = new Map<string, number>();
+    if (cur.length) { const bySlug = new Map(engItems(items).map(x => [x.it.slug, x.id])); cur.forEach(s => { const id = bySlug.get(s); if (id && !curIx.has(id)) curIx.set(id, curIx.size); }); }
+    const shapeRule = p.shapeOrder && choice.level && p.shapeOrder.styles.includes(choice.style) && p.shapeOrder.levels.includes(choice.level) ? p.shapeOrder.below : null;
     for (const x of engItems(items)) {
-      if (x.n < p.minReports) continue;
+      if (x.n < p.minReports && !curIx.has(x.id)) continue;
       const suits = choice.level ? x.it.level?.suits?.[choice.level] : undefined;
       let { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it), suits, low: choice.level === "beginner" || choice.arm }, p);
       // Sore arm (PickleballRecs, audit 2026-11-16): a thin 14 mm core and a firm feel pass on more shock.
@@ -74,8 +82,19 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       let pct = enginePct(cautious, anchors, p.display);
       if (choice.level && !passesLevel(x.it.level, choice.level, gate)) pct = Math.min(pct, p.cuts.maybe - 1);
       if (hard) pct = Math.min(pct, p.hardCap!);
-      out.set(x.id, { cautious, pct, ...(hard && p.hardPenalty ? { hard: true } : {}) });
+      // The shape rule (owner 2026-11-17): for control and balance at beginner and intermediate, a diamond goes after every
+      // round, teardrop or hybrid racket and is never "Worth a look" or better.
+      // And for beginners a high balance (owner's brief 2026-11-17: no head-heavy racket in a beginner list).
+      const lowShape = (!!shapeRule && shapeRule.includes(x.it.facts.fine?.shape ?? "")) || (!!x.it.headHeavy && !!choice.level && !!p.headHeavyBelow?.includes(choice.level));
+      if (lowShape) pct = Math.min(pct, p.cuts.maybe - 1);
+      const i = curIx.get(x.id);
+      if (i !== undefined) { out.set(x.id, { cautious: 100 - i, pct: curatedPct(i, curIx.size), curated: true }); continue; }
+      out.set(x.id, { cautious, pct, ...((hard && p.hardPenalty) || lowShape ? { hard: true } : {}) });
     }
+    // The engine's rows sit under the curated ones, so their % never tops the last curated one.
+    // Shifted down as a block (not capped), so their own order and gaps stay.
+    if (curIx.size) { const floor = curatedPct(curIx.size - 1, curIx.size) - 1, top = Math.max(0, ...[...out.values()].filter(v => !v.curated).map(v => v.pct));
+      if (top > floor) for (const [id, v] of out) if (!v.curated) out.set(id, { ...v, pct: Math.max(25, v.pct - (top - floor)) }); }
     return out;
   });
 }
@@ -137,15 +156,21 @@ export function matchPcts(items: RankItem[], choice: QuickChoice, gate?: LevelGa
 function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, older: boolean, size: number): { rows: RankedRow[]; olderN: number } {
   const p = setup.engine!, view = engineView(items, choice, setup.levelGate, p), shape = choice.fine?.shape, all = engItems(items);
   // A picked type (type-picker sites) is a hard filter, never a score.
-  const ok = (x: EngItem) => view.has(x.id) && !x.it.flags?.noFlight && (!choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
-  const best = p.familyBestWithin !== undefined ? { pct: (x: EngItem) => view.get(x.id)!.pct, within: p.familyBestWithin } : undefined;
-  const cands = engineCandidates(all, ok, p.minReports, older, best).sort((a, b) => Number(!!view.get(a.id)!.hard) - Number(!!view.get(b.id)!.hard)
-    || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
+  const ok = (x: EngItem) => view.has(x.id) && !x.it.flags?.noFlight && (view.get(x.id)!.curated || x.n >= p.minReports) && (view.get(x.id)!.curated || !choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
+  // Newest model wins (owner 2026-11-17): an older year is left out once a newer year of the model has newestAt reports, even
+  // when that newer year doesn't pass these picks ("show older models" shows it again).
+  const newerWith = cached(items, `eng:newer:${p.newestAt}`, () => { const top = new Map<string, number>();
+    for (const x of all) if (p.newestAt !== undefined && x.n >= p.newestAt && x.year > (top.get(x.family) ?? -1)) top.set(x.family, x.year); return top; });
+  const okAll = ok, okNew = (x: EngItem) => okAll(x) && (older || view.get(x.id)!.curated || !(x.year < (newerWith.get(x.family) ?? -1)));
+  const best = p.familyBestWithin !== undefined ? { pct: (x: EngItem) => view.get(x.id)!.pct, within: p.familyBestWithin, newestAt: p.newestAt } : undefined;
+  const cands = engineCandidates(all, okNew, 0, older, best).sort((a, b) => Number(!!view.get(a.id)!.hard) - Number(!!view.get(b.id)!.hard)
+    // The shown % first (a capped row never sits above a higher %), then the score behind it.
+    || view.get(b.id)!.pct - view.get(a.id)!.pct || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
   // A specialty disc (DiscGolfRecs: a roller / turnover disc, turn ≤ −4) is never the #1 for "any stability".
   if (choice.style === "any" && cands[0]?.it.flags?.specialty) { const i = cands.findIndex(x => !x.it.flags?.specialty); if (i > 0) cands.unshift(...cands.splice(i, 1)); }
   const rows = cands.slice(0, size).map(x => { const v = verdictFor(items, choice, x.it.facts, x.id, setup.levelGate, p);
     return { id: x.id, pct: view.get(x.id)!.pct, fit: { kind: v.kind, short: v.short }, arm: x.it.facts.tags["arm-friendly"] ?? 0 }; });
-  return { rows, olderN: older ? 0 : engineCandidates(all, ok, p.minReports, true).length - cands.length };
+  return { rows, olderN: older ? 0 : engineCandidates(all, ok, 0, true).length - cands.length };
 }
 
 /** The home list for the picks: quick match picks the candidates (lib/quick-match.ts); with picks, rows are ordered by the

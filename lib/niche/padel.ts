@@ -58,7 +58,11 @@ export const padel: Niche = {
       // Owner 2026-11-17 (balance · intermediate put the Oxdog Ultimate Tour X diamond at 93% and Metalbone CTRL 3.5 at 75%):
       // a diamond mould counts like a power label (axis ≥ the power label's 0.65), and the balance pick counts anything within
       // 0.15 of the middle (the labels' own edges, 0.35–0.65) as fully all-round.
-      shapeBounds: { diamond: [0.65, 1] }, balanceFlat: 0.15, } },
+      shapeBounds: { diamond: [0.65, 1] }, balanceFlat: 0.15,
+      // Owner 2026-11-17 (curated lists, lib/curated.ts): the newest year with 10+ reports takes the model's row; diamonds go
+      // after the rest for control and balance at beginner and intermediate ("Bullpadel Vertex should not be a good match").
+      newestAt: 10, shapeOrder: { styles: ["control", "balance"], levels: ["beginner", "intermediate"], below: ["diamond"] },
+      headHeavyBelow: ["beginner"], } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

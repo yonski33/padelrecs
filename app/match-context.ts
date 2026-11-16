@@ -23,6 +23,7 @@ import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { factsWith, matchPcts, type RankItem } from "../lib/home-rank";
 import { engineBase, engineTraitDots, DOT_TRAITS, type EngineFacts, type DotTrait } from "../lib/engine";
 import { rowOfFamily } from "../lib/compare-pairs";
+import { hasCurated } from "../lib/curated";
 import { matchData } from "../db/match-data";
 import type { QuickChoice } from "../lib/quick-match";
 
@@ -244,6 +245,7 @@ const keptContext = kept(async () => {
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
       ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}),
+      ...(hasCurated() ? { slug: r.slug, ...(/high/i.test(r.balance ?? "") ? { headHeavy: true } : {}) } : {}),
       ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}), ...(RULES && rulesOf(id).flags ? { flags: rulesOf(id).flags } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
