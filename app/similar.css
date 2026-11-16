@@ -22,6 +22,9 @@
 .sp-sim .sp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .sp-sim .sp-tag { width: 48px; height: 48px; border-radius: var(--sp-tile-r, 9px); border: 2px solid var(--s-ink); display: flex; align-items: center; justify-content: center;
   font: 600 9.5px/1.1 var(--s-mono); text-align: center; box-sizing: border-box; text-transform: uppercase; overflow: hidden; padding: 2px; }
+/* The product photo in the tile's place (owner 2026-11-16), sized like the list rows' thumbnails. */
+.sp-sim .sp-tag.sp-photo { width: 52px; height: 52px; background: #fff; padding: 3px; }
+.sp-sim .sp-tag.sp-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .sp-sim .sp-badge { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
 .sp-sim .sp-badge b { font: var(--sp-h2-w, 800) 20px/1 var(--s-display); letter-spacing: -0.02em; border: 2px solid var(--s-ink); border-radius: var(--sp-badge-r, 6px); padding: 3px 7px; background: var(--s-acc); }
 .sp-sim .sp-badge b.plain { background: var(--s-paper); }

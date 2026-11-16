@@ -44,7 +44,7 @@ import { showsHighlights } from "../../../lib/highlights";
 import { variantCounts } from "../../../lib/variants";
 import { listLine } from "../../../lib/list-lines";
 import { shortLine } from "../../../lib/short-lines";
-import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
+import { ProductArt, productPhoto, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, comparePick, pairHref, pairKey, modelFamily } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
@@ -314,7 +314,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const loved = niche.similar ? topTags(data) : null;
   const oldItem = (x: (typeof data.listed)[number], i: number, why: string | null): SimilarItem => {
     const b = data.brands.find(y => y.id === x.brandId)?.name;
-    return { id: x.id, name: displayName(x.name, b), href: productHref(x), tag: tileWord(x.shape ?? niche.words.one), tint: tint(i), why, line: [shortLine(x), listLine(x)].map(expertLine).find((t): t is string => !!t) ?? null, score: sigs.get(x.id)?.signal ?? null };
+    return { id: x.id, name: displayName(x.name, b), href: productHref(x), tag: tileWord(x.shape ?? niche.words.one), photo: productPhoto(x)?.src ?? null, tint: tint(i), why, line: [shortLine(x), listLine(x)].map(expertLine).find((t): t is string => !!t) ?? null, score: sigs.get(x.id)?.signal ?? null };
   };
   const groupWord = (typePage?.label ?? niche.words.many).toLowerCase();
   const firstList = withModelYears(niche.topLists ?? []).find(l => typePage && l.slug.includes(typePage.slug)) ?? withModelYears(niche.topLists ?? [])[0];

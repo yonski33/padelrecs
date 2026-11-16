@@ -1,3 +1,4 @@
+import { productPhoto } from "../../visual";
 import type { ReactNode } from "react";
 import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
@@ -238,7 +239,7 @@ export default async function RacketFit(props: {
   const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
     .map(expertLine).find((t): t is string => !!t) ?? null;
   const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
-  const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
+  const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), photo: payload.cards[id]?.pic ?? productPhoto(racketOf(id))?.src ?? null, tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
   const myKindType = typeOf(kindOfId(props.racketId));
   const groupWord = myKindType ? myKindType.many.toLowerCase() : `${leanWord ? `${leanWord} ` : ""}${niche.words.many}`;
   const listFor = (word: string | undefined) => withModelYears(niche.topLists ?? []).find(l => word && l.slug.includes(word)) ?? withModelYears(niche.topLists ?? [])[0];
