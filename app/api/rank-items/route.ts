@@ -7,6 +7,7 @@ import { isV2, niche } from "../../../lib/niche";
 export const revalidate = 300;
 
 export async function GET() {
-  if (!isV2 || !niche.finder) return Response.json([]);
+  // A build without a database (CI) builds an empty list; the browser ignores it and keeps the server's answer.
+  if (!isV2 || !niche.finder || !process.env.DATABASE_URL) return Response.json([]);
   return Response.json((await homePayload()).items);
 }
