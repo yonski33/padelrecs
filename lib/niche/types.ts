@@ -141,6 +141,13 @@ export type Niche = {
     /** What a forum / blog report is called on a racket page ("padel forum"). */ forum: string; blog: string;
     /** The About page's two story paragraphs (the second's last words, "your game", are set in italics). */ aboutStory: [string, string];
     /** A product name for form placeholders ("Metalbone CTRL 3.5 2026"). */ example: string;
+    /** The header logo: "dot" (padel's ball dot, the default) or "icon" (the site's own /niches/<id>/icon.svg). */ logo?: "dot" | "icon";
+    /** How a product is used, as a verb: "plays" (default) / "works". */ use?: string;
+    /** What the reviewers' test is called on About ("real court time"). */ tested?: string;
+    /** The rankings page's call to the quick match ("Tell us how you play"). */ tellUs?: string;
+    /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
+    /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
+    rate?: Record<string, [string, string]>; prompts?: string[];
   };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */

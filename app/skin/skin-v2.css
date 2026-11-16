@@ -1,9 +1,7 @@
 /* SkinRecs in design v2: the shared v2 layout (home-v2.css, catalog-v2.css, racket-fit.css) with the SkinRecs berry and peach
    in place of padel's lime, plus the pieces only skin has: the finish / texture sliders and the latest-reviews list. */
-.sk2 {
-  --acc: #f3c2a9; --marker: #fbe0d2; --tip: #fdefe7;
-  --hl: #f3c2a9;
-}
+/* The match % and score boxes keep padel's colours (owner 2026-11-16: green = good, yellow = less good, white = weak), so
+   --acc and --marker are not overridden here; only the headline highlight and the "good for" chips are SkinRecs berry/peach. */
 .sk2 .hl { background: linear-gradient(transparent 55%, #f6cdb8 55%); }
 .sk2 .hv2-chip.arm, .sk2 .ct2-chip.arm { background: #f7eef4; border-color: #7d3a6e; color: #5e2a52; }
 .sk2 .sk2-types a { text-transform: none; }
@@ -24,3 +22,7 @@
 .sk2-revs p { margin: 0 0 4px; font-size: 15px; }
 .sk2-revs small { color: var(--mute, #6a675f); font-size: 12px; }
 @media (max-width: 640px) { .sk2-slider i { width: 84px; } .sk2 .ct2-chip, .sk2 .hv2-chip { white-space: normal; max-width: 100%; } }
+
+/* The product page in padel's final layout: Specs spans the column (a global details rule otherwise shrinks it to its title). */
+.sk2 .rp-specs { display: block; width: 100%; box-sizing: border-box; }
+.sk2 .rp-specs > summary { display: flex; }

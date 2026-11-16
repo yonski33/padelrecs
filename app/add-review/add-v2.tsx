@@ -5,7 +5,7 @@ import { useState } from "react";
 import { VERDICTS, loadProfile, nickname, saveProfile, sendVote, type Verdict } from "../quick-vote";
 
 // Add a review in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/VexiJKZHN4whPpvvtVDM4k),
-// PadelRecs only. Two required taps (racket, verdict), the rest optional. Same flow as the rest of the site: the verdict is a
+// Every design-v2 site (padel first; others pass their own traits, prompts and labels). Two required taps (racket, verdict), the rest optional. Same flow as the rest of the site: the verdict is a
 // quick vote (/api/racket-votes); words of 20+ characters also post a normal moderated review (POST /api/reviews: spam
 // guard, moderation) with the level, side, time with it and the dot ratings. A racket that isn't listed goes to the classic form.
 export type AddRacket = { id: string; name: string; photo: string | null; href: string };
@@ -17,7 +17,11 @@ const V: Record<Verdict, { icon: string; label: string; bg: string }> = {
 const TRAITS = [["Forgiveness", "forgivenessRating", "tiny sweet spot", "huge sweet spot"], ["Power", "powerRating", "no pop", "cannon"], ["Control", "controlRating", "all over the place", "on a string"], ["Arm comfort", "comfortRating", "hurts", "zero pain"]] as const;
 const PROMPTS = ["what surprised you", "what you came from", "weights setup", "who should skip it"];
 
-export default function AddReviewV2({ rackets, initial, levels, sides, times }: { rackets: AddRacket[]; initial?: string; levels: Opt[]; sides: Opt[]; times: Opt[] }) {
+export type AddLabels = { level: string; side: string; how: string; who: string };
+export default function AddReviewV2({ rackets, initial, levels, sides, times, traits = TRAITS, prompts = PROMPTS, labels }: { rackets: AddRacket[]; initial?: string; levels: Opt[]; sides: Opt[]; times: Opt[];
+  /** Another site's dot ratings ([label, rating column, low word, high word]), "+ prompt" chips and row words (padel's by default). */
+  traits?: readonly (readonly [string, string, string, string])[]; prompts?: readonly string[]; labels?: AddLabels }) {
+  const L = labels ?? { level: "my level", side: "I play", how: "How does it play?", who: "similar players" };
   const [racketId, setRacketId] = useState<string | null>(initial ?? null), [q, setQ] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [level, setLevel] = useState<string | null>(null), [side, setSide] = useState<string | null>(null), [time, setTime] = useState<string | null>(null);
@@ -42,7 +46,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times }: 
       await sendVote(racket!.id, v.rating, profile);
       if (words) {
         const token = ((await (await fetch("/api/reviews", { cache: "no-store" })).json()) as { token?: string }).token || "";
-        const ratings = Object.fromEntries(TRAITS.filter(([n]) => r[n]).map(([n, key]) => [key, r[n]]));
+        const ratings = Object.fromEntries(traits.filter(([n]) => r[n]).map(([n, key]) => [key, r[n]]));
         const res = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
           racketMode: "existing", racketId: racket!.id, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: name.trim() || nickname(niche.form.quickVote?.nicknames) || undefined,
           ...(level ? { playerLevel: level } : {}), ...(side ? { playingSide: side } : {}), ...(time ? { timeWithRacket: time } : {}), ...ratings }) });
@@ -84,21 +88,21 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times }: 
             <span aria-hidden="true">{V[k].icon}</span><b>{V[k].label}</b></button>)}</div>
         </div>
         <div className="ar-card">
-          <div className="ar-h"><h2>3. About you</h2><span>optional · helps match you with similar players</span></div>
-          <div className="ar-row"><span>my level</span>{pills(levels, level, setLevel, "My level")}</div>
-          <div className="ar-row"><span>I play</span>{pills(sides, side, setSide, "I play")}</div>
+          <div className="ar-h"><h2>3. About you</h2><span>{`optional · helps match you with ${L.who}`}</span></div>
+          <div className="ar-row"><span>{L.level}</span>{pills(levels, level, setLevel, L.level)}</div>
+          <div className="ar-row"><span>{L.side}</span>{pills(sides, side, setSide, L.side)}</div>
           <div className="ar-row"><span>used it for</span>{pills(times, time, setTime, "Used it for")}</div>
         </div>
         <div className="ar-card">
-          <div className="ar-h"><h2>4. How does it play?</h2><span>optional · tap a dot</span></div>
-          {TRAITS.map(([n, , lo, hi]) => { const val = r[n] ?? 0; return <div key={n} className="ar-trait"><b>{n}</b>
+          <div className="ar-h"><h2>{`4. ${L.how}`}</h2><span>optional · tap a dot</span></div>
+          {traits.map(([n, , lo, hi]) => { const val = r[n] ?? 0; return <div key={n} className="ar-trait"><b>{n}</b>
             <div role="group" aria-label={n}>{[1, 2, 3, 4, 5].map(i => <button key={i} type="button" aria-label={`${n} ${i} of 5`} aria-pressed={i <= val} onClick={() => setR(x => ({ ...x, [n]: x[n] === i ? 0 : i }))}/>)}</div>
             <span>{val ? (val <= 2 ? lo : val >= 4 ? hi : "ok") : "—"}</span></div>; })}
           <p className="ar-small">Saved with your words (step 5).</p>
         </div>
         <div className="ar-card">
           <div className="ar-h"><h2>5. In your words</h2><span>optional</span></div>
-          <div className="ar-prompts">{PROMPTS.map(p => <button key={p} type="button" onClick={() => setText(t => (t ? t.trimEnd() + " " : "") + p[0].toUpperCase() + p.slice(1) + ": ")}>+ {p}</button>)}</div>
+          <div className="ar-prompts">{prompts.map(p => <button key={p} type="button" onClick={() => setText(t => (t ? t.trimEnd() + " " : "") + p[0].toUpperCase() + p.slice(1) + ": ")}>+ {p}</button>)}</div>
           <textarea rows={5} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} placeholder="What would you tell a friend thinking of buying it?" aria-label="Your review"/>
           <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = we pick one for you)" aria-label="Show my name as"/></div>
         </div>
@@ -110,7 +114,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times }: 
           <div className="ar-pvb">
             <div className="ar-who"><span aria-hidden="true">{who[0].toUpperCase()}</span><strong>{who}</strong><span className="m">{[label(levels, level), label(sides, side)].filter(Boolean).join(" · ")}</span></div>
             <p className={text.trim() ? undefined : "ph"}>{text.trim() || "Your words go here."}</p>
-            <div className="ar-tags">{[time && `used ${label(times, time)}`, ...TRAITS.filter(([n]) => r[n]).map(([n]) => `${n.toLowerCase()} ${r[n]}/5`)].filter(Boolean).map(t => <span key={t as string}>{t}</span>)}</div>
+            <div className="ar-tags">{[time && `used ${label(times, time)}`, ...traits.filter(([n]) => r[n]).map(([n]) => `${n.toLowerCase()} ${r[n]}/5`)].filter(Boolean).map(t => <span key={t as string}>{t}</span>)}</div>
           </div>
         </article>
         <button type="button" className="ar-submit" disabled={!ready || busy} onClick={submit}>{busy ? "posting…" : ready ? "Post my review →" : !racket ? `pick a ${niche.words.one} first` : "pick a verdict first"}</button>

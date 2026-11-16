@@ -3,12 +3,12 @@ import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { niche, v2copy } from "../../lib/niche";
 
-// About in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/A6t4DobUqJSqSjrWDdymkS), PadelRecs only.
+// About in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/A6t4DobUqJSqSjrWDdymkS), Every design-v2 site, with its own words (niche.v2copy).
 // The owner's words from the mockup. "Spotted something off?" goes to the contact form: the site has no public inbox address.
 const w = niche.words, p = niche.people, site = niche.site.name.toLowerCase();
 const Sport = v2copy.sport ? v2copy.sport[0].toUpperCase() + v2copy.sport.slice(1) + " forums" : "Forums";
 const SOURCES = [
-  [`${p.Many} on ${site}`, `Owners at every level share how a ${w.one} actually plays for them.`],
+  [`${p.Many} on ${site}`, `${v2copy.use === "works" ? "Owners share" : "Owners at every level share"} how a ${w.one} actually ${v2copy.use ?? "plays"} for them.`],
   ["YouTube reviewers", `People who test ${w.many} for a living. We watch, summarise and link back.`],
   [Sport, `Long threads where ${p.many} compare, argue and report back after months of use.`],
 ] as const;
@@ -25,12 +25,12 @@ export default function AboutV2() {
       <section className="pg2-hero">
         <div className="pg2-k">{`// about ${site}`}</div>
         <h1>We got tired of <span className="hl">guessing</span>.</h1>
-        <p className="pg2-lede">{`Every ${w.one} is "the best" according to someone. We wanted the honest picture: what ${p.many} who own them say, and what trusted reviewers found after real court time.`}</p>
+        <p className="pg2-lede">{`Every ${w.one} is "the best" according to someone. We wanted the honest picture: what ${p.many} who own them say, and what trusted reviewers found after ${v2copy.tested ?? "real court time"}.`}</p>
       </section>
       <section className="pg2-two">
         <div className="pg2-story">
           <p>{v2copy.aboutStory[0]}</p>
-          <p>{`${v2copy.aboutStory[1]} `}<em>your</em> game.</p>
+          <p>{`${v2copy.aboutStory[1]} `}<em>your</em>{` ${v2copy.aboutLast ?? "game"}.`}</p>
         </div>
         <div className="pg2-card shadow"><span className="pg2-badge">three sources</span>
           {SOURCES.map(([t, b]) => <div key={t} className="pg2-src"><b>{t}</b><span>{b}</span></div>)}</div>

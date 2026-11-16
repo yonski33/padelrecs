@@ -1,6 +1,6 @@
 import "./rankings-v2.css";
 import Link from "next/link";
-import { niche } from "../../lib/niche";
+import { niche, v2copy } from "../../lib/niche";
 import { listYear } from "../../lib/top-lists";
 import { displayName } from "../../lib/brand-name";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
@@ -54,12 +54,12 @@ export default function RankingsHubV2({ data, lists }: { data: Catalog; lists: R
             {list.intro && <span className="rk2-desc">{list.intro}</span>}
           </span>
           <span className="rk2-strip" style={{ background: k.tint }}>{entries.slice(0, 3).map((e, j) => { const r = byId.get(e.product.id), pic = r ? photoOf(r) : null;
-            return <span key={e.product.id} className={`rk2-ph p${j}`}>{pic ? <img src={pic} alt={nameOf(e.product.id)} loading="lazy"/> : <span className="rk2-tile">{nameOf(e.product.id).split(" ").slice(0, 2).join(" ")}</span>}<b>{j + 1}</b></span>; })}</span>
+            return <span key={e.product.id} className={`rk2-ph p${j}`}>{pic ? <img src={pic} alt={nameOf(e.product.id)} width={408} height={620} loading="lazy" decoding="async"/> : <span className="rk2-tile">{nameOf(e.product.id).split(" ").slice(0, 2).join(" ")}</span>}<b>{j + 1}</b></span>; })}</span>
           <span className="rk2-foot"><span className="rk2-first"><small>#1</small> <strong>{first ? nameOf(first.product.id) : ""}</strong></span><span className="rk2-n">{`${entries.length} ranked →`}</span></span>
         </a>; })}</section>
 
       <section className="rk2-cta">
-        <div><div className="rk2-cta-h">{"Lists are for everyone. Your match isn't."}</div><div className="rk2-cta-p">{`Tell us how you play and we'll rank every ${w.one} for you.`}</div></div>
+        <div><div className="rk2-cta-h">{"Lists are for everyone. Your match isn't."}</div><div className="rk2-cta-p">{`${v2copy.tellUs ?? "Tell us how you play"} and we'll rank every ${w.one} for you.`}</div></div>
         <Link href="/#match">{`Find your ${w.one} →`}</Link>
       </section>
     </div>

@@ -1,4 +1,5 @@
 import "../rankings-v2.css";
+import Link from "next/link";
 import { niche, productHref } from "../../../lib/niche";
 import { listYear, MIN_LIST_REVIEWS, RANKINGS_PATH } from "../../../lib/top-lists";
 import { displayName } from "../../../lib/brand-name";
@@ -16,6 +17,9 @@ import { listHref, type RankedList } from "../lists";
 import { photoOf, shortDate } from "../rankings-v2";
 import { homePayload } from "../../home-payload";
 import { RankingPicks, MatchBox, PickLink, RowPct } from "./ranking-picks";
+import { attrProfileFor } from "../../../lib/attr-profile";
+import { skinContext } from "../../skin/context";
+import { scoreLabel } from "../../../lib/niche";
 
 // A ranking in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/TTmbZPDFLuRzQiqsAG3Nc1), PadelRecs
 // only: the lists as tabs, a big title, "your match" (the home's quick-match picks, in the URL, with the match % on every row),
@@ -27,7 +31,14 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   data: Catalog; lists: RankedList[]; found: RankedList; amazon: (AmazonButton | null)[]; affiliate: boolean;
   faq: { q: string; a: string }[]; jsonLd: object; search: Search }) {
   const { list, entries, reviews, updated } = found;
-  const [ctx, payload] = await Promise.all([matchContext(), homePayload()]);
+  // SkinRecs (an attribute profile, lib/attr-profile.ts): no racket match context (it has no style / level traits, so it crashed
+  // every ranking page, owner 2026-11-16 "rankings doesn't load"). "Best for" comes from its who-it-suits scores, and the picks
+  // pane is the home's quick match instead, so the rows carry no %.
+  const skin = !!attrProfileFor(niche);
+  const [ctx, payload] = skin ? [null, { items: [] }] : await Promise.all([matchContext(), homePayload()]);
+  const sk = skin ? await skinContext() : null;
+  const skinBest = (id: string) => { const a = sk?.attrs.get(id); return a ? sk!.profile.attrs.filter(x => x.kind === "suits" && (a.scores[x.key]?.score ?? 0) >= 65)
+    .sort((x, y) => a.scores[y.key]!.score - a.scores[x.key]!.score).slice(0, 3).map(x => x.label.toLowerCase()) : []; };
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   // Picked once a level is in the URL (the picks pane always sets one); a style alone doesn't answer yet.
@@ -51,24 +62,27 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
 
       <section className="rl2-hero">
         <div className="rl2-crumbs"><a href={RANKINGS_PATH}>rankings</a> / {list.label.toLowerCase()}</div>
-        <h1>{`The ${entries.length} best ${many} `}<span className="hl">{hl}</span>{yearPart}</h1>
+        {/* A product-type list on SkinRecs is its own noun ("The 10 best moisturizers"), not "skincare products moisturizers". */}
+        <h1>{`The ${entries.length} best ${skin && list.filters?.some(f => f.column === "shape") ? "" : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
         <p className="rl2-sub">{`${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews on ${niche.site.name.toLowerCase()}, YouTube and forums. Not by us, not by brands.`}</p>
         <div className="rl2-meta">
           {updated && <><span>{`updated ${shortDate(updated)}`}</span><span>·</span></>}
           <details className="rl2-how"><summary>how we rank <span className="closed">+</span><span className="open">−</span></summary>
-            <div className="rl2-howbox"><strong>Player score</strong>{` = how much players like it, adjusted for how many spoke up. 5 glowing reviews can't beat 60 good ones. Min. ${min} reviews to be ranked. `}<a href="/how-we-make-these">full method →</a></div></details>
+            <div className="rl2-howbox"><strong>{scoreLabel}</strong>{` = how much ${niche.people.many} like it, adjusted for how many spoke up. 5 glowing reviews can't beat 60 good ones. Min. ${min} reviews to be ranked. `}<a href="/how-we-make-these">full method →</a></div></details>
           {affiliate && <><span>·</span><span>{"* some links are affiliate, they don't change the order"}</span></>}
         </div>
       </section>
 
-      <MatchBox finder={niche.finder ? "/finder" : undefined}/>
+      {skin ? <section className="rl2-match" aria-label="Your match"><span className="rl2-you"><span className="rl2-badge">⚡ your match</span>
+        <span>{`Want them ranked for your skin? `}<Link href="/#match">Pick your skin type on the home page →</Link></span></span></section>
+        : <MatchBox finder={niche.finder ? "/finder" : undefined}/>}
 
       <ol className="rl2-list">{entries.map((e, i) => {
         const r = byId.get(e.product.id); if (!r) return null;
         const name = displayName(r.name, brand(r.brandId)), url = productHref(r), pic = photoOf(r);
-        const sc = score(data, r.id), facts = ctx.facts(r.id), take = ctx.takes.get(r.id);
+        const sc = score(data, r.id), take = ctx?.takes.get(r.id);
         const sig = e.signal?.signal ?? null, top = e.rank <= 3;
-        const best = bestFor(facts);
+        const best = ctx ? bestFor(ctx.facts(r.id)) : skinBest(r.id);
         const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
         const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
         const total = sc.positive + sc.mixed + sc.negative;
@@ -87,9 +101,9 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
               </div>
             </div>
             {shop ? <a className="rl2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a> : <span/>}
-            <PickLink className="rl2-score" href={url} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
+            <PickLink className="rl2-score" href={url} title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
               {sig !== null ? <b className={sig >= 85 ? "hi" : sig >= 75 ? "mid" : undefined}>{sig}</b> : <b>–</b>}
-              <small>player score</small>
+              <small>{scoreLabel.toLowerCase()}</small>
               <RowPct id={r.id}/>
             </PickLink>
           </div>
@@ -100,7 +114,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         </li>; })}</ol>
 
       <section className="rl2-after">
-        <div className="rl2-played"><div><div className="rl2-played-h">Played one of these?</div><div className="rl2-played-p">Your verdict moves the list. One tap, no account.</div></div>
+        <div className="rl2-played"><div><div className="rl2-played-h">{skin ? "Used one of these?" : "Played one of these?"}</div><div className="rl2-played-p">Your verdict moves the list. One tap, no account.</div></div>
           <a href="/add-review">+ add a review</a></div>
         {others.length > 0 && <div className="rl2-others"><div className="rl2-others-h">{others.every(l => l.entries.length >= 10) ? "Other top 10s" : "Other rankings"}</div>
           <div>{others.map(l => <PickLink key={l.list.slug} href={listHref(l.list.slug)}>{l.list.label.replace(/^best\s+/i, "").toLowerCase()}</PickLink>)}</div></div>}

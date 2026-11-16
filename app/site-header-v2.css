@@ -13,6 +13,7 @@
   .hv2-shin { max-width: 1140px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
   .hv2-logo { font: 800 20px var(--display); color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 8px; }
   .hv2-logo i { width: 20px; height: 20px; border-radius: 50%; background: var(--acc); border: 2px solid var(--ink); }
+  .hv2-logo .hv2-icon { width: 22px; height: 22px; display: block; }
   nav { display: flex; gap: 18px; font-size: 15px; flex-wrap: wrap; }
   nav a { color: var(--ink); text-decoration: none; }
   .hv2-grow { flex: 1; }
@@ -42,7 +43,13 @@
   nav .nav-sub a[aria-current="page"] { background: var(--acc); }
   nav .nav-sub .nav-sub-all { margin-top: 4px; padding-top: 9px; border-top: 2px dashed var(--ink); border-radius: 0 0 6px 6px; font-weight: 700; }
   @media (min-width: 761px) {
-    nav .nav-menu:hover .nav-sub, nav .nav-menu.open .nav-sub, nav .nav-menu:focus-within .nav-sub { display: block; }
+    nav .nav-menu.open .nav-sub, nav .nav-menu:focus-within .nav-sub { display: block; }
+  }
+  /* Hover opens it only where there is a real hover (a mouse). On touch screens, iPads and phones held sideways included, iOS turns
+     the first tap on a hover-revealing link into a hover and doesn't follow it, so "rankings" needed two taps (owner 2026-11-16:
+     "rankings doesn't load"). There the caret opens it. */
+  @media (min-width: 761px) and (hover: hover) and (pointer: fine) {
+    nav .nav-menu:hover .nav-sub { display: block; }
   }
   @media (max-width: 760px) {
     position: static;
