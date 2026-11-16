@@ -117,7 +117,8 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         const r = cards[id], sig = signalOf(id);
         if (!r) return null; // a row without its card (never expected): skip it rather than fail the page
         // A curated pick with a weak match says why it is here, in place of its usual line (owner 2026-11-17).
-        const line = low ? whyHere(sig, r.catch, fit?.short) : r.line;
+        // Only a hard reason ("✗ Not aimed at …") joins the line; a soft one ("~ Could suit …") would read as a contradiction.
+        const line = low ? whyHere(sig, r.catch, fit?.short && /^[✗✕]/.test(fit.short) ? fit.short : null) : r.line;
         // With picks the match % is the star; the product's own score stays as a small neutral pill under it (owner 2026-11-16).
         // The mockup's after-pick column (owner 2026-11-16): the match % box, "your match", then a small pill with the product's
         // own score, tinted by it like the box (green 85+, yellow 70+). No verdict chip here: the box says it.
