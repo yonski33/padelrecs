@@ -4,12 +4,16 @@
 // axis quick match and the fit check use, the arm tags, and the words under each bar. lib/trait-score.ts, fit-verdict,
 // quick-match, match-context and the racket fit page read it; a site without one keeps its old pages.
 import type { Niche } from "./niche/types";
+import { DISCGOLF_FIT } from "./discgolf-fit";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
   /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)]. */ ev?: [[string, string], [string, string]];
   /** The compare tabs (racket page): what the other one is when it leads on this trait ("more power"), and the player's need it
-   *  answers ("win points with smashes"). */ diff?: string; ifYou?: string };
+   *  answers ("win points with smashes"). */ diff?: string; ifYou?: string;
+  /** Kept for the engine (the style axis) but not shown as a row on the product page (type-picker sites). */ hidden?: boolean;
+  /** The product page's note in the site's own words (lib/trait-note.ts Say): strong / middling / weak by the dots, and the two
+   *  sides of a real split. Unset: padel's words on padel, else a line from the label. */ say?: { hi: string; mid: string; lo: string; split: [string, string] } };
 export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
@@ -49,6 +53,16 @@ export type FitConfig = {
   /** Source platforms whose voices count as reviewers, not players, in the line under a bar (default YouTube). */ reviewerSources?: string[];
   /** Scorer v2's band cut-offs, where the site differs from padel's (lib/trait-score.ts). */
   scale?: Partial<{ top4: number; top5: number; worst: number; minComplaints: number; /** Rank on the net share of praise against complaints instead of the praise rate. */ rank: "net" | "rate" }>;
+  /** Quick match words and a type picker for sites whose main pick is the product type (DiscGolfRecs, PM 2026-11-16 option A).
+   *  With `types`, the home's first row picks a type (a hard filter on the catalogue shape, ?kind=) and the style picks move
+   *  under fine-tune as `stabilityLabel`. Unset: padel's row, unchanged. */
+  quick?: { types: { key: string; shape: string; many: string }[]; want: string; arm: string; armChip: string; stabilityLabel: string;
+    /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string;
+    /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean;
+    /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string };
+  /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
+   *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
+  evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -265,7 +279,7 @@ const TENNIS: FitConfig = {
   lab: { metrics: { swing_weight: { trait: "maneuverability", sign: -1 } }, weight: 0.5, specWeight: 0.5, alone: 0.7 },
 };
 
-const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS };
+const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT };
 /** The site's fit rules, or undefined for sites that keep the old pages. */
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */

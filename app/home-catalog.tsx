@@ -4,7 +4,7 @@
 // picks it; every number is counted from published reviews.
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
-import { niche, productHref, scoreLabel, isV2 } from "../lib/niche";
+import { niche, productHref, scoreLabel, isV2, v2copy } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
 import { SORTS, DEFAULT_SORT, parseSort, sortProducts } from "../lib/product-sort";
@@ -97,7 +97,7 @@ function Fresh({ data, now }: { data: Catalog; now: number }) {
   const pick = [...first, ...fresh.filter(x => !first.includes(x))].slice(0, 4).sort((a, b) => b.at.localeCompare(a.at));
   const nameOf = (id: string) => { const r = data.rackets.find(x => x.id === id); return r ? { r, name: displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name) } : null; };
   return <aside className="ix-fresh" aria-labelledby="ix-fresh-title">
-    <h2 id="ix-fresh-title">{isV2 ? "Fresh from the court" : "Fresh opinions"}</h2>
+    <h2 id="ix-fresh-title">{isV2 ? `Fresh from the ${v2copy.venue ?? "court"}` : "Fresh opinions"}</h2>
     <p className="ix-fresh-sub">New opinions added to the database.</p>
     <ul>{pick.map(x => { const n = nameOf(x.id); if (!n) return null; return <li key={x.key}>
       <p className="ix-fresh-src"><SourceIcon platform={x.platform}/>{`${x.head} · ${ago(x.at, now)}`}</p>

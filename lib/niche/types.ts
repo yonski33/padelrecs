@@ -131,6 +131,9 @@ export type Niche = {
   /** "v2": the 2026-11 design (quick-match home, fit pages, tight lists, the v2 brand / catalogue / reviews / about pages).
    *  Off by default, so a site switches when its data is ready (audit 2026-11-15: no more niche.id === "padel" checks). */
   design?: "v2";
+  /** Extra CSS laid over the shared v2 pages' tokens (a site's own palette and display font, Google Fonts family names in
+   *  v2fonts). Printed by the layout only when set. */
+  v2style?: string; v2fonts?: string[];
   /** Words the v2 pages use that are about the sport, not the product (audit 2026-11-15: no hard-coded padel copy in shared
    *  components). Optional: lib/niche/index.ts v2copy fills plain defaults from words / people / site. */
   v2copy?: {
@@ -148,6 +151,9 @@ export type Niche = {
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];
+    /** The community score's name ("thrower score"); default "player score". */ score?: string;
+    /** The home's "N reviews · N new this week" pill sits inline after the subtitle (owner, DiscGolfRecs mock review). */ pillInline?: boolean;
+    /** Where the sport is played, for "Fresh off the court" ("course"); default "court". */ venue?: string;
     /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
   };
   /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */

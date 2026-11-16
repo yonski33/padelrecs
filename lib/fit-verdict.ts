@@ -69,6 +69,13 @@ function styleCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   }
   const { lean } = styleLean(f, cfg);
   if (!lean) return { level: "unknown" };
+  // A type-picker site (DiscGolfRecs): the axis is stability, said in its own words ("flies understable"), as a statement.
+  if (cfg.quick) {
+    const word = (s: "control" | "balance" | "power") => cfg.styleLabels[s].toLowerCase(), want = word(c.style), is = word(lean);
+    if (lean === c.style) return { level: "ok", short: `Flies ${want}`, reason: `Flies ${want}.` };
+    if (c.style === "balance" || lean === "balance") return { level: "soft", short: `Flies ${is}`, reason: `You want ${want}; it flies ${is}.` };
+    return { level: "hard", short: `Flies ${is}`, reason: `You want ${want}, but this one flies ${is}.` };
+  }
   // Said as a statement (owner 2026-11-16, expert voice, lib/voice.ts): what it is, not how many players praise what.
   if (lean === c.style) return { level: "ok", reason: `Built for ${c.style === "balance" ? "a bit of everything" : c.style}.`, short: c.style === "balance" ? "Suited to an all-round game" : `Suited to your ${c.style} priority` };
   // Inside a picked shape, the racket is weighed against that shape's rackets, not the whole catalog.
@@ -127,11 +134,11 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
     // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.
     const why = f.suits.basis.includes("expert") ? `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`
       : f.suits.basis.includes("a pro line") ? `A pro line, built for advanced players.`
-      : c.level === "beginner" && f.suits.basis.includes("its shape") ? `A diamond shape: few of them suit beginners.`
+      : c.level === "beginner" && f.suits.basis.includes("its shape") ? cfg.quick?.beginnerShapeNote ?? `A diamond shape: few of them suit beginners.`
       : f.suits.basis.includes("advanced players") ? `A ${niche.words.one} for advanced players.` : `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`;
     if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} ${why}`.trim() };
     if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
-    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} racket; demo it first.`.trim() };
+    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} ${niche.words.one}; ${cfg.quick ? "throw one first" : "demo it first"}.`.trim() };
   }
   const src = levelSources(f);
   // Brands label most top-line rackets "Professional". Such a label says "not aimed at beginners", so it counts for a beginner;
@@ -156,6 +163,14 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
 
 function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   if (!c.arm) return { level: "ok" };
+  // A type-picker site's arm pick is a slower arm (DiscGolfRecs): read from its arm dots (players, the flight numbers, the expert).
+  if (cfg.quick) {
+    const L = cfg.quick.arm[0].toUpperCase() + cfg.quick.arm.slice(1);
+    if (f.armDots === undefined) return { level: "unknown", reason: `${L}: not enough said yet about how it flies for a slower arm.` };
+    if (f.armDots <= 2) return { level: "hard", short: "Needs more arm speed", reason: `${L}: players and its flight numbers say it needs more arm speed to fly as rated.` };
+    if (f.armDots >= 4) return { level: "ok", short: `Suits a slower arm`, reason: `Rated good for a slower arm compared with other ${niche.words.many}.` };
+    return { level: "soft", short: "Not clearly slow-arm friendly", reason: `${L}: not clearly easy for a slower arm; throw one first.` };
+  }
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
   if (harsh > kind) return { level: "hard", short: "Passes on vibration", reason: "Sore arm: it passes on vibration." };
   // Owner 2026-11-15: 3 arm-friendly mentions is the bar ("a racket that hurts your arm will never get 3 of 30–40 saying it's good").
@@ -202,6 +217,6 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   const { lean } = styleLean(f, cfg);
   if (lean) out.push(lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
-  if (kind >= 5 && kind > 2 * harsh) out.push("sore arms");
+  if (kind >= 5 && kind > 2 * harsh) out.push(cfg.quick ? "slower arms" : "sore arms");
   return out;
 }
