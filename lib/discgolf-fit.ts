@@ -20,22 +20,26 @@ export const DISC_TYPES: [string, string, string][] = [["putter", "Putter", "put
 
 export const DISCGOLF_FIT: FitConfig = {
   traits: [
-    { key: "control", label: "Understable", plus: [["understable", 1], ["too flippy", 1]], minus: [], noun: "how easily it turns",
+    { key: "control", hidden: true, more: "more understable", ifYou: "need it to turn over easily", label: "Understable", plus: [["understable", 1], ["too flippy", 1]], minus: [], noun: "how easily it turns",
       ev: [["call it understable", "calls it understable"], ["", ""]] },
-    { key: "power", label: "Overstable", plus: [["overstable", 1], ["too overstable", 1]], minus: [], noun: "how hard it fades",
+    { key: "power", hidden: true, more: "more overstable", ifYou: "want a reliable fade in wind", label: "Overstable", plus: [["overstable", 1], ["too overstable", 1]], minus: [], noun: "how hard it fades",
       ev: [["call it overstable", "calls it overstable"], ["", ""]] },
-    { key: "arm", label: "Slower arms", plus: [["beginner-friendly", 0.5]], minus: [], noun: "how it suits a slower arm",
-      ev: [["say it suits a slower arm", "says it suits a slower arm"], ["say it needs a big arm", "says it needs a big arm"]] },
-    { key: "glide", label: "Glide", plus: [["lots of glide", 1]], minus: [], noun: "the glide",
-      ev: [["praise the glide", "praises the glide"], ["find little glide", "finds little glide"]] },
-    { key: "accuracy", label: "Accuracy", plus: [["accurate", 1], ["holds lines", 1]], minus: [["inconsistent between runs", 1]], noun: "how true it flies",
+    { key: "arm", more: "easier for a slower arm", ifYou: "have a slower arm", label: "Easy to throw", plus: [["beginner-friendly", 0.5]], minus: [], noun: "how easy it is to throw",
+      ev: [["call it easy to throw", "calls it easy to throw"], ["say it needs a big arm", "says it needs a big arm"]] },
+    { key: "distance", more: "longer", ifYou: "want more distance", label: "Distance", plus: [["long", 1]], minus: [], noun: "the distance",
+      ev: [["call it long", "calls it long"], ["find it short", "finds it short"]] },
+    { key: "accuracy", more: "more accurate", ifYou: "want it to hold your line", label: "Accuracy", plus: [["accurate", 1], ["holds lines", 1]], minus: [["inconsistent between runs", 1]], noun: "how true it flies",
       ev: [["call it accurate", "calls it accurate"], ["find it inconsistent", "finds it inconsistent"]] },
-    { key: "wind", label: "Wind", plus: [["good in wind", 1]], minus: [], noun: "how it handles wind",
+    { key: "glide", more: "more glide", ifYou: "want easy distance", label: "Glide", plus: [["lots of glide", 1]], minus: [], noun: "the glide",
+      ev: [["praise the glide", "praises the glide"], ["find little glide", "finds little glide"]] },
+    { key: "wind", more: "better in wind", ifYou: "play windy courses", label: "Wind", plus: [["good in wind", 1]], minus: [], noun: "how it handles wind",
       ev: [["say it handles wind", "says it handles wind"], ["say wind pushes it around", "says wind pushes it around"]] },
-    { key: "forehand", label: "Forehand", plus: [["good for forehands", 1]], minus: [], noun: "how it throws forehand",
+    { key: "forehand", hidden: true, more: "better on forehand", ifYou: "throw a lot of forehands", label: "Forehand", plus: [["good for forehands", 1]], minus: [], noun: "how it throws forehand",
       ev: [["like it for forehands", "likes it for forehands"], ["say it turns on forehands", "says it turns on forehands"]] },
-    { key: "grip", label: "Grip", plus: [["great grip", 1]], minus: [["slippery", 1]], noun: "the grip",
+    { key: "grip", hidden: true, more: "grippier", ifYou: "want a sure grip", label: "Grip", plus: [["great grip", 1]], minus: [["slippery", 1]], noun: "the grip",
       ev: [["praise the grip", "praises the grip"], ["find it slippery", "finds it slippery"]] },
+    { key: "durability", more: "lasts longer", ifYou: "want it to hold its flight", label: "Durability", plus: [], minus: [["beats in fast", 1]], noun: "how long it holds its flight",
+      ev: [["say it holds its flight", "says it holds its flight"], ["say it beats in fast", "says it beats in fast"]] },
   ],
   complaint: ["accuracy", "grip"],
   axis: { control: { trait: "control", tags: ["understable", "too flippy"] }, power: { trait: "power", tags: ["overstable", "too overstable"] } },
@@ -69,7 +73,8 @@ export const DISCGOLF_FIT: FitConfig = {
   quick: { types: DISC_TYPES.map(([key, shape, many]) => ({ key, shape, many })), want: "I need a", arm: "slower arm speed", armChip: "slow-arm friendly",
     stabilityLabel: "Stability", flightLabel: "speed · glide · turn · fade",
     // "Slow-arm friendly" only where the flight numbers agree: a speed 10+ disc needs more arm to fly as rated.
-    armSpecOk: s => { const f = flightOf(s.weight); return !!f && f.speed <= 9; } },
+    armSpecOk: s => { const f = flightOf(s.weight); return !!f && f.speed <= 9; },
+    beginnerShapeNote: "A distance driver: few of them fly well for beginners." },
   evidenceAdapter: discgolfEvidence,
 };
 
@@ -94,7 +99,9 @@ export function discgolfEvidence(rows: EvidenceRow[]): EvidenceRow[] {
       // "Not for beginners": it suits players past that level.
       else if (r.attribute === "suits_beginner") out.push(row("level", 2, "reader-v1"));
       else if (r.attribute === "suits_advanced") out.push(row("level", 0, "reader-v1"));
-    } else if (["glide", "accuracy", "wind", "forehand", "grip"].includes(r.attribute)) out.push(row(r.attribute, Math.sign(r.value)));
+    } else if (["glide", "accuracy", "wind", "forehand", "grip", "distance"].includes(r.attribute)) out.push(row(r.attribute, Math.sign(r.value)));
+    // Beat-in +1 is "seasons fast": a durability complaint.
+    else if (r.attribute === "beat_in") out.push(row("durability", -Math.sign(r.value)));
   }
   return out;
 }

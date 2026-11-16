@@ -8,7 +8,9 @@ import { DISCGOLF_FIT } from "./discgolf-fit";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
-  /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)]. */ ev?: [[string, string], [string, string]] };
+  /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)]. */ ev?: [[string, string], [string, string]];
+  /** The compare tabs' words (type-picker sites): "more glide" when another product is ahead here, and the need it meets ("want more glide"). */ more?: string; ifYou?: string;
+  /** Kept for the engine (the style axis) but not shown as a row on the product page (type-picker sites). */ hidden?: boolean };
 export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
@@ -49,7 +51,8 @@ export type FitConfig = {
    *  under fine-tune as `stabilityLabel`. Unset: padel's row, unchanged. */
   quick?: { types: { key: string; shape: string; many: string }[]; want: string; arm: string; armChip: string; stabilityLabel: string;
     /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string;
-    /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean };
+    /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean;
+    /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
   evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];
