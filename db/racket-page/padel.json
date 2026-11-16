@@ -12995,5 +12995,737 @@
    }
   ],
   "source": "research"
+ },
+ "stiga-axe-4-hybrid-2026": {
+  "tagline": "Stiga's stiffest Axe yet, built on 15K carbon. The catch: the hard build can tire the arm.",
+  "bottom": "For advanced players with clean, compact strokes. Beginners and sore arms should skip it.",
+  "yes": [
+   {
+    "title": "Holds firm under pace",
+    "t": "The stiff frame ==keeps its shape== through fast, heavy exchanges.",
+    "for": [],
+    "src": [
+     "https://padelverdict.com/rackets/stiga-axe-4-hybrid-2026/",
+     "https://www.stigasports.com/en/news-press/stiga-sports-introduces-axe4"
+    ]
+   },
+   {
+    "title": "Predictable control",
+    "t": "Compact, well-timed strokes ==come back consistent== shot after shot.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://padelverdict.com/rackets/stiga-axe-4-hybrid-2026/",
+     "https://www.stigasports.com/en/news-press/stiga-sports-introduces-axe4"
+    ]
+   },
+   {
+    "title": "Rough face",
+    "t": "The textured 15K carbon ==adds bite== on topspin and kick serves.",
+    "for": [],
+    "src": [
+     "https://padelverdict.com/rackets/stiga-axe-4-hybrid-2026/",
+     "https://www.racketguide.com/gb-en/padel/stiga/axe-4-hybrid-2026/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Very stiff",
+    "t": "The hardest Axe yet ==can tire the arm== over a long match.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://padelverdict.com/rackets/stiga-axe-4-hybrid-2026/",
+     "https://www.racketguide.com/gb-en/padel/stiga/axe-4-hybrid-2026/",
+     "https://www.stigasports.com/en/news-press/stiga-sports-introduces-axe4"
+    ]
+   },
+   {
+    "title": "Not a first racket",
+    "t": "Built for ==clean, technical strokes==, not players still learning.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://padelverdict.com/rackets/stiga-axe-4-hybrid-2026/",
+     "https://www.racketguide.com/gb-en/padel/stiga/axe-4-hybrid-2026/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "wilson-optix-v2-lite-2026": {
+  "tagline": "Wilson's light, round fibreglass starter racket. The catch: smashes lack finishing punch.",
+  "bottom": "For beginners and casual players who want easy handling and comfort. Attackers will outgrow it fast.",
+  "yes": [
+   {
+    "title": "Quick hands",
+    "t": "The light head ==gets into position early== for reaction volleys.",
+    "for": [],
+    "src": [
+     "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026",
+     "https://padel.how/equipment/racket/wilson-optix-v2-lite-review/",
+     "https://tennisoverload.com/wilson-optix-v2-lite-racket-review/",
+     "https://thepadelreview.com/wilson-optix-v2-lite-review/"
+    ]
+   },
+   {
+    "title": "Big margin",
+    "t": "Slightly late or off-centre contact ==still stays in play==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026",
+     "https://padel.how/equipment/racket/wilson-optix-v2-lite-review/",
+     "https://tennisoverload.com/wilson-optix-v2-lite-racket-review/",
+     "https://thepadelreview.com/wilson-optix-v2-lite-review/"
+    ]
+   },
+   {
+    "title": "Easy defence",
+    "t": "Compact lobs and resets ==find depth on a short swing==.",
+    "for": [],
+    "src": [
+     "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026",
+     "https://padel.how/equipment/racket/wilson-optix-v2-lite-review/",
+     "https://tennisoverload.com/wilson-optix-v2-lite-racket-review/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little finishing punch",
+    "t": "Full overheads ==hit a low ceiling== and rarely end the point.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026",
+     "https://padel.how/equipment/racket/wilson-optix-v2-lite-review/",
+     "https://tennisoverload.com/wilson-optix-v2-lite-racket-review/",
+     "https://thepadelreview.com/wilson-optix-v2-lite-review/"
+    ]
+   },
+   {
+    "title": "Little spin help",
+    "t": "The smooth fibreglass face ==adds modest bite== on cut shots.",
+    "for": [],
+    "src": [
+     "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026",
+     "https://padel.how/equipment/racket/wilson-optix-v2-lite-review/",
+     "https://thepadelreview.com/wilson-optix-v2-lite-review/",
+     "https://tennisoverload.com/wilson-optix-v2-lite-racket-review/"
+    ]
+   },
+   {
+    "title": "Light against heavy balls",
+    "t": "Passive blocks against hard hitters ==can twist and land short==.",
+    "for": [],
+    "src": [
+     "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026",
+     "https://padel.how/equipment/racket/wilson-optix-v2-lite-review/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "nox-equation-soft-advanced-2026": {
+  "tagline": "Nox's soft-core fibreglass control racket. The catch: smashes lack finishing punch.",
+  "bottom": "For intermediate players who build points and want an easy arm. Big smashers should skip it.",
+  "yes": [
+   {
+    "title": "Kind to the arm",
+    "t": "The soft core and AVS inserts ==damp the sting== over long sessions.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://padelverdict.com/rackets/nox-equation-soft-advanced-2026/",
+     "https://padel-review.com/test-raquette-padel-nox-equation-soft-advanced-2026/",
+     "https://www.padelful.com/en/rackets/nox-equation-soft-advanced-2026",
+     "https://funpadel.pt/nox-equation-soft-advanced-2026"
+    ]
+   },
+   {
+    "title": "Margin on mishits",
+    "t": "Late or off-centre contact ==still travels deep== from the back.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://www.padelful.com/en/rackets/nox-equation-soft-advanced-2026",
+     "https://padel-review.com/test-raquette-padel-nox-equation-soft-advanced-2026/",
+     "https://funpadel.pt/nox-equation-soft-advanced-2026"
+    ]
+   },
+   {
+    "title": "Precise placement",
+    "t": "Volleys and sliced bandejas ==go where you aim== them.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://padelverdict.com/rackets/nox-equation-soft-advanced-2026/",
+     "https://padel-review.com/test-raquette-padel-nox-equation-soft-advanced-2026/",
+     "https://www.padelful.com/en/rackets/nox-equation-soft-advanced-2026"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Limited finishing power",
+    "t": "Overheads ==get placed rather than put away== on this soft frame.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.padelful.com/en/rackets/nox-equation-soft-advanced-2026",
+     "https://padelverdict.com/rackets/nox-equation-soft-advanced-2026/",
+     "https://padel-review.com/test-raquette-padel-nox-equation-soft-advanced-2026/",
+     "https://funpadel.pt/nox-equation-soft-advanced-2026",
+     "https://www.racketguide.com/us-en/padel/nox/equation-soft-advanced-2026/"
+    ]
+   },
+   {
+    "title": "Muted for crisp hitters",
+    "t": "Players used to rigid rackets ==may find it too gentle==.",
+    "for": [],
+    "src": [
+     "https://padel-review.com/test-raquette-padel-nox-equation-soft-advanced-2026/",
+     "https://funpadel.pt/nox-equation-soft-advanced-2026",
+     "https://www.racketguide.com/us-en/padel/nox/equation-soft-advanced-2026/"
+    ]
+   },
+   {
+    "title": "Soft against hard balls",
+    "t": "Heavy punch volleys and blocks ==show its limits== quickly.",
+    "for": [],
+    "src": [
+     "https://padelverdict.com/rackets/nox-equation-soft-advanced-2026/",
+     "https://www.padelful.com/en/rackets/nox-equation-soft-advanced-2026"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "oxdog-ultimate-pro-2025": {
+  "tagline": "Oxdog's HES carbon diamond for finishers. The catch: it can feel slow in defence.",
+  "bottom": "For advanced attackers who end points overhead. Defenders who need quick hands should skip it.",
+  "yes": [
+   {
+    "title": "Finishing smash",
+    "t": "Overheads ==end points with real pace== when you swing through.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://practicapadel.com/racket-reviews/oxdog-ultimate-pro-2025-padel-racket-favors-smashers/",
+     "https://www.padelful.com/en/rackets/oxdog-ultimate-pro-2025",
+     "https://oxdogpadel.com/en-eu/products/ultimate-pro-2025",
+     "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/"
+    ]
+   },
+   {
+    "title": "Sharp at the net",
+    "t": "Volleys leave ==fast and clean== on quick exchanges.",
+    "for": [],
+    "src": [
+     "https://practicapadel.com/racket-reviews/oxdog-ultimate-pro-2025-padel-racket-favors-smashers/",
+     "https://www.padelful.com/en/rackets/oxdog-ultimate-pro-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Slow in defence",
+    "t": "Head weight ==can feel heavy== when defending off the glass.",
+    "for": [],
+    "src": [
+     "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/",
+     "https://practicapadel.com/racket-reviews/oxdog-ultimate-pro-2025-padel-racket-favors-smashers/",
+     "https://www.padelful.com/en/rackets/oxdog-ultimate-pro-2025"
+    ]
+   },
+   {
+    "title": "Little grip for spin",
+    "t": "The glossy face ==bites less on cut shots== unless technique is precise.",
+    "for": [],
+    "src": [
+     "https://practicapadel.com/fr/tests-raquettes-padel/test-joueurs-reels-meilleures-raquettes-padel-pala-padel-nola/",
+     "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/",
+     "https://oxdogpadel.com/en-eu/products/ultimate-pro-2025"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "nox-ml10-pro-cup-coorp-2025": {
+  "tagline": "Miguel Lamperti's classic round fibreglass control racket. The catch: smashes need your own arm speed.",
+  "bottom": "For intermediate players who defend and place the ball. Big smashers should skip it.",
+  "yes": [
+   {
+    "title": "Huge sweet spot",
+    "t": "Off-centre volleys and lobs ==keep a steady flight==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/nox-ml10-pro-cup-coorp-2025",
+     "https://padelvergleich.de/tests/padelschlaeger/nox/ml10-pro-cup-coorp-2025",
+     "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+     "https://www.racketguide.com/us-en/padel/nox/ml10-pro-cup-2025/"
+    ]
+   },
+   {
+    "title": "Easy on the arm",
+    "t": "The fibreglass face ==filters vibration== across long matches.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/nox-ml10-pro-cup-coorp-2025",
+     "https://padelvergleich.de/tests/padelschlaeger/nox/ml10-pro-cup-coorp-2025",
+     "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+     "https://www.racketguide.com/us-en/padel/nox/ml10-pro-cup-2025/"
+    ]
+   },
+   {
+    "title": "Placement first",
+    "t": "Bandejas and lobs ==land where you place them==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/nox-ml10-pro-cup-coorp-2025",
+     "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Capped smash power",
+    "t": "Por tres smashes ==need your own arm speed== to finish.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/nox-ml10-pro-cup-coorp-2025",
+     "https://padelvergleich.de/tests/padelschlaeger/nox/ml10-pro-cup-coorp-2025",
+     "https://www.racketguide.com/us-en/padel/nox/ml10-pro-cup-2025/"
+    ]
+   },
+   {
+    "title": "Smooth face",
+    "t": "The shiny finish ==offers less bite== than the Rough edition.",
+    "for": [],
+    "src": [
+     "https://padelvergleich.de/tests/padelschlaeger/nox/ml10-pro-cup-coorp-2025",
+     "https://www.racketguide.com/us-en/padel/nox/ml10-pro-cup-2025/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "adidas-adipower-carbon-light-3-4-2025": {
+  "tagline": "A light round control racket that is quick at the net. The catch: limited raw power on the smash.",
+  "bottom": "For intermediate to advanced players who place the ball and counter. Skip it if you finish with power.",
+  "yes": [
+   {
+    "title": "Fast in the hand",
+    "t": "Light swing weight means ==volleys and blocks arrive early==.",
+    "for": [],
+    "src": [
+     "https://padelshop.com/blogs/padel-tips/adidas-adipower-carbon-light-3-4-2025-review",
+     "https://padelguru.app/racket/adidas-adipower-carbon-light-34-2025",
+     "https://www.padelracketreviews.com/adidas/adipower-carbon-light/",
+     "https://tennisoverload.com/adidas-adipower-carbon-light-3-4-racket-review/"
+    ]
+   },
+   {
+    "title": "Accurate placement",
+    "t": "Deep corners and sharp volleys ==go where you aim them==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://padelshop.com/blogs/padel-tips/adidas-adipower-carbon-light-3-4-2025-review",
+     "https://tennisoverload.com/adidas-adipower-carbon-light-3-4-racket-review/",
+     "https://www.bestpadel.com/racket-shop/adidas/2025/adipower-carbon-light-3-4",
+     "https://padelguru.app/racket/adidas-adipower-carbon-light-34-2025"
+    ]
+   },
+   {
+    "title": "Grip for rotation",
+    "t": "The textured face ==adds bite on lobs and slices==.",
+    "for": [],
+    "src": [
+     "https://padelshop.com/blogs/padel-tips/adidas-adipower-carbon-light-3-4-2025-review",
+     "https://www.bestpadel.com/racket-shop/adidas/2025/adipower-carbon-light-3-4",
+     "https://padelguru.app/racket/adidas-adipower-carbon-light-34-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Modest raw power",
+    "t": "Flat kills ==need all your own arm speed==; it adds little pace.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/adidas-adipower-carbon-light-2025",
+     "https://www.padelracketreviews.com/adidas/adipower-carbon-light/",
+     "https://padelshop.com/blogs/padel-tips/adidas-adipower-carbon-light-3-4-2025-review",
+     "https://tennisoverload.com/adidas-adipower-carbon-light-3-4-racket-review/"
+    ]
+   },
+   {
+    "title": "Not a first racket",
+    "t": "An uneven swing ==gets no help from it==; aim for it once strokes settle.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/adidas-adipower-carbon-light-2025",
+     "https://padelguru.app/racket/adidas-adipower-carbon-light-34-2025"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "siux-trilogy-pro-5-2025": {
+  "tagline": "A low-balance round control racket for placing the ball. The catch: it gives little free power.",
+  "bottom": "For advanced players who build points with placement. Skip it if you want free power or a first racket.",
+  "yes": [
+   {
+    "title": "Pinpoint placement",
+    "t": "Shots ==land in the corner you pick==, rally after rally.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://padelguru.app/racket/siux-trilogy-pro-5-2025",
+     "https://padeltestlab.com/de/schlaeger/siux-trilogy-pro-5-2025",
+     "https://www.ballindor.fr/raquette-padel-siux-trilogy-pro-5-2025-test-et-avis/"
+    ]
+   },
+   {
+    "title": "Quick to move",
+    "t": "Low balance makes it ==swing into position fast== at the net.",
+    "for": [],
+    "src": [
+     "https://padelguru.app/racket/siux-trilogy-pro-5-2025",
+     "https://padeltestlab.com/de/schlaeger/siux-trilogy-pro-5-2025",
+     "https://www.ballindor.fr/raquette-padel-siux-trilogy-pro-5-2025-test-et-avis/"
+    ]
+   },
+   {
+    "title": "Margin under pressure",
+    "t": "Stretched defence and ==slight mishits still go deep==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://padelguru.app/racket/siux-trilogy-pro-5-2025",
+     "https://padeltestlab.com/de/schlaeger/siux-trilogy-pro-5-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little free power",
+    "t": "Smashes ==come only when you supply the speed==; finishing is occasional.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://padeltestlab.com/de/schlaeger/siux-trilogy-pro-5-2025",
+     "https://www.padelracketreviews.com/siux/trilogy-pro/2025/",
+     "https://www.ballindor.fr/raquette-padel-siux-trilogy-pro-5-2025-test-et-avis/",
+     "https://padelguru.app/racket/siux-trilogy-pro-5-2025"
+    ]
+   },
+   {
+    "title": "Not a first racket",
+    "t": "Built for ==settled technique==; newer players learn faster on easier frames.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://padeltestlab.com/de/schlaeger/siux-trilogy-pro-5-2025",
+     "https://padelguru.app/racket/siux-trilogy-pro-5-2025",
+     "https://www.ballindor.fr/raquette-padel-siux-trilogy-pro-5-2025-test-et-avis/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "babolat-technical-vertuo-2025": {
+  "tagline": "A power diamond that turns swing into smash power. The catch: fast net volleys can slip from control.",
+  "bottom": "For intermediate attackers who want easy power with comfort. Skip it if you volley fast at the net.",
+  "yes": [
+   {
+    "title": "Easy overhead pace",
+    "t": "Smashes and víboras ==fly without a huge swing==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/babolat-technical-vertuo-2025",
+     "https://racketzones.com/babolat-technical-vertuo-padel-racket-review/",
+     "https://simplepadel.com/babolat-technical-vertuo-review/"
+    ]
+   },
+   {
+    "title": "Kind to the arm",
+    "t": "Long sessions ==feel easier on elbow and forearm==.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/babolat-technical-vertuo-2025",
+     "https://simplepadel.com/babolat-technical-vertuo-review/",
+     "https://racketzones.com/babolat-technical-vertuo-padel-racket-review/"
+    ]
+   },
+   {
+    "title": "Lenient for a diamond",
+    "t": "Off-centre contact ==still plays a usable ball==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://racketzones.com/babolat-technical-vertuo-padel-racket-review/",
+     "https://simplepadel.com/babolat-technical-vertuo-review/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Slow on quick volleys",
+    "t": "Fast exchanges can ==leave the head a beat late==, costing direction.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://padeltestlab.com/en/rackets/babolat-technical-vertuo-2025",
+     "https://racketzones.com/babolat-technical-vertuo-padel-racket-review/"
+    ]
+   },
+   {
+    "title": "Below flagship pace",
+    "t": "Big hitters ==may want more top-end punch== than this version gives.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://simplepadel.com/babolat-technical-vertuo-review/",
+     "https://padeltestlab.com/en/rackets/babolat-technical-vertuo-2025"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "adidas-cross-it-carbon-2025": {
+  "tagline": "A high-balance power diamond with real smash punch. The catch: reviews split on how easy it defends.",
+  "bottom": "For advanced attackers who finish at the net. Skip it if you defend for long rallies or miss the centre.",
+  "yes": [
+   {
+    "title": "Big overhead punch",
+    "t": "Well-hit smashes ==can end the point outright==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "https://www.mundodeportivo.com/padel/material-palas/20250630/1002491979/probamos-adidas-carbon-cross-it-nueva-pala-maxi-arce-maximo-equilibrio-pista-padel.html",
+     "https://www.padelracketreviews.com/adidas/cross-it-carbon/",
+     "https://www.padelcourtslocator.com/rackets/adidas-cross-it-carbon-maxi-arce-2025"
+    ]
+   },
+   {
+    "title": "Spin-ready surface",
+    "t": "The gritty face ==adds bite on cut shots and kicks==.",
+    "for": [],
+    "src": [
+     "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-blue-by-maxi-arce-2025",
+     "https://www.mundodeportivo.com/padel/material-palas/20250630/1002491979/probamos-adidas-carbon-cross-it-nueva-pala-maxi-arce-maximo-equilibrio-pista-padel.html",
+     "https://www.padelcourtslocator.com/rackets/adidas-cross-it-carbon-maxi-arce-2025"
+    ]
+   },
+   {
+    "title": "Soft contact",
+    "t": "The core ==keeps touch shots readable== despite the attacking shape.",
+    "for": [],
+    "src": [
+     "https://www.padelcourtslocator.com/rackets/adidas-cross-it-carbon-maxi-arce-2025",
+     "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-blue-by-maxi-arce-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Defence splits views",
+    "t": "Splits opinion: some find ==quick exchanges demanding==, others easy.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://www.mundodeportivo.com/padel/material-palas/20250630/1002491979/probamos-adidas-carbon-cross-it-nueva-pala-maxi-arce-maximo-equilibrio-pista-padel.html",
+     "https://www.padelcourtslocator.com/rackets/adidas-cross-it-carbon-maxi-arce-2025",
+     "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-blue-by-maxi-arce-2025"
+    ]
+   },
+   {
+    "title": "Wants central contact",
+    "t": "Off-centre hits near the tip or edges ==lose control quickly==.",
+    "for": [],
+    "src": [
+     "https://www.padelracketreviews.com/adidas/cross-it-carbon/",
+     "https://www.padelcourtslocator.com/rackets/adidas-cross-it-carbon-maxi-arce-2025",
+     "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-blue-by-maxi-arce-2025"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "nox-ml10-pro-cup-silver-2025": {
+  "tagline": "A low-balance round control racket with a big, kind sweet spot. The catch: little smash pace of its own.",
+  "bottom": "For intermediate control players who build points from the back. Skip it if you finish with flat smashes.",
+  "yes": [
+   {
+    "title": "Wide forgiving zone",
+    "t": "Off-centre and wall balls ==still come back deep==.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "https://www.padelracketreviews.com/es/nox/ml10-pro-cup/2025/",
+     "https://www.padelfy.eu/raquette/nox-ml10-pro-cup-silver-2025",
+     "https://padeltestlab.com/fr/raquettes/nox-ml10-pro-cup-silver-by-miguel-lamperti-2025"
+    ]
+   },
+   {
+    "title": "Easy on the arm",
+    "t": "Long matches ==feel gentle on the elbow== thanks to the damped impact.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://padeltestlab.com/fr/raquettes/nox-ml10-pro-cup-silver-by-miguel-lamperti-2025",
+     "https://www.padelfy.eu/raquette/nox-ml10-pro-cup-silver-2025",
+     "https://www.padelracketreviews.com/es/nox/ml10-pro-cup/2025/"
+    ]
+   },
+   {
+    "title": "Steady placement",
+    "t": "Lobs, bandejas and blocks ==go where you aim==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.padelracketreviews.com/es/nox/ml10-pro-cup/2025/",
+     "https://www.padelfy.eu/raquette/nox-ml10-pro-cup-silver-2025",
+     "https://padeltestlab.com/fr/raquettes/nox-ml10-pro-cup-silver-by-miguel-lamperti-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little smash pace",
+    "t": "Flat smashes ==need all your own speed== to finish.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://padeltestlab.com/fr/raquettes/nox-ml10-pro-cup-silver-by-miguel-lamperti-2025",
+     "https://www.padelracketreviews.com/es/nox/ml10-pro-cup/2025/",
+     "https://www.padelfy.eu/raquette/nox-ml10-pro-cup-silver-2025"
+    ]
+   },
+   {
+    "title": "Low spin grip",
+    "t": "The smooth face ==gives little bite==, so spin comes from your wrist.",
+    "for": [],
+    "src": [
+     "https://www.padelracketreviews.com/es/nox/ml10-pro-cup/2025/",
+     "https://padeltestlab.com/fr/raquettes/nox-ml10-pro-cup-silver-by-miguel-lamperti-2025"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "babolat-air-origin-2025": {
+  "tagline": "A light teardrop that makes learning easy. The catch: smash power is modest by design.",
+  "bottom": "For beginners and improvers who want an easy, forgiving racket. Skip it if you hit hard overheads.",
+  "yes": [
+   {
+    "title": "Forgiving contact",
+    "t": "Off-centre blocks and lobs ==still land in play==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://simplepadel.com/babolat-air-origin-review/",
+     "https://www.padelful.com/en/rackets/babolat-air-origin-2025",
+     "https://padelguru.app/racket/babolat-air-origin-2025"
+    ]
+   },
+   {
+    "title": "Light and nimble",
+    "t": "Its low weight ==stays manageable for whole matches==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://simplepadel.com/babolat-air-origin-review/",
+     "https://www.padelful.com/en/rackets/babolat-air-origin-2025",
+     "https://padelguru.app/racket/babolat-air-origin-2025"
+    ]
+   },
+   {
+    "title": "Soft on the arm",
+    "t": "Impact ==feels cushioned== through long sessions.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://simplepadel.com/babolat-air-origin-review/",
+     "https://www.padelful.com/en/rackets/babolat-air-origin-2025",
+     "https://padelguru.app/racket/babolat-air-origin-2025"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Modest smash power",
+    "t": "Overheads ==need clean technique and acceleration== to finish.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://simplepadel.com/babolat-air-origin-review/",
+     "https://www.padelful.com/en/rackets/babolat-air-origin-2025",
+     "https://padelguru.app/racket/babolat-air-origin-2025"
+    ]
+   },
+   {
+    "title": "You will outgrow it",
+    "t": "Stronger strokes ==can feel vague at high speed== as skills grow.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://simplepadel.com/babolat-air-origin-review/",
+     "https://www.padelful.com/en/rackets/babolat-air-origin-2025"
+    ]
+   }
+  ],
+  "source": "research"
  }
 }
