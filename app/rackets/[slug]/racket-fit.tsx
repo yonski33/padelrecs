@@ -100,7 +100,7 @@ export default async function RacketFit(props: {
     const say = TRAIT_SAY[t];
     const stated = sc ? (() => {
       const nP = ev ? ev.players.plus + ev.reviewers.plus : 0, nM = ev ? ev.players.minus + ev.reviewers.minus : 0;
-      if (nP >= 2 && nM >= 2 && Math.min(nP, nM) / Math.max(nP, nM) >= 0.6) return `Splits opinion: some find it ${say.split[0]}, others ${say.split[1]}.`;
+      if (nP >= 3 && nM >= 3 && Math.min(nP, nM) / Math.max(nP, nM) >= 0.75) return `Splits opinion: some find it ${say.split[0]}, others ${say.split[1]}.`;
       return sc.dots >= 4 ? say.hi : sc.dots <= 2 ? say.lo : say.mid; })() : null;
     const text = tr.edits?.traits[t]?.text ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
     return [TRAIT_LABEL[t], text, sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
