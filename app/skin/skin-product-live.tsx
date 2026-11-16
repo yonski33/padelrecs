@@ -30,6 +30,8 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
   const typesRow = (small = false) => SKIN_TYPES.map(k => pill(k, { ...choice, skin: k }, choice.skin === k, small));
   const goalsRow = (small = false) => GOALS.map(g => pill(GOAL_LABEL[g], { ...choice, goal: g }, goal === g, small));
   const start = readSkinChoice({}, types);
+  // "clear skin" is a goal label; don't say "skin skin".
+  const skinWords = tags.join(", ").replace(/ skin$/, "");
 
   return <>
     <a className="bp-back" href={v.backHref}>{v.backLabel}</a>
@@ -49,9 +51,9 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
         </div> : <div className="bp-ans" aria-live="polite">
           <div className="bp-ansh"><span className="bp-tag">✦ your match</span>
             <span className="bp-verdict" style={{ background: kind && kind !== "thin" ? PILL[kind][1] : "#f4ede6" }}>{pct === null ? "— · not enough reports" : `${pct}% · ${PILL[kind as "good"][0]}`}</span></div>
-          <div><div className="bp-q big">{v.headline}</div><div className="bp-sub">{`For your ${tags.join(", ")} skin, here's the short answer.`}</div></div>
+          <div><div className="bp-q big">{v.headline}</div><div className="bp-sub">{`For your ${skinWords} skin, here's the short answer.`}</div></div>
           {v.why && <div className="bp-why"><span>✓ Why it suits you</span><p>{v.why}</p></div>}
-          {v.consider && <div className="bp-know"><span>◦ Worth knowing</span><p>{v.consider}</p></div>}
+          {v.consider && <div className="bp-know"><span>◦ Worth knowing</span><p>{v.consider}{v.considerAlt && <> Try instead: <a href={v.considerAlt.href}>{v.considerAlt.name}</a>.</>}</p></div>}
           <input type="checkbox" id="bp-edit" className="bp-edit-t" aria-label="Edit your answers"/>
           <div className="bp-foot"><span>{tags.map(t => t[0].toUpperCase() + t.slice(1)).join(" · ")}</span>
             <span><label htmlFor="bp-edit" className="bp-editl"><span className="o">edit</span><span className="c">done ✓</span></label><a href={input.here} onClick={instantClick(() => set(start))}>start over</a></span></div>
@@ -62,9 +64,11 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
     </section>
 
     <section className="bp-col">
-      {!v.answered && summary && <div className="bp-bottom"><span className="bp-tag">the bottom line</span><span>{summary}</span></div>}
+      {!v.answered && (v.bottom ?? summary) && <div className="bp-bottom"><span className="bp-tag">the bottom line</span><span>{v.bottom ?? summary}</span></div>}
+      {v.few && <div id="yes-no"><div className="bp-h"><h2>Why yes, why not</h2><span>few reports so far</span></div>
+        <p className="bp-few">Few reports so far, not enough to say who it suits. The reviews below are all we have yet.</p></div>}
       {(v.yesL.length > 0 || v.noL.length > 0) && <div id="yes-no">
-        <div className="bp-h"><h2>Why yes, why not</h2><span>{v.answered ? `sorted for your ${tags.join(" · ")} skin` : "from real reviews, YouTube & blogs"}</span></div>
+        <div className="bp-h"><h2>Why yes, why not</h2><span>{v.answered ? `sorted for your ${tags.join(" · ").replace(/ skin$/, "")} skin` : "from real reviews, YouTube & blogs"}</span></div>
         <div className="bp-yn">
           {([["yes", "Why yes", "✓", v.yesL], ["no", "Why not", "!", v.noL]] as const).map(([k, label, icon, list]) => list.length > 0 && <div key={k} className={`bp-card bp-side-${k}`}>
             <div className="bp-ynh"><i>{icon}</i><b>{label}</b></div>
@@ -72,6 +76,8 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
             {list.map((p, i) => <div key={p.key} className={`bp-item${p.forYou ? " you" : ""}${i >= 3 ? " extra" : ""}`}>
               <div className="bp-it"><b>{p.title}</b>{p.forYou && <span className="bp-tag sm">for your skin</span>}</div>
               <span className="bp-txt">{p.pre}<mark>{p.hl}</mark>{p.post}</span>
+              {p.tip && <span className="bp-tip"><b>Tip:</b> {p.tip}</span>}
+              {p.alt && <span className="bp-tip"><b>Try instead:</b> <a href={p.alt.href}>{p.alt.name}</a>. {p.alt.t}</span>}
               <span className="bp-proof">{p.proof}</span></div>)}
             {list.length > 3 && <label htmlFor={`bp-more-${k}`} className="bp-morel"><span className="o">{`+ ${list.length - 3} more`}</span><span className="c">− show less</span></label>}
           </div>)}
