@@ -30,6 +30,7 @@ export type RankItem = {
   /** The product type key (type-picker sites, lib/fit-config.ts quick.types): the picked type filters on it. */
   kind?: string;
   /** The product slug, on sites with curated lists (lib/curated.ts). */ slug?: string;
+  /** A high (or medium-high) balance spec, on sites with curated lists: the beginner rule. */ headHeavy?: boolean;
   /** A site's ranking flags (DiscGolfRecs, lib/discgolf-hard.ts): a specialty disc is never #1 for "any"; without flight
    *  numbers it isn't ranked. */
   flags?: { specialty?: true; noFlight?: true };
@@ -83,7 +84,8 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       if (hard) pct = Math.min(pct, p.hardCap!);
       // The shape rule (owner 2026-11-17): for control and balance at beginner and intermediate, a diamond goes after every
       // round, teardrop or hybrid racket and is never "Worth a look" or better.
-      const lowShape = !!shapeRule && shapeRule.includes(x.it.facts.fine?.shape ?? "");
+      // And for beginners a high balance (owner's brief 2026-11-17: no head-heavy racket in a beginner list).
+      const lowShape = (!!shapeRule && shapeRule.includes(x.it.facts.fine?.shape ?? "")) || (!!x.it.headHeavy && !!choice.level && !!p.headHeavyBelow?.includes(choice.level));
       if (lowShape) pct = Math.min(pct, p.cuts.maybe - 1);
       const i = curIx.get(x.id);
       if (i !== undefined) { out.set(x.id, { cautious: 100 - i, pct: curatedPct(i, curIx.size), curated: true }); continue; }

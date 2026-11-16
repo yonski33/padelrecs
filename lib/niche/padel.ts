@@ -61,7 +61,8 @@ export const padel: Niche = {
       shapeBounds: { diamond: [0.65, 1] }, balanceFlat: 0.15,
       // Owner 2026-11-17 (curated lists, lib/curated.ts): the newest year with 10+ reports takes the model's row; diamonds go
       // after the rest for control and balance at beginner and intermediate ("Bullpadel Vertex should not be a good match").
-      newestAt: 10, shapeOrder: { styles: ["control", "balance"], levels: ["beginner", "intermediate"], below: ["diamond"] }, } },
+      newestAt: 10, shapeOrder: { styles: ["control", "balance"], levels: ["beginner", "intermediate"], below: ["diamond"] },
+      headHeavyBelow: ["beginner"], } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

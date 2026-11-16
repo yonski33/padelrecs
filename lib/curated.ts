@@ -4,7 +4,7 @@ import padel from "../db/curated/padel.json";
 import { niche } from "./niche";
 import type { QuickChoice } from "./quick-match";
 
-export type CuratedEntry = { slug: string; note?: string };
+export type CuratedEntry = { slug: string; note?: string; /** The source the reason rests on (Grok pack). */ src?: string };
 const SITES: Record<string, { lists: Record<string, CuratedEntry[]> }> = { padel };
 export const curatedKey = (c: Pick<QuickChoice, "style" | "level" | "arm">) => `${c.style}/${c.level}/arm-${c.arm ? "on" : "off"}`;
 /** The curated slugs for these picks, in order; none for "any" style, no level, or an empty list. */

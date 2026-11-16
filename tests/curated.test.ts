@@ -54,3 +54,20 @@ test("newest model wins: no older year while a newer year of the model has 10+ r
   }
   assert.ok(rows({ style: "control", level: "intermediate", arm: false }, true).length >= rows({ style: "control", level: "intermediate", arm: false }).length);
 });
+
+test("the importer reads the Grok pack's split files (curated-<combo>.json)", async () => {
+  const { keyOf, listOf } = await import("../scripts/import-curated.mjs");
+  assert.equal(keyOf("control-beginner-noarm"), "control/beginner/arm-off");
+  assert.equal(keyOf("balance-intermediate-arm"), "balance/intermediate/arm-on");
+  assert.equal(keyOf("spin-beginner-arm"), null);
+  assert.deepEqual(listOf({ combo: "x", picks: [{ slug: "a", reason: "Soft and roomy.", source: "https://x.com/a" }, { slug: "a" }, { slug: "b" }] }),
+    [{ slug: "a", note: "Soft and roomy.", src: "https://x.com/a" }, { slug: "b" }]);
+});
+
+test("beginner rule: no high-balance racket in a beginner engine list ahead of any other racket", () => {
+  for (const style of STYLES) for (const arm of [false, true]) {
+    const c = { style, level: "beginner" as const, arm }, cur = new Set(curatedFor(c).map(s => bySlug.get(s)));
+    const eng = rows(c).filter(x => !cur.has(x.id)), firstHH = eng.findIndex(x => byId.get(x.id)!.headHeavy);
+    assert.ok(firstHH < 0 || eng.slice(firstHH).every(x => byId.get(x.id)!.headHeavy || byId.get(x.id)!.facts.fine?.shape === "diamond"), curatedKey(c));
+  }
+});

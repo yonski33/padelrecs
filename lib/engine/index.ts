@@ -65,6 +65,7 @@ export type EngineProfile = {
   /** Newest model wins (owner 2026-11-17): a newer year with this many reports always takes the model's row. */ newestAt?: number;
   /** The shape rule (owner 2026-11-17): for these styles at these levels, these shapes (lib/fine-tune shapeOf) go after every
    *  other row and stay under "Worth a look". */ shapeOrder?: { styles: string[]; levels: string[]; below: string[] };
+  /** At these levels a high-balance (head-heavy) racket goes after the rest, like the shape rule. */ headHeavyBelow?: string[];
   /** The balance pick's axis term with a flat middle: within this distance of 0.5 counts as fully all-round. */ balanceFlat?: number;
   // The DiscGolfRecs match audit (Grok 2026-11-16, owner OK 2026-11-17). Unset: as before.
   /** A hard reason (with hardCap) also takes this off the cautious score, and the product sorts after every other row. */ hardPenalty?: number;
