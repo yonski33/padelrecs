@@ -228,8 +228,8 @@ export function FitCompare({ id, items, me, rows, cards, similar }: { id: string
             <span className="rp-who">{me.pic && <img src={me.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>This racket</b><small>{`${me.reports} reviews`}</small></span></span><span/>
             <span className="rp-who">{cur.pic && <img src={cur.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>{cur.short}</b><small>{`${cur.reports} reviews`}</small></span></span></div>
           {rows.map((r, i) => <div key={r.label} className="rp-row rp-two"><b>{r.label}</b>
-            <span className="rp-side"><Segs n={me.dots[i]}/>{me.dots[i] > cur.dots[i] && cur.dots[i] > 0 && <em>▲ better</em>}</span><span/>
-            <span className="rp-side"><Segs n={cur.dots[i]}/>{cur.dots[i] > me.dots[i] && me.dots[i] > 0 && <em>▲ better</em>}</span></div>)}
+            <span className="rp-cside"><Segs n={me.dots[i]}/>{me.dots[i] > cur.dots[i] && cur.dots[i] > 0 && <em>▲ better</em>}</span><span/>
+            <span className="rp-cside"><Segs n={cur.dots[i]}/>{cur.dots[i] > me.dots[i] && me.dots[i] > 0 && <em>▲ better</em>}</span></div>)}
         </>}
     </div>
     {cur && (() => { const stay = aheadIn(me.dots, cur.dots), go = aheadIn(cur.dots, me.dots), href = `${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`;

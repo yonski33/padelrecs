@@ -677,8 +677,8 @@
   .rp-who > span { display: flex; flex-direction: column; gap: 3px; line-height: 1.2; min-width: 0; }
   .rp-who b { font: 800 18px var(--display); }
   .rp-who small { font: 12.5px var(--mono); color: #4a4740; }
-  .rp-side { display: flex; align-items: center; gap: 8px; }
-  .rp-side em { font: 600 13px var(--mono); font-style: normal; color: #2f6a37; }
+  .rp-cside { display: flex; align-items: center; gap: 8px; }
+  .rp-cside em { font: 600 13px var(--mono); font-style: normal; color: #2f6a37; }
   .rp-pick { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-top: 2px dashed var(--ink); }
   .rp-stay, .rp-go { padding: 14px 20px; display: flex; flex-direction: column; gap: 6px; }
   .rp-stay { background: oklch(0.985 0.025 145); --c: #2f6a37; }
@@ -704,9 +704,9 @@
     .rp-row.rp-two > :nth-child(3), .rp-row.rp-vs > :nth-child(3) { display: none; }
     .rp-vs { align-items: end; padding: 8px 0 6px; }
     /* Each side: the dots plus a fixed slot for the ▲, so both columns line up. */
-    .rp-side { display: grid; grid-template-columns: auto 10px; gap: 3px; }
-    .rp-side em { font-size: 0; }
-    .rp-side em::before { content: "▲"; font-size: 10px; }
+    .rp-cside { display: grid; grid-template-columns: auto 10px; gap: 3px; }
+    .rp-cside em { font-size: 0; }
+    .rp-cside em::before { content: "▲"; font-size: 10px; }
     .rp-who { width: 80px; flex-direction: column; align-items: flex-start; gap: 4px; }
     .rp-who img { height: 30px; }
     .rp-who b { font-size: 13px; overflow-wrap: anywhere; }
