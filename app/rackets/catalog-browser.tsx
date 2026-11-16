@@ -11,10 +11,11 @@ import { WEIGHTS, FEELS } from "../../lib/fine-tune";
 import { levelLabel, type Level } from "../../lib/quick-match";
 import { hasYears, mockLook } from "../../lib/niche";
 import { MIN_LIST_REVIEWS } from "../../lib/top-lists";
+import { useComparePicks, CompareTray, MAX_PICKS } from "./compare-tray";
 /** How an option reads: levels on the site's own scale (pickleball 2.5 / 3.5 / 4.5+). */
 const optWord = (key: string, val: string) => key === "level" ? levelLabel(val as Level) : val;
 
-export type CatalogCard = { name: string; href: string; pic: string | null; tile: string; line: string | null; /** The ranking rows' "best for" words. */ best?: string; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
+export type CatalogCard = { name: string; slug: string; href: string; pic: string | null; tile: string; line: string | null; /** The ranking rows' "best for" words. */ best?: string; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
 type F = CatalogFilters;
 
 /** A type-picker site's catalogue (lib/fit-config.ts quick: DiscGolfRecs): which of the niche's spec filters lead (disc type,
@@ -25,6 +26,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
   /** The niche's spec filters (lib/guide.ts specGroups), under "more filters". */ spec?: SpecGroup[]; look?: CatalogLook }) {
   const specKeys = spec.map(g => g.key);
   // Back and forward step through the filters (app/instant-view.ts).
+  const cmp = useComparePicks();
   const [f, setF] = useInstantView<F>(first, q => readCatalogFilters(Object.fromEntries(q), specKeys), v => catalogHref(base, {}, v, specKeys));
   // The site's own phone mock (mockLook): the filter groups start closed on a phone, except one with a pick.
   useEffect(() => { if (mockLook && matchMedia("(max-width: 760px)").matches) document.querySelectorAll<HTMLDetailsElement>(".ct2-m .ct-g").forEach(d => { if (!d.querySelector(".ct-opt.on")) d.open = false; }); }, []);
@@ -77,16 +79,20 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
       <div className="ct2-bar">
         <div className="ct2-count"><b>{active.length || f.q || f.older === "1" ? `${shown.length} ${shown.length === 1 ? one : many}` : `All ${v.total} ${many}`}</b>
           {active.map(a => <a {...to(a.next)} key={a.label} className="ct2-chipx">{a.label} <i aria-hidden="true">✕</i></a>)}</div>
-        <div className="ct2-sort"><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
+        <div className="ct2-sort"><button type="button" className={`ct2-cmp${cmp.on ? " on" : ""}`} aria-pressed={cmp.on} onClick={cmp.toggleMode}><i aria-hidden="true"/>compare</button><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
       </div>
-      <ol className="ct2-list">{shown.slice(0, show).map((x, i) => {
+      {cmp.on && <p className="ct2-cmpnote"><b>compare on</b><span>{`Tap up to ${MAX_PICKS} ${many} to compare them side by side.`}</span></p>}
+      <ol className={`ct2-list${cmp.on ? " cmp" : ""}`}>{shown.slice(0, show).map((x, i) => {
         const c = cards[x.id];
         const chips = [...(i === 0 && sort === "score" ? [{ k: "top", t: "★ top pick" }] : []), ...(x.arm ? [{ k: "arm", t: armWord }] : [])];
         const meta = (look ? look.lead.map(k => x.spec?.[k]) : [x.lean === "balance" ? "all-round" : x.lean, x.shape, hasYears ? x.year : null]).filter(Boolean) as string[];
         // One link per row (the name's, stretched over the row) and "check price" as a quiet text link at the end of the specs
         // row (owner 2026-11-15). Reviews over the sentiment bar, then the Player score box.
-        return <li key={x.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><div className="ct2-row">
-          <span className="ct2-rank">{i + 1}</span>
+        const ticked = cmp.on && cmp.has(x.id);
+        // Compare mode: a tap anywhere on the row (but "check price") picks it instead of opening the page.
+        const pick = cmp.on ? (e: React.MouseEvent) => { if ((e.target as HTMLElement).closest(".ct2-buy")) return; e.preventDefault(); cmp.toggle({ id: x.id, slug: c.slug, name: c.name, pic: c.pic }); } : undefined;
+        return <li key={x.id} className={[i === 0 ? "first" : i < 3 ? "top" : "", ticked ? "picked" : ""].filter(Boolean).join(" ") || undefined}><div className="ct2-row" onClickCapture={pick}>
+          {cmp.on ? <span className={`ct2-tick${ticked ? " on" : ""}`} role="checkbox" aria-checked={ticked} aria-label={`Compare ${c.name}`}>{ticked ? "✓" : ""}</span> : <span className="ct2-rank">{i + 1}</span>}
           <span className="ct2-pic">{c.pic ? <img src={c.pic} alt="" width={408} height={620} decoding="async" loading={i < 4 ? "eager" : "lazy"}/> : <span className="ct2-tile">{c.tile}</span>}</span>
           <span className="ct2-body">
             <span className="ct2-nrow">{mockLook && <b className="ct2-rk" aria-hidden="true">{`#${i + 1}`}</b>}<a className="ct2-name" href={c.href}>{c.name}</a>{chips.map(ch => <span key={ch.k} className={`ct2-chip ${ch.k}`}>{ch.t}</span>)}</span>
@@ -104,6 +110,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
       {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}
       {shown.length > show && <a {...to({ show: String(show + CATALOG_PAGE) })} className="ct2-load">{`load ${Math.min(CATALOG_PAGE, shown.length - show)} more ↓`}</a>}
+      {cmp.on && <CompareTray picks={cmp.picks} remove={cmp.remove} clear={cmp.clear} one={one}/>}
       {mockLook && <p className="ct2-note">{`${many} with fewer than ${MIN_LIST_REVIEWS} reviews get no score yet, so one loud opinion can't top the list.`}</p>}
     </section>
   </div>;

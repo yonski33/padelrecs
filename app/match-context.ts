@@ -2,7 +2,7 @@ import { cache } from "react";
 import { kept } from "../db/keep";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
-import { rankedLists } from "./rankings/lists";
+import { baseLists } from "./rankings/lists";
 import { finderPool, type FinderProduct } from "../lib/finder";
 import { LEVELS, type Level, type LevelEvidence } from "../lib/quick-match";
 import { combinedBand, type FitFacts, type LevelSources } from "../lib/fit-verdict";
@@ -40,7 +40,7 @@ const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate:
 // 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
 export const matchContext = cache(() => keptContext.get());
 const keptContext = kept(async () => {
-  const [data, sigs, takes, live, overrides, stored] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
+  const [data, sigs, takes, live, overrides, stored] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;

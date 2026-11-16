@@ -177,3 +177,39 @@ body:has(main.ct2) { background: #fbfaf6; }
 .ct2 .ct2-best { display: block; font: 11.5px var(--mono); color: var(--soft); }
 /* Phones: no "best for" line (the mockup's phone row), so rows stay as tall as before. */
 @media (max-width: 640px) { .ct2 .ct2-best { display: none; } }
+/* Compare mode (owner's mock 2026-11-16): the switch, the note, tick boxes in place of ranks and the floating tray. */
+.ct2 {
+  .ct2-sort .ct2-cmp { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; margin-right: 8px; padding: 4px 11px 4px 5px; border: 2px solid var(--ink); border-radius: 999px; font: 700 13px var(--body); background: var(--paper); }
+  .ct2-cmp i { position: relative; width: 26px; height: 15px; border: 1.5px solid var(--ink); border-radius: 999px; background: #e9e6dc; box-sizing: border-box; }
+  .ct2-cmp i::after { content: ""; position: absolute; top: 1px; left: 1px; width: 11px; height: 11px; border-radius: 50%; background: var(--ink); transition: left .12s; }
+  .ct2-cmp.on { background: var(--marker); } .ct2-cmp.on i { background: var(--acc); } .ct2-cmp.on i::after { left: 12px; }
+  .ct2-cmp:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .ct2-cmpnote { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 0 0 10px; font-size: 14px; }
+  .ct2-cmpnote b { font: 600 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 6px; padding: 0 6px; background: var(--marker); }
+  .ct2-list.cmp .ct2-row { cursor: pointer; }
+  .ct2-tick { width: 24px; height: 24px; margin: 0 auto; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); display: flex; align-items: center; justify-content: center; font: 800 14px var(--body); box-sizing: border-box; }
+  .ct2-tick.on { background: var(--ink); color: var(--bg); }
+  .ct2-list > li.picked { background: var(--site-wash, oklch(0.97 0.04 125)); }
+  .ct2-trayspace { height: 110px; }
+  .ct2-tray { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); width: calc(100% - 24px); max-width: 860px; z-index: 30; border: 2.5px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); padding: 10px 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; box-sizing: border-box; }
+  .ct2-tray .slots { flex: 1 1 300px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .ct2-tray .slot { position: relative; min-width: 0; height: 54px; border: 2px dashed #b9b5aa; border-radius: 10px; display: flex; align-items: center; gap: 8px; padding: 0 8px; box-sizing: border-box; }
+  .ct2-tray .slot.on { border: 2px solid var(--ink); background: var(--site-wash, oklch(0.97 0.04 125)); }
+  .ct2-tray .slot img { height: 44px; width: auto; mix-blend-mode: multiply; flex: none; }
+  .ct2-tray .slot span { min-width: 0; font: 700 13px/1.2 var(--body); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .ct2-tray .slot .e { width: 100%; text-align: center; font: 11.5px var(--mono); color: var(--mute); }
+  .ct2-tray .slot button { all: unset; cursor: pointer; position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .ct2-tray .go { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; margin-left: auto; }
+  .ct2-tray .clear { all: unset; cursor: pointer; font: 12.5px var(--mono); text-decoration: underline; }
+  .ct2-tray .btn { white-space: nowrap; padding: 10px 16px; border: 2px solid var(--ink); border-radius: 10px; background: #e9e6dc; color: var(--mute); font: 800 15px var(--display); text-decoration: none; }
+  .ct2-tray .btn.on { background: var(--ink); color: var(--bg); }
+  @media (max-width: 760px) {
+    .ct2-sort { flex-wrap: wrap; }
+    .ct2-tray { padding: 8px; gap: 8px; }
+    .ct2-tray .slots { flex-basis: 100%; gap: 6px; }
+    .ct2-tray .slot { height: 46px; padding: 0 5px; gap: 4px; } .ct2-tray .slot img { height: 36px; } .ct2-tray .slot span { font-size: 11.5px; }
+    .ct2-tray .go { width: 100%; justify-content: space-between; margin: 0; }
+    .ct2-trayspace { height: 140px; }
+    .ct2-list.cmp .ct2-tick { grid-area: pic; align-self: center; position: absolute; left: 6px; top: 8px; z-index: 2; }
+  }
+}

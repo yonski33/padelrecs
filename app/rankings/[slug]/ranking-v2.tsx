@@ -17,7 +17,12 @@ import { photoOf } from "../rankings-v2";
 import { attrProfileFor } from "../../../lib/attr-profile";
 import { FEW_VOICES } from "../../../lib/attr-score";
 import { skinContext } from "../../skin/context";
-import { scoreLabel } from "../../../lib/niche";
+import { scoreLabel, catalogPath } from "../../../lib/niche";
+import { newThisWeek } from "../../../lib/new-this-week";
+import { catalogView } from "../../../lib/catalog-filter";
+import { specGroups } from "../../../lib/guide";
+import { SUITS_OK } from "../../../lib/fit-verdict";
+import { catalogRows } from "../../rackets/catalog-rows";
 
 // A ranking in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/TTmbZPDFLuRzQiqsAG3Nc1), PadelRecs
 // only: the lists as tabs, a big title, "your match" (the home's quick-match picks, in the URL, with the match % on every row),
@@ -59,6 +64,28 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const tone = (n: number | null) => n === null ? "" : n >= 90 ? " t90" : n >= 85 ? " t85" : "";
   const buy = (x: typeof rows[number], cls: string) => x.shop ? <a className={cls} href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : null;
   const tag = (rank: number) => rank === 2 ? <span className="rk3-tag ru">runner-up</span> : null;
+
+  // After the list (owner 2026-11-16, the mock's "keep the journey going"): compare the top three, the other top 10s, then
+  // the guide, the catalogue, this week's reviews and "your turn"; the full FAQ last (it is the page's FAQ data for search).
+  const top3 = rows.slice(0, 3), w = niche.words, g = niche.guide;
+  const compareHref = `/compare?ids=${top3.map(x => encodeURIComponent(x.r.slug)).join(",")}`;
+  const short = (id: string) => { const r = byId.get(id); return r ? displayName(r.name, brand(r.brandId)).replace(/\s\d{4}$/, "") : ""; };
+  const more = tabs.filter(l => l.list.slug !== list.slug).slice(0, 4).map(l => ({ slug: l.list.slug, title: l.list.label, top: l.entries[0] ? short(l.entries[0].product.id) : "",
+    pics: l.entries.slice(0, 3).map(e => { const r = byId.get(e.product.id); return r ? photoOf(r) : null; }) }));
+  const shapes = g?.sections.find(s => s.id === (g.home?.section ?? "shape"))?.options.map(o => o.label.toLowerCase()) ?? [];
+  const shapeQ = shapes.length > 1 ? `${shapes.slice(0, -1).join(", ")} or ${shapes.at(-1)}?` : null;
+  const total = ctx ? catalogView(catalogRows(data, ctx), {}, SUITS_OK, specGroups(g)).total : data.listed.length;
+  const fresh = newThisWeek(data, Date.now());
+  const next = [
+    ...(g && shapeQ ? [{ k: "guide", kicker: "guide", title: shapeQ[0].toUpperCase() + shapeQ.slice(1), href: "/guide",
+      line: `${g.sections.slice(0, 3).map(s => s.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1").replace(/^./, c => c.toUpperCase())} in two minutes.`, cta: `read the ${g.crumb} →` }] : []),
+    { k: "catalog", kicker: "catalog", title: `All ${total.toLocaleString("en-US")} ${w.many}`, href: catalogPath,
+      line: skin ? "Filter and sort every one." : "Filter by style, level, shape and weight.", cta: `browse ${w.many} →` },
+    { k: "fresh", kicker: "fresh", title: fresh > 0 ? `${fresh.toLocaleString("en-US")} new reviews this week` : "The latest reviews", href: "/reviews",
+      line: `What ${niche.people.many} just said${skin ? "." : ", straight from the court."}`, cta: "latest reviews →" },
+    { k: "turn", kicker: "your turn", title: skin ? "Used one of these?" : "Played one of these?", href: "/add-review",
+      line: "Your verdict moves the list. One tap, no account.", cta: "+ add a review" },
+  ];
 
   return <main className={`rl2 rk3 ${qtFontVars}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
@@ -108,11 +135,29 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         </div>
       </li>)}</ol>}
 
-      <a className="rk3-all" href={RANKINGS_PATH}>see all rankings →</a>
+      {more.length === 0 && <a className="rk3-all" href={RANKINGS_PATH}>see all rankings →</a>}
       {affiliate && <p className="rk3-aff">{"* some links are affiliate links; they never change the order."}</p>}
 
-      <section className="rl2-faq" id="how-we-rank"><h2>Common questions</h2>
-        {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</section>
+      <div className="rk3-next">
+        {top3.length >= 2 && <section className="rk3-cta">
+          <div><b>{`Torn between the top ${top3.length}? Put them side by side.`}</b><span>{`Trait by trait, from ${niche.people.one} reviews.`}</span></div>
+          <div className="rk3-cta-b"><a className="dark" href={compareHref}>{`compare the top ${top3.length} →`}</a><Link href="/#match">find my match</Link></div>
+        </section>}
+        {more.length > 0 && <section className="rk3-more">
+          <div className="rk3-h"><h2>More top 10s</h2><a href={RANKINGS_PATH}>all rankings →</a></div>
+          <div className="rk3-tiles">{more.map(m => <a key={m.slug} href={listHref(m.slug)}>
+            <span className="t"><b>{`${m.title} →`}</b>{m.top && <small>{`#1 ${m.top}`}</small>}</span>
+            <span className="pics" aria-hidden="true">{m.pics.map((p, i) => p ? <img key={i} className={`p${i}`} src={p} alt="" loading="lazy"/> : null)}</span>
+          </a>)}</div>
+        </section>}
+        <section className="rk3-deciding"><h2>Still deciding?</h2>
+          <div className="rk3-cards">{next.map(n => <a key={n.k} className={n.k} href={n.href}>
+            <small>{n.kicker}</small><b>{n.title}</b><span>{n.line}</span><em>{n.cta}</em></a>)}</div>
+        </section>
+      </div>
+
+      <section className="rl2-faq rk3-faq" id="how-we-rank"><h2>Questions</h2>
+        <div className="box">{faq.map(f => <details key={f.q}><summary>{f.q}<i aria-hidden="true"/></summary><p>{f.a}</p></details>)}</div></section>
     </div>
     <V2Footer/>
   </main>;

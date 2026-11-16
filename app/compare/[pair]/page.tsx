@@ -6,6 +6,7 @@ import { notFound, redirect, permanentRedirect } from "next/navigation";
 import { catalog as loadCatalog } from "../../../db/data";
 import { comparePairs, pairHref, pairKey } from "../../../lib/compare-pairs";
 import { CompareView, compareMetadata, hrefFor, type Data } from "../view";
+import { CompareV2, compareV2For } from "../compare-v2";
 
 // /compare/a-vs-b: a curated pair (lib/compare-pairs), indexable and in the sitemap. Two real products that are not a
 // curated pair (fewer reviews, or not alike) still open, at their /compare?ids= address; anything else is not found.
@@ -34,5 +35,6 @@ export default async function ComparePairPage({ params, searchParams }: { params
   const [{ pair: key }, data, q] = await Promise.all([params, catalog(), searchParams]);
   const { pair, fallback, permanent } = resolve(data, key);
   if (!pair) { if (fallback) { if (permanent) permanentRedirect(fallback); redirect(fallback); } notFound(); }
+  if (compareV2For(2, q.look)) return <CompareV2 data={data} products={[pair.a, pair.b]}/>;
   return <CompareView data={data} products={[pair.a, pair.b]} light={isLight(q.look)}/>;
 }
