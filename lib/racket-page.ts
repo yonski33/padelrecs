@@ -4,6 +4,7 @@
 // "other-slug:id" for another racket's page), and its evidence line counts them.
 import padel from "../db/racket-page/padel.json";
 import pickleball from "../db/racket-page/pickleball.json";
+import discgolf from "../db/racket-page/discgolf.json";
 import { niche } from "./niche";
 import type { CardContent, CardTag } from "./fit-card";
 
@@ -12,7 +13,8 @@ export type PageItem = { title: string; /** One line; the key phrase sits betwee
   /** The evidence line, {n} = the number of reports ("the #1 complaint, {n} players"); default "{n} players mention it". */ ev?: string };
 export type PageContent = { tagline: string; bottom: string; yes: PageItem[]; no: PageItem[] };
 
-const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Record<string, PageContent>, pickleball: pickleball as Record<string, PageContent> };
+const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Record<string, PageContent>, pickleball: pickleball as Record<string, PageContent>,
+  discgolf: discgolf as Record<string, PageContent> };
 
 export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
