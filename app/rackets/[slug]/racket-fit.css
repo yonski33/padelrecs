@@ -665,3 +665,33 @@
     .rp-buy { margin-left: auto; white-space: nowrap; padding: 9px 14px; }
   }
 }
+
+.rf {
+  /* Phones. The final-mock values above are desktop values and come later than the older phone rules,
+     so the phone layout is restated here, last. */
+  @media (max-width: 640px) {
+    /* How it plays & compares: the label and dots share a line, the note goes full width under them. */
+    .rp-row { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; }
+    .rp-row > b { font-size: 16px; }
+    .rp-row .rp-note { grid-column: 1 / -1; font-size: 15.5px; }
+    /* Side by side: label, this racket, the other racket. Narrower dots so both sets fit. */
+    .rp-row.rp-two, .rp-row.rp-vs { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 8px; }
+    .rp-two > b { font-size: 15px; }
+    .rp-two .rf-segs i { width: 11px; }
+    .rp-vs { font: 700 11.5px/1.25 var(--mono); align-items: end; }
+    .rp-vs > :not(:first-child) { width: 67px; overflow-wrap: anywhere; }
+    .rp-vs a { font: inherit; }
+    /* Racket tabs: always two a row (auto-fit drops to one column below ~340px). */
+    .rp-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .rp-tabs button { padding: 9px 10px; gap: 8px; min-width: 0; }
+    .rp-tabs b { font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .rp-tabs small { font-size: 12.5px; }
+  }
+  @media (max-width: 560px) {
+    /* YouTube cards: thumbnail on top, the summary gets the full card width. */
+    .rv-yt { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px 14px; }
+    .rv-thumb { max-width: none; }
+    /* The score row stacks here, so the bar's 220px flex-basis would become 220px of empty height. */
+    .rv-head .rv-mood .rv-mbar { flex: none; width: 100%; }
+  }
+}
