@@ -2,9 +2,10 @@
    .bp-sens, .bp-tag, .bp-btn, .bp-mood, .bp-card) come from skin-product.css. */
 .bh-wrap { max-width: 1140px; margin: 0 auto; padding: 32px 20px 72px; box-sizing: border-box; }
 .bh-hero { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
-.bh-hero h1 { font-size: clamp(40px, 5.4vw, 62px); line-height: 1; max-width: 720px; text-wrap: balance; }
-.bh-hero p { margin: 12px 0 0; font-size: 18px; color: var(--text); max-width: 560px; text-wrap: pretty; }
-.bh-hero h1 em { margin-top: 6px; font-style: italic; background: var(--rose); border: 2px solid var(--ink); border-radius: 999px; padding: 0 16px 2px; display: inline-block; transform: rotate(-1.5deg); }
+.bh-hero h1 { font-size: clamp(40px, 5.4vw, 62px); line-height: 1.08; text-wrap: balance; }
+.bh-hero p { margin: 0; font-size: 18px; color: var(--text); max-width: 560px; text-wrap: pretty; }
+.bh-subrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 12px; }
+.bh-hero h1 em { margin-top: 0; font-style: italic; background: var(--rose); border: 2px solid var(--ink); border-radius: 999px; padding: 0 16px 2px; display: inline-block; transform: rotate(-1.5deg); }
 .bh-live { display: inline-flex; align-items: center; gap: 8px; font: 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 12px; background: var(--paper); }
 .bh-live i { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.65 0.1 155); }
 
@@ -52,7 +53,9 @@
 .bh-thin { font: 11.5px var(--mono); color: var(--mute2); }
 .bh-sent { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; font: 11px var(--mono); min-width: 92px; }
 .bh-sent .bp-mood { width: 92px; height: 7px; }
-.bh-buy { position: relative; z-index: 1; white-space: nowrap; padding: 7px 14px; border-radius: 999px; background: var(--ink); color: var(--bg) !important; font-weight: 600; font-size: 13px; text-decoration: none; }
+/* Padel's quiet "check price ↗" text link in list rows (owner 2026-11-16); the black button stays on product pages. */
+.bh-buy { position: relative; z-index: 1; white-space: nowrap; font: 12px var(--mono); color: var(--mute) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.bh-buy:hover { color: var(--ink) !important; }
 .bh-pct { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; }
 .bh-pct b { font: 400 26px/1 var(--serif); border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px 10px 4px; background: var(--paper); }
 .bh-pct.hi b { background: oklch(0.86 0.07 155); } .bh-pct.mid b { background: var(--mark); } .bh-pct.none b { background: var(--sand); color: var(--mute2); }
@@ -123,7 +126,7 @@
   .bh-rank { font-size: 22px; }
   .bh-sent { grid-column: 3; grid-row: 2; flex-direction: row; align-items: center; min-width: 0; }
   .bh-sent .bp-mood { width: 64px; }
-  .bh-buy { grid-column: 3; grid-row: 3; justify-self: start; padding: 5px 12px; }
+  .bh-buy { grid-column: 3; grid-row: 3; justify-self: start; }
   .bh-pct { grid-column: 4; grid-row: 1 / span 3; min-width: 0; }
   .bh-pct b { font-size: 22px; }
   .bh-side { max-width: none; }
@@ -147,7 +150,19 @@
   .bh-pct small { display: none; }
   .bh-sent { grid-area: sent; min-width: 0; font-size: 10.5px; color: var(--mute); }
   .bh-sent .bp-mood { display: none; }
-  .bh-buy { grid-area: buy; justify-self: end; padding: 6px 12px; }
+  .bh-buy { grid-area: buy; justify-self: end; }
   .bh-tex { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -16px; padding: 4px 16px 14px; }
   .bh-tex a { flex: 0 0 236px; scroll-snap-align: start; }
 }
+
+/* Row typography (owner 2026-11-16): the serif title, dark underlined price link, "best for …" line, and with picks a neutral
+   user-score pill under the match %. */
+.bh-name { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; letter-spacing: -0.005em; }
+.bh-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.bh-best { display: block; font: 11.5px var(--mono); color: var(--mute); }
+.bh-spill { display: inline-flex; align-items: baseline; gap: 4px; margin-top: 3px; padding: 0 7px; border: 1.5px solid var(--ink); border-radius: 999px; font: 500 10.5px var(--sans); white-space: nowrap; }
+.bh-spill b { font-size: 12px; }
+@media (max-width: 640px) { .bh-name { font-size: 18px; } }
+/* Phones keep the match % only (the mockup's phone row has no score pill; there is no room beside the reviews and link). */
+@media (max-width: 640px) { .bh-spill { display: none; } }
+@media (max-width: 640px) { .bh-best { display: none; } }

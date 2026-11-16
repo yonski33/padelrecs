@@ -6,13 +6,16 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
-import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
+import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
 import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
 import { fitConfigFor } from "../lib/fit-config";
 import type { HomePayload, HomeSeed } from "./home-payload";
 import { sameChoice } from "../lib/rank-seed";
+import { forgetSavedPicks } from "../lib/saved-picks";
+/** What "reset ↺" goes back to: the default picks, whose address is "/" (tests/quick-reset.test.ts). */
+export const RESET_CHOICE: QuickChoice = DEFAULT_CHOICE;
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -52,6 +55,9 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
   }, []);
   const own = !payload || (sameChoice(choice, seed.choice) && older === seed.older);
   const go = (next: QuickChoice, nextOlder = older) => instantClick(() => { set({ choice: next, older: nextOlder }); document.title = titleOf(next); });
+  // Reset (owner 2026-11-16): the default picks (no level, no fine-tune, newest models), the plain address, no saved picks.
+  // It used to set level "intermediate", so on ?level=intermediate it changed nothing.
+  const reset = instantClick(() => { forgetSavedPicks(); set({ choice: RESET_CHOICE, older: false }); document.title = titleOf(RESET_CHOICE); });
   const { rows, olderN } = own ? seed : rankHome(payload.items, SETUP, BAD, choice, older);
   const cards = own ? seed.cards : payload.cards;
   const byId = own ? null : new Map(payload.items.map(x => [x.id, x]));
@@ -94,7 +100,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       </details>}
       {picked && !M && <p className="hv2-game">{QUICK ? "Your throw: " : "Your game: "}<b>{(QUICK ? [QUICK.types.find(t => t.key === choice.kind)?.many ?? null, choice.level ?? null, choice.style !== "any" ? styleWord(choice.style) : null, choice.arm ? QUICK.arm : null]
           : [choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)]).filter(Boolean).join(" · ")}</b>
-        <a href="/" onClick={go({ style: "any", level: "intermediate", arm: false }, false)}>reset ↺</a></p>}
+        <a href="/" onClick={reset}>reset ↺</a></p>}
     </section>
 
     <div className="hv2-grid">
@@ -106,6 +112,8 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       <div className="hv2-box">
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm }, i) => {
         const r = cards[id], sig = signalOf(id);
+        // With picks the match % is the star; the product's own score stays as a small neutral pill under it (owner 2026-11-16).
+        const scorePill = sig !== null && <span className="hv2-spill"><b>{sig}</b>{` ${SCORE_WORD}`}</span>;
         // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
         const fitWord = fit && fit.kind !== "thin" ? FIT_WORD[fit.kind] : null;
         const chips = [
@@ -119,19 +127,24 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><b className="hv2-rk" aria-hidden="true">{`#${i + 1}`}</b><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
-            {r.line && <span className="hv2-line">{r.line}</span>}</span>
+            {r.line && <span className="hv2-line">{r.line}</span>}
+            {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}</span>
           <span className="hv2-sent"><span>{`${r.n.toLocaleString("en-US")} ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
-          <span className="hv2-btnc">{r.shop && <a className="hv2-btn" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
-          <span className={`hv2-sc ${!picked || pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE}
-            aria-label={!picked ? "Pick a style or level above for your match %" : pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
-            <b>{picked && pct !== null ? `${pct}%` : "—"}</b><small>match</small></span>
+          {/* Padel's quiet "check price ↗" text link and its score badge (owner 2026-11-16): the Player score until a pick, then the match %. */}
+          <span className="hv2-btnc">{r.shop && <a className="hv2-buy" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
+          {picked ? <span className={`hv2-sc ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE}
+            aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+            <b>{pct !== null ? `${pct}%` : "—"}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
+            : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
+            <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : QUICK ? <span className={`hv2-disc t${i % 6}`} aria-hidden="true"/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
             {r.line && <span className="hv2-line">{r.line}</span>}
+            {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}
             {/* Flight numbers (type-picker sites): labelled once over the first row, and each box names its number. */}
             {r.flight && <span className="hv2-flight">{i === 0 && QUICK?.flightLabel && <a className="hv2-flight-k" href="/guide#flight">{QUICK.flightLabel}</a>}
               {r.flight.map((n, j) => <i key={j} title={["speed", "glide", "turn", "fade"][j]}>{n}</i>)}</span>}
@@ -141,7 +154,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           <span className="hv2-sent"><span><strong>{r.n.toLocaleString("en-US")}</strong>{` ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
           {picked ? <span className={`hv2-sc ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
-              {fitWord && <i className={`hv2-verdict ${fit!.kind}`}>{fitWord}</i>}<b>{pct === null ? "—" : `${pct}%`}</b>{pct === null && <small>too few reports</small>}</span>
+              {fitWord && <i className={`hv2-verdict ${fit!.kind}`}>{fitWord}</i>}<b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
             : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
               <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;

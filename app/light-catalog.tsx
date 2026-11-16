@@ -3,14 +3,13 @@
 // niche's fixed-value specs, brand), and the list as calm rows with the signal and a compare box. Every number is counted
 // from published reviews; nothing here needs JavaScript except the compare tray and the auto-submitting filters.
 import type { Catalog } from "../db/data";
+import { rowLine } from "../lib/row-line";
 import { score } from "../db/data";
 import { niche, catalogPath, hasYears, productHref } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { matchingRackets } from "../lib/racket-search";
 import { SORTS, DEFAULT_SORT, parseSort, sortProducts, firstReviewed } from "../lib/product-sort";
 import { catalogKeyword } from "../lib/catalogue-seo";
-import { listLine } from "../lib/list-lines";
-import { shortLine } from "../lib/short-lines";
 import { LightRow, quickAmazon, sigTipStyle } from "./light-row";
 import type { Signal } from "../lib/signal";
 import type { SpecColumn } from "../lib/niche/types";
@@ -159,7 +158,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
         <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
           const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);
           return <div key={r.id} className="lt-slot">
-            <LightRow data={data} r={r} rank={null} noSignal={mixed} signal={signals.get(r.id)?.signal} line={shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
+            <LightRow data={data} r={r} rank={null} noSignal={mixed} signal={signals.get(r.id)?.signal} line={rowLine(r) ?? consensus(tc.get(r.id))} shop={quickAmazon(r, brand)}
               extra={<CompareCheck slug={r.slug} name={name}/>}/>
           </div>; })}/></div>
         {!results.length && <p className="empty-feed">{`No ${w.one} matches all of these. `}<a href={clearAll}>Clear filters</a></p>}

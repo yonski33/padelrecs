@@ -3,6 +3,7 @@
 // leaderboard (rank, small photo, name, one grey line, a tiny meta line, the signal) with short #1–#5 lists beside it.
 // Shown with ?home=d until the owner picks a direction; every number is counted from published reviews.
 import { newThisWeek } from "../lib/new-this-week";
+import { rowLine } from "../lib/row-line";
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
 import { niche, productHref } from "../lib/niche";
@@ -20,8 +21,6 @@ import { quoteText } from "./visual";
 import { lightRowProps, quickAmazon } from "./light-row";
 import { ProductIcon, SourceIcon } from "./icons";
 import { lightFont } from "./light-font";
-import { listLine } from "../lib/list-lines";
-import { shortLine } from "../lib/short-lines";
 import { shapeChoices, tagCounts, consensus, ago } from "./home-catalog";
 
 // Preview links carry the light look through to the product page.
@@ -73,10 +72,11 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
-      <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, reviewed by `}<span>{`real ${p.many}`}</span></h1>
-      {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). */}
-      <p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
+      {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). The live pill sits on the
+          subtitle's line on every site (owner 2026-11-16), as on the v2 homes: "N reviews · N new this week". */}
+      <div className="lt-subrow"><p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
+        <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(everything.length)} reviews${week ? ` · ${fmt(week)} new this week` : ""}`}</div></div>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
@@ -93,7 +93,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
         {/* The categories as plain words with a count and an underline on the one picked (owner, 2026-11-12). */}
         <HomeBoard noun={[w.one, w.many]} cats={cats} initial={shape?.key} initialQ={f.q} ranked={false} base={new URLSearchParams(Object.entries(keep).filter(([, v]) => v) as [string, string][]).toString()}
           noMatch={`No ${w.one} matches that. Try a brand or part of the name.`}
-          items={results.map(({ r }) => { const row = lightRowProps({ data, r, rank: null, noSignal: true, line: shortLine(r) ?? listLine(r) ?? consensus(tc.get(r.id)), shop: quickAmazon(r, brandOf(r.brandId)) }), brand = brandOf(r.brandId) ?? "", text = `${brand} ${r.name} ${r.shape ?? ""}`;
+          items={results.map(({ r }) => { const row = lightRowProps({ data, r, rank: null, signal: signals.get(r.id)?.signal, line: rowLine(r) ?? consensus(tc.get(r.id)), shop: quickAmazon(r, brandOf(r.brandId)) }), brand = brandOf(r.brandId) ?? "", text = `${brand} ${r.name} ${r.shape ?? ""}`;
             // The search text only when the row's name and shape don't already say it (the name leaves the brand out on a few).
             return { key: r.id, shape: shapes.find(c => inShape(r, c))?.key ?? null, ...(row.name.toLowerCase().includes(brand.toLowerCase()) ? {} : { text }), row }; })}
           // A new site (TVRecs, 2026-11-13) before its first reviews are in.

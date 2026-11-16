@@ -171,6 +171,12 @@ body:has(main.ct2) { background: #fbfaf6; }
   }
 }
 
+/* Row typography (owner 2026-11-16): display-font title, dark underlined price link, "best for …" line. */
+.ct2 .ct2-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.012em; }
+.ct2 .ct2-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.ct2 .ct2-best { display: block; font: 11.5px var(--mono); color: var(--soft); }
+/* Phones: no "best for" line (the mockup's phone row), so rows stay as tall as before. */
+@media (max-width: 640px) { .ct2 .ct2-best { display: none; } }
 /* Compare mode (owner's mock 2026-11-16): the switch, the note, tick boxes in place of ranks and the floating tray. */
 .ct2 {
   .ct2-sort .ct2-cmp { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; margin-right: 8px; padding: 4px 11px 4px 5px; border: 2px solid var(--ink); border-radius: 999px; font: 700 13px var(--body); background: var(--paper); }

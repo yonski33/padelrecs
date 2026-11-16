@@ -15,7 +15,7 @@ import { useComparePicks, CompareTray, MAX_PICKS } from "./compare-tray";
 /** How an option reads: levels on the site's own scale (pickleball 2.5 / 3.5 / 4.5+). */
 const optWord = (key: string, val: string) => key === "level" ? levelLabel(val as Level) : val;
 
-export type CatalogCard = { name: string; slug: string; href: string; pic: string | null; tile: string; line: string | null; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
+export type CatalogCard = { name: string; slug: string; href: string; pic: string | null; tile: string; line: string | null; /** The ranking rows' "best for" words. */ best?: string; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
 type F = CatalogFilters;
 
 /** A type-picker site's catalogue (lib/fit-config.ts quick: DiscGolfRecs): which of the niche's spec filters lead (disc type,
@@ -97,6 +97,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           <span className="ct2-body">
             <span className="ct2-nrow">{mockLook && <b className="ct2-rk" aria-hidden="true">{`#${i + 1}`}</b>}<a className="ct2-name" href={c.href}>{c.name}</a>{chips.map(ch => <span key={ch.k} className={`ct2-chip ${ch.k}`}>{ch.t}</span>)}</span>
             {c.line && <span className="ct2-line">{c.line}</span>}
+            {c.best && <span className="ct2-best">{`best for ${c.best}`}</span>}
             <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}{c.shop && <a className="ct2-buy" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}</span>
           </span>
           <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>

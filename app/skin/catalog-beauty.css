@@ -57,7 +57,9 @@
 .bc-line { font-size: 14.5px; line-height: 1.4; color: var(--text); text-wrap: pretty; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .bc-mt { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; font: 11px var(--mono); color: var(--text); }
 .bc-mt > span { white-space: nowrap; background: var(--sand); border-radius: 999px; padding: 1px 8px; }
-.bc-buy { position: relative; z-index: 1; white-space: nowrap; border-radius: 999px; padding: 1px 9px; background: var(--ink); color: var(--bg) !important; text-decoration: none; font: 500 11px var(--mono); }
+/* Padel's quiet "check price ↗" text link in list rows (owner 2026-11-16). */
+.bc-buy { position: relative; z-index: 1; white-space: nowrap; font: 11px var(--mono); color: var(--mute) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.bc-buy:hover { color: var(--ink) !important; }
 .bc-score { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 84px; }
 .bc-sc { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--ink); font: 25px/1 var(--serif); box-sizing: border-box; }
 .bc-sc.pct { width: auto; min-width: 46px; border-radius: 999px; padding: 0 9px; font-size: 22px; }
@@ -105,3 +107,10 @@
   .bc-score .bp-mood { display: none; }
   .bc-sc:not(.pct) ~ small::before { content: "user score · "; }
 }
+
+/* Row typography (owner 2026-11-16): the serif title, dark underlined price link, "best for …" line. */
+.bc-name { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; }
+.bc-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.bc-best { display: block; font: 11.5px var(--mono); color: var(--mute); }
+@media (max-width: 560px) { .bc-name { font-size: 18px; } }
+@media (max-width: 640px) { .bc-best { display: none; } }

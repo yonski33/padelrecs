@@ -1,9 +1,8 @@
 import { matchContext } from "./match-context";
+import { rowLine } from "../lib/row-line";
 import { listShopLink } from "../lib/amazon-offer";
 import { score } from "../db/data";
 import { displayName } from "../lib/brand-name";
-import { listLine } from "../lib/list-lines";
-import { shortLine } from "../lib/short-lines";
 import { shopPhoto, photoHidden } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { productHref, niche } from "../lib/niche";
@@ -11,12 +10,14 @@ import { slimItems, rankHome, type RankItem, type RankedRow } from "../lib/home-
 import { RANK_SETUP, NEGATIVE_TAGS } from "../lib/rank-seed";
 import type { QuickChoice } from "../lib/quick-match";
 import { fitConfigFor } from "../lib/fit-config";
+import { bestFor } from "../lib/fit-verdict";
 import { sameInputs } from "../db/same-inputs";
 
 const FLIGHT = !!fitConfigFor(niche)?.quick?.flightLabel, ARM_SPEC = fitConfigFor(niche)?.quick?.armSpecOk;
 
 /** What one home row shows. */
 export type HomeCard = { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null;
+  /** The ranking rows' "best for" words (lib/fit-verdict.ts bestFor), on the row under its line (owner 2026-11-16). */ best?: string;
   /** Reports, and how the judged ones split. */ n: number; pos: number; mix: number; neg: number; judged: number; shape: string | null;
   /** The flight numbers as four boxes (type-picker sites with a flight legend, lib/fit-config.ts quick.flightLabel). */ flight?: string[];
   /** The specs agree with the arm chip (lib/fit-config.ts quick.armSpecOk). */ armOk?: boolean };
@@ -51,7 +52,8 @@ const payloadOf = sameInputs((ctx: Awaited<ReturnType<typeof matchContext>>): Ho
   const cards = Object.fromEntries([...shown].map(id => {
     const r = byId.get(id)!, c = score(data, id), shop = listShopLink(r);
     const pic = photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
-    return [id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic, line: takes.get(id)?.hook ?? shortLine(r) ?? listLine(r) ?? null,
+    const best = bestFor(ctx.facts(id)).join(", ");
+    return [id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic, line: rowLine(r, takes.get(id)?.hook), ...(best ? { best } : {}),
       shop: shop ? { url: shop.url, rel: shop.rel } : null, n: reports.get(id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative, judged: c.judged, shape: r.shape?.toLowerCase() ?? null,
       ...(FLIGHT && r.weight && r.weight.split("/").length === 4 ? { flight: r.weight.split("/").map(x => x.trim()) } : {}),
       ...(ARM_SPEC ? { armOk: ARM_SPEC(r) } : {}) }] as const;

@@ -1,16 +1,15 @@
 import "./skin-product.css";
+import { rowLine } from "../../lib/row-line";
 import "./home-beauty.css";
 import "./ranking-beauty.css";
 import Link from "next/link";
 import { niche, productHref, scoreLabel } from "../../lib/niche";
 import { listYear, MIN_LIST_REVIEWS, RANKINGS_PATH } from "../../lib/top-lists";
 import { displayName } from "../../lib/brand-name";
-import { listLine } from "../../lib/list-lines";
-import { shortLine } from "../../lib/short-lines";
 import { websiteButton } from "../../lib/product-links";
 import type { AmazonButton } from "../../lib/amazon-offer";
 import type { Catalog } from "../../db/data";
-import { FEW_VOICES } from "../../lib/attr-score";
+import { skinBestFor } from "../../lib/skin-best";
 import { V2Footer } from "../v2-footer";
 import { listHref, type RankedList } from "../rankings/lists";
 import { photoOf, shortDate } from "../rankings/rankings-v2";
@@ -21,7 +20,6 @@ import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
  *  serif title, a "find my match" nudge to the home's quick match, the #1 as a card, the rest as rows with "best for" (from who
  *  it suits: people with that skin type rating it well) and the user score. The order is the list's own. FAQ stays for search. */
 const DOT = (n: number) => n >= 88 ? "hi" : n >= 84 ? "mid" : "lo";
-const andJoin = (xs: string[]) => xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} & ${xs[xs.length - 1]}`;
 
 export default async function RankingBeauty({ data, lists, found, amazon, affiliate, faq, jsonLd }: {
   data: Catalog; lists: RankedList[]; found: RankedList; amazon: (AmazonButton | null)[]; affiliate: boolean;
@@ -29,12 +27,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
   const { list, entries, reviews, updated } = found;
   const sk = await skinContext();
   // "dry, normal & sensitive skin": the who-it-suits scores people with that skin type gave it (65+, enough of them).
-  const bestFor = (id: string) => {
-    const a = sk.attrs.get(id); if (!a) return null;
-    const ks = sk.profile.attrs.filter(x => x.kind === "suits" && (a.scores[x.key]?.score ?? 0) >= 65 && (a.scores[x.key]?.n ?? 0) >= FEW_VOICES)
-      .sort((x, y) => a.scores[y.key]!.score - a.scores[x.key]!.score).slice(0, 3).map(x => x.label.toLowerCase().replace(/ skin$/, ""));
-    return ks.length ? `${andJoin(ks)} skin` : null;
-  };
+  const bestFor = (id: string) => skinBestFor(sk.profile, sk.attrs.get(id));
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   const nameOnly = (r: { name: string; brandId: string }) => { const b = brand(r.brandId) ?? "", n = displayName(r.name, b);
@@ -51,7 +44,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
     const r = byId.get(e.product.id); if (!r) return null;
     const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
     const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
-    return { e, r, url: productHref(r), pic: photoOf(r), brand: brand(r.brandId), name: nameOnly(r), line: shortLine(e.product) ?? listLine(e.product),
+    return { e, r, url: productHref(r), pic: photoOf(r), brand: brand(r.brandId), name: nameOnly(r), line: rowLine(e.product),
       best: bestFor(r.id), sig: e.signal?.signal ?? null, shop };
   }).filter(x => !!x);
   const [top, ...rest] = rows;
@@ -100,7 +93,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
           {x.best && <span className="rb-best">{`best for ${x.best}`}</span>}
         </div>
         <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score</small></span>
-        {x.shop ? <a className="bp-btn rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
+        {x.shop ? <a className="rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
       </li>)}</ol>}
       <Link className="rb-all" href={RANKINGS_PATH}>see all rankings →</Link>
 
