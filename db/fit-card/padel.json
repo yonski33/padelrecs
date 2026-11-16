@@ -101,7 +101,7 @@
     ],
     "alt": {
      "slug": "bullpadel-vertex-05-geo-2026",
-     "t": "Want more punch? The Vertex 05 Geo has the higher power spot, a tester says.",
+     "t": "Want more punch? The Vertex 05 Geo has the higher power spot.",
      "src": [
       "d2670b81-ad81-40e7-bf4b-196b724bf906",
       "research-92ccf484-e978-4657-a00f-2b08e0510707"
@@ -342,7 +342,7 @@
  "nox-at10-18k-2025": {
   "strengths": [
    {
-    "t": "Easy to move all day: lots of players say it's quick in defence and at the net.",
+    "t": "Easy to move all day: quick in defence and at the net.",
     "for": [
      "control",
      "balance",
@@ -369,7 +369,7 @@
     ]
    },
    {
-    "t": "Safe in defence: many players say it's comfortable defending and lobbing from the back.",
+    "t": "Safe in defence: comfortable defending and lobbing from the back.",
     "for": [
      "control",
      "beginner",
@@ -388,7 +388,7 @@
     ]
    },
    {
-    "t": "Forgiving: many players praise the big sweet spot, though a few found it harsh off-centre.",
+    "t": "Forgiving: a big sweet spot, though it can feel harsh off-centre.",
     "for": [
      "beginner",
      "intermediate",
@@ -410,7 +410,7 @@
     ]
    },
    {
-    "t": "Kind to the arm: some players say so, a few of them with tennis elbow.",
+    "t": "Kind to the arm: comfortable even with tennis elbow.",
     "for": [
      "arm"
     ],
@@ -427,7 +427,7 @@
   ],
   "catches": [
    {
-    "t": "Too soft for many: lots of players say blocks and volleys float or fly at the glass.",
+    "t": "Too soft at speed: blocks and volleys float or fly at the glass.",
     "for": [
      "control",
      "advanced",
@@ -476,7 +476,7 @@
     },
     "alt": {
      "slug": "bullpadel-vertex-05-hybrid-2026",
-     "t": "Want it drier? A few players left it for the Vertex 05 Hybrid and like the placement.",
+     "t": "Want it drier? The Vertex 05 Hybrid gives firmer, more precise placement.",
      "src": [
       "research-43885ce9-b92a-4ac6-94d5-1ecaa1fdcdcf",
       "bullpadel-vertex-05-hybrid-2026:research-7e3a6119-4122-4bf6-8d75-ae793923bf46"
@@ -484,7 +484,7 @@
     }
    },
    {
-    "t": "No finisher: lots of players say smashes lack power, flat ones above all.",
+    "t": "No finisher: smashes lack power, flat ones above all.",
     "for": [
      "power",
      "advanced",
@@ -511,7 +511,7 @@
     ],
     "alt": {
      "slug": "nox-at10-genius-12k-2025",
-     "t": "Want more punch? A tester and a player point to the stiffer AT10 12K.",
+     "t": "Want more punch? The stiffer AT10 12K hits harder.",
      "src": [
       "976654c1-532b-4fdd-9cdc-192479c7b489",
       "research-ca1b647b-3c7d-4b16-9a0e-b9330ea4ddb9"
@@ -519,7 +519,7 @@
     }
    },
    {
-    "t": "Cracks: many players had theirs crack or peel within months, often after a knock.",
+    "t": "Cracks: it can crack or peel within months, often after a knock.",
     "for": [
      "beginner"
     ],
@@ -796,7 +796,7 @@
  "nox-at10-genius-12k-2025": {
   "strengths": [
    {
-    "t": "Real control: lots of players praise it. One says it improved their timing.",
+    "t": "Real control: precise, and it can sharpen your timing.",
     "for": [
      "control",
      "balance",
@@ -828,7 +828,7 @@
     ]
    },
    {
-    "t": "Quick hands: many players say it's easy to move in defence and on volleys.",
+    "t": "Quick hands: easy to move in defence and on volleys.",
     "for": [
      "control",
      "balance",
@@ -849,7 +849,7 @@
     ]
    },
    {
-    "t": "More attack than the 18K: some players say it hits harder and still defends well.",
+    "t": "More attack than the 18K: hits harder and still defends well.",
     "for": [
      "balance",
      "power",
@@ -866,7 +866,7 @@
     ]
    },
    {
-    "t": "Mostly kind to the arm: some players with elbow trouble did well on it; a few got pain.",
+    "t": "Mostly kind to the arm: fine for many with elbow trouble, though it can cause pain.",
     "for": [
      "arm"
     ],
@@ -906,7 +906,7 @@
     ],
     "alt": {
      "slug": "nox-at10-18k-2025",
-     "t": "Want more help? Players who found it stiff point to the softer AT10 18K.",
+     "t": "Want more help? The softer AT10 18K is easier on mishits.",
      "src": [
       "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
       "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c"
@@ -914,7 +914,7 @@
     }
    },
    {
-    "t": "Smashes need your muscle: many players say it won't finish points, flat smashes above all.",
+    "t": "Smashes need your muscle: it won't finish points, flat smashes above all.",
     "for": [
      "power",
      "advanced",
@@ -938,7 +938,7 @@
     ]
    },
    {
-    "t": "Less forgiving than the 18K: some players found it stiffer, needing more precision and effort.",
+    "t": "Less forgiving than the 18K: stiffer, needing more precision and effort.",
     "for": [
      "beginner",
      "arm",
@@ -954,7 +954,7 @@
     ],
     "alt": {
      "slug": "nox-at10-18k-2025",
-     "t": "Want more help? Players who found it stiff point to the softer AT10 18K.",
+     "t": "Want more help? The softer AT10 18K is easier on mishits.",
      "src": [
       "research-5ddfda2e-98dc-4764-9303-5e768a22a5ac",
       "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c"
@@ -962,7 +962,7 @@
     }
    },
    {
-    "t": "A bit lively at the net: some players say blocks and volleys can fly off to the glass.",
+    "t": "A bit lively at the net: blocks and volleys can fly off to the glass.",
     "for": [
      "control"
     ],
@@ -975,7 +975,7 @@
     ]
    },
    {
-    "t": "Weather check: a player says it's hard to handle in the cold, another that heat softens it.",
+    "t": "Weather check: it gets harder to handle in the cold, softer in the heat.",
     "for": [],
     "src": [
      "research-f15cb72f-6c3d-4c45-9049-29a1b9389c3c",
@@ -1150,7 +1150,7 @@
     },
     "alt": {
      "slug": "nox-at10-genius-12k-alum-xtrem-2026",
-     "t": "Want more bite? A few players say the stiffer AT10 12K 2026 has more power.",
+     "t": "Want more bite? The stiffer AT10 12K 2026 has more power.",
      "src": [
       "research-04ae0c76-5990-4f4a-a942-144e47743f43",
       "research-d105e635-23d0-4eed-b1b6-d46edd88dfb4"
@@ -1491,7 +1491,7 @@
     },
     "alt": {
      "slug": "bullpadel-vertex-05-hybrid-2026",
-     "t": "Want it easier? A tester calls its round sister, the Vertex 05 Hybrid, much easier to handle.",
+     "t": "Want it easier? Its round sister, the Vertex 05 Hybrid, is much easier to handle.",
      "src": [
       "bullpadel-vertex-05-hybrid-2026:d2670b81-ad81-40e7-bf4b-196b724bf906"
      ]
@@ -1545,7 +1545,7 @@
  "adidas-metalbone-ctrl-3-4-2025": {
   "strengths": [
    {
-    "t": "Big, soft sweet spot: lots of players say so. One calls it “one big sweet spot”.",
+    "t": "Big, soft sweet spot: close to one big sweet spot.",
     "for": [
      "beginner",
      "intermediate",
@@ -1574,7 +1574,7 @@
     ]
    },
    {
-    "t": "Easy in defence: many players say it's great on lobs and off the back glass.",
+    "t": "Easy in defence: great on lobs and off the back glass.",
     "for": [
      "control",
      "beginner",
@@ -1593,7 +1593,7 @@
     ]
    },
    {
-    "t": "Easy on the arm: some players say so, one plays 4 hours with no elbow pain.",
+    "t": "Easy on the arm: long sessions without elbow pain.",
     "for": [
      "arm"
     ],
@@ -1609,7 +1609,7 @@
     ]
    },
    {
-    "t": "Weights up top add smash power: some players like that setup.",
+    "t": "Weights up top add smash power when you want it.",
     "for": [
      "power",
      "balance"
@@ -1625,7 +1625,7 @@
   ],
   "catches": [
    {
-    "t": "Blocks at the net bounce: many players say fast volleys and blocks fly off.",
+    "t": "Blocks at the net bounce: fast volleys and blocks can fly off.",
     "for": [
      "control",
      "advanced",
@@ -1654,7 +1654,7 @@
     }
    },
    {
-    "t": "Not a smasher: some players say the soft face costs smash power.",
+    "t": "Not a smasher: the soft face costs smash power.",
     "for": [
      "power",
      "advanced",
@@ -1670,7 +1670,7 @@
     ],
     "alt": {
      "slug": "adidas-metalbone-ctrl-2026",
-     "t": "Want more pop? A few players say the 2026 CTRL 3.5 has more power.",
+     "t": "Want more pop? The 2026 CTRL 3.5 has more power.",
      "src": [
       "adidas-metalbone-ctrl-2026:research-2413707e-e4a6-43fb-8e81-dbdb20f6376e",
       "adidas-metalbone-ctrl-2026:research-ede49a90-69fb-4510-9223-b1dad56b351c"
@@ -1678,7 +1678,7 @@
     }
    },
    {
-    "t": "Durability: some players had it crack, a few lost or broke a weight.",
+    "t": "Durability: it can crack, and the weights can come loose or break.",
     "for": [],
     "src": [
      "research-7503765b-f33a-42a0-9bc3-fe8a7af35c54",
@@ -1694,7 +1694,7 @@
  "siux-electra-pro-st4-2025": {
   "strengths": [
    {
-    "t": "Power with control: lots of players praise the easy power, and many the control.",
+    "t": "Power with control: easy power, with real control too.",
     "for": [
      "balance",
      "power",
@@ -1737,7 +1737,7 @@
     ]
    },
    {
-    "t": "Smashes come easy: many players say x3s and kick smashes get out of the court.",
+    "t": "Smashes come easy: x3s and kick smashes get out of the court.",
     "for": [
      "power",
      "advanced"
@@ -1755,7 +1755,7 @@
     ]
    },
    {
-    "t": "Lots of spin: many players praise the sandpaper-like face.",
+    "t": "Lots of spin from the sandpaper-like face.",
     "for": [
      "advanced",
      "balance",
@@ -1776,7 +1776,7 @@
   ],
   "catches": [
    {
-    "t": "Lively and demanding at speed: players say the bounce and sweet spot take good technique to tame.",
+    "t": "Lively and demanding at speed: the bounce and sweet spot take good technique.",
     "for": [
      "intermediate"
     ],
@@ -1794,7 +1794,7 @@
     ]
    },
    {
-    "t": "Bouncy: lots of players wish it had less trampoline. Fast volleys and blocks fly long.",
+    "t": "Bouncy: a lot of trampoline, so fast volleys and blocks fly long.",
     "for": [
      "control",
      "advanced",
@@ -1841,7 +1841,7 @@
     }
    },
    {
-    "t": "Sweet spot divides players: many found off-centre hits die, others call it big.",
+    "t": "The sweet spot splits opinion: some find off-centre hits die, others call it big.",
     "for": [
      "beginner",
      "intermediate"
@@ -1870,7 +1870,7 @@
     }
    },
    {
-    "t": "Sore arm? Some players got elbow or wrist pain, often with heavy 375–388 g units.",
+    "t": "Sore arm? It can cause elbow or wrist pain, often with heavy 375–388 g units.",
     "for": [
      "arm"
     ],
@@ -1896,7 +1896,7 @@
     }
    },
    {
-    "t": "Tough start for beginners: a few found the sweet spot hard to find and the bounce hard to tame.",
+    "t": "Tough start for beginners: the sweet spot is hard to find, the bounce hard to tame.",
     "for": [
      "beginner"
     ],
@@ -1910,7 +1910,7 @@
     ]
    },
    {
-    "t": "Build quality: many players report cracks, paint chips or a rattle inside.",
+    "t": "Build quality: cracks, paint chips and inside rattles are common.",
     "for": [],
     "src": [
      "research-5277b60e-6d2c-4751-8ad2-8d6de374c325",
@@ -2018,7 +2018,7 @@
     ],
     "alt": {
      "slug": "oxdog-ultimate-tour-x-2026",
-     "t": "Want more control? A few players who moved to the Oxdog Ultimate Tour X found it.",
+     "t": "Want more control? The Oxdog Ultimate Tour X gives you more.",
      "src": [
       "oxdog-ultimate-tour-x-2026:research-bcc6f28e-20e2-4c6a-96d9-203a41048bb2",
       "oxdog-ultimate-tour-x-2026:research-ad2db71e-7a1e-41e4-b9a1-ae018788590d"
@@ -2382,7 +2382,7 @@
  "bullpadel-vertex-05-2026": {
   "strengths": [
    {
-    "t": "Control for a diamond: lots of players and testers praise the placement and solid blocks.",
+    "t": "Control for a diamond: precise placement and solid blocks.",
     "for": [
      "control",
      "intermediate",
@@ -2410,7 +2410,7 @@
     ]
    },
    {
-    "t": "Forgiving for a diamond: many say the sweet spot is bigger and easier than expected.",
+    "t": "Forgiving for a diamond: the sweet spot is bigger and easier than you'd expect.",
     "for": [
      "intermediate",
      "balance",
@@ -2430,7 +2430,7 @@
     ]
    },
    {
-    "t": "Easy in defence: many players and testers say it defends well for a diamond.",
+    "t": "Easy in defence: it defends well for a diamond.",
     "for": [
      "control",
      "intermediate"
@@ -2447,7 +2447,7 @@
     ]
    },
    {
-    "t": "Punch when you commit: some testers say smashes and viboras get real depth.",
+    "t": "Punch when you commit: smashes and viboras get real depth.",
     "for": [
      "power",
      "balance",
@@ -2465,7 +2465,7 @@
   ],
   "catches": [
    {
-    "t": "Not a free-power diamond: a few players say smashes don't get out for them.",
+    "t": "Not a free-power diamond: smashes need a full, clean swing to get out.",
     "for": [
      "power"
     ],
@@ -2475,7 +2475,7 @@
     ],
     "alt": {
      "slug": "bullpadel-vertex-05-geo-2026",
-     "t": "Want more punch? Testers call its sister, the Vertex 05 Geo, the most powerful Vertex.",
+     "t": "Want more punch? Its sister, the Vertex 05 Geo, is the most powerful Vertex.",
      "src": [
       "bullpadel-vertex-05-geo-2026:research-b2181fe6-a5e2-4dd8-89bd-15ae8c7b213b",
       "bullpadel-vertex-05-geo-2026:research-0c1ca5ec-7002-43c6-9911-28aa9767c71a"
@@ -2483,7 +2483,7 @@
     }
    },
    {
-    "t": "Head-heavy for some: some players found it sluggish or hard on the wrist late in matches.",
+    "t": "Head-heavy: it can feel sluggish or hard on the wrist late in matches.",
     "for": [
      "arm",
      "control"
@@ -2512,7 +2512,7 @@
     ],
     "alt": {
      "slug": "bullpadel-vertex-05-hybrid-2026",
-     "t": "Want it easier? A few players prefer its round sister, the Vertex 05 Hybrid.",
+     "t": "Want it easier? Its round sister, the Vertex 05 Hybrid, is more forgiving.",
      "src": [
       "098feafe-b146-4c1e-a311-c93f11a3d4a0",
       "bullpadel-vertex-05-hybrid-2026:d2670b81-ad81-40e7-bf4b-196b724bf906"
@@ -2524,7 +2524,7 @@
  "adidas-metalbone-hrd-plus-3-4-2025": {
   "strengths": [
    {
-    "t": "Big finishing power: lots of players and testers praise the smashes and volleys.",
+    "t": "Big finishing power on smashes and volleys.",
     "for": [
      "power",
      "advanced"
@@ -2551,7 +2551,7 @@
     ]
    },
    {
-    "t": "Solid blocks and control for a power racket: many say it's precise when you're fresh.",
+    "t": "Solid blocks and control for a power racket, precise when you're fresh.",
     "for": [
      "balance",
      "advanced",
@@ -2570,7 +2570,7 @@
     ]
    },
    {
-    "t": "Sweet spot friendlier than older HRDs: some testers and players say so.",
+    "t": "The sweet spot is friendlier than on older HRDs.",
     "for": [
      "intermediate",
      "balance"
@@ -2588,7 +2588,7 @@
   ],
   "catches": [
    {
-    "t": "Stiff and demanding: many say it punishes off-centre hits and tired days. Built for advanced players.",
+    "t": "Stiff and demanding: it punishes off-centre hits and tired days. Built for advanced players.",
     "for": [
      "beginner",
      "intermediate"
@@ -2610,7 +2610,7 @@
     ]
    },
    {
-    "t": "Hard work in defence: some players say lobs fall short and defence takes real effort.",
+    "t": "Hard work in defence: lobs fall short and defending takes real effort.",
     "for": [
      "control"
     ],
@@ -2623,7 +2623,7 @@
     ]
    },
    {
-    "t": "Lively at the net for some: some players find blocks and loose volleys too bouncy.",
+    "t": "Lively at the net: blocks and loose volleys can be too bouncy.",
     "for": [
      "control",
      "advanced"
@@ -2636,7 +2636,7 @@
     ]
    },
    {
-    "t": "Sore arm? A few players got elbow, wrist or shoulder pain; one after just 30 minutes.",
+    "t": "Sore arm? It can cause elbow, wrist or shoulder pain, sometimes fast.",
     "for": [
      "arm"
     ],
@@ -2654,7 +2654,7 @@
  "adidas-metalbone-3-4-2025": {
   "strengths": [
    {
-    "t": "Free power: many players say clean hits fly with little effort.",
+    "t": "Free power: clean hits fly with little effort.",
     "for": [
      "power",
      "intermediate"
@@ -2676,7 +2676,7 @@
     ]
    },
    {
-    "t": "Explosive overheads: some testers praise the long handle's leverage on smashes.",
+    "t": "Explosive overheads: the long handle adds leverage on smashes.",
     "for": [
      "power",
      "advanced"
@@ -2690,7 +2690,7 @@
     ]
    },
    {
-    "t": "Defends better than most diamonds, a few players and testers say.",
+    "t": "Defends better than most diamonds.",
     "for": [
      "balance",
      "control"
@@ -2704,7 +2704,7 @@
   ],
   "catches": [
    {
-    "t": "Head-heavy and lively: an owner says get it only as an advanced left-side smasher.",
+    "t": "Head-heavy and lively: best for an advanced left-side smasher.",
     "for": [
      "beginner",
      "intermediate"
@@ -2724,7 +2724,7 @@
     ]
    },
    {
-    "t": "Bouncy: many players say blocks and fast volleys are hard to control.",
+    "t": "Bouncy: blocks and fast volleys are hard to control.",
     "for": [
      "control",
      "intermediate"
@@ -2742,7 +2742,7 @@
     ]
    },
    {
-    "t": "Sore arm? Some players got elbow or forearm pain, one within 30 minutes.",
+    "t": "Sore arm? It can cause elbow or forearm pain, sometimes fast.",
     "for": [
      "arm"
     ],
@@ -2763,7 +2763,7 @@
  "bullpadel-neuron-02-edge-2026": {
   "strengths": [
    {
-    "t": "Control with extra punch: lots of players and testers say it adds pop without losing placement.",
+    "t": "Control with extra punch: more pop without losing placement.",
     "for": [
      "control",
      "balance",
@@ -2790,7 +2790,7 @@
     ]
    },
    {
-    "t": "Strong smashes for a control racket: many testers praise flat and kick smashes.",
+    "t": "Strong smashes for a control racket, flat and kick alike.",
     "for": [
      "power",
      "advanced",
@@ -2810,7 +2810,7 @@
     ]
    },
    {
-    "t": "Quick and precise in defence: some players praise the handling and accurate lobs.",
+    "t": "Quick and precise in defence, with accurate lobs.",
     "for": [
      "control",
      "intermediate"
@@ -2827,7 +2827,7 @@
   ],
   "catches": [
    {
-    "t": "Stiff, dry and demanding: many say off-centre hits die. Built for advanced players.",
+    "t": "Stiff, dry and demanding: off-centre hits die. Built for advanced players.",
     "for": [
      "beginner",
      "intermediate"
@@ -2850,7 +2850,7 @@
     ]
    },
    {
-    "t": "Control first: a few players say it lacks the pop of a real power racket.",
+    "t": "Control first: it lacks the pop of a real power racket.",
     "for": [
      "power"
     ],
@@ -2861,7 +2861,7 @@
     ]
    },
    {
-    "t": "Head-heavy for some: a few players found it big, slow or sluggish.",
+    "t": "Head-heavy: it can feel big, slow or sluggish.",
     "for": [
      "control"
     ],
@@ -2872,7 +2872,7 @@
     ]
    },
    {
-    "t": "Sore arm? A few players found it too stiff; one got elbow pain.",
+    "t": "Sore arm? It can feel too stiff and cause elbow pain.",
     "for": [
      "arm"
     ],
@@ -2890,7 +2890,7 @@
  "siux-fenix-pro-5-2025": {
   "strengths": [
    {
-    "t": "Explosive smashes: lots of players and testers praise the vibora and smash power.",
+    "t": "Explosive smashes: big vibora and smash power.",
     "for": [
      "power",
      "advanced"
@@ -2914,7 +2914,7 @@
     ]
    },
    {
-    "t": "Dry and predictable: some players like the firm feel with little bounce.",
+    "t": "Dry and predictable: a firm feel with little bounce.",
     "for": [
      "control",
      "advanced"
@@ -2929,7 +2929,7 @@
     ]
    },
    {
-    "t": "Control for a power racket: some players found it easier to control than the ST4.",
+    "t": "Control for a power racket: easier to control than the ST4.",
     "for": [
      "balance",
      "intermediate"
@@ -2946,7 +2946,7 @@
   ],
   "catches": [
    {
-    "t": "Hard and demanding: many say mishits die and volleys fly. Built for advanced players.",
+    "t": "Hard and demanding: mishits die and volleys fly. Built for advanced players.",
     "for": [
      "beginner",
      "intermediate"
@@ -2968,7 +2968,7 @@
     ]
    },
    {
-    "t": "Tough in defence: some players lacked control at the back and in defence.",
+    "t": "Tough in defence: control at the back takes work.",
     "for": [
      "control"
     ],
@@ -2982,7 +2982,7 @@
     ]
    },
    {
-    "t": "Head-heavy: some players find it heavy and clunky.",
+    "t": "Head-heavy: it can feel heavy and clunky.",
     "for": [
      "arm",
      "intermediate"
@@ -2995,7 +2995,7 @@
     ]
    },
    {
-    "t": "Cracks: some players had frames crack within weeks, even from smashes.",
+    "t": "Cracks: frames can crack within weeks, even from smashes.",
     "for": [],
     "src": [
      "research-2812ce65-fd65-459e-b30a-db582b536f35",
@@ -3009,7 +3009,7 @@
  "adidas-metalbone-carbon-ctrl-3-4-2025": {
   "strengths": [
    {
-    "t": "Real control: lots of players and testers praise the placement, lobs and blocks.",
+    "t": "Real control: precise placement, lobs and blocks.",
     "for": [
      "control",
      "intermediate",
@@ -3037,7 +3037,7 @@
     ]
    },
    {
-    "t": "Light and quick: some players and testers praise the handling at the back and the net.",
+    "t": "Light and quick: easy handling at the back and the net.",
     "for": [
      "control",
      "balance"
@@ -3052,7 +3052,7 @@
     ]
    },
    {
-    "t": "Forgiving sweet spot: some players say it's easy to find and good to learn with.",
+    "t": "Forgiving sweet spot: easy to find and good to learn with.",
     "for": [
      "beginner",
      "intermediate"
@@ -3068,7 +3068,7 @@
     ]
    },
    {
-    "t": "Arm-friendly: a few players and testers felt no vibration at all.",
+    "t": "Arm-friendly: very little vibration.",
     "for": [
      "arm"
     ],
@@ -3084,7 +3084,7 @@
   ],
   "catches": [
    {
-    "t": "Little free power: many players say returns off the glass and blocks lack punch.",
+    "t": "Little free power: returns off the glass and blocks lack punch.",
     "for": [
      "power",
      "balance",
@@ -3106,7 +3106,7 @@
     ]
    },
    {
-    "t": "Blocks can bounce: some players, beginners among them, saw blocks fly to the glass.",
+    "t": "Blocks can bounce: they can fly to the glass, especially for beginners.",
     "for": [
      "control",
      "beginner"
@@ -3122,7 +3122,7 @@
     ]
    },
    {
-    "t": "Sore arm? One player got shoulder and wrist pain with it and sold it.",
+    "t": "Sore arm? It can cause shoulder and wrist pain.",
     "for": [
      "arm"
     ],
@@ -3138,7 +3138,7 @@
  "siux-diablo-pro-4-2025": {
   "strengths": [
    {
-    "t": "Big, forgiving sweet spot: many players and testers say it's easy to find.",
+    "t": "Big, forgiving sweet spot that's easy to find.",
     "for": [
      "beginner",
      "intermediate",
@@ -3163,7 +3163,7 @@
     ]
    },
    {
-    "t": "Easy in defence: many players say lobs and backhands from the back come easily.",
+    "t": "Easy in defence: lobs and backhands from the back come easily.",
     "for": [
      "control",
      "intermediate"
@@ -3180,7 +3180,7 @@
     ]
    },
    {
-    "t": "Control and touch: many players praise the placement and soft feel.",
+    "t": "Control and touch: precise placement and a soft feel.",
     "for": [
      "control",
      "advanced"
@@ -3199,7 +3199,7 @@
     ]
    },
    {
-    "t": "Light and quick: some players say it's very easy to move.",
+    "t": "Light and quick: very easy to move.",
     "for": [
      "balance",
      "control"
@@ -3215,7 +3215,7 @@
   ],
   "catches": [
    {
-    "t": "Not a big hitter: some players say there's no huge power on smashes.",
+    "t": "Not a big hitter: no huge power on smashes.",
     "for": [
      "power"
     ],
@@ -3228,7 +3228,7 @@
     ]
    },
    {
-    "t": "Soft and bouncy for some: some players found too much rebound for precise shots.",
+    "t": "Soft and bouncy: it can give too much rebound for precise shots.",
     "for": [
      "control",
      "advanced"
@@ -3241,7 +3241,7 @@
     ]
    },
    {
-    "t": "Sold as a pro racket, but a few newer players say it helped their game; one found it too advanced.",
+    "t": "Sold as a pro racket, yet it can work for newer players, or feel too advanced.",
     "for": [
      "beginner",
      "intermediate"
@@ -3258,7 +3258,7 @@
     ]
    },
    {
-    "t": "Glossy face: some players say it scratches fast, and a few frames cracked.",
+    "t": "Glossy face: it scratches fast, and frames can crack.",
     "for": [],
     "src": [
      "research-04b5bb08-b474-49e6-a76b-5c8d5b5901fe",
@@ -3273,7 +3273,7 @@
  "head-extreme-motion-2025": {
   "strengths": [
    {
-    "t": "Quick for a diamond: many players say it handles like a hybrid.",
+    "t": "Quick for a diamond: it handles like a hybrid.",
     "for": [
      "control",
      "balance",
@@ -3295,7 +3295,7 @@
     ]
    },
    {
-    "t": "Power with control: many players praise the mix of punch and placement.",
+    "t": "Power with control: a good mix of punch and placement.",
     "for": [
      "balance",
      "power",
@@ -3318,7 +3318,7 @@
     ]
    },
    {
-    "t": "Defends well for a diamond: some players say the back glass is easier than expected.",
+    "t": "Defends well for a diamond: the back glass is easier than you'd expect.",
     "for": [
      "control",
      "intermediate"
@@ -3332,7 +3332,7 @@
     ]
    },
    {
-    "t": "Easy on the arm: some players say it never gave them elbow pain.",
+    "t": "Easy on the arm: no elbow pain.",
     "for": [
      "arm"
     ],
@@ -3366,7 +3366,7 @@
     ]
    },
    {
-    "t": "Lobs can fall short: a few players say lobs and baseline shots need extra force.",
+    "t": "Lobs can fall short: lobs and baseline shots need extra force.",
     "for": [
      "control"
     ],
@@ -3376,7 +3376,7 @@
     ]
    },
    {
-    "t": "Head-heavy: a few players got arm pain after several days in a row.",
+    "t": "Head-heavy: it can tire the arm over several days in a row.",
     "for": [
      "arm",
      "intermediate"
@@ -3760,7 +3760,7 @@
  "babolat-air-viper-2025": {
   "strengths": [
    {
-    "t": "Light and fast at the net: many players say it's quick and direct.",
+    "t": "Light and fast at the net: quick and direct.",
     "for": [
      "balance",
      "control",
@@ -3779,7 +3779,7 @@
     ]
    },
    {
-    "t": "Pop on smashes and volleys: some players praise the power when you hit it clean.",
+    "t": "Pop on smashes and volleys when you hit it clean.",
     "for": [
      "power",
      "advanced"
@@ -3793,7 +3793,7 @@
     ]
    },
    {
-    "t": "Bigger sweet spot than older Air Vipers: some players and testers say so.",
+    "t": "A bigger sweet spot than older Air Vipers.",
     "for": [
      "intermediate",
      "balance"
@@ -3809,7 +3809,7 @@
   ],
   "catches": [
    {
-    "t": "Stiff, light and punishing off-centre: many players say it needs good technique.",
+    "t": "Stiff, light and punishing off-centre: it needs good technique.",
     "for": [
      "beginner",
      "intermediate"
@@ -3832,7 +3832,7 @@
     ]
    },
    {
-    "t": "Hard to control at speed: some players say fast volleys float and long rallies feel shaky.",
+    "t": "Hard to control at speed: fast volleys float and long rallies feel shaky.",
     "for": [
      "control"
     ],
@@ -3845,7 +3845,7 @@
     ]
    },
    {
-    "t": "Sore arm? Some players got forearm, wrist or elbow pain.",
+    "t": "Sore arm? It can cause forearm, wrist or elbow pain.",
     "for": [
      "arm"
     ],
@@ -3864,7 +3864,7 @@
  "bullpadel-vertex-04-hybrid-2025": {
   "strengths": [
    {
-    "t": "Control and accuracy: many players and testers praise it.",
+    "t": "Control and accuracy: precise and dependable.",
     "for": [
      "control",
      "intermediate",
@@ -3886,7 +3886,7 @@
     ]
    },
    {
-    "t": "Forgiving: some players say the sweet spot feels huge.",
+    "t": "Forgiving: the sweet spot feels huge.",
     "for": [
      "beginner",
      "intermediate",
@@ -3902,7 +3902,7 @@
     ]
    },
    {
-    "t": "Dry and firm, no trampoline: some players like how the ball goes where they aim.",
+    "t": "Dry and firm, no trampoline: the ball goes where you aim.",
     "for": [
      "control",
      "advanced"
@@ -3916,7 +3916,7 @@
     ]
    },
    {
-    "t": "Comfortable: a few players call it easy on the arm.",
+    "t": "Comfortable: easy on the arm.",
     "for": [
      "arm"
     ],
@@ -3931,7 +3931,7 @@
   ],
   "catches": [
    {
-    "t": "Not much power: some players say smashes and blocked volleys drop short.",
+    "t": "Not much power: smashes and blocked volleys drop short.",
     "for": [
      "power",
      "advanced"
@@ -3944,7 +3944,7 @@
     ]
    },
    {
-    "t": "Firmer, with a higher sweet spot: some players say it takes focus to find early on.",
+    "t": "Firmer, with a higher sweet spot: it takes focus to find early on.",
     "for": [
      "beginner",
      "intermediate"
@@ -3961,7 +3961,7 @@
     ]
    },
    {
-    "t": "Sore arm? One player got elbow pain with the 2025, unlike the 2024 version.",
+    "t": "Sore arm? The 2025 can cause elbow pain where the 2024 didn't.",
     "for": [
      "arm"
     ],
@@ -3977,7 +3977,7 @@
  "babolat-technical-viper-2025": {
   "strengths": [
    {
-    "t": "Big smash power: many testers and players call it a top power diamond.",
+    "t": "Big smash power: a top power diamond.",
     "for": [
      "power",
      "advanced"
@@ -3996,7 +3996,7 @@
     ]
    },
    {
-    "t": "Dry and precise when you time it: some players praise pinpoint placement.",
+    "t": "Dry and precise when you time it: pinpoint placement.",
     "for": [
      "advanced",
      "balance",
@@ -4011,7 +4011,7 @@
     ]
    },
    {
-    "t": "Lots of spin: some players praise the rough face on kick smashes.",
+    "t": "Lots of spin: the rough face bites on kick smashes.",
     "for": [
      "power",
      "advanced"
@@ -4028,7 +4028,7 @@
   ],
   "catches": [
    {
-    "t": "Stiff, head-heavy and a small sweet spot: many players call it unforgiving.",
+    "t": "Stiff, head-heavy and a small sweet spot: unforgiving.",
     "for": [
      "beginner",
      "intermediate"
@@ -4052,7 +4052,7 @@
     ]
    },
    {
-    "t": "Tough in defence: some players say the weight and small sweet spot make defending hard.",
+    "t": "Tough in defence: the weight and small sweet spot make defending hard.",
     "for": [
      "control"
     ],
@@ -4065,7 +4065,7 @@
     ]
    },
    {
-    "t": "Sore arm? Some players say it took a toll on the elbow and arm.",
+    "t": "Sore arm? It can take a toll on the elbow and arm.",
     "for": [
      "arm"
     ],
@@ -4080,7 +4080,7 @@
     ]
    },
    {
-    "t": "Durability: a few players had it crack.",
+    "t": "Durability: it can crack.",
     "for": [],
     "src": [
      "research-7c066574-8f16-4ae4-b5a8-18a28486a447",
@@ -4317,7 +4317,7 @@
  "head-coello-motion-2025": {
   "strengths": [
    {
-    "t": "Big power: many players and testers praise the smashes and fast ball exit.",
+    "t": "Big power: strong smashes and fast ball exit.",
     "for": [
      "power",
      "advanced"
@@ -4335,7 +4335,7 @@
     ]
    },
    {
-    "t": "Quick for a power diamond: many testers say it moves better than the Coello Pro.",
+    "t": "Quick for a power diamond: it moves better than the Coello Pro.",
     "for": [
      "power",
      "balance",
@@ -4354,7 +4354,7 @@
     ]
    },
    {
-    "t": "Control: some players say the ball goes where they want.",
+    "t": "Control: the ball goes where you want.",
     "for": [
      "balance",
      "control"
@@ -4369,7 +4369,7 @@
     ]
    },
    {
-    "t": "Arm-friendly for many: some players with elbow trouble play it pain-free.",
+    "t": "Arm-friendly: pain-free even with elbow trouble.",
     "for": [
      "arm"
     ],
@@ -4387,7 +4387,7 @@
   ],
   "catches": [
    {
-    "t": "High balance and hard: some players call it demanding; one said it was like swinging a hammer.",
+    "t": "High balance and hard: demanding, with a heavy, hammer-like swing.",
     "for": [
      "beginner",
      "intermediate"
@@ -4406,7 +4406,7 @@
     ]
    },
    {
-    "t": "Inconsistent for some: a few players say the ball output and sweet spot vary.",
+    "t": "Inconsistent: ball output and sweet spot can vary.",
     "for": [
      "control"
     ],
@@ -4417,7 +4417,7 @@
     ]
    },
    {
-    "t": "Units vary: a few players found theirs heavier and very head-heavy.",
+    "t": "Units vary: some come in heavier and very head-heavy.",
     "for": [
      "arm",
      "intermediate"
@@ -4437,7 +4437,7 @@
     }
    },
    {
-    "t": "Sore arm? A few players say it hurts the elbow or shoulder after a while.",
+    "t": "Sore arm? It can hurt the elbow or shoulder after a while.",
     "for": [
      "arm"
     ],
@@ -4566,7 +4566,7 @@
  "bullpadel-neuron-02-2026": {
   "strengths": [
    {
-    "t": "Precise control: lots of testers and players praise the placement and solid blocks.",
+    "t": "Precise control: accurate placement and solid blocks.",
     "for": [
      "control",
      "intermediate",
@@ -4593,7 +4593,7 @@
     ]
    },
    {
-    "t": "Quick in the hand: many say it's light and fast in volley exchanges.",
+    "t": "Quick in the hand: light and fast in volley exchanges.",
     "for": [
      "control",
      "balance"
@@ -4611,7 +4611,7 @@
     ]
    },
    {
-    "t": "Easy in defence: some players and testers praise the easy lifts and deep lobs.",
+    "t": "Easy in defence: easy lifts and deep lobs.",
     "for": [
      "control",
      "intermediate"
@@ -4626,7 +4626,7 @@
     ]
    },
    {
-    "t": "Easier than the Edge: a few say it's lighter and more forgiving.",
+    "t": "Easier than the Edge: lighter and more forgiving.",
     "for": [
      "intermediate",
      "arm"
@@ -4641,7 +4641,7 @@
   ],
   "catches": [
    {
-    "t": "Little power: some players say it's a control racket that lacks pop.",
+    "t": "Little power: a control racket that lacks pop.",
     "for": [
      "power",
      "balance"
@@ -4654,7 +4654,7 @@
     ],
     "alt": {
      "slug": "bullpadel-neuron-02-edge-2026",
-     "t": "Want more pop? Players point to its sister, the Neuron 02 Edge.",
+     "t": "Want more pop? Its sister, the Neuron 02 Edge, hits harder.",
      "src": [
       "f4df7e7f-5647-47d4-8a64-2616c342ce9c",
       "research-25ab8764-693c-4a42-9ac2-f31167583d7e"
@@ -4662,7 +4662,7 @@
     }
    },
    {
-    "t": "Firm and precise: some players found it stiff, and one owner says it's not for beginners.",
+    "t": "Firm and precise: it can feel stiff, and it's not for beginners.",
     "for": [
      "beginner",
      "intermediate"
@@ -4886,7 +4886,7 @@
     ],
     "alt": {
      "slug": "oxdog-ultimate-tour-x-2026",
-     "t": "Want it easier? Players and a tester find its sister, the Ultimate Tour X, more forgiving.",
+     "t": "Want it easier? Its sister, the Ultimate Tour X, is more forgiving.",
      "src": [
       "research-24d0ecd3-0c7a-4b37-8be2-5a14e67161bd",
       "oxdog-ultimate-tour-x-2026:816f1e2a-ec4e-4345-8a82-a33f94d1950d"
@@ -5233,7 +5233,7 @@
  "bullpadel-vertex-04-2024": {
   "strengths": [
    {
-    "t": "Versatile: many testers and players call it a great all-round diamond.",
+    "t": "Versatile: a great all-round diamond.",
     "for": [
      "balance",
      "control",
@@ -5254,7 +5254,7 @@
     ]
    },
    {
-    "t": "Control and placement for a diamond: some players praise it.",
+    "t": "Control and placement for a diamond.",
     "for": [
      "control",
      "advanced"
@@ -5268,7 +5268,7 @@
     ]
    },
    {
-    "t": "Forgiving for a diamond: a few testers praise the broad sweet spot.",
+    "t": "Forgiving for a diamond: a broad sweet spot.",
     "for": [
      "intermediate"
     ],
@@ -5280,7 +5280,7 @@
   ],
   "catches": [
    {
-    "t": "Still a diamond: some newer players found it hard to control and went back to easier rackets.",
+    "t": "Still a diamond: newer players can find it hard to control.",
     "for": [
      "beginner"
     ],
@@ -5295,7 +5295,7 @@
     ]
    },
    {
-    "t": "Short of smash power: some players say it takes effort to hit hard.",
+    "t": "Short of smash power: it takes effort to hit hard.",
     "for": [
      "power"
     ],
@@ -5311,7 +5311,7 @@
  "bullpadel-neuron-2025": {
   "strengths": [
    {
-    "t": "Precise control: many testers and players praise the lobs, volleys and defence.",
+    "t": "Precise control on lobs, volleys and in defence.",
     "for": [
      "control",
      "intermediate",
@@ -5333,7 +5333,7 @@
     ]
    },
    {
-    "t": "Light and quick: many say it's easy to move and fast to prepare volleys.",
+    "t": "Light and quick: easy to move and fast to prepare volleys.",
     "for": [
      "control",
      "balance"
@@ -5351,7 +5351,7 @@
     ]
    },
    {
-    "t": "Easy in defence: some players and testers praise low balls and lobs.",
+    "t": "Easy in defence: good on low balls and lobs.",
     "for": [
      "control",
      "intermediate"
@@ -5364,7 +5364,7 @@
     ]
    },
    {
-    "t": "Comfortable: a few say it's easy on the arm.",
+    "t": "Comfortable: easy on the arm.",
     "for": [
      "arm"
     ],
@@ -5379,7 +5379,7 @@
   ],
   "catches": [
    {
-    "t": "Little finishing power: some players say overheads lack punch, on the left above all.",
+    "t": "Little finishing power: overheads lack punch, on the left above all.",
     "for": [
      "power",
      "balance"
@@ -5393,7 +5393,7 @@
     ]
    },
    {
-    "t": "Firm at first: a beginner found it too stiff, though a player calls it intermediate-friendly.",
+    "t": "Firm at first: it can feel too stiff for beginners, fine for intermediates.",
     "for": [
      "beginner",
      "intermediate"
@@ -5413,7 +5413,7 @@
  "bullpadel-hack-04-hybrid-2025": {
   "strengths": [
    {
-    "t": "Control and defence: many testers and players praise the easy lobs and placement.",
+    "t": "Control and defence: easy lobs and precise placement.",
     "for": [
      "control",
      "intermediate",
@@ -5437,7 +5437,7 @@
     ]
    },
    {
-    "t": "Forgiving: some testers and players praise a generous sweet spot.",
+    "t": "Forgiving: a generous sweet spot.",
     "for": [
      "beginner",
      "intermediate"
@@ -5450,7 +5450,7 @@
     ]
    },
    {
-    "t": "Dry and firm, no trampoline: some players like the direct feel.",
+    "t": "Dry and firm, no trampoline: a direct feel.",
     "for": [
      "control",
      "advanced"
@@ -5466,7 +5466,7 @@
   ],
   "catches": [
    {
-    "t": "Not a big hitter: a few players say it lacks some power on volleys and overheads.",
+    "t": "Not a big hitter: it lacks some power on volleys and overheads.",
     "for": [
      "power",
      "advanced"
@@ -5477,7 +5477,7 @@
     ]
    },
    {
-    "t": "Durability: one player's broke after a couple of months from a defect.",
+    "t": "Durability: a defect can show up within a couple of months.",
     "for": [],
     "src": [
      "research-4114c44c-a663-49c8-a3cc-bc9758388010"
@@ -5488,7 +5488,7 @@
  "babolat-viper-soft-juan-lebron-3-0-2026": {
   "strengths": [
    {
-    "t": "Power that's easier to use: many testers and players find it friendlier than the hard Lebrón Viper.",
+    "t": "Power that's easier to use: friendlier than the hard Lebrón Viper.",
     "for": [
      "power",
      "intermediate",
@@ -5507,7 +5507,7 @@
     ]
    },
    {
-    "t": "Big power: some players praise the smashes and volleys.",
+    "t": "Big power on smashes and volleys.",
     "for": [
      "power",
      "advanced"
@@ -5522,7 +5522,7 @@
     ]
    },
    {
-    "t": "Forgiving for a diamond: many testers and players praise the bigger sweet spot.",
+    "t": "Forgiving for a diamond: a bigger sweet spot.",
     "for": [
      "intermediate",
      "balance"
@@ -5541,7 +5541,7 @@
   ],
   "catches": [
    {
-    "t": "Still a firm, head-heavy diamond: some testers and players call it demanding to handle.",
+    "t": "Still a firm, head-heavy diamond: demanding to handle.",
     "for": [
      "beginner",
      "intermediate",
@@ -5560,7 +5560,7 @@
     ]
    },
    {
-    "t": "Durability: a few players report flaking paint or a break.",
+    "t": "Durability: paint can flake, and it can break.",
     "for": [],
     "src": [
      "research-6ff00b3d-269c-4823-bd7c-4410ec79e80f",
@@ -5569,7 +5569,7 @@
     ]
    },
    {
-    "t": "Sore arm? One player found it harsh on full-power smashes.",
+    "t": "Sore arm? It can feel harsh on full-power smashes.",
     "for": [
      "arm"
     ],
@@ -5683,7 +5683,7 @@
  "bullpadel-vertex-04-2025": {
   "strengths": [
    {
-    "t": "Smash power: many testers and players praise the overheads.",
+    "t": "Smash power: strong overheads.",
     "for": [
      "power",
      "advanced",
@@ -5703,7 +5703,7 @@
     ]
    },
    {
-    "t": "Control and spin for a diamond: many testers praise the blocks, viboras and kick smashes.",
+    "t": "Control and spin for a diamond: solid blocks, viboras and kick smashes.",
     "for": [
      "control",
      "balance",
@@ -5722,7 +5722,7 @@
     ]
    },
    {
-    "t": "Quick for a diamond: a few players and testers say it handles well.",
+    "t": "Quick for a diamond: it handles well.",
     "for": [
      "balance",
      "intermediate"
@@ -5736,7 +5736,7 @@
   ],
   "catches": [
    {
-    "t": "Small, high sweet spot: some players say it's demanding and costs them in defence.",
+    "t": "Small, high sweet spot: demanding, and it costs you in defence.",
     "for": [
      "beginner",
      "intermediate"
@@ -5754,7 +5754,7 @@
     ]
    },
    {
-    "t": "Defence can suffer: a player says chiquitas and lobs got worse with it.",
+    "t": "Defence can suffer: chiquitas and lobs get harder.",
     "for": [
      "control"
     ],
@@ -6059,7 +6059,7 @@
  "bullpadel-hack-04-2025": {
   "strengths": [
    {
-    "t": "Power and spin: many testers praise the volleys, viboras and smashes.",
+    "t": "Power and spin on volleys, viboras and smashes.",
     "for": [
      "power",
      "advanced",
@@ -6078,7 +6078,7 @@
     ]
    },
    {
-    "t": "Control: some testers and players praise the speed control on volleys.",
+    "t": "Control: good speed control on volleys.",
     "for": [
      "control",
      "balance",
@@ -6094,7 +6094,7 @@
     ]
    },
    {
-    "t": "Comfortable: a few players and testers find it easy on the arm.",
+    "t": "Comfortable: easy on the arm.",
     "for": [
      "arm"
     ],
@@ -6109,7 +6109,7 @@
   ],
   "catches": [
    {
-    "t": "Head-heavy diamond: many testers say it needs a strong arm, more so without the Hesacore.",
+    "t": "Head-heavy diamond: it needs a strong arm, more so without the Hesacore.",
     "for": [
      "beginner",
      "intermediate"
@@ -6138,7 +6138,7 @@
     }
    },
    {
-    "t": "Deep defence is hard: a few players say it's very dry and gives little help.",
+    "t": "Deep defence is hard: very dry, with little help.",
     "for": [
      "control"
     ],
@@ -6241,7 +6241,7 @@
  "bullpadel-xplo-2026": {
   "strengths": [
    {
-    "t": "Attacking power: many testers and players praise the smashes and deep bandejas.",
+    "t": "Attacking power: strong smashes and deep bandejas.",
     "for": [
      "power",
      "advanced",
@@ -6260,7 +6260,7 @@
     ]
    },
    {
-    "t": "Forgiving face: some players and testers say the sweet spot is big.",
+    "t": "Forgiving face: the sweet spot is big.",
     "for": [
      "intermediate",
      "balance"
@@ -6273,7 +6273,7 @@
     ]
    },
    {
-    "t": "Easy to handle: some players and testers say it moves better than expected.",
+    "t": "Easy to handle: it moves better than you'd expect.",
     "for": [
      "balance",
      "intermediate"
@@ -6288,7 +6288,7 @@
   ],
   "catches": [
    {
-    "t": "Head-heavy diamond: a few players struggle with the balance and sweet spot, though one beginner loves it.",
+    "t": "Head-heavy diamond: the balance and sweet spot take getting used to.",
     "for": [
      "beginner"
     ],
@@ -6303,7 +6303,7 @@
     ]
    },
    {
-    "t": "Fast balls are hard to control: some testers say defence takes real work.",
+    "t": "Fast balls are hard to control: defence takes real work.",
     "for": [
      "control"
     ],
@@ -6319,7 +6319,7 @@
  "bullpadel-neuron-2024": {
   "strengths": [
    {
-    "t": "Precise control: many testers and players praise the placement and defence.",
+    "t": "Precise control: accurate placement and defence.",
     "for": [
      "control",
      "intermediate",
@@ -6343,7 +6343,7 @@
     ]
    },
    {
-    "t": "Quick and light: some testers and players praise the net handling.",
+    "t": "Quick and light: easy handling at the net.",
     "for": [
      "control",
      "balance"
@@ -6357,7 +6357,7 @@
     ]
    },
    {
-    "t": "Forgiving: some players and testers praise its off-centre defence.",
+    "t": "Forgiving: it defends well off-centre.",
     "for": [
      "beginner",
      "intermediate"
@@ -6372,7 +6372,7 @@
   ],
   "catches": [
    {
-    "t": "Little power: some players say smashes lack punch.",
+    "t": "Little power: smashes lack punch.",
     "for": [
      "power",
      "balance"
@@ -6386,7 +6386,7 @@
     ]
    },
    {
-    "t": "Sweet spot divides players: a few found it small and missed more overheads.",
+    "t": "The sweet spot splits opinion: it can feel small and cost you overheads.",
     "for": [
      "beginner",
      "intermediate"
@@ -6397,7 +6397,7 @@
     ]
    },
    {
-    "t": "Sore arm? A tester felt vibration on mishits.",
+    "t": "Sore arm? Mishits can send vibration into the arm.",
     "for": [
      "arm"
     ],
