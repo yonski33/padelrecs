@@ -20,6 +20,9 @@ export const metadata: Metadata = { title: "How we make these", description: `Ho
 const w = niche.words;
 export default async function HowWeMakeThese() {
   if (!isV2) notFound();
+  // SkinRecs: the owner's beauty design (app/skin/score-beauty.tsx, 2026-11-16).
+  // Skin pages load only on SkinRecs, so other sites' routes don't preload the beauty fonts (app/skin/beauty-fonts.ts).
+  if (attrProfileFor(niche)) { const { default: ScoreBeauty } = await import("../skin/score-beauty"); return <ScoreBeauty/>; }
   const data = await catalog();
   const products: SignalInput[] = data.listed.map(r => { const s = score(data, r.id); return { id: r.id, category: signalCategory(r), positive: s.positive, mixed: s.mixed, judged: s.judged }; });
   // The two example rackets, scored by the same formula against the real catalog.

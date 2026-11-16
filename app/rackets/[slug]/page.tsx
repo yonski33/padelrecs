@@ -32,7 +32,6 @@ import { qtFontVars } from "../../qt-fonts";
 import { quickTakeSeo, plain as plainText } from "../../../lib/quick-take";
 import { quickTakeFor } from "../../../db/quick-take";
 import { tagTone } from "../../../lib/tags";
-import SkinProduct from "../../skin/skin-product";
 import { attrProfileFor } from "../../../lib/attr-profile";
 import { readSkinChoice } from "../../../lib/skin-choice";
 import { niche, catalogPath, catalogLabel, productHref, hasYears, typePageFor, scoreLabel, isV2 } from "../../../lib/niche";
@@ -349,6 +348,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // Escape hatches: ?layout=long, ?qt=off, ?look=classic.
   // SkinRecs on the match engine (owner 2026-11-15): the beauty product page (app/skin/skin-product.tsx, owner's design 2026-11-16). ?layout=long / ?look=classic keep the old one.
   if (isV2 && attrProfileFor(niche) && query.layout !== "long" && query.look !== "classic") {
+    // Skin pages load only on SkinRecs, so other sites' routes don't preload the beauty fonts (app/skin/beauty-fonts.ts).
+    const { default: SkinProduct } = await import("../../skin/skin-product");
     return <SkinProduct productId={r.id} choice={readSkinChoice(query, niche.typePages ?? [])}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       jsonLd={{ "@context": "https://schema.org", "@graph": jsonLd["@graph"].filter(x => x["@type"] === "BreadcrumbList" || x["@type"] === "Product") }}/>;
