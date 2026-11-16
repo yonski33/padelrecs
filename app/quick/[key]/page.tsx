@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import HomeV2 from "../../home-v2";
 import { homeMetadata } from "../../home-metadata";
-import { readChoiceKey, choiceKey, INDEXABLE_CHOICES } from "../../../lib/quick-match";
+import { readChoiceKey, choiceKey, INDEXABLE_CHOICES, DEFAULT_CHOICE } from "../../../lib/quick-match";
 import { niche, isV2 } from "../../../lib/niche";
 import { attrProfileFor } from "../../../lib/attr-profile";
 
@@ -13,11 +13,12 @@ import { attrProfileFor } from "../../../lib/attr-profile";
 // through on-demand refresh (admin writes: app/funtimes/auth.ts; imports and publishes: /api/refresh, scripts/refresh-sites.mjs).
 export const revalidate = 21600;
 
-// The 31 indexable combinations are built with the site; the rest (fine-tune, older models) on first visit. A build without
+// The plain home and the 31 indexable combinations are built with the site; the rest (fine-tune, older models) on first visit. A build without
 // a database (CI) builds none and still passes.
 export function generateStaticParams() {
   if (!process.env.DATABASE_URL || !isV2 || !niche.finder || attrProfileFor(niche)) return [];
-  return INDEXABLE_CHOICES.map(c => ({ key: choiceKey(c, false) }));
+  // The plain home ("/") too: it was left to its first visit, so every deploy started it cold (owner 2026-11-16).
+  return [DEFAULT_CHOICE, ...INDEXABLE_CHOICES].map(c => ({ key: choiceKey(c, false) }));
 }
 
 const picksOf = async (params: Promise<{ key: string }>) => {

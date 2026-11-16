@@ -13,6 +13,11 @@ test("previews build only on request (preview/… branch or [preview]), and only
   assert.equal(builds({ NICHE: "padel", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "preview/fix-x", VERCEL_GIT_COMMIT_MESSAGE: "Fix x" }), true);
   assert.equal(builds({ NICHE: "padel", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "fix-x", VERCEL_GIT_COMMIT_MESSAGE: "Fix x [preview]" }), true);
   assert.equal(builds({ NICHE: "skin", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "preview/x", VERCEL_GIT_COMMIT_MESSAGE: "x" }), false);
+  // Other kept sites when named: "[preview tennis simracing]".
+  assert.equal(builds({ NICHE: "tennis", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "x", VERCEL_GIT_COMMIT_MESSAGE: "Slim homes [preview tennis simracing]" }), true);
+  assert.equal(builds({ NICHE: "padel", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "x", VERCEL_GIT_COMMIT_MESSAGE: "Slim homes [preview tennis simracing]" }), false);
+  assert.equal(builds({ NICHE: "skin", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "x", VERCEL_GIT_COMMIT_MESSAGE: "Slim homes [preview tennis simracing]" }), false);
+  assert.equal(builds({ NICHE: "golf", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "x", VERCEL_GIT_COMMIT_MESSAGE: "x [preview golf]" }), false);
   for (const n of ["padel", "pickleball", "tennis", "simracing", "discgolf", "skin"]) assert.equal(builds({ NICHE: n, VERCEL_ENV: "production" }), true, n);
   assert.equal(builds({ NICHE: "golf", VERCEL_ENV: "production" }), false);
 });
