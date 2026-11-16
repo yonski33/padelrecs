@@ -1,4 +1,4 @@
-import { niche, catalogPath, catalogLabel } from "./niche";
+import { niche, catalogPath, catalogLabel, v2copy } from "./niche";
 
 const base = () => (process.env.SITE_URL || `https://www.${niche.site.domain}`).replace(/\/$/, "");
 
@@ -7,7 +7,8 @@ export const catalogKeyword = niche.seo.catalog.title.replace(/^All /, "").split
 
 /** "145 Padel Rackets, Ranked by Player Score" (the site name follows from seo.titleTemplate): the count the page shows
  *  (owner 2026-11-15: "145 rackets", not 203, and no "Real Player Reviews"). */
-export const catalogTitle = (products: number) => `${products.toLocaleString("en-US")} ${catalogKeyword}, Ranked by ${niche.people.One} Score`;
+const scoreTitle = v2copy.score ? v2copy.score.replace(/\b\w/g, c => c.toUpperCase()) : `${niche.people.One} Score`;
+export const catalogTitle = (products: number) => `${products.toLocaleString("en-US")} ${catalogKeyword}, Ranked by ${scoreTitle}`;
 
 /** "Padel Rackets compared by 4,210 real reviews: Nox AT10, Siux Electra and more. See what players love and complain about." */
 export function catalogDescription(reviews: number, names: string[]) {

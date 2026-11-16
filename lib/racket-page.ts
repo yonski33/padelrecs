@@ -3,6 +3,7 @@
 // tagline and bottom line lead with the side the match engine puts the racket on. Every item lists its reports (`src`, ids;
 // "other-slug:id" for another racket's page), and its evidence line counts them.
 import padel from "../db/racket-page/padel.json";
+import pickleball from "../db/racket-page/pickleball.json";
 import { niche } from "./niche";
 import type { CardContent, CardTag } from "./fit-card";
 
@@ -11,7 +12,7 @@ export type PageItem = { title: string; /** One line; the key phrase sits betwee
   /** The evidence line, {n} = the number of reports ("the #1 complaint, {n} players"); default "{n} players mention it". */ ev?: string };
 export type PageContent = { tagline: string; bottom: string; yes: PageItem[]; no: PageItem[] };
 
-const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Record<string, PageContent> };
+const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Record<string, PageContent>, pickleball: pickleball as Record<string, PageContent> };
 
 export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
@@ -44,7 +45,7 @@ export const SHOWN_ITEMS = 3;
 
 /** "matters for you": up to 2 items per column whose tags meet the visitor's picks (owner's final mock); a sore arm first, then
  *  the style, then the level (the fit card's order, lib/fit-card.ts), the author's order breaking ties. */
-const W: Record<string, number> = { arm: 4, control: 3, balance: 3, power: 3, beginner: 2, intermediate: 2, advanced: 2 };
+const W: Record<string, number> = { arm: 4, control: 3, balance: 3, power: 3, spin: 3, beginner: 2, intermediate: 2, advanced: 2 };
 export function mattersFor(items: PageItem[], picks: string[], max = 2): Set<string> {
   const score = (it: PageItem) => (it.for ?? []).reduce((a, t) => a + (picks.includes(t) ? W[t] ?? 1 : 0), 0);
   return new Set(items.map((it, i) => ({ it, i, s: score(it) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, max).map(x => x.it.title));

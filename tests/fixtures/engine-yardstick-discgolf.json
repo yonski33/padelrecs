@@ -1,0 +1,19 @@
+{
+  "_note": "Draft disc golf yardstick (PM 2026-11-16, option A): drafted from the data and common disc golf advice, for the owner / expert to correct. Picks: kind.level.style.arm (style: control = understable, balance = stable, power = overstable, any).",
+  "beats": [
+    { "pick": "fairway.beginner.control.0", "above": "Innova Leopard3", "below": "Innova Firebird" },
+    { "pick": "fairway.beginner.control.0", "above": "Latitude 64 River", "below": "Innova TL3" },
+    { "pick": "distance.advanced.power.0", "above": "Discraft Nuke OS", "below": "Innova Wraith" },
+    { "pick": "distance.advanced.power.0", "above": "Innova Destroyer", "below": "Innova Mamba" },
+    { "pick": "midrange.advanced.power.0", "above": "Innova Toro", "below": "Innova Mako3" },
+    { "pick": "midrange.beginner.any.1", "above": "Innova Mako3", "below": "Innova Toro" },
+    { "pick": "-.beginner.any.1", "above": "Innova Leopard", "below": "Innova Destroyer" },
+    { "pick": "distance.intermediate.balance.1", "above": "MVP Inertia", "below": "Discraft Nuke OS" }
+  ],
+  "not_top": [
+    { "pick": "-.beginner.any.1", "name": "Innova Destroyer", "top": 10 },
+    { "pick": "fairway.beginner.control.0", "name": "Innova Firebird", "top": 10 },
+    { "pick": "distance.advanced.power.0", "name": "Innova Mamba", "top": 10 },
+    { "pick": "midrange.beginner.any.1", "name": "Innova Toro", "top": 10 }
+  ]
+}

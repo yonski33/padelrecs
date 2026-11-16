@@ -16,6 +16,11 @@ import { matchContext } from "../match-context";
 import { listShopLink } from "../../lib/amazon-offer";
 import { catalogRows } from "./catalog-rows";
 import { specGroups } from "../../lib/guide";
+import { fitConfigFor } from "../../lib/fit-config";
+import { v2copy } from "../../lib/niche";
+
+/** A type-picker site (DiscGolfRecs): its disc type and stability filters lead the catalogue (app/rackets/catalog-browser.tsx). */
+const QUICK = fitConfigFor(niche)?.quick;
 
 // The catalogue in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Jv7VD7a2asnf83YuKDfxaw), PadelRecs
 // only: filters on the left (play style, level, shape, year, arm-friendly, and "more filters" for weight, feel and a bigger
@@ -45,10 +50,11 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
       <section className="ct2-hero">
         <div>{only && <p className="ct2-crumbs"><a href="/">home</a> / <a href="/brands">brands</a> / {only.name.toLowerCase()}</p>}
           {only ? <h1>{`${only.name} `}<span className="hl">{niche.words.many}</span></h1> : <h1>All <span className="hl">{niche.words.many}</span></h1>}
-          <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by Player score. Narrow it down on the left.` : `Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
+          <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by ${QUICK && v2copy.score ? v2copy.score : "Player score"}. Narrow it down on the left.` : `Every ${niche.words.one} we track. Narrow it down on the left — the list updates as you tap.`}</p></div>
         <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
       </section>
-      <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one} spec={specGroups(niche.guide)}/>
+      <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one} spec={specGroups(niche.guide)}
+        {...(QUICK ? { look: { lead: ["disc", "stab"], arm: QUICK.armChip, score: v2copy.score ?? "player score" } } : {})}/>
     </div>
     <V2Footer/>
   </main>;

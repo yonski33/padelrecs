@@ -17,8 +17,12 @@ const optWord = (key: string, val: string) => key === "level" ? levelLabel(val a
 export type CatalogCard = { name: string; href: string; pic: string | null; tile: string; line: string | null; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
 type F = CatalogFilters;
 
-export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one, spec = [] }: { rows: CatalogRow[]; cards: Record<string, CatalogCard>; f: F; base: string; suitsOk: number; many: string; one: string;
-  /** The niche's spec filters (lib/guide.ts specGroups), under "more filters". */ spec?: SpecGroup[] }) {
+/** A type-picker site's catalogue (lib/fit-config.ts quick: DiscGolfRecs): which of the niche's spec filters lead (disc type,
+ *  stability) in place of padel's play style / shape / year / weight / feel, and its words. Unset: padel's catalogue, unchanged. */
+export type CatalogLook = { lead: string[]; arm: string; score: string };
+
+export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one, spec = [], look }: { rows: CatalogRow[]; cards: Record<string, CatalogCard>; f: F; base: string; suitsOk: number; many: string; one: string;
+  /** The niche's spec filters (lib/guide.ts specGroups), under "more filters". */ spec?: SpecGroup[]; look?: CatalogLook }) {
   const specKeys = spec.map(g => g.key);
   // Back and forward step through the filters (app/instant-view.ts).
   const [f, setF] = useInstantView<F>(first, q => readCatalogFilters(Object.fromEntries(q), specKeys), v => catalogHref(base, {}, v, specKeys));
@@ -29,11 +33,17 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
   // From the latest view, not this render's state, so two quick taps both count.
   const go = (next: F) => instantClick(() => setF(cur => readCatalogFilters(Object.fromEntries(new URL(catalogHref(base, cur, next, specKeys), location.origin).searchParams), specKeys)));
   const to = (next: F, current?: boolean) => ({ href: href(next), onClick: go(next), ...(current ? { "aria-current": "true" as const } : {}) });
-  const groups: [string, string, readonly string[]][] = [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(hasYears && v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
-  const extra: [string, string, readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS], ...spec.map(g => [g.label, g.key, g.values] as [string, string, readonly string[]])];
-  const moreOpen = f.more === "1" || !!f.weight || !!f.feel || specKeys.some(k => !!f[k]) || f.sweet === "1";
+  const specGroup = (g: SpecGroup) => [g.label, g.key, g.values] as [string, string, readonly string[]];
+  const lead = look ? spec.filter(g => look.lead.includes(g.key)) : [];
+  const groups: [string, string, readonly string[]][] = look
+    ? [...lead.slice(0, 1).map(specGroup), ["Level", "level", CATALOG_LEVELS], ...lead.slice(1).map(specGroup)]
+    : [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(hasYears && v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
+  const extra: [string, string, readonly string[]][] = look ? spec.filter(g => !look.lead.includes(g.key)).map(specGroup)
+    : [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS], ...spec.map(specGroup)];
+  const moreOpen = f.more === "1" || !!f.weight || !!f.feel || specKeys.some(k => !!f[k] && !look?.lead.includes(k)) || f.sweet === "1";
+  const armWord = look?.arm ?? "arm-friendly";
   const active = [...[...CATALOG_KEYS, ...specKeys].filter(k => f[k]).map(k => ({ label: optWord(k, f[k]!), next: { [k]: undefined } as F })),
-    ...(f.arm === "1" ? [{ label: "arm-friendly", next: { arm: undefined } as F }] : []), ...(f.sweet === "1" ? [{ label: "bigger sweet spot", next: { sweet: undefined } as F }] : [])];
+    ...(f.arm === "1" ? [{ label: armWord, next: { arm: undefined } as F }] : []), ...(f.sweet === "1" ? [{ label: "bigger sweet spot", next: { sweet: undefined } as F }] : [])];
   const clearAll: F = Object.fromEntries(Object.keys(f).map(k => [k, undefined]));
   const group = ([label, key, vals]: [string, string, readonly string[]]) =>
     <details key={key} className="ct-g" open>
@@ -52,14 +62,14 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
       <div className="ct2-groups">
         {groups.map(group)}
         <a {...to({ arm: f.arm === "1" ? undefined : "1" }, f.arm === "1")} className={`ct2-check${f.arm === "1" ? " on" : ""}`}>
-          <i aria-hidden="true">{f.arm === "1" ? "✓" : ""}</i><b>Arm-friendly only</b></a>
+          <i aria-hidden="true">{f.arm === "1" ? "✓" : ""}</i><b>{`${armWord[0].toUpperCase()}${armWord.slice(1)} only`}</b></a>
         {/* More filters, like the home's fine-tune (owner 2026-11-15): weight, feel and a bigger sweet spot. */}
-        <details className="ct2-more" open={moreOpen}>
+        {extra.length > 0 && <details className="ct2-more" open={moreOpen}>
           <summary><span className="c">more filters ▾</span><span className="o">fewer filters ▴</span></summary>
           {extra.map(group)}
-          <a {...to({ sweet: f.sweet === "1" ? undefined : "1", more: "1" }, f.sweet === "1")} className={`ct2-check${f.sweet === "1" ? " on" : ""}`}>
-            <i aria-hidden="true">{f.sweet === "1" ? "✓" : ""}</i><b>Bigger sweet spot</b></a>
-        </details>
+          {!look && <a {...to({ sweet: f.sweet === "1" ? undefined : "1", more: "1" }, f.sweet === "1")} className={`ct2-check${f.sweet === "1" ? " on" : ""}`}>
+            <i aria-hidden="true">{f.sweet === "1" ? "✓" : ""}</i><b>Bigger sweet spot</b></a>}
+        </details>}
       </div>
     </aside>
 
@@ -71,8 +81,8 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
       </div>
       <ol className="ct2-list">{shown.slice(0, show).map((x, i) => {
         const c = cards[x.id];
-        const chips = [...(i === 0 && sort === "score" ? [{ k: "top", t: "★ top pick" }] : []), ...(x.arm ? [{ k: "arm", t: "arm-friendly" }] : [])];
-        const meta = [x.lean === "balance" ? "all-round" : x.lean, x.shape, hasYears ? x.year : null].filter(Boolean) as string[];
+        const chips = [...(i === 0 && sort === "score" ? [{ k: "top", t: "★ top pick" }] : []), ...(x.arm ? [{ k: "arm", t: armWord }] : [])];
+        const meta = (look ? look.lead.map(k => x.spec?.[k]) : [x.lean === "balance" ? "all-round" : x.lean, x.shape, hasYears ? x.year : null]).filter(Boolean) as string[];
         // One link per row (the name's, stretched over the row) and "check price" as a quiet text link at the end of the specs
         // row (owner 2026-11-15). Reviews over the sentiment bar, then the Player score box.
         return <li key={x.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><div className="ct2-row">
@@ -85,10 +95,10 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           </span>
           <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
             {x.judged > 0 && <span className="ct2-bar6" aria-label={`${c.pos} positive, ${c.mix} mixed, ${c.neg} negative`}><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}</span>
-          <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
+          <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title={`${look ? `${look.score[0].toUpperCase()}${look.score.slice(1)}` : "Player score"}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
             <b>{x.signal ?? "—"}</b>{mockLook ? <>
               {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
-              <small><span className="ct2-ps">player score · </span>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>player score</small>}</span>
+              <small><span className="ct2-ps">player score · </span>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>
         </div></li>; })}</ol>
       {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}
