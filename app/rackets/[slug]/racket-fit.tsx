@@ -27,7 +27,8 @@ import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
 import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
-import { countWord } from "../../../lib/fit-card";
+import { hasAttribution } from "../../../lib/voice";
+import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import type { QtReport, QtReview } from "./quick-take";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
@@ -50,14 +51,7 @@ const LEVEL_SAID_MIN = 5;
 const SITE_TRAITS = SITE_FIT.traits.map(t => t.key), SITE_LABEL: Record<string, string> = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t.label]));
 
 /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)] per trait. */
-const EV_WORDS: Record<Trait, [[string, string], [string, string]]> = {
-  forgiveness: [["praise the sweet spot", "praises the sweet spot"], ["find it demanding", "finds it demanding"]],
-  power: [["praise the power", "praises the power"], ["want more power", "wants more power"]],
-  control: [["praise the control", "praises the control"], ["find it hard to control", "finds it hard to control"]],
-  defence: [["praise its defence", "praises its defence"], ["struggle with it in defence", "struggles with it in defence"]],
-  arm: [["find it kind to the arm", "finds it kind to the arm"], ["say it's hard on the arm", "says it's hard on the arm"]],
-  speed: [["call it quick in the hand", "calls it quick in the hand"], ["find it heavy or slow", "finds it heavy or slow"]],
-};
+
 
 export default async function RacketFit(props: {
   /** The quick-take block; null for the beginner pilots that have none yet (their lines come from tag counts). */
@@ -95,16 +89,12 @@ export default async function RacketFit(props: {
     const tone = q ? chipTone(q.chip as Chip) : null;
     const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
     const ev = sc?.people;
-    // Few player mentions (owner 2026-11-15): say what the dots rest on instead of showing a dash.
-    const thinWords = sc?.basis === "specs" ? "Based on specs and reviewers — few player reports on this yet." : "Not many players mention this yet.";
-    // A short note in words (owner 2026-11-15: no player numbers, "a short note each"): the quick-take's line when it agrees,
-    // else which way most players lean, said with a count word.
-    const cap = (x: string) => x[0].toUpperCase() + x.slice(1);
-    const short = ev ? (() => { const nP = ev.players.plus + ev.reviewers.plus, nM = ev.players.minus + ev.reviewers.minus, [praise, fault] = SITE_FIT.traits.find(x => x.key === t)?.ev ?? EV_WORDS[t as Trait];
-      if (nP < 2 && nM < 2) return null;
-      return nP >= nM ? `${cap(countWord(nP))} players ${praise[0]}${nM >= 2 ? `; ${countWord(nM)} ${fault[0]}` : ""}.` : `${cap(countWord(nM))} players ${fault[0]}${nP >= 2 ? `; ${countWord(nP)} ${praise[0]}` : ""}.`; })() : null;
-    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? short ?? thinWords;
-    return [SITE_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
+    // The note (owner 2026-11-16, expert voice): an admin edit, else the quick take's own line when it agrees with the dots and
+    // doesn't say who said it, else a plain statement from the dots (lib/trait-note.ts), with both sides named on a real split.
+    const stated = sc ? traitNote(t, sc.dots, ev ? ev.players.plus + ev.reviewers.plus : 0, ev ? ev.players.minus + ev.reviewers.minus : 0, SITE_LABEL[t],
+      SITE_FIT.sport === "padel" ? TRAIT_SAY[t as Trait] : undefined) : null;
+    const text = tr.edits?.traits[t as Trait]?.text ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
+    return [SITE_LABEL[t], text, sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
   // Similar rackets (no picks): really similar rackets, not the home's top 4 on every page. With picks, "Better matches for you"

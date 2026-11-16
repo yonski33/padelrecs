@@ -42,7 +42,7 @@ test("pickleball fit check: control axis counts dinks, arm check works without a
   const v = fitVerdict({ ...DEFAULT_CHOICE, style: "power", level: "beginner", arm: true }, f, pb);
   assert.equal(v.kind, "no");
   assert.ok(v.reasons.some(r => r.includes("control paddle")));
-  assert.ok(v.reasons.some(r => r.includes("call it demanding")));
+  assert.ok(v.reasons.some(r => r.includes("more demanding than forgiving")));
 });
 
 test("pickleball heads-ups: tags or words, negations don't count, USAP needs the problem wording", async () => {

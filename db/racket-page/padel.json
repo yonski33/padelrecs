@@ -78,7 +78,7 @@
    },
    {
     "title": "Kind to sore arms",
-    "t": "Players with sore elbows or wrists say ==it suits them==.",
+    "t": "==Kind to sore elbows and wrists==.",
     "ev": "{n} players with arm pain",
     "for": [
      "arm"
@@ -119,7 +119,7 @@
    },
    {
     "title": "Smashes need help",
-    "t": "Out of the box ==flat smashes lack pop==; players move the weights up top.",
+    "t": "Out of the box ==flat smashes lack pop==; moving the weights up top helps.",
     "for": [
      "power"
     ],
@@ -133,7 +133,7 @@
    },
    {
     "title": "Bouncier in the heat",
-    "t": "A few players say it gets ==far too lively in warm weather==.",
+    "t": "It can get ==far too lively in warm weather==.",
     "for": [
      "control"
     ],
@@ -144,7 +144,7 @@
    },
    {
     "title": "Check the weight screws",
-    "t": "The adjustable weight screws ==broke or failed== for a few players.",
+    "t": "The adjustable weight screws ==can break or fail==; check them early.",
     "for": [],
     "src": [
      "research-72bd16b1-b672-4989-a5b5-d18369f18b6e",
@@ -184,7 +184,7 @@
    },
    {
     "title": "Dry touch, little trampoline",
-    "t": "Players like it for ==placement and deep lobs==.",
+    "t": "Dry and precise: ==ideal for placement and deep lobs==.",
     "for": [
      "control",
      "advanced"
@@ -219,7 +219,7 @@
    },
    {
     "title": "A true all-rounder",
-    "t": "Players use it on ==both sides of the court==.",
+    "t": "It works ==on both sides of the court==.",
     "for": [
      "balance"
     ],
@@ -255,7 +255,7 @@
    },
    {
     "title": "Heavier than the label",
-    "t": "Players weighed theirs at ==380 g or more== out of the box.",
+    "t": "Heavier than the label: often ==380 g or more== out of the box.",
     "ev": "{n} players weighed theirs",
     "for": [
      "beginner",
@@ -270,7 +270,7 @@
    },
    {
     "title": "Split on sore arms",
-    "t": "Some got ==elbow or shoulder pain== from the firm face; others call it arm-friendly.",
+    "t": "Splits opinion on comfort: the firm face ==can cause elbow or shoulder pain==.",
     "ev": "{n} players with arm pain",
     "for": [
      "arm"
@@ -350,7 +350,7 @@
    },
    {
     "title": "Kind to the arm",
-    "t": "Players with elbow or wrist trouble ==find it comfortable==.",
+    "t": "==Comfortable== even with elbow or wrist trouble.",
     "for": [
      "arm"
     ],
@@ -442,7 +442,7 @@
    },
    {
     "title": "Changes with the weather",
-    "t": "==Stiff on a cold day==, perfect in the heat, players say.",
+    "t": "==Stiff on a cold day==, perfect in the heat.",
     "for": [],
     "src": [
      "fac5aebd-ed48-4336-9402-fb49b064122e",
@@ -511,7 +511,7 @@
    },
    {
     "title": "Forgiving for a diamond",
-    "t": "The sweet spot is ==bigger than players expected==.",
+    "t": "The sweet spot is ==bigger than you'd expect== on a diamond.",
     "for": [
      "intermediate"
     ],
@@ -553,7 +553,7 @@
    },
    {
     "title": "Heavy up top",
-    "t": "Many find it ==heavy or head-heavy==; one weighed 390 g+ set up.",
+    "t": "==Heavy and head-heavy==; set up, it can pass 390 g.",
     "for": [
      "arm"
     ],
@@ -572,7 +572,7 @@
    },
    {
     "title": "Not a first racket",
-    "t": "An intermediate player says it's ==“Not suitable for beginners”==.",
+    "t": "==Not a beginner racket==: off-centre hits and late swings get no help.",
     "for": [
      "beginner"
     ],
@@ -591,7 +591,7 @@
   "yes": [
    {
     "title": "Pinpoint control",
-    "t": "Lobs and returns go where you aim: one player makes ==“0 mistakes on lobs or returns”==.",
+    "t": "Pinpoint control: ==lobs and returns go where you aim==.",
     "for": [
      "control"
     ],
@@ -654,7 +654,7 @@
   "no": [
    {
     "title": "Hard on the arm",
-    "t": "Players got arm, elbow or shoulder pain, and ==most of them moved on==.",
+    "t": "It ==can cause arm, elbow or shoulder pain==; sore arms should skip it.",
     "ev": "the #1 complaint, {n} players",
     "for": [
      "arm"
@@ -697,7 +697,7 @@
    },
    {
     "title": "Stiff and demanding",
-    "t": "Players see it as ==a racket for advanced players==.",
+    "t": "==A racket for advanced players==.",
     "for": [
      "beginner",
      "intermediate"
@@ -713,7 +713,7 @@
    },
    {
     "title": "Rock-hard in the cold",
-    "t": "A few players say it ==stiffens a lot in winter==.",
+    "t": "It ==can stiffen a lot in winter==.",
     "for": [
      "arm"
     ],
@@ -852,7 +852,7 @@
    },
    {
     "title": "Stiffer than the 18K",
-    "t": "Players find it ==firmer and less forgiving than the 18K==; some prefer that one.",
+    "t": "==Firmer and less forgiving than the 18K==; pick the 18K for comfort.",
     "for": [
      "intermediate"
     ],
@@ -867,7 +867,7 @@
    },
    {
     "title": "Paint chips and cracks",
-    "t": "Several players saw ==the coating peel or the frame crack== within months.",
+    "t": "The coating ==can peel and the frame can crack== within months.",
     "for": [],
     "src": [
      "research-6ce2f03f-eb6b-4ab1-bae2-a499d1d5d288",
@@ -921,7 +921,7 @@
    },
    {
     "title": "Easy on some elbows",
-    "t": "A few players with arm trouble found it ==comfortable and pain-free==.",
+    "t": "It can stay ==comfortable and pain-free== even with a history of arm trouble.",
     "for": [
      "arm"
     ],
@@ -976,7 +976,7 @@
    },
    {
     "title": "Needs good technique",
-    "t": "Players call it ==demanding== and say you need a clean swing and follow-through.",
+    "t": "==Demanding==: it needs a clean swing and a full follow-through.",
     "for": [
      "beginner",
      "intermediate"
@@ -1033,7 +1033,7 @@
    },
    {
     "title": "Best of the 2026 Babolats",
-    "t": "Players who tried the range ==picked this one as their favourite==.",
+    "t": "==A favourite in the 2026 Babolat range== among those who tried them all.",
     "for": [
      "intermediate"
     ],
@@ -1046,7 +1046,7 @@
   "no": [
    {
     "title": "Hard and stiff",
-    "t": "Players call it ==hard and dry==, and one finds it too stiff in winter.",
+    "t": "==Hard and dry==, and it can feel too stiff in winter.",
     "for": [
      "advanced"
     ],
@@ -1063,7 +1063,7 @@
    },
    {
     "title": "Hard on the arm",
-    "t": "Players got ==elbow or wrist pain== after a few games or weeks.",
+    "t": "It ==can cause elbow or wrist pain== within a few games or weeks.",
     "for": [
      "arm"
     ],
@@ -1092,7 +1092,7 @@
    },
    {
     "title": "Not a first racket",
-    "t": "Players point it at ==advanced and technical players== who place the ball themselves.",
+    "t": "Made for ==advanced, technical players== who place the ball themselves.",
     "for": [
      "beginner",
      "intermediate"
@@ -1147,7 +1147,7 @@
    },
    {
     "title": "Comfortable on sore arms",
-    "t": "Players with tennis elbow or sore arms found it ==comfortable, with little vibration==.",
+    "t": "==Comfortable, with little vibration==, even with tennis elbow.",
     "for": [
      "arm"
     ],
@@ -1189,7 +1189,7 @@
    },
    {
     "title": "Small sweet spot for two",
-    "t": "Two players found ==the sweet spot small== and hard to place.",
+    "t": "==The sweet spot can feel small== and hard to find.",
     "for": [
      "beginner"
     ],
@@ -1206,7 +1206,7 @@
   "yes": [
    {
     "title": "Forgiving sweet spot",
-    "t": "Players call the sweet spot ==big and forgiving==, with off-centre hits still working.",
+    "t": "The sweet spot is ==big and forgiving==; off-centre hits still work.",
     "for": [
      "intermediate"
     ],
@@ -1265,7 +1265,7 @@
   "no": [
    {
     "title": "Vibration and sore arms",
-    "t": "Mishits vibrate, and some players ==ended up with elbow pain==.",
+    "t": "Mishits vibrate, and it ==can cause elbow pain==.",
     "for": [
      "arm"
     ],
@@ -1291,7 +1291,7 @@
    },
    {
     "title": "Hollow feel",
-    "t": "Players dislike the ==hollow sound and feel==, and some smashes feel dead.",
+    "t": "A ==hollow sound and feel==, and some smashes feel dead.",
     "for": [],
     "src": [
      "5fe927d7-38a1-4618-80cc-22a70fc79232",
@@ -1396,7 +1396,7 @@
    },
    {
     "title": "Elbow pain for some",
-    "t": "Dry and firm for some: ==a few players ended up with elbow pain==.",
+    "t": "Dry and firm: it ==can cause elbow pain== on sensitive arms.",
     "for": [
      "arm"
     ],
@@ -1427,7 +1427,7 @@
   "yes": [
    {
     "title": "Precise control",
-    "t": "Players like ==its precise, control-oriented feel== and comfortable defence.",
+    "t": "==Precise and control-oriented==, with comfortable defence.",
     "for": [
      "control",
      "intermediate"
@@ -1471,7 +1471,7 @@
   ]
  },
  "head-extreme-one-2025": {
-  "tagline": "A light diamond built for power. The catch: players say flat smashes lack punch.",
+  "tagline": "A light diamond built for power. The catch: flat smashes lack punch.",
   "bottom": "For quick right-side attackers who want a light diamond. Skip it if you want heavy flat smashes.",
   "yes": [
    {
@@ -1598,7 +1598,7 @@
    },
    {
     "title": "Not for beginners",
-    "t": "Players say it needs ==a strong, experienced arm== and early preparation.",
+    "t": "It needs ==a strong, experienced arm== and early preparation.",
     "for": [
      "beginner",
      "intermediate"
@@ -1658,7 +1658,7 @@
    },
    {
     "title": "Hard at lower levels",
-    "t": "Players new to a diamond found it ==hard to control== and late on off-centre hits.",
+    "t": "New to diamonds? It's ==hard to control== and late on off-centre hits.",
     "for": [
      "beginner",
      "intermediate"
@@ -1813,7 +1813,7 @@
   "yes": [
    {
     "title": "Gentle on the arm",
-    "t": "The soft face and light frame ==suited players with elbow pain==.",
+    "t": "The soft face and light frame ==suit players with elbow pain==.",
     "for": [
      "arm",
      "beginner"
@@ -1871,7 +1871,7 @@
   "no": [
    {
     "title": "Runs out of power",
-    "t": "Players ==have to work hard for pace== and outgrow it within months.",
+    "t": "You ==have to work hard for pace==, and you'll outgrow it in months.",
     "for": [
      "power",
      "intermediate"
@@ -2015,7 +2015,7 @@
    },
    {
     "title": "Too soft for some",
-    "t": "Some players found it ==a bit soft or bouncy== and moved on to firmer rackets.",
+    "t": "It ==can feel a bit soft or bouncy== if you like a firm racket.",
     "for": [
      "advanced"
     ],
@@ -2027,7 +2027,7 @@
    },
    {
     "title": "Takes time to adjust",
-    "t": "Two players say ==it takes time to get used to== the bouncy, reactive feel.",
+    "t": "The bouncy, reactive feel ==takes time to get used to==.",
     "for": [],
     "src": [
      "29d1d747-dcc6-44f1-a48c-5529076a86ec",
@@ -2132,7 +2132,7 @@
    },
    {
     "title": "Heavy and demanding",
-    "t": "The weight is ==tiring and awkward== to move for some players.",
+    "t": "The weight ==can be tiring and awkward== to move.",
     "for": [
      "beginner",
      "intermediate"
@@ -2193,7 +2193,7 @@
    },
    {
     "title": "Very quick in the hand",
-    "t": "Players call it ==super manoeuvrable== at the net and when changing direction.",
+    "t": "==Super manoeuvrable== at the net and when changing direction.",
     "for": [
      "control",
      "intermediate"
@@ -2232,7 +2232,7 @@
    },
    {
     "title": "Drier than the AT10s",
-    "t": "Players who switched from the AT10 line find ==less bounce and a firmer feel==.",
+    "t": "Coming from the AT10 line, you get ==less bounce and a firmer feel==.",
     "for": [
      "control"
     ],
@@ -2250,7 +2250,7 @@
   "no": [
    {
     "title": "Smashes need effort",
-    "t": "Overheads and smashes ==need extra effort==; players miss leverage and help from the racket.",
+    "t": "Overheads and smashes ==need extra effort==; it gives little leverage or help.",
     "for": [
      "power"
     ],
@@ -2343,7 +2343,7 @@
    },
    {
     "title": "Plenty of control",
-    "t": "After a short break-in, players say ==the ball goes where they point it==.",
+    "t": "After a short break-in, ==the ball goes where you point it==.",
     "for": [
      "control",
      "intermediate"
@@ -2359,7 +2359,7 @@
    },
    {
     "title": "A good step up for new players",
-    "t": "Players coming from a first racket call it ==a good racket to grow into==.",
+    "t": "Coming from a first racket, it's ==a good racket to grow into==.",
     "for": [
      "beginner"
     ],
@@ -2374,7 +2374,7 @@
   "no": [
    {
     "title": "Not much punch",
-    "t": "Players who ==outgrew it== miss power on smashes and overheads.",
+    "t": "Once you ==outgrow it==, you'll miss power on smashes and overheads.",
     "for": [
      "power",
      "intermediate",
@@ -2454,7 +2454,7 @@
    },
    {
     "title": "Dry, firm and responsive",
-    "t": "Players like a ==very dry, immediate touch== with no trampoline.",
+    "t": "A ==very dry, immediate touch== with no trampoline.",
     "for": [
      "control",
      "advanced"
@@ -2521,7 +2521,7 @@
   "yes": [
    {
     "title": "Punchy smashes and víboras",
-    "t": "Players get ==heavier smashes and víboras== than on the standard Neuron.",
+    "t": "==Heavier smashes and víboras== than the standard Neuron.",
     "for": [
      "power",
      "advanced"
@@ -2613,7 +2613,7 @@
    },
    {
     "title": "Very stiff and hard",
-    "t": "One player's partner got ==wrist pain== from the hard face; others call it very stiff.",
+    "t": "==Very stiff and hard==; the hard face can cause wrist pain.",
     "for": [
      "arm"
     ],
@@ -2683,7 +2683,7 @@
    },
    {
     "title": "Muted, odd feel",
-    "t": "Some find it ==muted or hollow==, or dislike the odd sound on contact.",
+    "t": "It ==can feel muted or hollow==, with an odd sound on contact.",
     "for": [
      "control"
     ],
@@ -2726,7 +2726,7 @@
    },
    {
     "title": "Soft, comfortable feel",
-    "t": "Players find it ==soft and comfortable==, with a cushioned feel in defence.",
+    "t": "==Soft and comfortable==, with a cushioned feel in defence.",
     "for": [
      "intermediate"
     ],
@@ -2768,7 +2768,7 @@
    },
    {
     "title": "Sweet spot not wide",
-    "t": "Some found ==off-centre hits die short== and the sweet spot smaller.",
+    "t": "==Off-centre hits can die short==; the sweet spot is not wide.",
     "for": [
      "beginner"
     ],
@@ -2857,7 +2857,7 @@
    },
    {
     "title": "Firm, not for beginners",
-    "t": "The rigid core ==needs clean technique==; one player found it too hard.",
+    "t": "The rigid core ==needs clean technique== and can feel too hard.",
     "for": [
      "beginner"
     ],
@@ -3005,7 +3005,7 @@
    },
    {
     "title": "Sweet spot not huge",
-    "t": "Some find it ==smaller than other round frames==, especially near the tip.",
+    "t": "The sweet spot ==feels smaller than on other round frames==, near the tip.",
     "for": [
      "beginner"
     ],
@@ -3032,7 +3032,7 @@
   "yes": [
    {
     "title": "Sharp and stable at the net",
-    "t": "Players find it ==quick and precise at the net==, solid when blocking heavy pace.",
+    "t": "==Quick and precise at the net==, solid when blocking heavy pace.",
     "for": [
      "control",
      "advanced"
@@ -3119,7 +3119,7 @@
   "no": [
    {
     "title": "Heavier than expected",
-    "t": "Players find it ==heavier than expected==; one measured about 20 g over the label.",
+    "t": "==Heavier than the label==; units can come in about 20 g over.",
     "for": [
      "beginner"
     ],
@@ -3173,7 +3173,7 @@
   "no": [
    {
     "title": "Lacks punch to finish",
-    "t": "Players find ==little power to finish points==; it suits patient defenders.",
+    "t": "==Little power to finish points==; it suits patient defenders.",
     "for": [
      "power",
      "advanced"
@@ -3265,7 +3265,7 @@
   "no": [
    {
     "title": "Bouncy as rallies speed up",
-    "t": "The ball ==floats a bit== when rallies speed up, and one player wanted less rebound.",
+    "t": "The ball ==floats a bit== when rallies speed up.",
     "for": [
      "control"
     ],
@@ -3346,7 +3346,7 @@
   "no": [
    {
     "title": "Hard on the arm",
-    "t": "Several players got ==elbow or shoulder pain== with it.",
+    "t": "It ==can cause elbow or shoulder pain==.",
     "for": [
      "arm"
     ],
@@ -3426,7 +3426,7 @@
    },
    {
     "title": "Easier than the Pro",
-    "t": "Players find it ==easier to handle and time volleys than the Pro==.",
+    "t": "==Easier to handle and time volleys== than the Pro.",
     "for": [
      "power",
      "intermediate"
@@ -3439,7 +3439,7 @@
    },
    {
     "title": "Decent sweet spot",
-    "t": "Players find a ==generous sweet spot for a diamond==, though two say it's small.",
+    "t": "A ==generous sweet spot for a diamond==, though not everyone agrees.",
     "for": [
      "intermediate"
     ],
@@ -3495,7 +3495,7 @@
    },
    {
     "title": "Not for beginners",
-    "t": "Players see it as a racket for ==experienced players, not beginners==.",
+    "t": "A racket for ==experienced players, not beginners==.",
     "for": [
      "beginner"
     ],
@@ -3507,7 +3507,7 @@
    },
    {
     "title": "Arm pain for some",
-    "t": "A few players got ==elbow, wrist or shoulder pain==.",
+    "t": "It ==can cause elbow, wrist or shoulder pain==.",
     "for": [
      "arm"
     ],
@@ -3617,7 +3617,7 @@
    },
    {
     "title": "For skilled hitters",
-    "t": "Players see it as a racket for ==skilled attackers, not beginners==.",
+    "t": "A racket for ==skilled attackers, not beginners==.",
     "for": [
      "beginner",
      "intermediate"
@@ -3654,7 +3654,7 @@
    },
    {
     "title": "Kind to the arm",
-    "t": "Players with elbow or wrist trouble ==find it comfortable==.",
+    "t": "==Comfortable== even with elbow or wrist trouble.",
     "for": [
      "arm"
     ],
@@ -3748,7 +3748,7 @@
    },
    {
     "title": "Stiffer than before",
-    "t": "Players find the 2026 model ==stiffer than earlier ones==.",
+    "t": "The 2026 model is ==stiffer than earlier ones==.",
     "for": [],
     "src": [
      "research-7ab3222d-a569-4315-bf6a-bff9fdf796ce",
@@ -3763,7 +3763,7 @@
   "yes": [
    {
     "title": "Power and control",
-    "t": "Players find a ==good balance of power and control==.",
+    "t": "A ==good balance of power and control==.",
     "for": [
      "balance"
     ],
@@ -3785,7 +3785,7 @@
    },
    {
     "title": "Good value",
-    "t": "For the price, players say ==little beats it==.",
+    "t": "For the price, ==little beats it==.",
     "for": [],
     "src": [
      "research-d501f8b1-7f81-4ae1-9f11-cafad366c447",
@@ -3817,7 +3817,7 @@
    },
    {
     "title": "Hard on some arms",
-    "t": "A few players got ==wrist, shoulder or elbow trouble==.",
+    "t": "It ==can cause wrist, shoulder or elbow trouble==.",
     "for": [
      "arm"
     ],
@@ -3873,7 +3873,7 @@
    },
    {
     "title": "A firm racket",
-    "t": "Players find it ==firm, with no trampoline==, and one found it too hard.",
+    "t": "==Firm, with no trampoline==; it can feel too hard.",
     "for": [],
     "src": [
      "research-1ee54f0d-e0b1-43a8-84a6-2eb3312d221d",
@@ -3969,7 +3969,7 @@
    },
    {
     "title": "Kind to the arm",
-    "t": "Players coming back from elbow, wrist or shoulder pain ==play pain-free==.",
+    "t": "Even after elbow, wrist or shoulder pain, you ==can play pain-free==.",
     "for": [
      "arm"
     ],
@@ -3984,7 +3984,7 @@
   "no": [
    {
     "title": "Feels heavy",
-    "t": "Players find it ==heavy overall==; one found it tiring in long matches.",
+    "t": "==Heavy overall==, and tiring in long matches.",
     "for": [
      "beginner"
     ],
@@ -4044,7 +4044,7 @@
   "yes": [
    {
     "title": "Good placement",
-    "t": "Players like the ==control and shot placement==.",
+    "t": "Strong ==control and shot placement==.",
     "for": [
      "control"
     ],
@@ -4057,7 +4057,7 @@
   "no": [
    {
     "title": "Head-heavy",
-    "t": "Players find the balance ==noticeably head-heavy==.",
+    "t": "The balance is ==noticeably head-heavy==.",
     "for": [
      "control"
     ],
@@ -4068,7 +4068,7 @@
    },
    {
     "title": "Compact sweet spot",
-    "t": "Two reviewers find the sweet spot ==small and unforgiving off-centre==.",
+    "t": "The sweet spot is ==small and unforgiving off-centre==.",
     "for": [],
     "src": [
      "5102dfeb-7a5b-4e42-9897-6944fda68d93",
@@ -4137,7 +4137,7 @@
   "yes": [
    {
     "title": "Easy to place",
-    "t": "Players find it ==easy to guide the ball== from the back court.",
+    "t": "==Easy to guide the ball== from the back court.",
     "for": [
      "control",
      "beginner"
@@ -4222,7 +4222,7 @@
   "yes": [
    {
     "title": "Solid at the net",
-    "t": "Players find it ==solid on volleys and blocks==.",
+    "t": "==Solid on volleys and blocks==.",
     "for": [
      "control"
     ],
@@ -4235,7 +4235,7 @@
   "no": [
    {
     "title": "Little smash power",
-    "t": "Some players find it ==short on smash power==.",
+    "t": "==Short on smash power==.",
     "for": [
      "power"
     ],
@@ -4252,7 +4252,7 @@
   "yes": [
    {
     "title": "A true all-rounder",
-    "t": "Players like the mix of ==control, spin and attacking punch== in one racket.",
+    "t": "A mix of ==control, spin and attacking punch== in one racket.",
     "for": [
      "balance",
      "intermediate",
@@ -4347,7 +4347,7 @@
    },
    {
     "title": "Demanding, for advanced players",
-    "t": "Players call it ==a racket for technical players== who strike cleanly.",
+    "t": "==A racket for technical players== who strike cleanly.",
     "for": [
      "advanced",
      "intermediate"
@@ -4363,7 +4363,7 @@
    },
    {
     "title": "Rough on sore arms",
-    "t": "Players dropped it over ==vibration and wrist strain==.",
+    "t": "==Vibration and wrist strain== can make you drop it.",
     "for": [
      "arm"
     ],
@@ -4375,7 +4375,7 @@
    },
    {
     "title": "Output splits players",
-    "t": "Some find ==too much trampoline==, others too little output.",
+    "t": "Output splits opinion: ==too much trampoline== for some, too little for others.",
     "for": [],
     "src": [
      "2e743c91-900e-454a-985d-48acec24110a",
@@ -4416,7 +4416,7 @@
    },
    {
     "title": "Easier than the Hard one",
-    "t": "Players call it ==more forgiving and easier to use== than the firmer Metalbone.",
+    "t": "==More forgiving and easier to use== than the firmer Metalbone.",
     "for": [
      "intermediate",
      "advanced"
@@ -4431,7 +4431,7 @@
    },
    {
     "title": "Kinder on the arm",
-    "t": "Players found ==less arm discomfort== than on the hard-core Metalbone.",
+    "t": "==Less arm discomfort== than the hard-core Metalbone.",
     "for": [
      "arm"
     ],
@@ -4510,7 +4510,7 @@
    },
    {
     "title": "Too much for lower levels",
-    "t": "Players say it ==is demanding for beginners== and some intermediates.",
+    "t": "==Demanding for beginners== and some intermediates.",
     "for": [
      "beginner",
      "intermediate"
@@ -4529,7 +4529,7 @@
   "yes": [
    {
     "title": "A real all-rounder",
-    "t": "Players call it ==a versatile racket that does everything== they want.",
+    "t": "==A versatile racket that does everything== well.",
     "for": [
      "balance",
      "intermediate"
@@ -4573,7 +4573,7 @@
    },
    {
     "title": "Great value",
-    "t": "Players call it ==a quality racket for the price==.",
+    "t": "==A quality racket for the price==.",
     "for": [],
     "src": [
      "research-165e237d-52d4-41ea-99ac-41b736ecc2b8",
@@ -4621,12 +4621,12 @@
   ]
  },
  "adidas-metalbone-carbon-ctrl-3-5-2026": {
-  "tagline": "A precise, controlled round racket. The catch: players find it short on power.",
+  "tagline": "A precise, controlled round racket. The catch: it's short on power.",
   "bottom": "For control players who want a precise, firmer round racket. Skip it if you want free power.",
   "yes": [
    {
     "title": "Precise control",
-    "t": "Players like the ==precise control== of a stiff face over a soft core.",
+    "t": "==Precise control== from a stiff face over a soft core.",
     "for": [
      "control",
      "intermediate"
@@ -4656,7 +4656,7 @@
    },
    {
     "title": "A decent sweet spot",
-    "t": "Some find ==a good, playable sweet spot==, bigger than on the Nox.",
+    "t": "==A good, playable sweet spot==, bigger than on the Nox.",
     "for": [
      "intermediate"
     ],
@@ -4670,7 +4670,7 @@
   "no": [
    {
     "title": "Short on power",
-    "t": "Smashes and blocks ==lack pop==, and some find it too dead.",
+    "t": "Smashes and blocks ==lack pop==, and it can feel dead.",
     "for": [
      "power"
     ],
@@ -4698,7 +4698,7 @@
    },
    {
     "title": "A muted feel",
-    "t": "Some feel ==little ball feedback== and blocks that die on the face.",
+    "t": "==Little ball feedback==, and blocks can die on the face.",
     "for": [],
     "src": [
      "3150aefe-3ee9-4dd0-9494-ceaa304f8981",
@@ -4730,7 +4730,7 @@
    },
    {
     "title": "Handles better than it looks",
-    "t": "Players find it ==comfortable to move== even in quick volley exchanges.",
+    "t": "==Comfortable to move== even in quick volley exchanges.",
     "for": [
      "balance"
     ],
@@ -4761,7 +4761,7 @@
   "no": [
    {
     "title": "Hard and unforgiving",
-    "t": "Players call it ==hard and less tolerant==, harder than the V2 for some.",
+    "t": "==Hard and less tolerant==, harder than the V2.",
     "for": [
      "beginner",
      "intermediate"
@@ -4804,7 +4804,7 @@
   ]
  },
  "starvie-triton-plus-balance-2026": {
-  "tagline": "A lively diamond with easy pace. The catch: a small sweet spot that some find inconsistent.",
+  "tagline": "A lively diamond with easy pace. The catch: a small, inconsistent sweet spot.",
   "bottom": "For attacking intermediates who want a friendlier diamond. Skip it if you defend a lot or want max power.",
   "yes": [
    {
@@ -4890,7 +4890,7 @@
    },
    {
     "title": "Less punch than the Power",
-    "t": "Players say it ==cannot match the Power version's== top output.",
+    "t": "It ==cannot match the Power version's== top output.",
     "for": [
      "power"
     ],
@@ -4922,7 +4922,7 @@
    },
    {
     "title": "Light and quick for a diamond",
-    "t": "Players find it ==light and easy to accelerate== next to other Metalbones.",
+    "t": "==Light and easy to accelerate== next to other Metalbones.",
     "for": [
      "advanced"
     ],
@@ -5031,7 +5031,7 @@
    },
    {
     "title": "Elbow trouble",
-    "t": "Some felt ==elbow discomfort or arm fatigue==.",
+    "t": "It ==can cause elbow discomfort or arm fatigue==.",
     "for": [
      "arm"
     ],
@@ -5061,7 +5061,7 @@
    },
    {
     "title": "Comfortable on the arm",
-    "t": "Players find it ==easy on the elbow and shoulder== and very comfortable.",
+    "t": "==Easy on the elbow and shoulder== and very comfortable.",
     "for": [
      "arm"
     ],
@@ -5074,7 +5074,7 @@
   "no": [
    {
     "title": "Cracks in the face",
-    "t": "Two players saw ==cracks across the face== on a new racket.",
+    "t": "The face ==can crack==, even on a new racket.",
     "for": [],
     "src": [
      "research-5194e474-a2f3-4e80-9554-6f127203f9d4",
@@ -5153,7 +5153,7 @@
   "no": [
    {
     "title": "Too soft for big hitters",
-    "t": "Experienced players ==find smashes lack punch==.",
+    "t": "For experienced hitters, ==smashes lack punch==.",
     "for": [
      "power",
      "advanced"
@@ -5188,7 +5188,7 @@
   ]
  },
  "starvie-raptor-plus-2026": {
-  "tagline": "A forgiving all-rounder that is solid in defence. The catch: players disagree on its ball output.",
+  "tagline": "A forgiving all-rounder that is solid in defence. The catch: its ball output splits opinion.",
   "bottom": "For intermediates who want a forgiving racket for blocks and defence. Skip it if you want smash power.",
   "yes": [
    {
@@ -5206,7 +5206,7 @@
    },
    {
     "title": "Solid at the net",
-    "t": "Players like it ==for blocking and defensive volleys==.",
+    "t": "Strong ==for blocking and defensive volleys==.",
     "for": [
      "control"
     ],
@@ -5220,7 +5220,7 @@
   "no": [
    {
     "title": "Output splits players",
-    "t": "Some find ==too lively and soft==, others too little output.",
+    "t": "Output splits opinion: ==too lively and soft== for some, too little for others.",
     "for": [],
     "ev": "the #1 complaint, {n} players",
     "src": [
@@ -5298,7 +5298,7 @@
   "yes": [
    {
     "title": "Lots of control",
-    "t": "Players say it ==gives so much control== and solid, predictable play.",
+    "t": "==So much control==, with solid, predictable play.",
     "for": [
      "control"
     ],
@@ -5324,7 +5324,7 @@
   "no": [
    {
     "title": "Small sweet spot",
-    "t": "It ==needs clean technique== and some found it hard to play.",
+    "t": "It ==needs clean technique== and can be hard to play.",
     "for": [
      "beginner",
      "intermediate"
@@ -5371,12 +5371,12 @@
   ]
  },
  "babolat-counter-origin-2025": {
-  "tagline": "A soft, forgiving round racket for beginners. The catch: players outgrow it as they improve.",
+  "tagline": "A soft, forgiving round racket for beginners. The catch: you'll outgrow it as you improve.",
   "bottom": "For beginners and juniors who want a forgiving first racket. Skip it once you want firmer and more power.",
   "yes": [
    {
     "title": "A good first racket",
-    "t": "Players call it ==a fit for beginners==.",
+    "t": "==A good fit for beginners==.",
     "for": [
      "beginner"
     ],
@@ -5390,7 +5390,7 @@
   "no": [
    {
     "title": "Outgrown as you improve",
-    "t": "Experienced players ==want something firmer== with less trampoline.",
+    "t": "As you improve, you'll ==want something firmer== with less trampoline.",
     "for": [
      "intermediate",
      "advanced"
@@ -5409,7 +5409,7 @@
   "yes": [
    {
     "title": "Light and quick",
-    "t": "Players find it ==easy to swing and fast at the net== for a power racket.",
+    "t": "==Easy to swing and fast at the net== for a power racket.",
     "for": [
      "balance",
      "advanced"
@@ -5504,7 +5504,7 @@
    },
    {
     "title": "Harsh on some arms",
-    "t": "Some players found the stiff frame ==too harsh on the wrist or arm==.",
+    "t": "The stiff frame ==can be harsh on the wrist or arm==.",
     "for": [
      "arm"
     ],
@@ -5516,7 +5516,7 @@
    },
    {
     "title": "Needs good technique",
-    "t": "Several players say you ==need good technique== to get the most from it.",
+    "t": "You ==need good technique== to get the most from it.",
     "for": [
      "beginner",
      "intermediate"
@@ -5606,7 +5606,7 @@
    },
    {
     "title": "Easy on the arm",
-    "t": "Several players found it ==comfortable, with muted vibration==.",
+    "t": "==Comfortable, with muted vibration==.",
     "for": [
      "arm"
     ],
@@ -5620,7 +5620,7 @@
   "no": [
    {
     "title": "Cracks and breaks",
-    "t": "Many report the face ==cracking within months==, some on a smash.",
+    "t": "The face ==can crack within months==, sometimes on a smash.",
     "for": [],
     "ev": "the #1 complaint, {n} players",
     "src": [
@@ -5638,7 +5638,7 @@
    },
    {
     "title": "Little free power",
-    "t": "Players wanted ==more ball weight== and flat-smash punch than it gives.",
+    "t": "It lacks ==ball weight== and flat-smash punch.",
     "for": [
      "power"
     ],
@@ -5652,7 +5652,7 @@
    },
    {
     "title": "Cheap-feeling finish",
-    "t": "Players report ==chips, paint flaws and rattles== on new units.",
+    "t": "New units can have ==chips, paint flaws and rattles==.",
     "for": [],
     "src": [
      "research-bf72d8f6-b4b7-467f-9d22-7810c4c38613",
@@ -5740,7 +5740,7 @@
    },
    {
     "title": "Tiring on the arm",
-    "t": "Players feel ==shoulder and arm fatigue== in longer matches.",
+    "t": "It ==tires the shoulder and arm== in longer matches.",
     "for": [
      "arm"
     ],
@@ -5803,7 +5803,7 @@
    },
    {
     "title": "Easier than a diamond",
-    "t": "Players call it ==surprisingly manageable== for a diamond.",
+    "t": "==Surprisingly manageable== for a diamond.",
     "for": [
      "intermediate"
     ],
@@ -5849,7 +5849,7 @@
    },
    {
     "title": "Sweet spot not easy",
-    "t": "Players say the ==sweet spot isn't large== or easy to find.",
+    "t": "The ==sweet spot isn't large== or easy to find.",
     "for": [
      "intermediate"
     ],
@@ -5879,7 +5879,7 @@
   "yes": [
    {
     "title": "Dry, reassuring control",
-    "t": "Players trust it ==at pace and at the net==; volleys and lobs stay controlled.",
+    "t": "==Dependable at pace and at the net==; volleys and lobs stay controlled.",
     "for": [
      "control",
      "intermediate"
@@ -6016,7 +6016,7 @@
    },
    {
     "title": "Crisp volleys",
-    "t": "Players find volleys ==crisp and easy to place== with good feedback.",
+    "t": "Volleys are ==crisp and easy to place==, with good feedback.",
     "for": [
      "control",
      "intermediate"
@@ -6295,7 +6295,7 @@
   "yes": [
    {
     "title": "Kind to sore arms",
-    "t": "Players with elbow or shoulder pain ==reach for it==.",
+    "t": "A ==go-to for elbow or shoulder pain==.",
     "for": [
      "arm"
     ],
@@ -6319,7 +6319,7 @@
   "no": [
    {
     "title": "Not as easy as it sounds",
-    "t": "Some players found it ==a bit demanding and head-heavy== for a comfort racket.",
+    "t": "==A bit demanding and head-heavy== for a comfort racket.",
     "for": [
      "beginner"
     ],
@@ -6348,7 +6348,7 @@
    },
    {
     "title": "Soft on the arm",
-    "t": "Players find it ==comfortable and not harsh== for a carbon diamond.",
+    "t": "==Comfortable and not harsh== for a carbon diamond.",
     "for": [
      "arm"
     ],
@@ -6374,7 +6374,7 @@
    },
    {
     "title": "Cracks early",
-    "t": "The face ==cracked after a few games== for several players.",
+    "t": "The face ==can crack after a few games==.",
     "for": [],
     "src": [
      "research-0312b55f-5ec5-4d68-8588-2d625133814e",
@@ -6463,7 +6463,7 @@
   "no": [
    {
     "title": "No free smash power",
-    "t": "Players say you ==have to swing hard== for power; it isn't built for smashes.",
+    "t": "You ==have to swing hard== for power; it isn't built for smashes.",
     "for": [
      "power"
     ],
@@ -6496,7 +6496,7 @@
    },
    {
     "title": "Light and quick",
-    "t": "Players call it ==very light and manoeuvrable== at the net and in defence.",
+    "t": "==Very light and manoeuvrable== at the net and in defence.",
     "for": [
      "balance"
     ],
@@ -6539,7 +6539,7 @@
   "no": [
    {
     "title": "Heavy in practice",
-    "t": "Units weighed ==368–383 g==, and one player's shoulder suffered.",
+    "t": "Units come in at ==368–383 g==, heavy enough to strain a shoulder.",
     "for": [
      "arm"
     ],
@@ -6575,7 +6575,7 @@
    },
    {
     "title": "Easy on arms",
-    "t": "Several players report ==no arm pain, even after hours== of play.",
+    "t": "==No arm pain, even after hours== of play.",
     "for": [
      "arm"
     ],
@@ -6607,7 +6607,7 @@
   "no": [
    {
     "title": "Little free power",
-    "t": "It gives ==useful, not explosive power==, and some find smashes lack pop.",
+    "t": "==Useful, not explosive power==; smashes can lack pop.",
     "for": [
      "power"
     ],
@@ -6622,7 +6622,7 @@
    },
    {
     "title": "Heavy up top",
-    "t": "Some players find it ==heavy and slow to manoeuvre==, which shows in defence.",
+    "t": "==Heavy and slow to manoeuvre==, which shows in defence.",
     "for": [
      "intermediate"
     ],
@@ -6652,7 +6652,7 @@
    },
    {
     "title": "Soft for some",
-    "t": "A few players found it ==too soft, with a trampoline effect on fast blocks==.",
+    "t": "It ==can feel too soft, with a trampoline effect on fast blocks==.",
     "for": [
      "control"
     ],
@@ -6691,7 +6691,7 @@
    },
    {
     "title": "Easy in defence",
-    "t": "Players find it ==easy to defend with==, with good directional control on blocks.",
+    "t": "==Easy to defend with==, with good directional control on blocks.",
     "for": [
      "control",
      "advanced"
@@ -6723,7 +6723,7 @@
    },
    {
     "title": "Little trampoline",
-    "t": "Players coming from bouncier rackets find ==much less springiness==.",
+    "t": "Coming from bouncier rackets, you get ==much less springiness==.",
     "for": [
      "control"
     ],
@@ -6757,7 +6757,7 @@
    },
    {
     "title": "Off-centre hits die",
-    "t": "Mishits ==lose output or drop into the net==, and some find the sweet spot small.",
+    "t": "Mishits ==lose output or drop into the net==; the sweet spot is small.",
     "for": [],
     "src": [
      "935cc37c-83d4-43da-b709-f9ac765337fc",
@@ -6769,7 +6769,7 @@
    },
    {
     "title": "Bouncy for some",
-    "t": "A few players find it ==too lively==, with volleys and lobs flying long.",
+    "t": "It ==can feel too lively==, with volleys and lobs flying long.",
     "for": [
      "control"
     ],
@@ -6926,7 +6926,7 @@
   "no": [
    {
     "title": "Short on power",
-    "t": "Players ==struggle to accelerate== smashes and víboras, and the Pro hits harder.",
+    "t": "It's ==hard to accelerate== on smashes and víboras; the Pro hits harder.",
     "for": [
      "power"
     ],
@@ -6943,7 +6943,7 @@
    },
    {
     "title": "Mixed on sore arms",
-    "t": "Two players with sore arms ==did not find it any easier== on them than other rackets.",
+    "t": "Mixed on sore arms: ==not clearly easier on them== than other rackets.",
     "for": [
      "arm"
     ],
@@ -6972,7 +6972,7 @@
    },
    {
     "title": "Punch with less effort",
-    "t": "Players say it gives ==punch with little effort== compared with the regular version.",
+    "t": "==Punch with little effort== compared with the regular version.",
     "for": [
      "power"
     ],
@@ -7040,7 +7040,7 @@
   "yes": [
    {
     "title": "Dry and precise",
-    "t": "Players get ==excellent control== on touch, lobs and blocks from a dry, crisp face.",
+    "t": "==Excellent control== on touch, lobs and blocks from a dry, crisp face.",
     "for": [
      "control",
      "intermediate"
@@ -7071,7 +7071,7 @@
    },
    {
     "title": "Little trampoline",
-    "t": "Players coming from bouncier rackets get ==much less rebound== to manage.",
+    "t": "Coming from bouncier rackets, you get ==much less rebound== to manage.",
     "for": [
      "control"
     ],
@@ -7085,7 +7085,7 @@
   "no": [
    {
     "title": "Heavy in the hand",
-    "t": "Players find it ==hefty and slow to manoeuvre==, and some want it lighter.",
+    "t": "==Hefty and slow to manoeuvre==; lighter rackets move faster.",
     "for": [],
     "src": [
      "bfcf2468-6b91-4ff3-992c-fdff62eb7cd6",
@@ -7097,7 +7097,7 @@
    },
    {
     "title": "You make the power",
-    "t": "Players say ==you do most of the work==; it lacks free punch when you want more.",
+    "t": "==You do most of the work==; it lacks free punch when you want more.",
     "for": [
      "power"
     ],
@@ -7138,7 +7138,7 @@
    },
    {
     "title": "A balanced compromise",
-    "t": "Players call it a ==good mix of punch and touch== with a medium-style balance.",
+    "t": "A ==good mix of punch and touch== with a medium-style balance.",
     "for": [
      "balance",
      "intermediate"
@@ -7153,7 +7153,7 @@
   "no": [
    {
     "title": "Heavy in defence",
-    "t": "Players call it ==heavy and tough in defence==, and tiring over a full match.",
+    "t": "==Heavy and tough in defence==, and tiring over a full match.",
     "for": [
      "control"
     ],
@@ -7174,12 +7174,12 @@
   ]
  },
  "bullpadel-hack-05-hybrid-2027": {
-  "tagline": "A controlled all-rounder with easy lobs. The catch: some find it dry and dead.",
-  "bottom": "For players who want control and easy lobs. Demo it first, as players are split on the dry feel.",
+  "tagline": "A controlled all-rounder with easy lobs. The catch: it can feel dry and dead.",
+  "bottom": "For players who want control and easy lobs. Demo it first: the dry feel splits opinion.",
   "yes": [
    {
     "title": "Precise control",
-    "t": "Players praise ==precise control and placement==, especially on lobs and volleys.",
+    "t": "==Precise control and placement==, especially on lobs and volleys.",
     "for": [
      "control"
     ],
@@ -7206,7 +7206,7 @@
   "no": [
    {
     "title": "Dry and lifeless for some",
-    "t": "Two players called it a ==“soulless wooden board”== with no feel or power.",
+    "t": "It ==can feel dry and lifeless==, with little feel or power.",
     "for": [],
     "src": [
      "research-800a03e4-cd5f-4557-a7d7-d40da06ce417",
@@ -7215,7 +7215,7 @@
    },
    {
     "title": "Smashes need a push",
-    "t": "Players say ==smashes and víboras need a full swing== to get power.",
+    "t": "==Smashes and víboras need a full swing== to get power.",
     "for": [
      "power"
     ],
@@ -7396,7 +7396,7 @@
   "yes": [
    {
     "title": "Wide sweet spot",
-    "t": "Players describe a ==big, forgiving sweet spot== that eases mishits.",
+    "t": "A ==big, forgiving sweet spot== that eases mishits.",
     "for": [
      "intermediate"
     ],
