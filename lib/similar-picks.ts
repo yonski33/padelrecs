@@ -2,6 +2,21 @@
 // feed them directly. The pages gather the inputs from their own context (app/rackets/[slug]/racket-fit.tsx, app/skin/
 // skin-product.tsx, the old product page) and the lists are worked out with the page, so nothing extra ships to the browser.
 
+import { hasAttribution } from "./voice";
+
+/** A card's line in the expert voice (owner 2026-11-16): the clauses before any "some / many players …" one, so "Big distance
+ *  once seasoned; many turn it over" reads "Big distance once seasoned." Null when nothing is left. */
+const CROWD = /\b(many|some|several|a few|most|users|people|players|drivers|throwers)\b/i;
+export function expertLine(text: string | null | undefined): string | null {
+  if (!text) return null;
+  // Clauses with the punctuation after them ("…; ", "…. "), so what is kept reads as written.
+  let out = "";
+  for (const m of text.matchAll(/[^;.]+(?:[;.]+\s*|$)/g)) { if (hasAttribution(m[0]) || CROWD.test(m[0])) break; out += m[0]; }
+  out = out.trim().replace(/[;,]$/, ".");
+  if (out && !/[.!?]$/.test(out)) out += ".";
+  return out.length >= 12 ? out : null;
+}
+
 /** The tile colours, in order (the mockups' four). */
 export const TINTS = ["var(--s-acc)", "#fff", "oklch(0.92 0.13 95)", "oklch(0.9 0.06 230)"] as const;
 export const tint = (i: number) => TINTS[i % TINTS.length];

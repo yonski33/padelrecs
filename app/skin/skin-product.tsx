@@ -18,8 +18,7 @@ import RacketReviews, { type ReviewCard } from "../rackets/[slug]/racket-reviews
 import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
 import { V2Footer } from "../v2-footer";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../similar-section";
-import { routinePairs, tint, ROUTINE, type SkinItem as PairItem } from "../../lib/similar-picks";
-import { hasAttribution } from "../../lib/voice";
+import { routinePairs, tint, ROUTINE, expertLine, type SkinItem as PairItem } from "../../lib/similar-picks";
 const SKIN_SUITS = ["suits_dry", "suits_oily", "suits_combination", "suits_normal", "suits_sensitive", "suits_acne"];
 import { withModelYears, rankingHref } from "../../lib/top-lists";
 
@@ -101,7 +100,7 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
     const x = data.rackets.find(y => y.id === id)!, b = data.brands.find(y => y.id === x.brandId)?.name, pr = ctx.attrs.get(id)?.facts.price;
     return { id, name: displayName(x.name, b), href: productHref(x), tag: TILE[x.shape ?? ""] ?? (x.shape ?? "").toLowerCase(), tint: tint(i), why,
       // The product's own words (lib/skin-page.ts, expert voice), else its short lines, never a line that says who said it.
-      line: [skinPage(x.slug)?.bottom.split(/(?<=\.)\s/)[0], shortLine(x), listLine(x)].find((t): t is string => !!t && !hasAttribution(t)) ?? null, score: ctx.signal(id), price: typeof pr === "string" ? pr : null };
+      line: [skinPage(x.slug)?.bottom.split(/(?<=\.)\s/)[0], shortLine(x), listLine(x)].map(expertLine).find((t): t is string => !!t) ?? null, score: ctx.signal(id), price: typeof pr === "string" ? pr : null };
   };
   const counted = (id: string) => (ctx.counts.get(id)?.n ?? 0) >= 3;
   const sameType = data.listed.filter(x => x.shape === r.shape && x.id !== r.id && x.name !== r.name && counted(x.id))

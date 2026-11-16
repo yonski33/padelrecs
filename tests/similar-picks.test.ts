@@ -44,3 +44,12 @@ test("works with: rims and bases from the same ecosystem on a shared platform; a
   assert.equal(w[0].why, "same ecosystem");
   assert.deepEqual(platformsOf("PC, PlayStation and Xbox"), ["PC", "PlayStation", "Xbox"]);
 });
+
+test("card lines keep the expert voice: the clauses before a 'many / some players' one", async () => {
+  const { expertLine } = await import("../lib/similar-picks");
+  assert.equal(expertLine("Big distance once seasoned, especially forehand; many turn it over."), "Big distance once seasoned, especially forehand.");
+  assert.equal(expertLine("A soft, forgiving control racket. The catch: little power."), "A soft, forgiving control racket. The catch: little power.");
+  assert.equal(expertLine("Solid, arm-friendly and better than the 2024; heavy for a few."), "Solid, arm-friendly and better than the 2024.");
+  assert.equal(expertLine("Users mostly find it slick."), null);
+  assert.equal(expertLine(null), null);
+});

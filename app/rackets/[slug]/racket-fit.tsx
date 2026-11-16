@@ -10,7 +10,7 @@ import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
 import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, FitYesNo, FitSimilar, BeforePicks, type SaidView, type CompareCard } from "./fit-live";
 import type { SimilarItem, SimilarTab } from "../../similar-section";
-import { aheadWord, tint, completeBag, flightOf, type Disc } from "../../../lib/similar-picks";
+import { aheadWord, tint, completeBag, flightOf, expertLine, type Disc } from "../../../lib/similar-picks";
 import { withModelYears, rankingHref as listHref } from "../../../lib/top-lists";
 import { shortLine } from "../../../lib/short-lines";
 import { listLine } from "../../../lib/list-lines";
@@ -236,7 +236,7 @@ export default async function RacketFit(props: {
   const tagOf = (id: string) => { const c = payload.cards[id]; return c?.flight ? c.flight.join(" ") : c?.shape ?? racketOf(id).shape?.toLowerCase() ?? niche.words.one; };
   // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
   const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
-    .find((t): t is string => !!t && !hasAttribution(t)) ?? null;
+    .map(expertLine).find((t): t is string => !!t) ?? null;
   const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
   const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
   const myKindType = typeOf(kindOfId(props.racketId));
