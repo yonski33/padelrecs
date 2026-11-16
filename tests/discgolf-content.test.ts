@@ -64,3 +64,22 @@ test("discgolf items: body adds to the title, biggest catch first, no medical or
     }
   }
 });
+
+// The Grok validator's remaining checks (scripts/grok/validate.py), so CI enforces them on the stored content too:
+// no yes/no clash without a condition, and the tagline's catch is the biggest catch.
+const PAIRS: [RegExp, RegExp][] = [
+  [/stable|holds? (a |its )?line|straight/, /flip|turns? over too|too understable/], [/understable|turns? over|flips? up/, /too overstable|won.t turn|fades? hard/],
+  [/glide|glidey/, /little glide|drops? out|no glide/], [/grip|tacky/, /slippery|slick/],
+  [/durab|lasts|holds up|keeps its flight/, /beats? in fast|wears? (out )?fast|beat in within/],
+  [/easy (to throw|for slow)|slow arm|beginner/, /needs? (a )?(big|power) arm|not a first|too fast for/]];
+const CONDITION = /\bcan\b|some|split|\bdx\b|light|beat|worn|wear|plastic|\d+ ?g\b|big arm|power arm|fresh|new|copies|runs?\b|max-weight|heav|slow|bigger arm|hard throws|flat|ripped|snapped|fast|forced|yanked/;
+test("disc golf content: no unconditioned yes/no clash, tagline catch is the biggest catch", () => {
+  for (const [slug, v] of Object.entries(page as Record<string, PageContent>)) {
+    const Y = v.yes.map(i => `${i.title} ${i.t}`).join(" ").toLowerCase(), N = v.no.map(i => `${i.title} ${i.t}`).join(" ").toLowerCase();
+    for (const [y, n] of PAIRS) assert.ok(!(y.test(Y) && n.test(N) && !CONDITION.test(N)), `${slug}: yes/no clash ${y} vs ${n} without a condition`);
+    const cat = v.tagline.split("The catch:")[1];
+    assert.ok(cat, `${slug}: tagline needs "The catch:"`);
+    const a = words(cat!), b = words(`${v.no[0].title} ${v.no[0].t}`);
+    assert.ok([...a].some(w => b.has(w)), `${slug}: the tagline's catch should be the biggest catch (${v.no[0].title})`);
+  }
+});

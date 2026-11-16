@@ -85,3 +85,19 @@ if extra: print('unknown slugs in output:',sorted(extra))
 for s,r,p in rows:
   if r.startswith('FAIL') or r=='SKIP':
     print(f'\n## {s} ({r})'); [print('  -',x) for x in p]
+
+# --fix <file.md> [notes.json]: write a fix list for Grok (failures + hand-review notes {slug: [note, …]})
+if '--fix' in sys.argv:
+  fx=sys.argv[sys.argv.index('--fix')+1]; notes=json.load(open(sys.argv[sys.argv.index('--fix')+2])) if len(sys.argv)>sys.argv.index('--fix')+2 else {}
+  bad={s:p for s,r,p in rows if r.startswith('FAIL')}
+  for s,n in notes.items(): bad.setdefault(s,[]).extend(n)
+  if not bad: print('no fixes needed'); sys.exit(0)
+  B=re.search(r'batch-(\d+)',sys.argv[1]).group(1)
+  L=[f'# Fix list for DiscGolfRecs batch {B}','',f'Your batch {B} JSON had problems in {len(bad)} discs. Keep every rule from the brief. Rewrite ONLY the discs',
+     'below so each problem is fixed, and reply with ONE JSON object holding just those discs (same schema, nothing else).',
+     'Notes: "why_not[0] is not the best-supported catch" means re-sort the side so the item with the most valid sources is first',
+     '(and make the tagline\'s "The catch:" that item). "body repeats title" means rename the title so it shares no words with the text.',
+     'If a claim is marked unsupported, drop it or replace it with one the snippets do say.','']
+  for s,p in bad.items():
+    L.append(f'## {s}'); L+= [f'- {x}' for x in p]; L.append('')
+  open(fx,'w').write('\n'.join(L)); print('fix list:',fx,len(bad),'discs')
