@@ -35,7 +35,7 @@ test("match box: weak fit says one But: the level when it decides, else the catc
     + "But out of the box flat smashes lack pop; players move the weights up top.");
 });
 test("match box: never 'owners'", () => {
-  assert.equal(fitReason("maybe", [{ title: "x", t: "One owner says it's great; owners agree." }], [], pick("any", null)), "What suits your game: one player says it's great; players agree.");
+  assert.equal(fitReason("maybe", [{ title: "x", t: "One owner says it's great; owners agree." }], [], pick("any", null)), "Its strength: one player says it's great; players agree.");
 });
 test("match box: every sentence stays within 105 characters", () => {
     const long: ReasonItem[] = [{ title: "Huge sweet spot", t: "Almost the whole racket is sweet spot, and even the edges send the ball deep with very little effort from you." }];
