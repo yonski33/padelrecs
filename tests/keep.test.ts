@@ -27,3 +27,11 @@ test("warm-up picks the site's own pages first, skips the prebuilt quick-match h
   assert.deepEqual(pickPages(xml, o, 10), [`${o}/`, `${o}/rackets`, `${o}/rankings/best`, `${o}/?type=cleansers&skin=dry`, `${o}/rackets/a`, `${o}/rackets/b`]);
   assert.equal(pickPages(xml, o, 2).length, 2);
 });
+
+test("the racket page's seed stands in only for the same picks", async () => {
+  const { sameChoice } = await import("../lib/rank-seed");
+  assert.ok(sameChoice({ style: "power", level: "beginner", arm: false }, { arm: false, level: "beginner", style: "power" }));
+  assert.ok(sameChoice({ style: "any", arm: false }, { style: "any", arm: false, fine: undefined }));
+  assert.ok(!sameChoice({ style: "power", arm: false }, { style: "power", arm: true }));
+  assert.ok(!sameChoice({ style: "power", arm: false }, { style: "power", arm: false, fine: { shape: "round" } }));
+});

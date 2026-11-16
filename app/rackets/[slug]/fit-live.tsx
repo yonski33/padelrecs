@@ -16,25 +16,47 @@ import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
 import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
 import { fitReasonParts, type ReasonPart } from "../../../lib/fit-reason";
+import { RANK_SETUP, NEGATIVE_TAGS, sameChoice, type RankSeed } from "../../../lib/rank-seed";
 
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability words, arm pick and compare words. Unset: padel's. */
 const CFG = fitConfigFor(niche), QUICK = CFG?.quick ? CFG : null;
 const styleWord = (s: QuickChoice["style"]) => QUICK && s !== "any" ? (QUICK.styleLabels[s] ?? STYLE_WORD[s]).toLowerCase() : STYLE_WORD[s];
 const ARM_WORD = QUICK?.quick?.arm ?? "sore arm", USE_WORD = QUICK ? "flies" : "plays";
-const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
-const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
+const BAD = NEGATIVE_TAGS, SETUP = RANK_SETUP;
 const PICK_KEYS = ["style", "level", "arm"];
 
 type Picks = { choice: QuickChoice; picked: boolean };
 const Ctx = createContext<{ p: Picks; set: (p: Picks) => void; href: string } | null>(null);
+/** The engine's items for the picks (lib/home-rank.ts), loaded from /api/rank-items when the page opens: one cached file for
+ *  every racket page (they were 270 KB of each page's HTML). Until they arrive, the server's answer for the address's picks
+ *  (lib/rank-seed.ts) stands in; other picks made before then wait for them, and the box shows the questions. */
+const ItemsCtx = createContext<{ items: RankItem[] | null; seed: RankSeed | null }>({ items: null, seed: null });
+export const ITEMS_URL = "/api/rank-items";
+/** The picks and their answers for this racket: from the items, or from the server's seed while they load. */
+function useRank(id: string, facts?: FitFacts) {
+  const { p: { choice, picked: asked } } = use(), { items, seed } = useContext(ItemsCtx);
+  const s = !items && seed && sameChoice(seed.choice, choice) ? seed : null, picked = asked && (!!items || !!s);
+  return {
+    choice, picked,
+    verdict: () => items && facts ? verdictFor(items, choice, facts, id, SETUP.levelGate, SETUP.engine) : s!.verdict,
+    pct: () => items ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine).get(id) ?? null : s!.pct,
+    alts: (n: 4 | 6) => items ? alternatives(items, SETUP, BAD, choice, id, n) : n === 4 ? s!.alts4 : s!.alts6,
+  };
+}
 const use = () => useContext(Ctx)!;
 const fromLocation = (): Picks => { const q = Object.fromEntries(new URLSearchParams(location.search)); return { choice: readChoice(q), picked: PICK_KEYS.some(k => k in q) }; };
 
-export function FitPicks({ first, href, children }: { first: Picks; href: string; children: ReactNode }) {
+export function FitPicks({ first, href, seed = null, children }: { first: Picks; href: string; seed?: RankSeed | null; children: ReactNode }) {
   // Back and forward step through the picks (app/instant-view.ts).
   const [p, set] = useInstantView(first, fromLocation, next => { const h = choiceHref(next.choice, ""); return !next.picked ? href : h === "/" ? `${href}?style=any` : `${href}${h.slice(1)}`; });
   const [result, setResult] = useState<FitResult | null>(null);
-  return <Ctx.Provider value={{ p, set, href }}><ResultCtx.Provider value={{ result, setResult }}>{children}</ResultCtx.Provider></Ctx.Provider>;
+  const [items, setItems] = useState<RankItem[] | null>(null);
+  useEffect(() => {
+    let live = true;
+    fetch(ITEMS_URL).then(r => r.ok ? r.json() : null).then((x: RankItem[] | null) => { if (live && Array.isArray(x) && x.length) setItems(x); }, () => {});
+    return () => { live = false; };
+  }, []);
+  return <Ctx.Provider value={{ p, set, href }}><ItemsCtx.Provider value={{ items, seed }}><ResultCtx.Provider value={{ result, setResult }}>{children}</ResultCtx.Provider></ItemsCtx.Provider></Ctx.Provider>;
 }
 
 /** The fit check's answer as FitBox works it out, shared so the sticky box shows the same % and word (one source). */
@@ -78,14 +100,14 @@ export function boldName(t: string, name: string): ReactNode {
   return <>{parts.slice(0, best[0]).join("")}<b>{bold}</b>{tail}{parts.slice(best[1] + 1).join("")}</>;
 }
 
-export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree, card, yesNo }: { id: string; items: RankItem[]; facts: FitFacts;
+export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, yesNo }: { id: string; facts: FitFacts;
   hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
   /** The page's Why yes / Why not items: the reason line's source and the "See why ↓" target. */ yesNo?: { yes: PageItem[]; no: PageItem[] } | null }) {
-  const { p: { choice, picked }, set } = use(), to = useGo();
-  const verdict = picked ? verdictFor(items, choice, facts, id, SETUP.levelGate, SETUP.engine) : null;
+  const { set } = use(), to = useGo(), rank = useRank(id, facts), { choice, picked } = rank;
+  const verdict = picked ? rank.verdict() : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
-  const pct = verdict ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine).get(id) ?? null : null;
+  const pct = verdict ? rank.pct() : null;
   const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
   usePublish(verdict ? { kind: verdict.kind, pct, word: verdictWord } : null);
   // Fallback (no racket lines): the fit check's own reasons, with counts in words (owner: no player numbers).
@@ -168,12 +190,12 @@ export function FitSaid({ views }: { views: Record<string, SaidView> }) {
 
 export type AltCard = { name: string; href: string; pic: string | null; why: string | null; score: number | null };
 /** "Better matches for you" with picks (the home list's order for them); "Similar rackets" without (from the server). */
-export function FitAlts({ id, items, facts, cards, similar, brandLink, similarTitle }: { id: string; items: RankItem[]; facts: FitFacts; cards: Record<string, Omit<AltCard, "score">>;
+export function FitAlts({ id, facts, cards, similar, brandLink, similarTitle }: { id: string; facts: FitFacts; cards: Record<string, Omit<AltCard, "score">>;
   similar: AltCard[]; brandLink: { href: string; label: string } | null; similarTitle: string }) {
-  const { p: { choice, picked } } = use();
-  const verdict = picked ? verdictFor(items, choice, facts, id, SETUP.levelGate, SETUP.engine) : null;
+  const rank = useRank(id, facts), { choice, picked } = rank;
+  const verdict = picked ? rank.verdict() : null;
   const picks = picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : "";
-  const rows: AltCard[] = picked ? alternatives(items, SETUP, BAD, choice, id).flatMap(r => cards[r.id] ? [{ ...cards[r.id], score: r.pct }] : []) : similar;
+  const rows: AltCard[] = picked ? rank.alts(4).flatMap(r => cards[r.id] ? [{ ...cards[r.id], score: r.pct }] : []) : similar;
   const title = !picked ? similarTitle : verdict?.kind === "good" ? "Also worth a look" : "Better matches for you";
   return <div>
     <div className="rf-h"><h2>{title}</h2>{picked ? <a href={choiceHref(choice)}>all →</a> : brandLink && <a href={brandLink.href}>{brandLink.label}</a>}</div>
@@ -224,10 +246,10 @@ const Segs = ({ n }: { n: number }) => n ? <span className="rf-segs" role="img" 
 /** "How it plays & compares" (owner's final mock): tab one is this racket's six trait bars with a short note each; the other
  *  tabs set it beside an alternative. With picks, the alternatives are the visitor's better matches (lib/home-rank.ts, the
  *  home's order); without, similar rackets from the server. */
-export function FitCompare({ id, items, me, rows, cards, similar }: { id: string; items: RankItem[]; me: CompareCard;
+export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: CompareCard;
   rows: { label: string; note: string }[]; cards: Record<string, CompareCard>; similar: string[] }) {
-  const { p: { choice, picked } } = use();
-  const alts = (picked ? alternatives(items, SETUP, BAD, choice, id, 6).map(r => r.id) : similar).filter(x => cards[x] && x !== id).slice(0, 3);
+  const rank = useRank(id), { choice, picked } = rank;
+  const alts = (picked ? rank.alts(6).map(r => r.id) : similar).filter(x => cards[x] && x !== id).slice(0, 3);
   const [tab, setTab] = useState<string>("me");
   const cur = tab !== "me" && alts.includes(tab) ? cards[tab] : null;
   return <div className="rp-cmp">
