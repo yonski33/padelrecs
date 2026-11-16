@@ -1,0 +1,1922 @@
+{
+ "gt-omega-prime-lite-r": {
+  "tagline": "Entry-level aluminium profile cockpit. The catch: the pedal plate won't fit some pedal sets.",
+  "bottom": "For a first profile rig with a 9 to 12 Nm base on a budget. Skip it if your pedals need a custom mount.",
+  "yes": [
+   {
+    "title": "Stiff on a budget",
+    "t": "Takes ==8 to 12 Nm bases== and load-cell pedals with no wheel or pedal movement.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "9de41548-aa87-4ac7-9d0c-06408f8d9452",
+     "research-72d72b9e-c1c0-4cd7-8c04-d6e8f3239d61",
+     "research-fedfdbf7-1fc4-4cbc-8918-d50e039280b2",
+     "research-422d7a47-3788-4919-a933-1f20d50f7b70",
+     "research-05c64a6d-7447-4bdb-9ef8-6ac5f98b9507",
+     "research-025bce52-c123-47c3-ad8c-0f3f8582cc9a"
+    ]
+   },
+   {
+    "title": "Bargain profile frame",
+    "t": "Brings an ==aluminium profile rig== down to entry-level money with clean finishing.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "9de41548-aa87-4ac7-9d0c-06408f8d9452",
+     "a55a65d0-e8f9-44f8-b06d-58f3b619a8e3",
+     "research-fedfdbf7-1fc4-4cbc-8918-d50e039280b2",
+     "research-422d7a47-3788-4919-a933-1f20d50f7b70",
+     "research-05c64a6d-7447-4bdb-9ef8-6ac5f98b9507"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Awkward pedal plate",
+    "t": "Hole placement means ==some pedal sets== mount on one side only or need a workaround.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-72d72b9e-c1c0-4cd7-8c04-d6e8f3239d61",
+     "research-4b368484-4a16-4f07-b168-70fc3f93cb66",
+     "research-657aeb5c-e553-4d3c-804a-11f865c5968f",
+     "research-241883b7-fc99-42da-bb4c-304e7f5e14a6"
+    ]
+   },
+   {
+    "title": "Bends at the centre",
+    "t": "Can ==roll and flex== under hard braking or high-force moments; bolts may loosen.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "ea15b754-b4c3-4fe8-91a2-f34483253585",
+     "a71830f1-eada-4e32-94b9-818a2567db8b",
+     "research-a8b9f9e4-c9cb-45b5-824b-3c233d290633"
+    ]
+   }
+  ]
+ },
+ "asetek-initium-direct-drive-wheelbase": {
+  "tagline": "Entry 5.5 Nm direct drive base for PC. The catch: fine surface detail trails similarly priced rivals.",
+  "bottom": "For a first direct drive step up from a gear wheel on PC. Console racers and detail chasers should skip.",
+  "yes": [
+   {
+    "title": "Clean cues at stock",
+    "t": "Kerbs, grass and ==weight transfer== come through smoothly with no cogging.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "7ca6fa8d-8f89-4810-8dba-27678ccf4df6",
+     "7ab2ccfa-b9a7-42fb-8702-ff6875c735ab",
+     "eaea4d88-3218-48b6-9f57-8e710cee9912",
+     "c2ffc9ea-781a-43e0-9e67-ff1d379ca073",
+     "c15663bf-9662-419d-8a6d-f9dee05a5b17",
+     "a8fcd5ac-4577-40a1-a734-285a288c3804",
+     "f7f336ad-cac2-4ab5-95fa-3185f2f432c3"
+    ]
+   },
+   {
+    "title": "Cast aluminium shell",
+    "t": "Feels heavy and ==runs cool== with no thermal fade at the stock output.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "e55b83c7-c95f-434e-83eb-748b1ed84eaa",
+     "c2ffc9ea-781a-43e0-9e67-ff1d379ca073",
+     "e3d264ad-46c9-49b3-a85d-f66a89508ff3",
+     "11be1cea-e2ef-4d2c-9d0f-694e4bfea7e6"
+    ]
+   },
+   {
+    "title": "Simple rig mounting",
+    "t": "Captive nuts and ==sliding channels== make bolting to a profile rig straightforward.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "7ca6fa8d-8f89-4810-8dba-27678ccf4df6",
+     "e3d264ad-46c9-49b3-a85d-f66a89508ff3",
+     "a8fcd5ac-4577-40a1-a734-285a288c3804"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Less micro-detail",
+    "t": "Texture and micro-slips are ==drawn less clearly== than on rivals; 14-bit encoder.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "7ab2ccfa-b9a7-42fb-8702-ff6875c735ab",
+     "eaea4d88-3218-48b6-9f57-8e710cee9912",
+     "1cf922f1-2cb6-4350-b8b3-872450311df0",
+     "e3d264ad-46c9-49b3-a85d-f66a89508ff3",
+     "f7f336ad-cac2-4ab5-95fa-3185f2f432c3",
+     "11be1cea-e2ef-4d2c-9d0f-694e4bfea7e6"
+    ]
+   },
+   {
+    "title": "Stubborn quick release",
+    "t": "The plastic QR ==can stick== or feel stiff for the first few swaps.",
+    "for": [],
+    "src": [
+     "c2ffc9ea-781a-43e0-9e67-ff1d379ca073",
+     "e3d264ad-46c9-49b3-a85d-f66a89508ff3",
+     "22ba7dd5-dfd2-4514-8785-b6e7fcf0db6a"
+    ]
+   },
+   {
+    "title": "Light out of the box",
+    "t": "At ==5.5 Nm stock== corners can feel light; 8 Nm power is the next step.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "8caf1a77-59d0-4224-949f-05f87d767069",
+     "22ba7dd5-dfd2-4514-8785-b6e7fcf0db6a"
+    ]
+   }
+  ]
+ },
+ "fanatec-csl-dd-5-nm": {
+  "tagline": "Compact 5 Nm direct drive base for PC and Xbox. The catch: there is too little weight at stock output.",
+  "bottom": "For a quiet first direct drive step up from a gear wheel. Skip it if you want weight without a boost kit.",
+  "yes": [
+   {
+    "title": "Quiet and smooth",
+    "t": "Passive cooling keeps it ==silent and cool== with an immediate, slick feel.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "d41b660e-f3a5-4f0c-ad67-ac03a117eb5b",
+     "d045e4c8-bf76-4a2a-8214-9ac9152ad047",
+     "2ea0fe72-66b5-466d-a8b1-1186ba3174c7",
+     "cac629c6-3340-484c-893a-c8e8e1088632",
+     "research-dca0d9c2-65f3-4ba7-bf29-eb30e8823fff"
+    ]
+   },
+   {
+    "title": "Huge leap from gears",
+    "t": "Coming from a G29 or T128 it adds ==feel for catching slides== and smoother steering.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "cac629c6-3340-484c-893a-c8e8e1088632",
+     "research-9242d486-9494-4bb9-9b3e-de3410641110",
+     "research-dca0d9c2-65f3-4ba7-bf29-eb30e8823fff",
+     "research-513da5e6-3f33-4d8c-9ceb-648f67d1060a",
+     "research-f52f2599-c634-4a0f-b89c-974d21687eb0"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Short on weight",
+    "t": "At ==5 Nm stock== grip at the limit can be hard to read, especially after a T300.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "d41b660e-f3a5-4f0c-ad67-ac03a117eb5b",
+     "research-51f9382c-749e-47c5-8489-4cdab6a3aa1d",
+     "research-b448eece-d37a-4b1e-a8bf-0281c4016378",
+     "research-9058c887-8d5b-4b98-a66a-597220b33361",
+     "research-9242d486-9494-4bb9-9b3e-de3410641110"
+    ]
+   },
+   {
+    "title": "Less nuanced character",
+    "t": "Next to some entry rivals it ==can feel dated== out of the box.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "2ea0fe72-66b5-466d-a8b1-1186ba3174c7",
+     "research-2bd41d97-67d3-4096-95d1-d2e701904f18"
+    ]
+   }
+  ]
+ },
+ "moza-srp2-pedals": {
+  "tagline": "Entry-level 100 kg load-cell pedal set for PC. The catch: the brake is far stiffer than a road car's.",
+  "bottom": "For a first load-cell brake on PC at a low price. Skip it if you want a soft, road-car brake.",
+  "yes": [
+   {
+    "title": "Load-cell control",
+    "t": "Brake on ==foot pressure, not travel==, for more consistent threshold braking.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "3eaad3f7-9254-4fc6-aaa3-6a6746e447e5",
+     "c7ebf14e-0605-4450-bc64-f1ceb5e92e0e",
+     "4880cc5f-9fc2-49e5-8b84-eebd25583cf4",
+     "d28f781a-09ac-4a49-8a48-5e3540de4101",
+     "14cfbd82-1cad-4337-8fd4-ebf78712d4b1",
+     "e505b365-e733-40de-a692-9f02bf670a1f",
+     "research-8d6acba8-4759-4878-8cf8-0f7162f6ddc3"
+    ]
+   },
+   {
+    "title": "Tool-free tuning",
+    "t": "Elastomer swaps from ==soft to firm== shape the brake without tools.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "3eaad3f7-9254-4fc6-aaa3-6a6746e447e5",
+     "8f0853cb-281c-40d1-b038-ca1a7f51bf1c",
+     "e4c8d1d6-9124-4d37-b357-f3515acdea50",
+     "d28f781a-09ac-4a49-8a48-5e3540de4101"
+    ]
+   },
+   {
+    "title": "Cheap load cell",
+    "t": "Gets a 100 kg sensor at an ==entry-level price== and still feels robust.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "d28f781a-09ac-4a49-8a48-5e3540de4101",
+     "research-fbee5d84-f0dc-4784-99af-d2b5395eb97d"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Very stiff brake",
+    "t": "Needs ==a lot of force== even with the soft grey elastomers; it takes time to adapt.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-b53efde2-be0e-4060-8116-eb5fea9b1d92",
+     "research-d0671e52-8537-4d5e-b0b7-10d73bdce035"
+    ]
+   },
+   {
+    "title": "Calibration matters",
+    "t": "Pit House must be set to ==100% load cell== and can hit full brake at 20-30 kg.",
+    "for": [],
+    "src": [
+     "4880cc5f-9fc2-49e5-8b84-eebd25583cf4",
+     "research-fa330acd-7275-426c-bf32-470a86f8d577"
+    ]
+   }
+  ]
+ },
+ "fanatec-csl-cockpit-v1-5": {
+  "tagline": "Budget tubular steel cockpit. The catch: adjusting it is slow and limited.",
+  "bottom": "For a cheap first rig that still holds a strong direct drive base. Skip it if you change positions often.",
+  "yes": [
+   {
+    "title": "Little to no flex",
+    "t": "Holds ==8 to 25 Nm bases== steady despite the slim tubular frame.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "032c870a-4635-4b9b-8b46-782472ebc6df",
+     "2f2f3ed9-c5ae-4016-b533-f12e662e1b5c",
+     "research-2c398ecf-0f2f-4d5b-800b-323599a8ea33",
+     "research-d465f9b0-9b1f-41b1-b06d-5f255c5a0064",
+     "research-f940436d-7862-4458-befa-8884fcbc9933",
+     "research-e6e56540-2631-4438-944b-88d40a216d74",
+     "research-a2836808-5acd-4290-8ec4-6241805bd6f9",
+     "research-175d3e3a-5b83-4213-8134-ebc301b88206"
+    ]
+   },
+   {
+    "title": "Cheap but sturdy",
+    "t": "Feels close to an ==aluminium profile rig== for far less, especially discounted.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "032c870a-4635-4b9b-8b46-782472ebc6df",
+     "research-d465f9b0-9b1f-41b1-b06d-5f255c5a0064",
+     "research-8c1319ce-5636-4017-8ea1-2bb3912c4a81",
+     "research-ad7143f9-7bc6-4d75-ae38-82481e2e8904",
+     "research-10d5c0de-fb2f-4039-8c8b-81dc9807488b"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Fiddly to adjust",
+    "t": "Lots of bolts, no seat slider and ==fixed pedal positions== can mean drilling new holes.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-2c398ecf-0f2f-4d5b-800b-323599a8ea33",
+     "research-e6e56540-2631-4438-944b-88d40a216d74",
+     "research-46647be0-758d-4d69-996b-2708153d1fab"
+    ]
+   },
+   {
+    "title": "Basic chair",
+    "t": "The stock seat sits ==very low== and suits short sessions more than long stints.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-2c398ecf-0f2f-4d5b-800b-323599a8ea33",
+     "research-e9550125-fbdc-4371-bee9-706981d45aa7",
+     "research-e6e56540-2631-4438-944b-88d40a216d74"
+    ]
+   }
+  ]
+ },
+ "simucube-activepedal-ultimate": {
+  "tagline": "Motorised active brake pedal for PC. The catch: the cost is hard to justify.",
+  "bottom": "For all-in PC drivers who want per-car brake feel in software. Newcomers and budget buyers should skip.",
+  "yes": [
+   {
+    "title": "Per-car profiles",
+    "t": "Travel, force curves and ABS effects ==change in seconds== without touching a wrench.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "01ba8e84-0dad-4c2e-a43b-5b86272f53b0",
+     "4bba79bd-22bb-4a55-a207-8dc35e64f66b",
+     "f76acbb0-747b-42a5-8d4c-d31857522450",
+     "b66f762c-0ff4-465b-bfa4-6665df9ef49d",
+     "e8c14a08-5c50-4592-8763-9a5408a0339d",
+     "research-44679b37-399c-47e1-a913-8b9c8b8b021e",
+     "research-01506480-243e-4020-9e15-01324d08ca11",
+     "research-cec899db-d316-414d-b7d6-41349efc050c"
+    ]
+   },
+   {
+    "title": "Real push-back",
+    "t": "A custom curve makes ==threshold braking== easier to feel and more consistent.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "938d860e-e0a9-4737-949e-feff8c13d272",
+     "4bba79bd-22bb-4a55-a207-8dc35e64f66b",
+     "research-f0b93bfa-954a-4a1f-9bd9-6a3ed2d2e5cf",
+     "research-67b1ca81-ee15-4ff6-a7cd-066232b8bac5"
+    ]
+   },
+   {
+    "title": "Excellent construction",
+    "t": "Almost ==no flex== in the unit, with all bolts and cables included.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "938d860e-e0a9-4737-949e-feff8c13d272",
+     "4bba79bd-22bb-4a55-a207-8dc35e64f66b"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Hard to justify cost",
+    "t": "At the ==top of the price range==, it is a hard sell despite the feel.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "b66f762c-0ff4-465b-bfa4-6665df9ef49d",
+     "research-44679b37-399c-47e1-a913-8b9c8b8b021e"
+    ]
+   },
+   {
+    "title": "Unused headroom",
+    "t": "The ==170 kg mode== is nearly impossible to max out and too high to be useful.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "b66f762c-0ff4-465b-bfa4-6665df9ef49d",
+     "research-1dc30fdc-b6f0-4fdf-904e-bbad92af0ab1"
+    ]
+   }
+  ]
+ },
+ "thrustmaster-599xx-evo-30-wheel-add-on-alcantara-edition": {
+  "tagline": "30 cm Alcantara replica rim for Thrustmaster bases. The catch: the right shifter can go soft.",
+  "bottom": "For Thrustmaster drivers who want a full-size, comfy rim. Skip it if you won't look after Alcantara.",
+  "yes": [
+   {
+    "title": "Comfortable wrap",
+    "t": "Hand-stitched suede-style grip ==stays comfortable== and less slippery than leather.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "abdd5efe-ff9e-44e1-bdf2-0be009b7cfd3",
+     "e96116a9-260d-4f1e-ad86-9d2e32c11d89",
+     "dcc47358-cd75-4b56-8795-ee0686af9871",
+     "39112d4c-4c9f-40f2-b9e6-857e62eda071",
+     "635e25cb-c251-4078-9d99-09fe11efa99e"
+    ]
+   },
+   {
+    "title": "Metal faceplate",
+    "t": "A ==steel core and 2 mm plate== give a rigid, flex-free feel.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "abdd5efe-ff9e-44e1-bdf2-0be009b7cfd3",
+     "dcc47358-cd75-4b56-8795-ee0686af9871",
+     "635e25cb-c251-4078-9d99-09fe11efa99e",
+     "research-b9667c4f-4947-437b-a3a4-f23f9f102a3d"
+    ]
+   },
+   {
+    "title": "Light for its size",
+    "t": "No heavier than a stock rim, so ==road vibration== still comes through.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "abdd5efe-ff9e-44e1-bdf2-0be009b7cfd3",
+     "e96116a9-260d-4f1e-ad86-9d2e32c11d89",
+     "research-b9667c4f-4947-437b-a3a4-f23f9f102a3d"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Soft right shifter",
+    "t": "The click ==can fade== when the wheel turns clockwise; wiggling it can help.",
+    "for": [],
+    "src": [
+     "research-2d62bf03-405b-4a52-961d-b89c8d25c63c",
+     "research-144932d9-30a8-484d-8076-0af75af0cd1a"
+    ]
+   },
+   {
+    "title": "Alcantara upkeep",
+    "t": "The grip ==needs care==; gloves help keep it clean.",
+    "for": [],
+    "src": [
+     "research-5f539cf0-b87b-42a0-9314-28df02ecb095",
+     "research-c79342dd-4736-4e09-815f-770185b6fe0e"
+    ]
+   }
+  ]
+ },
+ "thrustmaster-rally-wheel-add-on-sparco-r383-mod": {
+  "tagline": "33 cm round suede rally rim for Thrustmaster bases. The catch: the suede can wear at the grip spots.",
+  "bottom": "For rally, drift and oval driving on a Thrustmaster base. Skip it if you mostly drive GT or formula cars.",
+  "yes": [
+   {
+    "title": "Full-size rally feel",
+    "t": "The ==33 cm round shape== slides through the hands on rally stages and ovals.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "0e1b770e-0ac5-481e-90ca-23ae8f2866fc",
+     "42b7dd38-4bce-4724-b24d-72e35538ebc5",
+     "549360e7-2e78-4658-8922-f5ba153d8604",
+     "8ae200ff-5e5d-46f4-a15e-232ae02600d1",
+     "research-2bf32146-fb51-41cf-bbc4-50ab4dcaeb5e",
+     "research-77912aef-c1c7-4352-aeda-94f394c95d86",
+     "research-6f36747c-8062-4837-9b23-8414ae37426d"
+    ]
+   },
+   {
+    "title": "Thick soft grip",
+    "t": "A ==chunky suede rim== feels more comfortable than skinnier wheels.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "0e1b770e-0ac5-481e-90ca-23ae8f2866fc",
+     "42b7dd38-4bce-4724-b24d-72e35538ebc5",
+     "549360e7-2e78-4658-8922-f5ba153d8604",
+     "31523830-f7ac-472a-955c-30198b015512"
+    ]
+   },
+   {
+    "title": "Movable metal shifters",
+    "t": "Crisp shifters ==slide in or out== to match finger reach.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "42b7dd38-4bce-4724-b24d-72e35538ebc5",
+     "549360e7-2e78-4658-8922-f5ba153d8604",
+     "8ae200ff-5e5d-46f4-a15e-232ae02600d1",
+     "31523830-f7ac-472a-955c-30198b015512"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Suede wear",
+    "t": "The covering ==can flatten or shed== at the thumb spots over time.",
+    "for": [],
+    "src": [
+     "research-941a6e91-4ceb-4848-84c4-d5ccd15b3f6c",
+     "research-dff7c26a-f36f-4e12-b3aa-aa1dfe0b5e39"
+    ]
+   },
+   {
+    "title": "Basic buttons",
+    "t": "Face buttons have ==very short travel== and a slightly uneven layout.",
+    "for": [],
+    "src": [
+     "549360e7-2e78-4658-8922-f5ba153d8604",
+     "31523830-f7ac-472a-955c-30198b015512"
+    ]
+   }
+  ]
+ },
+ "moza-r25-ultra": {
+  "tagline": "25 Nm direct drive base for PC. The catch: cranked up, it feels like a car without power steering.",
+  "bottom": "For serious PC drivers who want flagship headroom for less. Newcomers and console racers should skip it.",
+  "yes": [
+   {
+    "title": "Huge clean headroom",
+    "t": "Holds ==25 Nm without clipping== and catches slides with fast, accurate load buildup.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "78ec79f2-8890-4a43-b986-982263694458",
+     "781fd41a-4b3e-4dea-b9f8-25fa40ff0f1f",
+     "f20d4741-ff6d-4c29-85ba-f4cce5710f45",
+     "aaac021c-0efc-4268-a499-40b6726970f5",
+     "581bb671-72ae-4435-87d1-3fc40c0ca7ab",
+     "8a09771b-a273-4387-9426-a1c1fa0ed741"
+    ]
+   },
+   {
+    "title": "Easier mounting",
+    "t": "Bottom, front and ==side holes== suit standard wheel decks.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "f20d4741-ff6d-4c29-85ba-f4cce5710f45",
+     "9062016b-5cea-49a7-8b15-c993da68c4f4"
+    ]
+   },
+   {
+    "title": "Flagship for less",
+    "t": "Undercuts ==Simucube and Asetek== flagships on price.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "78ec79f2-8890-4a43-b986-982263694458",
+     "f20d4741-ff6d-4c29-85ba-f4cce5710f45"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Exhausting at max",
+    "t": "Cranked up it feels like a car ==without power steering==; half strength is plenty.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "581bb671-72ae-4435-87d1-3fc40c0ca7ab",
+     "5e2e6c07-fa31-442a-993c-83b7c4723cf8",
+     "research-f3a9b666-8540-4c04-8d77-ffcd6441e542"
+    ]
+   },
+   {
+    "title": "Rough software edges",
+    "t": "Launch firmware was rough; ==AZOM== can beat Pit House for tuning.",
+    "for": [],
+    "src": [
+     "9062016b-5cea-49a7-8b15-c993da68c4f4",
+     "research-f3a9b666-8540-4c04-8d77-ffcd6441e542"
+    ]
+   }
+  ]
+ },
+ "next-level-racing-f-gt-elite": {
+  "tagline": "Angled aluminium profile cockpit. The catch: some setups shake with a strong base.",
+  "bottom": "For upgraders who want a versatile profile rig. Skip it for a first rig or if you want straight uprights.",
+  "yes": [
+   {
+    "title": "Planted chassis",
+    "t": "Stays put with ==direct drive bases== and even a motion platform.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "6c17eee1-6c3a-43ff-bd2c-2970adf40203",
+     "ffe84aad-0a0b-46c2-b03c-23c28d534ace",
+     "158fd90e-1d4b-48b7-8268-c3923247236e",
+     "research-44371c3d-5a8a-49f4-bfcd-9c723337079b",
+     "research-462c1b99-e6e9-4a54-aff2-f629d88e7957",
+     "research-a62c51f8-a243-4a93-af78-e64c880b5fef"
+    ]
+   },
+   {
+    "title": "Easy to dial in",
+    "t": "Thick extrusions and ==steel side mounts== give wide adjustment.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "6c17eee1-6c3a-43ff-bd2c-2970adf40203",
+     "11e66ce1-9c2b-4744-9ff2-94a9653e4873",
+     "research-462c1b99-e6e9-4a54-aff2-f629d88e7957"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Can shake",
+    "t": "Some rigs ==shake noticeably== with a 12 Nm base, more than a wheel stand.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-31578ec1-a373-4dd2-8ea9-1b4bbe09007c",
+     "research-ae2f5755-9a33-4d58-9aea-3584efb58d8a"
+    ]
+   },
+   {
+    "title": "Canted uprights",
+    "t": "Angled posts near the wheelbase ==get in the way== for some setups.",
+    "for": [],
+    "src": [
+     "research-462c1b99-e6e9-4a54-aff2-f629d88e7957",
+     "research-4504b2c5-7777-47de-96fb-0e8e0b78b2e6"
+    ]
+   }
+  ]
+ },
+ "next-level-racing-formula-lite-pro": {
+  "tagline": "Foldable formula-style cockpit. The catch: the wheel mount rocks with heavier direct drive bases.",
+  "bottom": "For a living-room formula posture that folds away. Skip it if you run a heavy or high-torque base.",
+  "yes": [
+   {
+    "title": "Reclined comfort",
+    "t": "Breathable mesh seat holds a ==true open-wheel posture== over long stints.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "a1977ae4-48ea-4741-840c-aa1803aa67d9",
+     "1a0f4b0a-83b3-4a8c-b823-cd15882fc9e0",
+     "a04ca6aa-1b01-4818-a366-cb0f190b63c9",
+     "1b315322-3fa1-4625-a949-0ec6b82af340",
+     "598bc208-bee4-4086-bdaa-69eb541d28b2",
+     "b39188ad-b48b-484b-a8f0-068312e006b1",
+     "research-da5e159f-ae44-43fa-8b56-14990dc24686"
+    ]
+   },
+   {
+    "title": "Folds without tools",
+    "t": "Cam levers and ==rear rollers== make it quick to adjust and store.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "1a0f4b0a-83b3-4a8c-b823-cd15882fc9e0",
+     "929ca39e-c52f-43c7-9278-db4574fa0454",
+     "1b315322-3fa1-4625-a949-0ec6b82af340",
+     "25079505-dbf5-4dec-aee6-d353be196ce5",
+     "28d49399-f00f-4cc6-a014-ef34bb200533"
+    ]
+   },
+   {
+    "title": "Planted pedal deck",
+    "t": "Barely moves under ==heavy braking==, best with a full pedal plate.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "25079505-dbf5-4dec-aee6-d353be196ce5",
+     "b39188ad-b48b-484b-a8f0-068312e006b1",
+     "28d49399-f00f-4cc6-a014-ef34bb200533",
+     "e1fe0d07-065e-442a-8191-13b750fa6a5f",
+     "research-da5e159f-ae44-43fa-8b56-14990dc24686"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Wheel deck rocks",
+    "t": "The mount ==flexes fore-aft== with mid-strength or heavy bases like a La Prima.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "929ca39e-c52f-43c7-9278-db4574fa0454",
+     "a04ca6aa-1b01-4818-a366-cb0f190b63c9",
+     "1b315322-3fa1-4625-a949-0ec6b82af340",
+     "25079505-dbf5-4dec-aee6-d353be196ce5",
+     "28d49399-f00f-4cc6-a014-ef34bb200533",
+     "research-daf45b56-4e97-4166-9e79-e2798e3cabca"
+    ]
+   },
+   {
+    "title": "High wheel mount",
+    "t": "Sits a bit tall with a ==limited useful drop==.",
+    "for": [],
+    "src": [
+     "28d49399-f00f-4cc6-a014-ef34bb200533",
+     "e1fe0d07-065e-442a-8191-13b750fa6a5f"
+    ]
+   }
+  ]
+ },
+ "trak-racer-tr40s": {
+  "tagline": "Compact entry aluminium profile cockpit. The catch: the base can flex under hard load-cell braking.",
+  "bottom": "For a first profile rig that fits a small room. Skip it if you plan heavy load-cell pedals.",
+  "yes": [
+   {
+    "title": "Stiff for the money",
+    "t": "Mixed 4040 and ==4080 uprights== handle a 12 Nm base without fuss.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "88abee65-b99c-4621-88a8-15456349064d",
+     "fbbe4ddc-fb79-4cb0-b980-30a5e0c16751",
+     "31308254-39a2-4783-8abb-a5fb27417d61",
+     "02227751-4405-4d0a-95bb-a9d6527f139c",
+     "6990f1ec-d41c-4f7c-8b8c-3b1f1c6ad7ab",
+     "1e9efcca-959c-4add-bfab-8f83775c6338",
+     "research-0dee3952-b8ee-4080-bad7-0b78866dfa48"
+    ]
+   },
+   {
+    "title": "Mounts included",
+    "t": "Comes with ==shifter and handbrake== plates in the box.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "31308254-39a2-4783-8abb-a5fb27417d61",
+     "02227751-4405-4d0a-95bb-a9d6527f139c",
+     "a9a389eb-4bc1-41f0-ab5a-e4251c6dfc7b"
+    ]
+   },
+   {
+    "title": "Wide adjustment",
+    "t": "Sliding pedal plate and ==fine wheel tuning== without moving uprights.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "88abee65-b99c-4621-88a8-15456349064d",
+     "fbbe4ddc-fb79-4cb0-b980-30a5e0c16751",
+     "a9a389eb-4bc1-41f0-ab5a-e4251c6dfc7b"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Base flex",
+    "t": "The two-piece frame ==can lift and flex== under heavy load-cell braking.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "31308254-39a2-4783-8abb-a5fb27417d61",
+     "research-dd517809-2311-4139-8606-ca16b0fbeeed",
+     "research-c69d8589-46b0-403b-b626-e1e6e2db57c2",
+     "research-0dee3952-b8ee-4080-bad7-0b78866dfa48"
+    ]
+   },
+   {
+    "title": "Slow to dial in",
+    "t": "Changes ==need tools==, and getting heights right can take a while.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "fbbe4ddc-fb79-4cb0-b980-30a5e0c16751",
+     "research-13f2889c-a46e-4b2c-9477-5f2eb5bd8eff"
+    ]
+   }
+  ]
+ },
+ "moza-rs-v2": {
+  "tagline": "Premium 330 mm round GT wheel for MOZA bases on PC. The catch: the shifters are loud.",
+  "bottom": "For PC drivers on MOZA wanting a premium round rim. Skip it if click noise or loose sticks bother you.",
+  "yes": [
+   {
+    "title": "Genuine leather and carbon",
+    "t": "Hides an ==aluminium frame== and feels properly premium.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "0508c191-08ef-4fe2-9086-071852255de1",
+     "54e8a6db-f4c2-482f-9f88-4c2631eeae6a",
+     "6c56bd5e-fe54-42fd-b724-510e0dca4582",
+     "deac1bcb-150d-4af2-a602-587c8de9221c",
+     "190366ab-6cec-4bcf-8c42-428a0b2c9c01"
+    ]
+   },
+   {
+    "title": "Backlit face buttons",
+    "t": "RGB lighting makes ==DRS or pit limiter== easy to spot mid-race.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "54e8a6db-f4c2-482f-9f88-4c2631eeae6a",
+     "3f5bbfc3-61ea-4686-95d5-3416454e761b",
+     "61d356ca-923a-47d5-a17d-91dee456fbc1",
+     "deac1bcb-150d-4af2-a602-587c8de9221c",
+     "190366ab-6cec-4bcf-8c42-428a0b2c9c01"
+    ]
+   },
+   {
+    "title": "Comfortable hold",
+    "t": "The 13-inch rim ==feels natural== from the first lap.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "e1e1521b-dd8b-4738-9c01-3d734c7040f4",
+     "research-9650186f-6ec3-4ac7-b6e7-1e48b81eb75f"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Noisy shifters",
+    "t": "The magnetic shifters are ==loud unless muted==, and reach is fixed.",
+    "for": [],
+    "src": [
+     "6c56bd5e-fe54-42fd-b724-510e0dca4582",
+     "e1e1521b-dd8b-4738-9c01-3d734c7040f4"
+    ]
+   },
+   {
+    "title": "Loose thumbsticks",
+    "t": "The joysticks ==can feel loose== or stick and stop registering.",
+    "for": [],
+    "src": [
+     "e1e1521b-dd8b-4738-9c01-3d734c7040f4",
+     "research-704a36dd-37e4-410a-8861-98fe3aaf7423"
+    ]
+   }
+  ]
+ },
+ "moza-tsw": {
+  "tagline": "400 mm truck sim wheel for PC. The catch: a flat truck angle is hard to set up on a standard rig.",
+  "bottom": "For truck and farming sims on PC. Skip it if you mostly race; the big rim suits trucks, not circuits.",
+  "yes": [
+   {
+    "title": "Real cab feel",
+    "t": "A ==400 mm rim== makes truck sims far more convincing than a racing wheel.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "095712d1-399e-42f3-b2e5-55845126e1a7",
+     "366ca10d-abe7-40ea-9087-63fbe43db3d9",
+     "5194b463-cd1a-44d7-8021-b26ecb64e4db",
+     "055cba23-54a0-4443-bed3-12c975a4b4c1",
+     "2d657654-f3bb-47e4-8b49-4fb0269ee595",
+     "04463963-d267-48f2-97c9-19d7c748a7f0",
+     "research-4af07603-f0cd-4f55-aaa7-848368490154"
+    ]
+   },
+   {
+    "title": "Sturdy aluminium core",
+    "t": "A ==4 mm aluminium frame== feels stout with zero squeaks.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "0b19805c-7db2-4954-88b4-a6c644eee73b",
+     "5194b463-cd1a-44d7-8021-b26ecb64e4db",
+     "2d657654-f3bb-47e4-8b49-4fb0269ee595",
+     "83fa5a8e-ec07-49c1-a586-f6f06b64df3a"
+    ]
+   },
+   {
+    "title": "Runs on other bases",
+    "t": "A universal hub adapter lets it ==work on third-party bases==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "5194b463-cd1a-44d7-8021-b26ecb64e4db",
+     "055cba23-54a0-4443-bed3-12c975a4b4c1"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Tricky flat angle",
+    "t": "A truck-style ==flat wheel position== needs an optional mount or awkward cabling.",
+    "for": [],
+    "src": [
+     "366ca10d-abe7-40ea-9087-63fbe43db3d9",
+     "83fa5a8e-ec07-49c1-a586-f6f06b64df3a"
+    ]
+   },
+   {
+    "title": "Setup before driving",
+    "t": "Default settings ==can snap oversteer==; buttons need hand mapping.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "5443504a-a298-41f7-b302-cb2d0a536adc",
+     "04463963-d267-48f2-97c9-19d7c748a7f0"
+    ]
+   }
+  ]
+ },
+ "sim-lab-sq1": {
+  "tagline": "Compact all-metal sequential shifter for PC. The catch: the lever can loosen or snap in hard rally use.",
+  "bottom": "For PC rally and drift drivers wanting a tunable sequential. Skip it if you want a heavy, positive thunk.",
+  "yes": [
+   {
+    "title": "Swappable cam profiles",
+    "t": "Rollers and a tension ring ==tune the shift feel== and noise without tools.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "7b72d341-849c-4f9e-84a7-59d0c5b1f447",
+     "e7db5808-41c8-4b73-8f8d-b34d48d49bc6",
+     "69bea72e-4edd-4dcf-a08b-3f6faafc0ae1",
+     "8ec7b88e-4a85-4259-98c6-2fb6f042eb88",
+     "a6b0d3e3-a2d6-47b3-b2b3-38a48a9091ee"
+    ]
+   },
+   {
+    "title": "Compact metal housing",
+    "t": "Sleeker than ==bulky legacy units== and still all metal.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "cf0dbf2b-6a38-4812-b170-651f01d4c8c5",
+     "7b72d341-849c-4f9e-84a7-59d0c5b1f447",
+     "e7db5808-41c8-4b73-8f8d-b34d48d49bc6",
+     "8ec7b88e-4a85-4259-98c6-2fb6f042eb88"
+    ]
+   },
+   {
+    "title": "Quiet option",
+    "t": "A comfort track keeps shifts ==well below the others== in noise.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "a6b0d3e3-a2d6-47b3-b2b3-38a48a9091ee",
+     "research-7148d38b-8a88-460b-98fb-dfec08c3624f",
+     "research-74e6ed7d-8b1a-4f59-b24b-0cdff7e8fa99"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Lever hardware",
+    "t": "In frantic rally use the lever ==can loosen or snap== at the threads.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "b2faef4e-2844-4cdb-91ab-cf5bf3b7ac28",
+     "8ec7b88e-4a85-4259-98c6-2fb6f042eb88"
+    ]
+   },
+   {
+    "title": "Soft shift character",
+    "t": "Splits opinion: shifts ==can lack a positive thunk== whatever ramp is fitted.",
+    "for": [],
+    "src": [
+     "research-b5a5f0b2-7eb4-482a-87ad-9fb512bcac1d",
+     "research-7148d38b-8a88-460b-98fb-dfec08c3624f"
+    ]
+   }
+  ]
+ },
+ "fanatec-csl-elite-steering-wheel-porsche-vision-gt": {
+  "tagline": "310 mm licensed GT rim for Fanatec bases on PC and PlayStation. The catch: the screen is poorly placed.",
+  "bottom": "For Fanatec drivers on PC or PlayStation wanting a premium GT rim. Skip it if you want quiet shifters.",
+  "yes": [
+   {
+    "title": "Premium materials",
+    "t": "Plush wrap, ==metal shifters== and better encoders lift it above older CSL rims.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "bd10366f-d1ad-4563-9aab-7963bef0029e",
+     "bd66a809-5840-4f94-91bb-d6d534091823",
+     "ddb83898-be01-40e1-a129-b4a187eff6b0",
+     "88016903-187e-4490-9ed2-9aa319b90d4c",
+     "d5c5845b-1b1f-4ba8-8662-939f890da1a9"
+    ]
+   },
+   {
+    "title": "Comfortable grip",
+    "t": "Suede-like Tactaris ==feels like Alcantara== and wears well without gloves.",
+    "for": [
+     "intermediate",
+     "arm"
+    ],
+    "src": [
+     "6c2b4327-d0d8-4655-b014-e8dfcb2e9859",
+     "6d95293f-b4de-41e4-af6c-61732a9a3d87",
+     "bd10366f-d1ad-4563-9aab-7963bef0029e",
+     "47818dc2-abe4-4a12-8e5b-fde371d60d40",
+     "d5c5845b-1b1f-4ba8-8662-939f890da1a9"
+    ]
+   },
+   {
+    "title": "Full torque",
+    "t": "The included ==QR2 Lite== doesn't cap force on strong Fanatec bases.",
+    "for": [
+     "intermediate",
+     "arm"
+    ],
+    "src": [
+     "6c2b4327-d0d8-4655-b014-e8dfcb2e9859",
+     "6d95293f-b4de-41e4-af6c-61732a9a3d87",
+     "47818dc2-abe4-4a12-8e5b-fde371d60d40",
+     "d2fabbed-1cb3-4608-b525-ef2ec5ea0cf8"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Hard-to-see display",
+    "t": "The screen sits ==almost out of sight== while driving.",
+    "for": [],
+    "src": [
+     "bd66a809-5840-4f94-91bb-d6d534091823",
+     "d2fabbed-1cb3-4608-b525-ef2ec5ea0cf8"
+    ]
+   },
+   {
+    "title": "Loud shifters",
+    "t": "The magnetic levers ==click loudly== and feel less tactile.",
+    "for": [],
+    "src": [
+     "88016903-187e-4490-9ed2-9aa319b90d4c",
+     "d5c5845b-1b1f-4ba8-8662-939f890da1a9"
+    ]
+   }
+  ]
+ },
+ "sim-lab-porsche-911-rsr-steering-wheel": {
+  "tagline": "Licensed Porsche 911 RSR replica rim for PC. The catch: it is very pricey.",
+  "bottom": "For all-in PC drivers on a strong direct drive base. Newcomers and weaker bases should skip it.",
+  "yes": [
+   {
+    "title": "Top-tier construction",
+    "t": "An ==aluminium and carbon== structure with no flex.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "a910b56d-3864-4a88-ac57-5a356d08fafb",
+     "5660ec62-a21f-488a-a43b-82675edd5426",
+     "200ad440-0ec8-4bee-9346-0b984734967d",
+     "f9c81df7-ebb1-4a15-970a-61fcb625b1d7",
+     "c0b78983-0a44-4e45-a897-f17ae1a01dc0"
+    ]
+   },
+   {
+    "title": "Satisfying controls",
+    "t": "Buttons, encoders and ==reach-adjustable shifters== all feel precise.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "dd861e42-87ab-444e-b0e6-ee842939d8f8",
+     "200ad440-0ec8-4bee-9346-0b984734967d",
+     "40786a8f-4ec0-4ace-aff0-6ea751b9fd22",
+     "c411e8b5-9c6e-4afa-b287-204f38fb67fb",
+     "c0b78983-0a44-4e45-a897-f17ae1a01dc0"
+    ]
+   },
+   {
+    "title": "Readable screen",
+    "t": "A bright ==5-inch display== can be read at a glance.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "5660ec62-a21f-488a-a43b-82675edd5426",
+     "200ad440-0ec8-4bee-9346-0b984734967d",
+     "c0b78983-0a44-4e45-a897-f17ae1a01dc0",
+     "4d417b38-f03e-4f54-8992-79e1105bec7a"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Steep price",
+    "t": "Sits at the ==top of the wheel price range==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "a910b56d-3864-4a88-ac57-5a356d08fafb",
+     "dd861e42-87ab-444e-b0e6-ee842939d8f8",
+     "4d417b38-f03e-4f54-8992-79e1105bec7a"
+    ]
+   },
+   {
+    "title": "Heavy rim",
+    "t": "At about 2 kg it ==dulls force on weaker bases==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "dd861e42-87ab-444e-b0e6-ee842939d8f8",
+     "c0b78983-0a44-4e45-a897-f17ae1a01dc0"
+    ]
+   }
+  ]
+ },
+ "simagic-zeus-formula": {
+  "tagline": "280 mm carbon-faced formula rim for Simagic on PC. The catch: it is heavy and can feel top-heavy.",
+  "bottom": "For PC drivers on Simagic wanting a stiff, dense formula rim. Skip it if you want a light, simple wheel.",
+  "yes": [
+   {
+    "title": "Zero flex",
+    "t": "A ==5 mm carbon face== and aluminium back keep it stiff over kerbs.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "e1fd8763-abb0-4dcc-9a40-644d62accebf",
+     "3df33da8-3ab0-4993-a5db-6e5455072838",
+     "1313a951-51be-498d-885d-ed46283d2233",
+     "770d8293-9458-4599-b274-6d158e8865d4",
+     "2b67377c-a0b0-4967-a66f-494512ebb099",
+     "8059141f-c735-4b05-adcb-edc9bb05b24d"
+    ]
+   },
+   {
+    "title": "Quiet magnetic shifters",
+    "t": "Shifts are ==snappy and well damped== without loud clicks.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "e1fd8763-abb0-4dcc-9a40-644d62accebf",
+     "1313a951-51be-498d-885d-ed46283d2233",
+     "770d8293-9458-4599-b274-6d158e8865d4",
+     "8059141f-c735-4b05-adcb-edc9bb05b24d"
+    ]
+   },
+   {
+    "title": "Dense input layout",
+    "t": "Lots of ==well-placed buttons== and encoders for GT3 and formula cars.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "e1fd8763-abb0-4dcc-9a40-644d62accebf",
+     "f13cd6b5-88ac-482c-8b7d-35d6884376ee",
+     "1313a951-51be-498d-885d-ed46283d2233",
+     "2b67377c-a0b0-4967-a66f-494512ebb099"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Heavy in hand",
+    "t": "At ==about 2 kg== with the QR it can feel top-heavy.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "d2959c7b-5977-41ec-a5c5-ac1570656d23",
+     "f13cd6b5-88ac-482c-8b7d-35d6884376ee"
+    ]
+   },
+   {
+    "title": "Ecosystem learning curve",
+    "t": "Screen and lighting ==connection paths== take time to understand.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "1313a951-51be-498d-885d-ed46283d2233",
+     "991d9b8a-dbf6-4ca1-b6b5-966750bda477"
+    ]
+   }
+  ]
+ },
+ "simagic-alpha-evo-ultra": {
+  "tagline": "28 Nm direct drive flagship base for PC. The catch: the full torque is overkill.",
+  "bottom": "For all-in PC drivers who want huge clean headroom. Newcomers and console racers should skip it.",
+  "yes": [
+   {
+    "title": "Clean, fast detail",
+    "t": "A low-inertia rotor ==layers texture and grip== with almost no clipping.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "5edecc33-7e6a-4c30-9326-92223566c8f4",
+     "b694d330-f94b-4af4-a1bd-8d0a33198d2f",
+     "c54d8d23-6945-421b-b507-ec7b94172bb3",
+     "dcbe3243-4733-457c-9f9e-56e7a425b9df",
+     "7f2c0d57-1e08-47cc-b606-c6764cb5ed81",
+     "1d09a187-ec1b-4618-babb-91d5c39b797b",
+     "b9ed0ed2-f090-4e2f-9907-a08713a9d4cb",
+     "research-1dd3c14c-fb82-4ec5-8aef-3127d5264b3b"
+    ]
+   },
+   {
+    "title": "Zero-play quick release",
+    "t": "The ==NRG-style QR== swaps wheels cable-free and takes USB rims.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "5edecc33-7e6a-4c30-9326-92223566c8f4",
+     "b694d330-f94b-4af4-a1bd-8d0a33198d2f",
+     "8e26b157-7294-4bef-9595-ccb4e4526807"
+    ]
+   },
+   {
+    "title": "Ready-made profiles",
+    "t": "SimPro Manager makes ==per-sim setup== easy and feels good early on.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "f4bbe553-4f33-40bf-982e-49e5befb8203",
+     "1d09a187-ec1b-4618-babb-91d5c39b797b",
+     "b9ed0ed2-f090-4e2f-9907-a08713a9d4cb"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "More than you'll use",
+    "t": "Full output ==feels like steering through mud==; 18 Nm is plenty.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "c54d8d23-6945-421b-b507-ec7b94172bb3",
+     "7f2c0d57-1e08-47cc-b606-c6764cb5ed81",
+     "8e26b157-7294-4bef-9595-ccb4e4526807",
+     "1d09a187-ec1b-4618-babb-91d5c39b797b"
+    ]
+   },
+   {
+    "title": "Add-on mounts needed",
+    "t": "Front and side fitting ==needs optional hardware==.",
+    "for": [],
+    "src": [
+     "c54d8d23-6945-421b-b507-ec7b94172bb3",
+     "b9ed0ed2-f090-4e2f-9907-a08713a9d4cb"
+    ]
+   }
+  ]
+ },
+ "trak-racer-trx-v2": {
+  "tagline": "Tubular steel cockpit with quick GT and formula switching. The catch: the seat and pedal tray can move.",
+  "bottom": "For upgraders who share a rig or swap driving styles. Skip it for a first rig or for maximum stiffness.",
+  "yes": [
+   {
+    "title": "Fast posture swaps",
+    "t": "Sliders and thumb screws switch ==GT and formula== in moments.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "7c96290d-22d4-43f1-890c-539e107d89c6",
+     "f1eedf0e-86c4-48dd-a877-fc136514b73b",
+     "987975a7-e5fb-4a79-988c-cea9bdaeb6e2",
+     "4a658ee0-591f-4874-835e-6af563a856e1",
+     "c17e41d4-68b6-4d61-8e82-1443d1ad4f5a",
+     "0bf93485-cd2e-4d66-9096-6aec1aed050b",
+     "24912135-9a81-4ca6-bdca-c11392a61a7c"
+    ]
+   },
+   {
+    "title": "Steady wheel deck",
+    "t": "Holds bases up to ==a 25 Nm R25== without movement.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "7c96290d-22d4-43f1-890c-539e107d89c6",
+     "f1eedf0e-86c4-48dd-a877-fc136514b73b",
+     "4a658ee0-591f-4874-835e-6af563a856e1",
+     "0bf93485-cd2e-4d66-9096-6aec1aed050b"
+    ]
+   },
+   {
+    "title": "Race-car looks",
+    "t": "Curved tubing and ==internal cable routing== look premium.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "f1eedf0e-86c4-48dd-a877-fc136514b73b",
+     "c17e41d4-68b6-4d61-8e82-1443d1ad4f5a",
+     "24912135-9a81-4ca6-bdca-c11392a61a7c"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Slider movement",
+    "t": "Quick-adjust joints ==can let the seat and pedal tray shift== under hard braking.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "987975a7-e5fb-4a79-988c-cea9bdaeb6e2",
+     "4a658ee0-591f-4874-835e-6af563a856e1",
+     "c17e41d4-68b6-4d61-8e82-1443d1ad4f5a",
+     "0bf93485-cd2e-4d66-9096-6aec1aed050b"
+    ]
+   },
+   {
+    "title": "High price",
+    "t": "Costs ==near the top of the cockpit range==.",
+    "for": [],
+    "src": [
+     "f1eedf0e-86c4-48dd-a877-fc136514b73b",
+     "0bf93485-cd2e-4d66-9096-6aec1aed050b"
+    ]
+   },
+   {
+    "title": "Frustrating build",
+    "t": "No printed manual, so ==assembly can drag==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "f1eedf0e-86c4-48dd-a877-fc136514b73b",
+     "0bf93485-cd2e-4d66-9096-6aec1aed050b"
+    ]
+   }
+  ]
+ },
+ "thrustmaster-t3pm": {
+  "tagline": "Hall-sensor pedals for PC, PlayStation and Xbox. The catch: the light base slides or lifts on the floor.",
+  "bottom": "For a first set beyond G29-style pedals. Skip it if you want a load-cell brake or have no rig to bolt to.",
+  "yes": [
+   {
+    "title": "Tunable brake",
+    "t": "Spring and insert ==stiffness modes== firm up the brake.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "eef086e5-4c5a-4e05-aeb0-dc15b832fba8",
+     "52e6245a-1f7b-4038-9b4d-14e9ccbf4c60",
+     "4d7a5fe0-e2d1-437a-8325-6ae41ae524af",
+     "research-8c320729-6cb7-4b81-b4b5-c90036453362"
+    ]
+   },
+   {
+    "title": "Clean magnetic sensors",
+    "t": "Throttle and clutch inputs ==stay smooth and accurate==.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "be84c57a-7063-4717-b408-a06c22dcc230",
+     "eef086e5-4c5a-4e05-aeb0-dc15b832fba8",
+     "4d7a5fe0-e2d1-437a-8325-6ae41ae524af"
+    ]
+   },
+   {
+    "title": "Step up from G29",
+    "t": "Feels ==clearly better== than older bundled budget sets.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "be84c57a-7063-4717-b408-a06c22dcc230",
+     "eef086e5-4c5a-4e05-aeb0-dc15b832fba8",
+     "4d7a5fe0-e2d1-437a-8325-6ae41ae524af"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Moves on the floor",
+    "t": "The ==plastic base is light==, so it slides and lifts under braking.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "eef086e5-4c5a-4e05-aeb0-dc15b832fba8",
+     "research-04364609-14ff-496e-bdab-89325ae88f39",
+     "research-ae31b972-ab19-47ae-b014-16e5081cc23a"
+    ]
+   },
+   {
+    "title": "No load cell",
+    "t": "The brake ==won't match pressure sensing==; the base is plastic.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "eef086e5-4c5a-4e05-aeb0-dc15b832fba8",
+     "52e6245a-1f7b-4038-9b4d-14e9ccbf4c60",
+     "research-5334e892-85a7-4e3a-9e7a-938aa48391a0"
+    ]
+   }
+  ]
+ },
+ "sim-lab-xb1": {
+  "tagline": "150 kg load-cell handbrake for PC. The catch: mounting options are limited.",
+  "bottom": "For PC rally and drift drivers wanting a force-based handbrake. Skip it if you need a flexible mount.",
+  "yes": [
+   {
+    "title": "Sturdy aluminium",
+    "t": "The machined frame ==feels robust== and barely moves when pulled in line.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "8ffc4d59-2a6e-4f61-b4d1-5bf5fc2662dd",
+     "1972d71e-315c-4d77-a0ba-97bae39653fc",
+     "fcca316d-0692-436d-977c-95b4e50a6322",
+     "8edcf416-5ec0-4506-a722-f3e1ccff308c",
+     "69c91a61-f39f-4cb3-8fba-1ede5a33dab6"
+    ]
+   },
+   {
+    "title": "Precise two-stage pull",
+    "t": "Fine enough to ==rotate a car gently== or lock the rear in a hairpin.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "ec86a9a4-1909-456c-86ba-ae3eb5512393",
+     "1972d71e-315c-4d77-a0ba-97bae39653fc",
+     "22331fec-98c3-46a5-b7f2-cb783ad7e88f",
+     "8edcf416-5ec0-4506-a722-f3e1ccff308c"
+    ]
+   },
+   {
+    "title": "Tunable stiffness",
+    "t": "Elastomers and preload ==set the resistance== to taste.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "ec86a9a4-1909-456c-86ba-ae3eb5512393",
+     "22331fec-98c3-46a5-b7f2-cb783ad7e88f",
+     "8edcf416-5ec0-4506-a722-f3e1ccff308c",
+     "69c91a61-f39f-4cb3-8fba-1ede5a33dab6"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Limited mounting",
+    "t": "One rear hole and ==no flipping==; an extra mount is often needed.",
+    "for": [],
+    "src": [
+     "8ffc4d59-2a6e-4f61-b4d1-5bf5fc2662dd",
+     "1972d71e-315c-4d77-a0ba-97bae39653fc",
+     "69c91a61-f39f-4cb3-8fba-1ede5a33dab6",
+     "research-6552362b-5b86-4665-a21a-53f17f2d4d84"
+    ]
+   },
+   {
+    "title": "Slight arm play",
+    "t": "The lever ==can wiggle side to side== a little.",
+    "for": [],
+    "src": [
+     "8ffc4d59-2a6e-4f61-b4d1-5bf5fc2662dd",
+     "research-0694e557-205f-46a6-976c-7864b54e55b2"
+    ]
+   }
+  ]
+ },
+ "thrustmaster-evo-racing-32r-leather": {
+  "tagline": "320 mm leather round rim for Thrustmaster bases. The catch: the face buttons have no backlighting.",
+  "bottom": "For Thrustmaster drivers wanting a comfy rally and road rim. Skip it if you want lit buttons.",
+  "yes": [
+   {
+    "title": "Glove-free leather",
+    "t": "Smooth leather and a ==brushed metal face== stay comfortable barehanded.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "475a1b6f-b93c-4eec-bb8b-e61245491ff1",
+     "c6cbc57a-fa88-4502-919c-d5223b678502",
+     "1ee7e0ab-f63b-41dc-8c91-5c27ae0e2743",
+     "c9eb760f-b3c5-445d-b705-445fc5b14054",
+     "e5ec6c4e-e878-4340-9324-0d2669b92879",
+     "84f4d821-4db9-4778-9117-47b2422b2717"
+    ]
+   },
+   {
+    "title": "Long curved shifters",
+    "t": "Big rear levers ==stay in reach== for fast rally and drift inputs.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "1ee7e0ab-f63b-41dc-8c91-5c27ae0e2743",
+     "c9eb760f-b3c5-445d-b705-445fc5b14054",
+     "e5ec6c4e-e878-4340-9324-0d2669b92879",
+     "84f4d821-4db9-4778-9117-47b2422b2717"
+    ]
+   },
+   {
+    "title": "Two adapters included",
+    "t": "Fits ==newer and older Thrustmaster bases== on PC and consoles.",
+    "for": [
+     "intermediate",
+     "arm"
+    ],
+    "src": [
+     "c6cbc57a-fa88-4502-919c-d5223b678502",
+     "c9eb760f-b3c5-445d-b705-445fc5b14054",
+     "e5ec6c4e-e878-4340-9324-0d2669b92879"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Unlit buttons",
+    "t": "There's ==no button lighting==, and labels show digits, not functions.",
+    "for": [],
+    "src": [
+     "495d0886-3056-4567-a952-244e7fcd538e",
+     "22d5d869-b8f2-4b17-99b0-5d0e323937be"
+    ]
+   },
+   {
+    "title": "Soft shifter feel",
+    "t": "The levers ==feel plasticky== and less stiff than rivals.",
+    "for": [],
+    "src": [
+     "495d0886-3056-4567-a952-244e7fcd538e",
+     "22d5d869-b8f2-4b17-99b0-5d0e323937be"
+    ]
+   }
+  ]
+ },
+ "trak-racer-tr5": {
+  "tagline": "Tubular steel cockpit with a strong wheel deck. The catch: the pedal tray flexes under stiff load cells.",
+  "bottom": "For upgraders pairing a big direct drive base with a full rig. Skip it for a first rig or stiff pedals.",
+  "yes": [
+   {
+    "title": "Rock-solid wheel deck",
+    "t": "Stays quiet with ==18 to 25 Nm bases== and no rattles.",
+    "for": [
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "393ac5ac-3c79-4e7b-b817-ddb9da06eaf1",
+     "cf6c6da3-393c-454f-9625-5da1b4d97ab0",
+     "6ecb7718-38ec-4d26-85fa-1fed2f4f0520",
+     "3c4ffa33-0e5d-4c0f-b18b-35a4bf28b2fd",
+     "b12058f9-5e7b-433c-8dda-c3b2672018da"
+    ]
+   },
+   {
+    "title": "Comfortable included seat",
+    "t": "Holds your back ==firmly under braking== on long GT runs.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "393ac5ac-3c79-4e7b-b817-ddb9da06eaf1",
+     "cf6c6da3-393c-454f-9625-5da1b4d97ab0",
+     "6ecb7718-38ec-4d26-85fa-1fed2f4f0520",
+     "c85ac18f-5374-4eeb-b852-0a9670264bd1"
+    ]
+   },
+   {
+    "title": "Simple assembly",
+    "t": "Goes together ==without fuss==, two-piece pedal tray included.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "cf6c6da3-393c-454f-9625-5da1b4d97ab0",
+     "3c4ffa33-0e5d-4c0f-b18b-35a4bf28b2fd"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Pedal tray flex",
+    "t": "Can move ==a few millimetres== under maximum load-cell braking.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "393ac5ac-3c79-4e7b-b817-ddb9da06eaf1",
+     "cf6c6da3-393c-454f-9625-5da1b4d97ab0",
+     "d99d214a-1efd-4c61-934a-bc880fffdb6d",
+     "b12058f9-5e7b-433c-8dda-c3b2672018da"
+    ]
+   },
+   {
+    "title": "Spanner adjustments",
+    "t": "Changes ==need tools==, and the wheel deck height is fixed.",
+    "for": [],
+    "src": [
+     "393ac5ac-3c79-4e7b-b817-ddb9da06eaf1",
+     "d99d214a-1efd-4c61-934a-bc880fffdb6d"
+    ]
+   }
+  ]
+ },
+ "simagic-q1": {
+  "tagline": "Aluminium sequential shifter for PC. The catch: the internal spring can snap.",
+  "bottom": "For PC rally drivers wanting a realistic sequential throw. Skip it if you need quiet, trouble-free gear.",
+  "yes": [
+   {
+    "title": "Realistic throw",
+    "t": "Shifts feel ==short, distinct and mechanical==, great for rally.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "42e9a41a-dcd4-49e4-a0db-7d4a24dfd125",
+     "ae4e5a05-840b-44c8-817e-2791ee09fd2a",
+     "f3b6ea0f-d74d-4473-8ff6-13c46c41d614"
+    ]
+   },
+   {
+    "title": "Tidy mounting",
+    "t": "Dual USB ports and ==spring-loaded T-nuts== make cabling and bolting easy.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "01ff3219-7b48-434b-8065-001a33a8ea9f",
+     "ae4e5a05-840b-44c8-817e-2791ee09fd2a",
+     "f3b6ea0f-d74d-4473-8ff6-13c46c41d614"
+    ]
+   },
+   {
+    "title": "Zero shaft play",
+    "t": "The ==CNC aluminium housing== sits rock solid once bolted down.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "01ff3219-7b48-434b-8065-001a33a8ea9f",
+     "81e3648d-7391-4c19-b828-61b8bd2e2dcf"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Spring and part failures",
+    "t": "Internal parts ==can fail within months==, and warranty help can be slow.",
+    "for": [],
+    "src": [
+     "f3b6ea0f-d74d-4473-8ff6-13c46c41d614",
+     "research-17abdf9b-b8c5-4fd8-a65d-7d2496e46170",
+     "research-ca132bb6-c883-49b2-989f-85d21737e8fa"
+    ]
+   },
+   {
+    "title": "Very loud",
+    "t": "Each shift is ==quite noisy== in a quiet room.",
+    "for": [],
+    "src": [
+     "ae4e5a05-840b-44c8-817e-2791ee09fd2a",
+     "research-35af05a5-4790-443f-8038-c5b23449c089"
+    ]
+   }
+  ]
+ },
+ "next-level-racing-go-kart-plus": {
+  "tagline": "Compact kart-style cockpit for kids and adults. The catch: the frame twists under load-cell braking.",
+  "bottom": "For a family kart rig with light pedals. Skip it if you run stiff load-cell pedals or are a larger adult.",
+  "yes": [
+   {
+    "title": "Authentic karting stance",
+    "t": "A relaxed wheel angle ==mimics a real kart== with a fun, low feel.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "19f0889c-c6d6-4a85-afc8-5adbd1d8f725",
+     "eaf3e735-5d69-4d37-bddb-97d92c05c2ee",
+     "d82f582d-3bfb-466d-a83a-75f4b4301a47"
+    ]
+   },
+   {
+    "title": "Kid-to-adult in a minute",
+    "t": "Seat sliders and ==thumb screws== switch sizes fast.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "170e88de-8976-448c-975d-2eda2ce06caf",
+     "d82f582d-3bfb-466d-a83a-75f4b4301a47",
+     "602180a7-3a0d-4c59-bfbf-0b9c85e42a5e"
+    ]
+   },
+   {
+    "title": "Quick build",
+    "t": "Labelled hardware gets it ==together in under an hour==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "91efd208-a8b0-44f2-964c-ecfd80192ca3",
+     "602180a7-3a0d-4c59-bfbf-0b9c85e42a5e"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Chassis twist",
+    "t": "Even an ==entry load-cell brake== makes the frame flex and twist.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "170e88de-8976-448c-975d-2eda2ce06caf",
+     "d82f582d-3bfb-466d-a83a-75f4b4301a47"
+    ]
+   },
+   {
+    "title": "Narrow, thin seat",
+    "t": "Padding is thin and the bucket ==won't fit larger adults==.",
+    "for": [],
+    "src": [
+     "19f0889c-c6d6-4a85-afc8-5adbd1d8f725",
+     "eaf3e735-5d69-4d37-bddb-97d92c05c2ee"
+    ]
+   }
+  ]
+ },
+ "fanatec-clubsport-handbrake-v2": {
+  "tagline": "All-metal load-cell handbrake for Fanatec bases. The catch: there's no direct USB connection for PC.",
+  "bottom": "For Fanatec drivers on PC or console wanting a precise handbrake. Skip it if your rig mixes brands on PC.",
+  "yes": [
+   {
+    "title": "Precise pull",
+    "t": "The load cell makes ==partial inputs== easy to modulate in drift and rally.",
+    "for": [
+     "intermediate",
+     "arm"
+    ],
+    "src": [
+     "4b3fe5a1-81d2-41d3-ab6d-33d255b86215",
+     "f8e593bf-179e-4320-ae92-edfda4dedceb",
+     "b15edbfd-cc78-467a-ab81-9f192e52aa64",
+     "c3a774b8-481e-4c38-84d9-99d5c6cc7cc3"
+    ]
+   },
+   {
+    "title": "All-metal body",
+    "t": "A thick lever and ==CNC chassis== stay quiet and flex-free.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "4b3fe5a1-81d2-41d3-ab6d-33d255b86215",
+     "f1b71f12-aa63-4ac5-ad8e-da4882b5a2e2",
+     "b15edbfd-cc78-467a-ab81-9f192e52aa64",
+     "9241640f-9e33-4936-96b2-886c8d936a7c"
+    ]
+   },
+   {
+    "title": "Console through the base",
+    "t": "Plugs into a Fanatec wheelbase for ==PlayStation and Xbox== use.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "4b3fe5a1-81d2-41d3-ab6d-33d255b86215",
+     "f8e593bf-179e-4320-ae92-edfda4dedceb",
+     "c3a774b8-481e-4c38-84d9-99d5c6cc7cc3"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "No USB in the box",
+    "t": "Needs a ==Fanatec wheelbase== to reach a PC unless you buy an adapter.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "f1b71f12-aa63-4ac5-ad8e-da4882b5a2e2",
+     "9241640f-9e33-4936-96b2-886c8d936a7c"
+    ]
+   },
+   {
+    "title": "Fiddly cover",
+    "t": "Removing it ==to reach the mounting points== is awkward.",
+    "for": [],
+    "src": [
+     "f8e593bf-179e-4320-ae92-edfda4dedceb",
+     "b15edbfd-cc78-467a-ab81-9f192e52aa64"
+    ]
+   }
+  ]
+ },
+ "asetek-initium-steering-wheel": {
+  "tagline": "300 mm round entry rim for Asetek bases on PC. The catch: the plastic shifters feel soft and flimsy.",
+  "bottom": "For PC drivers starting on an Asetek Initium base. Skip it if you want a premium-feeling rim.",
+  "yes": [
+   {
+    "title": "Stiff for the price",
+    "t": "The composite hub ==doesn't creak or flex== under load.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "acadae29-9b97-4d42-a0e7-05bf44c8b29d",
+     "5fcd7a8e-6994-4977-b13a-3e95a4b26052",
+     "060ea53e-7b3e-4dc5-b4c1-5b194f7db1f3"
+    ]
+   },
+   {
+    "title": "Clicky face buttons",
+    "t": "21 inputs with a ==decent tactile click== within easy reach.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "9dcbec8f-5840-4d75-959c-f234cc85e08f",
+     "5fcd7a8e-6994-4977-b13a-3e95a4b26052",
+     "060ea53e-7b3e-4dc5-b4c1-5b194f7db1f3"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Weak shifters",
+    "t": "The plastic magnetic levers ==feel soft and flimsy==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "acadae29-9b97-4d42-a0e7-05bf44c8b29d",
+     "9dcbec8f-5840-4d75-959c-f234cc85e08f",
+     "5fcd7a8e-6994-4977-b13a-3e95a4b26052"
+    ]
+   },
+   {
+    "title": "Toy-like materials",
+    "t": "A rubbery grip and ==plastic body== feel cheap in the hands.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "9dcbec8f-5840-4d75-959c-f234cc85e08f",
+     "6c26d1d3-f2c6-43cc-a60a-3a2a1129b855"
+    ]
+   }
+  ]
+ }
+}

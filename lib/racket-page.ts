@@ -5,6 +5,7 @@
 import padel from "../db/racket-page/padel.json";
 import pickleball from "../db/racket-page/pickleball.json";
 import discgolf from "../db/racket-page/discgolf.json";
+import simracing from "../db/racket-page/simracing.json";
 import { niche } from "./niche";
 import type { CardContent, CardTag } from "./fit-card";
 
@@ -14,7 +15,8 @@ export type PageItem = { title: string; /** One line; the key phrase sits betwee
 export type PageContent = { tagline: string; bottom: string; yes: PageItem[]; no: PageItem[] };
 
 const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Record<string, PageContent>, pickleball: pickleball as Record<string, PageContent>,
-  discgolf: discgolf as Record<string, PageContent> };
+  discgolf: discgolf as Record<string, PageContent>,
+  simracing: simracing as Record<string, PageContent> };
 
 export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
