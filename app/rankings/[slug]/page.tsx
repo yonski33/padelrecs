@@ -24,6 +24,8 @@ import { ProductArt, SentimentBar, Arrow, SignalInfo, SignalPop } from "../../vi
 import { score, type Catalog, type Score } from "../../../db/data";
 import { type Signal, MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 import RankingV2, { type Search } from "./ranking-v2";
+import RankingBeauty from "../../skin/ranking-beauty";
+import { attrProfileFor } from "../../../lib/attr-profile";
 type Product = Catalog["rackets"][number];
 
 const w = niche.words, people = niche.people;
@@ -153,6 +155,8 @@ export default async function TopListPage({ params, searchParams }: { params: Pr
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const yearRule = list.modelYearsBack !== undefined ? `${listYear(list)} models only` : list.maxAgeYears === 0 ? `${currentYear()} models only` : list.maxAgeYears !== undefined ? `${currentYear() - list.maxAgeYears} or newer models` : null;
   // Design v2 on PadelRecs (owner 2026-11-15, Claude Design mockup); ?look=classic keeps the old page.
+  // SkinRecs: the owner's beauty design (app/skin/ranking-beauty.tsx, 2026-11-16).
+  if (isV2 && query.look !== "classic" && attrProfileFor(niche)) return <RankingBeauty {...{ data, lists, found, amazon, affiliate, faq, jsonLd }}/>;
   if (isV2 && query.look !== "classic") return <RankingV2 {...{ data, lists, found, amazon, affiliate, faq, jsonLd }} search={query}/>;
   if (isLight(query.look)) return <LightRanking {...{ data, lists, found, entries, reviews, updated, amazon, affiliate, faq, jsonLd, byId, brandOf }}/>;
   return <main className="top-page v2">
