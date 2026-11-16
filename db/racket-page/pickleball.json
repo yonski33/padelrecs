@@ -12027,5 +12027,1495 @@
     ]
    }
   ]
+ },
+ "spartus-p1-standard": {
+  "tagline": "A 16 mm foam widebody with a grippy PermaGrit face. The catch: it weighs more than most widebodies.",
+  "bottom": "For widebody fans who want stability and spin stock. Skip it if you want the quickest, lightest hands.",
+  "yes": [
+   {
+    "title": "Stable on mishits",
+    "t": "A high twist weight ==keeps blocks steady== when contact drifts off center.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://pickleballeffect.com/paddles/spartus-p1-standard/",
+     "https://paddlereviewhub.com/reviews/spartus-p1-standard",
+     "https://www.mattspickleball.com/paddle/p1-widebody-16mm"
+    ]
+   },
+   {
+    "title": "Tacky PermaGrit",
+    "t": "The durable PermaGrit face ==bites on dinks, drops and rolls==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://pickleballeffect.com/paddles/spartus-p1-standard/",
+     "https://paddlereviewhub.com/reviews/spartus-p1-standard",
+     "https://reganfamilypickleball.com/paddles/spartus-p1-widebody/"
+    ]
+   },
+   {
+    "title": "Plow-through stock",
+    "t": "It plays ==solid through the ball without lead tape==, rare for a widebody.",
+    "for": [],
+    "src": [
+     "https://pickleballeffect.com/paddles/spartus-p1-standard/",
+     "https://gospartus.com/products/p1-standard"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Heavy for a widebody",
+    "t": "It carries ==more mass than most widebodies==, trading a little hand speed.",
+    "for": [],
+    "src": [
+     "https://pickleballeffect.com/paddles/spartus-p1-standard/",
+     "https://reganfamilypickleball.com/paddles/spartus-p1-widebody/"
+    ]
+   },
+   {
+    "title": "Firm, not plush",
+    "t": "The stiff foam core ==won't cushion dinks like a soft paddle==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://pickleballeffect.com/paddles/spartus-p1-standard/",
+     "https://reganfamilypickleball.com/paddles/spartus-p1-widebody/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "spartus-orion-apex": {
+  "tagline": "A budget elongated paddle with a carbon and fiberglass face. The catch: modest stock power.",
+  "bottom": "For budget players who want reach and spin. Hard hitters who want free power should look elsewhere.",
+  "yes": [
+   {
+    "title": "Budget value",
+    "t": "It plays ==well above its budget price== for spin and feel.",
+    "for": [],
+    "src": [
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review",
+     "https://gospartus.com/products/orion",
+     "https://theinventory.com/spartus-apex-series-pickleball-paddle-with-trugrit-surface-technology-and-boost--f0753871"
+    ]
+   },
+   {
+    "title": "Real spin",
+    "t": "The textured face ==adds bite on serves and drives==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://theinventory.com/spartus-apex-series-pickleball-paddle-with-trugrit-surface-technology-and-boost--f0753871",
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review",
+     "https://gospartus.com/products/orion"
+    ]
+   },
+   {
+    "title": "Elongated reach",
+    "t": "The long head ==extends reach on deep returns== and drives.",
+    "for": [],
+    "src": [
+     "https://thepickleballreviews.com/paddle/spartus-orion-elongated-16mm/",
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Modest stock power",
+    "t": "The plush response ==leaves you to supply the pace== on drives.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://theinventory.com/spartus-apex-series-pickleball-paddle-with-trugrit-surface-technology-and-boost--f0753871",
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review",
+     "https://picklefitter.com/paddle/spartus-orion-apex"
+    ]
+   },
+   {
+    "title": "Twists on mishits",
+    "t": "Measured twist weight ==sits below average==, so off-center hits wobble.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://picklefitter.com/paddle/spartus-orion-apex",
+     "https://thepickleballreviews.com/paddle/spartus-orion-elongated-16mm/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "joola-graf-pro": {
+  "tagline": "A 16 mm Agassi/Graf-shape elongated paddle with a slim grip. The catch: slower hands at the kitchen.",
+  "bottom": "For tennis converts who want reach and baseline pace. Skip it as a first paddle or for fast hands.",
+  "yes": [
+   {
+    "title": "High sweet spot",
+    "t": "The face widens up top, so ==high contact stays solid== on tennis swings.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/blogs/gear/joola-pro-iv-series-pickleball-paddles-review/",
+     "https://pickleball3.com/joola/graf-pro-16mm-review/"
+    ]
+   },
+   {
+    "title": "Baseline pace",
+    "t": "Reach and leverage ==drive deep groundstrokes== from the back court.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://pickleball3.com/joola/graf-pro-16mm-review/",
+     "https://thekitchenpickle.com/blogs/gear/joola-pro-iv-series-pickleball-paddles-review/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Slower at the net",
+    "t": "The long shape ==loses ground in hands battles== to shorter paddles.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/blogs/gear/joola-pro-iv-series-pickleball-paddles-review/",
+     "https://pickleball3.com/joola/graf-pro-16mm-review/",
+     "https://wellworthitlab.com/reviews/joola-graf-pro-16mm-review/"
+    ]
+   },
+   {
+    "title": "Not a first paddle",
+    "t": "The specialized tennis shape ==suits players who know their game==.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://wellworthitlab.com/reviews/joola-graf-pro-16mm-review/",
+     "https://pickleball3.com/joola/graf-pro-16mm-review/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "joola-graf-pro-v": {
+  "tagline": "A 16 mm Graf-shape elongated paddle on JOOLA's Pro V build. The catch: a flagship-level price.",
+  "bottom": "For tennis converts with smaller hands who want touch and spin. Budget buyers should look elsewhere.",
+  "yes": [
+   {
+    "title": "Slim, whippy grip",
+    "t": "The slimmer handle ==whips through serves and drives== for smaller hands.",
+    "for": [],
+    "src": [
+     "https://thekitchenpickle.com/paddle/joola-graf-pro-v/",
+     "https://forwrd.co/blogs/pickleball/joola-graf-pro-v-steffi-graf-16mm-review-2026-what-22-grand-slams-looks-like-at-the-pickleball-net",
+     "https://pickleball3.com/joola/graf-pro-v-16mm-review/"
+    ]
+   },
+   {
+    "title": "Softer touch",
+    "t": "The flexing Pro V frame ==steadies drops, dinks and resets==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/joola-graf-pro-v/",
+     "https://forwrd.co/blogs/pickleball/joola-graf-pro-v-steffi-graf-16mm-review-2026-what-22-grand-slams-looks-like-at-the-pickleball-net",
+     "https://pickleball3.com/joola/graf-pro-v-16mm-review/"
+    ]
+   },
+   {
+    "title": "Spin bite",
+    "t": "The textured carbon face ==grips kick serves and topspin==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://forwrd.co/blogs/pickleball/joola-graf-pro-v-steffi-graf-16mm-review-2026-what-22-grand-slams-looks-like-at-the-pickleball-net",
+     "https://pickleball3.com/joola/graf-pro-v-16mm-review/",
+     "https://thekitchenpickle.com/paddle/joola-graf-pro-v/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Premium price",
+    "t": "It costs ==as much as JOOLA's flagships==, a big outlay before you know your style.",
+    "for": [],
+    "src": [
+     "https://thekitchenpickle.com/paddle/joola-graf-pro-v/",
+     "https://forwrd.co/blogs/pickleball/joola-graf-pro-v-steffi-graf-16mm-review-2026-what-22-grand-slams-looks-like-at-the-pickleball-net",
+     "https://pickleball3.com/joola/graf-pro-v-16mm-review/"
+    ]
+   },
+   {
+    "title": "Heavy swing",
+    "t": "A high swing weight ==slows hands at the kitchen== in fast exchanges.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/joola-graf-pro-v/",
+     "https://pickleball3.com/joola/graf-pro-v-16mm-review/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "selkirk-luxx-control-air-epic": {
+  "tagline": "A 19 mm Epic-shape control paddle with InfiniGrit. The catch: you supply your own power.",
+  "bottom": "For doubles players who win with dinks, resets and spin. Baseline bangers should look elsewhere.",
+  "yes": [
+   {
+    "title": "Soft-game control",
+    "t": "The thick core ==keeps dinks and resets low== under pressure.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://pickleballnation.com/blogs/pickleball-nation/selkirk-luxx-control-air-infinigrit-review-a-players-take-on-both-shapes",
+     "https://pickleball3.com/selkirk/luxx-control-air-infinigrit-epic-19mm-review/",
+     "https://picklerjunction.com/selkirk-luxx-control-air-infinigrit-review/"
+    ]
+   },
+   {
+    "title": "Lasting spin",
+    "t": "The InfiniGrit face ==keeps its bite longer== than raw carbon.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://picklerjunction.com/selkirk-luxx-control-air-infinigrit-review/",
+     "https://pickleballnation.com/blogs/pickleball-nation/selkirk-luxx-control-air-infinigrit-review-a-players-take-on-both-shapes",
+     "https://www.premiumpickleballgear.com/reviews/selkirk-luxx-control-air-epic/"
+    ]
+   },
+   {
+    "title": "Fast doubles hands",
+    "t": "The broad Epic face ==recovers quickly and stays steady== in exchanges.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://pickleball3.com/selkirk/luxx-control-air-infinigrit-epic-19mm-review/",
+     "https://pickleballnation.com/blogs/pickleball-nation/selkirk-luxx-control-air-infinigrit-review-a-players-take-on-both-shapes"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Low power",
+    "t": "The thick core ==takes pace off drives==, so points take building.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://picklerjunction.com/selkirk-luxx-control-air-infinigrit-review/",
+     "https://pickleball3.com/selkirk/luxx-control-air-infinigrit-epic-19mm-review/",
+     "https://www.premiumpickleballgear.com/reviews/selkirk-luxx-control-air-epic/",
+     "https://pickleballnation.com/blogs/pickleball-nation/selkirk-luxx-control-air-infinigrit-review-a-players-take-on-both-shapes"
+    ]
+   },
+   {
+    "title": "Pricey at list",
+    "t": "At full price ==the value case is thin==; sale pricing helps.",
+    "for": [],
+    "src": [
+     "https://pickleball3.com/selkirk/luxx-control-air-infinigrit-epic-19mm-review/",
+     "https://picklerjunction.com/selkirk-luxx-control-air-infinigrit-review/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "joola-magnus-3s": {
+  "tagline": "A 14 mm elongated power paddle with a short handle. The catch: a tight, firm sweet spot.",
+  "bottom": "For advanced one-handed attackers with clean contact. Two-handers and newer players should pass.",
+  "yes": [
+   {
+    "title": "Big power",
+    "t": "The thin core and long head ==hit drives with real pace==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://paddlecompare.com/reviews/joola-magnus-3s-14mm",
+     "https://pickleballeffect.com/equipment-reviews/joola-3s-paddle-series-review-includes-perseus-3s-magnus-3s-and-scorpeus-3s-models/",
+     "https://thekitchenpickle.com/blogs/gear/joola-magnus-3s-review/"
+    ]
+   },
+   {
+    "title": "Topspin bite",
+    "t": "The raw carbon face ==adds kick to topspin drives==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://paddlecompare.com/reviews/joola-magnus-3s-14mm",
+     "https://thekitchenpickle.com/blogs/gear/joola-magnus-3s-review/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Tight sweet spot",
+    "t": "Mishits ==lose pace and direction fast==, so it rewards clean contact.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://paddlecompare.com/reviews/joola-magnus-3s-14mm",
+     "https://pickleballeffect.com/equipment-reviews/joola-3s-paddle-series-review-includes-perseus-3s-magnus-3s-and-scorpeus-3s-models/",
+     "https://thekitchenpickle.com/blogs/gear/joola-magnus-3s-review/"
+    ]
+   },
+   {
+    "title": "Short handle",
+    "t": "The shorter grip ==crowds two-handed backhands==.",
+    "for": [],
+    "src": [
+     "https://pickleballeffect.com/equipment-reviews/joola-3s-paddle-series-review-includes-perseus-3s-magnus-3s-and-scorpeus-3s-models/",
+     "https://thekitchenpickle.com/blogs/gear/joola-magnus-3s-review/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "bread-butter-psycho": {
+  "tagline": "A 14 mm standard-shape paddle with fast hands and pop. The catch: it feels light until weighted.",
+  "bottom": "For hands-battle players who like to tune with tape. Skip it if you want plow-through stock.",
+  "yes": [
+   {
+    "title": "Fast hands",
+    "t": "A very low swing weight ==wins quick exchanges at the net==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://www.thepickleballblast.com/blog/bread-amp-butter-wild-thang-amp-psycho-review-their-best-paddles-yet",
+     "https://www.mattspickleball.com/paddle/psycho-14mm"
+    ]
+   },
+   {
+    "title": "Stable for its weight",
+    "t": "A high twist weight ==keeps off-center volleys on line==.",
+    "for": [],
+    "src": [
+     "https://www.thepickleballblast.com/blog/bread-amp-butter-wild-thang-amp-psycho-review-their-best-paddles-yet",
+     "https://www.mattspickleball.com/paddle/psycho-14mm",
+     "https://theadventurousboomer.blog/psycho-paddle-first-look-review/"
+    ]
+   },
+   {
+    "title": "Controlled pop",
+    "t": "The fiberglass layer ==adds spring without going wild==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.thepickleballblast.com/blog/bread-amp-butter-wild-thang-amp-psycho-review-their-best-paddles-yet",
+     "https://theadventurousboomer.blog/psycho-paddle-first-look-review/",
+     "https://www.mattspickleball.com/paddle/psycho-14mm"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Light stock",
+    "t": "It ==wants added weight== for plow-through and a bigger sweet spot.",
+    "for": [],
+    "src": [
+     "https://www.thepickleballblast.com/blog/bread-amp-butter-wild-thang-amp-psycho-review-their-best-paddles-yet",
+     "https://www.youtube.com/watch?v=RyNCH2OE8xQ",
+     "https://www.mattspickleball.com/paddle/psycho-14mm"
+    ]
+   },
+   {
+    "title": "Firm feedback",
+    "t": "A stiff, direct response ==asks for soft hands on resets==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.thepickleballblast.com/blog/bread-amp-butter-wild-thang-amp-psycho-review-their-best-paddles-yet",
+     "https://theadventurousboomer.blog/psycho-paddle-first-look-review/",
+     "https://www.mattspickleball.com/paddle/psycho-14mm"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "pickleball-apes-charm": {
+  "tagline": "An aramid-faced foam control paddle in three shapes. The catch: modest power on full swings.",
+  "bottom": "For touch players who want plush control and a damped feel. Power seekers should look elsewhere.",
+  "yes": [
+   {
+    "title": "Plush soft game",
+    "t": "The flexing foam core ==makes dinks and resets feel easy==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.thepickleballblast.com/blog/pickleball-apes-charm-first-look-and-initial-impressions",
+     "https://www.pickletip.com/pickleball-apes-charm/",
+     "https://www.ticklemypickleball35.com/blog/1030-pb-apes-charm-enhance-duo-and-bampb-loco"
+    ]
+   },
+   {
+    "title": "Stable Charm V",
+    "t": "The square V shape ==resists twisting on wide balls==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/charm-v-16mm",
+     "https://www.pickletip.com/pickleball-apes-charm/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Modest power",
+    "t": "Full swings ==bring respectable, not big, pace==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.thepickleballblast.com/blog/pickleball-apes-charm-first-look-and-initial-impressions",
+     "https://www.ticklemypickleball35.com/blog/1030-pb-apes-charm-enhance-duo-and-bampb-loco",
+     "https://www.mattspickleball.com/paddle/charm-v-16mm"
+    ]
+   },
+   {
+    "title": "Muted feedback",
+    "t": "The dense, damped face ==dulls feedback== if you like a crisp hit.",
+    "for": [],
+    "src": [
+     "https://www.ticklemypickleball35.com/blog/1030-pb-apes-charm-enhance-duo-and-bampb-loco",
+     "https://www.pickletip.com/pickleball-apes-charm/",
+     "https://www.mattspickleball.com/paddle/charm-v-16mm"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "diadem-edge-blucore-hybrid": {
+  "tagline": "An all-foam hybrid paddle with an 18K carbon face. The catch: a stiff feel with little dwell.",
+  "bottom": "For all-court players who want spin and a durable foam core. Value hunters should compare first.",
+  "yes": [
+   {
+    "title": "Top-tier spin",
+    "t": "The 18K triaxial face ==grips the ball from every angle==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://www.ticklemypickleball35.com/blog-2-1/blog-post-title-one-dnztf",
+     "https://www.pickleballportal.com/diadem-edge-blucore-hybrid-14mm-paddle-review-my-in-depth-thoughts/",
+     "https://paddlereviewhub.com/reviews/diadem-edge-blucore-hybrid"
+    ]
+   },
+   {
+    "title": "Forgiving face",
+    "t": "Edge foam walls ==keep off-center hits stable==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://paddlereviewhub.com/reviews/diadem-edge-blucore-hybrid",
+     "https://www.pickleballportal.com/diadem-edge-blucore-hybrid-14mm-paddle-review-my-in-depth-thoughts/",
+     "https://www.mattspickleball.com/paddle/edge-blucore-hybrid-16mm"
+    ]
+   },
+   {
+    "title": "Durable core",
+    "t": "Full EPP foam ==resists core crush==, backed by a lifetime core warranty.",
+    "for": [],
+    "src": [
+     "https://paddlereviewhub.com/reviews/diadem-edge-blucore-hybrid",
+     "https://www.pickleballportal.com/diadem-edge-blucore-hybrid-14mm-paddle-review-my-in-depth-thoughts/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Stiff feel",
+    "t": "The firm foam ==gives little dwell== and can feel jarring at first.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.ticklemypickleball35.com/blog-2-1/blog-post-title-one-dnztf",
+     "https://www.youtube.com/watch?v=JimiKCvWKn4"
+    ]
+   },
+   {
+    "title": "Pricey for the class",
+    "t": "Cheaper foam rivals ==match it for less money==.",
+    "for": [],
+    "src": [
+     "https://paddlereviewhub.com/reviews/diadem-edge-blucore-hybrid",
+     "https://www.youtube.com/watch?v=JimiKCvWKn4"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "friday-aura-hybrid": {
+  "tagline": "A 16 mm foam hybrid with quick hands and plush dwell. The catch: low twist weight on mishits.",
+  "bottom": "For doubles players with clean contact who want quick hands. Pick the widebody Aura for forgiveness.",
+  "yes": [
+   {
+    "title": "Quick hands",
+    "t": "A low swing weight ==snaps up reflex volleys==.",
+    "for": [],
+    "src": [
+     "https://paddlereviewhub.com/reviews/friday-aura-hybrid",
+     "https://www.mattspickleball.com/paddle/aura-hybrid-16mm"
+    ]
+   },
+   {
+    "title": "Plush dwell",
+    "t": "Soft, dense foam ==holds the ball for shaping shots==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/aura-hybrid-16mm",
+     "https://paddlereviewhub.com/reviews/friday-aura-hybrid"
+    ]
+   },
+   {
+    "title": "Solid spin",
+    "t": "The carbon face ==shapes thirds and rolls== with good bite.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://paddlereviewhub.com/reviews/friday-aura-hybrid",
+     "https://www.mattspickleball.com/paddle/aura-hybrid-16mm"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Low twist weight",
+    "t": "Off-center contact ==twists the face more== than on the widebody Aura.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "https://paddlereviewhub.com/reviews/friday-aura-hybrid",
+     "https://www.mattspickleball.com/paddle/aura-hybrid-16mm"
+    ]
+   },
+   {
+    "title": "Soft-hand adjustment",
+    "t": "The pace-absorbing face ==makes you drive each reset== on purpose.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/blogs/gear/friday-aura-aura-pro-pickleball-paddle-review/",
+     "https://www.mattspickleball.com/paddle/aura-hybrid-16mm"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "crbn3-trufoam-barrage": {
+  "tagline": "A 14 mm all-foam elongated power paddle with a standard handle. The catch: heavy in hand battles.",
+  "bottom": "For singles and all-court attackers who prep early. Fast-hands doubles players should look elsewhere.",
+  "yes": [
+   {
+    "title": "Plow-through power",
+    "t": "Its mass behind the ball ==drives deep with pace==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://pickleball3.com/crbn/crbn-3-trufoam-barrage-review/",
+     "https://forwrd.co/blogs/gear-guides/crbn1-trufoam-barrage-review-2026-the-offense-first-case-for-a-long-handle"
+    ]
+   },
+   {
+    "title": "Stable for elongated",
+    "t": "Higher twist weight ==steadies resets== versus the CRBN1.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://pickleball3.com/crbn/crbn-3-trufoam-barrage-review/",
+     "https://forwrd.co/blogs/gear-guides/crbn1-trufoam-barrage-review-2026-the-offense-first-case-for-a-long-handle"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Heavy in hand battles",
+    "t": "A high swing weight ==slows reloads at the kitchen==.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://pickleball3.com/crbn/crbn-3-trufoam-barrage-review/",
+     "https://forwrd.co/blogs/gear-guides/crbn1-trufoam-barrage-review-2026-the-offense-first-case-for-a-long-handle"
+    ]
+   },
+   {
+    "title": "Spin in question",
+    "t": "Spin ==splits opinion==, from strong in review play to below average for buyers.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://pickleball3.com/crbn/crbn-3-trufoam-barrage-review/",
+     "https://metarevu.com/products/crbn3-trufoam-barrage"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "holbrook-arma-t": {
+  "tagline": "A 14 mm elongated raw carbon power paddle. The catch: it can feel sluggish in fast transition.",
+  "bottom": "For attackers who want elite power with some touch. Fast-hands players should look elsewhere.",
+  "yes": [
+   {
+    "title": "Elite power",
+    "t": "Drives and serves ==come off with elite pace==.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.johnkewpickleball.com/holbrook-arma-full-review",
+     "https://pickleballcentral.com/blog/paddle-review-holbrook-arma-paddles/",
+     "https://holbrookpickleball.com/products/arma-t-carbon"
+    ]
+   },
+   {
+    "title": "Tamer than rivals",
+    "t": "It ==stays easier to control== than most elite power paddles.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.johnkewpickleball.com/holbrook-arma-full-review",
+     "https://pickleballcentral.com/blog/paddle-review-holbrook-arma-paddles/"
+    ]
+   },
+   {
+    "title": "Steady off center",
+    "t": "Dual-density cells ==keep mishits more consistent== than most power paddles.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://www.johnkewpickleball.com/holbrook-arma-full-review",
+     "https://pickleballcentral.com/blog/paddle-review-holbrook-arma-paddles/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Sluggish in transition",
+    "t": "A high swing weight ==drags if you are late== in fast exchanges.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://www.youtube.com/watch?v=VOvkCgyAFl8",
+     "https://www.johnkewpickleball.com/holbrook-arma-full-review"
+    ]
+   },
+   {
+    "title": "Durability unproven",
+    "t": "A teardown ==showed early core crush==, so long-term life is unknown.",
+    "for": [],
+    "src": [
+     "https://www.johnkewpickleball.com/holbrook-arma-full-review",
+     "https://metarevu.com/products/holbrook-arma-t-14mm"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "paddletek-honeyfoam-esq": {
+  "tagline": "A widebody foam control paddle in 14 or 16 mm. The catch: it is not built for maximum drive power.",
+  "bottom": "For intermediates who want foam touch and a forgiving face. Bangers chasing pace should look elsewhere.",
+  "yes": [
+   {
+    "title": "Huge sweet spot",
+    "t": "A perimeter foam ring on the wide face keeps ==off-center hits on line==.",
+    "for": [
+     "control",
+     "intermediate"
+    ],
+    "src": [
+     "https://www.premiumpickleballgear.com/reviews/paddletek-honeyfoam-esq/",
+     "https://www.paddletek.com/products/honeyfoam-esq"
+    ]
+   },
+   {
+    "title": "Calm kitchen touch",
+    "t": "Three foams add dwell, so ==dinks and resets stay soft== without killing counters.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.premiumpickleballgear.com/reviews/paddletek-honeyfoam-esq/",
+     "https://www.paddletek.com/products/honeyfoam-esq",
+     "https://thekitchenpickle.com/paddle/paddletek-honeyfoam-esq/"
+    ]
+   },
+   {
+    "title": "Pick your core",
+    "t": "The 16 mm is steadier; the thinner 14 mm adds ==a little more pop and pace==.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/paddletek-honeyfoam-esq/",
+     "https://www.premiumpickleballgear.com/reviews/paddletek-honeyfoam-esq/"
+    ]
+   },
+   {
+    "title": "Lasting grit",
+    "t": "A PT-700 raw carbon face ==adds topspin on serves== and angled shots.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://www.paddletek.com/products/honeyfoam-esq",
+     "https://www.premiumpickleballgear.com/reviews/paddletek-honeyfoam-esq/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Capped top end",
+    "t": "Bangers get ==more pace from power-first foam== paddles; this one leans control.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/paddletek-honeyfoam-esq/",
+     "https://www.premiumpickleballgear.com/reviews/paddletek-honeyfoam-esq/"
+    ]
+   },
+   {
+    "title": "Sanctioning snag",
+    "t": "The 14 mm version ==exceeded the USAP power cap==, so it is approved for UPA-A only.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://www.paddletek.com/products/honeyfoam-esq",
+     "https://www.premiumpickleballgear.com/reviews/paddletek-honeyfoam-esq/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "prokennex-black-ace-14": {
+  "tagline": "A light 14 mm widebody built for fast hands and arm comfort. The catch: drives need your own pace.",
+  "bottom": "For intermediates with a touchy arm who want quick hands and pop. Skip it if you want free drive power.",
+  "yes": [
+   {
+    "title": "Arm-first build",
+    "t": "Kinetic beads ==soften the jolt on contact==, which can feel kinder to a sore elbow.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://prokennex.com/products/black-ace-14",
+     "https://forwrd.co/blogs/pickleball/prokennex-black-ace-14-review-2026-xf14-lg14-standard-tested",
+     "https://metarevu.com/products/black-ace-14"
+    ]
+   },
+   {
+    "title": "Lightning hands",
+    "t": "A swing weight near the bottom of the market makes ==counters and resets snappy==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://picklefitter.com/paddle/prokennex-black-ace-14",
+     "https://paddlespecs.com/paddles/prokennex-black-ace-14/"
+    ]
+   },
+   {
+    "title": "Punchy volleys",
+    "t": "The crisp 14 mm core ==jumps off the face on blocks== and kitchen speed-ups.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://picklefitter.com/paddle/prokennex-black-ace-14",
+     "https://paddlespecs.com/paddles/prokennex-black-ace-14/"
+    ]
+   },
+   {
+    "title": "Real bite",
+    "t": "The Carbon Fire face ==grabs the ball for topspin== on serves and rolls.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://picklefitter.com/paddle/prokennex-black-ace-14",
+     "https://paddlespecs.com/paddles/prokennex-black-ace-14/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Low drive pace",
+    "t": "Serve speed tests sit ==well below average==, so put-aways need a full, clean swing.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://picklefitter.com/paddle/prokennex-black-ace-14",
+     "https://paddlespecs.com/paddles/prokennex-black-ace-14/",
+     "https://metarevu.com/products/black-ace-14"
+    ]
+   },
+   {
+    "title": "Little plow-through",
+    "t": "The very light swing ==trades mass for speed==, so heavy balls can push it back.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://picklefitter.com/paddle/prokennex-black-ace-14",
+     "https://paddlespecs.com/paddles/prokennex-black-ace-14/"
+    ]
+   },
+   {
+    "title": "Edge mishits",
+    "t": "Splits opinion: lab twist weight reads forgiving, yet ==misses near the edge== are felt.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://forwrd.co/blogs/pickleball/prokennex-black-ace-14-review-2026-xf14-lg14-standard-tested",
+     "https://metarevu.com/products/black-ace-14",
+     "https://paddlespecs.com/paddles/prokennex-black-ace-14/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "holbrook-arma-x": {
+  "tagline": "An elongated 14 mm Gen 3 power paddle with a metallic face. The catch: spin is only middling.",
+  "bottom": "For aggressive players who want elongated reach and drive pace. Spin chasers and quick hands should skip.",
+  "yes": [
+   {
+    "title": "Baseline heat",
+    "t": "Measured serve speed ranks ==near the top 5% of paddles==, with a crisp 14 mm thwack.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/arma-metallic-x-14mm",
+     "https://pickleballcentral.com/blog/paddle-review-holbrook-arma-paddles/"
+    ]
+   },
+   {
+    "title": "Connected mishits",
+    "t": "A dual-density core and foam ring keep ==off-center volleys solid==, not mushy.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://pickleballcentral.com/blog/paddle-review-holbrook-arma-paddles/",
+     "https://forwrd.co/blogs/pickleball/holbrook-arma-review-2026-s-vs-t-vs-x-guide"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Middling spin",
+    "t": "Splits opinion: the metallic face can feel grabby, yet ==lab spin reads only medium==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/arma-metallic-x-14mm",
+     "https://forwrd.co/blogs/pickleball/holbrook-arma-review-2026-s-vs-t-vs-x-guide",
+     "https://pickleballcentral.com/blog/paddle-review-holbrook-arma-paddles/"
+    ]
+   },
+   {
+    "title": "Heavy in the hands",
+    "t": "A ==head-heavy swing== slows recovery in fast kitchen trades versus lighter paddles.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/arma-metallic-x-14mm",
+     "https://forwrd.co/blogs/pickleball/holbrook-arma-review-2026-s-vs-t-vs-x-guide"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "rpm-jade-widebody": {
+  "tagline": "A spin-first 16 mm foam widebody with durable grit. The catch: a long, stiff break-in.",
+  "bottom": "For spin-first doubles players who want quick, steady hands. Skip it if you need UPA-A or instant feel.",
+  "yes": [
+   {
+    "title": "Elite bite",
+    "t": "A silicon-carbide face tops spin charts and ==keeps its grit for months==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/jade-widebody-16mm",
+     "https://spinwavepickleball.com/a/blog/rpm-jade-review-2026-my-new-main-and-rpms-best-paddle-yet-jade-vs-q2-vs-v2",
+     "https://dinkdynasty.ca/rpm-jade-pickleball-paddle/"
+    ]
+   },
+   {
+    "title": "Quick yet steady",
+    "t": "A low swing weight with high twist weight ==keeps blocks fast and on line==.",
+    "for": [
+     "control",
+     "intermediate"
+    ],
+    "src": [
+     "https://paddlereviewhub.com/reviews/rpm-jade-widebody-16mm",
+     "https://www.mattspickleball.com/paddle/jade-widebody-16mm"
+    ]
+   },
+   {
+    "title": "Lively hands",
+    "t": "Short punches ==come off hot for a 16 mm==, handy in kitchen speed-ups.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/jade-widebody-16mm",
+     "https://spinwavepickleball.com/a/blog/rpm-jade-review-2026-my-new-main-and-rpms-best-paddle-yet-jade-vs-q2-vs-v2"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Long break-in",
+    "t": "It starts ==stiff and board-like==; plan on about five hours before judging touch.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://spinwavepickleball.com/a/blog/rpm-jade-review-2026-my-new-main-and-rpms-best-paddle-yet-jade-vs-q2-vs-v2",
+     "https://forwrd.co/blogs/pickleball/rpm-jade-pickleball-paddle-review-2026-elongated-vs-widebody"
+    ]
+   },
+   {
+    "title": "Middling drive pace",
+    "t": "Full swings sit ==mid-pack among power paddles==, so add lead tape for more.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://spinwavepickleball.com/a/blog/rpm-jade-review-2026-my-new-main-and-rpms-best-paddle-yet-jade-vs-q2-vs-v2",
+     "https://www.mattspickleball.com/paddle/jade-widebody-16mm"
+    ]
+   },
+   {
+    "title": "USAP only",
+    "t": "It carries ==no UPA-A approval==, so it is not a pick for pro-tour events.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://pickleballinsiders.com/rpm-jade-review/",
+     "https://thekitchenpickle.com/paddle/rpm-jade/"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "neonic-flare-titanium": {
+  "tagline": "A heavy 16 mm widebody with a titanium-carbon face. The catch: very little pop on punches.",
+  "bottom": "For control players who want a forgiving, steady block. Skip it if you win with fast hands and pop.",
+  "yes": [
+   {
+    "title": "Huge sweet spot",
+    "t": "High twist weight keeps ==off-center blocks playable== on a full-width face.",
+    "for": [
+     "beginner",
+     "control"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/flare-titanium",
+     "https://reganfamilypickleball.com/paddles/neonic-flare-titanium/",
+     "https://picklefitter.com/paddle/neonic-flare-titanium-16mm"
+    ]
+   },
+   {
+    "title": "Locked-in control",
+    "t": "A head-light 16 mm build ==tames hard drives== on blocks and resets.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/flare-titanium",
+     "https://www.pickleheads.com/pickleball-gear/neonic-flare-titanium-review"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Flat on punches",
+    "t": "Pop is ==near the bottom of the market==, so counters and speed-ups need effort.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/flare-titanium",
+     "https://picklefitter.com/paddle/neonic-flare-titanium-16mm",
+     "https://www.pickleheads.com/pickleball-gear/neonic-flare-titanium-review"
+    ]
+   },
+   {
+    "title": "Heavy in hand",
+    "t": "A metal-infused face adds heft that ==slows hands at the net==, more so late on.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "https://www.pickleheads.com/pickleball-gear/neonic-flare-titanium-review",
+     "https://reganfamilypickleball.com/paddles/neonic-flare-titanium/",
+     "https://www.mattspickleball.com/paddle/flare-titanium"
+    ]
+   },
+   {
+    "title": "Disputed spin",
+    "t": "Splits opinion: one lab ==measures spin as low==, while others rate it near the top.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/flare-titanium",
+     "https://reganfamilypickleball.com/paddles/neonic-flare-titanium/",
+     "https://www.pickleheads.com/pickleball-gear/neonic-flare-titanium-review"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "rpm-q2-hybrid-flat-top": {
+  "tagline": "A powerful 16 mm foam flat-top hybrid with a forgiving face. The catch: resets can sit high.",
+  "bottom": "For all-court players who want Q2 power with more reach than a widebody. Touch-first players should skip.",
+  "yes": [
+   {
+    "title": "Top-tier pace",
+    "t": "Drives and serves ==hit near the top of the hybrid class==, with easy depth.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://spinwavepickleball.com/a/blog/battle-of-the-flat-top-hybrid-paddles",
+     "https://mypicklelist.com/blog/rpm-q2-hybrid-review",
+     "https://thepickleballreviews.com/paddle/rpm-q2-hybrid-flat-top-16mm/"
+    ]
+   },
+   {
+    "title": "Forgiving face",
+    "t": "Contact ==stays consistent on mishits==, a rare trait at this power level.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://mypicklelist.com/blog/rpm-q2-hybrid-review",
+     "https://spinwavepickleball.com/a/blog/battle-of-the-flat-top-hybrid-paddles"
+    ]
+   },
+   {
+    "title": "Middle-ground shape",
+    "t": "The flat top adds ==reach over the widebody== while keeping a broad hitting zone.",
+    "for": [],
+    "src": [
+     "https://wellworthitlab.com/reviews/rpm-q2-hybrid-flat-top-16mm-pickleball-paddle-review/",
+     "https://paddlereviewhub.com/reviews/rpm-q2-hybrid-flat-top-16mm"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Jumpy resets",
+    "t": "Lively pop means ==resets can float high== until strokes are shortened.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://mypicklelist.com/blog/rpm-q2-hybrid-review",
+     "https://thepickleballreviews.com/paddle/rpm-q2-hybrid-flat-top-16mm/"
+    ]
+   },
+   {
+    "title": "Behind the widebody",
+    "t": "Next to the Q2 Widebody it is ==less nimble and less forgiving== at the kitchen.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://paddlereviewhub.com/reviews/rpm-q2-hybrid-flat-top-16mm",
+     "https://wellworthitlab.com/reviews/rpm-q2-hybrid-flat-top-16mm-pickleball-paddle-review/"
+    ]
+   },
+   {
+    "title": "Ordinary face",
+    "t": "Uses regular carbon, ==not a durable-grit surface==, so bite can fade over a season.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://paddlereviewhub.com/reviews/rpm-q2-hybrid-flat-top-16mm",
+     "https://www.nicothelefty.com/paddles/rpm-q-2"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "six-zero-coral-16mm-lightweight": {
+  "tagline": "A featherweight 16 mm foam hybrid built for fast hands. The catch: less stable on off-center hits.",
+  "bottom": "For intermediate and advanced players after quick hands and room to tune. Skip it if stability matters.",
+  "yes": [
+   {
+    "title": "Lightning hands",
+    "t": "One of the lowest swing weights for a hybrid ==speeds up blocks and counters==.",
+    "for": [
+     "control",
+     "intermediate"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/coral-16mm-lightweight",
+     "https://pickleball3.com/six-zero/coral-lightweight-hybrid-16mm-review/",
+     "https://us.sixzeropickleball.com/products/coral-16mm-lightweight"
+    ]
+   },
+   {
+    "title": "Extra snap",
+    "t": "Punches come off ==livelier than the standard Coral==, useful in hands battles.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://pickleball3.com/six-zero/coral-lightweight-hybrid-16mm-review/",
+     "https://www.mattspickleball.com/paddle/coral-16mm-lightweight"
+    ]
+   },
+   {
+    "title": "Room to customize",
+    "t": "The light base and ==slim 4.1 in grip== leave space for tape and overgrips.",
+    "for": [],
+    "src": [
+     "https://us.sixzeropickleball.com/products/coral-16mm-lightweight",
+     "https://pickleball3.com/six-zero/coral-lightweight-hybrid-16mm-review/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Less stable",
+    "t": "Twist weight is low, so ==stretched resets and edge blocks wobble== more.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://pickleball3.com/six-zero/coral-lightweight-hybrid-16mm-review/",
+     "https://www.mattspickleball.com/paddle/coral-16mm-lightweight",
+     "https://www.mattspickleball.com/blog/six-zero-coral-lightweight-review"
+    ]
+   },
+   {
+    "title": "Light plow-through",
+    "t": "Low mass means ==full drives carry less weight== than the standard Coral.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://pickleball3.com/six-zero/coral-lightweight-hybrid-16mm-review/",
+     "https://www.mattspickleball.com/blog/six-zero-coral-lightweight-review",
+     "https://www.mattspickleball.com/paddle/coral-16mm-lightweight"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "spartus-odyssey-apex": {
+  "tagline": "A budget 16 mm hybrid with plush touch and forgiveness. The catch: drives need your own swing speed.",
+  "bottom": "For newer and intermediate players who want touch and forgiveness. Hard hitters will want more pace.",
+  "yes": [
+   {
+    "title": "Forgiving mishits",
+    "t": "A Phalanx frame ==widens the usable face==, so off-center shots still land.",
+    "for": [
+     "beginner",
+     "control"
+    ],
+    "src": [
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review",
+     "https://thepickleballreviews.com/paddle/spartus-odyssey-apex-hybrid-16mm/"
+    ]
+   },
+   {
+    "title": "Plush touch",
+    "t": "Soft contact ==makes dinks and serves easy to shape==.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://thepickleballreviews.com/paddle/spartus-odyssey-apex-hybrid-16mm/",
+     "https://gospartus.com/products/odyssey"
+    ]
+   },
+   {
+    "title": "Quick handling",
+    "t": "A low swing weight ==keeps it nimble in fast exchanges== at the net.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review",
+     "https://thepickleballreviews.com/paddle/spartus-odyssey-apex-hybrid-16mm/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Modest pace",
+    "t": "Drives ==need your own swing speed==; it trails pricier all-court paddles on power.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review",
+     "https://thepickleballreviews.com/paddle/spartus-odyssey-apex-hybrid-16mm/",
+     "https://gospartus.com/products/odyssey"
+    ]
+   },
+   {
+    "title": "Bite in question",
+    "t": "Splits opinion: reviews praise its bite, yet ==fresh spin measures below the median==.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://thepickleballreviews.com/paddle/spartus-odyssey-apex-hybrid-16mm/",
+     "https://www.picklemadness.com/blogs/the-pickleball-pundit/spartus-apex-series-orion-and-odyssey-pickleball-paddles-review"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "friday-aura-elongated": {
+  "tagline": "A soft, touch-first 16 mm foam elongated paddle. The catch: off-center hits twist on the long face.",
+  "bottom": "For patient placement players who want plush dinks and drops. Skip it if you rely on pop or forgiveness.",
+  "yes": [
+   {
+    "title": "Marshmallow touch",
+    "t": "One of the softest foam builds, so ==dinks and drops stay low== with little effort.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/friday-aura/",
+     "https://playbookpaddles.com/paddles/friday-aura-elongated",
+     "https://dinkstart.com/gear/reviews/friday-aura"
+    ]
+   },
+   {
+    "title": "Usable bite",
+    "t": "The raw carbon face ==spins above average when fresh==, good for rolls and serves.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://www.mattspickleball.com/paddle/aura-elongated-16mm",
+     "https://dinkstart.com/gear/reviews/friday-aura"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Twisty off-center",
+    "t": "Low twist weight on the long face ==punishes edge contact== on blocks and resets.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/friday-aura/",
+     "https://playbookpaddles.com/paddles/friday-aura-elongated",
+     "https://www.mattspickleball.com/paddle/aura-elongated-16mm"
+    ]
+   },
+   {
+    "title": "Quiet hands battles",
+    "t": "Splits opinion: most reviews find ==little pop at the net==; one lab rates it lively.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://thekitchenpickle.com/paddle/friday-aura/",
+     "https://playbookpaddles.com/paddles/friday-aura-elongated",
+     "https://www.mattspickleball.com/paddle/aura-elongated-16mm"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "joola-hyperion-3s-dual": {
+  "tagline": "An elongated 16 mm power paddle with dual certification. The catch: spin trails the leaders.",
+  "bottom": "For aggressive intermediates who want reach and dual certification. Dink-first players should skip it.",
+  "yes": [
+   {
+    "title": "Baseline plow-through",
+    "t": "The long Aero Curve face ==carries drives deep== with easy, predictable pace.",
+    "for": [
+     "power",
+     "intermediate"
+    ],
+    "src": [
+     "https://forwrd.co/blogs/pickleball/joola-hyperion-pro-3s-dual-16mm-review-2026",
+     "https://mypicklelist.com/blog/joola-hyperion-dual-3s-review",
+     "https://reganfamilypickleball.com/paddles/joola-3s-dual-hyperion-16mm/"
+    ]
+   },
+   {
+    "title": "Backhand room",
+    "t": "The long handle ==fits a second hand== on two-handed swings.",
+    "for": [],
+    "src": [
+     "https://mypicklelist.com/blog/joola-hyperion-dual-3s-review",
+     "https://forwrd.co/blogs/pickleball/joola-hyperion-pro-3s-dual-16mm-review-2026"
+    ]
+   },
+   {
+    "title": "Dual-legal",
+    "t": "It carries ==both USAP and UPA-A approval==, so it fits any sanctioned event.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "https://forwrd.co/blogs/pickleball/joola-hyperion-pro-3s-dual-16mm-review-2026",
+     "https://reganfamilypickleball.com/paddles/joola-3s-dual-hyperion-16mm/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Mid-pack spin",
+    "t": "The face ==grips well but trails the leaders==, and the old 3S had more bite.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "https://forwrd.co/blogs/pickleball/joola-hyperion-pro-3s-dual-16mm-review-2026",
+     "https://mypicklelist.com/blog/joola-hyperion-dual-3s-review",
+     "https://www.noobspickleball.com/paddles/joola-hyperion-3s-dual"
+    ]
+   },
+   {
+    "title": "Kitchen-first misfit",
+    "t": "For dink-heavy games, ==softer control paddles touch better==; this one drives.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://forwrd.co/blogs/pickleball/joola-hyperion-pro-3s-dual-16mm-review-2026",
+     "https://www.noobspickleball.com/paddles/joola-hyperion-3s-dual"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "joola-scorpeus-heat-vision": {
+  "tagline": "A forgiving 16 mm widebody for kitchen defense. The catch: drives get little free power.",
+  "bottom": "For players upgrading from a first paddle who win with blocks and resets. Bangers should skip it.",
+  "yes": [
+   {
+    "title": "Huge margin",
+    "t": "A full-width face ==keeps off-center blocks in play==, a safe step up from a starter.",
+    "for": [
+     "intermediate",
+     "control"
+    ],
+    "src": [
+     "https://postandpaddle.com/paddles/joola-scorpeus-heat-vision-review",
+     "https://www.paddlechampion.com/journal/joola-scorpeus-vs-perseus-16mm-the-ultimate-pickleball-paddle-review/",
+     "https://pickleballtrue.com/en/paddles/joola-scorpeus-heat-vision/"
+    ]
+   },
+   {
+    "title": "Soft defense",
+    "t": "The 16 mm core ==absorbs pace on resets==, with low vibration on contact.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "https://www.paddlechampion.com/journal/joola-scorpeus-vs-perseus-16mm-the-ultimate-pickleball-paddle-review/",
+     "https://pickleballtrue.com/en/paddles/joola-scorpeus-heat-vision/"
+    ]
+   },
+   {
+    "title": "Fast at the net",
+    "t": "Light for its width, it ==swings quickly in kitchen exchanges==.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "https://postandpaddle.com/paddles/joola-scorpeus-heat-vision-review",
+     "https://www.paddlechampion.com/journal/joola-scorpeus-vs-perseus-16mm-the-ultimate-pickleball-paddle-review/"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Pace is on you",
+    "t": "Baseline drives and put-aways ==get little free power== from the light, thick build.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://postandpaddle.com/paddles/joola-scorpeus-heat-vision-review",
+     "https://pickleballtrue.com/en/paddles/joola-scorpeus-heat-vision/",
+     "https://www.paddlechampion.com/journal/joola-scorpeus-vs-perseus-16mm-the-ultimate-pickleball-paddle-review/"
+    ]
+   },
+   {
+    "title": "Chunky grip",
+    "t": "The handle runs ==thick for smaller hands==, so test the fit first.",
+    "for": [],
+    "src": [
+     "https://www.paddlechampion.com/journal/joola-scorpeus-vs-perseus-16mm-the-ultimate-pickleball-paddle-review/",
+     "https://pickleballtrue.com/en/paddles/joola-scorpeus-heat-vision/"
+    ]
+   },
+   {
+    "title": "No extra reach",
+    "t": "The standard length ==gives up the leverage== an elongated paddle adds on drives.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "https://pickleballtrue.com/en/paddles/joola-scorpeus-heat-vision/",
+     "https://postandpaddle.com/paddles/joola-scorpeus-heat-vision-review"
+    ]
+   }
+  ],
+  "source": "research"
  }
 }
