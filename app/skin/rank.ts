@@ -35,7 +35,7 @@ export const effectiveChoice = (c: SkinChoice): SkinChoice => c.goal === "daily"
 // The match (SkinRecs match tuning pass, owner OK 2026-11-17, skinrecs-match-audit.md):
 // - few voices count for less: a suits, goal or finish score is pulled toward 50, s′ = 50 + (s − 50)·n/(n + 4);
 // - "reacts easily" adds gentleness (0.15) and caps: 60 for strong actives, low gentleness (< 45 from 8+ voices) or our own
-//   "too strong" page verdict; fragranced, essential oils or a leave-on acid: −5, at most 74;
+//   "too strong" page verdict; fragranced, essential oils or a leave-on acid (not a trace one in a gentle product): −5, at most 74;
 // - a goal with no reports counts as a neutral 50 (no free pass); a concern with no group reports uses its quality score
 //   (gentle, breakouts) at half weight; normal skin uses suits_normal or the dry/oily/combination pool;
 // - "acne" adds breakouts (0.15); a picked texture replaces the skin type's ideal texture;
@@ -100,7 +100,7 @@ export function skinMatch(ctx: SkinRankCtx<SkinItem>, id: string, choice: SkinCh
   let pct = spread(parts.reduce((s2, p) => s2 + p.score * p.weight, 0) / parts.reduce((s2, p) => s2 + p.weight, 0));
   if (sens) {
     const f = a.facts;
-    if (f.fragrance_free === "fragrance" || f.fragrance_free === "oils" || (f.acid && f.acid !== "none")) pct = Math.min(pct - 5, SCENT_CAP);
+    if (f.fragrance_free === "fragrance" || f.fragrance_free === "oils" || (f.acid && f.acid !== "none" && f.strength !== "gentle")) pct = Math.min(pct - 5, SCENT_CAP);
     if (f.strength === "strong" || f.neg || (gentle && gentle.score < 45 && gentle.n >= 8)) pct = Math.min(pct, STRONG_CAP);
   }
   if (a.facts.use === "body-first") pct = Math.round(pct * 0.85);
