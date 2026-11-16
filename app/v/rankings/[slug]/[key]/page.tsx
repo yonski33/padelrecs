@@ -5,9 +5,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TopListPage, { generateMetadata as rankingMetadata } from "../../../../rankings/[slug]/page";
 import { readViewKey, RANKING_VIEW } from "../../../../../lib/view-key";
+import { niche, isV2 } from "../../../../../lib/niche";
+import { withModelYears } from "../../../../../lib/top-lists";
 
 export const revalidate = 300;
-export function generateStaticParams() { return []; }
+// Each list's plain view is built with the site on v2 sites; views with picks on first visit. None without a database (CI).
+export function generateStaticParams() {
+  return process.env.DATABASE_URL && isV2 ? withModelYears(niche.topLists ?? []).map(l => ({ slug: l.slug, key: "-" })) : [];
+}
 
 type P = { params: Promise<{ slug: string; key: string }> };
 const read = async (params: P["params"]) => { const { slug, key } = await params; const q = readViewKey(key, RANKING_VIEW); if (!q) notFound(); return { slug, q }; };

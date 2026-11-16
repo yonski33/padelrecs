@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { kept } from "../db/keep";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
 import { rankedLists } from "./rankings/lists";
@@ -35,7 +36,10 @@ const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = E
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
-export const matchContext = cache(async () => {
+// Built once per server instance and kept (db/keep.ts), not once per page: it takes seconds over a big catalog (owner
+// 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
+export const matchContext = cache(() => keptContext.get());
+const keptContext = kept(async () => {
   const [data, sigs, takes, live, overrides, stored] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.

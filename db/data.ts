@@ -5,6 +5,7 @@ import { eq, ne, desc } from "drizzle-orm";
 import { voteCounts } from "./votes";
 import { isRecent, webDate, MIN_RECENT } from "../lib/recent";
 import { tagTone } from "../lib/tags";
+import { kept, forgetKept } from "./keep";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -24,33 +25,14 @@ export function publicCatalogItems<R extends RacketRef, B extends BrandRef>(allB
  return { brands: visibleBrands, rackets: visibleRackets };
 }
 
-// Kept in this server instance's memory between requests (owner, 2026-11-12: cache misses took 5–25 s because every
-// page, even /contact, reloaded every review for the header's rankings menu). A copy younger than FRESH_MS is used as
-// is; an older one is still served at once while a fresh load runs in the background, up to STALE_MS. Pages are cached
-// at the edge anyway, so new reviews show within a couple of minutes, as before. Scripts pass their own connection
-// and always read fresh.
-const FRESH_MS = 2 * 60_000, STALE_MS = 30 * 60_000;
-type Loaded = Awaited<ReturnType<typeof loadCatalog>>;
-let memo: { at: number; value: Promise<Loaded>; refreshing?: boolean } | null = null;
-function remembered(): Promise<Loaded> {
- const now = Date.now();
- if (memo && (now - memo.at < FRESH_MS || (memo.refreshing && now - memo.at < STALE_MS))) return memo.value;
- if (memo && now - memo.at < STALE_MS) {
-  // Serve the copy we have, refresh behind it; a failed refresh keeps the old copy for the next try.
-  const current = memo; current.refreshing = true;
-  loadCatalog().then(fresh => { memo = { at: Date.now(), value: Promise.resolve(fresh) }; }, () => { current.refreshing = false; });
-  return current.value;
- }
- const value = loadCatalog();
- memo = { at: now, value };
- value.catch(() => { if (memo?.value === value) memo = null; });
- return value;
-}
-/** Drops this instance's kept copy, so the next page reads fresh (after an admin publish or edit: app/funtimes/auth.ts). */
-export function forgetCatalog() { memo = null; }
+// Kept in this server instance's memory between requests (db/keep.ts). Scripts pass their own connection and always read fresh.
+const kept_ = kept(() => loadCatalog());
+/** Drops this instance's kept copies (the catalog and everything built from it), so the next page reads fresh (after an
+ *  admin publish or edit: app/funtimes/auth.ts). */
+export function forgetCatalog() { forgetKept(); }
 // Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
- return connection ? loadCatalog(connection) : remembered();
+ return connection ? loadCatalog(connection) : kept_.get();
 });
 
 async function loadCatalog(connection?:ReturnType<typeof getDb>) {
