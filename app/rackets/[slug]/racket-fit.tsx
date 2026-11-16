@@ -10,6 +10,7 @@ import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
 import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, FitYesNo, BeforePicks, type SaidView, type CompareCard } from "./fit-live";
 import { homePayload } from "../../home-payload";
+import { rankSeed } from "../../../lib/rank-seed";
 import { engineAxis } from "../../../lib/home-rank";
 import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
@@ -27,7 +28,12 @@ import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
 import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
-import { countWord } from "../../../lib/fit-card";
+import { hasAttribution } from "../../../lib/voice";
+import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
+
+/** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability chips and score word. Unset: padel's page, unchanged. */
+const QUICK = SITE_FIT.quick ? SITE_FIT : null;
+const SCORE_WORD = v2copy.score ?? "player score";
 import type { QtReport, QtReview } from "./quick-take";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
@@ -47,17 +53,10 @@ const ratingVerdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? 
 /** Reports at the picked level needed before "What players said" narrows to them. */
 const LEVEL_SAID_MIN = 5;
 /** The site's dot traits and labels, in order (lib/fit-config.ts; padel's are TRAITS). */
-const SITE_TRAITS = SITE_FIT.traits.map(t => t.key), SITE_LABEL: Record<string, string> = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t.label]));
+const SITE_TRAITS = SITE_FIT.traits.filter(t => !t.hidden).map(t => t.key), SITE_LABEL: Record<string, string> = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t.label]));
 
 /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)] per trait. */
-const EV_WORDS: Record<Trait, [[string, string], [string, string]]> = {
-  forgiveness: [["praise the sweet spot", "praises the sweet spot"], ["find it demanding", "finds it demanding"]],
-  power: [["praise the power", "praises the power"], ["want more power", "wants more power"]],
-  control: [["praise the control", "praises the control"], ["find it hard to control", "finds it hard to control"]],
-  defence: [["praise its defence", "praises its defence"], ["struggle with it in defence", "struggles with it in defence"]],
-  arm: [["find it kind to the arm", "finds it kind to the arm"], ["say it's hard on the arm", "says it's hard on the arm"]],
-  speed: [["call it quick in the hand", "calls it quick in the hand"], ["find it heavy or slow", "finds it heavy or slow"]],
-};
+
 
 export default async function RacketFit(props: {
   /** The quick-take block; null for the beginner pilots that have none yet (their lines come from tag counts). */
@@ -72,10 +71,12 @@ export default async function RacketFit(props: {
   // bound it), with the tag-count lean only where the engine has no place for the racket.
   const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
   const lean = axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
+  const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
-  const bf = bestFor(facts), bfArm = bf.includes("sore arms"), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b)), bfLean = lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
+  const armWords = QUICK ? "slower arms" : "sore arms";
+  const bf = bestFor(facts), bfArm = bf.includes(armWords), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b)), bfLean = QUICK ? null : lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
   const bfWho = [bfLevel, bfLean ?? (bfLevel ? "players" : null)].filter(Boolean).join(" ");
-  const bestLine = bfWho ? `${bfWho}${bfArm ? ", and sore arms" : ""}` : bfArm ? "sore arms" : null;
+  const bestLine = bfWho ? `${bfWho}${bfArm ? `, and ${armWords}` : ""}` : bfArm ? armWords : null;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
   const webLevels = await reportLevels(props.racketId);
   const levelOf = (r: QtReport) => { const v = r.level ?? webLevels.get(r.id)?.level; return v === "Competitive" ? "advanced" : v?.toLowerCase(); };
@@ -95,16 +96,12 @@ export default async function RacketFit(props: {
     const tone = q ? chipTone(q.chip as Chip) : null;
     const agrees = !q || !sc || !((sc.dots <= 2 && tone === "g") || (sc.dots >= 4 && (tone === "b" || q.chip === "Divided" || q.chip === "Tricky")));
     const ev = sc?.people;
-    // Few player mentions (owner 2026-11-15): say what the dots rest on instead of showing a dash.
-    const thinWords = sc?.basis === "specs" ? "Based on specs and reviewers — few player reports on this yet." : "Not many players mention this yet.";
-    // A short note in words (owner 2026-11-15: no player numbers, "a short note each"): the quick-take's line when it agrees,
-    // else which way most players lean, said with a count word.
-    const cap = (x: string) => x[0].toUpperCase() + x.slice(1);
-    const short = ev ? (() => { const nP = ev.players.plus + ev.reviewers.plus, nM = ev.players.minus + ev.reviewers.minus, [praise, fault] = SITE_FIT.traits.find(x => x.key === t)?.ev ?? EV_WORDS[t as Trait];
-      if (nP < 2 && nM < 2) return null;
-      return nP >= nM ? `${cap(countWord(nP))} players ${praise[0]}${nM >= 2 ? `; ${countWord(nM)} ${fault[0]}` : ""}.` : `${cap(countWord(nM))} players ${fault[0]}${nP >= 2 ? `; ${countWord(nP)} ${praise[0]}` : ""}.`; })() : null;
-    const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? short ?? thinWords;
-    return [SITE_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
+    // The note (owner 2026-11-16, expert voice): an admin edit, else the quick take's own line when it agrees with the dots and
+    // doesn't say who said it, else a plain statement from the dots (lib/trait-note.ts), with both sides named on a real split.
+    const stated = sc ? traitNote(t, sc.dots, ev ? ev.players.plus + ev.reviewers.plus : 0, ev ? ev.players.minus + ev.reviewers.minus : 0, SITE_LABEL[t],
+      SITE_FIT.traits.find(d => d.key === t)?.say ?? (SITE_FIT.sport === "padel" ? TRAIT_SAY[t as Trait] : undefined)) : null;
+    const text = tr.edits?.traits[t as Trait]?.text ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
+    return [SITE_LABEL[t], text, sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
   // Similar rackets (no picks): really similar rackets, not the home's top 4 on every page. With picks, "Better matches for you"
@@ -222,7 +219,7 @@ export default async function RacketFit(props: {
   // "2025 version →" (owner's final mock): the newest older year of the same model, when the catalog lists one.
   const olderRow = ctx.data.listed.filter(x => modelFamily(x) === modelFamily(racketOf(props.racketId)) && x.year < props.year).sort((a, b) => b.year - a.year)[0];
   const older = olderRow ? { year: olderRow.year, href: productHref(olderRow) } : null;
-  return <><FitPicks first={{ choice, picked }} href={props.href}><main className={`rf ${props.fontClass}`}>
+  return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="rf-wrap">
       <FitBack all={{ href: catalogPath, label: `← all ${niche.words.many}` }}/>
@@ -230,21 +227,21 @@ export default async function RacketFit(props: {
         <div className="rf-hero">
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
-            <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, hasYears ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
+            <div className="rf-chips">{[leanWord, props.shape, hasYears ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{`${props.shortName} review`}</h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
-            <a className="rp-score" href="#reviews" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
-              <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? " player score · " : ""}${rated} rated`}</span>
+            <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
+              <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}</span>
               {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>
             {props.buy && <div className="rf-meta"><a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a></div>}
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
         </div>
 
-        <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
+        <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
       </section>
 
       {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
@@ -260,13 +257,13 @@ export default async function RacketFit(props: {
           <div id="compare">
             {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
             <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : `from player reports, compared with other ${niche.words.many}`}</span></div>
-            <FitCompare id={props.racketId} items={payload.items} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
+            <FitCompare id={props.racketId} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
           </div>
         </div>
 
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
-              mood={{ ...mood, score: overallScore }}/>
+              mood={{ ...mood, score: overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
           </section>
 
           {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>

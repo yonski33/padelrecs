@@ -6,11 +6,11 @@ import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 import { platformName } from "../lib/source-label";
 import type { QuickChoice } from "../lib/quick-match";
-import { niche, productHref } from "../lib/niche";
+import { niche, productHref, v2copy } from "../lib/niche";
 import { newThisWeek } from "../lib/new-this-week";
 
 import { qtFontVars } from "./qt-fonts";
-import { homePayload } from "./home-payload";
+import { homePayload, homeSeed } from "./home-payload";
 import { HomeMatch } from "./home-match";
 import { V2Footer } from "./v2-footer";
 import { GuideRow } from "./guide/guide-row";
@@ -51,6 +51,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         tag: platformName(e.sourcePlatform).toLowerCase() };
     }),
   ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
+  const live = <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>;
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
   // A site's own home mock (niche.v2home; PickleballRecs): the rankings tiles, the "how we score" strip and Questions follow the
@@ -73,15 +74,16 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       <section className="hv2-hero">
         {M?.h1 ? <div><h1>{`${M.h1[0]} `}<span className="hl">{M.h1[1]}</span></h1>{M.sub && <p className="hv2-sub">{M.sub}</p>}</div>
           : <div><h1>Less guessing. <span className="hl">{`Better ${niche.words.many}.`}</span></h1>
-          <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>}
-        <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>
+          {v2copy.pillInline ? <div className="hv2-subrow"><p className="hv2-sub">{`${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`}</p>{live}</div>
+            : <p className="hv2-sub">{`${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`}</p>}</div>}
+        {!v2copy.pillInline && live}
       </section>
 
       {/* The picks and the list re-rank in the browser on a tap (app/home-match.tsx); this render is the address's own list. */}
-      <HomeMatch payload={payload} choice={choice} older={older} listed={data.listed.length}>
+      <HomeMatch seed={homeSeed(payload, choice, older)} listed={data.listed.length}>
         <aside className="hv2-side">
           <section>
-            <div className="hv2-sidehead"><h3>Fresh off the court</h3><a href="/reviews">all →</a></div>
+            <div className="hv2-sidehead"><h3>{`Fresh off the ${v2copy.venue ?? "court"}`}</h3><a href="/reviews">all →</a></div>
             <ul className="hv2-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}><a href={productHref(r)}>
               <span className="hv2-src"><span className={`t ${f.tag}`}>{f.tag}</span>{ago(f.date, now)}</span>
               <b>{nameOf(r)}</b>

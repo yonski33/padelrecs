@@ -11,6 +11,7 @@ import { niche, productHref, catalogPath, scoreLabel } from "../lib/niche";
 const catalogPathOf = () => catalogPath;
 import { plainSummary } from "../lib/plain-summary";
 import { reviewSegments } from "../lib/highlights";
+export { SentimentBar } from "./sentiment-bar";
 
 const monthYear = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
 
@@ -50,24 +51,6 @@ export const positiveShare = (s: Pick<ScoreT, "positive" | "judged">) => s.judge
 /** Positive / mixed / negative as one bar. `legend` adds the three shares under it. */
 /** legend: true lists the shares; "counts" lists the counts (compare pages, owner 2026-11-14: a share next to the
  *  signal read like a second, competing score). */
-export function SentimentBar({ positive, mixed, negative, legend = false, className = "" }: { positive: number; mixed: number; negative: number; legend?: boolean | "counts"; className?: string }) {
-  const total = positive + mixed + negative;
-  if (!total) return null;
-  // Counts, never shares (owner 2026-11-15: no "% positive" anywhere; a share reads like a second score).
-  const label = `${positive} positive, ${mixed} mixed, ${negative} negative`;
-  return <span className={`sbar ${className}`}>
-    <span className="sbar-track" role="img" aria-label={label}>
-      {positive > 0 && <i className="s-positive" style={{ width: `${positive / total * 100}%` }}/>}
-      {mixed > 0 && <i className="s-mixed" style={{ width: `${mixed / total * 100}%` }}/>}
-      {negative > 0 && <i className="s-negative" style={{ width: `${negative / total * 100}%` }}/>}
-    </span>
-    {legend ? <span className="sbar-legend sbar-counts" aria-hidden="true">
-      <span className="s-positive"><b>{positive.toLocaleString("en-US")}</b> positive</span>
-      <span className="s-mixed"><b>{mixed.toLocaleString("en-US")}</b> mixed</span>
-      <span className="s-negative"><b>{negative.toLocaleString("en-US")}</b> negative</span></span> : null}
-  </span>;
-}
-
 /** What a web review says, in the words a card shows: our summary when there is one, else the source's (translated) words. */
 export function quoteText(e: WebReview) {
   return e.summary ? plainSummary(e.summary) : (e.sourceLanguage && e.sourceLanguage !== "en" && e.excerptTranslation) || e.excerpt || "";

@@ -28,6 +28,7 @@ export const EXTRACTORS = {
   /** The Sonnet reader pass over report text (scripts/evidence-rules.md). */ reader: "reader-v1",
   /** Lab numbers (swing / twist weight, RPM, power and pop) quoted from independent review sites (scripts/save-lab-evidence.mts). */ lab: "lab-v1",
   /** The brand's stated level, from the owner's sheet (scripts/import-brand-levels.mts). */ brandLevel: "brand-level-v1",
+  /** A level read from the specs by a site rule (scripts/tennis-spec-levels.mts), weighed at half an expert level. */ specLevel: "spec-level-v1",
 } as const;
 
 /** The report a row comes from ("p:12#tag:good control" → "p:12"), so one report can't count twice for a trait. */

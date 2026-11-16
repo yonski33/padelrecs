@@ -2,7 +2,8 @@ import "../rackets/[slug]/racket-fit.css";
 import "./skin-product.css";
 import { skinContext } from "./context";
 import { wireOf } from "./payload";
-import { QUOTE_KEYS, type ProductInput } from "./product-view";
+import type { ProductInput, ItemWire } from "./product-view";
+import { skinPage, sourceKinds, type SkinItem } from "../../lib/skin-page";
 import { SkinProductLive } from "./skin-product-live";
 import { SKIN_TYPES, type SkinChoice } from "../../lib/skin-choice";
 import { niche, catalogPath, productHref, typePageFor } from "../../lib/niche";
@@ -22,7 +23,8 @@ import { V2Footer } from "../v2-footer";
  *  skin; the bottom line; Why yes / why not with "for your skin" tags; How it feels & compares (drops and sliders, tabs against
  *  close alternatives with "stay with this one / pick X if you…"); reviews; ingredients & details; a floating match card. Picks
  *  live in the URL (?skin=&goal=&sens=1), so each answer is a shareable page; the answers are worked out in the browser
- *  (app/skin/product-view.ts, app/skin/skin-product-live.tsx) from the data sent here. Every number is a real count. */
+ *  (app/skin/product-view.ts, app/skin/skin-product-live.tsx) from the data sent here. The advice is written per product
+ *  (db/racket-page/skin.json) in the expert voice; counts appear only in the review header and the User score. */
 const DAY = 864e5;
 function agoShort(iso?: string | null) {
   if (!iso) return null; const d = Math.max(0, (Date.now() - Date.parse(iso)) / DAY); if (!Number.isFinite(d)) return null;
@@ -42,16 +44,21 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
   const ff = a.facts.fragrance_free, spf = a.facts.spf, price = typeof a.facts.price === "string" ? a.facts.price : null;
   const hook = shortLine(r) ?? listLine(r) ?? (r.reviewSummary ? r.reviewSummary.split(/(?<=\.)\s/)[0] : null);
 
-  // What the skin check needs in the browser: this product, the others of its type (the alternatives), a reader's words per score.
-  const quotes = ctx.quotes.get(r.id) ?? [];
-  const quoteFor = (attr: string, sign: 1 | -1) => quotes.filter(q => q.attribute === attr && Math.sign(q.value ?? 0) === sign && q.quote && q.quote.length >= 14 && q.quote.length <= 110)
-    .sort((x, y) => y.strength - x.strength || (y.saidAt ?? "").localeCompare(x.saidAt ?? ""))[0]?.quote ?? null;
+  // What the skin check needs in the browser: this product, the others of its type (the alternatives), its written content
+  // with each item's kinds of source and its try-instead product (dropped when that product isn't listed).
+  const platform = new Map<string, string>([...data.external.map(e => [e.id, e.sourcePlatform] as const), ...data.reviews.map(x => [x.id, "SkinRecs"] as const)]);
+  const content = skinPage(r.slug);
+  const wire = (it: SkinItem): ItemWire => {
+    const alt = it.alt ? data.listed.find(x => x.slug === it.alt!.slug) : undefined;
+    return { ...it, proof: sourceKinds(it.src, id => platform.get(id)),
+      ...(alt ? { altCard: { name: displayName(alt.name, data.brands.find(b => b.id === alt.brandId)?.name), href: productHref(alt) } } : { alt: undefined }) };
+  };
   const peers = data.listed.filter(x => x.shape === r.shape && x.id !== r.id && x.slug !== r.slug && x.name !== r.name);
   const input: ProductInput = {
     self: wireOf(ctx, [r])[0], peers: wireOf(ctx, peers),
     peerCards: Object.fromEntries(peers.map(x => [x.id, { short: displayName(x.name, data.brands.find(bb => bb.id === x.brandId)?.name).replace(/^(\S+\s\S+\s\S+).*$/, "$1"), photo: photoOf(x), href: productHref(x), total: ctx.counts.get(x.id)?.n ?? 0 }])),
     here, type: type ? { slug: type.slug, label: type.label } : null, catalogPath, many: niche.words.many, counts: c,
-    quotes: Object.fromEntries(QUOTE_KEYS.flatMap(k => ([1, -1] as const).map(sign => [`${k}:${sign}`, quoteFor(k, sign)]))),
+    page: content ? { bottom: content.bottom, yes: content.yes.map(wire), no: content.no.map(wire) } : null,
   };
 
   // ── Reviews: our own, YouTube (one card per channel) and beauty blogs; forum reports count in the scores but aren't listed.

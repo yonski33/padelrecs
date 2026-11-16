@@ -18,24 +18,28 @@ export const STYLES: readonly Style[] = ["any", ...(SITE_FIT.styles ?? ["control
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 export type Level = typeof LEVELS[number];
 export type QuickChoice = { style: Style; /** Unset until the visitor taps a level (owner 2026-11-15: picking a style must not
- *  pick "intermediate" too); no level means no level gate, bonus or check. */ level?: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune };
+ *  pick "intermediate" too); no level means no level gate, bonus or check. */ level?: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune;
+  /** The product type picked first (sites with a type picker, lib/fit-config.ts quick.types: DiscGolfRecs): a hard filter. */ kind?: string };
 export const DEFAULT_CHOICE: QuickChoice = { style: "any", arm: false };
 
 /** Reads ?style=&level=&arm= (unknown values fall back to the default), and the fine-tune on a site that has one (padel's
  *  shapes and weights; lib/fit-config.ts fineTune). */
-export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; core?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; kind?: string; core?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
   const fine = cfg?.fineTune ? readFine(q) : {};
+  const kind = cfg?.quick?.types.some(t => t.key === q.kind) ? q.kind : undefined;
   return {
     ...(fineEmpty(fine) ? {} : { fine }),
+    ...(kind ? { kind } : {}),
     style: STYLES.includes(q.style as Style) ? q.style as Style : DEFAULT_CHOICE.style,
     ...(LEVELS.includes(q.level as Level) ? { level: q.level as Level } : {}),
     arm: q.arm === "1",
   };
 }
-export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && !c.level && !c.arm && fineEmpty(c.fine);
+export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && !c.level && !c.arm && fineEmpty(c.fine) && !c.kind;
 /** The address for a choice: only what differs from the default, so "/" is the default list. */
 export function choiceHref(c: QuickChoice, anchor = "#match") {
   const q = new URLSearchParams();
+  if (c.kind) q.set("kind", c.kind);
   if (c.style !== DEFAULT_CHOICE.style) q.set("style", c.style);
   if (c.level) q.set("level", c.level);
   if (c.arm) q.set("arm", "1");
@@ -120,35 +124,52 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
 export const levelPeople = (l: Level) => SITE_FIT.levelLabels ? `${SITE_FIT.levelLabels[l]} players` : l === "advanced" ? "advanced players" : `${l}s`;
 
 /** "Top control rackets for you" / "ranked for beginners · arm-friendly first". */
-export function matchTitle(c: QuickChoice, many: string) {
+export function matchTitle(c: QuickChoice, many: string, cfg: FitConfig | undefined = fitConfigFor(niche)) {
+  if (cfg?.quick) return quickTitle(c, many, cfg);
   const what = c.style === "any" ? many : c.style === "balance" ? `all-round ${many}` : `${c.style} ${many}`;
   if (isDefault(c)) return { title: `Top ${many} right now`, sub: "ranked by Player score" };
   return { title: `Top ${what} for you`, sub: [c.level ? `ranked for ${levelPeople(c.level)}` : "ranked for your picks", c.arm ? "arm-friendly first" : null].filter(Boolean).join(" · ") };
 }
 /** The page title for a shared choice: "Best control padel rackets for beginners". */
-export function matchSeoTitle(c: QuickChoice, many: string) {
+export function matchSeoTitle(c: QuickChoice, many: string, cfg: FitConfig | undefined = fitConfigFor(niche)) {
+  if (cfg?.quick) { const t = quickWhat(c, many, cfg), who = c.level ? levelPeople(c.level) : c.arm ? "slower arms" : null; return `Best ${t}${who ? ` for ${who}${c.level && c.arm ? " with a slower arm" : ""}` : ""}`; }
   const what = c.style === "any" ? many : c.style === "balance" ? `all-round ${many}` : `${c.style} ${many}`;
   const who = [c.level ? levelPeople(c.level) : c.arm ? "players" : null, c.arm ? "with a sore elbow or wrist" : null].filter(Boolean).join(" ");
   return who ? `Best ${what} for ${who}` : `Best ${what}`;
+}
+
+/** A type-picker site's words (lib/fit-config.ts quick): "understable putters", "fairway drivers". */
+function quickWhat(c: QuickChoice, many: string, cfg: FitConfig) {
+  const q = cfg.quick!, t = q.types.find(x => x.key === c.kind)?.many ?? many;
+  return c.style === "any" ? t : `${(cfg.styleLabels[c.style] ?? c.style).toLowerCase()} ${t}`;
+}
+function quickTitle(c: QuickChoice, many: string, cfg: FitConfig) {
+  if (isDefault(c)) return { title: `Top ${many} right now`, sub: "ranked by player score" };
+  return { title: `Top ${quickWhat(c, many, cfg)} for you`, sub: [c.level ? `ranked for ${levelPeople(c.level)}` : "ranked for your picks", c.arm ? `${cfg.quick!.armChip} first` : null].filter(Boolean).join(" · ") };
 }
 
 /** The home's cache key for picks plus "show older models" (batch D): proxy.ts rewrites a home address to
  *  /quick/<key>, one cached page per combination. "power.beginner.1.round.-.-.0.0" = style.level.arm.shape.weight.feel.sweet.older. */
 export function choiceKey(c: QuickChoice, older: boolean) {
   const f = c.fine ?? {};
-  // A core pick (pickleball) is a ninth part, only when set, so padel's keys are as before.
-  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0, ...(f.core ? [f.core] : [])].join(".");
+  // A type picker's pick (DiscGolfRecs) goes ninth on those sites only; a core pick (pickleball) is a ninth part only when set,
+  // so padel's keys are as before.
+  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0, ...(fitConfigFor(niche)?.quick ? [c.kind ?? "-"] : f.core ? [f.core] : [])].join(".");
 }
 /** The picks a key stands for, or null when it isn't the canonical key of any (so each page has one address). */
 export function readChoiceKey(key: string): { choice: QuickChoice; older: boolean } | null {
-  const [style, level, arm, shape, weight, feel, sweet, older, core] = key.split(".");
+  const [style, level, arm, shape, weight, feel, sweet, older, ninth] = key.split(".");
   const v = (x: string | undefined) => x === "-" ? undefined : x;
-  const choice = readChoice({ style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined, core });
+  const quick = !!fitConfigFor(niche)?.quick;
+  const choice = readChoice({ style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined, ...(quick ? { kind: v(ninth) } : { core: ninth }) });
   const out = { choice, older: older === "1" };
   return choiceKey(choice, out.older) === key ? out : null;
 }
-/** The 31 indexable picks: style × (no level or one) × sore arm, without the default one ("/"). */
-export const INDEXABLE_CHOICES: QuickChoice[] = STYLES.flatMap(style => [undefined, ...LEVELS].flatMap(level => [false, true].map(arm => ({ style, ...(level ? { level } : {}), arm }))))
+/** The indexable picks: style × (no level or one) × sore arm (padel: 31), without the default one ("/"). */
+export const INDEXABLE_CHOICES: QuickChoice[] = (fitConfigFor(niche)?.quick
+  // A type-picker site (DiscGolfRecs): type × level × slower arm, any stability.
+  ? [undefined, ...fitConfigFor(niche)!.quick!.types.map(t => t.key)].flatMap(kind => [undefined, ...LEVELS].flatMap(level => [false, true].map(arm => ({ style: "any" as Style, ...(kind ? { kind } : {}), ...(level ? { level } : {}), arm }))))
+  : STYLES.flatMap(style => [undefined, ...LEVELS].flatMap(level => [false, true].map(arm => ({ style, ...(level ? { level } : {}), arm })))))
   .filter(c => !isDefault(c));
 /** The home address for picks plus "show older models" (?older=1). */
 export const homeHref = (c: QuickChoice, older: boolean) => { const base = choiceHref(c, ""); return older ? `${base}${base.includes("?") ? "&" : "?"}older=1` : base; };

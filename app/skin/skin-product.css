@@ -198,7 +198,12 @@ body:has(.bp), body:has(.bh) { background: #fbfaf6; }
   .bp-ask, .bp-ans { padding: 16px; }
   .bp-rows { padding: 4px 14px; }
   .bp-row { grid-template-columns: minmax(0, 1fr) auto; } .bp-row .bp-note { grid-column: 1 / -1; }
-  .bp-crow { grid-template-columns: minmax(80px, 110px) minmax(0, 1fr) minmax(0, 1fr); gap: 6px; } .bp-crow b { font-size: 14.5px; }
+  /* Another product's tab (owner 2026-11-16, as on padel's racket page): on a phone only that product's values, with
+     "▲ better" where it beats this one. This product's own values are one tab away. */
+  .bp-crow { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; } .bp-crow b { font-size: 15.5px; }
+  .bp-crow .bp-cv { display: grid; grid-template-columns: auto 64px; gap: 6px; flex-wrap: nowrap; }
+  .bp-crow .bp-win { white-space: nowrap; font-size: 12px; } .bp-crow .bp-win::before { content: "▲ "; }
+  .bp-crow > :nth-child(2):not(:last-child) { display: none; }
   .bp-v { min-width: 0; } .bp-track { width: 64px; }
   .bp-h h2, .bp-h2 { font-size: 30px; }
 }
@@ -239,3 +244,9 @@ body:has(main.bp) .v2-foot nav, body:has(main.bh) .v2-foot nav { font-family: va
     .hv2-shin { flex-wrap: nowrap; }
   }
 }
+
+/* Written content (db/racket-page/skin.json): a Why not item's tip / try-instead, and the "few reports so far" note. */
+.bp .bp-tip { display: block; margin-top: 6px; font-size: 13px; line-height: 1.45; color: inherit; opacity: .85; }
+.bp .bp-tip b { font-weight: 600; }
+.bp .bp-tip a { text-decoration: underline; text-underline-offset: 2px; }
+.bp .bp-few { margin: 8px 0 0; font-size: 14px; opacity: .8; }

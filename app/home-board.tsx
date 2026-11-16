@@ -6,8 +6,13 @@
 // window event.
 import { useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import { LightRowView, type LightRowProps } from "./light-row-view";
 
-export type BoardItem = { key: string; shape: string | null; text: string; node: ReactNode };
+/** A row as plain values, rendered here (app/light-row-view.tsx): every row's markup in the page was ~420 KB of a 600 KB home
+ *  (owner 2026-11-16); the values are a few hundred bytes a row, and the markup comes out the same. */
+/** text: what the search box matches; left out when it is the row's name and shape (most rows), which say the same. */
+export type BoardItem = { key: string; shape: string | null; text?: string; row: LightRowProps };
+const textOf = (i: BoardItem) => i.text ?? `${i.row.name} ${i.row.shape ?? ""}`;
 type Cat = { key: string; label: string };
 // 8 rows first and a Show more button (owner's mockup and audit, 2026-11-13).
 const PAGE = 8, EVENT = "home-search";
@@ -52,7 +57,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     e.currentTarget.closest("details")?.removeAttribute("open");
   };
   const href = (key?: string) => { const p = new URLSearchParams(base); if (key) p.set("shape", key); const s = p.toString(); return s ? `/?${s}` : "/"; };
-  const searched = q.trim() ? items.filter(i => matches(i.text, q)) : items;
+  const searched = q.trim() ? items.filter(i => matches(textOf(i), q)) : items;
   const visible = searched.filter(i => !shape || i.shape === shape);
   const count = (key: string) => searched.filter(i => i.shape === key).length;
   const shownCats = cats.filter(c => count(c.key) > 0 || c.key === shape);
@@ -78,7 +83,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {/* The first row's signal explains itself on hover or tap (owner, 2026-11-13); the words sit once, in a CSS variable. */}
     {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
-      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${tinted && i === 0 ? " lr-p1" : tinted && i < 3 ? " lr-p23" : ""}`}>{it.node}</div>)}
+      {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${tinted && i === 0 ? " lr-p1" : tinted && i < 3 ? " lr-p23" : ""}`}><LightRowView {...it.row}/></div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost lt-more-btn" onClick={() => setShown(shown + PAGE * 2)}>Show more {noun[1]} <span aria-hidden="true">↓</span></button></div>}
   </>;

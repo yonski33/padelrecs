@@ -25,6 +25,8 @@ export type RankItem = {
   row: string;
   /** What the match engine reads (lib/engine), on sites that use it. */
   eng?: EngineFacts;
+  /** The product type key (type-picker sites, lib/fit-config.ts quick.types): the picked type filters on it. */
+  kind?: string;
 };
 /** The finder's questions, plus the level gate (lib/niche fit.levelGate): with a level picked, only rackets whose suits score
  *  reaches the bar are candidates, and the % is spread within that eligible set (owner 2026-11-15). */
@@ -122,7 +124,8 @@ export function matchPcts(items: RankItem[], choice: QuickChoice, gate?: LevelGa
  *  that passes) unless every year is asked for, ordered by the cautious score (ENGINE-ALGO.md §5). */
 function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, older: boolean, size: number): { rows: RankedRow[]; olderN: number } {
   const p = setup.engine!, view = engineView(items, choice, setup.levelGate, p), shape = choice.fine?.shape, all = engItems(items);
-  const ok = (x: EngItem) => view.has(x.id) && (!choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape);
+  // A picked type (type-picker sites) is a hard filter, never a score.
+  const ok = (x: EngItem) => view.has(x.id) && (!choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
   const cands = engineCandidates(all, ok, p.minReports, older).sort((a, b) => view.get(b.id)!.cautious - view.get(a.id)!.cautious || a.id.localeCompare(b.id));
   const rows = cands.slice(0, size).map(x => { const v = verdictFor(items, choice, x.it.facts, x.id, setup.levelGate, p);
     return { id: x.id, pct: view.get(x.id)!.pct, fit: { kind: v.kind, short: v.short }, arm: x.it.facts.tags["arm-friendly"] ?? 0 }; });

@@ -75,7 +75,8 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
     <style>{bpBodyFonts}</style>
     <div className="bh-wrap">
       <section className="bh-hero">
-        <h1>Skincare, reviewed by <em>real skin</em></h1>
+        <div><h1>Less guessing.<br/><em>Better skincare.</em></h1>
+          <p>{"Tell us about your skin. We'll handle the homework."}</p></div>
         <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} new this week`}</span>
       </section>
 

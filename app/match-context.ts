@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { kept } from "../db/keep";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
 import { baseLists } from "./rankings/lists";
@@ -9,7 +10,7 @@ import type { Trait } from "../lib/trait-score";
 import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
-import { traitOverrides } from "../db/trait-override";
+import { traitOverrides, levelToSuits } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
@@ -35,11 +36,16 @@ const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = E
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
-export const matchContext = cache(async () => {
-  const [data, sigs, takes, live, overrides, evidence] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows()]);
+// Built once per server instance and kept (db/keep.ts), not once per page: it takes seconds over a big catalog (owner
+// 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
+export const matchContext = cache(() => keptContext.get());
+const keptContext = kept(async () => {
+  const [data, sigs, takes, live, overrides, stored] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
+  // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
+  const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
   // that one used another order, so "control" picked a different ten than the Best for control page (owner, 2026-11-15).
@@ -141,8 +147,12 @@ export const matchContext = cache(async () => {
     for (const e of data.external) likedRef.set(`w:${e.id}`, e.sentiment === "positive" ? true : e.sentiment === "negative" ? false : null);
     const sIn = new Map<string, SuitsInput>(), get = (id: string) => sIn.get(id) ?? sIn.set(id, { players: [] }).get(id)!;
     const seenVoice = new Set<string>();
+    // A level read from the specs by a site's rule (scripts/tennis-spec-levels.mts): half the weight of an expert level, and
+    // only where no expert level is set.
+    const specLevel = new Map<string, string>();
     for (const r of evidence) {
       if (r.attribute !== "level" || r.value === null) continue;
+      if (r.extractedBy === EXTRACTORS.specLevel) { if (r.valueText) specLevel.set(r.productId, r.valueText); continue; }
       if (r.extractedBy === EXTRACTORS.brandLevel) {
         const [from, to] = (r.valueText ?? "").split("-").map(Number);
         if (Number.isInteger(from) && Number.isInteger(to)) get(r.productId).brand = { from, to, notForBeginners: /not (suitable |recommended |aimed |meant )?for beginners|no (apta|recomendada) para principiantes/i.test(r.quote ?? "") };
@@ -166,7 +176,10 @@ export const matchContext = cache(async () => {
       const su = levelSuits(x), ex = overrides.get(id)?.expert;
       suitsAutoOf.set(id, { ...su, basis: [...su.basis] });
       // An expert's suits scores win, and count as backing (not the brand alone).
-      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { su.basis = su.basis.filter(b => !["a pro line", "advanced players", "its shape", "the owner's beginner list"].includes(b)); su.basis.push("expert"); } }
+      let expertLevel = false;
+      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { expertLevel = true; su.basis = su.basis.filter(b => !["a pro line", "advanced players", "its shape", "the owner's beginner list"].includes(b)); su.basis.push("expert"); } }
+      const sp = expertLevel ? null : levelToSuits(specLevel.get(id));
+      if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] + sp[`suits_${l}`]!) / 2); su.basis.push("the specs"); }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
@@ -212,7 +225,8 @@ export const matchContext = cache(async () => {
     const t = traitMap.get(id), p = byId.get(id), r = data.rackets.find(x => x.id === id)!;
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
-      ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}) };
+      ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}),
+      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
   const factsFor = (choice: QuickChoice, id: string): FitFacts => factsWith(items, choice, facts(id), id);

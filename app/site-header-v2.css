@@ -68,6 +68,10 @@
    readable ink text on the marker. */
 body:has(.hv2-top) a:hover { background: var(--site-marker, oklch(0.93 0.14 100)); }
 body:has(.hv2-top) :is(.hv2-add, .rf-btn, .hv2-own a, .hw-cta a, .ar-again):hover { background: var(--site-marker, oklch(0.93 0.14 100)) !important; color: var(--site-ink, #151515) !important; }
+/* SkinRecs pages (main.bp / main.bh): dark chips and buttons (a selected pill, "check price", "+ add a review") kept their
+   light text on the yellow marker, unreadable (owner 2026-11-16). On hover every link's text is ink, 12.7:1 on the
+   marker (WCAG AA needs 4.5:1). */
+body:has(main.bp) a:hover, body:has(main.bh) a:hover, body:has(main.bp) a:hover *, body:has(main.bh) a:hover * { color: #2b2221 !important; }
 
 /* Design-v2 footer (app/v2-footer.tsx); pages that show it hide the site's. */
 body:has(.v2-foot) > .site-footer { display: none; }
