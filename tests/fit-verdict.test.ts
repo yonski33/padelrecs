@@ -14,12 +14,13 @@ test("lean from what players praise", () => {
   assert.equal(styleLean({ reports: 30, tags: {} }).lean, null);
 });
 
-test("good match: style, level and arm all fit, with reasons that carry counts", () => {
+test("good match: style, level and arm all fit, with reasons said as statements (expert voice)", () => {
   const v = fitVerdict(pick({ style: "control", level: "beginner", arm: true }), ctrl);
   assert.equal(v.kind, "good");
   assert.ok(v.reasons.length >= 2 && v.reasons.length <= 3);
-  assert.ok(v.reasons.some(r => r.includes("26 players praise the control")));
-  assert.ok(v.reasons.some(r => r.includes("8 players call it arm-friendly")));
+  assert.ok(v.reasons.some(r => r === "Built for control."));
+  assert.ok(v.reasons.some(r => r === "Kind to the arm."));
+  assert.ok(!v.reasons.some(r => /\d+ players/.test(r)), "no player counts inside the reasons");
 });
 
 test("maybe: one soft conflict (balance vs a control racket)", () => {
@@ -56,7 +57,7 @@ test("level band from brand, reviewers and players; disagreement is a demo-first
   const split: FitFacts = { ...all, band: { from: 1, to: 2 } };
   const s = fitVerdict(pick({ style: "control", level: "beginner" }), split);
   assert.equal(s.kind, "maybe");
-  assert.ok(s.reasons.some(r => r.includes("players say intermediate to advanced") && r.includes("Players don't put it at beginner")));
+  assert.ok(s.reasons.some(r => r.includes("players say intermediate to advanced") && r.includes("Opinions split on whether it suits beginners")));
   assert.deepEqual(combinedBand(split), { from: 0, to: 1 }, "levels at least half the sources include (advanced: players only)");
   // Every source excludes it: probably not.
   assert.equal(fitVerdict(pick({ level: "advanced" }), all).kind, "no");
@@ -67,15 +68,15 @@ test("a brand's 'Professional' label: not aimed at beginners, but not counted ag
   assert.equal(fitVerdict(pick({ level: "intermediate", style: "control" }), pro).kind, "good");
   const b = fitVerdict(pick({ level: "beginner", style: "control" }), pro);
   assert.equal(b.kind, "maybe");
-  assert.ok(b.reasons.some(r => r.includes("The brand doesn't put it at beginner")));
+  assert.ok(b.reasons.some(r => r.includes("Opinions split on whether it suits beginners")));
 });
 
 test("sore arm: the owner's bar is 3 arm-friendly mentions; under it the verdict says so", () => {
   const two: FitFacts = { ...ctrl, tags: { ...ctrl.tags, "arm-friendly": 2, "vibrates on mishits": 0 } };
   const v = fitVerdict(pick({ style: "control", level: "beginner", arm: true }), two);
-  assert.ok(v.reasons.some(r => r.startsWith("Sore arm: only 2 players call it arm-friendly")));
+  assert.ok(v.reasons.some(r => r.startsWith("Sore arm: too little evidence to vouch for it yet")));
   const three: FitFacts = { ...ctrl, tags: { ...ctrl.tags, "arm-friendly": 3, "vibrates on mishits": 0 } };
-  assert.ok(fitVerdict(pick({ style: "control", level: "beginner", arm: true }), three).reasons.some(r => r.includes("3 players call it arm-friendly")));
+  assert.ok(fitVerdict(pick({ style: "control", level: "beginner", arm: true }), three).reasons.some(r => r === "Kind to the arm."));
 });
 
 test("brand's own short term in the backing line", () => {
