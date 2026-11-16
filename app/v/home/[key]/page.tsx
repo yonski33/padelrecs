@@ -11,7 +11,8 @@ import { niche, isV2 } from "../../../../lib/niche";
 import { attrProfileFor } from "../../../../lib/attr-profile";
 
 export const revalidate = 300;
-export function generateStaticParams() { return []; }
+// The plain home is built with the site (SkinRecs; padel-style homes are app/quick). None without a database (CI).
+export function generateStaticParams() { return process.env.DATABASE_URL && isV2 && attrProfileFor(niche) ? [{ key: "-" }] : []; }
 
 type P = { params: Promise<{ key: string }> };
 const read = async (params: P["params"]) => { const q = isV2 && attrProfileFor(niche) ? readViewKey((await params).key, SKIN_HOME_VIEW) : null; if (!q) notFound(); return q; };

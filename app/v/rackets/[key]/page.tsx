@@ -8,13 +8,15 @@ import { generateMetadata as catalogMetadata } from "../../../rackets/page";
 import { readViewKey, CATALOG_VIEW, SKIN_CATALOG_VIEW } from "../../../../lib/view-key";
 import { readCatalogFilters } from "../../../../lib/catalog-filter";
 import { specGroups } from "../../../../lib/guide";
-import { niche, catalogPath } from "../../../../lib/niche";
+import { niche, catalogPath, isV2 } from "../../../../lib/niche";
 import { attrProfileFor } from "../../../../lib/attr-profile";
 
 const SPEC = specGroups(niche.guide).map(g => g.key);
 
 export const revalidate = 300;
-export function generateStaticParams() { return []; }
+// The plain catalogue is built with the site on v2 sites (the cache guard, tests/isr-routes.test.ts); filter views on first
+// visit, then the post-deploy warm-up (scripts/warm.mjs). A build without a database (CI) builds none and still passes.
+export function generateStaticParams() { return process.env.DATABASE_URL && isV2 ? [{ key: "-" }] : []; }
 export const generateMetadata = catalogMetadata;
 
 export default async function CatalogView({ params }: { params: Promise<{ key: string }> }) {
