@@ -15,7 +15,7 @@
 .bc-sh .bp-tag { font-size: 13px; padding: 1px 11px; font-weight: 500; cursor: default; }
 .bc-mtog { display: none; }
 .bc-clear { font: 12px var(--mono); }
-.bc-g { border-top: 1.5px dashed var(--dash); }
+.bc-g { border-top: 1.5px dashed var(--dash); margin: 0; }
 .bc-g > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 11px 18px; }
 .bc-g > summary::-webkit-details-marker { display: none; }
 .bc-g > summary b { font-size: 15px; } .bc-g > summary > span { display: flex; align-items: center; gap: 8px; }
@@ -80,4 +80,28 @@
   .bc-pic { width: 48px; height: 60px; border-radius: 12px; }
   .bc-name { font-size: 15.5px; }
   .bc-score { min-width: 0; } .bc-sc { width: 40px; height: 40px; font-size: 22px; } .bc-score .bp-mood { width: 48px; }
+}
+
+/* Phones (owner's mobile mockup, 2026-11-16): the filters stay in view as closed groups ("+" opens one); each card is the photo
+   with its rank, the words beside it, then the score with "user score · N reviews". */
+@media (max-width: 640px) {
+  .bc-wrap { padding: 20px 20px 56px; }
+  .bc-hero h1 { font-size: 44px; }
+  .bc-hero p { font-size: 16.5px; }
+  .bc-sh .bp-tag { cursor: default; } .bc-mtog { display: none; }
+  .bc-groups, .bc-ft:checked ~ .bc-groups { display: block; }
+  .bc-g:not(.mob-open) > .bc-opts { display: none; }
+  .bc-g > summary { padding: 13px 18px; }
+  .bc-g:not(.mob-open) > summary i::after { content: "+"; } .bc-g.mob-open > summary i::after { content: "−"; }
+  .bc-sort { flex-wrap: nowrap; gap: 3px; } .bc-sort .bp-pick { padding: 4px 9px; font-size: 12.5px; white-space: nowrap; }
+  .bc-list li { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "pic body" ". score"; gap: 10px 14px; padding: 14px 16px; }
+  .bc-pic { grid-area: pic; width: 44px; height: 56px; align-self: start; }
+  .bc-rank { display: block; grid-area: pic; align-self: start; justify-self: center; position: relative; z-index: 1; margin-top: 44px; min-width: 22px; padding: 1px 5px 2px;
+    font-size: 17px !important; color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink); border-radius: 999px; box-sizing: border-box; }
+  .bc-body { grid-area: body; }
+  .bc-mt, .bc-chip.good { display: none; }
+  .bc-score { grid-area: score; flex-direction: row; justify-content: flex-start; gap: 10px; }
+  .bc-sc { width: 42px; height: 42px; font-size: 23px; } .bc-sc.pct { height: 36px; font-size: 21px; }
+  .bc-score .bp-mood { display: none; }
+  .bc-sc:not(.pct) ~ small::before { content: "user score · "; }
 }
