@@ -8,7 +8,8 @@ import { useState } from "react";
 import "./similar.css";
 
 export type SimilarItem = { id: string; name: string; href: string; /** The small tile's word: the shape, type or step. */ tag: string;
-  tint: string; /** One short difference or reason ("more forgiving", "SPF step"). */ why: string | null; line: string | null; score: number | null;
+  tint: string; /** The product photo (the list rows' own, app/visual.tsx productPhoto); the tag tile only without one. */ photo?: string | null;
+  /** One short difference or reason ("more forgiving", "SPF step"). */ why: string | null; line: string | null; score: number | null;
   /** The price on file ("~$17"), where the site keeps one (SkinRecs); none elsewhere. */ price?: string | null };
 export type SimilarTab = { key: string; label: string; sub: string; /** The sub line once the visitor's picks are known. */ subPicked?: string;
   items: SimilarItem[]; more: { href: string; label: string } | null };
@@ -32,7 +33,8 @@ export function SimilarSection({ title, tabs, pct, scoreLabel, picksHref = "", l
       const m = picked ? pct[p.id] ?? null : null, badge = picked ? (m === null ? "—" : `${m}%`) : p.score === null ? "—" : String(p.score);
       return <a key={p.id} className="sp-card" href={`${p.href}${picksHref}`}>
         <span className="sp-top">
-          <span className="sp-tag" style={{ background: p.tint }}>{p.tag}</span>
+          {p.photo ? <span className="sp-tag sp-photo" aria-hidden="true"><img src={p.photo} alt="" width={48} height={48} loading="lazy" decoding="async"/></span>
+            : <span className="sp-tag" style={{ background: p.tint }}>{p.tag}</span>}
           <span className="sp-badge"><b className={picked && (m ?? 0) < 80 ? "plain" : undefined}>{badge}</b><small>{picked ? "your match" : scoreLabel}</small></span>
         </span>
         <span className="sp-name">{p.name}</span>

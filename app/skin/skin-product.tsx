@@ -1,3 +1,4 @@
+import { productPhoto } from "../visual";
 import "../rackets/[slug]/racket-fit.css";
 import "./skin-product.css";
 import { skinContext } from "./context";
@@ -98,7 +99,7 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
     "Eye cream": "eye", "Exfoliant": "exfol", "Mask": "mask", "Treatment": "treat" };
   const itemOf = (id: string, i: number, why: string | null): SimilarItem => {
     const x = data.rackets.find(y => y.id === id)!, b = data.brands.find(y => y.id === x.brandId)?.name, pr = ctx.attrs.get(id)?.facts.price;
-    return { id, name: displayName(x.name, b), href: productHref(x), tag: TILE[x.shape ?? ""] ?? (x.shape ?? "").toLowerCase(), tint: tint(i), why,
+    return { id, name: displayName(x.name, b), href: productHref(x), tag: TILE[x.shape ?? ""] ?? (x.shape ?? "").toLowerCase(), photo: productPhoto(x)?.src ?? null, tint: tint(i), why,
       // The product's own words (lib/skin-page.ts, expert voice), else its short lines, never a line that says who said it.
       line: [skinPage(x.slug)?.bottom.split(/(?<=\.)\s/)[0], shortLine(x), listLine(x)].map(expertLine).find((t): t is string => !!t) ?? null, score: ctx.signal(id), price: typeof pr === "string" ? pr : null };
   };
