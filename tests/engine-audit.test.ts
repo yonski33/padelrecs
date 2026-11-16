@@ -101,7 +101,8 @@ test("audit 10: Bullpadel's 'Geometric' is a diamond", () => {
 });
 
 test("the tuning pass is padel and pickleball only (disc golf has its own, tests/discgolf-match-audit.test.ts): tennis and sim racing keep their settings", () => {
-  const NEW = ["levelShare", "balanceSquared", "anyByQuality", "anchorsPerStyle", "hardCap", "familyBestWithin", "tieByReports"];
+  const NEW = ["levelShare", "balanceSquared", "anyByQuality", "anchorsPerStyle", "hardCap", "familyBestWithin", "tieByReports", "shapeBounds", "balanceFlat"];
+  for (const k of ["shapeBounds", "balanceFlat", "anchorsPerStyle", "balanceSquared", "anyByQuality", "familyBestWithin"]) assert.equal((discgolf.fit?.engine as Record<string, unknown> | undefined)?.[k], undefined, `discgolf.${k}`);
   for (const n of [tennis, simracing]) {
     const e = n.fit?.engine; if (!e) continue;
     for (const k of NEW) assert.equal((e as Record<string, unknown>)[k], undefined, `${n.id}.${k}`);

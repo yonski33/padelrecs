@@ -27,6 +27,7 @@ export type EngineFacts = {
   /** Praising / faulting voices per trait (lib/evidence.ts evidenceBalance). */ voices: { control: Voices; power: Voices } & Partial<Record<DotTrait, Voices>>;
   /** The specs' lean in dots, −1…+1 (lib/trait-score.ts specLean). */ spec: { control: number; power: number } & Partial<Record<DotTrait, number>>;
   /** An expert's 0–100 per trait, when set (admin expert grid). */ expert: Partial<Record<DotTrait, number>>;
+  /** The maker's mould (rackets.shape, lower-cased), for profile.shapeBounds. */ shape?: string | null;
 };
 export type EngineProfile = {
   m: number; k: number; ks: number; E: number; z: number; wq: number; wf: number; wp: number; minReports: number;
@@ -59,6 +60,9 @@ export type EngineProfile = {
   /** Fine-tune as a penalty only (audit 2026-11-16): fit −= this × (1 − fineFit), so a mismatch can never raise the %. Unset:
    *  the fineShare blend. */ finePenalty?: number;
   /** With "sore arm": small demotions of the cautious score for a thin (14 mm) core and a firm feel (PickleballRecs). */ armSpecDemote?: { core14: number; firm: number };
+  /** The maker's mould bounds the final axis like a label (owner 2026-11-17, "the Oxdog is a diamond"): shape word (matched
+   *  in the lower-cased shape) → [min, max]. A diamond plays on the power side however its control is praised. */ shapeBounds?: Record<string, [number, number]>;
+  /** The balance pick's axis term with a flat middle: within this distance of 0.5 counts as fully all-round. */ balanceFlat?: number;
   // The DiscGolfRecs match audit (Grok 2026-11-16, owner OK 2026-11-17). Unset: as before.
   /** A hard reason (with hardCap) also takes this off the cautious score, and the product sorts after every other row. */ hardPenalty?: number;
   /** The display scale: the floor anchor maps to `base`, the best to base + span, clamped at max (default 45 / 50 / 97). */ display?: { base: number; span: number; max: number };
@@ -126,6 +130,8 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     if (ctl && clampIt) axis = Math.min(axis, p.labelBounds[2]);
     if (pow && clampIt) axis = Math.max(axis, p.labelBounds[3]);
     if (mid) axis = Math.min(axis, cap);
+    const sh = (x.e.shape ?? "").toLowerCase();
+    for (const [w, [lo, hi]] of Object.entries(p.shapeBounds ?? {})) if (sh.includes(w)) axis = clamp(axis, lo, hi);
     out.set(x.id, { axis, axisN: 1 + Pp + Pc, playerAxis: Pp + Pc >= 4 ? Pp / (Pp + Pc) : null, Q, sdQ, tr: Object.fromEntries(keys.map(k => [k, trait(k)])) as EngineBase["tr"], pop: Math.log1p(x.n) / Math.log1p(nmax), n: x.n });
   }
   return out;
@@ -142,7 +148,7 @@ export function engineFit(e: EngineBase, style: EngineStyle, p: EngineProfile, l
   if (!AXIS_STYLES.includes(style)) { const t = e.tr[style]; return t ? [t.v, t.sd] : [0.5, 0]; }
   const a = e.axis, { control: c, power: pw } = e.tr;
   const [ax, sent, ss] = style === "control" ? [1 - a, c.v, c.sd] : style === "power" ? [a, pw.v, pw.sd]
-    : [(1 - 2 * Math.abs(a - 0.5)) ** (p.balanceSquared ? 2 : 1), (c.v + pw.v) / 2, Math.sqrt((c.sd ** 2 + pw.sd ** 2) / 2)];
+    : [(1 - 2 * Math.max(0, Math.abs(a - 0.5) - (p.balanceFlat ?? 0)) / (1 - 2 * (p.balanceFlat ?? 0))) ** (p.balanceSquared ? 2 : 1), (c.v + pw.v) / 2, Math.sqrt((c.sd ** 2 + pw.sd ** 2) / 2)];
   const sda = Math.sqrt(a * (1 - a) / e.axisN);
   return [p.ax * ax + (1 - p.ax) * sent, Math.sqrt((p.ax * sda) ** 2 + ((1 - p.ax) * ss) ** 2)];
 }

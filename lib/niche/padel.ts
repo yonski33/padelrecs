@@ -54,7 +54,11 @@ export const padel: Niche = {
       // term, quality for "any", a hard-reason cap, best member per family, ties by reports.
       levelShare: 0.2, balanceSquared: true, anyByQuality: true, anchorsPerStyle: true, hardCap: 54, familyBestWithin: 3, tieByReports: true,
       // Fine-tune as a penalty only (audit 2026-11-16, both sites): a mismatch never raises the %.
-      finePenalty: 0.35, labelClamp: "always", } },
+      finePenalty: 0.35, labelClamp: "always",
+      // Owner 2026-11-17 (balance · intermediate put the Oxdog Ultimate Tour X diamond at 93% and Metalbone CTRL 3.5 at 75%):
+      // a diamond mould counts like a power label (axis ≥ the power label's 0.65), and the balance pick counts anything within
+      // 0.15 of the middle (the labels' own edges, 0.35–0.65) as fully all-round.
+      shapeBounds: { diamond: [0.65, 1] }, balanceFlat: 0.15, } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",
