@@ -136,7 +136,7 @@ export default async function SkinFit({ productId, choice, buy, jsonLd }: { prod
             {pickers}
             {bestFor.length > 0 && <p className="rf-best"><b>Generally best for</b>{` ${bestFor.slice(0, 3).join(", ")}.`}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
-            <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
+            <div className="rf-chipsrow"><span className="rf-k">Your match</span>
               <span className={`rf-vpill ${kind}`} title="How well it fits your skin, from what people with your skin type said. Not a % of happy users.">{m.pct === null ? "— · not enough reports yet" : `${m.pct}% · ${fit}`}</span></div>
             <h2>{headline}</h2>
             <p className="rf-for">{m.pct === null ? `People with ${m.missing.join(" or ")} haven't said enough about it yet. What we know is below.` : `For your ${skinWords(choice).join(" · ")}, here's the short answer.`}</p>

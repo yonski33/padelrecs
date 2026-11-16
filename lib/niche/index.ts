@@ -39,3 +39,5 @@ export const v2copy: NonNullable<Niche["v2copy"]> = niche.v2copy ?? {
     `So we built the thing we wanted: one place that brings ${niche.people.one} reviews, YouTube reviewers and forums together, counts it honestly, and tells you if a ${niche.words.one} fits`],
   example: `${niche.examples.model} ${niche.examples.year}`,
 };
+/** A small section label: padel writes it as a code comment ("// how we make these"); the soft look (SkinRecs) plainly. */
+export const kicker = (text: string) => v2copy.look === "soft" ? text : `// ${text}`;

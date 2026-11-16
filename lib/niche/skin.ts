@@ -28,6 +28,8 @@ export const skin: Niche = {
       "So we built the thing we wanted: one place that brings user reviews, YouTube reviewers and beauty blogs together, reads what people with each skin type say, and tells you if a product fits"],
     example: "CeraVe Moisturizing Cream",
     // Its own logo (the peach drop, public/niches/skin/icon.svg), skincare verbs and About / add-review words (owner 2026-11-16).
+    // The soft look (owner 2026-11-16: "doesnt feel like a skincare site, feels too sporty"): app/soft-look.css.
+    look: "soft", howLink: "how we read reviews",
     logo: "icon", use: "works", tested: "weeks of real use", tellUs: "Tell us about your skin", aboutLast: "skin",
     rate: { powerRating: ["did nothing", "worked great"], controlRating: ["unpleasant", "lovely"], comfortRating: ["irritated me", "no irritation"],
       maneuverabilityRating: ["off-putting", "pleasant or none"], forgivenessRating: ["overpriced", "worth every cent"] },

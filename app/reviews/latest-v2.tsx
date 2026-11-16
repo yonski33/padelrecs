@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { catalog } from "../../db/data";
-import { niche, productHref } from "../../lib/niche";
+import { niche, productHref, v2copy, kicker } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { plainSummary } from "../../lib/plain-summary";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
@@ -42,14 +42,17 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
   const now = requestTime();
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
+  // A non-sport site (v2copy.use "works", SkinRecs) says "used", and its profile's own words for the second row ("for dryness").
+  const sporty = v2copy.use !== "works";
+  const sideWord = new Map(niche.profile.playingSide?.options.map(o => [o.value, (o as { display?: string }).display ?? o.value.toLowerCase()]) ?? []);
   const timeWord = new Map(niche.profile.timeWithRacket?.options.map(o => [o.value, (o as { display?: string }).display ?? o.value.toLowerCase()]) ?? []);
   type Item = { key: string; racketId: string; date: string; verdict: Verdict | null; kind: "player" | "yt" } & (
     { kind: "player"; who: string; meta: string[]; text: string; tags: string[] } | { kind: "yt"; who: string; url: string; comment: boolean; points: string[] });
   const all: Item[] = [
     ...data.reviews.map(r => ({ key: `p-${r.id}`, racketId: r.racketId, date: r.createdAt, kind: "player" as const,
       verdict: (r.rating >= 4 ? "positive" : r.rating === 3 ? "mixed" : "negative") as Verdict,
-      who: r.alias || `A ${niche.site.name} player`, meta: [r.playerLevel?.toLowerCase(), r.playingSide ? `${r.playingSide.toLowerCase()} side` : null].filter((x): x is string => !!x),
-      text: r.reviewText, tags: [r.timeWithRacket ? `played ${timeWord.get(r.timeWithRacket) ?? r.timeWithRacket.toLowerCase()}` : null, ...r.tags].filter((x): x is string => !!x).slice(0, 4) })),
+      who: r.alias || `A ${niche.site.name} ${niche.people.one}`, meta: [r.playerLevel?.toLowerCase(), r.playingSide ? (sporty ? `${r.playingSide.toLowerCase()} side` : sideWord.get(r.playingSide) ?? r.playingSide.toLowerCase()) : null].filter((x): x is string => !!x),
+      text: r.reviewText, tags: [r.timeWithRacket ? `${sporty ? "played" : "used"} ${timeWord.get(r.timeWithRacket) ?? r.timeWithRacket.toLowerCase()}` : null, ...r.tags].filter((x): x is string => !!x).slice(0, 4) })),
     ...data.external.filter(e => e.sourcePlatform === "YouTube" && (e.summary || e.excerptTranslation || e.excerpt)).map(e => {
       const comment = /[?&]lc=/.test(e.sourceUrl), text = e.summary ? plainSummary(e.summary) : e.excerptTranslation || e.excerpt || "";
       return { key: `w-${e.id}`, racketId: e.racketId, date: e.sourceDate || e.createdAt, kind: "yt" as const, verdict: (e.sentiment ?? null) as Verdict | null,
@@ -85,11 +88,11 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
     <main className={`lr2 ${qtFontVars}`}>
       <section className="lr2-hero">
         <div><h1>Latest reviews</h1>
-          <p>{"Straight from players who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes."}</p></div>
+          <p>{`Straight from ${niche.people.many} who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes.`}</p></div>
         <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} new this week`}</p>
       </section>
       <div className="lr2-bar">
-        <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", "from players"], ["yt", "youtube summaries"]] as const).map(([k, label]) =>
+        <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", `from ${niche.people.many}`], ["yt", "youtube summaries"]] as const).map(([k, label]) =>
           <Link key={k} href={href({ src: k === "all" ? undefined : k, show: undefined })} aria-current={src === k ? "true" : undefined}>{label}</Link>)}</nav>
         <div className="lr2-vs"><span>verdict</span>{(["positive", "mixed", "negative"] as const).map(k =>
           <Link key={k} href={href({ v: v === k ? undefined : k, show: undefined })} aria-current={v === k ? "true" : undefined}>{PILL[k]}</Link>)}</div>
@@ -125,7 +128,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
           <div className="lr2-own"><p className="t">{`Own a ${niche.words.one}? Add your verdict.`}</p><p>Two minutes, no account. It shows up here and moves the rankings.</p><a href="/add-review">+ add a review</a></div>
           {hot.length > 0 && <div><h3>Most reviewed this week</h3>
             <ol className="lr2-hot">{hot.map(([id, n], i) => <li key={id}><a href={productHref(byId.get(id)!)}><span>{i + 1}</span><b>{nameOf(id)}</b><small>{`+${n}`}</small></a></li>)}</ol></div>}
-          <div className="lr2-note"><p className="lr2-k">{"// about the youtube bits"}</p>We watch the review, pull out what the reviewer actually concluded, and link the video. Creators get the views.</div>
+          <div className="lr2-note"><p className="lr2-k">{kicker("about the youtube bits")}</p>We watch the review, pull out what the reviewer actually concluded, and link the video. Creators get the views.</div>
         </aside>
       </div>
     </main>

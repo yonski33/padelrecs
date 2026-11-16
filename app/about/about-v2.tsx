@@ -1,7 +1,7 @@
 import "../pages-v2.css";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
-import { niche, v2copy } from "../../lib/niche";
+import { niche, v2copy, kicker } from "../../lib/niche";
 
 // About in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/A6t4DobUqJSqSjrWDdymkS), Every design-v2 site, with its own words (niche.v2copy).
 // The owner's words from the mockup. "Spotted something off?" goes to the contact form: the site has no public inbox address.
@@ -23,7 +23,7 @@ export default function AboutV2() {
   return <main className={`pg2 ${qtFontVars}`}>
     <div className="pg2-wrap about">
       <section className="pg2-hero">
-        <div className="pg2-k">{`// about ${site}`}</div>
+        <div className="pg2-k">{kicker(`about ${site}`)}</div>
         <h1>We got tired of <span className="hl">guessing</span>.</h1>
         <p className="pg2-lede">{`Every ${w.one} is "the best" according to someone. We wanted the honest picture: what ${p.many} who own them say, and what trusted reviewers found after ${v2copy.tested ?? "real court time"}.`}</p>
       </section>

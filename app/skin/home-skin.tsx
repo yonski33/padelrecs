@@ -64,7 +64,7 @@ export default async function HomeSkin({ choice }: { choice: SkinChoice }) {
       </section>
 
       <section className="hv2-qm sk2-qm" id="match" aria-label="Quick match">
-        <span className="hv2-qk"><b>quick match</b>{"I'm looking for"}</span>
+        <span className="hv2-qk"><b>find your match</b>{"I'm looking for"}</span>
         <span className="hv2-lv sk2-types" role="group" aria-label="Product type">
           <span>{pill("anything", { ...choice, type: null, typeSlug: null }, !choice.type)}</span>
           {types.filter(t => ["Cleanser", "Moisturizer", "Serum", "Sunscreen", "Toner", "Treatment", "Exfoliant", "Eye cream"].includes(t.shape)).map(t =>

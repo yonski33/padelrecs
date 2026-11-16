@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { catalog, score } from "../../db/data";
-import { niche, isV2, v2copy, scoreLabel } from "../../lib/niche";
+import { niche, isV2, v2copy, scoreLabel, kicker } from "../../lib/niche";
 import { attrProfileFor } from "../../lib/attr-profile";
 import { signals, MIN_SIGNAL_REVIEWS, type SignalInput } from "../../lib/signal";
 import { signalCategory } from "../signals";
@@ -47,7 +47,7 @@ export default async function HowWeMakeThese() {
   return <>
     <main className={`hw ${qtFontVars}`}>
       <section>
-        <p className="hw-k">{"// how we make these"}</p>
+        <p className="hw-k">{kicker("how we make these")}</p>
         <h1>{`No lab. No sponsored ${w.many}. Just a lot of `}<span className="hl">{niche.people.many}</span>.</h1>
         <p className="hw-lead">{`We don't test ${w.many} ourselves. We collect what people who actually own them say, count it honestly, and boil it down so you can decide in two minutes.`}</p>
       </section>

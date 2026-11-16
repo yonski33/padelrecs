@@ -1,5 +1,5 @@
 "use client";
-import { niche } from "../../lib/niche";
+import { niche, kicker } from "../../lib/niche";
 import { useState } from "react";
 import { signals, type SignalInput } from "../../lib/signal";
 
@@ -15,7 +15,7 @@ export default function SignalTry({ products }: { products: SignalInput[] }) {
   const row = (k: keyof typeof c, label: string) => <label key={k}><span>{label}</span>
     <input type="range" min={0} max={60} value={c[k]} onChange={e => setC(x => ({ ...x, [k]: +e.target.value }))}/><b>{c[k]}</b></label>;
   return <div className="hw-try">
-    <div className="hw-sliders"><p>{"// try it — drag the sliders"}</p>{row("pos", "👍 loved it")}{row("mix", "🤷 mixed")}{row("neg", "👎 not for me")}</div>
+    <div className="hw-sliders"><p>{kicker("try it — drag the sliders")}</p>{row("pos", "👍 loved it")}{row("mix", "🤷 mixed")}{row("neg", "👎 not for me")}</div>
     <div className="hw-out">
       <span className="hw-score" style={{ background: badge }}>{score ?? "–"}</span>
       <div><span className="hw-bar" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>

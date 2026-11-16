@@ -1,0 +1,160 @@
+/* The soft look (niche.v2copy.look = "soft", SkinRecs; owner 2026-11-16: "it just took the padel colors and theme … feels too
+   sporty"). The design-v2 pages keep their structure; under body.lk-soft their tokens and the sporty patterns are replaced:
+   thick black outlines → soft hairlines, offset shadows → none or a faint lift, mono scoreboard labels and the Archivo / Atkinson
+   mix → one rounded sans (Poppins, the owner's light-design font), lime / yellow pills → plum and peach. The match colours keep
+   their meaning (green = good, yellow = less good, white = weak) in softer tones. Padel has no lk-soft class, so it's untouched. */
+
+body.lk-soft {
+  --sk-bg: #fdf9f7; --sk-paper: #ffffff; --sk-ink: #2b2025; --sk-text: #45363c; --sk-mute: #7a6a70;
+  --sk-line: #ecdfe0; --sk-line2: #e2d2d4; --sk-tint: #f9f1ef; --sk-blush: #f7eef4;
+  --sk-plum: #7d3a6e; --sk-plum-ink: #5e2a52; --sk-peach: #f3a683; --sk-peach-wash: #fdeee5;
+  --sk-good: #dff0dc; --sk-good-ink: #2f6b3a; --sk-mid: #fbefc6; --sk-mid-ink: #7a5a10; --sk-weak: #ffffff;
+  --sk-font: var(--font-light, "Poppins"), system-ui, sans-serif;
+  --sk-lift: 0 1px 2px rgba(43, 32, 37, .04), 0 6px 20px rgba(125, 58, 110, .06);
+  background: var(--sk-bg);
+}
+
+/* 1. Tokens: every v2 root reads these. */
+body.lk-soft :is(.hv2-top, .hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2, .bv2, .gd2, main.pv2, .v2-foot, .sk-nf) {
+  --bg: var(--sk-bg); --paper: var(--sk-paper); --ink: var(--sk-ink); --text: var(--sk-text); --mute: var(--sk-mute); --soft: var(--sk-mute);
+  --line: var(--sk-line); --dash: var(--sk-line2); --dash2: var(--sk-line2); --tile: var(--sk-tint); --mint: var(--sk-blush);
+  /* --acc is the "good" green and --marker the "less good" yellow in the shared CSS (score boxes, verdict chips). */
+  --acc: var(--sk-good); --marker: var(--sk-mid); --tip: var(--sk-peach-wash);
+  --pos-wash: #eef7ec; --neg-wash: #fbefec; --pos: #2f6b3a; --neg: #a14a3a;
+  --display: var(--sk-font); --body: var(--sk-font); --mono: var(--sk-font); --serif: var(--sk-font); --sans: var(--sk-font);
+  --lt-bg: var(--sk-bg); --lt-line: var(--sk-line); --lt-ink: var(--sk-ink); --lt-mute: var(--sk-mute); --lt-acc: var(--sk-plum);
+  background-color: var(--sk-bg); color: var(--sk-text); font-family: var(--sk-font);
+}
+
+/* 2. No black outlines, no offset shadows: every border becomes a 1px soft hairline. */
+body.lk-soft :is(.hv2-top, .hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2, .bv2, .gd2, main.pv2, .v2-foot, .sk-nf) :is(*, *::before, *::after) {
+  border-color: var(--sk-line) !important; box-shadow: none !important;
+}
+body.lk-soft :is(.hv2-top, .hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2, .bv2, .gd2, main.pv2, .v2-foot, .sk-nf) * { border-width: 1px !important; }
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2, .bv2, .gd2) :is(h1, h2, h3) { color: var(--sk-ink); font-family: var(--sk-font) !important; letter-spacing: -0.01em !important; }
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2, .bv2, .gd2) h1 { font-weight: 600 !important; }
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2, .bv2, .gd2) :is(h2, h3) { font-weight: 600 !important; }
+
+/* 3. Cards: rounder, a faint lift instead of the offset shadow. */
+body.lk-soft :is(.hv2-qm, .hv2-box, .hv2-side > section, .ct2-side, .ct2-list > li, .rf-fit, .rf-plays, .rf-quotes > div, .rf-alts, .rv-card, .rv-compose,
+  .rp-specs, .rp-stick, .rk2-card, .rl2-row, .rl2-match, .rl2-played, .ar-card, .ar-side > div, .pg2 section > div, .hw-steps li, .hw-rules > div, .lr2-card, .lr2-side > div, .bv2-card) {
+  border-radius: 18px !important;
+}
+body.lk-soft :is(.hv2-qm, .hv2-box, .rf-fit, .rp-stick, .rk2-card, .rl2-row.first, .ar-card) { box-shadow: var(--sk-lift) !important; }
+
+/* 4. Highlights: a peach wash under the word, not a lime sticker. */
+body.lk-soft :is(.hv2, .pg2, .hw, .rk2, .rl2, .ct2) .hl { background: linear-gradient(transparent 58%, var(--sk-peach-wash) 58%) !important; border: 0 !important;
+  transform: none !important; padding: 0 2px !important; color: var(--sk-plum-ink); }
+
+/* 5. Buttons and picked states: plum with white text instead of black; secondary pills white with a hairline. */
+body.lk-soft :is(.hv2-add, .rf-btn, .rl2-buy, .ar-submit, .hv2-own a, .rl2-played a, .hw-cta a, .rk2-cta a, .sk-nf .button, .rv-post) {
+  background: var(--sk-plum) !important; color: #fff !important; border-color: var(--sk-plum) !important; border-radius: 999px !important; font-family: var(--sk-font) !important; font-weight: 500 !important;
+}
+body.lk-soft :is(.hv2-add, .rf-btn, .rl2-buy, .ar-submit, .hv2-own a, .rl2-played a, .hw-cta a, .rk2-cta a, .rv-post):hover { background: var(--sk-plum-ink) !important; color: #fff !important; }
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .lr2) :is(a, button)[aria-current="true"],
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .lr2) :is(a, button)[aria-current="page"]:is(.rl2-tabs a),
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .lr2) button[aria-pressed="true"],
+body.lk-soft :is(.hv2, .ct2, .rf) :is(.hv2-seg, .hv2-lv, .rf-seg, .rf-lv, .ct2-sort) a.on {
+  background: var(--sk-plum) !important; color: #fff !important; border-color: var(--sk-plum) !important;
+}
+/* The skin-type control was one black segmented bar (cut off on phones): separate pills that wrap. */
+body.lk-soft :is(.hv2-seg, .rf-seg) { display: inline-flex; flex-wrap: wrap; gap: 6px; border: 0 !important; background: none !important; overflow: visible !important; }
+body.lk-soft :is(.hv2-seg, .rf-seg) > span > a { border: 1px solid var(--sk-line2) !important; border-radius: 999px !important; padding: 5px 14px !important; background: #fff; }
+body.lk-soft :is(.hv2-lv, .rf-lv, .sk2-types) a, body.lk-soft .hv2-arm, body.lk-soft .rf-arm { border-radius: 999px !important; font-family: var(--sk-font) !important; }
+body.lk-soft :is(.hv2-arm, .rf-arm) i, body.lk-soft .rf-box { border-radius: 6px !important; border-color: var(--sk-line2) !important; }
+body.lk-soft :is(.hv2-arm, .rf-arm)[aria-current="true"] { background: none !important; color: var(--sk-plum-ink) !important; }
+body.lk-soft :is(.hv2-arm, .rf-arm)[aria-current="true"] i { background: var(--sk-plum) !important; color: #fff !important; border-color: var(--sk-plum) !important; }
+
+/* 6. Small labels: muted sentence-case sans, no yellow sticker ("quick match", "filters", "your match", "three sources"). */
+body.lk-soft :is(.hv2-qk b, .ct2-badge, .rf-k, .rp-k, .rl2-badge, .pg2-k, .hw-k, .rk2-tag, .rl2-chip, .lr2-badge) {
+  background: none !important; border: 0 !important; padding: 0 !important; color: var(--sk-plum) !important; font: 600 12px/1.3 var(--sk-font) !important; letter-spacing: .02em; text-transform: none !important;
+}
+body.lk-soft .rk2-tag { background: var(--sk-blush) !important; padding: 2px 10px !important; border-radius: 999px !important; }
+body.lk-soft :is(.hv2, .ct2, .rf, .rk2, .rl2, .ar, .pg2, .hw, .lr2) :is(small, .hv2-live, .ct2-meta, .rl2-meta, .rk2-meta, .rf-for, .hv2-game, .ct-n, .rf-aff) { font-family: var(--sk-font) !important; }
+
+/* 7. Match %: the same rule (green ≥80, yellow ≥60, white below) in soft tones, as rounded badges. */
+body.lk-soft :is(.hv2-sc, .ct2-sc, .rl2-score) b { border-radius: 12px !important; font-family: var(--sk-font) !important; font-weight: 600 !important; background: var(--sk-weak); color: var(--sk-ink); }
+body.lk-soft :is(.hv2-sc, .ct2-sc).hi b, body.lk-soft .rl2-score b.hi { background: var(--sk-good) !important; color: var(--sk-good-ink) !important; border-color: #c6e3c1 !important; }
+body.lk-soft :is(.hv2-sc, .ct2-sc).mid b, body.lk-soft .rl2-score b.mid { background: var(--sk-mid) !important; color: var(--sk-mid-ink) !important; border-color: #f1df9e !important; }
+body.lk-soft :is(.rf-vpill, .rp-pct) { border-radius: 999px !important; font-family: var(--sk-font) !important; }
+body.lk-soft :is(.rf-vpill.good, .rp-pct.good b) { background: var(--sk-good) !important; color: var(--sk-good-ink) !important; }
+body.lk-soft :is(.rf-vpill.maybe, .rp-pct.maybe b) { background: var(--sk-mid) !important; color: var(--sk-mid-ink) !important; }
+body.lk-soft .hv2-fit b, body.lk-soft .ct2-line b { border: 0 !important; border-radius: 999px !important; font: 600 11.5px var(--sk-font) !important; padding: 1px 9px !important; }
+body.lk-soft .hv2-fit.good b { background: var(--sk-good) !important; color: var(--sk-good-ink); }
+body.lk-soft .hv2-fit.maybe b { background: var(--sk-mid) !important; color: var(--sk-mid-ink); }
+body.lk-soft .hv2-fit.no b { background: #f6e9e6 !important; color: #8a4a3e; }
+
+/* 8. Rows: the top row is blush, not lime; chips are soft tags. */
+body.lk-soft :is(.hv2-list li.top, .ct2-list li.first) { background: var(--sk-blush) !important; }
+body.lk-soft :is(.hv2-chip, .ct2-chip, .ct2-mt > span, .rf-chips > span, .lr2-tags > span) { border: 0 !important; background: var(--sk-tint) !important; color: var(--sk-text) !important;
+  border-radius: 999px !important; font: 500 11.5px var(--sk-font) !important; padding: 2px 9px !important; }
+body.lk-soft :is(.hv2-chip.best) { background: var(--sk-good) !important; color: var(--sk-good-ink) !important; }
+body.lk-soft :is(.hv2-chip.arm, .ct2-chip.arm) { background: var(--sk-blush) !important; color: var(--sk-plum-ink) !important; }
+body.lk-soft .hv2-rank, body.lk-soft .ct2-rank { font-family: var(--sk-font) !important; font-weight: 500 !important; color: var(--sk-mute) !important; }
+
+/* 9. Product page: round dots instead of battery bars, soft word tags, a fit box that hugs its answer, sliders without outlines. */
+body.lk-soft .rf-segs { gap: 5px !important; }
+body.lk-soft .rf-segs i { width: 11px !important; height: 11px !important; border-radius: 50% !important; background: #efe4e6 !important; border: 0 !important; }
+body.lk-soft .rf-segs i.on { background: var(--sk-plum) !important; }
+body.lk-soft .rf-pnote em { border: 0 !important; border-radius: 999px !important; font: 600 11.5px var(--sk-font) !important; padding: 1px 9px !important; background: var(--sk-tint) !important; color: var(--sk-text) !important; }
+body.lk-soft .rf-pnote em.t5, body.lk-soft .rf-pnote em.t4 { background: var(--sk-good) !important; color: var(--sk-good-ink) !important; }
+body.lk-soft .rf-pnote em.t2, body.lk-soft .rf-pnote em.t1 { background: #f6e9e6 !important; color: #8a4a3e !important; }
+body.lk-soft .rf-top { align-items: flex-start !important; }
+body.lk-soft .rf-fit { align-self: flex-start !important; height: auto !important; }
+body.lk-soft .rf-blk { border-radius: 14px !important; }
+body.lk-soft .sk2-slider i { border: 0 !important; background: linear-gradient(90deg, #efe4e6, var(--sk-peach)) !important; }
+body.lk-soft .sk2-slider u { background: var(--sk-plum) !important; box-shadow: 0 0 0 2px #fff, 0 1px 3px rgba(43, 32, 37, .25) !important; }
+body.lk-soft .rv-badge { border-radius: 999px !important; }
+body.lk-soft .rv-badge b { background: var(--sk-good) !important; color: var(--sk-good-ink) !important; border-radius: 999px !important; }
+body.lk-soft .rv-av { border: 0 !important; }
+@media (max-width: 640px) {
+  /* Photo above the text on phones (the long summary was squeezed beside it). */
+  body.lk-soft .rf-hero { grid-template-columns: minmax(0, 1fr) !important; }
+  body.lk-soft .rf-shot { width: 100% !important; max-width: 200px; margin: 0 auto; }
+}
+
+/* 10. Rankings: small round plum rank badges instead of scoreboard numerals. */
+body.lk-soft .rl2-rank { font: 600 15px var(--sk-font) !important; width: 38px; height: 38px; border-radius: 50%; background: var(--sk-blush); color: var(--sk-plum-ink) !important;
+  display: inline-flex !important; align-items: center; justify-content: center; }
+body.lk-soft .rl2-row.top .rl2-rank { background: var(--sk-plum); color: #fff !important; }
+body.lk-soft .rk2-ph b { background: var(--sk-plum) !important; color: #fff !important; border: 0 !important; }
+body.lk-soft .rk2-strip { background: var(--sk-tint) !important; border-style: solid !important; }
+
+/* 11. Header and footer: a soft strip, a plum pill button, a soft search field. */
+body.lk-soft .hv2-top { background: var(--sk-paper); }
+body.lk-soft .hv2-strip { background: var(--sk-blush) !important; color: var(--sk-plum-ink) !important; font: 500 12px var(--sk-font) !important; padding: 5px 16px !important; }
+body.lk-soft .hv2-strip a { color: var(--sk-plum-ink) !important; }
+body.lk-soft .hv2-sh { border-bottom: 1px solid var(--sk-line) !important; background: var(--sk-paper) !important; }
+body.lk-soft .hv2-logo { font-family: var(--sk-font) !important; font-weight: 600 !important; color: var(--sk-plum-ink) !important; }
+body.lk-soft .hv2-sh nav a, body.lk-soft .hv2-sh nav button { font-family: var(--sk-font) !important; color: var(--sk-text) !important; }
+body.lk-soft .hv2-find form { border: 1px solid var(--sk-line) !important; border-radius: 999px !important; background: var(--sk-tint) !important; overflow: hidden; }
+body.lk-soft .hv2-find input { background: transparent !important; font-family: var(--sk-font) !important; }
+body.lk-soft nav .nav-sub { border-radius: 14px !important; box-shadow: var(--sk-lift) !important; }
+body.lk-soft nav .nav-sub a { font-family: var(--sk-font) !important; }
+body.lk-soft nav .nav-sub a[aria-current="page"] { background: var(--sk-blush) !important; }
+body.lk-soft .v2-foot { background: var(--sk-paper) !important; color: var(--sk-mute) !important; font-family: var(--sk-font) !important; }
+body.lk-soft .v2-foot nav { font-family: var(--sk-font) !important; }
+body:has(.hv2-top).lk-soft a:hover { background: var(--sk-blush); }
+body:has(.hv2-top).lk-soft :is(.hv2-add, .rf-btn, .hv2-own a, .hw-cta a, .ar-again, .rl2-buy, .rv-post):hover { background: var(--sk-plum-ink) !important; color: #fff !important; }
+@media (max-width: 760px) {
+  body.lk-soft .hv2-strip { font-size: 11px !important; padding: 4px 12px !important; }
+}
+
+/* 12. The 404 page in the soft look. */
+body.lk-soft .sk-nf { max-width: 560px; margin: 0 auto; padding: 72px 20px 96px; text-align: center; }
+body.lk-soft .sk-nf h1 { font: 600 34px/1.15 var(--sk-font); color: var(--sk-ink); margin: 0 0 12px; }
+body.lk-soft .sk-nf p { color: var(--sk-text); margin: 0 0 22px; }
+body.lk-soft .sk-nf .button { display: inline-block; padding: 10px 20px; text-decoration: none; }
+body.lk-soft .sk-nf .alt { display: block; margin-top: 14px; color: var(--sk-plum); }
+
+/* 13. Latest reviews and small source tags. */
+body.lk-soft .lr2-own { background: var(--sk-blush) !important; border-radius: 18px !important; }
+body.lk-soft :is(.lr2-own a, .lr2-tabs a[aria-current], .lr2-vs a[aria-current]) { background: var(--sk-plum) !important; color: #fff !important; border-radius: 999px !important; }
+body.lk-soft .lr2-pill { border: 0 !important; border-radius: 999px !important; font: 600 11.5px var(--sk-font) !important; padding: 1px 9px !important; }
+body.lk-soft .lr2-pill.positive { background: var(--sk-good) !important; color: var(--sk-good-ink) !important; }
+body.lk-soft .lr2-pill.mixed { background: var(--sk-mid) !important; color: var(--sk-mid-ink) !important; }
+body.lk-soft .lr2-pill.negative { background: #f6e9e6 !important; color: #8a4a3e !important; }
+body.lk-soft .hv2-src .t { border: 0 !important; border-radius: 999px !important; background: var(--sk-tint) !important; color: var(--sk-text) !important; font: 500 11px var(--sk-font) !important; padding: 1px 8px !important; }
+body.lk-soft .hv2-src .t.youtube { background: #fbe9e6 !important; }
+/* No tilted "sticker" badges. */
+body.lk-soft :is(.lr2-pill, .rl2-score b, .rf-badge b, .rv-badge b, .hw-score) { transform: none !important; }

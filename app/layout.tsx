@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree, Source_Serif_4, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+import "./soft-look.css";
 import "./visual.css";
 import { SiteHeader } from "./site-header";
 import { lightFont } from "./light-font";
@@ -29,7 +30,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
 
 export default async function Layout({children}: {children: React.ReactNode}) {
   const ranked = process.env.DATABASE_URL ? await rankedSlugs() : [];
-  return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}<head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/></head>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
+  return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}<head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/></head>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}${niche.v2copy?.look === "soft" ? " lk-soft" : ""}`}>
     <SiteHeader ranked={ranked}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">

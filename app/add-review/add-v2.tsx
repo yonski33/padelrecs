@@ -1,5 +1,5 @@
 "use client";
-import { niche, v2copy } from "../../lib/niche";
+import { niche, v2copy, kicker } from "../../lib/niche";
 import { matchingRackets } from "../../lib/racket-search";
 import { useState } from "react";
 import { VERDICTS, loadProfile, nickname, saveProfile, sendVote, type Verdict } from "../quick-vote";
@@ -108,7 +108,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
         </div>
       </section>
       <aside className="ar-side">
-        <p className="ar-k">{"// preview — how it'll look in the feed"}</p>
+        <p className="ar-k">{kicker("preview — how it'll look in the feed")}</p>
         <article className="ar-pv">
           <div className="ar-pvh"><b>{racket?.name ?? `Pick a ${niche.words.one}`}</b><span className={`ar-pill ${verdict ?? ""}`}>{verdict ? `${V[verdict].icon} ${V[verdict].label}` : "verdict?"}</span></div>
           <div className="ar-pvb">

@@ -73,7 +73,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         </div>
       </section>
 
-      {skin ? <section className="rl2-match" aria-label="Your match"><span className="rl2-you"><span className="rl2-badge">⚡ your match</span>
+      {skin ? <section className="rl2-match" aria-label="Your match"><span className="rl2-you"><span className="rl2-badge">Your match</span>
         <span>{`Want them ranked for your skin? `}<Link href="/#match">Pick your skin type on the home page →</Link></span></span></section>
         : <MatchBox finder={niche.finder ? "/finder" : undefined}/>}
 

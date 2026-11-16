@@ -53,7 +53,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   // PadelRecs: the Claude Design header (owner 2026-11-15, "match the mockup"): the black side-project strip, then the logo dot,
   // three plain links, search and "+ add a review". Other niches keep the light header below.
   if (isV2) return <div className={`hv2-top ${qtFontVars}`}>
-    <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">how we make these →</a></div>
+    <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">{`${v2copy.howLink ?? "how we make these"} →`}</a></div>
     <header className="site-header hv2-sh"><div className="hv2-shin">
       <Link className="hv2-logo" href="/">{v2copy.logo === "icon" ? <img className="hv2-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/> : <i aria-hidden="true"/>}{niche.site.name.toLowerCase()}</Link>
       <nav aria-label="Main navigation">

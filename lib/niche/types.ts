@@ -148,6 +148,8 @@ export type Niche = {
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];
+    /** "soft": the calm look (app/soft-look.css, body.lk-soft): hairlines, rounded sans, the site's own palette; padel's look by default. */ look?: "soft";
+    /** The top strip's link words ("how we make these"). */ howLink?: string;
   };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
