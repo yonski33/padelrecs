@@ -27,6 +27,7 @@ import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
 import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
 import { hasAttribution } from "../../../lib/voice";
+import { traitNote } from "../../../lib/trait-note";
 import type { QtReport, QtReview } from "./quick-take";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
@@ -47,16 +48,6 @@ const ratingVerdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? 
 const LEVEL_SAID_MIN = 5;
 
 /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)] per trait. */
-// Each trait said as a plain statement (owner 2026-11-16, expert voice: no "many players praise…"): strong, middling or weak
-// by the dots, and the two sides named when the reports split.
-const TRAIT_SAY: Record<Trait, { hi: string; mid: string; lo: string; split: [string, string] }> = {
-  forgiveness: { hi: "Big, forgiving sweet spot.", mid: "An average sweet spot.", lo: "Small sweet spot; it punishes mishits.", split: ["forgiving", "demanding"] },
-  power: { hi: "Easy power; the ball jumps off the face.", mid: "Moderate power; smashes need a full swing.", lo: "Little free power; you supply the pace.", split: ["powerful", "short on power"] },
-  control: { hi: "Precise; the ball goes where you aim.", mid: "Decent control.", lo: "Hard to control; the ball can fly.", split: ["precise", "hard to control"] },
-  defence: { hi: "Solid in defence; easy to block and lob.", mid: "Fine in defence.", lo: "Hard work in defence.", split: ["solid in defence", "hard work in defence"] },
-  arm: { hi: "Kind to the arm; it soaks up vibration.", mid: "Average comfort.", lo: "Hard on the arm, especially on mishits.", split: ["comfortable", "hard on the arm"] },
-  speed: { hi: "Quick in the hand at the net.", mid: "Average handling.", lo: "Heavy and slow in the hand.", split: ["quick", "heavy"] },
-};
 
 
 export default async function RacketFit(props: {
@@ -97,11 +88,7 @@ export default async function RacketFit(props: {
     const ev = sc?.people;
     // The note (owner 2026-11-16, expert voice): an admin edit, else the quick take's own line when it agrees with the dots and
     // doesn't say who said it, else a plain statement from the dots, with both sides named when the reports split.
-    const say = TRAIT_SAY[t];
-    const stated = sc ? (() => {
-      const nP = ev ? ev.players.plus + ev.reviewers.plus : 0, nM = ev ? ev.players.minus + ev.reviewers.minus : 0;
-      if (nP >= 3 && nM >= 3 && Math.min(nP, nM) / Math.max(nP, nM) >= 0.75) return `Splits opinion: some find it ${say.split[0]}, others ${say.split[1]}.`;
-      return sc.dots >= 4 ? say.hi : sc.dots <= 2 ? say.lo : say.mid; })() : null;
+    const stated = sc ? traitNote(t, sc.dots, ev ? ev.players.plus + ev.reviewers.plus : 0, ev ? ev.players.minus + ev.reviewers.minus : 0) : null;
     const text = tr.edits?.traits[t]?.text ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
     return [TRAIT_LABEL[t], text, sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
