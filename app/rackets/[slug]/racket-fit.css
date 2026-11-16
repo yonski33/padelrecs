@@ -513,10 +513,10 @@
   .rf-ans h2 { font: 800 clamp(28px, 3.4vw, 38px)/1.02 var(--display); letter-spacing: -0.02em; margin: 0; }
   .rf-for { font-size: 16.5px; color: #4a4740; margin: -8px 0 0; text-wrap: pretty; }
   /* The one reason line under the headline (owner 2026-11-16), then the try-instead link and "See why ↓". */
-  .rf-why { font-size: 17.5px; line-height: 1.45; color: #2b2925; margin: -6px 0 0; text-wrap: pretty; }
-  .rf-whyl { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: -6px 0 0; }
-  .rf-whyl a { font-size: 16px; color: var(--ink); }
-  .rf-whyl .rf-seewhy { font: 600 14px var(--mono); }
+  .rf-reason { font-size: 17.5px; line-height: 1.45; color: #2b2925; margin: -6px 0 0; text-wrap: pretty; }
+  .rf-reasonl { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: -6px 0 0; }
+  .rf-reasonl a { font-size: 16px; color: var(--ink); }
+  .rf-reasonl .rf-seewhy { font: 600 14px var(--mono); }
   .rf-blk { border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; margin: 0; border: 0; }
   .rf-blk.ok { background: oklch(0.95 0.05 145); }
   .rf-blk.warn { background: oklch(0.96 0.04 60); }

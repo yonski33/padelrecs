@@ -111,8 +111,8 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
       <h2>{headline}</h2>
       {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`}</p>
-        : <>{reason && <p className="rf-why">{reason}</p>}
-          {(alt || yesNo) && <p className="rf-whyl">{alt && <a href={card!.links[alt.slug].href}>{`→ ${alt.t}`}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
+        : <>{reason && <p className="rf-reason">{reason}</p>}
+          {(alt || yesNo) && <p className="rf-reasonl">{alt && <a href={card!.links[alt.slug].href}>{`→ ${alt.t}`}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
       <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
       <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join("  ·  ")}</span>
