@@ -46,3 +46,7 @@ test("match box: words", () => {
     assert.equal(butLevel("A pro line, built for advanced players."), "it's a pro line, built for advanced players");
     assert.equal(fitReason("good", [], [], pick("any", null)), null);
 });
+test("match box: an untagged strength is just 'its strength'", () => {
+  assert.equal(fitReason("no", [no[0]], [], pick("control", "beginner"), ["A pro line, built for advanced players."]),
+    "Its strength: the soft face launches fast blocks, so volleys can fly long. But it's a pro line, built for advanced players.");
+});

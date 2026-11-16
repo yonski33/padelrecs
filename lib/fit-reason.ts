@@ -50,7 +50,8 @@ export function fitReason(kind: ReasonKind, yes: ReasonItem[], no: ReasonItem[],
   // A weak fit's deal-breaker is the fit check's first conflict: when that is the level, the level reason is the "But".
   const levelFirst = !!lvl && !!conflicts?.[0] && levelReason(conflicts.slice(0, 1), c) === lvl;
   const butLvl = (l: string) => `But ${butLevel(l)}.`.length <= MAX ? `But ${butLevel(l)}.` : l;
-  const lead = kind === "good" ? "Built for what you picked:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
+  // A strength that isn't about the picks is only "its strength", not something that suits the visitor.
+  const lead = kind === "good" ? "Built for what you picked:" : !y?.tagged ? "Its strength:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
   const out: string[] = [];
   if (y) out.push(sentence(lead, y.it));
   if (kind === "good") { if (n) out.push(sentence("One thing to know:", n.it)); }
