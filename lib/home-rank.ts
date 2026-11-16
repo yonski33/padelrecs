@@ -164,7 +164,9 @@ function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, ol
     for (const x of all) if (p.newestAt !== undefined && x.n >= p.newestAt && x.year > (top.get(x.family) ?? -1)) top.set(x.family, x.year); return top; });
   const okAll = ok, okNew = (x: EngItem) => okAll(x) && (older || view.get(x.id)!.curated || !(x.year < (newerWith.get(x.family) ?? -1)));
   const best = p.familyBestWithin !== undefined ? { pct: (x: EngItem) => view.get(x.id)!.pct, within: p.familyBestWithin, newestAt: p.newestAt } : undefined;
-  const cands = engineCandidates(all, okNew, 0, older, best).sort((a, b) => (view.get(a.id)!.ci ?? 1e9) - (view.get(b.id)!.ci ?? 1e9)
+  // Curated picks are never folded into another member of their model (each is the owner's own choice of year and version).
+  const isCur = (x: EngItem) => !!view.get(x.id)?.curated;
+  const cands = [...all.filter(x => isCur(x) && okNew(x)), ...engineCandidates(all.filter(x => !isCur(x)), okNew, 0, older, best)].sort((a, b) => (view.get(a.id)!.ci ?? 1e9) - (view.get(b.id)!.ci ?? 1e9)
     || Number(!!view.get(a.id)!.hard) - Number(!!view.get(b.id)!.hard)
     // The shown % first (a capped row never sits above a higher %), then the score behind it.
     || view.get(b.id)!.pct - view.get(a.id)!.pct || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
