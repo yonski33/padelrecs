@@ -91,13 +91,13 @@ export function HomeMatch({ payload, choice: first, older: firstOlder, listed, c
         const chips = [
           ...(i === 0 && picked && fit?.kind === "good" ? [{ k: "best", t: "best match" }] : []),
           ...(r.shape ? [{ k: "shape", t: r.shape }] : []),
-          ...(choice.arm && (QUICK ? (byId.get(id)?.arm ?? 0) >= 65 : arm >= ARM_BAR) ? [{ k: "arm", t: QUICK?.armChip ?? "arm-friendly" }] : []),
+          ...(choice.arm && (QUICK ? (byId.get(id)?.arm ?? 0) >= 70 && r.armOk !== false : arm >= ARM_BAR) ? [{ k: "arm", t: QUICK?.armChip ?? "arm-friendly" }] : []),
         ];
         // The row is one link (the name's, stretched over the row) with "check price" as a quiet text link under the
         // summary line (owner 2026-11-15: low-key, close to the text). Reviews over the sentiment bar, then the score box.
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
-          <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
+          <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : QUICK ? <span className={`hv2-disc t${i % 6}`} aria-hidden="true"/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
             {r.line && <span className="hv2-line">{r.line}</span>}
             {/* Flight numbers (type-picker sites): labelled once over the first row, and each box names its number. */}

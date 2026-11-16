@@ -67,7 +67,9 @@ export const DISCGOLF_FIT: FitConfig = {
   reviewerSources: ["YouTube", "Blog"],
   scale: { rank: "net", top4: 0.4, top5: 0.09 },
   quick: { types: DISC_TYPES.map(([key, shape, many]) => ({ key, shape, many })), want: "I need a", arm: "slower arm speed", armChip: "slow-arm friendly",
-    stabilityLabel: "Stability", flightLabel: "speed · glide · turn · fade" },
+    stabilityLabel: "Stability", flightLabel: "speed · glide · turn · fade",
+    // "Slow-arm friendly" only where the flight numbers agree: a speed 10+ disc needs more arm to fly as rated.
+    armSpecOk: s => { const f = flightOf(s.weight); return !!f && f.speed <= 9; } },
   evidenceAdapter: discgolfEvidence,
 };
 

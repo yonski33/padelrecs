@@ -48,7 +48,8 @@ export type FitConfig = {
    *  With `types`, the home's first row picks a type (a hard filter on the catalogue shape, ?kind=) and the style picks move
    *  under fine-tune as `stabilityLabel`. Unset: padel's row, unchanged. */
   quick?: { types: { key: string; shape: string; many: string }[]; want: string; arm: string; armChip: string; stabilityLabel: string;
-    /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string };
+    /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string;
+    /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
   evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];

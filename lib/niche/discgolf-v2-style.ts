@@ -12,4 +12,11 @@ html .hv2 h1 .hl{background:${ORANGE};border-radius:12px}
 html .hv2 .hv2-subrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:8px}
 html .hv2 .hv2-subrow .hv2-sub{margin:0}
 html .hv2 .hv2-hero{align-items:flex-start}
+html .hv2 .hv2-list>li.top{background:oklch(0.98 0.03 60)}
+html .hv2 .hv2-list>li:hover{background:oklch(0.97 0.035 60)}
+html .hv2 .hv2-list>li{border-bottom:1.5px dashed var(--line)}
+html .hv2 .hv2-sc.mid b{background:oklch(0.92 0.08 60)}
+html .hv2 .hv2-chip.arm{background:oklch(0.93 0.05 150)}
+html .hv2 .hv2-seg{flex-wrap:wrap;max-width:100%}
+html .ct2 .ct2-list>li.first{background:oklch(0.98 0.04 60)}
 `;
