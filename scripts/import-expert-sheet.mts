@@ -33,7 +33,7 @@ for (const l of lines) {
   const rowNote = (l[col("notes")] ?? "").trim(), note = rowNote ? `${prefix} · ${rowNote}` : prefix;
   const next: Partial<Record<ExpertKey, { value: number | null; note: string }>> = {};
   for (const t of TRAITS) { const v = readExpertValue(l[col(`expert_${t}`)]); if (v !== null) next[t] = { value: v, note }; else if ((l[col(`expert_${t}`)] ?? "").trim()) bad.push(`${slug} ${t}`); }
-  const suits = levelToSuits(l[col("expert_level")]);
+  const suits = levelToSuits(l[col("expert_level")], niche.fit?.expertAdjacentSuits);
   if (suits) for (const [k, v] of Object.entries(suits)) next[k as ExpertKey] = { value: v, note }; else if ((l[col("expert_level")] ?? "").trim()) bad.push(`${slug} level "${l[col("expert_level")]}"`);
   const res = await db.execute(sql`select trait_override from ${table} where id = ${id}`);
   const list = (res as unknown as { rows?: { trait_override: unknown }[] }).rows ?? (res as unknown as { trait_override: unknown }[]);

@@ -184,6 +184,12 @@ function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   return { level: "soft", short: "Unproven for sore arms", reason: "Sore arm: too little evidence to vouch for it yet. Demo it first." };
 }
 
+/** Whether the picks meet a hard reason on level or arm (feel: "plays demanding" for a beginner is a level reason): the match
+ *  engine holds such a product under "Worth a look" (audit 2026-11-16, lib/engine hardCap). */
+export function hardOnLevelOrArm(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT): boolean {
+  return levelCheck(c, f, cfg).level === "hard" || armCheck(c, f, cfg).level === "hard";
+}
+
 /** The verdict for a visitor's picks. Probably not: a hard conflict. Maybe: one soft conflict. Good: no conflicts and at least
  *  one real reason. Too little data (few reports, or nothing known about what was asked): say so. */
 /** Fine-tune picks the racket doesn't match ("heavier than you asked for"): a soft reason only, never a hard no. */

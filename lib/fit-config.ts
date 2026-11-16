@@ -116,6 +116,10 @@ const PADEL: FitConfig = {
 // PickleballRecs (owner 2026-11-15): seven traits from the paddle tag bank. Spec columns are shared with padel: core holds core
 // thickness, balance holds swing weight, surface the face material.
 const PICKLEBALL: FitConfig = {
+  // Match audit 2026-11-16: the fine-tune picks (shape, weight, core) are read from the address too, so a shared or refreshed
+  // link keeps them; and spin is a style of its own (it fell back to "any").
+  fineTune: true,
+  styles: ["control", "balance", "power", "spin"],
   traits: [
     { key: "power", label: "Power", plus: [["easy power", 1]], minus: [], noun: "the power", diff: "more power", ifYou: "win points with drives and put-aways" },
     { key: "pop", label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop", ev: [["praise the pop", "praises the pop"], ["find it low on pop", "finds it low on pop"]], diff: "more pop", ifYou: "want pop on speed-ups" },

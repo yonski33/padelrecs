@@ -131,6 +131,9 @@ export type Niche = {
   people: Words;
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
+  /** Without real years: versions of one model line still share a row ("Jelly Bean" and "Jelly Bean 2", the higher name
+   *  being the newer), so quick match shows one per model and "show older models" works (PickleballRecs, audit 2026-11-16). */
+  familiesByName?: boolean;
   /** "v2": the 2026-11 design (quick-match home, fit pages, tight lists, the v2 brand / catalogue / reviews / about pages).
    *  Off by default, so a site switches when its data is ready (audit 2026-11-15: no more niche.id === "padel" checks). */
   design?: "v2";
@@ -193,6 +196,9 @@ export type Niche = {
     /** Quick match's level gate (owner 2026-11-15): a product shows for a picked level only when its suits score for that
      *  level (lib/level-suits.ts) reaches this. Without it, level only weighs in the ranking. */
     levelGate?: { beginner: number; intermediate: number; advanced: number };
+    /** Gate on the level only with this many players or an expert value; with fewer, the specs' level (when there is one)
+     *  stands in, else no gate (PickleballRecs, audit 2026-11-16: 1–3 players let paddles in or kept them out). */ gateMinPlayers?: number;
+    /** The suits score an expert's level gives the level next to their band (lib/levelToSuits; default 45). */ expertAdjacentSuits?: number;
     /** The match engine (lib/engine, ENGINE-ALGO.md §5): when set, it ranks quick match and gives the % and the verdict word. */
     engine?: import("../engine").EngineProfile };
   /** URL segment for the catalogue and product pages: "rackets" serves /rackets and /rackets/<slug>. */

@@ -93,12 +93,13 @@ export function editTraitOverride(prev: TraitOverride, next: Partial<Record<Trai
   return { ...prev, traits: Object.fromEntries(Object.entries(next).filter(([, e]) => e && (e.dots || e.text))), log: log.slice(-MAX_TRAIT_LOG) };
 }
 
-/** An expert's level word (or range) as suits scores: "intermediate" → beginner 35 · intermediate 85 · advanced 55. */
-export function levelToSuits(raw: string | undefined | null): Partial<Record<"suits_beginner" | "suits_intermediate" | "suits_advanced", number>> | null {
+/** An expert's level word (or range) as suits scores: "intermediate" → beginner 45 · intermediate 85 · advanced 45, the level
+ *  next to the band at `adjacent` (a site's fit.expertAdjacentSuits; PickleballRecs 55, so it passes a gate of 50). */
+export function levelToSuits(raw: string | undefined | null, adjacent = 45): Partial<Record<"suits_beginner" | "suits_intermediate" | "suits_advanced", number>> | null {
   const L = ["beginner", "intermediate", "advanced"];
   const parts = String(raw ?? "").trim().toLowerCase().split(/\s*(?:-|–|→|to)\s*/).map(x => x.replace(/s$/, "")).map(x => /^(pro|professional|elite)$/.test(x) ? 2 : L.indexOf(x)); // "pro" counts as advanced
   if (!parts.length || parts.some(i => i < 0)) return null;
   const from = Math.min(...parts), to = Math.max(...parts);
-  const v = (i: number) => i >= from && i <= to ? 85 : Math.abs(i < from ? from - i : i - to) === 1 ? 45 : 20;
+  const v = (i: number) => i >= from && i <= to ? 85 : Math.abs(i < from ? from - i : i - to) === 1 ? adjacent : 20;
   return { suits_beginner: v(0), suits_intermediate: v(1), suits_advanced: v(2) };
 }
