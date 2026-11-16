@@ -32,3 +32,10 @@ How a filter UI is built:
 listed legacy pages: review lists, "load more", padel's brands sort and the classic and light looks. That list only
 shrinks. The test also checks that each instant UI goes through the hook, that every address SkinRecs' picks write is a
 cached view on its own keys, and that the browser's ranking equals the server's.
+
+## Counts of people: never under 5
+
+Owner rule, all sites (2026-11-16): a "N players / users / drivers mention it" line (or any special evidence line with a count)
+never shows when fewer than 5 reports back the item. The item still shows; only the count line is hidden. It's enforced in
+`lib/racket-page.ts` (`MIN_COUNT_SHOWN = 5`, pinned by `tests/discgolf-content.test.ts`), and the word comes from the niche's
+`people`. Copy guide: QUICK-TAKE-RECIPE.md, Voice, "Counts".

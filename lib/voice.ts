@@ -3,6 +3,7 @@
 // the Reviews section, the Player score, report counts and the small "N players mention it" lines. Accuracy doesn't change:
 // a statement still has to match the evidence and specs, split evidence is said plainly ("splits opinion: …"), and nothing
 // may imply we played it. Shared copy guide: QUICK-TAKE-RECIPE.md, "Voice".
+// Counts (owner rule, all sites): a "N players mention it" line never shows under 5 (lib/racket-page.ts MIN_COUNT_SHOWN).
 
 /** Who-said-it wording inside advice: "players say", "a few players", "one tester", "12 players", "reviewers call it". */
 export const ATTRIBUTION = new RegExp([
