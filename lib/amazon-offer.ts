@@ -37,6 +37,8 @@ export function amazonLinksOn(env: Record<string, string | undefined> = process.
  * Null only on niches without Amazon links or when no tag is set. Links carry affiliateTag(); the matched item's link is
  * rebuilt from its ASIN here, so offers cached before the tag changed still get the current one.
  */
+/** How long a page waits for the live Amazon lookup. */
+const LOOKUP_MS = 1500;
 export async function amazonButton(product: { name: string; brand: string | undefined }): Promise<AmazonButton | null> {
   const tag = affiliateTag();
   if (!niche.amazon || !tag) return null;
@@ -48,7 +50,13 @@ export async function amazonButton(product: { name: string; brand: string | unde
   }
   if (!product.brand) return search;
   try {
-    const offer = await cachedOffer(product.name, product.brand);
+    // A slow or rate-limited Amazon (429s, 2026-11-16) must not hold the page: after LOOKUP_MS the button is the search
+    // link, and the lookup still finishes and fills the cache for the next render.
+    const lookup = cachedOffer(product.name, product.brand);
+    lookup.catch(() => { /* a late failure changes nothing: the page already has its search link */ });
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const offer = await Promise.race([lookup, new Promise<"slow">(done => { timer = setTimeout(() => done("slow"), LOOKUP_MS); })]).finally(() => clearTimeout(timer));
+    if (offer === "slow") return search;
     return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null, asin: offer.asin } : search;
   } catch (error) {
     console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`);

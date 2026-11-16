@@ -1,5 +1,6 @@
 import { cache } from "react";
-import { catalog, score } from "../db/data";
+import { catalog, score, type Catalog } from "../db/data";
+import { sameInputs } from "../db/same-inputs";
 import { niche, typePageFor } from "../lib/niche";
 import { signals, type Signal } from "../lib/signal";
 
@@ -14,7 +15,7 @@ export function categoryWords(category: string) {
 }
 
 /** Every listed product's signal, once per request (pages and the rankings read the same numbers). */
-export const productSignals = cache(async (): Promise<Map<string, Signal>> => {
-  const data = await catalog();
-  return signals(data.listed.map(r => { const s = score(data, r.id); return { id: r.id, category: signalCategory(r), positive: s.positive, mixed: s.mixed, judged: s.judged, override: r.signalOverride }; }));
-});
+export const productSignals = cache(async (): Promise<Map<string, Signal>> => signalsOf(await catalog()));
+/** Worked out again only when the instance's catalogue copy changes (db/same-inputs.ts). */
+const signalsOf = sameInputs((data: Catalog): Map<string, Signal> =>
+  signals(data.listed.map(r => { const s = score(data, r.id); return { id: r.id, category: signalCategory(r), positive: s.positive, mixed: s.mixed, judged: s.judged, override: r.signalOverride }; })));

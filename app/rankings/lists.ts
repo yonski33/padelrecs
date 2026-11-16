@@ -1,5 +1,7 @@
 import { cache } from "react";
-import { catalog } from "../../db/data";
+import { catalog, type Catalog } from "../../db/data";
+import { sameInputs } from "../../db/same-inputs";
+import type { Signal } from "../../lib/signal";
 import { niche } from "../../lib/niche";
 import { productSignals } from "../signals";
 import { rankList, listTotals, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../../lib/top-lists";
@@ -8,8 +10,9 @@ export const topLists = withModelYears(withNicheWindow(niche.topLists ?? [], nic
 export const listHref = rankingHref;
 
 /** Every list long enough to show, ranked from one catalogue read, shared by a page and its metadata. */
-export const rankedLists = cache(async () => {
-  const [data, sig] = await Promise.all([catalog(), productSignals()]);
+export const rankedLists = cache(async () => listsOf(...await Promise.all([catalog(), productSignals()])));
+/** Ranked again only when the instance's catalogue copy changes (db/same-inputs.ts). */
+const listsOf = sameInputs((data: Catalog, sig: Map<string, Signal>) => {
   // Signal first, then its place in the category, so ties read the same here and on the product list.
   const order = new Map([...sig].map(([id, s]) => [id, s.signal * 10_000 - s.rank]));
   const lists = topLists.map(list => {
