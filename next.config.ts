@@ -33,7 +33,9 @@ const config:NextConfig={
   // Pages that moved to another Recs site: 301 to the absolute address there (lib/niche/<niche>.ts movedAway). Listed first
   // so they win over the generic /rackets and /types redirects.
   const moved=(niche.movedAway??[]).map(m=>({source:m.source,destination:m.destination,statusCode:301 as const,...(m.query?{has:[{type:"query" as const,key:m.query.key,value:m.query.value}]}:{})}));
-  return products==="/rackets"?[...moved,...types,...rankings,...seasons]:[...moved,...types,...rankings,...seasons,{source:"/rackets",destination:products,permanent:true},
+  // "/product" (singular) 404'd on SkinRecs (owner 2026-11-16): the catalogue's singular, and a product under it, go to the catalogue.
+  const singular=products.endsWith("s")&&products!=="/rackets"?[{source:products.slice(0,-1),destination:products,permanent:true},{source:`${products.slice(0,-1)}/:slug`,destination:`${products}/:slug`,permanent:true}]:[];
+  return products==="/rackets"?[...moved,...types,...rankings,...seasons]:[...moved,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },

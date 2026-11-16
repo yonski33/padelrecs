@@ -23,10 +23,13 @@ const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 
 const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
-export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
-  /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null } }) {
+export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
+  /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null };
+  /** Another site's words (SkinRecs): the profile chips ("I have" dry / oily…), the score's name, the composer's title, who the
+   *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
+  const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: "players", peopleTab: "players" };
   const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
-  const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<typeof LEVELS[number] | null>(null);
+  const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<string | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
   // A nickname fitting the site, filled in by default (owner 2026-11-15: like the old card, e.g. "SteadyVolley482"): the same one
   // per device (localStorage), editable, and a new one on tap. Read after the first render so server and client HTML match.
@@ -47,7 +50,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
     setBusy(true); setError("");
     try {
-      const profile = { ...loadProfile(), ...(level ? { level: level[0].toUpperCase() + level.slice(1) } : {}) };
+      const profile = { ...loadProfile(), ...(level ? { level } : {}) };
       if (level) saveProfile(profile);
       await sendVote(racketId, v.rating, profile);
       if (words) {
@@ -67,21 +70,21 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     <div className="rv-head">
       <div><h2>Reviews</h2>
         {mood && mood.pos + mood.mix + mood.neg > 0 && <div className="rv-mood">
-          {mood.score != null && <span className="rv-badge" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{mood.score}</b>Player score</span>}
+          {mood.score != null && <span className="rv-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}><b>{mood.score}</b>{W.score}</span>}
           <span className="rv-mbar"><span className="rf-sbar" role="img" aria-label={`${mood.pos} positive, ${mood.mix} mixed, ${mood.neg} negative`}><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>
           <small>{`👍 ${mood.pos} loved · 🤷 ${mood.mix} mixed · 👎 ${mood.neg} nope · ${mood.pos + mood.mix + mood.neg} rated`}</small></span></div>}{!mood && <p>{total !== undefined && total !== cards.length ? `${cards.length} of the ${total} reviews · from players on padelrecs and summarised YouTube reviews (forum reports count in the score, not shown here)` : `${cards.length} total · from players on padelrecs and summarised YouTube reviews`}</p>}</div>
       <div className="rv-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
-        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{label}</button>)}</div>
+        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "players" ? W.peopleTab : label}</button>)}</div>
     </div>
     <div className="rv-list">
       {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">🎾</span>
         <span>{posted === "words" ? <><strong>Thanks — your review is in.</strong> It&apos;ll show here after a quick check.</> : <><strong>Thanks — your verdict counts.</strong> Add a few words next time and it shows here too.</>}</span></div>
       : <div className={`rv-compose${verdict ? "" : " one"}`}>
-        <div className="rv-ct"><b>Played it?</b><span>one tap, no account</span></div>
+        <div className="rv-ct"><b>{W.ask}</b><span>one tap, no account</span></div>
         <div className="rv-verdicts" role="group" aria-label={`Your verdict on the ${name}`}>{VERDICTS.map(x =>
           <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}>{WORD[x.key]}</button>)}</div>
-        {verdict && <><div className="rv-levels" role="group" aria-label="Your level (optional)"><span>I&apos;m</span>{LEVELS.map(l =>
-          <button key={l} type="button" aria-pressed={level === l} onClick={() => setLevel(level === l ? null : l)}>{l}</button>)}</div>
+        {verdict && <><div className="rv-levels" role="group" aria-label="About you (optional)"><span>{W.levelLead}</span>{W.levels.map(l =>
+          <button key={l.value} type="button" aria-pressed={level === l.value} onClick={() => setLevel(level === l.value ? null : l.value)}>{l.label}</button>)}</div>
         <textarea rows={4} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} aria-label="Your review (optional)"
           placeholder="What would you tell a friend thinking of buying it? What surprised you? What did you come from?"/>
         <div className="rv-send">
@@ -93,7 +96,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         {error && <p className="rv-err" role="alert">{error}</p>}
       </div>}
 
-      {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : "No player reviews yet."}</p>}
+      {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
       {list.slice(0, shown).map((c, i) => <article key={c.id} className={`rv-card ${c.kind}`}>
         {c.kind === "player" ? <>
           <div className="rv-top">
