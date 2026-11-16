@@ -10,7 +10,7 @@ import type { Trait } from "../lib/trait-score";
 import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
-import { traitOverrides } from "../db/trait-override";
+import { traitOverrides, levelToSuits } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
@@ -147,8 +147,12 @@ const keptContext = kept(async () => {
     for (const e of data.external) likedRef.set(`w:${e.id}`, e.sentiment === "positive" ? true : e.sentiment === "negative" ? false : null);
     const sIn = new Map<string, SuitsInput>(), get = (id: string) => sIn.get(id) ?? sIn.set(id, { players: [] }).get(id)!;
     const seenVoice = new Set<string>();
+    // A level read from the specs by a site's rule (scripts/tennis-spec-levels.mts): half the weight of an expert level, and
+    // only where no expert level is set.
+    const specLevel = new Map<string, string>();
     for (const r of evidence) {
       if (r.attribute !== "level" || r.value === null) continue;
+      if (r.extractedBy === EXTRACTORS.specLevel) { if (r.valueText) specLevel.set(r.productId, r.valueText); continue; }
       if (r.extractedBy === EXTRACTORS.brandLevel) {
         const [from, to] = (r.valueText ?? "").split("-").map(Number);
         if (Number.isInteger(from) && Number.isInteger(to)) get(r.productId).brand = { from, to, notForBeginners: /not (suitable |recommended |aimed |meant )?for beginners|no (apta|recomendada) para principiantes/i.test(r.quote ?? "") };
@@ -172,7 +176,10 @@ const keptContext = kept(async () => {
       const su = levelSuits(x), ex = overrides.get(id)?.expert;
       suitsAutoOf.set(id, { ...su, basis: [...su.basis] });
       // An expert's suits scores win, and count as backing (not the brand alone).
-      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { su.basis = su.basis.filter(b => !["a pro line", "advanced players", "its shape", "the owner's beginner list"].includes(b)); su.basis.push("expert"); } }
+      let expertLevel = false;
+      if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { expertLevel = true; su.basis = su.basis.filter(b => !["a pro line", "advanced players", "its shape", "the owner's beginner list"].includes(b)); su.basis.push("expert"); } }
+      const sp = expertLevel ? null : levelToSuits(specLevel.get(id));
+      if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] + sp[`suits_${l}`]!) / 2); su.basis.push("the specs"); }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
