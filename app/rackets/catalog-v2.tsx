@@ -1,8 +1,8 @@
 import "./catalog-v2.css";
+import { bestFor } from "../../lib/fit-verdict";
+import { rowLine } from "../../lib/row-line";
 import { niche, productHref, mockLook, catalogPath } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
-import { listLine } from "../../lib/list-lines";
-import { shortLine } from "../../lib/short-lines";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { matchingRackets } from "../../lib/racket-search";
@@ -42,7 +42,7 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
   const listed = matchingRackets(data.listed, f.q || "");
   const rows: CatalogRow[] = catalogRows(data, ctx, listed);
   const cards: Record<string, CatalogCard> = Object.fromEntries(listed.map(r => { const sc = score(data, r.id), shop = listShopLink(r);
-    return [r.id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic: photo(r), tile: brand(r.brandId) ?? "", line: shortLine(r) ?? listLine(r) ?? null,
+    return [r.id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic: photo(r), tile: brand(r.brandId) ?? "", line: rowLine(r), ...(() => { const b = bestFor(ctx.facts(r.id)).join(", "); return b ? { best: b } : {}; })(),
       shop: shop ? { url: shop.url, rel: shop.rel } : null, pos: sc.positive, mix: sc.mixed, neg: sc.negative }]; }));
 
   return <main className={`ct2${mockLook ? " ct2-m" : ""} ${qtFontVars}`}>

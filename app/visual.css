@@ -3099,3 +3099,7 @@ html[data-hl="off"] .lv-text mark.hl { background: none; padding: 0; margin: 0; 
 .rate-summary { position: sticky; bottom: 0; margin-top: 16px; padding: 12px 16px; border: 1px solid var(--lt-line); border-radius: 16px; background: #fff; }
 .rate-summary p { margin: 0; }
 @media (max-width: 560px) { .rate-list li { flex-wrap: wrap; } }
+
+/* Old-design rows (TennisRecs, SimRacingRecs): bolder, tighter titles and a dark underlined price link (owner 2026-11-16). */
+.lt-row.v2 .lt-name { font-weight: 700; letter-spacing: -0.015em; }
+.lt-row.v2 .lt-shop, .lt-row.v2 .lt-shop-m { color: var(--lt-ink) !important; font-size: 12.5px; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }

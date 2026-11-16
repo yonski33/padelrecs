@@ -69,3 +69,8 @@
   .rb-buy { grid-column: 3; justify-self: end; }
   .rb-own .bp-btn { margin-left: 0; }
 }
+
+/* Dark underlined price link on rows #2 on (owner 2026-11-16). */
+.rb-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.rb-name { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; }
+.rb-top .rb-name { font-size: 26px; }

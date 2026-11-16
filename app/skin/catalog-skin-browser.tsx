@@ -4,6 +4,7 @@
 // here, with the match % from the server's own functions (app/skin/rank.ts), and updates the address with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { useMemo, useState } from "react";
+import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
 import { wireCtx, fitWord, reasonOf, SKIN_GROUPS, type SkinWire } from "./rank";
 import { unpack, type SkinPack } from "./pack";
@@ -111,6 +112,7 @@ export function CatalogSkinBrowser({ pack, f: first, base, fixedType }: { pack: 
             <span className="bc-brand">{card.brand}</span>
             <span className="bc-nrow"><a className="bc-name" href={card.href}>{card.name}</a>{chips.map(c => <span key={c.k} className={`bc-chip ${c.k}`}>{c.t}</span>)}</span>
             {fit ? <span className="bc-line"><b>{fit}</b>{reason ? ` · ${reason}` : ""}</span> : card.line && <span className="bc-line">{card.line}</span>}
+            {(() => { const b = skinBestFor(ctx.profile, ctx.attrs.get(x.id)); return b && <span className="bc-best">{`best for ${b}`}</span>; })()}
             <span className="bc-mt">{meta.map(m => <span key={m}>{m}</span>)}{card.shop && <a className="bc-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a>}</span>
           </span>
           <span className="bc-score">

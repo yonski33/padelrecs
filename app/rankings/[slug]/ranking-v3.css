@@ -128,3 +128,7 @@
     .rk3-all { font-size: 13px; }
   }
 }
+
+/* Row typography (owner 2026-11-16): display-font titles, dark underlined price link. */
+.rk3 .rk3-list .rk3-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.012em; }
+.rk3 .rk3-link { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }

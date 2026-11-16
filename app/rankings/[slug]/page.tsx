@@ -1,5 +1,6 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
 import { isLight } from "../../../lib/look";
+import { rowLine } from "../../../lib/row-line";
 import { fitText } from "../../../lib/fit-text";
 import { siteOgImages } from "../../site-og";
 // so a list re-ranks itself as soon as new reviews are published.
@@ -16,7 +17,6 @@ import { tagTone } from "../../../lib/tags";
 import { displayName } from "../../../lib/brand-name";
 import { rankedLists, listHref, longDate, currentYear, type RankedList } from "../lists";
 import { listLine } from "../../../lib/list-lines";
-import { shortLine } from "../../../lib/short-lines";
 import { LightRow, sigTipStyle } from "../../light-row";
 import { amazonButton, amazonLinksOn, type AmazonButton } from "../../../lib/amazon-offer";
 import { websiteButton } from "../../../lib/product-links";
@@ -238,7 +238,7 @@ function LightRanking({ data, lists, found, entries, reviews, updated, amazon, a
           const shop = a ? { url: a.url, label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" }
             : site ? { url: site.url, label: site.label, short: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
           return <li key={e.product.id} className={`lt-slot${e.rank === 1 ? " lr-p1" : e.rank <= 3 ? " lr-p23" : ""}`}>
-            <LightRow data={data} r={product} rank={e.rank} signal={e.signal?.signal} line={shortLine(e.product) ?? listLine(e.product)} shop={shop} shape={false}
+            <LightRow data={data} r={product} rank={e.rank} signal={e.signal?.signal} line={rowLine(e.product)} shop={shop} shape={false}
               extra={list.trait ? <span className="lt-trait">{`${e.traitReviews} mention ${list.trait.noun}`}</span> : undefined}/>
           </li>; })}</ol>
       </section>

@@ -154,3 +154,12 @@
   .bh-tex { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -16px; padding: 4px 16px 14px; }
   .bh-tex a { flex: 0 0 236px; scroll-snap-align: start; }
 }
+
+/* Row typography (owner 2026-11-16): the serif title, dark underlined price link, "best for …" line, and with picks a neutral
+   user-score pill under the match %. */
+.bh-name { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; letter-spacing: -0.005em; }
+.bh-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.bh-best { display: block; font: 11.5px var(--mono); color: var(--mute); }
+.bh-spill { display: inline-flex; align-items: baseline; gap: 4px; margin-top: 3px; padding: 0 7px; border: 1.5px solid var(--ink); border-radius: 999px; font: 500 10.5px var(--sans); white-space: nowrap; }
+.bh-spill b { font-size: 12px; }
+@media (max-width: 640px) { .bh-name { font-size: 18px; } }

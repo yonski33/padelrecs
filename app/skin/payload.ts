@@ -1,11 +1,10 @@
 // What a SkinRecs page sends to the browser so its filters and picks work there (app/instant-view.ts): each product's ranking
 // inputs (app/skin/rank.ts SkinWire) and the few display fields its row needs. Built on the server from the skin context.
 import type { SkinContext } from "./context";
+import { rowLine } from "../../lib/row-line";
 import type { SkinWire } from "./rank";
 import type { SkinPack, PackedRow } from "./pack";
 import { displayName } from "../../lib/brand-name";
-import { listLine } from "../../lib/list-lines";
-import { shortLine } from "../../lib/short-lines";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { listShopLink } from "../../lib/amazon-offer";
@@ -32,7 +31,7 @@ export function packOf(ctx: SkinContext, rows: Row[] = ctx.data.listed): SkinPac
     const shop = listShopLink(r);
     const scores = Object.entries(w.attrs.scores).flatMap(([key, v]) => v ? [at(k, key), v.score, v.n, v.plus ?? -1, v.minus ?? -1] : []);
     const facts = Object.entries(w.attrs.facts).flatMap(([key, v]) => v === null || v === undefined ? [] : [at(f, key), v]);
-    return [w.id, w.shape, w.name === `${b} ${short}` ? 0 : w.name, w.signal, scores, facts, b, short, photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null, shortLine(r) ?? listLine(r) ?? null,
+    return [w.id, w.shape, w.name === `${b} ${short}` ? 0 : w.name, w.signal, scores, facts, b, short, photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null, rowLine(r),
       shop?.url ?? null, shop ? at(rel, shop.rel) : -1, c.n, c.positive, c.mixed, c.negative, r.slug === r.id ? 0 : r.slug];
   }) };
 }

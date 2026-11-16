@@ -170,3 +170,8 @@ body:has(main.ct2) { background: #fbfaf6; }
     .ct2-sc b { font-size: 17px; padding: 3px 6px; } .ct2-sc small { font-size: 10.5px; }
   }
 }
+
+/* Row typography (owner 2026-11-16): display-font title, dark underlined price link, "best for …" line. */
+.ct2 .ct2-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.012em; }
+.ct2 .ct2-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.ct2 .ct2-best { display: block; font: 11.5px var(--mono); color: var(--soft); }

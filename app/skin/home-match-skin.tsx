@@ -4,6 +4,7 @@
 // the products sent with the page with the server's own functions (app/skin/rank.ts) and updates the address, with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { useMemo, type ReactNode } from "react";
+import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
 import { rankSkin, wireCtx } from "./rank";
 import { skinHomeTitle, MATCH_NOTE } from "./titles";
@@ -82,7 +83,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
               ...(sens && x.ff ? [{ k: "gentle", t: "fragrance-free" }] : []),
             ];
             // The user score until a pick, then the match % (owner 2026-11-16: as on padel), with the same colours.
-            const sig = ctx.signal(r.id);
+            const sig = ctx.signal(r.id), best = skinBestFor(ctx.profile, ctx.attrs.get(r.id));
             const pctCls = picked ? (x.pct === null ? "none" : x.pct >= 80 ? "hi" : x.pct >= 60 ? "mid" : "") : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : "";
             return <li key={r.id} className={top ? "top" : undefined}>
               <span className="bh-rank">{i + 1}</span>
@@ -92,12 +93,15 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
                 <span className="bh-nrow"><a className="bh-name" href={`${card.href}${pickQ}`}>{card.name}</a>
                   {chips.map(ch => <span key={ch.t} className={`bh-chip ${ch.k}`}>{ch.t}</span>)}</span>
                 {card.line && <span className="bh-line">{card.line}</span>}
+                {best && <span className="bh-best">{`best for ${best}`}</span>}
                 {picked && x.pct === null && x.m?.missing.length ? <span className="bh-thin">{`not enough reports yet from people with ${x.m.missing.join(" or ")}`}</span> : null}
               </span>
               <span className="bh-sent"><span>{`${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</span>
                 {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}</span>
               {card.shop ? <a className="bh-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a> : <span/>}
-              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "match") : "user score"}</small></span>
+              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : "user score"}</small>
+                {/* With picks the match % is the star; the user score stays as a small neutral pill (owner 2026-11-16). */}
+                {picked && sig !== null && <span className="bh-spill"><b>{sig}</b> user score</span>}</span>
             </li>;
           })}</ol>
           <a className="bh-all" href={choice.typeSlug ? `/${choice.typeSlug}${pickQ}` : `${catalogPath}${pickQ}`}>{`see all ${allOfType} ${catWord === "skincare" ? niche.words.many : catWord} →`}</a>

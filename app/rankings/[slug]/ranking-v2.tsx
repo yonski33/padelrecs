@@ -1,11 +1,10 @@
 import "../rankings-v2.css";
+import { rowLine } from "../../../lib/row-line";
 import "./ranking-v3.css";
 import Link from "next/link";
 import { niche, productHref } from "../../../lib/niche";
 import { listYear, MIN_LIST_REVIEWS, RANKINGS_PATH } from "../../../lib/top-lists";
 import { displayName } from "../../../lib/brand-name";
-import { listLine } from "../../../lib/list-lines";
-import { shortLine } from "../../../lib/short-lines";
 import { websiteButton } from "../../../lib/product-links";
 import type { AmazonButton } from "../../../lib/amazon-offer";
 import { score, type Catalog } from "../../../db/data";
@@ -53,7 +52,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
     const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
     const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
     const best = ctx ? bestFor(ctx.facts(r.id)) : skinBest(r.id);
-    return [{ e, r, i, name: displayName(r.name, brand(r.brandId)), url: productHref(r), pic: photoOf(r), line: shortLine(e.product) ?? listLine(e.product),
+    return [{ e, r, i, name: displayName(r.name, brand(r.brandId)), url: productHref(r), pic: photoOf(r), line: rowLine(e.product),
       best: best.join(", "), sig: e.signal?.signal ?? null, shop }];
   });
   const [first, ...rest] = rows;
