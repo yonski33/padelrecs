@@ -66,6 +66,21 @@ export function FitBack({ all }: { all: { href: string; label: string } }) {
 /** A racket's fit-card content (lib/fit-card.ts) with the linked rackets' names and addresses. */
 export type FitCard = CardContent & { links: Record<string, { href: string; name: string }> };
 
+/** The try-instead line with the other racket's name in bold. The line names it its own way ("the Vertex 05 Hybrid", "the
+ *  stiffer AT10 12K 2026"), so the bold goes on the longest run of 2+ words that are all in the catalog name. */
+export function boldName(t: string, name: string): ReactNode {
+  const inName = new Set(name.toLowerCase().split(/\s+/)), parts = t.split(/(\s+)/), clean = (w: string) => w.toLowerCase().replace(/^[^\w]+|[^\w]+$/g, "");
+  let best: [number, number] | null = null;
+  for (let a = 0; a < parts.length; a += 2) {
+    let b = a; while (b < parts.length && inName.has(clean(parts[b]))) b += 2;
+    const n = (b - a) / 2; if (n >= 2 && (!best || n > (best[1] - best[0]) / 2)) best = [a, b - 2];
+  }
+  if (!best) return t;
+  const last = parts[best[1]], tail = last.match(/[^\w]+$/)?.[0] ?? "";
+  const bold = [...parts.slice(best[0], best[1]), last.slice(0, last.length - tail.length)].join("");
+  return <>{parts.slice(0, best[0]).join("")}<b>{bold}</b>{tail}{parts.slice(best[1] + 1).join("")}</>;
+}
+
 export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree, card, yesNo }: { id: string; items: RankItem[]; facts: FitFacts;
   hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
   /** The page's Why yes / Why not items: the reason line's source and the "See why ↓" target. */ yesNo?: { yes: PageItem[]; no: PageItem[] } | null }) {
@@ -115,7 +130,7 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
       <h2>{headline}</h2>
       {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`}</p>
         : <>{reason.length > 0 && <div className="rf-reason">{reason.map(r => <p key={r.tone} className={`rf-rrow ${r.tone}`}><i aria-hidden="true">{r.tone === "yes" ? "✓" : "!"}</i><span><b>{r.lead}</b>{` ${r.text}`}</span></p>)}</div>}
-          {(alt || yesNo) && <p className="rf-reasonl">{alt && <a href={card!.links[alt.slug].href}>{`→ ${alt.t}`}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
+          {(alt || yesNo) && <p className="rf-reasonl">{alt && <a href={card!.links[alt.slug].href} className="rf-alt">{"→ "}{boldName(alt.t, card!.links[alt.slug].name)}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
       <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
       <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join("  ·  ")}</span>
