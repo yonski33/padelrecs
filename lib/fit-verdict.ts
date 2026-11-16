@@ -132,7 +132,13 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
-    const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";
+    // An expert level leads (owner 2026-11-17, Vertex 05 Hybrid: "the pro comes from the brand"): our call first, the brand's
+    // label after it as what it is, never in its place.
+    const ours = f.suits.basis.includes("expert") ? LEVELS.filter(l => f.suits![l] >= SUITS_OK) : [];
+    const backing = levelBacking(f), v = f.suits[c.level];
+    const brand = f.levels?.maker?.words.replace(/^(player\s+)?level( of play)?:?\s*/i, "").trim().toLowerCase();
+    const said = ours.length ? `Level: we rate it ${ours.length > 1 ? `${ours[0]} to ${ours[ours.length - 1]}` : ours[0]}${brand && brand.split(/\s+/).length <= 3 ? `; the brand says ${brand}` : ""}.`
+      : backing ? `Level: ${backing}.` : "";
     const backed = f.suits.basis.some(b => b !== "the brand");
     if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
     // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.

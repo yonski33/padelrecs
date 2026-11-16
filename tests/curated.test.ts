@@ -82,3 +82,12 @@ test("the importer picks the newest year with 10+ reviews, else the newest (owne
   assert.equal(newestOf("x-new-2026", cat), "x-new-2027", "no year with 10+: the newest");
   assert.equal(newestOf("unknown-2026", cat), "unknown-2026");
 });
+
+test("an expert level leads the level line; the brand's pro label follows and never overrides it", async () => {
+  const { fitVerdict } = await import("../lib/fit-verdict");
+  const f = { reports: 49, tags: {}, levels: { maker: { from: 2, to: 2, words: "Player level: Professional" } },
+    suits: { beginner: 35, intermediate: 80, advanced: 80, basis: ["6 players", "the brand", "expert"] } } as never;
+  const v = fitVerdict({ style: "any", level: "intermediate", arm: false }, f);
+  assert.match(JSON.stringify(v), /Level: we rate it intermediate to advanced; the brand says professional\./);
+  assert.doesNotMatch(JSON.stringify(v), /A pro line/);
+});
