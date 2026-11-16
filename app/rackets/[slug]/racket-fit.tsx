@@ -32,7 +32,7 @@ import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
-import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER } from "../../../lib/racket-page";
+import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH_LINE } from "../../../lib/racket-page";
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 
@@ -273,9 +273,10 @@ export default async function RacketFit(props: {
             <h1>{`${props.shortName} review`}</h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
+            {page?.source === "research" ? <p className="rp-score">{RESEARCH_LINE}</p> :
             <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
               <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}</span>
-              {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>
+              {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>}
             {props.buy && <div className="rf-meta"><a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a></div>}
             {props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
@@ -290,13 +291,13 @@ export default async function RacketFit(props: {
         <div className="rp-main">
           {page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
           {page && tier && <div id="yes-no">
-            <div className="rf-h"><h2>Why yes, why not</h2><span>{tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
-            <FitYesNo yes={page.yes} no={page.no} tier={tier}/>
+            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
+            <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"}/>
           </div>}
 
           <div id="compare">
             {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
-            <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : `from player reports, compared with other ${niche.words.many}`}</span></div>
+            <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{page?.source === "research" ? `from specs and expert ratings, compared with other ${niche.words.many}` : total < 3 ? `too few reports to rate yet (${total})` : `from player reports, compared with other ${niche.words.many}`}</span></div>
             <FitCompare id={props.racketId} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
           </div>
         </div>
