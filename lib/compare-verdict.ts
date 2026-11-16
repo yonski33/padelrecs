@@ -38,13 +38,16 @@ export function compareVerdict(ps: VProduct[], traits: VTrait[], picks: Record<s
   const ix = (p: VProduct) => ps.indexOf(p);
   const top = order[0], here = ps.length === 2 ? "of the two" : `of the ${COUNT[ps.length] ?? ps.length}`;
   const lead = (p: VProduct) => leads(ps, ix(p))[0];
+  /** Its lead over the others, else its own strongest trait (4+ dots), for "if you …" lines. */
+  const strength = (p: VProduct) => { const k = lead(p); if (k !== undefined) return k;
+    const top = Math.max(...p.dots); return top >= 4 ? p.dots.indexOf(top) : undefined; };
   const rest: VLine[] = [];
   let head: VLine;
   if (picked) {
     const second = order[1];
-    if (second && pct(top) - pct(second) <= 3 && !picks![second.id].hard) {
+    if (second && pct(top) - pct(second) < 3 && !picks![second.id].hard) {
       // A near tie: either works, each for its own strength.
-      const a = lead(top), b = lead(second);
+      const a = strength(top), b = strength(second);
       head = a !== undefined && b !== undefined
         ? line("Either works: pick the ", top.short, ` if you ${traits[a].ifYou}, the ${second.short} if you ${traits[b].ifYou}.`,
           ` if you ${traits[a].ifYou}; the ${second.short} is as good a match.`, `; the ${second.short} is as good a match.`)
@@ -69,7 +72,7 @@ export function compareVerdict(ps: VProduct[], traits: VTrait[], picks: Record<s
     const pk = picks![p.id];
     if (pk.hard === "level") return { pre: "Skip the ", name: p.short, post: ` for now: built for ${pk.levelWord ?? "other"} players.` };
     if (pk.hard === "arm") return { pre: "Skip the ", name: p.short, post: " for now: hard on a sore arm." };
-    const k = lead(p), why = k !== undefined ? traits[k].ifYou : null;
+    const k = strength(p), why = k !== undefined ? traits[k].ifYou : null;
     if ((pk.pct ?? 0) >= 70 && why) {
       const liveWith = p.catchShort ? ` and can live with ${p.catchShort}` : "";
       return line("Take the ", p.short, ` instead if you ${why}${liveWith}.`, ` instead if you ${why}.`);

@@ -50,3 +50,10 @@ test("words: superlatives, differ rows hide ties, catch cut short", () => {
   assert.deepEqual(differRows([P[0], { ...P[1], dots: [5, 3, 3] }], T), []);
   assert.equal(catchShort("Smaller sweet spot; flat smashes need your own arm."), "smaller sweet spot");
 });
+
+test("3 points apart is a clear pick; a product with no lead uses its own strongest trait, never 'Skip' at a high match", () => {
+  const flat = [P[0], { ...P[1], dots: [4, 3, 3] }];
+  const v = compareVerdict(flat, T, { ctrl: { pct: 95, hard: null, levelWord: null }, tour: { pct: 92, hard: null, levelWord: null } });
+  assert.match(all(v)[0], /^Get the Metalbone CTRL 3\.5\./);
+  assert.match(all(v)[1], /^Take the Ultimate Tour X instead if you want margin for error/);
+});
