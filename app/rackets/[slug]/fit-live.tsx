@@ -212,10 +212,14 @@ export function FitSticky({ buy, name }: { buy: { url: string; label: string; re
 }
 
 /** One racket in the compare tabs: its name, link, photo and the six trait dots (0 = not rated), in TRAITS order. */
-export type CompareCard = { name: string; short: string; href: string; pic: string | null; dots: number[] };
+export type CompareCard = { name: string; short: string; href: string; pic: string | null; dots: number[]; reports: number };
 const DIFF: [string, string][] = [["forgiveness", "more forgiving"], ["power", "more power"], ["control", "more control"], ["defence", "better in defence"], ["arm", "easier on the arm"], ["speed", "quicker"]];
 /** "more power": the trait where the other racket is furthest ahead; "similar" when it is ahead nowhere. */
 const diffWord = (me: number[], other: number[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[best][1]; };
+/** "Stick with this one if you…" / "Pick X if you…" (owner's final mock): the two traits where a racket's dots are furthest
+ *  ahead, each as a player's need. Derived from the dots only, so the lines never disagree with the bars above them. */
+const IF_YOU = ["want margin for error", "win points with smashes", "want precise, predictable shots", "play a lot from the back", "care about arm comfort", "want fast hands at the net"];
+const aheadIn = (a: number[], b: number[]) => a.map((v, i) => ({ i, g: v && b[i] ? v - b[i] : 0 })).filter(x => x.g > 0).sort((x, y) => y.g - x.g || x.i - y.i).slice(0, 2).map(x => IF_YOU[x.i]);
 const Segs = ({ n }: { n: number }) => n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? `on t${n}` : undefined}/>)}</span> : <span className="rf-segs none"/>;
 
 /** "How it plays & compares" (owner's final mock): tab one is this racket's six trait bars with a short note each; the other
@@ -238,11 +242,20 @@ export function FitCompare({ id, items, me, rows, cards, similar }: { id: string
     <div className="rp-panel" role="tabpanel">
       {!cur ? rows.map((r, i) => <div key={r.label} className="rp-row"><b>{r.label}</b><Segs n={me.dots[i]}/><span className="rp-note">{r.note.split("==").map((x, j) => j % 2 ? <mark key={j}>{x}</mark> : <span key={j}>{x}</span>)}</span></div>)
         : <>
-          <div className="rp-row rp-vs"><span/><span>{me.short}</span><a href={`${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`}>{`${cur.short} →`}</a></div>
-          {rows.map((r, i) => <div key={r.label} className="rp-row rp-two"><b>{r.label}</b><Segs n={me.dots[i]}/><Segs n={cur.dots[i]}/></div>)}
-          <p className="rp-cnote">Dots from player reports, compared across every racket we track.</p>
+          <div className="rp-row rp-vs"><span/>
+            <span className="rp-who">{me.pic && <img src={me.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>This racket</b><small>{`${me.reports} reviews`}</small></span></span><span/>
+            <span className="rp-who">{cur.pic && <img src={cur.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>{cur.short}</b><small>{`${cur.reports} reviews`}</small></span></span></div>
+          {rows.map((r, i) => <div key={r.label} className="rp-row rp-two"><b>{r.label}</b>
+            <span className="rp-cside"><Segs n={me.dots[i]}/>{me.dots[i] > cur.dots[i] && cur.dots[i] > 0 && <em>▲ better</em>}</span><span/>
+            <span className="rp-cside"><Segs n={cur.dots[i]}/>{cur.dots[i] > me.dots[i] && me.dots[i] > 0 && <em>▲ better</em>}</span></div>)}
         </>}
     </div>
+    {cur && (() => { const stay = aheadIn(me.dots, cur.dots), go = aheadIn(cur.dots, me.dots), href = `${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`;
+      return <div className="rp-pick">
+        <div className="rp-stay"><span className="rp-ph">stick with this one if you…</span>{stay.length ? stay.map(x => <span key={x} className="rp-pi"><i>→</i>{x}</span>) : <span className="rp-pi"><i>→</i>like how it plays: the two feel much alike</span>}</div>
+        <div className="rp-go"><span className="rp-ph">{`pick ${cur.short} if you…`}</span>{go.length ? go.map(x => <span key={x} className="rp-pi"><i>→</i>{x}</span>) : <span className="rp-pi"><i>→</i>prefer its feel or price: the two play much alike</span>}
+          <a href={href}>{`open ${cur.short} →`}</a></div>
+      </div>; })()}
   </div>;
 }
 

@@ -24,4 +24,4 @@ export function reasonOf(ctx: SkinContext, m: AttrMatch): string | null {
   const w = attrWords(a, { score: part.score, n: part.n });
   return `${w === "not for" ? "not for" : `${w} for`} ${part.label} · ${part.n} ${part.n === 1 ? "person" : "people"} with ${part.label}`;
 }
-export const fitWord = (pct: number | null) => ({ good: "Strong fit", maybe: "Worth a look", no: "Probably not your match", thin: null })[verdictOf(pct)];
+export const fitWord = (pct: number | null) => ({ good: "Strong fit", maybe: "Worth a look", no: "Probably not", thin: null })[verdictOf(pct)];

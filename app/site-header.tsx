@@ -27,7 +27,9 @@ function TopMenu({ pathname, ranked, v2 = false }: { pathname: string; ranked: s
   const shown = topLists.filter(l => ranked.includes(l.slug)).sort((a, b) => Number(a.modelYearsBack !== undefined) - Number(b.modelYearsBack !== undefined));
   const [open, setOpen] = useState(false);
   const active = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
-  return <div className={`nav-menu${open ? " open" : ""}`} onMouseLeave={() => setOpen(false)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
+  return <div className={`nav-menu${open ? " open" : ""}`} // Only a mouse leaving closes it: phones fire a mouse-leave right after the tap, which shut the menu at once (owner 2026-11-16:
+    // "rankings doesn't load" on mobile).
+    onPointerLeave={e => { if (e.pointerType === "mouse") setOpen(false); }} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
     onKeyDown={e => { if (e.key === "Escape") setOpen(false); }}>
     <a href={RANKINGS_PATH} aria-current={active ? "page" : undefined}>{v2 ? "rankings" : "Rankings"}</a>
     {shown.length > 0 && <button type="button" className="nav-caret" aria-expanded={open} aria-controls="rankings-menu" aria-label="Show the rankings" onClick={() => setOpen(o => !o)}>
@@ -53,7 +55,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   if (isV2) return <div className={`hv2-top ${qtFontVars}`}>
     <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">how we make these →</a></div>
     <header className="site-header hv2-sh"><div className="hv2-shin">
-      <Link className="hv2-logo" href="/"><i aria-hidden="true"/>{niche.site.name.toLowerCase()}</Link>
+      <Link className="hv2-logo" href="/">{v2copy.logo === "icon" ? <img className="hv2-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/> : <i aria-hidden="true"/>}{niche.site.name.toLowerCase()}</Link>
       <nav aria-label="Main navigation">
         <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{niche.words.many}</a>
         {/* Owner 2026-11-16: "the ranking menu item as a drop down that shows all the lists" (the classic menu, v2 styling). */}
