@@ -38,7 +38,7 @@ export const pickleball: Niche = {
   },
   // The home in the owner's PickleballRecs mock (2026-11-16), on the shared v2 components.
   v2home: {
-    h1: ["Every paddle, reviewed by", "real players"], sub: null,
+    // The hero is the shared "Less guessing. Better paddles." (owner 2026-11-16 screenshot).
     listSub: "ranked by player score and how many players reviewed it · pick above for your match %",
     matchRows: true, rankTiles: true, steps: true,
     faq: [
@@ -107,6 +107,7 @@ export const pickleball: Niche = {
     "--site-wash": "oklch(0.985 0.035 105)",
     "--site-wash-line": "oklch(0.88 0.08 105)",
     "--site-shadow": "oklch(0.62 0.12 235)",
+    "--site-scale": "linear-gradient(90deg, oklch(0.95 0.06 105), oklch(0.8 0.12 105) 50%, #17203a)",
   },
   chartColors: ["var(--green)", "var(--lime)", "#e0d9c2", "#b9c6d6"],
   og: { background: "#1f4e8c", accent: "#e9e23f", muted: "#a9bcd6", text: "#d9e3f0", scoreOn: ogBall(true), scoreOff: ogBall(false) },

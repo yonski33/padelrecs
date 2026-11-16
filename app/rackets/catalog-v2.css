@@ -21,7 +21,7 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-grid { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
 
   /* Filters */
-  .ct2-side { flex: 1 1 240px; max-width: 270px; position: sticky; top: 76px; border: 2.5px solid var(--ink); border-radius: 18px; background: var(--paper); box-shadow: 5px 5px 0 var(--ink); overflow: hidden; }
+  .ct2-side { flex: 1 1 240px; max-width: 270px; position: sticky; top: 76px; border: 2.5px solid var(--ink); border-radius: 18px; background: var(--paper); box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); overflow: hidden; }
   .ct2-ft { position: absolute; opacity: 0; pointer-events: none; }
   .ct2-sh { padding: 14px 16px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
   .ct2-badge { font: 600 13px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 2px 10px; background: var(--marker); box-shadow: 2px 2px 0 var(--ink); }
@@ -120,5 +120,46 @@ body:has(main.ct2) { background: #fbfaf6; }
     .ct2-line { font-size: 13px; }
     .ct2-sent { display: none; }
     .ct2-sc { min-width: 52px; } .ct2-sc b { font-size: 18px; padding: 3px 5px; } .ct2-sc small { font-size: 9px; }
+  }
+}
+
+/* The site's own catalogue mock (lib/niche mockLook; PickleballRecs): one card per row, the #1 raised, reviews under the
+   score. Only under .ct2-m, so padel's tight list is untouched. */
+.ct2.ct2-m {
+  --line: #c9ccd6; --tile: #f1f2ec;
+  .ct-g, .ct2-check, .ct2-more { border-top-color: var(--line); }
+  .ct-opt:hover { background: oklch(0.97 0.04 105); }
+  .ct2-list { border: 0; border-radius: 0; background: none; overflow: visible; display: flex; flex-direction: column; gap: 8px; }
+  .ct2-list > li { border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); }
+  .ct2-list > li:last-child { border-bottom: 2px solid var(--ink); }
+  .ct2-list > li.first { border-width: 2.5px; box-shadow: 4px 4px 0 var(--ink); background: oklch(0.98 0.04 105); }
+  .ct2-list > li:hover { background: oklch(0.985 0.03 105); }
+  .ct2-row { grid-template-columns: 34px 64px minmax(0, 1fr) auto; padding: 12px 16px 12px 10px; }
+  .ct2-sent { display: none; }
+  .ct2-rank { font-size: 19px; line-height: 1; color: var(--mute); }
+  .ct2-list li.first .ct2-rank, .ct2-list li.top .ct2-rank { font-size: 24px; color: var(--ink); }
+  .ct2-pic { width: 64px; height: 78px; }
+  .ct2-body { gap: 5px; }
+  .ct2-nrow { gap: 8px; }
+  .ct2-name { font: 800 17px/1.2 var(--display); }
+  .ct2-chip { font-weight: 600; }
+  .ct2-line { font-size: 14.5px; line-height: 1.4; }
+  .ct2-mt { margin-top: 0; }
+  .ct2-mt span { padding: 1px 7px; }
+  .ct2-sc { gap: 5px; min-width: 84px; }
+  .ct2-sc b { font-size: 24px; letter-spacing: -0.02em; border-radius: 10px; padding: 6px 8px; }
+  .ct2-sc.mid b { background: var(--acc); }
+  .ct2-sc .ct2-bar6 { width: 64px; height: 6px; border: 0; border-radius: 999px; background: #eceee8; }
+  .ct2-sc small { font-size: 10.5px; color: var(--soft); }
+  .ct2-load, .ct2-empty { border-color: #b9bdc9; }
+  .ct2-note { margin: 12px 0 0; font: 12px var(--mono); color: var(--mute); }
+  @media (max-width: 760px) {
+    .ct2-row { grid-template-columns: 22px 48px minmax(0, 1fr) auto; gap: 10px; padding: 10px 10px 10px 8px; }
+    .ct2-list li.first .ct2-rank, .ct2-list li.top .ct2-rank { font-size: 19px; }
+    .ct2-rank { font-size: 16px; }
+    .ct2-pic { width: 48px; height: 60px; }
+    .ct2-name { font-size: 15.5px; }
+    .ct2-sc { min-width: 60px; } .ct2-sc b { font-size: 19px; padding: 4px 6px; } .ct2-sc small { font-size: 9.5px; }
+    .ct2-sc .ct2-bar6 { width: 52px; }
   }
 }

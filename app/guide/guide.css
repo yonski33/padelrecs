@@ -22,7 +22,7 @@
   .gd-chips a span { font: 13px var(--mono); color: var(--mute); margin-right: 6px; }
   .gd-chips a:hover { background: var(--marker); }
 
-  .gd-tldr { border: 2.5px solid var(--ink); border-radius: 18px; background: var(--mint); box-shadow: 6px 6px 0 var(--ink); padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .gd-tldr { border: 2.5px solid var(--ink); border-radius: 18px; background: var(--mint); box-shadow: 6px 6px 0 var(--site-shadow, var(--ink)); padding: 18px; display: flex; flex-direction: column; gap: 12px; }
   .gd-tag { align-self: flex-start; font: 700 13px var(--mono); border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); padding: 2px 8px; }
   .gd-tl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .gd-tl a { text-decoration: none; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
@@ -46,7 +46,7 @@
 
   /* cards row (padel shape) */
   .gd-cards { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 14px; }
-  .gd-card { border: 2.5px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .gd-card { border: 2.5px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--site-shadow, var(--ink)); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
   .gd-card .gd-see { margin-top: auto; padding-top: 8px; }
   .gd-icon { color: var(--ink); }
   .gd-buys { padding: 20px 0 4px; display: flex; flex-direction: column; gap: 8px; }
@@ -55,8 +55,8 @@
   .gd-from { font: 13px var(--mono); color: var(--soft); }
 
   /* slider scale (padel feel) */
-  .gd-scale { border: 2.5px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: 5px 5px 0 var(--ink); padding: 18px 20px; }
-  .gd-bar { height: 22px; border: 2px solid var(--ink); border-radius: 999px; background: linear-gradient(90deg, oklch(0.93 0.07 125), oklch(0.8 0.12 125) 50%, #1a1a1a); display: flex; justify-content: space-between; align-items: center; padding: 0 60px; }
+  .gd-scale { border: 2.5px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); padding: 18px 20px; }
+  .gd-bar { height: 22px; border: 2px solid var(--ink); border-radius: 999px; background: var(--site-scale, linear-gradient(90deg, oklch(0.93 0.07 125), oklch(0.8 0.12 125) 50%, #1a1a1a)); display: flex; justify-content: space-between; align-items: center; padding: 0 60px; }
   .gd-bar i { width: 14px; height: 14px; border: 2px solid var(--ink); border-radius: 50%; background: var(--paper); }
   .gd-ends { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 18px; margin-top: 14px; }
   .gd-ends > div { display: flex; flex-direction: column; gap: 6px; }
@@ -65,7 +65,7 @@
 
   /* toggles (padel balance) */
   .gd-meters { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 14px; }
-  .gd-meter { border: 2.5px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); padding: 14px 16px; display: flex; gap: 14px; }
+  .gd-meter { border: 2.5px solid var(--ink); border-radius: 14px; background: var(--paper); box-shadow: 4px 4px 0 var(--site-shadow, var(--ink)); padding: 14px 16px; display: flex; gap: 14px; }
   .gd-meter.on { background: var(--mint); }
   .gd-meter > div { display: flex; flex-direction: column; gap: 4px; }
   .gd-m { flex: none; width: 18px; height: 88px; border: 2px solid var(--ink); border-radius: 999px; position: relative; background: var(--paper); }
@@ -80,7 +80,7 @@
   .gd-big { font: 800 clamp(34px, 5vw, 48px)/1 var(--display); letter-spacing: -0.02em; }
 
   /* split pair (accent dotted) and dark split (accent dark): padel surface, face */
-  .gd-split { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); border: 2.5px solid var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 5px 5px 0 var(--ink); }
+  .gd-split { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); border: 2.5px solid var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); }
   .gd-split > div { padding: 20px 22px; background: var(--paper); display: flex; flex-direction: column; gap: 8px; }
   .gd-split > div + div { border-left: 2px solid var(--ink); }
   .gd-l-split .gd-split > div.on { background: var(--mint) radial-gradient(circle, rgba(0,0,0,.18) 1px, transparent 1.4px) 0 0 / 12px 12px; }
@@ -94,7 +94,7 @@
   .gd-who { font: 13px var(--mono); color: #cfccc3; }
   .gd-lesson { font-size: 17px; }
 
-  .gd-cta { border: 2.5px solid var(--ink); border-radius: 16px; background: var(--acc); box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .gd-cta { border: 2.5px solid var(--ink); border-radius: 16px; background: var(--acc); box-shadow: 6px 6px 0 var(--site-shadow, var(--ink)); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .gd-cta h2 { font: 800 26px var(--display); }
   .gd-cta a { text-decoration: none; background: var(--ink); color: var(--bg); border-radius: 10px; padding: 12px 18px; font: 700 16px var(--body); }
 

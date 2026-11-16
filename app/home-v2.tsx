@@ -71,7 +71,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        {M ? <div><h1>{`${M.h1[0]} `}<span className="hl">{M.h1[1]}</span></h1>{M.sub && <p className="hv2-sub">{M.sub}</p>}</div>
+        {M?.h1 ? <div><h1>{`${M.h1[0]} `}<span className="hl">{M.h1[1]}</span></h1>{M.sub && <p className="hv2-sub">{M.sub}</p>}</div>
           : <div><h1>Less guessing. <span className="hl">{`Better ${niche.words.many}.`}</span></h1>
           <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>}
         <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>

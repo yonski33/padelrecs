@@ -152,7 +152,7 @@ export type Niche = {
   };
   /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */
   v2home?: {
-    /** The H1: plain words, then the highlighted ones. No subline under it when `sub` is null. */ h1: [string, string]; sub?: string | null;
+    /** The H1: plain words, then the highlighted ones (none: the shared "Less guessing. Better …" hero). No subline under it when `sub` is null. */ h1?: [string, string]; sub?: string | null;
     /** The list's subline with no picks. */ listSub: string;
     /** Every row shows the match box ("—" until a pick) instead of the Player score; "check price" is a button in its own column;
      *  no verdict word or reason on the row. */ matchRows: true;

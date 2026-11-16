@@ -8,7 +8,8 @@ import { catalogView, catalogHref, readCatalogFilters, CATALOG_KEYS, CATALOG_STY
   type CatalogFilters, type CatalogRow, type SpecGroup } from "../../lib/catalog-filter";
 import { WEIGHTS, FEELS } from "../../lib/fine-tune";
 import { levelLabel, type Level } from "../../lib/quick-match";
-import { hasYears } from "../../lib/niche";
+import { hasYears, mockLook } from "../../lib/niche";
+import { MIN_LIST_REVIEWS } from "../../lib/top-lists";
 /** How an option reads: levels on the site's own scale (pickleball 2.5 / 3.5 / 4.5+). */
 const optWord = (key: string, val: string) => key === "level" ? levelLabel(val as Level) : val;
 
@@ -70,7 +71,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
       <div className="ct2-bar">
         <div className="ct2-count"><b>{active.length || f.q || f.older === "1" ? `${shown.length} ${shown.length === 1 ? one : many}` : `All ${v.total} ${many}`}</b>
           {active.map(a => <a {...to(a.next)} key={a.label} className="ct2-chipx">{a.label} <i aria-hidden="true">✕</i></a>)}</div>
-        <div className="ct2-sort"><span>sort</span>{CATALOG_SORTS.map(([k, label]) => <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>)}</div>
+        <div className="ct2-sort"><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
       </div>
       <ol className="ct2-list">{shown.slice(0, show).map((x, i) => {
         const c = cards[x.id];
@@ -89,11 +90,14 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
             {x.judged > 0 && <span className="ct2-bar6" aria-label={`${c.pos} positive, ${c.mix} mixed, ${c.neg} negative`}><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}</span>
           <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">
-            <b>{x.signal ?? "—"}</b><small>player score</small></span>
+            <b>{x.signal ?? "—"}</b>{mockLook ? <>
+              {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
+              <small>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>player score</small>}</span>
         </div></li>; })}</ol>
       {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}
       {shown.length > show && <a {...to({ show: String(show + CATALOG_PAGE) })} className="ct2-load">{`load ${Math.min(CATALOG_PAGE, shown.length - show)} more ↓`}</a>}
+      {mockLook && <p className="ct2-note">{`${many} with fewer than ${MIN_LIST_REVIEWS} reviews get no score yet, so one loud opinion can't top the list.`}</p>}
     </section>
   </div>;
 }

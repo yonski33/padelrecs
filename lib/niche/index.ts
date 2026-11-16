@@ -31,6 +31,12 @@ export const categoryPill = (shape: string | null | undefined) => { const t = ty
 export const scoreLabel = `${niche.people.One} score`;
 /** The site runs the 2026-11 design (niche.design). */
 export const isV2 = niche.design === "v2";
+/** An inline colour that follows the site's own v2 token (lib/niche theme --site-*) where it sets one, else padel's literal
+ *  (so padel's markup is unchanged). */
+/** The site follows its own Claude Design page mocks (PickleballRecs, owner 2026-11-16 "copy the exact same"): pages add an
+ *  "m" class and a few mock-only bits. Padel's pages never see it. */
+export const mockLook = !!niche.v2home;
+export const siteColor = (token: `--site-${string}`, padel: string) => token in niche.theme ? `var(${token})` : padel;
 /** The v2 pages' sport words (niche.v2copy), with plain defaults for a site that hasn't written its own. */
 export const v2copy: NonNullable<Niche["v2copy"]> = niche.v2copy ?? {
   sport: "", emoji: "", strip: `a free, ad-light side project · built by ${niche.people.many}`,

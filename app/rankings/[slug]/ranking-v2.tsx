@@ -19,7 +19,7 @@ import { homePayload } from "../../home-payload";
 import { RankingPicks, MatchBox, PickLink, RowPct } from "./ranking-picks";
 import { attrProfileFor } from "../../../lib/attr-profile";
 import { skinContext } from "../../skin/context";
-import { scoreLabel } from "../../../lib/niche";
+import { scoreLabel, mockLook } from "../../../lib/niche";
 
 // A ranking in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/TTmbZPDFLuRzQiqsAG3Nc1), PadelRecs
 // only: the lists as tabs, a big title, "your match" (the home's quick-match picks, in the URL, with the match % on every row),
@@ -53,12 +53,14 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const others = tabs.filter(l => l.list.slug !== list.slug);
   const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
 
-  return <main className={`rl2 ${qtFontVars}`}>
+  // The site's own mock (mockLook, PickleballRecs): tabs under the title, the #1 as a card, the rest as compact rows in one box.
+  const tabNav = tabs.length > 1 && <nav className="rl2-tabs" aria-label="Rankings">{tabs.map(l => <PickLink key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</PickLink>)}</nav>;
+  return <main className={`rl2${mockLook ? " rl2-m" : ""} ${qtFontVars}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     {/* The picks and every row's match % work in the browser from the catalog items sent once (ranking-picks.tsx). */}
     <RankingPicks items={payload.items} href={href} first={{ choice: picked ? { ...choice, level: choice.level! } : null, showPct }}>
     <div className="rl2-wrap">
-      {tabs.length > 1 && <nav className="rl2-tabs" aria-label="Rankings">{tabs.map(l => <PickLink key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</PickLink>)}</nav>}
+      {!mockLook && tabNav}
 
       <section className="rl2-hero">
         <div className="rl2-crumbs"><a href={RANKINGS_PATH}>rankings</a> / {list.label.toLowerCase()}</div>
@@ -72,6 +74,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
           {affiliate && <><span>·</span><span>{"* some links are affiliate, they don't change the order"}</span></>}
         </div>
       </section>
+      {mockLook && tabNav}
 
       {skin ? <section className="rl2-match" aria-label="Your match"><span className="rl2-you"><span className="rl2-badge">⚡ your match</span>
         <span>{`Want them ranked for your skin? `}<Link href="/#match">Pick your skin type on the home page →</Link></span></span></section>
@@ -88,14 +91,14 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         const total = sc.positive + sc.mixed + sc.negative;
         return <li key={r.id} id={`n${e.rank}`} className={`rl2-row${top ? " top" : ""}${e.rank === 1 ? " first" : ""}`}>
           <div className="rl2-grid">
-            <span className="rl2-rank">{`#${e.rank}`}</span>
+            <span className="rl2-rank">{mockLook && e.rank > 1 ? String(e.rank) : `#${e.rank}`}</span>
             <PickLink className="rl2-pic" href={url} tabIndex={-1} aria-hidden="true">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span>{brand(r.brandId)}</span>}</PickLink>
             <div className="rl2-body">
-              <div className="rl2-nrow"><PickLink className="rl2-name" href={url}>{name}</PickLink>{e.rank === 1 && <span className="rl2-chip">★ #1 pick</span>}</div>
+              <div className="rl2-nrow" data-rank={mockLook ? e.rank : undefined}><PickLink className="rl2-name" href={url}>{name}</PickLink>{e.rank === 1 && <span className="rl2-chip">{mockLook ? "#1 pick" : "★ #1 pick"}</span>}{mockLook && e.rank === 2 && <span className="rl2-chip">runner-up</span>}</div>
               {(shortLine(e.product) ?? listLine(e.product)) && <p className="rl2-line">{shortLine(e.product) ?? listLine(e.product)}</p>}
               <div className="rl2-facts">
                 {best.length > 0 && <span><strong>best for</strong> {best.join(", ")}</span>}
-                {total > 0 && <span className="rl2-bar" role="img" aria-label={`${sc.positive} positive, ${sc.mixed} mixed, ${sc.negative} negative reviews`}>
+                {total > 0 && !mockLook && <span className="rl2-bar" role="img" aria-label={`${sc.positive} positive, ${sc.mixed} mixed, ${sc.negative} negative reviews`}>
                   <span className="p" style={{ flex: sc.positive }}/><span className="m" style={{ flex: sc.mixed }}/><span className="n" style={{ flex: sc.negative }}/></span>}
                 {list.trait && <span>{`${e.traitReviews} mention ${list.trait.noun}`}</span>}
               </div>
@@ -106,12 +109,14 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
               <small>{scoreLabel.toLowerCase()}</small>
               <RowPct id={r.id}/>
             </PickLink>
+            {mockLook && e.rank === 1 && <PickLink className="rl2-why" href={url}>See why →</PickLink>}
           </div>
-          {top && take && <div className="rl2-wc">
+          {top && take && !mockLook && <div className="rl2-wc">
             <div className="why"><i aria-hidden="true">✓</i><span><small>{"why it's here"}</small><p>{take.good}</p></span></div>
             <div className="catch"><i aria-hidden="true">!</i><span><small>the catch</small><p>{take.catch}</p></span></div>
           </div>}
         </li>; })}</ol>
+      {mockLook && <a className="rl2-all" href={RANKINGS_PATH}>see all rankings →</a>}
 
       <section className="rl2-after">
         <div className="rl2-played"><div><div className="rl2-played-h">{skin ? "Used one of these?" : "Played one of these?"}</div><div className="rl2-played-p">Your verdict moves the list. One tap, no account.</div></div>

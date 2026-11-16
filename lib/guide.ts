@@ -49,6 +49,18 @@ export function paddleFaceOf(spec: string | null | undefined): (typeof PADDLE_FA
   return carbon && /\braw\b|unidirectional|peel/.test(x) ? "raw-carbon" : carbon ? "carbon" : glass ? "fiberglass" : null;
 }
 
+/** Pickleball balance from the swing-weight spec ("118 (±2)", "110–114", "14 mm: 110 · 16 mm: 114"): the middle of the stated
+ *  values (thickness-in-mm parts left out), under 112 low (quick hands), over 117 high (head-heavy), else medium. */
+export function swingBalanceOf(spec: string | null | undefined): (typeof BALANCES)[number] | null {
+  const n = (spec ?? "").replace(/\d+(\.\d+)?\s*mm/g, "").match(/\d{2,3}(\.\d+)?/g)?.map(Number).filter(v => v >= 85 && v <= 140) ?? [];
+  if (!n.length) return null;
+  const v = (Math.min(...n) + Math.max(...n)) / 2;
+  return v < 112 ? "low" : v > 117 ? "high" : "medium";
+}
+/** Pickleball face, two ways (the guide's mock): fiberglass or carbon (raw carbon included). */
+export const PADDLE_FACES_2 = ["fiberglass", "carbon"] as const;
+export const paddleFace2Of = (spec: string | null | undefined) => { const f = paddleFaceOf(spec); return f === "raw-carbon" ? "carbon" : f; };
+
 /** A guide option: one card / toggle / column / end of a scale. `value` is the catalogue filter value; text-only sections
  *  leave it out. */
 export type GuideOption = {
@@ -93,7 +105,9 @@ export type GuideConfig = {
   overheard?: { kicker: string; reportId: string; words: string; who: string; similar: string[]; lesson: string };
   cta: { title: string; text: string; button: string };
   /** The home's row under the list: one section's options as tiles, then a link to the guide. */
-  home?: { section: string; title: string; link: string };
+  home?: { section: string; title: string; link: string;
+    /** The home's own tiles when they differ from the guide's (value → its line and icon), in this order; others left out. */
+    tiles?: Record<string, { text: string; icon?: string }> };
 };
 
 /** The section's catalogue key: the built-in field or the spec filter's. */

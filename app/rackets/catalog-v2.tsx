@@ -1,5 +1,5 @@
 import "./catalog-v2.css";
-import { niche, productHref } from "../../lib/niche";
+import { niche, productHref, mockLook } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { listLine } from "../../lib/list-lines";
 import { shortLine } from "../../lib/short-lines";
@@ -40,7 +40,7 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
     return [r.id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic: photo(r), tile: brand(r.brandId) ?? "", line: shortLine(r) ?? listLine(r) ?? null,
       shop: shop ? { url: shop.url, rel: shop.rel } : null, pos: sc.positive, mix: sc.mixed, neg: sc.negative }]; }));
 
-  return <main className={`ct2 ${qtFontVars}`}>
+  return <main className={`ct2${mockLook ? " ct2-m" : ""} ${qtFontVars}`}>
     <div className="ct2-wrap">
       <section className="ct2-hero">
         <div>{only && <p className="ct2-crumbs"><a href="/">home</a> / <a href="/brands">brands</a> / {only.name.toLowerCase()}</p>}
