@@ -54,6 +54,11 @@ export type EngineProfile = {
   /** One row per model: the best-scoring eligible member, a newer one winning when it is within this many % points. Unset:
    *  the newest year that passes. */ familyBestWithin?: number;
   /** Ties on the cautious score go to the product with more reports. */ tieByReports?: boolean;
+  /** When the maker's label words clamp the axis: "always" (padel: the label is a fact, owner rule) or "weakEvidence" (only
+   *  while players' control + power votes are under 4; above that, players decide; the label's prior still counts). */ labelClamp?: "always" | "weakEvidence";
+  /** Fine-tune as a penalty only (audit 2026-11-16): fit −= this × (1 − fineFit), so a mismatch can never raise the %. Unset:
+   *  the fineShare blend. */ finePenalty?: number;
+  /** With "sore arm": small demotions of the cautious score for a thin (14 mm) core and a firm feel (PickleballRecs). */ armSpecDemote?: { core14: number; firm: number };
 };
 export type EngineStyle = "any" | "control" | "balance" | "power" | "spin";
 const AXIS_STYLES = ["control", "balance", "power"];
@@ -107,9 +112,11 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     if (ec !== undefined && ep !== undefined && ec + ep > 0) { num += p.E * ep / (ec + ep); den += p.E; }
     let axis = num / den;
     // The maker's line label is a fact (owner 2026-11-15, "[Metalbone CTRL 3.5] is not a power racket"): praise moves the axis
-    // inside its half, never across.
-    if (ctl) axis = Math.min(axis, p.labelBounds[2]);
-    if (pow) axis = Math.max(axis, p.labelBounds[3]);
+    // inside its half, never across. With labelClamp "weakEvidence" (PickleballRecs, owner 2026-11-16) only while players have
+    // said little (under 4 control + power votes).
+    const clampIt = p.labelClamp !== "weakEvidence" || Pp + Pc < 4;
+    if (ctl && clampIt) axis = Math.min(axis, p.labelBounds[2]);
+    if (pow && clampIt) axis = Math.max(axis, p.labelBounds[3]);
     if (mid) axis = Math.min(axis, cap);
     out.set(x.id, { axis, axisN: 1 + Pp + Pc, playerAxis: Pp + Pc >= 4 ? Pp / (Pp + Pc) : null, Q, sdQ, tr: Object.fromEntries(keys.map(k => [k, trait(k)])) as EngineBase["tr"], pop: Math.log1p(x.n) / Math.log1p(nmax), n: x.n });
   }
@@ -136,7 +143,10 @@ export function engineScore(e: EngineBase, pick: EnginePick, p: EngineProfile): 
   if (p.levelShare && pick.suits !== undefined && pick.suits !== null) { F = (1 - p.levelShare) * F + p.levelShare * pick.suits / 100; sF = (1 - p.levelShare) * sF; }
   // Sore arm and fine-tune picks (not in the prototype): a share of the fit, with their uncertainty.
   if (pick.arm) { F = (1 - p.armShare) * F + p.armShare * e.tr.arm.v; sF = Math.sqrt(((1 - p.armShare) * sF) ** 2 + (p.armShare * e.tr.arm.sd) ** 2); }
-  if (pick.fine !== undefined && pick.fine !== null) { F = (1 - p.fineShare) * F + p.fineShare * pick.fine; sF = (1 - p.fineShare) * sF; }
+  if (pick.fine !== undefined && pick.fine !== null) {
+    if (p.finePenalty !== undefined) F -= p.finePenalty * (1 - pick.fine);
+    else { F = (1 - p.fineShare) * F + p.fineShare * pick.fine; sF = (1 - p.fineShare) * sF; }
+  }
   const score = p.wq * e.Q + p.wf * F + p.wp * e.pop;
   const sd = Math.sqrt((p.wq * e.sdQ) ** 2 + (p.wf * sF) ** 2);
   return { score, cautious: score - p.z * sd };

@@ -52,7 +52,9 @@ export const padel: Niche = {
       labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.5, fineShare: 0.2,
       // The match-audit tuning pass (Grok audit, owner OK 2026-11-16): level in the score, per-style anchors, a squared balance
       // term, quality for "any", a hard-reason cap, best member per family, ties by reports.
-      levelShare: 0.2, balanceSquared: true, anyByQuality: true, anchorsPerStyle: true, hardCap: 54, familyBestWithin: 3, tieByReports: true, } },
+      levelShare: 0.2, balanceSquared: true, anyByQuality: true, anchorsPerStyle: true, hardCap: 54, familyBestWithin: 3, tieByReports: true,
+      // Fine-tune as a penalty only (audit 2026-11-16, both sites): a mismatch never raises the %.
+      finePenalty: 0.35, labelClamp: "always", } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

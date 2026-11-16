@@ -179,6 +179,13 @@ const keptContext = kept(async () => {
       let expertLevel = false;
       if (ex) { let any = false; for (const l of ["beginner", "intermediate", "advanced"] as const) { const e = ex[`suits_${l}`]; if (e) { su[l] = e.value; any = true; } } if (any) { expertLevel = true; su.basis = su.basis.filter(b => !["a pro line", "advanced players", "its shape", "the owner's beginner list"].includes(b)); su.basis.push("expert"); } }
       const sp = expertLevel ? null : levelToSuits(specLevel.get(id));
+      // Thin level data (PickleballRecs, audit 2026-11-16): with fewer than gateMinPlayers players and no expert value, the
+      // specs' level stands in alone, or there is no level score (no gate, no level term) rather than one from 1–3 players.
+      const minPlayers = niche.fit?.gateMinPlayers;
+      if (minPlayers && !expertLevel && (x.players?.length ?? 0) < minPlayers) {
+        if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = sp[`suits_${l}`]!; su.basis = ["the specs"]; suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) }); }
+        continue;
+      }
       if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] + sp[`suits_${l}`]!) / 2); su.basis.push("the specs"); }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }

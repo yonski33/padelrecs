@@ -5,7 +5,9 @@
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
 import { similarProducts, tagProfiles } from "./similar";
-import { hasYears } from "./niche";
+import { hasYears as yearsOn, niche } from "./niche";
+// Families need real years, or (PickleballRecs) the site's name-based families, newest = the higher name.
+const hasYears = yearsOn || !!niche.familiesByName;
 
 /** Judged reviews each side needs before its pair gets a page. */
 export const MIN_PAIR_JUDGED = 10;

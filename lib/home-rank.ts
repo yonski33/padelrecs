@@ -61,7 +61,9 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
     for (const x of engItems(items)) {
       if (x.n < p.minReports) continue;
       const suits = choice.level ? x.it.level?.suits?.[choice.level] : undefined;
-      const { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it), suits }, p);
+      let { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it), suits }, p);
+      // Sore arm (PickleballRecs, audit 2026-11-16): a thin 14 mm core and a firm feel pass on more shock.
+      if (choice.arm && p.armSpecDemote) { const fi = x.it.facts.fine; if (fi?.core === "14mm") cautious -= p.armSpecDemote.core14; if (fi?.feel === "firm") cautious -= p.armSpecDemote.firm; }
       let pct = enginePct(cautious, anchors);
       if (choice.level && !passesLevel(x.it.level, choice.level, gate)) pct = Math.min(pct, p.cuts.maybe - 1);
       // A hard reason on level or arm (audit 2026-11-16): never Strong fit, the hard reason leads the verdict.

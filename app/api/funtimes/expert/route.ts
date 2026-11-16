@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         const note = ((col("notes") >= 0 ? l[col("notes")] : "") || String(raw.note ?? "") || "expert sheet").trim();
         const next: Next = {};
         for (const t of TRAITS) { const v = readExpertValue(l[col(`expert_${t}`)]); if (v !== null) next[t] = { value: v, note }; }
-        const suits = levelToSuits(l[col("expert_level")]);
+        const suits = levelToSuits(l[col("expert_level")], niche.fit?.expertAdjacentSuits);
         if (suits) for (const [k, v] of Object.entries(suits)) next[k as ExpertKey] = { value: v, note };
         if (Object.keys(next).length) n += await save(id, next, by, at);
       }
