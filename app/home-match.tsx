@@ -3,6 +3,7 @@
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { whyHere } from "../lib/curated";
 import { useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
@@ -112,9 +113,11 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           : picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? ` · ${QUICK?.armChip ?? "arm-friendly"} first` : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : `ranked by ${SCORE_WORD} · pick above to personalise`}</span></div>
       {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
       <div className="hv2-box">
-      <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm }, i) => {
+      <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm, low }, i) => {
         const r = cards[id], sig = signalOf(id);
         if (!r) return null; // a row without its card (never expected): skip it rather than fail the page
+        // A curated pick with a weak match says why it is here, in place of its usual line (owner 2026-11-17).
+        const line = low ? whyHere(sig, r.catch, fit?.short) : r.line;
         // With picks the match % is the star; the product's own score stays as a small neutral pill under it (owner 2026-11-16).
         // The mockup's after-pick column (owner 2026-11-16): the match % box, "your match", then a small pill with the product's
         // own score, tinted by it like the box (green 85+, yellow 70+). No verdict chip here: the box says it.
@@ -132,7 +135,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><b className="hv2-rk" aria-hidden="true">{`#${i + 1}`}</b><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
-            {r.line && <span className="hv2-line">{r.line}</span>}
+            {line && <span className={`hv2-line${low ? " why" : ""}`}>{line}</span>}
             {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}</span>
           <span className="hv2-sent"><span>{`${r.n.toLocaleString("en-US")} ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
@@ -148,7 +151,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : QUICK ? <span className={`hv2-disc t${i % 6}`} aria-hidden="true"/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
-            {r.line && <span className="hv2-line">{r.line}</span>}
+            {line && <span className={`hv2-line${low ? " why" : ""}`}>{line}</span>}
             {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}
             {/* Flight numbers (type-picker sites): labelled once over the first row, and each box names its number. */}
             {r.flight && <span className="hv2-flight">{i === 0 && QUICK?.flightLabel && <a className="hv2-flight-k" href="/guide#flight">{QUICK.flightLabel}</a>}

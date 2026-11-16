@@ -17,7 +17,7 @@ export function listOf(file) {
   const picks = Array.isArray(file?.picks) ? file.picks : [];
   const seen = new Set();
   return picks.filter(p => p?.slug && !seen.has(p.slug) && seen.add(p.slug))
-    .map(p => ({ slug: p.slug, ...(p.reason ? { note: String(p.reason) } : {}), ...(p.source ? { src: String(p.source) } : {}) }));
+    .map(p => ({ slug: p.slug, ...(p.reason ? { note: String(p.reason) } : {}), ...(p.source ? { src: String(p.source) } : {}), ...(p.exception ? { exception: String(p.exception) } : {}) }));
 }
 
 /** The owner's rule (2026-11-17, "we always pick the new version, if it has enough reviews"): a slug becomes the newest year of

@@ -196,3 +196,5 @@ body:has(main.hv2) { background: #fbfaf6; }
 .hv2 .hv2-spill { margin-top: 0; border: 1.5px solid currentColor; border-radius: 999px; padding: 0 7px; font: 600 10.5px var(--body, inherit); gap: 4px; background: #fff; }
 .hv2 .hv2-spill.hi { background: oklch(0.88 0.17 125); } .hv2 .hv2-spill.mid { background: oklch(0.93 0.14 100); }
 .hv2 .hv2-sc .hv2-spill b { all: unset; font-size: 12px; font-weight: 800; }
+/* A curated pick with a weak match: the "why it's here" line (owner 2026-11-17). */
+.hv2-line.why { font-style: italic; }

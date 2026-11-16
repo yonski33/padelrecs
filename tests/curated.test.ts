@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { rankHome, matchPcts, type RankItem } from "../lib/home-rank";
-import { curatedFor, curatedKey } from "../lib/curated";
+import { rankHome, matchPcts, LOW_MATCH, type RankItem } from "../lib/home-rank";
+import { curatedFor, curatedKey, curatedEntries, CURATED_MIN, whyHere } from "../lib/curated";
 import { padel } from "../lib/niche/padel";
 import curated from "../db/curated/padel.json";
 
@@ -21,19 +21,26 @@ test("the file holds all 18 picks; every slug is in the catalog", () => {
   for (const [k, l] of Object.entries(curated.lists)) for (const e of l as { slug: string }[]) assert.ok(bySlug.has(e.slug), `${k}: ${e.slug}`);
 });
 
-test("each curated list renders exactly in order at the top, the % stepping down and never topped by the engine rows", () => {
+test("each curated list renders in order at the top (drafted picks need 10+ reviews and a 70+ score; the owner's stay), with the real match %", () => {
   let checked = 0;
   for (const c of PICKS) {
-    const want = curatedFor(c).map(s => bySlug.get(s)!).filter(Boolean); if (!want.length) continue; checked++;
+    const want = curatedEntries(c).flatMap(e => { const x = items.find(i => i.slug === e.slug); return x && (e.owner || (x.facts.reports >= CURATED_MIN.reviews && (x.signal ?? 0) >= CURATED_MIN.score)) ? [x.id] : []; })
+      .filter((id, i, all) => all.indexOf(id) === i);
+    if (!want.length) continue; checked++;
     const r = rows(c);
     assert.deepEqual(r.slice(0, want.length).map(x => x.id), want, curatedKey(c));
-    const pcts = r.map(x => x.pct ?? 0);
-    for (let i = 1; i < pcts.length; i++) assert.ok(pcts[i] <= pcts[i - 1], `${curatedKey(c)} #${i + 1}: ${pcts[i]} after ${pcts[i - 1]}`);
-    assert.equal(pcts[0], 97);
     const m = matchPcts(items, c, SETUP.levelGate, SETUP.engine);
-    assert.deepEqual(want.map(id => m.get(id)), pcts.slice(0, want.length), "the racket pages show the same %");
+    for (const x of r) assert.equal(x.pct, m.get(x.id), `${curatedKey(c)}: the racket pages show the same %`);
+    for (const x of r.slice(0, want.length)) assert.equal(!!x.low, (x.pct ?? 0) < LOW_MATCH, `${curatedKey(c)} ${fx.names[x.id]}: low flag`);
+    for (const x of r.slice(want.length)) assert.ok(!x.low);
   }
-  assert.ok(checked >= 1);
+  assert.ok(checked >= 5);
+});
+
+test("a weak curated match says why it is here, in one line of 105 characters or less", () => {
+  assert.equal(whyHere(88, "The small sweet spot asks a lot of you.", "Not aimed at intermediates"), "Top-rated, but the small sweet spot asks a lot of you; not aimed at intermediates.");
+  assert.equal(whyHere(65, null, "Not aimed at beginners"), "Our pick, but not aimed at beginners for these picks.");
+  assert.ok(whyHere(90, "x".repeat(120), "Could suit intermediates").length <= 105);
 });
 
 test("shape rule: no diamond in the engine's top 6 for control or balance at beginner and intermediate", () => {

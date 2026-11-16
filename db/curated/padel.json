@@ -10,7 +10,8 @@
    {
     "slug": "nox-ml10-pro-cup-2025",
     "note": "Low-balance round fibreglass frame with a generous sweet spot: easy, steady control.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+    "exception": "no 2026 version"
    },
    {
     "slug": "head-gravity-motion-2026",
@@ -67,12 +68,14 @@
    {
     "slug": "nox-ml10-pro-cup-2025",
     "note": "Fibreglass faces and a medium-soft core damp vibration in a forgiving round frame.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+    "exception": "no 2026 version"
    },
    {
-    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
-    "note": "Soft, comfortable response and a predictable round sweet spot for tender arms.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026"
+    "slug": "adidas-metalbone-ctrl-2026",
+    "note": "Soft Performance EVA cushions contact in a forgiving round frame; remove weights to go lighter.",
+    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-ctrl-2026",
+    "owner": true
    },
    {
     "slug": "wilson-endure-v1-2026",
@@ -95,9 +98,10 @@
     "src": "https://www.padelful.com/en/rackets/wilson-optix-v2-lite-2026"
    },
    {
-    "slug": "adidas-metalbone-ctrl-2026",
-    "note": "Soft Performance EVA cushions contact in a forgiving round frame; remove weights to go lighter.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-ctrl-2026"
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "note": "Soft, comfortable response and a predictable round sweet spot for tender arms.",
+    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026",
+    "owner": true
    },
    {
     "slug": "oxdog-pure-court-2026",
@@ -108,209 +112,165 @@
   "control/intermediate/arm-off": [
    {
     "slug": "adidas-metalbone-ctrl-2026",
-    "note": "Huge, forgiving round sweet spot with crisp feedback: the benchmark control racket.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-ctrl-2026"
-   },
-   {
-    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
-    "note": "Control-first round frame: predictable sweet spot and an order-first, soft response.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026"
+    "owner": true
    },
    {
     "slug": "nox-at10-genius-18k-2026",
-    "note": "Calm, progressive teardrop for controlled lobs, counter-volleys and patient points.",
-    "src": "https://padel.how/equipment/racket/nox-at10-18k-2026-review/"
+    "owner": true
    },
    {
-    "slug": "bullpadel-neuron-02-2026",
-    "note": "Low-balance hybrid with direct feedback that rewards placement-first players.",
-    "src": "https://padel.how/equipment/racket/bullpadel-neuron-02-2026/"
-   },
-   {
-    "slug": "nox-ea10-ventus-hybrid-12k-2026",
-    "note": "Disciplined hybrid with a contained release that suits directional control.",
-    "src": "https://padel.how/equipment/racket/nox-ea10-ventus-hybrid-12k-xtrem-2026-review/"
-   },
-   {
-    "slug": "wilson-endure-v1-2026",
-    "note": "Broad central sweet spot and clear feedback on blocks, lobs and controlled volleys.",
-    "src": "https://www.padelful.com/en/rackets/wilson-endure-v1-2026"
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
    },
    {
     "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
-    "note": "Quick AT10 Lite: block, redirect and take pace off without losing precision.",
-    "src": "https://www.padelful.com/en/rackets/nox-at10-genius-12k-alum-xtrem-lite-2026"
+    "owner": true
    },
    {
-    "slug": "kuikma-hybrid-carbon-2026",
-    "note": "Even-balance all-court racket with a usable sweet spot for improving intermediates.",
-    "src": "https://padelmad.co.uk/equipment/padel_racket/kuikma-pr-hybrid-carbon-coki-nieto-review/"
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
    },
    {
     "slug": "nox-ml10-ventus-control-3k-2026",
-    "note": "Round control racket with a broad sweet spot that stays orderly under pressure.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-ventus-control-3k-2026-miguel-lamperti"
+    "owner": true
    },
    {
-    "slug": "oxdog-pure-tour-x-2026",
-    "note": "Controlled foam hybrid with a large, central sweet spot for all-court intermediates.",
-    "src": "https://padel.how/equipment/racket/oxdog-pure-tour-x-2026-review/"
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
    }
   ],
   "control/intermediate/arm-on": [
    {
-    "slug": "bullpadel-neuron-02-2026",
-    "note": "Low balance plus Vibradrive and dampeners filter vibration: control without arm strain.",
-    "src": "https://padel.how/equipment/racket/bullpadel-neuron-02-2026/"
-   },
-   {
-    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
-    "note": "Soft EVA and a low-K 6K face absorb impact in a forgiving round control frame.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026"
-   },
-   {
-    "slug": "oxdog-pure-tour-x-2026",
-    "note": "Soft foam, comfortable hit and a large sweet spot: easy control for sore arms.",
-    "src": "https://padel.how/equipment/racket/oxdog-pure-tour-x-2026-review/"
-   },
-   {
-    "slug": "head-gravity-motion-2026",
-    "note": "Fibreglass and Control Foam make this round racket soft and kind to the joints.",
-    "src": "https://simplepadel.com/head-gravity-motion-review/"
-   },
-   {
-    "slug": "nox-at10-pro-cup-soft-2026",
-    "note": "Soft EVA with fibreglass faces absorbs vibration: arm-friendly control and touch.",
-    "src": "https://www.padelful.com/en/rackets/nox-at10-pro-cup-soft-2026"
-   },
-   {
-    "slug": "wilson-endure-v1-2026",
-    "note": "Soft dual-density foam and quick handling: precise control that spares the elbow.",
-    "src": "https://www.padelful.com/en/rackets/wilson-endure-v1-2026"
-   },
-   {
-    "slug": "head-radical-motion-2026",
-    "note": "Light, low-balance control teardrop on Control Foam: less load on the forearm.",
-    "src": "https://www.padelful.com/en/rackets/head-radical-motion-2026"
-   },
-   {
-    "slug": "kuikma-hybrid-carbon-2026",
-    "note": "Medium EVA and even balance: a kinder all-court option than a hard tournament frame.",
-    "src": "https://padelmad.co.uk/equipment/padel_racket/kuikma-pr-hybrid-carbon-coki-nieto-review/"
-   },
-   {
     "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
-    "note": "White EVA and lighter build keep blocks comfortable when points get tight.",
-    "src": "https://www.padelful.com/en/rackets/nox-at10-genius-12k-alum-xtrem-lite-2026"
+    "owner": true
+   },
+   {
+    "slug": "nox-ml10-ventus-control-3k-2026",
+    "owner": true
    },
    {
     "slug": "adidas-metalbone-ctrl-2026",
-    "note": "Soft Performance EVA softens contact in a forgiving round frame; weights can come out.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-ctrl-2026"
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "head-radical-motion-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
    }
   ],
   "control/advanced/arm-off": [
    {
     "slug": "nox-at10-genius-12k-alum-xtrem-2026",
-    "note": "Firmer, drier AT10 with a lower balance: flat, precise ball for advanced control.",
-    "src": "https://www.padelnuestro.com/int/blog/the-new-agustin-tapia-racket-review-nox-at10-genius-12k-alum-xtrem-2026"
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
    },
    {
     "slug": "nox-at10-genius-18k-2026",
-    "note": "Composed teardrop with a progressive response for patient, high-level point building.",
-    "src": "https://padel.how/equipment/racket/nox-at10-18k-2026-review/"
-   },
-   {
-    "slug": "bullpadel-vertex-05-hybrid-2026",
-    "note": "Precision-first hybrid that still has punch to finish when the ball sits up.",
-    "src": "https://www.padelful.com/en/rackets/bullpadel-vertex-05-hybrid-2026"
-   },
-   {
-    "slug": "babolat-counter-viper-2026",
-    "note": "Round control option in the Viper range: reliable defence, lobs and measured attack.",
-    "src": "https://www.padelful.com/en/rackets/babolat-counter-viper-2026"
-   },
-   {
-    "slug": "wilson-endure-pro-v1-2026",
-    "note": "Precise round racket with real net stability for advanced control players.",
-    "src": "https://padel.how/equipment/racket/wilson-endure-pro-v1-2026-review/"
+    "owner": true
    },
    {
     "slug": "bullpadel-neuron-02-2026",
-    "note": "Low-balance hybrid with direct feedback for net placement and tactical play.",
-    "src": "https://padel.how/equipment/racket/bullpadel-neuron-02-2026/"
-   },
-   {
-    "slug": "siux-diablo-pro-2026",
-    "note": "Teardrop that keeps point construction, transition and net placement central.",
-    "src": "https://padel.how/equipment/racket/siux-diablo-pro-2026-review/"
+    "owner": true
    },
    {
     "slug": "kuikma-hybrid-pro-2026",
-    "note": "Neutral teardrop for precise placement and defensive depth with a direct response.",
-    "src": "https://padel.how/equipment/racket/kuikma-hybrid-pro-2026-coki-nieto-review/"
+    "owner": true
    },
    {
-    "slug": "head-radical-pro-2026",
-    "note": "370 g low-balance control teardrop: firm, compact response for placement and blocks.",
-    "src": "https://padel.how/equipment/racket/head-radical-pro-2026-review/"
+    "slug": "siux-diablo-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
    },
    {
     "slug": "nox-ea10-ventus-hybrid-12k-2026",
-    "note": "Structured hybrid built for consistent, high-tempo rallies and counter-drives.",
-    "src": "https://padel.how/equipment/racket/nox-ea10-ventus-hybrid-12k-xtrem-2026-review/"
+    "owner": true
+   },
+   {
+    "slug": "babolat-counter-viper-2026",
+    "owner": true
    }
   ],
   "control/advanced/arm-on": [
    {
-    "slug": "bullpadel-neuron-02-2026",
-    "note": "Low 250 mm balance and layered dampening keep arm load low for advanced control.",
-    "src": "https://padel.how/equipment/racket/bullpadel-neuron-02-2026/"
-   },
-   {
-    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
-    "note": "Soft EVA and a 6K face absorb impact while the round head keeps placement precise.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026"
-   },
-   {
     "slug": "nox-at10-genius-18k-2026",
-    "note": "18K face with effective damping: noticeably less fatiguing than firmer carbon layouts.",
-    "src": "https://padel.how/equipment/racket/nox-at10-18k-2026-review/"
+    "owner": true
    },
    {
-    "slug": "wilson-endure-pro-v1-2026",
-    "note": "Low-balance round racket on dual-density Control Foam: precise without a harsh hit.",
-    "src": "https://padel.how/equipment/racket/wilson-endure-pro-v1-2026-review/"
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
    },
    {
     "slug": "oxdog-hyper-pro-2-0-2026",
-    "note": "Foam core and broad sweet spot make defence easier at advanced pace.",
-    "src": "https://padel.how/equipment/racket/oxdog-hyper-pro-2-0-2026/"
-   },
-   {
-    "slug": "wilson-endure-v1-2026",
-    "note": "Soft touch and quick handling give advanced placement players an arm-friendly option.",
-    "src": "https://www.padelful.com/en/rackets/wilson-endure-v1-2026"
-   },
-   {
-    "slug": "oxdog-pure-tour-x-2026",
-    "note": "Controlled, comfortable foam hybrid with a large sweet spot for advanced all-court play.",
-    "src": "https://padel.how/equipment/racket/oxdog-pure-tour-x-2026-review/"
-   },
-   {
-    "slug": "head-radical-pro-2026",
-    "note": "Control Foam and low balance; the softer butt cap trims harshness in the hand.",
-    "src": "https://padel.how/equipment/racket/head-radical-pro-2026-review/"
+    "owner": true
    },
    {
     "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
-    "note": "Lighter AT10 on soft White EVA: comfortable blocks and redirects at speed.",
-    "src": "https://www.padelful.com/en/rackets/nox-at10-genius-12k-alum-xtrem-lite-2026"
+    "owner": true
    },
    {
-    "slug": "head-radical-team-2026",
-    "note": "Fibreglass Radical with elastic, muted impact and a broad sweet spot for defence.",
-    "src": "https://padel.how/equipment/racket/head-radical-team-2026-review/"
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-endure-pro-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
    }
   ],
   "balance/beginner/arm-off": [
@@ -325,14 +285,15 @@
     "src": "https://www.padelful.com/en/rackets/wilson-endure-v1-2026"
    },
    {
-    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
-    "note": "Soft, forgiving round racket with easy ball exit for building points.",
-    "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026"
+    "slug": "wilson-bela-lt-v2-5-2024",
+    "owner": true,
+    "exception": "owner pick"
    },
    {
     "slug": "nox-ml10-pro-cup-2025",
     "note": "Forgiving round fibreglass frame with a reliable mix of control and power.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+    "exception": "no 2026 version"
    },
    {
     "slug": "head-radical-motion-2026",
@@ -389,7 +350,8 @@
    {
     "slug": "nox-ml10-pro-cup-2025",
     "note": "Medium-soft fibreglass round frame that damps vibration and balances control with pop.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+    "exception": "no 2026 version"
    },
    {
     "slug": "wilson-endure-v1-2026",
@@ -419,34 +381,44 @@
   ],
   "balance/intermediate/arm-off": [
    {
-    "slug": "adidas-metalbone-ctrl-2026"
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
    },
    {
-    "slug": "nox-at10-genius-18k-2026"
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
    },
    {
-    "slug": "bullpadel-vertex-05-hybrid-2026"
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
    },
    {
-    "slug": "kuikma-hybrid-pro-2026"
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
    },
    {
-    "slug": "oxdog-hyper-pro-2-0-2026"
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
    },
    {
-    "slug": "siux-diablo-pro-2026"
+    "slug": "siux-diablo-pro-2026",
+    "owner": true
    },
    {
-    "slug": "nox-at10-genius-12k-alum-xtrem-2026"
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
    },
    {
-    "slug": "oxdog-ultimate-tour-x-2026"
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
    },
    {
-    "slug": "siux-electra-pro-st5-2026"
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
    },
    {
-    "slug": "babolat-air-viper-2026"
+    "slug": "babolat-air-viper-2026",
+    "owner": true
    }
   ],
   "balance/intermediate/arm-on": [
@@ -513,9 +485,10 @@
     "src": "https://padel.how/equipment/racket/nox-at10-18k-2026-review/"
    },
    {
-    "slug": "bullpadel-hack-04-hybrid-2026",
-    "note": "Hybrid Hack with a larger sweet spot: controls transitions yet still counterattacks.",
-    "src": "https://padel.how/equipment/racket/bullpadel-hack-04-hybrid-2026/"
+    "slug": "babolat-air-viper-2026",
+    "note": "Manoeuvrable Viper for clean hitters who want speed without losing much punch.",
+    "src": "https://www.padelful.com/en/rackets/babolat-air-viper-2026",
+    "owner": true
    },
    {
     "slug": "siux-diablo-pro-2026",
@@ -548,9 +521,10 @@
     "src": "https://padel.how/equipment/racket/oxdog-hyper-pro-2-0-2026/"
    },
    {
-    "slug": "babolat-air-viper-2026",
-    "note": "Manoeuvrable Viper for clean hitters who want speed without losing much punch.",
-    "src": "https://www.padelful.com/en/rackets/babolat-air-viper-2026"
+    "slug": "bullpadel-hack-04-hybrid-2026",
+    "note": "Hybrid Hack with a larger sweet spot: controls transitions yet still counterattacks.",
+    "src": "https://padel.how/equipment/racket/bullpadel-hack-04-hybrid-2026/",
+    "owner": true
    }
   ],
   "balance/advanced/arm-on": [
@@ -575,14 +549,12 @@
     "src": "https://padel.how/equipment/racket/oxdog-ultimate-tour-x-2026-review/"
    },
    {
-    "slug": "bullpadel-vertex-05-comfort-2026",
-    "note": "Comfort-first Vertex: Fibrix face and a forgiving sweet spot for easy, arm-kind pace.",
-    "src": "https://www.padelful.com/en/rackets/bullpadel-vertex-05-comfort-2026"
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
    },
    {
-    "slug": "starvie-drax-plus-2026",
-    "note": "Comfortable for a carbon teardrop: manageable inertia and damping soften feedback.",
-    "src": "https://padel.how/equipment/racket/starvie-drax-plus-2026-review/"
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
    },
    {
     "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
@@ -590,19 +562,12 @@
     "src": "https://www.padelful.com/en/rackets/adidas-metalbone-carbon-ctrl-2026"
    },
    {
-    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
-    "note": "Lighter AT10 on soft White EVA: comfortable all-court play at speed.",
-    "src": "https://www.padelful.com/en/rackets/nox-at10-genius-12k-alum-xtrem-lite-2026"
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
    },
    {
-    "slug": "bullpadel-xplo-02-comfort-2027",
-    "note": "Fibrix comfort hybrid: helps on blocks and lobs yet still finishes at the net.",
-    "src": "https://www.padelful.com/en/rackets/bullpadel-xplo-02-comfort-2027"
-   },
-   {
-    "slug": "head-coello-team-2026",
-    "note": "Fibreglass Coello: elastic, comfortable impact with easy pace at medium effort.",
-    "src": "https://padel.how/equipment/racket/head-coello-team-2026-review/"
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
    }
   ],
   "power/beginner/arm-off": [
@@ -629,7 +594,8 @@
    {
     "slug": "nox-ml10-pro-cup-2025",
     "note": "Forgiving round fibreglass frame with a reliable mix of control and pop.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+    "exception": "no 2026 version"
    },
    {
     "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
@@ -686,7 +652,8 @@
    {
     "slug": "nox-ml10-pro-cup-2025",
     "note": "Medium-soft fibreglass frame that damps vibration and still offers pop.",
-    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025"
+    "src": "https://www.padelful.com/en/rackets/nox-ml10-pro-cup-2025",
+    "exception": "no 2026 version"
    },
    {
     "slug": "head-gravity-motion-2026",
