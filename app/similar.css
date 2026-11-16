@@ -50,3 +50,6 @@
 @media (max-width: 560px) { .sp-sim.sp-soft { --sp-h2-size: 28px; } }
 /* The old product page (TennisRecs, SimRacingRecs): the section's own row under the two columns. */
 .sp-wrap { padding: 0 16px; margin-bottom: 32px; }
+/* Titles in the site's display font, bold and a little tighter; SkinRecs' serif stays regular weight (owner 2026-11-16). */
+.sp-sim .sp-name { font-family: var(--s-display); font-weight: 800; letter-spacing: -0.012em; }
+.sp-sim.sp-soft .sp-name { font-weight: 400; font-size: 18px; letter-spacing: 0; }
