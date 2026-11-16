@@ -52,6 +52,10 @@ const LEVEL_LABEL: Record<Level, string> = { beginner: "Beginner", intermediate:
 export const levelLabel = (l: Level) => SITE_FIT.levelLabels?.[l] ?? l;
 /** How a style pick reads: "control", "balance", "spin". */
 export const STYLE_WORD: Record<Style, string> = { any: "any", control: "control", balance: "balance", power: "power", spin: "spin" };
+/** A style pick in the site's words: a type-picker site's own labels (DiscGolfRecs "understable"), else STYLE_WORD. */
+export const styleWordOf = (s: Style) => SITE_FIT.quick && s !== "any" ? (SITE_FIT.styleLabels[s as "control"] ?? s).toLowerCase() : STYLE_WORD[s];
+/** The arm pick's words: a type-picker site's own ("slower arm speed"), else padel's. */
+export const ARM_PICK = SITE_FIT.quick?.arm ?? "sore elbow / wrist";
 /** Sore elbow or wrist: rackets players call arm-friendly rank first (a strong weight, not a filter, so the list stays full),
  *  with vibration complaints counting against. */
 export const armOption = (cfg: FitConfig = SITE_FIT): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });

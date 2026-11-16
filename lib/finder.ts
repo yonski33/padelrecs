@@ -22,6 +22,9 @@ export type FinderProduct = {
   shape: string | null;
   /** Place on each ranking an answer can stand for (see FinderOption.list). */
   lists?: Record<string, number>;
+  /** With a level answer (FinderOption.level): how well it suits each level (0–100), a hard reason for a beginner, and the
+   *  mold it is a variant of ("berg" for Berg and Berg X), so one mold takes one place in the results. */
+  suits?: { beginner: number; intermediate: number; advanced: number }; hardBeginner?: boolean; mold?: string;
 };
 export type Reason = { tag: string; count: number };
 export type FinderMatch<P> = { product: P; score: number; reasons: Reason[]; watch: Reason | null };
@@ -64,8 +67,12 @@ const share = (count: number, reviews: number) => count / (reviews + SMOOTHING);
 const mentions = (p: FinderProduct, tags: string[] = []) => tags.reduce((a, t) => a + (p.tags[t] ?? 0), 0);
 
 /** The best matches for the chosen options. Options without tags ("No preference") change nothing. */
-export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOption[], negativeTags: readonly string[], count = FINDER_RESULTS, rankWeight = RANK_WEIGHT): FinderMatch<P>[] {
+export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOption[], negativeTags: readonly string[], count = FINDER_RESULTS, rankWeight = RANK_WEIGHT,
+  /** The match's level gate (lib/niche fit.levelGate), for an answer that stands for a level. */ gate?: Partial<Record<"beginner" | "intermediate" | "advanced", number>>): FinderMatch<P>[] {
   let candidates = pool;
+  // A level answer (DiscGolfRecs): the match's own gate, so the quiz never offers what the match list leaves out.
+  for (const o of chosen) if (o.level) candidates = candidates.filter(p => !p.suits || p.suits[o.level!] >= (gate?.[o.level!] ?? 0));
+  const beginner = chosen.some(o => o.level === "beginner");
   // An answer that stands for a ranking sorts products into a group, and everything outside it is out for good: someone asking
   // for power never gets a control racket, even if that leaves fewer than `count`. Later answers narrow inside the group.
   for (const o of chosen) if (o.list) {
@@ -103,7 +110,11 @@ export function matchFinder<P extends FinderProduct>(pool: P[], chosen: FinderOp
     }, 0);
     return { product, score: fit + placed + (relevant ? rankWeight * likedScore(liked, product.reviews) : 0), reasons, watch };
   });
-  return scored.sort((a, b) => b.score - a.score || b.product.reviews - a.product.reviews || a.product.id.localeCompare(b.product.id)).slice(0, count);
+  const sorted = scored.sort((a, b) => Number(beginner && !!a.product.hardBeginner) - Number(beginner && !!b.product.hardBeginner)
+    || b.score - a.score || b.product.reviews - a.product.reviews || a.product.id.localeCompare(b.product.id));
+  // One place per mold (Berg and Berg X, DD1 and Premier DD1), when the products say which mold they are.
+  const seen = new Set<string>();
+  return sorted.filter(m => !m.product.mold || (!seen.has(m.product.mold) && !!seen.add(m.product.mold))).slice(0, count);
 }
 
 /** The questions to ask given the answers so far, as indexes into finder.questions. */

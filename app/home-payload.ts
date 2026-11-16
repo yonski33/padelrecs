@@ -56,7 +56,7 @@ const payloadOf = sameInputs((ctx: Awaited<ReturnType<typeof matchContext>>): Ho
     return [id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic, line: rowLine(r, takes.get(id)?.hook), ...(best ? { best } : {}),
       shop: shop ? { url: shop.url, rel: shop.rel } : null, n: reports.get(id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative, judged: c.judged, shape: r.shape?.toLowerCase() ?? null,
       ...(FLIGHT && r.weight && r.weight.split("/").length === 4 ? { flight: r.weight.split("/").map(x => x.trim()) } : {}),
-      ...(ARM_SPEC ? { armOk: ARM_SPEC(r) } : {}) }] as const;
+      ...(ARM_SPEC ? { armOk: ARM_SPEC(r) && !ctx.facts(id).hard?.arm } : {}) }] as const;
   }));
   return { items: slim, cards };
 });

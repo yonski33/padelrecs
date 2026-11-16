@@ -18,6 +18,8 @@ import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { amazonButton, amazonLinksOn } from "../../lib/amazon-offer";
 import { websiteButton } from "../../lib/product-links";
 import { FinderFlow, type FinderCard } from "./finder-flow";
+import { matchContext } from "../match-context";
+import { moldOf } from "../../lib/discgolf-hard";
 
 const finder = niche.finder, w = niche.words, people = niche.people;
 
@@ -38,11 +40,15 @@ export default async function FinderPage({ searchParams }: { searchParams: Promi
   const byId = new Map(data.listed.map(p => [p.id, p]));
   const brandOf = (id: string) => data.brands.find(b => b.id === id)?.name ?? "";
   const affiliate = amazonLinksOn(), sigs = await productSignals();
+  // A quiz with level answers (DiscGolfRecs) gets the match's level scores and hard rules, and each card's mold.
+  const leveled = finder.questions.some(q => q.options.some(o => o.level)), ctx = leveled ? await matchContext() : null;
+  const levelFacts = (id: string, name: string) => { if (!ctx) return {}; const f = ctx.facts(id);
+    return { ...(f.suits ? { suits: { beginner: f.suits.beginner, intermediate: f.suits.intermediate, advanced: f.suits.advanced } } : {}), ...(f.hard?.beginner ? { hardBeginner: true } : {}), mold: moldOf(name) }; };
   const cards: FinderCard[] = await Promise.all(pool.map(async entry => {
     const p = byId.get(entry.id)!, brand = brandOf(p.brandId);
     const amazon = affiliate ? await amazonButton({ name: p.name, brand: brand || undefined }) : null;
     const site = websiteButton({ websiteUrl: p.websiteUrl ?? null, affiliateUrl: p.affiliateUrl ?? null });
-    return { ...entry, name: displayName(p.name, brand), brand, href: productHref(p), line: rowLine(p), signal: sigs.get(p.id)?.signal ?? null, category: p.shape ?? null, own: shopPhoto(p) ?? (light ? productPhoto(p)?.src : null) ?? null,
+    return { ...entry, ...levelFacts(p.id, p.name), name: displayName(p.name, brand), brand, href: productHref(p), line: rowLine(p), signal: sigs.get(p.id)?.signal ?? null, category: p.shape ?? null, own: shopPhoto(p) ?? (light ? productPhoto(p)?.src : null) ?? null,
       amazonUrl: amazon?.url ?? null, amazonImage: amazon?.image && !photoHidden(p) ? amazon.image : null,
       siteUrl: site?.url ?? null, siteLabel: site?.label ?? null, siteAffiliate: !!site?.affiliate };
   }));

@@ -24,7 +24,7 @@ export function catalogRows(data: Catalog, ctx: Ctx, listed: Catalog["listed"] =
   return listed.map(r => {
     const facts = ctx.facts(r.id), sc = score(data, r.id), su = facts.suits;
     return { id: r.id, name: r.name, lean: styleLean(facts).lean, ...(su ? { suits: { beginner: su.beginner, intermediate: su.intermediate, advanced: su.advanced } } : {}),
-      shape: shapeWord(r.shape), year: String(r.year), arm: armScore ? (armScore.get(r.id) ?? 0) >= 70 && !!ctx.cfg.quick?.armSpecOk?.(r) :(facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
+      shape: shapeWord(r.shape), year: String(r.year), arm: armScore ? (armScore.get(r.id) ?? 0) >= 70 && !!ctx.cfg.quick?.armSpecOk?.(r) && !facts.hard?.arm :(facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
       spec: specValues(niche.guide, r),
       sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: ctx.signal(r.id), n: facts.reports, judged: sc.judged, newest: newest.has(r.id) };
   });

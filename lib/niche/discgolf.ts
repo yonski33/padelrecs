@@ -48,10 +48,16 @@ export const discgolf: Niche = {
   fit: { minReports: 6, fewReports: 15,
     // Beginners: skip distance drivers until they can throw a fairway ~250 ft (unless beginners themselves vouch for one).
     beginnerShapesOut: ["distance driver"],
-    levelGate: { beginner: 45, intermediate: 40, advanced: 40 },
-    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
-      controlLabels: [" ss"], powerLabels: [" os", " xs"],
-      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2 } },
+    // Match tuning pass (Grok match audit 2026-11-16, owner OK via PM 2026-11-17): beginner gate 45 → 50; player score 0.30 → 0.37,
+    // popularity 0.15 → 0.08; slower arm 0.3 → 0.4; level in the score (0.2); page "skip it" warnings and too-fast discs are hard
+    // reasons (−0.10, held at 54%, sorted last; lib/discgolf-hard.ts); "any" gets a stability window; display 40 + 50, max 95;
+    // labels only as a whole last word ("Zone OS", never the mold "XS").
+    levelGate: { beginner: 50, intermediate: 40, advanced: 40 },
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.37, wf: 0.55, wp: 0.08, minReports: 6, ax: 0.75,
+      controlLabels: ["ss"], powerLabels: ["os", "xs"], labelLastWord: true,
+      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.4, fineShare: 0.2,
+      levelShare: 0.2, hardCap: 54, hardPenalty: 0.10, anyOwnAnchors: true, tieByReports: true,
+      anyWindow: { share: 0.5, target: 0.5, lowTarget: 0.35 }, display: { base: 40, span: 50, max: 95 } } },
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",
@@ -160,7 +166,8 @@ export const discgolf: Niche = {
     navLabel: "Find Your Disc",
     invite: "Not sure which disc to choose?",
     minReviews: 10,
-    rankWeight: 0.3,
+    // Popularity weighs less (match audit 2026-11-16: Wraith was in 96 of 480 top 3s); the level answers use the match's gate.
+    rankWeight: 0.1,
     questions: [
       { id: "type", question: "What kind of disc are you looking for?", options: [
         { label: "Distance driver", shapes: ["Distance driver"] },
@@ -169,9 +176,9 @@ export const discgolf: Niche = {
         { label: "Putter", shapes: ["Putter"] },
       ] },
       { id: "level", question: "What's your level?", options: [
-        { label: "Beginner", hint: "Still learning your throw", want: ["beginner-friendly"], avoid: ["too overstable"], weight: 2 },
-        { label: "Intermediate", hint: "Regular rounds, solid form", want: ["accurate"], weight: 0.75 },
-        { label: "Advanced", hint: "Tournaments or big arm" },
+        { label: "Beginner", hint: "Still learning your throw", want: ["beginner-friendly"], avoid: ["too overstable"], weight: 2, level: "beginner" },
+        { label: "Intermediate", hint: "Regular rounds, solid form", want: ["accurate"], weight: 0.75, level: "intermediate" },
+        { label: "Advanced", hint: "Tournaments or big arm", level: "advanced" },
       ] },
       { id: "flight", question: "How do you want it to fly?", options: [
         { label: "Straight", want: ["holds lines", "accurate"], weight: 1.5 },
