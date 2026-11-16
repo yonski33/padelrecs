@@ -20,14 +20,15 @@ export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
 }
 
-/** Sites whose content was written from a sample of the reports (DiscGolfRecs: Grok saw up to 40 snippets a disc): a count under
- *  this reads as thin evidence next to the page's report total, so the line is left out (owner 2026-11-16: "hide counts under 5"). */
-const MIN_COUNT_SHOWN: Record<string, number> = { discgolf: 5 };
+/** The fewest reports an evidence line may show (owner rule, all sites, 2026-11-16): under this the item still shows but its
+ *  "N players mention it" line (and any special line with a count) is left out. Copy guide: QUICK-TAKE-RECIPE.md, "Counts". */
+export const MIN_COUNT_SHOWN = 5;
 
-/** "19 players mention it": the item's evidence line from its own report count; null when the site hides small counts. */
-export function evidenceLine(item: PageItem, many = "players", site = niche.id): string | null {
+/** "19 players mention it": the item's evidence line from its own report count, in the site's word for people ("users" on
+ *  SkinRecs); null under MIN_COUNT_SHOWN. */
+export function evidenceLine(item: PageItem, many = niche.people.many): string | null {
   const n = new Set(item.src).size;
-  if (!item.ev && n < (MIN_COUNT_SHOWN[site] ?? 0)) return null;
+  if (n < MIN_COUNT_SHOWN) return null;
   return (item.ev ?? `{n} ${many} mention it`).replace("{n}", String(n));
 }
 

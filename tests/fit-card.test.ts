@@ -75,8 +75,11 @@ test("racket page: 'matters for you' picks the arm first, at most 2 per column, 
  const items = [{ title: "A", t: "x", src: ["1"], for: ["intermediate"] }, { title: "B", t: "x", src: ["1"], for: ["control"] }, { title: "C", t: "x", src: ["1", "2", "1"], for: ["arm"] }];
  assert.deepEqual([...mattersFor(items, ["control", "intermediate", "arm"])], ["C", "B"]);
  assert.equal(mattersFor(items, []).size, 0);
- assert.equal(evidenceLine(items[2]), "2 players mention it");
- assert.equal(evidenceLine({ ...items[2], ev: "the #1 complaint, {n} players" }), "the #1 complaint, 2 players");
+ // Counts dedupe the sources; under 5 the line is hidden (owner rule, all sites).
+ const five = { title: "D", t: "x", src: ["1", "2", "3", "4", "5", "5"] };
+ assert.equal(evidenceLine(items[2]), null);
+ assert.equal(evidenceLine(five, "players"), "5 players mention it");
+ assert.equal(evidenceLine({ ...five, ev: "the #1 complaint, {n} players" }), "the #1 complaint, 5 players");
  assert.deepEqual(marked("a ==b== c"), [{ text: "a ", mark: false }, { text: "b", mark: true }, { text: " c", mark: false }]);
 });
 
