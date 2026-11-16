@@ -26,7 +26,12 @@ export const tennis: Niche = {
   productYears: false,
   productPath: "rackets",
   // Fit verdict from 6 reports, as on padel (median tennis racket has 8).
-  fit: { minReports: 6, fewReports: 15 },
+  fit: { minReports: 6, fewReports: 15,
+    levelGate: { beginner: 60, intermediate: 60, advanced: 50 },
+    // The match engine with padel's yardstick-checked numbers (an expert value counts as E = 8 voices). No maker label words:
+    // tennis lines don't name their side of the axis the way padel's CTRL / HRD do.
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
+      controlLabels: [], powerLabels: [], labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2 } },
   amazon: { searchIndex: "SportsAndOutdoors", photos: true },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, clay-court terracotta, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
