@@ -1,7 +1,7 @@
 /* Brands index, design v2 (owner 2026-11-15, Claude Design mockup). Scoped to .bv2; never write .bv2 inside the nest. */
 body:has(main.bv2) { background: #fbfaf6; }
 .bv2 {
-  --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --soft: #4a4740; --acc: oklch(0.88 0.17 125);
+  --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --soft: #4a4740; --acc: var(--site-acc, oklch(0.88 0.17 125));
   --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body);
   a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }

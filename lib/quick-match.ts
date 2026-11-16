@@ -5,15 +5,17 @@
 // band), and with nothing chosen it is simply the Player score order. Pure functions, so tests feed plain objects.
 import { matchFinder, type FinderProduct, type Reason } from "./finder";
 import type { Finder, FinderOption } from "./niche/types";
-import { fitConfigFor, type FitConfig } from "./fit-config";
+import { fitConfigFor, SITE_FIT, type FitConfig } from "./fit-config";
 
-const PADEL = fitConfigFor({ id: "padel" })!;
 import { readFine, fineEmpty, fineParams, type FineTune } from "./fine-tune";
 import { niche } from "./niche";
 
-export const STYLES = ["any", "control", "balance", "power"] as const;
+/** Every style pick any site has; a site's own (lib/fit-config.ts styles) are STYLES. */
+export const ALL_STYLES = ["any", "control", "balance", "power", "spin"] as const;
+export type Style = typeof ALL_STYLES[number];
+/** The running site's style picks: "any", then its own (default control / balance / power). */
+export const STYLES: readonly Style[] = ["any", ...(SITE_FIT.styles ?? ["control", "balance", "power"])];
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
-export type Style = typeof STYLES[number];
 export type Level = typeof LEVELS[number];
 export type QuickChoice = { style: Style; /** Unset until the visitor taps a level (owner 2026-11-15: picking a style must not
  *  pick "intermediate" too); no level means no level gate, bonus or check. */ level?: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune };
@@ -42,13 +44,17 @@ export function choiceHref(c: QuickChoice, anchor = "#match") {
 }
 
 const LEVEL_LABEL: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
+/** How a level pick reads on this site: "beginner", or pickleball's "2.5". */
+export const levelLabel = (l: Level) => SITE_FIT.levelLabels?.[l] ?? l;
+/** How a style pick reads: "control", "balance", "spin". */
+export const STYLE_WORD: Record<Style, string> = { any: "any", control: "control", balance: "balance", power: "power", spin: "spin" };
 /** Sore elbow or wrist: rackets players call arm-friendly rank first (a strong weight, not a filter, so the list stays full),
  *  with vibration complaints counting against. */
-export const armOption = (cfg: FitConfig = PADEL): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });
+export const armOption = (cfg: FitConfig = SITE_FIT): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });
 export const ARM_OPTION: FinderOption = armOption();
 
 /** The finder options a choice stands for. */
-export function chosenOptions(finder: Pick<Finder, "questions">, c: QuickChoice, cfg: FitConfig = PADEL): FinderOption[] {
+export function chosenOptions(finder: Pick<Finder, "questions">, c: QuickChoice, cfg: FitConfig = SITE_FIT): FinderOption[] {
   const q = (id: string) => finder.questions.find(x => x.id === id);
   const opts: FinderOption[] = [];
   if (c.style !== "any") { const o = q("style")?.options.find(x => x.label === cfg.styleLabels[c.style as Exclude<Style, "any">]); if (o) opts.push(o); }
@@ -90,7 +96,7 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
   signal: (id: string) => number | null; negativeTags: readonly string[]; level: (id: string) => LevelEvidence | undefined; count: number; rankWeight?: number; cfg?: FitConfig;
   /** With picks, only rackets that pass the level gate are candidates. */ levelGate?: LevelGate;
 }): QuickMatch<P>[] {
-  const cfg = opts.cfg ?? PADEL;
+  const cfg = opts.cfg ?? SITE_FIT;
   const extra = (p: P) => {
     if (!c.level) return { arm: p.tags[cfg.arm.plus] ?? 0, levelLiked: 0, inBand: null };
     const e = opts.level(p.id), i = LEVEL_INDEX[c.level];
@@ -111,7 +117,7 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
 }
 
 /** "beginners" / "intermediates" / "advanced players". */
-export const levelPeople = (l: Level) => l === "advanced" ? "advanced players" : `${l}s`;
+export const levelPeople = (l: Level) => SITE_FIT.levelLabels ? `${SITE_FIT.levelLabels[l]} players` : l === "advanced" ? "advanced players" : `${l}s`;
 
 /** "Top control rackets for you" / "ranked for beginners · arm-friendly first". */
 export function matchTitle(c: QuickChoice, many: string) {

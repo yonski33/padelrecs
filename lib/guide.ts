@@ -5,9 +5,11 @@
 // "most-liked" is the top Player score among that option's rows (one per model, newest year), shown only with 3+ rated.
 import type { CatalogRow, CatalogFilters, CatalogKey, SpecGroup } from "./catalog-filter";
 import { catalogView } from "./catalog-filter";
+import { catalogShape } from "./fine-tune";
 import type { SpecColumn } from "./niche/types";
 /** Shape class from the spec ("Teardrop", "Diamond (oversized)"); other shapes count as hybrid, like the catalogue's filter. */
-export const shapeWord = (s: string | null | undefined) => { const x = (s ?? "").toLowerCase(); return /diamond/.test(x) ? "diamond" : /round/.test(x) ? "round" : /tear|drop/.test(x) ? "teardrop" : x ? "hybrid" : null; };
+/** The catalogue's shape option for a shape spec (lib/fine-tune.ts catalogShape: padel round / teardrop / hybrid / diamond). */
+export const shapeWord = (s: string | null | undefined) => catalogShape(s);
 
 // Spec classifiers a niche's guide config can use for its spec filters (`spec.classify`). Padel's; add a niche's own beside it.
 export const BALANCES = ["low", "medium", "high"] as const;
@@ -33,6 +35,21 @@ export function faceOf(spec: string | null | undefined): (typeof FACES)[number] 
   if (!x) return null;
   const glass = /fib(er|re)?|glass/.test(x), carbon = /carbon|\d+k\b|tricarbon/.test(x);
   return glass && carbon ? "mixed" : glass ? "fibreglass" : carbon ? "carbon" : null;
+}
+
+// Pickleball (lib/niche/pickleball-guide.ts). Core thickness: one stated thickness, 14.5 mm and under is thin; "14 or 16 mm"
+// (sold in both) has none. Face: fiberglass, raw (unidirectional / peel-ply) carbon, or other carbon; aramid and the rest none.
+export const CORES = ["thin", "thick"] as const;
+export function coreOf(spec: string | null | undefined): (typeof CORES)[number] | null {
+  const mm = [...new Set((spec ?? "").match(/\d{1,2}(\.\d+)?(?=\s*mm)|\d{1,2}(\.\d+)?(?=\s*(or|,|\/)\s*\d)/g) ?? [])].map(Number);
+  return mm.length !== 1 ? null : mm[0] <= 14.5 ? "thin" : "thick";
+}
+export const PADDLE_FACES = ["fiberglass", "carbon", "raw-carbon"] as const;
+export function paddleFaceOf(spec: string | null | undefined): (typeof PADDLE_FACES)[number] | null {
+  const x = (spec ?? "").toLowerCase();
+  if (!x) return null;
+  const carbon = /carbon|t700|toray/.test(x), glass = /fib(er|re)glass|\bglass\b|composite/.test(x);
+  return carbon && /\braw\b|unidirectional|peel/.test(x) ? "raw-carbon" : carbon ? "carbon" : glass ? "fiberglass" : null;
 }
 
 /** A guide option: one card / toggle / column / end of a scale. `value` is the catalogue filter value; text-only sections

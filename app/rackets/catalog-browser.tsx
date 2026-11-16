@@ -7,6 +7,10 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { catalogView, catalogHref, readCatalogFilters, CATALOG_KEYS, CATALOG_STYLES, CATALOG_LEVELS, CATALOG_SHAPES, CATALOG_SORTS, CATALOG_PAGE,
   type CatalogFilters, type CatalogRow, type SpecGroup } from "../../lib/catalog-filter";
 import { WEIGHTS, FEELS } from "../../lib/fine-tune";
+import { levelLabel, type Level } from "../../lib/quick-match";
+import { hasYears } from "../../lib/niche";
+/** How an option reads: levels on the site's own scale (pickleball 2.5 / 3.5 / 4.5+). */
+const optWord = (key: string, val: string) => key === "level" ? levelLabel(val as Level) : val;
 
 export type CatalogCard = { name: string; href: string; pic: string | null; tile: string; line: string | null; shop: { url: string; rel: string } | null; pos: number; mix: number; neg: number };
 type F = CatalogFilters;
@@ -28,18 +32,18 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
     history.pushState(null, "", url);
   };
   const to = (next: F, current?: boolean) => ({ href: href(next), onClick: go(next), ...(current ? { "aria-current": "true" as const } : {}) });
-  const groups: [string, string, readonly string[]][] = [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
+  const groups: [string, string, readonly string[]][] = [["Play style", "style", CATALOG_STYLES], ["Level", "level", CATALOG_LEVELS], ["Shape", "shape", CATALOG_SHAPES], ...(hasYears && v.years.length > 1 ? [["Year", "year", v.years] as [string, "year", string[]]] : [])];
   const extra: [string, string, readonly string[]][] = [["Weight", "weight", WEIGHTS], ["Feel on impact", "feel", FEELS], ...spec.map(g => [g.label, g.key, g.values] as [string, string, readonly string[]])];
   const moreOpen = f.more === "1" || !!f.weight || !!f.feel || specKeys.some(k => !!f[k]) || f.sweet === "1";
-  const active = [...[...CATALOG_KEYS, ...specKeys].filter(k => f[k]).map(k => ({ label: f[k]!, next: { [k]: undefined } as F })),
+  const active = [...[...CATALOG_KEYS, ...specKeys].filter(k => f[k]).map(k => ({ label: optWord(k, f[k]!), next: { [k]: undefined } as F })),
     ...(f.arm === "1" ? [{ label: "arm-friendly", next: { arm: undefined } as F }] : []), ...(f.sweet === "1" ? [{ label: "bigger sweet spot", next: { sweet: undefined } as F }] : [])];
   const clearAll: F = Object.fromEntries(Object.keys(f).map(k => [k, undefined]));
   const group = ([label, key, vals]: [string, string, readonly string[]]) =>
     <details key={key} className="ct-g" open>
-      <summary><b>{label}</b>{f[key] && <span className="ct-val">{f[key]}</span>}<i aria-hidden="true"/></summary>
+      <summary><b>{label}</b>{f[key] && <span className="ct-val">{optWord(key, f[key]!)}</span>}<i aria-hidden="true"/></summary>
       <div className="ct-opts">{vals.map(val => { const on = f[key] === val, n = v.counts[key]?.[val] ?? 0;
         return <a {...to({ [key]: on ? undefined : val }, on)} key={val} className={`ct-opt${on ? " on" : ""}${!n && !on ? " none" : ""}`}>
-          <span className="ct-dot" aria-hidden="true"/><span className="ct-ol">{val}</span><span className="ct-n">{n}</span></a>; })}</div>
+          <span className="ct-dot" aria-hidden="true"/><span className="ct-ol">{optWord(key, val)}</span><span className="ct-n">{n}</span></a>; })}</div>
     </details>;
   const { shown, sort, show } = v;
 
@@ -71,7 +75,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
       <ol className="ct2-list">{shown.slice(0, show).map((x, i) => {
         const c = cards[x.id];
         const chips = [...(i === 0 && sort === "score" ? [{ k: "top", t: "★ top pick" }] : []), ...(x.arm ? [{ k: "arm", t: "arm-friendly" }] : [])];
-        const meta = [x.lean === "balance" ? "all-round" : x.lean, x.shape, x.year].filter(Boolean) as string[];
+        const meta = [x.lean === "balance" ? "all-round" : x.lean, x.shape, hasYears ? x.year : null].filter(Boolean) as string[];
         // One link per row (the name's, stretched over the row) and "check price" as a quiet text link at the end of the specs
         // row (owner 2026-11-15). Reviews over the sentiment bar, then the Player score box.
         return <li key={x.id} className={i === 0 ? "first" : i < 3 ? "top" : undefined}><div className="ct2-row">

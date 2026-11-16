@@ -1,4 +1,5 @@
 import type { Niche } from "./types";
+import { pickleballGuide } from "./pickleball-guide";
 
 // Pickleball rating icons: an optic-yellow ball with holes. Same tile sizes as padel (17×14 strip, 20×20 picker).
 const holes17 = [[5, 4.4], [9, 4.4], [3.6, 7.6], [7, 7.2], [10.4, 7.6], [5.4, 10.4], [8.8, 10.4]];
@@ -18,6 +19,22 @@ const ogBall = (on: boolean) => on
 
 export const pickleball: Niche = {
   id: "pickleball",
+  guide: pickleballGuide,
+  // The PadelRecs v2 design (owner 2026-11-16, "Yes, start pickleball"): the same pages and components, with only these
+  // per-site words, its own logo and colours, and the paddle profile (lib/fit-config.ts PICKLEBALL) on the match engine.
+  design: "v2",
+  v2copy: {
+    sport: "pickleball", emoji: "🏓", strip: "a free, ad-light side project · built by pickleball players",
+    madeBy: "made by people who own too many paddles 🏓", forum: "pickleball forum", blog: "pickleball blog",
+    aboutStory: ["pickleballrecs started on the sideline of a 3.5 open play. Every paddle claimed more power, more spin and more control at once, every review site sold the same picks, and nobody said which ones suit a game like ours.",
+      "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and pickleball forums together, counts it honestly, and tells you if a paddle fits"],
+    example: "Six Zero Ruby",
+    logo: "icon",
+    // The add-review page: the dot ratings' low / high words (spin is stored in comfort_rating) and the "+ prompt" chips.
+    rate: { powerRating: ["no put-away", "cannon"], controlRating: ["all over the place", "on a string"], comfortRating: ["no bite", "grabs the ball"],
+      forgivenessRating: ["tiny sweet spot", "huge sweet spot"], maneuverabilityRating: ["slow in hand battles", "lightning hands"] },
+    prompts: ["what surprised you", "what you came from", "how the grit held up", "who should skip it"],
+  },
   schema: "pickleballrecs",
   site: {
     name: "PickleballRecs",
@@ -62,6 +79,12 @@ export const pickleball: Niche = {
     "--score-off": ball("tile", false),
     "--score-pick-on": ball("pick", true),
     "--score-pick-off": ball("pick", false),
+    // The v2 pages' accent (highlights, the quick-match label, checkboxes, hovers): court blue, so it never reads as the match
+    // colours, which stay padel's (green good, yellow less good).
+    "--site-acc": "oklch(0.84 0.09 240)",
+    "--site-marker": "oklch(0.93 0.045 240)",
+    "--site-wash": "oklch(0.975 0.018 240)",
+    "--site-wash-line": "oklch(0.86 0.05 240)",
   },
   chartColors: ["var(--green)", "var(--lime)", "#e0d9c2", "#b9c6d6"],
   og: { background: "#1f4e8c", accent: "#e9e23f", muted: "#a9bcd6", text: "#d9e3f0", scoreOn: ogBall(true), scoreOff: ogBall(false) },
@@ -120,7 +143,16 @@ export const pickleball: Niche = {
   ],
   // Same bar as padel (owner via the recs PM 2026-11-15: "fit bar = 6, same rules as padel"); under 15 the verdict and % say
   // they rest on fewer reports.
-  fit: { minReports: 6, fewReports: 15 },
+  fit: { minReports: 6, fewReports: 15,
+    // Same gate as padel: with a level picked, only paddles whose suits score reaches the bar are candidates.
+    levelGate: { beginner: 60, intermediate: 60, advanced: 50 },
+    // The match engine with padel's numbers (owner 2026-11-16: the shared engine), the paddle traits and the spin pick. Maker
+    // label words as in the lower-cased name ("Double Black Diamond Control", "Vapor Power 2").
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
+      controlLabels: [" control", " ctrl", " soft"], powerLabels: [" power", " pwr"],
+      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2,
+      traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"],
+      styles: ["control", "power", "spin"] } },
   finder: {
     title: "Pickleball Paddle Finder Quiz",
     heading: "Which pickleball paddle is right for you?",

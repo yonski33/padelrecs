@@ -5,14 +5,13 @@
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { rankHome } from "../lib/home-rank";
-import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, LEVELS, STYLES, type QuickChoice } from "../lib/quick-match";
+import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
 import { SHAPES, WEIGHTS, FEELS, SHAPE_LABEL, fineEmpty, fineWords } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
 import type { HomePayload } from "./home-payload";
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
-const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 const FIT_WORD = { good: "Strong fit", maybe: "Worth a look", no: "Probably not" } as const;
 /** The finder plus the level gate (lib/niche fit.levelGate), as the server ranks with it. */
@@ -49,7 +48,7 @@ export function HomeMatch({ payload, choice: first, older: firstOlder, listed, c
       <span className="hv2-qk"><b>quick match</b>I want</span>
       <span className="hv2-seg" role="group" aria-label="What you want most">{STYLES.map(s => <span key={s}>{pill(STYLE_WORD[s], { ...choice, style: s }, choice.style === s)}</span>)}</span>
       <span className="hv2-qk">and I&apos;m</span>
-      <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
+      <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(levelLabel(l), { ...choice, level: l }, choice.level === l)}</span>)}</span>
       <a className="hv2-arm" href={`${hrefOf({ ...choice, arm: !choice.arm }, older)}#match`} onClick={go({ ...choice, arm: !choice.arm })} aria-current={choice.arm ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>sore elbow / wrist</a>
       {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
       {picked && <details className="hv2-fine" open={!fineEmpty(choice.fine)}>
@@ -64,7 +63,7 @@ export function HomeMatch({ payload, choice: first, older: firstOlder, listed, c
           <a className="hv2-arm" href={`${hrefOf({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } }, older)}#match`} onClick={go({ ...choice, fine: { ...choice.fine, sweet: !choice.fine?.sweet || undefined } })} aria-current={choice.fine?.sweet ? "true" : undefined}><i aria-hidden="true">{choice.fine?.sweet ? "✓" : ""}</i>bigger sweet spot</a>
         </div>
       </details>}
-      {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level ? choice.level[0].toUpperCase() + choice.level.slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
+      {picked && <p className="hv2-game">{"Your game: "}<b>{[choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter(Boolean).join(" · ")}</b>
         <a href="/" onClick={go({ style: "any", level: "intermediate", arm: false }, false)}>reset ↺</a></p>}
     </section>
 

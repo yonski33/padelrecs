@@ -40,7 +40,7 @@ export default async function HowWeMakeThese() {
     ["↻", "Scores move with new reviews.", "Every published review counts toward the numbers."],
   ];
   const faqs: [string, string][] = [
-    [`Why don't you test ${w.many} yourselves?`, `One tester's arm, level and style is one data point. Sixty owners across all levels tells you far more about how a ${w.one} behaves for someone like you.`],
+    [`Why don't you test ${w.many} yourselves?`, `One tester's arm, level and style is one data point. Sixty players across all levels tells you far more about how a ${w.one} behaves for someone like you.`],
     ["Can a brand flood you with fake reviews?", `Every site review goes through a check before it's published, and we watch for bursts from new visitors on the same ${w.one}. Suspicious batches get held, not counted.`],
     ["What does a mixed verdict mean?", "The player liked parts but wouldn't fully recommend it, e.g. loved the sweet spot, hated the bounce. It counts as neither a yes nor a no."],
   ];

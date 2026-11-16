@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
-import { TRAITS, TRAIT_LABEL, type Trait } from "../../../lib/trait-score";
+import { type Trait } from "../../../lib/trait-score";
+import { SITE_FIT } from "../../../lib/fit-config";
 import { bestFor, styleLean, MIN_FIT_REPORTS } from "../../../lib/fit-verdict";
 import { LEVELS, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
@@ -15,7 +16,7 @@ import { score } from "../../../db/data";
 import { signalCategory } from "../../signals";
 import { platformName } from "../../../lib/source-label";
 import { displayName } from "../../../lib/brand-name";
-import { productHref, niche, catalogPath, v2copy } from "../../../lib/niche";
+import { productHref, niche, catalogPath, v2copy, hasYears } from "../../../lib/niche";
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
@@ -45,6 +46,8 @@ function ago(iso?: string | null) {
 const ratingVerdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
 /** Reports at the picked level needed before "What players said" narrows to them. */
 const LEVEL_SAID_MIN = 5;
+/** The site's dot traits and labels, in order (lib/fit-config.ts; padel's are TRAITS). */
+const SITE_TRAITS = SITE_FIT.traits.map(t => t.key), SITE_LABEL: Record<string, string> = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t.label]));
 
 /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)] per trait. */
 const EV_WORDS: Record<Trait, [[string, string], [string, string]]> = {
@@ -85,8 +88,8 @@ export default async function RacketFit(props: {
   // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
   const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
   const tr = ctx.traits(props.racketId);
-  const qtRow: Record<Trait, { chip: string; line: string } | undefined> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
-  const traits = TRAITS.map(t => {
+  const qtRow: Partial<Record<string, { chip: string; line: string }>> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
+  const traits = SITE_TRAITS.map(t => {
     const sc = tr.scores?.[t] ?? null, q = qtRow[t];
     // The hand-written line must agree with the dots: a strong chip beside 1–2 dots, or a weak/divided one beside 4–5, loses.
     const tone = q ? chipTone(q.chip as Chip) : null;
@@ -97,11 +100,11 @@ export default async function RacketFit(props: {
     // A short note in words (owner 2026-11-15: no player numbers, "a short note each"): the quick-take's line when it agrees,
     // else which way most players lean, said with a count word.
     const cap = (x: string) => x[0].toUpperCase() + x.slice(1);
-    const short = ev ? (() => { const nP = ev.players.plus + ev.reviewers.plus, nM = ev.players.minus + ev.reviewers.minus, [praise, fault] = EV_WORDS[t];
+    const short = ev ? (() => { const nP = ev.players.plus + ev.reviewers.plus, nM = ev.players.minus + ev.reviewers.minus, [praise, fault] = SITE_FIT.traits.find(x => x.key === t)?.ev ?? EV_WORDS[t as Trait];
       if (nP < 2 && nM < 2) return null;
       return nP >= nM ? `${cap(countWord(nP))} players ${praise[0]}${nM >= 2 ? `; ${countWord(nM)} ${fault[0]}` : ""}.` : `${cap(countWord(nM))} players ${fault[0]}${nP >= 2 ? `; ${countWord(nP)} ${praise[0]}` : ""}.`; })() : null;
     const text = tr.edits?.traits[t]?.text ?? (q && agrees ? q.line : null) ?? (sc && sc.basis !== "players" ? thinWords : null) ?? short ?? thinWords;
-    return [TRAIT_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
+    return [SITE_LABEL[t], text ?? "Not enough reports on this yet.", sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
   // Similar rackets (no picks): really similar rackets, not the home's top 4 on every page. With picks, "Better matches for you"
@@ -209,7 +212,7 @@ export default async function RacketFit(props: {
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
   const page = pageContent(props.slug), tier = pageTier(page);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
-  const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t]?.dots ?? 0); };
+  const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return SITE_TRAITS.map(t => sc?.[t as Trait]?.dots ?? 0); };
   const shortOf = (r: ReturnType<typeof racketOf>) => displayName(r.name, brand(r.brandId)).replace(/\s+(19|20)\d\d$/, "");
   const cardOf = (rid: string): CompareCard => { const r = racketOf(rid); return { name: displayName(r.name, brand(r.brandId)), short: shortOf(r), href: productHref(r), pic: photoOf(r), dots: dotsOf(rid), reports: ctx.facts(rid).reports }; };
   const compareMe = cardOf(props.racketId);
@@ -227,7 +230,7 @@ export default async function RacketFit(props: {
         <div className="rf-hero">
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
-            <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, String(props.year)].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
+            <div className="rf-chips">{[lean ? (lean === "balance" ? "all-round" : lean) : null, props.shape, hasYears ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{`${props.shortName} review`}</h1>
@@ -256,7 +259,7 @@ export default async function RacketFit(props: {
 
           <div id="compare">
             {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
-            <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : "from player reports, compared with other rackets"}</span></div>
+            <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{total < 3 ? `too few reports to rate yet (${total})` : `from player reports, compared with other ${niche.words.many}`}</span></div>
             <FitCompare id={props.racketId} items={payload.items} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
           </div>
         </div>

@@ -3,7 +3,7 @@
 body:has(main.pg2) { background: #fbfaf6; }
 .pg2 {
   --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --soft: #4a4740; --text: #2b2925; --dash: #c9c5ba; --dash2: #b9b5aa;
-  --acc: oklch(0.88 0.17 125); --marker: oklch(0.93 0.14 100); --mint: oklch(0.97 0.04 125);
+  --acc: var(--site-acc, oklch(0.88 0.17 125)); --good: oklch(0.88 0.17 125); --marker: var(--site-marker, oklch(0.93 0.14 100)); --soso: oklch(0.93 0.14 100); --mint: var(--site-wash, oklch(0.97 0.04 125));
   --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body);
   a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }

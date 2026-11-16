@@ -60,7 +60,7 @@ export default async function Guide() {
   const ld = { "@context": "https://schema.org", "@graph": [{ "@type": "BreadcrumbList", itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "/" }, { "@type": "ListItem", position: 2, name: "Racket guide", item: "/guide" }] }] };
 
-  const Liked = ({ s }: { s: GuideSection }) => { const l = liked(s); return l ? <a className="gd-liked" href={l.href}>{`Most-liked ${l.label} racket: ${l.name} →`}</a> : null; };
+  const Liked = ({ s }: { s: GuideSection }) => { const l = liked(s); return l ? <a className="gd-liked" href={l.href}>{`Most-liked ${l.label} ${niche.words.one}: ${l.name} →`}</a> : null; };
   const See = ({ s, o, words }: { s: GuideSection; o: GuideOption; words?: (n: number) => string }) => {
     const n = count(s, o), href = link(s, o);
     return n !== null && href ? <a className="gd-see" href={href}>{words ? words(n) : `see ${n} ${n === 1 ? niche.words.one : niche.words.many} →`}</a> : null;

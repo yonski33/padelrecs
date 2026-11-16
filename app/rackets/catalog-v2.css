@@ -2,7 +2,7 @@
 body:has(main.ct2) { background: #fbfaf6; }
 .ct2 {
   --bg: #fbfaf6; --paper: #fff; --ink: #151515; --mute: #6a675f; --soft: #4a4740; --text: #2b2925; --tile: #f3f1ea;
-  --acc: oklch(0.88 0.17 125); --marker: oklch(0.93 0.14 100);
+  --acc: var(--site-acc, oklch(0.88 0.17 125)); --good: oklch(0.88 0.17 125); --marker: var(--site-marker, oklch(0.93 0.14 100)); --soso: oklch(0.93 0.14 100);
   --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body);
   a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
@@ -37,15 +37,15 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct-val { white-space: nowrap; font: 600 11px var(--mono); border-radius: 999px; padding: 0 8px; background: var(--acc); border: 1.5px solid var(--ink); }
   .ct-opts { display: flex; flex-direction: column; gap: 2px; padding: 0 10px 10px; }
   .ct-opt { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 8px; font-size: 15px; text-decoration: none; }
-  .ct-opt:hover { background: oklch(0.97 0.04 125); }
-  .ct-opt.on { background: oklch(0.95 0.06 125); font-weight: 700; }
+  .ct-opt:hover { background: var(--site-wash, oklch(0.97 0.04 125)); }
+  .ct-opt.on { background: var(--site-wash, oklch(0.95 0.06 125)); font-weight: 700; }
   .ct-opt.none { color: #b0ab9f; }
   .ct-dot { flex: none; width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--paper); }
   .ct-opt.on .ct-dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
   .ct-ol { flex: 1; min-width: 0; }
   .ct-n { font: 11px var(--mono); color: #8a867c; }
   .ct2-check { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border-top: 1.5px dashed #c9c5ba; font-size: 15px; text-decoration: none; }
-  .ct2-check.on { background: oklch(0.95 0.06 125); }
+  .ct2-check.on { background: var(--site-wash, oklch(0.95 0.06 125)); }
   .ct2-check i { flex: none; width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: normal 700 12px var(--body); background: var(--paper); }
   .ct2-check.on i { background: var(--acc); }
   /* More filters (like the home's fine-tune) */
@@ -62,7 +62,7 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
   .ct2-count { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .ct2-count > b { font: 800 20px var(--display); }
-  .ct2-chipx { white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1.5px solid var(--ink); border-radius: 999px; padding: 2px 6px 2px 10px; background: oklch(0.97 0.04 125); text-decoration: none; }
+  .ct2-chipx { white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1.5px solid var(--ink); border-radius: 999px; padding: 2px 6px 2px 10px; background: var(--site-wash, oklch(0.97 0.04 125)); text-decoration: none; }
   .ct2-chipx i { width: 16px; height: 16px; border-radius: 50%; background: var(--ink); color: var(--bg); display: inline-flex; align-items: center; justify-content: center; font: normal 10px var(--body); }
   .ct2-sort { display: flex; align-items: center; gap: 4px; font-size: 13px; }
   .ct2-sort span { font: 12px var(--mono); color: var(--mute); margin-right: 4px; }
@@ -71,8 +71,8 @@ body:has(main.ct2) { background: #fbfaf6; }
   /* The home's tight list (owner 2026-11-15): one framed box, 109px rows, 76×88 photo, reviews over a bar, the score box. */
   .ct2-list { list-style: none; margin: 0; padding: 0; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
   .ct2-list > li { position: relative; border-bottom: 1px solid #e3e0d7; background: var(--paper); }
-  .ct2-list > li.first { background: oklch(0.98 0.04 125); }
-  .ct2-list > li:hover { background: oklch(0.985 0.03 125); }
+  .ct2-list > li.first { background: var(--site-wash, oklch(0.98 0.04 125)); }
+  .ct2-list > li:hover { background: var(--site-wash, oklch(0.985 0.03 125)); }
   /* The name's link covers the row; "check price" sits above it, a quiet text link at the end of the specs row. */
   .ct2-name { text-decoration: none; }
   .ct2-name::after { content: ""; position: absolute; inset: 0; }
@@ -99,7 +99,7 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-mt span { white-space: nowrap; background: var(--tile); border-radius: 6px; padding: 0 7px; }
   .ct2-sc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 68px; }
   .ct2-sc b { font: 800 22px/1 var(--display); border: 2px solid var(--ink); border-radius: 8px; padding: 4px 7px; background: var(--paper); }
-  .ct2-sc.hi b { background: var(--acc); } .ct2-sc.mid b { background: var(--marker); } .ct2-sc.none b { background: var(--tile); color: #8a867c; }
+  .ct2-sc.hi b { background: var(--good); } .ct2-sc.mid b { background: var(--soso); } .ct2-sc.none b { background: var(--tile); color: #8a867c; }
   .ct2-sc small { font: 10.5px var(--mono); color: var(--soft); white-space: nowrap; }
   .ct2-empty { border: 2px dashed #b9b5aa; border-radius: 14px; padding: 28px 16px; text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; }
   .ct2-empty b { font: 800 18px var(--display); }

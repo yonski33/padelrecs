@@ -7,14 +7,14 @@
 import { createContext, useContext, useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
-import { choiceHref, readChoice, isDefault, LEVELS, STYLES, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
+import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
 import { niche } from "../../../lib/niche";
+import { SITE_FIT } from "../../../lib/fit-config";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
 import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
 
-const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
 const PICK_KEYS = ["style", "level", "arm"];
@@ -82,14 +82,14 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
   const lines = verdict && card && verdict.kind !== "thin" ? cardLines(card, choice, { maxCatches: verdict.kind === "good" ? 1 : 2, hard: verdict.kind === "no" ? verdict.reasons[0] : undefined }) : null;
   const hasCatch = lines ? !!(lines.lead || lines.catches.length) : !!consider;
   const headline = !verdict ? "" : verdict.kind === "good" ? (hasCatch ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
-  const gameWords = [choice.level, choice.style === "any" ? null : choice.style, choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter((x): x is string => !!x);
+  const gameWords = [choice.level && levelLabel(choice.level), choice.style === "any" ? null : choice.style, choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter((x): x is string => !!x);
   // With no picks, a tap starts from the defaults (any style / no level / no arm) but always lands on a picked page.
   const base = picked ? choice : DEFAULT_CHOICE;
   const pill = (label: string, next: QuickChoice, on: boolean) => <a {...to(next)} aria-current={on ? "true" : undefined} className={on ? "on" : undefined}>{label}</a>;
   const box = (on: boolean) => <i className="rf-box" aria-hidden="true">{on ? "✓" : ""}</i>;
   return <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
     {!verdict ? <div className="rf-ask">
-      <div className="rf-asktitle"><h2>Is this the right racket for you?</h2>
+      <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
         <p>{`Two taps and we'll check it against ${total} player ${total === 1 ? "review" : "reviews"}.`}</p></div>
       <AskPicks onPick={c => set({ choice: c, picked: true })}/>
       {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
@@ -120,7 +120,7 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
         <a {...to(null)} className="rf-reset">start over</a></span></div>
       <div className="rf-bar rf-editp">
         <span className="rf-seg" role="group" aria-label="What you want most">{STYLES.map(st => <span key={st}>{pill(STYLE_WORD[st], { ...choice, style: st }, choice.style === st)}</span>)}</span>
-        <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(l, { ...choice, level: l }, choice.level === l)}</span>)}</span>
+        <span className="rf-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(levelLabel(l), { ...choice, level: l }, choice.level === l)}</span>)}</span>
         <a {...to({ ...base, arm: !choice.arm })} aria-current={choice.arm ? "true" : undefined} className="rf-arm">{box(choice.arm)}sore arm</a>
       </div>
     </div>}
@@ -195,12 +195,13 @@ export function FitSticky({ buy, name }: { buy: { url: string; label: string; re
 
 /** One racket in the compare tabs: its name, link, photo and the six trait dots (0 = not rated), in TRAITS order. */
 export type CompareCard = { name: string; short: string; href: string; pic: string | null; dots: number[]; reports: number };
-const DIFF: [string, string][] = [["forgiveness", "more forgiving"], ["power", "more power"], ["control", "more control"], ["defence", "better in defence"], ["arm", "easier on the arm"], ["speed", "quicker"]];
+/** The site's traits in dot order (lib/fit-config.ts), with the compare tabs' words. */
+const DIFF: [string, string][] = SITE_FIT.traits.map(t => [t.key, t.diff ?? `more ${t.label.toLowerCase()}`]);
 /** "more power": the trait where the other racket is furthest ahead; "similar" when it is ahead nowhere. */
-const diffWord = (me: number[], other: number[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[best][1]; };
+const diffWord = (me: number[], other: number[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[best]?.[1] ?? "similar feel"; };
 /** "Stick with this one if you…" / "Pick X if you…" (owner's final mock): the two traits where a racket's dots are furthest
  *  ahead, each as a player's need. Derived from the dots only, so the lines never disagree with the bars above them. */
-const IF_YOU = ["want margin for error", "win points with smashes", "want precise, predictable shots", "play a lot from the back", "care about arm comfort", "want fast hands at the net"];
+const IF_YOU = SITE_FIT.traits.map(t => t.ifYou ?? `care about ${t.noun}`);
 const aheadIn = (a: number[], b: number[]) => a.map((v, i) => ({ i, g: v && b[i] ? v - b[i] : 0 })).filter(x => x.g > 0).sort((x, y) => y.g - x.g || x.i - y.i).slice(0, 2).map(x => IF_YOU[x.i]);
 const Segs = ({ n }: { n: number }) => n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? `on t${n}` : undefined}/>)}</span> : <span className="rf-segs none"/>;
 
