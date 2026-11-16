@@ -13,6 +13,7 @@ import { niche } from "../../../lib/niche";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
 import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
+import { fitReason } from "../../../lib/fit-reason";
 
 const STYLE_WORD: Record<QuickChoice["style"], string> = { any: "any", control: "control", balance: "balance", power: "power" };
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -65,8 +66,9 @@ export function FitBack({ all }: { all: { href: string; label: string } }) {
 /** A racket's fit-card content (lib/fit-card.ts) with the linked rackets' names and addresses. */
 export type FitCard = CardContent & { links: Record<string, { href: string; name: string }> };
 
-export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree, card }: { id: string; items: RankItem[]; facts: FitFacts;
-  hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null }) {
+export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree, card, yesNo }: { id: string; items: RankItem[]; facts: FitFacts;
+  hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
+  /** The page's Why yes / Why not items: the reason line's source and the "See why ↓" target. */ yesNo?: { yes: PageItem[]; no: PageItem[] } | null }) {
   const { p: { choice, picked }, set } = use(), to = useGo();
   const verdict = picked ? verdictFor(items, choice, facts, id, SETUP.levelGate, SETUP.engine) : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
@@ -82,6 +84,14 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
   const lines = verdict && card && verdict.kind !== "thin" ? cardLines(card, choice, { maxCatches: verdict.kind === "good" ? 1 : 2, hard: verdict.kind === "no" ? verdict.reasons[0] : undefined }) : null;
   const hasCatch = lines ? !!(lines.lead || lines.catches.length) : !!consider;
   const headline = !verdict ? "" : verdict.kind === "good" ? (hasCatch ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
+  // One reason line (owner 2026-11-16): "why this score, for you", from the Why yes / Why not items that matter for the picks
+  // (the fit-card lines when the page has none) plus the level reason. Bullets are gone: Why yes, why not says the rest.
+  const asItem = (l: { t: string; for: string[] }) => ({ title: l.t.includes(": ") ? l.t.split(": ")[0] : l.t, t: l.t.includes(": ") ? l.t.slice(l.t.indexOf(": ") + 2) : l.t, for: l.for });
+  const src = yesNo ?? (card ? { yes: card.strengths.map(asItem), no: card.catches.map(asItem) } : null);
+  const reason = verdict && verdict.kind !== "thin" ? (src ? fitReason(verdict.kind, src.yes, src.no, choice, [...(verdict.catches ?? []), ...verdict.reasons]) : null)
+    ?? ([why, consider && verdict.kind !== "good" ? consider : null].filter(Boolean).join(" ") || null) : null;
+  // The try-instead link ("Want it easier? The AT10 18K 2026…") from the top catch, when it names a racket we list.
+  const alt = lines?.catches.map(l => l.note?.kind === "alt" ? l.note.alt : null).find(x => x && card?.links[x.slug]) ?? null;
   const gameWords = [choice.level, choice.style === "any" ? null : choice.style, choice.arm ? "sore arm" : null, ...fineWords(choice.fine)].filter((x): x is string => !!x);
   // With no picks, a tap starts from the defaults (any style / no level / no arm) but always lands on a picked page.
   const base = picked ? choice : DEFAULT_CHOICE;
@@ -100,19 +110,9 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
         <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
       <h2>{headline}</h2>
-      <p className="rf-for">{verdict.kind === "thin" ? (total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`) : `For your ${gameWords.join(" · ")} game, here's the short answer.`}</p>
-      {lines ? <>
-        {lines.strengths.length > 0 && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ What works" : "✓ Why it fits"}</p>
-          <ul className="rf-lines">{lines.strengths.map(l => <li key={l.t}>{l.t}</li>)}</ul></div>}
-        {hasCatch && <div className="rf-blk warn"><p className="rf-bk">↗ What to consider</p>
-          <ul className="rf-lines">{lines.lead && <li>{lines.lead}</li>}{lines.catches.map(l => <li key={l.t}>{l.t}
-            {l.note?.kind === "tip" && <span className="rf-note"><b>{`💡 ${l.note.tip.label}:`}</b>{` ${l.note.tip.t}`}</span>}
-            {l.note?.kind === "alt" && card!.links[l.note.alt.slug] && <span className="rf-note">{"→ "}<a href={card!.links[l.note.alt.slug].href}>{l.note.alt.t}</a></span>}
-          </li>)}</ul></div>}
-      </> : <>
-        {why && <div className="rf-blk ok"><p className="rf-bk">{verdict.kind === "no" ? "✓ What works" : "✓ Why it fits"}</p><p>{why}</p></div>}
-        {consider && <div className="rf-blk warn"><p className="rf-bk">↗ What to consider</p><p>{consider}</p></div>}
-      </>}
+      {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`}</p>
+        : <>{reason && <p className="rf-why">{reason}</p>}
+          {(alt || yesNo) && <p className="rf-whyl">{alt && <a href={card!.links[alt.slug].href}>{`→ ${alt.t}`}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
       <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
       <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join("  ·  ")}</span>
