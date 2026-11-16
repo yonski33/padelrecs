@@ -12,7 +12,12 @@ import type { CardContent, CardTag } from "./fit-card";
 export type PageItem = { title: string; /** One line; the key phrase sits between == marks. */ t: string; src: string[];
   /** Who it matters for (lib/fit-card.ts CardTag): picks that earn the "matters for you" tag. */ for?: string[];
   /** The evidence line, {n} = the number of reports ("the #1 complaint, {n} players"); default "{n} players mention it". */ ev?: string };
-export type PageContent = { tagline: string; bottom: string; yes: PageItem[]; no: PageItem[] };
+export type PageContent = { tagline: string; bottom: string; yes: PageItem[]; no: PageItem[];
+  /** "research" (owner 2026-11-16): written from published reviews and specs for a product with under 4 player reports; `src`
+   *  holds source URLs, and the page shows no player counts or Player score for it ("Based on published reviews and specs"). */
+  source?: "research" };
+/** The page's quiet proof line for research content, in place of player counts and the Player score. */
+export const RESEARCH_LINE = "Based on published reviews and specs";
 
 const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Record<string, PageContent>, pickleball: pickleball as Record<string, PageContent>,
   discgolf: discgolf as Record<string, PageContent>,

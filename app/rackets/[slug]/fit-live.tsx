@@ -290,7 +290,8 @@ export function BeforePicks({ children }: { children: ReactNode }) {
 
 /** "Why yes, why not" (owner's final mock): 3 items per column and "+N more" (in the HTML, opened by a tap); with picks, up to 2
  *  items per column that speak to them get a "matters for you" tag. */
-export function FitYesNo({ yes, no, tier = "full" }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier }) {
+export function FitYesNo({ yes, no, tier = "full", research = false }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier;
+  /** Research content (sources are web pages, not players): no "N players mention it" lines. */ research?: boolean }) {
   const { p: { choice, picked } } = use(), picks = picked ? pickTags(choice) : [];
   return <div className="rp-yn">{([["yes", "✓", "Why yes", yes], ["no", "!", "Why not", no]] as const).map(([side, icon, title, items]) => {
     // A "matters for you" item never hides under "+N more": it takes the place of the last untagged one shown.
@@ -301,7 +302,7 @@ export function FitYesNo({ yes, no, tier = "full" }: { yes: PageItem[]; no: Page
     const rest = list.slice(SHOWN_ITEMS);
     const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}{hot.has(it.title) && <span className="rp-hot">matters for you</span>}</b>
       <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
-      {evidenceLine(it) && <small>{evidenceLine(it)}</small>}</div>;
+      {!research && evidenceLine(it) && <small>{evidenceLine(it)}</small>}</div>;
     return <div key={side} className={`rp-col ${side}`}><p className="rp-ch"><i aria-hidden="true">{icon}</i>{title}</p>
       {list.slice(0, SHOWN_ITEMS).map(item)}
       {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
