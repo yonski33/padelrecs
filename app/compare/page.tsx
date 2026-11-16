@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { catalog as loadCatalog } from "../../db/data";
 import { comparePairs, pairHref, pairKey } from "../../lib/compare-pairs";
 import { CompareView, compareMetadata, picked, hrefFor, type Query, type Data } from "./view";
+import { CompareV2, compareV2For } from "./compare-v2";
 
 // /compare?ids=a,b,c: any two or three products. Only the empty picker is indexed; a mix that is one of the curated
 // "X vs Y" pairs moves to that pair's clean address, every other mix stays out of the index (lib/compare-pairs).
@@ -25,5 +26,6 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const pair = curated(data, products);
   const light = isLight((q as { look?: string }).look);
   if (pair) redirect(`${pairHref(pair.a.slug, pair.b.slug)}`);
+  if (compareV2For(products.length, (q as { look?: string }).look)) return <CompareV2 data={data} products={products}/>;
   return <CompareView data={data} products={products} light={light}/>;
 }
