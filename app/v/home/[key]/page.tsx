@@ -1,7 +1,7 @@
 // The SkinRecs home, one cached page per set of quick-match picks (owner 2026-11-16: "SkinRecs has the same slowness padel
 // had"). proxy.ts rewrites "/" and "/?skin=…&goal=…" here (lib/view-key.ts SKIN_HOME_VIEW), so the CDN serves each combination
 // without a database read; a direct visit to /v/… redirects to its address. Padel's home has its own (app/quick/[key]).
-// Refreshed every 5 minutes, and at once on an admin write (app/funtimes/auth.ts).
+// Refreshed every 6 hours, and at once on an admin write (app/funtimes/auth.ts).
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { generateMetadata as homeMetadata } from "../../../page";
@@ -10,7 +10,9 @@ import { readSkinChoice } from "../../../../lib/skin-choice";
 import { niche, isV2 } from "../../../../lib/niche";
 import { attrProfileFor } from "../../../../lib/attr-profile";
 
-export const revalidate = 300;
+// 6 hours (owner 2026-11-16, Vercel cost: 5-minute refreshes were most of the CPU and 2M ISR writes); new data shows at once
+// through on-demand refresh (admin writes: app/funtimes/auth.ts; imports and publishes: /api/refresh, scripts/refresh-sites.mjs).
+export const revalidate = 21600;
 // The plain home is built with the site (SkinRecs; padel-style homes are app/quick). None without a database (CI).
 export function generateStaticParams() { return process.env.DATABASE_URL && isV2 && attrProfileFor(niche) ? [{ key: "-" }] : []; }
 

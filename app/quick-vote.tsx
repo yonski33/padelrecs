@@ -75,13 +75,23 @@ export default function QuickVote({ racketId, name, question, people, placeholde
   const [postedAs, setPostedAs] = useState(""), [todo, setTodo] = useState<DetailStep[]>([]), [step, setStep] = useState(0), [tags, setTags] = useState<string[]>([]);
   const saved = useRef<{ id: string; edit: string } | null>(null); // the posted review, which the details are added to
 
+  // The totals and this device's vote load when the card comes near the screen, not on every page view (owner 2026-11-16,
+  // Vercel cost: one uncached call per racket page view, most of them by visitors who never scroll this far).
+  const root = useRef<HTMLElement>(null), [near, setNear] = useState(false);
   useEffect(() => {
+    const el = root.current;
+    if (!el || typeof IntersectionObserver === "undefined") { setNear(true); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setNear(true); io.disconnect(); } }, { rootMargin: "600px 0px" });
+    io.observe(el); return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!near) return;
     fetch(`/api/racket-votes?racket=${encodeURIComponent(racketId)}`, { cache: "no-store" })
       .then(r => r.ok ? r.json() : null).then((b: { stats?: Stats; mine?: number | null } | null) => {
         if (b?.stats) setStats(b.stats);
         if (b?.mine) { setMine(verdictOf(b.mine)); setRating(b.mine); }
       }).catch(() => {});
-  }, [racketId]);
+  }, [racketId, near]);
 
   async function vote(v: typeof VERDICTS[number]) {
     const before = mine; setMine(v.key); setBusy(true); setError("");
@@ -132,7 +142,7 @@ export default function QuickVote({ racketId, name, question, people, placeholde
 
   const others = stats ? stats.total - (mine ? 1 : 0) : 0;
   const corner = stats && stats.total > 0 ? `${stats.total.toLocaleString("en-US")} ${stats.total === 1 ? people.one : people.many} voted` : "";
-  return <section className="qv" aria-labelledby="qv-title">
+  return <section ref={root} className="qv" aria-labelledby="qv-title">
     <div className="qv-top">
       <div>
         <p className="qv-eyebrow">Your take · one tap</p>
