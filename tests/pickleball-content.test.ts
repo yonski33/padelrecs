@@ -12,7 +12,7 @@ const banned = /racket|owner|% (liked|loved)|reddit|brand says|roomy/i;
 
 test("pickleball paddle page content follows the rules", () => {
   for (const [slug, v] of Object.entries(page as Record<string, PageContent>)) {
-    for (const t of [v.tagline, v.bottom, ...[...v.yes, ...v.no].map(i => i.t.replace(/==/g, ""))]) {
+    for (const t of [v.tagline, v.bottom, ...[...v.yes, ...v.no].flatMap(i => [i.title, i.t.replace(/==/g, "")])]) {
       assert.ok(t.length <= 105, `${slug}: too long: ${t}`);
       assert.ok(!banned.test(t), `${slug}: banned words: ${t}`);
       assert.ok(!hasAttribution(t), `${slug}: says who said it: ${t}`);
@@ -39,5 +39,28 @@ test("pickleball match-box lines follow the rules (tips and try-instead lines to
       if (l.alt) assert.ok(l.alt.slug !== slug && l.alt.src.length >= 2, `${slug}: try-instead needs another paddle and 2+ sources`);
     }
     assert.ok(!c.strengths[0]?.minor, `${slug}: a side trait leads`);
+  }
+});
+
+// Owner review of the samples (2026-11-16): the body adds what the title doesn't say, the biggest catch comes first,
+// arm wording stays experiential, and defects are said neutrally.
+const STOP = new Set("a an the and or of to in on at for with it its is it's your you out off up too very more less no not than from by as be can this that paddle".split(" "));
+const words = (t: string) => new Set((t.toLowerCase().replace(/==/g, "").match(/[a-z0-9.+']+/g) ?? []).filter(w => !STOP.has(w) && w.length > 2).map(w => w.slice(0, 5)));
+const medical = /\b(prevent|cure|heal|injur|tendon|inflammat|therap|medical)\w*/i;
+const loaded = /\b(junk|defective|garbage|poor quality|cheaply made)\b/i;
+
+test("pickleball items: body adds to the title, biggest catch first, no medical or loaded defect claims", () => {
+  for (const [slug, v] of Object.entries(page as Record<string, PageContent>)) {
+    for (const i of [...v.yes, ...v.no]) {
+      const a = words(i.title), b = words(i.t), shared = [...a].filter(w => b.has(w));
+      assert.ok(!(shared.length >= 2 || (a.size === 1 && shared.length === 1 && b.size < 4)), `${slug}: body repeats the title "${i.title}": ${i.t}`);
+    }
+    const n = (i: { src: string[] }) => new Set(i.src).size;
+    assert.ok(n(v.no[0]) >= Math.max(...v.no.map(n)), `${slug}: the biggest catch must come first`);
+    const c = (card as Record<string, CardContent>)[slug];
+    for (const t of [v.tagline, v.bottom, ...[...v.yes, ...v.no].map(i => i.t), ...(c ? [...c.strengths, ...c.catches].flatMap(l => [l.tip?.t, l.alt?.t]) : [])].filter((x): x is string => !!x)) {
+      assert.ok(!medical.test(t), `${slug}: medical claim: ${t}`);
+      assert.ok(!loaded.test(t), `${slug}: loaded defect wording: ${t}`);
+    }
   }
 });
