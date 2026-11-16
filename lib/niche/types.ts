@@ -153,6 +153,7 @@ export type Niche = {
     rate?: Record<string, [string, string]>; prompts?: string[];
     /** The community score's name ("thrower score"); default "player score". */ score?: string;
     /** The home's "N reviews · N new this week" pill sits inline after the subtitle (owner, DiscGolfRecs mock review). */ pillInline?: boolean;
+    /** Where the sport is played, for "Fresh off the court" ("course"); default "court". */ venue?: string;
   };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */

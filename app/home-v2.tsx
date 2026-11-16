@@ -67,7 +67,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       <HomeMatch payload={payload} choice={choice} older={older} listed={data.listed.length}>
         <aside className="hv2-side">
           <section>
-            <div className="hv2-sidehead"><h3>Fresh off the court</h3><a href="/reviews">all →</a></div>
+            <div className="hv2-sidehead"><h3>{`Fresh off the ${v2copy.venue ?? "court"}`}</h3><a href="/reviews">all →</a></div>
             <ul className="hv2-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}><a href={productHref(r)}>
               <span className="hv2-src"><span className={`t ${f.tag}`}>{f.tag}</span>{ago(f.date, now)}</span>
               <b>{nameOf(r)}</b>

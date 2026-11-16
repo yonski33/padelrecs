@@ -28,7 +28,7 @@ export const discgolf: Niche = {
     madeBy: "made by people with one disc too many in the bag 🥏", forum: "disc golf forum", blog: "disc golf blog",
     aboutStory: ["discgolfrecs started in a parking lot after a round. We'd bought discs off hype and flight numbers, found half of them flew nothing like the chart for our arms, and couldn't find a straight answer anywhere.",
       "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and disc golf forums together, counts it honestly, and tells you if a disc fits"],
-    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, tellUs: "Tell us how you throw", aboutLast: "your throw",
+    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, venue: "course", tellUs: "Tell us how you throw", aboutLast: "your throw",
   },
   schema: "discgolfrecs",
   site: {
