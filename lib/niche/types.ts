@@ -72,6 +72,9 @@ export type TopList = {
   reviewMonths?: number;
   /** Published reviews with a verdict a product needs before it can be listed (never below 5). */
   minReviews?: number;
+  /** A list for a kind of player ("best for beginners", "for tennis elbow"): ordered by the match engine for these picks, the
+   *  home quick match's own order (lib/home-rank.ts rankHome), so a level pick keeps the niche's level gate. */
+  picks?: { level?: "beginner" | "intermediate" | "advanced"; arm?: boolean };
 };
 
 /** One answer on the finder (/finder). `want` tags count for a product and `avoid` tags against it; an option with neither,

@@ -12,15 +12,15 @@ import type { Catalog } from "../../db/data";
 
 // The rankings hub in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/Wi8FK4NaHKv4dvWLjzk8ao),
 // PadelRecs only: a card per live ranking with its tag, the top three photos and its #1. Our real lists only (the mockup's
-// tennis-elbow and beginner lists don't exist yet).
+// tennis-elbow and beginner lists exist on PickleballRecs, as list.picks).
 
 const SITE_ACC = "--site-acc" in niche.theme;
 /** The card's tag and tint per kind of list. */
 export function listKind(l: RankedList["list"]): { tag: string; bg: string; tint: string } {
-  const t = l.trait?.tags.join(" ") ?? "";
+  const t = [l.trait?.tags.join(" ") ?? "", l.picks?.arm ? "arm" : "", l.picks?.level === "beginner" ? "beginner" : ""].join(" ");
   if (/control|defence/.test(t)) return { tag: "control", bg: "#fff", tint: "#f3f1ea" };
   if (/power|smash/.test(t)) return { tag: "power", bg: "#fff", tint: "#f3f1ea" };
-  if (/arm/.test(t)) return { tag: "arm-friendly", bg: "oklch(0.94 0.05 200)", tint: "oklch(0.97 0.02 200)" };
+  if (/\barm/.test(t)) return { tag: "arm-friendly", bg: "oklch(0.94 0.05 200)", tint: "oklch(0.97 0.02 200)" };
   if (/forgiving|beginner/.test(t)) return { tag: "beginner", bg: "oklch(0.93 0.14 100)", tint: "oklch(0.98 0.04 95)" };
   if (l.modelYearsBack !== undefined) return { tag: "better value", bg: "#fff", tint: "#f3f1ea" };
   if (/spin/.test(t)) return { tag: "spin", bg: "#fff", tint: "#f3f1ea" };
@@ -49,7 +49,7 @@ export default function RankingsHubV2({ data, lists }: { data: Catalog; lists: R
 
       <section className="rk2-grid">{unique.map(({ list, entries, updated }, i) => {
         const k = listKind(list), first = entries[0];
-        const title = list.trait || list.modelYearsBack !== undefined || /\d{4}/.test(list.label) ? list.label : `${list.label} ${listYear(list)}`;
+        const title = list.trait || list.picks || list.modelYearsBack !== undefined || /\d{4}/.test(list.label) ? list.label : `${list.label} ${listYear(list)}`;
         return <a key={list.slug} className={`rk2-card${i === 0 ? " lead" : ""}`} href={listHref(list.slug)}>
           <span className="rk2-top">
             <span className="rk2-head"><span className="rk2-tag" style={{ background: k.bg }}>{k.tag}</span>{updated && <span className="rk2-upd">{`updated ${shortDate(updated)}`}</span>}</span>
