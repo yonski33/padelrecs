@@ -164,7 +164,8 @@ function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, ol
   const okAll = ok, okNew = (x: EngItem) => okAll(x) && (older || view.get(x.id)!.curated || !(x.year < (newerWith.get(x.family) ?? -1)));
   const best = p.familyBestWithin !== undefined ? { pct: (x: EngItem) => view.get(x.id)!.pct, within: p.familyBestWithin, newestAt: p.newestAt } : undefined;
   const cands = engineCandidates(all, okNew, 0, older, best).sort((a, b) => Number(!!view.get(a.id)!.hard) - Number(!!view.get(b.id)!.hard)
-    || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
+    // The shown % first (a capped row never sits above a higher %), then the score behind it.
+    || view.get(b.id)!.pct - view.get(a.id)!.pct || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
   // A specialty disc (DiscGolfRecs: a roller / turnover disc, turn ≤ −4) is never the #1 for "any stability".
   if (choice.style === "any" && cands[0]?.it.flags?.specialty) { const i = cands.findIndex(x => !x.it.flags?.specialty); if (i > 0) cands.unshift(...cands.splice(i, 1)); }
   const rows = cands.slice(0, size).map(x => { const v = verdictFor(items, choice, x.it.facts, x.id, setup.levelGate, p);
