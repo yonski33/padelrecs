@@ -72,5 +72,7 @@
 
 /* Dark underlined price link on rows #2 on (owner 2026-11-16). */
 .rb-buy { color: var(--ink) !important; font-size: 12.5px; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-.rb-name { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; }
-.rb-top .rb-name { font-size: 26px; }
+/* Names in Figtree bold as in the mockup (owner 2026-11-16: the serif names were hard to read); #1 a size up. */
+.rb-name { font-family: var(--sans); font-weight: 700; font-size: 16px; line-height: 1.25; }
+.rb-top .rb-name { font-size: 22px; line-height: 1.2; }
+@media (max-width: 640px) { .rb-name { font-size: 15.5px; } .rb-top .rb-name { font-size: 18px; } }
