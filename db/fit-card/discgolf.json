@@ -7259,6 +7259,1693 @@
    }
   ]
  },
+ "gateway-wizard": {
+  "strengths": [
+   {
+    "t": "Torque-proof putter: takes full-power throws under 200 ft without flipping.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-7da3b725-9fbc-4e8d-abd8-8817c671f91e",
+     "research-39270224-7844-4ab7-a06e-cd98a72b874b",
+     "research-9d21abe8-4d9d-4b2d-9436-c4e714f087ff",
+     "research-aba8ea37-e6e5-48aa-b8dc-5f6a20897715"
+    ]
+   },
+   {
+    "t": "All-weather grip: chalky blends stay workable in cold and rain.",
+    "for": [],
+    "src": [
+     "research-5e3176f8-15a2-4401-9439-72b4250c29f3",
+     "research-90ab0e37-bd9a-411c-b836-23b448d21ede",
+     "research-951a0f84-1006-4d04-b2a7-56dd5bf03a73",
+     "research-ca1b003d-e656-4e63-950b-b5c38eb961a0"
+    ]
+   },
+   {
+    "t": "Comfortable hold: a deep rim with a small bead that sits right for putting.",
+    "for": [],
+    "src": [
+     "research-86606997-0cee-4a25-aaee-d19375565626",
+     "research-7da3b725-9fbc-4e8d-abd8-8817c671f91e",
+     "research-f6f686bd-1930-431a-a5a9-fc6bdfd85f8f",
+     "research-612af847-9256-4f73-87fc-7bb84a6a10d4"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run lottery: feel and stiffness vary copy to copy, even in one plastic.",
+    "for": [],
+    "src": [
+     "research-fa0a3f64-003e-43c9-a2b2-3ae9948cc83f",
+     "research-38e9d6cf-4420-4a23-9e46-bdaeea651db6",
+     "research-90ab0e37-bd9a-411c-b836-23b448d21ede",
+     "research-c806df21-02a3-46dd-80cf-fc6347a5e0cf"
+    ]
+   },
+   {
+    "t": "Chunky fit: feels deep and bulky for smaller hands.",
+    "for": [],
+    "src": [
+     "research-6dee8070-51f2-4d8a-b01e-ea6d7c0ca132",
+     "research-6289338b-136b-42c6-845d-f8123354044c",
+     "research-f91bc32f-3a4e-49ba-87ec-8db004c00325",
+     "research-365e9c14-ea47-4e75-bdef-17198199e054"
+    ],
+    "alt": {
+     "slug": "axiom-proxy",
+     "t": "Want a shallower fit? The Axiom Proxy is known for great grip and accuracy: 3/3/-1/0.5.",
+     "src": [
+      "research-f91bc32f-3a4e-49ba-87ec-8db004c00325",
+      "research-365e9c14-ea47-4e75-bdef-17198199e054"
+     ]
+    }
+   },
+   {
+    "t": "Range limits: spin putts can fade short or feel awkward past 20-35 ft.",
+    "for": [],
+    "src": [
+     "research-7bb929ad-95af-42b0-92ad-8d6bae571810",
+     "research-2a321b68-9bb7-47ee-ae87-2f14e6e9b412",
+     "research-7c894dec-15f5-444e-af6f-034878c90495",
+     "research-40cbc9b9-4c38-43c6-a917-2a050a9471c7"
+    ]
+   }
+  ]
+ },
+ "westside-underworld": {
+  "strengths": [
+   {
+    "t": "Turnover machine: holds long right-turning lines and easy rollers.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "205c1996-a33a-427c-993a-1a0ad92468f8",
+     "6c86de09-7a39-4ede-a6b0-8f9c53bdfdfa",
+     "d7787755-df42-4fdf-b0ee-69a67cd88e81",
+     "research-45369f7f-fdde-42d6-a7a4-571cda0e631e",
+     "research-71ab6de5-8f87-42fe-b08c-d4aa8b68b979",
+     "research-4909f7aa-e45c-40ce-83e4-531d19f125ad",
+     "research-704baaed-5c23-4924-921f-5e0340b1ee71",
+     "research-8811c7dd-e718-4437-822b-2d4a6c21728e",
+     "research-1027bdbc-44b7-4397-a653-ec58fcc70366"
+    ]
+   },
+   {
+    "t": "Effortless reach: steep hyzers flip up for easy, glidey carry at modest arm speed.",
+    "for": [
+     "arm",
+     "beginner"
+    ],
+    "src": [
+     "205c1996-a33a-427c-993a-1a0ad92468f8",
+     "5247c428-99da-4d67-9aa5-b91cec9695b6",
+     "54e69be7-4aeb-498c-b354-5d9f93117aeb",
+     "60f123f3-0643-48c4-9f33-0c7858f99ff7",
+     "research-45369f7f-fdde-42d6-a7a4-571cda0e631e",
+     "research-57ac11d4-ce3f-4b1e-947c-0877458c3d76",
+     "research-2c99a7c8-c380-47eb-9b99-0ec981fee804"
+    ]
+   },
+   {
+    "t": "Teaching tool: helps learn hyzer flips without overpowering.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-8811c7dd-e718-4437-822b-2d4a6c21728e",
+     "research-cc94cedc-e742-4669-9881-65728b181271"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Burns easily: flat or powered throws turn it over until it rolls.",
+    "for": [
+     "advanced",
+     "power"
+    ],
+    "src": [
+     "research-45369f7f-fdde-42d6-a7a4-571cda0e631e",
+     "research-556f084b-0f8a-4936-9341-382208502a9e",
+     "research-732e564b-d9b5-40a4-9f6a-5cbbb0c18a49",
+     "research-1f02e913-e5f5-4986-98ed-e2d693b263d8",
+     "research-c183be30-88cf-453b-8688-8cc8976afd7c",
+     "research-960ae161-44ca-4a3a-8e5b-1b4714e11bfa",
+     "research-2880c19e-4419-4c12-8bb6-3d6f9e632b1e",
+     "research-6cdecc19-4c3a-4344-94bc-53ab7b0c3845",
+     "research-2abf5384-5b80-4284-a9e6-bf9cb4b39933",
+     "research-0dfde784-8703-448d-903f-a3d7334f59cb",
+     "research-adf5ac5f-4f36-4268-a3a6-2ca477088456"
+    ],
+    "alt": {
+     "slug": "innova-leopard",
+     "t": "Want less turn? The Innova Leopard is understable but holds lines: 6/5/-2/1.",
+     "src": [
+      "research-c183be30-88cf-453b-8688-8cc8976afd7c",
+      "research-2abf5384-5b80-4284-a9e6-bf9cb4b39933"
+     ]
+    }
+   },
+   {
+    "t": "Outgrown fast: grows too flippy as arm speed improves.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-1f02e913-e5f5-4986-98ed-e2d693b263d8",
+     "research-865f8eb2-cf4e-4654-869c-27654fd72565"
+    ]
+   },
+   {
+    "t": "Hard to shape: can be tough to fly consistently.",
+    "for": [],
+    "src": [
+     "research-134a80cd-5d7f-49b7-8e7a-6def1214a306",
+     "research-194beedf-2094-4ef5-acc0-481a331f121a"
+    ]
+   }
+  ]
+ },
+ "innova-tern": {
+  "strengths": [
+   {
+    "t": "Huge reach: adds big distance, often 50 ft over other drivers.",
+    "for": [],
+    "src": [
+     "035889ae-48e2-468d-918b-1002d6563a06",
+     "20fe23ed-dffd-4d89-8b56-0f0e9653f074",
+     "531a0c7d-b360-4652-a1a0-56367f5ecad6",
+     "research-6bdc00f2-fb08-4d8f-aac9-a0e765699131",
+     "research-e786c9bf-6153-4168-a063-3b37a4db1aae",
+     "research-44c94b01-a9b4-4c71-8e9c-fc261ecfde65",
+     "research-ba3f9918-07c8-4c16-a6e7-13946d7ef843",
+     "research-ba21d134-ab2b-474a-b5e9-905d06d3e98f",
+     "research-c2d39eef-ea8c-4c77-88ae-aab59aa4a5dd",
+     "research-988538fe-0972-4183-a8eb-c3dbb36ac027"
+    ]
+   },
+   {
+    "t": "Accessible 12-speed: gives an easy S-curve without a pro-level arm.",
+    "for": [
+     "control",
+     "arm"
+    ],
+    "src": [
+     "93674d9e-6a0a-450f-a3c4-f2be3784b4fc",
+     "research-152a5139-08d5-4b80-a7a2-1503c427d8ef",
+     "research-05beb3fa-2e37-49f3-91d5-3de7ab765292",
+     "research-cc5f0c8b-099e-40b8-bde1-95caa06363dd",
+     "research-ba21d134-ab2b-474a-b5e9-905d06d3e98f",
+     "research-aea46401-4e5b-41a5-85c6-86828be2064d",
+     "research-85872300-7b74-403c-842d-2d382c25b7b7"
+    ]
+   },
+   {
+    "t": "Sidearm friendly: makes full forehand flex shots easy.",
+    "for": [],
+    "src": [
+     "c1340ee1-ea6b-44d0-a6ac-932eccf5be62",
+     "research-be5fad34-9abf-497e-814e-0e27852a7277",
+     "research-7e7bf286-ad87-4a9e-956e-d29c9e82b359"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Plastic swings it: halo and Champion fly far more stable than Star, GStar or Echo Star.",
+    "for": [
+     "control",
+     "power"
+    ],
+    "src": [
+     "20fe23ed-dffd-4d89-8b56-0f0e9653f074",
+     "b7250438-385b-422f-a532-b8cf375dd258",
+     "2e361453-c688-40fd-84d3-107398ce4aee",
+     "research-1bf53fd5-ef56-4ef2-9bfa-245c720fbf34",
+     "research-0f672758-8f47-4b97-af62-f70f0166f9ab",
+     "research-fbef647e-5833-4e4e-9255-8c81b1b0ca7c",
+     "research-ba3f9918-07c8-4c16-a6e7-13946d7ef843"
+    ]
+   },
+   {
+    "t": "Fair-weather flyer: can turn over in rough conditions and flip further with wear.",
+    "for": [],
+    "src": [
+     "research-e264459e-f4c9-4dec-bf33-a244ceccd955",
+     "research-72ac6cbd-0db9-4a7d-af18-5a725e4b358b",
+     "research-362c65f9-be0a-49d1-9df2-4dae899121d9"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want an all-conditions driver? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-e264459e-f4c9-4dec-bf33-a244ceccd955",
+      "research-72ac6cbd-0db9-4a7d-af18-5a725e4b358b"
+     ]
+    }
+   }
+  ]
+ },
+ "discmania-md3": {
+  "strengths": [
+   {
+    "t": "Neutral workhorse: holds straight lines before a dependable, gentle fade.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "c4a0584d-8ec6-43cf-adc2-2edbf277283d",
+     "917d071d-8584-4e12-8307-73ddc2b0827c",
+     "e49bbd0e-8c14-4abc-8083-a1e88cb8ab45",
+     "65bf27d9-e045-4da8-bd5e-37317cdcc879",
+     "1e89e018-923a-428d-b630-0184a1cac2c9",
+     "82811e59-12a5-44e3-866b-1332a42d3a8d",
+     "research-437d7425-236f-4e00-9069-0f1499c80d9f",
+     "research-83754b01-9e85-4cd7-a610-4337cb6fc120",
+     "research-15f55eac-19a1-4f42-ad26-4b949dc00fec",
+     "research-0d4001ff-45a2-48f0-b74c-332405f8709d",
+     "research-73acf483-2d9b-4a85-8639-c211dec496ad"
+    ]
+   },
+   {
+    "t": "Extra reach: big glide carries it far for a midrange.",
+    "for": [],
+    "src": [
+     "671a271f-39d8-4d66-8193-1aaef75b758f",
+     "0c128805-89eb-4d4a-8e87-261d11315aa5",
+     "9fe8df9c-8f85-4c9a-b89f-fb18dd5ec015",
+     "8d8a3747-a4e1-4ce1-bfcd-8de3ce60627f",
+     "research-8b5d8e30-13ea-40aa-87bb-829bed31388f",
+     "research-95eef0e1-698a-4d9e-a0a6-a1bb6bffadc9"
+    ]
+   },
+   {
+    "t": "Tough plastic: c-Line shrugs off tree hits and stays near new.",
+    "for": [],
+    "src": [
+     "c4a0584d-8ec6-43cf-adc2-2edbf277283d",
+     "research-437d7425-236f-4e00-9069-0f1499c80d9f",
+     "research-95eef0e1-698a-4d9e-a0a6-a1bb6bffadc9"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run variation: copies range from overstable to straight-understable.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "research-395e0b52-162c-4273-bd20-62a9bb56940f",
+     "research-eb8e8826-b890-49d6-b9e4-c63787140452",
+     "research-a8e238f3-47ae-45de-af03-ca0944c4bdc0",
+     "research-a8abe9d5-5d21-4589-bde6-6a807e3b90af",
+     "research-4ea3405c-3a0a-4777-815d-49e3b2b8a204"
+    ],
+    "alt": {
+     "slug": "axiom-pyro",
+     "t": "Want a sure fade? The Axiom Pyro is overstable and known for a reliable fade: 5/4/0/2.5.",
+     "src": [
+      "research-395e0b52-162c-4273-bd20-62a9bb56940f",
+      "research-4ea3405c-3a0a-4777-815d-49e3b2b8a204"
+     ]
+    }
+   },
+   {
+    "t": "Wet-weather grip: c-Line turns slick with moisture and can feel slippery even dry.",
+    "for": [],
+    "src": [
+     "research-7e3130a4-58c4-4f51-a2cb-cbd9ed4a3711",
+     "research-5687e0df-f739-4e8a-a164-147f5e28fde1",
+     "research-56017ed9-c2df-4c8f-8dd7-4898a0063301",
+     "research-595b8c1d-4c55-4ab3-a128-cb31ecd23965"
+    ]
+   },
+   {
+    "t": "Uneven aging: some copies wear flippy within a few rounds.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-df58ffcb-978e-4f98-a5eb-3d08ac7b392f",
+     "research-0cfb570d-8af2-43b3-b48c-c3571e911a33"
+    ]
+   }
+  ]
+ },
+ "kastaplast-falk": {
+  "strengths": [
+   {
+    "t": "Easy distance: flips up from a hyzer and carries huge glide without a big arm.",
+    "for": [
+     "arm",
+     "control"
+    ],
+    "src": [
+     "f1c9336c-5355-451e-9e20-02b98d9bad4b",
+     "4f9b4d5f-3e38-4405-9754-a62ca86ad04a",
+     "46af4645-5663-4936-b828-327a1287c98d",
+     "15c7c6f2-d872-462c-b3ad-4c202ff06dbb",
+     "research-69736ac6-60f5-40f3-9177-bce828777f50",
+     "research-d7cc46c7-d585-4df5-84b6-5983b8f7ebfb",
+     "research-56ffdacb-ce99-46ee-8068-badb292537ff",
+     "research-09212543-4418-4470-ac22-401555d9db0c"
+    ]
+   },
+   {
+    "t": "Dependable control: holds a straight, predictable line out to about 300 ft.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-09212543-4418-4470-ac22-401555d9db0c",
+     "research-8d1e8b5d-49da-465c-99fc-cf1c4481d5be",
+     "research-77a52b12-a878-41b6-8e06-4befff825f11",
+     "research-afd9a43b-9d66-415d-8fe8-e99a6c277008",
+     "research-42694e6d-f1d0-4e14-851a-167a4b821bfb",
+     "research-804d55c3-945b-469d-9fcf-77c3d5695f22",
+     "research-1b639ffe-d884-4751-8f69-d43afed9d5af",
+     "research-8436019b-7ce7-48be-9f53-08739fe591fb"
+    ]
+   },
+   {
+    "t": "Anhyzer tool: flat releases hold long, high turnovers.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "4f9b4d5f-3e38-4405-9754-a62ca86ad04a",
+     "6d1b96a9-0419-4e20-b1d7-fa40b567ef63",
+     "research-69736ac6-60f5-40f3-9177-bce828777f50",
+     "research-d7cc46c7-d585-4df5-84b6-5983b8f7ebfb"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Seasons backwards: copies get more stable as they beat in, losing their early turn.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-e36310a7-f446-4a67-9309-761be55e9a1f",
+     "research-9ba4121e-1037-4c22-8cb4-813291831f68",
+     "research-1aacd719-e4c8-48d7-a907-db6fd5f5bfde",
+     "research-9a3e6033-e227-4b32-a57b-644658d40cb8",
+     "research-11d9da20-a276-4031-a0ee-d07104c79533",
+     "research-b8738684-a295-420d-af56-833ba7177a52",
+     "research-a41b618d-a22d-491e-8580-15bb57dab24b"
+    ]
+   },
+   {
+    "t": "Flippy for big arms: full power turns it over and can burn it.",
+    "for": [
+     "advanced",
+     "power"
+    ],
+    "src": [
+     "f1c9336c-5355-451e-9e20-02b98d9bad4b",
+     "research-3678569e-672b-411d-8914-2cbb4bca01f5",
+     "research-742baa1b-ed76-4605-a1aa-3b3baf1c0d3a",
+     "research-ba5bf3c0-1c17-4469-a360-2f6e90c3260b",
+     "research-c9daf600-6e93-40d4-8367-28a0126b3c64",
+     "research-59581b20-22f2-4db7-a518-178c12d20397",
+     "research-77a52b12-a878-41b6-8e06-4befff825f11"
+    ],
+    "alt": {
+     "slug": "innova-teebird",
+     "t": "Big arm? The Innova TeeBird is known for a reliable fade and holding lines: 7/5/0/2.",
+     "src": [
+      "f1c9336c-5355-451e-9e20-02b98d9bad4b",
+      "research-77a52b12-a878-41b6-8e06-4befff825f11"
+     ]
+    }
+   },
+   {
+    "t": "Run variation: copies vary: some fly crazy overstable, others flippy.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "research-dd461945-3619-4e2c-8379-cc4ddcd9aafa",
+     "research-85c6103c-1b92-46d2-9335-5e608178d53d",
+     "research-1cdd0cd6-5f9a-4f27-968a-4e1749cbf3e8",
+     "research-ba5bf3c0-1c17-4469-a360-2f6e90c3260b"
+    ]
+   }
+  ]
+ },
+ "innova-orc": {
+  "strengths": [
+   {
+    "t": "Controlled distance: holds straight for most of the flight, then fades reliably.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "9d73f2ed-4ddd-4bd5-b6e1-3e7734afe225",
+     "05ea13e3-c5c7-4836-856e-d5560027edf6",
+     "2f592eac-8a9e-42f9-9920-fc0b3149da10",
+     "research-64938244-d065-403a-bd61-f417e895bb5b",
+     "research-3d5d98b2-0759-4497-b4fe-b1967c0c923e",
+     "research-b63fd29e-482c-4240-8256-a9d748f2fdb5",
+     "research-12a47e2f-2441-457e-91da-6632aac16ae7",
+     "research-a24d6a31-15ab-4325-ab16-601385fa5e8d"
+    ]
+   },
+   {
+    "t": "Ages well: seasoned copies become favourite bombers.",
+    "for": [],
+    "src": [
+     "research-2324ad17-ddac-47e8-9385-87d61f127f2f",
+     "research-b63fd29e-482c-4240-8256-a9d748f2fdb5",
+     "research-11d5c921-497c-4865-b1b3-87ac940b862e",
+     "research-5c66007b-b54a-4787-b04a-e135333bab2d",
+     "research-721ea852-a4c7-4e56-9199-6029c8f8b733"
+    ]
+   },
+   {
+    "t": "Forehand friendly: takes power sidearms smoothly, a long-time flick staple.",
+    "for": [],
+    "src": [
+     "2643bf28-af28-4add-b97f-d0c0c2be0091",
+     "research-64938244-d065-403a-bd61-f417e895bb5b",
+     "research-886042fa-fc8d-4c1e-81e3-9cca12eee787",
+     "research-156c06b9-39ef-4044-9588-beefc771bad9",
+     "research-9afe8c6f-b43a-41c7-a56e-4e819e38fd92"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run lottery: copies range from flippy to meathook; Halo and fresh Star are beefiest.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "2643bf28-af28-4add-b97f-d0c0c2be0091",
+     "research-f4589c9f-a0ef-4ce0-9b06-6f7bd36b93b6",
+     "research-4ca347bd-c0b8-49da-b314-2ff10dc80dae",
+     "research-d8789c7c-4a66-48e0-bea8-9f02544930c3",
+     "research-bf4bc884-31ce-4cf0-94a8-965ee47eab90",
+     "research-11d5c921-497c-4865-b1b3-87ac940b862e",
+     "research-d5aafe28-b6f4-45a4-8bbd-e2b6b21bf934"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Want more consistency? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "research-bf4bc884-31ce-4cf0-94a8-965ee47eab90",
+      "research-d8789c7c-4a66-48e0-bea8-9f02544930c3"
+     ]
+    }
+   },
+   {
+    "t": "Fades less over time: dX and tree-hit copies can lose stability quickly and start flipping.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "9d73f2ed-4ddd-4bd5-b6e1-3e7734afe225",
+     "research-e8f9db73-6524-4032-b69b-846faca1fb9c",
+     "research-2f03665a-1e7d-4352-a2ba-150b8e259bf1",
+     "research-028a8c59-eb6d-4db8-ad4e-0fd78ed35a1c"
+    ]
+   },
+   {
+    "t": "Stiff out of the box: fresh copies fade hard with little glide until broken in.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "research-2c0833e1-87f7-404f-93b3-cfb2575cb1f7",
+     "research-aac22616-42b1-46c9-85b9-209f6461d1fa",
+     "research-5c66007b-b54a-4787-b04a-e135333bab2d"
+    ],
+    "only": [
+     "arm"
+    ]
+   }
+  ]
+ },
+ "discmania-essence": {
+  "strengths": [
+   {
+    "t": "Effortless distance: pops up from hyzer and glides far without a big arm.",
+    "for": [
+     "arm",
+     "control"
+    ],
+    "src": [
+     "ee379d55-47d8-43c1-ac4c-97a38c81c566",
+     "de43c6f3-05d1-4d88-8e40-e87d36f2a2a5",
+     "2b2c1714-6cbe-4cde-b5ab-975a52fd8489",
+     "e25971fd-7218-487c-815e-f534b3661072",
+     "ce867071-f8c1-472c-9f80-969eee775911",
+     "0ddf2052-f2f5-4ec0-b0bd-7be83cafac20",
+     "research-2c6c29ee-70a6-4158-9a10-e542172fd30c",
+     "research-9fae5e48-e4d2-4194-a9c0-14bbd91cbe99",
+     "research-88422de5-e343-402e-b790-4fc9ecf84791"
+    ]
+   },
+   {
+    "t": "Controlled flex: holds turnovers without burning into a roller.",
+    "for": [
+     "beginner",
+     "control"
+    ],
+    "src": [
+     "23f72b7f-eb0b-4a8a-9e84-68bf825b232e",
+     "ecd41cf4-e06c-4cc9-bf8a-6d828b455d50",
+     "9cae4939-70d4-40d7-a75c-ad338a7be1bc",
+     "3bc25bd1-7d77-4f48-8363-f0bacfaad089",
+     "research-f5ad2556-f9f8-431b-aa36-b3c9a05c43e6",
+     "research-9684a610-844e-46dc-b5ad-aa747e142618",
+     "research-bb35753b-488f-490b-b6e3-8769b064cb67",
+     "research-03985f34-9dd5-442d-94bc-afef10079f5b"
+    ]
+   },
+   {
+    "t": "Forehand friendly: touch flicks go right where aimed at 80–150 ft.",
+    "for": [],
+    "src": [
+     "23f72b7f-eb0b-4a8a-9e84-68bf825b232e",
+     "e25971fd-7218-487c-815e-f534b3661072",
+     "research-42a46301-2fe2-4ede-9e66-5633ad6ddb1d",
+     "research-04660863-d900-4c64-8346-cff94a248fa5"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Shifts with wear: new copies start stable, then can turn flippy after about 20 rounds.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-64eb51c8-a4fa-4834-bf62-fa30ba29f685",
+     "research-70cfb43c-4942-464c-b261-2b0e8b905cb8",
+     "research-1230cda0-81a3-4461-af84-0a9c2b9d049c",
+     "research-4bd66ce3-02c5-4be4-ad6f-9764a1f32268",
+     "research-62e67d8f-7a5a-469e-923a-f2eec0c1a40f",
+     "research-68c25560-7e29-49de-bab7-e55c6c964f8d"
+    ]
+   },
+   {
+    "t": "Run differences: lumen, Premier and heavy runs fly straighter than light Neo.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "e495fe50-2938-4dc7-8125-5326c334073b",
+     "6f308980-541b-45df-aecc-d3f1fa14ac2d",
+     "1577e392-647d-4fe6-907c-f50d98d31716",
+     "research-a5e90125-c13d-4d20-9c17-f46cd5a23755",
+     "research-e5b05c9d-ca5d-4150-bb64-7323c7d06595"
+    ]
+   },
+   {
+    "t": "Headwind trouble: can turn over in stronger wind and drift too far right.",
+    "for": [],
+    "src": [
+     "research-c891d550-a367-4c3c-ad43-753c285c395e",
+     "research-69d715bb-0b76-494f-b13e-bbc592d3d737",
+     "research-88422de5-e343-402e-b790-4fc9ecf84791"
+    ],
+    "alt": {
+     "slug": "innova-teebird",
+     "t": "Need wind control? The Innova TeeBird is known for a reliable fade: 7/5/0/2.",
+     "src": [
+      "research-69d715bb-0b76-494f-b13e-bbc592d3d737",
+      "research-88422de5-e343-402e-b790-4fc9ecf84791"
+     ]
+    }
+   }
+  ]
+ },
+ "prodigy-pa-3": {
+  "strengths": [
+   {
+    "t": "Torque-resistant putter: holds dead-straight lines without turning over, then a soft fade.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "db84a53d-7f55-433a-8c4a-4528fd476f45",
+     "e9b0daf9-f991-49cd-9be6-de271ca0b1a2",
+     "5d9b161f-6df4-4bbe-98c6-26e163f23d06",
+     "b4d9794e-aec8-445c-986c-956cbe1f7f3e",
+     "24379959-3d02-4e06-9a00-8a917f80200b",
+     "research-c9b25294-c138-4b7c-9f13-27c1f04e1679",
+     "research-c3f30af1-e710-49c0-bb5e-bbc944423b10",
+     "research-98edc486-9ef6-4081-9248-f67a8704c64b",
+     "research-3783d1f9-eea5-44bc-9ec7-2e304608b86e"
+    ]
+   },
+   {
+    "t": "Steady in weather: stays calm in swirling wind on putts and upshots.",
+    "for": [],
+    "src": [
+     "0a71a616-7eb4-4e8f-9145-68829065a846",
+     "496d3616-d395-4bb0-8156-45141b6fda10",
+     "13b1d2b2-a737-447f-9957-28080b2917b3",
+     "research-15258f0b-16d0-4492-9eb0-ac7ec763d565"
+    ]
+   },
+   {
+    "t": "Great feel: 300 Soft and 350G stay grippy, even wet or frozen.",
+    "for": [],
+    "src": [
+     "research-c597aeb4-aa4e-4b5f-99f8-cde7ac633159",
+     "research-ba13eaca-36b8-40b9-9a58-51c27322061b",
+     "research-90fcbf24-158f-4f65-a181-fd972a50e0be",
+     "research-97c4f56e-b8cd-4af9-8c89-59e0558b17a7"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Changing batches: new 300 Firm and 350G runs feel different from older sets.",
+    "for": [],
+    "src": [
+     "research-376eba30-d671-41d6-b938-c522f421a413",
+     "research-66b138ae-a8ba-4028-8beb-b547c20b091b",
+     "research-f68e4a10-5ca7-42e2-b7b3-f0e9e3059d1d",
+     "research-fabd1199-6e35-4d99-a5cb-ff88c931c00f",
+     "research-4bfb119a-e701-4889-b794-88b0269a4637"
+    ]
+   },
+   {
+    "t": "Short carry: low glide limits push putts from long range.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "0a71a616-7eb4-4e8f-9145-68829065a846",
+     "research-5eff5736-80a1-492a-9ccc-175fa59de07c",
+     "research-d30e470c-301b-457a-8e26-896c34ab36de",
+     "research-8aa09dc6-e5a6-494c-98bf-b254ef124752",
+     "research-c3f30af1-e710-49c0-bb5e-bbc944423b10"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "streamline-pilot",
+     "t": "Want more glide? The Streamline Pilot is known for lots of glide and accuracy: 2/5/0/1.",
+     "src": [
+      "research-5eff5736-80a1-492a-9ccc-175fa59de07c",
+      "research-d30e470c-301b-457a-8e26-896c34ab36de"
+     ]
+    }
+   },
+   {
+    "t": "Early hook: can fade back more than expected on softer throws.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-f1390567-d951-42a8-925e-4fc3017fae8a",
+     "research-8fcbc533-5831-4890-9814-56aa87980bbf"
+    ]
+   }
+  ]
+ },
+ "innova-invader": {
+  "strengths": [
+   {
+    "t": "Point and shoot: holds whatever line it is released on, flat and true.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "3cc45f74-5043-4f6a-967f-8c766132e18d",
+     "934f62e5-eb5b-4483-8162-2f0b5078bec9",
+     "34cb7a01-aa75-4612-9531-413306608569",
+     "research-ae1900c8-3acf-44b7-90d5-63498fa8fa8a",
+     "research-a42bb4a4-7973-4d56-95c6-859f430ef419",
+     "research-a7952249-39e0-4047-a484-6b17693ac174",
+     "research-c897361d-21c4-4b2d-9332-f570945cce8a",
+     "research-150e42ae-cf6a-4c4b-a91d-529a3e1436c9",
+     "research-6315d618-7b6d-4708-83d5-be547ba8bc25"
+    ]
+   },
+   {
+    "t": "Sticks approaches: low glide drops softly without blowing past the basket.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "fb29a581-503a-46ed-a427-24737d590645",
+     "07089c84-50f1-4eb3-a0f6-96f371f5f294",
+     "3e7c683e-b738-4e97-bd0c-6767f0b7f819",
+     "38516eaa-b5d0-42ad-ab2a-9707bf979a3e",
+     "22d7d266-48b3-4820-a89e-0add27af2426",
+     "research-4262cb05-d507-4e1d-879d-e26c4cdad2e3"
+    ]
+   },
+   {
+    "t": "Comfortable grip: flat, shallow top feels great and putts well in wind.",
+    "for": [],
+    "src": [
+     "6795047e-8cc6-44ad-a851-1eec247bc7d2",
+     "f56e0f81-934f-42b0-8151-25f35e2c4eb2",
+     "research-9e0c84c9-e0b5-4bb8-acc7-dfefabf2c5e0",
+     "research-e1a40dd7-5ba0-4eac-b59d-eb7250555527",
+     "research-6cb3f2c8-6d25-428c-8120-da6fba77f49a",
+     "research-ff8a45d8-8a2d-4e9c-8cd9-5d7fdf5c5d8e"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flips when ripped: can turn over on full-power throws, especially worn DX.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "0a780010-f0f9-4d92-b055-1815d1f23214",
+     "fb29a581-503a-46ed-a427-24737d590645",
+     "research-299774ac-7f7a-437b-814f-a13ae604a8b6",
+     "research-4abfdc8b-c09e-40f0-a84c-6b317b52540e",
+     "research-db1c1085-9687-427b-9449-9f516fb172cb"
+    ],
+    "alt": {
+     "slug": "axiom-envy",
+     "t": "Want more fade? The Axiom Envy is known for a reliable fade and accuracy: 3/3/0/2.",
+     "src": [
+      "0a780010-f0f9-4d92-b055-1815d1f23214",
+      "research-299774ac-7f7a-437b-814f-a13ae604a8b6"
+     ]
+    }
+   },
+   {
+    "t": "Odd stiff runs: some premium copies feel domey or more overstable.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-4c02af46-7464-4241-99ce-11016a8d9eff",
+     "research-db1c1085-9687-427b-9449-9f516fb172cb"
+    ]
+   }
+  ]
+ },
+ "latitude-64-explorer": {
+  "strengths": [
+   {
+    "t": "Frozen-rope flight: tracks dead straight, then fades on cue.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "70a3e9b3-acab-481f-9e49-cd95c49e24be",
+     "760feb6b-edf6-4fc3-be96-1735c7e090ea",
+     "99d92c44-3fbf-4780-b029-6ec9fe8383fb",
+     "5abe13a9-910d-44a4-a7ff-928ad4d7c14b",
+     "1a23cb1e-fa2c-4df1-abd4-9b5f5a9320ed",
+     "9ccdef90-822b-4841-8ea4-4a332142573b",
+     "research-fbbd2517-0e61-4a78-8274-386c79217e61",
+     "research-c7236e19-40a5-4d62-ae54-e0aa348167c8",
+     "research-6ed7b439-8980-4503-8c2d-dc10649c4f68"
+    ]
+   },
+   {
+    "t": "Forehand friendly: handles sidearm torque without rolling over.",
+    "for": [],
+    "src": [
+     "d399c7ae-fbfe-43a5-a09a-13f213b3f272",
+     "9ccdef90-822b-4841-8ea4-4a332142573b",
+     "5c3bf9e6-fda8-4023-9ad7-e6f18bb534bb",
+     "research-2ee38a9c-6849-4505-ade0-a063b41ede29",
+     "research-87559bae-ae03-4315-8667-7bd0484449b1"
+    ]
+   },
+   {
+    "t": "Steady in weather: pushes through headwinds and crosswinds.",
+    "for": [],
+    "src": [
+     "9ccdef90-822b-4841-8ea4-4a332142573b",
+     "acc39ee7-df17-4fdc-8462-674da2b99370",
+     "9686fde2-25fe-495b-901e-42ccb75c6573",
+     "research-c7236e19-40a5-4d62-ae54-e0aa348167c8"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run roulette: glow, Moonshine and Recycled runs can fly far from stock Opto.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "research-2de55249-4078-428d-8242-733150250ea6",
+     "research-807ce195-6893-45b8-a594-19dd3f765fb4",
+     "research-40d1bd16-b906-43da-8f9e-90c3f9132211",
+     "research-dbb1833d-ce2f-47ba-9c26-0d13c81e910e",
+     "research-a7cd17e1-ae76-4b1e-9209-c0b793a2ce09",
+     "research-3cd354f4-bd89-45fa-b467-2f0c7890c2b9",
+     "research-fbbd2517-0e61-4a78-8274-386c79217e61"
+    ]
+   },
+   {
+    "t": "Softer finish: can fly less stable than a TeeBird and wear straight.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-dbdb4649-7a28-4b48-80df-9bf7f8321c96",
+     "research-cd01a94b-47c8-494f-8686-7e35d3c00a5b",
+     "research-407f7b7f-e894-4a43-9cad-335f373c96eb"
+    ],
+    "alt": {
+     "slug": "innova-teebird3",
+     "t": "Want more fade? The Innova TeeBird3 is overstable with a reliable fade: 8/4/0/2.",
+     "src": [
+      "research-dbdb4649-7a28-4b48-80df-9bf7f8321c96",
+      "research-407f7b7f-e894-4a43-9cad-335f373c96eb"
+     ]
+    }
+   },
+   {
+    "t": "Hard finish: the late left fade can be too strong.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-3b82230f-1e3a-4edf-a569-05ac85b8d7f3",
+     "research-78e1ea81-c568-45fd-85f0-5b77d91b5ed5",
+     "research-0e198df7-c016-47d2-a5eb-f375dc69e57a"
+    ]
+   }
+  ]
+ },
+ "innova-rat": {
+  "strengths": [
+   {
+    "t": "Laser approaches: holds straight for two-thirds of the flight before a soft fade.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "234c022a-7f46-409f-9317-68cfde53fdaf",
+     "1ad0da6a-fedc-4ff5-942b-c2bc95dfa93a",
+     "87273f83-0c1a-4b87-926f-1df7b4d04836",
+     "184cec56-e5b4-4976-828a-bd1be0987050",
+     "cc0c9d3e-7c08-4c1c-9af6-a48bdf80e22d",
+     "27fb0f36-32cb-4187-9e9f-5d1e17377637",
+     "research-ea5517ce-d20f-4e87-b019-3f221c6e1f13",
+     "research-e6d5402b-a695-4b53-964f-409bb78c1dc6",
+     "research-0de4dc3d-a467-4b41-ba0d-7fbe15da7ed9",
+     "research-4e475dde-c759-48bd-b106-fad4b70716a4"
+    ]
+   },
+   {
+    "t": "Forehand friendly: beadless rim releases cleanly on sidearm snaps.",
+    "for": [],
+    "src": [
+     "b7138ad5-a163-4fe3-ab50-2bcc2eaaeb24",
+     "87273f83-0c1a-4b87-926f-1df7b4d04836",
+     "e20b24b5-93ba-40ba-8864-467f688720a3",
+     "research-3cad7a6e-2b59-4751-900a-677a9320eb86",
+     "research-8ceeb2ac-e339-4d93-9cbd-1bb05e2cdc1e",
+     "research-e7930334-dba4-4bfe-9eb7-630cde04cdd1"
+    ]
+   },
+   {
+    "t": "Steady in weather: stays low and true into headwinds.",
+    "for": [],
+    "src": [
+     "1ad0da6a-fedc-4ff5-942b-c2bc95dfa93a",
+     "research-13795ba4-4ff7-4981-907f-547b469d8a79",
+     "research-e9a359e8-8c79-4dd5-aa9f-6819bda7f3da"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Not that beefy: flies less stable than a Zone clone and can flip with power.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-f9cb05b5-5969-4bbc-a2b6-e72ce6184e24",
+     "research-3f022dbc-aebe-4e72-8c67-3194751c0f1d",
+     "research-94334b2b-5c1f-407e-bf00-31986cda4e97",
+     "research-ff8adc5b-9489-4f65-be7e-7ff817a33ec5",
+     "research-568c59e0-12c4-4789-b2f0-28b58fcb334f",
+     "research-7374a25c-95bc-4e1b-bd03-13510a3326f4",
+     "research-eacda6aa-8325-4d01-871a-d6daca8de70f"
+    ],
+    "alt": {
+     "slug": "discraft-zone",
+     "t": "Need a true overstable approach? The Discraft Zone is known for a reliable fade: 4/3/0/3.",
+     "src": [
+      "research-3f022dbc-aebe-4e72-8c67-3194751c0f1d",
+      "research-ff8adc5b-9489-4f65-be7e-7ff817a33ec5"
+     ]
+    }
+   },
+   {
+    "t": "Limited carry: little glide keeps it from going far.",
+    "for": [],
+    "src": [
+     "research-48ffadbf-175e-4f45-a6e9-2cafe87564b4",
+     "research-4e475dde-c759-48bd-b106-fad4b70716a4"
+    ]
+   },
+   {
+    "t": "Not a first disc: it punishes nose-up and touchy releases.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "b7138ad5-a163-4fe3-ab50-2bcc2eaaeb24",
+     "research-be74686c-378e-4a2f-bbba-c6b9fc335fc3"
+    ]
+   }
+  ]
+ },
+ "latitude-64-saint": {
+  "strengths": [
+   {
+    "t": "Easy distance: floats far with huge glide and a mild finish.",
+    "for": [],
+    "src": [
+     "c7fdc2a8-6efb-4e23-86c2-d4a2c49631bb",
+     "6d91b49e-44a4-493e-97f4-4e6fb90f83e3",
+     "7d423b49-2547-4e27-8988-87f4b5d481d5",
+     "a207dc75-aa75-44f2-adec-4d9b9be79d95",
+     "research-8a8088dc-02ea-403b-8d26-9d1d5b59eb7c",
+     "research-25fe44df-8cba-4715-989c-eaa3b73e1dbb",
+     "research-97ef297c-ce4f-41e3-af0d-a66329aa845b",
+     "research-d7853644-a666-4ae6-b607-6cfbc08b0731"
+    ]
+   },
+   {
+    "t": "Shot shaper: holds straight tunnel lines and easy flex curves.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-192ca259-bd5f-40ce-bde0-545c145521e2",
+     "research-e6e77cc1-2516-4c6a-8df9-ae225f10f62e",
+     "research-7c97ddf1-fd21-4c13-a328-5b3fac607618",
+     "research-1560c9e3-4dc6-463d-b70f-9695b16d5d68",
+     "research-fb6a6fe4-c0d9-40f3-81c2-e7175ecb71d3",
+     "research-59eb8d67-4d04-4bfc-a1c8-cd3b661cc043",
+     "research-d63161a4-b752-4785-b705-f7c5dd4413e1"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flippy when ripped: can turn over hard at full power or in a headwind.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-bc950e88-e69c-4e33-85f2-601a507cde14",
+     "research-38658141-8046-4d8c-aae2-2b1f978128a6",
+     "research-a2b2d0cc-fc0c-481f-8d63-0515fc891a4b",
+     "research-d73be862-543a-42e0-bb13-f605675d2c37",
+     "research-e754db85-d5bd-4c3c-bb71-1f13192d1372",
+     "research-cbda805f-7b49-4634-b531-961e9fa8a478",
+     "research-25fe44df-8cba-4715-989c-eaa3b73e1dbb"
+    ],
+    "alt": {
+     "slug": "innova-teebird3",
+     "t": "Need a beefier fairway? The Innova TeeBird3 is overstable with a reliable fade: 8/4/0/2.",
+     "src": [
+      "research-bc950e88-e69c-4e33-85f2-601a507cde14",
+      "research-cbda805f-7b49-4634-b531-961e9fa8a478"
+     ]
+    }
+   },
+   {
+    "t": "Run split: some runs stay stubbornly overstable instead.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-3048fb23-6e68-4785-9424-0a166db54e37",
+     "research-0c3b9c87-807d-4b68-b14f-f3cca806498f",
+     "research-a5c42421-5992-4620-9033-bee5a318aeda",
+     "research-a61f88ec-92c5-478f-b0d6-1512831b9427",
+     "research-d47c9f94-dcdf-4cfb-9c06-416e3b19772a"
+    ]
+   }
+  ]
+ },
+ "latitude-64-saint-pro": {
+  "strengths": [
+   {
+    "t": "Workable flight: pushes straight with carry, then fades smoothly.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "9f20dcca-4ecb-4b97-9609-62d7c9511297",
+     "3e33c802-7d36-4c83-9bca-4f2a8c4759ac",
+     "e7bf2732-0759-4cee-90fb-2edda4ea6849",
+     "be277e72-eeff-47c0-a2b5-ddc0f7a60b10",
+     "235fbe85-b964-4a3a-853d-2e214e524495",
+     "608088d5-bc51-4188-abdb-6a8b3dac4b30",
+     "e4f92104-7ecb-43eb-81d4-875e6d10b1aa",
+     "9420b4bb-a259-4617-bec9-ec6801c4aa90",
+     "research-f6d085e1-47ac-4d55-90e4-39646804e468"
+    ]
+   },
+   {
+    "t": "Forehand friendly: narrow rim releases cleanly on sidearms.",
+    "for": [],
+    "src": [
+     "3e33c802-7d36-4c83-9bca-4f2a8c4759ac",
+     "9420b4bb-a259-4617-bec9-ec6801c4aa90",
+     "research-76f7f252-b492-46dd-82c1-e719c1b3c915",
+     "research-0ab6e5e8-5449-48ce-9e07-551299c655a0",
+     "research-f6d085e1-47ac-4d55-90e4-39646804e468"
+    ]
+   },
+   {
+    "t": "Starter option: serves as a first and only driver.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-660533ec-e080-4265-a266-80a57559d5b1",
+     "research-d1cb86a1-9903-48c5-8d87-dfbd7e150b79",
+     "research-86bbfcd7-3c15-4237-a8ee-41f842a99862"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flippier than rated: flies far more understable than its numbers, like a beat Valkyrie.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-647f5bce-8b0b-467c-b41d-c83c6752f462",
+     "research-1427270d-377e-422d-995d-c3e9285f96cd",
+     "research-b0dc1cd1-c0f4-4470-bd11-3392d8f5f312",
+     "research-72b9b112-fdc8-44dd-9c5a-2b8576a7f3e3",
+     "research-7c6faf2b-878b-45ed-bd51-9380aa705f2b",
+     "research-13099a7a-9910-4592-976e-5a76eebfb583",
+     "research-3e681928-0019-45e4-ac4d-1397d4491cd2",
+     "research-b5fc1003-b21e-4cff-9536-95b7b3ee14dc",
+     "research-1fe1797b-8563-480f-a7c8-00f247cb7cd0"
+    ],
+    "alt": {
+     "slug": "innova-teebird3",
+     "t": "Want a stabler fairway? The Innova TeeBird3 is overstable with a reliable fade: 8/4/0/2.",
+     "src": [
+      "research-b0dc1cd1-c0f4-4470-bd11-3392d8f5f312",
+      "research-1fe1797b-8563-480f-a7c8-00f247cb7cd0"
+     ]
+    }
+   },
+   {
+    "t": "Beats in fast: copies lose stability within weeks of play.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-1a6c1fec-e3f1-4ca0-b912-11ac476033f5",
+     "research-cd3372e2-9f96-49cb-92a8-902bb931a68c",
+     "research-76f7f252-b492-46dd-82c1-e719c1b3c915",
+     "research-b2cb9fba-c621-4f3f-a8cb-534a8b055dc8",
+     "research-b5ff829d-64cc-4708-a597-2defbdc24555"
+    ]
+   },
+   {
+    "t": "Odd beefy runs: some Opto copies fly as meathooks with no glide.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "d818b219-0eb2-459c-912e-b81d277499e4",
+     "research-c2416c20-7680-4796-b82e-95b2d2bc1d06",
+     "research-29a3662f-d0c0-47c4-94ff-f92fa6895c34",
+     "research-c5a787bf-5904-45e1-9caa-31f2491ca131"
+    ]
+   }
+  ]
+ },
+ "discmania-dd3": {
+  "strengths": [
+   {
+    "t": "Max reach: big glide and forward push stretch out long drives.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "6679a5ed-a6ae-452a-9935-68d7241696a2",
+     "09596010-1e66-4295-bd0f-b1ed0f599438",
+     "fb74f2ba-3dca-4aef-9fbf-fecb2e3f7821",
+     "7f26c546-52d0-4ad1-8124-ae3d3e9dd334",
+     "483dc372-4822-4009-8ee9-9c3741e303ae",
+     "78566f85-8932-4e9b-8642-813370f56be2",
+     "03b71993-0e71-4290-b661-189de4c55a6f",
+     "research-0e390452-8bb5-4936-aee5-859e9c53f029"
+    ]
+   },
+   {
+    "t": "Built for wind: fights headwinds and finishes with a dependable hook.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "6679a5ed-a6ae-452a-9935-68d7241696a2",
+     "d201c69c-bfe3-43fb-8c1f-0e573f2dab3b",
+     "835b2d22-742c-4a7a-bbb3-ff5396c39c56",
+     "research-88722cb0-706d-45f2-a8ef-d3e771430511",
+     "33d0603e-5c9f-4ceb-b1a5-b45154750aee",
+     "9386a785-836e-4df0-a6ed-510a74fd65ef",
+     "research-06712b35-384a-4ab1-8b05-b6594dd9541e"
+    ]
+   },
+   {
+    "t": "Sidearm power: takes forehand torque cleanly with no flutter.",
+    "for": [],
+    "src": [
+     "bbd9f84a-c70e-44f4-9444-49b8c0f4793a",
+     "research-88722cb0-706d-45f2-a8ef-d3e771430511",
+     "research-06712b35-384a-4ab1-8b05-b6594dd9541e"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run lottery: flat C-Lines fly far beefier than domey S-Line runs.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "d54fef38-857b-4826-8799-bbf387df6ea6",
+     "ea13594f-cdfa-4674-9d01-09ad509a4a19",
+     "research-47516997-5233-4753-abab-0d65f8542645",
+     "research-0f1f1aa7-35a6-490f-8d14-ddc292d1f491",
+     "research-2603b4af-8554-44b7-9bda-f91e83a1d375",
+     "research-aeeb7cdd-2baa-4104-b9c8-a1ca241791ed"
+    ]
+   },
+   {
+    "t": "Not a first disc: slower arms get a hard hook with no turn.",
+    "for": [
+     "arm",
+     "beginner"
+    ],
+    "src": [
+     "1e50b3dc-698d-4e89-af9f-959f4b5c7ec2",
+     "a02e1820-0dd4-4ac7-b55c-95f7f98c1519",
+     "research-88722cb0-706d-45f2-a8ef-d3e771430511",
+     "research-5b791c15-173e-4dfd-a944-51f2d3686654"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Slower arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "1e50b3dc-698d-4e89-af9f-959f4b5c7ec2",
+      "research-5b791c15-173e-4dfd-a944-51f2d3686654"
+     ]
+    }
+   },
+   {
+    "t": "Short-lived blends: s-Line and Q-Line copies can wear too flippy over time.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-03b8d978-c183-428e-9294-74cd94b20e2a",
+     "research-f03b184a-c36f-49da-9467-35a19ff63214",
+     "research-47d2066f-4d3c-421d-afc2-bd8dc417a990"
+    ]
+   }
+  ]
+ },
+ "mvp-anode": {
+  "strengths": [
+   {
+    "t": "Point and shoot: holds true to the release angle, flying dead straight.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "80fba456-c9eb-4ea6-8c39-3805ebf914ae",
+     "83643256-467f-4245-a170-926002654498",
+     "65fda5bb-9d75-42bb-bc44-221ed5d58ebb",
+     "96fb0987-29ff-4b3b-bd6b-47bf73fc4f5a",
+     "research-19a1eb4f-861f-47e1-8fa1-34ef96247571",
+     "research-1d7c0f3f-2b94-4a25-b55a-dedaf5b2409a",
+     "research-fe8ccade-c273-4f35-ac87-f6cb1a008cf9",
+     "research-682cda37-ee6a-43db-b961-a99af8ebe21b",
+     "research-33af2c9a-ba41-44ea-9918-71ce60b61ec8"
+    ]
+   },
+   {
+    "t": "Putting comfort: soft Electron and Neutron feel grippy and grab chains.",
+    "for": [],
+    "src": [
+     "65fda5bb-9d75-42bb-bc44-221ed5d58ebb",
+     "research-44e23722-0c76-477e-ae8e-0075ae4c6aa9",
+     "research-05b997f5-cc05-4d78-ae49-c3d5bbf27cb1",
+     "research-db815301-d37c-4d02-a2e8-4e28bac6a0cb",
+     "research-004b5d3d-82ab-4246-8f31-f44b34a39b1f",
+     "research-39d11e44-27c2-4854-bc89-5108045b0c39",
+     "research-ec1b7338-4da3-41d2-8834-1997d503c05b",
+     "research-5720b070-5165-4b18-9924-626402d1d2d4"
+    ]
+   },
+   {
+    "t": "Versatile thrower: doubles as a smooth approach and tee disc.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "082e73cd-1773-4250-b36f-3aae56b7af52",
+     "96fb0987-29ff-4b3b-bd6b-47bf73fc4f5a",
+     "research-a92fc346-a35e-490c-9091-be0b539d2f11",
+     "research-85d14943-a8e1-431d-a9e0-2b4857ad34c4",
+     "research-425d6858-70e2-467a-af6e-a616ad37420f",
+     "research-d2339d0f-cf77-40c7-b619-8a2f55adb5f8"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Sudden stall: can drop abruptly in wind or on nose-down putts.",
+    "for": [],
+    "src": [
+     "research-e71fce4f-526c-4d30-91f9-43b2e6e04b47",
+     "research-f3855f15-d7f1-428e-88c5-61181569aae7",
+     "research-dccec4dd-d44e-4f67-89a7-e44412117382"
+    ]
+   },
+   {
+    "t": "Needs clean form: off releases turn it over with no comeback.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-4eb46808-92dd-4f99-b3a8-3585c1f36cf9",
+     "research-1d7c0f3f-2b94-4a25-b55a-dedaf5b2409a",
+     "research-fe8ccade-c273-4f35-ac87-f6cb1a008cf9"
+    ],
+    "alt": {
+     "slug": "axiom-envy",
+     "t": "Want more fade? The Axiom Envy is known for a reliable fade and accuracy: 3/3/0/2.",
+     "src": [
+      "research-4eb46808-92dd-4f99-b3a8-3585c1f36cf9",
+      "research-fe8ccade-c273-4f35-ac87-f6cb1a008cf9"
+     ]
+    }
+   },
+   {
+    "t": "Wet-weather grip: proton and Neutron can turn slick with moisture or on chains.",
+    "for": [],
+    "src": [
+     "research-f695f0a9-1078-4de0-8bbc-82130c41cf1e",
+     "research-df0eb9b8-edbc-4c18-88bd-b4300d21ec92"
+    ]
+   }
+  ]
+ },
+ "latitude-64-diamond": {
+  "strengths": [
+   {
+    "t": "Easy distance: light copies fly far on minimal power.",
+    "for": [
+     "arm",
+     "beginner"
+    ],
+    "src": [
+     "4ee40940-f10d-402f-9112-67224b478809",
+     "c9fba011-e437-4098-8825-2d47e10d0b21",
+     "ad36dc06-bdbf-450e-8567-1fb3e80ad9ac",
+     "e13f0391-c728-422a-ae15-9b29ce9545c5",
+     "research-dc7183a5-93c7-4816-ac8b-3cfe33dcfa46",
+     "research-3ebda02a-0f32-4619-936d-6a39f73a932c",
+     "research-228b16b6-ddac-428f-a81a-4b3708435742",
+     "research-6b9ada3f-7769-44a7-9869-8deb945d94a2",
+     "research-4fa4c697-e499-4790-a79b-c2145c4053d8"
+    ]
+   },
+   {
+    "t": "Starter driver: helps newer players learn hyzers and hit lines.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-d84abac0-fe2a-46cf-8de1-1fa97718fc9a",
+     "research-4994fa45-3775-4ba0-b6fe-f9460019c89a",
+     "research-9b69348b-f496-48cf-9a18-1c08b4f2469e",
+     "research-ef54a475-f375-4c3c-98ec-9fa7af1005ff",
+     "research-01234ffc-a05e-4ac9-8e45-3597c19145da",
+     "research-729c8616-202d-43e3-a774-7608ff3777bc",
+     "research-2b0281f7-6c22-41ac-a47d-a9564b1a16d7"
+    ]
+   },
+   {
+    "t": "Flex specialist: gives long turnovers, S-curves and rollers.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "4ee40940-f10d-402f-9112-67224b478809",
+     "research-a5c89e54-933e-4648-953d-3ca25e5aa7fc",
+     "research-12454392-354f-4b26-bab0-46dfd3551243",
+     "research-ef54a475-f375-4c3c-98ec-9fa7af1005ff",
+     "research-490ac87d-e1f6-4ce6-b6df-17d71b5ec448",
+     "research-4bfae528-f3e6-4d1d-9e4b-cb4f1bf39e77"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Easy to overpower: can burn over into the grass with power or speed.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "15cc42ee-3908-4f87-90e5-599c90910e1f",
+     "deea9ff4-1733-4b11-beae-bf3eb845386a",
+     "research-114af003-cea5-4349-8f9d-3c6963a2fcd9",
+     "research-fba2bfa3-49cf-41cc-a2d0-a3bb414ebe3e",
+     "research-7afaa86b-fbe3-4f74-9f1d-6d59a56ae124",
+     "research-760c0c6b-470e-4850-9d5b-b231a65c12a1",
+     "research-81836972-f5e9-4192-8884-1aaa60194d15",
+     "research-ab09b107-023f-4d43-9675-69b2d8305bcb"
+    ]
+   },
+   {
+    "t": "Hard to control: can wander and roll out for newer arms.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-91d2e104-a7c0-4b49-b64c-2b1af79251da",
+     "research-d7410d72-abe5-44b0-8281-c969901e3bef",
+     "research-faf05d2f-132e-4c0d-9f4d-306e4abaa96f",
+     "research-821d16c8-2e3d-4f2a-b631-af659b55f6a2"
+    ]
+   },
+   {
+    "t": "Short shelf life: feels too understable as technique improves.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-f459efd0-7bf3-42cc-851b-45799824c6a1",
+     "research-7d71f648-53c2-4efd-8711-808c68c74f92",
+     "research-37bd681c-6a35-4835-bb4e-26b04357e272"
+    ],
+    "alt": {
+     "slug": "innova-teebird",
+     "t": "Arm outgrew it? The Innova TeeBird is known for a reliable fade: 7/5/0/2.",
+     "src": [
+      "research-7d71f648-53c2-4efd-8711-808c68c74f92",
+      "research-37bd681c-6a35-4835-bb4e-26b04357e272"
+     ]
+    }
+   }
+  ]
+ },
+ "discmania-pd": {
+  "strengths": [
+   {
+    "t": "Built for wind: fights headwinds and always fades back left.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "88aa0c76-ad04-48b4-8595-1e9e2edb7421",
+     "95aa68d0-5ee6-4c58-9694-939d96fef683",
+     "ec9a078f-17e5-439b-9793-cbeeb2b2d8ae",
+     "e3a619c4-25d8-4205-a1a7-dd9cb75ca132",
+     "research-b0fa66a7-bca5-4827-a056-cf18c248b8dc",
+     "research-2ca4c5c0-069c-4587-afc8-b7b5bf957a98",
+     "research-c0b0aa50-a6a0-409a-b720-b33e15ae6cc8",
+     "research-c9879adb-a66f-4ad9-81a7-a91f393110dc"
+    ]
+   },
+   {
+    "t": "Forehand weapon: takes full-power sidearms without turning.",
+    "for": [],
+    "src": [
+     "cf48f2fe-a918-419c-8ff2-1053c923392c",
+     "6f410c7a-1136-44de-b928-5ec227d51af1",
+     "e3a619c4-25d8-4205-a1a7-dd9cb75ca132",
+     "research-fcc62e9c-cb58-45cb-b33d-b4d53e91cc14",
+     "research-85ee1c10-c396-4d6a-b4b8-3f89e95c3d5f",
+     "research-a71fa15c-a89a-4c0a-8c0f-eafb814cdf2e"
+    ]
+   },
+   {
+    "t": "Grippy plastic: c-Line and S-Line feel gummy and comfortable.",
+    "for": [],
+    "src": [
+     "d8122f95-1ccb-4edf-bfc8-62659f8816d1",
+     "6f410c7a-1136-44de-b928-5ec227d51af1",
+     "95aa68d0-5ee6-4c58-9694-939d96fef683",
+     "c0eb6f50-7d51-4434-ab7e-2dc45fd037bd",
+     "research-eb999d95-06f6-4845-b0fa-db5cf8ffd830"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Plastic split: s-Line copies fly far less stable than C-Line ones.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "research-ab3229a5-9eed-448f-8796-f415c6498887",
+     "research-452489d1-ba01-4801-8e4b-2ca97a796e84",
+     "research-1e0910c5-234c-447d-aaf5-2bbb38f025bf",
+     "research-8ea6bd33-e0f8-4198-b6bd-4f2cd5aa4903",
+     "research-d577109a-0fb1-40ab-9792-acbfb4b56b7c",
+     "research-8b962445-6cd0-4289-8398-4f9b86fc2098"
+    ]
+   },
+   {
+    "t": "Not a first disc: moderate arms see it dump hard without snap.",
+    "for": [
+     "arm",
+     "beginner"
+    ],
+    "src": [
+     "d8122f95-1ccb-4edf-bfc8-62659f8816d1",
+     "88aa0c76-ad04-48b4-8595-1e9e2edb7421",
+     "7ad73372-f8d1-4281-bfd2-c9b1e5337f54"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Moderate arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "d8122f95-1ccb-4edf-bfc8-62659f8816d1",
+      "7ad73372-f8d1-4281-bfd2-c9b1e5337f54"
+     ]
+    }
+   },
+   {
+    "t": "Stubborn break-in: takes a long time to beat in.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-6f7ca91b-81e7-493c-8df1-b4396b457367",
+     "research-8cccba14-bca2-4207-9342-8e27fc5cb2d8"
+    ]
+   }
+  ]
+ },
+ "innova-boss": {
+  "strengths": [
+   {
+    "t": "Raw distance: big rips carry it 400 ft and beyond.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "9eca97bb-646b-46af-af3f-8353dc1fe89f",
+     "6c878ac8-acff-4a6f-aa37-b401bf6cd9c5",
+     "7a6ef613-4961-4554-a4a1-01840c34e027",
+     "research-670bc61a-7345-4d3c-9b6c-a42ba9d0d8e3",
+     "research-1584c5ab-3b0f-42f5-baed-a71e37644354",
+     "research-3b100697-ef9c-45c1-bd66-4acc201b6e34",
+     "research-1a756441-518c-4fc3-b818-5c3c5bebc5fa",
+     "research-1eb1a527-7246-4ff6-be68-97b10a6c41da"
+    ]
+   },
+   {
+    "t": "Built for wind: fights headwinds and finishes hard left.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "374db121-c336-47b6-8ea9-bc3b4f783b05",
+     "research-6bd2293a-3037-4d21-9d13-70fa4d4690df",
+     "research-670bc61a-7345-4d3c-9b6c-a42ba9d0d8e3",
+     "research-1fb95213-96fd-42aa-993c-b74d272c1724",
+     "research-2c4907f0-311e-4499-9b35-6daed5d61182"
+    ]
+   },
+   {
+    "t": "Forehand option: holds flick lines with a reliable fade.",
+    "for": [],
+    "src": [
+     "research-8157f0ff-8626-45b1-b0ae-008123793540",
+     "research-446a7247-aecd-4a63-87aa-6169ae074f0b",
+     "research-d56e6c3e-8391-4ebc-946d-8b3a37f3efa4",
+     "research-39d0f917-3750-412a-b247-6c9f603fbedb"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run lottery: copies range from flippy to total meat hooks; new runs differ.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "6c878ac8-acff-4a6f-aa37-b401bf6cd9c5",
+     "research-93aecc9d-545e-48f7-87a0-a12b1eee11fd",
+     "research-ae6403f4-2218-4f83-a555-c49b430b710b",
+     "research-c369eed9-a6c4-4a3c-ad35-f475d1fa2867",
+     "research-eb0fe883-4cf4-4ed1-8807-82224276bf96",
+     "research-e98e3c14-27e4-409f-a19e-47c795572fcf",
+     "research-2294e42a-3341-4c85-a99e-552bd301ae29"
+    ]
+   },
+   {
+    "t": "Not a first disc: needs a big arm and is tough to learn on.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "374db121-c336-47b6-8ea9-bc3b4f783b05",
+     "research-13af4bfc-416a-4e85-9520-20c3846a3227",
+     "research-61f33033-2b34-44e6-b269-fe70fec6c043",
+     "research-99d5bf2f-3b8b-451a-857c-64171d6eb08e",
+     "research-1a756441-518c-4fc3-b818-5c3c5bebc5fa",
+     "research-cd7f4947-3518-4fc5-9b4b-a981c805e81e"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Newer arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "research-13af4bfc-416a-4e85-9520-20c3846a3227",
+      "research-61f33033-2b34-44e6-b269-fe70fec6c043"
+     ]
+    }
+   }
+  ]
+ },
+ "mvp-matrix": {
+  "strengths": [
+   {
+    "t": "Point-and-shoot mid: flies straight with a mild, reliable fade.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "06be00d0-4de9-4a87-93df-c5976f57f704",
+     "926d7fe5-9dae-44ac-a2df-7d1c20eaf67f",
+     "4d4b4234-a73a-4038-8242-77ce5ff1cd6f",
+     "061419ab-e541-4f69-abe9-2506a487c666",
+     "e484c0bb-d8df-4466-ba7f-b1be3668d422",
+     "research-6f9b78ff-d5b5-4199-aab6-5153a5321bf8",
+     "research-0439e50a-8bb8-46b2-b1ff-f1b21b9476dc",
+     "research-ffb54c38-3498-4de0-8180-f95b4297cdcb",
+     "research-c2afcc1e-50cc-46ab-a23d-ba193aa67819"
+    ]
+   },
+   {
+    "t": "Forehand friendly: handles sidearm torque without flipping.",
+    "for": [],
+    "src": [
+     "5df89476-cff4-4e9d-8e51-86bdd4c8cb38",
+     "research-d834b5aa-1a1e-46ab-ab94-824c5e5fe8ae",
+     "research-7d8a33e0-cf30-475d-92ee-69268e4e0a2f",
+     "research-19dd0f80-2489-403e-8e83-5e30676f3d44",
+     "research-93892724-3d39-4299-8d66-8edd56f445a3",
+     "research-c57a7f6f-289d-46c9-9b0c-188d152d8b92"
+    ]
+   },
+   {
+    "t": "Steady in weather: holds flat into moderate headwinds.",
+    "for": [],
+    "src": [
+     "815b505d-9ddf-4826-81fa-f8551084fe82",
+     "ebc1698e-691a-4866-9ea0-adc68419c339",
+     "5df89476-cff4-4e9d-8e51-86bdd4c8cb38",
+     "research-19dd0f80-2489-403e-8e83-5e30676f3d44",
+     "research-6f9b78ff-d5b5-4199-aab6-5153a5321bf8"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Less reach: flies a little shorter than a Reactor.",
+    "for": [],
+    "src": [
+     "4d4b4234-a73a-4038-8242-77ce5ff1cd6f",
+     "research-13a5b442-c74a-40eb-a0ef-cec58d012d5f",
+     "research-a5563890-3f10-4351-8d6e-b477075ea366",
+     "research-0439e50a-8bb8-46b2-b1ff-f1b21b9476dc"
+    ],
+    "alt": {
+     "slug": "mvp-reactor",
+     "t": "Want more reach? The MVP Reactor is known for a reliable fade and accuracy: 5/5/-0.5/1.5.",
+     "src": [
+      "research-a5563890-3f10-4351-8d6e-b477075ea366",
+      "research-e942df3b-8714-423f-b72a-1757684408de"
+     ]
+    }
+   },
+   {
+    "t": "Plastic split: electron runs fly far more understable than Neutron.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "26a9f01e-b8d6-40c0-a9c2-9c060570a193",
+     "95ac5380-ded6-45ab-acb5-4ee1dd7ec0d1",
+     "research-fa336c53-10ae-4ad8-b3ba-e4ea00d7a4a3",
+     "research-aaed4035-94f2-4725-973a-4954d425d71b"
+    ]
+   },
+   {
+    "t": "Lacks bite: flies too straight to fill an overstable slot.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-f3377cd3-eca8-410d-b817-bbb82003727b",
+     "research-37334ab7-b0b1-4eb5-8f61-159818d5ae52",
+     "research-50ae129b-e93d-421c-ad78-a67e5238049b"
+    ]
+   }
+  ]
+ },
  "latitude-64-ballista-pro": {
   "strengths": [
    {
@@ -10512,6 +12199,2106 @@
    }
   ]
  },
+ "kastaplast-reko-x": {
+  "strengths": [
+   {
+    "t": "Comfortable hand feel: the scooped rim sits well, soft and grippy in K1 and K3 Glow.",
+    "for": [],
+    "src": [
+     "0f9fcab6-2504-4c24-955b-2412de95d946",
+     "719cdb7b-6311-4455-bb0f-bbdacb6613a7",
+     "research-8f0c1d9b-7923-40ff-9e7c-2459bc477ebe",
+     "research-4a9c8263-67a6-41be-bbe8-a52d393a1d7e",
+     "research-fc520beb-409a-4f9d-9120-4de77bd8aded",
+     "research-741ee3c3-5390-4952-b314-fc6f3f96d4e3"
+    ]
+   },
+   {
+    "t": "Torque resistant: takes full-power drives without flipping, then fades gently.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "0e207aff-09c1-4e0a-8f75-b6d5eb4b6a44",
+     "719cdb7b-6311-4455-bb0f-bbdacb6613a7",
+     "a4869228-3ad0-4fe1-9e08-414ef03cf731",
+     "136a90e1-622e-49c3-922c-87e9d562dde5",
+     "research-5c3bb729-e27d-4a51-a45a-a8ac96894fbc"
+    ]
+   },
+   {
+    "t": "Approach utility: a go-to stable throwing putter for upshots that shouldn't turn.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-80eb9a0d-a04b-46f3-ab76-1bde8f7c3a60",
+     "research-e7e48039-219f-48ea-9e10-7b18044afb3a",
+     "research-08ccd6f3-bdf6-4464-a784-703fd21b1d1e",
+     "research-53574afd-5c35-4a2b-ad5b-6113465df1af",
+     "research-0f5e8e26-6c98-4c44-9571-e6f50e174b65"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Divisive putting feel: the round, bulky rim doesn't suit every stroke in the circle.",
+    "for": [],
+    "src": [
+     "research-e644f75f-a0d9-47e7-8970-7fba60e06060",
+     "research-3d388226-e23a-4986-9438-94fd2117a9a8",
+     "research-9fca54c6-5712-4d5c-9a39-269a5aa37f68",
+     "research-4fd9f3c9-a166-4bea-a953-2f42f653cb44"
+    ],
+    "alt": {
+     "slug": "axiom-envy",
+     "t": "Want a cleaner putter? The Axiom Envy is known for accuracy and a reliable fade: 3/3/0/2.",
+     "src": [
+      "research-3d388226-e23a-4986-9438-94fd2117a9a8",
+      "research-9fca54c6-5712-4d5c-9a39-269a5aa37f68"
+     ]
+    }
+   },
+   {
+    "t": "Less forgiving than an Envy: a shanked release can burn it over where the Axiom recovers.",
+    "for": [],
+    "src": [
+     "research-576d9386-d6ca-4f86-a204-c29ce3261356",
+     "research-9fca54c6-5712-4d5c-9a39-269a5aa37f68"
+    ]
+   }
+  ]
+ },
+ "streamline-runway": {
+  "strengths": [
+   {
+    "t": "Dependable dump: fights out of anhyzer and finishes with a hard, reliable fade.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "6bc1cdb5-98f3-405e-ac80-420014fceea9",
+     "b79bac53-9b74-44d0-945e-65faf242a924",
+     "89f28982-78d7-4557-9abf-03076c024abf",
+     "research-498c8db7-76a7-4da7-a246-bcfa1d40e05b",
+     "research-3c24fdc1-7c8b-4c0a-8a75-36a362fe29b2",
+     "research-7392c75b-0ebc-4f2b-b82b-ca9720627591",
+     "research-1d4293f6-502a-4d0b-bc4e-0fbd9f0edc48"
+    ]
+   },
+   {
+    "t": "Sidearm trust: resists heavy forehand torque without turning.",
+    "for": [],
+    "src": [
+     "6bc1cdb5-98f3-405e-ac80-420014fceea9",
+     "1901c8e6-48f9-448b-8625-2cceab81e94d",
+     "89f28982-78d7-4557-9abf-03076c024abf",
+     "3e89a4e0-2e0c-4f5e-8c3c-a7ad59544cd4",
+     "research-059a8d8f-df01-4bfa-8898-3e18af48ef44",
+     "research-8b75ec9f-59f4-4757-aca4-4d99bfc4f612"
+    ]
+   },
+   {
+    "t": "Extra reach: carries 300 to 330 ft, longer than a Zone or Deflector.",
+    "for": [],
+    "src": [
+     "1901c8e6-48f9-448b-8625-2cceab81e94d",
+     "research-64334922-b9e3-4ca4-8ad8-7fd6c66d562a",
+     "research-46699ad6-a5a5-484a-8877-864b5823392b",
+     "research-e0c94d18-0842-40b6-9095-70473cf3f433"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Utility, not core: can be too stout to serve as an everyday mid.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "3e89a4e0-2e0c-4f5e-8c3c-a7ad59544cd4",
+     "research-a8c70c63-f4d0-4963-a9ec-3f325d0d5002"
+    ],
+    "alt": {
+     "slug": "mvp-reactor",
+     "t": "Want less beef? The MVP Reactor is known for a reliable fade and accuracy: 5/5/-0.5/1.5.",
+     "src": [
+      "3e89a4e0-2e0c-4f5e-8c3c-a7ad59544cd4",
+      "research-a8c70c63-f4d0-4963-a9ec-3f325d0d5002"
+     ]
+    }
+   },
+   {
+    "t": "Softer than rated: some copies fly less stable than the numbers, under a Deflector.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-72107c39-93dc-439b-a044-acfb4cf37969",
+     "research-e0c94d18-0842-40b6-9095-70473cf3f433"
+    ]
+   }
+  ]
+ },
+ "discraft-avenger-ss": {
+  "strengths": [
+   {
+    "t": "Easy first driver: effortless distance for newer arms, even underpowered.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "88061e02-1c20-4573-b42b-67f2e007692e",
+     "7f314fe8-92a8-47ea-be99-07b9ce179f4c",
+     "4fdd6c16-40ad-4d06-afd4-0825c7ae4290",
+     "research-463b76db-1000-4940-99e7-62273e6a50e2",
+     "research-369629f4-14e1-4498-bd8c-3eccbe19587e"
+    ]
+   },
+   {
+    "t": "Hyzer-flip workhorse: pops up and holds a sweeping turn without rolling.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "2d28755e-4614-4830-9027-50f0b20ccbc3",
+     "107e44f4-5102-46ef-86a8-7dfc9dccb14c",
+     "research-4d33344b-136f-4397-ae39-d445fc59d9af",
+     "research-46158a60-40b1-4d92-8626-4e8d5d7f5073",
+     "research-557a8d14-3814-4cce-aeb7-846e4b8c1080"
+    ]
+   },
+   {
+    "t": "Long S lines: rides big S-curves for real distance, past 350 ft.",
+    "for": [],
+    "src": [
+     "2d28755e-4614-4830-9027-50f0b20ccbc3",
+     "107e44f4-5102-46ef-86a8-7dfc9dccb14c",
+     "research-38752a5a-179d-4723-b0f0-dbd806d4d31d",
+     "research-a225ad97-a24f-4798-b0b0-ee3cc7f3eda6"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Beats in flippy: wear turns it into a roller, often within a year.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "4fdd6c16-40ad-4d06-afd4-0825c7ae4290",
+     "research-a4c3ba19-7852-4a3c-a9a1-794b3632756c",
+     "research-82d0ebcf-2474-44bd-b51f-6891e53ae469",
+     "research-08b63bd0-8fdd-4369-821c-5a0082b8fede"
+    ]
+   },
+   {
+    "t": "Little recovery: once over, it never fades back to the left.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "research-f809a3e1-d13d-4d5f-9a6f-485a9350da4c",
+     "research-52b69c26-eceb-4b15-b272-4492bca78555",
+     "research-4413b8b8-5ef3-4310-8c95-916a2d9e1fa5"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Want more fade? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "research-f809a3e1-d13d-4d5f-9a6f-485a9350da4c",
+      "research-52b69c26-eceb-4b15-b272-4492bca78555"
+     ]
+    }
+   }
+  ]
+ },
+ "innova-katana": {
+  "strengths": [
+   {
+    "t": "Max-range bomber: out-throws other drivers in the bag, near 450 to 500 ft.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "13b92cb3-1bf8-4806-abf5-7d1518e7d3fb",
+     "research-9583cb6d-cfd6-4f22-82f5-47e106ca5154",
+     "research-3ddb5ecb-ec34-46b1-910a-5cae064c9ce1",
+     "research-e6391b2e-8037-4668-9dcd-3721fbabe3c7",
+     "research-fe9461d0-2b17-40aa-a64c-037225f0ac28",
+     "research-ed2690ab-c2cc-4e1a-98a6-ccb8fe496924",
+     "research-fc47e44e-c883-49cf-bf52-4415ebc4e261"
+    ]
+   },
+   {
+    "t": "Shot shaper: holds S-curves, flex lines and angles reliably.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "6b82a3b2-993b-4402-8329-99a058d53f6d",
+     "040508c5-8a46-4817-8b04-26a474e9afd7",
+     "research-ef64f446-71ef-4e43-9abf-105e59a093a1",
+     "research-84ddceff-86a6-494f-928d-037247ee71da",
+     "research-dacf7a84-bf53-42ad-8809-b18e34203623"
+    ]
+   },
+   {
+    "t": "Ground-game option: light Blizzard and beat-in copies flip up and roll well.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-2a5176d9-fd9d-4498-8e3c-b3f08c247c64",
+     "research-5344841f-28e8-4035-9fbd-9884e092d6c7",
+     "research-a32df13b-368c-4d5b-a170-da1d8b307a19",
+     "research-9ecebfc2-4c8a-4c04-b94d-0f87e424d418"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Plastic and mass swings: light Blizzard copies overturn fast; max weight or GStar barely flips.",
+    "for": [
+     "control",
+     "power"
+    ],
+    "src": [
+     "research-93d2b20b-49e2-43ec-8d81-d8c3f516b4d9",
+     "research-283264ad-ddcc-4b31-bc69-c2b7fb378cd1",
+     "research-32643439-f513-40a7-b4e1-f332ecff9f62"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want one steady flight? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-93d2b20b-49e2-43ec-8d81-d8c3f516b4d9",
+      "research-32643439-f513-40a7-b4e1-f332ecff9f62"
+     ]
+    }
+   },
+   {
+    "t": "Fussy to throw: needs a pure release to fly fully, or it gets inconsistent.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-1b4286a5-ccb8-4492-b7c7-3b48e021bb88",
+     "research-cb823e39-1584-495b-a845-afb824552b5b"
+    ]
+   }
+  ]
+ },
+ "discmania-cloud-breaker": {
+  "strengths": [
+   {
+    "t": "Huge carry: massive glide pushes big forward distance on flat power rips.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "5d2fb303-368b-480e-b45a-e29b941ef679",
+     "25a487a0-5357-4295-b998-8c18407afbfc",
+     "484b9858-3ff2-46c2-96d4-f37d674f0596",
+     "afe20467-a548-41e2-a99a-0afce64cfb39",
+     "c854572b-79ae-4426-9329-a897ee223bbd",
+     "research-00835f11-3a21-4cb7-8a81-ee00e3f65b32",
+     "research-e9297d16-7417-4809-a1b1-ed7477288872",
+     "research-985bccab-1952-4553-a767-710f15c9430c"
+    ]
+   },
+   {
+    "t": "Power-proof finish: holds up to big arms and ends with a dependable fade.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "a1e5a6c5-554a-4aaf-bcb4-f9d46b11204c",
+     "e3ca915a-4983-4694-8c75-091b3bef6342",
+     "25a487a0-5357-4295-b998-8c18407afbfc",
+     "484b9858-3ff2-46c2-96d4-f37d674f0596",
+     "8e12a17a-d249-48c4-b5c6-621ca40e00a9",
+     "research-3ac86bb2-402c-463f-8b41-b12a1fa5e0fe"
+    ]
+   },
+   {
+    "t": "Sidearm bomber: flips up and holds straight off the forehand before fading.",
+    "for": [],
+    "src": [
+     "research-00835f11-3a21-4cb7-8a81-ee00e3f65b32",
+     "research-9bcb4b42-ad3d-477d-815c-3751e9d9cd7e",
+     "research-90aef417-1fe2-4f2b-808c-f4ebaa9bce3a",
+     "research-f2c1245b-df12-4d6a-b91b-e628317eae23"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Needs breaking in: fresh copies meat-hook until beaten in.",
+    "for": [
+     "power",
+     "arm"
+    ],
+    "src": [
+     "research-15b8dc0a-2f35-4612-83aa-efc8c1e86949",
+     "research-f2cae0d9-bcc0-4a09-a903-192e6a709cc7",
+     "research-da2a16a1-4876-4df9-a241-e9b9d10bf8bf"
+    ]
+   },
+   {
+    "t": "Batch differences: final and recent runs can fly flippier, like a beat-in DD3.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-15fb8a8e-d408-473f-998d-de5027f10897",
+     "research-17ceb4a3-e9cd-4ae4-94fe-e4c7fca114f2",
+     "research-aa8e09f9-c1d9-48a1-b9fe-d2346f2bd376"
+    ]
+   },
+   {
+    "t": "Not a first disc: hooks hard for arms without 12-speed power.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "research-e922bf4d-64d1-4495-a104-dc5dd1354ef0",
+     "research-97be5276-3b33-44a5-a882-9800a99260d2"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Slower arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "research-e922bf4d-64d1-4495-a104-dc5dd1354ef0",
+      "research-97be5276-3b33-44a5-a882-9800a99260d2"
+     ]
+    }
+   }
+  ]
+ },
+ "mvp-dimension": {
+  "strengths": [
+   {
+    "t": "Power-arm bomber: pushes huge carry for big arms, past 400 ft.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "749a6e18-811e-4cbf-be64-36171b34bf57",
+     "f59941ba-1811-45ad-b87f-439c8815bb2f",
+     "4550da3e-adb2-48b7-8510-9cfce84c8fd3",
+     "15de3253-4ec7-4421-9303-4633be9cd921",
+     "f36bb412-0d74-460b-ae44-b9ca425c2aba",
+     "1a22b996-849f-44c7-a0b4-f4efe1e70359",
+     "research-2b1cc6ce-99da-43bc-8a60-8f847ba1f056",
+     "research-9c663677-51c2-4e95-ac15-9dc1352a6c70",
+     "research-bcec77a4-2ed7-4e52-9e37-fc13fc35253e"
+    ]
+   },
+   {
+    "t": "Headwind fighter: shrugs off stiff wind with a dependable finish.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "75164998-3a9d-4144-9334-34a51af160c9",
+     "d57e9c87-3db2-47d4-902d-6b731574e3fa",
+     "a6818e0b-7b0d-4722-891a-681d2b19aacc",
+     "73fcd9f3-9208-4c90-938b-8020530f5427",
+     "1a22b996-849f-44c7-a0b4-f4efe1e70359",
+     "research-ecf2233a-9a37-4dbe-ae0a-7b9cf0cfe68a",
+     "research-789073c0-75f3-43c7-b56c-ebde82581082",
+     "research-2b1cc6ce-99da-43bc-8a60-8f847ba1f056"
+    ]
+   },
+   {
+    "t": "Workable Fission runs: lighter and Plasma copies show usable turn for normal arms.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "08a099ae-7903-4a96-a976-dc18dfac1b84",
+     "33bd5a79-df4c-4446-99ae-94270b5ff83d",
+     "139857df-0054-4376-a3e0-c0d32407b279",
+     "research-e277ae50-a4a4-4061-83db-cd7637f148fd"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flippier than rated: some copies turn more than 0 suggests, and Fission beats in.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-d97818b6-96b7-47fc-a38c-9ffab36bda66",
+     "research-b3f639a9-ed3a-449e-932e-651ff99be62e",
+     "research-38228cc3-37d2-4115-899a-67f9abf0917d",
+     "research-c6984449-e847-4bea-8975-f254b3a6f69a",
+     "research-16036391-9501-41a6-b565-555f277466e8"
+    ]
+   },
+   {
+    "t": "Not a first disc: average arms see it hyzer out early; it needs huge speed.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "75164998-3a9d-4144-9334-34a51af160c9",
+     "a6818e0b-7b0d-4722-891a-681d2b19aacc",
+     "73fcd9f3-9208-4c90-938b-8020530f5427"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Slower arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "75164998-3a9d-4144-9334-34a51af160c9",
+      "a6818e0b-7b0d-4722-891a-681d2b19aacc"
+     ]
+    }
+   }
+  ]
+ },
+ "dynamic-discs-raider": {
+  "strengths": [
+   {
+    "t": "Reliable bomber: pushes long and snaps into a dependable fade.",
+    "for": [],
+    "src": [
+     "aae06de3-8762-40b9-8280-1329ddcc10a6",
+     "7a11c30d-6b19-4c28-8103-0c83c0964d47",
+     "cde0c370-086f-4a99-bb52-14effbcc6f28",
+     "f18305a7-8dfb-426d-b727-ca812d794994",
+     "bf1ac338-8b1b-43c5-8863-b590150192d2",
+     "db415340-2177-4e99-863e-5019ce3537e0",
+     "3e77f440-0f36-4719-8d73-dc7d77f90501",
+     "research-ce241d87-174b-4712-9a5b-7f62165d48bc"
+    ]
+   },
+   {
+    "t": "Comfortable wide rim: sits nicely in hand for a fast driver.",
+    "for": [],
+    "src": [
+     "7a11c30d-6b19-4c28-8103-0c83c0964d47",
+     "8a582f67-db83-469d-9024-e99487163e39",
+     "cde0c370-086f-4a99-bb52-14effbcc6f28",
+     "db415340-2177-4e99-863e-5019ce3537e0",
+     "research-518e59eb-4fbb-42c6-b335-b48c5712af97"
+    ]
+   },
+   {
+    "t": "Sidearm ready: flies straight with a good fade off the forehand too.",
+    "for": [],
+    "src": [
+     "research-518e59eb-4fbb-42c6-b335-b48c5712af97",
+     "research-122636f4-a693-417a-b6df-db5b607cbfd3",
+     "research-794f5d32-1e52-4b68-8728-ba9b5b2a7b9a",
+     "research-0b94130f-1c29-4c11-bee5-a79eca3f0c7d"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Beats in quickly: lucid and Fuzion copies turn flippy within weeks of play.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "2e28824e-994b-4096-85ab-e875187aa4c6",
+     "research-3daf4867-16b6-4322-9917-17ecf6904186",
+     "research-122636f4-a693-417a-b6df-db5b607cbfd3",
+     "research-fd07bdbd-502b-4efa-9cd2-5b5dc805ffa4",
+     "research-d4b5ec4f-1ea3-4dc8-985f-45679f6f010d"
+    ]
+   },
+   {
+    "t": "Unpredictable stability: copies range from rollers to too overstable.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "research-1ac387f7-f64d-4156-97d8-82cd55df647a",
+     "research-db29a4af-752d-4676-9b71-0883c6fc6f86",
+     "research-9a5fdef9-7624-4e7b-a47d-2fe615e3e3b4",
+     "research-008f2d10-3404-4ec3-8142-d9b3e4e1d105",
+     "research-100a7e5f-caa3-4956-a688-34811a5cfb5b"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want consistency? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-1ac387f7-f64d-4156-97d8-82cd55df647a",
+      "research-008f2d10-3404-4ec3-8142-d9b3e4e1d105"
+     ]
+    }
+   }
+  ]
+ },
+ "discraft-nuke-ss": {
+  "strengths": [
+   {
+    "t": "Easy distance: long S-curves with little effort, past 300 to 400 ft.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "cc3af11d-bb77-418f-8680-5a739a038933",
+     "62a840f5-9b0d-4368-80ef-272683f4fa9f",
+     "3945f904-50a2-4574-846b-1e7b0b51aa7d",
+     "8a5f3724-7c17-493c-bb49-5f899f2810b9",
+     "143f831e-493e-4f5e-b4e9-eb2ee2b7577f",
+     "c605fd15-ec57-44ff-8c5b-d32c3fb2b68d",
+     "research-84e956d4-1b66-4acf-8463-5130829f76ae",
+     "research-72b320f5-53ae-403a-a0a6-beea19f673b5"
+    ],
+    "only": [
+     "arm"
+    ]
+   },
+   {
+    "t": "Hyzer-flip carry: pops up from steep angles and rides straight a long way.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "cc3af11d-bb77-418f-8680-5a739a038933",
+     "02407679-f9c1-47af-965c-273f9201d930",
+     "5b3baa7a-8ea6-4816-992f-0d391d0e2bb7",
+     "143f831e-493e-4f5e-b4e9-eb2ee2b7577f"
+    ]
+   },
+   {
+    "t": "Tailwind bomber: rides a following breeze into huge turnovers.",
+    "for": [],
+    "src": [
+     "321686d6-5f73-4464-9b43-30219884993c",
+     "research-c8caa396-e748-4522-84d8-d82b7232d87c",
+     "research-01b637f5-902d-44e1-992b-86100969f467"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flips at power: above 80% it turns over hard and can roll.",
+    "for": [
+     "advanced",
+     "power"
+    ],
+    "src": [
+     "research-a27331e5-bd70-4bfb-878e-7d1e46f91063",
+     "research-9f9643c8-1c2e-4ec2-9f34-69defddd0938",
+     "research-b8f5babf-2f27-4e4a-b12d-db654fc1b76c",
+     "research-3323ab34-ba31-495a-85c6-c97c9696d259",
+     "research-f33c537d-7c03-4ea3-b582-125046443ec4"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Big arm? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-b8f5babf-2f27-4e4a-b12d-db654fc1b76c",
+      "research-3323ab34-ba31-495a-85c6-c97c9696d259"
+     ]
+    }
+   },
+   {
+    "t": "Takes growing into: can feel like too much disc before an arm develops.",
+    "for": [],
+    "src": [
+     "research-941c4602-8ae4-49ca-82d1-1b7c8bd8c3ec",
+     "research-80bcbf3c-4269-4a70-a0cf-d371b299c46b",
+     "research-c8caa396-e748-4522-84d8-d82b7232d87c"
+    ]
+   }
+  ]
+ },
+ "latitude-64-ballista": {
+  "strengths": [
+   {
+    "t": "Big S-curve carry: flips up for huge max distance, up to 450 ft.",
+    "for": [],
+    "src": [
+     "628476aa-efdc-4e8b-8ad8-4236e257d4e5",
+     "956f14f3-3834-4bb4-8d2a-687ad554d2c0",
+     "d1b46956-5729-4bcc-b0fb-e85e9bfacc31",
+     "0b8de38d-ed50-4284-9ab8-f4980c8e0ed6",
+     "research-3b6a69c5-f96b-4d6c-9ee7-da034a19159d",
+     "research-a98559ec-e20f-4b49-b273-5458f110a4a2",
+     "research-73a3d210-0fcf-4e1d-bd2f-f18e8154333f",
+     "research-f04a2d84-3bbf-4537-88a3-83b347a89dd7",
+     "research-6a434920-55cd-488d-9093-c8f13c440c41",
+     "research-1ab299ea-82d6-4b1e-ac9c-afc6c6bec272"
+    ]
+   },
+   {
+    "t": "Average-arm friendly: turns easily at moderate power, so slower throwers get speed-14 reach.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "628476aa-efdc-4e8b-8ad8-4236e257d4e5",
+     "d1b46956-5729-4bcc-b0fb-e85e9bfacc31",
+     "research-f04a2d84-3bbf-4537-88a3-83b347a89dd7"
+    ],
+    "only": [
+     "arm"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flippier than rated: often far more understable than its numbers, even in Gold.",
+    "for": [
+     "advanced",
+     "power"
+    ],
+    "src": [
+     "research-3b6a69c5-f96b-4d6c-9ee7-da034a19159d",
+     "research-3edeec92-6f87-4f6b-8d72-6c81544f124b",
+     "research-ce94c11b-6a3a-4121-a46c-2cde8cb8d039",
+     "research-bf091df5-a080-4f6c-8ad2-e193161d0685",
+     "research-536ae57d-c39d-475a-b13f-cc1894f7531b",
+     "research-dcd554d1-8e95-4580-b641-465395f7499d",
+     "research-8a7d0318-02f0-46a7-bba2-61659931617a",
+     "research-c8e29fa9-c269-4b83-a2f1-b5ad3ab8940f",
+     "research-aad1d070-517a-4bf6-91a0-00ca0ac87abd"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want a real fade? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-3edeec92-6f87-4f6b-8d72-6c81544f124b",
+      "research-8a7d0318-02f0-46a7-bba2-61659931617a"
+     ]
+    }
+   },
+   {
+    "t": "Early turnover: opto copies get flippy quickly and burn with excess power.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-597fd0cb-4fd3-483d-9716-428186e42bb0",
+     "research-ccb5cb2b-f103-4c50-a622-697a6b2862d3",
+     "research-62e74576-a7e2-4508-ab3d-9f9a7263561d"
+    ]
+   },
+   {
+    "t": "Headwind trouble: flips into the wind, and the wide rim catches gusts.",
+    "for": [],
+    "src": [
+     "research-3b6a69c5-f96b-4d6c-9ee7-da034a19159d",
+     "research-041f3533-8184-4be2-953c-fc290ed423a7"
+    ]
+   }
+  ]
+ },
+ "discraft-comet": {
+  "strengths": [
+   {
+    "t": "Glidey control: rides long, dead-straight lines with a soft fade.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-8e63ae5b-f554-4398-a8ab-afe262755f02",
+     "research-192cc47c-95eb-4921-90f0-b0770a75b557",
+     "research-5387dfd7-d0e4-4fa9-8d84-de4720ff2bd3",
+     "research-7c796381-448c-4d37-810f-2f67465258b6",
+     "research-7e48b3cb-378c-4755-9b17-8763624777fc"
+    ]
+   },
+   {
+    "t": "Learning disc: teaches clean form and grows into a flex-shot mid.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-de49bbd0-3d7e-4ab8-bdc6-dd5086ae936f",
+     "research-64a94bb8-54a2-4f6e-aa0e-a8a9125e0149",
+     "research-fb812534-18c2-4100-99d6-7ee3fab92bc8",
+     "research-124bc733-4b18-43ef-b2f8-483b46869c24"
+    ]
+   },
+   {
+    "t": "Utility player: handles almost any shot when it has room.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-ee0b8669-063c-44bc-b762-7b5c3c066e83",
+     "research-a195e238-d1c4-4dcc-bfcb-327583015b44",
+     "research-124bc733-4b18-43ef-b2f8-483b46869c24",
+     "research-e12bba5a-e318-4384-8046-57d412799b65"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Awkward grip: the wide diameter and bead feel off to some palms.",
+    "for": [],
+    "src": [
+     "research-5387dfd7-d0e4-4fa9-8d84-de4720ff2bd3",
+     "research-6458a283-0cad-47c3-bbb5-da0c9d9e3560",
+     "research-b9c32190-1636-405f-bcf2-4937ff520e22",
+     "research-bd264ba2-0150-4fec-9b6d-852983418683",
+     "research-78b24550-bc10-4fbc-bafd-493f87bde8fe"
+    ],
+    "alt": {
+     "slug": "innova-mako3",
+     "t": "Want an easier feel? The Innova Mako3 is known for accuracy and holding lines: 5/5/0/0.",
+     "src": [
+      "research-b9c32190-1636-405f-bcf2-4937ff520e22",
+      "research-bd264ba2-0150-4fec-9b6d-852983418683"
+     ]
+    }
+   },
+   {
+    "t": "Overpowers easily: hard throws can turn it over, and some copies don't come back.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-624f81d8-896c-46e0-a369-78356665c888",
+     "research-8a8087ae-e360-4b40-b58c-53a650f17021"
+    ]
+   }
+  ]
+ },
+ "discmania-enigma": {
+  "strengths": [
+   {
+    "t": "Max-range carry: huge glide into a reliable fade, toward 400 ft.",
+    "for": [],
+    "src": [
+     "20c97163-a9c6-4dad-a69a-8b9059e31ee9",
+     "0a80f7ae-ee6d-4afb-a66c-df38ffd4a74e",
+     "5a8a245d-dd4a-4549-9325-6584b00ab0f5",
+     "7b80d18c-b95d-4a20-a730-067938b36161",
+     "c57af6b4-5665-484f-a63f-09827fa806b8",
+     "228cad86-416d-4f97-9ec6-f21666c0674b",
+     "97f59008-dce7-42b2-b131-5125a1ce73c6",
+     "342b4f01-f433-49f5-acdf-861d25a34630",
+     "c6655f7a-6b9c-41f6-aadf-1dda74d076b1",
+     "22b05021-de89-4d67-9eda-2890031db5da"
+    ]
+   },
+   {
+    "t": "Easy to get moving: gets up to speed easily for intermediate arms.",
+    "for": [
+     "intermediate",
+     "arm"
+    ],
+    "src": [
+     "0a80f7ae-ee6d-4afb-a66c-df38ffd4a74e",
+     "c57af6b4-5665-484f-a63f-09827fa806b8",
+     "342b4f01-f433-49f5-acdf-861d25a34630",
+     "159a877b-70ab-4512-a176-3040444a0253",
+     "c6655f7a-6b9c-41f6-aadf-1dda74d076b1",
+     "research-60a91c8c-e002-4627-8fe6-b81792a18768",
+     "research-8da1fc04-c9a7-4815-b014-d0ae277ca283"
+    ]
+   },
+   {
+    "t": "Comfortable Neo rim: holds well in hand, even in rain.",
+    "for": [],
+    "src": [
+     "398eb07b-4838-40bd-b0b6-ccaaf6027594",
+     "228cad86-416d-4f97-9ec6-f21666c0674b",
+     "c6655f7a-6b9c-41f6-aadf-1dda74d076b1",
+     "research-48ee528d-55b7-4639-b9da-73a2cc666bc7"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Can stay right: thrown flat, it can turn and not come back, more once worn.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "6bcdc8fa-f08e-49dd-b976-e25038e229a5",
+     "research-e0c14320-d9bf-460c-a434-0a7c8ac14d0d",
+     "research-11958383-2bdf-41fc-af5b-5862007e4c70",
+     "research-31852cfd-e2b3-4297-a574-d4a45660f888"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want more fade? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "6bcdc8fa-f08e-49dd-b976-e25038e229a5",
+      "research-e0c14320-d9bf-460c-a434-0a7c8ac14d0d"
+     ]
+    }
+   },
+   {
+    "t": "Hard to hyzer-flip: some copies resist full turn, unlike a Shryke.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "research-2144b680-2113-4a0f-86a8-5a23448d58e8",
+     "research-770dfd78-465b-4615-8a99-224fe370fe4a"
+    ],
+    "only": [
+     "arm"
+    ]
+   }
+  ]
+ },
+ "innova-savant": {
+  "strengths": [
+   {
+    "t": "Dependable flight: flies true to its numbers with a steady finish.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "84713bb4-0c51-46ca-a39c-709459b37052",
+     "65873bcc-9c4f-4042-9e5b-56c531d14821",
+     "9771301d-8e06-4a98-9eb3-ffe9979cf410",
+     "research-0f006388-c8fe-4f50-83a6-84562ae5ebaa"
+    ]
+   },
+   {
+    "t": "Beefier premium plastic: halo and Champion copies fly like a seasoned Thunderbird.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-2324b7aa-abea-47a0-acbe-87aefbe6028f",
+     "research-a8ce4b9a-94d0-4ca8-8891-877a56cfa2d8",
+     "research-3a423737-d505-49cc-aa8c-cd07727eeb94"
+    ]
+   },
+   {
+    "t": "Go-anywhere fairway: handles hyzers, turnovers and tunnels in the woods.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "84713bb4-0c51-46ca-a39c-709459b37052",
+     "research-3ea0b081-e8fc-4583-8af9-282594411e6e",
+     "research-ad8c41fa-fdda-4744-8023-aa9dfe39316e"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Stiffer than rated: some runs fade far harder than a Thunderbird.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-f26490b6-b939-4a45-9d6a-5b95afb49489",
+     "research-253528ec-8b0c-43dc-8dd4-373dcfb72d30",
+     "research-55885290-351e-4240-857d-f59ba7bf59e3",
+     "research-1a133387-900e-4490-911e-8f7704ed070b",
+     "research-c63ced24-c7ae-43a4-848c-46b6b8615341"
+    ],
+    "alt": {
+     "slug": "innova-valkyrie",
+     "t": "Want less fade? The Innova Valkyrie is known for distance and an understable line: 9/4/-2/2.",
+     "src": [
+      "research-253528ec-8b0c-43dc-8dd4-373dcfb72d30",
+      "research-1a133387-900e-4490-911e-8f7704ed070b"
+     ]
+    }
+   },
+   {
+    "t": "Inconsistent runs: some copies fly finicky or off their numbers.",
+    "for": [],
+    "src": [
+     "research-3e803c79-9e90-4b75-a59c-d3b7e64751b7",
+     "research-7e4a4f6b-9f19-47e7-ac92-972f5e2a1df0"
+    ]
+   }
+  ]
+ },
+ "innova-xcaliber": {
+  "strengths": [
+   {
+    "t": "Sidearm weapon: a consistent, stable forehand driver.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "bf99daf1-218c-4240-a7ba-b27d08059183",
+     "research-779f81c5-600b-421b-a6b7-22f25c495b18",
+     "research-9ea36624-cca2-4adb-9f72-b598529d551a",
+     "research-4deb811d-44c8-4403-b65c-e1d1ecfcd3a1",
+     "research-5f7e7bad-bd63-41e8-aac3-f38579a20847",
+     "research-c42a5d66-180d-4f42-a9ef-9108d73a5f74",
+     "research-804767d9-3856-434d-9124-267460ec321a"
+    ]
+   },
+   {
+    "t": "Headwind utility: fights out of anhyzers and bullies the wind.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "bf99daf1-218c-4240-a7ba-b27d08059183",
+     "0b394456-d3de-4d0f-b1a3-4d0e56f63897",
+     "research-6b4f2bcb-3293-4bda-812b-2e6feb8cb78f",
+     "research-4deb811d-44c8-4403-b65c-e1d1ecfcd3a1",
+     "research-eb5e099d-8980-4211-8be8-2a001353f414"
+    ]
+   },
+   {
+    "t": "Seasons well: worn Star copies become long flex discs that still fade.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-5f46f9d9-1d9a-4336-9b3d-9ebefda902af",
+     "research-908b6007-b4d2-4b28-97c1-13c9e687fa6f",
+     "research-6d4f233f-3f7a-4d16-9f6e-f5a5505ca4d7"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Varies by run: some Star and Halo runs fly milder than the 4 fade.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-99f96308-ea4d-4f20-a45b-ad9ec46190c2",
+     "research-1b27218e-0aac-4ee2-b1bf-0f422ef13447",
+     "research-47dc2c5e-2d3d-4232-ac2d-77cd48538fb4"
+    ]
+   },
+   {
+    "t": "Not a first disc: it demands full power from big arms to work.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "bf99daf1-218c-4240-a7ba-b27d08059183",
+     "0b394456-d3de-4d0f-b1a3-4d0e56f63897"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Slower arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "bf99daf1-218c-4240-a7ba-b27d08059183",
+      "0b394456-d3de-4d0f-b1a3-4d0e56f63897"
+     ]
+    }
+   },
+   {
+    "t": "Wears within a year: star copies can get flippier in 6 to 12 months.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-9fd1a678-8275-48a7-bb9d-5a68015b1ccb",
+     "research-26005cff-9374-43b3-8f26-9cc4a0d85fbe"
+    ]
+   }
+  ]
+ },
+ "discraft-challenger": {
+  "strengths": [
+   {
+    "t": "Circle staple: putts cleanly on push and spin strokes.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "2741e0e4-3276-41a7-a3e2-4e76e9c03c29",
+     "e1b56cb3-ea7f-489a-910c-f88c190a4414",
+     "a803f30c-88b3-41d7-9888-ad695fc575e9",
+     "research-72fd4779-18e1-42f3-906b-b3692d54c069",
+     "research-95ff39f0-6d29-46fd-a8fd-0a827d18deda",
+     "research-ad8bed9c-3e27-4e6c-8852-e93bc7978822",
+     "research-c19d7729-92c3-4002-b94e-cfc7965f1666",
+     "research-06f49605-bb3d-4313-a283-a15ff66fce2f",
+     "research-9bfd81c6-8776-4d66-879e-897a35392cba"
+    ]
+   },
+   {
+    "t": "Straight approaches: holds a true flat path with a soft finish.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "03738292-9fc0-4c0a-8785-bea0f06d72e0",
+     "75f57931-5165-4bc6-b6dc-8327d3ef3344",
+     "5dde03e8-37f8-4bdc-8e52-15dcaf7352bf",
+     "4087b597-97e4-46ed-88d8-e0dc21d806a6",
+     "a803f30c-88b3-41d7-9888-ad695fc575e9"
+    ]
+   },
+   {
+    "t": "Tacky blend: jawbreaker stays put in the hand, even when damp.",
+    "for": [],
+    "src": [
+     "75f57931-5165-4bc6-b6dc-8327d3ef3344",
+     "e1b56cb3-ea7f-489a-910c-f88c190a4414",
+     "5dde03e8-37f8-4bdc-8e52-15dcaf7352bf",
+     "research-7d22d8d4-105c-4cec-a2be-33e39f189266"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Soft blends wear: pro D and X runs beat in and lose stability fast.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-db317dad-332c-4ae8-bcc8-bb0c8c3b91a5",
+     "research-ddcf214a-0dfd-4eda-ad3f-ad91e9898d11",
+     "research-c22e3262-5fa2-4d5e-b903-b6a46fda1731",
+     "research-05067edc-255d-45db-85fe-91507c03c251"
+    ]
+   },
+   {
+    "t": "Rim may not suit: the bead and depth can feel awkward off the tee.",
+    "for": [],
+    "src": [
+     "58b56930-ad51-44ca-93d0-082fd26c5e3a",
+     "research-db317dad-332c-4ae8-bcc8-bb0c8c3b91a5"
+    ]
+   }
+  ]
+ },
+ "discraft-zeus": {
+  "strengths": [
+   {
+    "t": "Power distance: pushes long, then hooks into a dependable fade.",
+    "for": [],
+    "src": [
+     "5f882ab1-dcaf-49d1-91d8-52a2c139a163",
+     "b5aa3422-0463-4574-846f-e18bde824638",
+     "f7d133d1-ad6e-42ee-910d-fcb5eb702488",
+     "46a74880-3b39-4afa-badb-6b0815b96628",
+     "cfe9013c-a997-47a6-8414-6ac546fba7c8",
+     "b8b466a8-6197-493f-9413-123d2ca17498",
+     "research-9539b9b5-10e1-4785-9768-e39ece679ab3",
+     "research-9cb95fae-22df-41f1-abec-dce6e35853e9"
+    ]
+   },
+   {
+    "t": "Sidearm distance: torque resistant off the forehand too.",
+    "for": [],
+    "src": [
+     "46a74880-3b39-4afa-badb-6b0815b96628",
+     "cfe9013c-a997-47a6-8414-6ac546fba7c8",
+     "b8b466a8-6197-493f-9413-123d2ca17498",
+     "research-772267a1-6233-42b9-ba1c-9bc298216b0a",
+     "research-cf36b4e2-4b9c-4007-be73-e6f7747c2f78",
+     "research-95499821-244a-4233-ab4d-7033bab6c805"
+    ]
+   },
+   {
+    "t": "Headwind steady: domey runs stay firm in windy conditions.",
+    "for": [],
+    "src": [
+     "5f882ab1-dcaf-49d1-91d8-52a2c139a163",
+     "2bb3e149-9239-435d-a3b5-3388615d74c7",
+     "6d599a64-d338-4c89-8e05-4378d19c3b4f",
+     "research-706be0fa-d6ad-4146-b666-f9572209d6be"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Runs vary widely: copies can range from flippy to stupidly overstable.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "6d599a64-d338-4c89-8e05-4378d19c3b4f",
+     "69f64373-b16b-416d-abde-bf9243d62e56",
+     "research-c9fc1869-0108-4c09-b691-44de34bf8774",
+     "research-9e63d621-3552-4338-baa1-ef6e0d6b2cd6",
+     "research-775421e9-de10-46ae-9789-d913979c9562"
+    ]
+   },
+   {
+    "t": "Stiff out of the box: fresh and prototype runs resist turn and dump hard.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "a3fd3ec3-e8d6-45b7-ad38-378d02b3b676",
+     "c494b81f-e5a3-4abe-af6f-2f4f52bb8dd1",
+     "research-7b2f0330-5e5a-4240-ad08-ce8b67bb3981"
+    ],
+    "only": [
+     "arm"
+    ]
+   }
+  ]
+ },
+ "latitude-64-bolt": {
+  "strengths": [
+   {
+    "t": "Calm-day bomber: hyzer releases carry past 400 ft with tons of glide.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "2407456f-5d28-4892-aad8-08b2f9150d3b",
+     "b78f45ef-6a8c-415e-9546-4e1ba17eab5e",
+     "research-60043d22-9b1a-422b-a3ee-33ed46e9df6d",
+     "research-a9e25819-f469-4c42-983f-518040a1fe72",
+     "research-da0ebbda-45e9-4ea6-bf2f-9ec603294693",
+     "research-df52f446-be82-4481-98c4-3ef2da4a89de",
+     "research-a8da23b6-b3c3-4aa5-8732-5440ff24c674",
+     "research-f8891b6c-fe09-49b1-b17e-93482dffe7dc"
+    ]
+   },
+   {
+    "t": "Ground-game machine: rolls out huge when thrown for it.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "3ed4744b-bfd3-4f60-9578-62bc66ad5c78",
+     "c388d43a-0106-4e8e-9429-d8424588f470",
+     "research-849bb71e-88ee-4f39-9b43-3ebb79b3d5e2"
+    ]
+   },
+   {
+    "t": "Light runs fly far: copies at 151 to 158 g outdistance heavier drivers.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "research-a9e25819-f469-4c42-983f-518040a1fe72",
+     "research-a8da23b6-b3c3-4aa5-8732-5440ff24c674"
+    ],
+    "only": [
+     "arm"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Very flippy: hard throws roll unless on a big hyzer.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "c388d43a-0106-4e8e-9429-d8424588f470",
+     "research-eac042f6-0cdf-44db-941f-b28d17502ea2",
+     "research-04d154f0-3266-423e-9091-39920b9935f7",
+     "research-fba4dd26-9b90-4277-af28-ae157cb50fe3",
+     "research-28a1c3dc-3008-4165-8368-37e5382f5da9"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want a fade? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-eac042f6-0cdf-44db-941f-b28d17502ea2",
+      "research-04d154f0-3266-423e-9091-39920b9935f7"
+     ]
+    }
+   },
+   {
+    "t": "Not a first disc: it takes power and skill to tame on tight holes.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "research-e3cdc868-ddd3-465f-bf4d-3d535dad5bd3",
+     "research-3788525e-5606-418f-9eaf-089ae03d13aa",
+     "research-c74a4c3a-91a3-465f-9eb8-94e0d8cac08e"
+    ]
+   },
+   {
+    "t": "Touchy flight: holds or crashes unpredictably, worse in gusts.",
+    "for": [],
+    "src": [
+     "research-0c081364-bf66-4eae-9834-2da87bda0c82",
+     "research-2fa4ba6e-0002-4f23-bd60-1d49be27359c",
+     "research-60043d22-9b1a-422b-a3ee-33ed46e9df6d"
+    ]
+   }
+  ]
+ },
+ "discmania-mutant": {
+  "strengths": [
+   {
+    "t": "Scramble utility: fights out of any anhyzer and dumps hard.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "b4998b57-6bd7-491b-8091-5df0957f4ec2",
+     "85c55ed8-a5c1-4a38-ba04-e117390d7a2c",
+     "7957d991-ee88-40fc-9258-f711b725d03b",
+     "13cca3ea-f904-45b0-81d9-ae3c6dc105ee",
+     "e87ebf79-c13c-4245-a073-60333831cf51",
+     "research-9e9fdfc2-53cc-4c4e-9ce6-8fe0fe3e2e66",
+     "research-b166aa60-4ea2-4f83-b9f1-50c3e5d050d1"
+    ]
+   },
+   {
+    "t": "Headwind brick: ignores gusting wind on short approaches.",
+    "for": [],
+    "src": [
+     "87995e0f-885c-4ae1-93b0-eb09f629f6cb",
+     "427171b2-3169-4044-9012-c89a9e1faaaa",
+     "22bef0a1-cfd8-4856-b1d4-14ab013f931d",
+     "fe1bc3c7-6699-4431-b31e-046c2937e102",
+     "research-5a2d0fb0-8b7a-49b6-ad14-3b658ec5d8d2"
+    ]
+   },
+   {
+    "t": "Forehand approaches: resists high-torque sidearm snaps.",
+    "for": [],
+    "src": [
+     "caf0d50a-142b-4b33-8319-97a446bac57b",
+     "6685125d-d089-477d-841b-d77ea53ee7f7",
+     "2568d76a-7956-49bd-9297-e25c5c88f892"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Little carry: goes only so far before falling out of the air.",
+    "for": [],
+    "src": [
+     "research-fc1b5463-ddf0-45fe-925d-7a551a39b524",
+     "research-e4b1e112-c654-46d5-98ce-837ee6b269e7",
+     "research-20c60afc-d108-4fe7-a636-1678672fafea"
+    ]
+   },
+   {
+    "t": "Not a first disc: too much stability for ordinary arms to use.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "a4daf37b-c8c5-49dc-a68a-724161836a2c",
+     "research-b8524fd7-c7fe-40cd-8dd9-3a26406c5eba"
+    ],
+    "alt": {
+     "slug": "discraft-buzzz",
+     "t": "Slower arm? The Discraft Buzzz is known for accuracy and holding lines: 5/4/-1/1.",
+     "src": [
+      "a4daf37b-c8c5-49dc-a68a-724161836a2c",
+      "research-b8524fd7-c7fe-40cd-8dd9-3a26406c5eba"
+     ]
+    }
+   }
+  ]
+ },
+ "innova-archangel": {
+  "strengths": [
+   {
+    "t": "Great for learners: rewards a developing arm with full flights.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "research-60e69211-3136-4645-982a-b558b025b93b",
+     "research-562bb7b9-d9e5-46bf-bc15-f118b545ec51",
+     "research-76327731-e79c-4051-8f78-c47200c2ef25",
+     "research-20956422-1ba3-4606-a2ae-2db55e990771",
+     "research-5999cf5c-3ca6-4842-bac7-a7f4a9dccef2",
+     "research-36b0577e-3c9d-4391-a269-7e1354e0399f",
+     "research-e047252c-77e0-4d08-bd86-0e103f03ccc7"
+    ]
+   },
+   {
+    "t": "Easy hyzer flips: dX copies stand up and glide with little arm.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "b4f5d94c-260d-4d58-b28f-6a20b000fdd3",
+     "7938ae85-03f2-424c-8577-ecf3bab69b60",
+     "research-f5543a94-1724-40a0-a184-7d1d8c10a9f7",
+     "research-9a495125-31f4-4825-95a0-fa04a894ddb9",
+     "research-562bb7b9-d9e5-46bf-bc15-f118b545ec51"
+    ]
+   },
+   {
+    "t": "Turnover utility: throws right-turning doglegs and rollers on demand.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "b4f5d94c-260d-4d58-b28f-6a20b000fdd3",
+     "research-2a037e4b-0c7c-4050-99e6-0fa18ca27966",
+     "research-201bf6e9-46f0-4b52-99f7-be425580b966"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Very flippy: needs steep hyzer to avoid rolling away.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-266dae98-d4f4-447c-b23e-1d1ab7f7bca0",
+     "research-fdfd0be4-0d55-405c-a8f1-3fc20e34069b"
+    ],
+    "alt": {
+     "slug": "innova-leopard",
+     "t": "Want more control? The Innova Leopard is known for accuracy and holding lines: 6/5/-2/1.",
+     "src": [
+      "research-fdfd0be4-0d55-405c-a8f1-3fc20e34069b",
+      "research-3c56e858-66bd-4d0e-bb81-c51de2ec4e3c"
+     ]
+    }
+   },
+   {
+    "t": "Soft plastic ages fast: gets flippier quickly as DX breaks down.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-8c7b1e8b-088f-4b37-88af-9cd3d47ee666",
+     "research-d598be07-5a46-4c76-bec5-4a747b2a96b2"
+    ]
+   },
+   {
+    "t": "Premium flies different: champion runs are much more stable than DX.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-7c5bb56e-efc8-44aa-b7d1-7225d0d5ffa5",
+     "research-3c56e858-66bd-4d0e-bb81-c51de2ec4e3c"
+    ]
+   }
+  ]
+ },
+ "latitude-64-sinus": {
+  "strengths": [
+   {
+    "t": "Torque-proof approaches: never turns over on hard throws or in wind.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "2b7ef093-bcb8-45d3-b803-976ff2906f54",
+     "5ceb8b3c-8ed5-4bdc-9773-17ffbca52071",
+     "8694c8ef-23c6-426d-8cfd-4e6a8010750b",
+     "f1094521-b667-4cdc-846a-7d5658c75f2a",
+     "research-cc0ad981-cba3-4c85-bf31-6b37fb466fa6"
+    ]
+   },
+   {
+    "t": "Safe finish: fades back hard, so misses stay close.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "d4fc6886-6d3b-4df5-9c93-6765d74d65f5",
+     "research-cc0ad981-cba3-4c85-bf31-6b37fb466fa6",
+     "research-ac7aadfa-5c64-452c-96ad-a3e033c76efe"
+    ]
+   },
+   {
+    "t": "Choose your landing: zero Medium stops on a dime; Opto skips forward.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "f6958640-acf9-43df-b025-2d144d405c5e",
+     "2b2397dc-16d0-4ad1-b58e-7739b103e117",
+     "6cc8d44a-b4b3-40f2-85be-d6c4b826ee8d"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Awkward early feel: thumb pads and sharp new rims can bother hands.",
+    "for": [],
+    "src": [
+     "2f76c22c-cf04-4b1c-a4f0-8a846de6ef71",
+     "research-1bde7d82-2be8-43f8-808e-1e4f70ac8ad4",
+     "research-88e0bcb9-88ab-4d75-a383-e7886d031c67"
+    ]
+   },
+   {
+    "t": "Seasons quickly: zero copies lose stability within a month.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-cc0ad981-cba3-4c85-bf31-6b37fb466fa6",
+     "research-f321b6f2-9456-420a-81e5-634694507ee4",
+     "research-2dbe02a6-c265-48b3-8c20-3432347952fd"
+    ]
+   },
+   {
+    "t": "Stiff on the green: too overstable for some putting strokes.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "4d9b5679-eafe-4e9d-bd7d-691e0a5b8677",
+     "research-c36f348b-b255-404c-95f2-de2acbb511e2"
+    ],
+    "alt": {
+     "slug": "innova-aviar",
+     "t": "Want a putting putter? The Innova Aviar is known for grip and holding lines: 2/3/0/1.",
+     "src": [
+      "4d9b5679-eafe-4e9d-bd7d-691e0a5b8677",
+      "research-c36f348b-b255-404c-95f2-de2acbb511e2"
+     ]
+    }
+   }
+  ]
+ },
+ "discraft-malta": {
+  "strengths": [
+   {
+    "t": "Dependable finish: flies straight, then checks left every time.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "295c2c6e-7f26-4e62-8b71-f2c68fa3b578",
+     "f48c2c11-dce2-4143-ac96-7b56097c9804",
+     "bd1cc902-722b-46d6-97e4-18b09badc3a0",
+     "645e8132-128e-42b7-8daa-8d7e96d54cd9",
+     "research-1761af03-7ae6-4bc4-ba37-0deba7645e2b"
+    ]
+   },
+   {
+    "t": "Comfortable grip: the beaded rim sits clean in the hand.",
+    "for": [],
+    "src": [
+     "295c2c6e-7f26-4e62-8b71-f2c68fa3b578",
+     "f48c2c11-dce2-4143-ac96-7b56097c9804",
+     "bd1cc902-722b-46d6-97e4-18b09badc3a0",
+     "815b3453-cc78-496f-aea2-13df10c6e597"
+    ]
+   },
+   {
+    "t": "Torque resistant: shrugs off hard snap and headwinds.",
+    "for": [],
+    "src": [
+     "bd1cc902-722b-46d6-97e4-18b09badc3a0",
+     "645e8132-128e-42b7-8daa-8d7e96d54cd9",
+     "1eac74b5-f2f3-482e-91bd-4987f30b62f6",
+     "research-d9215a37-a11b-4b8d-9bcd-a012822cd135"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Run-to-run swings: copies range from Buzzz-like to meathook.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-473674a9-d6c3-4341-873c-9138787c45f6",
+     "research-22122919-14ce-4d51-8e93-fb6b61553f43",
+     "research-3b0d42eb-b2db-4a65-908d-6787f916b866"
+    ],
+    "alt": {
+     "slug": "innova-roc3",
+     "t": "Want consistency? The Innova Roc3 is known for a reliable fade and accuracy: 5/4/0/3.",
+     "src": [
+      "research-473674a9-d6c3-4341-873c-9138787c45f6",
+      "research-22122919-14ce-4d51-8e93-fb6b61553f43"
+     ]
+    }
+   },
+   {
+    "t": "Milder than rated: some fly closer to 5/5/0/2 than the numbers.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-278e0f2a-daef-4b37-a206-99f322100bdc",
+     "research-f96bd637-52cd-4152-b1e5-91f103806f93",
+     "research-7db680bf-e6cf-4c5a-a378-87e978267896"
+    ]
+   }
+  ]
+ },
+ "discmania-dd1": {
+  "strengths": [
+   {
+    "t": "Long S-curves: huge glide carries it toward 400 ft.",
+    "for": [],
+    "src": [
+     "c6ad9c17-61b0-4ac9-be72-2ca348fde26c",
+     "13b25c11-5234-411b-90d4-9e69b740cf1d",
+     "40d81b05-c5fe-4c06-a549-f4180adb5f73",
+     "dc2d3aac-393e-4954-a8b5-c56ad239b4b1",
+     "78bccb18-a0c1-40dd-bdd2-c16b86cfcf5e",
+     "bdd27b48-0d43-406d-9315-3a635d1ddd97",
+     "595d851d-145c-484f-87c3-8ae40ad158b4",
+     "94dcf8cb-d715-4f31-8dab-bac35f69336e",
+     "research-49c572b5-0964-4d72-8295-0b321922f294",
+     "research-2a7a71d3-bdaf-441e-a68f-3b2818f0f90b"
+    ]
+   },
+   {
+    "t": "Easy to get moving: q-Line runs come up to speed easily for amateur arms.",
+    "for": [
+     "intermediate",
+     "arm"
+    ],
+    "src": [
+     "453354f0-da0b-4e67-bbec-48ef66997c81",
+     "bdd27b48-0d43-406d-9315-3a635d1ddd97",
+     "69540c1b-e35f-4d45-9648-b34a0d5e6b30",
+     "4416b416-a293-4790-b25c-f771aa1594d5"
+    ]
+   },
+   {
+    "t": "Comfortable rim: mid-width edge sits nicely in hand.",
+    "for": [],
+    "src": [
+     "453354f0-da0b-4e67-bbec-48ef66997c81",
+     "9e323258-da00-4cdc-97d5-8fbdfe80ec40",
+     "bd5c560b-ba2e-4a40-b19b-61905134c2e0"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flippy older runs: horizon copies can turn over readily.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-f9cdc41c-e44f-424d-8cae-efc2dca81ae4",
+     "research-def262d0-655c-49e4-8f40-945dcf3131ad",
+     "research-165b1ef6-c681-4e32-8531-a15cd23a7cc2"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Want more fade? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "research-f9cdc41c-e44f-424d-8cae-efc2dca81ae4",
+      "research-165b1ef6-c681-4e32-8531-a15cd23a7cc2"
+     ]
+    }
+   },
+   {
+    "t": "Batch differences: stability shifts noticeably between runs.",
+    "for": [
+     "power",
+     "control"
+    ],
+    "src": [
+     "c51c62c4-6606-4281-9bc7-bb9b651e78d2",
+     "f402caf7-6b04-49fd-b208-7346ac8337fe",
+     "research-a9e77748-db51-4f9e-8d5f-c8d825a9f839"
+    ]
+   }
+  ]
+ },
+ "innova-dragon": {
+  "strengths": [
+   {
+    "t": "Soft-throw glide: glides far on smooth hyzer releases.",
+    "for": [
+     "arm",
+     "beginner"
+    ],
+    "src": [
+     "9aaafe6b-ea34-4882-95ca-60a30a9fd391",
+     "f1fd5ff2-5431-4dec-af09-6ecfd8dd675b",
+     "258d60f3-f334-4b9a-8ba3-107bf47dbd49",
+     "research-4312b980-a929-4038-affe-bf831edba591"
+    ]
+   },
+   {
+    "t": "Turnover utility: curves right reliably and sticks tomahawks.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-8c5d7d24-88eb-4852-a1fd-5a5a09335818",
+     "research-3c91c2e2-64e0-446f-a4f0-6382ddd69758",
+     "research-54ad7188-9eec-441e-952c-ecdf556ae1d8",
+     "research-2063a736-406a-40d2-82d7-85618725090a"
+    ]
+   },
+   {
+    "t": "Water hole saver: floats for easy retrieval from ponds.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-18b1853f-0df3-49d9-b7c6-6d601161ff9b",
+     "research-eb77fe8d-a8a2-47fa-b2f4-0452e0cf3eb8",
+     "research-afec25c9-7e54-46ff-a301-14b468ae85ff",
+     "research-d1a8ffd9-ca65-4b66-9bb9-0c71a104d9da"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Turns over under power: flat or hard throws flip it into cut rollers.",
+    "for": [
+     "advanced",
+     "control"
+    ],
+    "src": [
+     "9071df97-3fef-49ad-8223-eb5ab71113d2",
+     "research-682a6990-5707-499a-b397-24a14cf6fb90",
+     "research-cdef1e3c-8ab5-4d0a-84ab-bea312488d2e",
+     "research-be80aa8d-84eb-40f0-ae07-929c7c14e888",
+     "research-577325a2-9ecd-4983-b390-45ddbe8c444c",
+     "research-c514cea9-d1e0-4308-81e8-6cac50d029a4"
+    ],
+    "alt": {
+     "slug": "innova-teebird",
+     "t": "More power? The Innova TeeBird is known for a reliable fade and accuracy: 7/5/0/2.",
+     "src": [
+      "research-be80aa8d-84eb-40f0-ae07-929c7c14e888",
+      "research-577325a2-9ecd-4983-b390-45ddbe8c444c"
+     ]
+    }
+   },
+   {
+    "t": "Fragile DX: wrecked by a couple of tree hits; soft in heat.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-0f392cbe-c4ee-443a-b430-5809a5121320",
+     "research-3a62f614-2df0-443c-817e-20924fb755ab"
+    ]
+   },
+   {
+    "t": "Gust sensitive: the low weight gets unpredictable in wind.",
+    "for": [],
+    "src": [
+     "258d60f3-f334-4b9a-8ba3-107bf47dbd49",
+     "research-045209eb-27e2-43d0-a5ac-0caf6421b69c"
+    ]
+   }
+  ]
+ },
+ "westside-northman": {
+  "strengths": [
+   {
+    "t": "Long and true: flies far and straight with a mild finish.",
+    "for": [],
+    "src": [
+     "research-a10aae57-def2-4bd7-b491-077fa458d8c8",
+     "research-4d667fc0-4e67-43fd-ae8e-99dde03bcb13",
+     "research-7aff3fb1-3c2a-4fe3-b77d-47cc65f9915a",
+     "research-6ef9f919-a8f6-4a82-9ce0-c504a2276870",
+     "research-deac66b4-58c2-4841-87f8-447becad1981"
+    ]
+   },
+   {
+    "t": "Hyzer-flip machine: pops up from angle for easy fairway carry.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "a584871e-1aba-4728-afcb-d28459203fa5",
+     "c57b1012-4b77-49da-b734-f3b9f7a713ef",
+     "research-a10aae57-def2-4bd7-b491-077fa458d8c8",
+     "research-6ef9f919-a8f6-4a82-9ce0-c504a2276870",
+     "research-f96fce84-96a0-4cba-bddd-8e1bf7ec7946"
+    ]
+   },
+   {
+    "t": "Easy for moderate arms: effortless fairway distance for slower throwers.",
+    "for": [
+     "arm",
+     "beginner"
+    ],
+    "src": [
+     "c57b1012-4b77-49da-b734-f3b9f7a713ef",
+     "research-4d667fc0-4e67-43fd-ae8e-99dde03bcb13",
+     "research-8137e44a-280c-4740-9469-65ff26946539"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Flippier than listed: some copies fly more understable than rated.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-7b233877-468b-47d5-a32b-6e56f9ee3cec",
+     "research-9d1646f9-62c2-40e2-99f2-bcf35c930148"
+    ]
+   },
+   {
+    "t": "Unpredictable flight: less reliable than similar understable drivers.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-f929686b-7309-4638-bd73-3426ebf6804e",
+     "research-c0fee643-8a5a-494b-8d39-a751065dafd0"
+    ]
+   }
+  ]
+ },
+ "dynamic-discs-vandal": {
+  "strengths": [
+   {
+    "t": "Forgiving 9-speed: holds release angles and finishes soft.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "c0917aa6-c572-4025-a31e-4ca0f7f368e8",
+     "66c5ee46-3972-4667-afae-8015043037a0",
+     "501dea49-c61b-4f9e-8740-f157198c8ca0",
+     "24a23b9a-3943-4d39-977c-ba2b5341ee10",
+     "research-ddd4750d-5e34-40c4-8c74-6368bb48d69a",
+     "research-b8b35699-5832-460f-bb4c-41cd9bb81840",
+     "research-54fc4120-e265-4084-ab25-2759e01a22ef"
+    ]
+   },
+   {
+    "t": "Shot versatility: handles flips, rollers and long anhyzers.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "82ebbd18-9a12-4692-a718-b2bea0319511",
+     "research-ddd4750d-5e34-40c4-8c74-6368bb48d69a",
+     "research-b116f8e8-4118-4b08-a9ee-f322f19f1f2d",
+     "research-9f82c37d-f949-476d-a968-008348c5eb58"
+    ]
+   },
+   {
+    "t": "Comfortable plastic: grippy, smooth hand feel.",
+    "for": [],
+    "src": [
+     "501dea49-c61b-4f9e-8740-f157198c8ca0",
+     "850d4bc4-e173-4138-ab00-423aa4cd21a9",
+     "b1353919-5552-4873-a9a3-3a79def3258d"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Loses stability: lucid copies can get flippy as they break in.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-ebf5ddaa-033f-4784-8665-a2be32f3341d",
+     "research-2ec6745d-6540-476c-b567-863790765609",
+     "research-a61b6577-346a-4e78-8303-28e30bf34667"
+    ]
+   },
+   {
+    "t": "Batch swings: some copies fly much more stable than others.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-89ffd972-d0df-4c39-b644-9272bf6b31e2",
+     "research-abb4f94c-501b-4418-9e0a-a06359c4e6c7",
+     "research-23ea8c0d-ec13-498d-8d01-2596fc75179c"
+    ]
+   }
+  ]
+ },
+ "discmania-premier-dd3": {
+  "strengths": [
+   {
+    "t": "Max-distance bomber: huge glide carries past 400 ft.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "d5863d1b-7ca3-49fd-8427-1df4ec25322b",
+     "72353f5c-4e52-4aab-9457-4f69c16e583a",
+     "d5bf5ab4-7aa6-4de1-afd0-0e37276e723d",
+     "d9cbf106-2f37-491e-bdc4-eee5db66c243",
+     "3e69e601-c1df-4754-a47a-c34c2382c1d2",
+     "55f39e25-915f-44d5-954f-3a62ae1568a6",
+     "research-f4aa40f1-3b6a-4689-9229-6f4e8e9bf6d7",
+     "research-ab98e356-99c4-4b66-9a4a-4f300689aefa",
+     "research-dedf5a05-6983-44d2-9a28-a2615bdafd42"
+    ]
+   },
+   {
+    "t": "Torque resistant: holds straight under power, then pushes left.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "ed49dbce-2e71-4fac-a7c6-63fbbc92f237",
+     "ea7302fa-9059-4700-9cc9-30e821e5dcb5",
+     "4df4dbfb-b529-4da0-9c00-05e55567d541",
+     "research-a6478a95-8413-40de-b1ac-e98595ffdd8e",
+     "research-36798f2d-d1db-4047-ab1e-8b11d6da3b89"
+    ]
+   },
+   {
+    "t": "Sidearm laser: strong on power forehands too.",
+    "for": [],
+    "src": [
+     "9fa77473-91c4-4851-a652-8599b41b8dff",
+     "4df4dbfb-b529-4da0-9c00-05e55567d541",
+     "research-9670fc94-e0c5-4386-af7f-79b302159743",
+     "research-631b340a-65c0-454b-abda-e8647a2ced35"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Not a first disc: needs a big arm to get up to speed.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "af6452fc-acea-46f0-9753-913caa3249d6",
+     "9ab0e224-0d04-49b6-8ea3-968b27796f39",
+     "4786036e-d191-4436-a463-4427053a9f63"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Slower arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "af6452fc-acea-46f0-9753-913caa3249d6",
+      "4786036e-d191-4436-a463-4427053a9f63"
+     ]
+    }
+   },
+   {
+    "t": "Can beat in fast: some copies lose stability within a few rounds.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-eb523a14-2f15-4bad-9857-ca1811da7218",
+     "research-55312bb6-c342-448f-a908-aeb35b7579e5"
+    ]
+   },
+   {
+    "t": "Batch swings: colour runs range from flippy to meathook.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-c2e63fc6-4819-4dd5-bab4-999e017597b4",
+     "research-91305a27-0bb2-4754-b408-ff7c6d455a67"
+    ]
+   }
+  ]
+ },
+ "discmania-method": {
+  "strengths": [
+   {
+    "t": "Torque-resistant line: stands up to power, then fades reliably.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "9622d767-3c9e-4633-8429-029ffa06871a",
+     "49f6f033-f5ee-4df6-a42f-e025579b902f",
+     "390973d9-27ee-4424-a720-20c21939e955",
+     "f6113470-6cfe-48a1-af54-c8104226087b",
+     "research-552c20b5-3ea3-491d-b034-280ebcb5ad86",
+     "research-150a419b-5759-4eb7-8502-002fdf1087c6"
+    ]
+   },
+   {
+    "t": "Comfortable bead: feels great in a power grip.",
+    "for": [],
+    "src": [
+     "49f6f033-f5ee-4df6-a42f-e025579b902f",
+     "390973d9-27ee-4424-a720-20c21939e955",
+     "f6113470-6cfe-48a1-af54-c8104226087b",
+     "5a2354d1-0c9f-418c-b438-ca4b5ecd61ca",
+     "research-e5dc9d37-05d2-4906-91d3-edc51eb99653"
+    ]
+   },
+   {
+    "t": "Headwind steady: holds flat into moderate wind.",
+    "for": [],
+    "src": [
+     "9622d767-3c9e-4633-8429-029ffa06871a",
+     "390973d9-27ee-4424-a720-20c21939e955",
+     "3c1f047b-e1e8-4202-a747-c826599c7535",
+     "research-cf6777b9-3f68-43be-b9fd-a28658fe9a5f"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Milder than rated: neo runs fly less stable than the numbers.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-36d2b32a-9dab-42d2-b4f9-ccdc9328ea07",
+     "research-1a4d71eb-70ad-4ad8-9958-b74f6bcec8d2",
+     "research-b29abf92-e376-4875-aee2-0e4b9bdb4faf"
+    ]
+   },
+   {
+    "t": "Weak sidearm fit: doesn't suit forehands for some throwers.",
+    "for": [],
+    "src": [
+     "research-f9e54c27-3396-4e1c-9e64-e0a53b8bac08",
+     "research-3d12236b-0593-4294-af75-dbcf8af9a9fc"
+    ],
+    "alt": {
+     "slug": "discraft-zone",
+     "t": "Need a forehand mid? The Discraft Zone is known for forehands and a reliable fade: 4/3/0/3.",
+     "src": [
+      "research-f9e54c27-3396-4e1c-9e64-e0a53b8bac08",
+      "research-3d12236b-0593-4294-af75-dbcf8af9a9fc"
+     ]
+    }
+   },
+   {
+    "t": "Exo seasons quickly: those runs lose stability early in the woods.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-e3b72561-9c66-44ff-8fb3-c4519832735c",
+     "research-59cb1f68-b3c8-4731-8a5d-2112c325e74a"
+    ]
+   }
+  ]
+ },
+ "innova-ape": {
+  "strengths": [
+   {
+    "t": "Forehand confidence: never turns over off a hard sidearm.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "research-46d62651-66cd-4509-8355-3ed7ac0feed8",
+     "research-bc250b77-4f1c-4003-9b5e-5a58ee0a1624",
+     "research-44a96c38-dc88-4966-bbdb-f4bf8e5409dc",
+     "research-9627883c-0f12-4fc1-ac78-741d20d25323",
+     "research-25b49597-fb57-44fe-a395-e1f298c4892c"
+    ]
+   },
+   {
+    "t": "Headwind driver: bores straight into the breeze with a true fade.",
+    "for": [],
+    "src": [
+     "43d4c16d-0210-4120-8ca9-5062c225b2bd",
+     "research-572ae810-887c-4340-847e-c605285d08dd",
+     "research-9627883c-0f12-4fc1-ac78-741d20d25323",
+     "research-25b49597-fb57-44fe-a395-e1f298c4892c"
+    ]
+   },
+   {
+    "t": "Min-weight distance: light Blizzard runs reach 400 ft on flex lines.",
+    "for": [],
+    "src": [
+     "research-fa2db63a-260d-4c90-8bef-72f956cae7bb",
+     "research-e8524ffe-756e-4c81-bf03-ce411faaa3bb"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Not a first disc: without a full rip it dives left and stops short.",
+    "for": [
+     "beginner",
+     "arm"
+    ],
+    "src": [
+     "research-595cb879-6387-4b5a-bfcc-2d9327cb8552",
+     "research-11875658-681a-4b3f-b8f7-d1a75a705536",
+     "research-f410d43a-f693-4565-8d73-c91689d17974"
+    ],
+    "alt": {
+     "slug": "innova-wraith",
+     "t": "Slower arm? The Innova Wraith is known for distance and forehands: 11/5/-1/3.",
+     "src": [
+      "research-595cb879-6387-4b5a-bfcc-2d9327cb8552",
+      "research-11875658-681a-4b3f-b8f7-d1a75a705536"
+     ]
+    }
+   },
+   {
+    "t": "Can flip over: some copies, notably Blizzard, will turn and burn.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-dd4cae5c-fa90-4ee9-81c8-7a92c742ce44",
+     "research-f4350abb-9b90-4fe2-a750-88d0268ddf71"
+    ]
+   }
+  ]
+ },
+ "innova-alien": {
+  "strengths": [
+   {
+    "t": "Point-and-shoot touch: floats straight and drops flat near the pin.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "035ff506-8877-4443-bb63-90ad16b3dce4",
+     "fd4ffa03-c11d-4bbe-b7e4-6bdf9c558e28",
+     "479ede97-eb60-4ed1-b28f-ea301d82b81f",
+     "3cced243-7c62-4f60-8fd7-dfe18173ba54",
+     "research-c7634f93-52d4-4af2-983b-a956973590db",
+     "research-f05128fa-a7c1-4014-9611-ba06ecb7ee9e"
+    ]
+   },
+   {
+    "t": "Torque resistant: holds flat on hard rips.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "abd19b8e-4f50-4c43-a3fd-d7aa95e79640",
+     "20308dc8-963c-4fc5-9f67-b0e618a0be52",
+     "9c043b0d-a78b-4c13-8fe2-2a89741bba51",
+     "4cce2304-e9d4-46b7-a3f9-7a402feafd61",
+     "research-4f1e5f67-068c-4815-96f6-288d122801a4"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Unusual dome: the grooved top can force a fan grip and feel strange.",
+    "for": [],
+    "src": [
+     "0b79804a-a6cd-4c1f-8c74-865170bdaaa0",
+     "20308dc8-963c-4fc5-9f67-b0e618a0be52",
+     "research-2f190f30-e9fd-4ad9-b3ea-c457d5cccab0"
+    ]
+   },
+   {
+    "t": "Uneven sidearm: flies differently off a flick.",
+    "for": [],
+    "src": [
+     "bd65ea68-3f4c-4b17-8cb7-00451b9d7b5f",
+     "research-db039be4-d6e2-4b43-8ada-5da66f6714a5"
+    ]
+   }
+  ]
+ },
  "discmania-p2x": {
   "strengths": [
    {
@@ -11678,7 +15465,7 @@
   ],
   "catches": [
    {
-    "t": "Painful bead: the rim can hurt the fingers on release, mainly forehand.",
+    "t": "Awkward bead: the rim can snag the fingers on release, mainly forehand.",
     "for": [],
     "src": [
      "research-6d4ec627-821c-4f47-8bef-7ad829ba6de4",
@@ -13435,7 +17222,7 @@
     ]
    },
    {
-    "t": "Needs a big arm: full distance takes 75+ mph or elbow-straining throws.",
+    "t": "Power hungry: full distance takes 75+ mph or very hard throws, harder on the arm.",
     "for": [
      "arm"
     ],
@@ -13461,6 +17248,56 @@
     "src": [
      "research-63a6c7d8-f5e8-4ba7-a4c3-c52de1587afa",
      "research-de412ec5-4309-4d5f-bf53-995e39e7878f"
+    ]
+   }
+  ]
+ },
+ "innova-wahoo": {
+  "strengths": [
+   {
+    "t": "Easy distance: reached 415 ft on a nearly straight line for one thrower.",
+    "for": [],
+    "src": [
+     "research-928b27ae-6050-4b87-852d-d88ebfcccee3",
+     "research-5dec10db-d949-4627-9fe3-42dcfe99c3a8"
+    ]
+   },
+   {
+    "t": "Flips to flat: stands up quickly from a slight hyzer and drifts.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "996b4759-6761-428d-9818-7cb8951b951c",
+     "research-928b27ae-6050-4b87-852d-d88ebfcccee3"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Overturns readily: minor release errors and wear roll it over hard.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-92ef1ea5-5342-4607-a996-77dbb0418083",
+     "research-4b2c793c-466a-4c09-83c6-b22e5071b8ca"
+    ],
+    "alt": {
+     "slug": "innova-destroyer",
+     "t": "Want more stability? The Innova Destroyer is known for distance and wind: 12/5/-1/3.",
+     "src": [
+      "research-92ef1ea5-5342-4607-a996-77dbb0418083",
+      "research-4b2c793c-466a-4c09-83c6-b22e5071b8ca"
+     ]
+    }
+   },
+   {
+    "t": "Odd in hand: the wide rim and R-Pro feel strange and stiff to some throwers.",
+    "for": [],
+    "src": [
+     "49a9bbba-c762-446f-93ef-00c5830a0731",
+     "research-6ada3d4d-0ea3-4fb6-87fa-0aafe3a05358"
     ]
    }
   ]
