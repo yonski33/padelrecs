@@ -48,3 +48,5 @@
 .sp-sim.sp-soft h2 { letter-spacing: -0.01em; }
 .sp-sim.sp-disc { --sp-card-r: 14px; --sp-tile-r: 50%; --sp-shadow: oklch(0.55 0.09 160); }
 @media (max-width: 560px) { .sp-sim.sp-soft { --sp-h2-size: 28px; } }
+/* The old product page (TennisRecs, SimRacingRecs): the section's own row under the two columns. */
+.sp-wrap { padding: 0 16px; margin-bottom: 32px; }

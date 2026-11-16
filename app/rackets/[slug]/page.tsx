@@ -46,7 +46,7 @@ import { listLine } from "../../../lib/list-lines";
 import { shortLine } from "../../../lib/short-lines";
 import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, SignalInfo, SignalPop } from "../../visual";
 import { summary } from "../../../lib/product-summary";
-import { comparePairs, comparePick, pairHref, pairKey } from "../../../lib/compare-pairs";
+import { comparePairs, comparePick, pairHref, pairKey, modelFamily } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../../similar-section";
 import { tint, tileWord, worksWith, platformsOf, expertLine, type RigPart } from "../../../lib/similar-picks";
@@ -322,7 +322,10 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   })() : [];
   const simTabs: SimilarTab[] = niche.similar ? [
     { key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`,
-      items: [...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x }, i) => oldItem(x, i, loved?.get(x.id)?.loved ?? null)),
+      // One card per model (the best liked year), never another year of this one.
+      items: [...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1))
+        .filter(({ x }, i, all) => modelFamily(x) !== modelFamily(r) && all.findIndex(y => modelFamily(y.x) === modelFamily(x)) === i)
+        .map(({ x }, i) => oldItem(x, i, loved?.get(x.id)?.loved ?? null)),
       more: firstList ? { href: rankingHref(firstList.slug), label: `all ${groupWord}, ranked →` } : null },
     ...(works.length ? [{ key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
       items: works.map((w, i) => oldItem(data.listed.find(x => x.id === w.id)!, i, w.why)), more: null }] : []),
@@ -532,10 +535,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {glance.length > 0 && <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>}
           {/* "Compare with …" sits with the similar products, not in the header (owner's audit, 2026-11-13). */}
           {compareWith && <a className="lp-compare" href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`} <span aria-hidden="true">→</span></a>}
-          {simSection || similarBox}
+          {!simSection && similarBox}
           {siblingsBox}
         </aside>
       </div>
+      {/* "Similar products" full width at the foot (owner 2026-11-16), where a site has it; else the old box stays in the side. */}
+      {simSection && <div className="sp-wrap">{simSection}</div>}
       {moreBox}
       {nextBox}
       {/* No fixed "Check price" bar on phones (owner, 2026-11-13, audit): the one button in the header stays where it is. */}
@@ -624,11 +629,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </div>
 
       <aside className="database-sidebar">
-{simSection || similarBox}
+{!simSection && similarBox}
 
 {siblingsBox}
       </aside>
     </div>
+{simSection && <div className="sp-wrap">{simSection}</div>}
 
 {nextBox}
     {/* Phones: the shop button stays in reach at the bottom of the screen. */}

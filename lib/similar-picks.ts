@@ -6,7 +6,7 @@ import { hasAttribution } from "./voice";
 
 /** A card's line in the expert voice (owner 2026-11-16): the clauses before any "some / many players …" one, so "Big distance
  *  once seasoned; many turn it over" reads "Big distance once seasoned." Null when nothing is left. */
-const CROWD = /\b(many|some|several|a few|most|users|people|players|drivers|throwers)\b/i;
+const CROWD = /\b(many|some|several|a few|a couple|most|users|people|players|drivers|throwers|racers)\b/i;
 export function expertLine(text: string | null | undefined): string | null {
   if (!text) return null;
   // Clauses with the punctuation after them ("…; ", "…. "), so what is kept reads as written.
@@ -22,7 +22,7 @@ export const TINTS = ["var(--s-acc)", "#fff", "oklch(0.92 0.13 95)", "oklch(0.9 
 export const tint = (i: number) => TINTS[i % TINTS.length];
 /** The tile's word for types too long for it (48px). */
 const SHORT_TAG: Record<string, string> = { "wheelbase": "base", "wheel": "rim", "cockpit": "rig", "shifter / handbrake": "shifter", "balm & ointment": "balm", "eye cream": "eye" };
-export const tileWord = (s: string) => SHORT_TAG[s.toLowerCase()] ?? s.toLowerCase();
+export const tileWord = (s: string) => SHORT_TAG[s.toLowerCase()] ?? s.toLowerCase().replace(/\s*\(.*\)\s*$/, "");
 
 /** "more power": the trait where `other` is furthest ahead of `me` on the 0–5 dots (0 = not rated), in the site's own words;
  *  "similar feel" when it is ahead nowhere. */
