@@ -20,9 +20,15 @@ export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
 }
 
-/** "19 players mention it": the item's evidence line from its own report count. */
-export function evidenceLine(item: PageItem, many = "players") {
+/** The fewest reports an evidence line may show (owner rule, all sites, 2026-11-16): under this the item still shows but its
+ *  "N players mention it" line (and any special line with a count) is left out. Copy guide: QUICK-TAKE-RECIPE.md, "Counts". */
+export const MIN_COUNT_SHOWN = 5;
+
+/** "19 players mention it": the item's evidence line from its own report count, in the site's word for people ("users" on
+ *  SkinRecs); null under MIN_COUNT_SHOWN. */
+export function evidenceLine(item: PageItem, many = niche.people.many): string | null {
   const n = new Set(item.src).size;
+  if (n < MIN_COUNT_SHOWN) return null;
   return (item.ev ?? `{n} ${many} mention it`).replace("{n}", String(n));
 }
 
