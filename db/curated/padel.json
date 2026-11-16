@@ -1,0 +1,56 @@
+{
+ "_about": "PadelRecs curated top 10 per pick (owner 2026-11-17). Key: style/level/arm-off|arm-on. Each list: racket slugs in order, an optional note. A list shows first, in this order, with the % stepping down 97 → 80; the engine ranks the rest. Empty list = engine only.",
+ "lists": {
+  "control/beginner/arm-off": [],
+  "control/beginner/arm-on": [],
+  "control/intermediate/arm-off": [],
+  "control/intermediate/arm-on": [],
+  "control/advanced/arm-off": [],
+  "control/advanced/arm-on": [],
+  "balance/beginner/arm-off": [],
+  "balance/beginner/arm-on": [],
+  "balance/intermediate/arm-off": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026"
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026"
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "note": "the 2027 has 3 reviews; the 2026 has 49 (ask: 05 Hybrid 2026 or 2027?)"
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026"
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026"
+   },
+   {
+    "slug": "siux-diablo-pro-2026"
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "note": "the only 2026 12K; the Alum XTREM Lite 2026 is the other option (ask)"
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026"
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026"
+   },
+   {
+    "slug": "babolat-air-viper-2026"
+   }
+  ],
+  "balance/intermediate/arm-on": [],
+  "balance/advanced/arm-off": [],
+  "balance/advanced/arm-on": [],
+  "power/beginner/arm-off": [],
+  "power/beginner/arm-on": [],
+  "power/intermediate/arm-off": [],
+  "power/intermediate/arm-on": [],
+  "power/advanced/arm-off": [],
+  "power/advanced/arm-on": []
+ }
+}

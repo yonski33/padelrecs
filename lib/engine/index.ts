@@ -62,6 +62,9 @@ export type EngineProfile = {
   /** With "sore arm": small demotions of the cautious score for a thin (14 mm) core and a firm feel (PickleballRecs). */ armSpecDemote?: { core14: number; firm: number };
   /** The maker's mould bounds the final axis like a label (owner 2026-11-17, "the Oxdog is a diamond"): shape word (matched
    *  in the lower-cased shape) → [min, max]. A diamond plays on the power side however its control is praised. */ shapeBounds?: Record<string, [number, number]>;
+  /** Newest model wins (owner 2026-11-17): a newer year with this many reports always takes the model's row. */ newestAt?: number;
+  /** The shape rule (owner 2026-11-17): for these styles at these levels, these shapes (lib/fine-tune shapeOf) go after every
+   *  other row and stay under "Worth a look". */ shapeOrder?: { styles: string[]; levels: string[]; below: string[] };
   /** The balance pick's axis term with a flat middle: within this distance of 0.5 counts as fully all-round. */ balanceFlat?: number;
   // The DiscGolfRecs match audit (Grok 2026-11-16, owner OK 2026-11-17). Unset: as before.
   /** A hard reason (with hardCap) also takes this off the cautious score, and the product sorts after every other row. */ hardPenalty?: number;
@@ -178,7 +181,8 @@ export const enginePct = (cautious: number, a: { lo: number; hi: number }, d: { 
 /** Candidates for a list: enough reports, passing the level gate; one row per model (the newest year that passes), unless
  *  every year is asked for. `family` is the model's row id (lib/compare-pairs.ts rowOfFamily). */
 export function engineCandidates<T extends { id: string; n: number; family: string; year: number }>(items: T[], ok: (x: T) => boolean, minReports: number, everyYear = false,
-  /** With familyBestWithin: each member's % for the picks; the best one stays, a newer one within that many points wins. */ best?: { pct: (x: T) => number; within: number }): T[] {
+  /** With familyBestWithin: each member's % for the picks; the best one stays, a newer one within that many points wins (and
+   *  always, with newestAt, once it has that many reports). */ best?: { pct: (x: T) => number; within: number; newestAt?: number }): T[] {
   const pass = items.filter(x => x.n >= minReports && ok(x));
   if (everyYear) return pass;
   const keep = new Map<string, T>();
@@ -187,7 +191,7 @@ export function engineCandidates<T extends { id: string; n: number; family: stri
     if (!b) { keep.set(x.family, x); continue; }
     if (!best) { if (x.year > b.year) keep.set(x.family, x); continue; }
     const [newer, older] = x.year >= b.year ? [x, b] : [b, x];
-    keep.set(x.family, best.pct(newer) >= best.pct(older) - best.within ? newer : older);
+    keep.set(x.family, (best.newestAt !== undefined && newer.n >= best.newestAt) || best.pct(newer) >= best.pct(older) - best.within ? newer : older);
   }
   return [...keep.values()];
 }

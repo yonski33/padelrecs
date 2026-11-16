@@ -30,6 +30,8 @@ test("audit 1: the same racket's % moves with the level when its suits differ by
     const a = matchPcts(items, { style, level: "advanced", arm: false }, SETUP.levelGate, SETUP.engine);
     for (const x of items) {
       const s = x.level?.suits; if (!s || Math.abs(s.beginner - s.advanced) < 30 || b.get(x.id) == null || a.get(x.id) == null) continue;
+      // Held under "Worth a look" at both levels (a level gate one side, the diamond shape rule the other): nothing to move.
+      const cap = SETUP.engine!.cuts.maybe - 1; if (b.get(x.id)! <= cap && a.get(x.id)! <= cap) continue;
       checked++; assert.notEqual(b.get(x.id), a.get(x.id), `${name(x.id)} ${style}: ${b.get(x.id)} vs ${a.get(x.id)}`);
     }
   }
