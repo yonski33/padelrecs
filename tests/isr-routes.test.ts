@@ -72,3 +72,13 @@ for (const id of V2) {
 test("the cached view pages import nothing that forces a render per request", () => {
   for (const page of new Set(PAGE.map(([, p]) => p))) assert.deepEqual(dynamicUses(page), [], page);
 });
+
+test("the racket pages' engine items come from one cached address, not inside each page", () => {
+  const route = readFileSync(join(ROOT, "app/api/rank-items/route.ts"), "utf8");
+  assert.match(route, /export\s+const\s+revalidate\s*=\s*[1-9]\d*/, "app/api/rank-items: needs export const revalidate");
+  assert.deepEqual(dynamicUses("app/api/rank-items/route.ts"), []);
+  // Inline only on a page whose address has picks (its server render needs them); a plain racket page ships none.
+  const fit = readFileSync(join(ROOT, "app/rackets/[slug]/racket-fit.tsx"), "utf8");
+  assert.doesNotMatch(fit, /<Fit(?:Box|Compare|Alts)\b[^>]*\bitems=/, "the fit components read the items from FitPicks");
+  assert.match(fit, /<FitPicks\b[^>]*items=\{picked \? payload\.items : null\}/);
+});
