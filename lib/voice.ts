@@ -12,6 +12,7 @@ export const ATTRIBUTION = new RegExp([
   String.raw`\b(some|many|several|a few|few|most|lots of|two|three|one|other|\d+)\s+(players?|testers?|reviewers?|owners?|users?)\b`,
   String.raw`\b(a|one|another)\s+(player|tester|reviewer|owner|user)\b`,
   String.raw`\b(some|many|several|a few|most)\s+(find|say|call|feel|report|praise|want|got|found|felt|said)\b`,
+  String.raw`\b(\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|a handful|others?)\s+(still\s+|also\s+)?(say|says|find|finds|call|calls|report|feel|feels|felt|found|said|complain|want|wanted|got)\b`,
 ].join("|"), "i");
 
 /** True when a line of advice says who said it instead of saying the thing. */

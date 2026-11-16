@@ -8,7 +8,7 @@ import short from "../db/short/padel.json";
 
 test("voice check: who-said-it wording is caught, plain statements and audiences are not", () => {
   for (const t of ["Players say it needs a strong arm.", "A few players got elbow pain.", "One player calls it great.", "14 players mention it.",
-    "Players with sore elbows say ==it suits them==.", "Players see it as a racket for advanced players.", "Testers call it the most powerful Vertex."])
+    "Players with sore elbows say ==it suits them==.", "Players see it as a racket for advanced players.", "Testers call it the most powerful Vertex.", "Six still say it lacks power.", "Five say it feels top-heavy."])
     assert.ok(hasAttribution(t), t);
   for (const t of ["For attacking players who finish points overhead.", "Easy racket with a big sweet spot.", "Splits opinion: some find it stiff, others crisp.",
     "Comfortable even with tennis elbow.", "A racket for experienced players, not beginners."])
