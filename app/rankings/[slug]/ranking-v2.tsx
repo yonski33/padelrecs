@@ -1,4 +1,5 @@
 import "../rankings-v2.css";
+import "./ranking-v3.css";
 import Link from "next/link";
 import { niche, productHref } from "../../../lib/niche";
 import { listYear, MIN_LIST_REVIEWS, RANKINGS_PATH } from "../../../lib/top-lists";
@@ -8,15 +9,12 @@ import { shortLine } from "../../../lib/short-lines";
 import { websiteButton } from "../../../lib/product-links";
 import type { AmazonButton } from "../../../lib/amazon-offer";
 import { score, type Catalog } from "../../../db/data";
-import { readChoice, LEVELS, type QuickChoice } from "../../../lib/quick-match";
 import { bestFor } from "../../../lib/fit-verdict";
 import { qtFontVars } from "../../qt-fonts";
 import { V2Footer } from "../../v2-footer";
 import { matchContext } from "../../match-context";
 import { listHref, type RankedList } from "../lists";
-import { photoOf, shortDate } from "../rankings-v2";
-import { homePayload } from "../../home-payload";
-import { RankingPicks, MatchBox, PickLink, RowPct } from "./ranking-picks";
+import { photoOf } from "../rankings-v2";
 import { attrProfileFor } from "../../../lib/attr-profile";
 import { skinContext } from "../../skin/context";
 import { scoreLabel } from "../../../lib/niche";
@@ -27,103 +25,92 @@ import { scoreLabel } from "../../../lib/niche";
 // always the list's own (Player score); picks only add the match %. The FAQ stays below for search.
 export type Search = { style?: string; level?: string; arm?: string; pct?: string };
 
-export default async function RankingV2({ data, lists, found, amazon, affiliate, faq, jsonLd, search }: {
+export default async function RankingV2({ data, lists, found, amazon, affiliate, faq, jsonLd }: {
   data: Catalog; lists: RankedList[]; found: RankedList; amazon: (AmazonButton | null)[]; affiliate: boolean;
-  faq: { q: string; a: string }[]; jsonLd: object; search: Search }) {
-  const { list, entries, reviews, updated } = found;
+  faq: { q: string; a: string }[]; jsonLd: object; search?: Search }) {
+  const { list, entries, reviews } = found;
   // SkinRecs (an attribute profile, lib/attr-profile.ts): no racket match context (it has no style / level traits, so it crashed
   // every ranking page, owner 2026-11-16 "rankings doesn't load"). "Best for" comes from its who-it-suits scores, and the picks
   // pane is the home's quick match instead, so the rows carry no %.
   const skin = !!attrProfileFor(niche);
-  const [ctx, payload] = skin ? [null, { items: [] }] : await Promise.all([matchContext(), homePayload()]);
+  const ctx = skin ? null : await matchContext();
   const sk = skin ? await skinContext() : null;
   const skinBest = (id: string) => { const a = sk?.attrs.get(id); return a ? sk!.profile.attrs.filter(x => x.kind === "suits" && (a.scores[x.key]?.score ?? 0) >= 65)
     .sort((x, y) => a.scores[y.key]!.score - a.scores[x.key]!.score).slice(0, 3).map(x => x.label.toLowerCase()) : []; };
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
-  // Picked once a level is in the URL (the picks pane always sets one); a style alone doesn't answer yet.
-  const choice: QuickChoice = readChoice(search), picked = !!search.level && (LEVELS as readonly string[]).includes(search.level);
-  const showPct = picked && search.pct !== "0";
-  const href = listHref(list.slug);
   // "The 10 best padel rackets overall in 2026": the label after "Best" is the highlighted part.
   const year = listYear(list), many = `${niche.seo.productCategory.toLowerCase()}s`;
   const hl = list.label.replace(/^best\s+/i, "").toLowerCase();
   const yearPart = /\d{4}/.test(hl) ? "" : ` in ${year}`;
   const seen = new Set<string>(), tabs = lists.filter(l => !seen.has(l.list.slug) && seen.add(l.list.slug));
-  const others = tabs.filter(l => l.list.slug !== list.slug);
-  const min = Math.max(MIN_LIST_REVIEWS, list.minReviews ?? MIN_LIST_REVIEWS);
 
-  return <main className={`rl2 ${qtFontVars}`}>
+  // The final mock (owner 2026-11-16, https://claude.ai/artifact/EBkNdZnn4LbRi6fK8ytAJi): crumbs, the title, the lists as pills, a
+  // "find my match" strip to the home's quick match, #1 as a big card, the rest in one box. Score badges, no match % here.
+  const rows = entries.flatMap((e, i) => {
+    const r = byId.get(e.product.id); if (!r) return [];
+    const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
+    const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
+    const best = ctx ? bestFor(ctx.facts(r.id)) : skinBest(r.id);
+    return [{ e, r, i, name: displayName(r.name, brand(r.brandId)), url: productHref(r), pic: photoOf(r), line: shortLine(e.product) ?? listLine(e.product),
+      best: best.join(", "), sig: e.signal?.signal ?? null, shop }];
+  });
+  const [first, ...rest] = rows;
+  const tone = (n: number | null) => n === null ? "" : n >= 90 ? " t90" : n >= 85 ? " t85" : "";
+  const buy = (x: typeof rows[number], cls: string) => x.shop ? <a className={cls} href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : null;
+  const tag = (rank: number) => rank === 2 ? <span className="rk3-tag ru">runner-up</span> : rank === 3 ? <span className="rk3-tag">#3</span> : null;
+
+  return <main className={`rl2 rk3 ${qtFontVars}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
-    {/* The picks and every row's match % work in the browser from the catalog items sent once (ranking-picks.tsx). */}
-    <RankingPicks items={payload.items} href={href} first={{ choice: picked ? { ...choice, level: choice.level! } : null, showPct }}>
-    <div className="rl2-wrap">
-      {tabs.length > 1 && <nav className="rl2-tabs" aria-label="Rankings">{tabs.map(l => <PickLink key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</PickLink>)}</nav>}
-
-      <section className="rl2-hero">
-        <div className="rl2-crumbs"><a href={RANKINGS_PATH}>rankings</a> / {list.label.toLowerCase()}</div>
+    <div className="rk3-wrap">
+      <div className="rk3-crumbs"><a href={RANKINGS_PATH}>rankings</a><span>/</span><span className="here">{list.label.toLowerCase()}</span></div>
+      <div className="rk3-head">
         {/* A product-type list on SkinRecs is its own noun ("The 10 best moisturizers"), not "skincare products moisturizers". */}
         <h1>{`The ${entries.length} best ${skin && list.filters?.some(f => f.column === "shape") ? "" : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
-        <p className="rl2-sub">{`${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews on ${niche.site.name.toLowerCase()}, YouTube and forums. Not by us, not by brands.`}</p>
-        <div className="rl2-meta">
-          {updated && <><span>{`updated ${shortDate(updated)}`}</span><span>·</span></>}
-          <details className="rl2-how"><summary>how we rank <span className="closed">+</span><span className="open">−</span></summary>
-            <div className="rl2-howbox"><strong>{scoreLabel}</strong>{` = how much ${niche.people.many} like it, adjusted for how many spoke up. 5 glowing reviews can't beat 60 good ones. Min. ${min} reviews to be ranked. `}<a href="/how-we-make-these">full method →</a></div></details>
-          {affiliate && <><span>·</span><span>{"* some links are affiliate, they don't change the order"}</span></>}
+        <p className="rk3-sub">{`${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. Not by us, not by brands.`}</p>
+      </div>
+      {tabs.length > 1 && <nav className="rk3-tabs" aria-label="Rankings">{tabs.map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</a>)}</nav>}
+      <div className="rk3-you"><b>{"#1 for everyone isn't always #1 for you."}</b><Link href="/#match">find my match →</Link></div>
+
+      {first && <article className="rk3-first">
+        <span className="rk3-big">#1</span>
+        <a className="rk3-pic" href={first.url} tabIndex={-1} aria-hidden="true">{first.pic ? <img src={first.pic} alt="" loading="eager"/> : <span>{brand(first.r.brandId)}</span>}<span className="rk3-mbig">#1</span></a>
+        <div className="rk3-body">
+          <span className="rk3-tag pick">#1 pick</span>
+          <a className="rk3-name" href={first.url}>{first.name}</a>
+          {first.line && <span className="rk3-line">{first.line}</span>}
+          {first.best && <span className="rk3-best">{`best for ${first.best}`}</span>}
         </div>
-      </section>
+        <div className="rk3-side">
+          <span className="rk3-sc" title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
+            <b>{first.sig ?? "–"}</b><small>{scoreLabel.toLowerCase().replace(" ", "\n")}</small></span>
+          {buy(first, "rk3-buy")}
+          <a className="rk3-why" href={`${first.url}#yes-no`}>See why →</a>
+        </div>
+      </article>}
 
-      {skin ? <section className="rl2-match" aria-label="Your match"><span className="rl2-you"><span className="rl2-badge">⚡ your match</span>
-        <span>{`Want them ranked for your skin? `}<Link href="/#match">Pick your skin type on the home page →</Link></span></span></section>
-        : <MatchBox finder={niche.finder ? "/finder" : undefined}/>}
+      {rest.length > 0 && <ol className="rk3-list" start={2}>{rest.map(x => <li key={x.r.id} id={`n${x.e.rank}`} className={x.e.rank <= 3 ? "podium" : undefined}>
+        <span className="rk3-rank">{x.e.rank}</span>
+        <a className="rk3-pic" href={x.url} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading={x.i < 4 ? "eager" : "lazy"}/> : <span>{brand(x.r.brandId)}</span>}</a>
+        <div className="rk3-body">
+          <div className="rk3-mtop"><span className="rk3-mrank">{`#${x.e.rank}`}</span>{tag(x.e.rank)}</div>
+          <div className="rk3-nrow"><a className="rk3-name" href={x.url}>{x.name}</a><span className="rk3-dtag">{tag(x.e.rank)}</span></div>
+          {x.line && <span className="rk3-line">{x.line}</span>}
+          {x.best && <span className="rk3-best">{`best for ${x.best}`}</span>}
+          {list.trait && <span className="rk3-best">{`${x.e.traitReviews} mention ${list.trait.noun}`}</span>}
+        </div>
+        <div className="rk3-foot">
+          <span className={`rk3-sc${tone(x.sig)}`}><b>{x.sig ?? "–"}</b><small>{scoreLabel.toLowerCase()}</small></span>
+          {buy(x, "rk3-buy")}
+        </div>
+      </li>)}</ol>}
 
-      <ol className="rl2-list">{entries.map((e, i) => {
-        const r = byId.get(e.product.id); if (!r) return null;
-        const name = displayName(r.name, brand(r.brandId)), url = productHref(r), pic = photoOf(r);
-        const sc = score(data, r.id), take = ctx?.takes.get(r.id);
-        const sig = e.signal?.signal ?? null, top = e.rank <= 3;
-        const best = ctx ? bestFor(ctx.facts(r.id)) : skinBest(r.id);
-        const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
-        const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
-        const total = sc.positive + sc.mixed + sc.negative;
-        return <li key={r.id} id={`n${e.rank}`} className={`rl2-row${top ? " top" : ""}${e.rank === 1 ? " first" : ""}`}>
-          <div className="rl2-grid">
-            <span className="rl2-rank">{`#${e.rank}`}</span>
-            <PickLink className="rl2-pic" href={url} tabIndex={-1} aria-hidden="true">{pic ? <img src={pic} alt="" loading={i < 3 ? "eager" : "lazy"}/> : <span>{brand(r.brandId)}</span>}</PickLink>
-            <div className="rl2-body">
-              <div className="rl2-nrow"><PickLink className="rl2-name" href={url}>{name}</PickLink>{e.rank === 1 && <span className="rl2-chip">★ #1 pick</span>}</div>
-              {(shortLine(e.product) ?? listLine(e.product)) && <p className="rl2-line">{shortLine(e.product) ?? listLine(e.product)}</p>}
-              <div className="rl2-facts">
-                {best.length > 0 && <span><strong>best for</strong> {best.join(", ")}</span>}
-                {total > 0 && <span className="rl2-bar" role="img" aria-label={`${sc.positive} positive, ${sc.mixed} mixed, ${sc.negative} negative reviews`}>
-                  <span className="p" style={{ flex: sc.positive }}/><span className="m" style={{ flex: sc.mixed }}/><span className="n" style={{ flex: sc.negative }}/></span>}
-                {list.trait && <span>{`${e.traitReviews} mention ${list.trait.noun}`}</span>}
-              </div>
-            </div>
-            {shop ? <a className="rl2-buy" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a> : <span/>}
-            <PickLink className="rl2-score" href={url} title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
-              {sig !== null ? <b className={sig >= 85 ? "hi" : sig >= 75 ? "mid" : undefined}>{sig}</b> : <b>–</b>}
-              <small>{scoreLabel.toLowerCase()}</small>
-              <RowPct id={r.id}/>
-            </PickLink>
-          </div>
-          {top && take && <div className="rl2-wc">
-            <div className="why"><i aria-hidden="true">✓</i><span><small>{"why it's here"}</small><p>{take.good}</p></span></div>
-            <div className="catch"><i aria-hidden="true">!</i><span><small>the catch</small><p>{take.catch}</p></span></div>
-          </div>}
-        </li>; })}</ol>
-
-      <section className="rl2-after">
-        <div className="rl2-played"><div><div className="rl2-played-h">{skin ? "Used one of these?" : "Played one of these?"}</div><div className="rl2-played-p">Your verdict moves the list. One tap, no account.</div></div>
-          <a href="/add-review">+ add a review</a></div>
-        {others.length > 0 && <div className="rl2-others"><div className="rl2-others-h">{others.every(l => l.entries.length >= 10) ? "Other top 10s" : "Other rankings"}</div>
-          <div>{others.map(l => <PickLink key={l.list.slug} href={listHref(l.list.slug)}>{l.list.label.replace(/^best\s+/i, "").toLowerCase()}</PickLink>)}</div></div>}
-      </section>
+      <a className="rk3-all" href={RANKINGS_PATH}>see all rankings →</a>
+      {affiliate && <p className="rk3-aff">{"* some links are affiliate links; they never change the order."}</p>}
 
       <section className="rl2-faq" id="how-we-rank"><h2>Common questions</h2>
         {faq.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</section>
     </div>
-    </RankingPicks>
     <V2Footer/>
   </main>;
 }

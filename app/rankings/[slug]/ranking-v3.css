@@ -1,0 +1,125 @@
+/* A ranking list, final mock (owner 2026-11-16, https://claude.ai/artifact/EBkNdZnn4LbRi6fK8ytAJi): the mock's inline values.
+   Scoped to .rk3 (the list's <main> also carries .rl2 for the shared tokens and the FAQ). Phones (≤640px) follow the mock's
+   375 frame: the #1 card and every row stack, with the score and the price button on a row of their own. */
+.rk3 {
+  --lime: oklch(0.88 0.17 125); --lime-hi: oklch(0.85 0.19 128); --lime-lo: oklch(0.93 0.1 125);
+
+  .rk3-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 20px 56px; display: flex; flex-direction: column; gap: 14px; }
+  .rk3-crumbs { font: 13px var(--mono); color: var(--soft); display: flex; gap: 6px; }
+  .rk3-crumbs a { color: var(--soft); }
+  .rk3-crumbs .here { color: var(--ink); }
+  .rk3-head { display: flex; flex-direction: column; gap: 4px; margin-top: -6px; }
+  .rk3-head h1 { font-size: 38px !important; line-height: 1.1 !important; letter-spacing: -0.02em !important; margin: 0 !important; }
+  .rk3-sub { margin: 0; font-size: 16.5px; color: var(--text); }
+
+  .rk3-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .rk3-tabs a { white-space: nowrap; padding: 5px 13px; border: 2px solid var(--ink); border-radius: 999px; font-size: 14.5px; font-weight: 700; background: #fff; color: var(--ink); text-decoration: none; }
+  .rk3-tabs a[aria-current="page"] { background: var(--ink); color: var(--bg); }
+  .rk3-tabs a:not([aria-current]):hover { background: var(--marker); }
+
+  .rk3-you { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border: 2px solid var(--ink); border-radius: 12px; background: #fff; padding: 8px 8px 8px 16px; }
+  .rk3-you b { font: 800 16px var(--display); }
+  .rk3-you a { margin-left: auto; white-space: nowrap; text-decoration: none; border: 2px solid var(--ink); border-radius: 8px; padding: 5px 12px; font-weight: 700; font-size: 14.5px; background: var(--marker); }
+
+  .rk3-tag { font: 600 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: #fff; white-space: nowrap; }
+  .rk3-tag.pick { background: var(--lime); align-self: flex-start; }
+  .rk3-tag.ru { background: var(--marker); }
+  .rk3-pic { display: flex; align-items: center; justify-content: center; position: relative; text-decoration: none; }
+  .rk3-pic:hover { background: none; }
+  .rk3-pic img { height: 100%; width: auto; mix-blend-mode: multiply; }
+  .rk3-pic > span:not(.rk3-mbig) { font: 12px var(--mono); color: var(--mute); text-align: center; }
+  .rk3-name { text-decoration: none; }
+  .rk3-line { color: var(--text); }
+  .rk3-best { font-family: var(--mono); color: var(--soft); }
+  .rk3-buy { text-decoration: none; white-space: nowrap; border: 2px solid var(--ink); background: var(--ink); color: var(--bg) !important; font-family: var(--display); font-weight: 800; }
+  .rk3-buy:hover { background: #2b2925; }
+  .rk3-sc b { font-family: var(--display); font-weight: 800; line-height: 1; border: 2px solid var(--ink); background: var(--lime-lo); }
+  .rk3-sc.t85 b { background: var(--lime); } .rk3-sc.t90 b { background: var(--lime-hi); }
+  .rk3-sc small { font-family: var(--mono); color: var(--soft); white-space: nowrap; }
+
+  /* #1 */
+  .rk3-first { margin-top: 4px; border: 2.5px solid var(--ink); border-radius: 16px; background: oklch(0.985 0.03 125); box-shadow: 5px 5px 0 var(--ink); padding: 16px 20px;
+    display: grid; grid-template-columns: 64px 104px minmax(0, 1fr) auto; gap: 20px; align-items: center; }
+  .rk3-big { font: 800 56px/1 var(--display); letter-spacing: -0.04em; }
+  .rk3-mbig { display: none; }
+  .rk3-first .rk3-pic { width: 104px; height: 132px; }
+  .rk3-first .rk3-body { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .rk3-first .rk3-name { font: 800 23px/1.15 var(--display); letter-spacing: -0.01em; }
+  .rk3-first .rk3-line { font-size: 16.5px; }
+  .rk3-first .rk3-best { font-size: 13px; }
+  .rk3-side { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 132px; }
+  .rk3-first .rk3-sc { display: flex; align-items: center; gap: 8px; }
+  .rk3-first .rk3-sc b { font-size: 30px; border-radius: 10px; padding: 6px 9px; background: var(--lime); transform: rotate(-3deg); }
+  .rk3-first .rk3-sc small { font-size: 11.5px; line-height: 1.2; color: var(--text); white-space: pre-line; }
+  .rk3-first .rk3-buy { padding: 8px 16px; border-radius: 10px; font-size: 14.5px; }
+  .rk3-why { font: 600 12.5px var(--mono); }
+
+  /* #2 onwards */
+  .rk3-list { list-style: none; margin: 0; padding: 0; border: 2px solid var(--ink); border-radius: 14px; background: #fff; overflow: hidden; }
+  .rk3-list > li { display: grid; grid-template-columns: 44px 60px minmax(0, 1fr) auto auto; gap: 18px; align-items: center; padding: 12px 20px; border-bottom: 1.5px dashed #c9c5ba; }
+  .rk3-list > li:last-child { border-bottom: 0; }
+  .rk3-rank { font: 800 24px var(--display); text-align: center; color: var(--soft); }
+  .rk3-list > li.podium .rk3-rank { color: var(--ink); }
+  .rk3-list .rk3-pic { width: 60px; height: 76px; }
+  .rk3-list .rk3-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .rk3-mtop { display: none; }
+  .rk3-nrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .rk3-list .rk3-name { font-weight: 700; font-size: 17px; line-height: 1.25; }
+  .rk3-list .rk3-tag { font-size: 11.5px; padding: 0 7px; }
+  .rk3-list .rk3-line { font-size: 15.5px; }
+  .rk3-list .rk3-best { font-size: 12.5px; }
+  .rk3-foot { display: contents; }
+  .rk3-list .rk3-sc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; }
+  .rk3-list .rk3-sc b { font-size: 21px; border-radius: 8px; padding: 5px 8px; }
+  .rk3-list .rk3-sc small { font-size: 10.5px; }
+  .rk3-list .rk3-buy { padding: 7px 13px; border-radius: 9px; font-size: 13.5px; }
+
+  .rk3-all { align-self: center; font: 600 13.5px var(--mono); }
+  .rk3-aff { margin: -4px 0 0; align-self: center; font: 12px var(--mono); color: var(--mute); }
+  .rl2-faq { margin-top: 28px; }
+
+  @media (max-width: 640px) {
+    .rk3-wrap { padding: 12px 16px 40px; gap: 12px; }
+    .rk3-crumbs { font-size: 12px; }
+    .rk3-head h1 { font-size: 27px !important; line-height: 1.12 !important; }
+    .rk3-head h1 .hl { padding: 0 5px; border-radius: 7px; }
+    .rk3-sub { font-size: 15px; }
+    .rk3-tabs { gap: 5px; }
+    .rk3-tabs a { padding: 4px 11px; font-size: 13.5px; }
+    .rk3-you { flex-wrap: nowrap; gap: 10px; padding: 8px 8px 8px 12px; }
+    .rk3-you b { flex: 1; min-width: 0; font-size: 14px; line-height: 1.25; }
+    .rk3-you a { flex: none; padding: 5px 10px; font-size: 13.5px; }
+
+    .rk3-first { margin-top: 2px; box-shadow: 4px 4px 0 var(--ink); padding: 12px 14px; grid-template-columns: 72px minmax(0, 1fr); gap: 10px 12px; align-items: start; }
+    .rk3-big { display: none; }
+    .rk3-first .rk3-pic { width: 72px; height: 96px; }
+    .rk3-mbig { display: block; position: absolute; left: -4px; top: -4px; font: 800 30px/1 var(--display); letter-spacing: -0.04em; color: var(--ink); }
+    .rk3-first .rk3-body { gap: 3px; }
+    .rk3-first .rk3-tag { font-size: 11px; padding: 0 7px; }
+    .rk3-first .rk3-name { font-size: 17.5px; line-height: 1.2; }
+    .rk3-first .rk3-line { font-size: 14.5px; line-height: 1.4; }
+    .rk3-first .rk3-best { font-size: 11.5px; line-height: 1.4; }
+    .rk3-side { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 10px; min-width: 0; border-top: 1.5px dashed #b9b5aa; padding-top: 10px; }
+    .rk3-first .rk3-sc { gap: 10px; }
+    .rk3-first .rk3-sc b { font-size: 22px; border-radius: 8px; padding: 4px 7px; transform: none; }
+    .rk3-first .rk3-sc small { font-size: 10.5px; }
+    .rk3-why { order: 1; font-size: 12px; margin-left: 4px; }
+    .rk3-first .rk3-buy { order: 2; margin-left: auto; padding: 7px 12px; border-radius: 9px; font-size: 13.5px; }
+
+    .rk3-list > li { grid-template-columns: 52px minmax(0, 1fr); gap: 8px 12px; align-items: start; padding: 12px 14px; }
+    .rk3-rank, .rk3-dtag { display: none; }
+    .rk3-list .rk3-pic { width: 52px; height: 68px; }
+    .rk3-mtop { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .rk3-mrank { font: 800 16px var(--display); color: var(--soft); }
+    .rk3-list > li.podium .rk3-mrank { color: var(--ink); }
+    .rk3-list .rk3-tag { font-size: 10.5px; padding: 0 6px; }
+    .rk3-list .rk3-name { font-size: 15.5px; }
+    .rk3-list .rk3-line { font-size: 14px; line-height: 1.4; }
+    .rk3-list .rk3-best { font-size: 11px; line-height: 1.4; }
+    .rk3-foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; padding-left: 64px; }
+    .rk3-list .rk3-sc { flex-direction: row; gap: 8px; min-width: 0; }
+    .rk3-list .rk3-sc b { font-size: 17px; border-radius: 7px; padding: 3px 6px; }
+    .rk3-list .rk3-buy { margin-left: auto; padding: 5px 11px; border-radius: 8px; font-size: 13px; }
+    .rk3-all { font-size: 13px; }
+  }
+}
