@@ -8,8 +8,8 @@ import { niche, productHref } from "../lib/niche";
 import { displayName } from "../lib/brand-name";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { affiliateTag, amazonLink, amazonSearchLink } from "../lib/amazon";
-import { ProductArt } from "./visual";
-import { LightRowView, type LightRowProps, type ShopLink } from "./light-row-view";
+import { ProductArt, productPhoto } from "./visual";
+import { LightRowView, AMAZON_SHOP, type LightRowProps, type ShopLink } from "./light-row-view";
 export type { ShopLink } from "./light-row-view";
 
 type Product = Catalog["listed"][number];
@@ -20,15 +20,24 @@ export function quickAmazon(r: Product, brand: string | undefined): ShopLink | n
   if (!tag) return null;
   const asin = (r as { amazonAsin?: string | null }).amazonAsin;
   const url = asin ? amazonLink(asin, tag, market) : amazonSearchLink(displayName(r.name, brand), tag, market);
-  return { url, label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" };
+  return { url, ...AMAZON_SHOP };
 }
 
 /** A row's plain values (app/light-row-view.tsx); the art (photo or drawing) is rendered here, on the server. */
 export function lightRowProps({ data, r, signal, line, shop, rank, shape = true, extra, noSignal, recent }: { data: Catalog; r: Product; signal?: number; line: string | null; shop: ShopLink | null; rank?: number | null; shape?: boolean; extra?: ReactNode; noSignal?: boolean; recent?: number }): LightRowProps {
-  const brand = data.brands.find(b => b.id === r.brandId)?.name;
-  const s = score(data, r.id);
-  return { name: displayName(r.name, brand), href: productHref(r), art: <ProductArt product={r} brand={brand}/>, line, shape: shape && r.shape ? r.shape : null, shop,
-    rank, noSignal, signal, extra, judged: s.judged, positive: s.positive, mixed: s.mixed, negative: s.negative, total: s.count + s.web, recent };
+  const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);
+  const s = score(data, r.id), photo = productPhoto(r);
+  // Only what the row shows: the photo's address (the drawing only without one), the Amazon link as its address, no empty fields.
+  const amazon = shop && shop.label === AMAZON_SHOP.label && shop.short === AMAZON_SHOP.short && shop.rel === AMAZON_SHOP.rel;
+  const props: LightRowProps = { name, href: productHref(r), ...(photo ? { photo: { src: photo.src, kind: photo.kind } } : { art: <ProductArt product={r} brand={brand}/> }),
+    line, shape: shape && r.shape ? r.shape : null, shop: shop ? (amazon ? { url: shop.url } : shop) : null,
+    judged: s.judged, positive: s.positive, mixed: s.mixed, negative: s.negative, total: s.count + s.web };
+  if (rank !== undefined) props.rank = rank;
+  if (noSignal) props.noSignal = true;
+  if (signal !== undefined) props.signal = signal;
+  if (extra !== undefined) props.extra = extra;
+  if (recent !== undefined) props.recent = recent;
+  return props;
 }
 
 /** rank: a number shows "#n"; undefined leaves it to the list's CSS counter (home); null hides the rank column (catalogue). */

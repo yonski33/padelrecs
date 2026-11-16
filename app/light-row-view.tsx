@@ -6,17 +6,22 @@ import { scoreLabel } from "../lib/niche";
 import { SentimentBar } from "./sentiment-bar";
 
 export type ShopLink = { url: string; label: string; short: string; rel: string };
+/** The Amazon link's words (app/light-row.tsx quickAmazon): a row with these sends only the address. */
+export const AMAZON_SHOP = { label: "Check price on Amazon", short: "Check Amazon price", rel: "sponsored nofollow noopener" } as const;
 const fmt = (n: number) => n.toLocaleString("en-US");
 
 /** rank: a number shows "#n"; undefined leaves it to the list's CSS counter (home); null hides the rank column (catalogue). */
-export type LightRowProps = { name: string; href: string; art: ReactNode; line: string | null; shape: string | null; shop: ShopLink | null;
+/** photo: the product photo's address and kind (app/visual.tsx ProductArt's markup); art: the drawing, when it has none. */
+export type LightRowProps = { name: string; href: string; photo?: { src: string; kind: string }; art?: ReactNode; line: string | null; shape: string | null;
+  /** The shop link, or only its address when it is the Amazon link (AMAZON_SHOP). */ shop: ShopLink | { url: string } | null;
   rank?: number | null; noSignal?: boolean; signal?: number; extra?: ReactNode; judged: number; positive: number; mixed: number; negative: number;
   total: number; recent?: number };
 
-export function LightRowView({ name, href, art, line, shape, shop, rank, noSignal, signal, extra, judged, positive, mixed, negative, total, recent }: LightRowProps) {
+export function LightRowView({ name, href, photo, art, line, shape, shop: given, rank, noSignal, signal, extra, judged, positive, mixed, negative, total, recent }: LightRowProps) {
+  const shop: ShopLink | null = given ? { ...AMAZON_SHOP, ...given } : null;
   return <div className={`lt-row v2${rank === null ? " no-rank" : ""}${noSignal ? " no-sig" : ""}`}>
     {rank !== null && <span className="lt-rank" aria-hidden={rank === undefined ? "true" : undefined}>{rank !== undefined ? `#${rank}` : null}</span>}
-    <span className="lt-art">{art}</span>
+    <span className="lt-art">{photo ? <span className={`art art-${photo.kind} `} aria-hidden="true"><img src={photo.src} alt={name} loading="lazy" decoding="async"/></span> : art}</span>
     <span className="lt-body">
       <a className="lt-name" href={href}>{name}</a>
       {line && <span className="lt-line">{line}</span>}
