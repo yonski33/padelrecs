@@ -8,6 +8,8 @@
 //   check <dir> [--sample N] [--write]   readers' output → rows; every quote must be found verbatim in that report's text
 //   scores [--json out] [--csv out]      the scores (0–100) with raw counts and the flight-number prior, ENGINE-ALGO step 2
 //                                        smoothing (k = 8); read-only
+//   expert <filled.csv> [--write]        the owner's filled gap sheet as owner rows (0–100, counted as E = 8 voices)
+//   picks [--sheet <filled.csv>]         read-only: top 10s for the main picks, before / after the sheet
 //   gaps <out.csv>                       the expert gap sheet (pickleball format + level and arm-speed columns); read-only
 //   NICHE=discgolf npx tsx --conditions=react-server --env-file=.env.local scripts/discgolf-evidence.mts <step> …
 import { createHash } from "node:crypto";
@@ -47,7 +49,7 @@ const reports: Report[] = [
       .filter((x): x is [string, string] => typeof x[1] === "string" && x[1].trim().length > 0)), formLevel: null, formArm: null })),
 ];
 const byRef = new Map(reports.map(r => [r.ref, r]));
-const EX = { tags: "dg-tags-v1", form: "dg-form-v1", specs: "dg-specs-v1", reader: "dg-reader-v1" };
+const EX = { tags: "dg-tags-v1", form: "dg-form-v1", specs: "dg-specs-v1", reader: "dg-reader-v1", expert: "dg-expert-v1" };
 const GROUPS = new Set<string>(DISC_GROUPS.map(g => g.key));
 // The review form's answers (lib/niche/discgolf.ts profile) as groups.
 const FORM_LEVEL: Record<string, string> = { Beginner: "beginner", Casual: "intermediate", Intermediate: "intermediate", Advanced: "advanced", "Pro or elite": "advanced" };
@@ -79,6 +81,116 @@ const median = (xs: number[]) => { const s = [...xs].sort((a, b) => a - b); retu
 const flights = new Map(data.rackets.map(p => [p.id, flightOf(p.weight)]));
 const known = [...flights.values()].filter((f): f is NonNullable<typeof f> => !!f);
 const MID = { tf: median(known.map(f => f.turn + f.fade)), glide: median(known.map(f => f.glide)) };
+
+type Out = { score: number | null; raw: number | null; prior: number | null; expert?: number | null; n: number; plus: number; minus: number; mixed: number };
+/** Scores per disc and attribute: players' raw position, the flight-number prior (k = 8) and the owner's expert value (E = 8). */
+function computeScores(rows: EvidenceRow[]) {
+  const counts = reportCounts();
+
+  const products = data.listed;
+  const base = scoreAll(profile, products.map(p => { const c = counts.get(p.id)!; const j = c.positive + c.mixed + c.negative; return { id: p.id, shape: p.shape, reports: c.reports, verdict: j ? (c.positive - c.negative) / j : null }; }), rows);
+  // Voices: one author (or one report), netted per attribute.
+  const voices = new Map<string, Map<string, Map<string, number>>>(), expert = new Map<string, number>();
+  for (const r of rows) {
+    if (r.value === null || r.sourceKind === "maker") continue;
+    if (r.sourceKind === "owner") { expert.set(`${r.productId}|${r.attribute}`, r.value); continue; }
+    const p = voices.get(r.productId) ?? new Map(); voices.set(r.productId, p);
+    const a = p.get(r.attribute) ?? new Map<string, number>(); p.set(r.attribute, a);
+    const k = r.authorKey ?? r.sourceRef.split("#")[0]; a.set(k, (a.get(k) ?? 0) + r.value * r.strength);
+  }
+  const K = 8, E = 8; // ENGINE-ALGO step 2: (mentions·raw + k·prior + E·expert) / (mentions + k + E)
+  return products.map(p => {
+    const prior = flightPrior(flights.get(p.id) ?? null, MID), c = counts.get(p.id)!, scores: Record<string, Out> = {};
+    for (const a of profile.attrs.filter(a => a.kind !== "fact")) {
+      const v = [...(voices.get(p.id)?.get(a.key)?.values() ?? [])];
+      const plus = v.filter(x => x > 0).length, minus = v.filter(x => x < 0).length, mixed = v.filter(x => x === 0).length, n = v.length;
+      const pr = prior[a.key] ?? null;
+      if (a.kind === "quality") { const s = base.get(p.id)!.scores[a.key]; scores[a.key] = { score: s?.score ?? null, raw: s?.score ?? null, prior: null, n, plus, minus, mixed }; continue; }
+      const raw = n ? Math.round(a.kind === "axis" ? 50 + 50 * (plus - minus) / Math.max(1, plus + minus) : 50 + 50 * v.reduce((s, x) => s + Math.max(-1, Math.min(1, x)), 0) / n) : null;
+      // No prior (grip, beat-in): no score below minAxis voices; with a prior the flight numbers start it.
+      // The owner's expert value counts as E voices (ENGINE-ALGO step 2: "an expert value counts as about 10 mentions";
+      // padel uses 8). Without players or a prior it stands alone.
+      const ex = expert.get(`${p.id}|${a.key}`) ?? null;
+      const parts: [number, number][] = [];
+      if (raw !== null && (pr !== null || ex !== null || n >= profile.minAxis)) parts.push([n, raw]);
+      if (pr !== null) parts.push([K, pr]);
+      if (ex !== null) parts.push([E, ex]);
+      const w = parts.reduce((t, [k]) => t + k, 0);
+      const score = w ? Math.round(parts.reduce((t, [k, v]) => t + k * v, 0) / w) : null;
+      scores[a.key] = { score, raw, prior: pr, expert: ex, n, plus, minus, mixed };
+    }
+    const gated = beginnerGated(prior.suits_beginner, scores.suits_beginner.n ? { score: scores.suits_beginner.raw!, n: scores.suits_beginner.n } : null);
+    return { id: p.id, name: p.name, slug: p.slug, type: p.shape, flight: p.weight, ...c, evidence: rows.filter(r => r.productId === p.id && r.sourceKind !== "maker" && r.sourceKind !== "owner").length, beginnerGated: gated, scores };
+  });
+}
+
+// ── The owner's filled gap sheet (2026-11-16, scales agreed with the owner via the PM) ─────────────────────────────────
+//   stability 1 very understable … 10 very overstable; glide and grip higher = more; beat-in 10 = holds its flight (our
+//   axis runs the other way: 100 = seasons fast); arm speed 1 suits a slow arm … 10 needs a power arm; level as words.
+//   Grip 7 is skipped: 269 of the 339 grip cells are 7, which reads as a default, not a judgement.
+const SHEET_SKIPPED: Record<string, number> = {};
+const LEVELS = ["beginner", "intermediate", "advanced"];
+/** Same numbers as db/trait-override levelToSuits (padel): in range 85, one step out 45, two steps out 20. */
+function levelSuits(raw: string): Record<string, number> | null {
+  const parts = raw.trim().toLowerCase().split(/\s*(?:-|–|→|to)\s*/).map(x => LEVELS.indexOf(x.replace(/s$/, "")));
+  if (!parts.length || parts.some(i => i < 0)) return null;
+  const from = Math.min(...parts), to = Math.max(...parts);
+  const v = (i: number) => i >= from && i <= to ? 85 : Math.abs(i < from ? from - i : i - to) === 1 ? 45 : 20;
+  return { suits_beginner: v(0), suits_intermediate: v(1), suits_advanced: v(2) };
+}
+/** Arm speed 1–10 as the three arm groups: the slow end suits a slow arm, the top needs a power arm; the middle suits mid arms. */
+const armSuits = (a: number) => ({ suits_arm_slow: Math.round((11 - a) * 9), suits_arm_mid: Math.round(Math.max(20, 90 - 14 * Math.abs(a - 5.5))), suits_arm_fast: Math.round(a * 9) });
+function sheetRows(file: string): EvidenceRow[] {
+  const text = readFileSync(file, "utf8").replace(/^\uFEFF/, "");
+  const table: string[][] = []; let row: string[] = [], cell = "", q = false;
+  for (let i = 0; i < text.length; i++) { const c = text[i];
+    if (q) { if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
+    else if (c === '"') q = true; else if (c === ",") { row.push(cell); cell = ""; } else if (c === "\n") { row.push(cell); table.push(row); row = []; cell = ""; } else if (c !== "\r") cell += c; }
+  if (cell || row.length) { row.push(cell); table.push(row); }
+  const [head, ...lines] = table.filter(r => r.some(x => x.trim()));
+  const col = (n: string) => head.indexOf(n), bySlug = new Map(data.rackets.map(p => [p.slug, p.id]));
+  const out: EvidenceRow[] = [], skip = (k: string) => { SHEET_SKIPPED[k] = (SHEET_SKIPPED[k] ?? 0) + 1; };
+  const add = (id: string, slug: string, attribute: string, value: number, cellText: string) => out.push({ productId: id, sourceKind: "owner", sourceRef: `expert-sheet:${slug}`,
+    authorKey: "owner-expert", attribute, value: Math.max(0, Math.min(100, value)), valueText: cellText, strength: 1, quote: cellText, saidAt: "2026-11-16", extractedBy: EX.expert });
+  for (const l of lines) {
+    const slug = (l[col("slug")] ?? "").trim(), id = bySlug.get(slug);
+    if (!id) { skip("unknown slug"); continue; }
+    const num = (c: string) => { const v = Number((l[col(c)] ?? "").trim()); return (l[col(c)] ?? "").trim() && Number.isFinite(v) && v >= 1 && v <= 10 ? v : null; };
+    const st = num("expert_stability"), gl = num("expert_glide"), gr = num("expert_grip"), bi = num("expert_beat_in"), arm = num("expert_arm_speed");
+    if (st !== null) add(id, slug, "stability", st * 10, `stability ${st}/10`);
+    if (gl !== null) add(id, slug, "glide", gl * 10, `glide ${gl}/10`);
+    if (gr !== null) { if (gr === 7) skip("grip 7 (default)"); else add(id, slug, "grip", gr * 10, `grip ${gr}/10`); }
+    if (bi !== null) add(id, slug, "beat_in", (11 - bi) * 10, `beat-in ${bi}/10 (10 = holds its flight)`);
+    if (arm !== null) for (const [k, v] of Object.entries(armSuits(arm))) add(id, slug, k, v, `arm speed ${arm}/10`);
+    const lv = (l[col("expert_level")] ?? "").trim();
+    if (lv) { const s = levelSuits(lv); if (s) for (const [k, v] of Object.entries(s)) add(id, slug, k, v, `level: ${lv}`); else skip(`level "${lv}"`); }
+    for (const c of ["expert_accuracy", "expert_distance", "expert_wind", "expert_forehand"]) if ((l[col(c)] ?? "").trim()) skip(c);
+  }
+  return out;
+}
+
+// ── Dry-run picks (preview only: lib/engine does the real ranking later; ENGINE-ALGO step 5 shape, no tuned weights) ──
+type Pick = { label: string; level: string; arm: string; stab: number; types: string[] };
+const DRIVERS = ["Distance driver", "Fairway driver"];
+const PICKS: Pick[] = [
+  { label: "Beginner · slower arm · understable · drivers", level: "beginner", arm: "arm_slow", stab: 25, types: DRIVERS },
+  { label: "Beginner · slower arm · straight · midranges", level: "beginner", arm: "arm_slow", stab: 45, types: ["Midrange"] },
+  { label: "Intermediate · medium arm · straight · drivers", level: "intermediate", arm: "arm_mid", stab: 50, types: DRIVERS },
+  { label: "Intermediate · medium arm · overstable · drivers", level: "intermediate", arm: "arm_mid", stab: 75, types: DRIVERS },
+  { label: "Advanced · big arm · overstable · drivers", level: "advanced", arm: "arm_fast", stab: 80, types: DRIVERS },
+  { label: "Advanced · big arm · straight · drivers", level: "advanced", arm: "arm_fast", stab: 50, types: DRIVERS },
+];
+/** The draft yardstick (discgolf-engine-plan.md, from the data before the sheet), marked ★ in the dry run. */
+const YARDSTICK = ["Innova Mamba", "Streamline Shift", "Axiom Insanity", "MVP Inertia", "Innova Wraith", "Innova Shryke", "Discraft Nuke", "Westside Destiny",
+  "Latitude 64 River", "Innova Leopard", "Latitude 64 Diamond", "Axiom Crave", "Innova Valkyrie", "Innova Mako3", "Westside Tursas", "Innova Rollo", "Latitude 64 Fuse"];
+function rankPick(res: ReturnType<typeof computeScores>, pk: Pick) {
+  return res.filter(r => pk.types.includes(r.type ?? "") && r.reports >= 6 && !(pk.level === "beginner" && r.beginnerGated)).map(r => {
+    const j = r.positive + r.mixed + r.negative, q = j ? (r.positive + 0.3 * r.mixed + 10 * 0.8) / (j + 10) : 0.8;
+    const sv = (k: string) => (r.scores[k]?.score ?? 50) / 100, st = r.scores.stability?.score ?? 50;
+    const fit = (sv(`suits_${pk.level}`) + sv(`suits_${pk.arm}`) + Math.max(0, 1 - Math.abs(st - pk.stab) / 50)) / 3;
+    return { id: r.id, name: r.name, m: Math.round(100 * (0.5 * q + 0.5 * fit)) };
+  }).sort((a, b) => b.m - a.m);
+}
 
 if (step === "backfill") {
   const rows: EvidenceRow[] = [];
@@ -160,35 +272,30 @@ if (step === "backfill") {
   console.log(`reports read ${reportsRead}, reader rows ${rows.length}, dropped ${dropped.length}: ${JSON.stringify(Object.fromEntries([...by].sort()))}`);
   if (sampleN) for (const r of [...rows].sort(() => Math.random() - 0.5).slice(0, sampleN)) console.log(`\n[${r.attribute} ${r.value} s${r.strength}${r.valueText ? " " + r.valueText : ""}] "${r.quote}"\n   ${r.text.slice(0, 400).replace(/\n/g, " | ")}`);
   if (rest.includes("--write")) await save(rows.map(({ text: _t, ...r }) => r), [EX.reader]);
+} else if (step === "expert") {
+  const [file] = rest.filter(a => !a.startsWith("--"));
+  if (!file) throw new Error("expert <filled.csv> [--write]");
+  const rows = sheetRows(file);
+  const by = rows.reduce((m, r) => m.set(r.attribute, (m.get(r.attribute) ?? 0) + 1), new Map<string, number>());
+  console.log(`expert rows ${rows.length} on ${new Set(rows.map(r => r.productId)).size} discs: ${JSON.stringify(Object.fromEntries([...by].sort()))}`);
+  console.log(`  skipped: ${JSON.stringify(SHEET_SKIPPED)}`);
+  if (rest.includes("--write")) await save(rows, [EX.expert]);
+} else if (step === "picks") {
+  const dbRows = await evidenceRows(), s = rest.indexOf("--sheet");
+  const before = computeScores(dbRows.filter(r => r.extractedBy !== EX.expert));
+  const after = computeScores(s >= 0 ? [...dbRows.filter(r => r.extractedBy !== EX.expert), ...sheetRows(rest[s + 1])] : dbRows);
+  const yard = new Set(data.listed.filter(p => YARDSTICK.includes(p.name)).map(p => p.id));
+  for (const pk of PICKS) {
+    const b = rankPick(before, pk), a = rankPick(after, pk);
+    const pos = new Map(b.map((x, i) => [x.id, i + 1]));
+    console.log(`\n## ${pk.label}`);
+    a.slice(0, 10).forEach((x, i) => console.log(`${String(i + 1).padStart(2)}. ${x.name.padEnd(30)} ${String(x.m).padStart(3)}  (was ${pos.get(x.id) ?? "–"})${yard.has(x.id) ? " ★" : ""}`));
+    const gone = b.slice(0, 10).filter(x => !a.slice(0, 10).some(y => y.id === x.id)).map(x => x.name);
+    if (gone.length) console.log(`   out of the top 10: ${gone.join(", ")}`);
+  }
 } else if (step === "scores" || step === "gaps") {
   const rows = await evidenceRows(), counts = reportCounts();
-  const products = data.listed;
-  const base = scoreAll(profile, products.map(p => { const c = counts.get(p.id)!; const j = c.positive + c.mixed + c.negative; return { id: p.id, shape: p.shape, reports: c.reports, verdict: j ? (c.positive - c.negative) / j : null }; }), rows);
-  // Voices: one author (or one report), netted per attribute.
-  const voices = new Map<string, Map<string, Map<string, number>>>();
-  for (const r of rows) {
-    if (r.value === null || r.sourceKind === "maker") continue;
-    const p = voices.get(r.productId) ?? new Map(); voices.set(r.productId, p);
-    const a = p.get(r.attribute) ?? new Map<string, number>(); p.set(r.attribute, a);
-    const k = r.authorKey ?? r.sourceRef.split("#")[0]; a.set(k, (a.get(k) ?? 0) + r.value * r.strength);
-  }
-  const K = 8; // ENGINE-ALGO step 2: (mentions·raw + k·prior) / (mentions + k)
-  type Out = { score: number | null; raw: number | null; prior: number | null; n: number; plus: number; minus: number; mixed: number };
-  const result = products.map(p => {
-    const prior = flightPrior(flights.get(p.id) ?? null, MID), c = counts.get(p.id)!, scores: Record<string, Out> = {};
-    for (const a of profile.attrs.filter(a => a.kind !== "fact")) {
-      const v = [...(voices.get(p.id)?.get(a.key)?.values() ?? [])];
-      const plus = v.filter(x => x > 0).length, minus = v.filter(x => x < 0).length, mixed = v.filter(x => x === 0).length, n = v.length;
-      const pr = prior[a.key] ?? null;
-      if (a.kind === "quality") { const s = base.get(p.id)!.scores[a.key]; scores[a.key] = { score: s?.score ?? null, raw: s?.score ?? null, prior: null, n, plus, minus, mixed }; continue; }
-      const raw = n ? Math.round(a.kind === "axis" ? 50 + 50 * (plus - minus) / Math.max(1, plus + minus) : 50 + 50 * v.reduce((s, x) => s + Math.max(-1, Math.min(1, x)), 0) / n) : null;
-      // No prior (grip, beat-in): no score below minAxis voices; with a prior the flight numbers start it.
-      const score = raw === null ? pr : pr === null ? (n >= profile.minAxis ? raw : null) : Math.round((n * raw + K * pr) / (n + K));
-      scores[a.key] = { score, raw, prior: pr, n, plus, minus, mixed };
-    }
-    const gated = beginnerGated(prior.suits_beginner, scores.suits_beginner.n ? { score: scores.suits_beginner.raw!, n: scores.suits_beginner.n } : null);
-    return { id: p.id, name: p.name, slug: p.slug, type: p.shape, flight: p.weight, ...c, evidence: rows.filter(r => r.productId === p.id && r.sourceKind !== "maker").length, beginnerGated: gated, scores };
-  });
+  const result = computeScores(rows);
   if (step === "scores") {
     for (const a of profile.attrs.filter(a => a.kind !== "fact")) {
       const have = result.filter(r => r.scores[a.key].score !== null), voiced = result.filter(r => r.scores[a.key].n >= 3);
@@ -199,7 +306,7 @@ if (step === "backfill") {
       const top = result.filter(r => r.scores[g].score !== null && r.scores[g].n >= 3).sort((a, b) => b.scores[g].score! - a.scores[g].score!);
       console.log(`\n${g}: best ${top.slice(0, 5).map(x => `${x.name} ${x.scores[g].score} (${x.scores[g].n})`).join(" · ")}\n   worst ${top.slice(-4).map(x => `${x.name} ${x.scores[g].score} (${x.scores[g].n})`).join(" · ")}`);
     }
-    const j = rest.indexOf("--json"); if (j >= 0) writeFileSync(rest[j + 1], JSON.stringify({ computedAt: new Date().toISOString(), k: K, mid: MID, products: result }, null, 1));
+    const j = rest.indexOf("--json"); if (j >= 0) writeFileSync(rest[j + 1], JSON.stringify({ computedAt: new Date().toISOString(), k: 8, E: 8, mid: MID, products: result }, null, 1));
     const c = rest.indexOf("--csv");
     if (c >= 0) {
       const keys = profile.attrs.filter(a => a.kind !== "fact").map(a => a.key);
@@ -225,4 +332,5 @@ if (step === "backfill") {
     for (const [w, f] of checks) console.log(`  ${w}: ${result.filter(f).length}`);
   }
 } else throw new Error("step: backfill | export | check | scores | gaps");
+
 process.exit(0);
