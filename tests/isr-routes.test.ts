@@ -77,6 +77,9 @@ test("the racket pages' engine items come from one cached address, not inside ea
   const route = readFileSync(join(ROOT, "app/api/rank-items/route.ts"), "utf8");
   assert.match(route, /export\s+const\s+revalidate\s*=\s*[1-9]\d*/, "app/api/rank-items: needs export const revalidate");
   assert.deepEqual(dynamicUses("app/api/rank-items/route.ts"), []);
+  // Built on every site: an attribute-profile site (SkinRecs) has no match context, so it must answer before building one
+  // (the SkinRecs production build failed on it, 2026-11-16).
+  assert.match(route, /attrProfileFor\(niche\)[^\n]*return Response\.json\(\[\]\)/);
   // A page whose address has picks sends only the server's answer for them (lib/rank-seed.ts), never the items.
   const fit = readFileSync(join(ROOT, "app/rackets/[slug]/racket-fit.tsx"), "utf8");
   assert.doesNotMatch(fit, /<Fit(?:Box|Compare|Alts)\b[^>]*\bitems=/, "the fit components read the items from FitPicks");
