@@ -10,7 +10,9 @@ import { LightRowView, type LightRowProps } from "./light-row-view";
 
 /** A row as plain values, rendered here (app/light-row-view.tsx): every row's markup in the page was ~420 KB of a 600 KB home
  *  (owner 2026-11-16); the values are a few hundred bytes a row, and the markup comes out the same. */
-export type BoardItem = { key: string; shape: string | null; text: string; row: LightRowProps };
+/** text: what the search box matches; left out when it is the row's name and shape (most rows), which say the same. */
+export type BoardItem = { key: string; shape: string | null; text?: string; row: LightRowProps };
+const textOf = (i: BoardItem) => i.text ?? `${i.row.name} ${i.row.shape ?? ""}`;
 type Cat = { key: string; label: string };
 // 8 rows first and a Show more button (owner's mockup and audit, 2026-11-13).
 const PAGE = 8, EVENT = "home-search";
@@ -55,7 +57,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     e.currentTarget.closest("details")?.removeAttribute("open");
   };
   const href = (key?: string) => { const p = new URLSearchParams(base); if (key) p.set("shape", key); const s = p.toString(); return s ? `/?${s}` : "/"; };
-  const searched = q.trim() ? items.filter(i => matches(i.text, q)) : items;
+  const searched = q.trim() ? items.filter(i => matches(textOf(i), q)) : items;
   const visible = searched.filter(i => !shape || i.shape === shape);
   const count = (key: string) => searched.filter(i => i.shape === key).length;
   const shownCats = cats.filter(c => count(c.key) > 0 || c.key === shape);
