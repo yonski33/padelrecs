@@ -17,7 +17,7 @@ import { listShopLink } from "../../lib/amazon-offer";
 import { catalogRows } from "./catalog-rows";
 import { specGroups } from "../../lib/guide";
 import { fitConfigFor } from "../../lib/fit-config";
-import { v2copy } from "../../lib/niche";
+import { v2copy, catalogPath } from "../../lib/niche";
 
 /** A type-picker site (DiscGolfRecs): its disc type and stability filters lead the catalogue (app/rackets/catalog-browser.tsx). */
 const QUICK = fitConfigFor(niche)?.quick;
@@ -33,7 +33,7 @@ type F = CatalogFilters;
 /** With `brand`, the same page for one brand (/brands/<slug>, owner 2026-11-15: the brand page in the new design). */
 export default async function CatalogV2({ data: all, f, brand: only }: { data: Catalog; f: F; brand?: { id: string; name: string; slug: string } }) {
   const data = only ? { ...all, listed: all.listed.filter(r => r.brandId === only.id) } : all;
-  const base = only ? `/brands/${only.slug}` : "/rackets";
+  const base = only ? `/brands/${only.slug}` : catalogPath;
   const ctx = await matchContext();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   // Each listed racket's filter facts (app/rackets/catalog-rows.ts, shared with the guide), and its card. Both go to the
