@@ -1,6 +1,5 @@
 export const dynamic = "force-dynamic";
-import { rowOfFamily } from "../../lib/compare-pairs";
-import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
+import { catalogShownCount } from "./catalog-count";
 import { isLight } from "../../lib/look";
 import { siteOgImages } from "../site-og";
 import type { Metadata } from "next";
@@ -27,9 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await catalog();
   const top = sortProducts(data.listed.map(r => ({ r, s: score(data, r.id) })), "discussed").slice(0, 3);
   // The new catalogue (padel) lists one row per model by default: the title counts what it shows.
-  const reportsOf = new Map<string, number>();
-  for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
-  const shown = isV2 ? data.listed.filter(r => rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS).shown.id === r.id).length : data.listed.length;
+  const shown = catalogShownCount(data);
   const title = catalogTitle(shown);
   const description = catalogDescription(data.reviews.length + data.external.length, top.map(({ r }) => displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name)));
   return { title, description, alternates: { canonical: catalogPath }, openGraph: { title, description, url: catalogPath, type: "website", images: siteOgImages } };

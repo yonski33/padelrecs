@@ -38,15 +38,21 @@ export const padel: Niche = {
     proLines: ["\\bPro\\+?(?=\\s|$)", "\\bHRD\\+?", "\\bEdge\\b", "\\bNeuron\\b", "\\bBela\\b", "\\bMetalbone\\b(?!.*\\b(?:CTRL|Team|Youth|Junior|Light|Lite)\\b)"],
     // Owner 2026-11-15: "very few diamond rackets can be played by beginners … like bullpadel vertex women".
     // Owner 2026-11-15: "the team version is a beginner racket" (HEAD Team lines, Coello Team included).
-    beginnerShapesOut: ["diamond"], beginnerLines: ["\\bVertex\\b.*\\bWomen\\b", "^Head\\b.*\\bTeam\\b"],
-    levelGate: { beginner: 60, intermediate: 60, advanced: 50 },
+    // Owner 2026-11-16 (match audit): no name exceptions for beginners; a racket reaches beginners through its suits (the expert
+    // level where the brand's own level is wrong). Intermediate gate 60 → 50, the level term demotes instead of the gate deleting.
+    beginnerShapesOut: ["diamond"],
+    levelGate: { beginner: 60, intermediate: 50, advanced: 50 },
     // The match engine (owner "Build it" 2026-11-15; ENGINE-ALGO.md §5 v2, the numbers the yardstick passed). The maker's
     // label words are matched in the lower-cased name as written (a leading space keeps "ctrl" from matching inside a word).
-    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
-      controlLabels: [" ctrl", "control", "comfort", " soft", " light", " lite"], powerLabels: [" power", " hrd", " edge", "attack", "xplo"],
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 2.0, wq: 0.30, wf: 0.60, wp: 0.10, minReports: 6, ax: 0.75,
+      // Only the words that name a control line (audit 2026-11-16: "light", "lite", "soft" and "comfort" are weight and feel).
+      controlLabels: [" ctrl", "control"], powerLabels: [" power", " hrd", " edge", "attack", "xplo"],
       // Owner 2026-11-15, "Yes, cap Team": a Team version sits at most all-round on the axis.
       allRoundLabels: [" team"], allRoundCap: 0.55,
-      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2 } },
+      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.5, fineShare: 0.2,
+      // The match-audit tuning pass (Grok audit, owner OK 2026-11-16): level in the score, per-style anchors, a squared balance
+      // term, quality for "any", a hard-reason cap, best member per family, ties by reports.
+      levelShare: 0.2, balanceSquared: true, anyByQuality: true, anchorsPerStyle: true, hardCap: 54, familyBestWithin: 3, tieByReports: true, } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

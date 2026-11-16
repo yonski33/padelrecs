@@ -45,6 +45,15 @@ export type EngineProfile = {
   traits?: readonly string[]; complaint?: readonly string[];
   /** The style picks the display anchors cover (default control / balance / power). A pick off the axis (pickleball's spin) is
    *  matched on that trait's sentiment alone. */ styles?: readonly Exclude<EngineStyle, "any">[];
+  // The match-audit tuning pass (Grok audit, owner OK 2026-11-16), padel and pickleball. Unset: the engine as before.
+  /** With a level picked, this share of the fit is how well the product suits that level (suits[level] / 100). */ levelShare?: number;
+  /** The balance pick's axis term squared, (1 − 2|axis − 0.5|)², so only real all-rounders reach the top. */ balanceSquared?: boolean;
+  /** "Any" style: the style term is the product's quality Q instead of a flat 0.5. */ anyByQuality?: boolean;
+  /** Display anchors per style pick (and "any"), not pooled over the styles. */ anchorsPerStyle?: boolean;
+  /** Any hard reason (level, arm, feel) holds the % at this (under the "Worth a look" cut, so never Strong fit). */ hardCap?: number;
+  /** One row per model: the best-scoring eligible member, a newer one winning when it is within this many % points. Unset:
+   *  the newest year that passes. */ familyBestWithin?: number;
+  /** Ties on the cautious score go to the product with more reports. */ tieByReports?: boolean;
 };
 export type EngineStyle = "any" | "control" | "balance" | "power" | "spin";
 const AXIS_STYLES = ["control", "balance", "power"];
@@ -109,20 +118,22 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
 
 /** The fit to a style pick, 0–1, and its uncertainty. "any" is neutral (the list then follows quality and popularity). */
 export function engineFit(e: EngineBase, style: EngineStyle, p: EngineProfile): [number, number] {
-  if (style === "any") return [0.5, 0];
+  if (style === "any") return p.anyByQuality ? [e.Q, e.sdQ] : [0.5, 0];
   // Off the axis (pickleball's spin): how positively players talk about that trait.
   if (!AXIS_STYLES.includes(style)) { const t = e.tr[style]; return t ? [t.v, t.sd] : [0.5, 0]; }
   const a = e.axis, { control: c, power: pw } = e.tr;
   const [ax, sent, ss] = style === "control" ? [1 - a, c.v, c.sd] : style === "power" ? [a, pw.v, pw.sd]
-    : [1 - 2 * Math.abs(a - 0.5), (c.v + pw.v) / 2, Math.sqrt((c.sd ** 2 + pw.sd ** 2) / 2)];
+    : [(1 - 2 * Math.abs(a - 0.5)) ** (p.balanceSquared ? 2 : 1), (c.v + pw.v) / 2, Math.sqrt((c.sd ** 2 + pw.sd ** 2) / 2)];
   const sda = Math.sqrt(a * (1 - a) / e.axisN);
   return [p.ax * ax + (1 - p.ax) * sent, Math.sqrt((p.ax * sda) ** 2 + ((1 - p.ax) * ss) ** 2)];
 }
 
-export type EnginePick = { style: EngineStyle; arm?: boolean; fine?: number | null };
+export type EnginePick = { style: EngineStyle; arm?: boolean; fine?: number | null; /** suits[picked level], 0–100, with a level picked. */ suits?: number | null };
 /** The score and the cautious score (what lists are ordered by). */
 export function engineScore(e: EngineBase, pick: EnginePick, p: EngineProfile): { score: number; cautious: number } {
   let [F, sF] = engineFit(e, pick.style, p);
+  // The level as a score (audit 2026-11-16): fit = (1 − levelShare) × style + levelShare × suits / 100.
+  if (p.levelShare && pick.suits !== undefined && pick.suits !== null) { F = (1 - p.levelShare) * F + p.levelShare * pick.suits / 100; sF = (1 - p.levelShare) * sF; }
   // Sore arm and fine-tune picks (not in the prototype): a share of the fit, with their uncertainty.
   if (pick.arm) { F = (1 - p.armShare) * F + p.armShare * e.tr.arm.v; sF = Math.sqrt(((1 - p.armShare) * sF) ** 2 + (p.armShare * e.tr.arm.sd) ** 2); }
   if (pick.fine !== undefined && pick.fine !== null) { F = (1 - p.fineShare) * F + p.fineShare * pick.fine; sF = (1 - p.fineShare) * sF; }
@@ -136,22 +147,35 @@ export const enginePct = (cautious: number, a: { lo: number; hi: number }) => Ma
 
 /** Candidates for a list: enough reports, passing the level gate; one row per model (the newest year that passes), unless
  *  every year is asked for. `family` is the model's row id (lib/compare-pairs.ts rowOfFamily). */
-export function engineCandidates<T extends { id: string; n: number; family: string; year: number }>(items: T[], ok: (x: T) => boolean, minReports: number, everyYear = false): T[] {
+export function engineCandidates<T extends { id: string; n: number; family: string; year: number }>(items: T[], ok: (x: T) => boolean, minReports: number, everyYear = false,
+  /** With familyBestWithin: each member's % for the picks; the best one stays, a newer one within that many points wins. */ best?: { pct: (x: T) => number; within: number }): T[] {
   const pass = items.filter(x => x.n >= minReports && ok(x));
   if (everyYear) return pass;
-  const best = new Map<string, T>();
-  for (const x of pass) { const b = best.get(x.family); if (!b || x.year > b.year) best.set(x.family, x); }
-  return [...best.values()];
+  const keep = new Map<string, T>();
+  for (const x of pass) {
+    const b = keep.get(x.family);
+    if (!b) { keep.set(x.family, x); continue; }
+    if (!best) { if (x.year > b.year) keep.set(x.family, x); continue; }
+    const [newer, older] = x.year >= b.year ? [x, b] : [b, x];
+    keep.set(x.family, best.pct(newer) >= best.pct(older) - best.within ? newer : older);
+  }
+  return [...keep.values()];
 }
 
-/** The display anchors: the 10th-percentile and the best cautious score over the 9 level × style picks (one row per model). */
+/** The display anchors: the 10th-percentile and the best cautious score over the 9 level × style picks (one row per model).
+ *  With anchorsPerStyle, one pair per style pick (and "any"), over that style's 3 levels, each scored with the level's suits. */
 export function engineAnchors<T extends { id: string; n: number; family: string; year: number }>(items: T[], base: Map<string, EngineBase>, passes: (x: T, level: string) => boolean,
-  p: EngineProfile): { lo: number; hi: number } {
-  const all: number[] = [];
-  for (const level of ["beginner", "intermediate", "advanced"]) for (const style of p.styles ?? (["control", "balance", "power"] as const))
-    for (const x of engineCandidates(items, y => passes(y, level), p.minReports)) all.push(engineScore(base.get(x.id)!, { style }, p).cautious);
-  all.sort((a, b) => a - b);
-  return { lo: all[Math.floor(0.1 * all.length)] ?? 0, hi: all.at(-1) ?? 1 };
+  p: EngineProfile, suitsOf?: (x: T, level: string) => number | null | undefined): { lo: number; hi: number; byStyle?: Record<string, { lo: number; hi: number }> } {
+  const styles = p.styles ?? (["control", "balance", "power"] as const);
+  const pair = (xs: number[]) => { xs.sort((a, b) => a - b); return { lo: xs[Math.floor(0.1 * xs.length)] ?? 0, hi: xs.at(-1) ?? 1 }; };
+  const scores = (style: EngineStyle) => ["beginner", "intermediate", "advanced"].flatMap(level => engineCandidates(items, y => passes(y, level), p.minReports)
+    .map(x => engineScore(base.get(x.id)!, { style, suits: p.levelShare ? suitsOf?.(x, level) : undefined }, p).cautious));
+  const pooled = pair(styles.flatMap(st => scores(st)));
+  if (!p.anchorsPerStyle) return pooled;
+  // Each style's own floor, one shared ceiling: styles start from where their own lists start, and only the very best fit of
+  // any style reaches the top of the scale (a per-style ceiling put every style's #1 at 95).
+  const hi = Math.max(pooled.hi, ...[...styles, "any" as const].map(st => pair(scores(st)).hi));
+  return { ...pooled, byStyle: Object.fromEntries([...styles, "any" as const].map(st => [st, { lo: pair(scores(st)).lo, hi }])) };
 }
 
 /** The verdict word from the same number. */

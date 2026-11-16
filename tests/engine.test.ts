@@ -14,22 +14,33 @@ const fx = JSON.parse(readFileSync(new URL("./fixtures/engine-padel.json", impor
 const Y = JSON.parse(readFileSync(new URL("./fixtures/engine-yardstick-padel.json", import.meta.url), "utf8")) as {
   beats: { pick: string; above: string; below: string }[]; not_top: { pick: string; slug: string; top: number }[] };
 const P = padel.fit!.engine!;
-// The prototype predates the owner's Team cap ("Yes, cap Team", 2026-11-15), so parity runs without it.
-const PROTO = { ...P, allRoundLabels: [] };
+// The prototype predates the owner's Team cap ("Yes, cap Team", 2026-11-15) and the match-audit tuning pass (2026-11-16), so
+// parity runs on the prototype's own numbers: the engine's maths is unchanged, only the site's settings moved.
+const PROTO = { ...P, allRoundLabels: [], z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, armShare: 0.3,
+  controlLabels: [" ctrl", "control", "comfort", " soft", " light", " lite"],
+  levelShare: undefined, balanceSquared: false, anyByQuality: false, anchorsPerStyle: false, hardCap: undefined, familyBestWithin: undefined, tieByReports: false };
+const GATE = padel.fit!.levelGate as Record<string, number>;
 const items = fx.items.map(x => ({ ...x, id: x.slug, e: { name: x.name, year: x.year, pos: x.pos, mix: x.mix, neg: x.neg, voices: x.voices, spec: x.spec, expert: x.expert } as EngineFacts }));
 const base = engineBase(items, P), protoBase = engineBase(items, PROTO);
 const passes = (x: Item, level: string) => (x.suits[level] ?? 0) >= fx.gate[level];
-const list = (pick: string, b = base, p = P) => {
+/** The prototype's list (its gate, no level term), for the parity test. */
+const protoList = (pick: string) => {
   const [level, style] = pick.split("+") as [string, "control" | "balance" | "power"];
-  return engineCandidates(items, x => passes(x, level), p.minReports).map(x => ({ x, c: engineScore(b.get(x.id)!, { style }, p).cautious }))
+  return engineCandidates(items, x => passes(x, level), PROTO.minReports).map(x => ({ x, c: engineScore(protoBase.get(x.id)!, { style }, PROTO).cautious }))
     .sort((a, b2) => b2.c - a.c);
+};
+/** The site's list as it ranks today: its own gate, the level's suits in the score, ties by reports. */
+const list = (pick: string) => {
+  const [level, style] = pick.split("+") as [string, "control" | "balance" | "power"];
+  return engineCandidates(items, x => (x.suits[level] ?? 0) >= GATE[level], P.minReports).map(x => ({ x, c: engineScore(base.get(x.id)!, { style, suits: x.suits[level] }, P).cautious }))
+    .sort((a, b2) => b2.c - a.c || (P.tieByReports ? b2.x.n - a.x.n : 0));
 };
 const PICKS = ["beginner", "intermediate", "advanced"].flatMap(l => ["control", "balance", "power"].map(s => `${l}+${s}`));
 
 test("the engine reproduces the prototype's lists for the 9 picks (order, cautious scores and %)", () => {
   const anchors = engineAnchors(items, protoBase, passes, PROTO);
   for (const pick of PICKS) {
-    const got = list(pick, protoBase, PROTO), want = fx.expected[pick];
+    const got = protoList(pick), want = fx.expected[pick];
     assert.equal(got.length, want.length, `${pick}: list size`);
     got.forEach((g, i) => {
       const w = want[i];

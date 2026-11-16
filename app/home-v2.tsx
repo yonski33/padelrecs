@@ -1,4 +1,5 @@
 import "./home-v2.css";
+import { catalogShownCount } from "./rackets/catalog-count";
 import "./home-v2-m.css";
 import { matchContext } from "./match-context";
 import { displayName } from "../lib/brand-name";
@@ -80,7 +81,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       </section>
 
       {/* The picks and the list re-rank in the browser on a tap (app/home-match.tsx); this render is the address's own list. */}
-      <HomeMatch seed={homeSeed(payload, choice, older)} listed={data.listed.length}>
+      <HomeMatch seed={homeSeed(payload, choice, older)} listed={catalogShownCount(data)}>
         <aside className="hv2-side">
           <section>
             <div className="hv2-sidehead"><h3>{`Fresh off the ${v2copy.venue ?? "court"}`}</h3><a href="/reviews">all →</a></div>

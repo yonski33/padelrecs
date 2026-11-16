@@ -89,8 +89,10 @@ const FAMILY_ALIASES: Record<string, string> = {
   "nox at10 genius 12k": "nox at10 genius 12k alum xtrem",
   "nox at10 18k": "nox at10 genius 18k",
 };
+/** Lines whose number names a separate line, not a generation (match audit 2026-11-16: Xplo and Xplo 02 are two models). */
+const SEPARATE_LINES: [RegExp, string][] = [[/\bxplo 0(\d)\b/g, "xplo0$1"]];
 export const modelFamily = (p: { name: string; brandId: string }) => {
-  const name = p.name.toLowerCase().replace(/\b(19|20)\d{2}\b/g, " ").replace(/\b(?:v|st|gen ?)?\d+(?:\.\d+)?\b(?![k+])/g, " ").replace(/[^a-z0-9+]+/g, " ").trim();
+  const name = SEPARATE_LINES.reduce((n, [re, to]) => n.replace(re, to), p.name.toLowerCase()).replace(/\b(19|20)\d{2}\b/g, " ").replace(/\b(?:v|st|gen ?)?\d+(?:\.\d+)?\b(?![k+])/g, " ").replace(/[^a-z0-9+]+/g, " ").trim();
   return `${p.brandId}:${FAMILY_ALIASES[name] ?? name}`;
 };
 /** The newest year of each racket's family among `candidates` (the highest name when two share the newest year). */

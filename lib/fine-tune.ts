@@ -1,7 +1,7 @@
 // Quick match's "Not sure yet? fine-tune" (owner 2026-11-15): optional picks after style + level, all from data we hold.
-//   shape  round / hybrid (teardrop, hybrid, hexagonal, geometric) / diamond, from the specs. A hard filter: only rackets of
+//   shape  round / hybrid (teardrop, hybrid, hexagonal) / diamond (Bullpadel calls its diamonds "Geometric"), from the specs. A hard filter: only rackets of
 //          that shape show; an unknown shape is hidden only when a shape is picked.
-//   weight light (≤355 g) / medium / heavy (≥370 g), the middle of the spec's range. A soft boost, never a cut.
+//   weight light (≤358 g) / medium / heavy (≥370 g), the middle of the spec's range. A soft boost, never a cut.
 //   feel   soft / medium / firm, from players' "soft" / "firm" tags and the core spec, split into catalog thirds (most rackets
 //          are firm, so a fixed cut would leave "soft" nearly empty). A soft boost.
 //   sweet  "bigger sweet spot": a boost by the Forgiveness trait score.
@@ -21,8 +21,10 @@ type FineSite = { shapes: readonly string[]; label: Record<string, string>; shap
 const FINE_PB_SHAPE = (s: string): Shape | null => /,|\bor\b|\//.test(s) ? null : /elongated/.test(s) ? "elongated" : /hybrid/.test(s) ? "hybrid" : /standard|wide|square|flared/.test(s) ? "standard" : null;
 const FINE: Record<string, FineSite> = {
   padel: { shapes: ["round", "hybrid", "diamond"], label: { round: "round", hybrid: "teardrop / hybrid", diamond: "diamond" },
-    shapeOf: s => /diamond/.test(s) ? "diamond" : /round/.test(s) ? "round" : /tear|drop|hybrid|hexag|geometric/.test(s) ? "hybrid" : null,
-    grams: [300, 420], light: 355, heavy: 370,
+    // Bullpadel's "Geometric" is its diamond (match audit 2026-11-16: Neuron 02 Edge showed as hybrid).
+    shapeOf: s => /diamond|geometric/.test(s) ? "diamond" : /round/.test(s) ? "round" : /tear|drop|hybrid|hexag/.test(s) ? "hybrid" : null,
+    // Light up to 358 g (audit: a 355–365 g "Xtrem Lite" read as heavier than asked on the 355 g line).
+    grams: [300, 420], light: 358, heavy: 370,
     catalog: { shapes: ["round", "teardrop", "hybrid", "diamond"], of: x => /diamond/.test(x) ? "diamond" : /round/.test(x) ? "round" : /tear|drop/.test(x) ? "teardrop" : x ? "hybrid" : null } },
   // Pickleball (owner's mock 2026-11-16): standard (widebody, square and flared count here) / elongated / hybrid. A paddle sold
   // in several shapes has no one shape. Light ≤ 7.6 oz, heavy ≥ 8.2 oz (the guide mock's bands). Fine-tune: shape (standard or elongated), weight
@@ -30,7 +32,8 @@ const FINE: Record<string, FineSite> = {
   pickleball: { shapes: ["standard", "elongated", "hybrid"], label: { standard: "standard", elongated: "elongated", hybrid: "hybrid" },
     shapeOf: FINE_PB_SHAPE,
     grams: [190, 260], light: 215.5, heavy: 232.5,
-    rows: ["shape", "weight", "core"], picks: ["standard", "elongated"], sweet: false, weightWord: { medium: "mid" },
+    // No core picker until there is core data (match audit 2026-11-16: 14 mm and 16 mm gave the same list).
+    rows: ["shape", "weight"], picks: ["standard", "elongated"], sweet: false, weightWord: { medium: "mid" },
     // The catalogue lists widebody apart (owner's mock); everywhere else it counts as standard.
     catalog: { shapes: ["standard", "elongated", "hybrid", "widebody"], of: x => /,|\bor\b|\//.test(x) ? null : /wide/.test(x) ? "widebody" : FINE_PB_SHAPE(x) } },
 };
@@ -115,7 +118,7 @@ export function fineMismatches(f: FineTune | undefined, x: FineFacts, weightSpec
     const heavier = WEIGHTS.indexOf(w) > WEIGHTS.indexOf(f.weight);
     out.push(`${heavier ? "Heavier" : "Lighter"} than you asked for${weightSpec ? ` (${weightSpec})` : ""}.`);
   }
-  if (f.feel && x.feel && x.feel !== f.feel) out.push(`Players find it ${x.feel === "medium" ? "medium" : x.feel === "soft" ? "softer" : "firmer"} than the ${f.feel} feel you asked for.`);
+  if (f.feel && x.feel && x.feel !== f.feel) out.push(x.feel === "medium" ? `It plays in between, not as ${f.feel} as you asked for.` : `It plays ${x.feel === "soft" ? "softer" : "firmer"} than the ${f.feel} feel you asked for.`);
   if (f.sweet && x.forgiveness !== null && x.forgiveness < 50) out.push("Not one of the bigger sweet spots.");
   if (f.core && x.core && x.core !== f.core) out.push(`A ${x.core} core, not the ${f.core} you asked for.`);
   return out;

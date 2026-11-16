@@ -168,12 +168,15 @@ export const pickleball: Niche = {
   // they rest on fewer reports.
   fit: { minReports: 6, fewReports: 15,
     // Same gate as padel: with a level picked, only paddles whose suits score reaches the bar are candidates.
-    levelGate: { beginner: 60, intermediate: 60, advanced: 50 },
+    levelGate: { beginner: 60, intermediate: 50, advanced: 50 },
     // The match engine with padel's numbers (owner 2026-11-16: the shared engine), the paddle traits and the spin pick. Maker
     // label words as in the lower-cased name ("Double Black Diamond Control", "Vapor Power 2").
-    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
-      controlLabels: [" control", " ctrl", " soft"], powerLabels: [" power", " pwr"],
-      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2,
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 2.0, wq: 0.30, wf: 0.60, wp: 0.10, minReports: 6, ax: 0.75,
+      controlLabels: [" control", " ctrl"], powerLabels: [" power", " pwr"],
+      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.5, fineShare: 0.2,
+      // The match-audit tuning pass (Grok audit, owner OK 2026-11-16): level in the score, per-style anchors, a squared balance
+      // term, quality for "any", a hard-reason cap, best member per family, ties by reports.
+      levelShare: 0.2, balanceSquared: true, anyByQuality: true, anchorsPerStyle: true, hardCap: 54, familyBestWithin: 3, tieByReports: true,
       traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"] } },
   finder: {
     title: "Pickleball Paddle Finder Quiz",

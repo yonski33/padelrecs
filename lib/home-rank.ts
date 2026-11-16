@@ -3,6 +3,7 @@
 // same items when a chip is tapped (app/home-match.tsx), with no round trip (batch D, owner 2026-11-15). One implementation,
 // so a tap and a direct visit to the same address always give the same list.
 import type { Finder } from "./niche/types";
+import { hardOnLevelOrArm } from "./fit-verdict";
 import { quickMatch, isDefault, passesLevel, ARM_OPTION, type QuickChoice, type LevelEvidence, type LevelGate, type Level } from "./quick-match";
 import { fitVerdict, styleLean, MIN_FIT_REPORTS, type FitFacts, type FitVerdict } from "./fit-verdict";
 import { matchFit, spreadMatch } from "./match-score";
@@ -49,19 +50,22 @@ type EngItem = { id: string; n: number; e: EngineFacts; family: string; year: nu
 const engItems = (items: RankItem[]) => cached(items, "eng:items", () => items.flatMap(x => x.eng ? [{ id: x.id, n: x.facts.reports, e: x.eng, family: x.row, year: x.eng.year, it: x } as EngItem] : []));
 const engBase = (items: RankItem[], p: EngineProfile) => cached(items, "eng:base", () => engineBase(engItems(items), p));
 const engAnchors = (items: RankItem[], p: EngineProfile, gate: LevelGate | undefined) => cached(items, `eng:anchors:${JSON.stringify(gate ?? null)}`,
-  () => engineAnchors(engItems(items), engBase(items, p), (x, level) => passesLevel(x.it.level, level as Level, gate), p));
+  () => engineAnchors(engItems(items), engBase(items, p), (x, level) => passesLevel(x.it.level, level as Level, gate), p, (x, level) => x.it.level?.suits?.[level as Level]));
 const engPick = (choice: QuickChoice) => ({ style: choice.style, arm: choice.arm, fine: undefined as number | null | undefined });
 /** The engine's cautious score and % for every product with enough reports, for these picks. A product the level gate keeps
  *  out says "Probably not" (its % held under that line). */
 function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, { cautious: number; pct: number }> {
   return cached(items, `eng:view:${JSON.stringify([choice, gate ?? null])}`, () => {
-    const base = engBase(items, p), anchors = engAnchors(items, p, gate), out = new Map<string, { cautious: number; pct: number }>();
+    const base = engBase(items, p), all = engAnchors(items, p, gate), anchors = all.byStyle?.[choice.style] ?? all, out = new Map<string, { cautious: number; pct: number }>();
     const fineOf = (x: RankItem) => { const fi = choice.fine && { ...choice.fine, shape: undefined }; return fi && x.facts.fine ? fineFit(fi, x.facts.fine) : null; };
     for (const x of engItems(items)) {
       if (x.n < p.minReports) continue;
-      const { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it) }, p);
+      const suits = choice.level ? x.it.level?.suits?.[choice.level] : undefined;
+      const { cautious } = engineScore(base.get(x.id)!, { ...engPick(choice), fine: fineOf(x.it), suits }, p);
       let pct = enginePct(cautious, anchors);
       if (choice.level && !passesLevel(x.it.level, choice.level, gate)) pct = Math.min(pct, p.cuts.maybe - 1);
+      // A hard reason on level or arm (audit 2026-11-16): never Strong fit, the hard reason leads the verdict.
+      if (p.hardCap !== undefined && hardOnLevelOrArm(choice, x.it.facts)) pct = Math.min(pct, p.hardCap);
       out.set(x.id, { cautious, pct });
     }
     return out;
@@ -126,7 +130,9 @@ function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, ol
   const p = setup.engine!, view = engineView(items, choice, setup.levelGate, p), shape = choice.fine?.shape, all = engItems(items);
   // A picked type (type-picker sites) is a hard filter, never a score.
   const ok = (x: EngItem) => view.has(x.id) && (!choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
-  const cands = engineCandidates(all, ok, p.minReports, older).sort((a, b) => view.get(b.id)!.cautious - view.get(a.id)!.cautious || a.id.localeCompare(b.id));
+  const best = p.familyBestWithin !== undefined ? { pct: (x: EngItem) => view.get(x.id)!.pct, within: p.familyBestWithin } : undefined;
+  const cands = engineCandidates(all, ok, p.minReports, older, best).sort((a, b) => view.get(b.id)!.cautious - view.get(a.id)!.cautious
+    || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
   const rows = cands.slice(0, size).map(x => { const v = verdictFor(items, choice, x.it.facts, x.id, setup.levelGate, p);
     return { id: x.id, pct: view.get(x.id)!.pct, fit: { kind: v.kind, short: v.short }, arm: x.it.facts.tags["arm-friendly"] ?? 0 }; });
   return { rows, olderN: older ? 0 : engineCandidates(all, ok, p.minReports, true).length - cands.length };
