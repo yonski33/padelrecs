@@ -4,7 +4,8 @@
 // from data sent once with the page (this racket's facts, the catalog's slim items: lib/fit-verdict.ts fitVerdict,
 // lib/home-rank.ts matchPcts and alternatives, the same functions the server uses), then updates the address with no round
 // trip. "What players said" comes in its four level views, worked out on the server.
-import { createContext, useContext, useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useInstantView, instantClick } from "../../instant-view";
 import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
@@ -26,13 +27,8 @@ const use = () => useContext(Ctx)!;
 const fromLocation = (): Picks => { const q = Object.fromEntries(new URLSearchParams(location.search)); return { choice: readChoice(q), picked: PICK_KEYS.some(k => k in q) }; };
 
 export function FitPicks({ first, href, children }: { first: Picks; href: string; children: ReactNode }) {
-  const [p, setP] = useState(first);
-  useEffect(() => { const on = () => setP(fromLocation()); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
-  const set = (next: Picks) => {
-    setP(next);
-    const h = choiceHref(next.choice, "");
-    history.pushState(null, "", !next.picked ? href : h === "/" ? `${href}?style=any` : `${href}${h.slice(1)}`);
-  };
+  // Back and forward step through the picks (app/instant-view.ts).
+  const [p, set] = useInstantView(first, fromLocation, next => { const h = choiceHref(next.choice, ""); return !next.picked ? href : h === "/" ? `${href}?style=any` : `${href}${h.slice(1)}`; });
   const [result, setResult] = useState<FitResult | null>(null);
   return <Ctx.Provider value={{ p, set, href }}><ResultCtx.Provider value={{ result, setResult }}>{children}</ResultCtx.Provider></Ctx.Provider>;
 }
@@ -50,10 +46,7 @@ function usePublish(r: FitResult | null) {
 function useGo() {
   const { set, href } = use();
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return h === "/" ? `${href}?style=any` : `${href}${h.slice(1)}`; };
-  const to = (c: QuickChoice | null) => ({ href: c ? at(c) : href, onClick: (e: MouseEvent<HTMLAnchorElement>) => {
-    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    e.preventDefault(); set(c ? { choice: c, picked: true } : { choice: DEFAULT_CHOICE, picked: false });
-  } });
+  const to = (c: QuickChoice | null) => ({ href: c ? at(c) : href, onClick: instantClick(() => set(c ? { choice: c, picked: true } : { choice: DEFAULT_CHOICE, picked: false })) });
   return to;
 }
 

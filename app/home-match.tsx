@@ -3,7 +3,8 @@
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
 import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
@@ -32,16 +33,9 @@ function fromLocation(): { choice: QuickChoice; older: boolean } {
 
 /** The picks, then the list beside `children` (the server-rendered sidebar). */
 export function HomeMatch({ payload, choice: first, older: firstOlder, listed, children }: { payload: HomePayload; choice: QuickChoice; older: boolean; listed: number; children: ReactNode }) {
-  const [{ choice, older }, set] = useState({ choice: first, older: firstOlder });
-  // Back and forward step through the picks.
-  useEffect(() => { const on = () => set(fromLocation()); addEventListener("popstate", on); return () => removeEventListener("popstate", on); }, []);
-  const go = (next: QuickChoice, nextOlder = older) => (e: MouseEvent<HTMLAnchorElement>) => {
-    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // a new tab gets the server's page
-    e.preventDefault();
-    set({ choice: next, older: nextOlder });
-    history.pushState(null, "", hrefOf(next, nextOlder));
-    document.title = titleOf(next);
-  };
+  // Back and forward step through the picks (app/instant-view.ts).
+  const [{ choice, older }, set] = useInstantView({ choice: first, older: firstOlder }, fromLocation, v => hrefOf(v.choice, v.older));
+  const go = (next: QuickChoice, nextOlder = older) => instantClick(() => { set({ choice: next, older: nextOlder }); document.title = titleOf(next); });
   const { rows, olderN } = rankHome(payload.items, SETUP, BAD, choice, older);
   const byId = new Map(payload.items.map(x => [x.id, x]));
   const picked = !isDefault(choice);
