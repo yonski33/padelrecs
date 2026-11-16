@@ -5,6 +5,9 @@
 /** The tile colours, in order (the mockups' four). */
 export const TINTS = ["var(--s-acc)", "#fff", "oklch(0.92 0.13 95)", "oklch(0.9 0.06 230)"] as const;
 export const tint = (i: number) => TINTS[i % TINTS.length];
+/** The tile's word for types too long for it (48px). */
+const SHORT_TAG: Record<string, string> = { "wheelbase": "base", "wheel": "rim", "cockpit": "rig", "shifter / handbrake": "shifter", "balm & ointment": "balm", "eye cream": "eye" };
+export const tileWord = (s: string) => SHORT_TAG[s.toLowerCase()] ?? s.toLowerCase();
 
 /** "more power": the trait where `other` is furthest ahead of `me` on the 0–5 dots (0 = not rated), in the site's own words;
  *  "similar feel" when it is ahead nowhere. */
@@ -37,6 +40,9 @@ export function completeBag(me: Disc, all: Disc[], typeWord: (kind: string) => s
   if (!(DRIVERS.has(me.kind) && mine === "understable")) take(pool.find(d => DRIVERS.has(d.kind) && stabilityOf(d.flight) === "understable"), "understable driver");
   // Then the best of each type the bag has no disc of yet.
   for (const kind of [...new Set(pool.map(d => d.kind))]) if (![...used].some(id => all.find(d => d.id === id)?.kind === kind)) take(pool.find(d => d.kind === kind), `the ${typeWord(kind)}`);
+  // A straight midrange before a second disc of a type the bag already has.
+  const MID = new Set(["mid", "midrange"]);
+  if (!MID.has(me.kind)) take(pool.find(d => MID.has(d.kind) && stabilityOf(d.flight) === "straight"), "the straight mid");
   for (const d of pool) take(d, `the ${typeWord(d.kind)}`);
   return out;
 }

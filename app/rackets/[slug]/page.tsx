@@ -49,7 +49,8 @@ import { summary } from "../../../lib/product-summary";
 import { comparePairs, comparePick, pairHref, pairKey } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../../similar-section";
-import { tint, worksWith, platformsOf, type RigPart } from "../../../lib/similar-picks";
+import { tint, tileWord, worksWith, platformsOf, type RigPart } from "../../../lib/similar-picks";
+import { hasAttribution } from "../../../lib/voice";
 import { withModelYears, rankingHref } from "../../../lib/top-lists";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
@@ -312,7 +313,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const loved = niche.similar ? topTags(data) : null;
   const oldItem = (x: (typeof data.listed)[number], i: number, why: string | null): SimilarItem => {
     const b = data.brands.find(y => y.id === x.brandId)?.name;
-    return { id: x.id, name: displayName(x.name, b), href: productHref(x), tag: (x.shape ?? niche.words.one).toLowerCase(), tint: tint(i), why, line: shortLine(x) ?? listLine(x), score: sigs.get(x.id)?.signal ?? null };
+    return { id: x.id, name: displayName(x.name, b), href: productHref(x), tag: tileWord(x.shape ?? niche.words.one), tint: tint(i), why, line: [shortLine(x), listLine(x)].find((t): t is string => !!t && !hasAttribution(t)) ?? null, score: sigs.get(x.id)?.signal ?? null };
   };
   const groupWord = (typePage?.label ?? niche.words.many).toLowerCase();
   const firstList = withModelYears(niche.topLists ?? []).find(l => typePage && l.slug.includes(typePage.slug)) ?? withModelYears(niche.topLists ?? [])[0];

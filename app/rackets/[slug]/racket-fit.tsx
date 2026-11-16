@@ -234,14 +234,17 @@ export default async function RacketFit(props: {
   const quickTypes = QUICK?.quick?.types ?? [];
   const typeOf = (kind: string | undefined) => quickTypes.find(t => t.key === kind);
   const tagOf = (id: string) => { const c = payload.cards[id]; return c?.flight ? c.flight.join(" ") : c?.shape ?? racketOf(id).shape?.toLowerCase() ?? niche.words.one; };
-  const lineOf = (id: string) => payload.cards[id]?.line ?? shortLine(racketOf(id)) ?? listLine(racketOf(id)) ?? null;
+  // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
+  const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
+    .find((t): t is string => !!t && !hasAttribution(t)) ?? null;
+  const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
   const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
   const myKindType = typeOf(kindOfId(props.racketId));
   const groupWord = myKindType ? myKindType.many.toLowerCase() : `${leanWord ? `${leanWord} ` : ""}${niche.words.many}`;
   const listFor = (word: string | undefined) => withModelYears(niche.topLists ?? []).find(l => word && l.slug.includes(word)) ?? withModelYears(niche.topLists ?? [])[0];
   const simList = listFor(myKindType?.key ?? (lean && lean !== "balance" ? lean : undefined));
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
-    items: similarIds.map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))),
+    items: byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
     const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
@@ -252,7 +255,7 @@ export default async function RacketFit(props: {
     const bag = me ? completeBag(me, discs, k => (typeOf(k)?.shape ?? k).toLowerCase()) : [];
     const beginners = withModelYears(niche.topLists ?? []).find(l => l.slug.includes("beginner"));
     simTabs.push({ key: "pairs", label: simCfg.pairLabel ?? "complete your bag", sub: `what ${niche.people.many} carry next to the ${props.shortName}`,
-      items: bag.map((b, i) => ({ ...simItem(b.id, i, b.why), tag: (typeOf(kindOfId(b.id))?.shape ?? tagOf(b.id)) })),
+      items: bag.map((b, i) => ({ ...simItem(b.id, i, b.why), tag: ({ distance: "driver", midrange: "mid", fairway: "fairway" } as Record<string, string>)[kindOfId(b.id) ?? ""] ?? kindOfId(b.id) ?? tagOf(b.id) })),
       more: beginners ? { href: listHref(beginners.slug), label: `${beginners.label.toLowerCase()}, ranked →` } : null });
   }
 

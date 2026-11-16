@@ -18,7 +18,8 @@ import RacketReviews, { type ReviewCard } from "../rackets/[slug]/racket-reviews
 import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
 import { V2Footer } from "../v2-footer";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../similar-section";
-import { routinePairs, tint, type SkinItem as PairItem } from "../../lib/similar-picks";
+import { routinePairs, tint, ROUTINE, type SkinItem as PairItem } from "../../lib/similar-picks";
+import { hasAttribution } from "../../lib/voice";
 const SKIN_SUITS = ["suits_dry", "suits_oily", "suits_combination", "suits_normal", "suits_sensitive", "suits_acne"];
 import { withModelYears, rankingHref } from "../../lib/top-lists";
 
@@ -99,14 +100,17 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
   const itemOf = (id: string, i: number, why: string | null): SimilarItem => {
     const x = data.rackets.find(y => y.id === id)!, b = data.brands.find(y => y.id === x.brandId)?.name, pr = ctx.attrs.get(id)?.facts.price;
     return { id, name: displayName(x.name, b), href: productHref(x), tag: TILE[x.shape ?? ""] ?? (x.shape ?? "").toLowerCase(), tint: tint(i), why,
-      line: shortLine(x) ?? listLine(x), score: ctx.signal(id), price: typeof pr === "string" ? pr : null };
+      // The product's own words (lib/skin-page.ts, expert voice), else its short lines, never a line that says who said it.
+      line: [skinPage(x.slug)?.bottom.split(/(?<=\.)\s/)[0], shortLine(x), listLine(x)].find((t): t is string => !!t && !hasAttribution(t)) ?? null, score: ctx.signal(id), price: typeof pr === "string" ? pr : null };
   };
   const counted = (id: string) => (ctx.counts.get(id)?.n ?? 0) >= 3;
   const sameType = data.listed.filter(x => x.shape === r.shape && x.id !== r.id && x.name !== r.name && counted(x.id))
     .sort((a, b) => dist(a.id) - dist(b.id)).slice(0, 4).sort((a, b) => (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1));
   const skinItem = (id: string): PairItem => { const sc = ctx.attrs.get(id)?.scores ?? {}, x = data.rackets.find(y => y.id === id)!;
     return { id, type: x.shape, signal: ctx.signal(id), gentle: sc.gentle?.score ?? null, suits: Object.fromEntries(SKIN_SUITS.map(k => [k, sc[k]?.score ?? null])) }; };
-  const pairs = routinePairs(skinItem(r.id), data.listed.filter(x => counted(x.id)).map(x => skinItem(x.id)));
+  // In routine order: cleanse first, SPF last.
+  const stepOf = (id: string) => ROUTINE[data.rackets.find(y => y.id === id)?.shape ?? ""]?.step ?? 9;
+  const pairs = routinePairs(skinItem(r.id), data.listed.filter(x => counted(x.id)).map(x => skinItem(x.id))).sort((a, b) => stepOf(a.id) - stepOf(b.id));
   const typeMany = (type?.label ?? niche.words.many).toLowerCase();
   const rankList = withModelYears(niche.topLists ?? []).find(l => type && l.slug.includes(type.slug.replace(/s$/, ""))) ?? withModelYears(niche.topLists ?? [])[0];
   const gentleList = withModelYears(niche.topLists ?? []).find(l => /gentle|sensitive/.test(l.slug));
