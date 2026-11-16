@@ -4,10 +4,12 @@ import json,sys,re
 G='/Users/yonatan/Downloads/padel site/grok'; R='..'
 TAG={'understable':'control','overstable':'power','slow_arm':'arm','beginner':'beginner','intermediate':'intermediate','advanced':'advanced'}
 page,card={},{}
+import os
+HOLD=set(open('hold.txt').read().split()) if os.path.exists('hold.txt') else set()  # discs waiting on a fix list
 for b in sys.argv[1:]:
   out=json.load(open(f'{G}/discgolf-batch-{b}.out.json')); idm=json.load(open(f'idmap-batch-{b}.json'))
   for slug,v in out.items():
-    if 'skip' in v: continue
+    if 'skip' in v or slug in HOLD: continue
     def ids(src): 
       r=[]
       for k in src:
