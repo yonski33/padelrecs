@@ -10,6 +10,7 @@ import { reportLevels } from "../../../db/report-levels";
 import { V2Footer } from "../../v2-footer";
 import { FitPicks, FitBack, FitBox, FitSticky, FitCompare, FitYesNo, BeforePicks, type SaidView, type CompareCard } from "./fit-live";
 import { homePayload } from "../../home-payload";
+import { rankSeed } from "../../../lib/rank-seed";
 import { engineAxis } from "../../../lib/home-rank";
 import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
@@ -218,7 +219,7 @@ export default async function RacketFit(props: {
   // "2025 version →" (owner's final mock): the newest older year of the same model, when the catalog lists one.
   const olderRow = ctx.data.listed.filter(x => modelFamily(x) === modelFamily(racketOf(props.racketId)) && x.year < props.year).sort((a, b) => b.year - a.year)[0];
   const older = olderRow ? { year: olderRow.year, href: productHref(olderRow) } : null;
-  return <><FitPicks first={{ choice, picked }} href={props.href} items={picked ? payload.items : null}><main className={`rf ${props.fontClass}`}>
+  return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="rf-wrap">
       <FitBack all={{ href: catalogPath, label: `← all ${niche.words.many}` }}/>
