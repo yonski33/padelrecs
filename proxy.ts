@@ -58,7 +58,10 @@ export async function proxy(request:NextRequest) {
  }
  // The catalogue, the rankings and the racket pages (speed batch): an address with a simple query is served from one cached
  // page per view (app/v/…, lib/view-key.ts); anything else renders per request as before. /v/… is only ever a rewrite target.
- if(isV2&&niche.finder){
+ // Those cached views are the racket pages: SkinRecs (an attribute profile) renders its own, so /products and every ranking
+ // list 500'd there (owner 2026-11-16).
+ if(isV2&&attrProfileFor(niche)&&request.nextUrl.pathname.startsWith("/v/")){const url=request.nextUrl.clone();url.pathname=catalogPath;url.search="";return NextResponse.redirect(url,301);}
+ if(isV2&&niche.finder&&!attrProfileFor(niche)){
   const {pathname,searchParams}=request.nextUrl;
   const to=(path:string)=>{const url=request.nextUrl.clone();url.pathname=path;url.search="";return NextResponse.rewrite(url);};
   const ranking=/^\/rankings\/([a-z0-9-]+)$/.exec(pathname),racket=pathname.startsWith(`${catalogPath}/`)?/^([a-z0-9-]+)$/.exec(pathname.slice(catalogPath.length+1)):null;
