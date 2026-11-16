@@ -241,7 +241,7 @@ export default async function RacketFit(props: {
           </div>
         </div>
 
-        <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card}/>
+        <FitBox id={props.racketId} items={payload.items} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
       </section>
 
       {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
