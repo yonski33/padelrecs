@@ -15,7 +15,8 @@ import HomeV2 from "./home-v2";
 import { readChoice } from "../lib/quick-match";
 import { homeMetadata } from "./home-metadata";
 import { attrProfileFor } from "../lib/attr-profile";
-import { readSkinChoice, skinPicked, skinWords, skinQuery } from "../lib/skin-choice";
+import { skinHomeTitle } from "./skin/titles";
+import { readSkinChoice, skinPicked, skinQuery } from "../lib/skin-choice";
 import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
@@ -39,7 +40,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     if (skinPicked(c) || c.type) {
       const data = await catalog();
       const what = c.typeSlug ? niche.typePages!.find(t => t.slug === c.typeSlug)!.label.toLowerCase() : "skincare";
-      const title = `Best ${what}${c.skin || c.concerns.length ? ` for ${skinWords(c)[0]}` : ""}${c.finish ? `, ${c.finish} finish` : ""}${c.ff ? ", fragrance-free" : ""} | ${niche.site.name}`;
+      const title = skinHomeTitle(c);
       const description = `${what[0].toUpperCase()}${what.slice(1)} ranked for your skin from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} reviews: what people with your skin type say about hydration, irritation, finish and texture. No sponsored picks.`;
       const keep = new URLSearchParams([...skinQuery(c)].filter(([k]) => k === "type" || k === "skin"));
       const url = keep.size ? `/?${keep}` : "/";
