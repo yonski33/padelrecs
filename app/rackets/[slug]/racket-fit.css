@@ -585,7 +585,7 @@
   .rv-head > div:first-child { display: contents; }
   .rv-head h2 { font: 800 28px var(--display); }
   .rv-head .rv-tabs { order: 2; }
-  .rv-head .rv-mood { order: 3; flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+  .rv-head .rv-mood { order: 3; flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; min-width: 0; }
   .rv-tabs button { padding: 5px 12px; font: 700 14.5px var(--body); border-right: 1.5px solid var(--ink); }
   .rv-badge { flex: none; display: inline-flex; align-items: center; gap: 9px; height: 40px; box-sizing: border-box; padding: 0 12px 0 4px; border: 2px solid var(--ink); border-radius: 10px; background: var(--marker); box-shadow: 3px 3px 0 var(--ink); font: 800 15.5px var(--display); white-space: nowrap; }
   .rv-badge b { display: inline-flex; align-items: center; justify-content: center; height: 30px; min-width: 40px; padding: 0 4px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 7px; background: var(--acc); font: 800 21px/1 var(--display); letter-spacing: -0.02em; transform: rotate(-3deg); }
@@ -648,6 +648,8 @@
   .rp-buy { text-align: center; padding: 9px; border-radius: 10px; font: 800 15px var(--display); }
   /* Phones (the mock is a desktop design): a narrow photo column so the name and tagline keep their width. */
   @media (max-width: 560px) {
+    /* the counts line wraps on phones instead of pushing the page 13px wide */
+    .rv-mbar small { white-space: normal; }
     .rf-hero { grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start; }
     .rf-shot { aspect-ratio: auto; }
     .rf-shot img { height: auto; width: 100%; }
