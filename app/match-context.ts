@@ -208,7 +208,9 @@ const keptContext = kept(async () => {
     return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
       voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, vo(k)])) },
       spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
-      expert: Object.fromEntries(ENGINE_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])) };
+      expert: Object.fromEntries(ENGINE_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])),
+      // The mould, only where the profile bounds the axis by it (padel), so other sites' payloads stay as they were.
+      ...(ENGINE?.shapeBounds ? { shape: shapeOf(r.shape) } : {}) };
   };
   // Trait dots from the engine (lib/engine engineTraitDots; PM / owner 2026-11-15, one story across the page): they replace the
   // per-report-rate dots everywhere (racket page, filters, the fit check), and hand-set dots still win.
