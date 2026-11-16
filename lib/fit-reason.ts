@@ -26,8 +26,11 @@ export function clause(t: string) {
   const s = t.replace(/==/g, "").trim().replace(/[.!]$/, "").replace(/\b([Oo])wners\b/g, (_, o) => o === "O" ? "Players" : "players").replace(/\b([Oo])wner\b/g, (_, o) => o === "O" ? "Player" : "player");
   return /^[A-Z][A-Z0-9]/.test(s) ? s : s.replace(/^./, c => c.toLowerCase());
 }
+/** One row of the reason: ✓ (what fits) or ! (the catch), a bold lead and its text. */
+export type ReasonPart = { tone: "yes" | "no"; lead: string; text: string };
 /** "<lead> <clause>." when it fits on one line, else "<lead> <title>." */
-const sentence = (lead: string, it: ReasonItem) => { const full = `${lead} ${clause(it.t)}.`; return full.length <= MAX ? full : `${lead} ${clause(it.title)}.`; };
+const part = (tone: ReasonPart["tone"], lead: string, it: ReasonItem): ReasonPart => {
+  const full = `${clause(it.t)}.`; return { tone, lead, text: `${lead} ${full}`.length <= MAX ? full : `${clause(it.title)}.` }; };
 
 /** The level reason among the fit check's conflicts ("Not aimed at intermediates."), level bookkeeping dropped. */
 export function levelReason(conflicts: string[] | undefined, c: Pick<QuickChoice, "style" | "level" | "arm">) {
@@ -42,21 +45,26 @@ export function butLevel(r: string) {
   return c.replace(/^not aimed /, "it isn't aimed ").replace(/^not clearly /, "it's not clearly ").replace(/^a /, "it's a ");
 }
 
-/** The reason line for a verdict. Strong fit: what it was built for, then the one thing to know. Mid: what suits you, then the
- *  catch. Weak: what it has going for you, then why it falls short, with the level reason when the catch doesn't speak to
- *  the picks. Null when there is nothing to say. */
-export function fitReason(kind: ReasonKind, yes: ReasonItem[], no: ReasonItem[], c: Pick<QuickChoice, "style" | "level" | "arm">, conflicts?: string[]): string | null {
+/** The reason for a verdict, as 1–2 rows. Strong fit: what it was built for, then the one thing to know. Mid: what suits you,
+ *  then the catch. Weak: what it has going for you, then what holds it back: the level when it decides the fit or no catch
+ *  speaks to the picks, else the catch. Empty when there is nothing to say. */
+export function fitReasonParts(kind: ReasonKind, yes: ReasonItem[], no: ReasonItem[], c: Pick<QuickChoice, "style" | "level" | "arm">, conflicts?: string[]): ReasonPart[] {
   const picks = pickTags(c), y = top(yes, picks), n = top(no, picks), lvl = kind === "good" ? null : levelReason(conflicts, c);
-  // A weak fit's deal-breaker is the fit check's first conflict: when that is the level, the level reason is the "But".
+  // A weak fit's deal-breaker is the fit check's first conflict: when that is the level, the level reason is the catch.
   const levelFirst = !!lvl && !!conflicts?.[0] && levelReason(conflicts.slice(0, 1), c) === lvl;
-  const butLvl = (l: string) => `But ${butLevel(l)}.`.length <= MAX ? `But ${butLevel(l)}.` : l;
   // A strength that isn't about the picks is only "its strength", not something that suits the visitor.
   const lead = kind === "good" ? "Built for what you picked:" : !y?.tagged ? "Its strength:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
-  const out: string[] = [];
-  if (y) out.push(sentence(lead, y.it));
-  if (kind === "good") { if (n) out.push(sentence("One thing to know:", n.it)); }
-  // One "But" only (1–2 sentences): the level when it decides a weak fit or no catch speaks to the picks, else the catch.
-  else if (lvl && (kind === "no" ? levelFirst || !n?.tagged : !n?.tagged)) out.push(butLvl(lvl));
-  else if (n) out.push(sentence("But", n.it));
-  return out.length ? out.join(" ") : null;
+  const nLead = kind === "good" ? "One thing to know:" : kind === "maybe" ? "The catch:" : "Holding it back:";
+  const out: ReasonPart[] = [];
+  if (y) out.push(part("yes", lead, y.it));
+  if (kind === "good") { if (n) out.push(part("no", nLead, n.it)); }
+  else if (lvl && (kind === "no" ? levelFirst || !n?.tagged : !n?.tagged)) {
+    const t = `${butLevel(lvl)}.`; out.push({ tone: "no", lead: nLead, text: `${nLead} ${t}`.length <= MAX ? t : lvl }); }
+  else if (n) out.push(part("no", nLead, n.it));
+  return out;
+}
+/** The same reason as one line of text. */
+export function fitReason(kind: ReasonKind, yes: ReasonItem[], no: ReasonItem[], c: Pick<QuickChoice, "style" | "level" | "arm">, conflicts?: string[]): string | null {
+  const parts = fitReasonParts(kind, yes, no, c, conflicts);
+  return parts.length ? parts.map(p => `${p.lead} ${p.text}`).join(" ") : null;
 }
