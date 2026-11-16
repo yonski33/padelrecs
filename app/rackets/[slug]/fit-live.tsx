@@ -217,7 +217,7 @@ export function FitCompare({ id, items, me, rows, cards, similar }: { id: string
   return <div className="rp-cmp">
     <div className="rp-tabs" role="tablist" aria-label="Compare">
       <button type="button" role="tab" aria-selected={!cur} onClick={() => setTab("me")}>
-        <span className="rp-tpic">{me.pic && <img src={me.pic} alt="" width={36} height={54} loading="lazy"/>}</span><span><b>This racket</b><small>how it plays</small></span></button>
+        <span className="rp-tpic">{me.pic && <img src={me.pic} alt="" width={36} height={54} loading="lazy"/>}</span><span><b>{`This ${niche.words.one}`}</b><small>how it plays</small></span></button>
       {alts.map(a => <button key={a} type="button" role="tab" aria-selected={cur === cards[a]} onClick={() => setTab(a)}>
         <span className="rp-tpic">{cards[a].pic && <img src={cards[a].pic!} alt="" width={36} height={54} loading="lazy"/>}</span>
         <span><b>{cards[a].short}</b><small>{diffWord(me.dots, cards[a].dots)}</small></span></button>)}
@@ -226,7 +226,7 @@ export function FitCompare({ id, items, me, rows, cards, similar }: { id: string
       {!cur ? rows.map((r, i) => <div key={r.label} className="rp-row"><b>{r.label}</b><Segs n={me.dots[i]}/><span className="rp-note">{r.note.split("==").map((x, j) => j % 2 ? <mark key={j}>{x}</mark> : <span key={j}>{x}</span>)}</span></div>)
         : <>
           <div className="rp-row rp-vs"><span/>
-            <span className="rp-who">{me.pic && <img src={me.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>This racket</b><small>{`${me.reports} reviews`}</small></span></span><span/>
+            <span className="rp-who">{me.pic && <img src={me.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>{`This ${niche.words.one}`}</b><small>{`${me.reports} reviews`}</small></span></span><span/>
             <span className="rp-who">{cur.pic && <img src={cur.pic} alt="" width={32} height={48} loading="lazy"/>}<span><b>{cur.short}</b><small>{`${cur.reports} reviews`}</small></span></span></div>
           {rows.map((r, i) => <div key={r.label} className="rp-row rp-two"><b>{r.label}</b>
             <span className="rp-cside"><Segs n={me.dots[i]}/>{me.dots[i] > cur.dots[i] && cur.dots[i] > 0 && <em>▲ better</em>}</span><span/>
