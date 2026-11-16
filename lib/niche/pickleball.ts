@@ -215,6 +215,8 @@ export const pickleball: Niche = {
   },
   // /rankings pages (lib/top-lists.ts). No model-year cutoff: paddles are updated by name (Prism Flash, V7…), not by year,
   // and older models like the 2023 Prism are still current. Paddle shapes are too sparsely filled in to filter on, so lists go by review tags.
+  // "Similar products" at the foot of product pages (owner 2026-11-16).
+  similar: { mode: "single" },
   topLists: [
     { slug: "best-pickleball-paddles", label: "Best overall", title: "Best Pickleball Paddles", minReviews: 12,
       intro: "The paddles players are most consistently happy with." },

@@ -232,6 +232,10 @@ export type Niche = {
    *  destination (next.config.ts); `query` limits one to addresses carrying that query value, e.g. a catalogue filter. */
   movedAway?: { source: string; destination: string; query?: { key: string; value: string } }[];
   /** Rankings pages under /rankings, in menu order. Niches without them get no menu item, pages or sitemap entries. */
+  /** "Similar products" at the foot of every product page (app/similar-section.tsx, owner 2026-11-16): one list ("single"),
+   *  or tabs with a second list: "routine" (SkinRecs, "Pairs well with"), "bag" (DiscGolfRecs, "Complete your bag"),
+   *  "works" (SimRacingRecs, "Works with"). `look`: the mockups' softer (SkinRecs) or disc (DiscGolfRecs) cards. */
+  similar?: { mode: "single" | "tabs"; pairs?: "routine" | "bag" | "works"; pairLabel?: string; look?: "soft" | "disc" };
   topLists?: TopList[];
   /** The product finder at /finder (lib/finder.ts). Niches without one have no such page. */
   finder?: Finder;

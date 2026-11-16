@@ -12,7 +12,7 @@ import { discoverPicks, weekOf } from "../../../lib/discover";
 import { MIN_SIGNAL_REVIEWS } from "../../../lib/signal";
 import { helpfulnessScore, nicheTerms } from "../../../lib/review-order";
 import type { Metadata } from "next";
-import { catalog as loadCatalog, score } from "../../../db/data";
+import { catalog as loadCatalog, score, topTags } from "../../../db/data";
 import { isRecent, webDate, MIN_RECENT } from "../../../lib/recent";
 import { notFound, permanentRedirect } from "next/navigation";
 import { redirectedSlug } from "../../../db/racket-slugs";
@@ -48,6 +48,9 @@ import { ProductArt, SentimentBar, SentimentBand, Voice, positiveShare, shares, 
 import { summary } from "../../../lib/product-summary";
 import { comparePairs, comparePick, pairHref, pairKey } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
+import { SimilarSection, type SimilarItem, type SimilarTab } from "../../similar-section";
+import { tint, worksWith, platformsOf, type RigPart } from "../../../lib/similar-picks";
+import { withModelYears, rankingHref } from "../../../lib/top-lists";
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
@@ -304,6 +307,28 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const pairWith = compareWith && comparePairs(data).byKey.has(pairKey(r.slug, compareWith.slug)) ? compareWith : undefined;
   const fullName = displayName(r.name, brand?.name);
   // Pieces both layouts show (the light one is the default; ?look=classic shows the old one).
+  // "Similar products" (owner 2026-11-16, app/similar-section.tsx) on sites that have it: the similar products as cards, each
+  // with what players praise it for most, and on SimRacingRecs a "Works with" tab (lib/similar-picks.ts worksWith).
+  const loved = niche.similar ? topTags(data) : null;
+  const oldItem = (x: (typeof data.listed)[number], i: number, why: string | null): SimilarItem => {
+    const b = data.brands.find(y => y.id === x.brandId)?.name;
+    return { id: x.id, name: displayName(x.name, b), href: productHref(x), tag: (x.shape ?? niche.words.one).toLowerCase(), tint: tint(i), why, line: shortLine(x) ?? listLine(x), score: sigs.get(x.id)?.signal ?? null };
+  };
+  const groupWord = (typePage?.label ?? niche.words.many).toLowerCase();
+  const firstList = withModelYears(niche.topLists ?? []).find(l => typePage && l.slug.includes(typePage.slug)) ?? withModelYears(niche.topLists ?? [])[0];
+  const works = niche.similar?.pairs === "works" ? (() => {
+    const part = (x: (typeof data.listed)[number]): RigPart => ({ id: x.id, type: x.shape, brand: data.brands.find(y => y.id === x.brandId)?.name ?? null, platforms: platformsOf(x.core), signal: sigs.get(x.id)?.signal ?? null });
+    return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3).map(part));
+  })() : [];
+  const simTabs: SimilarTab[] = niche.similar ? [
+    { key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`,
+      items: [...similar].sort((p, q) => (sigs.get(q.x.id)?.signal ?? -1) - (sigs.get(p.x.id)?.signal ?? -1)).map(({ x }, i) => oldItem(x, i, loved?.get(x.id)?.loved ?? null)),
+      more: firstList ? { href: rankingHref(firstList.slug), label: `all ${groupWord}, ranked →` } : null },
+    ...(works.length ? [{ key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
+      items: works.map((w, i) => oldItem(data.listed.find(x => x.id === w.id)!, i, w.why)), more: null }] : []),
+  ] : [];
+  const simSection = simTabs.length > 0 && simTabs[0].items.length + (simTabs[1]?.items.length ?? 0) > 0
+    && <SimilarSection title="Also worth a look" tabs={simTabs} scoreLabel={scoreLabel.toLowerCase()} look={niche.similar?.look}/>;
   const similarBox = similar.length > 0 && <section id="similar" className="similar">
           <p className="swipe m-only" aria-hidden="true">Swipe to explore →</p>
           <h2>{`Similar ${(typePage?.label ?? niche.words.many).toLowerCase()}`}</h2>
@@ -507,7 +532,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {glance.length > 0 && <section className="lp-glance"><h2>At a glance</h2><dl>{glance.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl></section>}
           {/* "Compare with …" sits with the similar products, not in the header (owner's audit, 2026-11-13). */}
           {compareWith && <a className="lp-compare" href={pairWith ? pairHref(r.slug, pairWith.slug) : `/compare?ids=${r.slug},${compareWith.slug}`}>{`Compare with ${displayName(compareWith.name, data.brands.find(b => b.id === compareWith.brandId)?.name)}`} <span aria-hidden="true">→</span></a>}
-          {similarBox}
+          {simSection || similarBox}
           {siblingsBox}
         </aside>
       </div>
@@ -599,7 +624,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       </div>
 
       <aside className="database-sidebar">
-{similarBox}
+{simSection || similarBox}
 
 {siblingsBox}
       </aside>
