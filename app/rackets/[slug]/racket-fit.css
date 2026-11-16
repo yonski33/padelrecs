@@ -2,10 +2,10 @@
    from the Claude Design mockup (https://claude.ai/artifact/YAdDumhMiKN6gumA4wYT7a, "copy it with the same fonts, spacing").
    Scoped to .rf; never write .rf inside the nest. */
 .rf {
-  --bg: #fbfaf6; --paper: #ffffff; --ink: #151515; --mute: #6a675f; --soft: #4a4740; --text: #2b2925; --line: #e3e0d7; --dash: #b9b5aa; --tile: #f3f1ea;
-  --acc: oklch(0.88 0.17 125); --marker: oklch(0.93 0.14 100); --tip: oklch(0.96 0.07 95);
+  --bg: #fbfaf6; --paper: #ffffff; --ink: var(--site-ink, #151515); --mute: var(--site-mute, #6a675f); --soft: var(--site-soft, #4a4740); --text: var(--site-text, #2b2925); --line: #e3e0d7; --dash: #b9b5aa; --tile: #f3f1ea;
+  --acc: var(--site-acc, oklch(0.88 0.17 125)); --good: var(--site-good, oklch(0.88 0.17 125)); --marker: var(--site-marker, oklch(0.93 0.14 100)); --soso: var(--site-soso, oklch(0.93 0.14 100)); --tip: oklch(0.96 0.07 95);
   --pos-wash: oklch(0.96 0.05 145); --neg-wash: oklch(0.96 0.04 30); --pos: #2f7a3d; --neg: #a8432a;
-  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
+  --display: var(--site-display, var(--qt-display, "Archivo")), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
   background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body);
   a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 2px; }
   a:hover { background: var(--marker); }
@@ -29,7 +29,7 @@
   .rf-chips span { font: 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 1px 8px; background: var(--paper); }
   h1 { margin: 0 !important; font: 600 12px/1.3 var(--mono) !important; letter-spacing: 0 !important; color: var(--soft) !important; }
   .rf-name { margin: 0; font: 800 clamp(28px, 3.6vw, 40px)/1.04 var(--display) !important; letter-spacing: -0.02em; color: var(--ink) !important; text-wrap: balance; }
-  .rf-sig { min-width: 32px; text-align: center; padding: 2px 6px; border: 2px solid var(--ink); border-radius: 8px; background: var(--acc); font: 800 15px var(--display); color: var(--ink); }
+  .rf-sig { min-width: 32px; text-align: center; padding: 2px 6px; border: 2px solid var(--ink); border-radius: 8px; background: var(--good); font: 800 15px var(--display); color: var(--ink); }
   .rf-hook { margin: 0; font-size: 16px; line-height: 1.5; color: var(--ink) !important; text-wrap: pretty; }
   .rf-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px; font: 12px var(--mono); color: var(--soft); }
   .rf-meta > a:not(.rf-btn) { color: var(--soft); text-decoration: none; }
@@ -50,7 +50,7 @@
   .rf-last:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
   .rf-ask h2 { margin: 0 !important; font: 800 clamp(26px, 3vw, 34px)/1.05 var(--display) !important; letter-spacing: -0.02em; color: var(--ink) !important; }
   .rf-ask h2 + p { margin: 6px 0 0 !important; font-size: 15px !important; color: var(--soft) !important; }
-  .rf-q { background: oklch(0.975 0.035 125); border: 1.5px solid oklch(0.88 0.08 125); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .rf-q { background: var(--site-wash, oklch(0.975 0.035 125)); border: 1.5px solid var(--site-wash-line, oklch(0.88 0.08 125)); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
   .rf-qrow { display: flex; flex-direction: column; gap: 7px; }
   .rf-qrow > span { font-weight: 700; font-size: 15px; }
   .rf-qrow > div { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -121,7 +121,7 @@
   .rf-said { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
   .rf-sum { padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; border-bottom: 2px solid var(--ink); }
   .rf-badge { display: flex; align-items: center; gap: 10px; }
-  .rf-badge b { font: 800 44px/1 var(--display); letter-spacing: -0.03em; background: var(--acc); border: 2px solid var(--ink); border-radius: 10px; padding: 2px 10px; transform: rotate(-2deg); display: inline-block; }
+  .rf-badge b { font: 800 44px/1 var(--display); letter-spacing: -0.03em; background: var(--good); border: 2px solid var(--ink); border-radius: 10px; padding: 2px 10px; transform: rotate(-2deg); display: inline-block; }
   .rf-badge span { font: 800 18px/1.15 var(--display); max-width: 150px; }
   .rf-sumr { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
   .rf-sbar { display: flex; height: 14px; border: 1.5px solid var(--ink); border-radius: 3px; overflow: hidden; }
@@ -142,7 +142,7 @@
   .rf-segs i.on { background: oklch(0.72 0.15 145); }
   .rf-pnote { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; font-size: 15px; min-width: 0; text-wrap: pretty; }
   .rf-pnote em { font: normal 600 11px var(--mono); white-space: nowrap; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--paper); }
-  .rf-pnote em.t5 { background: var(--acc); } .rf-pnote em.t4 { background: oklch(0.9 0.1 145); } .rf-pnote em.t3 { background: oklch(0.93 0.12 95); } .rf-pnote em.t1, .rf-pnote em.t2 { background: oklch(0.92 0.06 30); }
+  .rf-pnote em.t5 { background: var(--good); } .rf-pnote em.t4 { background: oklch(0.9 0.1 145); } .rf-pnote em.t3 { background: oklch(0.93 0.12 95); } .rf-pnote em.t1, .rf-pnote em.t2 { background: oklch(0.92 0.06 30); }
   /* Heads up + player tip */
   .rf-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
   .rf-box2 { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
@@ -176,7 +176,7 @@
   .rf-alts { list-style: none; margin: 0; padding: 0; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
   .rf-alts a { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); text-decoration: none; }
   .rf-alts li:last-child a { border-bottom: 0; }
-  .rf-alts a:hover { background: oklch(0.97 0.04 125); }
+  .rf-alts a:hover { background: var(--site-wash, oklch(0.97 0.04 125)); }
   .rf-apic { width: 44px; height: 52px; background: var(--tile); border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .rf-apic img { height: 88%; width: auto; max-width: 100%; object-fit: contain; }
   .rf-apic span { font: 700 9px/1.1 var(--display); color: var(--mute); text-align: center; }
@@ -294,7 +294,7 @@
   .rf-ans { padding: 20px 22px; gap: 14px; }
   .rf-ans .rf-k { font: 600 13px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 3px 10px; background: var(--marker); box-shadow: 2px 2px 0 var(--ink); }
   .rf-vpill { font: 600 13px var(--mono); border: 2px solid var(--ink); border-radius: 999px; padding: 3px 12px; }
-  .rf-vpill.good { background: var(--acc); } .rf-vpill.maybe { background: var(--marker); } .rf-vpill.no { background: oklch(0.9 0.08 30); }
+  .rf-vpill.good { background: var(--good); } .rf-vpill.maybe { background: var(--soso); } .rf-vpill.no { background: oklch(0.9 0.08 30); }
   .rf-ans h2 { margin: 0; font: 800 clamp(28px, 3.4vw, 38px)/1.02 var(--display); letter-spacing: -0.02em; }
   .rf-for { margin: -8px 0 0; font-size: 15px; text-wrap: pretty; }
   .rf-blk { border: 0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
@@ -497,7 +497,7 @@
   .rf-last { all: unset; cursor: pointer; white-space: nowrap; font: 13.5px var(--mono); text-decoration: underline; text-underline-offset: 3px; }
   .rf-asktitle h2 { font: 800 clamp(26px, 3vw, 34px)/1.05 var(--display); letter-spacing: -0.02em; margin: 0; }
   .rf-asktitle p { font-size: 16.5px; color: #4a4740; margin: 6px 0 0; }
-  .rf-q { background: oklch(0.975 0.035 125); border: 1.5px solid oklch(0.88 0.08 125); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .rf-q { background: var(--site-wash, oklch(0.975 0.035 125)); border: 1.5px solid var(--site-wash-line, oklch(0.88 0.08 125)); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
   .rf-qrow { display: flex; flex-direction: column; gap: 7px; }
   .rf-qrow > span { font-weight: 700; font-size: 16.5px; }
   .rf-qrow > div { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -723,7 +723,8 @@
     .rp-cside em { font-size: 12px; white-space: nowrap; }
     .rp-two .rf-segs i { width: 14px; }
     .rp-row.rp-two > b { font-size: 15.5px; }
-    .rp-who img { height: 36px; }
+    /* The selected tab already names and shows the racket (owner 2026-11-16): no header row over the dots on phones. */
+    .rp-row.rp-vs { display: none; }
     .rp-who b { font-size: 15.5px; }
     .rp-who small { font-size: 11.5px; }
     .rp-ph { font-size: 12.5px; }

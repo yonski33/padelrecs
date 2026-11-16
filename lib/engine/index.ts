@@ -15,8 +15,9 @@
 
 export type Voices = { plus: number; minus: number };
 /** The traits a product page shows as dots (lib/trait-score.ts TRAITS). */
-export const DOT_TRAITS = ["forgiveness", "power", "control", "defence", "arm", "speed"] as const;
-export type DotTrait = (typeof DOT_TRAITS)[number];
+export const DOT_TRAITS: readonly string[] = ["forgiveness", "power", "control", "defence", "arm", "speed"];
+/** A trait key (padel's above; a site's profile can name its own, EngineProfile.traits). */
+export type DotTrait = string;
 const COMPLAINT_DOTS: readonly DotTrait[] = ["arm", "forgiveness"], MIN_COMPLAINT_VOICES = 3;
 /** What the engine reads per product (app/match-context.ts builds it from the evidence store and the catalog). */
 export type EngineFacts = {
@@ -40,11 +41,16 @@ export type EngineProfile = {
   /** Verdict cut-offs on the display %: Strong fit ≥ good, Worth a look ≥ maybe, else Probably not. */ cuts: { good: number; maybe: number };
   /** With "sore arm": the share of the fit that is arm comfort (the prototype has no arm pick; a site choice). */ armShare: number;
   /** With fine-tune weight / feel / sweet-spot picks: the share of the fit that is those (lib/fine-tune.ts fineFit). */ fineShare: number;
+  /** The site's dot traits and the ones that can drop to 2 (default padel's: DOT_TRAITS; arm and forgiveness). */
+  traits?: readonly string[]; complaint?: readonly string[];
+  /** The style picks the display anchors cover (default control / balance / power). A pick off the axis (pickleball's spin) is
+   *  matched on that trait's sentiment alone. */ styles?: readonly Exclude<EngineStyle, "any">[];
 };
-export type EngineStyle = "any" | "control" | "balance" | "power";
+export type EngineStyle = "any" | "control" | "balance" | "power" | "spin";
+const AXIS_STYLES = ["control", "balance", "power"];
 type Trait = { v: number; sd: number };
 export type EngineBase = { axis: number; axisN: number;
-  /** What players alone say, 0 control … 1 power: power praise vs control praise (base-rate scaled), no prior; null under 4 voices. */ playerAxis: number | null; Q: number; sdQ: number; tr: { control: Trait; power: Trait; arm: Trait }; pop: number; n: number };
+  /** What players alone say, 0 control … 1 power: power praise vs control praise (base-rate scaled), no prior; null under 4 voices. */ playerAxis: number | null; Q: number; sdQ: number; tr: { control: Trait; power: Trait; arm: Trait } & Record<string, Trait>; pop: number; n: number };
 
 const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x));
 const sum = <T>(xs: T[], f: (x: T) => number) => xs.reduce((a, x) => a + f(x), 0);
@@ -54,11 +60,13 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
   const judged = items.filter(x => x.n >= 1);
   const tot = sum(judged, x => x.e.pos + x.e.mix + x.e.neg);
   const q0 = sum(judged, x => x.e.pos + 0.3 * x.e.mix) / Math.max(tot, 1);
-  const vo = (x: { e: EngineFacts }, t: "control" | "power" | "arm") => x.e.voices[t] ?? { plus: 0, minus: 0 };
-  const share0 = Object.fromEntries((["control", "power", "arm"] as const).map(t => {
+  const vo = (x: { e: EngineFacts }, t: string) => x.e.voices[t] ?? { plus: 0, minus: 0 };
+  // Sentiment for control, power, arm, and any style pick off the axis (pickleball's spin).
+  const keys = ["control", "power", "arm", ...(p.styles ?? []).filter(st => !AXIS_STYLES.includes(st))];
+  const share0: Record<string, number> = Object.fromEntries(keys.map(t => {
     const P = sum(items, x => vo(x, t).plus), C = sum(items, x => vo(x, t).minus);
     return [t, P / Math.max(P + C, 1)];
-  })) as Record<"control" | "power" | "arm", number>;
+  }));
   const nmax = Math.max(...items.map(x => x.n), 1);
   // Base rates: power is praised more often than control across the catalog, so praise counts are compared to that.
   const base = { control: sum(items, x => vo(x, "control").plus) / items.length, power: sum(items, x => vo(x, "power").plus) / items.length };
@@ -67,7 +75,7 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     const { pos, mix, neg } = x.e, n = pos + mix + neg;
     const Q = (pos + 0.3 * mix + p.m * q0) / (n + p.m);
     const sdQ = Math.sqrt(Q * (1 - Q) / (n + 1)); // uncertainty from real reports only (priors are not data)
-    const trait = (t: "control" | "power" | "arm"): Trait => {
+    const trait = (t: string): Trait => {
       const { plus: Pp, minus: Cc } = vo(x, t);
       const mu0 = clamp(share0[t] + 0.15 * (x.e.spec[t] ?? 0), 0.05, 0.95);
       const e = x.e.expert[t];
@@ -94,7 +102,7 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     if (ctl) axis = Math.min(axis, p.labelBounds[2]);
     if (pow) axis = Math.max(axis, p.labelBounds[3]);
     if (mid) axis = Math.min(axis, cap);
-    out.set(x.id, { axis, axisN: 1 + Pp + Pc, playerAxis: Pp + Pc >= 4 ? Pp / (Pp + Pc) : null, Q, sdQ, tr: { control: trait("control"), power: trait("power"), arm: trait("arm") }, pop: Math.log1p(x.n) / Math.log1p(nmax), n: x.n });
+    out.set(x.id, { axis, axisN: 1 + Pp + Pc, playerAxis: Pp + Pc >= 4 ? Pp / (Pp + Pc) : null, Q, sdQ, tr: Object.fromEntries(keys.map(k => [k, trait(k)])) as EngineBase["tr"], pop: Math.log1p(x.n) / Math.log1p(nmax), n: x.n });
   }
   return out;
 }
@@ -102,6 +110,8 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
 /** The fit to a style pick, 0–1, and its uncertainty. "any" is neutral (the list then follows quality and popularity). */
 export function engineFit(e: EngineBase, style: EngineStyle, p: EngineProfile): [number, number] {
   if (style === "any") return [0.5, 0];
+  // Off the axis (pickleball's spin): how positively players talk about that trait.
+  if (!AXIS_STYLES.includes(style)) { const t = e.tr[style]; return t ? [t.v, t.sd] : [0.5, 0]; }
   const a = e.axis, { control: c, power: pw } = e.tr;
   const [ax, sent, ss] = style === "control" ? [1 - a, c.v, c.sd] : style === "power" ? [a, pw.v, pw.sd]
     : [1 - 2 * Math.abs(a - 0.5), (c.v + pw.v) / 2, Math.sqrt((c.sd ** 2 + pw.sd ** 2) / 2)];
@@ -138,7 +148,7 @@ export function engineCandidates<T extends { id: string; n: number; family: stri
 export function engineAnchors<T extends { id: string; n: number; family: string; year: number }>(items: T[], base: Map<string, EngineBase>, passes: (x: T, level: string) => boolean,
   p: EngineProfile): { lo: number; hi: number } {
   const all: number[] = [];
-  for (const level of ["beginner", "intermediate", "advanced"]) for (const style of ["control", "balance", "power"] as const)
+  for (const level of ["beginner", "intermediate", "advanced"]) for (const style of p.styles ?? (["control", "balance", "power"] as const))
     for (const x of engineCandidates(items, y => passes(y, level), p.minReports)) all.push(engineScore(base.get(x.id)!, { style }, p).cautious);
   all.sort((a, b) => a - b);
   return { lo: all[Math.floor(0.1 * all.length)] ?? 0, hi: all.at(-1) ?? 1 };
@@ -156,7 +166,7 @@ export const engineKind = (pct: number | null, p: EngineProfile) => pct === null
 export function engineTraitDots(items: { id: string; n: number; e: EngineFacts }[], base: Map<string, EngineBase>, p: EngineProfile): Map<string, Record<DotTrait, { dots: number; score: number; v: number }>> {
   const vo = (x: { e: EngineFacts }, t: DotTrait) => x.e.voices[t] ?? { plus: 0, minus: 0 };
   const out = new Map<string, Record<DotTrait, { dots: number; score: number; v: number }>>(items.map(x => [x.id, {} as Record<DotTrait, { dots: number; score: number; v: number }>]));
-  for (const t of DOT_TRAITS) {
+  for (const t of p.traits ?? DOT_TRAITS) {
     const P0 = sum(items, x => vo(x, t).plus), C0 = sum(items, x => vo(x, t).minus), share0 = P0 / Math.max(P0 + C0, 1);
     const val = new Map(items.map(x => {
       const { plus: Pp, minus: Cc } = vo(x, t), mu0 = clamp(share0 + 0.15 * (x.e.spec[t] ?? 0), 0.05, 0.95), e = x.e.expert[t];
@@ -167,7 +177,7 @@ export function engineTraitDots(items: { id: string; n: number; e: EngineFacts }
     const n4 = Math.round(0.30 * items.length), n5 = Math.round(0.09 * items.length);
     // 2 dots only where players fault the trait itself (arm, forgiveness; owner 2026-11-15: little power praise on a control
     // racket isn't a complaint), with enough complaints to outnumber the praise.
-    const worst = new Set(COMPLAINT_DOTS.includes(t) ? order.filter(x => vo(x, t).minus > vo(x, t).plus && vo(x, t).minus >= MIN_COMPLAINT_VOICES).slice(-Math.max(1, Math.round(0.06 * items.length))).map(x => x.id) : []);
+    const worst = new Set((p.complaint ?? COMPLAINT_DOTS).includes(t) ? order.filter(x => vo(x, t).minus > vo(x, t).plus && vo(x, t).minus >= MIN_COMPLAINT_VOICES).slice(-Math.max(1, Math.round(0.06 * items.length))).map(x => x.id) : []);
     for (const x of items) {
       const i = rank.get(x.id)!, { plus, minus } = vo(x, t), b = base.get(x.id);
       let dots = worst.has(x.id) ? 2 : i < n5 ? 5 : i < n4 ? 4 : 3;

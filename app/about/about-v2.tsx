@@ -8,12 +8,12 @@ import { niche, v2copy } from "../../lib/niche";
 const w = niche.words, p = niche.people, site = niche.site.name.toLowerCase();
 const Sport = v2copy.sport ? v2copy.sport[0].toUpperCase() + v2copy.sport.slice(1) + " forums" : "Forums";
 const SOURCES = [
-  [`${p.Many} on ${site}`, `${v2copy.use === "works" ? "Owners share" : "Owners at every level share"} how a ${w.one} actually ${v2copy.use ?? "plays"} for them.`],
+  [`${p.Many} on ${site}`, `${v2copy.use === "works" ? `${p.Many} share` : `${p.Many} at every level share`} how a ${w.one} actually ${v2copy.use ?? "plays"} for them.`],
   ["YouTube reviewers", `People who test ${w.many} for a living. We watch, summarise and link back.`],
   [Sport, `Long threads where ${p.many} compare, argue and report back after months of use.`],
 ] as const;
 const BELIEFS = [
-  [`${p.Many} and pros, together.`, "Reviewers know the specs. Owners know how it feels after month three. You need both."],
+  [`${p.Many} and pros, together.`, `Reviewers know the specs. ${p.Many} know how it feels after month three. You need both.`],
   ["Best for you > best.", `A dream ${w.one} for one ${p.one} is a nightmare for another. That's why there's a match %.`],
   ["Say the catch.", `Every ${w.one} has one. We put it right next to the good stuff, not in the fine print.`],
   ["Two minutes, not twenty.", "Scannable first. The long version is there if you want it."],

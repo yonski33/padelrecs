@@ -2,7 +2,7 @@
    Scoped to .rk3 (the list's <main> also carries .rl2 for the shared tokens and the FAQ). Phones (≤640px) follow the mock's
    375 frame: the #1 card and every row stack, with the score and the price button on a row of their own. */
 .rk3 {
-  --lime: oklch(0.88 0.17 125); --lime-hi: oklch(0.85 0.19 128); --lime-lo: oklch(0.93 0.1 125);
+  --lime: var(--site-acc, oklch(0.88 0.17 125)); --lime-hi: var(--site-acc, oklch(0.85 0.19 128)); --lime-lo: var(--site-soso, oklch(0.93 0.1 125));
 
   .rk3-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 20px 56px; display: flex; flex-direction: column; gap: 14px; }
   .rk3-crumbs { font: 13px var(--mono); color: var(--soft); display: flex; gap: 6px; }
@@ -39,7 +39,7 @@
   .rk3-sc small { font-family: var(--mono); color: var(--soft); white-space: nowrap; }
 
   /* #1 */
-  .rk3-first { margin-top: 4px; border: 2.5px solid var(--ink); border-radius: 16px; background: oklch(0.985 0.03 125); box-shadow: 5px 5px 0 var(--ink); padding: 16px 20px;
+  .rk3-first { margin-top: 4px; border: 2.5px solid var(--ink); border-radius: 16px; background: var(--site-wash, oklch(0.985 0.03 125)); box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); padding: 16px 20px;
     display: grid; grid-template-columns: 64px 104px minmax(0, 1fr) max-content; gap: 20px; box-sizing: border-box; width: 100%; align-items: center; }
   .rk3-big { font: 800 56px/1 var(--display); letter-spacing: -0.04em; }
   .rk3-mbig { display: none; }
@@ -92,7 +92,7 @@
     .rk3-you b { flex: 1; min-width: 0; font-size: 14px; line-height: 1.25; }
     .rk3-you a { flex: none; padding: 5px 10px; font-size: 13.5px; }
 
-    .rk3-first { margin-top: 2px; box-shadow: 4px 4px 0 var(--ink); padding: 12px 14px; grid-template-columns: 72px minmax(0, 1fr); gap: 10px 12px; align-items: start; }
+    .rk3-first { margin-top: 2px; box-shadow: 4px 4px 0 var(--site-shadow, var(--ink)); padding: 12px 14px; grid-template-columns: 72px minmax(0, 1fr); gap: 10px 12px; align-items: start; }
     .rk3-big { display: none; }
     .rk3-first .rk3-pic { width: 72px; height: 96px; }
     .rk3-mbig { display: block; position: absolute; left: -4px; top: -4px; font: 800 30px/1 var(--display); letter-spacing: -0.04em; color: var(--ink); }

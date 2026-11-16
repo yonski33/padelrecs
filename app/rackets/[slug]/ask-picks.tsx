@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 // The racket page's fit check before an answer (owner 2026-11-15, Claude Design mockup): two numbered questions as pills and
 // the optional sore-arm box. The answer loads once both a style and a level are picked, never for a level the visitor didn't
 // choose. The last answers stay in this browser, so "use my last answers" fills them in on the next racket.
-const STYLES = ["any", "control", "balance", "power"] as const;
-const LEVELS = ["beginner", "intermediate", "advanced"] as const;
-type Style = typeof STYLES[number]; type Level = typeof LEVELS[number];
+import { STYLES, LEVELS, levelLabel, type Style, type Level } from "../../../lib/quick-match";
+import { niche } from "../../../lib/niche";
 type Saved = { style: Style; level: Level; arm: boolean };
-const KEY = "padelrecs-profile";
+const KEY = `${niche.site.wordmark}-profile`;
 
 function readSaved(): Saved | null {
   try {
@@ -30,7 +29,7 @@ export default function AskPicks({ onPick }: { onPick: (p: Saved) => void }) {
   const pickLevel = (l: Level) => { setLevel(l); if (style) go({ style, level: l, arm }); };
   return <>
     <div className="rf-askhead"><span className="rf-badge">⚡ fit check</span>
-      {saved && <button type="button" className="rf-last" onClick={() => go(saved)} title={`${saved.style} · ${saved.level}${saved.arm ? " · sore arm" : ""}`}>↺ use my last answers</button>}</div>
+      {saved && <button type="button" className="rf-last" onClick={() => go(saved)} title={`${saved.style} · ${levelLabel(saved.level)}${saved.arm ? " · sore arm" : ""}`}>↺ use my last answers</button>}</div>
     {/* The title (racket-fit.tsx) sits between the badge row and the questions: .rf-ask orders them with CSS. */}
     <div className="rf-q">
       <div className="rf-qrow"><span>1. What do you want more of?</span>
@@ -38,7 +37,7 @@ export default function AskPicks({ onPick }: { onPick: (p: Saved) => void }) {
           <button key={s} type="button" aria-pressed={style === s} onClick={() => pickStyle(s)}>{s}</button>)}</div></div>
       <div className="rf-qrow"><span>2. What&apos;s your level?</span>
         <div role="group" aria-label="Your level">{LEVELS.map(l =>
-          <button key={l} type="button" aria-pressed={level === l} onClick={() => pickLevel(l)}>{l}</button>)}</div></div>
+          <button key={l} type="button" aria-pressed={level === l} onClick={() => pickLevel(l)}>{levelLabel(l)}</button>)}</div></div>
       <button type="button" className="rf-arm2" aria-pressed={arm} onClick={() => setArm(a => !a)}><i aria-hidden="true">{arm ? "✓" : ""}</i><span>I have a sore elbow / wrist <small>(optional)</small></span></button>
     </div>
   </>;

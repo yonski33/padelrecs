@@ -7,7 +7,7 @@
 import type { QuickChoice } from "./quick-match";
 
 /** What a line is relevant to: the style picks, the levels, and "arm" for a sore elbow / wrist. */
-export type CardTag = "control" | "balance" | "power" | "beginner" | "intermediate" | "advanced" | "arm";
+export type CardTag = "control" | "balance" | "power" | "spin" | "beginner" | "intermediate" | "advanced" | "arm";
 export type CardNote = { label: string; t: string; src: (string | number)[] };
 export type CardAlt = { slug: string; t: string; src: (string | number)[] };
 export type CardLine = {
@@ -31,7 +31,7 @@ export function pickTags(c: Pick<QuickChoice, "style" | "level" | "arm">): CardT
 }
 
 // A sore arm outranks the style, the style outranks the level: what the visitor asked about most directly comes first.
-const WEIGHT: Record<CardTag, number> = { arm: 4, control: 3, balance: 3, power: 3, beginner: 2, intermediate: 2, advanced: 2 };
+const WEIGHT: Record<CardTag, number> = { arm: 4, control: 3, balance: 3, power: 3, spin: 3, beginner: 2, intermediate: 2, advanced: 2 };
 const score = (l: CardLine, picks: CardTag[]) => l.for.reduce((a, t) => a + (picks.includes(t) ? WEIGHT[t] : 0), 0);
 const eligible = (l: CardLine, picks: CardTag[]) => !l.only || l.only.some(t => picks.includes(t));
 /** Lines ranked for the picks: eligible ones only, best match first, the author's order breaking ties. */

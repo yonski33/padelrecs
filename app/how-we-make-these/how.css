@@ -1,8 +1,8 @@
 /* "How we make these" (Claude Design mockup). Scoped to .hw; never write .hw inside the nest. */
 body:has(main.hw) { background: #fbfaf6; }
 .hw {
-  --ink: #151515; --bg: #fbfaf6; --paper: #fff; --mute: #6a675f; --soft: #4a4740; --acc: oklch(0.88 0.17 125);
-  --display: var(--qt-display, "Archivo"), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
+  --ink: var(--site-ink, #151515); --bg: #fbfaf6; --paper: #fff; --mute: var(--site-mute, #6a675f); --soft: var(--site-soft, #4a4740); --acc: var(--site-acc, oklch(0.88 0.17 125));
+  --display: var(--site-display, var(--qt-display, "Archivo")), system-ui, sans-serif; --body: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; --mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace;
   max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; display: flex; flex-direction: column; gap: 44px;
   color: var(--ink); font: 16px/1.55 var(--body);
   a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
@@ -20,7 +20,7 @@ body:has(main.hw) { background: #fbfaf6; }
   .hw-steps li > div { display: flex; flex-direction: column; gap: 4px; }
   .hw-steps b { font: 800 18px var(--display); }
   .hw-steps p { margin: 0; font-size: 15px; text-wrap: pretty; }
-  .hw-try { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); overflow: hidden; }
+  .hw-try { border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); box-shadow: 4px 4px 0 var(--site-shadow, var(--ink)); overflow: hidden; }
   .hw-sliders { padding: 14px 16px; border-bottom: 2px dashed var(--ink); display: flex; flex-direction: column; gap: 12px; }
   .hw-sliders p { margin: 0; font: 12px var(--mono); color: var(--mute); }
   .hw-sliders label { display: grid; grid-template-columns: 120px minmax(0, 1fr) 40px; gap: 12px; align-items: center; font-size: 15px; }
@@ -43,10 +43,10 @@ body:has(main.hw) { background: #fbfaf6; }
   .hw-faqs > div { border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); }
   .hw-faqs button { all: unset; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; width: 100%; box-sizing: border-box; padding: 12px 16px; font: 700 16px var(--body); }
   .hw-faqs button span:last-child { font-family: var(--mono); }
-  .hw-faqs button:hover { background: oklch(0.93 0.14 100); border-radius: 8px; }
+  .hw-faqs button:hover { background: var(--site-soso, oklch(0.93 0.14 100)); border-radius: 8px; }
   .hw-faqs button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
   .hw-faqs p { margin: 0; padding: 0 16px 14px; font-size: 15px; text-wrap: pretty; }
-  .hw-cta { border: 2px solid var(--ink); border-radius: 14px; padding: 20px; background: var(--acc); box-shadow: 5px 5px 0 var(--ink); display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .hw-cta { border: 2px solid var(--ink); border-radius: 14px; padding: 20px; background: var(--acc); box-shadow: 5px 5px 0 var(--site-shadow, var(--ink)); display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
   .hw-cta > div { flex: 1 1 280px; }
   .hw-cta p { margin: 0; font-size: 15px; }
   .hw-cta p.t { font: 800 22px/1.2 var(--display); margin-bottom: 4px; }

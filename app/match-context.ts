@@ -17,7 +17,7 @@ import { evidenceBalance, labPercentiles, reportOf } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
 import { EXTRACTORS } from "../lib/evidence";
-import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts } from "../lib/fine-tune";
+import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts , coreClass, FINE_ROWS } from "../lib/fine-tune";
 import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { factsWith, matchPcts, type RankItem } from "../lib/home-rank";
 import { engineBase, engineTraitDots, DOT_TRAITS, type EngineFacts, type DotTrait } from "../lib/engine";
@@ -31,7 +31,7 @@ import { fitConfigFor } from "../lib/fit-config";
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
 // The site's hand-kept match data (db/match-data.ts): owner calls, maker / YouTube levels, YouTube trait mentions.
 const MATCH = matchData(niche.id);
-const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine;
+const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = ENGINE?.traits ?? DOT_TRAITS;
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
@@ -188,9 +188,9 @@ export const matchContext = cache(async () => {
     const vo = (k: DotTrait) => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
     const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[k]?.value;
     return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
-      voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(DOT_TRAITS.map(k => [k, vo(k)])) },
-      spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(DOT_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
-      expert: Object.fromEntries(DOT_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])) };
+      voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, vo(k)])) },
+      spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
+      expert: Object.fromEntries(ENGINE_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])) };
   };
   // Trait dots from the engine (lib/engine engineTraitDots; PM / owner 2026-11-15, one story across the page): they replace the
   // per-report-rate dots everywhere (racket page, filters, the fit check), and hand-set dots still win.
@@ -199,7 +199,7 @@ export const matchContext = cache(async () => {
     const engList = [...listed].map(id => ({ id, n: reportsN.get(id) ?? 0, e: engOf(id, data.rackets.find(x => x.id === id)!) }));
     const dots = engineTraitDots(engList, engineBase(engList, ENGINE), ENGINE);
     for (const id of listed) { const m = traitMap.get(id), d = dots.get(id), ex = overrides.get(id)?.expert ?? {}; if (!m || !d) continue;
-      for (const k of DOT_TRAITS) { const cur = m[k]; if (!cur) continue;
+      for (const k of ENGINE_TRAITS) { const cur = m[k]; if (!cur) continue;
         const hand = cur.set && !(k in ex); if (hand) continue;
         m[k] = { ...cur, dots: d[k].dots, score: d[k].score }; } }
   }
@@ -207,7 +207,7 @@ export const matchContext = cache(async () => {
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
   const feels = feelClasses(leans);
   for (const id of listed) { const r = data.rackets.find(x => x.id === id);
-    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
+    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null, ...(FINE_ROWS.includes("core") ? { core: coreClass(r?.core) } : {}) }); }
   // One compact item per listed racket (lib/home-rank.ts): the place inside a picked shape, the match % and the home list are
   // worked out from these, on the server and (for chip taps) in the browser, with the same functions.
   const items: RankItem[] = [...listed].map(id => {
