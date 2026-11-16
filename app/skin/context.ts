@@ -7,6 +7,8 @@ import { attrProfileFor, type AttrProfile } from "../../lib/attr-profile";
 import { scoreAll, attrMatch, type ProductAttrs, type AttrChoice, type AttrMatch } from "../../lib/attr-score";
 import type { EvidenceRow } from "../../lib/evidence";
 import { productSignals } from "../signals";
+import { withSafety } from "../../lib/skin-safety";
+import { skinPage } from "../../lib/skin-page";
 
 export type SkinContext = {
   data: Catalog; profile: AttrProfile; attrs: Map<string, ProductAttrs>;
@@ -32,10 +34,12 @@ async function load(): Promise<SkinContext> {
   const counts = new Map(data.listed.map(r => [r.id, { n: 0, positive: 0, mixed: 0, negative: 0 }]));
   for (const r of data.reviews) { const c = counts.get(r.racketId); if (!c) continue; c.n++; if (r.rating >= 4) c.positive++; else if (r.rating === 3) c.mixed++; else c.negative++; }
   for (const e of data.external) { const c = counts.get(e.racketId); if (!c) continue; c.n++; if (e.sentiment) c[e.sentiment]++; }
-  const attrs = scoreAll(profile, data.listed.map(r => {
+  const scored = scoreAll(profile, data.listed.map(r => {
     const c = counts.get(r.id)!, judged = c.positive + c.mixed + c.negative;
     return { id: r.id, shape: r.shape, reports: c.n, verdict: judged ? (c.positive - c.negative) / judged : null };
   }), rows);
+  // Strength, acid, use and our own page's "too strong" verdict, which the match reads with "reacts easily" (lib/skin-safety.ts).
+  const attrs = new Map(data.listed.map(r => [r.id, withSafety(scored.get(r.id) ?? { scores: {}, facts: {} }, r.name, r.shape, (skinPage(r.slug)?.no ?? []).map(x => x.title))]));
   const quotes = new Map<string, EvidenceRow[]>();
   for (const r of rows) if (r.quote && r.sourceKind !== "maker") { const l = quotes.get(r.productId) ?? []; l.push(r); quotes.set(r.productId, l); }
   const signal = (id: string) => sigs.get(id)?.signal ?? null;

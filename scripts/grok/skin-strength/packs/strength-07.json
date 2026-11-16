@@ -1,0 +1,282 @@
+[
+ {
+  "id": "cosrx-the-vitamin-c-23-serum",
+  "name": "COSRX The Vitamin C 23 Serum",
+  "brand": "COSRX",
+  "category": "Serum",
+  "maker_url": "https://www.cosrx.com/products/the-vitamin-c-23-serum"
+ },
+ {
+  "id": "stratia-soft-touch-aha",
+  "name": "Stratia Soft Touch AHA",
+  "brand": "Stratia",
+  "category": "Exfoliant",
+  "maker_url": "https://www.stratiaskin.com/products/soft-touch-aha"
+ },
+ {
+  "id": "skin1004-centella-toning-toner",
+  "name": "SKIN1004 Centella Toning Toner",
+  "brand": "SKIN1004",
+  "category": "Toner",
+  "maker_url": "https://www.skin1004.com/products/skin1004-madagascar-centella-toning-toner"
+ },
+ {
+  "id": "first-aid-beauty-hydrating-toner-with-squalane-oats",
+  "name": "First Aid Beauty Hydrating Toner with Squalane + Oats",
+  "brand": "First Aid Beauty",
+  "category": "Toner",
+  "maker_url": "https://www.firstaidbeauty.com/products/hydrating-toner-with-squalane-oats"
+ },
+ {
+  "id": "mario-badescu-seaweed-night-cream",
+  "name": "Mario Badescu Seaweed Night Cream",
+  "brand": "Mario Badescu",
+  "category": "Moisturizer",
+  "maker_url": "https://mariobadescu.com/products/seaweed-night-cream"
+ },
+ {
+  "id": "naturium-mandelic-topical-acid-12",
+  "name": "Naturium Mandelic Topical Acid 12%",
+  "brand": "Naturium",
+  "category": "Exfoliant",
+  "maker_url": "https://www.naturium.com/products/mandelic-topical-acid-12"
+ },
+ {
+  "id": "cerave-skin-renewing-night-cream",
+  "name": "CeraVe Skin Renewing Night Cream",
+  "brand": "CeraVe",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/skin-renewing-night-cream"
+ },
+ {
+  "id": "paulas-choice-10-azelaic-acid-booster",
+  "name": "Paula's Choice 10% Azelaic Acid Booster",
+  "brand": "Paula's Choice",
+  "category": "Treatment",
+  "maker_url": "https://www.paulaschoice.com/10pct-azelaic-acid-booster/775.html"
+ },
+ {
+  "id": "torriden-dive-in-low-molecular-hyaluronic-acid-serum",
+  "name": "Torriden DIVE-IN Low Molecular Hyaluronic Acid Serum",
+  "brand": "Torriden",
+  "category": "Serum",
+  "maker_url": "https://torriden.us/products/dive-in-serum"
+ },
+ {
+  "id": "cerave-renewing-sa-cleanser",
+  "name": "CeraVe Renewing SA Cleanser",
+  "brand": "CeraVe",
+  "category": "Cleanser",
+  "maker_url": "https://www.cerave.com/skincare/cleansers/renewing-sa-cleanser"
+ },
+ {
+  "id": "cosrx-full-fit-propolis-synergy-toner",
+  "name": "COSRX Full Fit Propolis Synergy Toner",
+  "brand": "COSRX",
+  "category": "Toner",
+  "maker_url": "https://www.cosrx.com/products/full-fit-propolis-synergy-toner-copy"
+ },
+ {
+  "id": "cosrx-low-ph-good-morning-gel-cleanser",
+  "name": "COSRX Low pH Good Morning Gel Cleanser",
+  "brand": "COSRX",
+  "category": "Cleanser",
+  "maker_url": "https://www.cosrx.com/products/low-ph-good-morning-gel-cleanser"
+ },
+ {
+  "id": "cosrx-bha-blackhead-power-liquid",
+  "name": "COSRX BHA Blackhead Power Liquid",
+  "brand": "COSRX",
+  "category": "Exfoliant",
+  "maker_url": "https://www.cosrx.com/products/bha-blackhead-power-liquid"
+ },
+ {
+  "id": "cerave-ultra-light-moisturizing-lotion-spf-30",
+  "name": "CeraVe Ultra-Light Moisturizing Lotion SPF 30",
+  "brand": "CeraVe",
+  "category": "Sunscreen",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/ultra-light-moisturizing-lotion-spf-30"
+ },
+ {
+  "id": "bioderma-sensibio-h2o-micellar-water",
+  "name": "Bioderma Sensibio H2O Micellar Water",
+  "brand": "Bioderma",
+  "category": "Cleanser",
+  "maker_url": "https://www.bioderma.us/en/p/sensibio-h2o-micellar-water.html"
+ },
+ {
+  "id": "laneige-water-sleeping-mask",
+  "name": "Laneige Water Sleeping Mask",
+  "brand": "Laneige",
+  "category": "Mask",
+  "maker_url": "https://us.laneige.com/products/water-sleeping-mask"
+ },
+ {
+  "id": "vanicream-moisturizing-cream",
+  "name": "Vanicream Moisturizing Cream",
+  "brand": "Vanicream",
+  "category": "Moisturizer",
+  "maker_url": "https://www.vanicream.com/product/vanicream-moisturizing-cream"
+ },
+ {
+  "id": "first-aid-beauty-pure-skin-face-cleanser",
+  "name": "First Aid Beauty Pure Skin Face Cleanser",
+  "brand": "First Aid Beauty",
+  "category": "Cleanser",
+  "maker_url": "https://www.firstaidbeauty.com/products/ultra-gentle-pure-skin-face-cleanser"
+ },
+ {
+  "id": "haruharu-wonder-black-rice-hyaluronic-toner",
+  "name": "Haruharu Wonder Black Rice Hyaluronic Toner",
+  "brand": "Haruharu Wonder",
+  "category": "Toner",
+  "maker_url": "https://www.haruharuwonder.com/products/haruharuwonder-black-rice-hyaluronic-toner"
+ },
+ {
+  "id": "kravebeauty-great-barrier-relief",
+  "name": "KraveBeauty Great Barrier Relief",
+  "brand": "KraveBeauty",
+  "category": "Serum",
+  "maker_url": "https://kravebeauty.com/products/great-barrier-relief"
+ },
+ {
+  "id": "supergoop-mineral-mattescreen-spf-40",
+  "name": "Supergoop! Mineral Mattescreen SPF 40",
+  "brand": "Supergoop!",
+  "category": "Sunscreen",
+  "maker_url": "https://www.supergoop.com/products/smooth-and-poreless-mattescreen"
+ },
+ {
+  "id": "eltamd-uv-physical-broad-spectrum-spf-41",
+  "name": "EltaMD UV Physical Broad-Spectrum SPF 41",
+  "brand": "EltaMD",
+  "category": "Sunscreen",
+  "maker_url": "https://www.eltamd.com/products/eltamd-uv-physical-broad-spectrum-spf-41"
+ },
+ {
+  "id": "numbuzin-no-3-super-glowing-essence-toner",
+  "name": "numbuzin No.3 Super Glowing Essence Toner",
+  "brand": "numbuzin",
+  "category": "Toner",
+  "maker_url": "https://numbuzinus.com/products/no-3-super-glowing-essence-toner-10-14-fl-oz-300ml"
+ },
+ {
+  "id": "beauty-of-joseon-green-plum-refreshing-cleanser",
+  "name": "Beauty of Joseon Green Plum Refreshing Cleanser",
+  "brand": "Beauty of Joseon",
+  "category": "Cleanser",
+  "maker_url": "https://beautyofjoseon.com/products/green-plum-refreshing-cleanser"
+ },
+ {
+  "id": "drunk-elephant-t-l-c-framboos-glycolic-night-serum",
+  "name": "Drunk Elephant T.L.C. Framboos Glycolic Night Serum",
+  "brand": "Drunk Elephant",
+  "category": "Exfoliant",
+  "maker_url": "https://www.drunkelephant.com/collections/serums/t.l.c.-framboos-glycolic-resurfacing-night-serum-999DE00000104.html"
+ },
+ {
+  "id": "avene-thermal-spring-water",
+  "name": "Av\u00e8ne Thermal Spring Water",
+  "brand": "Av\u00e8ne",
+  "category": "Toner",
+  "maker_url": "https://www.aveneusa.com/thermal-spring-water"
+ },
+ {
+  "id": "drunk-elephant-lala-retro-whipped-cream",
+  "name": "Drunk Elephant Lala Retro Whipped Cream",
+  "brand": "Drunk Elephant",
+  "category": "Moisturizer",
+  "maker_url": "https://www.drunkelephant.com/collections/KamoBundle/lala-retro-nourishing-whipped-refillable-moisturizer-812343030350.html"
+ },
+ {
+  "id": "laneige-cream-skin-toner-moisturizer",
+  "name": "Laneige Cream Skin Toner & Moisturizer",
+  "brand": "Laneige",
+  "category": "Toner",
+  "maker_url": "https://us.laneige.com/products/cream-skin-toner-moisturizer"
+ },
+ {
+  "id": "the-inkey-list-hyaluronic-acid-serum",
+  "name": "The INKEY List Hyaluronic Acid Serum",
+  "brand": "The INKEY List",
+  "category": "Serum",
+  "maker_url": "https://www.theinkeylist.com/products/hyaluronic-acid-serum"
+ },
+ {
+  "id": "the-ordinary-100-plant-derived-squalane",
+  "name": "The Ordinary 100% Plant-Derived Squalane",
+  "brand": "The Ordinary",
+  "category": "Moisturizer",
+  "maker_url": "https://theordinary.com/en-us/100-plant-derived-squalane-face-oil-100398.html"
+ },
+ {
+  "id": "byoma-moisturizing-gel-cream",
+  "name": "Byoma Moisturizing Gel Cream",
+  "brand": "Byoma",
+  "category": "Moisturizer",
+  "maker_url": "https://www.byoma.com/products/moisturizing-gel-cream"
+ },
+ {
+  "id": "sunday-riley-ice-ceramide-moisturizing-cream",
+  "name": "Sunday Riley Ice Ceramide Moisturizing Cream",
+  "brand": "Sunday Riley",
+  "category": "Moisturizer",
+  "maker_url": "https://sundayriley.com/products/ice-ceramide-moisturizing-cream"
+ },
+ {
+  "id": "mixsoon-bean-essence",
+  "name": "mixsoon Bean Essence",
+  "brand": "mixsoon",
+  "category": "Toner",
+  "maker_url": "https://mixsoon.us/products/mixsoon-1-1-bean-essence-50ml"
+ },
+ {
+  "id": "naturium-niacinamide-serum-12-plus-zinc-2",
+  "name": "Naturium Niacinamide Serum 12% Plus Zinc 2%",
+  "brand": "Naturium",
+  "category": "Serum",
+  "maker_url": "https://www.naturium.com/products/niacinamide-serum-12-plus-zinc-2"
+ },
+ {
+  "id": "byoma-milky-toner",
+  "name": "Byoma Milky Toner",
+  "brand": "Byoma",
+  "category": "Toner",
+  "maker_url": "https://www.byoma.com/products/hydrating-milky-toner"
+ },
+ {
+  "id": "mario-badescu-drying-lotion",
+  "name": "Mario Badescu Drying Lotion",
+  "brand": "Mario Badescu",
+  "category": "Treatment",
+  "maker_url": "https://mariobadescu.com/products/drying-lotion"
+ },
+ {
+  "id": "sunday-riley-c-e-o-15-vitamin-c-brightening-serum",
+  "name": "Sunday Riley C.E.O. 15% Vitamin C Brightening Serum",
+  "brand": "Sunday Riley",
+  "category": "Serum",
+  "maker_url": "https://sundayriley.com/products/ceo-vitamin-c-brightening-serum"
+ },
+ {
+  "id": "cosrx-balancium-comfort-ceramide-cream",
+  "name": "COSRX Balancium Comfort Ceramide Cream",
+  "brand": "COSRX",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cosrx.com/products/balancium-comfort-ceramide-cream"
+ },
+ {
+  "id": "cetaphil-moisturizing-cream",
+  "name": "Cetaphil Moisturizing Cream",
+  "brand": "Cetaphil",
+  "category": "Moisturizer",
+  "maker_url": "https://www.cetaphil.com/us/products/product-categories/all-moisturizers/moisturizing-cream/302993917564.html"
+ },
+ {
+  "id": "vanicream-gentle-facial-cleanser",
+  "name": "Vanicream Gentle Facial Cleanser",
+  "brand": "Vanicream",
+  "category": "Cleanser",
+  "maker_url": "https://www.vanicream.com/product/vanicream-facial-cleanser"
+ }
+]

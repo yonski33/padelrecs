@@ -71,7 +71,7 @@
 
     { "brand": "the-ordinary", "name": "The Ordinary Niacinamide 10% + Zinc 1%", "shape": "Serum", "weight": "30 ml · 60 ml", "core": "Niacinamide, zinc PCA", "surface": "All skin types", "balance": null,
       "sources": ["https://theordinary.com/en-us/niacinamide-10-zinc-1-serum-100436.html"] },
-    { "brand": "the-ordinary", "name": "The Ordinary Glycolic Acid 7% Exfoliating Toner", "shape": "Toner", "weight": "100 ml · 240 ml", "core": "Glycolic acid, aloe barbadensis leaf water, Panax ginseng root extract, Tasmannia lanceolata extract", "surface": "All skin types", "balance": null,
+    { "brand": "the-ordinary", "name": "The Ordinary Glycolic Acid 7% Exfoliating Toner", "shape": "Exfoliant", "weight": "100 ml · 240 ml", "core": "Glycolic acid, aloe barbadensis leaf water, Panax ginseng root extract, Tasmannia lanceolata extract", "surface": "All skin types", "balance": null,
       "sources": ["https://theordinary.com/en-us/glycolic-acid-7-exfoliating-toner-100418.html"] },
     { "brand": "the-ordinary", "name": "The Ordinary AHA 30% + BHA 2% Peeling Solution", "shape": "Exfoliant", "weight": "30 ml", "core": "Glycolic, lactic, tartaric, citric and salicylic acid, sodium hyaluronate crosspolymer, Tasmannia lanceolata extract", "surface": "All skin types (only for experienced users of acid exfoliation)", "balance": null,
       "sources": ["https://theordinary.com/en-us/aha-30-bha-2-peeling-solution-exfoliator-100400.html"] },

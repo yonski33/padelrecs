@@ -1,0 +1,219 @@
+[
+ {
+  "id": "beauty-of-joseon-relief-sun-rice-probiotics-spf-50",
+  "name": "Beauty of Joseon Relief Sun: Rice + Probiotics SPF 50+",
+  "brand": "Beauty of Joseon",
+  "category": "Sunscreen",
+  "maker_url": "https://beautyofjoseon.com/products/relief-sun-rice-probiotics"
+ },
+ {
+  "id": "la-roche-posay-toleriane-purifying-foaming-facial-wash",
+  "name": "La Roche-Posay Toleriane Purifying Foaming Facial Wash",
+  "brand": "La Roche-Posay",
+  "category": "Cleanser",
+  "maker_url": "https://www.laroche-posay.us/our-products/face/face-wash/toleriane-purifying-foaming-face-wash-tolerianepurifyingfoamingfacialwash.html"
+ },
+ {
+  "id": "the-inkey-list-10-azelaic-acid-serum",
+  "name": "The INKEY List 10% Azelaic Acid Serum",
+  "brand": "The INKEY List",
+  "category": "Treatment",
+  "maker_url": "https://www.theinkeylist.com/products/redness-relief-solution"
+ },
+ {
+  "id": "the-ordinary-azelaic-acid-suspension-10",
+  "name": "The Ordinary Azelaic Acid Suspension 10%",
+  "brand": "The Ordinary",
+  "category": "Treatment",
+  "maker_url": "https://theordinary.com/en-us/azelaic-acid-suspension-10-exfoliator-100407.html"
+ },
+ {
+  "id": "beauty-of-joseon-radiance-cleansing-balm",
+  "name": "Beauty of Joseon Radiance Cleansing Balm",
+  "brand": "Beauty of Joseon",
+  "category": "Cleanser",
+  "maker_url": "https://beautyofjoseon.com/products/radiance-cleansing-balm"
+ },
+ {
+  "id": "stratia-velvet-cleansing-milk",
+  "name": "Stratia Velvet Cleansing Milk",
+  "brand": "Stratia",
+  "category": "Cleanser",
+  "maker_url": "https://www.stratiaskin.com/products/velvet-cleansing-milk"
+ },
+ {
+  "id": "glow-recipe-watermelon-glow-aha-night-treatment",
+  "name": "Glow Recipe Watermelon Glow AHA Night Treatment",
+  "brand": "Glow Recipe",
+  "category": "Exfoliant",
+  "maker_url": "https://www.glowrecipe.com/products/watermelon-glow-aha-night-treatment"
+ },
+ {
+  "id": "beauty-of-joseon-ginseng-cleansing-oil",
+  "name": "Beauty of Joseon Ginseng Cleansing Oil",
+  "brand": "Beauty of Joseon",
+  "category": "Cleanser",
+  "maker_url": "https://beautyofjoseon.com/products/ginseng-cleansing-oil"
+ },
+ {
+  "id": "glow-recipe-watermelon-glow-ultra-fine-mist",
+  "name": "Glow Recipe Watermelon Glow Ultra-Fine Mist",
+  "brand": "Glow Recipe",
+  "category": "Toner",
+  "maker_url": "https://www.glowrecipe.com/products/glow-recipe-watermelon-glow-ultra-fine-mist"
+ },
+ {
+  "id": "the-ordinary-alpha-arbutin-2-ha",
+  "name": "The Ordinary Alpha Arbutin 2% + HA",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/alpha-arbutin-2-ha-serum-100401.html"
+ },
+ {
+  "id": "glow-recipe-watermelon-glow-niacinamide-dew-drops",
+  "name": "Glow Recipe Watermelon Glow Niacinamide Dew Drops",
+  "brand": "Glow Recipe",
+  "category": "Serum",
+  "maker_url": "https://www.glowrecipe.com/products/watermelon-glow-niacinamide-dew-drops"
+ },
+ {
+  "id": "numbuzin-no-5-glutathione-vitamin-concentrated-serum",
+  "name": "numbuzin No.5+ Glutathione Vitamin Concentrated Serum",
+  "brand": "numbuzin",
+  "category": "Serum",
+  "maker_url": "https://numbuzinus.com/products/no-5-vitamin-concentrated-serum"
+ },
+ {
+  "id": "beauty-of-joseon-dynasty-cream",
+  "name": "Beauty of Joseon Dynasty Cream",
+  "brand": "Beauty of Joseon",
+  "category": "Moisturizer",
+  "maker_url": "https://beautyofjoseon.com/products/dynasty-cream"
+ },
+ {
+  "id": "cerave-eye-repair-cream",
+  "name": "CeraVe Eye Repair Cream",
+  "brand": "CeraVe",
+  "category": "Eye cream",
+  "maker_url": "https://www.cerave.com/skincare/moisturizers/eye-repair-cream"
+ },
+ {
+  "id": "beauty-of-joseon-glow-serum-propolis-niacinamide",
+  "name": "Beauty of Joseon Glow Serum: Propolis + Niacinamide",
+  "brand": "Beauty of Joseon",
+  "category": "Serum",
+  "maker_url": "https://beautyofjoseon.com/products/glow-serum-propolis-niacinamide"
+ },
+ {
+  "id": "vanicream-daily-facial-moisturizer",
+  "name": "Vanicream Daily Facial Moisturizer",
+  "brand": "Vanicream",
+  "category": "Moisturizer",
+  "maker_url": "https://www.vanicream.com/product/vanicream-daily-facial-moisturizer"
+ },
+ {
+  "id": "aveeno-calm-restore-nourishing-oat-cleanser",
+  "name": "Aveeno Calm + Restore Nourishing Oat Cleanser",
+  "brand": "Aveeno",
+  "category": "Cleanser",
+  "maker_url": "https://www.aveeno.com/products/calm-restore-foaming-cleanser"
+ },
+ {
+  "id": "neutrogena-hydro-boost-gel-cream-extra-dry",
+  "name": "Neutrogena Hydro Boost Gel-Cream Extra-Dry",
+  "brand": "Neutrogena",
+  "category": "Moisturizer",
+  "maker_url": "https://www.neutrogena.com/products/skincare/neutrogena-hydro-boost-gel-cream-with-hyaluronic-acid-for-extra-dry-skin/6811048"
+ },
+ {
+  "id": "kiehls-ultra-facial-cream",
+  "name": "Kiehl's Ultra Facial Cream",
+  "brand": "Kiehl's",
+  "category": "Moisturizer",
+  "maker_url": "https://www.kiehls.com/skincare/face-moisturizers/ultra-facial-cream-with-squalane/622.html"
+ },
+ {
+  "id": "supergoop-unseen-sunscreen-spf-50",
+  "name": "Supergoop! Unseen Sunscreen SPF 50",
+  "brand": "Supergoop!",
+  "category": "Sunscreen",
+  "maker_url": "https://www.supergoop.com/products/unseen-sunscreen-spf-50"
+ },
+ {
+  "id": "cosrx-ultimate-nourishing-rice-overnight-spa-mask",
+  "name": "COSRX Ultimate Nourishing Rice Overnight Spa Mask",
+  "brand": "COSRX",
+  "category": "Mask",
+  "maker_url": "https://www.cosrx.com/products/ultimate-nourishing-rice-overnight-spa-mask-global"
+ },
+ {
+  "id": "first-aid-beauty-facial-radiance-pads",
+  "name": "First Aid Beauty Facial Radiance Pads",
+  "brand": "First Aid Beauty",
+  "category": "Exfoliant",
+  "maker_url": "https://www.firstaidbeauty.com/products/facial-radiance-pads-with-glycolic-lactic-acids-compostable"
+ },
+ {
+  "id": "paulas-choice-resist-youth-extending-daily-hydrating-fluid-spf-50",
+  "name": "Paula's Choice RESIST Youth-Extending Daily Hydrating Fluid SPF 50",
+  "brand": "Paula's Choice",
+  "category": "Sunscreen",
+  "maker_url": "https://www.paulaschoice.com/resist-youth-extending-daily-hydrating-fluid-spf-50/780.html"
+ },
+ {
+  "id": "glow-recipe-strawberry-smooth-bha-aha-salicylic-serum",
+  "name": "Glow Recipe Strawberry Smooth BHA+AHA Salicylic Serum",
+  "brand": "Glow Recipe",
+  "category": "Exfoliant",
+  "maker_url": "https://www.glowrecipe.com/products/strawberry-smooth-bha-aha-salicylic-serum"
+ },
+ {
+  "id": "sunday-riley-a-high-dose-retinoid-serum",
+  "name": "Sunday Riley A+ High-Dose Retinoid Serum",
+  "brand": "Sunday Riley",
+  "category": "Treatment",
+  "maker_url": "https://sundayriley.com/products/a-high-dose-retinoid-serum"
+ },
+ {
+  "id": "the-ordinary-niacinamide-10-zinc-1",
+  "name": "The Ordinary Niacinamide 10% + Zinc 1%",
+  "brand": "The Ordinary",
+  "category": "Serum",
+  "maker_url": "https://theordinary.com/en-us/niacinamide-10-zinc-1-serum-100436.html"
+ },
+ {
+  "id": "first-aid-beauty-ultra-repair-cream",
+  "name": "First Aid Beauty Ultra Repair Cream",
+  "brand": "First Aid Beauty",
+  "category": "Moisturizer",
+  "maker_url": "https://www.firstaidbeauty.com/products/ultra-repair-cream-intense-hydration"
+ },
+ {
+  "id": "sunday-riley-good-genes-lactic-acid-treatment",
+  "name": "Sunday Riley Good Genes Lactic Acid Treatment",
+  "brand": "Sunday Riley",
+  "category": "Exfoliant",
+  "maker_url": "https://sundayriley.com/products/good-genes-lactic-acid-treatment"
+ },
+ {
+  "id": "the-ordinary-squalane-cleanser",
+  "name": "The Ordinary Squalane Cleanser",
+  "brand": "The Ordinary",
+  "category": "Cleanser",
+  "maker_url": "https://theordinary.com/en-us/squalane-face-cleanser-100446.html"
+ },
+ {
+  "id": "beauty-of-joseon-glow-deep-serum-rice-alpha-arbutin",
+  "name": "Beauty of Joseon Glow Deep Serum: Rice + Alpha-Arbutin",
+  "brand": "Beauty of Joseon",
+  "category": "Serum",
+  "maker_url": "https://beautyofjoseon.com/products/glow-deep-serum-rice-alpha-arbutin"
+ },
+ {
+  "id": "cosrx-aha-bha-clarifying-treatment-toner",
+  "name": "COSRX AHA/BHA Clarifying Treatment Toner",
+  "brand": "COSRX",
+  "category": "Toner",
+  "maker_url": "https://www.cosrx.com/products/aha-bha-clarifying-treatment-toner-new"
+ }
+]

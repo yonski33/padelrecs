@@ -6,7 +6,7 @@
 import { useMemo, useState } from "react";
 import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
-import { wireCtx, fitWord, reasonOf, SKIN_GROUPS, type SkinWire } from "./rank";
+import { wireCtx, skinMatch, fitWord, reasonOf, SKIN_GROUPS, type SkinWire } from "./rank";
 import { unpack, type SkinPack } from "./pack";
 import { attrProfileFor } from "../../lib/attr-profile";
 import { niche } from "../../lib/niche";
@@ -45,7 +45,7 @@ export function CatalogSkinBrowser({ pack, f: first, base, fixedType }: { pack: 
     concerns: [...(f.sens === "1" || f.skin === "sensitive" ? ["sensitive"] : []), ...(f.acne === "1" || f.skin === "acne" ? ["acne"] : [])], finish: f.finish === "matte" || f.finish === "dewy" ? f.finish : null, ff: false };
   const matching = !!(choice.skin || choice.concerns.length);
   const sort = SORTS.some(([k]) => k === f.sort) ? f.sort! : "score";
-  const shown = rows.filter(x => pass(x)).map(x => ({ ...x, m: matching ? ctx.match(x.id, choice) : null }))
+  const shown = rows.filter(x => pass(x)).map(x => ({ ...x, m: matching ? skinMatch(ctx, x.id, { ...choice, typeSlug: null, noConcerns: false, goal: null, tex: null, budget: null }) : null }))
     .sort((a, b) => (matching && sort === "score" ? (b.m?.pct ?? -1) - (a.m?.pct ?? -1) : 0) || (sort === "reviews" ? b.n - a.n : 0) || (sort === "price" ? (a.price?.length ?? 9) - (b.price?.length ?? 9) : 0) || (b.signal ?? -1) - (a.signal ?? -1) || a.name.localeCompare(b.name));
   const show = Math.min(1000, Math.max(CATALOG_PAGE, Number(f.show) || CATALOG_PAGE));
   const nextOf = (next: Partial<SkinF>) => ({ ...f, show: undefined, ...next }) as SkinF;
