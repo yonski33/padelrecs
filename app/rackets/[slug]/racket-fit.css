@@ -697,20 +697,17 @@
     .rp-row { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; }
     .rp-row > b { font-size: 16px; }
     .rp-row .rp-note { grid-column: 1 / -1; font-size: 15.5px; }
-    /* Side by side: label, this racket, the other racket. Narrower dots so both sets fit. */
-    .rp-row.rp-two, .rp-row.rp-vs { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 8px; }
-    .rp-two > b { font-size: 15px; }
-    .rp-two .rf-segs i { width: 11px; }
-    .rp-row.rp-two > :nth-child(3), .rp-row.rp-vs > :nth-child(3) { display: none; }
-    .rp-vs { align-items: end; padding: 8px 0 6px; }
-    /* Each side: the dots plus a fixed slot for the ▲, so both columns line up. */
-    .rp-cside { display: grid; grid-template-columns: auto 10px; gap: 3px; }
-    .rp-cside em { font-size: 0; }
-    .rp-cside em::before { content: "▲"; font-size: 10px; }
-    .rp-who { width: 80px; flex-direction: column; align-items: flex-start; gap: 4px; }
-    .rp-who img { height: 30px; }
-    .rp-who b { font-size: 13px; overflow-wrap: anywhere; }
-    .rp-who small { font-size: 10.5px; }
+    /* Another racket's tab (owner 2026-11-16): on a phone only that racket's dots, with "▲ better" where it beats this one.
+       This racket's own dots are one tab away. */
+    .rp-row.rp-two, .rp-row.rp-vs { grid-template-columns: minmax(0, 1fr) auto; column-gap: 10px; }
+    .rp-row.rp-two > :nth-child(2), .rp-row.rp-two > :nth-child(3), .rp-row.rp-vs > :nth-child(2), .rp-row.rp-vs > :nth-child(3) { display: none; }
+    .rp-vs { align-items: center; padding: 8px 0; }
+    /* The dots plus a fixed slot for "▲ better", so every row's dots line up. */
+    .rp-cside { display: grid; grid-template-columns: auto 62px; gap: 6px; }
+    .rp-cside em { font-size: 12.5px; }
+    .rp-who img { height: 36px; }
+    .rp-who b { font-size: 15.5px; }
+    .rp-who small { font-size: 11.5px; }
     .rp-ph { font-size: 12.5px; }
     .rp-pi { font-size: 16px; }
     /* Racket tabs: always two a row (auto-fit drops to one column below ~340px). */
