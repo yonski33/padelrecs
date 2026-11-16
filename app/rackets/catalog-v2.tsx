@@ -42,7 +42,7 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
   const listed = matchingRackets(data.listed, f.q || "");
   const rows: CatalogRow[] = catalogRows(data, ctx, listed);
   const cards: Record<string, CatalogCard> = Object.fromEntries(listed.map(r => { const sc = score(data, r.id), shop = listShopLink(r);
-    return [r.id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic: photo(r), tile: brand(r.brandId) ?? "", line: shortLine(r) ?? listLine(r) ?? null,
+    return [r.id, { name: displayName(r.name, brand(r.brandId)), slug: r.slug, href: productHref(r), pic: photo(r), tile: brand(r.brandId) ?? "", line: shortLine(r) ?? listLine(r) ?? null,
       shop: shop ? { url: shop.url, rel: shop.rel } : null, pos: sc.positive, mix: sc.mixed, neg: sc.negative }]; }));
 
   return <main className={`ct2${mockLook ? " ct2-m" : ""} ${qtFontVars}`}>
