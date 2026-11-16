@@ -20,9 +20,14 @@ export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
 }
 
-/** "19 players mention it": the item's evidence line from its own report count. */
-export function evidenceLine(item: PageItem, many = "players") {
+/** Sites whose content was written from a sample of the reports (DiscGolfRecs: Grok saw up to 40 snippets a disc): a count under
+ *  this reads as thin evidence next to the page's report total, so the line is left out (owner 2026-11-16: "hide counts under 5"). */
+const MIN_COUNT_SHOWN: Record<string, number> = { discgolf: 5 };
+
+/** "19 players mention it": the item's evidence line from its own report count; null when the site hides small counts. */
+export function evidenceLine(item: PageItem, many = "players", site = niche.id): string | null {
   const n = new Set(item.src).size;
+  if (!item.ev && n < (MIN_COUNT_SHOWN[site] ?? 0)) return null;
   return (item.ev ?? `{n} ${many} mention it`).replace("{n}", String(n));
 }
 

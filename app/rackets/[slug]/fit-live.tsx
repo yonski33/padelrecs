@@ -299,7 +299,7 @@ export function FitYesNo({ yes, no, tier = "full" }: { yes: PageItem[]; no: Page
     const rest = list.slice(SHOWN_ITEMS);
     const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}{hot.has(it.title) && <span className="rp-hot">matters for you</span>}</b>
       <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
-      <small>{evidenceLine(it)}</small></div>;
+      {evidenceLine(it) && <small>{evidenceLine(it)}</small>}</div>;
     return <div key={side} className={`rp-col ${side}`}><p className="rp-ch"><i aria-hidden="true">{icon}</i>{title}</p>
       {list.slice(0, SHOWN_ITEMS).map(item)}
       {rest.length > 0 && <details className="rp-more"><summary>{`+ ${rest.length} more`}</summary>{rest.map(item)}</details>}
