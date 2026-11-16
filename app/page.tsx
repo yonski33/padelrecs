@@ -14,7 +14,7 @@ import { HomeLight } from "./home-light";
 import HomeV2 from "./home-v2";
 import { readChoice } from "../lib/quick-match";
 import { homeMetadata } from "./home-metadata";
-import HomeSkin from "./skin/home-skin";
+import HomeBeauty from "./skin/home-beauty";
 import { attrProfileFor } from "../lib/attr-profile";
 import { readSkinChoice, skinPicked, skinWords, skinQuery } from "../lib/skin-choice";
 import { productSignals } from "./signals";
@@ -140,7 +140,7 @@ export default async function Home({ searchParams }: {
   // Preview of the two directions the owner is choosing between (?home=a / ?home=b); the default home is unchanged.
   // The review filter (?type=) only changes the reviews section; the rest of the home page stays (owner, 2026-11-13).
   // Design language v2 (owner 2026-11-15): PadelRecs gets the new home; ?home=d still shows the light one.
-  if (isV2 && attrProfileFor(niche) && !params.home && !params.feed && !params.q) return <HomeSkin choice={readSkinChoice(params as Record<string, string | string[] | undefined>, niche.typePages ?? [])}/>;
+  if (isV2 && attrProfileFor(niche) && !params.home && !params.feed && !params.q) return <HomeBeauty choice={readSkinChoice(params as Record<string, string | string[] | undefined>, niche.typePages ?? [])}/>;
   if (isV2 && niche.finder && !params.home && !type && !params.feed && !params.q) return <HomeV2 choice={readChoice(params)} older={params.older === "1"}/>;
   if (params.home === "d" || !params.home) {
     const one = (v?: string | string[]) => Array.isArray(v) ? v[0] : v;
