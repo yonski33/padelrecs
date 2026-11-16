@@ -14,7 +14,7 @@ export default function SkinSticky({ pct, kind, word, buy, name }: { pct: number
   }, []);
   return <div className={`rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
     <div className="rp-sk">
-      <span className="rp-k">⚡ your match</span>
+      <span className="rp-k">Your match</span>
       {pct !== null && kind && kind !== "thin" ? <a href="#fit" className={`rp-pct ${kind}`}><b>{`${pct}%`}</b><span className="rp-vw">{word}</span></a>
         : <a href="#fit" className="rp-check">{kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>

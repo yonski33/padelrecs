@@ -18,6 +18,9 @@ export type ScoreInput = { id: string; shape: string | null; reports: number; /*
 const VOICE = (r: EvidenceRow) => r.authorKey ?? r.sourceRef.split("#")[0];
 /** Bands: rank percentile → 0–100 (5 dots ≥ 80, 4 ≥ 65, 3 ≥ 45, 2 ≥ 30). */
 const TOP4 = 0.4, TOP5 = 0.09, WORST = 0.1, MIN_COMPLAINTS = 3, SMOOTH = 4;
+/** Under this many people of a skin type, the words say "few reports so far", never "great" (owner 2026-11-16: "Acne-prone:
+ *  great" from 4 people). The score still counts for the match. */
+export const FEW_VOICES = 6;
 export const dotsOf = (s: number) => s >= 80 ? 5 : s >= 65 ? 4 : s >= 45 ? 3 : s >= 30 ? 2 : 1;
 
 /** Net each voice per attribute: one author, one +1 / −1 (or 0 for a mixed voice on an axis or suits row). */
@@ -90,6 +93,7 @@ export function scoreAll(profile: AttrProfile, products: ScoreInput[], rows: Evi
 /** Words for a score: suits ("great for dry skin"), quality (the profile's words), axis ("light", "rich-ish"). */
 export function attrWords(a: AttrDef, s: AttrScore | null | undefined): string | null {
   if (!s) return null;
+  if (a.kind === "suits" && s.n < FEW_VOICES) return "few reports";
   if (a.kind === "suits") return s.score >= 80 ? "great" : s.score >= 65 ? "good" : s.score >= 50 ? "mixed" : s.score >= 35 ? "often not" : "not for";
   if (a.kind === "axis") { const [lo, hi] = a.ends!; return s.score < 30 ? lo : s.score < 43 ? `on the ${lo} side` : s.score <= 57 ? `between ${lo} and ${hi}` : s.score <= 70 ? `on the ${hi} side` : hi; }
   const w = a.words; if (!w) return null;

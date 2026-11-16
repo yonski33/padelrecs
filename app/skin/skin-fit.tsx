@@ -4,9 +4,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { skinContext } from "./context";
 import { rankSkin, fitWord, reasonOf } from "./rank";
-import { attrWords, dotsOf } from "../../lib/attr-score";
+import { attrWords, dotsOf, FEW_VOICES } from "../../lib/attr-score";
 import { applies } from "../../lib/attr-profile";
-import { SKIN_TYPES, FINISHES, skinHref, skinPicked, skinWords, skinQuery, type SkinChoice } from "../../lib/skin-choice";
+import { SKIN_TYPES, skinHref, skinPicked, skinAnswered, skinWords, skinQuery, type SkinChoice } from "../../lib/skin-choice";
 import { niche, catalogPath, productHref, typePageFor, v2copy } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { platformName } from "../../lib/source-label";
@@ -46,12 +46,14 @@ export default async function SkinFit({ productId, choice, buy, jsonLd }: { prod
   const a = ctx.attrs.get(r.id) ?? { scores: {}, facts: {} }, c = ctx.counts.get(r.id) ?? { n: 0, positive: 0, mixed: 0, negative: 0 };
   const photo = photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
   const picked = skinPicked(choice);
-  const m = picked ? ctx.match(r.id, choice) : null;
+  // The verdict waits for both required steps, skin type then concerns (owner 2026-11-16: not from the skin type alone).
+  const answered = skinAnswered(choice);
+  const m = answered ? ctx.match(r.id, choice) : null;
   const here = productHref(r), at = (next: SkinChoice) => skinHref({ ...next, type: null, typeSlug: null }, here, "#fit");
   const type = typePageFor(r.shape);
   const def = (k: string) => profile.attrs.find(x => x.key === k)!;
   const suits = profile.attrs.filter(x => x.kind === "suits");
-  const bestFor = suits.filter(x => (a.scores[x.key]?.score ?? 0) >= 65).sort((x, y) => a.scores[y.key]!.score - a.scores[x.key]!.score).map(x => x.label.toLowerCase());
+  const bestFor = suits.filter(x => (a.scores[x.key]?.score ?? 0) >= 65 && (a.scores[x.key]?.n ?? 0) >= FEW_VOICES).sort((x, y) => a.scores[y.key]!.score - a.scores[x.key]!.score).map(x => x.label.toLowerCase());
   const ff = a.facts.fragrance_free, spf = a.facts.spf;
   const facts = [
     ff ? ["Fragrance", ff === "free" ? "fragrance-free" : ff === "oils" ? "no added fragrance, but essential oils" : "contains fragrance"] : null,
@@ -68,21 +70,44 @@ export default async function SkinFit({ productId, choice, buy, jsonLd }: { prod
   const quoteRows = [...rows].filter(x => x.quote && (x.attribute.startsWith("suits_") || x.quote.length >= 12) && (wanted.length ? wanted.includes(x.attribute) : !x.attribute.startsWith("suits_")))
     .sort((x, y) => y.strength - x.strength || (y.saidAt ?? "").localeCompare(x.saidAt ?? ""))
     .filter(x => { const k = x.sourceRef.split("#")[0]; if (seenRep.has(k) || !report.has(k)) return false; seenRep.add(k); return true; }).slice(0, 3);
-  const others = rankSkin(ctx, { ...choice, type: r.shape, typeSlug: type?.slug ?? null }).filter(x => x.r.id !== r.id).slice(0, 4);
+  const others = rankSkin(ctx, { ...choice, type: r.shape, typeSlug: type?.slug ?? null }).filter(x => x.r.id !== r.id && x.r.slug !== r.slug && x.r.name !== r.name).slice(0, 4);
   const pickQ = skinQuery({ ...choice, type: null, typeSlug: null }), q = pickQ.size ? `?${pickQ}` : "";
   const fit = m ? fitWord(m.pct) : null;
-  const why = m && m.pct !== null ? reasonOf(ctx, m) : null;
-  const weakest = m?.parts.filter(p => p.key !== "score").sort((x, y) => x.score - y.score)[0];
-  const consider = m && m.missing.length ? `Too few reports yet from people with ${m.missing.join(" or ")}.` : weakest && weakest.score < 55 ? `${weakest.key === "finish" ? `Its finish isn't very ${choice.finish}` : `Mixed for ${weakest.label}`} (${weakest.key === "finish" ? `${weakest.n} people describe the finish` : `${weakest.n} people with ${weakest.label}`}).` : null;
+  // "Why it fits" only from a part that really fits (65+ and enough people); anything weaker goes under "What to consider".
+  const strong = m?.parts.filter(p => p.key !== "score" && p.score >= 65 && (!p.key.startsWith("suits_") || p.n >= FEW_VOICES)).sort((x, y) => y.score - x.score)[0];
+  const why = m && m.pct !== null && strong ? reasonOf(ctx, { ...m, parts: [strong] }) : null;
+  const weakest = m?.parts.filter(p => p.key !== "score" && p !== strong).sort((x, y) => x.score - y.score)[0];
+  const consider = m && m.missing.length ? `Too few reports yet from people with ${m.missing.join(" or ")}.`
+    : weakest && (weakest.score < 65 || (weakest.key.startsWith("suits_") && weakest.n < FEW_VOICES))
+      ? (weakest.key === "finish" ? `Its finish isn't very ${choice.finish} (${weakest.n} people describe the finish).`
+        : weakest.n < FEW_VOICES ? `Only ${weakest.n} ${weakest.n === 1 ? "person" : "people"} with ${weakest.label} so far.`
+        : `Mixed for ${weakest.label}: ${weakest.n} people with ${weakest.label} reported on it.`) : null;
   const pill = (label: string, next: SkinChoice, on: boolean) => <Link href={at(next)} scroll={false} replace aria-current={on ? "true" : undefined} className={on ? "on" : undefined}>{label}</Link>;
-  const box = (label: string, next: SkinChoice, on: boolean) => <Link href={at(next)} scroll={false} replace aria-current={on ? "true" : undefined} className="rf-arm"><i className="rf-box" aria-hidden="true">{on ? "✓" : ""}</i>{label}</Link>;
-  const toggle = (k: string) => choice.concerns.includes(k) ? choice.concerns.filter(x => x !== k) : [...choice.concerns, k];
   const showFinish = applies(def("finish"), r.shape);
-  const pickers = <div className="rf-bar sk2-pick">
-    <span className="rf-seg" role="group" aria-label="Your skin type">{SKIN_TYPES.map(s => <span key={s}>{pill(s, { ...choice, skin: choice.skin === s ? null : s }, choice.skin === s)}</span>)}</span>
-    {box("sensitive", { ...choice, concerns: toggle("sensitive") }, choice.concerns.includes("sensitive"))}
-    {box("acne-prone", { ...choice, concerns: toggle("acne") }, choice.concerns.includes("acne"))}
-    {showFinish && <span className="rf-lv" role="group" aria-label="Finish">{FINISHES.map(f => <span key={f}>{pill(f, { ...choice, finish: choice.finish === f ? null : f }, choice.finish === f)}</span>)}</span>}
+  // Concerns as one answer: sensitive, acne-prone, both or neither (so "neither" is an answer, not a blank).
+  const CONCERNS = [["sensitive", "Sensitive", ["sensitive"]], ["acne", "Acne-prone", ["acne"]], ["both", "Both", ["sensitive", "acne"]], ["none", "Neither", []]] as const;
+  const concernKey = choice.noConcerns ? "none" : choice.concerns.length === 2 ? "both" : choice.concerns[0] ?? null;
+  const withConcern = (k: (typeof CONCERNS)[number][0]) => ({ ...choice, concerns: [...CONCERNS.find(x => x[0] === k)![2]], noConcerns: k === "none" });
+  const SKIN_LABEL: Record<string, string> = { dry: "Dry", oily: "Oily", combination: "Combination", normal: "Normal" };
+  const FINISH_ROW = [["matte", "Matte"], ["dewy", "Dewy"], [null, "No preference"]] as const;
+  // The edit panel once answered: the same three questions as rows (finish optional).
+  const pickers = <div className="sk-edit">
+    <div className="sk-row"><span className="sk-rk">Skin type</span><span className="sk-pills">{SKIN_TYPES.map(k => <span key={k}>{pill(SKIN_LABEL[k], { ...choice, skin: k }, choice.skin === k)}</span>)}</span></div>
+    <div className="sk-row"><span className="sk-rk">Concerns</span><span className="sk-pills">{CONCERNS.map(([k, l]) => <span key={k}>{pill(l, withConcern(k), concernKey === k)}</span>)}</span></div>
+    {showFinish && <div className="sk-row"><span className="sk-rk">Finish <small>optional</small></span><span className="sk-pills">{FINISH_ROW.map(([f, l]) => <span key={l}>{pill(l, { ...choice, finish: f }, choice.finish === f)}</span>)}</span></div>}
+  </div>;
+  // Before the answer: one calm question at a time, as padel asks level then style.
+  const step = !choice.skin ? 1 : 2;
+  const stepper = <div className="sk-steps">
+    <p className="sk-step">{`Step ${step} of 2`}</p>
+    {step === 1 ? <>
+      <h3 className="sk-q">{"What's your skin type?"}</h3>
+      <div className="sk-opts">{SKIN_TYPES.map(k => <Link key={k} href={at({ ...choice, skin: k })} scroll={false} replace className="sk-opt">{SKIN_LABEL[k]}</Link>)}</div>
+    </> : <>
+      <p className="sk-done"><span>{`Skin type: ${SKIN_LABEL[choice.skin!].toLowerCase()}`}</span><Link href={at({ ...choice, skin: null })} scroll={false} replace>change</Link></p>
+      <h3 className="sk-q">Any skin concerns?</h3>
+      <div className="sk-opts">{CONCERNS.map(([k, l]) => <Link key={k} href={at(withConcern(k))} scroll={false} replace className="sk-opt">{l}</Link>)}</div>
+    </>}
   </div>;
 
   // The verdict as on padel's fit box: the word, a plain headline, and "why it fits" / "what to consider".
@@ -130,13 +155,13 @@ export default async function SkinFit({ productId, choice, buy, jsonLd }: { prod
           </div>
         </div>
         <div className={`rf-fit ${kind ? `v-${kind}` : "ask"}`} id="fit">
-          {!m ? <div className="rf-ask">
+          {!m ? <div className="rf-ask sk-ask">
             <div className="rf-asktitle"><h2>Is this right for your skin?</h2>
-              <p>{`Pick your skin and we'll check it against ${c.n.toLocaleString("en-US")} ${c.n === 1 ? "review" : "reviews"}, from people with your skin type.`}</p></div>
-            {pickers}
+              <p>{`Two quick questions, answered from ${c.n.toLocaleString("en-US")} ${c.n === 1 ? "review" : "reviews"} by people with your skin.`}</p></div>
+            {stepper}
             {bestFor.length > 0 && <p className="rf-best"><b>Generally best for</b>{` ${bestFor.slice(0, 3).join(", ")}.`}</p>}
           </div> : <div className="rf-ans" aria-live="polite">
-            <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
+            <div className="rf-chipsrow"><span className="rf-k">Your match</span>
               <span className={`rf-vpill ${kind}`} title="How well it fits your skin, from what people with your skin type said. Not a % of happy users.">{m.pct === null ? "— · not enough reports yet" : `${m.pct}% · ${fit}`}</span></div>
             <h2>{headline}</h2>
             <p className="rf-for">{m.pct === null ? `People with ${m.missing.join(" or ")} haven't said enough about it yet. What we know is below.` : `For your ${skinWords(choice).join(" · ")}, here's the short answer.`}</p>
@@ -157,9 +182,9 @@ export default async function SkinFit({ productId, choice, buy, jsonLd }: { prod
         <div className="rp-main">
           <div id="suits">
             <div className="rf-h"><h2>Who it suits</h2><span>from what people with each skin type said, not from the label</span></div>
-            <div className="rf-plays">{suits.map(x => { const s = a.scores[x.key]; const n = s ? dotsOf(s.score) : 0;
+            <div className="rf-plays">{suits.map(x => { const s = a.scores[x.key]; const few = !!s && s.n < FEW_VOICES, n = s ? dotsOf(s.score) : 0;
               return <div key={x.key} className="rf-prow"><b>{x.label}</b>{n ? segs(n) : <span className="rf-segs none"/>}
-                <span className="rf-pnote">{s ? <em className={`t${n}`}>{attrWords(x, s) === "not for" ? "not for it" : attrWords(x, s)}</em> : null}
+                <span className="rf-pnote">{s ? <em className={few ? "t3" : `t${n}`}>{few ? "few reports so far" : attrWords(x, s) === "not for" ? "not for it" : attrWords(x, s)}</em> : null}
                   <span>{s ? `${s.n} ${s.n === 1 ? "person" : "people"} with ${x.label.toLowerCase()}: ${s.plus} liked it${s.minus ? `, ${s.minus} didn't` : ""}.` : "Not enough reports from people with this skin type yet."}</span></span></div>; })}</div>
           </div>
           <div id="feel">
