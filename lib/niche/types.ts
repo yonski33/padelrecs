@@ -148,6 +148,18 @@ export type Niche = {
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];
+    /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
+  };
+  /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */
+  v2home?: {
+    /** The H1: plain words, then the highlighted ones. No subline under it when `sub` is null. */ h1: [string, string]; sub?: string | null;
+    /** The list's subline with no picks. */ listSub: string;
+    /** Every row shows the match box ("—" until a pick) instead of the Player score; "check price" is a button in its own column;
+     *  no verdict word or reason on the row. */ matchRows: true;
+    /** "Explore the rankings": tiles for the site's ranking lists. */ rankTiles: true;
+    /** The "how we score" strip under the tiles. */ steps: true;
+    /** "Questions": `{top:beginner}` / `{top:arm}` in an answer name the two top paddles for that pick, from the live list. */
+    faq: { q: string; a: string; link: string; href: string }[];
   };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */

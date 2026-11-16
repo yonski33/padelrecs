@@ -23,7 +23,7 @@ export const DEFAULT_CHOICE: QuickChoice = { style: "any", arm: false };
 
 /** Reads ?style=&level=&arm= (unknown values fall back to the default), and the fine-tune on a site that has one (padel's
  *  shapes and weights; lib/fit-config.ts fineTune). */
-export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; core?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
   const fine = cfg?.fineTune ? readFine(q) : {};
   return {
     ...(fineEmpty(fine) ? {} : { fine }),
@@ -136,13 +136,14 @@ export function matchSeoTitle(c: QuickChoice, many: string) {
  *  /quick/<key>, one cached page per combination. "power.beginner.1.round.-.-.0.0" = style.level.arm.shape.weight.feel.sweet.older. */
 export function choiceKey(c: QuickChoice, older: boolean) {
   const f = c.fine ?? {};
-  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0].join(".");
+  // A core pick (pickleball) is a ninth part, only when set, so padel's keys are as before.
+  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0, ...(f.core ? [f.core] : [])].join(".");
 }
 /** The picks a key stands for, or null when it isn't the canonical key of any (so each page has one address). */
 export function readChoiceKey(key: string): { choice: QuickChoice; older: boolean } | null {
-  const [style, level, arm, shape, weight, feel, sweet, older] = key.split(".");
+  const [style, level, arm, shape, weight, feel, sweet, older, core] = key.split(".");
   const v = (x: string | undefined) => x === "-" ? undefined : x;
-  const choice = readChoice({ style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined });
+  const choice = readChoice({ style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined, core });
   const out = { choice, older: older === "1" };
   return choiceKey(choice, out.older) === key ? out : null;
 }

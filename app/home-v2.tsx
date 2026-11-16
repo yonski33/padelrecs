@@ -1,4 +1,5 @@
 import "./home-v2.css";
+import "./home-v2-m.css";
 import { matchContext } from "./match-context";
 import { displayName } from "../lib/brand-name";
 import { rankedLists, listHref } from "./rankings/lists";
@@ -13,6 +14,7 @@ import { homePayload } from "./home-payload";
 import { HomeMatch } from "./home-match";
 import { V2Footer } from "./v2-footer";
 import { GuideRow } from "./guide/guide-row";
+import { rankHome } from "../lib/home-rank";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
  *  see the rackets according to what you need, not what we set"). Choices live in the URL (?style=&level=&arm=1); the server
@@ -51,13 +53,27 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
   ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
-  return <main className={`hv2 ${qtFontVars}`}>
+  // A site's own home mock (niche.v2home; PickleballRecs): the rankings tiles, the "how we score" strip and Questions follow the
+  // guide row. A Questions answer's {top:beginner} / {top:arm} names the two first paddles of that live list.
+  const M = niche.v2home;
+  const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
+  const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
+  const topTwo = (pick: "beginner" | "arm") => {
+    const rows = rankHome(payload.items, SETUP, BAD, pick === "arm" ? { style: "any", arm: true } : { style: "any", level: "beginner", arm: false }, false, 2).rows;
+    const names = rows.map(r => payload.cards[r.id]?.name).filter(Boolean);
+    return names.length === 2 ? `the ${names[0]} and the ${names[1]}` : names[0] ? `the ${names[0]}` : `the paddles at the top of that list`;
+  };
+  const channels = new Set(data.external.filter(e => e.sourcePlatform === "YouTube" && e.sourceName).map(e => e.sourceName!.toLowerCase())).size;
+  const tileFills = ["var(--acc)", "#e9edf6", "oklch(0.9 0.06 235)"];
+
+  return <main className={`hv2${M ? " hv2-m" : ""} ${qtFontVars}`}>
     {/* The mockup's own footer (owner 2026-11-15: "match it 100%"); home-v2.css hides the site's on this page. The header is the site's (site-header.tsx). */}
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        <div><h1>Less guessing. <span className="hl">{`Better ${niche.words.many}.`}</span></h1>
-          <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>
+        {M ? <div><h1>{`${M.h1[0]} `}<span className="hl">{M.h1[1]}</span></h1>{M.sub && <p className="hv2-sub">{M.sub}</p>}</div>
+          : <div><h1>Less guessing. <span className="hl">{`Better ${niche.words.many}.`}</span></h1>
+          <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>}
         <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>
       </section>
 
@@ -87,6 +103,26 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       </HomeMatch>
       {/* Below the list: the Shape row and a link to the racket guide, nothing else (owner 2026-11-16). */}
       <GuideRow/>
+      {M && <>
+        <section className="hv2-rt" aria-labelledby="hv2-rt-t">
+          <div className="hv2-rthead"><h2 id="hv2-rt-t">Explore the rankings</h2><a href="/rankings">all rankings →</a></div>
+          <div className="hv2-rtgrid">{best.map((l, k) => {
+            const title = l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list)));
+            return <a key={l.list.slug} href={listHref(l.list.slug)}><span className="t"><b>{title}<span aria-hidden="true"> →</span></b><em>{`${l.entries.length} ${niche.words.many}`}</em></span>
+              <span className="mini" aria-hidden="true">{[0, 1, 2].map(j => <i key={j} className={`p${j}`} style={{ "--f": tileFills[(j + k) % 3] } as React.CSSProperties}/>)}</span></a>; })}</div>
+        </section>
+        <section className="hv2-steps" aria-label="How we score">
+          <span className="k">how we score</span>
+          {[`${total.toLocaleString("en-US")} player reviews + ${channels} YouTube channels + forums`, "we count every verdict", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
+          <b>No sponsored picks.</b>
+          <a href="/how-we-make-these">how it works →</a>
+        </section>
+        <section className="hv2-faq" aria-labelledby="hv2-faq-t">
+          <h2 id="hv2-faq-t">Questions</h2>
+          <div className="box">{M.faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
+            <p>{`${f.a.replace(/\{top:(beginner|arm)\}/g, (_, p: "beginner" | "arm") => topTwo(p))} `}<a href={f.href}>{f.link}</a></p></details>)}</div>
+        </section>
+      </>}
     </div>
 
     <V2Footer/>

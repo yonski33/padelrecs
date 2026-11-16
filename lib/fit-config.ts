@@ -117,9 +117,6 @@ const PICKLEBALL: FitConfig = {
   complaint: ["forgiveness", "arm"],
   axis: { control: { trait: "control", tags: ["good control", "great for dinks"] }, power: { trait: "power", tags: ["easy power", "great pop"] } },
   styleLabels: { control: "Control", balance: "A bit of everything", power: "Power", spin: "Spin" },
-  // Owner 2026-11-16: picks power / control / spin plus a level on a DUPR-style scale.
-  styles: ["control", "power", "spin"],
-  levelLabels: { beginner: "2.5", intermediate: "3.5", advanced: "4.5+" },
   levelWords: { beginner: ["first paddle", "just started", "new to pickleball", "beginner"], intermediate: ["intermediate", "rec player", "3.0", "3.5"], advanced: ["advanced", "tournaments", "4.0+", "4.5", "5.0", "pro"],
     rating: { name: "DUPR", beginnerBelow: 3.0, advancedFrom: 4.0 } },
   weights: { style: 0.4, level: 0.3, arm: 0.35, score: 0.1 },

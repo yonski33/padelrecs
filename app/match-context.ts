@@ -17,7 +17,7 @@ import { evidenceBalance, labPercentiles, reportOf } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
 import { EXTRACTORS } from "../lib/evidence";
-import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts } from "../lib/fine-tune";
+import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts , coreClass, FINE_ROWS } from "../lib/fine-tune";
 import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { factsWith, matchPcts, type RankItem } from "../lib/home-rank";
 import { engineBase, engineTraitDots, DOT_TRAITS, type EngineFacts, type DotTrait } from "../lib/engine";
@@ -205,7 +205,7 @@ export const matchContext = cache(async () => {
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
   const feels = feelClasses(leans);
   for (const id of listed) { const r = data.rackets.find(x => x.id === id);
-    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null }); }
+    fineOf.set(id, { shape: shapeOf(r?.shape), grams: gramsOf(r?.weight), feel: feels.get(id) ?? null, forgiveness: traitMap.get(id)?.forgiveness?.score ?? null, weightSpec: r?.weight ?? null, ...(FINE_ROWS.includes("core") ? { core: coreClass(r?.core) } : {}) }); }
   // One compact item per listed racket (lib/home-rank.ts): the place inside a picked shape, the match % and the home list are
   // worked out from these, on the server and (for chip taps) in the browser, with the same functions.
   const items: RankItem[] = [...listed].map(id => {

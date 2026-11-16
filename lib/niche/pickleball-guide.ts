@@ -17,15 +17,15 @@ export const pickleballGuide: GuideConfig = {
     { label: "Banger or singles", desc: "elongated, thinner core, heavier", picks: { level: "advanced", style: "power" } },
   ],
   sections: [
-    { id: "shape", title: "Shape", sub: "length against sweet spot", layout: "cards", filter: "shape", liked: "standard", options: [
-      { value: "elongated", icon: "elongated", label: "Elongated", text: "More reach and swing speed for drives and serves; a smaller sweet spot.", best: "bangers, singles players" },
-      { value: "standard", icon: "standard", label: "Standard / hybrid", text: "The all-court middle: some reach, a forgiving face, quick at the kitchen.", best: "most doubles players" },
-      { value: "wide", icon: "wide", label: "Wide", text: "The biggest sweet spot and the quickest hands; less reach.", best: "beginners, hand battles" },
+    { id: "shape", title: "Shape", sub: "reach against sweet spot", layout: "cards", filter: "shape", liked: "standard", options: [
+      { value: "standard", icon: "standard", label: "Standard", text: "Widest sweet spot and quickest hands. The safe pick for most players.", best: "most players, hand battles" },
+      { value: "elongated", icon: "elongated", label: "Elongated", text: "More reach and power on drives and serves. Smaller sweet spot.", best: "bangers, singles players" },
+      { value: "hybrid", icon: "hybrid-paddle", label: "Hybrid", text: "A little extra reach without losing much forgiveness.", best: "all-court players" },
     ] },
-    { id: "core", title: "Core thickness", sub: "how thick the honeycomb is", layout: "split", liked: "thick",
+    { id: "core", title: "Core thickness", sub: "how thick the honeycomb is", layout: "split", liked: "16mm",
       spec: { key: "core", label: "Core thickness", column: "core", classify: coreOf }, options: [
-      { value: "thin", label: "14 mm and under", text: "Livelier and poppier, with more power on drives; less forgiving on resets." },
-      { value: "thick", label: "16 mm", text: "Softer and more stable: easier dinks and resets, and kinder to the arm.", accent: true, liked: "16 mm" },
+      { value: "14mm", label: "14 mm and under", text: "Livelier and poppier, with more power on drives; less forgiving on resets." },
+      { value: "16mm", label: "16 mm", text: "Softer and more stable: easier dinks and resets, and kinder to the arm.", accent: true, liked: "16 mm" },
     ] },
     { id: "weight", title: "Weight", sub: "how heavy in the hand", layout: "numbers", filter: "weight", liked: "medium",
       rule: "Most players are happiest around 7.8 to 8.2 oz. Lead tape lets you add weight later.", options: [
@@ -52,6 +52,6 @@ export const pickleballGuide: GuideConfig = {
     ] },
   ],
   buys: { section: "shape", kicker: "// what players actually buy" },
-  home: { section: "shape", title: "Browse by shape", link: "Core, weight & surface explained → paddle guide" },
+  home: { section: "shape", title: "Which shape is for you?", link: "Core, face & weight explained → paddle guide" },
   cta: { title: "Skip the theory. Get matched.", text: "Tell us your level and what you want more of; we'll rank every paddle for you.", button: "Find your paddle →" },
 };
