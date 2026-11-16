@@ -1,0 +1,543 @@
+{
+ "vatic-pro-prism-flash": {
+  "strengths": [
+   {
+    "t": "Soft at the kitchen: the plush face makes dinks, drops and resets easy to place.",
+    "for": [
+     "control",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "78729a03-b841-4eb8-8d1b-b54cb2c88e14",
+     "research-a3f3a251-a9c2-4f72-956d-1b1778baa9d8",
+     "8c1b11a4-11af-4cf5-9157-5b7c1cb85546",
+     "research-c13fac5b-f86c-424e-b9ce-261a760e0998",
+     "452ae4ee-5098-4c41-9411-c93ec941ce44",
+     "research-02bea6df-04e1-45c3-ad5e-5256c2626102",
+     "a3b5439a-4edc-422e-9263-c14769cc1be0",
+     "research-9a043b3f-6960-4a89-bdf8-3e863c91dea4",
+     "66ee3c4a-059d-4bbe-ba19-94af915fe2da",
+     "d8e7a341-6bb2-4f4b-a668-f78a6b86a5e3",
+     "db9a761f-c800-44b2-b56b-c6c8ca8ef7cd",
+     "bcadd0ae-a035-4d16-8735-c53b0029f3e7",
+     "research-13c812b8-23ef-4e50-bd47-40b5e3e62c8d",
+     "research-42d0857c-1dc4-48df-b2af-c03648732822"
+    ]
+   },
+   {
+    "t": "Forgives your mishits: a big sweet spot keeps off-centre hits in play.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "c47152e7-5a9b-462d-8639-8bd6e3103c34",
+     "research-cee26e47-7aad-4188-8d38-22ab51bc785d",
+     "research-3cd8541a-ce73-46f4-b7ed-953f9a10af7e",
+     "research-ec110b72-dd38-4b04-84b7-31594d92de4c",
+     "research-3935bf82-cc4f-4e1a-b328-c56427aa985b",
+     "research-6ddc3b20-e0de-43e8-8fd8-260a7278134e",
+     "research-5f7f368f-06bb-471f-81ca-67d0b094402f",
+     "research-0e93d03b-a9b9-43b9-820b-2289295916ff",
+     "research-535be0a3-df9c-4c23-a444-ef2208168887",
+     "66ee3c4a-059d-4bbe-ba19-94af915fe2da"
+    ]
+   },
+   {
+    "t": "Quick at the net: a low swing weight keeps it fast in hand battles.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-86943a65-c2a2-49a6-b6ac-0bbaa193a226",
+     "research-13c812b8-23ef-4e50-bd47-40b5e3e62c8d",
+     "research-02bea6df-04e1-45c3-ad5e-5256c2626102",
+     "research-2b72b6f2-426e-4196-af3f-cdb8374c2bc3",
+     "research-34cc671b-8a7c-4da1-bb61-7013c82e31a4",
+     "research-8549b1cf-1b90-4203-8e4f-309c994acf63",
+     "research-ca29bc6f-5987-4ff7-b4b4-fb7b4c8eb74f",
+     "research-487af6b4-6e47-4679-b47b-3396a4e62202",
+     "354faa71-1b97-46b0-ba44-d06540bd14bf",
+     "db9a761f-c800-44b2-b56b-c6c8ca8ef7cd"
+    ]
+   },
+   {
+    "t": "Hard to beat for the money: at around $90 it plays like paddles twice the price.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "78729a03-b841-4eb8-8d1b-b54cb2c88e14",
+     "c47152e7-5a9b-462d-8639-8bd6e3103c34",
+     "research-70103b2b-e000-430d-bfd6-06fc76fb7287",
+     "research-4c10b761-2416-4bad-b34d-413790ddff66",
+     "research-e088272a-7536-4071-8dc4-36dabe2a1c5a",
+     "research-df11a770-03d4-48ad-bbcd-add62d4dd222",
+     "research-6f4e8285-2456-4720-98f6-49de06d37749",
+     "a0bf9de7-8fb8-4775-9eba-c5049e9d6d0a"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "No free power: put-aways and drives need your own swing.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "research-4ecbc1ca-ea76-4f70-af7b-668190b26549",
+     "research-fbf59172-3ccd-4bf6-b50b-dd160b3ed951",
+     "research-7009a297-90e3-4e8e-8e2d-58de926274a0",
+     "research-1a5b360f-c420-4e21-9593-a6f7938178ef",
+     "research-922d86fb-a2c0-4d0c-972b-753fa04aac6b",
+     "research-d2e2be14-7b0e-439d-9358-25c99ddda4ef",
+     "research-5c2c1f8c-f99a-421e-9e51-6d66dee1fb70",
+     "research-32ea682a-726e-4686-8e5d-aa12b29d003c",
+     "research-c664205d-d2cc-4309-b332-dba5b11a67c4",
+     "research-096b09b3-a77f-4679-bf45-688085846439",
+     "research-533ea8c3-4067-42df-975b-13408e327a01",
+     "research-919e8cc8-0e8e-4a9a-a6f1-19355b57deb8",
+     "research-09b7d9d6-e3a1-465c-815c-0b916874cb61",
+     "research-e5ff874d-4e87-4ba4-9aa0-036c21326f34",
+     "research-a205f917-3a5c-4c79-a6ed-5157b31a9c30",
+     "research-5ead6ed8-545f-4995-83de-110616c93a36"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "Lead tape at 3 and 9 o'clock adds plow-through and stability.",
+     "src": [
+      "research-82effd1e-5ef2-4fe9-abc2-4c8a71bdddae",
+      "research-7a0a52b1-5985-4757-8616-4a425a5b450d",
+      "research-a442cdc4-2d08-40e1-b74a-b5f84575ac49",
+      "research-e2154a32-fbad-423b-80cd-25b3b847beb4",
+      "research-6ddc3b20-e0de-43e8-8fd8-260a7278134e",
+      "research-319f8516-3a25-4d70-af4a-58cc56496194"
+     ]
+    },
+    "alt": {
+     "slug": "11six24-vapor-power-2",
+     "t": "Want easy power? The 11SIX24 Vapor Power 2 hits much harder.",
+     "src": [
+      "11six24-vapor-power-2:5bd93436-60db-4331-8937-d66361f4f60a",
+      "11six24-vapor-power-2:87192b0d-5162-4e1d-b018-7d55a2401f83",
+      "11six24-vapor-power-2:de2e2fa5-3f72-4a71-a85d-7684e331d3d1"
+     ]
+    }
+   },
+   {
+    "t": "Wears out fast: the grit fades in months, and some go dead or crack within a year.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "research-cef0e039-7929-4fd2-b5bc-9ce3d9b5fb47",
+     "research-3a21f346-fe77-4217-b9f7-1421b3335498",
+     "research-c3a92fb2-0f2f-4a52-ba6e-14742094ab10",
+     "research-b8e215a4-434f-46bb-bb36-ff3e2be75208",
+     "research-6317fbc6-0183-4198-a9a5-5a4ec9774619",
+     "research-2a63444d-bb75-419c-93d3-ae7293aa6000",
+     "research-7ae52175-b1fa-4582-806a-76975fc467db",
+     "research-9d1578c3-ba34-4ff5-b88a-d892b8e6b47e",
+     "research-aa23700f-5f22-4285-8553-8d6073e366bd"
+    ]
+   },
+   {
+    "t": "Not for sore arms: it can flare elbow or shoulder pain, often from swinging harder for power.",
+    "for": [
+     "arm"
+    ],
+    "src": [
+     "research-18b44e7d-7a6f-4117-ad04-d56a3fd65b97",
+     "research-cc29cd92-6d5d-4fd8-b5c0-000d72e826b7",
+     "research-1a5b360f-c420-4e21-9593-a6f7938178ef",
+     "research-7ae52175-b1fa-4582-806a-76975fc467db",
+     "research-25c160a9-8275-4e41-b405-768b26152448"
+    ],
+    "only": [
+     "arm"
+    ],
+    "alt": {
+     "slug": "11six24-pegasus-jelly-bean-2",
+     "t": "Sore arm? The softer, more muted 11SIX24 Pegasus Jelly Bean 2 is gentler.",
+     "src": [
+      "11six24-pegasus-jelly-bean-2:research-0ad9bd98-12f2-4480-8f2a-3a074476f7a5",
+      "11six24-pegasus-jelly-bean-2:5cd5c142-1ed8-44f6-9f60-cf98ff2fe4b5"
+     ]
+    }
+   },
+   {
+    "t": "Outgrown at 4.0+: strong players move on for more pop as their game grows.",
+    "for": [
+     "advanced"
+    ],
+    "src": [
+     "research-5c2c1f8c-f99a-421e-9e51-6d66dee1fb70",
+     "research-ce6d157f-5b1d-47a2-82de-85126e1ba0c8",
+     "research-3b3b5ede-871f-4866-8004-0f40eca255b0",
+     "research-9271463d-6175-4ed1-a180-af385a9e9098",
+     "research-d156783c-a34a-40dc-9d02-854ef6e245c4",
+     "research-c9181803-804a-4528-be19-4efd7453976f",
+     "research-3ad9a869-7402-488c-85a7-bd0f647ae4ba"
+    ],
+    "only": [
+     "advanced"
+    ]
+   }
+  ]
+ },
+ "11six24-vapor-power-2": {
+  "strengths": [
+   {
+    "t": "Real, usable power: drives and counters come off with pace and pop, without cannon wildness.",
+    "for": [
+     "power",
+     "intermediate",
+     "advanced"
+    ],
+    "src": [
+     "5bd93436-60db-4331-8937-d66361f4f60a",
+     "f0f0cc4b-918a-4950-9fb7-a972425399eb",
+     "eb49778d-78df-4e8a-bee3-aa5df91ef974",
+     "research-3b845d6a-cb81-4348-9af6-08b953cfd9a9",
+     "b04100b3-9d42-4f4b-84c4-1872bedd6343",
+     "research-94215793-98a1-447c-8cb1-d4076e7c6fc8",
+     "87192b0d-5162-4e1d-b018-7d55a2401f83",
+     "ed364760-849f-474d-8491-8ae12fcfc4fa",
+     "research-395c1701-dc16-4805-908d-9c70aa817da0",
+     "research-4c90493a-9f25-4b84-8448-966f3c0feffe",
+     "research-e13ec481-158e-43a2-85c3-f103a7d8315f",
+     "fa1a9391-43a3-45fc-b48e-22a22f3b2e81",
+     "cba63133-82a2-400c-b6a8-d0d5ef671926",
+     "de2e2fa5-3f72-4a71-a85d-7684e331d3d1",
+     "dd71b7c0-1597-48a3-88c7-3ca81996fb10"
+    ]
+   },
+   {
+    "t": "Grit that lasts: the HexGrit face keeps its bite for months of heavy play.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "5bd93436-60db-4331-8937-d66361f4f60a",
+     "d2944160-b794-4c34-9af5-d2097852e4ed",
+     "a7c44ad5-4341-4025-97d3-aed76269d139",
+     "research-58f5a426-b273-4046-bf3f-dddb25e40b7c",
+     "research-2a975f92-7d0f-4a3d-87ca-98f0d7ac8810",
+     "research-61e0a066-49b6-4ed6-9251-7c3d9abf6876",
+     "research-0bf65507-4f88-4eb4-86d6-3f5b8b086654",
+     "research-123c51c2-d8b8-4fea-a3d7-afab7811bd6b",
+     "research-2f3c52e9-bfb5-47b0-ab9a-d677d413feb5",
+     "research-33f462dc-b86f-4728-962b-67ca111ae434",
+     "research-8543a3b9-329d-42f4-9e0d-6af8b0a96855",
+     "research-9ec145dc-9026-41e0-a273-9608c4379ee3",
+     "research-d54c43b9-126f-41df-83c7-403f69986e78",
+     "research-1b4a4d0b-f726-481d-bdb5-a1d24746821c",
+     "research-58b3fd96-5234-469d-aa21-d1300217284c",
+     "research-38cb0f22-fa35-4b79-85ca-64ab953ce531",
+     "research-ca3e47e9-134d-4ae4-bc1c-b630892b738e",
+     "research-c155581e-f424-4b9e-b251-db514055ec39",
+     "e7a97dfc-f4f3-4fc5-98e8-542c3a2e6f8d",
+     "dd71b7c0-1597-48a3-88c7-3ca81996fb10"
+    ],
+    "minor": true
+   },
+   {
+    "t": "Shapes the ball: heavy topspin on drives and slices: the ball dips and stays in.",
+    "for": [
+     "spin",
+     "power"
+    ],
+    "src": [
+     "d2944160-b794-4c34-9af5-d2097852e4ed",
+     "a7c44ad5-4341-4025-97d3-aed76269d139",
+     "research-2981715a-e683-497b-bf2a-fef6837c344e",
+     "research-b9eb6a2d-76f1-4bcf-8497-64f768d41043",
+     "research-b081128b-c3d3-405e-af62-6e08e2574316",
+     "ed364760-849f-474d-8491-8ae12fcfc4fa",
+     "research-e5cc7ff8-5b8e-4e8e-977f-a25abdf9b268",
+     "research-e13ec481-158e-43a2-85c3-f103a7d8315f",
+     "c4a8a085-49a4-4c63-84e6-a9899842e7ea",
+     "f9eb6e80-ceb8-4e4d-a731-f75e31993a76",
+     "de2e2fa5-3f72-4a71-a85d-7684e331d3d1"
+    ]
+   },
+   {
+    "t": "Forgiving for a power paddle: a generous sweet spot keeps mishits playable; the top edge is weaker.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "research-da649502-76ea-4ba6-bc91-7f1fbf5924e5",
+     "research-2db69712-7be0-4a11-b645-207638e10517",
+     "research-1e84f100-58f7-4549-a5f6-a2becca349ac",
+     "87192b0d-5162-4e1d-b018-7d55a2401f83",
+     "research-c29c0aa5-1bd1-448f-8683-0b368e219bcf",
+     "research-395c1701-dc16-4805-908d-9c70aa817da0",
+     "research-1deaaf60-e6a2-43a1-8960-a0f0e2180c94"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Poppy and lively: splits opinion on control: the lively face can send dinks and drives long.",
+    "for": [
+     "control",
+     "beginner"
+    ],
+    "src": [
+     "research-3c397033-9850-45e7-83b8-3b6ccd42fdef",
+     "ed364760-849f-474d-8491-8ae12fcfc4fa",
+     "research-06724d4a-fc0b-4092-a875-6c8b9ae0bc07",
+     "research-83fae74d-d316-4ccd-bff5-b87265fdeb07",
+     "research-4649e6e4-6830-4749-a463-6184a1d4c676",
+     "research-cda81607-6e9f-4029-9388-25d9ba8e579c",
+     "research-c9f7e3ae-3f66-42ed-8876-02db71e04090",
+     "research-b4d07b6a-a3e6-46cb-96a8-7aa569bca47e",
+     "research-b241c84f-5954-4c6a-b48a-a4c16096e2df",
+     "fa1a9391-43a3-45fc-b48e-22a22f3b2e81"
+    ],
+    "tip": {
+     "label": "Player tip",
+     "t": "Lead tape at the sides grows the sweet spot and steadies resets.",
+     "src": [
+      "research-3b845d6a-cb81-4348-9af6-08b953cfd9a9",
+      "research-2981715a-e683-497b-bf2a-fef6837c344e",
+      "research-1e84f100-58f7-4549-a5f6-a2becca349ac",
+      "research-fa3aa3bc-05f6-4c2e-8ea9-e91c8b707e62",
+      "research-d679cb36-3d46-463f-835c-1917b2fefb3f",
+      "research-6357afc4-bad0-48db-b21f-a44b12440f09",
+      "research-b62f5430-e3b3-416f-911a-910295ebd29b"
+     ]
+    },
+    "alt": {
+     "slug": "11six24-vapor-jelly-bean-2",
+     "t": "Want more touch? The 11SIX24 Vapor Jelly Bean 2 plays soft and muted.",
+     "src": [
+      "11six24-vapor-jelly-bean-2:0e87b180-968c-4bc5-a34f-97a2dae84db6",
+      "11six24-vapor-jelly-bean-2:34240cd2-2ac0-4c0e-ad15-829ac1cd8ec9",
+      "11six24-vapor-jelly-bean-2:d140591a-62a0-4585-803c-1781f871d078"
+     ]
+    }
+   },
+   {
+    "t": "Early face failures: some faces delaminate or go soft within weeks; warranty swaps are quick.",
+    "for": [],
+    "src": [
+     "research-10b86a4f-803a-4f7a-9854-fc1937e29b7e",
+     "research-fe876657-e691-4f85-bf99-ef020b9c05dd",
+     "research-fd44bef0-7497-40cd-a81f-a3f2f30e0fbd",
+     "research-38ba87fe-571f-4968-9d5d-1c03b2cdadb5",
+     "research-f175af87-7ddc-461a-91c5-9af712d1ea3a",
+     "research-4af0b409-3394-4e3e-99e3-32f7c712ee17",
+     "research-fc5ef484-6e67-4dc6-b131-174edc806f4f"
+    ]
+   },
+   {
+    "t": "Stiff out of the box: the core can feel firm, even wooden, until it breaks in.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-8112a12c-c015-4940-92fe-d8765cf97d0f",
+     "research-4425fe0f-1686-459a-9418-3d559f7f0a75",
+     "research-c101d9e6-0754-40c9-aea8-8482ae5341fb",
+     "research-a9eec3d5-b020-420c-aba1-98fd21a2d5b2",
+     "research-eca22fcc-3dec-405a-a8a6-77e02596565c",
+     "research-b4d07b6a-a3e6-46cb-96a8-7aa569bca47e",
+     "research-fcd07878-a57b-48ca-81b1-0aa514044eba"
+    ]
+   },
+   {
+    "t": "Not a first paddle: its pop takes skill to tame: better for intermediates and up.",
+    "for": [
+     "beginner"
+    ],
+    "src": [
+     "research-c0a186e1-848d-4d79-a3ef-056bcb9dacc2",
+     "research-83fae74d-d316-4ccd-bff5-b87265fdeb07",
+     "research-4649e6e4-6830-4749-a463-6184a1d4c676",
+     "research-cda81607-6e9f-4029-9388-25d9ba8e579c",
+     "research-b4d07b6a-a3e6-46cb-96a8-7aa569bca47e"
+    ],
+    "only": [
+     "beginner"
+    ]
+   }
+  ]
+ },
+ "11six24-pegasus-jelly-bean-2": {
+  "strengths": [
+   {
+    "t": "Control and soft hands: soft, dense foam takes pace off, so resets stay low.",
+    "for": [
+     "control",
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "5391f8db-54d8-48b8-97ce-7d653466e643",
+     "4d7e55dd-babb-4f0a-86ba-639395a51160",
+     "research-ab0ad0a0-9511-444d-9c85-08b7440bdf7d",
+     "research-fed655a8-743f-451e-8236-667a5a2c98cc",
+     "research-fbc99d58-be8a-47bf-82ef-8bdc4f2a7d11",
+     "research-353ceb5d-ef7b-46bc-a147-a268888d9768",
+     "research-0ad9bd98-12f2-4480-8f2a-3a074476f7a5",
+     "78bcf40f-4ede-490d-bc8c-c0eac1c4e94c",
+     "5cd5c142-1ed8-44f6-9f60-cf98ff2fe4b5",
+     "fda4c8df-ca84-4ba9-b028-f76239a6cc58"
+    ]
+   },
+   {
+    "t": "A huge sweet spot: the widest sweet spot in the line forgives off-centre hits.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "352c17df-147c-4bb1-b142-97d3d2e13c42",
+     "research-ab0ad0a0-9511-444d-9c85-08b7440bdf7d",
+     "research-cd5e4c36-7c2e-4da0-8ccb-5be89d2704fc",
+     "78bcf40f-4ede-490d-bc8c-c0eac1c4e94c",
+     "01079886-9e5a-4361-a2a9-55c30bfd7ca9",
+     "fda4c8df-ca84-4ba9-b028-f76239a6cc58"
+    ]
+   },
+   {
+    "t": "Fast and stable: a low swing weight gives quick hands without wobble.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "5391f8db-54d8-48b8-97ce-7d653466e643",
+     "352c17df-147c-4bb1-b142-97d3d2e13c42",
+     "98bd90b4-da09-4b3a-a581-349b9f1af61f",
+     "research-af8808ea-0a64-4c92-b2ad-91f73edd34dc",
+     "research-fed655a8-743f-451e-8236-667a5a2c98cc",
+     "research-a817fde9-cc3c-42ae-be39-f5e5cecd0f00",
+     "research-6190a215-197d-4df2-bade-36a68da742e2",
+     "78bcf40f-4ede-490d-bc8c-c0eac1c4e94c",
+     "01079886-9e5a-4361-a2a9-55c30bfd7ca9"
+    ]
+   },
+   {
+    "t": "Spin that holds up: the HexGrit face keeps its spin over time.",
+    "for": [
+     "spin"
+    ],
+    "src": [
+     "5391f8db-54d8-48b8-97ce-7d653466e643",
+     "352c17df-147c-4bb1-b142-97d3d2e13c42",
+     "98bd90b4-da09-4b3a-a581-349b9f1af61f",
+     "research-af8808ea-0a64-4c92-b2ad-91f73edd34dc",
+     "research-a8ba90ca-6992-4782-9b4c-cb2ef0cb6ecc",
+     "research-0ad9bd98-12f2-4480-8f2a-3a074476f7a5",
+     "fda4c8df-ca84-4ba9-b028-f76239a6cc58"
+    ],
+    "minor": true
+   }
+  ],
+  "catches": [
+   {
+    "t": "Low put-away power: very little pop: you supply the pace on serves and finishes.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "352c17df-147c-4bb1-b142-97d3d2e13c42",
+     "research-970cb915-43f2-48f4-b117-3e221234e6c1",
+     "research-6405b1b4-c690-42a0-8040-85594073b827",
+     "research-0ad9bd98-12f2-4480-8f2a-3a074476f7a5",
+     "5cd5c142-1ed8-44f6-9f60-cf98ff2fe4b5"
+    ],
+    "alt": {
+     "slug": "11six24-pegasus-power-2",
+     "t": "Want more pop in the same shape? The 11SIX24 Pegasus Power 2 has it.",
+     "src": [
+      "11six24-pegasus-power-2:8649b017-7971-44ac-9d3d-4be209f491cb",
+      "11six24-pegasus-power-2:2b8a048e-c916-4d81-aa8e-73e39265bcb5",
+      "11six24-pegasus-power-2:research-891281bd-1feb-4bd5-bfed-3e76300a3dab"
+     ]
+    }
+   },
+   {
+    "t": "Muted feel: it plays soft and muted; players who like a crisp feel may not.",
+    "for": [],
+    "src": [
+     "research-6190a215-197d-4df2-bade-36a68da742e2",
+     "research-0ad9bd98-12f2-4480-8f2a-3a074476f7a5",
+     "5cd5c142-1ed8-44f6-9f60-cf98ff2fe4b5"
+    ]
+   }
+  ]
+ },
+ "ronbus-ripple-v2-r1-14": {
+  "strengths": [
+   {
+    "t": "Huge power and pop: full-stroke drives and put-aways hit with real firepower.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "989e6966-0737-4b77-ba54-b3307bf3d534",
+     "c6dacb12-a479-4873-900e-e2d7842c5013",
+     "a1a00e3f-c20a-484d-87b1-4c821e221b2e",
+     "d40b677a-1fb7-453f-8407-dbe163c3cfa5",
+     "9d39b568-fb9b-4993-abe8-4b51011607ff"
+    ]
+   },
+   {
+    "t": "Reach and plow-through: the heavy head drives through the ball from the baseline.",
+    "for": [
+     "power"
+    ],
+    "src": [
+     "2b2267d3-f2e7-4f56-b3d2-29e1e17688c0",
+     "d40b677a-1fb7-453f-8407-dbe163c3cfa5",
+     "9d39b568-fb9b-4993-abe8-4b51011607ff"
+    ]
+   }
+  ],
+  "catches": [
+   {
+    "t": "Slow at the net: a high swing weight makes it sluggish in hand battles.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "989e6966-0737-4b77-ba54-b3307bf3d534",
+     "c6dacb12-a479-4873-900e-e2d7842c5013",
+     "a1a00e3f-c20a-484d-87b1-4c821e221b2e",
+     "2b2267d3-f2e7-4f56-b3d2-29e1e17688c0",
+     "d40b677a-1fb7-453f-8407-dbe163c3cfa5"
+    ],
+    "alt": {
+     "slug": "ronbus-ripple-v2-r4-14",
+     "t": "Want quicker hands? The Ronbus Ripple V2 R4 hybrid is easier to swing.",
+     "src": [
+      "ronbus-ripple-v2-r4-14:f0daf8a4-f55e-4add-8cbe-f545022b429d",
+      "ronbus-ripple-v2-r4-14:4d106fe4-3b33-4a5f-b8c3-4d2689098d67",
+      "ronbus-ripple-v2-r4-14:research-3d25e3e4-165a-4ad1-aff6-7100f381dde9"
+     ]
+    }
+   },
+   {
+    "t": "Small sweet spot: a tighter sweet spot punishes mishits and resets take finesse.",
+    "for": [
+     "beginner",
+     "control"
+    ],
+    "src": [
+     "989e6966-0737-4b77-ba54-b3307bf3d534",
+     "c6dacb12-a479-4873-900e-e2d7842c5013",
+     "2b2267d3-f2e7-4f56-b3d2-29e1e17688c0",
+     "9d39b568-fb9b-4993-abe8-4b51011607ff"
+    ]
+   }
+  ]
+ }
+}
