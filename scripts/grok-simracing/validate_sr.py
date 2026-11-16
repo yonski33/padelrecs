@@ -11,7 +11,7 @@ ATTR=re.compile('|'.join(re.findall(r'String\.raw`([^`]*)`',_src.split('export c
 def who(t):
   t=re.sub(r'\b(splits? (opinion|reviews)|opinion splits|opinions? (is |are )?split)\b[^.]*','',t.replace('==',''),flags=re.I)
   return ATTR.search(t) or re.search(r"\b(players?|drivers?|racers?|sim racers?|throwers?|hitters?|fans?|beginners?|newcomers?|people|anyone|reviewers?)\s+(who\s+\w+\s+)?(find|found|say|said|call|report|notice|complain|feel|felt|describe|rave|swear|prefer|like|love|may find)\b",t,re.I) or re.search(r"\b(some|many|most|few)\s+(prefer|like|love|miss|wish)\b",t,re.I)
-BANNED=re.compile(r"racket|paddle|\bdiscs?\b|\bplayers?\b|owners?\b|% (liked|loved)|reddit|brand says|roomy|warranty is not|\bjunk\b|defective|garbage|poor quality|cheaply made|in our test|we (threw|found|tested|noticed)|\bI (found|threw|felt)\b",re.I)
+BANNED=re.compile(r"racket|paddle(?!-? ?shifters?)|\bdiscs?\b|\bplayers?\b|owners?\b|% (liked|loved)|reddit|brand says|roomy|warranty is not|\bjunk\b|defective|garbage|poor quality|cheaply made|in our test|we (threw|found|tested|noticed)|\bI (found|threw|felt)\b",re.I)
 MEDICAL=re.compile(r"\b(prevent|cure|heal|injur|tendon|inflammat|therap|medical)\w*",re.I)
 FOR={'new','serious','all_in','console'}
 STOP=set("a an the and or of to in on at for with it its is it's your you out off up too very more less no not than from by as be can this that wheel base".split())

@@ -8,7 +8,7 @@ import type { PageContent } from "../lib/racket-page";
 
 // SimRacingRecs product pages: drafted by Grok from evidence packs (owner 2026-11-16), validated (scripts/grok/validate_sr.py) and
 // spot-checked by us; the pickleball rules, with the niche's words: "drivers", never "players" / "owners" / "racket" / "paddle".
-const banned = /racket|paddle|\bdiscs?\b|\bplayers?\b|owner|% (liked|loved)|reddit|brand says|roomy/i;
+const banned = /racket|paddle(?!-? ?shifters?)|\bdiscs?\b|\bplayers?\b|owner|% (liked|loved)|reddit|brand says|roomy/i;
 
 test("sim racing product page content follows the rules", () => {
   for (const [slug, v] of Object.entries(page as Record<string, PageContent>)) {
