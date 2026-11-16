@@ -1,5 +1,5 @@
 import "./catalog-v2.css";
-import { niche, productHref, mockLook } from "../../lib/niche";
+import { niche, productHref, mockLook, catalogPath } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { listLine } from "../../lib/list-lines";
 import { shortLine } from "../../lib/short-lines";
@@ -28,7 +28,7 @@ type F = CatalogFilters;
 /** With `brand`, the same page for one brand (/brands/<slug>, owner 2026-11-15: the brand page in the new design). */
 export default async function CatalogV2({ data: all, f, brand: only }: { data: Catalog; f: F; brand?: { id: string; name: string; slug: string } }) {
   const data = only ? { ...all, listed: all.listed.filter(r => r.brandId === only.id) } : all;
-  const base = only ? `/brands/${only.slug}` : "/rackets";
+  const base = only ? `/brands/${only.slug}` : catalogPath;
   const ctx = await matchContext();
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
   // Each listed racket's filter facts (app/rackets/catalog-rows.ts, shared with the guide), and its card. Both go to the
