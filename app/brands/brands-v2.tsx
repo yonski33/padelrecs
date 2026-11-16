@@ -1,6 +1,6 @@
 import "./brands-v2.css";
 import Link from "next/link";
-import { niche } from "../../lib/niche";
+import { niche, siteColor } from "../../lib/niche";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import type { Catalog } from "../../db/data";
@@ -10,7 +10,7 @@ import { productSignals } from "../signals";
 
 // Brands in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/3XBVLw7sGXDYTJcReV1mLm), PadelRecs
 // only: one card per brand with its best-scored rackets' photos (a name tile when it has none), most reviewed first or A–Z.
-const TINTS = ["oklch(0.97 0.04 125)", "oklch(0.97 0.05 95)", "oklch(0.97 0.025 200)", "oklch(0.97 0.03 60)"];
+const TINTS = [siteColor("--site-wash", "oklch(0.97 0.04 125)"), "oklch(0.97 0.05 95)", "oklch(0.97 0.025 200)", "oklch(0.97 0.03 60)"];
 const HEIGHTS = [76, 70, 70, 64];
 
 export default async function BrandsV2({ data, sort }: { data: Catalog; sort?: string }) {

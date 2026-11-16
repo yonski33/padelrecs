@@ -14,6 +14,7 @@ import type { Catalog } from "../../db/data";
 // PadelRecs only: a card per live ranking with its tag, the top three photos and its #1. Our real lists only (the mockup's
 // tennis-elbow and beginner lists don't exist yet).
 
+const SITE_ACC = "--site-acc" in niche.theme;
 /** The card's tag and tint per kind of list. */
 export function listKind(l: RankedList["list"]): { tag: string; bg: string; tint: string } {
   const t = l.trait?.tags.join(" ") ?? "";
@@ -22,7 +23,9 @@ export function listKind(l: RankedList["list"]): { tag: string; bg: string; tint
   if (/arm/.test(t)) return { tag: "arm-friendly", bg: "oklch(0.94 0.05 200)", tint: "oklch(0.97 0.02 200)" };
   if (/forgiving|beginner/.test(t)) return { tag: "beginner", bg: "oklch(0.93 0.14 100)", tint: "oklch(0.98 0.04 95)" };
   if (l.modelYearsBack !== undefined) return { tag: "better value", bg: "#fff", tint: "#f3f1ea" };
-  return { tag: "most popular", bg: "oklch(0.88 0.17 125)", tint: "oklch(0.97 0.04 125)" };
+  if (/spin/.test(t)) return { tag: "spin", bg: "#fff", tint: "#f3f1ea" };
+  // A site with its own accent (lib/niche theme --site-acc) uses it; padel keeps its lime.
+  return SITE_ACC ? { tag: "most popular", bg: "var(--site-acc)", tint: "var(--site-wash)" } : { tag: "most popular", bg: "oklch(0.88 0.17 125)", tint: "oklch(0.97 0.04 125)" };
 }
 /** "14 Nov". */
 export const shortDate = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });

@@ -6,7 +6,7 @@
 import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
-import { niche } from "../../../lib/niche";
+import { niche, mockLook } from "../../../lib/niche";
 import { LEVELS, STYLES, type QuickChoice, type Level } from "../../../lib/quick-match";
 import RankPicks from "./rank-picks";
 
@@ -60,7 +60,7 @@ export function MatchBox({ finder }: { finder?: string }) {
       </span>
       {s.showPct && <p className="rl2-note">{`match % = ${MATCH_NOTE.toLowerCase()}`}</p>}
     </> : <span className="rl2-none">
-      <span><strong>{"#1 for everyone isn't always #1 for you."}</strong>{" Answer 2 questions to see your match % on every racket."}</span>
+      <span><strong>{"#1 for everyone isn't always #1 for you."}</strong>{!mockLook && " Answer 2 questions to see your match % on every racket."}</span>
       <label htmlFor="rl2-edit" className="rl2-go"><span>find my match →</span></label>
     </span>}
     <div className="rl2-pane"><RankPicks key={JSON.stringify(c)} current={c} onPick={p => set({ choice: p, showPct: true })} finder={finder}/></div>

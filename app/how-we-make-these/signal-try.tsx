@@ -1,5 +1,5 @@
 "use client";
-import { niche } from "../../lib/niche";
+import { niche, siteColor } from "../../lib/niche";
 import { useState } from "react";
 import { signals, type SignalInput } from "../../lib/signal";
 
@@ -12,7 +12,7 @@ export default function SignalTry({ products, tones, plain }: { products: Signal
   const note = total < 5 ? `Under 5 reviews: this ${niche.words.one} wouldn't appear in rankings yet.`
     : total < 15 ? `${total} reviews. The score stays modest until more people weigh in.`
     : `${total} reviews, ${c.pos} loved it. Enough people that the score can trust it.`;
-  const [hi, mid, lo] = tones ?? ["oklch(0.88 0.17 125)", "oklch(0.93 0.14 100)", "#fff"];
+  const [hi, mid, lo] = tones ?? [siteColor("--site-acc", "oklch(0.88 0.17 125)"), siteColor("--site-acc", "oklch(0.93 0.14 100)"), "#fff"];
   const badge = score === null ? lo : score >= 85 ? hi : score >= 70 ? mid : lo;
   const row = (k: keyof typeof c, label: string) => <label key={k}><span>{label}</span>
     <input type="range" min={0} max={60} value={c[k]} onChange={e => setC(x => ({ ...x, [k]: +e.target.value }))}/><b>{c[k]}</b></label>;

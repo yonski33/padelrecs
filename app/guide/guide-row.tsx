@@ -13,6 +13,17 @@ export async function GuideRow() {
   const g = niche.guide, s = g?.home && g.sections.find(x => x.id === g.home!.section), key = s && keyOf(s);
   if (!g?.home || !s || !key) return null;
   const ctx = await matchContext(), rows = catalogRows(ctx.data, ctx), spec = specGroups(g), keys = spec.map(x => x.key);
+  // A site's own home mock (niche.v2home): icon beside the words, the option's line and "see N standard paddles →" in the tile.
+  const own = g.home.tiles, tiles = own ? Object.entries(own).flatMap(([v, t]) => { const o = s.options.find(x => x.value === v); return o ? [{ ...o, ...t }] : []; })
+    : s.options.filter(o => o.value);
+  if (niche.v2home) return <section className="shr shr-m" aria-labelledby="shr-title">
+    <h2 id="shr-title">{g.home.title}</h2>
+    <div className="shr-row" style={{ "--n": tiles.length } as React.CSSProperties}>{tiles.map(o => {
+      const n = optionCount(rows, key, o.value!, SUITS_OK, spec);
+      return <a key={o.value} href={catalogHref(catalogPath, { [key]: o.value }, {}, keys)}>
+        <GuideIcon name={o.icon}/><span className="w"><b>{o.label}</b><span>{o.text}</span><em>{`see ${n} ${o.label.toLowerCase()} ${n === 1 ? niche.words.one : niche.words.many} →`}</em></span></a>; })}</div>
+    <a className="shr-guide" href="/guide">{g.home.link}</a>
+  </section>;
   return <section className="shr" aria-labelledby="shr-title">
     <h2 id="shr-title">{g.home.title}</h2>
     <div className="shr-row" style={{ "--n": s.options.length } as React.CSSProperties}>{s.options.filter(o => o.value).map(o => {

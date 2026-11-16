@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { catalog, score } from "../../db/data";
-import { niche, isV2, v2copy, scoreLabel } from "../../lib/niche";
+import { niche, isV2, v2copy, scoreLabel, siteColor } from "../../lib/niche";
 import { attrProfileFor } from "../../lib/attr-profile";
 import { signals, MIN_SIGNAL_REVIEWS, type SignalInput } from "../../lib/signal";
 import { signalCategory } from "../signals";
@@ -30,8 +30,8 @@ export default async function HowWeMakeThese() {
   // SkinRecs (attribute profile): its own words for the score, the dots and the match (padel's text is unchanged).
   const skin = !!attrProfileFor(niche), scoreName = skin ? scoreLabel : "Player score";
   const steps = [
-    ["Collect", skin ? "Reviews sent through this site, YouTube reviews and beauty blogs we summarise, and what people write in public skincare forums." : `Player reviews sent through this site, YouTube reviews we watch and summarise, and what players write in public ${v2copy.sport ? `${v2copy.sport} ` : ""}forums.`, "oklch(0.88 0.17 125)"],
-    ["Tag the verdict", skin ? "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's own skin type, when they say it, and what they liked or hated." : "Each review becomes one of three: loved it, mixed, or not for me. We also note the player's level and what they liked or hated.", "oklch(0.93 0.14 100)"],
+    ["Collect", skin ? "Reviews sent through this site, YouTube reviews and beauty blogs we summarise, and what people write in public skincare forums." : `Player reviews sent through this site, YouTube reviews we watch and summarise, and what players write in public ${v2copy.sport ? `${v2copy.sport} ` : ""}forums.`, siteColor("--site-acc", "oklch(0.88 0.17 125)")],
+    ["Tag the verdict", skin ? "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's own skin type, when they say it, and what they liked or hated." : "Each review becomes one of three: loved it, mixed, or not for me. We also note the player's level and what they liked or hated.", siteColor("--site-acc", "oklch(0.93 0.14 100)")],
     ["Count it", `Verdicts roll up into a ${scoreName} per ${w.one}. More reviews = more confidence.`, "oklch(0.94 0.05 200)"],
     ["Write one honest line", "We sum up what people keep saying, the good and the catch, so you can scan instead of reading 60 reviews.", "oklch(0.92 0.06 30)"],
   ];
@@ -43,7 +43,7 @@ export default async function HowWeMakeThese() {
     ["↻", "Scores move with new reviews.", "Every published review counts toward the numbers."],
   ];
   const faqs: [string, string][] = [
-    [`Why don't you test ${w.many} yourselves?`, `One tester's arm, level and style is one data point. Sixty owners across all levels tells you far more about how a ${w.one} behaves for someone like you.`],
+    [`Why don't you test ${w.many} yourselves?`, `One tester's arm, level and style is one data point. Sixty players across all levels tells you far more about how a ${w.one} behaves for someone like you.`],
     ["Can a brand flood you with fake reviews?", `Every site review goes through a check before it's published, and we watch for bursts from new visitors on the same ${w.one}. Suspicious batches get held, not counted.`],
     ["What does a mixed verdict mean?", "The player liked parts but wouldn't fully recommend it, e.g. loved the sweet spot, hated the bounce. It counts as neither a yes nor a no."],
   ];

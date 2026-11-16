@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "./guide.css";
-import { niche, catalogPath, productHref } from "../../lib/niche";
+import { niche, catalogPath, productHref, mockLook } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { score } from "../../db/data";
 import { SUITS_OK } from "../../lib/fit-verdict";
@@ -65,13 +65,13 @@ export default async function Guide() {
   const ld = { "@context": "https://schema.org", "@graph": [{ "@type": "BreadcrumbList", itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "/" }, { "@type": "ListItem", position: 2, name: "Racket guide", item: "/guide" }] }] };
 
-  const Liked = ({ s }: { s: GuideSection }) => { const l = liked(s); return l ? <a className="gd-liked" href={l.href}>{`Most-liked ${l.label} racket: ${l.name} →`}</a> : null; };
+  const Liked = ({ s }: { s: GuideSection }) => { const l = liked(s); return l ? <a className="gd-liked" href={l.href}>{`Most-liked ${l.label} ${niche.words.one}: ${l.name} →`}</a> : null; };
   const See = ({ s, o, words }: { s: GuideSection; o: GuideOption; words?: (n: number) => string }) => {
     const n = count(s, o), href = link(s, o);
     return n !== null && href ? <a className="gd-see" href={href}>{words ? words(n) : `see ${n} ${n === 1 ? niche.words.one : niche.words.many} →`}</a> : null;
   };
 
-  return <main className={`gd ${qtFontVars}`}>
+  return <main className={`gd${mockLook ? " gd-m" : ""} ${qtFontVars}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}/>
     <div className="gd-wrap">
       <p className="gd-crumbs"><Link href="/">home</Link> / {g.crumb}</p>

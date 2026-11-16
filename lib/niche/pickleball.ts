@@ -1,4 +1,5 @@
 import type { Niche } from "./types";
+import { pickleballGuide } from "./pickleball-guide";
 
 // Pickleball rating icons: an optic-yellow ball with holes. Same tile sizes as padel (17×14 strip, 20×20 picker).
 const holes17 = [[5, 4.4], [9, 4.4], [3.6, 7.6], [7, 7.2], [10.4, 7.6], [5.4, 10.4], [8.8, 10.4]];
@@ -18,6 +19,36 @@ const ogBall = (on: boolean) => on
 
 export const pickleball: Niche = {
   id: "pickleball",
+  guide: pickleballGuide,
+  // The PadelRecs v2 design (owner 2026-11-16, "Yes, start pickleball"): the same pages and components, with only these
+  // per-site words, its own logo and colours, and the paddle profile (lib/fit-config.ts PICKLEBALL) on the match engine.
+  design: "v2",
+  v2copy: {
+    sport: "pickleball", emoji: "🏓", strip: "a free, ad-light side project · built by pickleball players",
+    madeBy: "made by people who own too many paddles 🏓", forum: "pickleball forum", blog: "pickleball blog",
+    aboutStory: ["pickleballrecs started on the sideline of a 3.5 open play. Every paddle claimed more power, more spin and more control at once, every review site sold the same picks, and nobody said which ones suit a game like ours.",
+      "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and pickleball forums together, counts it honestly, and tells you if a paddle fits"],
+    example: "Six Zero Ruby",
+    logo: "icon",
+    // The add-review page: the dot ratings' low / high words (spin is stored in comfort_rating) and the "+ prompt" chips.
+    rate: { powerRating: ["no put-away", "cannon"], controlRating: ["all over the place", "on a string"], comfortRating: ["no bite", "grabs the ball"],
+      forgivenessRating: ["tiny sweet spot", "huge sweet spot"], maneuverabilityRating: ["slow in hand battles", "lightning hands"] },
+    prompts: ["what surprised you", "what you came from", "how the grit held up", "who should skip it"],
+    footLine: "we read YouTube, forums & your reviews, count the verdicts, write one honest line. no sponsored picks.", footBrands: true,
+  },
+  // The home in the owner's PickleballRecs mock (2026-11-16), on the shared v2 components.
+  v2home: {
+    // The hero is the shared "Less guessing. Better paddles." (owner 2026-11-16 screenshot).
+    listSub: "ranked by player score and how many players reviewed it · pick above for your match %",
+    matchRows: true, rankTiles: true, steps: true,
+    faq: [
+      { q: "Best paddle for beginners?", a: "A standard shape with a 16mm core, mid weight and a big sweet spot. The top beginner matches right now: {top:beginner}.", link: "See the beginner list →", href: "/?level=beginner#match" },
+      { q: "Best for tennis elbow?", a: "Thicker 16mm cores and softer faces soak up vibration. Players with arm pain rank {top:arm} first.", link: "See arm-friendly paddles →", href: "/?arm=1#match" },
+      { q: "Elongated or standard?", a: "Elongated gives reach and power on drives; standard gives a wider sweet spot and quicker hands. Most players start standard.", link: "Read the paddle guide →", href: "/guide#shape" },
+      { q: "14mm or 16mm core?", a: "14mm is poppier and faster; 16mm is softer, more controlled and kinder to the arm.", link: "Core explained →", href: "/guide#core" },
+      { q: "What does the match % mean?", a: "How well a paddle fits the style, level and arm you picked. It is not a quality score; the player score is separate.", link: "How we score →", href: "/how-we-make-these#match" },
+    ],
+  },
   schema: "pickleballrecs",
   site: {
     name: "PickleballRecs",
@@ -62,6 +93,21 @@ export const pickleball: Niche = {
     "--score-off": ball("tile", false),
     "--score-pick-on": ball("pick", true),
     "--score-pick-off": ball("pick", false),
+    // The v2 pages (owner's PickleballRecs mock, 2026-11-16): navy ink, optic-yellow accent and match colours, blue offset
+    // shadows on cards, Bricolage Grotesque for headings. Unset on padel, which keeps its own.
+    "--site-ink": "#17203a",
+    "--site-text": "#2a3150",
+    "--site-mute": "#5a6078",
+    "--site-soft": "#4a5068",
+    "--site-display": "var(--font-display)",
+    "--site-acc": "oklch(0.92 0.17 105)",
+    "--site-marker": "oklch(0.92 0.17 105)",
+    "--site-good": "oklch(0.92 0.17 105)",
+    "--site-soso": "oklch(0.95 0.08 105)",
+    "--site-wash": "oklch(0.985 0.035 105)",
+    "--site-wash-line": "oklch(0.88 0.08 105)",
+    "--site-shadow": "oklch(0.62 0.12 235)",
+    "--site-scale": "linear-gradient(90deg, oklch(0.95 0.06 105), oklch(0.8 0.12 105) 50%, #17203a)",
   },
   chartColors: ["var(--green)", "var(--lime)", "#e0d9c2", "#b9c6d6"],
   og: { background: "#1f4e8c", accent: "#e9e23f", muted: "#a9bcd6", text: "#d9e3f0", scoreOn: ogBall(true), scoreOff: ogBall(false) },
@@ -120,7 +166,15 @@ export const pickleball: Niche = {
   ],
   // Same bar as padel (owner via the recs PM 2026-11-15: "fit bar = 6, same rules as padel"); under 15 the verdict and % say
   // they rest on fewer reports.
-  fit: { minReports: 6, fewReports: 15 },
+  fit: { minReports: 6, fewReports: 15,
+    // Same gate as padel: with a level picked, only paddles whose suits score reaches the bar are candidates.
+    levelGate: { beginner: 60, intermediate: 60, advanced: 50 },
+    // The match engine with padel's numbers (owner 2026-11-16: the shared engine), the paddle traits and the spin pick. Maker
+    // label words as in the lower-cased name ("Double Black Diamond Control", "Vapor Power 2").
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
+      controlLabels: [" control", " ctrl", " soft"], powerLabels: [" power", " pwr"],
+      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2,
+      traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"] } },
   finder: {
     title: "Pickleball Paddle Finder Quiz",
     heading: "Which pickleball paddle is right for you?",
