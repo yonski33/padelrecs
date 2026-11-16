@@ -166,3 +166,8 @@
 /* Phones keep the match % only (the mockup's phone row has no score pill; there is no room beside the reviews and link). */
 @media (max-width: 640px) { .bh-spill { display: none; } }
 @media (max-width: 640px) { .bh-best { display: none; } }
+/* After a pick (owner 2026-11-16, the mockup's column): the pill's number is plain text, not a second circle; the pill is tinted
+   by the user score like the badge. */
+.bh-pct .bh-spill { margin-top: 0; border-color: currentColor; background: var(--paper); font-weight: 600; }
+.bh-pct .bh-spill.hi { background: oklch(0.86 0.07 155); } .bh-pct .bh-spill.mid { background: var(--mark); }
+.bh-pct .bh-spill b { all: unset; font-size: 12px; font-weight: 700; }

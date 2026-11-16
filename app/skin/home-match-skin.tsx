@@ -101,7 +101,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
               {card.shop ? <a className="bh-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a> : <span/>}
               <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : "user score"}</small>
                 {/* With picks the match % is the star; the user score stays as a small neutral pill (owner 2026-11-16). */}
-                {picked && sig !== null && <span className="bh-spill"><b>{sig}</b> user score</span>}</span>
+                {picked && sig !== null && <span className={`bh-spill ${sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`}><b>{sig}</b> user score</span>}</span>
             </li>;
           })}</ol>
           <a className="bh-all" href={choice.typeSlug ? `/${choice.typeSlug}${pickQ}` : `${catalogPath}${pickQ}`}>{`see all ${allOfType} ${catWord === "skincare" ? niche.words.many : catWord} →`}</a>
