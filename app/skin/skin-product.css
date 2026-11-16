@@ -239,3 +239,9 @@ body:has(main.bp) .v2-foot nav, body:has(main.bh) .v2-foot nav { font-family: va
     .hv2-shin { flex-wrap: nowrap; }
   }
 }
+
+/* Written content (db/racket-page/skin.json): a Why not item's tip / try-instead, and the "few reports so far" note. */
+.bp .bp-tip { display: block; margin-top: 6px; font-size: 13px; line-height: 1.45; color: inherit; opacity: .85; }
+.bp .bp-tip b { font-weight: 600; }
+.bp .bp-tip a { text-decoration: underline; text-underline-offset: 2px; }
+.bp .bp-few { margin: 8px 0 0; font-size: 14px; opacity: .8; }

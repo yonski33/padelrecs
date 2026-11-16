@@ -98,7 +98,7 @@ test("SkinRecs product page: the answers come from the picks alone", () => {
   const types = skin.typePages ?? [];
   const input: ProductInput = { self: wire[0], peers: wire.slice(1, 3), peerCards: { b: { short: "Beta Gel", photo: null, href: "/moisturizers/beta", total: 30 }, c: { short: "Gamma Balm", photo: null, href: "/moisturizers/gamma", total: 4 } },
     here: "/moisturizers/alpha", type: { slug: "moisturizers", label: "Moisturizers" }, catalogPath: "/products", many: "products", counts: { n: 40, positive: 30, mixed: 6, negative: 4 },
-    quotes: { "hydration:1": "Keeps my dry patches calm all day", "hydration:-1": null, "gentle:1": null, "gentle:-1": null, "breakouts:1": null, "breakouts:-1": null } };
+    page: null };
   const none = productView(profile, input, readSkinChoice({}, types));
   assert.equal(none.answered, false); assert.equal(none.pct, null); assert.equal(none.backHref, "/moisturizers");
   const dry = productView(profile, input, readSkinChoice({ skin: "dry", goal: "hydrate" }, types));
@@ -108,4 +108,33 @@ test("SkinRecs product page: the answers come from the picks alone", () => {
   assert.equal(dry.tabs[0].href.endsWith("?skin=dry&goal=hydrate"), true);
   // The same picks give the same answers, however they arrive.
   assert.deepEqual(productView(profile, JSON.parse(JSON.stringify(input)), readSkinChoice({ goal: "hydrate", skin: "dry" }, types)), dry);
+});
+
+// Owner 2026-11-16: the advice is the product's written content in the expert voice; no counts in it.
+test("SkinRecs product page: written content drives why yes / why not and the match box, with no counts", () => {
+  const types = skin.typePages ?? [];
+  const item = (title: string, t: string, f: string[], extra = {}) => ({ title, t, src: ["x1", "x2"], for: f as never, proof: "from forums & YouTube", ...extra });
+  const base: ProductInput = { self: wire[0], peers: wire.slice(1, 3), peerCards: { b: { short: "Beta Gel", photo: null, href: "/moisturizers/beta", total: 30 }, c: { short: "Gamma Balm", photo: null, href: "/moisturizers/gamma", total: 4 } },
+    here: "/moisturizers/alpha", type: { slug: "moisturizers", label: "Moisturizers" }, catalogPath: "/products", many: "products", counts: { n: 40, positive: 30, mixed: 6, negative: 4 }, page: null };
+  const input: ProductInput = { ...base, page: { bottom: "A rich cream for dry skin. Oily skin should skip it.",
+    yes: [item("Seals in moisture", "Leaves ==dry patches soft by morning==.", ["dry", "hydrate"]), item("Fragrance-free", "No scent, ==easy on reactive skin==.", ["sensitive"])],
+    no: [item("Heavy on oily skin", "==Feels greasy by noon== on oily skin.", ["oily"], { alt: { slug: "beta", t: "The lighter gel.", src: ["x3", "x4"] }, altCard: { name: "Beta Gel", href: "/moisturizers/beta" } }),
+      item("Can clog pores", "Breaks some people out, ==mostly with thick layers==.", ["acne"], { tip: { t: "Use a thin layer.", src: ["x1", "x5"] } })] } };
+  const none = productView(profile, input, readSkinChoice({}, types));
+  assert.equal(none.bottom, "A rich cream for dry skin. Oily skin should skip it.");
+  assert.deepEqual(none.yesL.map(x => x.hl), ["dry patches soft by morning", "easy on reactive skin"]);
+  const oily = productView(profile, input, readSkinChoice({ skin: "oily", goal: "clear" }, types));
+  assert.equal(oily.noL[0].title, "Heavy on oily skin"); assert.ok(oily.noL[0].forYou);
+  assert.equal(oily.consider, "Heavy on oily skin: feels greasy by noon on oily skin.");
+  assert.deepEqual(oily.considerAlt, { name: "Beta Gel", href: "/moisturizers/beta" });
+  const acne = productView(profile, input, readSkinChoice({ acne: "1" }, types));
+  assert.ok(acne.noL.find(x => x.title === "Can clog pores")?.tip);
+  // No entry: lines from the scores, worded without numbers; under 6 reports, "few reports so far".
+  for (const q of [{}, { skin: "dry", goal: "hydrate" }, { skin: "oily", sens: "1" }]) {
+    const v = productView(profile, base, readSkinChoice(q, types));
+    for (const t of [v.why, v.consider, ...v.yesL.flatMap(x => [x.pre + x.hl + x.post, x.proof]), ...v.noL.flatMap(x => [x.pre + x.hl + x.post, x.proof]), ...v.self.map(x => x.note)])
+      assert.ok(!t || !/\d/.test(t.replace(/SPF \d+/g, "")), `a count in: ${t}`);
+  }
+  const few = productView(profile, { ...base, counts: { n: 4, positive: 3, mixed: 1, negative: 0 } }, readSkinChoice({}, types));
+  assert.equal(few.few, true); assert.deepEqual(few.yesL, []);
 });
