@@ -41,6 +41,8 @@ test("a weak curated match says why it is here, in one line of 105 characters or
   assert.equal(whyHere(88, "The small sweet spot asks a lot of you.", "Not aimed at intermediates"), "Top-rated, but the small sweet spot asks a lot of you; not aimed at intermediates.");
   assert.equal(whyHere(65, null, "Not aimed at beginners"), "Our pick, but not aimed at beginners for these picks.");
   assert.ok(whyHere(90, "x".repeat(120), "Could suit intermediates").length <= 105);
+  assert.equal(whyHere(90, "Flat smashes need your own arm; it gives up some power.", "✕ Not aimed at intermediates"),
+    "Top-rated, but flat smashes need your own arm; not aimed at intermediates.");
 });
 
 test("shape rule: no diamond in the engine's top 6 for control or balance at beginner and intermediate", () => {

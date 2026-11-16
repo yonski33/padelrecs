@@ -22,7 +22,8 @@ export const curatedSlugs = (site = niche.id) => [...new Set(Object.values(SITES
  *  sweet spot asks a lot of intermediates"): its standing, its own catch, and the fit check's reason, in ≤ 105 characters. */
 export function whyHere(signal: number | null, catchLine: string | null | undefined, fitShort: string | null | undefined, max = 105): string {
   const who = (signal ?? 0) >= CURATED_MIN.score ? "Top-rated" : "Our pick";
-  const lc = (t: string) => t.replace(/[.\s]+$/, "").replace(/^\w/, ch => ch.toLowerCase());
+  // Plain words only: no leading mark ("✕ Not aimed …"), no trailing punctuation ("…own arm;").
+  const lc = (t: string) => t.replace(/^[^\p{L}]+/u, "").replace(/[.;,:\s]+$/, "").replace(/^\p{Lu}(?!\p{Lu})/u, ch => ch.toLowerCase());
   const c = catchLine ? lc(catchLine.split(/(?<=[.;])\s/)[0]) : null, f = fitShort ? lc(fitShort) : null;
   return [c && f ? `${who}, but ${c}; ${f}.` : null, c ? `${who}, but ${c}.` : null, f ? `${who}, but ${f} for these picks.` : null, `${who}, but a stretch for these picks.`]
     .find((t): t is string => !!t && t.length <= max)!;
