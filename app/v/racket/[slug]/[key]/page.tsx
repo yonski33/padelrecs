@@ -1,7 +1,7 @@
 // A racket page (/rackets/<slug>), one cached page per set of picks (speed batch, owner 2026-11-15); on SkinRecs a product page
 // (/<type>/<slug>) per set of skin picks (lib/view-key.ts SKIN_PRODUCT_VIEW, owner 2026-11-16). proxy.ts rewrites
 // /rackets/<slug> and /rackets/<slug>?<picks> here (lib/view-key.ts); a direct visit to /v/… redirects to its address.
-// Refreshed every 5 minutes, and at once on an admin write (app/funtimes/auth.ts).
+// Refreshed every 24 hours, and at once on an admin write (app/funtimes/auth.ts).
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import RacketPage, { generateMetadata as racketMetadata } from "../../../../rackets/[slug]/page";
@@ -10,7 +10,9 @@ import { niche, isV2 } from "../../../../../lib/niche";
 import { catalog } from "../../../../../db/data";
 import { attrProfileFor } from "../../../../../lib/attr-profile";
 
-export const revalidate = 300;
+// 24 hours (product pages are most of the pages) (owner 2026-11-16, Vercel cost: 5-minute refreshes were most of the CPU and 2M ISR writes); new data shows at once
+// through on-demand refresh (admin writes: app/funtimes/auth.ts; imports and publishes: /api/refresh, scripts/refresh-sites.mjs).
+export const revalidate = 86400;
 // Every listed product's plain page is built with the site on v2 sites (owner 2026-11-16: racket pages took 5–14 s on a first
 // visit, and every deploy starts with an empty cache); pages with picks on first visit. None without a database (CI).
 export async function generateStaticParams() {

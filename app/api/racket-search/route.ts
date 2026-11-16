@@ -5,9 +5,12 @@ import { amazonPhoto } from "../../../lib/amazon-photos";
 import { shopPhoto } from "../../../lib/shop-photos";
 import { asc, count, eq, ne } from "drizzle-orm";
 
-export const dynamic = "force-dynamic";
+// The same for every visitor: cached and refreshed with the pages (owner 2026-11-16, Vercel cost: it ran 5 queries on every
+// search box opened). A build without a database (CI) builds an empty index.
+export const revalidate = 21600;
 
 export async function GET() {
+  if (!process.env.DATABASE_URL) return Response.json([]);
   // Only public catalog fields are sent to the browser; note counts include approved player reviews only.
   const db = getDb();
   const [list, playerCounts, webCounts, unapproved, brandList] = await Promise.all([

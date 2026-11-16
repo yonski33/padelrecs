@@ -10,7 +10,8 @@ const cachedOffer = unstable_cache(
   async (name: string, brand: string) => {
     const settings = niche.amazon, credentials = amazonCredentials();
     if (!settings || !credentials) return null;
-    return findAmazonOffer({ name, brand }, settings, credentials);
+    // No per-lookup log lines: they were most of the site's log events (owner 2026-11-16, Vercel cost).
+    return findAmazonOffer({ name, brand }, settings, credentials, fetch, () => {});
   },
   // v3: stricter matching (lib/amazon-match.ts), so lookups cached under the old rules are not reused.
   ["amazon-offer-v3", niche.id],
@@ -39,13 +40,17 @@ export function amazonLinksOn(env: Record<string, string | undefined> = process.
  */
 /** How long a page waits for the live Amazon lookup. */
 const LOOKUP_MS = 1500;
+// Log each problem once per server instance, not on every render (owner 2026-11-16, Vercel cost: observability events).
+let warned = false;
+const failedOnce = new Set<string>();
+
 export async function amazonButton(product: { name: string; brand: string | undefined }): Promise<AmazonButton | null> {
   const tag = affiliateTag();
   if (!niche.amazon || !tag) return null;
   const marketplace = niche.amazon.marketplace;
   const search: AmazonButton = { url: amazonSearchLink(product.name, tag, marketplace), price: null };
   if (!amazonCredentials()) {
-    console.warn("[amazon] AMAZON_CREATORS_API_CREDENTIAL_ID or AMAZON_CREATORS_API_CREDENTIAL_SECRET is not set; using search links without prices");
+    if (!warned) { warned = true; console.warn("[amazon] AMAZON_CREATORS_API_CREDENTIAL_ID or AMAZON_CREATORS_API_CREDENTIAL_SECRET is not set; using search links without prices"); }
     return search;
   }
   if (!product.brand) return search;
@@ -59,7 +64,8 @@ export async function amazonButton(product: { name: string; brand: string | unde
     if (offer === "slow") return search;
     return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null, asin: offer.asin } : search;
   } catch (error) {
-    console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`);
+    // Once per product per instance: a failing API otherwise logs on every page render.
+    if (!failedOnce.has(product.name)) { failedOnce.add(product.name); console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`); }
     return search;
   }
 }
