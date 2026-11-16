@@ -1,0 +1,105 @@
+/* SkinRecs rankings hub (.bk), brands (.bb), affiliate note (.bf) and contact (.bt) in the owner's beauty design (Claude Design,
+   2026-11-16). Tokens and shared bits from skin-product.css and pages-beauty.css. */
+.bk h1 em, .bb h1 em, .bf h1 em, .bt h1 em { font-style: italic; background: var(--rose); border: 2px solid var(--ink); border-radius: 999px; padding: 0 18px 4px; display: inline-block; transform: rotate(-1.5deg); }
+.bk h2, .bf h2 { font-size: 36px; line-height: 1.1; margin: 0 0 12px; }
+
+/* Rankings hub */
+.bk-wrap { max-width: 1100px; margin: 0 auto; padding: 36px 20px 72px; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box; }
+.bk-hero { display: flex; flex-direction: column; gap: 8px; }
+.bk-hero h1 { font-size: clamp(44px, 6vw, 70px); line-height: 1; }
+.bk-hero p { margin: 4px 0 0; font-size: 17.5px; color: var(--text); }
+.bk-meta { font: 12px var(--mono); color: var(--mute); } .bk-meta a { color: var(--mute) !important; }
+.bk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; align-items: start; }
+.bk-card { text-decoration: none; border: 2px solid var(--ink); border-radius: 24px; background: var(--paper); overflow: hidden; display: flex; flex-direction: column; transition: transform .12s, box-shadow .12s; }
+.bk-card.lead { box-shadow: 5px 5px 0 var(--rose-sh); }
+.bk-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--rose-sh); }
+.bk-top { padding: 18px 20px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 150px; box-sizing: border-box; }
+.bk-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.bk-tag { font: 500 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 10px; }
+.bk-head small { font: 11px var(--mono); color: var(--mute); }
+.bk-top > b { font: 400 32px/1.05 var(--serif); margin-top: 4px; }
+.bk-line { font-size: 15px; line-height: 1.45; color: var(--text); text-wrap: pretty; }
+.bk-band { border-top: 1.5px dashed var(--ink); border-bottom: 1.5px solid var(--ink); height: 118px; padding: 16px 20px 0; box-sizing: border-box; display: flex; align-items: flex-end; gap: 14px; }
+.bk-ph { position: relative; display: flex; align-items: flex-end; justify-content: center; width: 64px; height: 92px; border: 1.5px solid var(--ink); border-bottom: 0; border-radius: 12px 12px 0 0; background: var(--paper); box-sizing: border-box; overflow: visible; }
+.bk-ph.p1 { height: 80px; } .bk-ph.p2 { height: 72px; }
+.bk-ph img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; padding: 6px 6px 0; box-sizing: border-box; }
+.bk-ph i { position: absolute; left: -8px; top: -8px; z-index: 1; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--bg); font: normal 500 11px var(--mono); display: flex; align-items: center; justify-content: center; }
+.bk-tile { width: 100%; height: 100%; background: var(--tile); border-radius: 10px 10px 0 0; }
+.bk-foot { padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 14px; color: var(--text); }
+.bk-foot > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .bk-foot b { color: var(--ink); }
+.bk-n { font: 13px var(--mono); white-space: nowrap; color: var(--ink); }
+
+/* Brands */
+.bb-wrap { max-width: 1140px; margin: 0 auto; padding: 30px 20px 72px; display: flex; flex-direction: column; gap: 28px; box-sizing: border-box; }
+.bb-hero { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; }
+.bb-hero > div:first-child { display: flex; flex-direction: column; gap: 10px; }
+.bb-hero h1 { font-size: clamp(44px, 6vw, 70px); line-height: 1; } .bb-hero p { margin: 0; font-size: 17px; max-width: 560px; color: var(--text); }
+.bb-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.bb-card { height: 100%; box-sizing: border-box; text-decoration: none; border: 2px solid var(--ink); border-radius: 24px; background: var(--paper); display: flex; flex-direction: column; overflow: hidden; transition: transform .12s, box-shadow .12s; }
+.bb-card:hover { box-shadow: 5px 5px 0 var(--rose-sh); transform: translate(-2px, -2px); }
+.bb-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 16px 18px 6px; }
+.bb-top > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; } .bb-top b { font: 400 28px/1.05 var(--serif); }
+.bb-top small { font: 11px var(--mono); color: var(--mute); } .bb-top i { font: normal 13px var(--mono); }
+.bb-strip { display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin: 6px 12px 12px; padding: 12px 10px 0; border-radius: 18px; height: 96px; box-sizing: border-box; }
+.bb-slot { width: 52px; border: 1.5px solid var(--ink); border-bottom: 0; border-radius: 10px 10px 0 0; background: var(--paper); overflow: hidden; display: flex; align-items: flex-end; box-sizing: border-box; }
+.bb-slot img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; padding: 4px 4px 0; box-sizing: border-box; }
+.bb-mono { align-self: center; font: 400 22px var(--serif); color: var(--mute); padding-bottom: 12px; }
+.bb-known { display: flex; gap: 5px; flex-wrap: wrap; padding: 0 18px 14px; margin-top: auto; }
+.bb-known span { white-space: nowrap; font: 11px var(--mono); border-radius: 999px; padding: 1px 9px; background: var(--sand); color: var(--text); }
+
+/* Affiliate note */
+.bf-wrap { max-width: 780px; margin: 0 auto; padding: 40px 20px 72px; display: flex; flex-direction: column; gap: 44px; box-sizing: border-box; }
+.bf-hero { display: flex; flex-direction: column; gap: 14px; }
+.bf-hero h1 { font-size: clamp(44px, 6vw, 68px); line-height: 1; text-wrap: balance; } .bf-hero p { margin: 0; font-size: 18px; color: var(--text); text-wrap: pretty; }
+.bf-same { align-self: flex-start; display: flex; align-items: center; gap: 12px; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); box-shadow: 4px 4px 0 var(--rose-sh); padding: 10px 20px 10px 10px; }
+.bf-same i { font-style: normal; width: 28px; height: 28px; border-radius: 50%; background: oklch(0.86 0.07 155); border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; box-sizing: border-box; }
+.bf-same b { font-size: 17px; }
+.bf-steps { list-style: none; margin: 0; padding: 0; border: 2px solid var(--ink); border-radius: 24px; background: var(--paper); overflow: hidden; }
+.bf-steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 15px 20px; align-items: start; }
+.bf-steps li + li { border-top: 1.5px dashed var(--dash); }
+.bf-steps i { font-style: normal; width: 34px; height: 34px; border: 1.5px solid var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 20px/1 var(--serif); box-sizing: border-box; }
+.bf-steps span { font-size: 16px; padding-top: 4px; text-wrap: pretty; }
+.bf-aside { margin: 12px 0 0; font-size: 15px; color: var(--text); text-wrap: pretty; }
+.bf-nevers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.bf-nevers > div { display: flex; gap: 12px; align-items: flex-start; background: var(--rose-wash); border: 1.5px solid var(--ink); border-radius: 20px; padding: 14px 16px; }
+.bf-nevers i { flex: none; font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; margin-top: 2px; }
+.bf-nevers span { display: flex; flex-direction: column; gap: 1px; min-width: 0; } .bf-nevers b { font-size: 16px; line-height: 1.3; } .bf-nevers small { font-size: 14.5px; line-height: 1.45; color: var(--text); }
+.bf-cap { font: 500 11px var(--mono) !important; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text) !important; }
+.bf-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 10px; } .bf-row .bp-btn { font-size: 14px; padding: 9px 18px; }
+.bf-ghost { all: unset; cursor: pointer; white-space: nowrap; padding: 9px 18px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--paper); font: 600 14px var(--sans); color: var(--ink); text-decoration: none; }
+
+/* Contact */
+.bt-wrap { max-width: 1000px; margin: 0 auto; padding: 40px 20px 72px; box-sizing: border-box; }
+.bt-hero { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.bt-hero h1 { font-size: clamp(46px, 6.6vw, 76px); line-height: 1; } .bt-hero p { margin: 0; font-size: 18px; max-width: 600px; color: var(--text); text-wrap: pretty; }
+.bt-grid { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.bt-form { flex: 999 1 520px; min-width: 0; border: 2px solid var(--ink); border-radius: 26px; background: var(--paper); box-shadow: 6px 6px 0 var(--rose-sh); padding: 24px; display: flex; flex-direction: column; gap: 18px; box-sizing: border-box; }
+.bt-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bt-q { display: block; font-weight: 700; font-size: 15.5px; margin-bottom: 8px; } .bt-q small { font-weight: 400; color: var(--mute); font-size: 15px; }
+.bt-topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+.bt-topics button { all: unset; cursor: pointer; box-sizing: border-box; border: 1.5px solid var(--ink); border-radius: 18px; padding: 11px 14px; background: var(--paper); display: flex; flex-direction: column; gap: 1px; }
+.bt-topics button[aria-pressed="true"] { background: oklch(0.94 0.035 20); }
+.bt-topics b { font-size: 15px; } .bt-topics span { font-size: 13px; color: var(--text); }
+.bt-field { display: flex; flex-direction: column; }
+.bt-field input, .bt-field textarea { box-sizing: border-box; width: 100%; border: 1.5px solid var(--ink); border-radius: 999px; padding: 10px 16px; font: 15px var(--sans); outline: none; background: var(--bg); color: var(--ink); }
+.bt-field textarea { border-radius: 18px; padding: 12px 16px; font-size: 16px; line-height: 1.5; resize: vertical; }
+.bt-field input:focus, .bt-field textarea:focus { box-shadow: 0 0 0 3px var(--rose); }
+.bt-err { border: 1.5px solid oklch(0.6 0.15 25); border-radius: 14px; padding: 10px 14px; background: oklch(0.96 0.03 25); font-size: 14.5px; }
+.bt-send { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1.5px dashed var(--dash); padding-top: 14px; }
+.bt-send > span { font-size: 13.5px; color: var(--text); }
+.bt-send button { all: unset; cursor: pointer; white-space: nowrap; padding: 11px 22px; border-radius: 999px; font: 600 15.5px var(--sans); background: var(--ink); color: var(--bg); }
+.bt-send button:disabled { cursor: not-allowed; background: var(--line); color: var(--mute2); }
+.bt-side { flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 14px; }
+.bt-card { border: 2px solid var(--ink); border-radius: 22px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; background: var(--paper); }
+.bt-card.sage { background: var(--sage); } .bt-card b { font: 400 24px/1.1 var(--serif); } .bt-card > span { font-size: 14px; color: var(--text); }
+.bt-card .bp-btn { align-self: flex-start; margin-top: 4px; font-size: 14px; padding: 8px 16px; }
+.bt-note { border: 1.5px dashed var(--dash); border-radius: 20px; padding: 14px 18px; font-size: 14px; color: var(--text); text-wrap: pretty; } .bt-note strong { color: var(--ink); } .bt-note a { font-weight: 600; }
+.bt-done { max-width: 600px; margin: 24px auto 0; border: 2px solid var(--ink); border-radius: 28px; background: var(--sage); box-shadow: 6px 6px 0 var(--rose-sh); padding: 30px; display: flex; flex-direction: column; gap: 12px; }
+.bt-done h1 { font-size: 48px; line-height: 1; } .bt-done p { margin: 0; font-size: 16px; color: var(--text); }
+
+@media (max-width: 700px) {
+  .bk-wrap, .bb-wrap, .bf-wrap, .bt-wrap { padding: 24px 16px 56px; }
+  .bk-grid, .bb-grid { grid-template-columns: minmax(0, 1fr); }
+  .bt-side { max-width: none; }
+  .bt-form { padding: 18px; box-shadow: 4px 4px 0 var(--rose-sh); }
+}

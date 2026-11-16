@@ -14,6 +14,7 @@ import { catalogRows } from "../rackets/catalog-rows";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { GuideIcon } from "./guide-icon";
+import { attrProfileFor } from "../../lib/attr-profile";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,8 @@ export const dynamic = "force-dynamic";
 // and the overheard quote is checked word for word against its report here.
 export async function generateMetadata(): Promise<Metadata> {
   const g = niche.guide;
+  // SkinRecs: its own guide (app/skin/guide-beauty.tsx, owner's design 2026-11-16).
+  if (!g && attrProfileFor(niche)) return { title: "Skincare, decoded", description: "Skin type, texture, actives, fragrance, layering, sunscreen and budget, in plain words, with the products reviewers rate for each.", alternates: { canonical: "/guide" } };
   if (!g) return {};
   return { title: { absolute: g.title }, description: g.description, alternates: { canonical: "/guide" },
     openGraph: { title: g.title, description: g.description, url: "/guide", type: "article" } };
@@ -30,6 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Guide() {
   const g = niche.guide;
+  // Skin pages load only on SkinRecs, so other sites' routes don't preload the beauty fonts (app/skin/beauty-fonts.ts).
+  if (!g && attrProfileFor(niche)) { const { default: GuideBeauty } = await import("../skin/guide-beauty"); return <GuideBeauty/>; }
   if (!g) notFound();
   const ctx = await matchContext(), data = ctx.data;
   const rows = catalogRows(data, ctx);

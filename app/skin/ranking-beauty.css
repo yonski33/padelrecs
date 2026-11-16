@@ -1,0 +1,69 @@
+/* A SkinRecs ranking in the owner's beauty design (Claude Design "SkinRecs rankings", 2026-11-16). Tokens, pills and buttons
+   from skin-product.css; the add-a-review card and FAQ from home-beauty.css. */
+.rb-wrap { max-width: 1040px; margin: 0 auto; padding: 18px 20px 56px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box; }
+.rb-crumbs { font: 13px var(--mono); color: var(--mute); display: flex; gap: 6px; } .rb-crumbs a { color: var(--mute) !important; } .rb-crumbs span:last-child { color: var(--ink); }
+.rb-hero { display: flex; flex-direction: column; gap: 4px; margin-top: -6px; }
+.rb-hero h1 { font-size: clamp(34px, 5vw, 48px); line-height: 1.05; text-wrap: balance; }
+.rb-hero h1 em { font-style: italic; background: var(--rose); border: 2px solid var(--ink); border-radius: 999px; padding: 0 14px 2px; display: inline-block; transform: rotate(-1.5deg); }
+.rb-hero p { margin: 0; font-size: 16.5px; color: var(--text); }
+.rb-meta { font: 12px var(--mono); color: var(--mute); }
+.rb-tabs .bp-pick { font-weight: 600; padding: 5px 14px; }
+.rb-nudge { display: flex; align-items: center; gap: 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); padding: 7px 7px 7px 20px; }
+.rb-nudge b { font-size: 16px; }
+.rb-nudge a { margin-left: auto; white-space: nowrap; text-decoration: none; border: 1.5px solid var(--ink); border-radius: 999px; padding: 5px 14px; font-weight: 600; font-size: 14.5px; background: var(--mark); }
+
+.rb-pic { flex: none; border-radius: 14px; background: var(--tile); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.rb-pic img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.rb-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.rb-brand { font: 11px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--mute); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rb-rk { display: none; font: normal 21px/1 var(--serif); letter-spacing: 0; color: var(--ink); text-transform: none; }
+.rb-tag { font: 500 11.5px var(--mono); letter-spacing: 0; text-transform: none; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--mark); }
+.rb-name { font-weight: 700; font-size: 17px; line-height: 1.25; text-decoration: none; }
+.rb-line { font-size: 15.5px; color: var(--text); text-wrap: pretty; }
+.rb-best { font: 12.5px var(--mono); color: var(--mute); }
+.rb-sc { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--ink); font: 24px/1 var(--serif); box-sizing: border-box; }
+.rb-sc.hi { background: oklch(0.86 0.07 155); } .rb-sc.mid { background: oklch(0.91 0.05 155); } .rb-sc.lo { background: oklch(0.95 0.03 155); }
+.rb-sc.big { width: 58px; height: 58px; border-width: 2px; font-size: 32px; }
+.rb-scw { display: flex; align-items: center; gap: 8px; } .rb-scw small { font: 11.5px/1.2 var(--mono); color: var(--text); }
+.rb-scw.col { flex-direction: column; gap: 3px; min-width: 64px; } .rb-scw.col small { font-size: 10.5px; color: var(--mute); white-space: nowrap; }
+
+.rb-top { margin-top: 4px; border: 2px solid var(--ink); border-radius: 26px; background: var(--rose-wash); box-shadow: 6px 6px 0 var(--rose-sh); padding: 18px 22px;
+  display: grid; grid-template-columns: 64px 100px minmax(0, 1fr) max-content; gap: 20px; align-items: center; }
+.rb-n { font: 68px/0.9 var(--serif); }
+.rb-top .rb-pic { width: 100px; height: 128px; border-radius: 20px; }
+.rb-top .rb-body { gap: 4px; } .rb-top .bp-tag { align-self: flex-start; } .rb-top .rb-brand { font-size: 11.5px; margin-top: 2px; }
+.rb-top .rb-name { font-size: 23px; line-height: 1.15; } .rb-top .rb-line { font-size: 16.5px; } .rb-top .rb-best { font-size: 13px; }
+.rb-side { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 132px; }
+.rb-side .bp-btn { font-size: 14.5px; padding: 9px 18px; }
+.rb-why { font: 500 12.5px var(--mono); }
+
+.rb-list { list-style: none; margin: 0; padding: 0; border: 2px solid var(--ink); border-radius: 22px; background: var(--paper); overflow: hidden; }
+.rb-list li { display: grid; grid-template-columns: 44px 58px minmax(0, 1fr) max-content max-content; gap: 18px; align-items: center; padding: 12px 22px; scroll-margin-top: 90px; }
+.rb-list li + li { border-top: 1.5px dashed var(--dash); }
+.rb-rank { font: 32px/1 var(--serif); text-align: center; color: var(--mute); } .rb-rank.near { color: var(--ink); }
+.rb-list .rb-pic { width: 58px; height: 74px; }
+.rb-buy { font-size: 13.5px; padding: 8px 15px; }
+.rb-all { align-self: center; font: 500 13.5px var(--mono); }
+.rb-own { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; } .rb-own p { margin: 0 !important; } .rb-own .bp-btn { margin-left: auto; }
+.rb-faq { margin-top: 30px; } .rb-faq h2 { font-size: 34px; }
+
+@media (max-width: 700px) {
+  .rb-wrap { padding: 12px 16px 40px; gap: 12px; }
+  .rb-hero h1 { font-size: 34px; } .rb-hero p { font-size: 15px; }
+  .rb-tabs .bp-pick { font-size: 13.5px; padding: 4px 12px; }
+  .rb-nudge { border-radius: 20px; padding: 8px 8px 8px 14px; gap: 10px; } .rb-nudge b { font-size: 14px; line-height: 1.25; } .rb-nudge a { font-size: 13.5px; padding: 5px 11px; }
+  .rb-top { grid-template-columns: 72px minmax(0, 1fr); padding: 14px; gap: 10px 12px; box-shadow: 5px 5px 0 var(--rose-sh); border-radius: 24px; align-items: start; }
+  .rb-n { grid-column: 1; grid-row: 1; font-size: 38px; position: relative; z-index: 1; margin: -8px 0 0 -2px; align-self: start; height: 0; }
+  .rb-top .rb-pic { grid-column: 1; grid-row: 1; width: 72px; height: 96px; border-radius: 16px; }
+  .rb-top .rb-body { grid-column: 2; grid-row: 1; gap: 3px; } .rb-top .rb-name { font-size: 17px; } .rb-top .rb-line { font-size: 14.5px; } .rb-top .rb-best { font-size: 11.5px; }
+  .rb-side { grid-column: 1 / -1; flex-direction: row; min-width: 0; border-top: 1.5px dashed var(--dash); padding-top: 10px; gap: 8px; }
+  .rb-side .rb-sc.big { width: 40px; height: 40px; font-size: 22px; border-width: 1.5px; } .rb-scw small { font-size: 10.5px; }
+  .rb-side .bp-btn { order: 3; margin-left: auto; font-size: 13.5px; padding: 7px 13px; } .rb-why { font-size: 12px; margin-left: 4px; }
+  .rb-list li { grid-template-columns: 52px minmax(0, 1fr) auto; gap: 8px 12px; padding: 12px 14px; align-items: start; }
+  .rb-rank { display: none; } .rb-rk { display: inline; }
+  .rb-list .rb-pic { width: 52px; height: 66px; border-radius: 12px; grid-row: 1; }
+  .rb-list .rb-body { grid-column: 2 / -1; } .rb-name { font-size: 15.5px; } .rb-line { font-size: 14px; } .rb-best { font-size: 11px; }
+  .rb-scw.col { grid-column: 2; flex-direction: row; gap: 8px; min-width: 0; } .rb-scw.col .rb-sc { width: 34px; height: 34px; font-size: 19px; }
+  .rb-buy { grid-column: 3; justify-self: end; font-size: 13px; padding: 6px 12px; }
+  .rb-own .bp-btn { margin-left: 0; }
+}
