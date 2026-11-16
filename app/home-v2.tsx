@@ -5,7 +5,7 @@ import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 import { platformName } from "../lib/source-label";
 import type { QuickChoice } from "../lib/quick-match";
-import { niche, productHref } from "../lib/niche";
+import { niche, productHref, v2copy } from "../lib/niche";
 import { newThisWeek } from "../lib/new-this-week";
 
 import { qtFontVars } from "./qt-fonts";
@@ -49,6 +49,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         tag: platformName(e.sourcePlatform).toLowerCase() };
     }),
   ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
+  const live = <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>;
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
   return <main className={`hv2 ${qtFontVars}`}>
@@ -56,9 +57,10 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        <div><h1>Less guessing. <span className="hl">Better rackets.</span></h1>
-          <p className="hv2-sub">{"Tell us how you play. We'll handle the gear homework."}</p></div>
-        <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>
+        <div><h1>Less guessing. <span className="hl">{`Better ${niche.words.many}.`}</span></h1>
+          {v2copy.pillInline ? <div className="hv2-subrow"><p className="hv2-sub">{`${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`}</p>{live}</div>
+            : <p className="hv2-sub">{`${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`}</p>}</div>
+        {!v2copy.pillInline && live}
       </section>
 
       {/* The picks and the list re-rank in the browser on a tap (app/home-match.tsx); this render is the address's own list. */}

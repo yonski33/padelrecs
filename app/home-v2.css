@@ -163,3 +163,8 @@ body:has(main.hv2) { background: #fbfaf6; }
 
 /* "show older models" under the list (owner 2026-11-15): older years only on request, never as links in the rows. */
 .hv2 .hv2-older { display: block; text-align: center; padding: 8px; border-top: 1px solid #e3e0d7; font: 600 12px var(--qt-mono, "JetBrains Mono"), monospace; color: #4a4740; }
+/* Flight numbers (type-picker sites, DiscGolfRecs): four small boxes under the line, labelled once over the first row. */
+.hv2 .hv2-flight{display:flex;flex-wrap:wrap;align-items:center;gap:3px;font-family:var(--qt-mono,ui-monospace,monospace);font-size:11px;font-weight:600;position:relative;z-index:1}
+.hv2 .hv2-flight i{font-style:normal;min-width:22px;text-align:center;border:1.5px solid var(--ink);border-radius:5px;padding:0 3px;background:var(--tint,#f8f7f1)}
+.hv2 .hv2-flight-k{flex:0 0 100%;font-weight:400;font-size:10.5px;color:var(--ink-3);text-decoration:none;margin-bottom:1px}
+.hv2 .hv2-flight-k:hover{text-decoration:underline}

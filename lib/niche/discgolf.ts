@@ -1,4 +1,6 @@
 import type { Niche } from "./types";
+import { discgolfV2Style } from "./discgolf-v2-style";
+import { discgolfGuide } from "./discgolf-guide";
 
 // Rating icons: a disc seen at an angle, disc orange with a pine rim line and a lighter flight plate. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -17,6 +19,17 @@ const ogDisc = (rim: string, plate: string, stroke: string) => `<svg xmlns="http
 
 export const discgolf: Niche = {
   id: "discgolf",
+  // Design v2 (owner mock S8ZGdwXLf1VdGPcYrpeoQ1, 2026-11-16) on the shared shell, option A: lib/discgolf-fit.ts profile.
+  design: "v2",
+  guide: discgolfGuide,
+  v2style: discgolfV2Style, v2fonts: ["Familjen+Grotesk:wght@500;700"],
+  v2copy: {
+    sport: "disc golf", emoji: "🥏", strip: "a free, ad-light side project · built by disc golfers",
+    madeBy: "made by people with one disc too many in the bag 🥏", forum: "disc golf forum", blog: "disc golf blog",
+    aboutStory: ["discgolfrecs started in a parking lot after a round. We'd bought discs off hype and flight numbers, found half of them flew nothing like the chart for our arms, and couldn't find a straight answer anywhere.",
+      "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and disc golf forums together, counts it honestly, and tells you if a disc fits"],
+    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, tellUs: "Tell us how you throw", aboutLast: "your throw",
+  },
   schema: "discgolfrecs",
   site: {
     name: "DiscGolfRecs",
@@ -30,6 +43,15 @@ export const discgolf: Niche = {
   words: { one: "disc", many: "discs", One: "Disc", Many: "Discs" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
   recentMonths: 36,
+  // The fit check and quick match (lib/discgolf-fit.ts, PM 2026-11-16 option A). The engine's numbers are padel's (no disc golf
+  // tuning; ENGINE-ALGO: other sites supply a profile and a yardstick); the maker words are "SS" / "OS" in a mold's name.
+  fit: { minReports: 6, fewReports: 15,
+    // Beginners: skip distance drivers until they can throw a fairway ~250 ft (unless beginners themselves vouch for one).
+    beginnerShapesOut: ["distance driver"],
+    levelGate: { beginner: 45, intermediate: 40, advanced: 40 },
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
+      controlLabels: [" ss"], powerLabels: [" os", " xs"],
+      labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2 } },
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",

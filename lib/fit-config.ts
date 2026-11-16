@@ -4,6 +4,7 @@
 // axis quick match and the fit check use, the arm tags, and the words under each bar. lib/trait-score.ts, fit-verdict,
 // quick-match, match-context and the racket fit page read it; a site without one keeps its old pages.
 import type { Niche } from "./niche/types";
+import { DISCGOLF_FIT } from "./discgolf-fit";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
@@ -43,6 +44,14 @@ export type FitConfig = {
   /** Source platforms whose voices count as reviewers, not players, in the line under a bar (default YouTube). */ reviewerSources?: string[];
   /** Scorer v2's band cut-offs, where the site differs from padel's (lib/trait-score.ts). */
   scale?: Partial<{ top4: number; top5: number; worst: number; minComplaints: number; /** Rank on the net share of praise against complaints instead of the praise rate. */ rank: "net" | "rate" }>;
+  /** Quick match words and a type picker for sites whose main pick is the product type (DiscGolfRecs, PM 2026-11-16 option A).
+   *  With `types`, the home's first row picks a type (a hard filter on the catalogue shape, ?kind=) and the style picks move
+   *  under fine-tune as `stabilityLabel`. Unset: padel's row, unchanged. */
+  quick?: { types: { key: string; shape: string; many: string }[]; want: string; arm: string; armChip: string; stabilityLabel: string;
+    /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string };
+  /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
+   *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
+  evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -258,7 +267,7 @@ const TENNIS: FitConfig = {
   lab: { metrics: { swing_weight: { trait: "maneuverability", sign: -1 } }, weight: 0.5, specWeight: 0.5, alone: 0.7 },
 };
 
-const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS };
+const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT };
 /** The site's fit rules, or undefined for sites that keep the old pages. */
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */

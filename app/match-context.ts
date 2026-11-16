@@ -36,10 +36,12 @@ const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const matchContext = cache(async () => {
-  const [data, sigs, takes, live, overrides, evidence] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
+  const [data, sigs, takes, live, overrides, stored] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), rankedLists(), traitOverrides(), evidenceRows()]);
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
+  // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
+  const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
   // that one used another order, so "control" picked a different ten than the Best for control page (owner, 2026-11-15).
@@ -212,7 +214,8 @@ export const matchContext = cache(async () => {
     const t = traitMap.get(id), p = byId.get(id), r = data.rackets.find(x => x.id === id)!;
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
-      ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}) };
+      ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}),
+      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
   const factsFor = (choice: QuickChoice, id: string): FitFacts => factsWith(items, choice, facts(id), id);

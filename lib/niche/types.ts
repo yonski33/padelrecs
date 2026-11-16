@@ -131,6 +131,9 @@ export type Niche = {
   /** "v2": the 2026-11 design (quick-match home, fit pages, tight lists, the v2 brand / catalogue / reviews / about pages).
    *  Off by default, so a site switches when its data is ready (audit 2026-11-15: no more niche.id === "padel" checks). */
   design?: "v2";
+  /** Extra CSS laid over the shared v2 pages' tokens (a site's own palette and display font, Google Fonts family names in
+   *  v2fonts). Printed by the layout only when set. */
+  v2style?: string; v2fonts?: string[];
   /** Words the v2 pages use that are about the sport, not the product (audit 2026-11-15: no hard-coded padel copy in shared
    *  components). Optional: lib/niche/index.ts v2copy fills plain defaults from words / people / site. */
   v2copy?: {
@@ -148,6 +151,8 @@ export type Niche = {
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];
+    /** The community score's name ("thrower score"); default "player score". */ score?: string;
+    /** The home's "N reviews · N new this week" pill sits inline after the subtitle (owner, DiscGolfRecs mock review). */ pillInline?: boolean;
   };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
