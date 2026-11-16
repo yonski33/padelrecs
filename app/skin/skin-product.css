@@ -185,8 +185,15 @@ body:has(.bp), body:has(.bh) { background: #fbfaf6; }
 
 @media (max-width: 640px) {
   .bp-wrap { padding: 16px 16px 96px; gap: 32px; }
-  .bp-id { grid-template-columns: minmax(0, 1fr); }
-  .bp-shot { max-width: 150px; margin: 0 auto; width: 100%; }
+  /* Owner's mobile mockup: the photo beside the words, the compare tabs two by two, video cards with the thumbnail beside. */
+  .bp-wrap { padding-left: 20px; padding-right: 20px; }
+  .bp-id { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: start; }
+  .bp-shot { border-radius: 18px; }
+  .bp-idt h1 { font-size: 34px; }
+  .bp-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bp-tabs button { padding: 7px 9px; gap: 8px; } .bp-tabs b { font-size: 14px; white-space: normal; } .bp-tabs small { font-size: 12.5px; }
+  .bp-rv .rv-yt { grid-template-columns: 90px minmax(0, 1fr); gap: 12px; }
+  .bp-rv .rv-thumb { max-width: none; }
   .bp-check { box-shadow: 4px 4px 0 var(--rose-sh); }
   .bp-ask, .bp-ans { padding: 16px; }
   .bp-rows { padding: 4px 14px; }
@@ -218,3 +225,17 @@ body:has(main.bp) .v2-foot, body:has(main.bh) .v2-foot { border-top-color: #2b22
 body:has(main.bp) .v2-foot a, body:has(main.bh) .v2-foot a { color: #64574f; text-decoration-thickness: 1px; }
 body:has(main.bp) .v2-foot nav, body:has(main.bh) .v2-foot nav { font-family: var(--bp-sans, "Figtree"), system-ui, sans-serif; font-size: 14px; gap: 18px; }
 .bp-ask > .bp-tag, .bp-col > .bp-tag { align-self: flex-start; }
+
+/* Phones (owner's mobile mockup): the header is the logo and "+ add a review" only, and stays on top as you scroll; the strip
+   above it scrolls away (display: contents lets the header stick to the page, not to its wrapper). */
+@media (max-width: 639px) {
+  /* The page's own wrapper sets the side margin (20px, as the mockup); the site shell's padding would add 16px more. */
+  body:has(main.bp) .site, body:has(main.bh) .site { padding-left: 0; padding-right: 0; }
+  :is(.ba-wrap, .bb-wrap, .bc-wrap, .bf-wrap, .bg-wrap, .bh-wrap, .bk-wrap, .bp-wrap, .bs-wrap, .bt-wrap, .rb-wrap, .lr2.bl) { padding-left: 20px !important; padding-right: 20px !important; }
+  body:has(main.bp) .hv2-top, body:has(main.bh) .hv2-top {
+    display: contents;
+    .hv2-sh { position: sticky !important; top: 0; z-index: 30; }
+    nav, .hv2-find { display: none; }
+    .hv2-shin { flex-wrap: nowrap; }
+  }
+}

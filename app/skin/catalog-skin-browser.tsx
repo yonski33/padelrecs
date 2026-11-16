@@ -3,7 +3,7 @@
 // renders the address's filters (a cached page per view, app/v/…); a tap filters, counts and sorts the rows sent with the page
 // here, with the match % from the server's own functions (app/skin/rank.ts), and updates the address with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useInstantView, instantClick } from "../instant-view";
 import { wireCtx, fitWord, reasonOf, SKIN_GROUPS, type SkinWire } from "./rank";
 import { unpack, type SkinPack } from "./pack";
@@ -63,9 +63,13 @@ export function CatalogSkinBrowser({ pack, f: first, base, fixedType }: { pack: 
   const active = [...KEYS.filter(k => f[k]).map(k => ({ label: k === "skin" ? `good for ${f[k]} skin` : k === "type" ? typeOf(f[k])?.label.toLowerCase() ?? f[k]! : k === "price" ? f[k]! : `${f[k]} ${k}`, next: { [k]: undefined } })),
     ...(f.sens === "1" ? [{ label: "good for sensitive skin", next: { sens: undefined } }] : []), ...(f.acne === "1" ? [{ label: "good for acne-prone skin", next: { acne: undefined } }] : []),
     ...(f.ff === "1" ? [{ label: "fragrance-free", next: { ff: undefined } }] : [])];
+  // On phones each group starts closed and "+" opens it (owner's mobile mockup); on wider screens they start open.
+  const [mobOpen, setMobOpen] = useState<Record<string, boolean>>({});
+  const onPhone = () => typeof matchMedia === "function" && matchMedia("(max-width: 640px)").matches;
+  const toggle = (key: string) => (e: React.MouseEvent) => { if (!onPhone()) return; e.preventDefault(); setMobOpen(m => ({ ...m, [key]: !m[key] })); };
   const group = ([label, key, vals]: (typeof groupDefs)[number]) =>
-    <details key={key} className="bc-g" open>
-      <summary><b>{label}</b><span>{f[key] && <span className="bc-val">{vals.find(v => v[0] === f[key])?.[1]}</span>}<i aria-hidden="true"/></span></summary>
+    <details key={key} className={`bc-g${mobOpen[key] ? " mob-open" : ""}`} open>
+      <summary onClick={toggle(key)}><b>{label}</b><span>{f[key] && <span className="bc-val">{vals.find(v => v[0] === f[key])?.[1]}</span>}<i aria-hidden="true"/></span></summary>
       <div className="bc-opts">{vals.map(([v, l]) => { const on = f[key] === v, n = rows.filter(x => pass(x, key) && tests[key](x, v)).length;
         return <a key={v} {...to({ [key]: on ? undefined : v }, `bc-opt${on ? " on" : ""}${!n && !on ? " none" : ""}`, on)}>
           <span className="bc-dot" aria-hidden="true"/><span className="bc-ol">{l}</span><span className="bc-n">{n}</span></a>; })}</div>

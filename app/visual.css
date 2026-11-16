@@ -1910,18 +1910,18 @@ body:has(.lt-page) .site-header { background: #fcfbf8; border-bottom: 1px solid 
 .lt-site .site-footer a { color: var(--lt-mute); }
 .lt-site .site-footer a:hover { color: var(--lt-ink); }
 /* Pages without their own light layout. */
-.lt-site .site > main:not(.lt-page):not(.home) h1 { font-weight: 600; letter-spacing: -0.02em; }
-.lt-site .site > main:not(.lt-page):not(.home) :is(h2, h3) { font-weight: 600; letter-spacing: -0.01em; }
-.lt-site .site > main:not(.lt-page):not(.home) p, .lt-site .site > main:not(.lt-page):not(.home) li { line-height: 1.65; }
-.lt-site .site > main:not(.lt-page) :is(input[type="text"], input[type="email"], input[type="search"], textarea, select) { border: 1px solid var(--lt-line); border-radius: 12px; background: #fff; font-family: inherit; }
-.lt-site .site > main:not(.lt-page) :is(input, textarea, select):focus { outline: none; border-color: var(--lt-acc); }
+.lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) h1 { font-weight: 600; letter-spacing: -0.02em; }
+.lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) :is(h2, h3) { font-weight: 600; letter-spacing: -0.01em; }
+.lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) p, .lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) li { line-height: 1.65; }
+.lt-site .site > main:not(.lt-page):not(.bp):not(.bh) :is(input[type="text"], input[type="email"], input[type="search"], textarea, select) { border: 1px solid var(--lt-line); border-radius: 12px; background: #fff; font-family: inherit; }
+.lt-site .site > main:not(.lt-page):not(.bp):not(.bh) :is(input, textarea, select):focus { outline: none; border-color: var(--lt-acc); }
 .lt-site .site > main:not(.lt-page) .button { border-radius: 12px; font-weight: 600; box-shadow: none; }
 .lt-site .site > main:not(.lt-page) .button:not(.ghost) { background: var(--lt-acc); border-color: var(--lt-acc); color: #fff; }
 .lt-site .site > main:not(.lt-page) .button.ghost { background: var(--lt-tint2); border-color: var(--lt-line); color: var(--lt-acc); }
 /* Light: page titles upright and calm everywhere (the old italic display headline is gone). */
-.lt-site .site > main:not(.lt-page):not(.home) h1 { margin: 26px 0 8px; font-style: normal; font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; color: var(--lt-ink); }
-.lt-site .site > main:not(.lt-page):not(.home) h1 + p { margin-bottom: 22px; color: var(--lt-mute); }
-.lt-site .site > main:not(.lt-page):not(.home) label > span, .lt-site .site > main:not(.lt-page):not(.home) label { font-weight: 500; }
+.lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) h1 { margin: 26px 0 8px; font-style: normal; font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; color: var(--lt-ink); }
+.lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) h1 + p { margin-bottom: 22px; color: var(--lt-mute); }
+.lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) label > span, .lt-site .site > main:not(.lt-page):not(.home):not(.bp):not(.bh) label { font-weight: 500; }
 /* Home category row: one line; the More menu opens over the list. */
 .lt-cats { flex-wrap: nowrap !important; overflow: visible; }
 .lt-bar { overflow: visible; }

@@ -78,7 +78,7 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
     <div className="bp-wrap">
       <SkinProductLive input={input} choice={choice} summary={r.reviewSummary ?? null} photo={photo} buy={buy}
-        hero={<div className="bp-id">
+        hero={<div key="hero" className="bp-id">
           <div className="bp-shot">{photo ? <img src={photo} alt={name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span>product photo</span>}</div>
           <div className="bp-idt">
             <div className="bp-chips">{[r.shape?.toLowerCase(), ff === "free" ? "fragrance-free" : null, spf ? `SPF ${spf}` : null, price].filter(Boolean).map(x => <span key={x}>{x}</span>)}</div>
@@ -90,12 +90,12 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
             {buy && <p className="bp-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
         </div>}
-        reviews={<section id="reviews" className="bp-col bp-rv rf">
+        reviews={<section key="reviews" id="reviews" className="bp-col bp-rv rf">
           <RacketReviews racketId={r.id} name={title || name} cards={cards} nicknames={niche.form.quickVote?.nicknames ?? []} total={c.n}
             mood={{ pos: c.positive, mix: c.mixed, neg: c.negative, score: signal }}
             words={{ levelLead: "My skin is", levels: skinOpts, score: "User score", ask: "Tried it?", people: "people", peopleTab: "people" }}/>
         </section>}
-        specs={specs.length > 0 && <section className="bp-col"><details className="bp-specs"><summary><span>Ingredients &amp; details</span><i aria-hidden="true"/></summary>
+        specs={specs.length > 0 && <section key="specs" className="bp-col"><details className="bp-specs"><summary><span>Ingredients &amp; details</span><i aria-hidden="true"/></summary>
           <div className="bp-speclist">{specs.map(([k, v]) => <span key={k}><em>{k}</em> {v}</span>)}</div></details></section>}/>
     </div>
   </main><V2Footer/></>;

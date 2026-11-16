@@ -1,6 +1,7 @@
 import "./skin-product.css";
 import "./pages-beauty.css";
 import "./more-beauty.css";
+import "./catalog-beauty.css"; // the sort row (.bc-sort)
 import Link from "next/link";
 import { niche } from "../../lib/niche";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
