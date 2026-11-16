@@ -123,7 +123,23 @@ export function rankSkin<R extends SkinItem>(ctx: SkinRankCtx<R>, c: SkinChoice,
   }).filter(x => (!c.ff || x.ff) && (!c.budget || ctx.attrs.get(x.r.id)?.facts.price === c.budget));
   // Without picks, by user score; a body-first product (mostly used on the body) ranks as if ×0.85 on these face lists.
   const key = (x: (typeof rows)[number]) => x.signal === null ? -1 : ctx.attrs.get(x.r.id)?.facts.use === "body-first" ? x.signal * 0.85 : x.signal;
-  return rows.sort((a, b) => (picked ? (b.pct ?? -1) - (a.pct ?? -1) : 0) || key(b) - key(a) || a.r.name.localeCompare(b.r.name));
+  const sorted = rows.sort((a, b) => (picked ? (b.pct ?? -1) - (a.pct ?? -1) : 0) || key(b) - key(a) || a.r.name.localeCompare(b.r.name));
+  if (c.type) return sorted;
+  // With picks the cap works within the rows that have a %: a row without one never moves above them.
+  const typeOf = (x: SkinRow<R>) => x.r.shape;
+  return picked ? [...capPerType(sorted.filter(x => x.pct !== null), typeOf), ...sorted.filter(x => x.pct === null)] : capPerType(sorted, typeOf);
+}
+
+/** Lists without a type (owner 2026-11-17, audit #10): at most 2 of one product type in the top 8, so one strong toner or
+ *  cleanser line doesn't fill the list. The others move down in their own order, never out. */
+export const CAP_TOP = 8, CAP_PER_TYPE = 2;
+export function capPerType<T>(rows: T[], typeOf: (x: T) => string | null): T[] {
+  const top: T[] = [], later: T[] = [], n = new Map<string, number>();
+  for (const x of rows) {
+    const t = typeOf(x) ?? "";
+    if (top.length < CAP_TOP && (n.get(t) ?? 0) < CAP_PER_TYPE) { top.push(x); n.set(t, (n.get(t) ?? 0) + 1); } else later.push(x);
+  }
+  return [...top, ...later];
 }
 
 /** One short, real reason: the strongest part the match rests on ("good for dry skin · 9 people with dry skin"). */

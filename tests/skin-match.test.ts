@@ -86,9 +86,22 @@ test("10 pct_spread: on the core grid few top-8 rows reach 85 and the #1 median 
   assert.ok(med >= 72 && med <= 80, `median ${med}`);
 });
 
-// COSRX Full Fit Propolis Toner is still #1 in 90 of 553 combos (59 toner lists, 31 "everything"); the audit's own simulation
-// had 76 (13.7%). Its optional fix, at most 2 of one type in the top 8 of "everything", was left for the owner to decide.
-test("10b no product is #1 in more than 12% of combos", { todo: "needs the audit's optional per-type cap on 'everything' (owner decision)" }, () => {
+test("10c per-type cap: lists without a type hold at most 2 of one type in the top 8; the rest move down, not out", () => {
+  for (const q of [{}, { skin: "dry" }, { skin: "combination", goal: "hydrate" }, { sens: "1" }, { skin: "oily", acne: "1" }] as Record<string, string>[]) {
+    const rows = rank(q), top = rows.filter(r => !Object.keys(q).length || r.pct !== null).slice(0, 8), n = new Map<string, number>();
+    for (const r of top) n.set(r.r.shape ?? "", (n.get(r.r.shape ?? "") ?? 0) + 1);
+    assert.ok([...n.values()].every(v => v <= 2), `${JSON.stringify(q)}: ${JSON.stringify([...n])}`);
+    assert.equal(rows.length, rankSkin(ctx, readSkinChoice({ ...q, type: "" }, types)).length);
+  }
+  // A type filter shows that type's own order.
+  const toners = scored({ type: "toners", skin: "dry" });
+  assert.ok(toners.every((r, i) => i === 0 || (toners[i - 1].pct ?? -1) >= (r.pct ?? -1)));
+});
+
+// COSRX Full Fit Propolis Toner is #1 in 95 of 553 combos on the 2026-11-17 snapshot, with or without the per-type cap: the
+// cap can't move a #1 (the first row always fits). 59 are toner-only lists, 36 "everything". Lowering that needs a rule for
+// #1 itself (owner decision).
+test("10b no product is #1 in more than 12% of combos", { todo: "the per-type cap doesn't move #1; needs a #1 rule (owner decision)" }, () => {
   const { firsts, n } = grid();
   assert.ok(Math.max(...firsts.values()) / n <= 0.12, `max #1 share ${Math.max(...firsts.values())}/${n}`);
 });
