@@ -57,6 +57,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
   // A site's own home mock (niche.v2home; PickleballRecs): the rankings tiles, the "how we score" strip and Questions follow the
   // guide row. A Questions answer's {top:beginner} / {top:arm} names the two first paddles of that live list.
   const M = niche.v2home;
+  const heroSub = M?.h1 ? M.sub : `${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`;
   const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
   const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   const topTwo = (pick: "beginner" | "arm") => {
@@ -72,11 +73,10 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        {M?.h1 ? <div><h1>{`${M.h1[0]} `}<span className="hl">{M.h1[1]}</span></h1>{M.sub && <p className="hv2-sub">{M.sub}</p>}</div>
-          : <div><h1>Less guessing. <span className="hl">{`Better ${niche.words.many}.`}</span></h1>
-          {v2copy.pillInline ? <div className="hv2-subrow"><p className="hv2-sub">{`${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`}</p>{live}</div>
-            : <p className="hv2-sub">{`${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`}</p>}</div>}
-        {!v2copy.pillInline && live}
+        {/* One row on desktop on every site (owner 2026-11-16, as PickleballRecs): the headline with its marked half, then the
+            subtitle with the "N reviews · N new this week" pill on the same line. Both wrap on phones. */}
+        <div><h1>{`${M?.h1?.[0] ?? "Less guessing."} `}<span className="hl">{M?.h1?.[1] ?? `Better ${niche.words.many}.`}</span></h1>
+          <div className="hv2-subrow">{heroSub && <p className="hv2-sub">{heroSub}</p>}{live}</div></div>
       </section>
 
       {/* The picks and the list re-rank in the browser on a tap (app/home-match.tsx); this render is the address's own list. */}

@@ -6,13 +6,16 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
-import { choiceHref, homeHref, isDefault, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
+import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
 import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
 import { fitConfigFor } from "../lib/fit-config";
 import type { HomePayload, HomeSeed } from "./home-payload";
 import { sameChoice } from "../lib/rank-seed";
+import { forgetSavedPicks } from "../lib/saved-picks";
+/** What "reset ↺" goes back to: the default picks, whose address is "/" (tests/quick-reset.test.ts). */
+export const RESET_CHOICE: QuickChoice = DEFAULT_CHOICE;
 
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -52,6 +55,9 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
   }, []);
   const own = !payload || (sameChoice(choice, seed.choice) && older === seed.older);
   const go = (next: QuickChoice, nextOlder = older) => instantClick(() => { set({ choice: next, older: nextOlder }); document.title = titleOf(next); });
+  // Reset (owner 2026-11-16): the default picks (no level, no fine-tune, newest models), the plain address, no saved picks.
+  // It used to set level "intermediate", so on ?level=intermediate it changed nothing.
+  const reset = instantClick(() => { forgetSavedPicks(); set({ choice: RESET_CHOICE, older: false }); document.title = titleOf(RESET_CHOICE); });
   const { rows, olderN } = own ? seed : rankHome(payload.items, SETUP, BAD, choice, older);
   const cards = own ? seed.cards : payload.cards;
   const byId = own ? null : new Map(payload.items.map(x => [x.id, x]));
@@ -94,7 +100,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       </details>}
       {picked && !M && <p className="hv2-game">{QUICK ? "Your throw: " : "Your game: "}<b>{(QUICK ? [QUICK.types.find(t => t.key === choice.kind)?.many ?? null, choice.level ?? null, choice.style !== "any" ? styleWord(choice.style) : null, choice.arm ? QUICK.arm : null]
           : [choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)]).filter(Boolean).join(" · ")}</b>
-        <a href="/" onClick={go({ style: "any", level: "intermediate", arm: false }, false)}>reset ↺</a></p>}
+        <a href="/" onClick={reset}>reset ↺</a></p>}
     </section>
 
     <div className="hv2-grid">

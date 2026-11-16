@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { STYLES, LEVELS, levelLabel, type Style, type Level } from "../../../lib/quick-match";
 import { niche } from "../../../lib/niche";
 type Saved = { style: Style; level: Level; arm: boolean };
-const KEY = `${niche.site.wordmark}-profile`;
+import { SAVED_PICKS_KEY } from "../../../lib/saved-picks";
+const KEY = SAVED_PICKS_KEY;
 
 function readSaved(): Saved | null {
   try {

@@ -17,6 +17,7 @@ import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/
 import { evidenceLine, marked, mattersFor, SHOWN_ITEMS, SHORT_ITEMS, type PageItem, type PageTier } from "../../../lib/racket-page";
 import { fitReasonParts, type ReasonPart } from "../../../lib/fit-reason";
 import { RANK_SETUP, NEGATIVE_TAGS, sameChoice, type RankSeed } from "../../../lib/rank-seed";
+import { forgetSavedPicks } from "../../../lib/saved-picks";
 
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability words, arm pick and compare words. Unset: padel's. */
 const CFG = fitConfigFor(niche), QUICK = CFG?.quick ? CFG : null;
@@ -72,7 +73,7 @@ function usePublish(r: FitResult | null) {
 function useGo() {
   const { set, href } = use();
   const at = (c: QuickChoice) => { const h = choiceHref(c, ""); return h === "/" ? `${href}?style=any` : `${href}${h.slice(1)}`; };
-  const to = (c: QuickChoice | null) => ({ href: c ? at(c) : href, onClick: instantClick(() => set(c ? { choice: c, picked: true } : { choice: DEFAULT_CHOICE, picked: false })) });
+  const to = (c: QuickChoice | null) => ({ href: c ? at(c) : href, onClick: instantClick(() => { if (!c) forgetSavedPicks(); set(c ? { choice: c, picked: true } : { choice: DEFAULT_CHOICE, picked: false }); }) });
   return to;
 }
 

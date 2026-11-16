@@ -73,10 +73,11 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
 
   return <div className={`lt ${lightFont.className}`}>
     <section className="lt-hero">
-      <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${week ? `${fmt(week)} new this week · ` : ""}${fmt(everything.length)} ${p.one} reviews`}</div>
       <h1>{`Every ${w.one}, reviewed by `}<span>{`real ${p.many}`}</span></h1>
-      {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). */}
-      <p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
+      {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). The live pill sits on the
+          subtitle's line on every site (owner 2026-11-16), as on the v2 homes: "N reviews · N new this week". */}
+      <div className="lt-subrow"><p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
+        <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(everything.length)} reviews${week ? ` · ${fmt(week)} new this week` : ""}`}</div></div>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>
