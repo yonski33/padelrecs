@@ -2,11 +2,13 @@
 import padel from "../db/fit-card/padel.json";
 import pickleball from "../db/fit-card/pickleball.json";
 import discgolf from "../db/fit-card/discgolf.json";
+import simracing from "../db/fit-card/simracing.json";
 import type { CardContent } from "./fit-card";
 import { niche } from "./niche";
 
 const SITES: Record<string, Record<string, CardContent>> = { padel: padel as Record<string, CardContent>, pickleball: pickleball as Record<string, CardContent>,
-  discgolf: discgolf as Record<string, CardContent> };
+  discgolf: discgolf as Record<string, CardContent>,
+  simracing: simracing as Record<string, CardContent> };
 
 export function cardContent(slug: string, site = niche.id): CardContent | null {
   return SITES[site]?.[slug] ?? null;
