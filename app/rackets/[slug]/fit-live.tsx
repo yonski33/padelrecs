@@ -88,7 +88,7 @@ export function FitBox({ id, items, facts, hook, total, bestLine, levelDisagree,
   // (the fit-card lines when the page has none) plus the level reason. Bullets are gone: Why yes, why not says the rest.
   const asItem = (l: { t: string; for: string[] }) => ({ title: l.t.includes(": ") ? l.t.split(": ")[0] : l.t, t: l.t.includes(": ") ? l.t.slice(l.t.indexOf(": ") + 2) : l.t, for: l.for });
   const src = yesNo ?? (card ? { yes: card.strengths.map(asItem), no: card.catches.map(asItem) } : null);
-  const reason = verdict && verdict.kind !== "thin" ? (src ? fitReason(verdict.kind, src.yes, src.no, choice, [...(verdict.catches ?? []), ...verdict.reasons]) : null)
+  const reason = verdict && verdict.kind !== "thin" ? (src ? fitReason(verdict.kind, src.yes, src.no, choice, verdict.catches) : null)
     ?? ([why, consider && verdict.kind !== "good" ? consider : null].filter(Boolean).join(" ") || null) : null;
   // The try-instead link ("Want it easier? The AT10 18K 2026…") from the top catch, when it names a racket we list.
   const alt = lines?.catches.map(l => l.note?.kind === "alt" ? l.note.alt : null).find(x => x && card?.links[x.slug]) ?? null;

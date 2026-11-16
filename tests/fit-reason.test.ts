@@ -27,8 +27,15 @@ test("match box: weak fit: the level reason when the catch doesn't speak to the 
       "It has one thing going for you: lobs, chiquitas and low balls from the back feel safe under pressure. "
       + "But it isn't aimed at beginners.");
 });
-test("match box: weak fit with a catch on the picks keeps both", () => {
-    assert.ok(fitReason("no", yes, no, pick("power", "advanced"), ["A pro line, built for advanced players."])!.includes("But out of the box flat smashes lack pop"));
+test("match box: weak fit says one But: the level when it decides, else the catch on the picks", () => {
+  assert.equal(fitReason("no", yes, no, pick("power", "beginner"), ["Level: the brand says professional. A pro line, built for advanced players."]),
+    "It has one thing going for you: the sweet spot covers most of the face, so mishits still go deep. But it's a pro line, built for advanced players.");
+  assert.equal(fitReason("no", yes, no, pick("power", "beginner"), ["You want power, but players call it a control racket.", "A pro line, built for advanced players."]),
+    "It has one thing going for you: the sweet spot covers most of the face, so mishits still go deep. "
+    + "But out of the box flat smashes lack pop; players move the weights up top.");
+});
+test("match box: never 'owners'", () => {
+  assert.equal(fitReason("maybe", [{ title: "x", t: "One owner says it's great; owners agree." }], [], pick("any", null)), "What suits your game: one player says it's great; players agree.");
 });
 test("match box: every sentence stays within 105 characters", () => {
     const long: ReasonItem[] = [{ title: "Huge sweet spot", t: "Almost the whole racket is sweet spot, and even the edges send the ball deep with very little effort from you." }];
