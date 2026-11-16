@@ -81,7 +81,9 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
               ...(!choice.type && r.shape ? [{ k: "", t: r.shape.toLowerCase() }] : texture && texture.n >= 3 ? [{ k: "", t: texture.score < 35 ? "light" : texture.score > 65 ? "rich" : "in between" }] : []),
               ...(sens && x.ff ? [{ k: "gentle", t: "fragrance-free" }] : []),
             ];
-            const pctCls = !picked || x.pct === null ? "none" : x.pct >= 80 ? "hi" : x.pct >= 60 ? "mid" : "";
+            // The user score until a pick, then the match % (owner 2026-11-16: as on padel), with the same colours.
+            const sig = ctx.signal(r.id);
+            const pctCls = picked ? (x.pct === null ? "none" : x.pct >= 80 ? "hi" : x.pct >= 60 ? "mid" : "") : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : "";
             return <li key={r.id} className={top ? "top" : undefined}>
               <span className="bh-rank">{i + 1}</span>
               <span className="bh-pic">{card.pic && <img src={card.pic} alt="" width={112} height={140} decoding="async" loading={i < 3 ? "eager" : "lazy"}/>}</span>
@@ -95,7 +97,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
               <span className="bh-sent"><span>{`${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</span>
                 {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}</span>
               {card.shop ? <a className="bh-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a> : <span/>}
-              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked && x.pct !== null ? `${x.pct}%` : "—"}</b><small>{picked && x.pct === null ? "too few reports" : "match"}</small></span>
+              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "match") : "user score"}</small></span>
             </li>;
           })}</ol>
           <a className="bh-all" href={choice.typeSlug ? `/${choice.typeSlug}${pickQ}` : `${catalogPath}${pickQ}`}>{`see all ${allOfType} ${catWord === "skincare" ? niche.words.many : catWord} →`}</a>

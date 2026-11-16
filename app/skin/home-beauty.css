@@ -52,7 +52,9 @@
 .bh-thin { font: 11.5px var(--mono); color: var(--mute2); }
 .bh-sent { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; font: 11px var(--mono); min-width: 92px; }
 .bh-sent .bp-mood { width: 92px; height: 7px; }
-.bh-buy { position: relative; z-index: 1; white-space: nowrap; padding: 7px 14px; border-radius: 999px; background: var(--ink); color: var(--bg) !important; font-weight: 600; font-size: 13px; text-decoration: none; }
+/* Padel's quiet "check price ↗" text link in list rows (owner 2026-11-16); the black button stays on product pages. */
+.bh-buy { position: relative; z-index: 1; white-space: nowrap; font: 12px var(--mono); color: var(--mute) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.bh-buy:hover { color: var(--ink) !important; }
 .bh-pct { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; }
 .bh-pct b { font: 400 26px/1 var(--serif); border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px 10px 4px; background: var(--paper); }
 .bh-pct.hi b { background: oklch(0.86 0.07 155); } .bh-pct.mid b { background: var(--mark); } .bh-pct.none b { background: var(--sand); color: var(--mute2); }
@@ -123,7 +125,7 @@
   .bh-rank { font-size: 22px; }
   .bh-sent { grid-column: 3; grid-row: 2; flex-direction: row; align-items: center; min-width: 0; }
   .bh-sent .bp-mood { width: 64px; }
-  .bh-buy { grid-column: 3; grid-row: 3; justify-self: start; padding: 5px 12px; }
+  .bh-buy { grid-column: 3; grid-row: 3; justify-self: start; }
   .bh-pct { grid-column: 4; grid-row: 1 / span 3; min-width: 0; }
   .bh-pct b { font-size: 22px; }
   .bh-side { max-width: none; }
@@ -147,7 +149,7 @@
   .bh-pct small { display: none; }
   .bh-sent { grid-area: sent; min-width: 0; font-size: 10.5px; color: var(--mute); }
   .bh-sent .bp-mood { display: none; }
-  .bh-buy { grid-area: buy; justify-self: end; padding: 6px 12px; }
+  .bh-buy { grid-area: buy; justify-self: end; }
   .bh-tex { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -16px; padding: 4px 16px 14px; }
   .bh-tex a { flex: 0 0 236px; scroll-snap-align: start; }
 }

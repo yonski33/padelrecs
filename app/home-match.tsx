@@ -122,10 +122,13 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
             {r.line && <span className="hv2-line">{r.line}</span>}</span>
           <span className="hv2-sent"><span>{`${r.n.toLocaleString("en-US")} ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
-          <span className="hv2-btnc">{r.shop && <a className="hv2-btn" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
-          <span className={`hv2-sc ${!picked || pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE}
-            aria-label={!picked ? "Pick a style or level above for your match %" : pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
-            <b>{picked && pct !== null ? `${pct}%` : "—"}</b><small>match</small></span>
+          {/* Padel's quiet "check price ↗" text link and its score badge (owner 2026-11-16): the Player score until a pick, then the match %. */}
+          <span className="hv2-btnc">{r.shop && <a className="hv2-buy" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
+          {picked ? <span className={`hv2-sc ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : ""}`} title={MATCH_NOTE}
+            aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+            <b>{pct !== null ? `${pct}%` : "—"}</b><small>{pct === null ? "too few reports" : "match"}</small></span>
+            : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
+            <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
