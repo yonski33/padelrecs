@@ -11,6 +11,7 @@ import { homePayload } from "../home-payload";
 import { SITE_FIT } from "../../lib/fit-config";
 import { plain } from "../../lib/quick-take";
 import { pageContent } from "../../lib/racket-page";
+import { skinPage } from "../../lib/skin-page";
 import { comparePairs, pairHref } from "../../lib/compare-pairs";
 import { photoOf } from "../rankings/rankings-v2";
 import type { Trait } from "../../lib/trait-score";
@@ -36,7 +37,10 @@ const shortName = (name: string, brand?: string) => { const n = name.replace(/\s
 const hrefFor = (slugs: string[]) => slugs.length ? `/compare?ids=${slugs.map(encodeURIComponent).join(",")}` : "/compare";
 
 export async function CompareV2({ data, products }: { data: Data; products: Data["rackets"] }) {
-  const [sigs, ctx, payload] = await Promise.all([productSignals(), matchContext(), homePayload()]);
+  // SkinRecs and SimRacingRecs rank by attributes (lib/attr-profile), not the match context: their products come without
+  // trait dots or a quick match, and the verdict compares on the player score, the content lines and the specs.
+  const engine = !!niche.fit?.engine && !attrProfileFor(niche);
+  const [sigs, ctx, payload] = await Promise.all([productSignals(), matchContext().catch(() => null), engine ? homePayload() : null]);
   const brandOf = (r: Data["rackets"][number]) => data.brands.find(b => b.id === r.brandId)?.name;
   const slugs = products.map(r => r.slug);
   const specDefs = [...niche.specs.map(spec => ({ label: spec.label.toLowerCase(), get: (r: Data["rackets"][number]) => r[spec.column] as string | null })),
@@ -44,7 +48,7 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   const base = await Promise.all(products.map(async r => {
     const brand = brandOf(r), name = displayName(r.name, brand);
     const amazon = await amazonButton({ name: r.name, brand }), site = amazon ? null : websiteButton(r);
-    const take = ctx.takes.get(r.id), page = pageContent(r.slug), sc = ctx.traits(r.id).scores;
+    const take = ctx?.takes.get(r.id), page = pageContent(r.slug) ?? skinPage(r.slug), sc = ctx?.traits(r.id).scores;
     const catchLine = take?.catch ? plain(take.catch) : page?.no[0] ? plain(page.no[0].t) : null;
     return { r, name, page, catchLine, dots: DOTS.map(t => sc?.[t.key as Trait]?.dots ?? 0),
       shop: amazon ? { url: amazon.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null };
@@ -69,13 +73,12 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   const anyAffiliate = cprods.some(c => c.shop?.rel.startsWith("sponsored"));
   // Removing one of two goes back to the catalogue's compare mode; of three, to the other two.
   const removeHref = Object.fromEntries(products.map(r => [r.id, n > 2 ? hrefFor(slugs.filter(s => s !== r.slug)) : `${catalogPath}?compare=1`]));
-  const engine = !!niche.fit?.engine && !attrProfileFor(niche);
 
   return <><main className={`cx ${qtFontVars}`}>
     <div className="cx-wrap">
       <div className="cx-crumbs"><a href={`${catalogPath}?compare=1`}>{w.many}</a> / compare</div>
       <h1 className="cx-h1">{`Compare ${count} ${w.many}`}</h1>
-      <CompareVerdict products={cprods} traits={TRAITS} items={engine ? payload.items : null} specLabels={specDefs.map(d => d.label)}
+      <CompareVerdict products={cprods} traits={TRAITS} items={engine && payload ? payload.items : null} specLabels={specDefs.map(d => d.label)}
         scoreWord={scoreLabel.toLowerCase()} removeHref={removeHref}/>
       <div className="cx-after"><ChangeLink href={`${catalogPath}?compare=1`} label={`← change ${w.many}`} picks={cprods.map(c => ({ id: c.id, slug: c.slug, name: c.name, pic: c.pic }))}/>
         <span>{`based on reviews from ${niche.people.many}, YouTube and forums`}</span></div>
