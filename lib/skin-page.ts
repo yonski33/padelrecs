@@ -10,7 +10,9 @@ export type SkinTag = "dry" | "oily" | "combination" | "normal" | "sensitive" | 
 export type SkinItem = { title: string; /** One line; the key phrase sits between == marks. */ t: string; src: string[];
   /** The picks this item matters for: they earn the "for your skin" tag. */ for?: SkinTag[];
   tip?: { t: string; src: string[] }; alt?: { slug: string; t: string; src: string[] } };
-export type SkinPage = { bottom: string; yes: SkinItem[]; no: SkinItem[] };
+/** `source: "research"`: written from published reviews and INCI lists for a product with few reports (sources are URLs). */
+export type SkinPage = { bottom: string; yes: SkinItem[]; no: SkinItem[]; source?: "research" };
+export const RESEARCH_PROOF = "from published reviews & ingredient lists";
 
 const PAGES = skin as Record<string, SkinPage>;
 export const skinPage = (slug: string): SkinPage | null => PAGES[slug] ?? null;

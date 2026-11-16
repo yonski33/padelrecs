@@ -4,7 +4,7 @@ import "./skin-product.css";
 import { skinContext } from "./context";
 import { wireOf } from "./payload";
 import type { ProductInput, ItemWire } from "./product-view";
-import { skinPage, sourceKinds, type SkinItem } from "../../lib/skin-page";
+import { RESEARCH_PROOF, skinPage, sourceKinds, type SkinItem } from "../../lib/skin-page";
 import { SkinProductLive } from "./skin-product-live";
 import { SKIN_TYPES, type SkinChoice } from "../../lib/skin-choice";
 import { niche, catalogPath, productHref, typePageFor } from "../../lib/niche";
@@ -55,7 +55,7 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
   const content = skinPage(r.slug);
   const wire = (it: SkinItem): ItemWire => {
     const alt = it.alt ? data.listed.find(x => x.slug === it.alt!.slug) : undefined;
-    return { ...it, proof: sourceKinds(it.src, id => platform.get(id)),
+    return { ...it, proof: content?.source === "research" ? RESEARCH_PROOF : sourceKinds(it.src, id => platform.get(id)),
       ...(alt ? { altCard: { name: displayName(alt.name, data.brands.find(b => b.id === alt.brandId)?.name), href: productHref(alt) } } : { alt: undefined }) };
   };
   const peers = data.listed.filter(x => x.shape === r.shape && x.id !== r.id && x.slug !== r.slug && x.name !== r.name);
