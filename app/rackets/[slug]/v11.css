@@ -389,6 +389,8 @@
 .rf .rv12-ymeta strong { color: #151515; font-size: 14.5px; } .rf .rv12-ymeta a:not(.rv12-thumb) { font: 12.5px var(--v-mono); color: #151515; }
 .rf .rv12-thumb { position: relative; flex: none; width: 64px; aspect-ratio: 16 / 9; border-radius: 5px; overflow: hidden; background: #e9e6dd; border: 1.5px solid #151515; display: block; }
 .rf .rv12-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Blog review card (owner 2026-11-18): the video summary's layout, with a small "blog" label where the thumbnail is. */
+.rf .rv12-src { font: 11.5px var(--v-mono); color: #4a4740; border: 1.5px solid #c9c5ba; border-radius: 6px; padding: 0 6px; background: #fff; }
 .rf .rv12-empty { border: 2px dashed #b9b5aa; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; } .rf .rv12-empty b { font: 800 16px var(--v-display); }
 .rf .rv12-more { min-height: 32px; align-self: flex-start; font-size: 14px; }
 /* Tags: a vertical list in the sidebar, chips in the row. */

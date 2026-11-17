@@ -274,6 +274,18 @@ export default async function RacketFit(props: {
   const ytProducts = new Map<string, number>(), ytSeen = new Set<string>();
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
+  const blogCards = () => {
+    const shortEnglish = (t?: string | null) => !!t && t.length >= 30 && t.length <= 320 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && platformName(e.sourcePlatform) === "Blog").map(e => {
+      const english = !e.sourceLanguage || e.sourceLanguage === "en";
+      const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) ? unmd(e.excerpt!) : "";
+      return { e, text, verbatim: !e.summary };
+    }).filter(x => x.text).sort((a, b) => (b.e.sourceDate ?? "").localeCompare(a.e.sourceDate ?? ""));
+    const seen = new Set<string>();
+    return rows.filter(({ e }) => { const k = e.sourceName.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
+      .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate),
+        url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
+  };
   const dated: { at: string; card: ReviewCard }[] = [
     ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, tags: r.tags, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
@@ -289,6 +301,9 @@ export default async function RacketFit(props: {
         : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
       return { at: e.sourceDate ?? "", card };
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
+    // Blogs (owner 2026-11-18, reversing part of the 11-15 rule): v11c lists blog reviews too, one card per blog, its newest
+    // row that has our summary or a short English excerpt (quoted, verbatim). Forum reports still count in the score only.
+    ...(V11 ? blogCards() : []),
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
 
