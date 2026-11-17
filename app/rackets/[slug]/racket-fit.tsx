@@ -276,18 +276,23 @@ export default async function RacketFit(props: {
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const blogCards = () => {
     const shortEnglish = (t?: string | null) => !!t && t.length >= 30 && t.length <= 320 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
-    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && platformName(e.sourcePlatform) === "Blog").map(e => {
+    // A blog is a website: chat channels and social groups filed as blogs (Padelzoom on Telegram, Facebook groups) stay out like
+    // forums. One card per site (its host), so a blog stored under two names shows once.
+    const host = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, "").toLowerCase(); } catch { return ""; } };
+    const SOCIAL = /(^|\.)(t\.me|telegram\.org|facebook\.com|instagram\.com|x\.com|twitter\.com|reddit\.com|tiktok\.com|discord\.(gg|com))$/;
+    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Blog" && !SOCIAL.test(host(e.sourceUrl))).map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
       const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) ? unmd(e.excerpt!) : "";
       return { e, text, verbatim: !e.summary };
     }).filter(x => x.text).sort((a, b) => (b.e.sourceDate ?? "").localeCompare(a.e.sourceDate ?? ""));
     const seen = new Set<string>();
-    return rows.filter(({ e }) => { const k = e.sourceName.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
+    return rows.filter(({ e }) => { const k = host(e.sourceUrl) || e.sourceName.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
       .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate),
         url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
   };
   const redditCards = () => {
-    const ok = (t?: string | null) => !!t && t.length >= 30 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    // 60+ characters (owner 2026-11-18): a one-liner like "Been maining it for 6 months" says nothing; the next comment fills the slot.
+    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
     const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
       && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
     // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
@@ -312,7 +317,8 @@ export default async function RacketFit(props: {
         : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
       return { at: e.sourceDate ?? "", card };
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
-    // Blogs (owner 2026-11-18, reversing part of the 11-15 rule): v11c lists blog reviews too, one card per blog, its newest
+    // Blogs (owner 2026-11-18, reversing part of the 11-15 rule): v11c lists blog reviews too (platform Blog, websites only;
+    // "Other", Telegram and Facebook sources stay out, like forums), one card per blog, its newest
     // row that has our summary or a short English excerpt (quoted, verbatim). Forum reports still count in the score only.
     ...(V11 ? blogCards() : []),
     // Reddit (owner 2026-11-18): up to 5 comments, the commenter's exact words only (English, short, never edited by us).
