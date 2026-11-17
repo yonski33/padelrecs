@@ -19,4 +19,7 @@ html .hv2 .hv2-list>li{border-bottom:1.5px dashed var(--line)}
 html .hv2 .hv2-chip.arm{background:oklch(0.92 0.04 260)}
 html .hv2 .hv2-seg{flex-wrap:wrap;max-width:100%}
 html .ct2 .ct2-list>li.first{background:oklch(0.98 0.02 30)}
+html .rf .rv-badge:has(b.hi){background:var(--score-g)}
+html .rf .rv-badge:has(b.mid){background:var(--score-y)}
+html .rf .rv-badge:has(b.plain),html .rf .rv-badge:has(b:not(.hi):not(.mid)){background:var(--score-w)}
 `;
