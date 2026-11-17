@@ -207,7 +207,9 @@ function LrCard({ c, i }: { c: ReviewCard; i: number }) {
   const end = (t: string) => /[.!?…"”)]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
   const text = c.kind === "player" ? (c.verbatim ? `“${c.text}”` : c.text ?? "") : (c.points ?? []).filter(Boolean).map(end).join(" ");
   return <article className={`lr2-card ${c.kind}`}>
-    <div className="lr2-head">{c.verdict && <span className={`lr2-pill ${c.verdict}${i % 2 ? " r" : ""}`}>{VERDICT_PILL[c.verdict]}</span>}</div>
+    {/* The calm small verdict pill (owner 2026-11-17: the tilted Latest-reviews pill felt too playful on a product page;
+        /reviews and the home keep theirs). Same words as there. */}
+    <div className="lr2-head">{c.verdict && <span className={`rv-pill ${c.verdict}`}>{VERDICT_PILL[c.verdict]}</span>}</div>
     {text && <p className="lr2-text">{text}</p>}
     {c.kind === "player" ? <>
       <div className="lr2-who"><span className={`lr2-av a${i % 4}`} aria-hidden="true">{(c.initial ?? c.who[0] ?? "P").toUpperCase()}</span><strong>{c.who}</strong>
