@@ -428,3 +428,15 @@
 /* !important: the light design's site-wide input rule (.lt-site … :is(input, textarea), its green focus glow) is more specific. */
 .rf .rv-pwords textarea:focus, .rf .rv-pwords textarea:focus-visible { outline: none !important; box-shadow: none !important; border-color: #151515 !important; background: #fff !important; }
 .rf .rv-pwords .rv-post { align-self: flex-end; }
+
+/* "posting as" beside Post (owner 2026-11-18): the composer's nickname field, sized and bordered like the textarea. */
+.rf .rv-psend { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
+.rf .rv-pas { font: 12.5px var(--v-mono); color: #4a4740; }
+.rf .rv-psend .rv-nick { flex: 1 1 220px; max-width: 360px; min-width: 0; display: flex; gap: 6px; }
+.rf .rv-psend .rv-nick input { flex: 1; min-width: 0; min-height: 36px; box-sizing: border-box; border: 2px solid #3a3833 !important; border-radius: 10px !important; padding: 6px 10px;
+  font: 16px var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; background: #fbfaf6 !important; box-shadow: none !important; outline: none !important; }
+.rf .rv-psend .rv-nick input:focus { border-color: #151515 !important; background: #fff !important; }
+.rf .rv-psend .rv-nick button { all: unset; cursor: pointer; flex: none; width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; border: 2px solid #151515; border-radius: 10px; background: #fff; font-size: 16px; }
+.rf .rv-psend .rv-nick button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .rv-psend .rv-post { margin-left: auto; }
+@media (max-width: 520px) { .rf .rv-psend .rv-nick { flex-basis: 100%; max-width: none; } }
