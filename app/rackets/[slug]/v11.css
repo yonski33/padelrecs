@@ -1,8 +1,9 @@
-/* Product page v11 (owner 2026-11-17, design_handoff_product_page_v11/README.md): padel racket pages. Tokens from the handoff;
-   scoped to .rf so the other sites' pages stay as they are. */
+/* Product page v11 (owner 2026-11-17, design_handoff_product_page_v11/README.md): padel, pickleball and disc golf product pages.
+   Tokens from the handoff, read through the page's own .rf tokens (racket-fit.css), which on padel are exactly the handoff's;
+   each site's --site-* theme (and DiscGolfRecs' v2 style) gives it its own look. Score colours are shared (--score-*). */
 .rf {
-  --v-ink: #151515; --v-page: #fbfaf6; --v-card: #fff; --v-mute: #4a4740; --v-mute2: #6a675f; --v-body: #2b2925; --v-dash: #c9c5ba;
-  --v-lime: oklch(0.88 0.17 125); --v-hl: oklch(0.93 0.14 100); --v-green: var(--score-g); --v-yellow: var(--score-y);
+  --v-ink: var(--ink); --v-page: var(--bg); --v-card: #fff; --v-mute: var(--soft); --v-mute2: var(--mute); --v-body: var(--text); --v-dash: #c9c5ba;
+  --v-lime: var(--acc); --v-hl: var(--marker); --v-tint: var(--site-tint, oklch(0.95 0.06 125)); --v-top: var(--site-top, oklch(0.97 0.05 100)); --v-green: var(--score-g); --v-yellow: var(--score-y);
   --v-yes: oklch(0.95 0.05 145); --v-no: oklch(0.96 0.04 60); --v-nofit: oklch(0.9 0.08 30);
   --v-mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; --v-display: var(--qt-display, "Archivo"), system-ui, sans-serif;
 }
@@ -25,7 +26,7 @@
 .rf .v11-sm small { font: 12.5px var(--v-mono); color: var(--v-mute); white-space: nowrap; }
 .rf .v11-sbar { display: flex; width: 140px; height: 8px; border: 1.5px solid var(--v-ink); border-radius: 999px; overflow: hidden; }
 .rf .v11-sbar .p { background: oklch(0.72 0.15 145); } .rf .v11-sbar .m { background: oklch(0.85 0.14 90); } .rf .v11-sbar .n { background: oklch(0.7 0.15 30); }
-.rf .v11-buy { background: var(--v-ink); color: #fbfaf6; text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 16px; border: 2px solid var(--v-ink); white-space: nowrap; }
+.rf .v11-buy { background: var(--v-ink); color: var(--v-page); text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 16px; border: 2px solid var(--v-ink); white-space: nowrap; }
 .rf .v11-sres { font: 13px var(--v-mono); color: var(--v-mute); }
 .rf .v11-aff { grid-column: 1 / -1; margin: -12px 0 0; }
 
@@ -64,7 +65,7 @@
 .rf .v11-build h2, .rf .v11-faq h2, .rf .v11-sec h2 { font: 800 26px/1.15 var(--v-display); margin: 0; }
 .rf .v11-bands { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 2.5px solid var(--v-ink); border-bottom: 2.5px solid var(--v-ink); }
 .rf .v11-bands > div { padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; border-right: 1.5px dashed var(--v-ink); }
-.rf .v11-bands > div:last-child { border-right: 0; } .rf .v11-bands > div.top { background: oklch(0.97 0.05 100); }
+.rf .v11-bands > div:last-child { border-right: 0; } .rf .v11-bands > div.top { background: var(--v-top); }
 .rf .v11-bn { font: 800 clamp(36px, 4.6vw, 52px)/1 var(--v-display); letter-spacing: -0.03em; } .rf .v11-bn small { font-size: 0.4em; color: var(--v-mute2); }
 .rf .v11-bands b { font: 800 18px var(--v-display); }
 .rf .v11-segs { display: flex; gap: 3px; } .rf .v11-segs i { width: 24px; height: 10px; border-radius: 3px; border: 1.5px solid var(--v-ink); background: var(--v-card); }
@@ -78,15 +79,15 @@
 .rf .v11-bc { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); box-shadow: 4px 4px 0 var(--v-ink); padding: 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
 .rf .v11-bc > b { font: 800 20px var(--v-display); } .rf .v11-bc > span:last-child { font-size: 16px; line-height: 1.45; color: var(--v-body); text-wrap: pretty; }
 .rf .v11-vis { height: 56px; width: 100%; display: flex; align-items: center; }
-.rf .v11-vis .sh { display: block; width: 44px; height: 44px; border: 3px solid var(--v-ink); background: oklch(0.95 0.06 125); box-sizing: border-box; border-radius: 50%; }
+.rf .v11-vis .sh { display: block; width: 44px; height: 44px; border: 3px solid var(--v-ink); background: var(--v-tint); box-sizing: border-box; border-radius: 50%; }
 .rf .v11-vis .sh.teardrop, .rf .v11-vis .sh.hexagonal { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; height: 50px; width: 40px; }
 .rf .v11-vis .sh.diamond { border-radius: 8px; transform: rotate(45deg) scale(0.8); }
 .rf .v11-vis .sh.hybrid { border-radius: 50% 50% 46% 46% / 56% 56% 44% 44%; height: 48px; width: 42px; }
-.rf .v11-vis .core { position: relative; display: block; width: 100%; height: 14px; border: 2px solid var(--v-ink); border-radius: 999px; background: linear-gradient(90deg, oklch(0.95 0.06 125), var(--v-ink)); box-sizing: border-box; }
+.rf .v11-vis .core { position: relative; display: block; width: 100%; height: 14px; border: 2px solid var(--v-ink); border-radius: 999px; background: linear-gradient(90deg, var(--v-tint), var(--v-ink)); box-sizing: border-box; }
 .rf .v11-vis .core > i, .rf .v11-vis .bal > i { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--v-ink); background: var(--v-card); box-sizing: border-box; top: -2px; }
 .rf .v11-vis .bal { position: relative; display: block; width: 16px; height: 48px; border: 2px solid var(--v-ink); border-radius: 999px; box-sizing: border-box; }
 .rf .v11-vis .bal > i { left: -1px; background: var(--v-ink); }
-.rf .v11-vis .face { display: block; width: 100%; height: 30px; border: 2px solid var(--v-ink); border-radius: 10px; background-color: oklch(0.95 0.06 125);
+.rf .v11-vis .face { display: block; width: 100%; height: 30px; border: 2px solid var(--v-ink); border-radius: 10px; background-color: var(--v-tint);
   background-image: radial-gradient(var(--v-ink) 1px, transparent 1.2px); background-size: 10px 10px; box-sizing: border-box; }
 
 /* What players said · from player forums. */
@@ -149,7 +150,7 @@
 
 /* Phones: the bottom line stacks; its text sizes to its words (a desktop flex-basis made it 300px tall). */
 @media (max-width: 760px) { .rf .rp-bottom b { flex: 1 1 auto; } }
-.rf .v11-tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 60px; border: 2px solid var(--v-ink); border-radius: 10px; background: oklch(0.95 0.06 125); font: 800 12px/1.2 var(--v-display); text-align: center; padding: 4px; box-sizing: border-box; }
+.rf .v11-tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 60px; border: 2px solid var(--v-ink); border-radius: 10px; background: var(--v-tint); font: 800 12px/1.2 var(--v-display); text-align: center; padding: 4px; box-sizing: border-box; }
 
 /* Filled price button on hover (owner 2026-11-17): a yellow fill, the text and arrow stay ink (white on yellow was unreadable). */
 .rf .v11-buy:hover, .rf .v11-buy:focus-visible { background: var(--v-hl); color: var(--v-ink); }
@@ -158,3 +159,15 @@
 .rf .v11-otag.v11-omatch { align-self: flex-end; font-size: 13px; padding: 2px 10px; border-radius: 999px; background: var(--v-card); }
 .rf .v11-otag.v11-omatch.g { background: var(--v-green); } .rf .v11-otag.v11-omatch.y { background: var(--v-yellow); }
 @media (max-width: 760px) { .rf .v11-otag.v11-omatch { align-self: flex-start; } }
+/* The other sites' build cards (lib/v11-site.ts): paddle outlines, a gauge with its two ends, disc golf's flight numbers and a disc. */
+.rf .v11-vis .sh[class*="pb-"] { border-radius: 12px 12px 9px 9px; width: 36px; height: 46px; }
+.rf .v11-vis .sh.pb-elongated { width: 28px; height: 54px; } .rf .v11-vis .sh.pb-hybrid { width: 32px; height: 50px; } .rf .v11-vis .sh.pb-widebody { width: 44px; height: 46px; border-radius: 14px 14px 9px 9px; }
+.rf .v11-vis .gauge { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; width: 100%; }
+.rf .v11-vis .gauge > .core { grid-column: 1 / -1; }
+.rf .v11-vis .gauge small { font: 11px var(--v-mono); color: var(--v-mute2); } .rf .v11-vis .gauge small + small { text-align: right; }
+.rf .v11-vis .flight { display: flex; gap: 6px; }
+.rf .v11-vis .flight b { min-width: 30px; height: 30px; padding: 0 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid var(--v-ink); border-radius: 8px; background: var(--v-card); font: 800 15px var(--v-display); }
+.rf .v11-vis .flight b:first-child { background: var(--v-tint); }
+.rf .v11-vis .disc { display: block; width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--v-ink); background: var(--v-tint); box-shadow: inset 0 0 0 7px var(--v-card), inset 0 0 0 9px var(--v-ink); box-sizing: border-box; }
+/* Long picks ("Beginner · Understable · Slower arm speed") wrap on phones instead of running past the card. */
+@media (max-width: 760px) { .rf .rf-afoot > span { white-space: pre-wrap; min-width: 0; } }

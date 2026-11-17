@@ -40,7 +40,7 @@ import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
 import { V11Better, V11Others, type V11Card, type V11Pool } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
-import { buildCards } from "../../../lib/build-cards";
+import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
@@ -51,16 +51,17 @@ import { plain } from "../../../lib/quick-take";
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability chips and score word. Unset: padel's page, unchanged. */
 const QUICK = SITE_FIT.quick ? SITE_FIT : null;
 const SCORE_WORD = v2copy.score ?? "player score";
-/** Product page v11 (owner 2026-11-17, design_handoff_product_page_v11): padel first; the other sites keep their page. */
-const V11 = niche.id === "padel";
+/** Product page v11 (owner 2026-11-17, design_handoff_product_page_v11): padel, pickleball and disc golf, each in its own words
+ *  (lib/v11-site.ts); the other sites keep their page. PADEL: the padel-only wording passes (padelWords, its bar nuances). */
+const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
+const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
-const V11_BANDS: [string, string][] = [["power", "Attack"], ["control", "Control"], ["forgiveness", "Sweet spot"]];
+const V11_BANDS: [string, string][] = V11_SITE?.bands ?? [];
 /** v11 other-racket cards: what you give up, per trait where the other racket is behind (padel's words). */
 /** A strong bar's words when a Why not says the opposite (audit 2026-11-17). */
 const BAR_NUANCE: Record<string, string> = { power: "Power when you swing; little free power.", control: "Precise, though fast balls can fly.",
   forgiveness: "Forgiving, though off-centre hits lose some pace." };
-const GIVE_UP: Record<string, string> = { forgiveness: "a smaller sweet spot", power: "less power on smashes", control: "less control", defence: "weaker in defence",
-  arm: "harder on the arm", speed: "slower at the net" };
+const GIVE_UP: Record<string, string> = V11_SITE?.giveUp ?? {};
 import type { QtReport, QtReview } from "./quick-take";
 import { scoreState } from "../../../lib/score-view";
 import { NewPill } from "../../score-tags";
@@ -102,7 +103,7 @@ export default async function RacketFit(props: {
   // bound it), with the tag-count lean only where the engine has no place for the racket.
   const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
   // Padel (owner audit 2026-11-17): the one style every page uses, from the bars it shows (lib/fit-verdict styleOf).
-  const lean = V11 ? styleOf(facts) : axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
+  const lean = PADEL ? styleOf(facts) : axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
   const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
   const armWords = QUICK ? "slower arms" : "sore arms";
@@ -234,7 +235,7 @@ export default async function RacketFit(props: {
     ...onePerChannel(ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
       // Our own summaries speak padel ("sweet spot"); a player's verbatim words stay as they wrote them.
-      const text = unmd(e.summary ? (V11 ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : (!english && e.excerptTranslation) || e.excerpt || "");
+      const text = unmd(e.summary ? (PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : (!english && e.excerptTranslation) || e.excerpt || "");
       const verbatim = !e.summary && english && !!e.excerpt;
       const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
@@ -252,7 +253,7 @@ export default async function RacketFit(props: {
   // One story (owner 2026-11-17): on padel a content line its own trait bars contradict is left out (the trait data wins), and
   // "hitting zone" reads "sweet spot". A tagline that loses gives way to the quick take's hook.
   const dotsNow = Object.fromEntries(["forgiveness", "power", "control", "arm"].map(k => [k, tr.scores?.[k as Trait]?.dots ?? 0]));
-  const clean = (c: ReturnType<typeof pageContent>) => !c || !V11 ? c : { ...c,
+  const clean = (c: ReturnType<typeof pageContent>) => !c || !PADEL ? c : { ...c,
     tagline: contradicts(c.tagline, dotsNow) ? (qt ? `${qt.hook.good} ${qt.hook.catch}` : c.tagline) : padelWords(c.tagline), bottom: padelWords(c.bottom),
     yes: c.yes.filter(i => !contradicts(`${i.title}. ${i.t}`, dotsNow)).map(i => ({ ...i, title: padelWords(i.title), t: padelWords(i.t) })),
     no: c.no.filter(i => !contradicts(`${i.title}. ${i.t}`, dotsNow)).map(i => ({ ...i, title: padelWords(i.title), t: padelWords(i.t) })) };
@@ -337,16 +338,18 @@ export default async function RacketFit(props: {
   // with 2+ players behind it.
   const bandRows = V11_BANDS.map(([k, label]) => { const i = SITE_TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
     // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
-    const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? BAR_NUANCE[k] : null;
+    const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
     return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
   const topDots = Math.max(0, ...bandRows.map(b => b.dots));
   const tip = qt?.tips.find(t => t.reports.length >= 2);
   // Advice only (owner rule: no "N players said" inside advice): the tip's sentences that don't count people, ≤ 105 characters.
   const tipText = tip ? plain(tip.text).split(/(?<=[.!?])\s+/).filter(x => !/\b(players?|reviewers?|people|testers?)\b/i.test(x)).join(" ").trim() : "";
-  const builds = V11 ? buildCards(racketOf(props.racketId), tr.scores?.arm?.dots) : [];
+  const builds = V11_SITE ? V11_SITE.builds(racketOf(props.racketId), tr.scores?.arm?.dots) : [];
   // "What players said · from player forums": one real quote each way with its permalink, verbatim and in English; none, no section.
   const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–…é]+$/.test(t) && t.length >= 60 && t.length <= 240 && !/—/.test(t) && /[a-z]{3,}\s+[a-z]{3,}\s+[a-z]{3,}/i.test(t) && !/^\S+\s+\S+\s+\S+\s+20\d\d\s*\(/.test(t);
-  const forum = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.sourceLanguage && english(e.excerpt) && /^https?:\/\/.+\/comments\//.test(e.sourceUrl));
+  // Off padel the stored forum excerpts are often cut mid-sentence: only ones that end like a sentence (owner rule: verbatim words).
+  const whole = (t?: string | null) => PADEL || /[.!?)”"]\s*$/.test(t ?? "");
+  const forum = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.sourceLanguage && english(e.excerpt) && whole(e.excerpt) && /^https?:\/\/.+\/comments\//.test(e.sourceUrl));
   const forumQuotes = [forum.find(e => e.sentiment === "positive"), forum.find(e => e.sentiment === "mixed" || e.sentiment === "negative")].filter((x): x is NonNullable<typeof x> => !!x);
   const PILL: Record<string, [string, string]> = { positive: ["loved it", "g"], mixed: ["mixed", "y"], negative: ["not for me", "r"] };
   const faq = (qt?.answers ?? []).slice(0, 6);
@@ -365,19 +368,22 @@ export default async function RacketFit(props: {
       {tipText && <p className="v11-tip"><span>rule of thumb</span><span>{tipText}</span></p>}
     </div>}
     {builds.length > 0 && <div id="build" className="v11-build">
-      <h2>{`What the ${meShort}'s build means for you`}</h2>
+      <h2>{V11_SITE!.buildHead(meShort)}</h2>
       <div className="v11-bcards">{builds.map(c => <div key={c.key} className={`v11-bc ${c.key}`}>
-        <span className="v11-vis" aria-hidden="true">{c.key === "shape" ? <i className={`sh ${c.shape}`}/> : c.key === "core" ? <i className="core"><i style={{ left: `calc(${Math.round((c.at ?? 0.5) * 100)}% - 7px)` }}/></i>
+        <span className="v11-vis" aria-hidden="true">{c.key === "shape" ? <i className={`sh ${c.shape}`}/>
+          : c.key === "flight" ? <i className="flight">{(c.nums ?? []).map((n, j) => <b key={j}>{n}</b>)}</i>
+          : c.key === "gauge" ? <i className="gauge"><i className="core"><i style={{ left: `calc(${Math.round((c.at ?? 0.5) * 100)}% - 7px)` }}/></i><small>{c.low}</small><small>{c.high}</small></i>
+          : c.key === "disc" ? <i className="disc"/> : c.key === "core" ? <i className="core"><i style={{ left: `calc(${Math.round((c.at ?? 0.5) * 100)}% - 7px)` }}/></i>
           : c.key === "balance" ? <i className="bal"><i style={{ top: `calc(${Math.round((1 - (c.at ?? 0.5)) * 100)}% - 7px)` }}/></i> : <i className="face"/>}</span>
         <b>{c.title}</b><span>{c.line}</span></div>)}</div>
     </div>}
     {forumQuotes.length > 0 && <><div className="v11-said">
-      <div className="v11-saidh"><b>What players said</b><span>from player forums</span></div>
+      <div className="v11-saidh"><b>{`What ${niche.people.many} said`}</b><span>{`from ${niche.people.one} forums`}</span></div>
       {forumQuotes.map(e => { const [w, cls] = PILL[e.sentiment ?? "mixed"] ?? PILL.mixed; return <div key={e.id} className="v11-q">
         <p>{`“${unmd(e.excerpt ?? "")}”`}</p>
-        <div><span className="v11-qwho">a player</span><span className={`v11-pill ${cls}`}>{w}</span><a href={e.sourceUrl} target="_blank" rel="noopener nofollow">source ↗</a></div></div>; })}
+        <div><span className="v11-qwho">{`a ${niche.people.one}`}</span><span className={`v11-pill ${cls}`}>{w}</span><a href={e.sourceUrl} target="_blank" rel="noopener nofollow">source ↗</a></div></div>; })}
     </div>
-    <a className="v11-more" href="#reviews">read more player reviews <span aria-hidden="true">↓</span></a></>}
+    <a className="v11-more" href="#reviews">{`read more ${niche.people.one} reviews `}<span aria-hidden="true">↓</span></a></>}
     {faq.length > 0 && <div className="v11-faq"><h2>Common questions</h2>
       {faq.map((f, i) => <details key={f.q} open={i === 0}><summary>{f.q}</summary><p><Rich text={f.a}/></p></details>)}</div>}
   </> : null;
@@ -393,7 +399,7 @@ export default async function RacketFit(props: {
             <div className="rf-chips">{[leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
-            <h1>{V11 ? `${props.shortName} (${props.year})` : `${props.shortName} review`}</h1>
+            <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
             {!V11 && (page?.source === "research" ? <p className="rp-score">{RESEARCH_LINE}</p> :
@@ -406,7 +412,7 @@ export default async function RacketFit(props: {
           {V11 && <div className="v11-score">
               {page?.source === "research" ? <span className="v11-sres">{RESEARCH_LINE}</span> : <a className="v11-sl" href="#reviews">
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
-                <span className="v11-sm"><b>Player score</b>
+                <span className="v11-sm"><b>{SCORE_CAP}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
                   <small>{`${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
@@ -416,7 +422,7 @@ export default async function RacketFit(props: {
 
         <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} rated={rated || total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
       </section>
-      {V11 && <V11Better id={props.racketId} facts={facts} cards={v11Strip}/>}
+      {V11 && <V11Better id={props.racketId} facts={facts} cards={v11Strip} words={niche.words}/>}
 
       {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
           why not and How it plays share a group; Reviews and Specs follow. The match box floats once the hero scrolls away. */}
@@ -437,7 +443,7 @@ export default async function RacketFit(props: {
           </div>}
         </div>
 
-          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS}
+          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS} words={niche.words} scoreWord={SCORE_CAP}
             gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)} giveWord={SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
