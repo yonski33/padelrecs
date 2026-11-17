@@ -166,24 +166,33 @@ function Card({ c, i, pill, v11c = false }: { c: ReviewCard; i: number; pill: Re
   </article>;
 }
 
-/** A YouTube review on the v11c page (owner 2026-11-17): a lighter card in the same list. Small thumbnail, a grey
- *  "▶ YouTube · 16 min" label (the length when we know it), the channel and verdict, "summary of the video" (our words, not the
- *  creator's), then the stored points joined into one or two plain sentences, at most two lines. */
+/** A YouTube review on the v11c page (owner 2026-11-17), in the same list as player cards.
+ *  A video summary: top row with a small thumbnail beside "▶ YouTube", the channel, verdict and time and "summary of the
+ *  video" (our words, not the creator's); then the whole summary (no clamp, the stored points joined) and "watch ↗" from the
+ *  card's left edge. A viewer's comment: no thumbnail (a comment beside a video's thumbnail read as the video's verdict); it
+ *  looks like a player card: initial, "YouTube viewer", "comment on a <channel> video", the full text, "see the comment ↗". */
 function YtLite({ c, pill }: { c: ReviewCard; pill: Record<Verdict, string> }) {
-  const end = (t: string) => /[.!?]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
-  const text = (c.points ?? []).filter(Boolean).slice(0, 2).map(end).join(" ");
+  const channel = c.who.replace(/^youtube\s+/i, "") || c.who;
+  const end = (t: string) => /[.!?…"”)]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
+  const text = (c.points ?? []).filter(Boolean).map(end).join(" ");
+  const meta = <>{c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}{c.when && <span className="rv-when">{c.when}</span>}</>;
+  if (c.comment) return <div className="rv-ycomm">
+    <div className="rv-top"><span className="rv-av a0" aria-hidden="true">Y</span><strong>YouTube viewer</strong>{meta}</div>
+    <div className="rv-who2">{`comment on a ${channel} video`}</div>
+    {text && <p className="rv-text">{text}</p>}
+    {c.url && <a className="rv-watch" href={c.url} target="_blank" rel="noopener nofollow">see the comment ↗</a>}
+  </div>;
   return <div className="rv-ytl">
-    <a className="rv-tl" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${c.who}`}>
-      {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}
-    </a>
-    <div className="rv-yb">
-      {/* The channel's name without a leading "YouTube " (stored as "YouTube Ritzy Bellhop"): the label already says it. */}
-      <div className="rv-top"><span className="rv-ylab">{`▶ YouTube${c.minutes ? ` · ${c.minutes} min` : ""}`}</span><strong>{c.who.replace(/^youtube\s+/i, "") || c.who}</strong>
-        {c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}
-        {c.when && <span className="rv-when">{c.when}</span>}</div>
-      <div className="rv-ysub">{c.comment ? "a viewer\u2019s comment under the video" : "summary of the video"}</div>
-      {text && <p className="rv-text rv-y2">{text}</p>}
-      {c.url && <a className="rv-watch" href={c.url} target="_blank" rel="noopener nofollow">{c.comment ? "see the comment ↗" : "watch ↗"}</a>}
+    <div className="rv-yhead">
+      <a className="rv-tl" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${channel}`}>
+        {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}
+      </a>
+      <div className="rv-yb">
+        <div className="rv-top"><span className="rv-ylab">{`▶ YouTube${c.minutes ? ` · ${c.minutes} min` : ""}`}</span><strong>{channel}</strong>{meta}</div>
+        <div className="rv-ysub">summary of the video</div>
+      </div>
     </div>
+    {text && <p className="rv-text rv-y2">{text}</p>}
+    {c.url && <a className="rv-watch" href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}
   </div>;
 }
