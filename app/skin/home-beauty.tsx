@@ -78,7 +78,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
         {/* One row on desktop (owner 2026-11-16, as PickleballRecs), the live pill on the subtitle's line; both wrap on phones. */}
         <div><h1>{"Less guessing. "}<em>Better skincare.</em></h1>
           <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p>
-            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} new this week`}</span></div></div>
+            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} added this week`}</span></div></div>
       </section>
 
       {/* The picks, the list and the texture links work in the browser (app/skin/home-match-skin.tsx). */}

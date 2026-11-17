@@ -131,6 +131,7 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-feed a { text-decoration: none; display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; }
   .hv2-src { display: flex; gap: 8px; align-items: center; font: 11px var(--mono); color: var(--mute); }
   .hv2-src .t { color: var(--ink); border: 1.5px solid var(--ink); border-radius: 4px; padding: 0 5px; background: var(--marker); }
+  .hv2-src .hv2-who { color: var(--ink); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .hv2-src .t.reddit { background: oklch(0.85 0.12 45); } .hv2-src .t.youtube { background: oklch(0.85 0.1 25); } .hv2-src .t.padelrecs { background: var(--acc); }
   .hv2-feed b { font-size: 14px; }
   .hv2-q { font-size: 14px; color: #2e2c27; }

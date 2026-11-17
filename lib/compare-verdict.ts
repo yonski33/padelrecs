@@ -46,7 +46,9 @@ export function compareVerdict(ps: VProduct[], traits: VTrait[], picks: Record<s
   const order = [...ps].sort((a, b) => picked ? pct(b) - pct(a) || (b.signal ?? -1) - (a.signal ?? -1) : (b.signal ?? -1) - (a.signal ?? -1));
   const ix = (p: VProduct) => ps.indexOf(p);
   const top = order[0], here = ps.length === 2 ? "of the two" : `of the ${COUNT[ps.length] ?? ps.length}`;
-  const lead = (p: VProduct) => leads(ps, ix(p))[0];
+  // A superlative ("is the most forgiving") only on a real strength, 4+ dots (Grok pickleball audit 2026-11-17, #26: a paddle
+  // whose top complaint is its sweet spot led as "the most forgiving" of two weak ones). The relative lines keep leads().
+  const lead = (p: VProduct) => leads(ps, ix(p)).find(k => p.dots[k] >= 4);
   /** Its lead over the others, else its own strongest trait (4+ dots), for "if you …" lines. */
   const strength = (p: VProduct) => { const k = lead(p); if (k !== undefined) return k;
     const top = Math.max(...p.dots); return top >= 4 ? p.dots.indexOf(top) : undefined; };

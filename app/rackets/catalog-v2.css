@@ -213,3 +213,6 @@ body:has(main.ct2) { background: #fbfaf6; }
     .ct2-list.cmp .ct2-tick { grid-area: pic; align-self: center; position: absolute; left: 6px; top: 8px; z-index: 2; }
   }
 }
+
+/* "one per model" beside the catalogue count (older versions have their own pages). */
+.ct2 .ct2-per { font: 12px var(--mono); color: var(--mute); }

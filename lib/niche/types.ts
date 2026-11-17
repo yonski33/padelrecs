@@ -57,6 +57,9 @@ export type TopList = {
     against?: string[];
     /** Shown on each entry: "8 of 12 reviews mention {noun}". */
     noun: string;
+    /** The product's own bar for the trait must be at least `min` (PickleballRecs Grok audit 2026-11-17: a "best for power"
+     *  list never shows a paddle whose page reads Power 3/5). Read from the match facts (app/rankings/lists.ts). */
+    bar?: { key: "power" | "control" | "spin"; min: number };
   };
   filters?: SpecFilter[];
   /** Only list models from the last this many model years (2 in 2026 → 2024–2026). Only for niches whose products carry

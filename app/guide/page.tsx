@@ -115,7 +115,7 @@ export default async function Guide() {
           <p className="gd-kicker">{g.buys.kicker}</p>
           <p className="gd-claim">{"Players are happiest with a "}<mark>{word(happy.top[0])}</mark>{" or "}<mark>{word(happy.top[1])}</mark>{"."}
             {g.buys.tail && !happy.top.includes(g.buys.tail.unlessTop) && ` ${g.buys.tail.text}`}</p>
-          <p className="gd-from">{`highest share of positive reviews, from ${happy.reviews.toLocaleString("en-US")} player reviews`}</p>
+          <p className="gd-from">{`highest share of positive reviews, from the ${happy.reviews.toLocaleString("en-US")} ${niche.people.one} reviews of these ${niche.words.many}`}</p>
         </div>}
       </section>)}
 
