@@ -436,7 +436,7 @@
 .rf .v11-rail { display: none; }
 @media (min-width: 1024px) {
   /* Same columns as the reviews (720px + the rest), so the card lines up with the tag list below it. */
-  .rf .v11-up { display: grid; grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; align-items: stretch; }
+  .rf .v11-up { width: 100%; display: grid; grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; align-items: stretch; }
   .rf .v11-upl { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
   .rf .v11-rail { display: block; min-width: 0; }
   .rf .rp-rail { position: sticky; top: 84px; max-width: 244px; border: 2px solid #151515; border-radius: 16px; background: #fff; padding: 14px;
