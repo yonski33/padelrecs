@@ -26,7 +26,7 @@ export function clause(t: string) {
   const s = t.replace(/==/g, "").trim().replace(/[.!]$/, "").replace(/\b([Oo])wners\b/g, (_, o) => o === "O" ? "Players" : "players").replace(/\b([Oo])wner\b/g, (_, o) => o === "O" ? "Player" : "player");
   // A line that starts with a name keeps its case (site audit 2026-11-17 #27: "Q-Line runs", "Z and ESP runs", "Champion and
   // Halo hold up"): a one-letter or hyphenated name, two names joined by "and" / "or", or a name before "runs", "plastic", "blend".
-  const named = /^(?![AI]\s)[A-Z](?:[-\s]|$)/.test(s) || /^[A-Z][\w-]*,? (and|or) [A-Z]/.test(s) || /^[A-Z][\w-]* (runs?|plastics?|blends?)\b/.test(s);
+  const named = /^(?![AI]\s)[A-Z](?:[-\s]|$)/.test(s) || /^[A-Z][\w-]*(,? (and|or)|,) [A-Z]/.test(s) || /^[A-Z][\w-]* (runs?|plastics?|blends?)\b/.test(s);
   return named || /^[A-Z][A-Z0-9]/.test(s) ? s : s.replace(/^./, c => c.toLowerCase());
 }
 /** One row of the reason: ✓ (what fits) or ! (the catch), a bold lead and its text. */

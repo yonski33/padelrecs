@@ -46,6 +46,7 @@ test("dg site 4: plastic names keep their case; articles don't", () => {
   assert.equal(clause("Q-Line runs come up to speed easily."), "Q-Line runs come up to speed easily");
   assert.equal(clause("Z and ESP runs shrug off headwinds."), "Z and ESP runs shrug off headwinds");
   assert.equal(clause("Champion and Halo hold up with a firm finish."), "Champion and Halo hold up with a firm finish");
+  assert.equal(clause("Champion, Halo, Duo and glow runs stay steady into headwinds."), "Champion, Halo, Duo and glow runs stay steady into headwinds");
   assert.equal(clause("A pro line, built for advanced players."), "a pro line, built for advanced players");
   assert.equal(clause("The sweet spot covers most of the face."), "the sweet spot covers most of the face");
 });
