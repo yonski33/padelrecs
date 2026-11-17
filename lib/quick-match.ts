@@ -143,7 +143,7 @@ export function matchTitle(c: QuickChoice, many: string, cfg: FitConfig | undefi
 }
 /** The page title for a shared choice: "Best control padel rackets for beginners". */
 export function matchSeoTitle(c: QuickChoice, many: string, cfg: FitConfig | undefined = fitConfigFor(niche)) {
-  if (cfg?.quick?.armFilter) { const t = quickWhat(c, many, cfg), who = c.level ? levelPeople(c.level) : null; return `Best ${c.arm ? "console " : ""}${t}${who ? ` for ${who}` : ""}`; }
+  if (cfg?.quick?.armFilter) { const t = quickWhat(c, many, cfg), who = c.level ? levelPeople(c.level) : null, m = cfg.quick.filters?.find(f => f.main && c.ff?.[f.key]), on = m ? m.options.find(([v]) => v === c.ff![m.key])?.[1] : null; return `Best ${on ? `${on} ` : c.arm ? "console " : ""}${t}${who ? ` for ${who}` : ""}`; }
   if (cfg?.quick) { const t = quickWhat(c, many, cfg), who = c.level ? levelPeople(c.level) : c.arm ? "slower arms" : null; return `Best ${t}${who ? ` for ${who}${c.level && c.arm ? " with a slower arm" : ""}` : ""}`; }
   const what = c.style === "any" ? many : c.style === "balance" ? `all-round ${many}` : `${c.style} ${many}`;
   const who = [c.level ? levelPeople(c.level) : c.arm ? "players" : null, c.arm ? "with a sore elbow or wrist" : null].filter(Boolean).join(" ");
