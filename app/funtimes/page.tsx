@@ -4,6 +4,7 @@ import { database } from "../../db/data";
 import { reviews, rackets, externalReviews, brands } from "../../db/schema";
 import { isAdmin } from "./auth";
 import { ReviewActions, ApproveAll } from "./review-actions";
+import { QuickEdit } from "./quick-edit";
 /** Player reviews per page in the queue (owner 2026-11-17: 100). */
 const QUEUE_PAGE = 100;
 import { getCurrentUser } from "../../lib/supabase/auth";
@@ -104,8 +105,8 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  {status!=="approved"&&<ApproveAll count={Math.min(queue.length,QUEUE_PAGE)}/>}
  <div className="admin-queue">{queue.slice(0,QUEUE_PAGE).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
  <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={model ? productHref(model) : catalogPath}>{model?.name}</a></h3>
- <p className="review-text">{r.reviewText}</p><TagList tags={r.tags}/>{variantLine(r.variant)}<div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
- <div className="byline"><span>by <b>{r.alias||`Anonymous ${niche.people.one}`}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
+ <QuickEdit id={r.id} field="text" value={r.reviewText}/><TagList tags={r.tags}/>{variantLine(r.variant)}<div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
+ <div className="byline"><span>by <QuickEdit id={r.id} field="alias" value={r.alias??""} empty={`Anonymous ${niche.people.one}`}/></span><QuickEdit id={r.id} field="date" value={r.createdAt}/></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
  <p><a href={`/funtimes/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
  <ReviewActions id={r.id} status={r.status as "pending"|"approved"|"rejected"} back={status}/>

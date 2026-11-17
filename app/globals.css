@@ -535,6 +535,14 @@ legend { padding: 0; font-size: 14.5px; font-weight: 600; margin-bottom: 8px; }
 .admin-queue .review:has(.admin-done-note) { opacity: 0.45; transition: opacity .4s; }
 .admin-done-note { font-weight: 700; padding: 8px 0; }
 .admin-row-error { flex-basis: 100%; margin: 4px 0 0; color: #a3261b; font-weight: 600; }
+/* Inline quick edits (owner 2026-11-17): name, date and text, click to edit. */
+.qe-click { all: unset; cursor: text; border-bottom: 1px dashed currentColor; }
+p.qe-click { border-bottom: 0; outline: 1px dashed transparent; } p.qe-click:hover { outline-color: #999; }
+.qe-click:focus-visible { outline: 2px solid #4a7; }
+.qe-in { font: inherit; padding: 2px 6px; border: 1.5px solid #333; border-radius: 6px; }
+.qe-text { width: 100%; box-sizing: border-box; font: inherit; line-height: 1.5; padding: 8px 10px; border: 1.5px solid #333; border-radius: 8px; resize: none; overflow: hidden; }
+.qe-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 6px; } .qe-row small { color: #666; }
+.qe-ok { color: #2f6b34; font-weight: 700; } .qe-err { color: #a3261b; font-weight: 600; }
 .admin-bulk { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 0 0 14px; }
 .admin-pagination { display: flex; justify-content: space-between; max-width: 760px; margin-top: 25px; font-size: 14px; }
 .admin-queue .review-text { white-space: pre-wrap; overflow-wrap: anywhere; }
