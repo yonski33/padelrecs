@@ -286,6 +286,17 @@ export default async function RacketFit(props: {
       .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate),
         url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
   };
+  const redditCards = () => {
+    const ok = (t?: string | null) => !!t && t.length >= 30 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
+      && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
+    // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
+    const pick = (["positive", "mixed", "negative"] as const).flatMap(v => rows.filter(e => e.sentiment === v).slice(0, 1));
+    for (const e of rows) { if (pick.length >= 5) break; if (!pick.includes(e)) pick.push(e); }
+    const sub = (url: string, name: string) => url.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? name;
+    return pick.slice(0, 5).map(e => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "reddit" as const, who: "Reddit user", source: sub(e.sourceUrl, e.sourceName),
+      verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text: unmd(e.excerpt!), verbatim: true } satisfies ReviewCard }));
+  };
   const dated: { at: string; card: ReviewCard }[] = [
     ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, tags: r.tags, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
@@ -304,6 +315,8 @@ export default async function RacketFit(props: {
     // Blogs (owner 2026-11-18, reversing part of the 11-15 rule): v11c lists blog reviews too, one card per blog, its newest
     // row that has our summary or a short English excerpt (quoted, verbatim). Forum reports still count in the score only.
     ...(V11 ? blogCards() : []),
+    // Reddit (owner 2026-11-18): up to 5 comments, the commenter's exact words only (English, short, never edited by us).
+    ...(V11 ? redditCards() : []),
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
 
