@@ -8,7 +8,7 @@ import { variantInput, reviewVariant } from "../../../db/review-variant";
 import { reviews, rackets } from "../../../db/schema";
 import { tagsInput } from "../../../lib/tags";
 import { profileChoice } from "../../../lib/review-options";
-import { issueFormToken, checkFormToken, reviewEditToken, checkReviewEdit } from "../../../lib/form-token";
+import { issueFormToken, checkFormToken, tokenRejects, reviewEditToken, checkReviewEdit } from "../../../lib/form-token";
 import { spamScore, normalizeEmail } from "../../../lib/review-spam";
 import { clientIp, createLimiter } from "../../../lib/rate-limit";
 import { makeNickname } from "../../../lib/nickname";
@@ -59,9 +59,13 @@ export async function POST(request:Request){
  const ip=clientIp(request);
  if(!perIpBurst.hit(ip)||!perIpDay.hit(ip))return dropped("ip-rate-limit");
  const parsed=input.safeParse({racketMode:"existing",...body});
- if(!parsed.success)return honeypot||token!=="ok"?dropped(honeypot?"honeypot":`form-token-${token}`):Response.json({error:`Check the ${niche.words.one} details (brand, model and year for a new ${niche.words.one}), rating, email, and review text (at least 20 characters).`},{status:400});
+ // A "too fast" token is not proof of a bot (a person can tap Post within 3 s of the form opening): such a review is kept
+ // for moderation as pending, never filed as rejected (owner 2026-11-18). Missing, invalid or expired tokens and the
+ // honeypot are handled as before.
+ const tokenBad=tokenRejects(token);
+ if(!parsed.success)return honeypot||tokenBad?dropped(honeypot?"honeypot":`form-token-${token}`):Response.json({error:`Check the ${niche.words.one} details (brand, model and year for a new ${niche.words.one}), rating, email, and review text (at least 20 characters).`},{status:400});
  if(honeypot)return rejected("honeypot",parsed.data);
- if(token!=="ok")return rejected(`form-token-${token}`,parsed.data);
+ if(tokenBad)return rejected(`form-token-${token}`,parsed.data);
  const spam=spamScore(parsed.data);if(spam.spam)return rejected(`content: ${spam.reasons.join(", ")}`,parsed.data);
  try {
   const db=await database(),value=parsed.data;

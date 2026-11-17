@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useId, useRef, useState } from "react";
+import { useFormToken } from "../../form-token-client";
 import { DEFAULT_NICKNAMES, VERDICTS, loadProfile, nickname, sendVote, type Verdict } from "../../quick-vote";
 import { MAX_TAGS } from "../../../lib/tags";
 
@@ -14,6 +15,7 @@ const COLOR: Record<Verdict, string> = { positive: "var(--pos)", mixed: "var(--m
 
 export default function QuickTakeComposer({ racketId, name, tags, nicknames, hasReviews }: { racketId: string; name: string; tags: string[]; nicknames: string[]; hasReviews: boolean }) {
   const [nick, setNick] = useState(""), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [picked, setPicked] = useState<string[]>([]);
+  const formToken = useFormToken();
   // Step by step (owner 2026-11-15): compact at rest; a verdict tap or focusing the box opens the words, tags and Post.
   const [open, setOpen] = useState(false), [allTags, setAllTags] = useState(false), regionId = useId();
   const TOP_TAGS = 6, shownTags = allTags ? tags : tags.slice(0, TOP_TAGS);
@@ -38,7 +40,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
       const stats = await sendVote(racketId, v.rating, loadProfile());
       let note = `Counted! ${stats.total > 1 ? `You and ${(stats.total - 1).toLocaleString("en-US")} other ${stats.total - 1 === 1 ? "player" : "players"} have weighed in.` : "You're the first to weigh in."}`;
       if (words) {
-        const token = ((await (await fetch("/api/reviews", { cache: "no-store" })).json()) as { token?: string }).token || "";
+        const token = await formToken();
         const p = loadProfile();
         const known = Object.fromEntries(Object.entries({ playerLevel: p.level, playingSide: p.side, playingStyle: p.style }).filter(([, x]) => x));
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },

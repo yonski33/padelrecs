@@ -1,5 +1,6 @@
 "use client";
 import { niche, v2copy } from "../../lib/niche";
+import { useFormToken } from "../form-token-client";
 import { matchingRackets } from "../../lib/racket-search";
 import { useState } from "react";
 import { VERDICTS, loadProfile, nickname, saveProfile, sendVote, type Verdict } from "../quick-vote";
@@ -27,6 +28,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
   const [level, setLevel] = useState<string | null>(null), [side, setSide] = useState<string | null>(null), [time, setTime] = useState<string | null>(null);
   const [r, setR] = useState<Record<string, number>>({}), [text, setText] = useState(""), [name, setName] = useState("");
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<null | "words" | "vote">(null);
+  const formToken = useFormToken();
   const racket = rackets.find(x => x.id === racketId) ?? null;
   const qq = q.trim().toLowerCase();
   const matches = (qq ? matchingRackets(rackets, qq) : rackets).slice(0, qq ? 8 : 4);
@@ -45,7 +47,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
       if (level || side) saveProfile(profile);
       await sendVote(racket!.id, v.rating, profile);
       if (words) {
-        const token = ((await (await fetch("/api/reviews", { cache: "no-store" })).json()) as { token?: string }).token || "";
+        const token = await formToken();
         const ratings = Object.fromEntries(traits.filter(([n]) => r[n]).map(([n, key]) => [key, r[n]]));
         const res = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
           racketMode: "existing", racketId: racket!.id, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: name.trim() || nickname(niche.form.quickVote?.nicknames) || undefined,

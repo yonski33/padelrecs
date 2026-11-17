@@ -1,5 +1,6 @@
 "use client";
 import { scoreBox } from "../../../lib/score-tone";
+import { useFormToken } from "../../form-token-client";
 import { VERDICT_PILL } from "../../../lib/review-pill";
 import { useEffect, useState } from "react";
 import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } from "../../quick-vote";
@@ -37,6 +38,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
    *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
   const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: "players", peopleTab: "players" };
   const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
+  const formToken = useFormToken();
   // v11c filters (owner 2026-11-17, the approved mock): a verdict from the vote bar, a tag from "What players mention".
   const [vf, setVf] = useState<Verdict | null>(null), [tf, setTf] = useState<string | null>(null);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<string | null>(null);
@@ -71,7 +73,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
       if (level) saveProfile(profile);
       await sendVote(racketId, v.rating, profile);
       if (words) {
-        const token = ((await (await fetch("/api/reviews", { cache: "no-store" })).json()) as { token?: string }).token || "";
+        const token = await formToken();
         const known = Object.fromEntries(Object.entries({ playerLevel: profile.level, playingSide: profile.side, playingStyle: profile.style }).filter(([, x]) => x));
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ racketMode: "existing", racketId, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: nick.trim() || undefined, ...known }) });
