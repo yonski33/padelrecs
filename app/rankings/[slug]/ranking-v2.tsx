@@ -153,12 +153,13 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
           {x.line && <span className="rk3-line">{x.line}</span>}
           {x.best && <span className="rk3-best">{`best for ${x.best}`}</span>}
           {list.trait && <span className="rk3-best">{`${x.e.traitReviews} mention ${list.trait.noun}`}</span>}
+          {/* Rows #2 on: the quiet "check price ↗" in the text column under "best for", as on the home list (owner 2026-11-17);
+              only the #1 card keeps the button. */}
+          {buy(x, "rk3-link")}
         </div>
         <div className="rk3-foot">
           {scoreState(x.judged) === "new" ? <NewPill n={x.judged}/> : <span className={`rk3-sc${tone(x.sig)}`}><b>{x.sig ?? "–"}</b><small>{scoreLabel.toLowerCase()}</small></span>}
           {ctx && <RowMatch id={x.r.id}/>}
-          {/* Rows #2 on: padel's quiet "check price ↗" link; only the #1 card keeps the button (owner 2026-11-16). */}
-          {buy(x, "rk3-link")}
         </div>
       </li>)}</ol>}
       </MatchWrap>

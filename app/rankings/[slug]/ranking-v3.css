@@ -201,3 +201,9 @@
   .rk3-seg button, .rk3-arm { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; box-sizing: border-box; }
   .rk3-tabs a { display: inline-flex; align-items: center; min-height: 34px; box-sizing: border-box; }
 }
+
+/* "reset ✕" at the right of the picks (owner 2026-11-17): a quiet text link, 32px tall. */
+.rk3-picks .rk3-reset { all: unset; cursor: pointer; margin-left: auto; min-height: 32px; display: inline-flex; align-items: center; font: 13px var(--mono); color: var(--mute); text-decoration: underline; text-underline-offset: 3px; }
+.rk3-picks .rk3-reset:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+/* Rows #2–#10: "check price ↗" sits in the text column under "best for" (owner 2026-11-17), 32px tall. */
+.rk3 .rk3-body .rk3-link { align-self: flex-start; display: inline-flex; align-items: center; min-height: 32px; margin: 0; }
