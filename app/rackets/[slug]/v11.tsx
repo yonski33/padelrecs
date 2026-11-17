@@ -21,7 +21,9 @@ const Pic = ({ pic, name, w, h }: { pic: string | null; name: string; w: number;
   : <span className="v11-tile">{name.split(" ").slice(0, 2).join(" ")}</span>;
 
 /** "Better matches for your game": 3 compact cards, a sideways row on phones, then the way back to Why yes / why not. */
-export function V11Better({ id, facts, cards }: { id: string; facts: FitFacts; cards: Record<string, Pick<V11Card, "name" | "href" | "pic" | "line" | "shop">> }) {
+/** The site's words for its products (lib/niche words). */
+type Words = { one: string; many: string };
+export function V11Better({ id, facts, cards, words }: { id: string; facts: FitFacts; cards: Record<string, Pick<V11Card, "name" | "href" | "pic" | "line" | "shop">>; words: Words }) {
   const a = useAnswer(id, facts);
   if (!a || a.pct === null || a.pct >= WEAK) return null;
   const rows = a.alts.filter(r => r.id !== id && cards[r.id] && (r.pct ?? 0) > (a.pct ?? 0)).slice(0, 3);
@@ -36,14 +38,14 @@ export function V11Better({ id, facts, cards }: { id: string; facts: FitFacts; c
         {c.line && <span className="v11-bline">{c.line}</span>}
         {c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
       </div></div>; })}</div>
-    <a className="v11-curious" href="#yes-no">Still curious about this racket? Why yes, why not ↓</a>
+    <a className="v11-curious" href="#yes-no">{`Still curious about this ${words.one}? Why yes, why not ↓`}</a>
   </section>;
 }
 
 /** "Other rackets to consider" (no pick: similar rackets, Player scores) / "Other rackets for your game" (a pick: rackets that fit
  *  it, 60%+, the curated list first then the engine, sorted by match; fewer cards rather than ones that don't fit). */
-export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord }: { id: string; cards: V11Card[]; short: string; pool: V11Pool;
-  me: number[]; keys: string[]; gainWord: string[]; giveWord: string[] }) {
+export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord, words, scoreWord }: { id: string; cards: V11Card[]; short: string; pool: V11Pool;
+  me: number[]; keys: string[]; gainWord: string[]; giveWord: string[]; words: Words; scoreWord: string }) {
   const m = useMatchOf(), alts = useAlts(id, 8);
   const fitting = m.picked && alts ? fittingRows(alts, id, x => !!pool[x]) : [];
   const picked = m.picked && fitting.length > 0;
@@ -53,7 +55,7 @@ export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord
       vs: e ? gainWord[e.gain] : null, pick: null, gain: e ? `${cap(gainWord[e.gain])} than the ${short}.` : c.line, give: e && e.give !== null ? `${cap(giveWord[e.give])} than the ${short}.` : null }; })
     : cards.map(c => ({ ...c, pct: null }));
   return <section className="v11-sec" id="alternatives">
-    <div className="v11-sh v11-rule"><h2>{picked ? "Other rackets for your game" : "Other rackets to consider"}</h2><span>{picked ? "the best fits for your picks, by match" : "similar rackets, same quick answer"}</span></div>
+    <div className="v11-sh v11-rule"><h2>{picked ? `Other ${words.many} for your game` : `Other ${words.many} to consider`}</h2><span>{picked ? "the best fits for your picks, by match" : `similar ${words.many}, same quick answer`}</span></div>
     <div className="v11-others">{list.map(c => { const st = c.pct !== null ? fitStep(c.pct) : null;
       return <article key={c.id} className="v11-ocard" id={`racket-${c.id}`}>
         <div className="v11-oleft">
@@ -64,7 +66,7 @@ export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord
               {c.best && <p className="v11-obest"><b>Best for</b>{` ${c.best}.`}</p>}</div>
           </div>
           <div className="v11-ofoot">
-            <span className="v11-oscore"><b className={tone(c.score)}>{c.score ?? "–"}</b><span><b>Player score</b></span></span>
+            <span className="v11-oscore"><b className={tone(c.score)}>{c.score ?? "–"}</b><span><b>{scoreWord}</b></span></span>
             {c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
           </div>
         </div>

@@ -24,5 +24,6 @@ html .rk2 .rk2-ph{height:auto!important}
 html .rk2 .rk2-tile,html .ct2 .ct2-tile,html .rf .rf-tile{font-size:0;color:transparent;width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);--t:${ORANGE};background:var(--t);box-shadow:inset 0 0 0 6px var(--t),inset 0 0 0 7.5px rgba(22,37,29,.35);padding:0}
 html .rk2 .p1 .rk2-tile{--t:oklch(0.85 0.1 150)}html .rk2 .p2 .rk2-tile{--t:oklch(0.87 0.08 230)}
 html .ct2 .ct2-tile{width:48px;height:48px}
+html .rf{--site-tint:oklch(0.95 0.06 60);--site-top:oklch(0.97 0.04 60)}
 html .rf .rf-tile{width:min(180px,60%);height:auto;aspect-ratio:1;box-shadow:inset 0 0 0 14px var(--t),inset 0 0 0 16px rgba(22,37,29,.35)}
 `;

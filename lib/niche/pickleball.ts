@@ -107,6 +107,9 @@ export const pickleball: Niche = {
     "--site-good": "oklch(0.92 0.17 105)",
     "--site-soso": "oklch(0.95 0.08 105)",
     "--site-wash": "oklch(0.985 0.035 105)",
+    // Product page v11 (2026-11-17): the build cards' tint and How it plays' top band.
+    "--site-tint": "oklch(0.96 0.07 105)",
+    "--site-top": "oklch(0.975 0.05 105)",
     "--site-wash-line": "oklch(0.88 0.08 105)",
     "--site-shadow": "oklch(0.62 0.12 235)",
     "--site-scale": "linear-gradient(90deg, oklch(0.95 0.06 105), oklch(0.8 0.12 105) 50%, #17203a)",

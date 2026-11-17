@@ -4,6 +4,7 @@
 // from data sent once with the page (this racket's facts, the catalog's slim items: lib/fit-verdict.ts fitVerdict,
 // lib/home-rank.ts matchPcts and alternatives, the same functions the server uses), then updates the address with no round
 // trip. "What players said" comes in its four level views, worked out on the server.
+import { V11_HEADLINES } from "../../../lib/v11-words";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "../../instant-view";
 import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
@@ -119,8 +120,8 @@ export function FitBox({ id, facts, hook, total, rated = total, bestLine, levelD
   // 2 strengths and 1 catch on a clean fit, up to 2 otherwise; a hard conflict without a racket line keeps the fit check's reason.
   const lines = verdict && card && verdict.kind !== "thin" ? cardLines(card, choice, { maxCatches: verdict.kind === "good" ? 1 : 2, hard: verdict.kind === "no" ? verdict.reasons[0] : undefined }) : null;
   const hasCatch = lines ? !!(lines.lead || lines.catches.length) : !!consider;
-  // Product page v11 (padel, owner 2026-11-17): the handoff's headlines, no em dashes.
-  const headline = !verdict ? "" : niche.id === "padel" ? { good: "Good match for you", maybe: "Maybe, demo it first", no: "Probably not your racket", thin: "Not enough reports from players like you yet." }[verdict.kind] : verdict.kind === "good" ? (hasCatch ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
+  // Product page v11 (owner 2026-11-17): the handoff's headlines in the site's words, no em dashes (lib/v11-words.ts).
+  const headline = !verdict ? "" : V11_HEADLINES[niche.id] ? V11_HEADLINES[niche.id][verdict.kind] : verdict.kind === "good" ? (hasCatch ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
   // One reason line (owner 2026-11-16): "why this score, for you", from the Why yes / Why not items that matter for the picks
   // (the fit-card lines when the page has none) plus the level reason. Bullets are gone: Why yes, why not says the rest.
   const asItem = (l: { t: string; for: string[] }) => ({ title: l.t.includes(": ") ? l.t.split(": ")[0] : l.t, t: l.t.includes(": ") ? l.t.slice(l.t.indexOf(": ") + 2) : l.t, for: l.for });
