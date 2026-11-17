@@ -155,7 +155,7 @@ function Card({ c, i, pill, v11c = false }: { c: ReviewCard; i: number; pill: Re
             <span className="rv-play" aria-hidden="true">▶</span>
           </a>
           <div className="rv-yb">
-            <div className="rv-top"><span className="rv-tag">youtube</span><strong>{c.who}</strong>
+            <div className="rv-top"><span className="rv-tag">youtube</span><strong>{c.who.replace(/^youtube\s+/i, "") || c.who}</strong>
               {c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}
               {c.when && <span className="rv-when">{c.when}</span>}</div>
             {c.comment && <div className="rv-title">a viewer&apos;s comment under the video</div>}
@@ -177,7 +177,8 @@ function YtLite({ c, pill }: { c: ReviewCard; pill: Record<Verdict, string> }) {
       {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}
     </a>
     <div className="rv-yb">
-      <div className="rv-top"><span className="rv-ylab">{`▶ YouTube${c.minutes ? ` · ${c.minutes} min` : ""}`}</span><strong>{c.who}</strong>
+      {/* The channel's name without a leading "YouTube " (stored as "YouTube Ritzy Bellhop"): the label already says it. */}
+      <div className="rv-top"><span className="rv-ylab">{`▶ YouTube${c.minutes ? ` · ${c.minutes} min` : ""}`}</span><strong>{c.who.replace(/^youtube\s+/i, "") || c.who}</strong>
         {c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}
         {c.when && <span className="rv-when">{c.when}</span>}</div>
       <div className="rv-ysub">{c.comment ? "a viewer\u2019s comment under the video" : "summary of the video"}</div>

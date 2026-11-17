@@ -10,7 +10,12 @@ const words = (s: string) => s.split(/\s+/).filter(Boolean);
 export function refName(i: number, all: Named[], /** Never the brand alone (DiscGolfRecs, audit 2026-11-17: "than the Discraft" names hundreds of molds). */ byModel = false): string {
   const me = all[i], brand = me.brand.trim().toLowerCase();
   const sameBrand = all.filter((x, j) => j !== i && x.brand.trim().toLowerCase() === brand);
-  if (me.brand.trim() && !sameBrand.length) return byModel ? me.model : me.brand.trim();
+  // A brand nobody else here shares stands for the product, unless it reads like a product itself (owner 2026-11-17): a
+  // two-word brand ("Vatic Pro", "Six Zero": "than the Vatic Pro" sounds like a model) or one another name here starts with.
+  // Then the model words ("than the Prism Flash").
+  const b = me.brand.trim(), looksLikeModel = words(b).length > 1
+    || all.some((x, j) => j !== i && x.brand.trim().toLowerCase() !== brand && `${x.brand} ${x.model}`.trim().toLowerCase().startsWith(`${brand} `));
+  if (b && !sameBrand.length) return byModel || looksLikeModel ? me.model : b;
   const taken = new Set(sameBrand.flatMap(x => words(x.model.toLowerCase())));
   const mw = words(me.model), own = mw.filter(t => t.length >= 2 && !taken.has(t.toLowerCase()));
   // A name that shares no word with its siblings is its own name: "the Double Black Diamond Control", not "the Black".

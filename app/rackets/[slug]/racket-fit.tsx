@@ -53,6 +53,7 @@ import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
 import { CompareWith } from "./compare-with";
 import { refName } from "../../../lib/compare-names";
+import { suggestionFloor } from "../../../lib/suggestion-floor";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
@@ -168,6 +169,11 @@ export default async function RacketFit(props: {
   const superseded = (id: string) => { const x = ctx.data.rackets.find(y => y.id === id); return !!x && x.year < (famNewest.get(modelFamily(x)) ?? x.year); };
   const thisYear = Number(isoDaysAgo(0).slice(0, 4));
   const current = (id: string) => Number((ctx.data.rackets.find(y => y.id === id)?.year ?? 0) >= thisYear);
+  // Quality floor (owner 2026-11-17): a suggestion needs a real Player score of at least min(this one's score − 10, 80); a
+  // product without a score yet asks 75. Fewer cards (or none) rather than weak ones.
+  const realScore = (id: string) => scoreState(score(ctx.data, id).judged) === "new" ? null : ctx.signal(id);
+  const scoreFloor = suggestionFloor(realScore(props.racketId));
+  const goodEnough = (id: string) => (realScore(id) ?? -1) >= scoreFloor;
   const simPool: string[] = (() => {
     // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean
     // and a level in common, one row per model (the year that takes the family's row), described most like this one by
@@ -179,7 +185,7 @@ export default async function RacketFit(props: {
     // A type-picker site (DiscGolfRecs) keeps to the disc's own type (putter, mid …); padel and pickleball items have none.
     const kindOf = (id: string) => payload.items.find(x => x.id === id)?.kind, myKind = kindOf(me.id);
     const base = ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(me) && reportsOf(x.id) >= MIN_FIT_REPORTS && (!myKind || kindOf(x.id) === myKind)
-      && !superseded(x.id) && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
+      && !superseded(x.id) && goodEnough(x.id) && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
     const sameLean = (x: (typeof base)[number]) => !myLean || styleOf(ctx.facts(x.id)) === myLean;
     const sameLevel = (x: (typeof base)[number]) => !myLevels.length || levelsOf(x.id).some(l => myLevels.includes(l));
     // Strictest first; with fewer than 4, the level and then the style lean are let go (the shape always holds).
@@ -192,7 +198,7 @@ export default async function RacketFit(props: {
   // Past the similar pool, well-reviewed rackets of the same shape, then any, so every card can bring its own gain.
   const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
   const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
-    && !superseded(x.id))
+    && !superseded(x.id) && goodEnough(x.id))
     .sort((a, b) => current(b.id) - current(a.id) || Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || band(b.id) - band(a.id) || spread(a.id, b.id)).slice(0, 30).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
@@ -374,7 +380,7 @@ export default async function RacketFit(props: {
   const v11Strip: V11Pool = {};
   if (V11) for (const style of STYLES) for (const level of [undefined, ...LEVELS]) for (const arm of [false, true]) {
     for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
-      if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id) || superseded(a.id)) continue;
+      if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id) || superseded(a.id) || !goodEnough(a.id)) continue;
       const c = cardOf(a.id), bf = bestFor(ctx.facts(a.id));
       v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots, ref: refOf(a.id) };
     }
