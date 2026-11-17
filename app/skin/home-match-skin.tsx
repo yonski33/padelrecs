@@ -3,6 +3,7 @@
 // skin picks … is slow"). The server renders the address's picks (a cached page per combination, app/v/home); a tap re-ranks
 // the products sent with the page with the server's own functions (app/skin/rank.ts) and updates the address, with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { matchBox } from "../../lib/score-tone";
 import { useMemo, type ReactNode } from "react";
 import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
@@ -85,7 +86,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
             ];
             // The user score until a pick, then the match % (owner 2026-11-16: as on padel), with the same colours.
             const sig = ctx.signal(r.id), best = skinBestFor(ctx.profile, ctx.attrs.get(r.id));
-            const pctCls = picked ? (x.pct === null ? "none" : x.pct >= 85 ? "hi" : x.pct >= 70 ? "mid" : "") : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : "";
+            const pctCls = picked ? (x.pct === null ? "none" : matchBox(x.pct)) : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : "";
             return <li key={r.id} className={top ? "top" : undefined}>
               <span className="bh-rank">{i + 1}</span>
               <span className="bh-pic">{card.pic && <img src={card.pic} alt="" width={112} height={140} decoding="async" loading={i < 3 ? "eager" : "lazy"}/>}</span>

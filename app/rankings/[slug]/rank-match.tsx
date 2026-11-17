@@ -2,6 +2,7 @@
 // "Find my match" on a ranking page (owner 2026-11-17): the quick-match picks open right here instead of sending the visitor
 // to the home. Once a style and level are picked, every row shows its match % and fit word, from the same engine as the home
 // and the racket pages (lib/home-rank matchPcts over /api/rank-items, loaded once). The list's own order stays.
+import { matchTone } from "../../../lib/score-tone";
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { RANK_SETUP } from "../../../lib/rank-seed";
@@ -11,7 +12,7 @@ import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level } 
 
 const Ctx = createContext<(id: string) => number | null | undefined>(() => undefined);
 const word = (n: number) => fitStep(n).word;
-const toneOf = (n: number) => n >= 85 ? " g" : n >= 70 ? " y" : "";
+const toneOf = (n: number) => { const t = matchTone(n); return t === "w" ? "" : ` ${t}`; };
 
 export function RankMatch({ head, children }: { head: string; children: ReactNode }) {
   const [c, setC] = useState<QuickChoice>({ style: "any", arm: false });

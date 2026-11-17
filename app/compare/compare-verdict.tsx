@@ -3,6 +3,7 @@
 // why not, where they differ, specs side by side. The products' facts come from the server (app/compare/compare-v2.tsx); the
 // match % and the verdict are worked out here on every pick change (lib/home-rank matchPcts, lib/compare-verdict), so picks
 // stay instant and the address keeps the products only.
+import { scoreBox, matchBox } from "../../lib/score-tone";
 import { useMemo, useState } from "react";
 import { matchPcts, type RankItem } from "../../lib/home-rank";
 import { hardOnLevelOrArm, SUITS_OK } from "../../lib/fit-verdict";
@@ -63,7 +64,7 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
           {p.shop && <a className="cx-buy" href={p.shop.url} target="_blank" rel={p.shop.rel}>check price ↗</a>}
         </div>
         {!v.picked && !COMPARE_SHOWS_SCORE ? <span className="cx-num" title="Reviews with a verdict"><b>{p.judged.toLocaleString("en-US")}</b><small>{p.judged === 1 ? "review" : "reviews"}</small></span>
-          : !v.picked && scoreState(p.judged) === "new" ? <span className="cx-num"><NewPill n={p.judged}/></span> : <span className="cx-num" title={v.picked ? NOTE : undefined}><b className={num !== null && num >= 85 ? "hi" : num !== null && num >= 70 ? "mid" : undefined}>{num === null ? "–" : v.picked ? `${num}%` : num}</b><small>{v.picked ? "match" : scoreWord}</small></span>}
+          : !v.picked && scoreState(p.judged) === "new" ? <span className="cx-num"><NewPill n={p.judged}/></span> : <span className="cx-num" title={v.picked ? NOTE : undefined}><b className={(v.picked ? matchBox(num) : scoreBox(num)) || undefined}>{num === null ? "–" : v.picked ? `${num}%` : num}</b><small>{v.picked ? "match" : scoreWord}</small></span>}
         {removeHref[p.id] && <a className="cx-x" href={removeHref[p.id]} aria-label={`Remove ${p.name}`}>✕</a>}
       </article>; })}</section>
 
