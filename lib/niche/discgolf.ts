@@ -1,6 +1,7 @@
 import type { Niche } from "./types";
 import { discgolfV2Style } from "./discgolf-v2-style";
 import { discgolfGuide } from "./discgolf-guide";
+import { discgolfHome } from "./discgolf-home";
 
 // Rating icons: a disc seen at an angle, disc orange with a pine rim line and a lighter flight plate. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -22,6 +23,7 @@ export const discgolf: Niche = {
   // Design v2 (owner mock S8ZGdwXLf1VdGPcYrpeoQ1, 2026-11-16) on the shared shell, option A: lib/discgolf-fit.ts profile.
   design: "v2",
   guide: discgolfGuide,
+  homeMore: discgolfHome,
   v2style: discgolfV2Style, v2fonts: ["Familjen+Grotesk:wght@500;700"],
   v2copy: {
     sport: "disc golf", emoji: "🥏", strip: "a free, ad-light side project · built by disc golfers",

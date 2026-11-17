@@ -1,5 +1,6 @@
 import type { Niche } from "./types";
 import { padelGuide } from "./padel-guide";
+import { padelHome } from "./padel-home";
 
 // Rating-icon images. Repeated horizontally by .balls (17×14 tiles) and shown one per option by .ballpick (20×20).
 const ballTile = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'%3E%3Ccircle cx='7' cy='7' r='6.1' fill='%23d4ea4f' stroke='%231b3d27' stroke-width='1.3'/%3E%3Cpath d='M2.4 4.4c2.2 1 2.2 4.2 0 5.2M11.6 4.4c-2.2 1-2.2 4.2 0 5.2' fill='none' stroke='%231b3d27' stroke-width='1.1' stroke-linecap='round'/%3E%3C/svg%3E\")";
@@ -10,6 +11,7 @@ const ballPickOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 export const padel: Niche = {
   id: "padel",
   guide: padelGuide,
+  homeMore: padelHome,
   design: "v2",
   v2copy: {
     sport: "padel", emoji: "🎾", strip: "a free, ad-light side project · built by padel players",
