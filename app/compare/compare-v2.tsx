@@ -23,6 +23,7 @@ import { catchShort, leads, MAX_LINE, type VTrait } from "../../lib/compare-verd
 import type { Data } from "./view";
 import { isV2 } from "../../lib/niche";
 import { attrProfileFor } from "../../lib/attr-profile";
+import { refName, repeatsTrait } from "../../lib/compare-names";
 
 /** The compare page (owner 2026-11-17, "Compare v3" mock): every kept site, two or three products (?look=classic keeps the
  *  older page). */
@@ -59,15 +60,18 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   // from its page; the "!" is its own catch. Expert voice, ≤ 105 characters, never a count.
   // Named, not "the other one" (owner 2026-11-17): "Longer than the Wraith", "Easier on the arm than the Jelly Bean 2 and the
   // Envy"; "than both others" only when the names would push the line past 105 characters.
-  const shorts = base.map(b => shortName(b.name, brandOf(b.r)));
-  const othersOf = (i: number) => shorts.filter((_, j) => j !== i).map(x => `the ${x}`).join(" and ");
+  const named = base.map(b => ({ brand: brandOf(b.r) ?? "", model: shortName(b.name, brandOf(b.r)) }));
+  const othersOf = (i: number) => named.map((_, j) => j).filter(j => j !== i).map(j => `the ${refName(j, named)}`).join(" and ");
   const short = (t: string | null | undefined) => t && t.length <= MAX_LINE ? t : null;
   const cprods: CProduct[] = base.map((b, i) => {
     const vp = { id: b.r.id, short: shortName(b.name, brandOf(b.r)),
       signal: sigs.get(b.r.id)?.signal ?? null, judged: score(data, b.r.id).judged, dots: b.dots, catchShort: catchShort(b.catchLine) };
     const lead = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => { const d = `${TRAITS[k].diff[0].toUpperCase()}${TRAITS[k].diff.slice(1)} than `, line = `${d}${othersOf(i)}.`;
       return line.length <= MAX_LINE ? line : `${d}${base.length === 2 ? "the other one" : "both others"}.`; });
-    const own = b.page?.yes.map(y => short(plain(y.t))).find((t): t is string => !!t);
+    // Its own best point, unless it makes the same point as a comparison line above (owner 2026-11-17: "Quicker than …" and
+    // "Fast handling at the net" are one point).
+    const leadKeys = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => DOTS[k].key);
+    const own = b.page?.yes.map(y => short(plain(y.t))).find((t): t is string => !!t && !repeatsTrait(t, leadKeys, Object.fromEntries(DOTS.map(d => [d.key, d.label]))));
     return { ...vp, name: b.name, slug: b.r.slug, href: productHref(b.r), pic: photoOf(b.r), shop: b.shop,
       yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => d.get(b.r) || null) };
   });
