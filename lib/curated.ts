@@ -5,7 +5,7 @@ import { niche } from "./niche";
 import type { QuickChoice } from "./quick-match";
 
 export type CuratedEntry = { slug: string; /** The owner's own pick: kept whatever its evidence. */ owner?: boolean; note?: string; /** Why an older year is allowed (validator). */ exception?: string; /** The source the reason rests on (Grok pack). */ src?: string };
-const SITES: Record<string, { lists: Record<string, CuratedEntry[]> }> = { padel };
+const SITES: Record<string, { lists: Record<string, CuratedEntry[]>; rankings?: Record<string, string[] | string> }> = { padel };
 export const curatedKey = (c: Pick<QuickChoice, "style" | "level" | "arm">) => `${c.style}/${c.level}/arm-${c.arm ? "on" : "off"}`;
 /** A drafted pick needs this much evidence to stay on a list (owner 2026-11-17); the owner's picks are exempt. */
 export const CURATED_MIN = { reviews: 10, score: 70 };
@@ -27,5 +27,17 @@ export function whyHere(signal: number | null, catchLine: string | null | undefi
   const c = catchLine ? lc(catchLine.split(/(?<=[.;])\s/)[0]) : null, f = fitShort ? lc(fitShort) : null;
   return [c && f ? `${who}, but ${c}; ${f}.` : null, c ? `${who}, but ${c}.` : null, f ? `${who}, but ${f} for these picks.` : null, `${who}, but a stretch for these picks.`]
     .find((t): t is string => !!t && t.length <= max)!;
+}
+/** A /rankings page's curated order (owner 2026-11-17): its source lists interleaved by curated rank (#1 of each, then #2 of
+ *  each …), repeats dropped; `family` keeps the newest model of each (one row per model). Null when the page has no sources. */
+export function curatedRanking(slug: string, family: (slug: string) => { key: string; year: number } | null, site = niche.id): string[] | null {
+  const src = SITES[site]?.rankings?.[slug]; if (!Array.isArray(src) || !src.length) return null;
+  const lists = src.map(k => SITES[site]?.lists[k] ?? []), out: string[] = [], best = new Map<string, { slug: string; year: number }>();
+  for (let i = 0; i < Math.max(0, ...lists.map(l => l.length)); i++) for (const l of lists) { const e = l[i]; if (!e || out.includes(e.slug)) continue;
+    const f = family(e.slug); if (!f) continue;
+    const had = best.get(f.key);
+    if (!had) { best.set(f.key, { slug: e.slug, year: f.year }); out.push(e.slug); }
+    else if (f.year > had.year) { out[out.indexOf(had.slug)] = e.slug; best.set(f.key, { slug: e.slug, year: f.year }); } }
+  return out;
 }
 export const hasCurated = (site = niche.id) => !!SITES[site];

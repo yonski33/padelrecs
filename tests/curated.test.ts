@@ -100,3 +100,14 @@ test("an expert level leads the level line; the brand's pro label follows and ne
   assert.match(JSON.stringify(v), /Level: we rate it intermediate to advanced; the brand says professional\./);
   assert.doesNotMatch(JSON.stringify(v), /A pro line/);
 });
+
+test("rankings pages from curated lists: interleaved by rank, no repeats, newest model of each kept", async () => {
+  const { curatedRanking } = await import("../lib/curated");
+  const fam = (s: string) => ({ key: s.replace(/-20\d\d$/, ""), year: Number(s.slice(-4)) });
+  const power = curatedRanking("best-power-padel-rackets", fam)!;
+  assert.deepEqual(power, curated.lists["power/advanced/arm-off"].map(e => e.slug), "power = the owner's power · advanced list");
+  const ctrl = curatedRanking("best-control-padel-rackets", fam)!, a = curated.lists["control/intermediate/arm-off"], b = curated.lists["control/advanced/arm-off"];
+  assert.equal(ctrl[0], a[0].slug); assert.equal(ctrl[1], b[0].slug === a[0].slug ? a[1].slug : b[0].slug);
+  assert.equal(new Set(ctrl).size, ctrl.length);
+  assert.equal(curatedRanking("best-padel-rackets", fam), null, "unmapped pages keep their own order");
+});

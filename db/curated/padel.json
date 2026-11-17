@@ -764,5 +764,15 @@
     "owner": true
    }
   ]
+ },
+ "rankings": {
+  "_about": "Which curated lists each /rankings page is built from (owner 2026-11-17). Several lists are interleaved by curated rank, repeats dropped, newest model of each kept. A page not listed here keeps its Player-score order.",
+  "best-power-padel-rackets": [
+   "power/advanced/arm-off"
+  ],
+  "best-control-padel-rackets": [
+   "control/intermediate/arm-off",
+   "control/advanced/arm-off"
+  ]
  }
 }
