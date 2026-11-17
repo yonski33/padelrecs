@@ -287,10 +287,57 @@
 
 /* YouTube reviews, lighter (owner 2026-11-17): half-size thumbnail, grey label, our summary in two lines at most. */
 .rf .rv-card.youtube.v11c { padding: 12px 14px; }
-.rf .rv-ytl { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: start; }
+.rf .rv-ytl, .rf .rv-ycomm { display: flex; flex-direction: column; gap: 8px; }
+.rf .rv-yhead { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: start; }
 .rf .rv-tl { display: block; width: 72px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--v-ink); background: #e9e6dc; }
 .rf .rv-tl img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .rf .rv-ylab { font: 12px var(--v-mono); color: var(--v-mute2); white-space: nowrap; }
 .rf .rv-ysub { font: 12px var(--v-mono); color: var(--v-mute2); margin-top: 2px; }
-.rf .rv-y2 { margin: 6px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-@media (max-width: 760px) { .rf .rv-ytl { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; } .rf .rv-tl { width: 64px; } }
+.rf .rv-y2 { margin: 0; }
+@media (max-width: 760px) { .rf .rv-yhead { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; } .rf .rv-tl { width: 64px; } }
+
+/* "What players say", narrower (owner 2026-11-17): on desktop the whole section (heading, tabs, score row, Played it? and
+   the cards) stops at 740px on the page's left content edge, and the text fills the narrower cards (no 70ch cap here).
+   Phones unchanged. */
+/* (The 740px cap on "What players say" was undone, owner 2026-11-17: full content width, Latest reviews cards.) */
+.rf .rv-card.v11c .rv-text, .rf .rv-card.v11c .rv-yb ul { max-width: none; }
+/* The score row stays a row (an older phone rule turned it into a column, so the bar's 220px basis became 220px of height). */
+.rf .rv-mood.v11c { flex-direction: row; }
+@media (max-width: 760px) { .rf .rv-mood.v11c .rv-mbar { flex: 1 1 100%; } }
+
+/* A viewer's comment reads like a player card; its "watch" link sits under the text like a summary's. */
+.rf .rv-ycomm .rv-who2 { margin-top: -4px; } .rf .rv-ytl .rv-watch, .rf .rv-ycomm .rv-watch { align-self: flex-start; }
+
+/* Approved reviews mock (owner 2026-11-17): the vote bar filters by verdict; "What players mention" filters by tag (sticky
+   on desktop, a chip row on phones). Everything filters in the browser, at once. */
+.rf .rv-vbar { display: flex; width: 100%; height: 18px; border: 2px solid var(--v-ink); border-radius: 999px; overflow: hidden; }
+.rf .rv-vbar button { all: unset; cursor: pointer; min-width: 10px; height: 100%; transition: opacity .15s; }
+.rf .rv-vbar button.p { background: oklch(0.72 0.15 145); } .rf .rv-vbar button.m { background: oklch(0.85 0.14 90); } .rf .rv-vbar button.n { background: oklch(0.7 0.15 30); }
+.rf .rv-vbar button + button { border-left: 2px solid var(--v-ink); }
+.rf .rv-vbar:has(button[aria-pressed="true"]) button:not([aria-pressed="true"]) { opacity: .3; }
+.rf .rv-vbar button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: -3px; }
+.rf .rv-mood.v11c .rv-mbar { gap: 6px; }
+.rf .rv-showing { margin: 0; font: 13px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-clear { all: unset; cursor: pointer; font: 13px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; min-height: 32px; display: inline-flex; align-items: center; }
+.rf .rv-body { display: flex; flex-direction: column; gap: 14px; }
+.rf .rv-body > .rv-list { min-width: 0; }
+.rf .rv-ment { display: flex; flex-direction: column; gap: 10px; }
+.rf .rv-menth { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.rf .rv-menth b { font: 800 16px var(--v-display); }
+.rf .rv-mchips { display: flex; gap: 6px; flex-wrap: wrap; }
+.rf .rv-mchip { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; box-sizing: border-box; padding: 0 11px; white-space: nowrap;
+  border: 1.5px solid var(--v-ink); border-radius: 999px; font-size: 14.5px; font-weight: 600; background: var(--v-card); }
+.rf .rv-mchip span { font: 12px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-mchip.pos { background: var(--v-yes); } .rf .rv-mchip.neg { background: var(--v-no); }
+.rf .rv-mchip[aria-pressed="true"] { background: var(--v-ink); color: var(--v-page); } .rf .rv-mchip[aria-pressed="true"] span { color: var(--v-page); }
+.rf .rv-mchip:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+@media (min-width: 761px) {
+  .rf .rv-body.side { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 22px; align-items: start; }
+  .rf .rv-body.side > .rv-list { grid-column: 1; grid-row: 1; }
+  .rf .rv-body.side > .rv-ment { grid-column: 2; grid-row: 1; position: sticky; top: 84px; border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 14px; }
+}
+@media (max-width: 760px) {
+  /* Phones: the tags as one sideways row of chips above the list. */
+  .rf .rv-mchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 2px 0; }
+  .rf .rv-mchips::-webkit-scrollbar { display: none; }
+}

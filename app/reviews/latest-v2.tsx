@@ -11,6 +11,8 @@ import { rowOfFamily } from "../../lib/compare-pairs";
 import { newThisWeek } from "../../lib/new-this-week";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
+import "../review-card.css";
+import { VERDICT_PILL } from "../../lib/review-pill";
 import "../skin/skin-product.css";
 import "../skin/pages-beauty.css";
 import { attrProfileFor } from "../../lib/attr-profile";
@@ -21,7 +23,7 @@ import { attrProfileFor } from "../../lib/attr-profile";
 // Second pass (owner 2026-11-15, updated mockup): the feed is grouped by day, each card has the racket photo on the left, a tilted
 // verdict sticker, the player's words first and who wrote them under it; YouTube cards show "the gist" box.
 const PAGE = 20, DAY = 864e5;
-const PILL = { positive: "loved it", mixed: "mixed", negative: "not for me" } as const;
+const PILL = VERDICT_PILL;
 type Verdict = keyof typeof PILL;
 type Search = { src?: string; v?: string; show?: string; older?: string; skin?: string };
 const SKINS = ["dry", "normal", "combination", "oily"] as const;
