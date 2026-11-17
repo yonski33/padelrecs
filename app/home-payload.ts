@@ -1,4 +1,6 @@
 import { curatedSlugs } from "../lib/curated";
+import { pageContent } from "../lib/racket-page";
+import { plain } from "../lib/quick-take";
 import { matchContext } from "./match-context";
 import { rowLine } from "../lib/row-line";
 import { listShopLink } from "../lib/amazon-offer";
@@ -19,6 +21,7 @@ const FLIGHT = !!fitConfigFor(niche)?.quick?.flightLabel, ARM_SPEC = fitConfigFo
 /** What one home row shows. */
 export type HomeCard = { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null;
   /** The ranking rows' "best for" words (lib/fit-verdict.ts bestFor), on the row under its line (owner 2026-11-16). */ best?: string;
+  /** Its catch in one plain line, for a curated pick's "why it's here" (lib/curated.ts whyHere); curated sites only. */ catch?: string;
   /** Reports, and how the judged ones split. */ n: number; pos: number; mix: number; neg: number; judged: number; shape: string | null;
   /** The flight numbers as four boxes (type-picker sites with a flight legend, lib/fit-config.ts quick.flightLabel). */ flight?: string[];
   /** The specs agree with the arm chip (lib/fit-config.ts quick.armSpecOk). */ armOk?: boolean };
@@ -51,12 +54,13 @@ const payloadOf = sameInputs((ctx: Awaited<ReturnType<typeof matchContext>>): Ho
   const minEngine = niche.fit?.engine?.minReports;
   // Curated picks (lib/curated.ts) lead their lists whatever their reports, so they need a card too.
   const curated = new Set(curatedSlugs());
+  const catchOf = (id: string, slug: string) => { const t = takes.get(id)?.catch, pg = pageContent(slug)?.no[0]?.t; return t ? plain(t) : pg ? plain(pg) : null; };
   const shown = new Set(items.flatMap(x => x.pool ? [x.id, x.row] : (minEngine !== undefined && x.facts.reports >= minEngine) || (x.slug && curated.has(x.slug)) ? [x.id] : []));
   const cards = Object.fromEntries([...shown].map(id => {
     const r = byId.get(id)!, c = score(data, id), shop = listShopLink(r);
     const pic = photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
     const best = bestFor(ctx.facts(id)).join(", ");
-    return [id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic, line: rowLine(r, takes.get(id)?.hook), ...(best ? { best } : {}),
+    return [id, { name: displayName(r.name, brand(r.brandId)), href: productHref(r), pic, line: rowLine(r, takes.get(id)?.hook), ...(best ? { best } : {}), ...(curated.has(r.slug) && catchOf(id, r.slug) ? { catch: catchOf(id, r.slug)! } : {}),
       shop: shop ? { url: shop.url, rel: shop.rel } : null, n: reports.get(id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative, judged: c.judged, shape: r.shape?.toLowerCase() ?? null,
       ...(FLIGHT && r.weight && r.weight.split("/").length === 4 ? { flight: r.weight.split("/").map(x => x.trim()) } : {}),
       ...(ARM_SPEC ? { armOk: ARM_SPEC(r) && !ctx.facts(id).hard?.arm } : {}) }] as const;

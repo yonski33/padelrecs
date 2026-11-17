@@ -246,6 +246,9 @@ export type Niche = {
   /** "Similar products" at the foot of every product page (app/similar-section.tsx, owner 2026-11-16): one list ("single"),
    *  or tabs with a second list: "routine" (SkinRecs, "Pairs well with"), "bag" (DiscGolfRecs, "Complete your bag"),
    *  "works" (SimRacingRecs, "Works with"). `look`: the mockups' softer (SkinRecs) or disc (DiscGolfRecs) cards. */
+  /** A short note above the match list for a pick that needs one (padel, owner 2026-11-17: power for beginners), with a one-tap
+   *  switch to a better-suited pick. Lines ≤ 105 characters, expert voice. */
+  pickNotes?: { style: string; level: string; text: string; link: { label: string; style: string; level: string } }[];
   similar?: { mode: "single" | "tabs"; pairs?: "routine" | "bag" | "works"; pairLabel?: string; look?: "soft" | "disc" };
   topLists?: TopList[];
   /** The product finder at /finder (lib/finder.ts). Niches without one have no such page. */
