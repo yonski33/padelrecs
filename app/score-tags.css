@@ -1,0 +1,3 @@
+/* Thin-review score tags (lib/score-view.ts), shared by every site. Neutral, so a new product never reads as a bad one. */
+.sv-new { display: inline-block; white-space: nowrap; font: 600 11px/1.4 var(--mono, ui-monospace, monospace); color: var(--mute, #6a675f); background: #f3f1ea; border: 1.5px dashed #b9b5aa; border-radius: 999px; padding: 2px 9px; }
+.sv-early { display: inline-block; vertical-align: middle; margin-left: 4px; font: 600 9.5px/1.3 var(--mono, ui-monospace, monospace); text-transform: uppercase; letter-spacing: 0.04em; color: var(--soft, #4a4740); border: 1px solid currentColor; border-radius: 4px; padding: 0 4px; }

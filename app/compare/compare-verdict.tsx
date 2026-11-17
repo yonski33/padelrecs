@@ -9,8 +9,10 @@ import { hardOnLevelOrArm, SUITS_OK } from "../../lib/fit-verdict";
 import { niche } from "../../lib/niche";
 import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level } from "../../lib/quick-match";
 import { compareVerdict, differRows, type VProduct, type VTrait, type VPick, type VLine } from "../../lib/compare-verdict";
+import { scoreState } from "../../lib/score-view";
+import { NewPill, EarlyTag } from "../score-tags";
 
-export type CProduct = VProduct & { name: string; slug: string; href: string; pic: string | null; shop: { url: string; rel: string } | null;
+export type CProduct = VProduct & { /** Reviews with a verdict (thin-score display). */ judged: number; name: string; slug: string; href: string; pic: string | null; shop: { url: string; rel: string } | null;
   yes: string[]; no: string | null; specs: (string | null)[] };
 
 const NOTE = `How well it fits your picks. Not a % of happy ${niche.people.many}.`;
@@ -61,7 +63,7 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
           <a className="cx-name" href={p.href} title={p.name}>{p.short}</a>
           {p.shop && <a className="cx-buy" href={p.shop.url} target="_blank" rel={p.shop.rel}>check price ↗</a>}
         </div>
-        <span className="cx-num" title={v.picked ? NOTE : undefined}><b className={num !== null && num >= 85 ? "hi" : num !== null && num >= 70 ? "mid" : undefined}>{num === null ? "–" : v.picked ? `${num}%` : num}</b><small>{v.picked ? "match" : scoreWord}</small></span>
+        {!v.picked && scoreState(p.judged) === "new" ? <span className="cx-num"><NewPill n={p.judged}/></span> : <span className="cx-num" title={v.picked ? NOTE : undefined}><b className={num !== null && num >= 85 ? "hi" : num !== null && num >= 70 ? "mid" : undefined}>{num === null ? "–" : v.picked ? `${num}%` : num}</b><small>{v.picked ? "match" : scoreWord}{!v.picked && scoreState(p.judged) === "early" && <EarlyTag/>}</small></span>}
         {removeHref[p.id] && <a className="cx-x" href={removeHref[p.id]} aria-label={`Remove ${p.name}`}>✕</a>}
       </article>; })}</section>
 
