@@ -24,7 +24,10 @@ function top(items: ReasonItem[], picks: string[]): { it: ReasonItem; tagged: bo
 export function clause(t: string) {
   // "players", never "owners" (owner rule), also in older fit-card lines.
   const s = t.replace(/==/g, "").trim().replace(/[.!]$/, "").replace(/\b([Oo])wners\b/g, (_, o) => o === "O" ? "Players" : "players").replace(/\b([Oo])wner\b/g, (_, o) => o === "O" ? "Player" : "player");
-  return /^[A-Z][A-Z0-9]/.test(s) ? s : s.replace(/^./, c => c.toLowerCase());
+  // A line that starts with a name keeps its case (site audit 2026-11-17 #27: "Q-Line runs", "Z and ESP runs", "Champion and
+  // Halo hold up"): a one-letter or hyphenated name, two names joined by "and" / "or", or a name before "runs", "plastic", "blend".
+  const named = /^(?![AI]\s)[A-Z](?:[-\s]|$)/.test(s) || /^[A-Z][\w-]*,? (and|or) [A-Z]/.test(s) || /^[A-Z][\w-]* (runs?|plastics?|blends?)\b/.test(s);
+  return named || /^[A-Z][A-Z0-9]/.test(s) ? s : s.replace(/^./, c => c.toLowerCase());
 }
 /** One row of the reason: ✓ (what fits) or ! (the catch), a bold lead and its text. */
 export type ReasonPart = { tone: "yes" | "no"; lead: string; text: string };

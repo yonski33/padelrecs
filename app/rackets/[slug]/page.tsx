@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import { specNumber } from "../../../lib/spec-number";
 import { pageContent, pageTier } from "../../../lib/racket-page";
+import { ownScore } from "../../../lib/niche";
 import { isLight } from "../../../lib/look";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
@@ -228,8 +229,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
-  if (sig?.set) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone.` });
-  else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100. Negative and mixed reviews take points off, and so does having only a few reviews: a ${niche.words.one} needs plenty of them, compared with the most-reviewed ${niche.words.many} here, to reach the high 80s and 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
+  if (sig?.set) faq.push({ q: `What does the ${ownScore("signal score")} of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone.` });
+  else if (sig) faq.push({ q: `What does the ${ownScore("signal score")} of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100. Negative and mixed reviews take points off, and so does having only a few reviews: a ${niche.words.one} needs plenty of them, compared with the most-reviewed ${niche.words.many} here, to reach the high 80s and 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
   if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Where the reviews come from (this used to be two sidebar boxes): web reviews by platform, and how user reviews count.
@@ -515,7 +516,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {r.shape && <p className="lp-chiprow"><span className="lp-cat">{r.shape}</span>{hasYears && <span className="lp-year">{r.year}</span>}{placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}
           {sum.total > 0 ? <div className="lp-stats lp-stats2">
-            {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>Signal score</span></div>}
+            {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>{ownScore("Signal score")}</span></div>}
             {/* The counts over the bar, not a share (owner, 2026-11-14): a "% positive" read like a second score next to the signal. */}
             {pos !== null && <div className="lp-stat lp-split"><p className="lp-counts">
               <span className="c-pos"><b>{s.positive.toLocaleString("en-US")}</b> positive</span>

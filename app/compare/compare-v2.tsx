@@ -1,5 +1,6 @@
 import { withoutYear } from "../../lib/brand-name";
 import { specNumber } from "../../lib/spec-number";
+import { fitConfigFor } from "../../lib/fit-config";
 import "./compare-v2.css";
 import { qtFontVars } from "../qt-fonts";
 import { score } from "../../db/data";
@@ -65,7 +66,7 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   const plainShort = base.map(b => shortName(b.name, brandOf(b.r)));
   const shorts = plainShort.map((n, i) => plainShort.filter(x => x.toLowerCase() === n.toLowerCase()).length > 1 ? `${n} ${base[i].r.year}` : n);
   const named = base.map((b, i) => ({ brand: brandOf(b.r) ?? "", model: shorts[i] }));
-  const othersOf = (i: number) => named.map((_, j) => j).filter(j => j !== i).map(j => `the ${refName(j, named)}`).join(" and ");
+  const othersOf = (i: number) => named.map((_, j) => j).filter(j => j !== i).map(j => `the ${refName(j, named, !!fitConfigFor(niche)?.quick)}`).join(" and ");
   const short = (t: string | null | undefined) => t && t.length <= MAX_LINE ? t : null;
   const cprods: CProduct[] = base.map((b, i) => {
     const vp = { id: b.r.id, short: shorts[i],

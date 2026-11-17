@@ -8,7 +8,12 @@ import { flightOf } from "../discgolf-profile";
 /** Disc type from the shape spec ("Fairway driver" → fairway). */
 export const discTypeOf = (s: string | null | undefined) => { const x = (s ?? "").toLowerCase(); return /putter/.test(x) ? "putter" : /mid/.test(x) ? "midrange" : /fairway/.test(x) ? "fairway" : /distance/.test(x) ? "distance" : null; };
 /** Stability from the flight numbers (turn + fade): 0 or less understable, 1–2 stable, 3+ overstable. */
-export const stabilityOf = (s: string | null | undefined) => { const f = flightOf(s); if (!f) return null; const tf = f.turn + f.fade; return tf <= 0 ? "understable" : tf >= 3 ? "overstable" : "stable"; };
+/** A disc's one stability (audit 2026-11-17: the top tag, the flight box, the catalogue filter, the match and the other-disc cards
+ *  all read this): overstable at turn + fade ≥ 3; understable with a real turn (≤ −2) or turn + fade ≤ −1; else stable. So the
+ *  Scorch (−2 / 2) is understable and the MD1 (0 / 0) stable, as their makers say. */
+export const stabilityOfFlight = (f: { turn: number; fade: number } | null) => !f ? null : f.turn + f.fade >= 3 ? "overstable" as const
+  : f.turn <= -2 || f.turn + f.fade <= -1 ? "understable" as const : "stable" as const;
+export const stabilityOf = (s: string | null | undefined) => stabilityOfFlight(flightOf(s));
 /** Speed band for an arm: up to 7 for any arm, 8–10 for a 250–325 ft arm, 11+ needs 325 ft or more to fly as rated. */
 export const speedBandOf = (s: string | null | undefined) => { const f = flightOf(s); if (!f) return null; return f.speed <= 7 ? "slow" : f.speed <= 10 ? "mid" : "fast"; };
 
@@ -20,7 +25,7 @@ export const discgolfGuide: GuideConfig = {
   intro: "Four numbers, four disc types and one question about your arm decide how a disc flies for you. Here's what each means, in plain words.",
   tldr: [
     { label: "Beginner", desc: "putter, midrange, understable fairway", picks: { level: "beginner", arm: true } },
-    { label: "Slower arm", desc: "speed 7 or less, some turn", picks: { arm: true } },
+    { label: "Slower arm", desc: "speed 7 or less, or an understable 8–9", picks: { arm: true } },
     { label: "Improving", desc: "stable fairways and mids", picks: { level: "intermediate" } },
     { label: "Big arm", desc: "overstable distance drivers", picks: { level: "advanced", style: "power" } },
   ],
@@ -28,7 +33,7 @@ export const discgolfGuide: GuideConfig = {
     { id: "flight", title: "Flight numbers", sub: "speed · glide · turn · fade", layout: "numbers", liked: false,
       textOnlyNote: "no counts here: every disc has all four, from its maker",
       rule: "The numbers assume a big, clean arm. With a slower arm, a disc flies more overstable than its turn and fade say.", options: [
-      { label: "Speed", big: "1–14", text: "How fast it must be thrown to fly as rated. Higher needs more arm." },
+      { label: "Speed", big: "1–15", text: "How fast it must be thrown to fly as rated. Higher needs more arm." },
       { label: "Glide", big: "1–7", text: "How long it stays in the air. More glide, easier distance." },
       { label: "Turn", big: "+1 to −5", text: "How far it drifts right early (right-hand backhand). More negative, more turn." },
       { label: "Fade", big: "0–5", text: "How hard it hooks left at the end. Higher, harder finish." },
@@ -52,7 +57,7 @@ export const discgolfGuide: GuideConfig = {
       rule: "Most players gain more distance from a slower disc thrown cleanly than from a faster one they can't power.", options: [
       { value: "slow", label: "Any arm", big: "1–7", text: "Putters, mids and slow fairways. Fly as rated for nearly everyone.", accent: true, liked: "slow-speed" },
       { value: "mid", label: "250–325 ft", big: "8–10", text: "Fairway drivers. Need a smooth, moderate throw." },
-      { value: "fast", label: "325 ft +", big: "11–14", text: "Distance drivers. Without the arm they just fade early." },
+      { value: "fast", label: "325 ft +", big: "11–15", text: "Distance drivers. Without the arm they just fade early." },
     ] },
     { id: "plastic", title: "Plastic", sub: "base or premium", layout: "split", liked: false,
       textOnlyNote: "no counts here: most molds come in several plastics (see each disc's page)", options: [

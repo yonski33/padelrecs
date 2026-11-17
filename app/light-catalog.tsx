@@ -3,6 +3,7 @@
 // niche's fixed-value specs, brand), and the list as calm rows with the signal and a compare box. Every number is counted
 // from published reviews; nothing here needs JavaScript except the compare tray and the auto-submitting filters.
 import type { Catalog } from "../db/data";
+import { ownScore } from "../lib/niche";
 import { rowLine } from "../lib/row-line";
 import { score } from "../db/data";
 import { niche, catalogPath, hasYears, productHref } from "../lib/niche";
@@ -153,7 +154,7 @@ export function LightCatalog({ data, f, signals, basePath = catalogPath, fixed =
             <noscript><button className="button ghost">Sort</button></noscript>
           </AutoSubmitForm>
         </div>
-        <div className="lcx-how">{sort === DEFAULT_SORT ? "Ranked by signal score: positive reviews, weighted by how many there are." : `Sorted by ${SORTS.find(s => s.value === sort)?.label.toLowerCase()}.${mixed && sort === "discussed" ? " Pick a category to see it ranked by signal score." : ""}`} <SignalPop label="How it works"/></div>
+        <div className="lcx-how">{sort === DEFAULT_SORT ? `Ranked by ${ownScore("signal score")}: positive reviews, weighted by how many there are.` : `Sorted by ${SORTS.find(s => s.value === sort)?.label.toLowerCase()}.${mixed && sort === "discussed" ? " Pick a category to see it ranked by signal score." : ""}`} <SignalPop label="How it works"/></div>
         {/* The home page's row (owner, 2026-11-13), with the compare box under the name and no rank number. */}
         <div className="lc-rows lt-list" style={sigTipStyle}><Directory show={parseShow(f.show)} moreHref={n => params({ show: String(n) })} rows={results.map(({ r }, i) => {
           const brand = data.brands.find(b => b.id === r.brandId)?.name, name = displayName(r.name, brand);

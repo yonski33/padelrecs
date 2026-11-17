@@ -1,6 +1,7 @@
 // The lists behind "Similar products" (app/similar-section.tsx, owner 2026-11-16), as pure functions of plain inputs so tests
 // feed them directly. The pages gather the inputs from their own context (app/rackets/[slug]/racket-fit.tsx, app/skin/
 // skin-product.tsx, the old product page) and the lists are worked out with the page, so nothing extra ships to the browser.
+import { stabilityOfFlight } from "./niche/discgolf-guide";
 
 import { hasAttribution } from "./voice";
 
@@ -39,8 +40,8 @@ export const flightOf = (s: string[] | string | null | undefined): number[] | nu
   const parts = (Array.isArray(s) ? s : (s ?? "").split("/")).map(x => Number(String(x).trim()));
   return parts.length === 4 && parts.every(n => Number.isFinite(n)) ? parts : null;
 };
-/** How a disc flies, from turn + fade: understable ≤ 0, overstable ≥ 3, else straight. */
-export const stabilityOf = (f: number[] | null) => !f ? null : f[2] + f[3] >= 3 ? "overstable" : f[2] + f[3] <= 0 ? "understable" : "straight";
+/** How a disc flies: the site's one stability rule (lib/niche/discgolf-guide.ts stabilityOfFlight), "stable" said "straight". */
+export const stabilityOf = (f: number[] | null) => { const st = stabilityOfFlight(f ? { turn: f[2], fade: f[3] } : null); return st === "stable" ? "straight" : st; };
 const DRIVERS = new Set(["fairway", "distance", "driver"]), APPROACH = new Set(["mid", "midrange", "putter"]);
 
 /** The discs that fill this one's gaps: the best liked disc of each other type at the thrower's level, plus an overstable

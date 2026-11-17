@@ -84,7 +84,12 @@ test("dg audit 6: the pro bag stays for advanced players (Pure, Judge, EMac Judg
 });
 
 test("dg audit 7a: every any-stability list with 20+ discs can reach Strong fit", () => {
-  const weak = combos.filter(c => c.style === "any" && (c.kind || c.level || c.arm)).filter(c => list(c.kind, "any", c.level, c.arm, 9999).length >= 20 && (c.rows[0]?.pct ?? 0) < 75);
+  // A list where every disc is a step-up or a no for the pick (beginner distance drivers: all speed 9+) is held under Strong fit
+  // on purpose (site audit 2026-11-17 #6).
+  const f = new Map(items.map(x => [x.id, x.facts])), flagged = (id: string, c: Combo) => { const x = f.get(id)!;
+    return (c.level === "beginner" && !!(x.hard?.beginner || x.warn?.beginner)) || (c.arm && !!(x.hard?.arm || x.warn?.arm)); };
+  const weak = combos.filter(c => c.style === "any" && (c.kind || c.level || c.arm)).filter(c => { const all = list(c.kind, "any", c.level, c.arm, 9999);
+    return all.length >= 20 && !all.every(r => flagged(r.id, c)) && (c.rows[0]?.pct ?? 0) < 75; });
   assert.deepEqual(weak.map(c => `${c.kind ?? "any"}.${c.level ?? "-"}.${c.arm}`), []);
 });
 

@@ -1,5 +1,6 @@
 import { withoutYear } from "../../../lib/brand-name";
 import { productPhoto } from "../../visual";
+import { ownScore } from "../../../lib/niche";
 import type { ReactNode } from "react";
 import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
@@ -203,7 +204,7 @@ export default async function RacketFit(props: {
   const levelScore = levelView ? signals(ctx.data.listed.map(r => { const sc = score(ctx.data, r.id);
     return r.id === props.racketId ? { id: r.id, category: signalCategory(r), positive: pos, mixed: mix, judged: pos + mix + neg }
       : { id: r.id, category: signalCategory(r), positive: sc.positive, mixed: sc.mixed, judged: sc.judged, override: r.signalOverride }; })).get(props.racketId)?.signal ?? null : null;
-  const badge = levelScore !== null ? { n: levelScore, label: `Player score · ${lv === "advanced" ? "advanced players" : `${lv}s`}` } : overallScore !== null && scoreState(rated0) !== "new" ? { n: overallScore, label: "Player score" } : null;
+  const badge = levelScore !== null ? { n: levelScore, label: `${ownScore("Player score")} · ${lv === "advanced" ? "advanced players" : `${lv}s`}` } : overallScore !== null && scoreState(rated0) !== "new" ? { n: overallScore, label: "Player score" } : null;
   // At the visitor's level: one real quote each way from players at that level (their own words, English, card length).
   // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
     const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
@@ -319,6 +320,14 @@ export default async function RacketFit(props: {
   // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
   const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
     .map(expertLine).find((t): t is string => !!t) ?? null;
+  // A gain on a disc card must hold in its flight numbers (site audit 2026-11-17 #8, #14): "better in wind" only with more fade or
+  // less turn than this disc; "easier for a slower arm" never from a disc its page or its numbers warn slower arms off.
+  const flightOfId = (id: string) => flightOf(racketOf(id).weight);
+  const gainOk = !QUICK ? undefined : (oid: string, key: string) => { const a = flightOfId(oid), m = flightOfId(props.racketId), f = ctx.facts(oid);
+    // Flight as [speed, glide, turn, fade].
+    if (key === "wind") return !!a && !!m && (a[3] > m[3] || a[2] > m[2]);
+    if (key === "arm") return !f.hard?.arm && !f.warn?.arm && (!a || a[3] < 3);
+    return true; };
   const byBand = (ids: string[]) => [...ids].sort((a, b) => band(b) - band(a));
   const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
   const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), photo: payload.cards[id]?.pic ?? productPhoto(racketOf(id))?.src ?? null, tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
@@ -329,7 +338,7 @@ export default async function RacketFit(props: {
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
     // Each card's word is its own main gain over this one, never the same twice (owner 2026-11-17); "similar feel" only when no
     // card in the pool beats it anywhere.
-    items: (() => { const edges = distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
+    items: (() => { const edges = distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4, "arm", gainOk);
       return edges.length ? edges.map((e, i) => simItem(e.id, i, dotWords[e.gain])) : byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))); })(),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
@@ -362,7 +371,7 @@ export default async function RacketFit(props: {
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
-  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     const me = refOf(oid);

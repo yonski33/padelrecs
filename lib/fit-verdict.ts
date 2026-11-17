@@ -36,6 +36,11 @@ export type FitFacts = {
   /** A site's own hard rules (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts): the reason it is wrong for a beginner
    *  or a slower arm (the page says skip it, or it is too fast). Each is a hard level / arm reason, so the engine caps it. */
   hard?: { beginner?: string; arm?: string };
+  /** A site's softer warnings (DiscGolfRecs: a speed 9–10 step-up driver, a page warning for newer or slower arms): the list
+   *  shows it after the rest, never at Strong fit, and the check says why. */
+  warn?: { beginner?: string; arm?: string };
+  /** A site's one stability for this product (DiscGolfRecs: from the flight numbers), read before the tag counts. */
+  lean?: "control" | "balance" | "power";
 };
 /** Within a picked shape: an all-round racket this high for the picked style counts as built for it, and a racket that
  *  leans the other way this high is only a soft conflict (owner 2026-11-15, the Electra Pro ST5 and the Nox 12K). */
@@ -53,6 +58,7 @@ const n = (f: FitFacts, tags: string[]) => tags.reduce((a, t) => a + (f.tags[t] 
 /** Where the racket sits: control, power or in between, from what players praise (and the rankings it's on). */
 export function styleLean(f: FitFacts, cfg: FitConfig = SITE_FIT): { lean: "control" | "power" | "balance" | null; control: number; power: number } {
   const control = n(f, cfg.axis.control.tags), power = n(f, cfg.axis.power.tags);
+  if (f.lean) return { lean: f.lean, control, power };
   if (control + power < 5) return { lean: f.places?.control && !f.places.power ? "control" : f.places?.power && !f.places.control ? "power" : null, control, power };
   const lean = control >= power * 1.5 ? "control" : power >= control * 1.5 ? "power" : "balance";
   return { lean, control, power };
@@ -130,6 +136,7 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   // No level picked yet: nothing to check (owner 2026-11-15).
   if (!choice.level) return { level: "unknown" };
   if (choice.level === "beginner" && f.hard?.beginner) return { level: "hard", short: `Not a first ${niche.words.one}`, reason: f.hard.beginner };
+  if (choice.level === "beginner" && f.warn?.beginner) return { level: "soft", short: /step-up/i.test(f.warn.beginner) ? "Step-up driver" : "Not the easiest start", reason: f.warn.beginner };
   const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
@@ -175,6 +182,7 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
 function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   if (!c.arm) return { level: "ok" };
   if (f.hard?.arm) return { level: "hard", short: "Needs more arm speed", reason: f.hard.arm };
+  if (f.warn?.arm) return { level: "soft", short: "Needs some arm speed", reason: f.warn.arm };
   // A type-picker site's arm pick is a slower arm (DiscGolfRecs): read from its arm dots (players, the flight numbers, the expert).
   if (cfg.quick) {
     const L = cfg.quick.arm[0].toUpperCase() + cfg.quick.arm.slice(1);
@@ -232,15 +240,17 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   const out: string[] = [];
   // The level from the same scores the fit check uses (owner audit 2026-11-17: the page and the fit check never disagree);
   // the sources' band only where there are no scores.
-  const ok = f.suits ? LEVELS.map((l, i) => f.suits![l as keyof typeof f.suits] as number >= SUITS_OK ? i : -1).filter(i => i >= 0) : [];
-  const band = ok.length ? { from: ok[0], to: ok[ok.length - 1] } : combinedBand(f);
+  // A hard reason for beginners (DiscGolfRecs: speed 11+, fade 3+, "not a first disc") keeps "beginner" out of the line too.
+  const ok = f.suits ? LEVELS.map((l, i) => f.suits![l as keyof typeof f.suits] as number >= SUITS_OK && !(i === 0 && f.hard?.beginner) ? i : -1).filter(i => i >= 0) : [];
+  let band = ok.length ? { from: ok[0], to: ok[ok.length - 1] } : combinedBand(f);
+  if (band && band.from === 0 && f.hard?.beginner) band = { from: 1, to: Math.max(band.to, 1) };
   if (band) out.push(band.from === band.to ? LEVELS[band.from] : `${LEVELS[band.from]} → ${LEVELS[band.to]}`);
   const lean = styleOf(f, cfg);
   // A type-picker site says it in its own sport's terms (DiscGolfRecs: what the stability is good for).
   if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
   // Sore arms only when the Arm comfort bar backs it (4+), not on the tag count alone (audit: the AT10 12K XTREM).
-  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4)) out.push(cfg.quick ? "slower arms" : "sore arms");
+  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) out.push(cfg.quick ? "slower arms" : "sore arms");
   return out;
 }
 /** One style per racket (owner audit 2026-11-17): from the Attack and Control bars the page shows (a clear lead of 1+ dots),

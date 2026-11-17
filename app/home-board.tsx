@@ -5,6 +5,7 @@
 // a search can still be linked to and shared. The search box sits in the hero (HomeSearch) and talks to the list with a
 // window event.
 import { useEffect, useState, type ReactNode } from "react";
+import { ownScore } from "../lib/niche";
 import { useRouter } from "next/navigation";
 import { LightRowView, type LightRowProps } from "./light-row-view";
 
@@ -82,7 +83,7 @@ export function HomeBoard({ cats, initial, initialQ, ranked, items, empty, noMat
     {/* The count and the order, right over the list, as over the reviews on a product page (owner, 2026-11-13). */}
     {q.trim() && items.length > 0 && <p className="lt-filtered">{`${visible.length.toLocaleString("en-US")} for “${q.trim()}”`}</p>}
     {/* The first row's signal explains itself on hover or tap (owner, 2026-11-13); the words sit once, in a CSS variable. */}
-    {visible.length ? <div style={{ "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
+    {visible.length ? <div style={{ "--sig-tip": JSON.stringify(`${ownScore("Signal score")}: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.`) } as React.CSSProperties} className={`prow-list lt-list${numbered ? " ranked" : ""}`}>
       {visible.slice(0, shown).map((it, i) => <div key={it.key} className={`lt-slot${tinted && i === 0 ? " lr-p1" : tinted && i < 3 ? " lr-p23" : ""}`}><LightRowView {...it.row}/></div>)}
     </div> : items.length ? <p className="lt-filtered">{noMatch}</p> : empty}
     {visible.length > shown && <div className="load-more"><button type="button" className="button ghost lt-more-btn" onClick={() => setShown(shown + PAGE * 2)}>Show more {noun[1]} <span aria-hidden="true">↓</span></button></div>}

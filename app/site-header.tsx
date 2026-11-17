@@ -49,7 +49,9 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   const inRankings = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
   const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
   // On a product page the review form opens with that product chosen (app/add-review matches the path to a product).
-  const addHref = pathname === "/" ? "/add-review" : `/add-review?from=${encodeURIComponent(pathname)}`;
+  // A cached view's own path (/v/racket/<slug>/<key>, proxy.ts) reads as the product's public address (site audit 2026-11-17 #12).
+  const shown = pathname.replace(/^\/v\/racket\/([a-z0-9-]+)\/[^/]*$/, `${catalogPath}/$1`);
+  const addHref = shown === "/" ? "/add-review" : `/add-review?from=${encodeURIComponent(shown)}`;
   // PadelRecs: the Claude Design header (owner 2026-11-15, "match the mockup"): the black side-project strip, then the logo dot,
   // three plain links, search and "+ add a review". Other niches keep the light header below.
   if (isV2) return <div className={`hv2-top ${qtFontVars}`}>

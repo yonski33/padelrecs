@@ -4,6 +4,7 @@
 // same pure filter (lib/catalog-filter.ts) on the rows sent with the page and updates the address, with no round trip. Links
 // stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { useEffect } from "react";
+import { ownScore } from "../../lib/niche";
 import { useInstantView, instantClick } from "../instant-view";
 import { catalogView, catalogHref, readCatalogFilters, CATALOG_KEYS, CATALOG_STYLES, CATALOG_LEVELS, CATALOG_SHAPES, CATALOG_SORTS, CATALOG_PAGE,
   type CatalogFilters, type CatalogRow, type SpecGroup } from "../../lib/catalog-filter";
@@ -83,7 +84,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
         <div className="ct2-count"><b>{active.length || f.q || f.older === "1" ? `${shown.length} ${shown.length === 1 ? one : many}` : `All ${v.total} ${many}`}</b>
           {!(active.length || f.q || f.older === "1") && <span className="ct2-per">one per model</span>}
           {active.map(a => <a {...to(a.next)} key={a.label} className="ct2-chipx">{a.label} <i aria-hidden="true">✕</i></a>)}</div>
-        <div className="ct2-sort"><button type="button" className={`ct2-cmp${cmp.on ? " on" : ""}`} aria-pressed={cmp.on} onClick={cmp.toggleMode}><i aria-hidden="true"/>compare</button><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
+        <div className="ct2-sort"><button type="button" className={`ct2-cmp${cmp.on ? " on" : ""}`} aria-pressed={cmp.on} onClick={cmp.toggleMode}><i aria-hidden="true"/>compare</button><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : k === "score" ? ownScore(sortLabel) : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
       </div>
       {cmp.on && <p className="ct2-cmpnote"><b>compare on</b><span>{`Tap up to ${MAX_PICKS} ${many} to compare them side by side.`}</span></p>}
       <ol className={`ct2-list${cmp.on ? " cmp" : ""}`}>{shown.slice(0, show).map((x, i) => {
@@ -109,7 +110,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           {scoreState(x.judged) === "new" ? <span className="ct2-sc"><NewPill n={x.judged}/></span> : <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 70 ? "mid" : ""}`} title={`${look ? `${look.score[0].toUpperCase()}${look.score.slice(1)}` : "Player score"}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
             <b>{x.signal ?? "—"}</b>{mockLook ? <>
               {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
-              <small><span className="ct2-ps">player score · </span>{`${x.judged.toLocaleString("en-US")} ${x.judged === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>}
+              <small><span className="ct2-ps">{`${ownScore("player score")} · `}</span>{`${x.judged.toLocaleString("en-US")} ${x.judged === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>}
         </div></li>; })}</ol>
       {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}

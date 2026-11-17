@@ -6,7 +6,7 @@ import { curatedRankingStyle } from "../../../lib/curated";
 import { claims } from "../../../lib/content-consistency";
 import "./ranking-v3.css";
 import Link from "next/link";
-import { niche, productHref } from "../../../lib/niche";
+import { niche, productHref, v2copy } from "../../../lib/niche";
 import { listYear, MIN_LIST_REVIEWS, RANKINGS_PATH } from "../../../lib/top-lists";
 import { displayName } from "../../../lib/brand-name";
 import { websiteButton } from "../../../lib/product-links";
@@ -29,6 +29,9 @@ import { SUITS_OK } from "../../../lib/fit-verdict";
 import { catalogRows } from "../../rackets/catalog-rows";
 import { scoreState } from "../../../lib/score-view";
 import { NewPill } from "../../score-tags";
+import { fitConfigFor } from "../../../lib/fit-config";
+/** A type-picker site (DiscGolfRecs): its type lists read "The 10 best disc golf distance drivers" (audit 2026-11-17 #24). */
+const QUICK = !!fitConfigFor(niche)?.quick;
 
 // A ranking in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/TTmbZPDFLuRzQiqsAG3Nc1), PadelRecs
 // only: the lists as tabs, a big title, "your match" (the home's quick-match picks, in the URL, with the match % on every row),
@@ -97,7 +100,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
     { k: "catalog", kicker: "catalog", title: `All ${total.toLocaleString("en-US")} ${w.many}`, href: catalogPath,
       line: skin ? "Filter and sort every one." : "Filter by style, level, shape and weight.", cta: `browse ${w.many} →` },
     { k: "fresh", kicker: "fresh", title: fresh > 0 ? `${fresh.toLocaleString("en-US")} new reviews this week` : "The latest reviews", href: "/reviews",
-      line: `What ${niche.people.many} just said${skin ? "." : ", straight from the court."}`, cta: "latest reviews →" },
+      line: `What ${niche.people.many} just said${skin ? "." : `, straight from the ${v2copy.venue ?? "court"}.`}`, cta: "latest reviews →" },
     { k: "turn", kicker: "your turn", title: skin ? "Used one of these?" : "Played one of these?", href: "/add-review",
       line: "Your verdict moves the list. One tap, no account.", cta: "+ add a review" },
   ];
@@ -108,13 +111,14 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       <div className="rk3-crumbs"><a href={RANKINGS_PATH}>rankings</a><span>/</span><span className="here">{list.label.toLowerCase()}</span></div>
       <div className="rk3-head">
         {/* A product-type list on SkinRecs is its own noun ("The 10 best moisturizers"), not "skincare products moisturizers". */}
-        <h1>{`The ${entries.length} best ${skin && list.filters?.some(f => f.column === "shape") ? "" : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
-        <p className="rk3-sub">{picked ? `${entries.length} ${niche.words.many} we picked${pickStyle ? ` for ${pickStyle} players` : ""}, checked against ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. No brand pays for a place.` : `${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. Not by us, not by brands.`}</p>
+        <h1>{`The ${entries.length} best ${(skin || QUICK) && list.filters?.some(f => f.column === "shape") ? (QUICK ? `${v2copy.sport ? `${v2copy.sport} ` : ""}` : "") : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
+        <p className="rk3-sub">{picked ? `${entries.length} ${niche.words.many} we picked${pickStyle ? ` for ${pickStyle} players` : ""}, checked against ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. No brand pays for a place.` : `${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews${QUICK && niche.recentMonths ? ` from the last ${niche.recentMonths % 12 ? `${niche.recentMonths} months` : `${niche.recentMonths / 12} years`}` : ""}. Not by us, not by brands.`}</p>
         {/* How the order is made, in one quiet line (owner 2026-11-16). SkinRecs words it as "skin score" and "people". */}
         <span className="rk3-note">{picked ? `the order is our pick${pickStyle ? ` for ${pickStyle}` : ""}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one` : skin ? "ranked by skin score and how many people reviewed it"
           // A list for a kind of player (list.picks) is in the match's order for that pick (Grok pickleball audit 2026-11-17, #5).
           : list.trait?.bar ? `only ${niche.words.many} with ${list.trait.bar.key} ${list.trait.bar.min}/5 or more; strongest ${list.trait.bar.key} first, then by ${scoreLabel.toLowerCase()}`
           : list.picks ? `ordered by how well each fits ${list.picks.level ? `${list.picks.level === "advanced" ? "advanced players" : `${list.picks.level}s`}` : "a sore arm"}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one`
+          : QUICK ? `ranked by ${scoreLabel.toLowerCase()}, which weighs how much ${niche.people.many} like it by how many have reviewed it`
           : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>
       {tabs.length > 1 && <nav className="rk3-tabs" aria-label="Rankings">{tabs.map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</a>)}</nav>}

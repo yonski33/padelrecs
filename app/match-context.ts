@@ -105,8 +105,8 @@ const keptContext = kept(async () => {
     // The Attack and Control bars as shown (owner audit 2026-11-17: one style per racket on every page).
     const pd = traitMap?.get(id)?.power?.dots, cd = traitMap?.get(id)?.control?.dots, sp = traitMap?.get(id)?.spin?.dots;
     const styleDots = pd && cd ? { power: pd, control: cd, ...(sp ? { spin: sp } : {}) } : undefined;
-    const hard = RULES && rulesOf(id, !su).hard;
-    return { reports, tags, ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    const hard = RULES && rulesOf(id, !su).hard, warn = RULES && rulesOf(id, !su).warn, lean = RULES && rulesOf(id, !su).lean;
+    return { reports, tags, ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -203,6 +203,10 @@ const keptContext = kept(async () => {
         continue;
       }
       if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] + sp[`suits_${l}`]!) / 2); su.basis.push("the specs"); }
+      // Thin level data on a site with spec levels (DiscGolfRecs, audit 2026-11-17 #7: every 3-player disc read 71 / 63 / 37): the
+      // flight numbers' levels weigh in until 8 players have said theirs.
+      const ss = RULES && !expertLevel ? rulesOf(id).specSuits : undefined, pn = Math.min(8, x.players?.length ?? 0);
+      if (ss) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] * pn + ss[l] * (8 - pn)) / 8);
       // A site's level floor (DiscGolfRecs: a speed ≤ 7 disc suits advanced players at least 50, lib/discgolf-hard.ts).
       const floor = RULES && rulesOf(id).suitsFloor;
       if (floor) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.max(su[l], floor[l] ?? 0);
@@ -229,7 +233,7 @@ const keptContext = kept(async () => {
       spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
       expert: Object.fromEntries(ENGINE_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])),
       // The mould, only where the profile bounds the axis by it (padel), so other sites' payloads stay as they were.
-      ...(ENGINE?.shapeBounds ? { shape: shapeOf(r.shape) } : {}) };
+      ...(RULES ? { shape: rulesOf(id).axisKey ?? null } : ENGINE?.shapeBounds ? { shape: shapeOf(r.shape) } : {}) };
   };
   // Trait dots from the engine (lib/engine engineTraitDots; PM / owner 2026-11-15, one story across the page): they replace the
   // per-report-rate dots everywhere (racket page, filters, the fit check), and hand-set dots still win.
@@ -253,6 +257,11 @@ const keptContext = kept(async () => {
         if (cur.set) continue;
         const dots = pageBar(k, cur.dots, page); if (dots !== cur.dots) m[k] = { ...cur, dots, score: (dots - 1) * 20 + 10 }; } }
   }
+  // A site's arm-dot limits from the specs (DiscGolfRecs: speed 11+ is never "easy to throw", a speed-5 putter always is), over
+  // players and hand-set dots alike, so the bar, the arm check and the chips say what the flight numbers allow.
+  if (RULES) for (const id of listed) { const m = traitMap?.get(id) as Record<string, { dots: number; score: number } | undefined> | undefined;
+    for (const [k, b] of Object.entries(rulesOf(id).dotBounds ?? {})) { const cur = m?.[k]; if (!m || !cur) continue;
+      const dots = Math.min(b[1], Math.max(b[0], cur.dots)); if (dots !== cur.dots) m[k] = { ...cur, dots, score: Math.min(Math.max(cur.score, (dots - 1) * 20), (dots - 1) * 20 + 19) }; } }
 
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
   const feels = feelClasses(leans);

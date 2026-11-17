@@ -3,6 +3,7 @@
 // when this racket is a weak match for the picks (under 60%); the other-racket cards carry their match % after a pick and
 // sort by it. Both read the same match engine as the home and the fit check (fit-live.tsx), so a pick changes them at once.
 import { useState } from "react";
+import { ownScore } from "../../../lib/niche";
 import type { FitFacts } from "../../../lib/fit-verdict";
 import { useAnswer, useMatchOf, useAlts } from "./fit-live";
 import { fitStep, fittingRows, FIT_MIN } from "../../../lib/verdict-scale";
@@ -164,7 +165,7 @@ export function V11Decide({ id, facts, name, pic, score, line, buy, compare, ask
       <span className="v11-dk">Still deciding?</span>
       <b className="v11-dn">{name}</b>
       <span className="v11-dv">{a && a.pct !== null ? <span className={`v11-pill ${matchTone(a.pct)}`}>{`${a.pct}% · ${word(a.pct)}`}</span>
-        : <><span className="v11-oscore"><b className={tone(score)}>{score ?? "–"}</b><span>player score</span></span>{line && <span className="v11-dline">{line}</span>}</>}</span>
+        : <><span className="v11-oscore"><b className={tone(score)}>{score ?? "–"}</b><span>{ownScore("player score")}</span></span>{line && <span className="v11-dline">{line}</span>}</>}</span>
     </div>
     <div className="v11-dlinks">
       {buy && <a href={buy.url} target="_blank" rel={buy.rel}>check price ↗</a>}
