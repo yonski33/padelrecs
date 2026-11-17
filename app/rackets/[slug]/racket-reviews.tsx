@@ -24,7 +24,11 @@ const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 
 const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
-export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words }: { racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
+const PLAIN: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for me" };
+const PLAIN_PILL: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for them" };
+
+export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words, v11c }: { /** v11c (owner 2026-11-17): "What players say",
+   *  the new-this-week dot, a one-row "Played it?" (dots, no emoji; a few words optional) and the thin state. */ v11c?: { fresh: number; thin: boolean }; racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
   /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null };
   /** Another site's words (SkinRecs): the profile chips ("I have" dry / oily…), the score's name, the composer's title, who the
    *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
@@ -67,6 +71,32 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     finally { setBusy(false); }
   }
 
+  const rated = mood ? mood.pos + mood.mix + mood.neg : 0;
+  if (v11c) return <>
+    <div className="rv-head v11c">
+      <div className="rv-ht"><h2>{`What ${W.people} say`}</h2>{v11c.fresh > 0 && <span className="rv-new"><i aria-hidden="true"/>{`${v11c.fresh} new this week`}</span>}</div>
+      <div className="rv-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
+        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "players" ? W.peopleTab : label}</button>)}</div>
+    </div>
+    {mood && rated > 0 && <div className="rv-mood v11c">
+      {mood.score != null && <span className="rv-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}><b className={scoreBox(mood.score) || "plain"}>{mood.score}</b>{W.score}</span>}
+      <span className="rv-mbar"><span className="rf-sbar" role="img" aria-label={`${mood.pos} positive, ${mood.mix} mixed, ${mood.neg} negative`}><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>
+        <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated`}</small></span></div>}
+    <div className="rv-list">
+      {posted ? <div className="rv-thanks" role="status"><span>{posted === "words" ? "Thanks, yours will show after a quick check." : "Thanks, your verdict counts."}</span></div>
+      : <div id="played" className="rv-played">
+        <div className="rv-prow"><b>{W.ask}</b>
+          {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
+          <span className="rv-pk">one tap, no account</span></div>
+        {verdict && <div className="rv-pwords"><input value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
+          <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
+        {error && <p className="rv-err" role="alert">{error}</p>}
+      </div>}
+      {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
+      {list.slice(0, shown).map((c, i) => <Card key={c.id} c={c} i={i} pill={PLAIN_PILL} v11c/>)}
+      {!v11c.thin && list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>{`show ${list.length - shown} more reviews ↓`}</button>}
+    </div>
+  </>;
   return <>
     <div className="rv-head">
       <div><h2>Reviews</h2>
@@ -98,15 +128,25 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
       </div>}
 
       {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
-      {list.slice(0, shown).map((c, i) => <article key={c.id} className={`rv-card ${c.kind}`}>
+      {list.slice(0, shown).map((c, i) => <Card key={c.id} c={c} i={i} pill={PILL}/>)}
+      {list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>show more reviews ↓</button>}
+    </div>
+  </>;
+}
+
+/** One review card: a player (avatar, name, verdict, time; then the writer's level · side when given) or a YouTube video in the
+ *  same list (thumbnail, channel, verdict, summary, watch link). */
+function Card({ c, i, pill, v11c = false }: { c: ReviewCard; i: number; pill: Record<Verdict, string>; v11c?: boolean }) {
+  return <article className={`rv-card ${c.kind}${v11c ? " v11c" : ""}`}>
         {c.kind === "player" ? <>
           <div className="rv-top">
             <span className={`rv-av a${i % 4}`} aria-hidden="true">{c.initial ?? c.who[0]}</span>
             <strong>{c.who}</strong>
-            {(c.meta || c.url) && <span className="rv-meta">{c.meta}{c.url && <>{c.meta ? " · " : ""}<a href={c.url} target="_blank" rel="noopener nofollow">{`${c.source ?? "source"} ↗`}</a></>}</span>}
-            {c.verdict && <span className={`rv-pill ${c.verdict}`}>{PILL[c.verdict]}</span>}
+            {(c.meta && !v11c || c.url) && <span className="rv-meta">{v11c ? null : c.meta}{c.url && <>{c.meta && !v11c ? " · " : ""}<a href={c.url} target="_blank" rel="noopener nofollow">{`${c.source ?? "source"} ↗`}</a></>}</span>}
+            {c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}
             {c.when && <span className="rv-when">{c.when}</span>}
           </div>
+          {v11c && c.meta && <div className="rv-who2">{c.meta}</div>}
           <p className="rv-text">{c.verbatim ? `“${c.text}”` : c.text}</p>
         </> : <div className="rv-yt">
           <a className="rv-thumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${c.who}`}>
@@ -115,15 +155,12 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
           </a>
           <div className="rv-yb">
             <div className="rv-top"><span className="rv-tag">youtube</span><strong>{c.who}</strong>
-              {c.verdict && <span className={`rv-pill ${c.verdict}`}>{PILL[c.verdict]}</span>}
+              {c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}
               {c.when && <span className="rv-when">{c.when}</span>}</div>
             {c.comment && <div className="rv-title">a viewer&apos;s comment under the video</div>}
             {c.points && c.points.length > 1 ? <ul>{c.points.map((p, j) => <li key={j}>{p}</li>)}</ul> : <p className="rv-text">{c.points?.[0]}</p>}
             {c.url && <a className="rv-watch" href={c.url} target="_blank" rel="noopener nofollow">{c.comment ? "see the comment on youtube ↗" : "watch on youtube ↗"}</a>}
           </div>
         </div>}
-      </article>)}
-      {list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>show more reviews ↓</button>}
-    </div>
-  </>;
+  </article>;
 }
