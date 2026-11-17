@@ -52,7 +52,7 @@
   .shot .tile, .vsimg.none, .vpic .none { display: grid; place-items: center; width: 100%; height: 100%; font: 800 15px/1.2 var(--display); color: var(--mute); text-align: center; padding: 8px; }
   .ps { position: absolute; top: -14px; right: -10px; background: var(--acc); border: 2px solid var(--ink); border-radius: 12px; padding: 10px 14px; transform: rotate(4deg); box-shadow: 3px 3px 0 var(--ink); text-align: center; }
   .ps > b { display: block; font: 800 34px/1 var(--display); }
-  .ps-label { position: relative; display: inline-block; font: 11px var(--mono); cursor: help; outline-offset: 3px; }
+  .ps-label { position: relative; display: inline-block; font: 12px var(--mono); cursor: help; outline-offset: 3px; }
   .ps-note { position: absolute; right: -6px; top: calc(100% + 12px); z-index: 6; width: 230px; padding: 10px 12px; border: 2px solid var(--ink); border-radius: 10px; background: var(--paper); color: var(--ink); font: 13px/1.4 var(--body); text-align: left; transform: rotate(-4deg); box-shadow: 3px 3px 0 var(--ink); opacity: 0; visibility: hidden; transition: opacity .15s; }
   .ps-label:hover .ps-note, .ps-label:focus .ps-note { opacity: 1; visibility: visible; }
 
@@ -108,8 +108,8 @@
   .court .glass { stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
   .court .net { stroke: var(--ink); stroke-width: 3; stroke-dasharray: 6 5; }
   .court .zn { font: 800 15px var(--display); fill: var(--ink); }
-  .court .edge { font: 10.5px var(--mono); letter-spacing: .12em; fill: var(--mute); }
-  .court .chip-t { font: 11.5px var(--mono); }
+  .court .edge { font: 12px var(--mono); letter-spacing: .12em; fill: var(--mute); }
+  .court .chip-t { font: 12px var(--mono); }
   .court .c-g { fill: var(--pos); } .court .c-m { fill: var(--ink); } .court .c-b { fill: var(--neg); } .court .c-n { fill: var(--mute); }
   .court [class^="chip-"] { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; }
   .court-key { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 10px; font-size: 14.5px; }
@@ -255,7 +255,7 @@
   .cm p { margin: 8px 0 10px; font-size: 16.5px; line-height: 1.6; white-space: pre-line; }
   .cm-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .cm-tags span { font: 12px var(--mono); padding: 2px 9px; border-radius: 999px; border: 1.5px solid var(--dash); }
-  .vchip { font: 11.5px var(--mono); padding: 1px 9px; border: 1.5px solid var(--ink); border-radius: 999px; color: var(--ink); }
+  .vchip { font: 12px var(--mono); padding: 1px 9px; border: 1.5px solid var(--ink); border-radius: 999px; color: var(--ink); }
   .vchip.positive { background: var(--pos-wash); } .vchip.mixed { background: var(--paper); } .vchip.negative { background: var(--neg-wash); }
   .cs-empty { padding: 18px 2px 4px; margin: 0; color: var(--mute); }
   .cs-more { margin: 12px 0 0; font-size: 15px; color: var(--soft); }

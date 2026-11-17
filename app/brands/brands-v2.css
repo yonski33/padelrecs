@@ -25,7 +25,7 @@ body:has(main.bv2) { background: #fbfaf6; }
   .bv2-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 14px 16px 6px; }
   .bv2-top > span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .bv2-top b { font: 800 22px/1.1 var(--display); }
-  .bv2-top small { font: 11px var(--mono); color: var(--mute); white-space: nowrap; }
+  .bv2-top small { font: 12px var(--mono); color: var(--mute); white-space: nowrap; }
   .bv2-top i { font: normal 600 12px var(--mono); }
   .bv2-strip { position: relative; display: flex; align-items: flex-end; justify-content: center; margin: 4px 10px 10px; padding: 10px 8px 8px; border-radius: 12px; height: 96px; box-sizing: border-box; }
   .bv2-slot { width: 46px; margin: 0 -4px; display: flex; align-items: flex-end; justify-content: center; }

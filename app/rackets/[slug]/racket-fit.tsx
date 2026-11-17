@@ -42,6 +42,7 @@ import { V11Better, V11Others, type V11Card, type V11Pool } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
+import { CompareWith } from "./compare-with";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
@@ -416,6 +417,8 @@ export default async function RacketFit(props: {
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
                   <small>{`${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
+              {/* Compare mode on the catalogue with this one already picked (UX audit 2026-11-17). */}
+              <CompareWith href={`${catalogPath}?compare=1`} pick={{ id: props.racketId, slug: props.slug, name: props.name, pic: props.photo }}/>
             </div>}
           {V11 && props.buy && <p className="rf-aff v11-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
         </div>
@@ -443,7 +446,7 @@ export default async function RacketFit(props: {
           </div>}
         </div>
 
-          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS} words={niche.words} scoreWord={SCORE_CAP}
+          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS} words={niche.words} scoreWord={SCORE_CAP}
             gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)} giveWord={SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}

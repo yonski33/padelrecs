@@ -85,3 +85,9 @@ body:has(.hv2-top) :is(.ix-main h3 a, .lv-orig, .lr-main h3 a, .sig-pop summary,
 /* The site's own phone mock (lib/niche mockLook; PickleballRecs): only the logo and "+ add a review" on a phone; the links
    stay in the footer and on the pages. */
 @media (max-width: 760px) { .hv2-sh.hv2-sh-m .hv2-find, .hv2-sh.hv2-sh-m nav { display: none; } }
+
+/* Tap targets on phones (UX audit 2026-11-17): nav links and the rankings caret at least 36px tall. */
+@media (max-width: 760px) {
+  .hv2-top nav > a, .hv2-top nav .nav-menu > a { display: inline-flex; align-items: center; min-height: 36px; }
+  .hv2-top nav .nav-caret { min-height: 36px; min-width: 32px; justify-content: center; }
+}

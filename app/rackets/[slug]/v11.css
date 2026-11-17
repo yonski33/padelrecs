@@ -164,10 +164,16 @@
 .rf .v11-vis .sh.pb-elongated { width: 28px; height: 54px; } .rf .v11-vis .sh.pb-hybrid { width: 32px; height: 50px; } .rf .v11-vis .sh.pb-widebody { width: 44px; height: 46px; border-radius: 14px 14px 9px 9px; }
 .rf .v11-vis .gauge { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; width: 100%; }
 .rf .v11-vis .gauge > .core { grid-column: 1 / -1; }
-.rf .v11-vis .gauge small { font: 11px var(--v-mono); color: var(--v-mute2); } .rf .v11-vis .gauge small + small { text-align: right; }
+.rf .v11-vis .gauge small { font: 12px var(--v-mono); color: var(--v-mute2); } .rf .v11-vis .gauge small + small { text-align: right; }
 .rf .v11-vis .flight { display: flex; gap: 6px; }
 .rf .v11-vis .flight b { min-width: 30px; height: 30px; padding: 0 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid var(--v-ink); border-radius: 8px; background: var(--v-card); font: 800 15px var(--v-display); }
 .rf .v11-vis .flight b:first-child { background: var(--v-tint); }
 .rf .v11-vis .disc { display: block; width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--v-ink); background: var(--v-tint); box-shadow: inset 0 0 0 7px var(--v-card), inset 0 0 0 9px var(--v-ink); box-sizing: border-box; }
 /* Long picks ("Beginner · Understable · Slower arm speed") wrap on phones instead of running past the card. */
 @media (max-width: 760px) { .rf .rf-afoot > span { white-space: pre-wrap; min-width: 0; } }
+
+/* Compare links (UX audit 2026-11-17): a quiet "compare with…" beside Check price, and "compare ↗" on each other-racket card
+   after its price link. */
+.rf .v11-cmp { font: 13px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; display: inline-flex; align-items: center; min-height: 32px; }
+.rf .v11-ofoot .v11-plink + .v11-ocmp { margin-left: 0; }
+.rf .v11-ofoot .v11-oscore + .v11-ocmp { margin-left: auto; }

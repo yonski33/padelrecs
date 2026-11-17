@@ -44,7 +44,7 @@ export function V11Better({ id, facts, cards, words }: { id: string; facts: FitF
 
 /** "Other rackets to consider" (no pick: similar rackets, Player scores) / "Other rackets for your game" (a pick: rackets that fit
  *  it, 60%+, the curated list first then the engine, sorted by match; fewer cards rather than ones that don't fit). */
-export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord, words, scoreWord }: { id: string; cards: V11Card[]; short: string; pool: V11Pool;
+export function V11Others({ id, slug, cards, short, pool, me, keys, gainWord, giveWord, words, scoreWord }: { id: string; /** This page's slug, for "compare ↗". */ slug: string; cards: V11Card[]; short: string; pool: V11Pool;
   me: number[]; keys: string[]; gainWord: string[]; giveWord: string[]; words: Words; scoreWord: string }) {
   const m = useMatchOf(), alts = useAlts(id, 8);
   const fitting = m.picked && alts ? fittingRows(alts, id, x => !!pool[x]) : [];
@@ -68,6 +68,8 @@ export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord
           <div className="v11-ofoot">
             <span className="v11-oscore"><b className={tone(c.score)}>{c.score ?? "–"}</b><span><b>{scoreWord}</b></span></span>
             {c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
+            {/* Side by side with this one (UX audit 2026-11-17: compare was hard to find). */}
+            <a className="v11-plink v11-ocmp" href={`/compare?ids=${encodeURIComponent(slug)},${encodeURIComponent(c.href.split(/[?#]/)[0].split("/").pop() ?? "")}`}>compare ↗</a>
           </div>
         </div>
         <div className="v11-oright">

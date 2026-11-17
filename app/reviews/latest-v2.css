@@ -25,7 +25,7 @@ body:has(main.lr2) { background: #fbfaf6; }
   .lr2-dh { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
   .lr2-dh span { font: 600 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 1px 10px; background: var(--paper); white-space: nowrap; }
   .lr2-dh i { flex: 1; border-top: 1.5px dashed #c9c5ba; }
-  .lr2-dh small { font: 11px var(--mono); color: var(--mute); white-space: nowrap; }
+  .lr2-dh small { font: 12px var(--mono); color: var(--mute); white-space: nowrap; }
   .lr2-day article { border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; padding: 16px 18px 16px 12px; align-items: start; }
   .lr2-pic { width: 84px; height: 104px; display: flex; align-items: center; justify-content: center; }
   .lr2-pic img { height: 100%; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
@@ -42,15 +42,15 @@ body:has(main.lr2) { background: #fbfaf6; }
   .lr2-av { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; color: var(--ink); flex: none; }
   .lr2-av.a0 { background: oklch(0.85 0.1 145); } .lr2-av.a1 { background: oklch(0.85 0.1 200); } .lr2-av.a2 { background: oklch(0.85 0.1 40); } .lr2-av.a3 { background: oklch(0.88 0.12 100); }
   .lr2-yt { width: 22px; height: 22px; border-radius: 6px; background: oklch(0.6 0.2 28); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; flex: none; }
-  .lr2-when { margin-left: auto; font: 11px var(--mono); color: var(--mute); }
+  .lr2-when { margin-left: auto; font: 12px var(--mono); color: var(--mute); }
   .lr2-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .lr2-tags span { white-space: nowrap; font: 11px var(--mono); border-radius: 6px; padding: 1px 8px; background: var(--tile); color: #2b2925; }
+  .lr2-tags span { white-space: nowrap; font: 12px var(--mono); border-radius: 6px; padding: 1px 8px; background: var(--tile); color: #2b2925; }
   .lr2-gist { background: oklch(0.97 0.02 25); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
-  .lr2-gist .lr2-k { margin: 0; font: 600 11px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: #8a3a2a; }
+  .lr2-gist .lr2-k { margin: 0; font: 600 12px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: #8a3a2a; }
   .lr2-pt { margin: 0; display: flex; gap: 8px; font-size: 15.5px; line-height: 1.45; text-wrap: pretty; overflow-wrap: anywhere; }
   .lr2-pt span { flex: none; color: #8a3a2a; font-weight: 700; }
   .lr2-watch { font: 600 12px var(--mono); }
-  .lr2-k { margin: 2px 0 0; font: 11px var(--mono); color: var(--mute); }
+  .lr2-k { margin: 2px 0 0; font: 12px var(--mono); color: var(--mute); }
   .lr2-empty { border: 2px dashed #b9b5aa; border-radius: 12px; padding: 28px; text-align: center; font: 800 16px var(--display); }
   .lr2-older { display: block; text-align: center; padding: 6px; font: 600 13px var(--mono); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
   .lr2-more { display: block; text-align: center; padding: 10px; border: 2px dashed #b9b5aa; border-radius: 14px; font: 13px var(--mono); text-decoration: none; }
@@ -62,7 +62,7 @@ body:has(main.lr2) { background: #fbfaf6; }
   .lr2-hot { list-style: none; margin: 0; padding: 0; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); overflow: hidden; }
   .lr2-hot a { text-decoration: none; display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 14px; }
   .lr2-hot li:last-child a { border-bottom: 0; }
-  .lr2-hot span { font: 600 14px var(--mono); } .lr2-hot b { line-height: 1.25; } .lr2-hot small { font: 11px var(--mono); color: var(--soft); }
+  .lr2-hot span { font: 600 14px var(--mono); } .lr2-hot b { line-height: 1.25; } .lr2-hot small { font: 12px var(--mono); color: var(--soft); }
   .lr2-note { border: 2px dashed #b9b5aa; border-radius: 12px; padding: 12px 14px; font-size: 13px; }
   .lr2-note .lr2-k { margin: 0 0 2px; }
   @media (max-width: 760px) {
