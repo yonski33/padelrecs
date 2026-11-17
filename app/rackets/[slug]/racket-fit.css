@@ -748,3 +748,7 @@
 @media (max-width: 760px) {
   .rf .rv-tabs button, .rf .rp-older { display: inline-flex; align-items: center; min-height: 34px; box-sizing: border-box; }
 }
+
+/* "What players say" (owner 2026-11-17): review text and YouTube summaries capped at a readable measure (about 70
+   characters a line); the cards, tabs and score row keep the section width. */
+.rf .rv-card .rv-text, .rf .rv-card .rv-yb ul, .bp-rv .rv-card .rv-text { max-width: 70ch; }
