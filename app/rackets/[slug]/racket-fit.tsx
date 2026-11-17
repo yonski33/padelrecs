@@ -39,6 +39,7 @@ import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
+import "../../review-card.css";
 import { V11Better, V11Others, V11More, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
 import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
@@ -261,7 +262,7 @@ export default async function RacketFit(props: {
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const dated: { at: string; card: ReviewCard }[] = [
-    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
+    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
     // One card per channel (lib/youtube-pick.ts): its video about this racket alone where there is one; every row still counts.
     ...onePerChannel(ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => {

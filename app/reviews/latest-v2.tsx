@@ -11,6 +11,7 @@ import { rowOfFamily } from "../../lib/compare-pairs";
 import { newThisWeek } from "../../lib/new-this-week";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
+import "../review-card.css";
 import "../skin/skin-product.css";
 import "../skin/pages-beauty.css";
 import { attrProfileFor } from "../../lib/attr-profile";

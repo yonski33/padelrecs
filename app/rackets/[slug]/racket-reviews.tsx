@@ -16,6 +16,7 @@ export type ReviewCard = {
   /** YouTube cards: video id for the thumbnail, the summary's points, whether it's a comment under the video, and the video's
    *  length in minutes when known. */
   video?: string | null; points?: string[]; comment?: boolean; minutes?: number | null;
+  /** How long the writer has played it ("6–12 months"), when given. */ played?: string | null;
   url?: string | null; source?: string | null;
 };
 
@@ -94,7 +95,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         {error && <p className="rv-err" role="alert">{error}</p>}
       </div>}
       {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
-      {list.slice(0, shown).map((c, i) => <Card key={c.id} c={c} i={i} pill={PLAIN_PILL} v11c/>)}
+      {list.slice(0, shown).map((c, i) => <LrCard key={c.id} c={c} i={i}/>)}
       {!v11c.thin && list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>{`show ${list.length - shown} more reviews ↓`}</button>}
     </div>
   </>;
@@ -195,4 +196,30 @@ function YtLite({ c, pill }: { c: ReviewCard; pill: Record<Verdict, string> }) {
     {text && <p className="rv-text rv-y2">{text}</p>}
     {c.url && <a className="rv-watch" href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}
   </div>;
+}
+
+/** A review on the v11c product page in the Latest reviews card format (owner 2026-11-17; app/review-card.css, shared with
+ *  /reviews): no product photo or name (we're on its page), the verdict pill top right, the full text first, then who and
+ *  when. A YouTube summary ends with its small thumbnail, the channel and "watch ↗"; a viewer's comment with "YouTube viewer",
+ *  "comment on a <channel> video" and "see the comment ↗" (no thumbnail). */
+function LrCard({ c, i }: { c: ReviewCard; i: number }) {
+  const channel = c.who.replace(/^youtube\s+/i, "") || c.who;
+  const end = (t: string) => /[.!?…"”)]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
+  const text = c.kind === "player" ? (c.verbatim ? `“${c.text}”` : c.text ?? "") : (c.points ?? []).filter(Boolean).map(end).join(" ");
+  return <article className={`lr2-card ${c.kind}`}>
+    <div className="lr2-head">{c.verdict && <span className={`lr2-pill ${c.verdict}${i % 2 ? " r" : ""}`}>{PLAIN_PILL[c.verdict]}</span>}</div>
+    {text && <p className="lr2-text">{text}</p>}
+    {c.kind === "player" ? <>
+      <div className="lr2-who"><span className={`lr2-av a${i % 4}`} aria-hidden="true">{(c.initial ?? c.who[0] ?? "P").toUpperCase()}</span><strong>{c.who}</strong>
+        {c.meta?.split(" · ").map(m => <span key={m}>{`· ${m}`}</span>)}
+        {c.url && <a className="lr2-watch" href={c.url} target="_blank" rel="noopener nofollow">{`${c.source ?? "source"} ↗`}</a>}
+        {c.when && <span className="lr2-when">{c.when}</span>}</div>
+      {c.played && <div className="lr2-tags"><span>{/^tried/i.test(c.played) ? "tried briefly" : `played ${c.played.toLowerCase()}`}</span></div>}
+    </> : c.comment ? <div className="lr2-who"><span className="lr2-av a0" aria-hidden="true">Y</span><strong>YouTube viewer</strong><span>{`· comment on a ${channel} video`}</span>
+      {c.url && <a className="lr2-watch" href={c.url} target="_blank" rel="noopener nofollow">see the comment ↗</a>}{c.when && <span className="lr2-when">{c.when}</span>}</div>
+    : <div className="lr2-who"><a className="lr2-ythumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${channel}`}>
+        {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}</a>
+      <strong>{channel}</strong><span>· youtube summary</span>
+      {c.url && <a className="lr2-watch" href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}{c.when && <span className="lr2-when">{c.when}</span>}</div>}
+  </article>;
 }

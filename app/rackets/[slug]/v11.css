@@ -299,9 +299,7 @@
 /* "What players say", narrower (owner 2026-11-17): on desktop the whole section (heading, tabs, score row, Played it? and
    the cards) stops at 740px on the page's left content edge, and the text fills the narrower cards (no 70ch cap here).
    Phones unchanged. */
-@media (min-width: 761px) {
-  .rf .rv:has(.rv-head.v11c) { flex: 0 1 740px; width: 100%; max-width: 740px; margin-right: auto; align-self: flex-start; }
-}
+/* (The 740px cap on "What players say" was undone, owner 2026-11-17: full content width, Latest reviews cards.) */
 .rf .rv-card.v11c .rv-text, .rf .rv-card.v11c .rv-yb ul { max-width: none; }
 /* The score row stays a row (an older phone rule turned it into a column, so the bar's 220px basis became 220px of height). */
 .rf .rv-mood.v11c { flex-direction: row; }
