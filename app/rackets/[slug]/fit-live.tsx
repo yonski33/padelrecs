@@ -157,7 +157,8 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
           {(alt || yesNo) && <p className="rf-reasonl">{alt && <a href={card!.links[alt.slug].href} className="rf-alt">{"→ "}{boldName(alt.t, card!.links[alt.slug].name)}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
       <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
-      <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join("  ·  ")}</span>
+      {/* "Matched for intermediate · power" (owner 2026-11-17: bare pick words read out of context). */}
+      <div className="rf-afoot"><span>{`Matched for ${gameWords.join(" · ")}`}</span>
         <span className="rf-acts"><label htmlFor="rf-edit-t" className="rf-editl"><span className="o">edit ↗</span><span className="c">done ✓</span></label>
         <a {...to(null)} className="rf-reset">start over</a></span></div>
       <div className="rf-bar rf-editp">

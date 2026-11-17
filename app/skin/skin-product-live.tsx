@@ -16,6 +16,15 @@ const PILL = { good: ["Strong fit", "oklch(0.9 0.05 155)"], maybe: ["Worth a try
 const reviewsWord = (n: number) => `${n} ${n === 1 ? "review" : "reviews"}`;
 const types = niche.typePages ?? [];
 
+/** "Matched for dry, sensitive skin, to hydrate": what the answer above was worked out for (owner 2026-11-17: a bare "Dry" read
+ *  out of context). */
+const GOAL_PHRASE: Record<string, string> = { hydrate: "to hydrate", calm: "to calm", clear: "for clearer skin" };
+function matchedFor(c: SkinChoice) {
+  const skin = [c.skin, c.concerns.includes("sensitive") ? "sensitive" : null, c.concerns.includes("acne") ? "acne-prone" : null].filter(Boolean).join(", ");
+  const goal = c.goal ? GOAL_PHRASE[c.goal] : undefined;
+  return `Matched for ${[skin ? `${skin} skin` : null, goal].filter(Boolean).join(", ")}`;
+}
+
 export function SkinProductLive({ input, choice: first, summary, photo, hero, reviews, specs, buy }: { input: ProductInput; choice: SkinChoice;
   summary: string | null; photo: string | null; /** The hero's product side, server-rendered. */ hero: ReactNode; reviews: ReactNode; specs: ReactNode;
   buy: { url: string; label: string; rel: string } | null }) {
@@ -55,7 +64,7 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
           {v.why && <div className="bp-why"><span>✓ Why it suits you</span><p>{v.why}</p></div>}
           {v.consider && <div className="bp-know"><span>◦ Worth knowing</span><p>{v.consider}{v.considerAlt && <> Try instead: <a href={v.considerAlt.href}>{v.considerAlt.name}</a>.</>}</p></div>}
           <input type="checkbox" id="bp-edit" className="bp-edit-t" aria-label="Edit your answers"/>
-          <div className="bp-foot"><span>{tags.map(t => t[0].toUpperCase() + t.slice(1)).join(" · ")}</span>
+          <div className="bp-foot"><span>{matchedFor(choice)}</span>
             <span><label htmlFor="bp-edit" className="bp-editl"><span className="o">edit</span><span className="c">done ✓</span></label><a href={input.here} onClick={instantClick(() => set(start))}>start over</a></span></div>
           <div className="bp-editp"><div className="bp-picks">{typesRow(true)}</div><div className="bp-picks">{goalsRow(true)}
             <a {...go(sensNext, "bp-sens sm", sensOn)}><i>{sensOn ? "✓" : ""}</i>reactive</a></div></div>
