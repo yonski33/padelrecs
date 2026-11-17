@@ -28,7 +28,7 @@ import { productHref, niche, catalogPath, v2copy, hasYears } from "../../../lib/
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { similarProducts, tagProfiles } from "../../../lib/similar";
-import { rowOfFamily, modelFamily } from "../../../lib/compare-pairs";
+import { modelFamily } from "../../../lib/compare-pairs";
 import { SUITS_OK } from "../../../lib/fit-verdict";
 import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
@@ -43,6 +43,8 @@ import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
 
 /** The date n days back (YYYY-MM-DD), for "new this week". */
+/** Reports a newer year needs before it replaces the older one (as the curated lists, lib/engine newestAt). */
+const NEWEST_AT = 10;
 const isoDaysAgo = (n: number) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
 import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
@@ -157,6 +159,14 @@ export default async function RacketFit(props: {
   const spread = (a: string, b: string) => { let h = 2166136261; for (const ch of `${props.slug}|${a}`) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
     let k = 2166136261; for (const ch of `${props.slug}|${b}`) k = Math.imul(k ^ ch.charCodeAt(0), 16777619); return (h >>> 0) - (k >>> 0); };
   const band = (id: string) => Math.floor((ctx.signal(id) ?? -5) / 5);
+  // Newest version wins (owner 2026-11-17, the curated lists' rule: "the new version, if it has enough reviews", 10+): no card,
+  // strip or alternative is an older year of a model whose newer year has 10+ reports; this year's models come first, older
+  // ones only to fill.
+  const famNewest = new Map<string, number>();
+  for (const x of ctx.data.listed) if (ctx.facts(x.id).reports >= NEWEST_AT) { const k = modelFamily(x); famNewest.set(k, Math.max(famNewest.get(k) ?? 0, x.year)); }
+  const superseded = (id: string) => { const x = ctx.data.rackets.find(y => y.id === id); return !!x && x.year < (famNewest.get(modelFamily(x)) ?? x.year); };
+  const thisYear = Number(isoDaysAgo(0).slice(0, 4));
+  const current = (id: string) => Number((ctx.data.rackets.find(y => y.id === id)?.year ?? 0) >= thisYear);
   const simPool: string[] = (() => {
     // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean
     // and a level in common, one row per model (the year that takes the family's row), described most like this one by
@@ -168,21 +178,21 @@ export default async function RacketFit(props: {
     // A type-picker site (DiscGolfRecs) keeps to the disc's own type (putter, mid …); padel and pickleball items have none.
     const kindOf = (id: string) => payload.items.find(x => x.id === id)?.kind, myKind = kindOf(me.id);
     const base = ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(me) && reportsOf(x.id) >= MIN_FIT_REPORTS && (!myKind || kindOf(x.id) === myKind)
-      && rowOfFamily(x, ctx.data.listed, y => reportsOf(y.id) >= MIN_FIT_REPORTS).shown.id === x.id && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
+      && !superseded(x.id) && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
     const sameLean = (x: (typeof base)[number]) => !myLean || styleOf(ctx.facts(x.id)) === myLean;
     const sameLevel = (x: (typeof base)[number]) => !myLevels.length || levelsOf(x.id).some(l => myLevels.includes(l));
     // Strictest first; with fewer than 4, the level and then the style lean are let go (the shape always holds).
     const pool = [base.filter(x => sameLean(x) && sameLevel(x)), base.filter(sameLean), base].find(p => p.length >= 4) ?? base;
     const close = similarProducts(me, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 4);
     const fill = [...pool].sort((a, b) => band(b.id) - band(a.id) || spread(a.id, b.id)).filter(x => !close.includes(x));
-    return [...close, ...fill].slice(0, 10).map(x => x.id);
+    return [...close, ...fill].sort((a, b) => current(b.id) - current(a.id)).slice(0, 10).map(x => x.id);
   })();
   const similarIds = simPool.slice(0, 4);
   // Past the similar pool, well-reviewed rackets of the same shape, then any, so every card can bring its own gain.
   const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
   const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
-    && rowOfFamily(x, ctx.data.listed, y => ctx.facts(y.id).reports >= MIN_FIT_REPORTS).shown.id === x.id)
-    .sort((a, b) => Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || band(b.id) - band(a.id) || spread(a.id, b.id)).slice(0, 30).map(x => x.id)];
+    && !superseded(x.id))
+    .sort((a, b) => current(b.id) - current(a.id) || Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || band(b.id) - band(a.id) || spread(a.id, b.id)).slice(0, 30).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -319,7 +329,7 @@ export default async function RacketFit(props: {
   // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
   const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
     .map(expertLine).find((t): t is string => !!t) ?? null;
-  const byBand = (ids: string[]) => [...ids].sort((a, b) => band(b) - band(a));
+  const byBand = (ids: string[]) => [...ids].sort((a, b) => current(b) - current(a) || band(b) - band(a));
   const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
   const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), photo: payload.cards[id]?.pic ?? productPhoto(racketOf(id))?.src ?? null, tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
   const myKindType = typeOf(kindOfId(props.racketId));
@@ -355,7 +365,7 @@ export default async function RacketFit(props: {
   const v11Strip: V11Pool = {};
   if (V11) for (const style of STYLES) for (const level of [undefined, ...LEVELS]) for (const arm of [false, true]) {
     for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
-      if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id)) continue;
+      if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id) || superseded(a.id)) continue;
       const c = cardOf(a.id), bf = bestFor(ctx.facts(a.id));
       v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots, ref: refOf(a.id) };
     }
