@@ -246,7 +246,7 @@
 .rf .rv-mood.v11c .rv-mbar { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
 .rf .rv-mood.v11c .rf-sbar { width: 100%; height: 10px; }
 .rf .rv-mood.v11c small { font: 12.5px var(--v-mono); color: var(--v-mute2); }
-.rf .rv-played { scroll-margin-top: 80px; border: 2px dashed var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.rf .rv-played { scroll-margin-top: 116px; border: 2px dashed var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .rf .rv-prow { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
 .rf .rv-prow > b { font: 800 16px var(--v-display); }
 .rf .rv-prow button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 0 12px 0 9px;
