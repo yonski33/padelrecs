@@ -288,7 +288,7 @@
 /* YouTube reviews, lighter (owner 2026-11-17): half-size thumbnail, grey label, our summary in two lines at most. */
 .rf .rv-card.youtube.v11c { padding: 12px 14px; }
 .rf .rv-ytl, .rf .rv-ycomm { display: flex; flex-direction: column; gap: 8px; }
-.rf .rv-yhead { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; }
+.rf .rv-yhead { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: start; }
 .rf .rv-tl { display: block; width: 72px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--v-ink); background: #e9e6dc; }
 .rf .rv-tl img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .rf .rv-ylab { font: 12px var(--v-mono); color: var(--v-mute2); white-space: nowrap; }
