@@ -308,7 +308,7 @@ export default async function RacketFit(props: {
   const tipText = tip ? plain(tip.text).split(/(?<=[.!?])\s+/).filter(x => !/\b(players?|reviewers?|people|testers?)\b/i.test(x)).join(" ").trim() : "";
   const builds = V11 ? buildCards(racketOf(props.racketId)) : [];
   // "What players said · from player forums": one real quote each way with its permalink, verbatim and in English; none, no section.
-  const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/—/.test(t);
+  const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–…é]+$/.test(t) && t.length >= 60 && t.length <= 240 && !/—/.test(t) && /[a-z]{3,}\s+[a-z]{3,}\s+[a-z]{3,}/i.test(t) && !/^\S+\s+\S+\s+\S+\s+20\d\d\s*\(/.test(t);
   const forum = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.sourceLanguage && english(e.excerpt) && /^https?:\/\/.+\/comments\//.test(e.sourceUrl));
   const forumQuotes = [forum.find(e => e.sentiment === "positive"), forum.find(e => e.sentiment === "mixed" || e.sentiment === "negative")].filter((x): x is NonNullable<typeof x> => !!x);
   const PILL: Record<string, [string, string]> = { positive: ["loved it", "g"], mixed: ["mixed", "y"], negative: ["not for me", "r"] };
