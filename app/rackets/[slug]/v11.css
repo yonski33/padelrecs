@@ -417,3 +417,11 @@
   .rf .rv12.side .rv12-side { display: block; position: sticky; top: 84px; margin-top: 52px; }
   .rf .rv12.side .rv12-row { display: none; }
 }
+
+/* "Played it?" words (owner 2026-11-18): a textarea, full width, 3 lines growing to about 8, 16px+ (no iOS zoom), Post below
+   on the right. */
+.rf .rv-pwords { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
+.rf .rv-pwords textarea { width: 100%; box-sizing: border-box; min-height: calc(3 * 1.5em + 18px); max-height: calc(8 * 1.5em + 18px); resize: none; overflow-y: auto;
+  border: 1.5px solid #151515; border-radius: 10px; padding: 8px 12px; font: 16px/1.5 var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; background: #fbfaf6; outline: none; }
+.rf .rv-pwords textarea:focus { box-shadow: 0 0 0 3px var(--v-lime); }
+.rf .rv-pwords .rv-post { align-self: flex-end; }

@@ -1,7 +1,7 @@
 "use client";
 import { scoreBox } from "../../../lib/score-tone";
 import { VERDICT_PILL } from "../../../lib/review-pill";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } from "../../quick-vote";
 
 // The racket page's Reviews section (owner 2026-11-15, site-jobs/RACKET-REVIEWS-SECTION.md, Claude Design mockup): all /
@@ -41,6 +41,9 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   const [vf, setVf] = useState<Verdict | null>(null), [tf, setTf] = useState<string | null>(null);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<string | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
+  // The "a few words" box grows with its text (up to its CSS max-height).
+  const grow = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => { const t = grow.current; if (t) { t.style.height = "auto"; t.style.height = `${t.scrollHeight + 2}px`; } }, [text, verdict]);
   // A nickname fitting the site, filled in by default (owner 2026-11-15: like the old card, e.g. "SteadyVolley482"): the same one
   // per device (localStorage), editable, and a new one on tap. Read after the first render so server and client HTML match.
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -107,7 +110,9 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
           <div className="rv-prow"><b>{W.ask}</b>
             {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
             <span className="rv-pk">one tap, no account</span></div>
-          {verdict && <div className="rv-pwords"><input value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
+          {verdict && <div className="rv-pwords">
+            {/* A box that wraps and grows (owner 2026-11-18): 3 lines to start, up to about 8, then it scrolls; Enter is a new line. */}
+            <textarea ref={grow} rows={3} value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
             <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
           {error && <p className="rv-err" role="alert">{error}</p>}
         </div>}
