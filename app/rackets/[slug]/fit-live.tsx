@@ -297,6 +297,15 @@ export function useAnswer(id: string, facts: FitFacts) {
   return { pct: rank.pct(), kind: rank.verdict().kind, alts: rank.alts(4), picksHref: !isDefault(rank.choice) ? choiceHref(rank.choice, "").slice(1) : "" };
 }
 
+/** v11: the better matches for the picks, up to `n` (the home's order: curated list first, then the engine), once the items or
+ *  the server's seed are in; null without a pick. */
+export function useAlts(id: string, n = 8) {
+  const { p: { choice, picked } } = use(), { items, seed } = useContext(ItemsCtx);
+  if (!picked) return null;
+  if (items) return alternatives(items, SETUP, BAD, choice, id, n);
+  return seed && sameChoice(seed.choice, choice) ? seed.alts6 : null;
+}
+
 /** Children only before the visitor picks (owner's final mock: the bottom line shows before picks). Still in the HTML. */
 export function BeforePicks({ children }: { children: ReactNode }) {
   const { p: { picked } } = use();

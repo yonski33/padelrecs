@@ -38,9 +38,10 @@ import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
-import { V11Better, V11Others, type V11Card } from "./v11";
+import { V11Better, V11Others, type V11Card, type V11Pool } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { buildCards } from "../../../lib/build-cards";
+import { distinctEdges } from "../../../lib/other-picks";
 import { contradicts, padelWords } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
@@ -131,7 +132,8 @@ export default async function RacketFit(props: {
 
   // Similar rackets (no picks): really similar rackets, not the home's top 4 on every page. With picks, "Better matches for you"
   // is worked out in the browser (fit-live.tsx FitAlts, lib/home-rank.ts alternatives).
-  const similarIds: string[] = (() => {
+  // A wider pool (10) behind the 4 similar rackets, so a card with nothing new to say can give way to the next (lib/other-picks.ts).
+  const simPool: string[] = (() => {
     // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean
     // and a level in common, one row per model (the year that takes the family's row), described most like this one by
     // players; the best Player scores fill in when too few are close.
@@ -149,8 +151,14 @@ export default async function RacketFit(props: {
     const pool = [base.filter(x => sameLean(x) && sameLevel(x)), base.filter(sameLean), base].find(p => p.length >= 4) ?? base;
     const close = similarProducts(me, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 4);
     const fill = [...pool].sort((a, b) => (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).filter(x => !close.includes(x));
-    return [...close, ...fill].slice(0, 4).map(x => x.id);
+    return [...close, ...fill].slice(0, 10).map(x => x.id);
   })();
+  const similarIds = simPool.slice(0, 4);
+  // Past the similar pool, well-reviewed rackets of the same shape, then any, so every card can bring its own gain.
+  const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
+  const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
+    && rowOfFamily(x, ctx.data.listed, y => ctx.facts(y.id).reports >= MIN_FIT_REPORTS).shown.id === x.id)
+    .sort((a, b) => Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).slice(0, 30).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -272,7 +280,10 @@ export default async function RacketFit(props: {
   const listFor = (word: string | undefined) => withModelYears(niche.topLists ?? []).find(l => word && l.slug.includes(word)) ?? withModelYears(niche.topLists ?? [])[0];
   const simList = listFor(myKindType?.key ?? (lean && lean !== "balance" ? lean : undefined));
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
-    items: byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))),
+    // Each card's word is its own main gain over this one, never the same twice (owner 2026-11-17); "similar feel" only when no
+    // card in the pool beats it anywhere.
+    items: (() => { const edges = distinctEdges(compareMe.dots, [...byScore(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
+      return edges.length ? edges.map((e, i) => simItem(e.id, i, dotWords[e.gain])) : byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))); })(),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
     const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
@@ -292,18 +303,18 @@ export default async function RacketFit(props: {
   const shopOf = (id: string) => payload.cards[id]?.shop ?? null;
   // The better-matches strip's cards: every racket the strip can show for any pick (the alternatives for each style × level ×
   // sore arm), so a pick in the browser never waits for more data.
-  const v11Strip: Record<string, { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null }> = {};
+  const v11Strip: V11Pool = {};
   if (V11) for (const style of STYLES) for (const level of [undefined, ...LEVELS]) for (const arm of [false, true]) {
-    for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 4)) {
+    for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
       if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id)) continue;
-      const c = cardOf(a.id); v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id) };
+      const c = cardOf(a.id), bf = bestFor(ctx.facts(a.id));
+      v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots };
     }
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
-  const v11Cards: V11Card[] = V11 ? byScore(similarIds).slice(0, 3).map(oid => {
-    const c = cardOf(oid), gaps = DOT_KEYS.map((k, i) => ({ k, g: (c.dots[i] || 0) && (compareMe.dots[i] || 0) ? c.dots[i] - compareMe.dots[i] : 0 }));
-    const up = [...gaps].sort((a, b) => b.g - a.g)[0], down = [...gaps].sort((a, b) => a.g - b.g)[0];
-    const t = up && up.g > 0 ? TRAIT_DEF[up.k] : null, d = down && down.g < 0 ? down.k : null;
+  // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byScore(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
+    const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid),
       vs: t ? (t.diff ?? `more ${t.label.toLowerCase()}`) : null, pick: t ? `Pick it if you ${t.ifYou ?? `want more ${t.label.toLowerCase()}`}.` : null,
@@ -407,7 +418,8 @@ export default async function RacketFit(props: {
           </div>}
         </div>
 
-          {V11 && v11Cards.length > 0 && <V11Others cards={v11Cards} short={meShort}/>}
+          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS}
+            gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)} giveWord={SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
