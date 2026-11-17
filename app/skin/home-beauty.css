@@ -58,7 +58,7 @@
 .bh-buy:hover { color: var(--ink) !important; }
 .bh-pct { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; }
 .bh-pct b { font: 400 26px/1 var(--serif); border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px 10px 4px; background: var(--paper); }
-.bh-pct.hi b { background: oklch(0.86 0.07 155); } .bh-pct.mid b { background: var(--mark); } .bh-pct.none b { background: var(--sand); color: var(--mute2); }
+.bh-pct.hi b { background: var(--score-g); } .bh-pct.mid b { background: var(--score-y); } .bh-pct.none b { background: var(--sand); color: var(--mute2); }
 .bh-pct small { font: 10.5px var(--mono); color: var(--mute); white-space: nowrap; }
 .bh-all { display: block; text-align: center; padding: 11px; font: 13px var(--mono); text-decoration: none; background: var(--sand); }
 
@@ -169,7 +169,7 @@
 /* After a pick (owner 2026-11-16, the mockup's column): the pill's number is plain text, not a second circle; the pill is tinted
    by the user score like the badge. */
 .bh-pct .bh-spill { margin-top: 0; border-color: currentColor; background: var(--paper); font-weight: 600; }
-.bh-pct .bh-spill.hi { background: oklch(0.86 0.07 155); } .bh-pct .bh-spill.mid { background: var(--mark); }
+.bh-pct .bh-spill.hi { background: var(--score-g); } .bh-pct .bh-spill.mid { background: var(--score-y); }
 .bh-pct .bh-spill b { all: unset; font-size: 12px; font-weight: 700; }
 
 /* check price inside the row's text (owner 2026-11-17), not its own column. */

@@ -104,7 +104,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
           </span>
           <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
             {x.judged > 0 && <span className="ct2-bar6" aria-label={`${c.pos} positive, ${c.mix} mixed, ${c.neg} negative`}><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}</span>
-          {scoreState(x.judged) === "new" ? <span className="ct2-sc"><NewPill n={x.judged}/></span> : <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title={`${look ? `${look.score[0].toUpperCase()}${look.score.slice(1)}` : "Player score"}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
+          {scoreState(x.judged) === "new" ? <span className="ct2-sc"><NewPill n={x.judged}/></span> : <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 70 ? "mid" : ""}`} title={`${look ? `${look.score[0].toUpperCase()}${look.score.slice(1)}` : "Player score"}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
             <b>{x.signal ?? "—"}</b>{mockLook ? <>
               {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
               <small><span className="ct2-ps">player score · </span>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>}

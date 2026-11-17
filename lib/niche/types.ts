@@ -173,8 +173,11 @@ export type Niche = {
     /** "Explore the rankings": tiles for the site's ranking lists. */ rankTiles: true;
     /** The "how we score" strip under the tiles. */ steps: true;
     /** "Questions": `{top:beginner}` / `{top:arm}` in an answer name the two top paddles for that pick, from the live list. */
-    faq: { q: string; a: string; link: string; href: string }[];
+    faq: HomeFaq[];
   };
+  /** The home's sections below the list on a site that keeps its own look (padel, disc golf; owner 2026-11-17): "Explore the
+   *  rankings" tiles, the "how we score" strip and "Questions". The same parts as v2home, without its mock look. */
+  homeMore?: { faq: HomeFaq[] };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
   feedMaxAgeYears?: number;
@@ -317,3 +320,6 @@ export type Niche = {
     about: { heading: string; paragraphs: [string, ...string[]]; sections: { heading: string; body: string }[] };
   };
 };
+
+/** A home "Questions" entry: `{top:beginner}` / `{top:arm}` in the answer name the two first products of that live list. */
+export type HomeFaq = { q: string; a: string; link: string; href: string };

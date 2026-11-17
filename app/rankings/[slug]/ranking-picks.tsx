@@ -3,6 +3,7 @@
 // server for the address's picks; a tap here changes the picks in the browser and works out every row's match % from the
 // catalog items sent once with the page (lib/home-rank.ts matchPcts, the same function the server uses), then updates the
 // address, with no round trip. The list's order is always its own (Player score); picks only add the %.
+import { matchBox } from "../../../lib/score-tone";
 import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
@@ -42,7 +43,7 @@ export function RowPct({ id }: { id: string }) {
   if (!s.choice || !s.showPct) return null;
   const p = pct(id);
   return p === null ? <span className="rl2-pct thin" title="Too few reports from players like you for a match %">match: few reports</span>
-    : <span className={`rl2-pct${p >= 80 ? " hi" : p >= 60 ? " mid" : ""}`} title={MATCH_NOTE}>{`${p}% match`}</span>;
+    : <span className={`rl2-pct${matchBox(p) ? ` ${matchBox(p)}` : ""}`} title={MATCH_NOTE}>{`${p}% match`}</span>;
 }
 
 /** The "your match" box: the picks, the show-% switch and the note. */

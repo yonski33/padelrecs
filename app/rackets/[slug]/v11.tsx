@@ -6,7 +6,7 @@ import type { FitFacts } from "../../../lib/fit-verdict";
 import { useAnswer, useMatchOf, useAlts } from "./fit-live";
 import { fitStep, fittingRows, FIT_MIN } from "../../../lib/verdict-scale";
 import { distinctEdges } from "../../../lib/other-picks";
-import { scoreTone as tone } from "../../../lib/score-tone";
+import { scoreTone as tone, matchTone } from "../../../lib/score-tone";
 
 /** A racket card's data from the server (app/rackets/[slug]/racket-fit.tsx). */
 export type V11Card = { id: string; name: string; href: string; pic: string | null; line: string | null; best: string | null;
@@ -32,7 +32,7 @@ export function V11Better({ id, facts, cards }: { id: string; facts: FitFacts; c
       <span className="v11-bpic"><Pic pic={c.pic} name={c.name} w={64} h={96}/></span>
       <div className="v11-bbody">
         <a className="v11-stretch" href={`${c.href}${a.picksHref}`}><b>{c.name}</b></a>
-        {r.pct !== null && <span className={`v11-pill ${tone(r.pct)}`}>{`${r.pct}% · ${word(r.pct)}`}</span>}
+        {r.pct !== null && <span className={`v11-pill ${matchTone(r.pct)}`}>{`${r.pct}% · ${word(r.pct)}`}</span>}
         {c.line && <span className="v11-bline">{c.line}</span>}
         {c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
       </div></div>; })}</div>
@@ -70,7 +70,7 @@ export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord
         </div>
         <div className="v11-oright">
           {/* After an answer, one pill at the top right: the match and its word, in the score colour (owner 2026-11-17). */}
-          {picked && st ? <span className={`v11-otag v11-omatch ${tone(c.pct)}`}>{`⚡ ${c.pct}% · ${st.word}`}</span>
+          {picked && st ? <span className={`v11-otag v11-omatch ${matchTone(c.pct)}`}>{`⚡ ${c.pct}% · ${st.word}`}</span>
             : <span className="v11-otag">{c.vs ? `⚡ vs the ${short}: ${c.vs}` : "⚡ similar feel"}</span>}
           {(picked ? st?.head : c.pick) && <p className="v11-ohead">{picked ? st!.head : c.pick}</p>}
           {c.gain && <div className="v11-ogain"><b>{picked && st?.fits ? "✓ Why it fits" : "✓ What you gain"}</b><span>{c.gain}</span></div>}

@@ -36,8 +36,8 @@
   .rk3-buy:hover { background: #2b2925; }
   .rk3-link { position: relative; z-index: 1; white-space: nowrap; font: 11px var(--mono); color: var(--soft) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   .rk3-link:hover { color: var(--ink) !important; }
-  .rk3-sc b { font-family: var(--display); font-weight: 800; line-height: 1; border: 2px solid var(--ink); background: var(--lime-lo); }
-  .rk3-sc.t85 b { background: var(--lime); } .rk3-sc.t90 b { background: var(--lime-hi); }
+  .rk3-sc b { font-family: var(--display); font-weight: 800; line-height: 1; border: 2px solid var(--ink); background: var(--score-w); }
+  .rk3-sc.hi b { background: var(--score-g); } .rk3-sc.mid b { background: var(--score-y); }
   .rk3-sc small { font-family: var(--mono); color: var(--soft); white-space: nowrap; }
 
   /* #1 */
@@ -52,7 +52,7 @@
   .rk3-first .rk3-best { font-size: 13px; }
   .rk3-side { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 132px; }
   .rk3-first .rk3-sc { display: flex; align-items: center; gap: 8px; }
-  .rk3-first .rk3-sc b { font-size: 30px; border-radius: 10px; padding: 6px 9px; background: var(--lime); transform: rotate(-3deg); }
+  .rk3-first .rk3-sc b { font-size: 30px; border-radius: 10px; padding: 6px 9px; transform: rotate(-3deg); }
   .rk3-first .rk3-sc small { font-size: 11.5px; line-height: 1.2; color: var(--text); white-space: pre-line; }
   .rk3-first .rk3-buy { padding: 8px 16px; border-radius: 10px; font-size: 14.5px; }
   .rk3-why { font: 600 12.5px var(--mono); white-space: nowrap; }
@@ -194,4 +194,4 @@
 .rk3-arm i { width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font: normal 700 11px system-ui; background: #fff; }
 .rk3-hint { font: 12.5px var(--mono, ui-monospace); color: #6a675f; }
 .rk3-mp { display: inline-block; font: 600 12.5px var(--mono, ui-monospace); border: 1.5px solid var(--ink); border-radius: 999px; padding: 1px 9px; background: #fff; white-space: nowrap; }
-.rk3-mp.g { background: oklch(0.8 0.16 145); } .rk3-mp.y { background: oklch(0.88 0.15 95); } .rk3-mp.none { color: #6a675f; }
+.rk3-mp.g { background: var(--score-g); } .rk3-mp.y { background: var(--score-y); } .rk3-mp.none { color: #6a675f; }
