@@ -6,10 +6,11 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { RANK_SETUP } from "../../../lib/rank-seed";
 import { SAVED_PICKS_KEY } from "../../../lib/saved-picks";
+import { fitStep } from "../../../lib/verdict-scale";
 import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level } from "../../../lib/quick-match";
 
 const Ctx = createContext<(id: string) => number | null | undefined>(() => undefined);
-const word = (n: number) => n >= 75 ? "Strong fit" : n >= 55 ? "Decent fit" : "Weak fit";
+const word = (n: number) => fitStep(n).word;
 const toneOf = (n: number) => n >= 85 ? " g" : n >= 70 ? " y" : "";
 
 export function RankMatch({ head, children }: { head: string; children: ReactNode }) {

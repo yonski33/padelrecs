@@ -102,15 +102,15 @@ export function boldName(t: string, name: string): ReactNode {
   return <>{parts.slice(0, best[0]).join("")}<b>{bold}</b>{tail}{parts.slice(best[1] + 1).join("")}</>;
 }
 
-export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, yesNo }: { id: string; facts: FitFacts;
-  hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
+export function FitBox({ id, facts, hook, total, rated = total, bestLine, levelDisagree, card, yesNo }: { id: string; facts: FitFacts;
+  hook: { good: string; catch: string } | null; total: number; /** The page's "N players rated it" count, so the two agree (audit #27). */ rated?: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
   /** The page's Why yes / Why not items: the reason line's source and the "See why ↓" target. */ yesNo?: { yes: PageItem[]; no: PageItem[] } | null }) {
   const { set } = use(), to = useGo(), rank = useRank(id, facts), { choice, picked } = rank;
   const verdict = picked ? rank.verdict() : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
   const pct = verdict ? rank.pct() : null;
-  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
+  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not" }[verdict.kind] : null;
   usePublish(verdict ? { kind: verdict.kind, pct, word: verdictWord } : null);
   // Fallback (no racket lines): the fit check's own reasons, with counts in words (owner: no player numbers).
   const why = verdict ? (verdict.fits?.slice(0, 2).map(wordCounts).join(" ") || (hook ? hook.good : null)) : null;
@@ -140,7 +140,7 @@ export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, 
   return <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
     {!verdict ? <div className="rf-ask">
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
-        <p>{`Two taps and we'll check it against ${total} player ${total === 1 ? "review" : "reviews"}.`}</p></div>
+        <p>{`Two taps and we'll check it against ${rated} player ${rated === 1 ? "review" : "reviews"}.`}</p></div>
       <AskPicks onPick={c => set({ choice: c, picked: true })}/>
       {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}

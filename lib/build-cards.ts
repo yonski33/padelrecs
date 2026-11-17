@@ -8,13 +8,16 @@ export type BuildCard = { key: "shape" | "core" | "balance" | "face"; title: str
 const clean = (s: string | null | undefined) => (s ?? "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
 const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 
-export function buildCards(spec: { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null }): BuildCard[] {
+/** `armDots`: the racket's Arm comfort bar. At 4+ no card says it is hard on the arm (audit 2026-11-17: generic carbon and core
+ *  lines on rackets the reviews call comfortable). */
+export function buildCards(spec: { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null }, armDots?: number): BuildCard[] {
+  const kind = (armDots ?? 0) >= 4;
   const out: BuildCard[] = [];
   const shape = clean(spec.shape).toLowerCase();
   const SHAPE: Record<string, string> = {
     round: "Biggest sweet spot of any shape, so mishits still go back deep.",
     teardrop: "Between round and diamond: some reach on smashes, still forgiving.",
-    diamond: "Weight sits high for smash power; the sweet spot is smaller and higher.",
+    diamond: "Built for smashes: the sweet spot sits higher and is smaller than on a round.",
     hybrid: "A middle ground: more reach than a round, more forgiving than a diamond.",
     hexagonal: "An uncommon outline that sits close to a teardrop in feel.",
   };
@@ -22,9 +25,11 @@ export function buildCards(spec: { shape?: string | null; core?: string | null; 
   if (shape) out.push({ key: "shape", title: `${cap(clean(spec.shape).replace(/\s+oversized$/i, ""))} shape`, line: sk ? SHAPE[sk] : "An uncommon shape; check the specs below.", shape: sk ?? "round" });
   const core = clean(spec.core), c = core.toLowerCase();
   if (core) {
-    const soft = /soft|foam(?!.*hard)|comfort|memory/.test(c) && !/hard|black/.test(c), hard = /hard|black|hr\b|power foam/.test(c) && !soft;
+    // The makers' own words (audit 2026-11-17): HEAD Power Foam is its most reactive foam and adidas EVA High Memory its hard,
+    // high-density rubber (firm); Black EVA and MLD Black EVA sit in the middle; soft, comfort and control foams are soft.
+    const hard = /hard|power foam|high memory|\bhr\b|pro eva/.test(c), soft = !hard && /soft|comfort|control foam|^foam$|light foam/.test(c);
     out.push(soft ? { key: "core", title: "Soft core", line: `${core} feels comfy and gives easy depth; fast blocks can fly long.`, at: 0.2 }
-      : hard ? { key: "core", title: "Firm core", line: `${core} gives control and punch at pace; it asks more of your arm.`, at: 0.85 }
+      : hard ? { key: "core", title: "Firm core", line: kind ? `${core} gives control and punch at pace.` : `${core} gives control and punch at pace; it asks more of your arm.`, at: 0.85 }
       : { key: "core", title: "Medium core", line: `${core} sits between soft and firm: some comfort, some control at pace.`, at: 0.5 });
   }
   const bal = clean(spec.balance), b = bal.toLowerCase();
@@ -44,7 +49,7 @@ export function buildCards(spec: { shape?: string | null; core?: string | null; 
     const k = Number(/(\d+)\s*k/.exec(f)?.[1] ?? 0);
     const line = glass && !mix ? "Fibreglass is softer and kinder to the arm; it feels less crisp at pace."
       : mix ? "A carbon and fibreglass mix: some comfort, some crispness."
-      : k >= 12 ? "High-K carbon is crisp and firm: precise at pace, less forgiving on the arm."
+      : k >= 12 ? (kind ? "High-K carbon is crisp and firm: precise at pace." : "High-K carbon is crisp and firm: precise at pace, less forgiving on the arm.")
       : "Carbon gives a crisp, firm feel with good control at pace.";
     out.push({ key: "face", title: `${cap(face.replace(/\bcarbon\b/i, "carbon"))} face`, line });
   }

@@ -21,6 +21,15 @@ export function superlative(diff: string): string {
   if (/er$/.test(w)) return `the ${w.slice(0, -2)}est${tail}`;
   return `the most ${diff}`;
 }
+const NOUN = /^(power|control|spin|pop|glide|grip|feel|touch|comfort|speed|stability|durability)$/;
+/** The superlative as a predicate: "has the most power" (a noun, audit 2026-11-17 #29: not "is the most power"), "lasts the
+ *  longest", else "is the most forgiving". */
+export function bestAt(diff: string): string {
+  const [w, ...rest] = diff.split(" ");
+  if (w === "more" && rest.length === 1 && NOUN.test(rest[0])) return `has the most ${rest[0]}`;
+  if (w === "lasts" && rest[0] === "longer") return "lasts the longest";
+  return `is ${superlative(diff)}`;
+}
 /** The traits where `i` leads every other product (by dots), biggest lead first. */
 export function leads(ps: VProduct[], i: number): number[] {
   const me = ps[i].dots;
@@ -55,15 +64,15 @@ export function compareVerdict(ps: VProduct[], traits: VTrait[], picks: Record<s
       order.slice(2).forEach(p => rest.push(otherLine(p)));
     } else {
       const a = lead(top);
-      head = { pre: "Get the ", name: top.short, post: a !== undefined ? `. It's ${superlative(traits[a].diff)} ${here}.` : ". It's the best match for your picks." };
+      head = { pre: "Get the ", name: top.short, post: a !== undefined ? `. ${bestAt(traits[a].diff).replace(/^is /, "It's ").replace(/^(?!It's )/, "It ")} ${here}.` : ". It's the best match for your picks." };
       order.slice(1).forEach(p => rest.push(otherLine(p)));
     }
   } else {
     const a = lead(top);
-    head = { pre: "The ", name: top.short, post: ` has the best ${scoreWord} here${a !== undefined ? ` and is ${superlative(traits[a].diff)}` : ""}.` };
+    head = { pre: "The ", name: top.short, post: ` has the best ${scoreWord} here${a !== undefined ? ` and ${bestAt(traits[a].diff)}` : ""}.` };
     order.slice(1).forEach(p => { const k = lead(p);
       // No lead of its own: no line (never filler).
-      if (k !== undefined) rest.push({ pre: "The ", name: p.short, post: ` is ${superlative(traits[k].diff)} ${here}.` }); });
+      if (k !== undefined) rest.push({ pre: "The ", name: p.short, post: ` ${bestAt(traits[k].diff)} ${here}.` }); });
     if (!fit(head.pre + head.name + head.post)) head = { pre: "The ", name: top.short, post: ` has the best ${scoreWord} here.` };
   }
   return { picked, order: order.map(p => p.id), head, rest };

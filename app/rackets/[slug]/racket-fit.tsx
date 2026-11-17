@@ -5,7 +5,7 @@ import "./racket-fit.css";
 import { spans, chipTone, type Chip, type QuickTake } from "../../../lib/quick-take";
 import { type Trait } from "../../../lib/trait-score";
 import { SITE_FIT } from "../../../lib/fit-config";
-import { bestFor, styleLean, MIN_FIT_REPORTS } from "../../../lib/fit-verdict";
+import { bestFor, styleLean, styleOf, MIN_FIT_REPORTS } from "../../../lib/fit-verdict";
 import { LEVELS, type QuickChoice } from "../../../lib/quick-match";
 import { matchContext } from "../../match-context";
 import { reportLevels } from "../../../db/report-levels";
@@ -42,7 +42,7 @@ import { V11Better, V11Others, type V11Card, type V11Pool } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { buildCards } from "../../../lib/build-cards";
 import { distinctEdges } from "../../../lib/other-picks";
-import { contradicts, padelWords } from "../../../lib/content-consistency";
+import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
 import { STYLES } from "../../../lib/quick-match";
@@ -56,6 +56,9 @@ const V11 = niche.id === "padel";
 /** v11 "How it plays": three bands (trait key, label). */
 const V11_BANDS: [string, string][] = [["power", "Attack"], ["control", "Control"], ["forgiveness", "Sweet spot"]];
 /** v11 other-racket cards: what you give up, per trait where the other racket is behind (padel's words). */
+/** A strong bar's words when a Why not says the opposite (audit 2026-11-17). */
+const BAR_NUANCE: Record<string, string> = { power: "Power when you swing; little free power.", control: "Precise, though fast balls can fly.",
+  forgiveness: "Forgiving, though off-centre hits lose some pace." };
 const GIVE_UP: Record<string, string> = { forgiveness: "a smaller sweet spot", power: "less power on smashes", control: "less control", defence: "weaker in defence",
   arm: "harder on the arm", speed: "slower at the net" };
 import type { QtReport, QtReview } from "./quick-take";
@@ -67,6 +70,8 @@ import { NewPill } from "../../score-tags";
  *  for you?"; picks from the URL (?style=&level=&arm=1, the same as the home's quick match) get a verdict from
  *  lib/fit-verdict.ts. Shown for products with a quick-take block; the canonical stays the bare URL. */
 
+/** Raw markdown left in stored words ("**NOX AT10 Pro Cup Soft 2026**", audit 2026-11-17 #29): the words without the marks. */
+const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "");
 function Rich({ text }: { text: string }) {
   return <>{spans(text).map((s, i) => s.mark || s.b ? <b key={i}>{s.text}</b> : <span key={i}>{s.text}</span>)}</>;
 }
@@ -96,7 +101,8 @@ export default async function RacketFit(props: {
   // The style chip follows the match engine's control ↔ power axis (one story with the fit check and the dots; maker labels
   // bound it), with the tag-count lean only where the engine has no place for the racket.
   const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
-  const lean = axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
+  // Padel (owner audit 2026-11-17): the one style every page uses, from the bars it shows (lib/fit-verdict styleOf).
+  const lean = V11 ? styleOf(facts) : axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
   const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
   const armWords = QUICK ? "slower arms" : "sore arms";
@@ -133,11 +139,16 @@ export default async function RacketFit(props: {
   // Similar rackets (no picks): really similar rackets, not the home's top 4 on every page. With picks, "Better matches for you"
   // is worked out in the browser (fit-live.tsx FitAlts, lib/home-rank.ts alternatives).
   // A wider pool (10) behind the 4 similar rackets, so a card with nothing new to say can give way to the next (lib/other-picks.ts).
+  // The same few top scorers filled the cards on 50+ pages (audit 2026-11-17, #26: Tour X on 68). Fill and wide picks sort by
+  // score band (5 points), then a fixed per-page order, so close scorers take turns; a clearly better score still leads.
+  const spread = (a: string, b: string) => { let h = 2166136261; for (const ch of `${props.slug}|${a}`) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
+    let k = 2166136261; for (const ch of `${props.slug}|${b}`) k = Math.imul(k ^ ch.charCodeAt(0), 16777619); return (h >>> 0) - (k >>> 0); };
+  const band = (id: string) => Math.floor((ctx.signal(id) ?? -5) / 5);
   const simPool: string[] = (() => {
     // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean
     // and a level in common, one row per model (the year that takes the family's row), described most like this one by
     // players; the best Player scores fill in when too few are close.
-    const me = ctx.data.rackets.find(r => r.id === props.racketId)!, myShape = ctx.fineOf(me.id)?.shape ?? null, myLean = styleLean(facts).lean;
+    const me = ctx.data.rackets.find(r => r.id === props.racketId)!, myShape = ctx.fineOf(me.id)?.shape ?? null, myLean = styleOf(facts);
     const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
     const myLevels = levelsOf(me.id);
     const reportsOf = (id: string) => ctx.facts(id).reports;
@@ -145,12 +156,12 @@ export default async function RacketFit(props: {
     const kindOf = (id: string) => payload.items.find(x => x.id === id)?.kind, myKind = kindOf(me.id);
     const base = ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(me) && reportsOf(x.id) >= MIN_FIT_REPORTS && (!myKind || kindOf(x.id) === myKind)
       && rowOfFamily(x, ctx.data.listed, y => reportsOf(y.id) >= MIN_FIT_REPORTS).shown.id === x.id && (!myShape || ctx.fineOf(x.id)?.shape === myShape));
-    const sameLean = (x: (typeof base)[number]) => !myLean || styleLean(ctx.facts(x.id)).lean === myLean;
+    const sameLean = (x: (typeof base)[number]) => !myLean || styleOf(ctx.facts(x.id)) === myLean;
     const sameLevel = (x: (typeof base)[number]) => !myLevels.length || levelsOf(x.id).some(l => myLevels.includes(l));
     // Strictest first; with fewer than 4, the level and then the style lean are let go (the shape always holds).
     const pool = [base.filter(x => sameLean(x) && sameLevel(x)), base.filter(sameLean), base].find(p => p.length >= 4) ?? base;
     const close = similarProducts(me, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 4);
-    const fill = [...pool].sort((a, b) => (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).filter(x => !close.includes(x));
+    const fill = [...pool].sort((a, b) => band(b.id) - band(a.id) || spread(a.id, b.id)).filter(x => !close.includes(x));
     return [...close, ...fill].slice(0, 10).map(x => x.id);
   })();
   const similarIds = simPool.slice(0, 4);
@@ -158,7 +169,7 @@ export default async function RacketFit(props: {
   const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
   const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
     && rowOfFamily(x, ctx.data.listed, y => ctx.facts(y.id).reports >= MIN_FIT_REPORTS).shown.id === x.id)
-    .sort((a, b) => Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).slice(0, 30).map(x => x.id)];
+    .sort((a, b) => Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || band(b.id) - band(a.id) || spread(a.id, b.id)).slice(0, 30).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -188,7 +199,7 @@ export default async function RacketFit(props: {
     const own = reviews.find(x => atLevel.some(a => a.id === x.id && fits(a)) && english(x.reviewText));
     if (own) return { id: own.id, text: own.reviewText, verbatim: true, ok };
     const web = atLevel.filter(fits).map(a => ({ a, w: webLevels.get(a.id) })).find(({ w }) => w?.english && english(w.excerpt));
-    return web ? { id: web.a.id, text: web.w!.excerpt!, verbatim: true, ok } : null;
+    return web ? { id: web.a.id, text: unmd(web.w!.excerpt!), verbatim: true, ok } : null;
   };
   const levelTakes = levelView ? [levelTake(true), levelTake(false)].filter((x): x is NonNullable<typeof x> => !!x) : [];
   // Quotes (owner 2026-11-15): our own players' words first, then YouTube's, then the quick-take's picks; verbatim only.
@@ -196,10 +207,10 @@ export default async function RacketFit(props: {
   const ownQuote = (want: string[]) => reviews.find(x => inPool.has(x.id) && want.includes(ratingVerdictOf(x.rating)) && english(x.reviewText));
   const ytQuote = (want: string[]) => ctx.data.external.find(e => e.racketId === props.racketId && inPool.has(e.id) && e.sourcePlatform === "YouTube" && e.sentiment && want.includes(e.sentiment) && !e.sourceLanguage && english(e.excerpt));
   const quoteOf = (want: string[]) => { const o = ownQuote(want); if (o) return { id: o.id, text: o.reviewText, verbatim: true, tone: ratingVerdictOf(o.rating) };
-    const y = ytQuote(want); return y ? { id: y.id, text: y.excerpt!, verbatim: true, tone: y.sentiment! } : null; };
+    const y = ytQuote(want); return y ? { id: y.id, text: unmd(y.excerpt!), verbatim: true, tone: y.sentiment! } : null; };
   const toneOf = (ok: boolean) => ok ? "positive" : "negative";
   const preferred = [quoteOf(["positive"]), quoteOf(["negative", "mixed"])];
-  const fallback = (levelTakes.length ? levelTakes : d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? []).map(t => ({ id: t.id, text: t.text, verbatim: t.verbatim, tone: byId.get(t.id)?.sentiment ?? toneOf(t.ok) }));
+  const fallback = (levelTakes.length ? levelTakes : d ? [{ ...d.for, ok: true }, { ...d.against, ok: false }] : props.quotes ?? []).map(t => ({ id: t.id, text: unmd(t.text), verbatim: t.verbatim, tone: byId.get(t.id)?.sentiment ?? toneOf(t.ok) }));
   const takes = [preferred[0] ?? fallback.find(t => t.tone === "positive"), preferred[1] ?? fallback.find(t => t.tone !== "positive")].filter((x): x is NonNullable<typeof x> => !!x);
     const levelWord = lv === "advanced" ? "advanced players" : `${lv}s`;
     const peerSub = levelView ? `${said.length} of ${total} reviews · from players at your level` : `${total} ${total === 1 ? "review" : "reviews"} · forums, YouTube & ${props.site.toLowerCase()}`;
@@ -217,13 +228,13 @@ export default async function RacketFit(props: {
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const dated: { at: string; card: ReviewCard }[] = [
-    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: lv(r.playerLevel), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: r.reviewText, verbatim: false } })),
+    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: lv(r.playerLevel), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
     // One card per channel (lib/youtube-pick.ts): its video about this racket alone where there is one; every row still counts.
     ...onePerChannel(ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
       // Our own summaries speak padel ("sweet spot"); a player's verbatim words stay as they wrote them.
-      const text = e.summary ? (V11 ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : (!english && e.excerptTranslation) || e.excerpt || "";
+      const text = unmd(e.summary ? (V11 ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : (!english && e.excerptTranslation) || e.excerpt || "");
       const verbatim = !e.summary && english && !!e.excerpt;
       const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
@@ -273,6 +284,7 @@ export default async function RacketFit(props: {
   // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
   const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
     .map(expertLine).find((t): t is string => !!t) ?? null;
+  const byBand = (ids: string[]) => [...ids].sort((a, b) => band(b) - band(a));
   const byScore = (ids: string[]) => [...ids].sort((a, b) => (ctx.signal(b) ?? -1) - (ctx.signal(a) ?? -1));
   const simItem = (id: string, i: number, why: string | null): SimilarItem => ({ id, name: cardOf(id).name, href: cardOf(id).href, tag: tagOf(id), photo: payload.cards[id]?.pic ?? productPhoto(racketOf(id))?.src ?? null, tint: tint(i), why, line: lineOf(id), score: ctx.signal(id) });
   const myKindType = typeOf(kindOfId(props.racketId));
@@ -282,7 +294,7 @@ export default async function RacketFit(props: {
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
     // Each card's word is its own main gain over this one, never the same twice (owner 2026-11-17); "similar feel" only when no
     // card in the pool beats it anywhere.
-    items: (() => { const edges = distinctEdges(compareMe.dots, [...byScore(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
+    items: (() => { const edges = distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
       return edges.length ? edges.map((e, i) => simItem(e.id, i, dotWords[e.gain])) : byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))); })(),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
@@ -313,7 +325,7 @@ export default async function RacketFit(props: {
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
-  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byScore(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid),
@@ -324,18 +336,25 @@ export default async function RacketFit(props: {
   // "How it plays": three bands from the trait dots and their notes; the strongest is marked. A rule of thumb only from a tip
   // with 2+ players behind it.
   const bandRows = V11_BANDS.map(([k, label]) => { const i = SITE_TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
-    return { k, label, dots: sc?.dots ?? 0, note: row ? row[1].replace(/==/g, "") : null }; }).filter(b => b.dots > 0);
+    // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
+    const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? BAR_NUANCE[k] : null;
+    return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
   const topDots = Math.max(0, ...bandRows.map(b => b.dots));
   const tip = qt?.tips.find(t => t.reports.length >= 2);
   // Advice only (owner rule: no "N players said" inside advice): the tip's sentences that don't count people, ≤ 105 characters.
   const tipText = tip ? plain(tip.text).split(/(?<=[.!?])\s+/).filter(x => !/\b(players?|reviewers?|people|testers?)\b/i.test(x)).join(" ").trim() : "";
-  const builds = V11 ? buildCards(racketOf(props.racketId)) : [];
+  const builds = V11 ? buildCards(racketOf(props.racketId), tr.scores?.arm?.dots) : [];
   // "What players said · from player forums": one real quote each way with its permalink, verbatim and in English; none, no section.
   const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–…é]+$/.test(t) && t.length >= 60 && t.length <= 240 && !/—/.test(t) && /[a-z]{3,}\s+[a-z]{3,}\s+[a-z]{3,}/i.test(t) && !/^\S+\s+\S+\s+\S+\s+20\d\d\s*\(/.test(t);
   const forum = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.sourceLanguage && english(e.excerpt) && /^https?:\/\/.+\/comments\//.test(e.sourceUrl));
   const forumQuotes = [forum.find(e => e.sentiment === "positive"), forum.find(e => e.sentiment === "mixed" || e.sentiment === "negative")].filter((x): x is NonNullable<typeof x> => !!x);
   const PILL: Record<string, [string, string]> = { positive: ["loved it", "g"], mixed: ["mixed", "y"], negative: ["not for me", "r"] };
   const faq = (qt?.answers ?? []).slice(0, 6);
+  // The thin-spot note was written about the quick take's own compare cards; v11 shows other cards (audit 2026-11-17, #13:
+  // "the ST4 card rests on few players" with no ST4 card on the page). A note about cards that aren't shown is left out.
+  const cardWords = (qt?.compare?.cards ?? []).filter(c => !v11Cards.some(v => v.href.split(/[?#]/)[0].endsWith(`/${c.slug}`)))
+    .flatMap(c => c.name.split(/\s+/).filter(w => w.length >= 3 && /\d|[A-Z]{2}/.test(w)));
+  const staleThin = !!qt && V11 && (/\b(cards?|comparison)\b/i.test(qt.thinSpot) || cardWords.some(w => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(qt.thinSpot)));
   const v11Body = V11 ? <>
     {bandRows.length > 0 && <div id="plays" className="v11-plays">
       <h2>How it plays</h2>
@@ -355,7 +374,7 @@ export default async function RacketFit(props: {
     {forumQuotes.length > 0 && <><div className="v11-said">
       <div className="v11-saidh"><b>What players said</b><span>from player forums</span></div>
       {forumQuotes.map(e => { const [w, cls] = PILL[e.sentiment ?? "mixed"] ?? PILL.mixed; return <div key={e.id} className="v11-q">
-        <p>{`“${e.excerpt}”`}</p>
+        <p>{`“${unmd(e.excerpt ?? "")}”`}</p>
         <div><span className="v11-qwho">a player</span><span className={`v11-pill ${cls}`}>{w}</span><a href={e.sourceUrl} target="_blank" rel="noopener nofollow">source ↗</a></div></div>; })}
     </div>
     <a className="v11-more" href="#reviews">read more player reviews <span aria-hidden="true">↓</span></a></>}
@@ -389,13 +408,13 @@ export default async function RacketFit(props: {
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
                 <span className="v11-sm"><b>Player score</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
-                  <small>{`${rated} ${niche.people.many} rated it`}</small></span></a>}
+                  <small>{`${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
             </div>}
           {V11 && props.buy && <p className="rf-aff v11-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
         </div>
 
-        <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
+        <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} rated={rated || total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
       </section>
       {V11 && <V11Better id={props.racketId} facts={facts} cards={v11Strip}/>}
 
@@ -435,7 +454,7 @@ export default async function RacketFit(props: {
 
       <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from YouTube reviews, reviews sent to us and ${v2copy.forum} reports · every source linked · `}
-          <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test ${niche.words.many} and no brand pays for placement. `}{qt && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
+          <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test ${niche.words.many} and no brand pays for placement. `}{qt && !staleThin && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
           {" · "}<a href="/contact">spot something wrong?</a></div>
         <p className="rf-made">{v2copy.madeBy}</p>
       </footer>

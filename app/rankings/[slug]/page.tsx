@@ -1,4 +1,5 @@
 // Read per request like the other public pages; Vercel's CDN keeps a copy for up to a minute (next.config.ts headers),
+import { curatedRankingStyle, CURATED_MIN } from "../../../lib/curated";
 import { isLight } from "../../../lib/look";
 import { rowLine } from "../../../lib/row-line";
 import { fitText } from "../../../lib/fit-text";
@@ -112,7 +113,8 @@ function rankingFaq(list: TopList, entries: ListEntry[], affiliate: boolean, nam
   const lead = [...brands].sort((x, y) => y[1].length - x[1].length)[0];
   if (lead && lead[1].length >= 2 && [...brands.values()].filter(v => v.length === lead[1].length).length === 1) faq.push({ q: `Which brand has the most ${w.many} on this list?`, a:
     `${lead[0]}, with ${lead[1].length} of the ${entries.length}: ${lead[1].map(e => `${nameOf(e)} (#${e.rank})`).join(", ").replace(/, ([^,]+)$/, " and $1")}.` });
-  faq.push({ q: `How is this ranking made?`, a:
+  const pick = curatedRankingStyle(list.slug);
+  faq.push({ q: `How is this ranking made?`, a: pick ? `We pick the order${pick === "mixed" ? "" : ` for ${pick} players`}: ${w.many} that suit that game and that ${people.many} rate well, with at least ${CURATED_MIN.reviews} reviews and a ${scoreLabel} of ${CURATED_MIN.score}+ (or our own pick). The ${scoreLabel} beside each one is from ${people.one} reviews on ${niche.site.name} and first-hand experiences from around the web. No brand pays for a place.` :
     `It's counted from published reviews: ${people.one} reviews on ${niche.site.name} and first-hand experiences collected and summarized from around the web. Each is read as positive, mixed or negative, and only reviews from the last ${windowLabel(reviewWindowMonths(list))} count. The order follows each ${w.one}'s ${scoreLabel}, which rewards ${w.many} that are both well liked and widely discussed.` });
   faq.push({ q: `What is the ${scoreLabel}?`, a: `A score out of 100 for how well reviewed a ${w.one} is. Negative and mixed reviews take points off, and so does having only a few reviews, so a ${w.one} many people like ranks above one a handful love. It needs at least ${MIN_SIGNAL_REVIEWS} reviews and moves as new reviews come in.` });
   faq.push({ q: `What does a ${w.one} need to make this list?`, a: [

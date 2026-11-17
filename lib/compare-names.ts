@@ -15,6 +15,8 @@ export function refName(i: number, all: Named[]): string {
   const mw = words(me.model), own = mw.filter(t => t.length >= 2 && !taken.has(t.toLowerCase()));
   // A name that shares no word with its siblings is its own name: "the Double Black Diamond Control", not "the Black".
   if (own.length === mw.length) return me.model;
+  // Only the year tells it apart (a 2026 beside its 2027): the whole model with its year, never "the 2026".
+  if (own.length && own.every(t => /^(19|20)\d\d$/.test(t))) return me.model;
   if (!own.length) { // every word is in a sibling's model (the plain one beside a "Lite"): drop the lead words they all share
     const mine = mw, lower = sameBrand.map(x => words(x.model.toLowerCase()));
     let k = 0; while (k < mine.length - 1 && lower.every(w => w[k] === mine[k].toLowerCase())) k++;

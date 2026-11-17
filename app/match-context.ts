@@ -96,8 +96,10 @@ const keptContext = kept(async () => {
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
     const su = suitsOf.get(id), fi = fineOf.get(id);
     const armDots = traitMap?.get(id)?.arm?.dots;
+    // The Attack and Control bars as shown (owner audit 2026-11-17: one style per racket on every page).
+    const pd = traitMap?.get(id)?.power?.dots, cd = traitMap?.get(id)?.control?.dots, styleDots = pd && cd ? { power: pd, control: cd } : undefined;
     const hard = RULES && rulesOf(id).hard;
-    return { reports, tags, ...(armDots ? { armDots } : {}), ...(hard ? { hard } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    return { reports, tags, ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
