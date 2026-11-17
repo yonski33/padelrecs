@@ -302,3 +302,6 @@
   .rf .rv:has(.rv-head.v11c) { flex: 0 1 740px; width: 100%; max-width: 740px; margin-right: auto; align-self: flex-start; }
 }
 .rf .rv-card.v11c .rv-text, .rf .rv-card.v11c .rv-yb ul { max-width: none; }
+/* The score row stays a row (an older phone rule turned it into a column, so the bar's 220px basis became 220px of height). */
+.rf .rv-mood.v11c { flex-direction: row; }
+@media (max-width: 760px) { .rf .rv-mood.v11c .rv-mbar { flex: 1 1 100%; } }
