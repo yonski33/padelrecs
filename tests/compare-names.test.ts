@@ -50,3 +50,12 @@ test("spec values: one range and unit style", () => {
   assert.equal(specValue("Carbon 12K"), "Carbon 12K");
   assert.equal(specValue("2026"), "2026");
 });
+
+test("short names: a two-word brand (or one another name starts with) gives way to the model words", () => {
+  const vs = [{ brand: "Vatic Pro", model: "Prism Flash" }, { brand: "Six Zero", model: "Ruby" }];
+  assert.equal(refName(0, vs), "Prism Flash");
+  assert.equal(refName(1, vs), "Ruby");
+  assert.equal(refName(0, [{ brand: "Nox", model: "AT10 Genius 12K" }, { brand: "Oxdog", model: "Hyper Pro 2.0" }]), "Nox");
+  // "Head" is the start of another brand's name here ("Head Hunter …"): the model, not "the Head".
+  assert.equal(refName(0, [{ brand: "Head", model: "Speed Motion" }, { brand: "Head Hunter", model: "X1" }]), "Speed Motion");
+});
