@@ -133,7 +133,8 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
     ...(why ? [{ tone: "yes" as const, lead: verdict.kind === "no" ? "What works:" : "Why it fits:", text: why }] : []),
     ...(consider ? [{ tone: "no" as const, lead: verdict.kind === "good" ? "One thing to know:" : "The catch:", text: consider }] : [])];
   // The try-instead link ("Want it easier? The AT10 18K 2026…") from the top catch, when it names a racket we list.
-  const alt = lines?.catches.map(l => l.note?.kind === "alt" ? l.note.alt : null).find(x => x && card?.links[x.slug]) ?? null;
+  // With a hard-filter arm pick (SimRacingRecs: console) the page's own suggestion may be PC only, so it isn't offered.
+  const alt = choice.arm && QUICK?.quick?.armFilter ? null : lines?.catches.map(l => l.note?.kind === "alt" ? l.note.alt : null).find(x => x && card?.links[x.slug]) ?? null;
   const gameWords = [choice.level && levelLabel(choice.level), choice.style === "any" ? null : styleWord(choice.style), choice.arm ? ARM_WORD : null, ...fineWords(choice.fine)].filter((x): x is string => !!x);
   // With no picks, a tap starts from the defaults (any style / no level / no arm) but always lands on a picked page.
   const base = picked ? choice : DEFAULT_CHOICE;
@@ -142,17 +143,17 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
   return <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
     {!verdict ? <div className="rf-ask">
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
-        <p>{`Two taps and we'll check it against ${[rated - yt > 0 || !yt ? `${rated - yt} player ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
+        <p>{`Two taps and we'll check it against ${[rated - yt > 0 || !yt ? `${rated - yt} ${QUICK?.words?.person ?? "player"} ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
       <AskPicks onPick={c => set({ choice: c, picked: true })}/>
       {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
     </div> : <div className="rf-ans" aria-live="polite">
       {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>}
       <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
-        <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
+        <span className={`rf-vpill ${verdict.kind}`} title={`How well it fits your picks, from ${QUICK?.words?.person ?? "player"} reports. Not a % of happy ${QUICK?.words ? niche.people.many : "players"}.`}>{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
       <h2>{headline}</h2>
-      {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`}</p>
+      {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} ${QUICK?.words?.person ?? "player"} ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} ${QUICK?.words?.game ?? "game"}. The bars below show what we know.` : `${QUICK?.words ? niche.people.Many : "Players"} haven't said enough about what you picked yet. The bars below show what we know.`}</p>
         : <>{reason.length > 0 && <div className="rf-reason">{reason.map(r => <p key={r.tone} className={`rf-rrow ${r.tone}`}><i aria-hidden="true">{r.tone === "yes" ? "✓" : "!"}</i><span><b>{r.lead}</b>{` ${r.text}`}</span></p>)}</div>}
           {(alt || yesNo) && <p className="rf-reasonl">{alt && <a href={card!.links[alt.slug].href} className="rf-alt">{"→ "}{boldName(alt.t, card!.links[alt.slug].name)}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
@@ -208,7 +209,7 @@ export function FitAlts({ id, facts, cards, similar, brandLink, similarTitle }: 
     <ul className="rf-alts">{rows.map(r => <li key={r.href}><a href={`${r.href}${picks}`}>
       <span className="rf-apic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading="lazy"/> : <span>{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
       <span className="rf-abody"><b>{r.name}</b>{r.why && <span>{r.why}</span>}</span>
-      {picked ? <span className="rf-score" title="How well it fits your picks, from player reports. Not a % of happy players.">{r.score === null ? "—" : `${r.score}%`}</span>
+      {picked ? <span className="rf-score" title={`How well it fits your picks, from ${QUICK?.words?.person ?? "player"} reports. Not a % of happy ${QUICK?.words ? niche.people.many : "players"}.`}>{r.score === null ? "—" : `${r.score}%`}</span>
         : r.score !== null && <span className="rf-score" title={`${ownScore("Player score")}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>{r.score}</span>}
     </a></li>)}</ul>
   </div>;

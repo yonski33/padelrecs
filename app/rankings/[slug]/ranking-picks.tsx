@@ -8,10 +8,11 @@ import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { niche, mockLook } from "../../../lib/niche";
+import { fitConfigFor } from "../../../lib/fit-config";
 import { LEVELS, STYLES, ARM_SHORT, type QuickChoice, type Level } from "../../../lib/quick-match";
 import RankPicks from "./rank-picks";
 
-export const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
+export const MATCH_NOTE = `How well it fits your picks, from ${fitConfigFor(niche)?.words?.person ?? "player"} reports. Not a % of happy ${fitConfigFor(niche)?.words ? niche.people.many : "players"}.`;
 type Picked = QuickChoice & { level: Level };
 type State = { choice: Picked | null; showPct: boolean };
 const Ctx = createContext<{ s: State; set: (s: State) => void; pct: (id: string) => number | null; picks: string; href: string } | null>(null);

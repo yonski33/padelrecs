@@ -110,7 +110,10 @@ const keptContext = kept(async () => {
     // The Attack and Control bars as shown (owner audit 2026-11-17: one style per racket on every page).
     const pd = traitMap?.get(id)?.power?.dots, cd = traitMap?.get(id)?.control?.dots, sp = traitMap?.get(id)?.spin?.dots;
     const styleDots = pd && cd ? { power: pd, control: cd, ...(sp ? { spin: sp } : {}) } : undefined;
-    const hard = RULES && rulesOf(id, !su).hard, warn = RULES && rulesOf(id, !su).warn, lean = RULES && rulesOf(id, !su).lean;
+    // A hard-filter arm pick (SimRacingRecs: console): a product without the fact is held back for it, with the site's reason.
+    const noArm = cfg.quick?.armFilter && cfg.quick.factValues && cfg.words?.hardArm ? (() => { const x = data.rackets.find(y => y.id === id);
+      return !!x && !cfg.quick!.factValues!(x, ownerFacts.get(id) ?? {})[cfg.quick!.armFilter!.key]?.includes(cfg.quick!.armFilter!.value); })() : false;
+    const hard = noArm ? { ...(RULES && rulesOf(id, !su).hard), arm: cfg.words!.hardArm } : RULES && rulesOf(id, !su).hard, warn = RULES && rulesOf(id, !su).warn, lean = RULES && rulesOf(id, !su).lean;
     return { reports, tags, ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a

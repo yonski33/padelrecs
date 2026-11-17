@@ -35,6 +35,10 @@ export type FitConfig = {
   levelLabels?: { beginner: string; intermediate: string; advanced: string };
   /** Who a level pick ranks for ("new racers"); default "<label> players" with levelLabels, else padel's words. */
   levelPeople?: { beginner: string; intermediate: string; advanced: string };
+  /** A site's own words where the shared pages say "player", "throw one first", "how it plays" (SimRacingRecs, Grok audit
+   *  2026-11-17 #10 #11 #25 #27 #28). Unset: every page keeps its words. */
+  words?: { person: string; game: string; tryFirst: string; howIt: string; catalogPromo: string; guidePromo: string; added: string;
+    /** The console pick in a chip ("console") and the fit check's reason for a product without it. */ armShort: string; hardArm: string; hardArmShort: string };
   /** Sore arm: the tag that praises arm comfort and the one that faults it (if the site has one). */ arm: { trait: string; plus: string; minus?: string };
   /** The fit check's fallback level signal: forgiving against demanding tags (plus more for beginners). */ forgiving: { plus: string; minus: string[]; beginner: string[] };
   /** The specs' lean per trait in dots (each within ±1). */ specLean: (s: Specs) => Record<string, number>;
@@ -75,9 +79,12 @@ export type FitConfig = {
      *  (here: new racers' verdicts), "serious" / "all-in" by the power slot (upgraders'), so the level reorders, not only gates. */
     levelStyle?: Partial<Record<"beginner" | "intermediate" | "advanced", "control" | "power">>;
     /** The catalogue's lead filter groups (guide spec keys), the first before Level; default disc golf's ["disc", "stab"]. */ catalogLead?: string[];
+    /** Catalogue filter groups that pick one thing between them (SimRacingRecs: ["gear", "rig"]). */ catalogOneOf?: string[];
     /** The compare card's "how it …" word (default "plays"; DiscGolfRecs, with flight numbers: "flies"). */ useWord?: string;
     /** Fine-tune hard filters (?<key>=<value>), and the facts each product has for them. */
-    filters?: QuickFilter[]; factValues?: (r: { shape: string | null; balance: string | null; core: string | null; name: string }, owner: Record<string, string | number | null>) => Record<string, string[]> };
+    filters?: QuickFilter[]; /** The specs line's label per catalogue column, by product type (SimRacingRecs: "Torque", "Brake force"). */
+    specLabels?: (shape: string | null) => Partial<Record<"weight" | "balance" | "core" | "surface", string>>;
+    factValues?: (r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string }, owner: Record<string, string | number | null>) => Record<string, string[]> };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
   evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];

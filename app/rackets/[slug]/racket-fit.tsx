@@ -128,7 +128,10 @@ export default async function RacketFit(props: {
   const lean = PADEL ? styleOf(facts) : axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
   const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
-  const armWords = QUICK ? "slower arms" : "sore arms";
+  // A site whose arm pick is a hard filter (SimRacingRecs: console) has no arm words in "best for".
+  const armWords = SITE_FIT.quick?.armFilter ? "\u0000" : QUICK ? "slower arms" : "sore arms";
+  // A product the maker no longer sells (SimRacingRecs, Grok audit 2026-11-17 #8): a visible badge, and "used only" for the price.
+  const gone = !!payload.items.find(x => x.id === props.racketId)?.ff?.gone, buy = gone && props.buy ? { ...props.buy, label: "used only" } : props.buy;
   const bf = bestFor(facts), bfArm = bf.includes(armWords), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b) || (!!SITE_FIT.levelPeople && Object.values(SITE_FIT.levelLabels ?? {}).some(w => b.split(" → ").includes(w)))), bfLean = QUICK ? null : lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
   // A site with its own level words (SimRacingRecs: new / serious / all-in; bestFor says them) says its own people ("drivers").
   const ownLevels = SITE_FIT.levelPeople ? SITE_FIT.levelLabels : undefined;
@@ -442,7 +445,7 @@ export default async function RacketFit(props: {
         <div className="rf-hero">
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
-            <div className="rf-chips">{[leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
+            <div className="rf-chips">{[gone ? "discontinued" : null, leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
@@ -452,8 +455,8 @@ export default async function RacketFit(props: {
             <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
               {scoreState(rated) === "new" ? <NewPill n={rated}/> : <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}</span>}
               {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>)}
-            {!V11 && props.buy && <div className="rf-meta"><a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a></div>}
-            {!V11 && props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
+            {!V11 && buy && <div className="rf-meta"><a className="rf-btn" href={buy.url} target="_blank" rel={buy.rel}>{buy.label} ↗</a></div>}
+            {!V11 && buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
           {V11 && <div className="v11-score">
               {page?.source === "research" ? <span className="v11-sres">{RESEARCH_LINE}</span> : <a className="v11-sl" href="#reviews">
@@ -461,11 +464,11 @@ export default async function RacketFit(props: {
                 <span className="v11-sm"><b>{SCORE_CAP}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
                   <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
-              {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
+              {buy && <a className="v11-buy" href={buy.url} target="_blank" rel={buy.rel}>{buy.label} ↗</a>}
               {/* Compare mode on the catalogue with this one already picked (UX audit 2026-11-17). */}
               <CompareWith href={`${catalogPath}?compare=1`} pick={{ id: props.racketId, slug: props.slug, name: props.name, pic: props.photo }}/>
             </div>}
-          {V11 && props.buy && <p className="rf-aff v11-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
+          {V11 && buy && <p className="rf-aff v11-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
         </div>
 
         <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} rated={rated || total} yt={V11 ? ytRated : 0} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
@@ -486,7 +489,7 @@ export default async function RacketFit(props: {
           {V11 && v11Body}
           {!V11 && <div id="compare">
             {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
-            <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{page?.source === "research" ? `from specs and expert ratings, compared with other ${niche.words.many}` : total < 3 ? `too few reports to rate yet (${total})` : `from player reports, compared with other ${niche.words.many}`}</span></div>
+            <div className="rf-h"><h2>{`How it ${SITE_FIT.words?.howIt ?? "plays"} & compares`}</h2><span>{page?.source === "research" ? `from specs and expert ratings, compared with other ${niche.words.many}` : total < 3 ? `too few reports to rate yet (${total})` : `from ${SITE_FIT.words?.person ?? "player"} reports, compared with other ${niche.words.many}`}</span></div>
             <FitCompare id={props.racketId} me={compareMe} rows={traits.map(([label, note], i) => ({ label, note, ...(PER_TYPE ? { key: TRAITS[i] } : {}) }))} cards={compareCards} similar={similarIds}/>
           </div>}
         </div>
@@ -494,14 +497,14 @@ export default async function RacketFit(props: {
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
-              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
+              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: SITE_FIT.words ? niche.copy.ui.triedIt : "Thrown it?", people: SITE_FIT.words ? niche.people.many : "players", peopleTab: SITE_FIT.words ? niche.people.many : "players" } } : {})}/>
           </section>
 
           {/* v11c: the closing card and the rankings, after the reviews. */}
           {/* Not-a-fit state only: the next best fits after the Better matches strip (owner 2026-11-17). */}
           {V11 && <V11More id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} pool={v11Strip} {...edgeWords}/>}
           {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
-            score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={props.buy}
+            score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={buy}
             compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
             one={niche.words.one} ask={`${QUICK ? "thrown" : "played"} it? add your verdict →`}/>}
           {V11 && tiles.length > 0 && <section className="v11-rt" aria-labelledby="v11-rt-t">
@@ -516,7 +519,7 @@ export default async function RacketFit(props: {
           {!V11 && simTabs.length > 0 && <FitSimilar title="Also worth a look" tabs={simTabs} scoreLabel={SCORE_WORD} look={simCfg?.look}/>}
       </section>
 
-      <FitSticky buy={props.buy} name={props.shortName}/>
+      <FitSticky buy={buy} name={props.shortName}/>
 
       {V11 ? <footer className="rf-foot v11-foot" id="how-we-read"><p>{`Run by ${[v2copy.sport, niche.people.many].filter(Boolean).join(" ")}, not a shop. Built from ${niche.people.one} reviews, forums and YouTube. No brand pays to be here. Spotted a mistake? `}<a href="/contact">Tell us →</a></p></footer>
       : <footer className="rf-foot" id="how-we-read">

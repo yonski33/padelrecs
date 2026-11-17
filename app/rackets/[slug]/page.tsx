@@ -58,7 +58,11 @@ import { evidenceRows } from "../../../db/evidence";
 import { withModelYears, rankingHref } from "../../../lib/top-lists";
 
 /** The fit page's spec line: padel's words, or a type-picker site's own (DiscGolfRecs: flight, rim, plastics, max weight). */
-const specLine = (r: { weight: string | null; balance: string | null; shape: string | null; core: string | null; surface: string | null; year: number }) => (fitConfigFor(niche)?.quick
+// A site's own labels per type (SimRacingRecs: "Torque", "Brake force"; a no-break space keeps a two-word label whole).
+const SPEC_LABELS = fitConfigFor(niche)?.quick?.specLabels;
+const specLine = (r: { weight: string | null; balance: string | null; shape: string | null; core: string | null; surface: string | null; year: number }) => (SPEC_LABELS
+  ? (["weight", "balance", "core", "surface"] as const).map(k => { const l = SPEC_LABELS(r.shape)[k]; return r[k] && l ? `${l.toLowerCase().replace(/ /g, "\u00a0")} ${r[k]}` : null; })
+  : fitConfigFor(niche)?.quick
   ? [r.weight && `flight ${r.weight}`, r.balance && `rim ${r.balance}`, r.core && `plastics ${r.core}`, r.surface && `max weight ${r.surface}`]
   : [r.weight && `weight ${r.weight}`, r.balance && `${BALANCE_LABEL} ${specNumber(r.balance).toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`]).filter((x): x is string => !!x);
 /** The balance column's own name on this site: PickleballRecs stores swing weight there (Grok audit 2026-11-17, #7). */
@@ -333,8 +337,8 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     .map(e => [e.productId, e.valueText!] as const)) : null;
   const works = sheet ? (() => {
     const part = (x: (typeof data.listed)[number]): RigPart => ({ id: x.id, type: x.shape, brand: data.brands.find(y => y.id === x.brandId)?.name ?? null,
-      platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null });
-    return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3).map(part));
+      platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null, weight: x.weight, frame: x.shape === "Cockpit" ? x.balance : null });
+    return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3 && !/^Discontinued\b/i.test(x.surface ?? "")).map(part));
   })() : [];
   // The "works with" tab, also on the v2 product page (racket-fit.tsx, SimRacingRecs).
   const pairsTab: SimilarTab | null = niche.similar && works.length ? { key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,

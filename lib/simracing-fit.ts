@@ -26,10 +26,31 @@ const t = (key: string, label: string, appliesTo: string[] | undefined, plus: [s
 
 /** The compare tabs' words per quality (lib/fit-config.ts TraitDef diff / need): where another product is ahead, and the need. */
 const COMPARE: Record<string, [string, string]> = {
-  ffb_detail: ["more detail", "want to feel the road and the grip"], ffb_strength: ["stronger", "drive heavy cars or want real weight"],
-  brake_feel: ["better brake feel", "want consistent, real braking"], rigidity: ["more rigid", "run a strong base or brake hard"],
+  ffb_detail: ["more detailed", "want to feel the road and the grip"], ffb_strength: ["stronger", "drive heavy cars or want real weight"],
+  brake_feel: ["better under braking", "want consistent, real braking"], rigidity: ["more rigid", "run a strong base or brake hard"],
   build: ["better built", "want it to last"], quiet: ["quieter", "race late or share the room"], setup: ["easier to set up", "want it running tonight"],
-  software: ["better software", "like to tune and tweak"], ergonomics: ["more comfortable", "race long stints"], value: ["better value", "watch the budget"],
+  software: ["easier to tune", "like to tune and tweak"], ergonomics: ["more comfortable", "race long stints"], value: ["better value", "watch the budget"],
+};
+/** The "How it drives" notes per quality (Grok audit 2026-11-17 #27: not "Strong quiet: a real strength"). */
+const SAY: Record<string, NonNullable<TraitDef["say"]>> = {
+  ffb_detail: { hi: "Detailed force feedback: you feel the road and the grip.", mid: "Average force feedback detail.", lo: "Vague force feedback; little road texture.", split: ["detailed", "numb"] },
+  ffb_strength: { hi: "Strong force feedback with real weight.", mid: "Moderate force feedback strength.", lo: "Weak force feedback; heavy cars feel light.", split: ["strong", "weak"] },
+  brake_feel: { hi: "Great brake feel; easy to brake the same way every lap.", mid: "Decent brake feel.", lo: "Vague brake feel; hard to brake consistently.", split: ["consistent", "vague"] },
+  rigidity: { hi: "Rigid: it stays put under load.", mid: "Some flex under hard use.", lo: "Flexes under load.", split: ["rigid", "flexy"] },
+  build: { hi: "Well built; it holds up.", mid: "Average build quality.", lo: "Build or quality-control complaints.", split: ["solid", "faulty"] },
+  quiet: { hi: "Quiet: a real strength.", mid: "Average noise.", lo: "Noisy in use.", split: ["quiet", "noisy"] },
+  setup: { hi: "Easy to set up.", mid: "Average setup.", lo: "Fiddly to set up.", split: ["easy to set up", "fiddly"] },
+  software: { hi: "Good software, easy to tune.", mid: "Average software.", lo: "Clunky software; tuning is a chore.", split: ["easy to tune", "clunky"] },
+  ergonomics: { hi: "Comfortable over long races.", mid: "Average comfort.", lo: "Awkward over long races.", split: ["comfortable", "awkward"] },
+  value: { hi: "Good value for what it does.", mid: "Fair value.", lo: "Overpriced for what it does.", split: ["good value", "overpriced"] },
+};
+/** The specs line's labels per product type (Grok audit 2026-11-17 #9: not disc golf's "flight", "rim", "plastics"). */
+const SPEC_LABELS: Record<string, Partial<Record<"weight" | "balance" | "core" | "surface", string>>> = {
+  [WB]: { weight: "Torque", balance: "Drive", core: "Platforms", surface: "Notes" },
+  [P]: { weight: "Brake force", balance: "Sensor", core: "Platforms", surface: "Notes" },
+  [W]: { weight: "Spec", balance: "Rim type", core: "Platforms", surface: "Notes" },
+  [C]: { weight: "Spec", balance: "Frame", core: "Platforms", surface: "Seat & notes" },
+  [S]: { weight: "Force", balance: "Type", core: "Platforms", surface: "Notes" },
 };
 export const SIMRACING_FIT: FitConfig = {
   traits: ([
@@ -46,7 +67,7 @@ export const SIMRACING_FIT: FitConfig = {
     t("software", "Software", [WB, W, P], [["good software", 1]], [["bad software", 1]], "the software", [["praise the software", "praises the software"], ["fault the software", "faults the software"]]),
     t("ergonomics", "Ergonomics", [W, C, S], [["great ergonomics", 1]], [], "the ergonomics", [["praise the ergonomics", "praises the ergonomics"], ["find it awkward", "finds it awkward"]]),
     t("value", "Value", undefined, [["great value", 1]], [["overpriced", 1]], "the value", [["call it good value", "calls it good value"], ["call it overpriced", "calls it overpriced"]]),
-  ] as TraitDef[]).map(d => COMPARE[d.key] ? { ...d, diff: COMPARE[d.key][0], ifYou: COMPARE[d.key][1] } : d),
+  ] as TraitDef[]).map(d => COMPARE[d.key] ? { ...d, diff: COMPARE[d.key][0], ifYou: COMPARE[d.key][1], say: SAY[d.key] } : d),
   complaint: ["build", "rigidity", "quiet", "software"],
   // No style axis on sim racing (the picks never set one); the engine reads these two traits for its axis, which stays neutral.
   axis: { control: { trait: "control", tags: [] }, power: { trait: "power", tags: [] } },
@@ -55,6 +76,9 @@ export const SIMRACING_FIT: FitConfig = {
   styles: [],
   levelLabels: { beginner: "new", intermediate: "serious", advanced: "all-in" },
   levelPeople: { beginner: "new racers", intermediate: "serious racers", advanced: "all-in racers" },
+  words: { person: "driver", game: "setup", tryFirst: "try one first", howIt: "drives", catalogPromo: "Filter by type, level, drive, torque and console.",
+    guidePromo: "Gear, belt or direct drive, explained in two minutes.", added: "added to the site this week",
+    armShort: "console", hardArm: "PC only: it won't work on PlayStation or Xbox.", hardArmShort: "PC only" },
   levelWords: { beginner: ["first wheel", "first rig", "first sim", "new to sim racing", "just getting into sim racing", "beginner"],
     intermediate: ["upgraded from", "coming from", "moved up from"], advanced: ["league", "esports", "endgame"] },
   weights: { style: 0.4, level: 0.3, arm: 0.2, score: 0.1 },
@@ -78,7 +102,7 @@ export const SIMRACING_FIT: FitConfig = {
     armFilter: { key: "con", value: "yes" },
     levelFilter: { advanced: { key: "budget", values: ["$$$"] } },
     levelStyle: { beginner: "control", intermediate: "power", advanced: "power" },
-    catalogLead: ["gear", "rig", "drive"], useWord: "feels",
+    catalogLead: ["gear", "rig", "drive"], catalogOneOf: ["gear", "rig"], useWord: "feels", specLabels: shape => SPEC_LABELS[shape ?? ""] ?? {},
     filters: [
       { key: "drive", label: "Drive type", kinds: ["wheelbase"], options: [["direct", "direct"], ["belt", "belt"], ["hybrid", "hybrid"], ["gear", "gear"]] },
       { key: "budget", label: "Budget", options: [["$", "$ budget"], ["$$", "$$ mid"], ["$$$", "$$$ high-end"]] },
@@ -91,10 +115,13 @@ export const SIMRACING_FIT: FitConfig = {
 };
 
 /** The facts a product's hard filters read: the owner's sheet (owner evidence rows) wins over the catalogue columns. */
-export function simracingFacts(r: { shape: string | null; balance: string | null; core: string | null; name: string }, owner: Record<string, string | number | null>): Record<string, string[]> {
+export function simracingFacts(r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string }, owner: Record<string, string | number | null>): Record<string, string[]> {
   const o: Record<string, string[]> = {};
   const plat = platformsOf(typeof owner.platform === "string" ? owner.platform : r.core);
-  if (plat?.some(p => p !== "PC")) o.con = ["yes"];
+  // A cockpit or stand holds any console's gear (Grok audit 2026-11-17 #6: "console" emptied the cockpits).
+  if (plat?.some(p => p !== "PC") || r.shape === C) o.con = ["yes"];
+  // A product the maker no longer sells (Notes "Discontinued: …"): out of the match, lists and "works with" (audit #8).
+  if (/^Discontinued\b/i.test(r.surface ?? "")) o.gone = ["yes"];
   const ty = (r.balance ?? "").toLowerCase(), nm = r.name.toLowerCase();
   if (r.shape === WB) { const d = /direct/.test(ty) ? "direct" : /hybrid/.test(ty) ? "hybrid" : /belt/.test(ty) || /belt/.test(nm) ? "belt" : /gear/.test(ty) ? "gear" : null; if (d) o.drive = [d]; }
   if (r.shape === W) { const k = /formula/.test(ty) ? "formula" : /rally/.test(ty) ? "rally" : /round/.test(ty) ? "round" : /\bgt\b/.test(ty) ? "gt" : null; if (k) o.rim = [k]; }

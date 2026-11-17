@@ -158,7 +158,7 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
       : f.suits.basis.includes("advanced players") ? `A ${niche.words.one} for advanced players.` : `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`;
     if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} ${why}`.trim() };
     if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
-    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly ${/^[aeiou]/i.test(c.level) ? "an" : "a"} ${c.level} ${niche.words.one}; ${cfg.quick ? "throw one first" : "demo it first"}.`.trim() };
+    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly ${/^[aeiou]/i.test(c.level) ? "an" : "a"} ${c.level} ${niche.words.one}; ${cfg.words?.tryFirst ?? (cfg.quick ? "throw one first" : "demo it first")}.`.trim() };
   }
   const src = levelSources(f);
   // Brands label most top-line rackets "Professional". Such a label says "not aimed at beginners", so it counts for a beginner;
@@ -183,7 +183,9 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
 
 function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   if (!c.arm) return { level: "ok" };
-  if (f.hard?.arm) return { level: "hard", short: "Needs more arm speed", reason: f.hard.arm };
+  if (f.hard?.arm) return { level: "hard", short: cfg.words?.hardArmShort ?? "Needs more arm speed", reason: f.hard.arm };
+  // A hard-filter arm pick (SimRacingRecs: console): only a product without it is held back (its hard reason, above).
+  if (cfg.quick?.armFilter) return { level: "ok" };
   if (f.warn?.arm) return { level: "soft", short: "Needs some arm speed", reason: f.warn.arm };
   // A type-picker site's arm pick is a slower arm (DiscGolfRecs): read from its arm dots (players, the flight numbers, the expert).
   if (cfg.quick) {
@@ -222,7 +224,10 @@ function fineCheck(c: QuickChoice, f: FitFacts): Check {
 
 /** With `as` (the match engine's word, lib/engine engineKind), the verdict says that word and picks its reasons for it; without,
  *  the checks decide it as before. */
-export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT, as?: FitVerdict["kind"]): FitVerdict {
+export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT, asKind?: FitVerdict["kind"]): FitVerdict {
+  // A hard-filter arm pick the product fails (SimRacingRecs: PC only, console picked) is "no" whatever the engine's % says
+  // (Grok audit 2026-11-17 #1: the fit check said "Strong fit" for PC-only gear with console ticked).
+  const as = cfg.quick?.armFilter && c.arm && f.hard?.arm && asKind !== "thin" ? "no" : asKind;
   const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
@@ -254,7 +259,7 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
   // Sore arms only when the Arm comfort bar backs it (4+), not on the tag count alone (audit: the AT10 12K XTREM).
-  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) out.push(cfg.quick ? "slower arms" : "sore arms");
+  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) { if (!cfg.quick?.armFilter) out.push(cfg.quick ? "slower arms" : "sore arms"); }
   return out;
 }
 /** One style per racket (owner audit 2026-11-17): from the Attack and Control bars the page shows (a clear lead of 1+ dots),
