@@ -282,6 +282,20 @@ export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: C
   </div>;
 }
 
+/** Product page v11 (owner 2026-11-17): the picks and every racket's match % once the items are in (undefined before a pick),
+ *  for the sections that sort or badge by match. */
+export function useMatchOf() {
+  const { p: { choice, picked } } = use(), { items } = useContext(ItemsCtx);
+  const m = picked && items ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine) : null;
+  return { picked: !!m, pctOf: (id: string) => m ? m.get(id) ?? null : undefined, picksHref: picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : "" };
+}
+/** v11: this racket's answer for the picks (null without one) and the better matches for them (the home's order). */
+export function useAnswer(id: string, facts: FitFacts) {
+  const rank = useRank(id, facts);
+  if (!rank.picked) return null;
+  return { pct: rank.pct(), kind: rank.verdict().kind, alts: rank.alts(4), picksHref: !isDefault(rank.choice) ? choiceHref(rank.choice, "").slice(1) : "" };
+}
+
 /** Children only before the visitor picks (owner's final mock: the bottom line shows before picks). Still in the HTML. */
 export function BeforePicks({ children }: { children: ReactNode }) {
   const { p: { picked } } = use();
@@ -290,8 +304,9 @@ export function BeforePicks({ children }: { children: ReactNode }) {
 
 /** "Why yes, why not" (owner's final mock): 3 items per column and "+N more" (in the HTML, opened by a tap); with picks, up to 2
  *  items per column that speak to them get a "matters for you" tag. */
-export function FitYesNo({ yes, no, tier = "full", research = false }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier;
-  /** Research content (sources are web pages, not players): no "N players mention it" lines. */ research?: boolean }) {
+export function FitYesNo({ yes, no, tier = "full", research = false, fold = false }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier;
+  /** Research content (sources are web pages, not players): no "N players mention it" lines. */ research?: boolean;
+  /** Product page v11: each point is its title, a tap opens it. */ fold?: boolean }) {
   const { p: { choice, picked } } = use(), picks = picked ? pickTags(choice) : [];
   return <div className="rp-yn">{([["yes", "✓", "Why yes", yes], ["no", "!", "Why not", no]] as const).map(([side, icon, title, items]) => {
     // A "matters for you" item never hides under "+N more": it takes the place of the last untagged one shown.
@@ -300,6 +315,10 @@ export function FitYesNo({ yes, no, tier = "full", research = false }: { yes: Pa
       const out = list.slice(0, SHOWN_ITEMS).reverse().find(x => !hot.has(x.title)); if (!out) break;
       list.splice(list.indexOf(h), 1); list.splice(list.indexOf(out), 0, h); }
     const rest = list.slice(SHOWN_ITEMS);
+    const body = (it: PageItem) => <><p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
+      {!research && evidenceLine(it) && <small>{evidenceLine(it)}</small>}</>;
+    if (fold) return <div key={side} className={`v11-ycol ${side}`}><p className="v11-ych"><i aria-hidden="true">{icon}</i>{title}</p>
+      {list.map(it => <details key={it.title} className="v11-yit"><summary><b>{it.title}</b>{hot.has(it.title) && <span className="rp-hot">matters for you</span>}<i aria-hidden="true"/></summary>{body(it)}</details>)}</div>;
     const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}{hot.has(it.title) && <span className="rp-hot">matters for you</span>}</b>
       <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
       {!research && evidenceLine(it) && <small>{evidenceLine(it)}</small>}</div>;
