@@ -1,3 +1,4 @@
+import { withoutYear } from "../../lib/brand-name";
 import "./compare-v2.css";
 import { qtFontVars } from "../qt-fonts";
 import { score } from "../../db/data";
@@ -33,7 +34,7 @@ const DOTS = SITE_FIT.traits.filter(t => !t.hidden);
 const TRAITS: VTrait[] = DOTS.map(t => ({ label: t.label, diff: t.diff ?? `more ${t.label.toLowerCase()}`, ifYou: t.ifYou ?? `care about ${t.noun}` }));
 const w = niche.words;
 /** The card's name: no brand, no year ("Metalbone CTRL 3.5"). */
-const shortName = (name: string, brand?: string) => { const n = name.replace(/\s\d{4}$/, "");
+const shortName = (name: string, brand?: string) => { const n = withoutYear(name);
   return brand && n.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? n.slice(brand.length + 1) : n; };
 const hrefFor = (slugs: string[]) => slugs.length ? `/compare?ids=${slugs.map(encodeURIComponent).join(",")}` : "/compare";
 

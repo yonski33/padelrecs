@@ -1,0 +1,151 @@
+/* Product page v11 (owner 2026-11-17, design_handoff_product_page_v11/README.md): padel racket pages. Tokens from the handoff;
+   scoped to .rf so the other sites' pages stay as they are. */
+.rf {
+  --v-ink: #151515; --v-page: #fbfaf6; --v-card: #fff; --v-mute: #4a4740; --v-mute2: #6a675f; --v-body: #2b2925; --v-dash: #c9c5ba;
+  --v-lime: oklch(0.88 0.17 125); --v-hl: oklch(0.93 0.14 100); --v-green: oklch(0.8 0.16 145); --v-yellow: oklch(0.88 0.15 95);
+  --v-yes: oklch(0.95 0.05 145); --v-no: oklch(0.96 0.04 60); --v-nofit: oklch(0.9 0.08 30);
+  --v-mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; --v-display: var(--qt-display, "Archivo"), system-ui, sans-serif;
+}
+.rf .v11-pill { display: inline-block; font: 600 12.5px var(--v-mono); border: 1.5px solid var(--v-ink); border-radius: 999px; padding: 1px 9px; background: var(--v-card); white-space: nowrap; justify-self: start; }
+.rf .v11-pill.g { background: var(--v-green); } .rf .v11-pill.y { background: var(--v-yellow); } .rf .v11-pill.r { background: var(--v-nofit); }
+.rf .v11-plink { position: relative; z-index: 1; justify-self: start; align-self: flex-start; font: 13px var(--v-mono); text-decoration: underline; text-underline-offset: 3px; color: var(--v-ink); }
+.rf .v11-sh { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
+.rf .v11-sh h2 { font: 800 22px/1.15 var(--v-display); letter-spacing: -0.01em; margin: 0; }
+.rf .v11-sh > span { font: 13px var(--v-mono); color: var(--v-mute2); }
+
+/* Hero: the score strip under the photo and title, ONE filled price button. */
+.rf .v11-score { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px 18px; flex-wrap: wrap;
+  border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; }
+.rf .v11-sl { display: flex; align-items: center; gap: 14px; min-width: 0; text-decoration: none; color: var(--v-ink); }
+.rf .v11-sq { flex: none; width: 60px; height: 60px; box-sizing: border-box; border: 2px solid var(--v-ink); border-radius: 12px; background: var(--v-card);
+  display: flex; align-items: center; justify-content: center; font: 800 32px/1 var(--v-display); letter-spacing: -0.03em; }
+.rf .v11-sq.g { background: var(--v-green); } .rf .v11-sq.y { background: var(--v-yellow); }
+.rf .v11-sm { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.rf .v11-sm > b { font: 800 17px/1.1 var(--v-display); white-space: nowrap; }
+.rf .v11-sm small { font: 12.5px var(--v-mono); color: var(--v-mute); white-space: nowrap; }
+.rf .v11-sbar { display: flex; width: 140px; height: 8px; border: 1.5px solid var(--v-ink); border-radius: 999px; overflow: hidden; }
+.rf .v11-sbar .p { background: oklch(0.72 0.15 145); } .rf .v11-sbar .m { background: oklch(0.85 0.14 90); } .rf .v11-sbar .n { background: oklch(0.7 0.15 30); }
+.rf .v11-buy { background: var(--v-ink); color: #fbfaf6; text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 16px; border: 2px solid var(--v-ink); white-space: nowrap; }
+.rf .v11-sres { font: 13px var(--v-mono); color: var(--v-mute); }
+.rf .v11-aff { grid-column: 1 / -1; margin: -12px 0 0; }
+
+/* Better matches strip (not a fit only). */
+.rf .v11-better { width: 100%; max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 80px; }
+.rf .v11-brow { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 4px 6px 2px; margin: 0 -4px 0 -2px; }
+.rf .v11-bcard { position: relative; flex: 1 0 250px; scroll-snap-align: start; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px;
+  border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); box-shadow: 3px 3px 0 var(--v-ink); padding: 10px 12px; }
+.rf .v11-bpic { display: flex; align-items: center; justify-content: center; } .rf .v11-bpic img { max-width: 100%; max-height: 96px; object-fit: contain; }
+.rf .v11-bbody { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.rf .v11-stretch { color: var(--v-ink); text-decoration: none; } .rf .v11-stretch::after { content: ""; position: absolute; inset: 0; }
+.rf .v11-stretch b { font: 800 16px/1.2 var(--v-display); }
+.rf .v11-bline { font-size: 14.5px; line-height: 1.4; color: var(--v-body); text-wrap: pretty; }
+.rf .v11-curious { align-self: flex-start; font: 13.5px var(--v-mono); color: var(--v-mute); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Why yes, why not: two columns, each point a tap to open. */
+.rf .v11-ycol { border: 2.5px solid var(--v-ink); border-radius: 18px; background: var(--v-card); overflow: hidden; align-self: start; }
+.rf .rp-yn:has(.v11-ycol) { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-items: start; }
+.rf .v11-ych { margin: 0; padding: 10px 18px; border-bottom: 2px solid var(--v-ink); display: flex; align-items: center; gap: 10px; font: 800 19px var(--v-display); background: var(--v-yes); }
+.rf .v11-ycol.no .v11-ych { background: var(--v-no); }
+.rf .v11-ych i { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--v-ink); display: flex; align-items: center; justify-content: center; font: normal 700 13px var(--qt-body, system-ui); background: oklch(0.72 0.15 145); box-sizing: border-box; }
+.rf .v11-ycol.no .v11-ych i { background: oklch(0.85 0.1 60); }
+.rf .v11-yit { border-bottom: 1.5px dashed var(--v-dash); } .rf .v11-yit:last-child { border-bottom: 0; }
+.rf .v11-yit summary { list-style: none; cursor: pointer; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.rf .v11-yit summary::-webkit-details-marker { display: none; }
+.rf .v11-yit summary b { font: 800 17.5px/1.25 var(--v-display); margin-right: auto; }
+.rf .v11-yit summary i::before { content: "+"; font: 600 16px var(--v-mono); color: var(--v-mute); } .rf .v11-yit[open] summary i::before { content: "–"; }
+.rf .v11-yit > p { margin: 0; padding: 0 18px 6px; font-size: 16.5px; line-height: 1.45; color: var(--v-body); }
+.rf .v11-yit > p mark { background: var(--v-hl); padding: 0 3px; border-radius: 3px; color: var(--v-ink); font-weight: 700; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.rf .v11-yit > small { display: block; padding: 0 18px 12px; font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .v11-ycol.yes .v11-yit[open] { background: oklch(0.985 0.025 145); } .rf .v11-ycol.no .v11-yit[open] { background: oklch(0.985 0.02 60); }
+
+/* How it plays: three bands. */
+.rf .v11-plays, .rf .v11-build, .rf .v11-faq, .rf .v11-sec { display: flex; flex-direction: column; gap: 14px; }
+.rf .v11-plays h2 { font: 800 30px var(--v-display); letter-spacing: -0.015em; margin: 0; }
+.rf .v11-build h2, .rf .v11-faq h2, .rf .v11-sec h2 { font: 800 26px/1.15 var(--v-display); margin: 0; }
+.rf .v11-bands { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 2.5px solid var(--v-ink); border-bottom: 2.5px solid var(--v-ink); }
+.rf .v11-bands > div { padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; border-right: 1.5px dashed var(--v-ink); }
+.rf .v11-bands > div:last-child { border-right: 0; } .rf .v11-bands > div.top { background: oklch(0.97 0.05 100); }
+.rf .v11-bn { font: 800 clamp(36px, 4.6vw, 52px)/1 var(--v-display); letter-spacing: -0.03em; } .rf .v11-bn small { font-size: 0.4em; color: var(--v-mute2); }
+.rf .v11-bands b { font: 800 18px var(--v-display); }
+.rf .v11-segs { display: flex; gap: 3px; } .rf .v11-segs i { width: 24px; height: 10px; border-radius: 3px; border: 1.5px solid var(--v-ink); background: var(--v-card); }
+.rf .v11-segs i.on { background: oklch(0.72 0.15 145); } .rf .v11-segs i.on.t3 { background: var(--v-yellow); } .rf .v11-segs i.on.t2, .rf .v11-segs i.on.t1 { background: oklch(0.75 0.13 40); }
+.rf .v11-bnote { font-size: 16px; line-height: 1.4; }
+.rf .v11-tip { margin: 0; display: flex; gap: 10px; align-items: baseline; font-size: 16px; line-height: 1.45; }
+.rf .v11-tip > span:first-child { flex: none; font: 600 12.5px var(--v-mono); border: 1.5px solid var(--v-ink); border-radius: 6px; padding: 0 7px; background: var(--v-hl); }
+
+/* What the build means for you: four cards from the specs. */
+.rf .v11-bcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.rf .v11-bc { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); box-shadow: 4px 4px 0 var(--v-ink); padding: 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.rf .v11-bc > b { font: 800 20px var(--v-display); } .rf .v11-bc > span:last-child { font-size: 16px; line-height: 1.45; color: var(--v-body); text-wrap: pretty; }
+.rf .v11-vis { height: 56px; width: 100%; display: flex; align-items: center; }
+.rf .v11-vis .sh { display: block; width: 44px; height: 44px; border: 3px solid var(--v-ink); background: oklch(0.95 0.06 125); box-sizing: border-box; border-radius: 50%; }
+.rf .v11-vis .sh.teardrop, .rf .v11-vis .sh.hexagonal { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; height: 50px; width: 40px; }
+.rf .v11-vis .sh.diamond { border-radius: 8px; transform: rotate(45deg) scale(0.8); }
+.rf .v11-vis .sh.hybrid { border-radius: 50% 50% 46% 46% / 56% 56% 44% 44%; height: 48px; width: 42px; }
+.rf .v11-vis .core { position: relative; display: block; width: 100%; height: 14px; border: 2px solid var(--v-ink); border-radius: 999px; background: linear-gradient(90deg, oklch(0.95 0.06 125), var(--v-ink)); box-sizing: border-box; }
+.rf .v11-vis .core > i, .rf .v11-vis .bal > i { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--v-ink); background: var(--v-card); box-sizing: border-box; top: -2px; }
+.rf .v11-vis .bal { position: relative; display: block; width: 16px; height: 48px; border: 2px solid var(--v-ink); border-radius: 999px; box-sizing: border-box; }
+.rf .v11-vis .bal > i { left: -1px; background: var(--v-ink); }
+.rf .v11-vis .face { display: block; width: 100%; height: 30px; border: 2px solid var(--v-ink); border-radius: 10px; background-color: oklch(0.95 0.06 125);
+  background-image: radial-gradient(var(--v-ink) 1px, transparent 1.2px); background-size: 10px 10px; box-sizing: border-box; }
+
+/* What players said · from player forums. */
+.rf .v11-said { border: 2.5px solid var(--v-ink); border-radius: 18px; background: var(--v-card); padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.rf .v11-saidh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.rf .v11-saidh b { font: 800 18px var(--v-display); } .rf .v11-saidh span { font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .v11-q { display: flex; flex-direction: column; gap: 6px; } .rf .v11-q + .v11-q { border-top: 1.5px dashed var(--v-dash); padding-top: 14px; }
+.rf .v11-q p { margin: 0; font-size: 17px; line-height: 1.45; text-wrap: pretty; }
+.rf .v11-q div { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; font-size: 14.5px; }
+.rf .v11-qwho { font-weight: 700; } .rf .v11-q a { font: 12.5px var(--v-mono); margin-left: auto; color: var(--v-ink); }
+.rf .v11-more { align-self: center; margin-top: -14px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 600 14px var(--v-mono); color: var(--v-ink);
+  padding: 6px 14px; border: 2px solid var(--v-ink); border-radius: 999px; background: var(--v-hl); transform: rotate(-1.5deg); }
+.rf .v11-more:hover { background: var(--v-lime); transform: rotate(0deg) translateY(2px); }
+
+/* Common questions. */
+.rf .v11-faq details { border: 2px solid var(--v-ink); border-radius: 10px; background: var(--v-card); }
+.rf .v11-faq summary { cursor: pointer; list-style: none; padding: 12px 16px; font-weight: 700; font-size: 16.5px; display: flex; justify-content: space-between; gap: 16px; }
+.rf .v11-faq summary::-webkit-details-marker { display: none; } .rf .v11-faq summary::after { content: "+"; font: 16px var(--v-mono); } .rf .v11-faq details[open] summary::after { content: "–"; }
+.rf .v11-faq details p { margin: 0; padding: 0 16px 14px; font-size: 16px; line-height: 1.5; }
+
+/* Other rackets: detailed cards. */
+.rf .v11-rule { border-top: 2px solid var(--v-ink); padding-top: 22px; }
+.rf .v11-rule h2 { font-size: 30px; }
+.rf .v11-others { display: flex; flex-direction: column; gap: 16px; }
+.rf .v11-ocard { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 22px; border: 2.5px solid var(--v-ink); border-radius: 18px; background: var(--v-card); padding: 14px; }
+.rf .v11-oleft { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rf .v11-otop { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; }
+.rf .v11-opic { display: flex; align-items: center; justify-content: center; border-radius: 10px; } .rf .v11-opic img { max-width: 100%; max-height: 140px; object-fit: contain; }
+.rf .v11-oname { font: 800 20px/1.2 var(--v-display); color: var(--v-ink); text-decoration: none; }
+.rf .v11-oline { margin: 6px 0 0; font-size: 15.5px; line-height: 1.4; color: var(--v-body); } .rf .v11-obest { margin: 6px 0 0; font-size: 15px; line-height: 1.4; }
+.rf .v11-ofoot { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; border-top: 1.5px dashed var(--v-dash); padding-top: 10px; margin-top: auto; }
+.rf .v11-ofoot .v11-plink { margin-left: auto; align-self: center; }
+.rf .v11-oscore { display: inline-flex; align-items: center; gap: 8px; }
+.rf .v11-oscore > b { width: 40px; height: 40px; box-sizing: border-box; border: 2px solid var(--v-ink); border-radius: 9px; display: flex; align-items: center; justify-content: center; font: 800 20px var(--v-display); background: var(--v-card); }
+.rf .v11-oscore > b.g { background: var(--v-green); } .rf .v11-oscore > b.y { background: var(--v-yellow); }
+.rf .v11-oscore span b { font: 800 15px var(--v-display); }
+.rf .v11-oright { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rf .v11-otag { align-self: flex-start; font: 600 12.5px var(--v-mono); border: 1.5px solid var(--v-ink); border-radius: 6px; padding: 1px 8px; background: var(--v-hl); }
+.rf .v11-ohead { margin: 0; font: 800 20px/1.2 var(--v-display); }
+.rf .v11-ogain, .rf .v11-ogive { border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; line-height: 1.4; }
+.rf .v11-ogain { background: var(--v-yes); } .rf .v11-ogive { background: var(--v-no); } .rf .v11-ogain b, .rf .v11-ogive b { font-size: 15px; }
+
+@media (max-width: 760px) {
+  .rf .v11-ocard { grid-template-columns: 1fr; }
+  .rf .v11-bands > div { border-right: 0; border-bottom: 1.5px dashed var(--v-ink); } .rf .v11-bands > div:last-child { border-bottom: 0; }
+  .rf .v11-bcard { flex: 0 0 82%; }
+  .rf .v11-plays h2 { font-size: 26px; } .rf .v11-rule h2 { font-size: 26px; }
+  .rf .v11-score { padding: 10px 12px; } .rf .v11-sbar { width: 110px; }
+}
+
+/* v11 layout: one 1000px column after the hero, and the sticky box as a bar across the bottom of the screen (the mock). */
+.rf:has(.v11-score) .rp-body { max-width: 1000px; }
+.rf:has(.v11-score) .rp-stick { left: 0; right: 0; top: auto; bottom: 0; width: auto; flex-direction: row; align-items: center; justify-content: space-between;
+  border-radius: 0; border-width: 2px 0 0; box-shadow: none; padding: 10px 20px; }
+.rf:has(.v11-score) .rp-sk { flex-direction: row; align-items: center; gap: 10px; }
+.rf:has(.v11-score) .rp-sk .rp-k { display: none; }
+.rf:has(.v11-score) .rp-buy { padding: 9px 16px; }
+.rf .v11-bcards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.rf .v11-yit summary { padding: 10px 18px; }
+
+/* Phones: the bottom line stacks; its text sizes to its words (a desktop flex-basis made it 300px tall). */
+@media (max-width: 760px) { .rf .rp-bottom b { flex: 1 1 auto; } }
