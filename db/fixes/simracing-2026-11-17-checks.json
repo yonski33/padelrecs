@@ -1,0 +1,134 @@
+[
+ {
+  "name": "MOZA R21 Ultra",
+  "set": {
+   "core": "PC; Xbox with MOZA ESX Steering Wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "MOZA R12 V2",
+  "set": {
+   "core": "PC; Xbox with MOZA ESX Steering Wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "MOZA R9 V3",
+  "set": {
+   "core": "PC; Xbox with MOZA ESX Steering Wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "MOZA SR-P Pedals",
+  "note": "Sold out at MOZA (Nov 2026); the SRP2 is the newer set",
+  "source": "https://mozaracing.com/products/srp-pedals"
+ },
+ {
+  "name": "Fanatec Podium Pedals Formula",
+  "note": "Unavailable at Fanatec (Nov 2026)",
+  "source": "https://www.fanatec.com/us/en/p/pedals/pp_f/podium-pedals-formula"
+ },
+ {
+  "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+  "note": "Thrustmaster's shop now sells the TSS Handbrake instead",
+  "source": "https://eshop.thrustmaster.com/en_us/tss-handbrake.html"
+ },
+ {
+  "name": "Simagic P2000",
+  "note": "Sold with a 100 kg or 200 kg load cell",
+  "source": "https://simagic.com/products/p2000-r"
+ },
+ {
+  "name": "MOZA Essenza SCV12 Steering Wheel",
+  "set": {
+   "balance": "GT"
+  },
+  "source": "https://mozaracing.com/products/lamborghini-essenza-scv12-wheel"
+ },
+ {
+  "name": "MOZA Porsche Mission R Steering Wheel",
+  "set": {
+   "balance": "GT"
+  },
+  "source": "https://mozaracing.com/products/porsche-mission-r-wheel"
+ },
+ {
+  "name": "MOZA Revuelto Steering Wheel",
+  "set": {
+   "balance": "Round"
+  },
+  "source": "https://mozaracing.com/products/revuelto-sim-wheel"
+ },
+ {
+  "name": "Simagic Aston Martin Valkyrie",
+  "set": {
+   "balance": "Formula"
+  },
+  "source": "https://simagic.com/products/simagic-aston-martin-valkyrie"
+ },
+ {
+  "name": "Thrustmaster Hypercar Wheel Add-On",
+  "set": {
+   "balance": "Hypercar (oval)"
+  },
+  "source": "https://eshop.thrustmaster.com/en_us/hypercar-wheel-add-on.html"
+ },
+ {
+  "name": "Thrustmaster TM Open Wheel Add-On",
+  "set": {
+   "balance": "GT"
+  },
+  "source": "https://eshop.thrustmaster.com/en_us/tm-open-wheel-add-on.html"
+ },
+ {
+  "name": "Sim-Lab GTSL Pro",
+  "set": {
+   "balance": "GT (D-shape)"
+  },
+  "source": "https://sim-lab.eu/products/gtsl-pro-sim-racing-steering-wheel"
+ },
+ {
+  "name": "Logitech RS Formula Wheel McLaren Racing Edition",
+  "set": {
+   "core": "Depends on the RS Wheel Hub: PC; PlayStation / Xbox with a compatible Logitech base"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-formula-wheel-mclaren-racing-edition"
+ },
+ {
+  "name": "Logitech RS Round Wheel",
+  "set": {
+   "core": "Depends on the RS Wheel Hub: PC; PlayStation / Xbox with a compatible Logitech base"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-round-wheel"
+ },
+ {
+  "name": "Logitech RS Track Wheel",
+  "set": {
+   "core": "Depends on the RS Wheel Hub: PC; PlayStation / Xbox with a compatible Logitech base"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-track-wheel"
+ },
+ {
+  "name": "Logitech RS H-Shifter",
+  "set": {
+   "core": "PC via USB; PlayStation / Xbox with a compatible Logitech wheel"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-h-shifter"
+ },
+ {
+  "name": "Logitech RS Shifter & Handbrake",
+  "set": {
+   "core": "PC via USB; PlayStation / Xbox with a compatible Logitech wheel (G29 / G920 / G923 need the Racing Adapter)"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-shifter-handbrake"
+ },
+ {
+  "name": "Thrustmaster TH8S",
+  "set": {
+   "core": "PC via USB; PS4 / PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster wheel"
+  },
+  "source": "https://www.thrustmaster.com/en-us/products/th8s-shifter-add-on/"
+ }
+]
