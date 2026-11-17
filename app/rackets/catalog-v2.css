@@ -221,4 +221,6 @@ body:has(main.ct2) { background: #fbfaf6; }
 /* Tap targets on phones (UX audit 2026-11-17): the filters badge, compare switch and sort pills at least 34px tall. */
 @media (max-width: 760px) {
   .ct2 .ct2-badge, .ct2 .ct2-sort .ct2-cmp, .ct2 .ct2-sort a { display: inline-flex; align-items: center; min-height: 34px; box-sizing: border-box; }
+  /* The 12px score label wraps to two lines on the tight list, so the name keeps its width. */
+  .ct2:not(.ct2-m) .ct2-sc { min-width: 0; width: 56px; } .ct2:not(.ct2-m) .ct2-sc small { white-space: normal; text-align: center; line-height: 1.15; }
 }
