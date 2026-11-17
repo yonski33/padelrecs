@@ -34,7 +34,7 @@
   .rk3-best { font-family: var(--mono); color: var(--soft); }
   .rk3-buy { text-decoration: none; white-space: nowrap; border: 2px solid var(--ink); background: var(--ink); color: var(--bg) !important; font-family: var(--display); font-weight: 800; }
   .rk3-buy:hover { background: #2b2925; }
-  .rk3-link { position: relative; z-index: 1; white-space: nowrap; font: 11px var(--mono); color: var(--soft) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .rk3-link { position: relative; z-index: 1; white-space: nowrap; font: 12px var(--mono); color: var(--soft) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   .rk3-link:hover { color: var(--ink) !important; }
   .rk3-sc b { font-family: var(--display); font-weight: 800; line-height: 1; border: 2px solid var(--ink); background: var(--score-w); }
   .rk3-sc.hi b { background: var(--score-g); } .rk3-sc.mid b { background: var(--score-y); }
@@ -53,7 +53,7 @@
   .rk3-side { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 132px; }
   .rk3-first .rk3-sc { display: flex; align-items: center; gap: 8px; }
   .rk3-first .rk3-sc b { font-size: 30px; border-radius: 10px; padding: 6px 9px; transform: rotate(-3deg); }
-  .rk3-first .rk3-sc small { font-size: 11.5px; line-height: 1.2; color: var(--text); white-space: pre-line; }
+  .rk3-first .rk3-sc small { font-size: 12px; line-height: 1.2; color: var(--text); white-space: pre-line; }
   .rk3-first .rk3-buy { padding: 8px 16px; border-radius: 10px; font-size: 14.5px; }
   .rk3-why { font: 600 12.5px var(--mono); white-space: nowrap; }
 
@@ -68,13 +68,13 @@
   .rk3-mtop { display: none; }
   .rk3-nrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .rk3-list .rk3-name { font-weight: 700; font-size: 17px; line-height: 1.25; }
-  .rk3-list .rk3-tag { font-size: 11.5px; padding: 0 7px; }
+  .rk3-list .rk3-tag { font-size: 12px; padding: 0 7px; }
   .rk3-list .rk3-line { font-size: 15.5px; }
   .rk3-list .rk3-best { font-size: 12.5px; }
   .rk3-foot { display: contents; }
   .rk3-list .rk3-sc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; }
   .rk3-list .rk3-sc b { font-size: 21px; border-radius: 8px; padding: 5px 8px; }
-  .rk3-list .rk3-sc small { font-size: 10.5px; }
+  .rk3-list .rk3-sc small { font-size: 12px; }
   .rk3-list .rk3-buy { padding: 7px 13px; border-radius: 9px; font-size: 13.5px; }
 
   .rk3-all { align-self: center; font: 600 13.5px var(--mono); }
@@ -99,14 +99,14 @@
     .rk3-first .rk3-pic { width: 72px; height: 96px; }
     .rk3-mbig { display: block; position: absolute; left: -4px; top: -4px; font: 800 30px/1 var(--display); letter-spacing: -0.04em; color: var(--ink); }
     .rk3-first .rk3-body { gap: 3px; }
-    .rk3-first .rk3-tag { font-size: 11px; padding: 0 7px; }
+    .rk3-first .rk3-tag { font-size: 12px; padding: 0 7px; }
     .rk3-first .rk3-name { font-size: 17.5px; line-height: 1.2; }
     .rk3-first .rk3-line { font-size: 14.5px; line-height: 1.4; }
-    .rk3-first .rk3-best { font-size: 11.5px; line-height: 1.4; }
+    .rk3-first .rk3-best { font-size: 12px; line-height: 1.4; }
     .rk3-side { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 10px; min-width: 0; border-top: 1.5px dashed #b9b5aa; padding-top: 10px; }
     .rk3-first .rk3-sc { gap: 10px; }
     .rk3-first .rk3-sc b { font-size: 22px; border-radius: 8px; padding: 4px 7px; transform: none; }
-    .rk3-first .rk3-sc small { font-size: 10.5px; }
+    .rk3-first .rk3-sc small { font-size: 12px; }
     .rk3-why { order: 1; font-size: 12px; margin-left: 4px; }
     .rk3-first .rk3-buy { order: 2; margin-left: auto; padding: 7px 12px; border-radius: 9px; font-size: 13.5px; }
 
@@ -116,10 +116,10 @@
     .rk3-mtop { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .rk3-mrank { font: 800 16px var(--display); color: var(--soft); }
     .rk3-list > li.podium .rk3-mrank { color: var(--ink); }
-    .rk3-list .rk3-tag { font-size: 10.5px; padding: 0 6px; }
+    .rk3-list .rk3-tag { font-size: 12px; padding: 0 6px; }
     .rk3-list .rk3-name { font-size: 15.5px; }
     .rk3-list .rk3-line { font-size: 14px; line-height: 1.4; }
-    .rk3-list .rk3-best { font-size: 11px; line-height: 1.4; }
+    .rk3-list .rk3-best { font-size: 12px; line-height: 1.4; }
     .rk3-foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; padding-left: 64px; }
     .rk3-list .rk3-sc { flex: none; flex-direction: row; gap: 8px; min-width: 0; }
     .rk3-list .rk3-sc b { font-size: 17px; border-radius: 7px; padding: 3px 6px; }
@@ -152,7 +152,7 @@
   .rk3-tiles a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--site-shadow, var(--ink)); }
   .rk3-tiles .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
   .rk3-tiles .t b { font: 800 18px/1.15 var(--display); letter-spacing: -0.01em; }
-  .rk3-tiles .t small { font: 11.5px var(--mono); color: var(--soft); }
+  .rk3-tiles .t small { font: 12px var(--mono); color: var(--soft); }
   .rk3-tiles .pics { flex: none; position: relative; width: 78px; height: 62px; }
   .rk3-tiles .pics img { position: absolute; height: 56px; width: auto; mix-blend-mode: multiply; }
   .rk3-tiles .pics .p0 { left: 24px; top: 0; height: 62px; z-index: 1; } .rk3-tiles .pics .p1 { left: 0; top: 6px; transform: rotate(-8deg); } .rk3-tiles .pics .p2 { left: 46px; top: 6px; transform: rotate(8deg); }
@@ -160,7 +160,7 @@
   .rk3-cards a { text-decoration: none; color: var(--ink); border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
   .rk3-cards a:hover { background: var(--site-wash, oklch(0.96 0.06 125)); }
   .rk3-cards a.turn { background: var(--site-soso, oklch(0.93 0.14 100)); }
-  .rk3-cards small { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--soft); }
+  .rk3-cards small { font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--soft); }
   .rk3-cards b { font: 800 19px/1.15 var(--display); }
   .rk3-cards span { font-size: 14px; color: var(--text); text-wrap: pretty; }
   .rk3-cards em { margin-top: 6px; font: normal 600 13px var(--mono); }
@@ -195,3 +195,9 @@
 .rk3-hint { font: 12.5px var(--mono, ui-monospace); color: #6a675f; }
 .rk3-mp { display: inline-block; font: 600 12.5px var(--mono, ui-monospace); border: 1.5px solid var(--ink); border-radius: 999px; padding: 1px 9px; background: #fff; white-space: nowrap; }
 .rk3-mp.g { background: var(--score-g); } .rk3-mp.y { background: var(--score-y); } .rk3-mp.none { color: #6a675f; }
+
+/* Tap targets on phones (UX audit 2026-11-17): pick buttons and the sore-arm toggle at least 36px tall. */
+@media (max-width: 760px) {
+  .rk3-seg button, .rk3-arm { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; box-sizing: border-box; }
+  .rk3-tabs a { display: inline-flex; align-items: center; min-height: 34px; box-sizing: border-box; }
+}

@@ -24,7 +24,7 @@ export default async function CatalogSkin({ f, base, fixedType, brand: only, tit
       <section className="bc-hero">
         <div>{only && <p className="bc-crumbs"><Link href="/">home</Link> / <Link href="/brands">brands</Link> / {only.name.toLowerCase()}</p>}
           <h1>{fixedType || only ? heading : <>{`${heading} `}<em>products</em></>}</h1>
-          <p>{intro ?? "Every product we track. Narrow it down on the left and the list updates as you tap. “Good for” comes from what people with that skin type said, not from the label."}</p></div>
+          <p>{intro ?? "Every product we track. Filter by what you need and the list updates as you tap. “Good for” comes from what people with that skin type said, not from the label."}</p></div>
         <span className="bc-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
       </section>
       <CatalogSkinBrowser pack={packOf(ctx, pool)} f={f} base={base} fixedType={fixedType}/>

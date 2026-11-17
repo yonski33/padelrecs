@@ -19,6 +19,12 @@ body:has(main.cx) { background: #fbfaf6; }
   .cx-seg button, .cx-arm { all: unset; cursor: pointer; white-space: nowrap; font-size: 15px; font-weight: 700; }
   .cx-seg button { padding: 5px 12px; background: var(--paper); border-right: 1.5px solid var(--ink); } .cx-seg button:last-child { border-right: 0; }
   .cx-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  /* Phones (UX audit 2026-11-17: "advanced" clipped to "advanc"): each control spans the box, buttons share it, 36px tall. */
+  @media (max-width: 520px) {
+    .cx-seg { display: flex; width: 100%; }
+    .cx-seg button { flex: 1 1 auto; text-align: center; padding: 8px 6px; font-size: 14px; min-height: 36px; box-sizing: border-box; }
+    .cx-arm { min-height: 36px; display: inline-flex; align-items: center; }
+  }
   .cx-arm { display: inline-flex; align-items: center; gap: 7px; font-weight: 400; }
   .cx-arm i { width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font: normal 700 12px var(--body); background: var(--paper); box-sizing: border-box; }
   .cx-arm[aria-pressed="true"] i { background: var(--acc); }
