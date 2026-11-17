@@ -23,7 +23,7 @@ import { catchShort, leads, MAX_LINE, type VTrait } from "../../lib/compare-verd
 import type { Data } from "./view";
 import { isV2 } from "../../lib/niche";
 import { attrProfileFor } from "../../lib/attr-profile";
-import { refName, repeatsTrait } from "../../lib/compare-names";
+import { refName, repeatsTrait, specValue } from "../../lib/compare-names";
 
 /** The compare page (owner 2026-11-17, "Compare v3" mock): every kept site, two or three products (?look=classic keeps the
  *  older page). */
@@ -73,7 +73,7 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
     const leadKeys = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => DOTS[k].key);
     const own = b.page?.yes.map(y => short(plain(y.t))).find((t): t is string => !!t && !repeatsTrait(t, leadKeys, Object.fromEntries(DOTS.map(d => [d.key, d.label]))));
     return { ...vp, name: b.name, slug: b.r.slug, href: productHref(b.r), pic: photoOf(b.r), shop: b.shop,
-      yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => d.get(b.r) || null) };
+      yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => { const v = d.get(b.r); return v ? specValue(String(v)) : null; }) };
   });
   const { partners } = comparePairs(data);
   const more = products.flatMap(r => (partners.get(r.id) ?? []).filter(x => !(products.length === 2 && products.includes(x))).map(x => ({ r, x })))

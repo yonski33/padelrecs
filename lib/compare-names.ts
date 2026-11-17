@@ -36,3 +36,8 @@ export function repeatsTrait(line: string, traitKeys: string[], labels: Record<s
   const l = ` ${line.toLowerCase()} `;
   return traitKeys.some(k => (STEMS[k] ?? [(labels[k] ?? k).toLowerCase().slice(0, 5)]).some(s => l.includes(s)));
 }
+
+/** One style for spec values in the compare table: ranges as "360–375 g" (en dash, no spaces), a space before the unit. */
+export function specValue(v: string): string {
+  return v.trim().replace(/(\d)\s*[-–—]\s*(\d)/g, "$1–$2").replace(/(\d)\s*(g|kg|mm|cm|oz|in)\b/g, "$1 $2");
+}

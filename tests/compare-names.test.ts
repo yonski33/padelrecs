@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { refName, repeatsTrait } from "../lib/compare-names";
+import { refName, repeatsTrait, specValue } from "../lib/compare-names";
 
 test("different brands: brand only", () => {
   const all = [{ brand: "Nox", model: "AT10 Genius 12K Alum XTREM" }, { brand: "Adidas", model: "Metalbone CTRL 3.5" }];
@@ -40,4 +40,13 @@ test("own line that repeats a lead trait", () => {
   assert.equal(repeatsTrait("Fast handling at the net and in defence", ["speed"]), true);
   assert.equal(repeatsTrait("Big power on smashes", ["speed", "forgiveness"]), false);
   assert.equal(repeatsTrait("Easy on the elbow", ["arm"]), true);
+});
+
+test("spec values: one range and unit style", () => {
+  assert.equal(specValue("360 – 375g"), "360–375 g");
+  assert.equal(specValue("345-360g"), "360–375 g".replace("360–375", "345–360"));
+  assert.equal(specValue("16mm"), "16 mm");
+  assert.equal(specValue("7.8 - 8.2 oz"), "7.8–8.2 oz");
+  assert.equal(specValue("Carbon 12K"), "Carbon 12K");
+  assert.equal(specValue("2026"), "2026");
 });
