@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import { specNumber } from "../../../lib/spec-number";
 import { pageContent, pageTier } from "../../../lib/racket-page";
 import { isLight } from "../../../lib/look";
 import { amazonPhoto } from "../../../lib/amazon-photos";
@@ -58,7 +59,9 @@ import { withModelYears, rankingHref } from "../../../lib/top-lists";
 /** The fit page's spec line: padel's words, or a type-picker site's own (DiscGolfRecs: flight, rim, plastics, max weight). */
 const specLine = (r: { weight: string | null; balance: string | null; shape: string | null; core: string | null; surface: string | null; year: number }) => (fitConfigFor(niche)?.quick
   ? [r.weight && `flight ${r.weight}`, r.balance && `rim ${r.balance}`, r.core && `plastics ${r.core}`, r.surface && `max weight ${r.surface}`]
-  : [r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`]).filter((x): x is string => !!x);
+  : [r.weight && `weight ${r.weight}`, r.balance && `${BALANCE_LABEL} ${specNumber(r.balance).toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`]).filter((x): x is string => !!x);
+/** The balance column's own name on this site: PickleballRecs stores swing weight there (Grok audit 2026-11-17, #7). */
+const BALANCE_LABEL = (niche.specs.find(x => x.column === "balance")?.label ?? "balance").toLowerCase();
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
 // "2026-10-29T12:00:00Z" → "October 29, 2026", for niche.specsNote.

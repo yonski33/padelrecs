@@ -48,8 +48,9 @@ export const pickleballGuide: GuideConfig = {
     ] },
     { id: "face", title: "Face", sub: "what it's made of", layout: "dark-split", liked: "carbon",
       spec: { key: "face", label: "Face", column: "surface", classify: paddleFace2Of }, options: [
-      { value: "fiberglass", label: "Fiberglass", text: "Softer, more forgiving, cheaper." },
-      { value: "carbon", label: "Carbon", note: "T700", text: "Crisper, more power, more demanding.", accent: true },
+      // One story with the product pages' face cards (Grok audit 2026-11-17, #22): carbon = control and spin, fiberglass = pop.
+      { value: "fiberglass", label: "Fiberglass", text: "Softer and poppier, more forgiving, cheaper." },
+      { value: "carbon", label: "Carbon", note: "T700", text: "Crisper, with more control and spin; more demanding.", accent: true },
     ] },
     { id: "budget", title: "Budget", sub: "what you get for your money", layout: "numbers", liked: false,
       textOnlyNote: "no counts here yet: we don't have reliable prices for most paddles", options: [

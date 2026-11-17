@@ -14,7 +14,7 @@ type Spec = { shape?: string | null; core?: string | null; balance?: string | nu
 export type V11Site = {
   /** "How it plays": three bands, [trait key, label]. */ bands: [string, string][];
   /** What an other card gives up, per trait it is behind on; else "less <label>". */ giveUp: Record<string, string>;
-  /** The build cards from the catalog's specs; `armDots` is the Arm comfort bar. */ builds: (spec: Spec, armDots?: number) => V11Build[];
+  /** The build cards from the catalog's specs; `armDots` is the Arm comfort bar, `bars` the product's other bars. */ builds: (spec: Spec, armDots?: number, bars?: Partial<Record<string, number>>) => V11Build[];
   /** The build section's heading. */ buildHead: (short: string) => string;
 };
 
@@ -23,8 +23,10 @@ const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 const num = (s: string | null | undefined) => { const m = /(\d+(?:\.\d+)?)/.exec(s ?? ""); return m ? +m[1] : null; };
 
 /** Pickleball: shape, core thickness, weight and face, in the paddle guide's words (lib/niche/pickleball-guide.ts). */
-function paddleBuilds(spec: Spec, armDots?: number): V11Build[] {
+function paddleBuilds(spec: Spec, armDots?: number, bars: Partial<Record<string, number>> = {}): V11Build[] {
   const out: V11Build[] = [], kind = (armDots ?? 0) >= 4; // 4+ on the Arm bar: no card says it is hard on the arm
+  // A lively paddle (Pop or Power 4+) never reads "a little less pop" (Grok audit 2026-11-17, #19: the Diadem Hush).
+  const lively = Math.max(bars.pop ?? 0, bars.power ?? 0) >= 4;
   const shape = clean(spec.shape).toLowerCase(), sk = ["standard", "elongated", "hybrid", "widebody"].find(k => shape.startsWith(k));
   const SHAPE: Record<string, string> = {
     standard: "Widest sweet spot and quickest hands at the kitchen.",
@@ -38,10 +40,11 @@ function paddleBuilds(spec: Spec, armDots?: number): V11Build[] {
   if (mm.length === 1) {
     const t = mm[0];
     out.push({ key: "gauge", title: `${t} mm core`, low: "thin", high: "thick", at: Math.max(0, Math.min(1, (t - 11) / 6)),
-      line: t >= 16 ? (kind ? "Thick core: softer, more control, kinder to the arm; a little less pop." : "Thick core: softer and more controlled; a little less pop.")
+      line: t >= 16 ? `Thick core: softer and more controlled${kind ? ", kinder to the arm" : ""}${lively ? "." : "; a little less pop."}`
         : t >= 14 ? "Mid-thick core: more pop and faster hands, a firmer feel." : "Thin core: the most pop and speed, the least forgiving." });
-  } else if (mm.length > 1) out.push({ key: "gauge", title: `${mm.join(" or ")} mm core`, low: "thin", high: "thick", at: 0.6,
-    line: "Comes in two thicknesses: thicker is softer and calmer, thinner pops more." });
+  } else if (mm.length > 1) out.push({ key: "gauge", title: `${mm.length > 2 ? `${mm.slice(0, -1).join(", ")} or ${mm[mm.length - 1]}` : mm.join(" or ")} mm core`, low: "thin", high: "thick", at: 0.6,
+    // As many thicknesses as the spec lists (#25: "12.7, 14 or 16 mm" read "two").
+    line: `Comes in ${["", "one", "two", "three", "four"][mm.length] ?? mm.length} thicknesses: thicker is softer and calmer, thinner pops more.` });
   // Weight: the first ounce figure (a range's low end).
   const oz = /(\d+(?:\.\d+)?)\s*(?:[-–]\s*\d+(?:\.\d+)?\s*)?oz/i.exec(spec.weight ?? "");
   if (oz) {
@@ -54,11 +57,16 @@ function paddleBuilds(spec: Spec, armDots?: number): V11Build[] {
         : "Mid-weight: stable enough on drives, still quick at the kitchen." });
   }
   const face = clean(spec.surface), f = face.toLowerCase();
-  if (face) {
-    const glass = /fib(er|re)glass|composite/.test(f) && !/carbon/.test(f), mix = /carbon/.test(f) && /fib(er|re)glass|kevlar|aramid/.test(f);
+  // A foam face (eTPU, #19: the Diadem Hush read "Carbon face") and a bare "composite" (no material named: no claim).
+  const foam = /\b(e?tpu|foam)\b/.test(f) && !/carbon|fib(er|re)glass/.test(f), unnamed = /composite/.test(f) && !/carbon|fib(er|re)glass|kevlar|aramid|glass/.test(f);
+  const FOAM = "a lively, springy feel with easy pop; less crisp than carbon on touch shots.";
+  if (face && foam) out.push({ key: "face", title: "Foam face", line: `${cap(face)}: ${FOAM}`.length <= 105 ? `${cap(face)}: ${FOAM}` : cap(FOAM) });
+  else if (face && !unnamed) {
+    const glass = /fib(er|re)glass/.test(f) && !/carbon/.test(f), mix = /carbon/.test(f) && /fib(er|re)glass|kevlar|aramid/.test(f);
     // The tap line names the face material first (owner 2026-11-17).
     const feel = glass ? "softer with more pop, a little less precise on touch shots." : mix ? "carbon with a softer layer, some pop and some control."
-      : /kevlar|aramid/.test(f) ? "more dwell and comfort, the ball sits on the face a touch longer." : "control and spin with a crisp, firm feel.";
+      // Comfort only where the Arm bar backs it (#13: "Kevlar adds comfort" beside the Ruby's "Can hurt sore arms").
+      : /kevlar|aramid/.test(f) ? (kind ? "more dwell and comfort, the ball sits on the face a touch longer." : "more dwell, the ball sits on the face a touch longer.") : "control and spin with a crisp, firm feel.";
     const line = `${cap(face)}: ${feel}`;
     out.push({ key: "face", title: glass ? "Fiberglass face" : mix ? "Hybrid face" : /kevlar|aramid/.test(f) ? "Kevlar face" : "Carbon face", line: line.length <= 105 ? line : cap(feel) });
   }

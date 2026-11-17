@@ -1,4 +1,5 @@
 import { withoutYear } from "../../lib/brand-name";
+import { specNumber } from "../../lib/spec-number";
 import "./compare-v2.css";
 import { qtFontVars } from "../qt-fonts";
 import { score } from "../../db/data";
@@ -76,7 +77,7 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
     const leadKeys = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => DOTS[k].key);
     const own = b.page?.yes.map(y => short(plain(y.t))).find((t): t is string => !!t && !repeatsTrait(t, leadKeys, Object.fromEntries(DOTS.map(d => [d.key, d.label]))));
     return { ...vp, name: b.name, slug: b.r.slug, href: productHref(b.r), pic: photoOf(b.r), shop: b.shop,
-      yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => { const v = d.get(b.r); return v ? specValue(String(v)) : null; }) };
+      yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => { const v = d.get(b.r); return v ? specValue(specNumber(String(v))) : null; }) };
   });
   const { partners } = comparePairs(data);
   const more = products.flatMap(r => (partners.get(r.id) ?? []).filter(x => !(products.length === 2 && products.includes(x))).map(x => ({ r, x })))

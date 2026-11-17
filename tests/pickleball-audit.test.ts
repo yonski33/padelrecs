@@ -28,3 +28,15 @@ test("a bar never reads the opposite of the page's own clear claim", () => {
   assert.equal(pageBar("power", 3, { yes: [{ title: "Quiet", t: "It's not a cannon, which suits me." }] }), 3);
   assert.equal(pageBar("control", 5, null), 5);
 });
+
+import { specNumber } from "../lib/spec-number";
+test("research notes in a spec read as one clean range; labelled values stay", () => {
+  assert.equal(specNumber("115 (john kew) · 116 (studio) · 120 (paddlespecs)"), "115–120");
+  assert.equal(specNumber("116 (studio)"), "116");
+  assert.equal(specNumber("14 mm: 111 · 16 mm: 114"), "14 mm: 111 · 16 mm: 114");
+  assert.equal(specNumber("Low (head-light)"), "Low (head-light)");
+  assert.equal(specNumber("108-112"), "108-112");
+});
+test("research notes with capitals read as one range too", () => {
+  assert.equal(specNumber("115 (John Kew) · 116 (Studio) · 120 (PaddleSpecs)"), "115–120");
+});
