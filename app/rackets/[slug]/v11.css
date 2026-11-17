@@ -150,3 +150,6 @@
 /* Phones: the bottom line stacks; its text sizes to its words (a desktop flex-basis made it 300px tall). */
 @media (max-width: 760px) { .rf .rp-bottom b { flex: 1 1 auto; } }
 .rf .v11-tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 60px; border: 2px solid var(--v-ink); border-radius: 10px; background: oklch(0.95 0.06 125); font: 800 12px/1.2 var(--v-display); text-align: center; padding: 4px; box-sizing: border-box; }
+
+/* Filled price button on hover (owner 2026-11-17): a yellow fill, the text and arrow stay ink (white on yellow was unreadable). */
+.rf .v11-buy:hover, .rf .v11-buy:focus-visible { background: var(--v-hl); color: var(--v-ink); }
