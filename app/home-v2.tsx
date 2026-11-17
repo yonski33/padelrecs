@@ -1,8 +1,9 @@
 import "./home-v2.css";
 import { catalogShownCount } from "./rackets/catalog-count";
 import "./home-v2-m.css";
+import "./home-v2-more.css";
 import { matchContext } from "./match-context";
-import { displayName } from "../lib/brand-name";
+import { displayName, withoutYear } from "../lib/brand-name";
 import { rankedLists, listHref } from "./rankings/lists";
 import { listYear } from "../lib/top-lists";
 import { platformName } from "../lib/source-label";
@@ -58,18 +59,20 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
   // A site's own home mock (niche.v2home; PickleballRecs): the rankings tiles, the "how we score" strip and Questions follow the
   // guide row. A Questions answer's {top:beginner} / {top:arm} names the two first paddles of that live list.
   const M = niche.v2home;
+  // The same sections on a site that keeps its own look (niche.homeMore: padel, disc golf).
+  const more = M ?? niche.homeMore;
   const heroSub = M?.h1 ? M.sub : `${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`;
   const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
   const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   const topTwo = (pick: "beginner" | "arm") => {
     const rows = rankHome(payload.items, SETUP, BAD, pick === "arm" ? { style: "any", arm: true } : { style: "any", level: "beginner", arm: false }, false, 2).rows;
-    const names = rows.map(r => payload.cards[r.id]?.name).filter(Boolean);
-    return names.length === 2 ? `the ${names[0]} and the ${names[1]}` : names[0] ? `the ${names[0]}` : `the paddles at the top of that list`;
+    const names = rows.map(r => payload.cards[r.id]?.name).filter((n): n is string => !!n).map(withoutYear);
+    return names.length === 2 ? `the ${names[0]} and the ${names[1]}` : names[0] ? `the ${names[0]}` : `the ${niche.words.many} at the top of that list`;
   };
   const channels = new Set(data.external.filter(e => e.sourcePlatform === "YouTube" && e.sourceName).map(e => e.sourceName!.toLowerCase())).size;
-  const tileFills = ["var(--acc)", "#e9edf6", "oklch(0.9 0.06 235)"];
+  const tileFills = M ? ["var(--acc)", "#e9edf6", "oklch(0.9 0.06 235)"] : ["var(--acc)", "var(--paper)", "var(--marker)"];
 
-  return <main className={`hv2${M ? " hv2-m" : ""} ${qtFontVars}`}>
+  return <main className={`hv2${M ? " hv2-m" : more ? ` hv2-x${niche.productPath === "discs" ? " hv2-disc" : ""}` : ""} ${qtFontVars}`}>
     {/* The mockup's own footer (owner 2026-11-15: "match it 100%"); home-v2.css hides the site's on this page. The header is the site's (site-header.tsx). */}
 
     <div className="hv2-wrap">
@@ -106,10 +109,10 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       </HomeMatch>
       {/* Below the list: the Shape row and a link to the racket guide, nothing else (owner 2026-11-16). */}
       <GuideRow/>
-      {M && <>
+      {more && <>
         <section className="hv2-rt" aria-labelledby="hv2-rt-t">
           <div className="hv2-rthead"><h2 id="hv2-rt-t">Explore the rankings</h2><a href="/rankings">all rankings →</a></div>
-          <div className="hv2-rtgrid">{best.map((l, k) => {
+          <div className={`hv2-rtgrid${!M && best.length % 3 && best.length % 2 === 0 ? " two" : ""}`}>{best.map((l, k) => {
             const title = l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list)));
             return <a key={l.list.slug} href={listHref(l.list.slug)}><span className="t"><b>{title}<span aria-hidden="true"> →</span></b><em>{`${l.entries.length} ${niche.words.many}`}</em></span>
               <span className="mini" aria-hidden="true">{[0, 1, 2].map(j => <i key={j} className={`p${j}`} style={{ "--f": tileFills[(j + k) % 3] } as React.CSSProperties}/>)}</span></a>; })}</div>
@@ -122,7 +125,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         </section>
         <section className="hv2-faq" aria-labelledby="hv2-faq-t">
           <h2 id="hv2-faq-t">Questions</h2>
-          <div className="box">{M.faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
+          <div className="box">{more.faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
             <p>{`${f.a.replace(/\{top:(beginner|arm)\}/g, (_, p: "beginner" | "arm") => topTwo(p))} `}<a href={f.href}>{f.link}</a></p></details>)}</div>
         </section>
       </>}
