@@ -2,7 +2,7 @@
 import { scoreBox } from "../../../lib/score-tone";
 import { useFormToken } from "../../form-token-client";
 import { VERDICT_PILL } from "../../../lib/review-pill";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } from "../../quick-vote";
 
 // The racket page's Reviews section (owner 2026-11-15, site-jobs/RACKET-REVIEWS-SECTION.md, Claude Design mockup): all /
@@ -24,6 +24,8 @@ export type ReviewCard = {
 };
 
 const PAGE = 8, MIN_WORDS = 20;
+/** After Post (owner 2026-11-18): a review waits for approval; a vote is saved at once (/api/racket-votes, no moderation). */
+const THANKS = { words: "Thanks for sharing! Your review will appear here once it's approved.", vote: "Thanks! Your vote has been added." } as const;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for me" };
 const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
@@ -43,6 +45,9 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   const [vf, setVf] = useState<Verdict | null>(null), [tf, setTf] = useState<string | null>(null);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<string | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
+  // The "a few words" box grows with its text (up to its CSS max-height).
+  const grow = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => { const t = grow.current; if (t) { t.style.height = "auto"; t.style.height = `${t.scrollHeight + 2}px`; } }, [text, verdict]);
   // A nickname fitting the site, filled in by default (owner 2026-11-15: like the old card, e.g. "SteadyVolley482"): the same one
   // per device (localStorage), editable, and a new one on tap. Read after the first render so server and client HTML match.
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -104,12 +109,14 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
             n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
               onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
             <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
-        {posted ? <div className="rv12-thanks" role="status">{posted === "words" ? "Thanks, yours will show after a quick check." : "Thanks, your verdict counts."}</div>
+        {posted ? <div className="rv12-thanks" role="status">{THANKS[posted]}</div>
         : <div id="played" className="rv-played">
           <div className="rv-prow"><b>{W.ask}</b>
             {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
             <span className="rv-pk">one tap, no account</span></div>
-          {verdict && <div className="rv-pwords"><input value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
+          {verdict && <div className="rv-pwords">
+            {/* A box that wraps and grows (owner 2026-11-18): 3 lines to start, up to about 8, then it scrolls; Enter is a new line. */}
+            <textarea ref={grow} rows={3} value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
             <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
           {error && <p className="rv-err" role="alert">{error}</p>}
         </div>}
@@ -141,7 +148,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     </div>
     <div className="rv-list">
       {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">🎾</span>
-        <span>{posted === "words" ? <><strong>Thanks — your review is in.</strong> It&apos;ll show here after a quick check.</> : <><strong>Thanks — your verdict counts.</strong> Add a few words next time and it shows here too.</>}</span></div>
+        <span>{THANKS[posted]}</span></div>
       : <div className={`rv-compose${verdict ? "" : " one"}`}>
         <div className="rv-ct"><b>{W.ask}</b><span>one tap, no account</span></div>
         <div className="rv-verdicts" role="group" aria-label={`Your verdict on the ${name}`}>{VERDICTS.map(x =>

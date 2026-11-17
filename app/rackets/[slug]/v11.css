@@ -417,3 +417,14 @@
   .rf .rv12.side .rv12-side { display: block; position: sticky; top: 84px; margin-top: 52px; }
   .rf .rv12.side .rv12-row { display: none; }
 }
+
+/* "Played it?" words (owner 2026-11-18): a textarea, full width, 3 lines growing to about 8, 16px+ (no iOS zoom), Post below
+   on the right. */
+.rf .rv-pwords { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
+.rf .rv-pwords textarea { width: 100%; box-sizing: border-box; min-height: calc(3 * 1.5em + 18px); max-height: calc(8 * 1.5em + 18px); resize: none; overflow-y: auto;
+  border: 2px solid #3a3833 !important; border-radius: 10px !important; padding: 8px 12px; font: 16px/1.5 var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; background: #fbfaf6 !important; box-shadow: none !important; outline: none !important; }
+/* Plain focus (owner 2026-11-18): no coloured ring or glow; the border turns full ink and the box turns white, which keyboard
+   users still see. */
+/* !important: the light design's site-wide input rule (.lt-site … :is(input, textarea), its green focus glow) is more specific. */
+.rf .rv-pwords textarea:focus, .rf .rv-pwords textarea:focus-visible { outline: none !important; box-shadow: none !important; border-color: #151515 !important; background: #fff !important; }
+.rf .rv-pwords .rv-post { align-self: flex-end; }
