@@ -1,5 +1,6 @@
 "use client";
 import { scoreBox } from "../../../lib/score-tone";
+import { VERDICT_PILL } from "../../../lib/review-pill";
 import { useEffect, useState } from "react";
 import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } from "../../quick-vote";
 
@@ -27,7 +28,6 @@ const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
 
 const PLAIN: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for me" };
-const PLAIN_PILL: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for them" };
 
 export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words, v11c }: { /** v11c (owner 2026-11-17): "What players say",
    *  the new-this-week dot, a one-row "Played it?" (dots, no emoji; a few words optional) and the thin state. */ v11c?: { fresh: number; thin: boolean }; racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
@@ -207,7 +207,7 @@ function LrCard({ c, i }: { c: ReviewCard; i: number }) {
   const end = (t: string) => /[.!?…"”)]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
   const text = c.kind === "player" ? (c.verbatim ? `“${c.text}”` : c.text ?? "") : (c.points ?? []).filter(Boolean).map(end).join(" ");
   return <article className={`lr2-card ${c.kind}`}>
-    <div className="lr2-head">{c.verdict && <span className={`lr2-pill ${c.verdict}${i % 2 ? " r" : ""}`}>{PLAIN_PILL[c.verdict]}</span>}</div>
+    <div className="lr2-head">{c.verdict && <span className={`lr2-pill ${c.verdict}${i % 2 ? " r" : ""}`}>{VERDICT_PILL[c.verdict]}</span>}</div>
     {text && <p className="lr2-text">{text}</p>}
     {c.kind === "player" ? <>
       <div className="lr2-who"><span className={`lr2-av a${i % 4}`} aria-hidden="true">{(c.initial ?? c.who[0] ?? "P").toUpperCase()}</span><strong>{c.who}</strong>
