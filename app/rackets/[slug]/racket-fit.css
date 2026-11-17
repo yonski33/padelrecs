@@ -752,3 +752,9 @@
 /* "What players say" (owner 2026-11-17): review text and YouTube summaries capped at a readable measure (about 70
    characters a line); the cards, tabs and score row keep the section width. */
 .rf .rv-card .rv-text, .rf .rv-card .rv-yb ul, .bp-rv .rv-card .rv-text { max-width: 70ch; }
+
+/* "Matched for intermediate · power" (owner 2026-11-17): the label wraps if it must; "edit ↗ · start over" stays on the right. */
+.rf .rf-afoot { flex-wrap: nowrap; align-items: flex-start; }
+.rf .rf-afoot > span:first-child { flex: 1 1 auto; min-width: 0; white-space: normal; }
+.rf .rf-afoot > .rf-acts { flex: none; margin-left: auto; }
+@media (max-width: 640px) { .rf .rf-afoot { flex-wrap: wrap; } .rf .rf-afoot > span:first-child { flex-basis: 100%; } }
