@@ -84,43 +84,49 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   }
 
   const rated = mood ? mood.pos + mood.mix + mood.neg : 0;
-  if (v11c) return <>
-    <div className="rv-head v11c">
-      <div className="rv-ht"><h2>{`What ${W.people} say`}</h2>{v11c.fresh > 0 && <span className="rv-new"><i aria-hidden="true"/>{`${v11c.fresh} new this week`}</span>}</div>
-      <div className="rv-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
-        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "players" ? W.peopleTab : label}</button>)}</div>
-    </div>
-    {mood && rated > 0 && <div className="rv-mood v11c">
-      {mood.score != null && <span className="rv-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}><b className={scoreBox(mood.score) || "plain"}>{mood.score}</b>{W.score}</span>}
-      {/* The vote bar is the verdict filter (owner 2026-11-17): tap a colour to show only those reviews, tap again to clear. */}
-      <span className="rv-mbar"><span className="rv-vbar" role="group" aria-label="Show reviews by verdict">{([["positive", mood.pos, "p"], ["mixed", mood.mix, "m"], ["negative", mood.neg, "n"]] as const).map(([k, n, cls]) =>
-        n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
-          onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
-        <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
-    <div className={`rv-body${mentions.length ? " side" : ""}`}>
-    {mentions.length > 0 && <aside className="rv-ment" aria-label={`What ${W.people} mention`}>
-      <div className="rv-menth"><b>{`What ${W.people} mention`}</b>{tf && <button type="button" className="rv-clear" onClick={() => setTf(null)}>clear</button>}</div>
-      <div className="rv-mchips">{mentions.map(([t, n]) => <button key={t} type="button" className={`rv-mchip ${toneOf(t)}`} aria-pressed={tf === t}
-        onClick={() => { setTf(tf === t ? null : t); setShown(PAGE); }}>{t}<span>{n}</span></button>)}</div>
-    </aside>}
-    <div className="rv-list">
-      {posted ? <div className="rv-thanks" role="status"><span>{posted === "words" ? "Thanks, yours will show after a quick check." : "Thanks, your verdict counts."}</span></div>
-      : <div id="played" className="rv-played">
-        <div className="rv-prow"><b>{W.ask}</b>
-          {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
-          <span className="rv-pk">one tap, no account</span></div>
-        {verdict && <div className="rv-pwords"><input value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
-          <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
-        {error && <p className="rv-err" role="alert">{error}</p>}
-      </div>}
-      {(vf || tf) && <p className="rv-showing">{`showing ${[vf && VERDICT_PILL[vf], tf && `“${tf}”`].filter(Boolean).join(" · ")} (${list.length}) · `}
-        <button type="button" className="rv-clear" onClick={() => { setVf(null); setTf(null); }}>clear</button></p>}
-      {list.length === 0 && <p className="rv-empty">{vf || tf ? "No reviews like that in this list." : tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
-      {list.slice(0, shown).map((c, i) => <LrCard key={c.id} c={c} i={i}/>)}
-      {!v11c.thin && list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>{`show ${list.length - shown} more reviews ↓`}</button>}
-    </div>
-    </div>
-  </>;
+  // The approved mock, copied (owner 2026-11-17, artifact NXPeRJcKkjVCxjwZ7EH9Xj): on wide screens a 720px left column (heading,
+  // score row, "Played it?", the list) and a sticky "What players mention" list beside it; narrower, the tags are a chip row.
+  if (v11c) {
+    const top5 = mentions.slice(0, 5);
+    const tagButton = (t: string, n: number, row: boolean) => <button key={t} type="button" className={`rv12-tag ${toneOf(t) === "neg" ? "neg" : toneOf(t) === "pos" ? "pos" : "neu"}${row ? " chip" : ""}`} aria-pressed={tf === t}
+      onClick={() => { setTf(tf === t ? null : t); setShown(PAGE); }}><i aria-hidden="true"/><span>{t}</span><small>{n}</small></button>;
+    return <div className={`rv12${top5.length ? " side" : ""}`}>
+      <div className="rv12-main">
+        <div className="rv12-head"><h2>{`What ${W.people} say`}</h2>{v11c.fresh > 0 && <span className="rv-new"><i aria-hidden="true"/>{`${v11c.fresh} new this week`}</span>}
+          <div className="rv12-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
+            <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "players" ? W.peopleTab : label}</button>)}</div></div>
+        {mood && rated > 0 && <div className="rv12-score">
+          {mood.score != null && <span className="rv12-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}>
+            <b className={scoreBox(mood.score) || "plain"}>{mood.score}</b><span>{W.score}</span></span>}
+          <span className="rv12-bar"><span className="rv12-vbar" role="group" aria-label="Show reviews by verdict">{([["positive", mood.pos, "p"], ["mixed", mood.mix, "m"], ["negative", mood.neg, "n"]] as const).map(([k, n, cls]) =>
+            n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
+              onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
+            <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
+        {posted ? <div className="rv12-thanks" role="status">{posted === "words" ? "Thanks, yours will show after a quick check." : "Thanks, your verdict counts."}</div>
+        : <div id="played" className="rv-played">
+          <div className="rv-prow"><b>{W.ask}</b>
+            {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
+            <span className="rv-pk">one tap, no account</span></div>
+          {verdict && <div className="rv-pwords"><input value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
+            <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
+          {error && <p className="rv-err" role="alert">{error}</p>}
+        </div>}
+        {top5.length > 0 && <div className="rv12-row" aria-label={`What ${W.people} mention`}>{top5.map(([t, n]) => tagButton(t, n, true))}</div>}
+        {(vf || tf) && <span className="rv12-showing">showing <strong>{[vf && VERDICT_PILL[vf], tf].filter(Boolean).join(" · ")}</strong>{` (${list.length}) · `}
+          <button type="button" onClick={() => { setVf(null); setTf(null); }}>clear</button></span>}
+        <div className="rv12-list">{list.slice(0, shown).map((c, i) => <Rv12Card key={c.id} c={c} i={i}/>)}</div>
+        {list.length === 0 && <div className="rv12-empty"><b>{vf || tf ? "No reviews match these filters" : tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</b>
+          {(vf || tf) && <button type="button" onClick={() => { setVf(null); setTf(null); }}>show all reviews</button>}</div>}
+        {!v11c.thin && list.length > shown && <button type="button" className="rv12-more" onClick={() => setShown(s => s + PAGE)}>{`show ${list.length - shown} more reviews ↓`}</button>}
+      </div>
+      {top5.length > 0 && <aside className="rv12-side" aria-label={`What ${W.people} mention`}><div className="rv12-box">
+        <div className="rv12-boxh"><h3>{`What ${W.people} mention`}</h3>{tf && <button type="button" onClick={() => setTf(null)}>clear</button>}</div>
+        <span className="rv12-hint">tap one to filter the reviews</span>
+        <div className="rv12-tags">{top5.map(([t, n]) => tagButton(t, n, false))}</div>
+        <span className="rv12-legend"><span><i className="pos"/>praise</span><span><i className="neg"/>complaint</span></span>
+      </div></aside>}
+    </div>;
+  }
   return <>
     <div className="rv-head">
       <div><h2>Reviews</h2>
@@ -220,30 +226,28 @@ function YtLite({ c, pill }: { c: ReviewCard; pill: Record<Verdict, string> }) {
   </div>;
 }
 
-/** A review on the v11c product page in the Latest reviews card format (owner 2026-11-17; app/review-card.css, shared with
- *  /reviews): no product photo or name (we're on its page), the verdict pill top right, the full text first, then who and
- *  when. A YouTube summary ends with its small thumbnail, the channel and "watch ↗"; a viewer's comment with "YouTube viewer",
- *  "comment on a <channel> video" and "see the comment ↗" (no thumbnail). */
-function LrCard({ c, i }: { c: ReviewCard; i: number }) {
+
+/** A review card as the approved mock draws it: avatar, name, verdict pill and time on top, then the full text. A viewer's
+ *  comment adds "comment on a <channel> video" and "see the comment ↗"; a video summary leads with its text (pill beside it),
+ *  then a small thumbnail, the channel, "watch ↗" and the time. */
+function Rv12Card({ c, i }: { c: ReviewCard; i: number }) {
   const channel = c.who.replace(/^youtube\s+/i, "") || c.who;
   const end = (t: string) => /[.!?…"”)]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
   const text = c.kind === "player" ? (c.verbatim ? `“${c.text}”` : c.text ?? "") : (c.points ?? []).filter(Boolean).map(end).join(" ");
-  return <article className={`lr2-card ${c.kind}`}>
-    {/* The calm small verdict pill (owner 2026-11-17: the tilted Latest-reviews pill felt too playful on a product page;
-        /reviews and the home keep theirs). Same words as there. */}
-    <div className="lr2-head">{c.verdict && <span className={`rv-pill ${c.verdict}`}>{VERDICT_PILL[c.verdict]}</span>}</div>
-    {text && <p className="lr2-text">{text}</p>}
-    {c.kind === "player" ? <>
-      <div className="lr2-who"><span className={`lr2-av a${i % 4}`} aria-hidden="true">{(c.initial ?? c.who[0] ?? "P").toUpperCase()}</span><strong>{c.who}</strong>
-        {c.meta?.split(" · ").map(m => <span key={m}>{`· ${m}`}</span>)}
-        {c.url && <a className="lr2-watch" href={c.url} target="_blank" rel="noopener nofollow">{`${c.source ?? "source"} ↗`}</a>}
-        {c.when && <span className="lr2-when">{c.when}</span>}</div>
-      {c.played && <div className="lr2-tags"><span>{/^tried/i.test(c.played) ? "tried briefly" : `played ${c.played.toLowerCase()}`}</span></div>}
-    </> : c.comment ? <div className="lr2-who"><span className="lr2-av a0" aria-hidden="true">Y</span><strong>YouTube viewer</strong><span>{`· comment on a ${channel} video`}</span>
-      {c.url && <a className="lr2-watch" href={c.url} target="_blank" rel="noopener nofollow">see the comment ↗</a>}{c.when && <span className="lr2-when">{c.when}</span>}</div>
-    : <div className="lr2-who"><a className="lr2-ythumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${channel}`}>
-        {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}</a>
-      <strong>{channel}</strong><span>· youtube summary</span>
-      {c.url && <a className="lr2-watch" href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}{c.when && <span className="lr2-when">{c.when}</span>}</div>}
+  const pill = c.verdict && <span className={`rv12-pill ${c.verdict}`}>{VERDICT_PILL[c.verdict]}</span>;
+  if (c.kind === "youtube" && !c.comment) return <article className="rv12-card">
+    <div className="rv12-yt">{text && <p className="rv12-text">{text}</p>}{pill}</div>
+    <div className="rv12-ymeta"><a className="rv12-thumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${channel}`}>
+      {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}</a>
+      <strong>{channel}</strong>{c.url && <a href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}{c.when && <span className="rv12-when">{c.when}</span>}</div>
+  </article>;
+  const comment = c.kind === "youtube";
+  return <article className="rv12-card">
+    <div className="rv12-top"><span className={`rv12-av${comment ? " yt" : ` a${i % 4}`}`} aria-hidden="true">{comment ? "Y" : (c.initial ?? c.who[0] ?? "P").toUpperCase()}</span>
+      <span className="rv12-who"><span className="rv12-line"><strong>{comment ? "YouTube viewer" : c.who}</strong>{pill}{c.when && <span className="rv12-when">{c.when}</span>}</span>
+        {comment && <span className="rv12-sub">{`comment on a ${channel} video`}</span>}
+        {!comment && c.url && <a className="rv12-sub" href={c.url} target="_blank" rel="noopener nofollow">{`${c.source ?? "source"} ↗`}</a>}</span></div>
+    {text && <p className="rv12-text">{text}</p>}
+    {comment && c.url && <a className="rv12-link" href={c.url} target="_blank" rel="noopener nofollow">see the comment ↗</a>}
   </article>;
 }
