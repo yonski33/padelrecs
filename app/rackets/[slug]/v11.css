@@ -136,3 +136,13 @@
   .rf .v11-plays h2 { font-size: 26px; } .rf .v11-rule h2 { font-size: 26px; }
   .rf .v11-score { padding: 10px 12px; } .rf .v11-sbar { width: 110px; }
 }
+
+/* v11 layout: one 1000px column after the hero, and the sticky box as a bar across the bottom of the screen (the mock). */
+.rf:has(.v11-score) .rp-body { max-width: 1000px; }
+.rf:has(.v11-score) .rp-stick { left: 0; right: 0; top: auto; bottom: 0; width: auto; flex-direction: row; align-items: center; justify-content: space-between;
+  border-radius: 0; border-width: 2px 0 0; box-shadow: none; padding: 10px 20px; }
+.rf:has(.v11-score) .rp-sk { flex-direction: row; align-items: center; gap: 10px; }
+.rf:has(.v11-score) .rp-sk .rp-k { display: none; }
+.rf:has(.v11-score) .rp-buy { padding: 9px 16px; }
+.rf .v11-bcards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.rf .v11-yit summary { padding: 10px 18px; }
