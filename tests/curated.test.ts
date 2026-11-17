@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { rankHome, matchPcts, type RankItem } from "../lib/home-rank";
-import { curatedFor, curatedKey } from "../lib/curated";
+import { rankHome, matchPcts, LOW_MATCH, type RankItem } from "../lib/home-rank";
+import { curatedFor, curatedKey, curatedEntries, CURATED_MIN, whyHere } from "../lib/curated";
 import { padel } from "../lib/niche/padel";
 import curated from "../db/curated/padel.json";
 
@@ -21,19 +21,28 @@ test("the file holds all 18 picks; every slug is in the catalog", () => {
   for (const [k, l] of Object.entries(curated.lists)) for (const e of l as { slug: string }[]) assert.ok(bySlug.has(e.slug), `${k}: ${e.slug}`);
 });
 
-test("each curated list renders exactly in order at the top, the % stepping down and never topped by the engine rows", () => {
+test("each curated list renders in order at the top (drafted picks need 10+ reviews and a 70+ score; the owner's stay), with the real match %", () => {
   let checked = 0;
   for (const c of PICKS) {
-    const want = curatedFor(c).map(s => bySlug.get(s)!).filter(Boolean); if (!want.length) continue; checked++;
+    const want = curatedEntries(c).flatMap(e => { const x = items.find(i => i.slug === e.slug); return x && (e.owner || (x.facts.reports >= CURATED_MIN.reviews && (x.signal ?? 0) >= CURATED_MIN.score)) ? [x.id] : []; })
+      .filter((id, i, all) => all.indexOf(id) === i);
+    if (!want.length) continue; checked++;
     const r = rows(c);
     assert.deepEqual(r.slice(0, want.length).map(x => x.id), want, curatedKey(c));
-    const pcts = r.map(x => x.pct ?? 0);
-    for (let i = 1; i < pcts.length; i++) assert.ok(pcts[i] <= pcts[i - 1], `${curatedKey(c)} #${i + 1}: ${pcts[i]} after ${pcts[i - 1]}`);
-    assert.equal(pcts[0], 97);
     const m = matchPcts(items, c, SETUP.levelGate, SETUP.engine);
-    assert.deepEqual(want.map(id => m.get(id)), pcts.slice(0, want.length), "the racket pages show the same %");
+    for (const x of r) assert.equal(x.pct, m.get(x.id), `${curatedKey(c)}: the racket pages show the same %`);
+    for (const x of r.slice(0, want.length)) assert.equal(!!x.low, (x.pct ?? 0) < LOW_MATCH, `${curatedKey(c)} ${fx.names[x.id]}: low flag`);
+    for (const x of r.slice(want.length)) assert.ok(!x.low);
   }
-  assert.ok(checked >= 1);
+  assert.ok(checked >= 5);
+});
+
+test("a weak curated match says why it is here, in one line of 105 characters or less", () => {
+  assert.equal(whyHere(88, "The small sweet spot asks a lot of you.", "Not aimed at intermediates"), "Top-rated, but the small sweet spot asks a lot of you; not aimed at intermediates.");
+  assert.equal(whyHere(65, null, "Not aimed at beginners"), "Our pick, but not aimed at beginners for these picks.");
+  assert.ok(whyHere(90, "x".repeat(120), "Could suit intermediates").length <= 105);
+  assert.equal(whyHere(90, "Flat smashes need your own arm; it gives up some power.", "✕ Not aimed at intermediates"),
+    "Top-rated, but flat smashes need your own arm; not aimed at intermediates.");
 });
 
 test("shape rule: no diamond in the engine's top 6 for control or balance at beginner and intermediate", () => {
@@ -90,4 +99,15 @@ test("an expert level leads the level line; the brand's pro label follows and ne
   const v = fitVerdict({ style: "any", level: "intermediate", arm: false }, f);
   assert.match(JSON.stringify(v), /Level: we rate it intermediate to advanced; the brand says professional\./);
   assert.doesNotMatch(JSON.stringify(v), /A pro line/);
+});
+
+test("rankings pages from curated lists: interleaved by rank, no repeats, newest model of each kept", async () => {
+  const { curatedRanking } = await import("../lib/curated");
+  const fam = (s: string) => ({ key: s.replace(/-20\d\d$/, ""), year: Number(s.slice(-4)) });
+  const power = curatedRanking("best-power-padel-rackets", fam)!;
+  assert.deepEqual(power, curated.lists["power/advanced/arm-off"].map(e => e.slug), "power = the owner's power · advanced list");
+  const ctrl = curatedRanking("best-control-padel-rackets", fam)!, a = curated.lists["control/intermediate/arm-off"], b = curated.lists["control/advanced/arm-off"];
+  assert.equal(ctrl[0], a[0].slug); assert.equal(ctrl[1], b[0].slug === a[0].slug ? a[1].slug : b[0].slug);
+  assert.equal(new Set(ctrl).size, ctrl.length);
+  assert.equal(curatedRanking("best-padel-rackets", fam), null, "unmapped pages keep their own order");
 });
