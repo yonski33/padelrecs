@@ -16,7 +16,7 @@ import { photoOf, shortDate } from "../rankings/rankings-v2";
 import { skinContext } from "./context";
 import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
 import { scoreState } from "../../lib/score-view";
-import { NewPill, EarlyTag } from "../score-tags";
+import { NewPill } from "../score-tags";
 
 /** A SkinRecs ranking in the owner's beauty design (Claude Design "SkinRecs rankings", 2026-11-16): the lists as tabs, a big
  *  serif title, a "find my match" nudge to the home's quick match, the #1 as a card, the rest as rows with "best for" (from who
@@ -94,7 +94,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
           {x.line && <span className="rb-line">{x.line}</span>}
           {x.best && <span className="rb-best">{`best for ${x.best}`}</span>}
         </div>
-        {scoreState(x.judged) === "new" ? <span className="rb-scw col"><NewPill n={x.judged}/></span> : <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score{scoreState(x.judged) === "early" && <EarlyTag/>}</small></span>}
+        {scoreState(x.judged) === "new" ? <span className="rb-scw col"><NewPill n={x.judged}/></span> : <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score</small></span>}
         {x.shop ? <a className="rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
       </li>)}</ol>}
       <Link className="rb-all" href={RANKINGS_PATH}>see all rankings →</Link>

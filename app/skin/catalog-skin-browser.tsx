@@ -12,7 +12,7 @@ import { attrProfileFor } from "../../lib/attr-profile";
 import { niche } from "../../lib/niche";
 import { FEW_VOICES, type AttrChoice } from "../../lib/attr-score";
 import { scoreState } from "../../lib/score-view";
-import { NewPill, EarlyTag } from "../score-tags";
+import { NewPill } from "../score-tags";
 
 export const CATALOG_PAGE = 20;
 /** The filters an address holds (anything else in it is kept as it is: ?q=, ?look=). */
@@ -119,7 +119,7 @@ export function CatalogSkinBrowser({ pack, f: first, base, fixedType }: { pack: 
           </span>
           <span className="bc-score">
             {matching ? <span className={`bc-sc pct ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : "lo"}`} title="How well it fits your skin, from what people with your skin type said.">{pct === null ? "—" : `${pct}%`}</span>
-              : scoreState(card.pos + card.mix + card.neg) === "new" ? <NewPill n={card.pos + card.mix + card.neg}/> : <span className={`bc-sc ${x.signal === null ? "none" : x.signal >= 88 ? "hi" : x.signal >= 82 ? "mid" : "lo"}`} title="User score: not a % of happy users. It blends how much people like it with how many have weighed in.">{x.signal ?? "—"}{scoreState(card.pos + card.mix + card.neg) === "early" && <EarlyTag/>}</span>}
+              : scoreState(card.pos + card.mix + card.neg) === "new" ? <NewPill n={card.pos + card.mix + card.neg}/> : <span className={`bc-sc ${x.signal === null ? "none" : x.signal >= 88 ? "hi" : x.signal >= 82 ? "mid" : "lo"}`} title="User score: not a % of happy users. It blends how much people like it with how many have weighed in.">{x.signal ?? "—"}</span>}
             {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}
             <small>{matching ? (pct === null ? "too few reports" : "match") : `${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</small>
           </span>
