@@ -48,3 +48,16 @@ test("v11c build row: padel weight chip after balance, hidden without a weight; 
   assert.equal(d.at(-1)!.title, "up to 175 g");
   [...p, ...d].forEach(x => assert.ok(x.line.length <= 105, x.line));
 });
+
+test("paddle build cards follow the material and the bars (Grok audit #13 #19 #25)", () => {
+  const hush = V11_SITES.pickleball.builds({ core: "16 mm", surface: "eTPU foam face" }, 3, { pop: 5 });
+  assert.equal(hush.find(c => c.key === "face")?.title, "Foam face");
+  assert.ok(!/less pop/.test(hush[0].line), hush[0].line);
+  assert.match(V11_SITES.pickleball.builds({ core: "12.7, 14 or 16 mm" })[0].line, /three thicknesses/);
+  assert.ok(!/comfort/.test(V11_SITES.pickleball.builds({ surface: "Kevlar" }, 3)[0].line));
+  assert.equal(V11_SITES.pickleball.builds({ surface: "Premium composite" }).length, 0);
+});
+test("a face with no material named gets no card; three thicknesses read as a list", () => {
+  assert.equal(V11_SITES.pickleball.builds({ surface: "Proprietary raw composite" }).length, 0);
+  assert.equal(V11_SITES.pickleball.builds({ core: "12.7, 14 or 16 mm" })[0].title, "12.7, 14 or 16 mm core");
+});

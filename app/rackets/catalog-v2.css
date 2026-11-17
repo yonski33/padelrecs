@@ -218,6 +218,8 @@ body:has(main.ct2) { background: #fbfaf6; }
   }
 }
 
+/* "one per model" beside the catalogue count (older versions have their own pages). */
+.ct2 .ct2-per { font: 12px var(--mono); color: var(--mute); }
 /* Tap targets on phones (UX audit 2026-11-17): the filters badge, compare switch and sort pills at least 34px tall. */
 @media (max-width: 760px) {
   .ct2 .ct2-badge, .ct2 .ct2-sort .ct2-cmp, .ct2 .ct2-sort a { display: inline-flex; align-items: center; min-height: 34px; box-sizing: border-box; }

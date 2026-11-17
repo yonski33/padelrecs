@@ -52,6 +52,9 @@ export type EngineProfile = {
   /** "Any" style: the style term is the product's quality Q instead of a flat 0.5. */ anyByQuality?: boolean;
   /** Display anchors per style pick (and "any"), not pooled over the styles. */ anchorsPerStyle?: boolean;
   /** Any hard reason (level, arm, feel) holds the % at this (under the "Worth a look" cut, so never Strong fit). */ hardCap?: number;
+  /** Trait dots: the bottom share of the catalogue's ranking per trait reads 2 (PickleballRecs); unset, 3 is the floor. */ lowShare?: number;
+  /** Trait dots follow the page's own clear claims (lib/page-bars.ts, app/match-context.ts; PickleballRecs). */ pageBars?: boolean;
+  /** A product's own style (its bars) scores at least its "balance" %, the opposite style at most (lib/home-rank.ts). */ styleOrder?: boolean;
   /** One row per model: the best-scoring eligible member, a newer one winning when it is within this many % points. Unset:
    *  the newest year that passes. */ familyBestWithin?: number;
   /** Ties on the cautious score go to the product with more reports. */ tieByReports?: boolean;
@@ -242,7 +245,10 @@ export function engineTraitDots(items: { id: string; n: number; e: EngineFacts }
     const worst = new Set((p.complaint ?? COMPLAINT_DOTS).includes(t) ? order.filter(x => vo(x, t).minus > vo(x, t).plus && vo(x, t).minus >= MIN_COMPLAINT_VOICES).slice(-Math.max(1, Math.round(0.06 * items.length))).map(x => x.id) : []);
     for (const x of items) {
       const i = rank.get(x.id)!, { plus, minus } = vo(x, t), b = base.get(x.id);
-      let dots = worst.has(x.id) ? 2 : i < n5 ? 5 : i < n4 ? 4 : 3;
+      // A site's low band (lowShare, PickleballRecs Grok audit 2026-11-17): the bottom of the catalogue's ranking reads 2, so
+      // the bars span the catalogue like 4 and 5 do ("less than most"), not a floor of 3 on every trait.
+      const low = p.lowShare !== undefined && i >= items.length - Math.round(p.lowShare * items.length);
+      let dots = worst.has(x.id) ? 2 : i < n5 ? 5 : i < n4 ? 4 : low ? 2 : 3;
       if (b && t === "control" && b.axis <= p.labelBounds[2] && minus <= plus) dots = Math.max(dots, 4);
       if (b && t === "power" && b.axis >= p.labelBounds[3] && minus <= plus) dots = Math.max(dots, 4);
       const within = 1 - i / Math.max(1, items.length - 1);

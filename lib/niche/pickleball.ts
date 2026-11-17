@@ -172,8 +172,9 @@ export const pickleball: Niche = {
   // Same bar as padel (owner via the recs PM 2026-11-15: "fit bar = 6, same rules as padel"); under 15 the verdict and % say
   // they rest on fewer reports.
   fit: { minReports: 6, fewReports: 15,
-    // Same gate as padel: with a level picked, only paddles whose suits score reaches the bar are candidates.
-    levelGate: { beginner: 60, intermediate: 50, advanced: 50 },
+    // One level source (Grok audit 2026-11-17, owner rule): the gate is the page's own "Generally best for" bar (lib/fit-verdict
+    // SUITS_OK 62), so a level the page doesn't list is never Worth a look or better (it was 60 / 50 / 50).
+    levelGate: { beginner: 62, intermediate: 62, advanced: 62 },
     // Match audit 2026-11-16: gate on 5+ players or an expert value only; an expert's level reaches the next level at 55, so
     // an "intermediate" paddle stays in advanced lists (it was 45, under the gate).
     gateMinPlayers: 5, expertAdjacentSuits: 55,
@@ -188,7 +189,14 @@ export const pickleball: Niche = {
       // PickleballRecs' own (audit 2026-11-16): fine-tune penalty only; the name only clamps the axis while players have said
       // little (owner 2026-11-16: "weakEvidence"); sore arm demotes 14 mm cores and firm feels a little; spin has its own %.
       finePenalty: 0.35, labelClamp: "weakEvidence", armSpecDemote: { core14: 0.04, firm: 0.03 }, styles: ["control", "balance", "power", "spin"],
-      traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"] } },
+      traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"],
+      // Grok audit 2026-11-17 (owner-approved plan): bars span the catalogue (108 of 178 read "Moderate power" at a floor of 3).
+      // and a bar never reads the opposite of its own page's Why yes / Why not (#8 #9).
+      lowShare: 0.2, pageBars: true,
+      // and a power, control or spin pick needs that bar above 3 for a Strong fit (padel #438, audit #3 #4 #12).
+      styleBarMax: 3,
+      // A paddle's own style never scores under "balance", the opposite style never over it (#15).
+      styleOrder: true } },
   finder: {
     title: "Pickleball Paddle Finder Quiz",
     heading: "Which pickleball paddle is right for you?",
@@ -234,15 +242,16 @@ export const pickleball: Niche = {
   topLists: [
     { slug: "best-pickleball-paddles", label: "Best overall", title: "Best Pickleball Paddles", minReviews: 12,
       intro: "The paddles players are most consistently happy with." },
+    // Grok audit 2026-11-17 (#3 #4 #12): a trait list takes only paddles whose own bar for it is 4+.
     { slug: "best-power-pickleball-paddles", label: "Best for power", title: "Best Pickleball Paddles for Power", minReviews: 10,
       intro: "Paddles players keep describing as powerful: easy power and pop.",
-      trait: { tags: ["easy power", "great pop"], minShare: 0.2, noun: "power or pop" } },
+      trait: { tags: ["easy power", "great pop"], minShare: 0.2, noun: "power or pop", bar: { key: "power", min: 4 } } },
     { slug: "best-control-pickleball-paddles", label: "Best for control", title: "Best Pickleball Paddles for Control", minReviews: 10,
       intro: "Paddles players praise for control, dinks and resets.",
-      trait: { tags: ["good control", "great for dinks"], minShare: 0.2, against: ["hard to control"], noun: "control or dinks" } },
+      trait: { tags: ["good control", "great for dinks"], minShare: 0.2, against: ["hard to control"], noun: "control or dinks", bar: { key: "control", min: 4 } } },
     { slug: "best-spin-pickleball-paddles", label: "Best for spin", title: "Best Pickleball Paddles for Spin", minReviews: 10,
       intro: "Paddles players say put lots of spin on the ball.",
-      trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin" } },
+      trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin", bar: { key: "spin", min: 4 } } },
     // For a kind of player (owner's mock, via the recs PM 2026-11-16): the home quick match's order for the pick, with the
     // level gate for beginners. No "under $100" list: we hold no prices.
     { slug: "best-pickleball-paddles-for-tennis-elbow", label: "Best for tennis elbow", title: "Best Pickleball Paddles for Tennis Elbow", minReviews: 10,

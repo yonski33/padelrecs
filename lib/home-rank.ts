@@ -6,7 +6,7 @@ import { curatedEntries, CURATED_MIN } from "./curated";
 import type { Finder } from "./niche/types";
 import { hardOnLevelOrArm } from "./fit-verdict";
 import { quickMatch, isDefault, passesLevel, ARM_OPTION, type QuickChoice, type LevelEvidence, type LevelGate, type Level } from "./quick-match";
-import { fitVerdict, styleLean, MIN_FIT_REPORTS, type FitFacts, type FitVerdict } from "./fit-verdict";
+import { fitVerdict, styleLean, styleOf, MIN_FIT_REPORTS, type FitFacts, type FitVerdict } from "./fit-verdict";
 import { matchFit, spreadMatch } from "./match-score";
 import { fineFit } from "./fine-tune";
 import type { FinderProduct } from "./finder";
@@ -99,9 +99,17 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       if (cap !== null) pct = squeeze(pct, cap);
       // A curated pick keeps its place, and its % is its real match (owner 2026-11-17: "the % shown is the real match").
       // A power pick on a racket with an Attack bar of 3 or less (or control on a Control bar of 3 or less) is never a Strong fit:
-      // its own page says it gives up that style (audit 2026-11-17, the Ultimate Tour X).
-      const sd = x.it.facts.styleDots, bar = choice.style === "power" ? sd?.power : choice.style === "control" ? sd?.control : undefined;
+      // its own page says it gives up that style (audit 2026-11-17, the Ultimate Tour X). PickleballRecs' spin pick: its Spin bar.
+      const sd = x.it.facts.styleDots, bar = choice.style === "power" ? sd?.power : choice.style === "control" ? sd?.control : choice.style === "spin" ? sd?.spin : undefined;
       if (p.styleBarMax !== undefined && bar !== undefined && bar <= p.styleBarMax) pct = Math.min(pct, p.cuts.good - 1);
+      // A product's own style scores at least what "balance" gives it, and the opposite style no more (styleOrder, Grok pickleball
+      // audit 2026-11-17 #15: Spitfire Elongated power 74 under balance 76; a soft, low-pop paddle higher for power than balance).
+      if (p.styleOrder && (choice.style === "power" || choice.style === "control")) {
+        const own = styleOf(x.it.facts), bal = engineView(items, { ...choice, style: "balance" }, gate, p).get(x.id)?.pct;
+        // Still under Strong fit where its own bar for the pick is 3 or less (styleBarMax, above).
+        if (bal !== undefined && own === choice.style) pct = Math.max(pct, Math.min(bal, cap ?? 99, p.styleBarMax !== undefined && bar !== undefined && bar <= p.styleBarMax ? p.cuts.good - 1 : 99));
+        else if (bal !== undefined && own && own !== "balance" && own !== choice.style) pct = Math.min(pct, bal);
+      }
       const i = curIx.get(x.id);
       // The owner's curated #1–3 are meant as perfect fits (owner 2026-11-17): at least a Strong fit, in their order.
       if (i !== undefined && p.curatedTop?.[i] !== undefined) pct = Math.max(pct, p.curatedTop[i]);

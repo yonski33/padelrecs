@@ -78,6 +78,10 @@ import { NewPill } from "../../score-tags";
  *  for you?"; picks from the URL (?style=&level=&arm=1, the same as the home's quick match) get a verdict from
  *  lib/fit-verdict.ts. Shown for products with a quick-take block; the canonical stays the bare URL. */
 
+/** The trait a "try X instead" line names, by its words (first match wins). */
+const ALT_TRAITS: [string, RegExp][] = [["power", /\b(power|harder|hits? hard|pace|punch|put-aways?)\b/i], ["pop", /\bpop(py)?\b/i], ["spin", /\b(spin|grit|bite)\b/i],
+  ["forgiveness", /\b(forgiv\w*|sweet spot|mishits?)\b/i], ["arm", /\b(arm|elbow|comfort\w*)\b/i], ["control", /\b(control\w*|touch|softer|plush|muted|dwell)\b/i],
+  ["speed", /\b(quick\w*|hands|faster)\b/i]];
 /** Raw markdown left in stored words ("**NOX AT10 Pro Cup Soft 2026**", audit 2026-11-17 #29): the words without the marks. */
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "");
 function Rich({ text }: { text: string }) {
@@ -268,7 +272,21 @@ export default async function RacketFit(props: {
     yes: c.yes.filter(i => !contradicts(`${i.title}. ${i.t}`, dotsNow)).map(i => ({ ...i, title: padelWords(i.title), t: padelWords(i.t) })),
     no: c.no.filter(i => !contradicts(`${i.title}. ${i.t}`, dotsNow)).map(i => ({ ...i, title: padelWords(i.title), t: padelWords(i.t) })) };
   const pageForCard = clean(pageContent(props.slug));
-  const cardData = cardContent(props.slug) ?? (pageForCard ? cardFromPage(pageForCard) : null);
+  const cardData0 = cardContent(props.slug) ?? (pageForCard ? cardFromPage(pageForCard) : null);
+  // A "try X instead" link holds only when X's own bar beats this one on the trait the line names, and X isn't held back for the
+  // address's level or sore arm (Grok pickleball audit 2026-11-17, #14: "hits much harder" at the same Power 3/5). Padel keeps
+  // its own page's rules.
+  const altOk = (alt: { slug: string; t: string }) => {
+    if (PADEL) return true;
+    const r = ctx.data.rackets.find(x => x.slug === alt.slug); if (!r) return false;
+    const k = ALT_TRAITS.find(([, re]) => re.test(alt.t))?.[0], mine = tr.scores?.[k as Trait]?.dots, theirs = ctx.traits(r.id).scores?.[k as Trait]?.dots;
+    if (k && mine !== undefined && theirs !== undefined && theirs <= mine) return false;
+    const f = ctx.facts(r.id), lv = props.choice.level;
+    if (lv === "beginner" && f.hard?.beginner) return false;
+    if (props.choice.arm && f.hard?.arm) return false;
+    return !(lv && f.suits && f.suits[lv] < SUITS_OK);
+  };
+  const cardData = cardData0 && { ...cardData0, catches: cardData0.catches.map(c => c.alt && !altOk(c.alt) ? { ...c, alt: undefined } : c) };
   const card = cardData ? { ...cardData, links: Object.fromEntries(cardData.catches.flatMap(c => c.alt ? [c.alt.slug] : []).flatMap(slug => {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
@@ -359,7 +377,7 @@ export default async function RacketFit(props: {
   const tip = qt?.tips.find(t => t.reports.length >= 2);
   // Advice only (owner rule: no "N players said" inside advice): the tip's sentences that don't count people, ≤ 105 characters.
   const tipText = tip ? plain(tip.text).split(/(?<=[.!?])\s+/).filter(x => !/\b(players?|reviewers?|people|testers?)\b/i.test(x)).join(" ").trim() : "";
-  const builds = V11_SITE ? V11_SITE.builds(racketOf(props.racketId), tr.scores?.arm?.dots) : [];
+  const builds = V11_SITE ? V11_SITE.builds(racketOf(props.racketId), tr.scores?.arm?.dots, { pop: tr.scores?.["pop" as Trait]?.dots, power: tr.scores?.power?.dots }) : [];
   // The thin-spot note was written about the quick take's own compare cards; v11 shows other cards (audit 2026-11-17, #13:
   // "the ST4 card rests on few players" with no ST4 card on the page). A note about cards that aren't shown is left out.
   const cardWords = (qt?.compare?.cards ?? []).filter(c => !v11Cards.some(v => v.href.split(/[?#]/)[0].endsWith(`/${c.slug}`)))
