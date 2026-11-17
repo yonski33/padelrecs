@@ -243,8 +243,14 @@ const keptContext = kept(async () => {
         m[k] = { ...cur, dots: d[k].dots, score: d[k].score }; } }
     // The page's own clear claims (engine pageBars, PickleballRecs Grok audit 2026-11-17): a bar never reads the opposite of
     // its Why yes / Why not (lib/page-bars.ts). Hand-set and expert dots still win.
+    // An expert 3 or less gives way to 4 only where the page claims the strength and the reviews (the auto dots) say 4+ too
+    // (owner 2026-11-17: "Raise to 4" for the 9 paddles in the Grok audit, e.g. the Ruby's spin). It only ever raises.
     if (ENGINE.pageBars) for (const id of listed) { const m = traitMap.get(id), ex = overrides.get(id)?.expert ?? {}, page = pageContent(slugOf.get(id) ?? ""); if (!m || !page) continue;
-      for (const k of PAGE_BAR_TRAITS as TraitKey[]) { const cur = m[k]; if (!cur || (cur.set && !(k in ex)) || k in ex) continue;
+      for (const k of PAGE_BAR_TRAITS as TraitKey[]) { const cur = m[k]; if (!cur) continue;
+        if (k in ex) { const auto = traitAuto.get(id)?.[k]?.dots ?? 0;
+          if (cur.dots < 4 && auto >= 4 && pageBar(k, cur.dots, page) >= 4) m[k] = { ...cur, dots: 4, score: 70 };
+          continue; }
+        if (cur.set) continue;
         const dots = pageBar(k, cur.dots, page); if (dots !== cur.dots) m[k] = { ...cur, dots, score: (dots - 1) * 20 + 10 }; } }
   }
 
