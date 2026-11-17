@@ -15,6 +15,8 @@ export type LevelSources = { maker?: Band & { words: string; url: string }; yout
 export type FitFacts = {
   /** Every stored report on the racket. */
   reports: number;
+  /** The product's hard-filter facts (fit-config quick.factValues), for a main filter's check (SimRacingRecs: platform). */
+  ff?: Record<string, string[]>;
   /** Tag mentions: good tags counted from positive and mixed reports only (like the finder), the rest from all. */
   tags: Record<string, number>;
   /** Quick-take level band (from player reports), 0 beginner … 2 advanced. */
@@ -227,8 +229,12 @@ function fineCheck(c: QuickChoice, f: FitFacts): Check {
 export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT, asKind?: FitVerdict["kind"]): FitVerdict {
   // A hard-filter arm pick the product fails (SimRacingRecs: PC only, console picked) is "no" whatever the engine's % says
   // (Grok audit 2026-11-17 #1: the fit check said "Strong fit" for PC-only gear with console ticked).
-  const as = cfg.quick?.armFilter && c.arm && f.hard?.arm && asKind !== "thin" ? "no" : asKind;
-  const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
+  // A main filter's pick the product lacks (SimRacingRecs: PlayStation picked, an Xbox / PC base): "no", with the reason.
+  const mainMiss = cfg.quick?.filters?.find(q => q.main && c.ff?.[q.key] && f.ff && !f.ff[q.key]?.includes(c.ff[q.key]));
+  const as = (cfg.quick?.armFilter && c.arm && f.hard?.arm) || mainMiss ? (asKind === "thin" ? asKind : "no") : asKind;
+  const missCheck: Check | null = mainMiss ? { level: "hard", short: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}`,
+    reason: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}: it works on ${mainMiss.options.filter(([v]) => f.ff![mainMiss.key]?.includes(v)).map(([, l]) => l).join(" and ") || "other platforms"}.` } : null;
+  const checks = [...(missCheck ? [missCheck] : []), styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;

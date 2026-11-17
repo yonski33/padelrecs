@@ -32,6 +32,7 @@ import type { QuickChoice } from "../lib/quick-match";
 
 import { fitConfigFor } from "../lib/fit-config";
 import { discRules, type SiteRules } from "../lib/discgolf-hard";
+import { SUITS_OK } from "../lib/fit-verdict";
 import { paddleRules } from "../lib/pickleball-hard";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
@@ -114,7 +115,8 @@ const keptContext = kept(async () => {
     const noArm = cfg.quick?.armFilter && cfg.quick.factValues && cfg.words?.hardArm ? (() => { const x = data.rackets.find(y => y.id === id);
       return !!x && !cfg.quick!.factValues!(x, ownerFacts.get(id) ?? {})[cfg.quick!.armFilter!.key]?.includes(cfg.quick!.armFilter!.value); })() : false;
     const hard = noArm ? { ...(RULES && rulesOf(id, !su).hard), arm: cfg.words!.hardArm } : RULES && rulesOf(id, !su).hard, warn = RULES && rulesOf(id, !su).warn, lean = RULES && rulesOf(id, !su).lean;
-    return { reports, tags, ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    const ffRow = cfg.quick?.factValues && cfg.quick.filters?.some(q => q.main) ? data.rackets.find(y => y.id === id) : undefined;
+    return { reports, tags, ...(ffRow ? { ff: cfg.quick!.factValues!(ffRow, ownerFacts.get(id) ?? {}) } : {}), ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -218,6 +220,9 @@ const keptContext = kept(async () => {
       // A site's level floor (DiscGolfRecs: a speed ≤ 7 disc suits advanced players at least 50, lib/discgolf-hard.ts).
       const floor = RULES && rulesOf(id).suitsFloor;
       if (floor) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.max(su[l], floor[l] ?? 0);
+      // A product fact that caps its levels (SimRacingRecs: torque): a level it can't suit stays under the bar (fit-config levelCap).
+      const capRow = cfg.levelCap && data.rackets.find(r => r.id === id), cap = capRow ? cfg.levelCap!(capRow, ownerFacts.get(id) ?? {}) : null;
+      if (cap) for (const l of ["beginner", "intermediate", "advanced"] as const) if (cap[l] === false) su[l] = Math.min(su[l], SUITS_OK - 1);
       // The owner's level tiers (lib/level-tiers.ts): the last word on intermediate+ and truly advanced rackets.
       const tier = levelTier(niche.id, name, su);
       if (tier) { suitsOf.set(id, { suits: applyTier(tier, su), disagree: null }); continue; }

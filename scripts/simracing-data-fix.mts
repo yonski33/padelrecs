@@ -31,7 +31,7 @@ for (const f of fixes) {
   if (r.length !== 1) { bad.push(`${f.name}: ${r.length} matches`); continue; }
   const p = r[0], cols: Partial<Record<Col, string | null>> = {};
   for (const [k, v] of Object.entries(f.set ?? {}) as [Col, string | null][]) if ((p[k] ?? null) !== v) cols[k] = v;
-  if (f.note) { const cur = cols.surface ?? p.surface; if (!cur?.includes(f.note)) cols.surface = cur ? `${cur}; ${f.note}` : f.note; }
+  if (f.note) { const cur = cols.surface ?? p.surface; if (!cur?.toLowerCase().includes(f.note.toLowerCase())) cols.surface = cur ? `${cur}; ${f.note[0].toLowerCase()}${f.note.slice(1)}` : f.note; }
   if ((cols.surface?.length ?? 0) > 200) { bad.push(`${f.name}: notes over 200 chars`); continue; }
   // The owner row holds the plain platform list ("PC, Xbox"), so it gets the new column's platforms in that form.
   const norm = cols.core === undefined ? undefined : platformsOf(cols.core)?.join(", ");

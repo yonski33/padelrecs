@@ -13,6 +13,7 @@
 // (lib/attr-profile-simracing.ts) keeps the same keys.
 import type { FitConfig, TraitDef } from "./fit-config";
 import type { EvidenceRow } from "./evidence";
+import capOverrides from "../db/level-cap/simracing.json";
 import { platformsOf, torqueOf } from "./attr-profile-simracing";
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -104,6 +105,7 @@ export const SIMRACING_FIT: FitConfig = {
     levelStyle: { beginner: "control", intermediate: "power", advanced: "power" },
     catalogLead: ["gear", "rig", "drive"], catalogOneOf: ["gear", "rig"], useWord: "feels", specLabels: shape => SPEC_LABELS[shape ?? ""] ?? {},
     filters: [
+      { key: "platform", label: "I race on", main: true, options: [["ps", "PlayStation"], ["xbox", "Xbox"], ["pc", "PC"]] },
       { key: "drive", label: "Drive type", kinds: ["wheelbase"], options: [["direct", "direct"], ["belt", "belt"], ["hybrid", "hybrid"], ["gear", "gear"]] },
       { key: "budget", label: "Budget", options: [["$", "$ budget"], ["$$", "$$ mid"], ["$$$", "$$$ high-end"]] },
       { key: "rim", label: "I mostly race", kinds: ["wheel"], options: [["gt", "GT"], ["formula", "formula"], ["rally", "rally"], ["round", "road / drift (round)"]] },
@@ -111,6 +113,7 @@ export const SIMRACING_FIT: FitConfig = {
     factValues: simracingFacts,
   },
   evidenceAdapter: simracingEvidence,
+  levelCap: simracingLevelCap,
   expertAlias: { control: "suits_beginner", power: "suits_intermediate" },
 };
 
@@ -120,6 +123,9 @@ export function simracingFacts(r: { shape: string | null; balance: string | null
   const plat = platformsOf(typeof owner.platform === "string" ? owner.platform : r.core);
   // A cockpit or stand holds any console's gear (Grok audit 2026-11-17 #6: "console" emptied the cockpits).
   if (plat?.some(p => p !== "PC") || r.shape === C) o.con = ["yes"];
+  // The platform pick (PC / PlayStation / Xbox, audit #2): a cockpit or stand works with all of them.
+  const P = r.shape === C ? ["pc", "ps", "xbox"] : (plat ?? []).map(p => ({ PC: "pc", PlayStation: "ps", Xbox: "xbox" } as Record<string, string>)[p]).filter(Boolean);
+  if (P.length) o.platform = P;
   // A product the maker no longer sells (Notes "Discontinued: …"): out of the match, lists and "works with" (audit #8).
   if (/^Discontinued\b/i.test(r.surface ?? "")) o.gone = ["yes"];
   const ty = (r.balance ?? "").toLowerCase(), nm = r.name.toLowerCase();
@@ -146,4 +152,16 @@ export function simracingEvidence(rows: EvidenceRow[]): EvidenceRow[] {
     }
   }
   return out;
+}
+
+/** A wheelbase's levels from its torque (PM / Grok audit 2026-11-17 #14): under 6 Nm new only; 6–12 Nm new and serious; 12 Nm
+ *  and up serious and all-in. The owner sheet's torque first, else the Torque column. An override needs a written reason
+ *  (db/level-cap/simracing.json: { slug: { levels: [...], reason } }). Other types and unknown torque: no cap. */
+export function simracingLevelCap(r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>): Partial<Record<"beginner" | "intermediate" | "advanced", boolean>> | null {
+  const o = (capOverrides as Record<string, { levels: string[]; reason: string }>)[r.slug];
+  if (o?.reason) return { beginner: o.levels.includes("beginner"), intermediate: o.levels.includes("intermediate"), advanced: o.levels.includes("advanced") };
+  if (r.shape !== WB) return null;
+  const nm = typeof owner.torque_nm === "number" ? owner.torque_nm : torqueOf(r.weight);
+  if (nm === null || nm === undefined) return null;
+  return nm < 6 ? { beginner: true, intermediate: false, advanced: false } : nm < 12 ? { beginner: true, intermediate: true, advanced: false } : { beginner: false, intermediate: true, advanced: true };
 }
