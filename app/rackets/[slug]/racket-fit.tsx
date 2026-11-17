@@ -399,7 +399,7 @@ export default async function RacketFit(props: {
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
                 <span className="v11-sm"><b>{SCORE_CAP}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
-                  <small>{`${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
+                  <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
               {/* Compare mode on the catalogue with this one already picked (UX audit 2026-11-17). */}
               <CompareWith href={`${catalogPath}?compare=1`} pick={{ id: props.racketId, slug: props.slug, name: props.name, pic: props.photo }}/>

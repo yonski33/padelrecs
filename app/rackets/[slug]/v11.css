@@ -268,3 +268,5 @@
   .rf .v11-rtgrid { grid-template-columns: 1fr; }
   .rf .rv-pk { margin-left: 0; flex-basis: 100%; }
 }
+/* Both span the body column (it is a flex row of sections). */
+.rf .v11-rt, .rf .v11-decide { flex: 1 1 100%; width: 100%; box-sizing: border-box; }

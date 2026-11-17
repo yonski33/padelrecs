@@ -141,7 +141,7 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
   return <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
     {!verdict ? <div className="rf-ask">
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
-        <p>{`Two taps and we'll check it against ${rated - yt} player ${rated - yt === 1 ? "review" : "reviews"}${yt > 0 ? ` + ${yt} YouTube` : ""}.`}</p></div>
+        <p>{`Two taps and we'll check it against ${[rated - yt > 0 || !yt ? `${rated - yt} player ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
       <AskPicks onPick={c => set({ choice: c, picked: true })}/>
       {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
