@@ -8,6 +8,8 @@ import { homePayload } from "../home-payload";
 import { rankHome, type RankItem } from "../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../lib/rank-seed";
 import { rankList, listTotals, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../../lib/top-lists";
+import { curatedRanking } from "../../lib/curated";
+import { modelFamily } from "../../lib/compare-pairs";
 
 export const topLists = withModelYears(withNicheWindow(niche.topLists ?? [], niche.recentMonths));
 export const listHref = rankingHref;
@@ -30,9 +32,23 @@ const baseOf = sameInputs((data: Catalog, sig: Map<string, Signal>) => {
  *  quick match's candidates for those picks, in its order, so a level pick keeps the level gate. */
 export const rankedLists = cache(async () => {
   const base = await baseLists();
-  if (!topLists.some(l => l.picks) || !niche.finder) return { data: base.data, lists: base.lists };
-  return withPicks(base, (await homePayload()).items);
+  const picked = !topLists.some(l => l.picks) || !niche.finder ? { data: base.data, lists: base.lists } : withPicks(base, (await homePayload()).items);
+  return withCurated(base, picked);
 });
+/** Pages built from the curated lists (db/curated/<site>.json rankings): the curated order, the page's own format. The list's
+ *  trait, filters and age window are the curators' call here, so they don't apply; the review floor still does. */
+const withCurated = (base: Awaited<ReturnType<typeof baseOf>>, picked: { data: Catalog; lists: ReturnType<typeof ranked>[] }) => {
+  const { data, sig } = base, bySlug = new Map(data.listed.map(p => [p.slug, p]));
+  const lists = topLists.flatMap(list => {
+    const order = curatedRanking(list.slug, s => { const p = bySlug.get(s); return p ? { key: modelFamily(p), year: p.year } : null; });
+    if (!order) return picked.lists.filter(l => l.list.slug === list.slug);
+    const ids = order.map(s => bySlug.get(s)!.id);
+    const l = ranked({ ...list, trait: undefined, filters: undefined, maxAgeYears: undefined, modelYearsBack: undefined }, { ...data, listed: data.listed.filter(p => ids.includes(p.id)) },
+      new Map(ids.map((id, i) => [id, ids.length - i])), sig);
+    return l.entries.length >= MIN_LIST_ENTRIES ? [l] : picked.lists.filter(x => x.list.slug === list.slug);
+  });
+  return { data, lists };
+};
 const withPicks = sameInputs((base: Awaited<ReturnType<typeof baseOf>>, items: RankItem[]) => {
   const { data, sig } = base;
   const lists = topLists.flatMap(list => {
