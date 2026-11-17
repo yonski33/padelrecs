@@ -270,3 +270,8 @@
 }
 /* Both span the body column (it is a flex row of sections). */
 .rf .v11-rt, .rf .v11-decide { flex: 1 1 100%; width: 100%; box-sizing: border-box; }
+/* Tap targets on phones (v11c rule: 32px+). */
+@media (max-width: 760px) {
+  .rf .rf-back, .rf .rf-last, .rf .rv-watch, .rf .v11-rt .v11-sh a { display: inline-flex; align-items: center; min-height: 32px; }
+  .rf .v11-others .v11-oname { display: inline-flex; align-items: center; min-height: 32px; }
+}
