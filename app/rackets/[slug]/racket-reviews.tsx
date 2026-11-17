@@ -18,6 +18,7 @@ export type ReviewCard = {
    *  length in minutes when known. */
   video?: string | null; points?: string[]; comment?: boolean; minutes?: number | null;
   /** How long the writer has played it ("6–12 months"), when given. */ played?: string | null;
+  /** What this review mentions (its stored tags), for "What players mention". */ tags?: string[];
   url?: string | null; source?: string | null;
 };
 
@@ -30,12 +31,14 @@ const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as
 const PLAIN: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for me" };
 
 export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words, v11c }: { /** v11c (owner 2026-11-17): "What players say",
-   *  the new-this-week dot, a one-row "Played it?" (dots, no emoji; a few words optional) and the thin state. */ v11c?: { fresh: number; thin: boolean }; racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
+   *  the new-this-week dot, a one-row "Played it?" (dots, no emoji; a few words optional) and the thin state. */ v11c?: { fresh: number; thin: boolean; /** Each mention tag's tone: praise or complaint. */ tone?: Record<string, "pos" | "neg" | "neutral"> }; racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
   /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null };
   /** Another site's words (SkinRecs): the profile chips ("I have" dry / oily…), the score's name, the composer's title, who the
    *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
   const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: "players", peopleTab: "players" };
   const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
+  // v11c filters (owner 2026-11-17, the approved mock): a verdict from the vote bar, a tag from "What players mention".
+  const [vf, setVf] = useState<Verdict | null>(null), [tf, setTf] = useState<string | null>(null);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<string | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
   // A nickname fitting the site, filled in by default (owner 2026-11-15: like the old card, e.g. "SteadyVolley482"): the same one
@@ -49,7 +52,14 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     window.addEventListener("rv-verdict", pick);
     return () => window.removeEventListener("rv-verdict", pick);
   }, []);
-  const list = cards.filter(c => tab === "all" || (tab === "youtube" ? c.kind === "youtube" : c.kind === "player"));
+  const list = cards.filter(c => (tab === "all" || (tab === "youtube" ? c.kind === "youtube" : c.kind === "player"))
+    && (!vf || c.verdict === vf) && (!tf || (c.tags ?? []).includes(tf)));
+  // "What players mention": each tag's count is the number of these cards that mention it, so a tap shows exactly that many
+  // (with the verdict and tab filters off); fewer than 5 mentions, no tag.
+  const MIN_MENTIONS = 5;
+  const mentions = v11c ? [...cards.reduce((m, c) => { for (const t of new Set(c.tags ?? [])) m.set(t, (m.get(t) ?? 0) + 1); return m; }, new Map<string, number>())]
+    .filter(([, n]) => n >= MIN_MENTIONS).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])) : [];
+  const toneOf = (t: string) => v11c?.tone?.[t] ?? "neutral";
 
   async function post() {
     if (!verdict || busy) return;
@@ -82,8 +92,17 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     </div>
     {mood && rated > 0 && <div className="rv-mood v11c">
       {mood.score != null && <span className="rv-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}><b className={scoreBox(mood.score) || "plain"}>{mood.score}</b>{W.score}</span>}
-      <span className="rv-mbar"><span className="rf-sbar" role="img" aria-label={`${mood.pos} positive, ${mood.mix} mixed, ${mood.neg} negative`}><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>
-        <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated`}</small></span></div>}
+      {/* The vote bar is the verdict filter (owner 2026-11-17): tap a colour to show only those reviews, tap again to clear. */}
+      <span className="rv-mbar"><span className="rv-vbar" role="group" aria-label="Show reviews by verdict">{([["positive", mood.pos, "p"], ["mixed", mood.mix, "m"], ["negative", mood.neg, "n"]] as const).map(([k, n, cls]) =>
+        n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
+          onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
+        <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
+    <div className={`rv-body${mentions.length ? " side" : ""}`}>
+    {mentions.length > 0 && <aside className="rv-ment" aria-label={`What ${W.people} mention`}>
+      <div className="rv-menth"><b>{`What ${W.people} mention`}</b>{tf && <button type="button" className="rv-clear" onClick={() => setTf(null)}>clear</button>}</div>
+      <div className="rv-mchips">{mentions.map(([t, n]) => <button key={t} type="button" className={`rv-mchip ${toneOf(t)}`} aria-pressed={tf === t}
+        onClick={() => { setTf(tf === t ? null : t); setShown(PAGE); }}>{t}<span>{n}</span></button>)}</div>
+    </aside>}
     <div className="rv-list">
       {posted ? <div className="rv-thanks" role="status"><span>{posted === "words" ? "Thanks, yours will show after a quick check." : "Thanks, your verdict counts."}</span></div>
       : <div id="played" className="rv-played">
@@ -94,9 +113,12 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
           <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
         {error && <p className="rv-err" role="alert">{error}</p>}
       </div>}
-      {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
+      {(vf || tf) && <p className="rv-showing">{`showing ${[vf && VERDICT_PILL[vf], tf && `“${tf}”`].filter(Boolean).join(" · ")} (${list.length}) · `}
+        <button type="button" className="rv-clear" onClick={() => { setVf(null); setTf(null); }}>clear</button></p>}
+      {list.length === 0 && <p className="rv-empty">{vf || tf ? "No reviews like that in this list." : tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
       {list.slice(0, shown).map((c, i) => <LrCard key={c.id} c={c} i={i}/>)}
       {!v11c.thin && list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>{`show ${list.length - shown} more reviews ↓`}</button>}
+    </div>
     </div>
   </>;
   return <>

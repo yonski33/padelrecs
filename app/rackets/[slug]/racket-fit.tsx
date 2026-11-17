@@ -262,7 +262,7 @@ export default async function RacketFit(props: {
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const dated: { at: string; card: ReviewCard }[] = [
-    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
+    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, tags: r.tags, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
     // One card per channel (lib/youtube-pick.ts): its video about this racket alone where there is one; every row still counts.
     ...onePerChannel(ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => {
@@ -270,7 +270,7 @@ export default async function RacketFit(props: {
       // Our own summaries speak padel ("sweet spot"); a player's verbatim words stay as they wrote them.
       const text = unmd(e.summary ? (PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : (!english && e.excerptTranslation) || e.excerpt || "");
       const verbatim = !e.summary && english && !!e.excerpt;
-      const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl };
+      const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [] };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
         ? { ...base, kind: "youtube", who: e.sourceName, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? (V11 ? sentences(text) : sentences(text).slice(0, 4)) : [text] }
         : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
@@ -482,7 +482,7 @@ export default async function RacketFit(props: {
 
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
           <section id="reviews" className="rv">
-            <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10 } : undefined}
+            <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
           </section>
 
