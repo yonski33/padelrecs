@@ -5,6 +5,8 @@
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { whyHere } from "../lib/curated";
 import { useEffect, useState, type ReactNode } from "react";
+import { scoreState } from "../lib/score-view";
+import { NewPill, EarlyTag } from "./score-tags";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
 import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
@@ -119,13 +121,14 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm, low }, i) => {
         const r = cards[id], sig = signalOf(id);
         if (!r) return null; // a row without its card (never expected): skip it rather than fail the page
+        const st = scoreState(r.judged);
         // A curated pick with a weak match says why it is here, in place of its usual line (owner 2026-11-17).
         // Only a hard reason ("✗ Not aimed at …") joins the line; a soft one ("~ Could suit …") would read as a contradiction.
         const line = low ? whyHere(sig, r.catch, fit?.short && /^[✗✕]/.test(fit.short) ? fit.short : null) : r.line;
         // With picks the match % is the star; the product's own score stays as a small neutral pill under it (owner 2026-11-16).
         // The mockup's after-pick column (owner 2026-11-16): the match % box, "your match", then a small pill with the product's
         // own score, tinted by it like the box (green 85+, yellow 70+). No verdict chip here: the box says it.
-        const scorePill = sig !== null && <span className={`hv2-spill ${tone(sig)}`}><b>{sig}</b>{` ${SCORE_WORD}`}</span>;
+        const scorePill = st === "new" ? <NewPill n={r.judged}/> : sig !== null && <span className={`hv2-spill ${tone(sig)}`}><b>{sig}</b>{` ${SCORE_WORD}`}</span>;
         // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
         const fitWord = fit && fit.kind !== "thin" ? FIT_WORD[fit.kind] : null;
         const chips = [
@@ -140,16 +143,17 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><b className="hv2-rk" aria-hidden="true">{`#${i + 1}`}</b><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
             {line && <span className={`hv2-line${low ? " why" : ""}`}>{line}</span>}
-            {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}</span>
+            {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}
+            {/* "check price" sits with the name and line, as on padel's rows (owner 2026-11-17). */}
+            {r.shop && <a className="hv2-buy" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
           <span className="hv2-sent"><span>{`${r.n.toLocaleString("en-US")} ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
-          {/* Padel's quiet "check price ↗" text link and its score badge (owner 2026-11-16): the Player score until a pick, then the match %. */}
-          <span className="hv2-btnc">{r.shop && <a className="hv2-buy" href={r.shop.url} target="_blank" rel={r.shop.rel}>check price ↗</a>}</span>
+          {/* Its score badge (owner 2026-11-16): the Player score until a pick, then the match %. */}
           {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE}
             aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
             <b>{pct !== null ? `${pct}%` : "—"}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
-            : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
-            <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
+            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
+            <b>{sig ?? "—"}</b><small>{SCORE_WORD}{st === "early" && <EarlyTag/>}</small></span>}
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
@@ -167,8 +171,8 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
           {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
               <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
-            : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
-              <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
+            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
+              <b>{sig ?? "—"}</b><small>{SCORE_WORD}{st === "early" && <EarlyTag/>}</small></span>}
         </div></li>;
       })}</ol>
       {(olderN > 0 || older) && <a className="hv2-older" href={`${hrefOf(choice, !older)}#match`} onClick={go(choice, !older)}>{older ? "hide older models ▴" : "show older models ▾"}</a>}

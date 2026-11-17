@@ -29,7 +29,8 @@
   .hv2-box { border-radius: 14px; }
   .hv2-list > li { border-bottom: 1.5px dashed var(--line); }
   .hv2-list > li:hover { background: oklch(0.975 0.04 105); }
-  .hv2-row.m { grid-template-columns: 28px 52px minmax(0, 1fr) max-content max-content max-content; gap: 14px; }
+  .hv2-row.m { grid-template-columns: 28px 52px minmax(0, 1fr) max-content max-content; gap: 14px; }
+  .hv2-row.m .hv2-buy { align-self: flex-start; }
   .hv2-row.m .hv2-rank { font-size: 21px; }
   .hv2-row.m .hv2-pic { width: 52px; height: 84px; }
   .hv2-row.m .hv2-line { color: var(--text); }
@@ -108,7 +109,7 @@
   .hv2-rk { display: none; }
   @media (max-width: 760px) {
     /* Phone mock: the photo on the left; "#1 name", the chip and the line; then the match box, reviews and check price. */
-    .hv2-row.m { grid-template-columns: 44px auto minmax(0, 1fr) auto; grid-template-areas: "pic body body body" "pic sc sent btn"; gap: 10px 12px; align-items: start; }
+    .hv2-row.m { grid-template-columns: 44px auto minmax(0, 1fr) auto; grid-template-areas: "pic body body body" "pic sc sent sent"; gap: 10px 12px; align-items: start; }
     .hv2-row.m .hv2-rank { display: none; }
     .hv2-row.m .hv2-pic { grid-area: pic; width: 44px; height: 64px; }
     .hv2-row.m .hv2-body { grid-area: body; }

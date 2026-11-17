@@ -58,6 +58,8 @@ const V11_BANDS: [string, string][] = [["power", "Attack"], ["control", "Control
 const GIVE_UP: Record<string, string> = { forgiveness: "a smaller sweet spot", power: "less power on smashes", control: "less control", defence: "weaker in defence",
   arm: "harder on the arm", speed: "slower at the net" };
 import type { QtReport, QtReview } from "./quick-take";
+import { scoreState } from "../../../lib/score-view";
+import { NewPill, EarlyTag } from "../../score-tags";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
  *  the important things and our recommendation. One fit-check box with two states: no picks asks "Is this the right racket
@@ -154,7 +156,7 @@ export default async function RacketFit(props: {
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
   // The cards the alternatives use: similar rackets (no picks) here; with picks, the home's cards (lib/home-rank.ts rows).
   const d = qt?.catch.debate;
-  const overallScore = ctx.signal(props.racketId);
+  const overallScore = ctx.signal(props.racketId), rated0 = score(ctx.data, props.racketId).judged;
   const total = reports.length;
   // "What players said" for each level the visitor can pick, and for none (fit-live.tsx FitSaid shows the one that applies).
   const saidFor = (lv: (typeof LEVELS)[number] | null): SaidView => {
@@ -169,7 +171,7 @@ export default async function RacketFit(props: {
   const levelScore = levelView ? signals(ctx.data.listed.map(r => { const sc = score(ctx.data, r.id);
     return r.id === props.racketId ? { id: r.id, category: signalCategory(r), positive: pos, mixed: mix, judged: pos + mix + neg }
       : { id: r.id, category: signalCategory(r), positive: sc.positive, mixed: sc.mixed, judged: sc.judged, override: r.signalOverride }; })).get(props.racketId)?.signal ?? null : null;
-  const badge = levelScore !== null ? { n: levelScore, label: `Player score · ${lv === "advanced" ? "advanced players" : `${lv}s`}` } : overallScore !== null ? { n: overallScore, label: "Player score" } : null;
+  const badge = levelScore !== null ? { n: levelScore, label: `Player score · ${lv === "advanced" ? "advanced players" : `${lv}s`}` } : overallScore !== null && scoreState(rated0) !== "new" ? { n: overallScore, label: "Player score" } : null;
   // At the visitor's level: one real quote each way from players at that level (their own words, English, card length).
   // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
     const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
@@ -366,15 +368,15 @@ export default async function RacketFit(props: {
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
             {!V11 && (page?.source === "research" ? <p className="rp-score">{RESEARCH_LINE}</p> :
             <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
-              <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}</span>
+              {scoreState(rated) === "new" ? <NewPill n={rated}/> : <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}{scoreState(rated) === "early" && <EarlyTag/>}</span>}
               {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>)}
             {!V11 && props.buy && <div className="rf-meta"><a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a></div>}
             {!V11 && props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
           {V11 && <div className="v11-score">
               {page?.source === "research" ? <span className="v11-sres">{RESEARCH_LINE}</span> : <a className="v11-sl" href="#reviews">
-                <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>
-                <span className="v11-sm"><b>Player score</b>
+                {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
+                <span className="v11-sm"><b>Player score{scoreState(rated) === "early" && <> <EarlyTag/></>}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
                   <small>{`${rated} ${niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
@@ -408,7 +410,7 @@ export default async function RacketFit(props: {
           {V11 && v11Cards.length > 0 && <V11Others cards={v11Cards} short={meShort}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
-              mood={{ ...mood, score: overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
+              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
           </section>
 
           {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>

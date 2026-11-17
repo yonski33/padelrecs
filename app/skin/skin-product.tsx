@@ -22,6 +22,8 @@ import { SimilarSection, type SimilarItem, type SimilarTab } from "../similar-se
 import { routinePairs, tint, ROUTINE, expertLine, type SkinItem as PairItem } from "../../lib/similar-picks";
 const SKIN_SUITS = ["suits_dry", "suits_oily", "suits_combination", "suits_normal", "suits_sensitive", "suits_acne"];
 import { withModelYears, rankingHref } from "../../lib/top-lists";
+import { scoreState } from "../../lib/score-view";
+import { NewPill, EarlyTag } from "../score-tags";
 
 /** The SkinRecs product page in the beauty design (owner 2026-11-16, Claude Design "SkinRecs product page"): hero with the
  *  user score; a skin check (1. skin type, 2. what you want it to do, optional "reacts easily") answered from people with your
@@ -133,14 +135,14 @@ export default async function SkinProduct({ productId, choice, buy, jsonLd }: { 
             {brand && <div className="bp-brand">{brand.name}</div>}
             <h1>{title || name}</h1>
             {hook && <p className="bp-hook">{hook}</p>}
-            <a className="bp-score" href="#reviews"><span>{signal !== null && <strong>{signal}</strong>}{`${signal !== null ? " user score · " : ""}${rated} rated`}</span>{rated > 0 && bar(6)}</a>
+            <a className="bp-score" href="#reviews">{scoreState(rated) === "new" ? <NewPill n={rated}/> : <span>{signal !== null && <strong>{signal}</strong>}{`${signal !== null ? " user score · " : ""}${rated} rated`}{scoreState(rated) === "early" && <EarlyTag/>}</span>}{rated > 0 && bar(6)}</a>
             {buy && <div className="bp-buyrow"><a className="bp-btn" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a></div>}
             {buy && <p className="bp-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
           </div>
         </div>}
         reviews={<section key="reviews" id="reviews" className="bp-col bp-rv rf">
           <RacketReviews racketId={r.id} name={title || name} cards={cards} nicknames={niche.form.quickVote?.nicknames ?? []} total={c.n}
-            mood={{ pos: c.positive, mix: c.mixed, neg: c.negative, score: signal }}
+            mood={{ pos: c.positive, mix: c.mixed, neg: c.negative, score: scoreState(rated) === "new" ? null : signal }}
             words={{ levelLead: "My skin is", levels: skinOpts, score: "User score", ask: "Tried it?", people: "people", peopleTab: "people" }}/>
         </section>}
         specs={specs.length > 0 && <section key="specs" className="bp-col"><details className="bp-specs"><summary><span>Ingredients &amp; details</span><i aria-hidden="true"/></summary>

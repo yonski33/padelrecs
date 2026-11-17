@@ -25,6 +25,8 @@ import { catalogView } from "../../../lib/catalog-filter";
 import { specGroups } from "../../../lib/guide";
 import { SUITS_OK } from "../../../lib/fit-verdict";
 import { catalogRows } from "../../rackets/catalog-rows";
+import { scoreState } from "../../../lib/score-view";
+import { NewPill, EarlyTag } from "../../score-tags";
 
 // A ranking in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/TTmbZPDFLuRzQiqsAG3Nc1), PadelRecs
 // only: the lists as tabs, a big title, "your match" (the home's quick-match picks, in the URL, with the match % on every row),
@@ -63,7 +65,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
     const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
     const best = ctx ? bestFor(ctx.facts(r.id)) : skinBest(r.id);
     return [{ e, r, i, name: displayName(r.name, brand(r.brandId)), url: productHref(r), pic: photoOf(r), line: rowLine(e.product),
-      best: best.join(", "), sig: e.signal?.signal ?? null, shop }];
+      best: best.join(", "), sig: e.signal?.signal ?? null, judged: score(data, r.id).judged, shop }];
   });
   const [first, ...rest] = rows;
   const tone = (n: number | null) => n === null ? "" : n >= 90 ? " t90" : n >= 85 ? " t85" : "";
@@ -119,7 +121,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         </div>
         <div className="rk3-side">
           <span className="rk3-sc" title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
-            <b>{first.sig ?? "–"}</b><small>{scoreLabel.toLowerCase().replace(" ", "\n")}</small></span>
+            <b>{first.sig ?? "–"}</b><small>{scoreLabel.toLowerCase().replace(" ", "\n")}</small>{scoreState(first.judged) === "early" && <EarlyTag/>}</span>
           {ctx && <RowMatch id={first.r.id}/>}
           {buy(first, "rk3-buy")}
           <a className="rk3-why" href={`${first.url}#yes-no`}>See why →</a>
@@ -137,7 +139,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
           {list.trait && <span className="rk3-best">{`${x.e.traitReviews} mention ${list.trait.noun}`}</span>}
         </div>
         <div className="rk3-foot">
-          <span className={`rk3-sc${tone(x.sig)}`}><b>{x.sig ?? "–"}</b><small>{scoreLabel.toLowerCase()}</small></span>
+          {scoreState(x.judged) === "new" ? <NewPill n={x.judged}/> : <span className={`rk3-sc${tone(x.sig)}`}><b>{x.sig ?? "–"}</b><small>{scoreLabel.toLowerCase()}{scoreState(x.judged) === "early" && <EarlyTag/>}</small></span>}
           {ctx && <RowMatch id={x.r.id}/>}
           {/* Rows #2 on: padel's quiet "check price ↗" link; only the #1 card keeps the button (owner 2026-11-16). */}
           {buy(x, "rk3-link")}

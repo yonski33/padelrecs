@@ -1,6 +1,7 @@
 import { withoutYear } from "../../lib/brand-name";
 import "./compare-v2.css";
 import { qtFontVars } from "../qt-fonts";
+import { score } from "../../db/data";
 import { V2Footer } from "../v2-footer";
 import { niche, productHref, catalogPath, hasYears, scoreLabel } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
@@ -56,12 +57,16 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   }));
   // "Why yes, why not": what sets each one apart (the traits where it leads every other one shown), then its own best point
   // from its page; the "!" is its own catch. Expert voice, ≤ 105 characters, never a count.
-  const others = base.length === 2 ? "the other one" : "the others here";
+  // Named, not "the other one" (owner 2026-11-17): "Longer than the Wraith", "Easier on the arm than the Jelly Bean 2 and the
+  // Envy"; "than both others" only when the names would push the line past 105 characters.
+  const shorts = base.map(b => shortName(b.name, brandOf(b.r)));
+  const othersOf = (i: number) => shorts.filter((_, j) => j !== i).map(x => `the ${x}`).join(" and ");
   const short = (t: string | null | undefined) => t && t.length <= MAX_LINE ? t : null;
   const cprods: CProduct[] = base.map((b, i) => {
     const vp = { id: b.r.id, short: shortName(b.name, brandOf(b.r)),
-      signal: sigs.get(b.r.id)?.signal ?? null, dots: b.dots, catchShort: catchShort(b.catchLine) };
-    const lead = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => `${TRAITS[k].diff[0].toUpperCase()}${TRAITS[k].diff.slice(1)} than ${others}.`);
+      signal: sigs.get(b.r.id)?.signal ?? null, judged: score(data, b.r.id).judged, dots: b.dots, catchShort: catchShort(b.catchLine) };
+    const lead = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => { const d = `${TRAITS[k].diff[0].toUpperCase()}${TRAITS[k].diff.slice(1)} than `, line = `${d}${othersOf(i)}.`;
+      return line.length <= MAX_LINE ? line : `${d}${base.length === 2 ? "the other one" : "both others"}.`; });
     const own = b.page?.yes.map(y => short(plain(y.t))).find((t): t is string => !!t);
     return { ...vp, name: b.name, slug: b.r.slug, href: productHref(b.r), pic: photoOf(b.r), shop: b.shop,
       yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => d.get(b.r) || null) };
