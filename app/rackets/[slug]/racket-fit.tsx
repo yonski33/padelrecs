@@ -304,6 +304,8 @@ export default async function RacketFit(props: {
     return { k, label, dots: sc?.dots ?? 0, note: row ? row[1].replace(/==/g, "") : null }; }).filter(b => b.dots > 0);
   const topDots = Math.max(0, ...bandRows.map(b => b.dots));
   const tip = qt?.tips.find(t => t.reports.length >= 2);
+  // Advice only (owner rule: no "N players said" inside advice): the tip's sentences that don't count people, ≤ 105 characters.
+  const tipText = tip ? plain(tip.text).split(/(?<=[.!?])\s+/).filter(x => !/\b(players?|reviewers?|people|testers?)\b/i.test(x)).join(" ").trim() : "";
   const builds = V11 ? buildCards(racketOf(props.racketId)) : [];
   // "What players said · from player forums": one real quote each way with its permalink, verbatim and in English; none, no section.
   const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/—/.test(t);
@@ -318,7 +320,7 @@ export default async function RacketFit(props: {
         <span className="v11-bn">{b.dots}<small>/5</small></span><b>{b.label}</b>
         <span className="v11-segs" aria-label={`${b.dots} of 5`}>{[1, 2, 3, 4, 5].map(x => <i key={x} className={x <= b.dots ? `on t${b.dots}` : undefined}/>)}</span>
         {b.note && <span className="v11-bnote">{b.note}</span>}</div>)}</div>
-      {tip && <p className="v11-tip"><span>rule of thumb</span><span>{plain(tip.text)}</span></p>}
+      {tipText && <p className="v11-tip"><span>rule of thumb</span><span>{tipText}</span></p>}
     </div>}
     {builds.length > 0 && <div id="build" className="v11-build">
       <h2>{`What the ${meShort}'s build means for you`}</h2>
@@ -378,7 +380,8 @@ export default async function RacketFit(props: {
           why not and How it plays share a group; Reviews and Specs follow. The match box floats once the hero scrolls away. */}
       <section className="rp-body">
         <div className="rp-main">
-          {page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
+          {page && tier && (V11 ? <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>
+            : <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>)}
           {page && tier && <div id="yes-no">
             <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
             <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"} fold={V11}/>
