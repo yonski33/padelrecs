@@ -294,3 +294,11 @@
 .rf .rv-ysub { font: 12px var(--v-mono); color: var(--v-mute2); margin-top: 2px; }
 .rf .rv-y2 { margin: 6px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 @media (max-width: 760px) { .rf .rv-ytl { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; } .rf .rv-tl { width: 64px; } }
+
+/* "What players say", narrower (owner 2026-11-17): on desktop the whole section (heading, tabs, score row, Played it? and
+   the cards) stops at 740px on the page's left content edge, and the text fills the narrower cards (no 70ch cap here).
+   Phones unchanged. */
+@media (min-width: 761px) {
+  .rf .rv:has(.rv-head.v11c) { flex: 0 1 740px; width: 100%; max-width: 740px; margin-right: auto; align-self: flex-start; }
+}
+.rf .rv-card.v11c .rv-text, .rf .rv-card.v11c .rv-yb ul { max-width: none; }
