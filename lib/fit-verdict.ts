@@ -150,7 +150,9 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
     const backed = f.suits.basis.some(b => b !== "the brand");
     if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
     // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.
-    const why = f.suits.basis.includes("expert") ? `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`
+    // The owner's intermediate+ tier (lib/level-tiers.ts) names both levels it suits.
+    const why = f.suits.basis.includes("our level call") ? `A ${niche.words.one} for intermediate and advanced players.`
+      : f.suits.basis.includes("expert") ? `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`
       : f.suits.basis.includes("a pro line") ? `A pro line, built for advanced players.`
       : c.level === "beginner" && f.suits.basis.includes("its shape") ? cfg.quick?.beginnerShapeNote ?? `A diamond shape: few of them suit beginners.`
       : f.suits.basis.includes("advanced players") ? `A ${niche.words.one} for advanced players.` : `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`;
