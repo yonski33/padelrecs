@@ -88,7 +88,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   // score row, "Played it?", the list) and a sticky "What players mention" list beside it; narrower, the tags are a chip row.
   if (v11c) {
     const top5 = mentions.slice(0, 5);
-    const tagButton = (t: string, n: number, row: boolean) => <button key={t} type="button" className={`rv12-tag ${toneOf(t) === "neg" ? "neg" : "pos"}${row ? " chip" : ""}`} aria-pressed={tf === t}
+    const tagButton = (t: string, n: number, row: boolean) => <button key={t} type="button" className={`rv12-tag ${toneOf(t) === "neg" ? "neg" : toneOf(t) === "pos" ? "pos" : "neu"}${row ? " chip" : ""}`} aria-pressed={tf === t}
       onClick={() => { setTf(tf === t ? null : t); setShown(PAGE); }}><i aria-hidden="true"/><span>{t}</span><small>{n}</small></button>;
     return <div className={`rv12${top5.length ? " side" : ""}`}>
       <div className="rv12-main">

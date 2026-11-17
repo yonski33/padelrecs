@@ -397,6 +397,8 @@
 .rf .rv12-tag[aria-pressed="true"] { border: 2px solid #151515; }
 .rf .rv12-tag i { flex: none; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #151515; }
 .rf .rv12-tag.pos i { background: oklch(0.72 0.15 145); } .rf .rv12-tag.neg i { background: oklch(0.75 0.13 50); }
+/* A tag that is neither praise nor complaint ("firm"): plain, grey dot, so it never reads as praise. */
+.rf .rv12-tag.neu { background: #fff; border-color: #c9c5ba; } .rf .rv12-tag.neu i { background: #c9c5ba; }
 .rf .rv12-tag span { flex: 1; min-width: 0; } .rf .rv12-tag small { flex: none; font: 400 12px var(--v-mono); color: #4a4740; }
 .rf .rv12-tag.chip { flex: none; min-height: 32px; display: inline-flex; gap: 7px; white-space: nowrap; padding: 0 12px 0 10px; border-radius: 999px; font-size: 14px; }
 .rf .rv12-tag.chip i { width: 9px; height: 9px; } .rf .rv12-tag.chip span { flex: none; }
