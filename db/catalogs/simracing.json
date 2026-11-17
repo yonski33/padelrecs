@@ -1193,7 +1193,7 @@
    "shape": "Wheelbase",
    "weight": "2.3 Nm",
    "core": null,
-   "surface": null,
+   "surface": "Bundle: wheel and pedals; sold as separate PlayStation and Xbox editions; buy the one for your console",
    "balance": "Gear drive",
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel",
@@ -1206,7 +1206,7 @@
    "shape": "Wheelbase",
    "weight": null,
    "core": "PC; PlayStation / PC edition; Xbox compatibility option",
-   "surface": null,
+   "surface": "Sold as separate PlayStation and Xbox editions; buy the one for your console",
    "balance": "Direct drive",
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/pro-dd11-base"
@@ -1338,7 +1338,7 @@
    "shape": "Wheelbase",
    "weight": null,
    "core": "PC; PlayStation / PC and Xbox / PC editions",
-   "surface": null,
+   "surface": "Sold as separate PlayStation and Xbox editions; buy the one for your console",
    "balance": "Direct drive",
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/rs50-base",
@@ -2968,7 +2968,7 @@
    "shape": "Wheelbase",
    "weight": null,
    "core": "PlayStation / PC; Xbox / PC edition",
-   "surface": null,
+   "surface": "Bundle: wheel and pedals; sold as separate PlayStation and Xbox editions; buy the one for your console",
    "balance": "Hybrid (belt + gear)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t128/",
@@ -2995,7 +2995,7 @@
    "shape": "Wheelbase",
    "weight": null,
    "core": "PlayStation / PC; Xbox / PC edition",
-   "surface": null,
+   "surface": "Bundle: base, wheel and pedals; sold as separate PlayStation and Xbox editions; buy the one for your console",
    "balance": "Hybrid (belt + gear)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t248/",
@@ -3072,7 +3072,7 @@
    "shape": "Wheelbase",
    "weight": "5 Nm",
    "core": "PC, PlayStation; Xbox / PC edition",
-   "surface": null,
+   "surface": "Bundle: base, wheel and pedals; sold as separate PlayStation and Xbox editions; buy the one for your console",
    "balance": "Direct axial drive",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t598/",
