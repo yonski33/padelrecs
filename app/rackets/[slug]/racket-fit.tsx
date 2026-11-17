@@ -38,10 +38,17 @@ import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
-import { V11Better, V11Others, type V11Card, type V11Pool } from "./v11";
+import { V11Better, V11Others, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
+import { rankedLists } from "../../rankings/lists";
+import Link from "next/link";
+
+/** The date n days back (YYYY-MM-DD), for "new this week". */
+const isoDaysAgo = (n: number) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
+import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
+import { CompareWith } from "./compare-with";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
@@ -222,6 +229,9 @@ export default async function RacketFit(props: {
   // reports get the video card; everything else is a player card. Real data only: no author handles are stored, so web
   // reports say "A player" and link their source; a verdict pill only where the sentiment was judged.
   const lv = (v?: string | null) => v ? (v === "Competitive" ? "competitive" : v.toLowerCase()) : null;
+  // v11c: a card's second line is the writer's own level · court side, only what they gave us (never inferred).
+  const sideWord = (v?: string | null) => !v ? null : /^both$/i.test(v) ? "both sides" : `${v.toLowerCase()} side`;
+  const givenMeta = (r: QtReview) => [lv(r.playerLevel), V11 ? sideWord(r.playingSide) : null].filter(Boolean).join(" · ") || null;
   const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
   const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
   // How many products each YouTube video is filed under (a video about one racket alone, or a comparison / round-up).
@@ -229,7 +239,7 @@ export default async function RacketFit(props: {
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const dated: { at: string; card: ReviewCard }[] = [
-    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: lv(r.playerLevel), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
+    ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
     // One card per channel (lib/youtube-pick.ts): its video about this racket alone where there is one; every row still counts.
     ...onePerChannel(ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => {
@@ -240,7 +250,7 @@ export default async function RacketFit(props: {
       const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
         ? { ...base, kind: "youtube", who: e.sourceName, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? sentences(text).slice(0, 4) : [text] }
-        : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
+        : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
       return { at: e.sourceDate ?? "", card };
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
   ];
@@ -271,6 +281,11 @@ export default async function RacketFit(props: {
   const compareCards: Record<string, CompareCard> = Object.fromEntries([...new Set([...Object.keys(payload.cards), ...similarIds])].filter(cid => ctx.data.rackets.some(r => r.id === cid)).map(cid => [cid, cardOf(cid)]));
   // Every judged report's sentiment: the hero's quiet score line and the Reviews header (no %).
   const mood = { pos: saidViews.none.pos, mix: saidViews.none.mix, neg: saidViews.none.neg }, rated = mood.pos + mood.mix + mood.neg;
+  // One count everywhere (v11c): the hero's "N rated it", the fit check's "N player reviews + M YouTube" and the reviews' score
+  // row are all the judged reports, YouTube's share named in the fit check.
+  const ytRated = reports.filter(r => r.platform === "YouTube" && r.sentiment).length;
+  const weekAgo = isoDaysAgo(7);
+  const freshN = reviews.filter(x => x.createdAt.slice(0, 10) >= weekAgo).length + reports.filter(x => x.platform === "YouTube" && (x.date ?? "") >= weekAgo).length;
   // "2025 version →" (owner's final mock): the newest older year of the same model, when the catalog lists one.
   const olderRow = ctx.data.listed.filter(x => modelFamily(x) === modelFamily(racketOf(props.racketId)) && x.year < props.year).sort((a, b) => b.year - a.year)[0];
   const older = olderRow ? { year: olderRow.year, href: productHref(olderRow) } : null;
@@ -345,48 +360,18 @@ export default async function RacketFit(props: {
   // Advice only (owner rule: no "N players said" inside advice): the tip's sentences that don't count people, ≤ 105 characters.
   const tipText = tip ? plain(tip.text).split(/(?<=[.!?])\s+/).filter(x => !/\b(players?|reviewers?|people|testers?)\b/i.test(x)).join(" ").trim() : "";
   const builds = V11_SITE ? V11_SITE.builds(racketOf(props.racketId), tr.scores?.arm?.dots) : [];
-  // "What players said · from player forums": one real quote each way with its permalink, verbatim and in English; none, no section.
-  const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–…é]+$/.test(t) && t.length >= 60 && t.length <= 240 && !/—/.test(t) && /[a-z]{3,}\s+[a-z]{3,}\s+[a-z]{3,}/i.test(t) && !/^\S+\s+\S+\s+\S+\s+20\d\d\s*\(/.test(t);
-  // Off padel the stored forum excerpts are often cut mid-sentence: only ones that end like a sentence (owner rule: verbatim words).
-  const whole = (t?: string | null) => PADEL || /[.!?)”"]\s*$/.test(t ?? "");
-  const forum = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.sourceLanguage && english(e.excerpt) && whole(e.excerpt) && /^https?:\/\/.+\/comments\//.test(e.sourceUrl));
-  const forumQuotes = [forum.find(e => e.sentiment === "positive"), forum.find(e => e.sentiment === "mixed" || e.sentiment === "negative")].filter((x): x is NonNullable<typeof x> => !!x);
-  const PILL: Record<string, [string, string]> = { positive: ["loved it", "g"], mixed: ["mixed", "y"], negative: ["not for me", "r"] };
-  const faq = (qt?.answers ?? []).slice(0, 6);
   // The thin-spot note was written about the quick take's own compare cards; v11 shows other cards (audit 2026-11-17, #13:
   // "the ST4 card rests on few players" with no ST4 card on the page). A note about cards that aren't shown is left out.
   const cardWords = (qt?.compare?.cards ?? []).filter(c => !v11Cards.some(v => v.href.split(/[?#]/)[0].endsWith(`/${c.slug}`)))
     .flatMap(c => c.name.split(/\s+/).filter(w => w.length >= 3 && /\d|[A-Z]{2}/.test(w)));
   const staleThin = !!qt && V11 && (/\b(cards?|comparison)\b/i.test(qt.thinSpot) || cardWords.some(w => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(qt.thinSpot)));
-  const v11Body = V11 ? <>
-    {bandRows.length > 0 && <div id="plays" className="v11-plays">
-      <h2>How it plays</h2>
-      <div className="v11-bands">{bandRows.map(b => <div key={b.k} className={b.dots === topDots ? "top" : undefined}>
-        <span className="v11-bn">{b.dots}<small>/5</small></span><b>{b.label}</b>
-        <span className="v11-segs" aria-label={`${b.dots} of 5`}>{[1, 2, 3, 4, 5].map(x => <i key={x} className={x <= b.dots ? `on t${b.dots}` : undefined}/>)}</span>
-        {b.note && <span className="v11-bnote">{b.note}</span>}</div>)}</div>
-      {tipText && <p className="v11-tip"><span>rule of thumb</span><span>{tipText}</span></p>}
-    </div>}
-    {builds.length > 0 && <div id="build" className="v11-build">
-      <h2>{V11_SITE!.buildHead(meShort)}</h2>
-      <div className="v11-bcards">{builds.map(c => <div key={c.key} className={`v11-bc ${c.key}`}>
-        <span className="v11-vis" aria-hidden="true">{c.key === "shape" ? <i className={`sh ${c.shape}`}/>
-          : c.key === "flight" ? <i className="flight">{(c.nums ?? []).map((n, j) => <b key={j}>{n}</b>)}</i>
-          : c.key === "gauge" ? <i className="gauge"><i className="core"><i style={{ left: `calc(${Math.round((c.at ?? 0.5) * 100)}% - 7px)` }}/></i><small>{c.low}</small><small>{c.high}</small></i>
-          : c.key === "disc" ? <i className="disc"/> : c.key === "core" ? <i className="core"><i style={{ left: `calc(${Math.round((c.at ?? 0.5) * 100)}% - 7px)` }}/></i>
-          : c.key === "balance" ? <i className="bal"><i style={{ top: `calc(${Math.round((1 - (c.at ?? 0.5)) * 100)}% - 7px)` }}/></i> : <i className="face"/>}</span>
-        <b>{c.title}</b><span>{c.line}</span></div>)}</div>
-    </div>}
-    {forumQuotes.length > 0 && <><div className="v11-said">
-      <div className="v11-saidh"><b>{`What ${niche.people.many} said`}</b><span>{`from ${niche.people.one} forums`}</span></div>
-      {forumQuotes.map(e => { const [w, cls] = PILL[e.sentiment ?? "mixed"] ?? PILL.mixed; return <div key={e.id} className="v11-q">
-        <p>{`“${unmd(e.excerpt ?? "")}”`}</p>
-        <div><span className="v11-qwho">{`a ${niche.people.one}`}</span><span className={`v11-pill ${cls}`}>{w}</span><a href={e.sourceUrl} target="_blank" rel="noopener nofollow">source ↗</a></div></div>; })}
-    </div>
-    <a className="v11-more" href="#reviews">{`read more ${niche.people.one} reviews `}<span aria-hidden="true">↓</span></a></>}
-    {faq.length > 0 && <div className="v11-faq"><h2>Common questions</h2>
-      {faq.map((f, i) => <details key={f.q} open={i === 0}><summary>{f.q}</summary><p><Rich text={f.a}/></p></details>)}</div>}
-  </> : null;
+  // v11c (owner 2026-11-17): How it plays is one slim box (bars, build chips, rule of thumb); no forum quotes block and no FAQ.
+  // "Explore the rankings" (v11c): up to 6 lists, each with its top three photos.
+  const tiles = V11 ? (await rankedLists()).lists.filter((l, i, a) => l.entries.length > 0 && a.findIndex(x => x.list.slug === l.list.slug) === i).slice(0, 6).map(l => ({
+    href: listHref(l.list.slug), title: l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))),
+    sub: `${l.entries.length} ${niche.words.many}`, pics: l.entries.slice(0, 3).map(e => { const x = ctx.data.rackets.find(y => y.id === e.product.id); return x ? photoOf(x) : null; }) })) : [];
+  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots}
+    chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
   return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
@@ -414,13 +399,15 @@ export default async function RacketFit(props: {
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
                 <span className="v11-sm"><b>{SCORE_CAP}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
-                  <small>{`${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
+                  <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}
+              {/* Compare mode on the catalogue with this one already picked (UX audit 2026-11-17). */}
+              <CompareWith href={`${catalogPath}?compare=1`} pick={{ id: props.racketId, slug: props.slug, name: props.name, pic: props.photo }}/>
             </div>}
           {V11 && props.buy && <p className="rf-aff v11-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
         </div>
 
-        <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} rated={rated || total} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
+        <FitBox id={props.racketId} facts={facts} hook={qt ? qt.hook : null} total={total} rated={rated || total} yt={V11 ? ytRated : 0} bestLine={bestLine} levelDisagree={facts.levelDisagree} card={card} yesNo={page ? { yes: page.yes, no: page.no } : null}/>
       </section>
       {V11 && <V11Better id={props.racketId} facts={facts} cards={v11Strip} words={niche.words}/>}
 
@@ -443,14 +430,25 @@ export default async function RacketFit(props: {
           </div>}
         </div>
 
-          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS} words={niche.words} scoreWord={SCORE_CAP}
-            gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)} giveWord={SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
+          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS} words={niche.words} scoreWord={SCORE_CAP}
+            gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
           <section id="reviews" className="rv">
-            <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
+            <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10 } : undefined}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
           </section>
 
-          {props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>
+          {/* v11c: the closing card and the rankings, after the reviews. */}
+          {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
+            score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={props.buy}
+            compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
+            one={niche.words.one} ask={`${QUICK ? "thrown" : "played"} it? add your verdict →`}/>}
+          {V11 && tiles.length > 0 && <section className="v11-rt" aria-labelledby="v11-rt-t">
+            <div className="v11-sh"><h2 id="v11-rt-t">Explore the rankings</h2><Link href="/rankings">all rankings →</Link></div>
+            <div className="v11-rtgrid">{tiles.map(t => <Link key={t.href} href={t.href}><span className="t"><b>{t.title}<span aria-hidden="true"> →</span></b><em>{t.sub}</em></span>
+              <span className="v11-rtpics" aria-hidden="true">{t.pics.map((p, j) => p && <img key={j} className={`p${j}`} src={p} alt="" loading="lazy" decoding="async"/>)}</span></Link>)}</div>
+          </section>}
+
+          {!V11 && props.specs.length > 0 && <details className="rp-specs"><summary><h2>Specs</h2></summary>
             <p className="rf-specs">{props.specs.map(s => { const [k, ...v] = s.split(" "); return <span key={s}><span>{k}</span>{` ${v.join(" ")}`}</span>; })}</p></details>}
 
           {!V11 && simTabs.length > 0 && <FitSimilar title="Also worth a look" tabs={simTabs} scoreLabel={SCORE_WORD} look={simCfg?.look}/>}
@@ -458,12 +456,13 @@ export default async function RacketFit(props: {
 
       <FitSticky buy={props.buy} name={props.shortName}/>
 
-      <footer className="rf-foot" id="how-we-read">
+      {V11 ? <footer className="rf-foot v11-foot" id="how-we-read"><p>{`Run by ${[v2copy.sport, niche.people.many].filter(Boolean).join(" ")}, not a shop. Built from ${niche.people.one} reviews, forums and YouTube. No brand pays to be here. Spotted a mistake? `}<a href="/contact">Tell us →</a></p></footer>
+      : <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from YouTube reviews, reviews sent to us and ${v2copy.forum} reports · every source linked · `}
           <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test ${niche.words.many} and no brand pays for placement. `}{qt && !staleThin && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>
           {" · "}<a href="/contact">spot something wrong?</a></div>
         <p className="rf-made">{v2copy.madeBy}</p>
-      </footer>
+      </footer>}
     </div>
   </main></FitPicks><V2Footer/></>;
 }

@@ -2,7 +2,7 @@
 // (shape, core, balance, face), each a plain one-liner in expert voice. The title always says what the catalog says (the
 // v11 open item: never round a "Low/Medium" balance up to "Medium"). Padel words; ≤ 105 characters per line.
 
-export type BuildCard = { key: "shape" | "core" | "balance" | "face"; title: string; line: string; /** 0 … 1 for the card's small
+export type BuildCard = { key: "shape" | "core" | "balance" | "weight" | "face"; title: string; line: string; /** 0 … 1 for the card's small
  *  gauge (core softness → firmness, balance low → high); the shape's own word for the outline. */ at?: number; shape?: string };
 
 const clean = (s: string | null | undefined) => (s ?? "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
@@ -10,7 +10,7 @@ const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 
 /** `armDots`: the racket's Arm comfort bar. At 4+ no card says it is hard on the arm (audit 2026-11-17: generic carbon and core
  *  lines on rackets the reviews call comfortable). */
-export function buildCards(spec: { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null }, armDots?: number): BuildCard[] {
+export function buildCards(spec: { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null; weight?: string | null }, armDots?: number): BuildCard[] {
   const kind = (armDots ?? 0) >= 4;
   const out: BuildCard[] = [];
   const shape = clean(spec.shape).toLowerCase();
@@ -43,15 +43,27 @@ export function buildCards(spec: { shape?: string | null; core?: string | null; 
       : "Weight sits in the middle, so it stays quick at the net with some punch left.";
     out.push({ key: "balance", title: `${cap(bal.replace(/\//, " to ").replace(/-/, " to ").toLowerCase())} balance`, line, at });
   }
+  // Weight (owner 2026-11-17, v11c): the catalog's figure as the chip ("345–360 g"), the midpoint read as light (< 350 g), mid
+  // (350–365 g) or heavy (> 365 g). No figure, no chip.
+  const grams = [...clean(spec.weight).matchAll(/(\d{3})(?:\.\d+)?/g)].map(m => +m[1]).filter(n => n >= 300 && n <= 420);
+  if (grams.length) {
+    const mid = (Math.min(...grams) + Math.max(...grams)) / 2;
+    out.push({ key: "weight", title: grams.length > 1 ? `${Math.min(...grams)}–${Math.max(...grams)} g` : `${grams[0]} g`, at: Math.max(0, Math.min(1, (mid - 335) / 45)),
+      line: mid < 350 ? (kind ? "Light: quick at the net and easy on the arm; less solid on hard blocks." : "Light: quick at the net; less solid on hard blocks.")
+        : mid > 365 ? (kind ? "Heavy: solid on blocks and smashes; slower to move at the net." : "Heavy: solid on blocks and smashes; it can tire the arm over long matches.")
+        : "Mid-weight: stable on blocks, still quick at the net." });
+  }
   const face = clean(spec.surface), f = face.toLowerCase();
   if (face) {
     const glass = /fib(er|re)glass|fibrix|glass/.test(f) && !/carbon/.test(f.replace(/fibrix.*/, "")), mix = /fibrix|flex|\/|\+/.test(f);
     const k = Number(/(\d+)\s*k/.exec(f)?.[1] ?? 0);
-    const line = glass && !mix ? "Fibreglass is softer and kinder to the arm; it feels less crisp at pace."
-      : mix ? "A carbon and fibreglass mix: some comfort, some crispness."
-      : k >= 12 ? (kind ? "High-K carbon is crisp and firm: precise at pace." : "High-K carbon is crisp and firm: precise at pace, less forgiving on the arm.")
-      : "Carbon gives a crisp, firm feel with good control at pace.";
-    out.push({ key: "face", title: `${cap(face.replace(/\bcarbon\b/i, "carbon"))} face`, line });
+    // The tap line names the face material first (owner 2026-11-17: "16K carbon, rough finish").
+    const feel = glass && !mix ? "softer and kinder to the arm, a little less crisp at pace."
+      : mix ? "a carbon and fibreglass mix, some comfort and some crispness."
+      : k >= 12 ? (kind ? "crisp and firm, precise at pace." : "crisp and firm, precise at pace, less forgiving on the arm.")
+      : "a crisp, firm feel with good control at pace.";
+    const line = `${cap(face)}: ${feel}`.length <= 105 ? `${cap(face)}: ${feel}` : cap(feel);
+    out.push({ key: "face", title: `${cap(face.split(/[,;]/)[0].trim())} face`, line });
   }
   // Never over 105 characters: a long core name gives way to "The core".
   return out.map(x => x.line.length <= 105 ? x : { ...x, line: x.line.replace(core, "The core") });

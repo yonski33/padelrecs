@@ -11,7 +11,7 @@ import QuickTakeComposer, { QuickVoteLine } from "./quick-take-composer";
  *  Everything editorial comes from the stored block; the counts, dates, score, sources and community reviews are live. */
 
 export type QtReport = { id: string; platform: string; sourceName: string | null; url: string | null; date: string | null; sentiment: string | null; nickname?: string | null; level?: string | null };
-export type QtReview = { id: string; alias: string | null; playerLevel: string | null; createdAt: string; rating: number; reviewText: string; tags: string[]; highlights: string[] | null };
+export type QtReview = { id: string; alias: string | null; playerLevel: string | null; /** The writer's court side, when given. */ playingSide?: string | null; createdAt: string; rating: number; reviewText: string; tags: string[]; highlights: string[] | null };
 export type QtProduct = { slug: string; name: string; href: string; photo: string | null };
 
 /** **bold** and ==marker== text. */

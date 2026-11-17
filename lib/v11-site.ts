@@ -46,19 +46,21 @@ function paddleBuilds(spec: Spec, armDots?: number): V11Build[] {
   const oz = /(\d+(?:\.\d+)?)\s*(?:[-–]\s*\d+(?:\.\d+)?\s*)?oz/i.exec(spec.weight ?? "");
   if (oz) {
     const w = +oz[1];
-    out.push({ key: "gauge", title: w < 7.6 ? "Light weight" : w > 8.2 ? "Heavy weight" : "Mid weight", low: "light", high: "heavy", at: Math.max(0, Math.min(1, (w - 7) / 1.6)),
-      line: w < 7.6 ? (kind ? "Quick in hand battles and easy on the arm; less stable against hard drives." : "Quick in hand battles; less stable against hard drives.")
-        : w > 8.2 ? (kind ? "Stable and powerful on drives; it can tire over long matches." : "Stable and powerful on drives; it can tire the arm over long matches.")
-        : "The weight most players settle on: stable enough, still quick at the kitchen." });
+    // The chip is the catalog's figure ("7.8–8.2 oz", owner 2026-11-17); light < 7.6 oz, mid 7.6–8.2, heavy > 8.2.
+    const fig = clean(spec.weight).match(/\d+(?:\.\d+)?(?:\s*[-–]\s*\d+(?:\.\d+)?)?\s*oz/i)?.[0].replace(/\s*[-–]\s*/, "–").replace(/\s*oz/i, " oz") ?? `${w} oz`;
+    out.push({ key: "gauge", title: fig, low: "light", high: "heavy", at: Math.max(0, Math.min(1, (w - 7) / 1.6)),
+      line: w < 7.6 ? (kind ? "Light: quick in hand battles and easy on the arm; less stable against hard drives." : "Light: quick in hand battles; less stable against hard drives.")
+        : w > 8.2 ? (kind ? "Heavy: stable and powerful on drives; it can tire over long matches." : "Heavy: stable and powerful on drives; it can tire the arm over long matches.")
+        : "Mid-weight: stable enough on drives, still quick at the kitchen." });
   }
   const face = clean(spec.surface), f = face.toLowerCase();
   if (face) {
     const glass = /fib(er|re)glass|composite/.test(f) && !/carbon/.test(f), mix = /carbon/.test(f) && /fib(er|re)glass|kevlar|aramid/.test(f);
-    out.push({ key: "face", title: glass ? "Fiberglass face" : mix ? "Hybrid face" : /kevlar|aramid/.test(f) ? "Kevlar face" : "Carbon face",
-      line: glass ? "Fiberglass is softer and pops more; it feels less precise on touch shots."
-        : mix ? "A mix of carbon and a softer layer: some pop, some control."
-        : /kevlar|aramid/.test(f) ? "Kevlar adds dwell and comfort; the ball sits on the face a touch longer."
-        : "Carbon gives control and spin with a crisp, firm feel." });
+    // The tap line names the face material first (owner 2026-11-17).
+    const feel = glass ? "softer with more pop, a little less precise on touch shots." : mix ? "carbon with a softer layer, some pop and some control."
+      : /kevlar|aramid/.test(f) ? "more dwell and comfort, the ball sits on the face a touch longer." : "control and spin with a crisp, firm feel.";
+    const line = `${cap(face)}: ${feel}`;
+    out.push({ key: "face", title: glass ? "Fiberglass face" : mix ? "Hybrid face" : /kevlar|aramid/.test(f) ? "Kevlar face" : "Carbon face", line: line.length <= 105 ? line : cap(feel) });
   }
   return out;
 }
@@ -84,6 +86,12 @@ function discBuilds(spec: Spec): V11Build[] {
   const TYPE: Record<string, string> = { putter: "Slow and straight, for putts and short approaches.", midrange: "Straight and predictable; the most forgiving disc to learn on.",
     fairway: "Control off the tee; easier than a distance driver at most speeds.", distance: "Max distance, but only with the arm speed to match." };
   if (t) out.push({ key: "disc", title: cap(clean(spec.shape)), line: TYPE[t] });
+  // Max weight (the catalog's "Max weight" column, owner 2026-11-17): most drivers top out near 175 g.
+  const g = num(clean(spec.surface));
+  if (g && /g\b/.test(spec.surface ?? "") && g >= 140 && g <= 200) out.push({ key: "gauge", title: `up to ${Math.round(g)} g`, low: "light", high: "heavy", at: Math.max(0, Math.min(1, (g - 150) / 30)),
+    line: g >= 175 ? "Comes heavy: heavier holds its line in wind, lighter flies further for slower arms."
+      : g >= 170 ? "Mid max weight: heavier holds its line in wind, lighter flies further for slower arms."
+      : "Light max weight: easy to throw far, but wind moves it more." });
   return out;
 }
 

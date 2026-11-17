@@ -82,7 +82,7 @@
     .hv2-row.m .hv2-sc { grid-area: sc; min-width: 0; flex-direction: row; align-self: center; }
     .hv2-row.m .hv2-sc small { display: none; }
     .hv2-row.m .hv2-sc b { font-size: 15px; padding: 2px 6px; }
-    .hv2-row.m .hv2-sent { grid-area: sent; display: flex; min-width: 0; align-self: center; align-items: flex-start; justify-self: start; font: 11px var(--mono); color: var(--soft); }
+    .hv2-row.m .hv2-sent { grid-area: sent; display: flex; min-width: 0; align-self: center; align-items: flex-start; justify-self: start; font: 12px var(--mono); color: var(--soft); }
     .hv2-row.m .hv2-sent .hv2-bar { display: none; }
     .hv2-row.m .hv2-btnc { grid-area: btn; display: block; align-self: center; }
     .hv2-row.m .hv2-btn { padding: 6px 12px; font-size: 13px; }

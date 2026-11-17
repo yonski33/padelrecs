@@ -29,18 +29,18 @@ body:has(main.rk2), body:has(main.rl2) { background: #fbfaf6; }
   .rk2-top { padding: 18px 20px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .rk2-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
   .rk2-tag { font: 600 12px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 1px 9px; }
-  .rk2-upd { font: 11px var(--mono); color: var(--mute); }
+  .rk2-upd { font: 12px var(--mono); color: var(--mute); }
   .rk2-title { font: 800 24px/1.1 var(--display); }
   .rk2-desc { font-size: 15px; color: var(--text); text-wrap: pretty; }
   .rk2-strip { display: flex; align-items: flex-end; gap: 4px; padding: 0 20px; height: 110px; border-top: 2px dashed var(--ink); overflow: hidden; }
   .rk2-ph { position: relative; flex: 0 0 auto; display: flex; align-items: flex-end; }
   .rk2-ph.p0 { height: 96px; } .rk2-ph.p1 { height: 82px; } .rk2-ph.p2 { height: 72px; }
   .rk2-ph img { height: 100%; width: auto; max-width: 90px; object-fit: contain; mix-blend-mode: multiply; }
-  .rk2-tile { height: 100%; width: 58px; display: flex; align-items: center; justify-content: center; text-align: center; font: 10px var(--mono); color: var(--mute); }
+  .rk2-tile { height: 100%; width: 58px; display: flex; align-items: center; justify-content: center; text-align: center; font: 12px var(--mono); color: var(--mute); }
   .rk2-ph b { position: absolute; top: 2px; left: -4px; font: 800 12px var(--display); background: var(--ink); color: var(--bg); border-radius: 999px; padding: 0 6px; }
   .rk2-foot { padding: 10px 20px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
   .rk2-first { font-size: 14px; min-width: 0; }
-  .rk2-first small { font: 11px var(--mono); color: var(--mute); }
+  .rk2-first small { font: 12px var(--mono); color: var(--mute); }
   .rk2-n { white-space: nowrap; font: 600 13px var(--mono); }
   .rk2-cta { border: 2.5px solid var(--ink); border-radius: 18px; padding: 20px 22px; background: var(--acc); box-shadow: 6px 6px 0 var(--site-shadow, var(--ink)); display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
   .rk2-cta > div { flex: 1 1 300px; }
@@ -90,7 +90,7 @@ body:has(main.rk2), body:has(main.rl2) { background: #fbfaf6; }
   .rl2-edit-t:checked ~ .rl2-none { display: none; }
   .rl2-pane { display: none; flex: 1 1 100%; border-top: 2px dashed var(--ink); margin: 2px -16px -12px; padding: 12px 16px; background: var(--bg); border-radius: 0 0 14px 14px; }
   .rl2-edit-t:checked ~ .rl2-pane { display: block; }
-  .rl2-note { flex: 1 1 100%; margin: 0; font: 11px var(--mono); color: var(--mute); }
+  .rl2-note { flex: 1 1 100%; margin: 0; font: 12px var(--mono); color: var(--mute); }
 
   /* Rows */
   .rl2-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
@@ -104,12 +104,12 @@ body:has(main.rk2), body:has(main.rl2) { background: #fbfaf6; }
   .rl2-pic { height: 96px; display: flex; align-items: center; justify-content: center; text-decoration: none; }
   .rl2-row.top .rl2-pic { height: 124px; }
   .rl2-pic img { height: 100%; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
-  .rl2-pic span { font: 10px var(--mono); color: #8a867c; text-align: center; }
+  .rl2-pic span { font: 12px var(--mono); color: #8a867c; text-align: center; }
   .rl2-body { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
   .rl2-nrow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .rl2-name { font: 800 19px/1.15 var(--display); text-decoration: none; }
   .rl2-row.top .rl2-name { font-size: 22px; }
-  .rl2-chip { white-space: nowrap; font: 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--acc); }
+  .rl2-chip { white-space: nowrap; font: 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--acc); }
   .rl2-line { margin: 0 !important; font-size: 16px !important; color: var(--ink) !important; text-wrap: pretty; }
   .rl2-facts { display: flex; gap: 6px 16px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--soft); }
   .rl2-facts strong { color: var(--ink); }
@@ -121,8 +121,8 @@ body:has(main.rk2), body:has(main.rl2) { background: #fbfaf6; }
   .rl2-score b { font: 800 28px/1 var(--display); border: 2px solid var(--ink); border-radius: 10px; padding: 6px 10px; background: var(--paper); transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--ink); }
   .rl2-row:nth-child(even) .rl2-score b { transform: rotate(2deg); }
   .rl2-score b.hi { background: var(--score-g); } .rl2-score b.mid { background: var(--score-y); }
-  .rl2-score small { font: 11px var(--mono); color: var(--soft); white-space: nowrap; }
-  .rl2-pct { white-space: nowrap; font: 600 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--paper); }
+  .rl2-score small { font: 12px var(--mono); color: var(--soft); white-space: nowrap; }
+  .rl2-pct { white-space: nowrap; font: 600 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--paper); }
   .rl2-pct.hi { background: var(--score-g); } .rl2-pct.mid { background: var(--score-y); } .rl2-pct.thin { font-weight: 400; color: var(--mute); border-style: dashed; }
   .rl2-wc { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 10px; padding: 0 20px 18px 96px; }
   .rl2-wc > div { display: flex; gap: 10px; align-items: flex-start; border-radius: 12px; padding: 10px 14px; }
@@ -130,7 +130,7 @@ body:has(main.rk2), body:has(main.rl2) { background: #fbfaf6; }
   .rl2-wc i { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font: normal 700 12px var(--body); }
   .rl2-wc .why i { background: oklch(0.72 0.15 145); } .rl2-wc .catch i { background: oklch(0.85 0.1 60); }
   .rl2-wc span { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-  .rl2-wc small { font: 600 11px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
+  .rl2-wc small { font: 600 12px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
   .rl2-wc .why small { color: #2f6a37; } .rl2-wc .catch small { color: #8a4a1a; }
   .rl2-wc p { margin: 0 !important; font-size: 15px !important; line-height: 1.4 !important; color: var(--ink) !important; text-wrap: pretty; }
 

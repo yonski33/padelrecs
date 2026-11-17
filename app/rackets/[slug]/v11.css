@@ -164,10 +164,114 @@
 .rf .v11-vis .sh.pb-elongated { width: 28px; height: 54px; } .rf .v11-vis .sh.pb-hybrid { width: 32px; height: 50px; } .rf .v11-vis .sh.pb-widebody { width: 44px; height: 46px; border-radius: 14px 14px 9px 9px; }
 .rf .v11-vis .gauge { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; width: 100%; }
 .rf .v11-vis .gauge > .core { grid-column: 1 / -1; }
-.rf .v11-vis .gauge small { font: 11px var(--v-mono); color: var(--v-mute2); } .rf .v11-vis .gauge small + small { text-align: right; }
+.rf .v11-vis .gauge small { font: 12px var(--v-mono); color: var(--v-mute2); } .rf .v11-vis .gauge small + small { text-align: right; }
 .rf .v11-vis .flight { display: flex; gap: 6px; }
 .rf .v11-vis .flight b { min-width: 30px; height: 30px; padding: 0 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid var(--v-ink); border-radius: 8px; background: var(--v-card); font: 800 15px var(--v-display); }
 .rf .v11-vis .flight b:first-child { background: var(--v-tint); }
 .rf .v11-vis .disc { display: block; width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--v-ink); background: var(--v-tint); box-shadow: inset 0 0 0 7px var(--v-card), inset 0 0 0 9px var(--v-ink); box-sizing: border-box; }
 /* Long picks ("Beginner · Understable · Slower arm speed") wrap on phones instead of running past the card. */
 @media (max-width: 760px) { .rf .rf-afoot > span { white-space: pre-wrap; min-width: 0; } }
+
+/* Compare links (UX audit 2026-11-17): a quiet "compare with…" beside Check price, and "compare ↗" on each other-racket card
+   after its price link. */
+.rf .v11-cmp { font: 13px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; display: inline-flex; align-items: center; min-height: 32px; }
+.rf .v11-ofoot .v11-plink + .v11-ocmp { margin-left: 0; }
+.rf .v11-ofoot .v11-oscore + .v11-ocmp { margin-left: auto; }
+
+/* ===== v11c (owner 2026-11-17, design_handoff_product_page_v11c) ===== */
+/* How it plays: one slim box; three bars in a row, build chips, rule of thumb. */
+.rf .v11-plays.v11c { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); padding: 14px 18px; gap: 12px; scroll-margin-top: 80px; }
+.rf .v11-plays.v11c h2 { font-size: 22px; letter-spacing: -0.01em; }
+.rf .v11-plays.v11c .v11-bands { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 24px; border: 0; }
+.rf .v11-plays.v11c .v11-bands > div { padding: 0; border: 0; gap: 5px; background: none; }
+.rf .v11-plays.v11c .v11-bh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.rf .v11-plays.v11c .v11-bh b { font: 700 16px var(--qt-body, system-ui); }
+.rf .v11-plays.v11c .v11-bn { font: 800 18px/1 var(--v-display); letter-spacing: 0; } .rf .v11-plays.v11c .v11-bn small { font-size: 13px; }
+.rf .v11-plays.v11c .v11-segs i { flex: 1; width: auto; height: 8px; }
+.rf .v11-plays.v11c .v11-bnote { font-size: 14.5px; color: var(--v-body); }
+.rf .v11-pfoot { display: flex; flex-direction: column; gap: 8px; border-top: 1.5px dashed var(--v-dash); padding-top: 10px; }
+.rf .v11-chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.rf .v11-ck { font: 12.5px var(--v-mono); color: var(--v-mute2); margin-right: 4px; }
+.rf .v11-chips button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; padding: 0 12px;
+  border: 1.5px solid var(--v-ink); border-radius: 999px; font-size: 14.5px; font-weight: 600; background: var(--v-card); color: var(--v-ink); }
+.rf .v11-chips button span { font: 12px var(--v-mono); }
+.rf .v11-chips button[aria-expanded="true"] { background: var(--v-ink); color: var(--v-page); }
+.rf .v11-chips button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .v11-cline { margin: 0; font-size: 16px; line-height: 1.45; color: var(--v-body); }
+.rf .v11-cline mark { background: var(--v-hl); padding: 0 3px; border-radius: 3px; color: var(--v-ink); font-weight: 700; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.rf .v11-plays.v11c .v11-tip { margin: 0; }
+
+/* Other rackets: a compact strip of 3; phones show 2 and "one more option". */
+.rf .v11-others { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.rf .v11-others .v11-ocard { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 12px; align-items: start; border: 2px solid var(--v-ink); border-radius: 14px; padding: 12px; }
+.rf .v11-others .v11-opic { height: 84px; } .rf .v11-others .v11-opic img { max-height: 84px; width: auto; mix-blend-mode: multiply; }
+.rf .v11-obody { display: flex; flex-direction: column; gap: 6px; min-width: 0; align-items: flex-start; }
+.rf .v11-others .v11-oname { font-size: 16.5px; }
+.rf .v11-others .v11-oline { margin: 0; font-size: 14.5px; }
+.rf .v11-others .v11-oscore > b { width: 32px; height: 32px; font-size: 16px; border-radius: 8px; }
+.rf .v11-oscore > span { font: 12px var(--v-mono); color: var(--v-mute); }
+.rf .v11-olinks { display: flex; gap: 4px 14px; flex-wrap: wrap; }
+.rf .v11-olinks .v11-plink { margin: 0; min-height: 32px; display: inline-flex; align-items: center; }
+.rf .v11-omore { all: unset; cursor: pointer; display: none; min-height: 32px; align-self: flex-start; font: 13px var(--v-mono); color: var(--v-mute); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Still deciding? and Explore the rankings. */
+.rf .v11-decide { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
+.rf .v11-dl { flex: 1 1 380px; min-width: 0; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.rf .v11-dpic { grid-row: span 3; height: 76px; display: flex; align-items: center; justify-content: center; } .rf .v11-dpic img { height: 100%; width: auto; mix-blend-mode: multiply; }
+.rf .v11-dk { font: 12.5px var(--v-mono); color: var(--v-mute2); } .rf .v11-dn { font: 800 19px/1.15 var(--v-display); }
+.rf .v11-dv { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; } .rf .v11-dline { font-size: 15px; color: var(--v-body); }
+.rf .v11-dlinks { flex: 0 1 auto; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.rf .v11-dlinks a { font: 14px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; min-height: 32px; display: inline-flex; align-items: center; }
+.rf .v11-rt { display: flex; flex-direction: column; gap: 12px; }
+.rf .v11-rt .v11-sh a { font: 13px var(--v-mono); color: var(--v-ink); }
+.rf .v11-rtgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; padding: 2px 6px 8px 2px; }
+.rf .v11-rtgrid > a { text-decoration: none; color: var(--v-ink); border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); box-shadow: 4px 4px 0 var(--v-ink);
+  padding: 14px 16px; display: flex; align-items: center; gap: 10px; height: 120px; box-sizing: border-box; transition: transform .12s, box-shadow .12s; }
+.rf .v11-rtgrid > a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--v-ink); background: var(--v-tint); }
+.rf .v11-rtgrid .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.rf .v11-rtgrid .t b { font: 800 19px/1.15 var(--v-display); } .rf .v11-rtgrid .t em { font: normal 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .v11-rtpics { flex: none; position: relative; width: 100px; height: 88px; }
+.rf .v11-rtpics img { position: absolute; width: auto; mix-blend-mode: multiply; }
+.rf .v11-rtpics .p2 { right: 50px; bottom: 4px; height: 66px; } .rf .v11-rtpics .p1 { right: 25px; bottom: 2px; height: 76px; } .rf .v11-rtpics .p0 { right: 0; bottom: 0; height: 88px; }
+.rf .v11-foot p { margin: 0; font-size: 14px; text-wrap: pretty; } .rf .v11-foot a { color: var(--v-ink); }
+
+/* What players say: the new-this-week dot, the score row, the one-row "Played it?", level · side under the name. */
+@keyframes rvPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+.rf .rv-head.v11c { align-items: center; }
+.rf .rv-ht { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.rf .rv-new { display: inline-flex; align-items: center; gap: 7px; font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-new i { width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.15 145); animation: rvPulse 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .rf .rv-new i { animation: none; } }
+.rf .rv-mood.v11c { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 12px 0 0; }
+.rf .rv-mood.v11c .rv-mbar { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.rf .rv-mood.v11c .rf-sbar { width: 100%; height: 10px; }
+.rf .rv-mood.v11c small { font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-played { scroll-margin-top: 80px; border: 2px dashed var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.rf .rv-prow { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
+.rf .rv-prow > b { font: 800 16px var(--v-display); }
+.rf .rv-prow button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 0 12px 0 9px;
+  border-radius: 999px; border: 1.5px solid var(--v-ink); font-size: 14.5px; font-weight: 600; background: var(--v-card); }
+.rf .rv-prow button[aria-pressed="true"] { border-width: 2.5px; background: var(--v-tint); }
+.rf .rv-prow button i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--v-ink); }
+.rf .rv-prow button.positive i { background: oklch(0.72 0.15 145); } .rf .rv-prow button.mixed i { background: oklch(0.85 0.14 90); } .rf .rv-prow button.negative i { background: oklch(0.7 0.15 30); }
+.rf .rv-prow button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .rv-pk { margin-left: auto; font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-pwords { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.rf .rv-pwords input { flex: 1 1 240px; min-width: 0; box-sizing: border-box; border: 1.5px solid var(--v-ink); border-radius: 10px; padding: 8px 12px; font: 16px var(--qt-body, system-ui); background: var(--v-page); }
+.rf .rv-pwords .rv-post { min-height: 36px; padding: 0 16px; background: var(--v-card); color: var(--v-ink); }
+.rf .rv-who2 { font: 12.5px var(--v-mono); color: var(--v-mute2); margin-top: -4px; }
+
+@media (max-width: 760px) {
+  .rf .v11-others { grid-template-columns: 1fr; }
+  .rf .v11-others:not(.all) .v11-ocard.x { display: none; }
+  .rf .v11-others:not(.all) + .v11-omore { display: inline-flex; align-items: center; }
+  .rf .v11-rtgrid { grid-template-columns: 1fr; }
+  .rf .rv-pk { margin-left: 0; flex-basis: 100%; }
+}
+/* Both span the body column (it is a flex row of sections). */
+.rf .v11-rt, .rf .v11-decide { flex: 1 1 100%; width: 100%; box-sizing: border-box; }
+/* Tap targets on phones (v11c rule: 32px+). */
+@media (max-width: 760px) {
+  .rf .rf-back, .rf .rf-last, .rf .rv-watch, .rf .v11-rt .v11-sh a { display: inline-flex; align-items: center; min-height: 32px; }
+  .rf .v11-others .v11-oname { display: inline-flex; align-items: center; min-height: 32px; }
+}
