@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 // choose. The last answers stay in this browser, so "use my last answers" fills them in on the next racket.
 import { STYLES, LEVELS, levelLabel, styleWordOf, ARM_PICK, type Style, type Level } from "../../../lib/quick-match";
 import { niche } from "../../../lib/niche";
+import { fitConfigFor } from "../../../lib/fit-config";
+// A site with no style picks (SimRacingRecs) asks only the level; one whose arm pick is a hard filter (console) leaves it to the home.
+const NO_STYLE = STYLES.length < 2, NO_ARM = !!fitConfigFor(niche)?.quick?.armFilter;
 type Saved = { style: Style; level: Level; arm: boolean };
 import { SAVED_PICKS_KEY } from "../../../lib/saved-picks";
 const KEY = SAVED_PICKS_KEY;
@@ -19,7 +22,7 @@ function readSaved(): Saved | null {
 function saveProfile(p: Saved) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch { /* storage off */ } }
 
 export default function AskPicks({ onPick }: { onPick: (p: Saved) => void }) {
-  const [style, setStyle] = useState<Style | null>(null), [level, setLevel] = useState<Level | null>(null), [arm, setArm] = useState(false);
+  const [style, setStyle] = useState<Style | null>(NO_STYLE ? STYLES[0] ?? "any" : null), [level, setLevel] = useState<Level | null>(null), [arm, setArm] = useState(false);
   const [saved, setSaved] = useState<Saved | null>(null);
   // Browser storage is read after the first render, so the server and client HTML match.
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -33,13 +36,13 @@ export default function AskPicks({ onPick }: { onPick: (p: Saved) => void }) {
       {saved && <button type="button" className="rf-last" onClick={() => go(saved)} title={`${styleWordOf(saved.style)} · ${levelLabel(saved.level)}${saved.arm ? ` · ${ARM_PICK === "sore elbow / wrist" ? "sore arm" : ARM_PICK}` : ""}`}>↺ use my last answers</button>}</div>
     {/* The title (racket-fit.tsx) sits between the badge row and the questions: .rf-ask orders them with CSS. */}
     <div className="rf-q">
-      <div className="rf-qrow"><span>1. What do you want more of?</span>
+      {!NO_STYLE && <div className="rf-qrow"><span>1. What do you want more of?</span>
         <div role="group" aria-label="What you want more of">{STYLES.map(s =>
-          <button key={s} type="button" aria-pressed={style === s} onClick={() => pickStyle(s)}>{styleWordOf(s)}</button>)}</div></div>
-      <div className="rf-qrow"><span>2. What&apos;s your level?</span>
+          <button key={s} type="button" aria-pressed={style === s} onClick={() => pickStyle(s)}>{styleWordOf(s)}</button>)}</div></div>}
+      <div className="rf-qrow"><span>{NO_STYLE ? "What's your level?" : "2. What's your level?"}</span>
         <div role="group" aria-label="Your level">{LEVELS.map(l =>
           <button key={l} type="button" aria-pressed={level === l} onClick={() => pickLevel(l)}>{levelLabel(l)}</button>)}</div></div>
-      <button type="button" className="rf-arm2" aria-pressed={arm} onClick={() => setArm(a => !a)}><i aria-hidden="true">{arm ? "✓" : ""}</i><span>{`I have a ${ARM_PICK}`} <small>(optional)</small></span></button>
+      {!NO_ARM && <button type="button" className="rf-arm2" aria-pressed={arm} onClick={() => setArm(a => !a)}><i aria-hidden="true">{arm ? "✓" : ""}</i><span>{`I have a ${ARM_PICK}`} <small>(optional)</small></span></button>}
     </div>
   </>;
 }

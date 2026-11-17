@@ -246,7 +246,9 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   const ok = f.suits ? LEVELS.map((l, i) => f.suits![l as keyof typeof f.suits] as number >= SUITS_OK && !(i === 0 && f.hard?.beginner) ? i : -1).filter(i => i >= 0) : [];
   let band = ok.length ? { from: ok[0], to: ok[ok.length - 1] } : combinedBand(f);
   if (band && band.from === 0 && f.hard?.beginner) band = { from: 1, to: Math.max(band.to, 1) };
-  if (band) out.push(band.from === band.to ? LEVELS[band.from] : `${LEVELS[band.from]} → ${LEVELS[band.to]}`);
+  // A site with its own level words for people (SimRacingRecs: new / serious / all-in) says them.
+  const lw = (i: number) => (cfg.levelPeople && cfg.levelLabels?.[LEVELS[i] as keyof typeof cfg.levelLabels]) || LEVELS[i];
+  if (band) out.push(band.from === band.to ? lw(band.from) : `${lw(band.from)} → ${lw(band.to)}`);
   const lean = styleOf(f, cfg);
   // A type-picker site says it in its own sport's terms (DiscGolfRecs: what the stability is good for).
   if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);

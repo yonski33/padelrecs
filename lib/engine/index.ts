@@ -132,7 +132,8 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     if (mid) a0 = Math.min(a0, cap);
     if (ctl) a0 = Math.min(a0, p.labelBounds[0]);
     if (pow) a0 = Math.max(a0, p.labelBounds[1]);
-    const Pc = vo(x, "control").plus / base.control * base.power, Pp = vo(x, "power").plus;
+    // A catalogue with no control praise at all (SimRacingRecs before any style evidence) has no rate to compare to: 0, not 0/0.
+    const Pc = base.control > 0 ? vo(x, "control").plus / base.control * base.power : 0, Pp = vo(x, "power").plus;
     let num = p.ks * a0 + Pp, den = p.ks + Pp + Pc;
     const ec = x.e.expert.control, ep = x.e.expert.power;
     if (ec !== undefined && ep !== undefined && ec + ep > 0) { num += p.E * ep / (ec + ep); den += p.E; }

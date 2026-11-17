@@ -5,6 +5,7 @@
 // quick-match, match-context and the racket fit page read it; a site without one keeps its old pages.
 import type { Niche } from "./niche/types";
 import { DISCGOLF_FIT } from "./discgolf-fit";
+import { SIMRACING_FIT } from "./simracing-fit";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
@@ -13,7 +14,11 @@ export type TraitDef = { key: string; label: string; plus: [string, number][]; m
    *  answers ("win points with smashes"). */ diff?: string; ifYou?: string;
   /** Kept for the engine (the style axis) but not shown as a row on the product page (type-picker sites). */ hidden?: boolean;
   /** The product page's note in the site's own words (lib/trait-note.ts Say): strong / middling / weak by the dots, and the two
-   *  sides of a real split. Unset: padel's words on padel, else a line from the label. */ say?: { hi: string; mid: string; lo: string; split: [string, string] } };
+   *  sides of a real split. Unset: padel's words on padel, else a line from the label. */ say?: { hi: string; mid: string; lo: string; split: [string, string] };
+  /** The product types (catalogue shapes) the trait is shown for (SimRacingRecs: FFB only on wheelbases); unset = all. */ appliesTo?: string[] };
+/** A hard filter a type-picker site offers under fine-tune (SimRacingRecs: drive type, budget, rim type): the product's
+ *  values come from quick.factValues; `kinds` limits it to some types (shown and applied only there). */
+export type QuickFilter = { key: string; label: string; options: [string, string][]; kinds?: string[] };
 export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
@@ -28,6 +33,8 @@ export type FitConfig = {
    *  (pickleball's spin) is matched on that trait alone. */ styles?: ("control" | "balance" | "power" | "spin")[];
   /** How the level picks read (pickleball: the DUPR-style 2.5 / 3.5 / 4.5+); default the level word. */
   levelLabels?: { beginner: string; intermediate: string; advanced: string };
+  /** Who a level pick ranks for ("new racers"); default "<label> players" with levelLabels, else padel's words. */
+  levelPeople?: { beginner: string; intermediate: string; advanced: string };
   /** Sore arm: the tag that praises arm comfort and the one that faults it (if the site has one). */ arm: { trait: string; plus: string; minus?: string };
   /** The fit check's fallback level signal: forgiving against demanding tags (plus more for beginners). */ forgiving: { plus: string; minus: string[]; beginner: string[] };
   /** The specs' lean per trait in dots (each within ±1). */ specLean: (s: Specs) => Record<string, number>;
@@ -60,10 +67,23 @@ export type FitConfig = {
     /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string;
     /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean;
     /** "Generally best for" words per stability (DiscGolfRecs: "turnovers and hyzer flips"), instead of "control players". */ leanFor?: Partial<Record<"control" | "balance" | "power", string>>;
-    /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string };
+    /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string;
+    /** The arm tick is a hard filter on a fact (SimRacingRecs: "I race on console" → con = yes), not the engine's arm score. */ armFilter?: { key: string; value: string };
+    /** A level pick also keeps only products with one of these fact values (SimRacingRecs: all-in = the $$$ price third). */
+    levelFilter?: Partial<Record<"beginner" | "intermediate" | "advanced", { key: string; values: string[] }>>;
+    /** A level pick also takes the engine's empty style slot (SimRacingRecs, PM 2026-11-16): "new" ranks by the control slot
+     *  (here: new racers' verdicts), "serious" / "all-in" by the power slot (upgraders'), so the level reorders, not only gates. */
+    levelStyle?: Partial<Record<"beginner" | "intermediate" | "advanced", "control" | "power">>;
+    /** The catalogue's lead filter groups (guide spec keys), the first before Level; default disc golf's ["disc", "stab"]. */ catalogLead?: string[];
+    /** The compare card's "how it …" word (default "plays"; DiscGolfRecs, with flight numbers: "flies"). */ useWord?: string;
+    /** Fine-tune hard filters (?<key>=<value>), and the facts each product has for them. */
+    filters?: QuickFilter[]; factValues?: (r: { shape: string | null; balance: string | null; core: string | null; name: string }, owner: Record<string, string | number | null>) => Record<string, string[]> };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
   evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];
+  /** Expert values the engine reads for a trait under another stored key (SimRacingRecs: its control / power slots are the
+   *  expert's "first sim rig" and "upgrade" suits values). */
+  expertAlias?: Record<string, string>;
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -284,7 +304,7 @@ const TENNIS: FitConfig = {
   lab: { metrics: { swing_weight: { trait: "maneuverability", sign: -1 } }, weight: 0.5, specWeight: 0.5, alone: 0.7 },
 };
 
-const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT };
+const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT, simracing: SIMRACING_FIT };
 /** The site's fit rules, or undefined for sites that keep the old pages. */
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */

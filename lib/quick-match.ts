@@ -19,23 +19,27 @@ export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 export type Level = typeof LEVELS[number];
 export type QuickChoice = { style: Style; /** Unset until the visitor taps a level (owner 2026-11-15: picking a style must not
  *  pick "intermediate" too); no level means no level gate, bonus or check. */ level?: Level; arm: boolean; /** "Not sure yet? fine-tune" (lib/fine-tune.ts). */ fine?: FineTune;
-  /** The product type picked first (sites with a type picker, lib/fit-config.ts quick.types: DiscGolfRecs): a hard filter. */ kind?: string };
+  /** The product type picked first (sites with a type picker, lib/fit-config.ts quick.types: DiscGolfRecs): a hard filter. */ kind?: string;
+  /** Fine-tune hard filters (lib/fit-config.ts quick.filters: SimRacingRecs' drive / budget / rim), key → value. */ ff?: Record<string, string> };
 export const DEFAULT_CHOICE: QuickChoice = { style: "any", arm: false };
 
 /** Reads ?style=&level=&arm= (unknown values fall back to the default), and the fine-tune on a site that has one (padel's
  *  shapes and weights; lib/fit-config.ts fineTune). */
-export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; kind?: string; core?: string }, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
+export function readChoice(q: { style?: string; level?: string; arm?: string; shape?: string; weight?: string; feel?: string; sweet?: string; kind?: string; core?: string } & Record<string, unknown>, cfg: FitConfig | undefined = fitConfigFor(niche)): QuickChoice {
   const fine = cfg?.fineTune ? readFine(q) : {};
   const kind = cfg?.quick?.types.some(t => t.key === q.kind) ? q.kind : undefined;
+  // A fine-tune filter counts only with a known value, and only for the type it belongs to (or with no type picked).
+  const ff = Object.fromEntries((cfg?.quick?.filters ?? []).flatMap(f => { const v = q[f.key]; return typeof v === "string" && f.options.some(([o]) => o === v) && (!kind || !f.kinds || f.kinds.includes(kind)) ? [[f.key, v]] : []; }));
   return {
     ...(fineEmpty(fine) ? {} : { fine }),
     ...(kind ? { kind } : {}),
+    ...(Object.keys(ff).length ? { ff } : {}),
     style: STYLES.includes(q.style as Style) ? q.style as Style : DEFAULT_CHOICE.style,
     ...(LEVELS.includes(q.level as Level) ? { level: q.level as Level } : {}),
     arm: q.arm === "1",
   };
 }
-export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && !c.level && !c.arm && fineEmpty(c.fine) && !c.kind;
+export const isDefault = (c: QuickChoice) => c.style === DEFAULT_CHOICE.style && !c.level && !c.arm && fineEmpty(c.fine) && !c.kind && !Object.keys(c.ff ?? {}).length;
 /** The address for a choice: only what differs from the default, so "/" is the default list. */
 export function choiceHref(c: QuickChoice, anchor = "#match") {
   const q = new URLSearchParams();
@@ -44,6 +48,7 @@ export function choiceHref(c: QuickChoice, anchor = "#match") {
   if (c.level) q.set("level", c.level);
   if (c.arm) q.set("arm", "1");
   for (const [k, v] of fineParams(c.fine)) q.set(k, v);
+  for (const [k, v] of Object.entries(c.ff ?? {}).sort()) q.set(k, v);
   return `${q.size ? `/?${q}` : "/"}${anchor}`;
 }
 
@@ -127,7 +132,7 @@ export function quickMatch<P extends FinderProduct>(pool: P[], finder: Pick<Find
 }
 
 /** "beginners" / "intermediates" / "advanced players". */
-export const levelPeople = (l: Level) => SITE_FIT.levelLabels ? `${SITE_FIT.levelLabels[l]} players` : l === "advanced" ? "advanced players" : `${l}s`;
+export const levelPeople = (l: Level) => SITE_FIT.levelPeople?.[l] ?? (SITE_FIT.levelLabels ? `${SITE_FIT.levelLabels[l]} players` : l === "advanced" ? "advanced players" : `${l}s`);
 
 /** "Top control rackets for you" / "ranked for beginners · arm-friendly first". */
 export function matchTitle(c: QuickChoice, many: string, cfg: FitConfig | undefined = fitConfigFor(niche)) {
@@ -138,6 +143,7 @@ export function matchTitle(c: QuickChoice, many: string, cfg: FitConfig | undefi
 }
 /** The page title for a shared choice: "Best control padel rackets for beginners". */
 export function matchSeoTitle(c: QuickChoice, many: string, cfg: FitConfig | undefined = fitConfigFor(niche)) {
+  if (cfg?.quick?.armFilter) { const t = quickWhat(c, many, cfg), who = c.level ? levelPeople(c.level) : null; return `Best ${c.arm ? "console " : ""}${t}${who ? ` for ${who}` : ""}`; }
   if (cfg?.quick) { const t = quickWhat(c, many, cfg), who = c.level ? levelPeople(c.level) : c.arm ? "slower arms" : null; return `Best ${t}${who ? ` for ${who}${c.level && c.arm ? " with a slower arm" : ""}` : ""}`; }
   const what = c.style === "any" ? many : c.style === "balance" ? `all-round ${many}` : `${c.style} ${many}`;
   const who = [c.level ? levelPeople(c.level) : c.arm ? "players" : null, c.arm ? "with a sore elbow or wrist" : null].filter(Boolean).join(" ");
@@ -151,7 +157,7 @@ function quickWhat(c: QuickChoice, many: string, cfg: FitConfig) {
 }
 function quickTitle(c: QuickChoice, many: string, cfg: FitConfig) {
   if (isDefault(c)) return { title: `Top ${many} right now`, sub: `ranked by ${ownScore("player score")}` };
-  return { title: `Top ${quickWhat(c, many, cfg)} for you`, sub: [c.level ? `ranked for ${levelPeople(c.level)}` : "ranked for your picks", c.arm ? `${cfg.quick!.armChip} first` : null].filter(Boolean).join(" · ") };
+  return { title: `Top ${quickWhat(c, many, cfg)} for you`, sub: [c.level ? `ranked for ${levelPeople(c.level)}` : "ranked for your picks", c.arm ? `${cfg.quick!.armChip} ${cfg.quick!.armFilter ? "only" : "first"}` : null].filter(Boolean).join(" · ") };
 }
 
 /** The home's cache key for picks plus "show older models" (batch D): proxy.ts rewrites a home address to
@@ -160,14 +166,21 @@ export function choiceKey(c: QuickChoice, older: boolean) {
   const f = c.fine ?? {};
   // A type picker's pick (DiscGolfRecs) goes ninth on those sites only; a core pick (pickleball) is a ninth part only when set,
   // so padel's keys are as before.
-  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0, ...(fitConfigFor(niche)?.quick ? [c.kind ?? "-"] : f.core ? [f.core] : [])].join(".");
+  // Fine-tune filters (lib/fit-config.ts quick.filters: SimRacingRecs) follow, one part each, only on sites that have them.
+  const filters = fitConfigFor(niche)?.quick?.filters ?? [];
+  return [c.style, c.level ?? "-", c.arm ? 1 : 0, f.shape ?? "-", f.weight ?? "-", f.feel ?? "-", f.sweet ? 1 : 0, older ? 1 : 0, ...(fitConfigFor(niche)?.quick ? [c.kind ?? "-"] : f.core ? [f.core] : []),
+    ...filters.map(x => keyPart(c.ff?.[x.key]))].join(".");
 }
+/** A filter value as a cache-key part: "$$" → "2d" (dots and "$" stay out of the path), unset → "-". */
+const keyPart = (x: string | undefined) => x === undefined ? "-" : /^\$+$/.test(x) ? `${x.length}d` : x;
+const keyValue = (x: string | undefined) => x === undefined || x === "-" ? undefined : /^[1-3]d$/.test(x) ? "$".repeat(Number(x[0])) : x;
 /** The picks a key stands for, or null when it isn't the canonical key of any (so each page has one address). */
 export function readChoiceKey(key: string): { choice: QuickChoice; older: boolean } | null {
-  const [style, level, arm, shape, weight, feel, sweet, older, ninth] = key.split(".");
+  const [style, level, arm, shape, weight, feel, sweet, older, ninth, ...rest] = key.split(".");
   const v = (x: string | undefined) => x === "-" ? undefined : x;
   const quick = !!fitConfigFor(niche)?.quick;
-  const choice = readChoice({ style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined, ...(quick ? { kind: v(ninth) } : { core: ninth }) });
+  const ffq = Object.fromEntries((fitConfigFor(niche)?.quick?.filters ?? []).map((x, i) => [x.key, keyValue(rest[i])]));
+  const choice = readChoice({ ...ffq, style, level: v(level), arm, shape: v(shape), weight: v(weight), feel: v(feel), sweet: sweet === "1" ? "1" : undefined, ...(quick ? { kind: v(ninth) } : { core: ninth }) });
   const out = { choice, older: older === "1" };
   return choiceKey(choice, out.older) === key ? out : null;
 }
@@ -177,6 +190,22 @@ export const INDEXABLE_CHOICES: QuickChoice[] = (fitConfigFor(niche)?.quick
   ? [undefined, ...fitConfigFor(niche)!.quick!.types.map(t => t.key)].flatMap(kind => [undefined, ...LEVELS].flatMap(level => [false, true].map(arm => ({ style: "any" as Style, ...(kind ? { kind } : {}), ...(level ? { level } : {}), arm }))))
   : STYLES.flatMap(style => [undefined, ...LEVELS].flatMap(level => [false, true].map(arm => ({ style, ...(level ? { level } : {}), arm })))))
   .filter(c => !isDefault(c));
+/** The hard filters a choice adds on a type-picker site (lib/fit-config.ts quick): fine-tune filters (only for the types they
+ *  belong to), the arm tick when it is a fact filter (console), and a level's own filter (all-in → the $$$ third). Every
+ *  other site: always true. */
+export function passesFilters(x: { kind?: string; ff?: Record<string, string[]> }, c: QuickChoice, cfg: FitConfig | undefined = fitConfigFor(niche)): boolean {
+  const q = cfg?.quick; if (!q) return true;
+  const has = (k: string, v: string) => !!x.ff?.[k]?.includes(v);
+  for (const [k, v] of Object.entries(c.ff ?? {})) { const f = q.filters?.find(y => y.key === k); if (!f || (f.kinds && !(x.kind && f.kinds.includes(x.kind)))) continue; if (!has(k, v)) return false; }
+  if (c.arm && q.armFilter && !has(q.armFilter.key, q.armFilter.value)) return false;
+  const lf = c.level && q.levelFilter?.[c.level];
+  if (lf && !lf.values.some(v => has(lf.key, v))) return false;
+  return true;
+}
+/** The arm pick as the engine reads it: off where the arm tick is a fact filter (console), not a score. */
+export const engineArm = (c: QuickChoice, cfg: FitConfig | undefined = fitConfigFor(niche)) => c.arm && !cfg?.quick?.armFilter;
+/** The style the engine ranks by: the pick's, or the level's slot on a site that maps levels onto it (quick.levelStyle). */
+export const engineStyle = (c: QuickChoice, cfg: FitConfig | undefined = fitConfigFor(niche)): Style => (c.level && cfg?.quick?.levelStyle?.[c.level]) || c.style;
 /** The home address for picks plus "show older models" (?older=1). */
 export const homeHref = (c: QuickChoice, older: boolean) => { const base = choiceHref(c, ""); return older ? `${base}${base.includes("?") ? "&" : "?"}older=1` : base; };
 /** The quick-match home's own query (proxy.ts): any other of these is another home view (app/page.tsx), not a cached page. */

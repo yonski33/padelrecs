@@ -80,7 +80,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       <section className="hv2-hero">
         {/* One row on desktop on every site (owner 2026-11-16, as PickleballRecs): the headline with its marked half, then the
             subtitle with the "N reviews · N new this week" pill on the same line. Both wrap on phones. */}
-        <div><h1>{`${M?.h1?.[0] ?? "Less guessing."} `}<span className="hl">{M?.h1?.[1] ?? `Better ${niche.words.many}.`}</span></h1>
+        <div><h1>{`${M?.h1?.[0] ?? "Less guessing."} `}<span className="hl">{M?.h1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>
           <div className="hv2-subrow">{heroSub && <p className="hv2-sub">{heroSub}</p>}{live}</div></div>
       </section>
 

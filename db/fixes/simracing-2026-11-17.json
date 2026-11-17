@@ -1,0 +1,755 @@
+[
+ {
+  "name": "Heusinkveld One",
+  "set": {
+   "core": "PC",
+   "balance": "Formula"
+  },
+  "note": "Wireless (USB dongle)",
+  "source": "https://heusinkveld.com/shop/wheel/one/"
+ },
+ {
+  "name": "Logitech RS50",
+  "set": {
+   "core": "PC; PlayStation / PC and Xbox / PC editions"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs50-system"
+ },
+ {
+  "name": "Logitech PRO DD11",
+  "set": {
+   "core": "PC; PlayStation / PC edition; Xbox compatibility option"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/pro-dd11-base"
+ },
+ {
+  "name": "MOZA SRP2 Pedals",
+  "set": {
+   "core": "PC, Xbox"
+  },
+  "source": "https://mozaracing.com/products/srp2-pedals"
+ },
+ {
+  "name": "MOZA R25 Ultra",
+  "set": {
+   "core": "PC; Xbox with MOZA ESX Steering Wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000679654-moza-r25-ultra-true-torque-wheel-base-support"
+ },
+ {
+  "name": "Simagic Alpha Mini",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/pages/details-alpha-mini"
+ },
+ {
+  "name": "Simagic Alpha",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/collections/all/products.json"
+ },
+ {
+  "name": "Simagic Alpha Ultimate",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/pages/details-alpha-u"
+ },
+ {
+  "name": "Thrustmaster T598",
+  "set": {
+   "weight": "5 Nm"
+  },
+  "source": "https://www.thrustmaster.com/en-us/products/t598/"
+ },
+ {
+  "name": "Thrustmaster T818",
+  "set": {
+   "weight": "10 Nm"
+  },
+  "source": "https://www.thrustmaster.com/en-us/products/t818/"
+ },
+ {
+  "name": "Logitech G29",
+  "set": {
+   "weight": "2.3 Nm"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel"
+ },
+ {
+  "name": "Logitech G920",
+  "set": {
+   "weight": "2.3 Nm"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel"
+ },
+ {
+  "name": "Logitech G923",
+  "set": {
+   "weight": "2.3 Nm"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel"
+ },
+ {
+  "name": "Thrustmaster T80 Ferrari 488 GTB Edition",
+  "set": {
+   "balance": "No force feedback (bungee return)"
+  },
+  "source": "https://www.thrustmaster.com/en-us/products/t80-ferrari-488-gtb-edition/"
+ },
+ {
+  "name": "Heusinkveld Ultimate+",
+  "set": {
+   "weight": "140 kg max (200 kg load cell)"
+  },
+  "source": "https://heusinkveld.com/shop/pedals/ultimate-3-pedal-set-black/"
+ },
+ {
+  "name": "Sim-Lab XP1",
+  "set": {
+   "weight": "100 kg max (200 kg load cell)"
+  },
+  "source": "https://sim-lab.eu/en-us/products/pedal-set-xp1-loadcell-sim-racing"
+ },
+ {
+  "name": "Heusinkveld Sprint",
+  "set": {
+   "weight": "65 kg max"
+  },
+  "source": "https://heusinkveld.com/pedal-selection-guide/"
+ },
+ {
+  "name": "Asetek Forte Pedals",
+  "set": {
+   "weight": "180 kg max"
+  },
+  "source": "https://www.asetek.com/simsports/us/product/forte-sim-racing-pedals-brake-throttle/"
+ },
+ {
+  "name": "Asetek La Prima Pedals",
+  "set": {
+   "weight": "180 kg max"
+  },
+  "source": "https://www.asetek.com/simsports/global/product/la-prima-sim-racing-pedals-brake-throttle/"
+ },
+ {
+  "name": "Asetek Invicta Pedals THORP II",
+  "set": {
+   "weight": "180 kg max"
+  },
+  "source": "https://www.asetek.com/simsports/us/product/invicta-pedals-thorp-2/"
+ },
+ {
+  "name": "Fanatec CSL Elite Pedals V2",
+  "set": {
+   "weight": "90 kg max (load cell rated 200 kg+)"
+  },
+  "source": "https://www.fanatec.com/us/en/p/pedals/csl_ep_v2/csl-elite-pedals-v2"
+ },
+ {
+  "name": "Simagic GT Neo",
+  "set": {
+   "balance": "GT",
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/gt-neo"
+ },
+ {
+  "name": "Asetek Forte GT",
+  "set": {
+   "balance": "Button box",
+   "core": "PC"
+  },
+  "note": "Rim sold separately",
+  "source": "https://www.asetek.com/simsports/us/product/forte-gt-steering-wheel-black-aluminum/"
+ },
+ {
+  "name": "Asetek Invicta Formula",
+  "set": {
+   "balance": "Button box",
+   "core": "PC"
+  },
+  "note": "Handles sold separately",
+  "source": "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/"
+ },
+ {
+  "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+  "note": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
+  "source": "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
+ },
+ {
+  "name": "Thrustmaster Rally Wheel Add-On Sparco R383 Mod",
+  "note": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
+  "source": "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
+ },
+ {
+  "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+  "note": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
+  "source": "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
+ },
+ {
+  "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+  "note": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
+  "source": "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
+ },
+ {
+  "name": "Fanatec CSL Steering Wheel P1 V2",
+  "set": {
+   "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase"
+  },
+  "source": "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
+ },
+ {
+  "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+  "set": {
+   "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase"
+  },
+  "source": "https://www.fanatec.com/us/en/p/steering-wheels/p_sw_bmw_gt3_h/podium-steering-wheel-bmw-m4-gt3"
+ },
+ {
+  "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
+  "set": {
+   "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase"
+  },
+  "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_p_p911_gt3r_s_qr2/podium-steering-wheel-porsche-911-gt3r-suede-qr2"
+ },
+ {
+  "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+  "set": {
+   "core": "PC, PS4, PS5, Xbox One, Xbox Series X|S with a compatible Thrustmaster base"
+  },
+  "source": "https://eshop.thrustmaster.com/en_us/formula-wheel-add-on-ferrari-sf1000-edition.html"
+ },
+ {
+  "name": "Fanatec ClubSport Wheel Rim 320",
+  "set": {
+   "balance": "Round",
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)"
+  },
+  "source": "https://www.fanatec.com/us/en/p/wheel-rims/cs_wr_320/clubsport-wheel-rim-320"
+ },
+ {
+  "name": "Fanatec ClubSport Wheel Rim Classic 2",
+  "set": {
+   "balance": "Round",
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)"
+  },
+  "source": "https://www.fanatec.com/us/en/p/wheel-rims/uh_rclassic2/clubsport-wheel-rim-classic-2"
+ },
+ {
+  "name": "Fanatec ClubSport Wheel Rim GT3",
+  "set": {
+   "balance": "GT",
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)"
+  },
+  "source": "https://www.fanatec.com/us/en/p/wheel-rims/crd-9020020-ww/clubsport-wheel-rim-gt3"
+ },
+ {
+  "name": "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup",
+  "set": {
+   "balance": "GT",
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)"
+  },
+  "source": "https://www.fanatec.com/us/en/p/wheel-rims/uh_r911s/podium-wheel-rim-porsche-911-gt3-cup-leather"
+ },
+ {
+  "name": "Fanatec Podium Wheel Rim R300",
+  "set": {
+   "balance": "Round",
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)"
+  },
+  "source": "https://www.fanatec.com/us/en/p/wheel-rims/uh_r300/podium-wheel-rim-r300"
+ },
+ {
+  "name": "Fanatec CSL Steering Wheel R300 V2",
+  "set": {
+   "balance": "Round"
+  },
+  "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_csl_r300_v2_qr2l/csl-steering-wheel-r300-v2-qr2l"
+ },
+ {
+  "name": "Logitech PRO Racing GT D Rim",
+  "set": {
+   "balance": "GT (D-shape)"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/pro-gtd-rim"
+ },
+ {
+  "name": "Logitech RS Track Wheel",
+  "set": {
+   "balance": "GT"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-track-wheel"
+ },
+ {
+  "name": "MOZA ESX",
+  "set": {
+   "balance": "Rally"
+  },
+  "source": "https://mozaracing.com/products/esx-steering-wheel"
+ },
+ {
+  "name": "MOZA Ford Mustang GTD Wheel",
+  "set": {
+   "balance": "GT (D-shape)"
+  },
+  "source": "https://mozaracing.com/products/ford-gtd-wheel"
+ },
+ {
+  "name": "Simucube Savu Pro",
+  "set": {
+   "balance": "GT",
+   "core": "PC"
+  },
+  "source": "https://simucube.com/products/simucube-savu-pro"
+ },
+ {
+  "name": "Simagic P-325C",
+  "set": {
+   "balance": "D-shape (cut-off top)",
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/p-325c"
+ },
+ {
+  "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+  "set": {
+   "balance": "Round"
+  },
+  "source": "https://eshop.thrustmaster.com/en_us/ferrari-250-gto-wheel-add-on.html"
+ },
+ {
+  "name": "MOZA CS V2P",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://mozaracing.com/products/cs-v2p-wheel"
+ },
+ {
+  "name": "MOZA Essenza SCV12 Steering Wheel",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://mozaracing.com/products/lamborghini-essenza-scv12-wheel"
+ },
+ {
+  "name": "MOZA GS V2P",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://mozaracing.com/products/gs-v2p-gt-wheel"
+ },
+ {
+  "name": "MOZA RS V2",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://mozaracing.com/products/rs-v2-wheel"
+ },
+ {
+  "name": "Simagic Aston Martin Valkyrie",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/simagic-aston-martin-valkyrie"
+ },
+ {
+  "name": "Simagic FX",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/fx-formula"
+ },
+ {
+  "name": "Simagic FX Pro",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/fx-pro"
+ },
+ {
+  "name": "Simagic GT1",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/gt1"
+ },
+ {
+  "name": "Simagic GTC",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/gtc"
+ },
+ {
+  "name": "Simagic GTS",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/gts"
+ },
+ {
+  "name": "Simagic Zeus Formula",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/simagic-zeus-formula-steering-wheel"
+ },
+ {
+  "name": "Simagic Zeus GT",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/zeus-gt-steering-wheel"
+ },
+ {
+  "name": "Simagic Zeus Sport",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simagic.com/products/zeus-sport-steering-wheel"
+ },
+ {
+  "name": "Simucube Valo GT-23",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simucube.com/products/simucube-valo-gt-23"
+ },
+ {
+  "name": "Simucube x BavarianSimTec Delta Pro SC",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://simucube.com/products/simucube-x-bavariansimtec-delta-pro-sc"
+ },
+ {
+  "name": "Asetek Dual Mode Shifter",
+  "set": {
+   "core": "PC; Xbox with an Asetek Racing Xbox-compatible wheelbase and steering wheel"
+  },
+  "source": "https://www.asetek.com/simsports/us/product/dual-mode-shifter/"
+ },
+ {
+  "name": "Heusinkveld Handbrake",
+  "set": {
+   "weight": "120 kg load cell"
+  },
+  "source": "https://heusinkveld.com/shop/handbrake-shifters/handbrake/"
+ },
+ {
+  "name": "Logitech Driving Force Shifter",
+  "set": {
+   "core": "PC; PlayStation with a G29 / G923, Xbox with a G920 / G923"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/driving-force-shifter"
+ },
+ {
+  "name": "MOZA Active Shifter",
+  "set": {
+   "core": "PC",
+   "balance": "H-pattern + sequential + handbrake"
+  },
+  "source": "https://mozaracing.com/products/active-shifter"
+ },
+ {
+  "name": "Sim-Lab SQ1",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://sim-lab.eu/products/sequential-shifter-sq1"
+ },
+ {
+  "name": "Thrustmaster TSS Handbrake",
+  "set": {
+   "balance": "Handbrake + sequential"
+  },
+  "source": "https://eshop.thrustmaster.com/en_us/tss-handbrake.html"
+ },
+ {
+  "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+  "set": {
+   "balance": "Handbrake + sequential",
+   "core": "PC via USB; PS4 / PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster racing wheel/base"
+  },
+  "source": "https://www.thrustmaster.com/products/tss-handbrake-sparco-mod/"
+ },
+ {
+  "name": "Asetek Initium 2-in-1 Cockpit",
+  "source": "https://www.asetek.com/simsports/us/product/initium-2-in-1-cockpit/",
+  "set": {
+   "balance": "Steel tube"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Fanatec ClubSport GT Cockpit",
+  "source": "https://www.fanatec.com/us/en/p/cockpits/cs_gt_c_blk/clubsport-gt-cockpit-black",
+  "set": {
+   "balance": "Steel tube"
+  }
+ },
+ {
+  "name": "Fanatec CSL Cockpit V1.5",
+  "source": "https://www.fanatec.com/us/en/p/cockpits/crd-9010009-ww/csl-cockpit-v1-5",
+  "set": {
+   "balance": "Aluminium tube"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "GT Omega ART",
+  "source": "https://www.gtomega.com/products/art-racing-cockpit",
+  "set": {
+   "balance": "Steel tube"
+  }
+ },
+ {
+  "name": "GT Omega HYBRID",
+  "source": "https://www.gtomega.com/products/hybrid-cockpit",
+  "set": {
+   "balance": "Aluminium profile"
+  }
+ },
+ {
+  "name": "GT Omega PRIME",
+  "source": "https://www.gtomega.com/products/prime-cockpit",
+  "set": {
+   "balance": "Aluminium profile"
+  }
+ },
+ {
+  "name": "GT Omega PRIME Lite",
+  "source": "https://www.gtomega.com/products/prime-lite-cockpit",
+  "set": {
+   "balance": "Aluminium profile"
+  }
+ },
+ {
+  "name": "GT Omega PRIME Lite-R",
+  "source": "https://www.gtomega.com/products/prime-lite-r",
+  "set": {
+   "balance": "Aluminium profile"
+  }
+ },
+ {
+  "name": "GT Omega TITAN",
+  "source": "https://www.gtomega.com/products/titan-cockpit",
+  "set": {
+   "balance": "Steel tube"
+  }
+ },
+ {
+  "name": "Next Level Racing F-GT",
+  "source": "https://nextlevelracing.com/products/next-level-racing-f1gt-formula-1-and-gt-simulator-cockpit/",
+  "set": {
+   "balance": "Steel tube"
+  },
+  "note": "Seat included"
+ },
+ {
+  "name": "Next Level Racing F-GT Elite",
+  "source": "https://nextlevelracing.com/products/f-gt-elite-wheel-plate-edition/",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Next Level Racing F-GT Elite 160",
+  "source": "https://nextlevelracing.com/products/elite-160-wheel-plate-edition/",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Next Level Racing F-GT Elite Lite",
+  "source": "https://nextlevelracing.com/products/f-gt-elite-lite-wheelplate-edition/",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Next Level Racing F-GT Lite",
+  "source": "https://nextlevelracing.com/products/f-gt-lite/",
+  "note": "Seat included"
+ },
+ {
+  "name": "Next Level Racing F-GT Pro",
+  "source": "https://nextlevelracing.com/products/f-gt-pro-formula-and-gt-racing-simulator-cockpit-black-edition/",
+  "set": {
+   "balance": "Steel tube"
+  }
+ },
+ {
+  "name": "Next Level Racing Formula Lite Pro",
+  "source": "https://nextlevelracing.com/products/formula-lite-pro/",
+  "note": "Seat included"
+ },
+ {
+  "name": "Next Level Racing Go Kart Plus",
+  "source": "https://nextlevelracing.com/products/go-kart-plus/",
+  "set": {
+   "balance": "Kart-style"
+  },
+  "note": "Seat included"
+ },
+ {
+  "name": "Next Level Racing GTElite",
+  "source": "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-wheel-plate-edition/",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Next Level Racing GTElite Lite",
+  "source": "https://nextlevelracing.com/products/gtelite-lite-wheel-plate-edition/",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Next Level Racing GTLite Air",
+  "source": "https://nextlevelracing.com/products/gtlite-air/",
+  "set": {
+   "balance": "Foldable"
+  },
+  "note": "Seat included"
+ },
+ {
+  "name": "Next Level Racing GTLite Pro",
+  "source": "https://nextlevelracing.com/products/gtlite-pro/",
+  "note": "Seat included"
+ },
+ {
+  "name": "Next Level Racing GTRacer 2.0",
+  "source": "https://nextlevelracing.com/products/gtracer-2/",
+  "set": {
+   "balance": "Steel tube"
+  }
+ },
+ {
+  "name": "Next Level Racing GTtrack",
+  "source": "https://nextlevelracing.com/products/next-level-racing-gttrack/",
+  "set": {
+   "balance": "Steel tube"
+  }
+ },
+ {
+  "name": "Next Level Racing Wheel Stand 2.0",
+  "source": "https://nextlevelracing.com/products/racing-wheel-stand-2-0/",
+  "note": "Seat not included"
+ },
+ {
+  "name": "Next Level Racing Wheel Stand Lite 2.0",
+  "source": "https://nextlevelracing.com/products/wheel-stand-lite-2-0/",
+  "note": "Seat not included; Rated for wheelbases up to 10 Nm"
+ },
+ {
+  "name": "Playseat Challenge X",
+  "source": "https://www.playseat.com/en-us/products/playseat-challenge-x",
+  "note": "Seat included"
+ },
+ {
+  "name": "Playseat Trophy",
+  "source": "https://www.playseat.com/en-us/products/playseat-trophy-black",
+  "set": {
+   "balance": "Steel frame"
+  },
+  "note": "Seat included"
+ },
+ {
+  "name": "Sim-Lab GT1 Evo",
+  "source": "https://sim-lab.eu/products/gt1-evo-sim-racing-cockpit-1",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included; Rated for wheelbases up to 40 Nm"
+ },
+ {
+  "name": "Sim-Lab GT1 Pro",
+  "source": "https://sim-lab.eu/products/gt1-pro-sim-racing-cockpit-int",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Sim-Lab P1X Pro",
+  "source": "https://sim-lab.eu/products/p1x-pro-sim-racing-cockpit-int",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Sim-Lab P1X Ultimate",
+  "source": "https://sim-lab.eu/products/p1x-ultimate-simracing-cockpit-us",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Sim-Lab Mercedes-AMG PETRONAS Formula One Team Sim Racing Cockpit",
+  "source": "https://sim-lab.eu/products/mercedes-amg-petronas-formula-one-team-sim-racing-cockpit-int",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included"
+ },
+ {
+  "name": "Trak Racer TR120S V2",
+  "source": "https://trakracer.com/products/tr120s-v2-racing-simulator-new",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included; Recommended for wheelbases up to 30 Nm+"
+ },
+ {
+  "name": "Trak Racer TR40S",
+  "source": "https://trakracer.com/products/tr40s-racing-simulator",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included; Recommended for wheelbases up to 10 Nm"
+ },
+ {
+  "name": "Trak Racer TR5",
+  "source": "https://trakracer.com/products/tr5",
+  "set": {
+   "balance": "Steel tube"
+  },
+  "note": "Seat included; Rated for wheelbases up to 25 Nm"
+ },
+ {
+  "name": "Trak Racer TR8 Pro V2",
+  "source": "https://trakracer.com/products/tr8-pro-racing-simulator-1",
+  "set": {
+   "balance": "Steel tube"
+  },
+  "note": "Seat not included; Recommended for wheelbases up to 25 Nm"
+ },
+ {
+  "name": "Trak Racer TR80S",
+  "source": "https://trakracer.com/products/tr80s-racing-simulator",
+  "set": {
+   "balance": "Aluminium profile"
+  },
+  "note": "Seat not included; Recommended for wheelbases up to 16 Nm"
+ },
+ {
+  "name": "Trak Racer TRX V2",
+  "source": "https://trakracer.com/products/alpine-racing-trx-black-new",
+  "set": {
+   "balance": "Steel tube"
+  },
+  "note": "Recommended for wheelbases up to 30 Nm+"
+ }
+]

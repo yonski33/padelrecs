@@ -56,7 +56,7 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
         <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
       </section>
       <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one} spec={specGroups(niche.guide)}
-        {...(QUICK ? { look: { lead: ["disc", "stab"], arm: QUICK.armChip, score: v2copy.score ?? "player score" } } : {})}/>
+        {...(QUICK ? { look: { lead: QUICK.catalogLead ?? ["disc", "stab"], arm: QUICK.armChip, score: v2copy.score ?? "player score" } } : {})}/>
     </div>
     <V2Footer/>
   </main>;
