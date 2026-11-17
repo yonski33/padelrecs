@@ -11,12 +11,13 @@ import { scoreTone as tone, matchTone } from "../../../lib/score-tone";
 
 /** A racket card's data from the server (app/rackets/[slug]/racket-fit.tsx). */
 export type V11Card = { id: string; name: string; href: string; pic: string | null; line: string | null; best: string | null;
-  score: number | null; shop: { url: string; rel: string } | null; vs: string | null; pick: string | null; gain: string | null; give: string | null };
+  score: number | null; shop: { url: string; rel: string } | null; vs: string | null; pick: string | null; gain: string | null; give: string | null;
+  /** This page's racket by its shortest name beside this card ("12K", #435 rule), for "than the …" lines. */ ref: string };
 const word = (n: number) => fitStep(n).word;
 const WEAK = FIT_MIN;
 /** A racket for the "for your game" cards: the server sends one for every racket the picks can bring up. */
 export type V11Pool = Record<string, { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null;
-  score: number | null; best: string | null; dots: number[] }>;
+  score: number | null; best: string | null; dots: number[]; /** As V11Card.ref. */ ref: string }>;
 /** The photo, or a tile with the name when the catalog has none. */
 const Pic = ({ pic, name, w, h }: { pic: string | null; name: string; w: number; h: number }) => pic ? <img src={pic} alt={name} width={w} height={h} loading="lazy" decoding="async"/>
   : <span className="v11-tile">{name.split(" ").slice(0, 2).join(" ")}</span>;
@@ -51,41 +52,81 @@ export function V11Better({ id, facts, cards, words }: { id: string; facts: FitF
   </section>;
 }
 
-/** "Other rackets to consider" (no pick: similar rackets, Player scores) / "Other rackets for your game" (a pick: rackets that fit
- *  it, 60%+, sorted by match). v11c: a compact strip of 3 (photo, name, score or match pill, one line, quiet links); phones show
- *  2 and "one more option"; hidden while the Better matches strip is up. */
-export function V11Others({ id, slug, facts, better, cards, short, pool, me, keys, gainWord, words, scoreWord }: { id: string; /** This page's slug, for "compare ↗". */ slug: string;
-  facts: FitFacts; better: BetterCards; cards: V11Card[]; short: string; pool: V11Pool; me: number[]; keys: string[]; gainWord: string[]; words: Words; scoreWord: string }) {
+/** "Other rackets to consider" (no pick: similar rackets) / "for your game" (a pick: rackets that fit it, 60%+, by match). Owner
+ *  2026-11-17: two cards side by side (stacked on phones): photo, name, Player score or match pill, the racket's own tagline,
+ *  a green gain line and a peach give-up line (only a real one), then the quiet links. Hidden while Better matches shows. */
+export function V11Others({ id, slug, facts, better, cards, pool, me, keys, gainWord, giveWord, words, scoreWord }: { id: string; /** This page's slug, for "compare ↗". */ slug: string;
+  facts: FitFacts; better: BetterCards; cards: V11Card[]; pool: V11Pool; me: number[]; keys: string[]; gainWord: string[]; giveWord: string[]; words: Words; scoreWord: string }) {
   const m = useMatchOf(), alts = useAlts(id, 8), hide = useBetter(id, facts, better);
-  const [more, setMore] = useState(false);
   if (hide) return null;
   const fitting = m.picked && alts ? fittingRows(alts, id, x => !!pool[x]) : [];
   const picked = m.picked && fitting.length > 0;
-  const edges = picked ? new Map(distinctEdges(me, fitting.map(r => ({ id: r.id, dots: pool[r.id].dots })), keys, 3).map(e => [e.id, e])) : null;
-  const list: { id: string; name: string; href: string; pic: string | null; score: number | null; shop: V11Card["shop"]; pct: number | null; one: string | null }[] = (picked
-    ? fitting.map(r => { const c = pool[r.id], e = edges!.get(r.id);
-      return { id: r.id, name: c.name, href: c.href, pic: c.pic, score: c.score, shop: c.shop, pct: r.pct, one: e ? `${cap(gainWord[e.gain])} than the ${short}.` : c.line }; })
-    : cards.map(c => ({ id: c.id, name: c.name, href: c.href, pic: c.pic, score: c.score, shop: c.shop, pct: null, one: c.gain ?? c.line }))).slice(0, 3);
+  const list = (picked ? withEdges(fitting, pool, me, keys, gainWord, giveWord) : cards.map(c => ({ ...c, pct: null as number | null }))).slice(0, 2);
   if (!list.length) return null;
   return <section className="v11-sec" id="alternatives">
     <div className="v11-sh v11-rule"><h2>{picked ? `Other ${words.many} for your game` : `Other ${words.many} to consider`}</h2><span>{picked ? "the best fits for your picks, by match" : `similar ${words.many}, same quick answer`}</span></div>
-    <div className={`v11-others${more ? " all" : ""}`}>{list.map((c, i) => {
-      return <article key={c.id} className={`v11-ocard${i >= 2 ? " x" : ""}`} id={`racket-${c.id}`}>
-        <a className="v11-opic" href={`${c.href}${m.picksHref}`} tabIndex={-1} aria-hidden="true"><Pic pic={c.pic} name={c.name} w={64} h={96}/></a>
-        <div className="v11-obody">
-          <a className="v11-oname" href={`${c.href}${m.picksHref}`}>{c.name}</a>
-          {/* Before an answer the Player score; after it the match pill, in the shared colours (Strong fit / Worth a look / Probably not). */}
-          {picked && c.pct !== null ? <span className={`v11-pill v11-omatch ${matchTone(c.pct)}`}>{`${c.pct}% · ${word(c.pct)}`}</span>
-            : <span className="v11-oscore"><b className={tone(c.score)}>{c.score ?? "–"}</b><span>{scoreWord.toLowerCase()}</span></span>}
-          {c.one && <p className="v11-oline">{c.one}</p>}
-          <span className="v11-olinks">{c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
-            {/* Side by side with this one (UX audit 2026-11-17: compare was hard to find). */}
-            <a className="v11-plink v11-ocmp" href={`/compare?ids=${encodeURIComponent(slug)},${encodeURIComponent(c.href.split(/[?#]/)[0].split("/").pop() ?? "")}`}>compare ↗</a></span>
-        </div>
-      </article>; })}</div>
-    {list.length > 2 && !more && <button type="button" className="v11-omore" onClick={() => setMore(true)}>one more option ↓</button>}
+    <div className="v11-others two">{list.map(c => <article key={c.id} className="v11-ocard" id={`racket-${c.id}`}>
+      <a className="v11-opic" href={`${c.href}${m.picksHref}`} tabIndex={-1} aria-hidden="true"><Pic pic={c.pic} name={c.name} w={64} h={96}/></a>
+      <div className="v11-obody">
+        <a className="v11-oname" href={`${c.href}${m.picksHref}`}>{c.name}</a>
+        <Score pct={picked ? c.pct : null} score={c.score} word={scoreWord}/>
+        {c.line && <p className="v11-oline">{c.line}</p>}
+        {c.gain && <p className="v11-tgain">{`✓ ${c.gain}`}</p>}
+        {c.give && <p className="v11-tgive">{`↗ ${c.give}`}</p>}
+        <Links c={c} slug={slug}/>
+      </div>
+    </article>)}</div>
   </section>;
 }
+
+/** "More rackets for your game" (owner 2026-11-17): only in the not-a-fit state (the Better matches strip is up), the next
+ *  2–3 best matches at 60%+ by match, never one already in the strip; the richer card (left: photo, name, tagline, best for,
+ *  match, price; right: "vs the 12K" tag, the gain box and a real give-up box). */
+export function V11More({ id, slug, facts, better, pool, me, keys, gainWord, giveWord, words, scoreWord }: { id: string; slug: string; facts: FitFacts; better: BetterCards;
+  pool: V11Pool; me: number[]; keys: string[]; gainWord: string[]; giveWord: string[]; words: Words; scoreWord: string }) {
+  const m = useMatchOf(), alts = useAlts(id, 12), b = useBetter(id, facts, better);
+  if (!b || !alts) return null;
+  const shown = new Set(b.rows.map(r => r.id));
+  const next = alts.filter(r => r.id !== id && pool[r.id] && !shown.has(r.id) && (r.pct ?? 0) >= FIT_MIN).sort((x, y) => (y.pct ?? 0) - (x.pct ?? 0)).slice(0, 3);
+  if (next.length < 2) return null;
+  const list = withEdges(next, pool, me, keys, gainWord, giveWord);
+  return <section className="v11-sec v11-more2" id="more-for-you">
+    <div className="v11-sh v11-rule"><h2>{`More ${words.many} for your game`}</h2><span>the next best fits for your picks, by match</span></div>
+    <div className="v11-mlist">{list.map(c => <article key={c.id} className="v11-ocard">
+      <div className="v11-oleft">
+        <div className="v11-otop">
+          <a className="v11-opic" href={`${c.href}${m.picksHref}`} tabIndex={-1} aria-hidden="true"><Pic pic={c.pic} name={c.name} w={96} h={144}/></a>
+          <div><a className="v11-oname" href={`${c.href}${m.picksHref}`}>{c.name}</a>
+            {c.line && <p className="v11-oline">{c.line}</p>}
+            {c.best && <p className="v11-obest"><b>Best for</b>{` ${c.best}.`}</p>}</div>
+        </div>
+        <div className="v11-ofoot"><Score pct={c.pct} score={c.score} word={scoreWord}/><Links c={c} slug={slug}/></div>
+      </div>
+      <div className="v11-oright">
+        {c.vs && <span className="v11-otag">{`vs the ${c.ref}: ${c.vs}`}</span>}
+        {c.gain && <div className="v11-ogain"><b>✓ What you gain</b><span>{c.gain}</span></div>}
+        {c.give && <div className="v11-ogive"><b>↗ What you give up</b><span>{c.give}</span></div>}
+      </div>
+    </article>)}</div>
+  </section>;
+}
+
+type Row = { id: string; pct: number | null };
+/** A pool racket as a card with its gain and give-up against this one, in the short names. */
+function withEdges(rows: Row[], pool: V11Pool, me: number[], keys: string[], gainWord: string[], giveWord: string[]) {
+  const edges = new Map(distinctEdges(me, rows.map(r => ({ id: r.id, dots: pool[r.id].dots })), keys, 3).map(e => [e.id, e]));
+  return rows.map(r => { const c = pool[r.id], e = edges.get(r.id);
+    return { id: r.id, name: c.name, href: c.href, pic: c.pic, line: c.line, best: c.best, score: c.score, shop: c.shop, pct: r.pct, ref: c.ref,
+      vs: e ? gainWord[e.gain] : null, gain: e ? `${cap(gainWord[e.gain])} than the ${c.ref}.` : null, give: e && e.give !== null ? `${cap(giveWord[e.give])} than the ${c.ref}.` : null }; });
+}
+/** Before an answer the Player score; after it the match pill in the shared colours (Strong fit / Worth a look / Probably not). */
+const Score = ({ pct, score, word: w }: { pct: number | null; score: number | null; word: string }) => pct !== null
+  ? <span className={`v11-pill v11-omatch ${matchTone(pct)}`}>{`${pct}% · ${word(pct)}`}</span>
+  : <span className="v11-oscore"><b className={tone(score)}>{score ?? "–"}</b><span>{w.toLowerCase()}</span></span>;
+const Links = ({ c, slug }: { c: { href: string; shop: V11Card["shop"] }; slug: string }) => <span className="v11-olinks">
+  {c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
+  {/* Side by side with this one (UX audit 2026-11-17: compare was hard to find). */}
+  <a className="v11-plink v11-ocmp" href={`/compare?ids=${encodeURIComponent(slug)},${encodeURIComponent(c.href.split(/[?#]/)[0].split("/").pop() ?? "")}`}>compare ↗</a></span>;
 
 /** "How it plays" (v11c): one slim box. Three bars in a row, the build as chips (a tap shows its line, the key phrase marked),
  *  then the rule of thumb. */
