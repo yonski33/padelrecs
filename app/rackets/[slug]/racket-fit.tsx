@@ -41,6 +41,7 @@ import "./v11.css";
 import { V11Better, V11Others, type V11Card } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { buildCards } from "../../../lib/build-cards";
+import { distinctEdges } from "../../../lib/other-picks";
 import { contradicts, padelWords } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
@@ -131,7 +132,8 @@ export default async function RacketFit(props: {
 
   // Similar rackets (no picks): really similar rackets, not the home's top 4 on every page. With picks, "Better matches for you"
   // is worked out in the browser (fit-live.tsx FitAlts, lib/home-rank.ts alternatives).
-  const similarIds: string[] = (() => {
+  // A wider pool (10) behind the 4 similar rackets, so a card with nothing new to say can give way to the next (lib/other-picks.ts).
+  const simPool: string[] = (() => {
     // No picks (audit 2026-11-15, #7): really similar rackets, not the home's top 4 on every page. Same shape, same style lean
     // and a level in common, one row per model (the year that takes the family's row), described most like this one by
     // players; the best Player scores fill in when too few are close.
@@ -149,8 +151,9 @@ export default async function RacketFit(props: {
     const pool = [base.filter(x => sameLean(x) && sameLevel(x)), base.filter(sameLean), base].find(p => p.length >= 4) ?? base;
     const close = similarProducts(me, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 4);
     const fill = [...pool].sort((a, b) => (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).filter(x => !close.includes(x));
-    return [...close, ...fill].slice(0, 4).map(x => x.id);
+    return [...close, ...fill].slice(0, 10).map(x => x.id);
   })();
+  const similarIds = simPool.slice(0, 4);
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -272,7 +275,10 @@ export default async function RacketFit(props: {
   const listFor = (word: string | undefined) => withModelYears(niche.topLists ?? []).find(l => word && l.slug.includes(word)) ?? withModelYears(niche.topLists ?? [])[0];
   const simList = listFor(myKindType?.key ?? (lean && lean !== "balance" ? lean : undefined));
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
-    items: byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))),
+    // Each card's word is its own main gain over this one, never the same twice (owner 2026-11-17); "similar feel" only when no
+    // card in the pool beats it anywhere.
+    items: (() => { const edges = distinctEdges(compareMe.dots, byScore(simPool).map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
+      return edges.length ? edges.map((e, i) => simItem(e.id, i, dotWords[e.gain])) : byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))); })(),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
     const levelsOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
@@ -300,10 +306,9 @@ export default async function RacketFit(props: {
     }
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
-  const v11Cards: V11Card[] = V11 ? byScore(similarIds).slice(0, 3).map(oid => {
-    const c = cardOf(oid), gaps = DOT_KEYS.map((k, i) => ({ k, g: (c.dots[i] || 0) && (compareMe.dots[i] || 0) ? c.dots[i] - compareMe.dots[i] : 0 }));
-    const up = [...gaps].sort((a, b) => b.g - a.g)[0], down = [...gaps].sort((a, b) => a.g - b.g)[0];
-    const t = up && up.g > 0 ? TRAIT_DEF[up.k] : null, d = down && down.g < 0 ? down.k : null;
+  // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, byScore(simPool).map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
+    const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid),
       vs: t ? (t.diff ?? `more ${t.label.toLowerCase()}`) : null, pick: t ? `Pick it if you ${t.ifYou ?? `want more ${t.label.toLowerCase()}`}.` : null,
