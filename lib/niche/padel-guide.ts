@@ -43,7 +43,7 @@ export const padelGuide: GuideConfig = {
     { id: "surface", title: "Surface", sub: "smooth or textured", layout: "split",
       textOnlyNote: "no counts here yet: maker specs rarely say how rough a face is", options: [
       { label: "Smooth", text: "Flatter, faster shots with less grip on the ball. Fine if you rarely add spin." },
-      { label: "Rough", text: "Textured face that bites the ball for extra spin on slices and kick serves.", accent: true },
+      { label: "Rough", text: "Textured face that bites the ball for extra spin on slices, víboras and kick smashes.", accent: true },
     ] },
     { id: "face", title: "Face", sub: "what it's made of", layout: "dark-split", liked: "carbon",
       spec: { key: "face", label: "Face", column: "surface", classify: faceOf }, options: [

@@ -63,6 +63,8 @@ const engAnchors = (items: RankItem[], p: EngineProfile, gate: LevelGate | undef
 const engPick = (choice: QuickChoice) => ({ style: choice.style, arm: choice.arm, fine: undefined as number | null | undefined });
 /** The engine's cautious score and % for every product with enough reports, for these picks. A product the level gate keeps
  *  out says "Probably not" (its % held under that line). */
+/** A capped % squeezed into 25 … cap in the same order (97 → cap, 25 → 25). */
+const squeeze = (pct: number, cap: number) => Math.round(25 + (Math.max(25, pct) - 25) * (cap - 25) / 72);
 type EngView = { cautious: number; pct: number; hard?: boolean; curated?: boolean; /** Its place on the curated list. */ ci?: number };
 function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, EngView> {
   return cached(items, `eng:view:${JSON.stringify([choice, gate ?? null])}`, () => {
@@ -85,15 +87,24 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       const hard = p.hardCap !== undefined && hardOnLevelOrArm(choice, x.it.facts);
       if (hard && p.hardPenalty) cautious -= p.hardPenalty;
       let pct = enginePct(cautious, anchors, p.display);
-      if (choice.level && !passesLevel(x.it.level, choice.level, gate)) pct = Math.min(pct, p.cuts.maybe - 1);
-      if (hard) pct = Math.min(pct, p.hardCap!);
+      // Held under "Worth a look" (level gate, hard reason, shape rule): squeezed into 25–54 in order, not piled at 54 (audit).
+      let cap: number | null = null;
+      if (choice.level && !passesLevel(x.it.level, choice.level, gate)) cap = p.cuts.maybe - 1;
+      if (hard) cap = Math.min(cap ?? 99, p.hardCap!);
       // The shape rule (owner 2026-11-17): for control and balance at beginner and intermediate, a diamond goes after every
       // round, teardrop or hybrid racket and is never "Worth a look" or better.
       // And for beginners a high balance (owner's brief 2026-11-17: no head-heavy racket in a beginner list).
       const lowShape = (!!shapeRule && shapeRule.includes(x.it.facts.fine?.shape ?? "")) || (!!x.it.headHeavy && !!choice.level && !!p.headHeavyBelow?.includes(choice.level));
-      if (lowShape) pct = Math.min(pct, p.cuts.maybe - 1);
+      if (lowShape) cap = Math.min(cap ?? 99, p.cuts.maybe - 1);
+      if (cap !== null) pct = squeeze(pct, cap);
       // A curated pick keeps its place, and its % is its real match (owner 2026-11-17: "the % shown is the real match").
+      // A power pick on a racket with an Attack bar of 3 or less (or control on a Control bar of 3 or less) is never a Strong fit:
+      // its own page says it gives up that style (audit 2026-11-17, the Ultimate Tour X).
+      const sd = x.it.facts.styleDots, bar = choice.style === "power" ? sd?.power : choice.style === "control" ? sd?.control : undefined;
+      if (p.styleBarMax !== undefined && bar !== undefined && bar <= p.styleBarMax) pct = Math.min(pct, p.cuts.good - 1);
       const i = curIx.get(x.id);
+      // The owner's curated #1–3 are meant as perfect fits (owner 2026-11-17): at least a Strong fit, in their order.
+      if (i !== undefined && p.curatedTop?.[i] !== undefined) pct = Math.max(pct, p.curatedTop[i]);
       out.set(x.id, { cautious, pct, ...(i !== undefined ? { curated: true, ci: i } : (hard && p.hardPenalty) || lowShape ? { hard: true } : {}) });
     }
     return out;

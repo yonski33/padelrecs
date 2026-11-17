@@ -41,3 +41,10 @@ export function curatedRanking(slug: string, family: (slug: string) => { key: st
   return out;
 }
 export const hasCurated = (site = niche.id) => !!SITES[site];
+/** The style a curated ranking page is picked for ("power" for best-power-padel-rackets), or null when the page keeps its
+ *  Player-score order (audit 2026-11-17 #2: the page then says the list is ours, not a score sort). */
+export function curatedRankingStyle(slug: string, site = niche.id): string | null {
+  const src = SITES[site]?.rankings?.[slug]; if (!Array.isArray(src) || !src.length) return null;
+  const styles = [...new Set(src.map(k => k.split("/")[0]))];
+  return styles.length === 1 ? styles[0] : "mixed";
+}
