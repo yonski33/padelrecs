@@ -325,7 +325,7 @@ export default async function RacketFit(props: {
   const flightOfId = (id: string) => flightOf(racketOf(id).weight);
   const gainOk = !QUICK ? undefined : (oid: string, key: string) => { const a = flightOfId(oid), m = flightOfId(props.racketId), f = ctx.facts(oid);
     // Flight as [speed, glide, turn, fade].
-    if (key === "wind") return !!a && !!m && (a[3] > m[3] || a[2] > m[2]);
+    if (key === "wind") return !!a && !!m && a[2] + a[3] > m[2] + m[3]; // more stable overall: more fade or less turn
     if (key === "arm") return !f.hard?.arm && !f.warn?.arm && (!a || a[3] < 3);
     return true; };
   const byBand = (ids: string[]) => [...ids].sort((a, b) => band(b) - band(a));

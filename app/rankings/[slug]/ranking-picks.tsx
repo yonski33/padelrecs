@@ -4,15 +4,12 @@
 // catalog items sent once with the page (lib/home-rank.ts matchPcts, the same function the server uses), then updates the
 // address, with no round trip. The list's order is always its own (Player score); picks only add the %.
 import { matchBox } from "../../../lib/score-tone";
-import { fitConfigFor } from "../../../lib/fit-config";
 import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { niche, mockLook } from "../../../lib/niche";
-import { LEVELS, STYLES, type QuickChoice, type Level } from "../../../lib/quick-match";
+import { LEVELS, STYLES, ARM_SHORT, type QuickChoice, type Level } from "../../../lib/quick-match";
 import RankPicks from "./rank-picks";
-/** The arm pick in a profile line: "sore arm", or a type-picker site's own ("slower arm", DiscGolfRecs). */
-const ARM_SHORT = fitConfigFor(niche)?.quick ? "slower arm" : "sore arm";
 
 export const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 type Picked = QuickChoice & { level: Level };

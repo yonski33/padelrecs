@@ -117,7 +117,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         <span className="rk3-note">{picked ? `the order is our pick${pickStyle ? ` for ${pickStyle}` : ""}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one` : skin ? "ranked by skin score and how many people reviewed it"
           // A list for a kind of player (list.picks) is in the match's order for that pick (Grok pickleball audit 2026-11-17, #5).
           : list.trait?.bar ? `only ${niche.words.many} with ${list.trait.bar.key} ${list.trait.bar.min}/5 or more; strongest ${list.trait.bar.key} first, then by ${scoreLabel.toLowerCase()}`
-          : list.picks ? `ordered by how well each fits ${list.picks.level ? `${list.picks.level === "advanced" ? "advanced players" : `${list.picks.level}s`}` : "a sore arm"}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one`
+          : list.picks ? `ordered by how well each fits ${list.picks.level ? `${list.picks.level === "advanced" ? "advanced players" : `${list.picks.level}s`}` : `a ${QUICK ? "slower arm" : "sore arm"}`}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one`
           : QUICK ? `ranked by ${scoreLabel.toLowerCase()}, which weighs how much ${niche.people.many} like it by how many have reviewed it`
           : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>

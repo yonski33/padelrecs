@@ -10,7 +10,7 @@ import { scoreState } from "../lib/score-view";
 import { NewPill } from "./score-tags";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
-import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
+import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice, ARM_SHORT } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
 import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
@@ -105,7 +105,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         </div>
       </details>}
       {picked && !M && <p className="hv2-game">{QUICK ? "Your throw: " : "Your game: "}<b>{(QUICK ? [QUICK.types.find(t => t.key === choice.kind)?.many ?? null, choice.level ?? null, choice.style !== "any" ? styleWord(choice.style) : null, choice.arm ? QUICK.arm : null]
-          : [choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? "sore arm" : null, ...fineWords(choice.fine)]).filter(Boolean).join(" · ")}</b>
+          : [choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? ARM_SHORT : null, ...fineWords(choice.fine)]).filter(Boolean).join(" · ")}</b>
         <a href="/" onClick={reset}>reset ↺</a></p>}
     </section>
 

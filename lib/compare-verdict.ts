@@ -2,6 +2,7 @@
 // built only from data: the match % and the hard level / arm caps, each product's trait dots (in the site's own words) and its
 // own content (catch). Expert voice, no counts, every line ≤ 105 characters. Pure, so the page runs it in the browser on every
 // pick change (instant filters) and tests feed it directly.
+import { ARM_SHORT } from "./quick-match";
 
 export const MAX_LINE = 105;
 export type VTrait = { label: string; /** "more forgiving" (fit-config diff). */ diff: string; /** "want margin for error". */ ifYou: string };
@@ -82,7 +83,7 @@ export function compareVerdict(ps: VProduct[], traits: VTrait[], picks: Record<s
   function otherLine(p: VProduct): VLine {
     const pk = picks![p.id];
     if (pk.hard === "level") return { pre: "Skip the ", name: p.short, post: ` for now: built for ${pk.levelWord ?? "other"} players.` };
-    if (pk.hard === "arm") return { pre: "Skip the ", name: p.short, post: " for now: hard on a sore arm." };
+    if (pk.hard === "arm") return { pre: "Skip the ", name: p.short, post: ` for now: ${ARM_SHORT === "sore arm" ? "hard on a sore arm" : "it needs more arm speed"}.` };
     const k = strength(p), why = k !== undefined ? traits[k].ifYou : null;
     if ((pk.pct ?? 0) >= 70 && why) {
       const liveWith = p.catchShort ? ` and can live with ${p.catchShort}` : "";

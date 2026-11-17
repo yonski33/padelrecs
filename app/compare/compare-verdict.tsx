@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import { matchPcts, type RankItem } from "../../lib/home-rank";
 import { hardOnLevelOrArm, SUITS_OK } from "../../lib/fit-verdict";
 import { niche } from "../../lib/niche";
-import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level } from "../../lib/quick-match";
+import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level, ARM_SHORT } from "../../lib/quick-match";
 import { compareVerdict, differRows, type VProduct, type VTrait, type VPick, type VLine } from "../../lib/compare-verdict";
 import { scoreState, COMPARE_SHOWS_SCORE } from "../../lib/score-view";
 import { NewPill } from "../score-tags";
@@ -45,7 +45,7 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
       <span className="cx-tag">find my match</span>
       <span className="cx-seg">{STYLES.filter(s => s !== "any").map(s => <button key={s} type="button" aria-pressed={c.style === s} onClick={() => style(s)}>{STYLE_WORD[s] ?? s}</button>)}</span>
       <span className="cx-seg">{(LEVELS as readonly Level[]).map(l => <button key={l} type="button" aria-pressed={c.level === l} onClick={() => setC(x => ({ ...x, level: x.level === l ? undefined : l }))}>{levelLabel(l)}</button>)}</span>
-      <button type="button" className="cx-arm" aria-pressed={c.arm} onClick={() => setC(x => ({ ...x, arm: !x.arm }))}><i aria-hidden="true">{c.arm ? "✓" : ""}</i>sore arm</button>
+      <button type="button" className="cx-arm" aria-pressed={c.arm} onClick={() => setC(x => ({ ...x, arm: !x.arm }))}><i aria-hidden="true">{c.arm ? "✓" : ""}</i>{ARM_SHORT}</button>
       <span className="cx-hint">{v.picked ? "verdict updated for you" : "pick a level for a straight answer"}</span>
     </section>}
 

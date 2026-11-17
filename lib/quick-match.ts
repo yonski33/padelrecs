@@ -56,6 +56,8 @@ export const STYLE_WORD: Record<Style, string> = { any: "any", control: "control
 export const styleWordOf = (s: Style) => SITE_FIT.quick && s !== "any" ? (SITE_FIT.styleLabels[s as "control"] ?? s).toLowerCase() : STYLE_WORD[s];
 /** The arm pick's words: a type-picker site's own ("slower arm speed"), else padel's. */
 export const ARM_PICK = SITE_FIT.quick?.arm ?? "sore elbow / wrist";
+/** The arm pick in a chip or a profile line: "sore arm", or "slower arm" on a type-picker site (DiscGolfRecs). */
+export const ARM_SHORT = SITE_FIT.quick ? "slower arm" : "sore arm";
 /** Sore elbow or wrist: rackets players call arm-friendly rank first (a strong weight, not a filter, so the list stays full),
  *  with vibration complaints counting against. */
 export const armOption = (cfg: FitConfig = SITE_FIT): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });
