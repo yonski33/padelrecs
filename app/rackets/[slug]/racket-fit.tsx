@@ -59,7 +59,7 @@ const GIVE_UP: Record<string, string> = { forgiveness: "a smaller sweet spot", p
   arm: "harder on the arm", speed: "slower at the net" };
 import type { QtReport, QtReview } from "./quick-take";
 import { scoreState } from "../../../lib/score-view";
-import { NewPill, EarlyTag } from "../../score-tags";
+import { NewPill } from "../../score-tags";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
  *  the important things and our recommendation. One fit-check box with two states: no picks asks "Is this the right racket
@@ -368,7 +368,7 @@ export default async function RacketFit(props: {
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
             {!V11 && (page?.source === "research" ? <p className="rp-score">{RESEARCH_LINE}</p> :
             <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
-              {scoreState(rated) === "new" ? <NewPill n={rated}/> : <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}{scoreState(rated) === "early" && <EarlyTag/>}</span>}
+              {scoreState(rated) === "new" ? <NewPill n={rated}/> : <span>{overallScore !== null && <b>{overallScore}</b>}{`${overallScore !== null ? ` ${SCORE_WORD} · ` : ""}${rated} rated`}</span>}
               {rated > 0 && <span className="rf-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}</a>)}
             {!V11 && props.buy && <div className="rf-meta"><a className="rf-btn" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a></div>}
             {!V11 && props.buy && <p className="rf-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
@@ -376,7 +376,7 @@ export default async function RacketFit(props: {
           {V11 && <div className="v11-score">
               {page?.source === "research" ? <span className="v11-sres">{RESEARCH_LINE}</span> : <a className="v11-sl" href="#reviews">
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
-                <span className="v11-sm"><b>Player score{scoreState(rated) === "early" && <> <EarlyTag/></>}</b>
+                <span className="v11-sm"><b>Player score</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
                   <small>{`${rated} ${niche.people.many} rated it`}</small></span></a>}
               {props.buy && <a className="v11-buy" href={props.buy.url} target="_blank" rel={props.buy.rel}>{props.buy.label} ↗</a>}

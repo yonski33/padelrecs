@@ -13,7 +13,6 @@ import { attrProfileFor } from "../../lib/attr-profile";
 import { niche, catalogPath } from "../../lib/niche";
 import { SKIN_TYPES, GOALS, TEXTURES, BUDGETS, readSkinChoice, skinHref, skinPicked, skinQuery, type SkinChoice } from "../../lib/skin-choice";
 import { scoreState, newLine } from "../../lib/score-view";
-import { EarlyTag } from "../score-tags";
 
 const LIST_SIZE = 8;
 const GOAL_LABEL: Record<(typeof GOALS)[number], string> = { hydrate: "hydrate", calm: "calm", clear: "clear skin", daily: "just everyday" };
@@ -102,7 +101,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
               </span>
               <span className="bh-sent"><span>{`${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</span>
                 {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}</span>
-              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : scoreState(card.pos + card.mix + card.neg) === "new" ? "—" : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : scoreState(card.pos + card.mix + card.neg) === "new" ? newLine(card.pos + card.mix + card.neg) : "user score"}{!picked && scoreState(card.pos + card.mix + card.neg) === "early" && <EarlyTag/>}</small>
+              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : scoreState(card.pos + card.mix + card.neg) === "new" ? "—" : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : scoreState(card.pos + card.mix + card.neg) === "new" ? newLine(card.pos + card.mix + card.neg) : "user score"}</small>
                 {/* With picks the match % is the star; the user score stays as a small neutral pill (owner 2026-11-16). */}
                 {picked && sig !== null && <span className={`bh-spill ${sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`}><b>{sig}</b> user score</span>}</span>
             </li>;

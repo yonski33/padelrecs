@@ -6,7 +6,7 @@
 import { whyHere } from "../lib/curated";
 import { useEffect, useState, type ReactNode } from "react";
 import { scoreState } from "../lib/score-view";
-import { NewPill, EarlyTag } from "./score-tags";
+import { NewPill } from "./score-tags";
 import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
 import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice } from "../lib/quick-match";
@@ -153,7 +153,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
             aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
             <b>{pct !== null ? `${pct}%` : "—"}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
             : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
-            <b>{sig ?? "—"}</b><small>{SCORE_WORD}{st === "early" && <EarlyTag/>}</small></span>}
+            <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
@@ -172,7 +172,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
               <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
             : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
-              <b>{sig ?? "—"}</b><small>{SCORE_WORD}{st === "early" && <EarlyTag/>}</small></span>}
+              <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
       })}</ol>
       {(olderN > 0 || older) && <a className="hv2-older" href={`${hrefOf(choice, !older)}#match`} onClick={go(choice, !older)}>{older ? "hide older models ▴" : "show older models ▾"}</a>}
