@@ -9,6 +9,9 @@ import { listYear } from "../lib/top-lists";
 import { platformName } from "../lib/source-label";
 import type { QuickChoice } from "../lib/quick-match";
 import { niche, productHref, v2copy } from "../lib/niche";
+import { fitConfigFor } from "../lib/fit-config";
+// A site's own words (SimRacingRecs: "driver reviews", "added to the site this week"); unset elsewhere.
+const WORDS = fitConfigFor(niche)?.words;
 import { newThisWeek } from "../lib/new-this-week";
 
 import { qtFontVars } from "./qt-fonts";
@@ -54,7 +57,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         tag: platformName(e.sourcePlatform).toLowerCase(), who: e.sourceName || null };
     }),
   ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
-  const live = <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} added this week`}</p>;
+  const live = <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} ${WORDS?.added ?? "added this week"}`}</p>;
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
   // A site's own home mock (niche.v2home; PickleballRecs): the rankings tiles, the "how we score" strip and Questions follow the
@@ -120,7 +123,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         </section>
         <section className="hv2-steps" aria-label="How we score">
           <span className="k">how we score</span>
-          {[`${total.toLocaleString("en-US")} player reviews + ${channels} YouTube channels + forums`, "we count every verdict", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
+          {[`${total.toLocaleString("en-US")} ${WORDS?.person ?? "player"} reviews + ${channels} YouTube channels + forums`, "we count every verdict", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
           <b>No sponsored picks.</b>
           <a href="/how-we-make-these">how it works →</a>
         </section>

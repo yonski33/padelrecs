@@ -31,7 +31,7 @@ import { scoreState } from "../../../lib/score-view";
 import { NewPill } from "../../score-tags";
 import { fitConfigFor } from "../../../lib/fit-config";
 /** A type-picker site (DiscGolfRecs): its type lists read "The 10 best disc golf distance drivers" (audit 2026-11-17 #24). */
-const QUICK = !!fitConfigFor(niche)?.quick;
+const QUICK = !!fitConfigFor(niche)?.quick, WORDS = fitConfigFor(niche)?.words;
 
 // A ranking in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/TTmbZPDFLuRzQiqsAG3Nc1), PadelRecs
 // only: the lists as tabs, a big title, "your match" (the home's quick-match picks, in the URL, with the match % on every row),
@@ -96,12 +96,12 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const fresh = newThisWeek(data, Date.now());
   const next = [
     ...(g && shapeQ ? [{ k: "guide", kicker: "guide", title: shapeQ[0].toUpperCase() + shapeQ.slice(1), href: "/guide",
-      line: `${g.sections.slice(0, 3).map(s => s.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1").replace(/^./, c => c.toUpperCase())} in two minutes.`, cta: `read the ${g.crumb} →` }] : []),
+      line: WORDS?.guidePromo ?? `${g.sections.slice(0, 3).map(s => s.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1").replace(/^./, c => c.toUpperCase())} in two minutes.`, cta: `read the ${g.crumb} →` }] : []),
     { k: "catalog", kicker: "catalog", title: `All ${total.toLocaleString("en-US")} ${w.many}`, href: catalogPath,
-      line: skin ? "Filter and sort every one." : "Filter by style, level, shape and weight.", cta: `browse ${w.many} →` },
+      line: skin ? "Filter and sort every one." : WORDS?.catalogPromo ?? "Filter by style, level, shape and weight.", cta: `browse ${w.many} →` },
     { k: "fresh", kicker: "fresh", title: fresh > 0 ? `${fresh.toLocaleString("en-US")} new reviews this week` : "The latest reviews", href: "/reviews",
       line: `What ${niche.people.many} just said${skin ? "." : `, straight from the ${v2copy.venue ?? "court"}.`}`, cta: "latest reviews →" },
-    { k: "turn", kicker: "your turn", title: skin ? "Used one of these?" : "Played one of these?", href: "/add-review",
+    { k: "turn", kicker: "your turn", title: skin ? "Used one of these?" : WORDS ? niche.copy.ui.triedOneOfThese : "Played one of these?", href: "/add-review",
       line: "Your verdict moves the list. One tap, no account.", cta: "+ add a review" },
   ];
 
@@ -117,7 +117,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         <span className="rk3-note">{picked ? `the order is our pick${pickStyle ? ` for ${pickStyle}` : ""}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one` : skin ? "ranked by skin score and how many people reviewed it"
           // A list for a kind of player (list.picks) is in the match's order for that pick (Grok pickleball audit 2026-11-17, #5).
           : list.trait?.bar ? `only ${niche.words.many} with ${list.trait.bar.key} ${list.trait.bar.min}/5 or more; strongest ${list.trait.bar.key} first, then by ${scoreLabel.toLowerCase()}`
-          : list.picks ? `ordered by how well each fits ${list.picks.level ? `${list.picks.level === "advanced" ? "advanced players" : `${list.picks.level}s`}` : `a ${QUICK ? "slower arm" : "sore arm"}`}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one`
+          : list.picks ? `ordered by how well each fits ${list.picks.level ? `${list.picks.level === "advanced" ? "advanced players" : `${list.picks.level}s`}` : `a ${WORDS?.armShort ?? (QUICK ? "slower arm" : "sore arm")}`}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one`
           : QUICK ? `ranked by ${scoreLabel.toLowerCase()}, which weighs how much ${niche.people.many} like it by how many have reviewed it`
           : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>

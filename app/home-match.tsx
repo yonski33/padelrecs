@@ -22,7 +22,7 @@ import { forgetSavedPicks } from "../lib/saved-picks";
 export const RESET_CHOICE: QuickChoice = DEFAULT_CHOICE;
 
 /** The mockup's tints for a match % or a score: green at 85+, yellow at 70+, plain below. */
-const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
+const MATCH_NOTE = `How well it fits your picks, from ${fitConfigFor(niche)?.words?.person ?? "player"} reports. Not a % of happy ${fitConfigFor(niche)?.words ? niche.people.many : "players"}.`;
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 /** A site's own home mock (niche.v2home; PickleballRecs): every row has the match box, "check price" is a button. */
 const M = niche.v2home;

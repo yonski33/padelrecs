@@ -9,6 +9,7 @@ import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { rowOfFamily } from "../../lib/compare-pairs";
 import { newThisWeek } from "../../lib/new-this-week";
+import { fitConfigFor } from "../../lib/fit-config";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
 import "../review-card.css";
@@ -100,8 +101,8 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
       {fonts && <style>{fonts.bpBodyFonts}</style>}
       <section className="lr2-hero">
         <div><h1>{skinSite ? <>Latest <em>reviews</em></> : "Latest reviews"}</h1>
-          <p>{`Straight from ${skinSite ? "people" : "players"} who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes.`}</p></div>
-        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} added this week`}</p>
+          <p>{`Straight from ${skinSite ? "people" : fitConfigFor(niche)?.words ? niche.people.many : "players"} who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes.`}</p></div>
+        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} ${fitConfigFor(niche)?.words?.added ?? "added this week"}`}</p>
       </section>
       <div className="lr2-bar">
         <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", skinSite ? "from people" : "from players"], ["yt", "youtube summaries"]] as const).map(([k, label]) =>

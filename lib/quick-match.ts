@@ -62,7 +62,7 @@ export const styleWordOf = (s: Style) => SITE_FIT.quick && s !== "any" ? (SITE_F
 /** The arm pick's words: a type-picker site's own ("slower arm speed"), else padel's. */
 export const ARM_PICK = SITE_FIT.quick?.arm ?? "sore elbow / wrist";
 /** The arm pick in a chip or a profile line: "sore arm", or "slower arm" on a type-picker site (DiscGolfRecs). */
-export const ARM_SHORT = SITE_FIT.quick ? "slower arm" : "sore arm";
+export const ARM_SHORT = SITE_FIT.words?.armShort ?? (SITE_FIT.quick ? "slower arm" : "sore arm");
 /** Sore elbow or wrist: rackets players call arm-friendly rank first (a strong weight, not a filter, so the list stays full),
  *  with vibration complaints counting against. */
 export const armOption = (cfg: FitConfig = SITE_FIT): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });
@@ -196,6 +196,8 @@ export const INDEXABLE_CHOICES: QuickChoice[] = (fitConfigFor(niche)?.quick
 export function passesFilters(x: { kind?: string; ff?: Record<string, string[]> }, c: QuickChoice, cfg: FitConfig | undefined = fitConfigFor(niche)): boolean {
   const q = cfg?.quick; if (!q) return true;
   const has = (k: string, v: string) => !!x.ff?.[k]?.includes(v);
+  // A product the maker no longer sells (SimRacingRecs' "gone" fact) never ranks (Grok audit 2026-11-17 #8).
+  if (has("gone", "yes")) return false;
   for (const [k, v] of Object.entries(c.ff ?? {})) { const f = q.filters?.find(y => y.key === k); if (!f || (f.kinds && !(x.kind && f.kinds.includes(x.kind)))) continue; if (!has(k, v)) return false; }
   if (c.arm && q.armFilter && !has(q.armFilter.key, q.armFilter.value)) return false;
   const lf = c.level && q.levelFilter?.[c.level];

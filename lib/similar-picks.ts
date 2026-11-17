@@ -103,7 +103,16 @@ export function routinePairs(me: SkinItem, all: SkinItem[], n = 4): { id: string
 }
 
 // ── SimRacingRecs: "Works with" ─────────────────────────────────────────────────────────────────────────────────────────
-export type RigPart = { id: string; type: string | null; brand: string | null; platforms: string[]; signal: number | null };
+export type RigPart = { id: string; type: string | null; brand: string | null; platforms: string[]; signal: number | null;
+  /** The Torque / brake force column ("140 kg max (200 kg load cell)", "25 Nm") and the type column (a cockpit's frame). */ weight?: string | null; frame?: string | null };
+/** A heavy load for a cockpit (Grok audit 2026-11-17 #7, Playseat's FAQ: the Trophy takes load-cell brakes up to 100 kg): pedals
+ *  over 100 kg of brake force, or a base over 15 Nm, want an aluminium-profile rig. The figure, for the reason line. */
+export function heavyLoad(p: RigPart): string | null {
+  const w = p.weight ?? "", kg = /(\d+(?:\.\d+)?)\s*kg/i.exec(w), nm = /(\d+(?:\.\d+)?)\s*Nm\b/i.exec(w);
+  if (p.type === "Pedals" && kg && Number(kg[1]) > 100) return `${kg[1]} kg brake`;
+  if (p.type === "Wheelbase" && nm && Number(nm[1]) > 15) return `${nm[1]} Nm`;
+  return null;
+}
 const WITH: Record<string, string[]> = {
   "Wheelbase": ["Wheel", "Pedals", "Cockpit", "Shifter / handbrake"], "Wheel": ["Wheelbase", "Pedals", "Cockpit"],
   "Pedals": ["Wheelbase", "Cockpit", "Wheel"], "Cockpit": ["Wheelbase", "Pedals", "Shifter / handbrake"], "Shifter / handbrake": ["Wheelbase", "Cockpit", "Pedals"],
@@ -113,6 +122,12 @@ const SAME_BRAND = new Set(["Wheel", "Wheelbase"]);
 /** Platforms on file ("PC, PlayStation") as a list; empty when unknown, which never rules a product out. */
 export const platformsOf = (s: string | null | undefined) => (s ?? "").split(/[,/;]| and /).map(x => x.trim()).filter(Boolean);
 
+/** Why this cockpit: the load it is picked for, else its frame in plain words. */
+function cockpitWhy(p: RigPart, heavy: string | null): string {
+  if (heavy) return `profile rig for ${heavy}`;
+  const f = (p.frame ?? "").toLowerCase();
+  return f === "foldable" ? "folds away after" : f === "wheel stand" ? "a stand, not a full rig" : f ? (/frame$/.test(f) ? f : `${f} frame`) : "fits the setup";
+}
 export function worksWith(me: RigPart, all: RigPart[], n = 4): { id: string; why: string }[] {
   const out: { id: string; why: string }[] = [];
   for (const type of me.type ? WITH[me.type] ?? [] : []) {
@@ -120,9 +135,11 @@ export function worksWith(me: RigPart, all: RigPart[], n = 4): { id: string; why
     const sharePlatform = (p: RigPart) => !me.platforms.length || !p.platforms.length || p.platforms.some(x => me.platforms.includes(x));
     const cands = all.filter(p => p.id !== me.id && p.type === type && sharePlatform(p)).sort((a, b) => (b.signal ?? -1) - (a.signal ?? -1));
     const same = cands.find(p => p.brand && p.brand === me.brand);
-    const pick = type === "Cockpit" ? cands[0] : SAME_BRAND.has(type) || SAME_BRAND.has(me.type ?? "") ? same : same ?? cands[0];
+    // A cockpit for a heavy load is an aluminium-profile rig; otherwise the best-liked one.
+    const heavy = type === "Cockpit" ? heavyLoad(me) : null;
+    const pick = type === "Cockpit" ? (heavy ? cands.find(p => /profile/i.test(p.frame ?? "")) : cands[0]) : SAME_BRAND.has(type) || SAME_BRAND.has(me.type ?? "") ? same : same ?? cands[0];
     if (!pick) continue;
-    out.push({ id: pick.id, why: pick.brand && pick.brand === me.brand ? "same ecosystem" : type === "Cockpit" ? "holds it all" : "fits the setup" });
+    out.push({ id: pick.id, why: pick.brand && pick.brand === me.brand ? "same ecosystem" : type === "Cockpit" ? cockpitWhy(pick, heavy) : "fits the setup" });
   }
   return out;
 }

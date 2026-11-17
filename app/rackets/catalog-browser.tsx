@@ -23,7 +23,9 @@ type F = CatalogFilters;
 
 /** A type-picker site's catalogue (lib/fit-config.ts quick: DiscGolfRecs): which of the niche's spec filters lead (disc type,
  *  stability) in place of padel's play style / shape / year / weight / feel, and its words. Unset: padel's catalogue, unchanged. */
-export type CatalogLook = { lead: string[]; arm: string; score: string };
+export type CatalogLook = { lead: string[]; arm: string; score: string;
+  /** Filter groups that pick one thing between them (SimRacingRecs: Category and Rig & extras are both the product type, Grok
+   *  audit 2026-11-17 #24), so a pick in one clears the other instead of an empty AND. */ oneOf?: string[] };
 
 export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one, spec = [], look }: { rows: CatalogRow[]; cards: Record<string, CatalogCard>; f: F; base: string; suitsOk: number; many: string; one: string;
   /** The niche's spec filters (lib/guide.ts specGroups), under "more filters". */ spec?: SpecGroup[]; look?: CatalogLook }) {
@@ -34,9 +36,10 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
   // The site's own phone mock (mockLook): the filter groups start closed on a phone, except one with a pick.
   useEffect(() => { if (mockLook && matchMedia("(max-width: 760px)").matches) document.querySelectorAll<HTMLDetailsElement>(".ct2-m .ct-g").forEach(d => { if (!d.querySelector(".ct-opt.on")) d.open = false; }); }, []);
   const v = catalogView(rows, f, suitsOk, spec);
-  const href = (next: F) => catalogHref(base, f, next, specKeys);
+  const oneOfPick = (next: F): F => { const k = look?.oneOf?.find(x => (next as Record<string, unknown>)[x]); return k ? { ...Object.fromEntries(look!.oneOf!.filter(x => x !== k).map(x => [x, undefined])), ...next } as F : next; };
+  const href = (next: F) => catalogHref(base, f, oneOfPick(next), specKeys);
   // From the latest view, not this render's state, so two quick taps both count.
-  const go = (next: F) => instantClick(() => setF(cur => readCatalogFilters(Object.fromEntries(new URL(catalogHref(base, cur, next, specKeys), location.origin).searchParams), specKeys)));
+  const go = (next: F) => instantClick(() => setF(cur => readCatalogFilters(Object.fromEntries(new URL(catalogHref(base, cur, oneOfPick(next), specKeys), location.origin).searchParams), specKeys)));
   const to = (next: F, current?: boolean) => ({ href: href(next), onClick: go(next), ...(current ? { "aria-current": "true" as const } : {}) });
   const specGroup = (g: SpecGroup) => [g.label, g.key, g.values] as [string, string, readonly string[]];
   const lead = look ? spec.filter(g => look.lead.includes(g.key)) : [];

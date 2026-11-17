@@ -129,7 +129,8 @@ export function rankList(list: TopList, data: ListInput, tags: readonly Tag[], n
   // How often reviews mention the trait across the whole site: the starting point for each product's trait share.
   const traitAverage = trait && everything.length ? liking(everything, trait.tags) / everything.length : 0;
 
-  const scored = data.listed.filter(p => p.year >= oldest && (only === undefined || p.year === only) && matchesFilters(p, list.filters)).flatMap(product => {
+  // A product its maker no longer sells (Notes "Discontinued: …", SimRacingRecs) is never ranked (Grok audit 2026-11-17 #8).
+  const scored = data.listed.filter(p => !/^Discontinued\b/i.test(p.surface ?? "") && p.year >= oldest && (only === undefined || p.year === only) && matchesFilters(p, list.filters)).flatMap(product => {
     const own = notes.get(product.id) ?? [];
     const n = own.length;
     if (n < minReviews) return [];
