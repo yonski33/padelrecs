@@ -6,7 +6,7 @@ import { matchTone } from "../../../lib/score-tone";
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { RANK_SETUP } from "../../../lib/rank-seed";
-import { SAVED_PICKS_KEY } from "../../../lib/saved-picks";
+import { SAVED_PICKS_KEY, forgetSavedPicks } from "../../../lib/saved-picks";
 import { fitStep } from "../../../lib/verdict-scale";
 import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level, ARM_SHORT } from "../../../lib/quick-match";
 
@@ -36,6 +36,9 @@ export function RankMatch({ head, children }: { head: string; children: ReactNod
           <button key={l} type="button" aria-pressed={c.level === l} onClick={() => save({ ...c, level: l })}>{levelLabel(l)}</button>)}</span>
         <button type="button" className="rk3-arm" aria-pressed={c.arm} onClick={() => save({ ...c, arm: !c.arm })}><i aria-hidden="true">{c.arm ? "✓" : ""}</i>{ARM_SHORT}</button>
         <span className="rk3-hint">{!c.level ? "pick your level to see your match" : !pcts ? "working it out…" : "your match is on every row"}</span>
+        {/* Clear the picks (owner 2026-11-17), as the home's "reset": the saved profile, any pick in the address, the match pills. */}
+        {(c.level || c.style !== "any" || c.arm) && <button type="button" className="rk3-reset" onClick={() => { forgetSavedPicks(); setC({ style: "any", arm: false });
+          try { const u = new URL(location.href); ["style", "level", "arm"].forEach(k => u.searchParams.delete(k)); history.replaceState(null, "", u.pathname + u.search + u.hash); } catch { /* no history */ } }}>reset ✕</button>}
       </div>}
     </div>
     {children}
