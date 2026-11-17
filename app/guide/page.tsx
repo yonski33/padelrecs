@@ -1,3 +1,4 @@
+import { withoutYear } from "../../lib/brand-name";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -39,7 +40,7 @@ export default async function Guide() {
   const ctx = await matchContext(), data = ctx.data;
   const rows = catalogRows(data, ctx);
   const racket = (id: string) => data.rackets.find(r => r.id === id)!;
-  const nameOf = (id: string) => { const r = racket(id); return displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name).replace(/\s+(19|20)\d\d$/, ""); };
+  const nameOf = (id: string) => { const r = racket(id); return withoutYear(displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name)); };
   const spec = specGroups(g), specKeys = spec.map(x => x.key);
   const link = (s: GuideSection, o: GuideOption) => { const k = keyOf(s); return k && o.value ? catalogHref(catalogPath, { [k]: o.value }, {}, specKeys) : null; };
   const count = (s: GuideSection, o: GuideOption) => { const k = keyOf(s); return k && o.value ? optionCount(rows, k, o.value, SUITS_OK, spec) : null; };

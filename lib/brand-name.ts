@@ -1,7 +1,8 @@
 /** The bold product title: brand + name ("ILNP Nail Polish", "Bullpadel Vertex 05"), without repeating a brand the name
  *  already carries (owner choice, 2026-11-05: the small brand line above a bare model read as duplicates on NailsRecs). */
 export function displayName(name: string, brand: string | null | undefined) {
-  const shown = TIDY_CASE ? tidyCase(name) : name;
+  // Padel (owner 2026-11-17): the year is part of the name, shown as "Bullpadel Vertex 05 (2026)".
+  const shown = (TIDY_CASE ? tidyCase(name) : name).replace(YEAR_TAIL, YEAR_PARENS ? " ($1)" : " $1");
   return !brand || repeatsBrand(name, brand) || ownBrand(name) ? shown : `${brand} ${shown}`;
 }
 
@@ -9,6 +10,9 @@ export function displayName(name: string, brand: string | null | undefined) {
  *  shown title-cased with carbon grades in capitals (audit 2026-11-15, #21). Display only; the catalog keeps its names.
  *  Not for sites whose brands are lowercase on purpose (monday.com). NICHE is inlined at build time (next.config.ts). */
 const TIDY_CASE = ["padel"].includes(process.env.NICHE ?? "");
+const YEAR_PARENS = ["padel"].includes(process.env.NICHE ?? ""), YEAR_TAIL = /\s+\(?((?:19|20)\d\d)\)?$/;
+/** A display name without its year, in either form ("… 2026" or "… (2026)"). */
+export const withoutYear = (name: string) => name.replace(YEAR_TAIL, "");
 export function tidyCase(name: string) {
   return name.split(/(\s+)/).map(w => /^[a-z][a-z]+$/.test(w) ? w[0].toUpperCase() + w.slice(1) : w.replace(/^(\d+)k$/, "$1K")).join("");
 }

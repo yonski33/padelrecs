@@ -1,3 +1,5 @@
+import { RankMatch, RowMatch } from "./rank-match";
+import { withoutYear } from "../../../lib/brand-name";
 import "../rankings-v2.css";
 import { rowLine } from "../../../lib/row-line";
 import "./ranking-v3.css";
@@ -29,6 +31,9 @@ import { catalogRows } from "../../rackets/catalog-rows";
 // the top three as cards with why it's here / the catch (the quick take's own hook), the rest as quiet rows. The order is
 // always the list's own (Player score); picks only add the match %. The FAQ stays below for search.
 export type Search = { style?: string; level?: string; arm?: string; pct?: string };
+
+/** The inline find-my-match (rank-match.tsx) around the list, where the site has match picks. */
+const MatchWrap = ({ on, children }: { on: boolean; children: React.ReactNode }) => on ? <RankMatch head={"#1 for everyone isn't always #1 for you."}>{children}</RankMatch> : <>{children}</>;
 
 export default async function RankingV2({ data, lists, found, amazon, affiliate, faq, jsonLd }: {
   data: Catalog; lists: RankedList[]; found: RankedList; amazon: (AmazonButton | null)[]; affiliate: boolean;
@@ -69,7 +74,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   // the guide, the catalogue, this week's reviews and "your turn"; the full FAQ last (it is the page's FAQ data for search).
   const top3 = rows.slice(0, 3), w = niche.words, g = niche.guide;
   const compareHref = `/compare?ids=${top3.map(x => encodeURIComponent(x.r.slug)).join(",")}`;
-  const short = (id: string) => { const r = byId.get(id); return r ? displayName(r.name, brand(r.brandId)).replace(/\s\d{4}$/, "") : ""; };
+  const short = (id: string) => { const r = byId.get(id); return r ? withoutYear(displayName(r.name, brand(r.brandId))) : ""; };
   const more = tabs.filter(l => l.list.slug !== list.slug).slice(0, 4).map(l => ({ slug: l.list.slug, title: l.list.label, top: l.entries[0] ? short(l.entries[0].product.id) : "",
     pics: l.entries.slice(0, 3).map(e => { const r = byId.get(e.product.id); return r ? photoOf(r) : null; }) }));
   const shapes = g?.sections.find(s => s.id === (g.home?.section ?? "shape"))?.options.map(o => o.label.toLowerCase()) ?? [];
@@ -99,7 +104,9 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         <span className="rk3-note">{skin ? "ranked by skin score and how many people reviewed it" : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>
       {tabs.length > 1 && <nav className="rk3-tabs" aria-label="Rankings">{tabs.map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</a>)}</nav>}
-      <div className="rk3-you"><b>{"#1 for everyone isn't always #1 for you."}</b><Link href="/#match">find my match →</Link></div>
+      {/* Find my match opens here (owner 2026-11-17), with the match % on every row; SkinRecs has no engine picks, so it links home. */}
+      {!ctx && <div className="rk3-you"><b>{"#1 for everyone isn't always #1 for you."}</b><Link href="/#match">find my match →</Link></div>}
+      <MatchWrap on={!!ctx}>
 
       {first && <article className="rk3-first">
         <span className="rk3-big">#1</span>
@@ -113,6 +120,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         <div className="rk3-side">
           <span className="rk3-sc" title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
             <b>{first.sig ?? "–"}</b><small>{scoreLabel.toLowerCase().replace(" ", "\n")}</small></span>
+          {ctx && <RowMatch id={first.r.id}/>}
           {buy(first, "rk3-buy")}
           <a className="rk3-why" href={`${first.url}#yes-no`}>See why →</a>
         </div>
@@ -130,10 +138,12 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         </div>
         <div className="rk3-foot">
           <span className={`rk3-sc${tone(x.sig)}`}><b>{x.sig ?? "–"}</b><small>{scoreLabel.toLowerCase()}</small></span>
+          {ctx && <RowMatch id={x.r.id}/>}
           {/* Rows #2 on: padel's quiet "check price ↗" link; only the #1 card keeps the button (owner 2026-11-16). */}
           {buy(x, "rk3-link")}
         </div>
       </li>)}</ol>}
+      </MatchWrap>
 
       {more.length === 0 && <a className="rk3-all" href={RANKINGS_PATH}>see all rankings →</a>}
       {affiliate && <p className="rk3-aff">{"* some links are affiliate links; they never change the order."}</p>}
@@ -141,7 +151,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       <div className="rk3-next">
         {top3.length >= 2 && <section className="rk3-cta">
           <div><b>{`Torn between the top ${top3.length}? Put them side by side.`}</b><span>{`Trait by trait, from ${niche.people.one} reviews.`}</span></div>
-          <div className="rk3-cta-b"><a className="dark" href={compareHref}>{`compare the top ${top3.length} →`}</a><Link href="/#match">find my match</Link></div>
+          <div className="rk3-cta-b"><a className="dark" href={compareHref}>{`compare the top ${top3.length} →`}</a>{ctx ? <a href="#rk-match">find my match</a> : <Link href="/#match">find my match</Link>}</div>
         </section>}
         {more.length > 0 && <section className="rk3-more">
           <div className="rk3-h"><h2>More top 10s</h2><a href={RANKINGS_PATH}>all rankings →</a></div>

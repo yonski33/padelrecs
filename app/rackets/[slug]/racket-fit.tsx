@@ -1,3 +1,4 @@
+import { withoutYear } from "../../../lib/brand-name";
 import { productPhoto } from "../../visual";
 import type { ReactNode } from "react";
 import "./racket-fit.css";
@@ -40,6 +41,7 @@ import "./v11.css";
 import { V11Better, V11Others, type V11Card } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { buildCards } from "../../../lib/build-cards";
+import { contradicts, padelWords } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
 import { STYLES } from "../../../lib/quick-match";
@@ -225,15 +227,22 @@ export default async function RacketFit(props: {
   // with names and links for the rackets its catches point to. None yet: FitBox keeps the fit check's own reasons.
   // The fit card's lines: the racket's own fit-card entry, else its page items (the same evidence, already counted), so a
   // racket with page content never falls back to the generic reasons (owner 2026-11-16: one story across the page).
-  const pageForCard = pageContent(props.slug);
+  // One story (owner 2026-11-17): on padel a content line its own trait bars contradict is left out (the trait data wins), and
+  // "hitting zone" reads "sweet spot". A tagline that loses gives way to the quick take's hook.
+  const dotsNow = Object.fromEntries(["forgiveness", "power", "control", "arm"].map(k => [k, tr.scores?.[k as Trait]?.dots ?? 0]));
+  const clean = (c: ReturnType<typeof pageContent>) => !c || !V11 ? c : { ...c,
+    tagline: contradicts(c.tagline, dotsNow) ? (qt ? `${qt.hook.good} ${qt.hook.catch}` : c.tagline) : padelWords(c.tagline), bottom: padelWords(c.bottom),
+    yes: c.yes.filter(i => !contradicts(`${i.title}. ${i.t}`, dotsNow)).map(i => ({ ...i, title: padelWords(i.title), t: padelWords(i.t) })),
+    no: c.no.filter(i => !contradicts(`${i.title}. ${i.t}`, dotsNow)).map(i => ({ ...i, title: padelWords(i.title), t: padelWords(i.t) })) };
+  const pageForCard = clean(pageContent(props.slug));
   const cardData = cardContent(props.slug) ?? (pageForCard ? cardFromPage(pageForCard) : null);
   const card = cardData ? { ...cardData, links: Object.fromEntries(cardData.catches.flatMap(c => c.alt ? [c.alt.slug] : []).flatMap(slug => {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
-  const page = pageContent(props.slug), tier = pageTier(page);
+  const page = pageForCard, tier = pageTier(page);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
   const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return SITE_TRAITS.map(t => sc?.[t as Trait]?.dots ?? 0); };
-  const shortOf = (r: ReturnType<typeof racketOf>) => displayName(r.name, brand(r.brandId)).replace(/\s+(19|20)\d\d$/, "");
+  const shortOf = (r: ReturnType<typeof racketOf>) => withoutYear(displayName(r.name, brand(r.brandId)));
   const cardOf = (rid: string): CompareCard => { const r = racketOf(rid); return { name: displayName(r.name, brand(r.brandId)), short: shortOf(r), href: productHref(r), pic: photoOf(r), dots: dotsOf(rid), reports: ctx.facts(rid).reports }; };
   const compareMe = cardOf(props.racketId);
   const compareCards: Record<string, CompareCard> = Object.fromEntries([...new Set([...Object.keys(payload.cards), ...similarIds])].filter(cid => ctx.data.rackets.some(r => r.id === cid)).map(cid => [cid, cardOf(cid)]));
@@ -348,7 +357,7 @@ export default async function RacketFit(props: {
         <div className="rf-hero">
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
-            <div className="rf-chips">{[leanWord, props.shape, hasYears ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
+            <div className="rf-chips">{[leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{V11 ? `${props.shortName} (${props.year})` : `${props.shortName} review`}</h1>

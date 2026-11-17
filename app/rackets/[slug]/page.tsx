@@ -19,7 +19,7 @@ import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
 import { saveAmazonPhoto } from "../../../db/amazon-photo-save";
 import { after } from "next/server";
-import { displayName } from "../../../lib/brand-name";
+import { withoutYear, displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
@@ -397,7 +397,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       jsonLd={{ "@context": "https://schema.org", "@graph": jsonLd["@graph"].filter(x => x["@type"] === "BreadcrumbList" || x["@type"] === "Product") }}/>;
   }
   if (!qt && isV2 && query.layout !== "long" && query.qt !== "off" && query.look !== "classic") {
-    const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
+    const shortName = withoutYear(fullName);
     // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
     const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
     const pickTake = (ok: boolean) => {
@@ -425,7 +425,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const slugs = new Set([...qt.compare?.cards.map(c => c.slug) ?? [], ...qt.modules.map(m => m.type === "version" ? m.other.slug : null)].filter((x): x is string => !!x));
     const products = new Map(data.rackets.filter(x => slugs.has(x.slug)).map(x => [x.slug, { slug: x.slug, name: displayName(x.name, data.brands.find(b => b.id === x.brandId)?.name), href: productHref(x), photo: photoOf(x) }]));
     // "Siux Electra Pro ST4 2025" → "Siux Electra Pro ST4": the year sits beside the H1 (recipe "SEO").
-    const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
+    const shortName = withoutYear(fullName);
     const qtLd = { "@context": "https://schema.org", "@graph": [
       { "@type": "FAQPage", mainEntity: qt.answers.map(a => ({ "@type": "Question", name: a.q, acceptedAnswer: { "@type": "Answer", text: `${a.badge}. ${plainText(a.a)}` } })) },
       jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList"),
