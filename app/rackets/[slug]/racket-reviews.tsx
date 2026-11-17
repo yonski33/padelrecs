@@ -23,6 +23,8 @@ export type ReviewCard = {
 };
 
 const PAGE = 8, MIN_WORDS = 20;
+/** After Post (owner 2026-11-18): a review waits for approval; a vote is saved at once (/api/racket-votes, no moderation). */
+const THANKS = { words: "Thanks for sharing! Your review will appear here once it's approved.", vote: "Thanks! Your vote has been added." } as const;
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for me" };
 const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
@@ -105,7 +107,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
             n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
               onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
             <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
-        {posted ? <div className="rv12-thanks" role="status">{posted === "words" ? "Thanks, yours will show after a quick check." : "Thanks, your verdict counts."}</div>
+        {posted ? <div className="rv12-thanks" role="status">{THANKS[posted]}</div>
         : <div id="played" className="rv-played">
           <div className="rv-prow"><b>{W.ask}</b>
             {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
@@ -144,7 +146,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     </div>
     <div className="rv-list">
       {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">🎾</span>
-        <span>{posted === "words" ? <><strong>Thanks — your review is in.</strong> It&apos;ll show here after a quick check.</> : <><strong>Thanks — your verdict counts.</strong> Add a few words next time and it shows here too.</>}</span></div>
+        <span>{THANKS[posted]}</span></div>
       : <div className={`rv-compose${verdict ? "" : " one"}`}>
         <div className="rv-ct"><b>{W.ask}</b><span>one tap, no account</span></div>
         <div className="rv-verdicts" role="group" aria-label={`Your verdict on the ${name}`}>{VERDICTS.map(x =>
