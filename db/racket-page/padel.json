@@ -1490,8 +1490,8 @@
     ]
    },
    {
-    "title": "Forgiving sweet spot",
-    "t": "A wide, consistent sweet spot makes ==defence and baseline shots easy==.",
+    "title": "Steady sweet spot",
+    "t": "Consistent for a diamond, it makes ==defence and baseline shots easier==.",
     "for": [
      "intermediate"
     ],
@@ -5095,12 +5095,12 @@
   ]
  },
  "head-coello-team-2026": {
-  "tagline": "A soft, forgiving all-round diamond that spares the arm. The catch: big hitters find it too soft.",
+  "tagline": "A soft all-round diamond that spares the arm. The catch: big hitters find it too soft.",
   "bottom": "For newer and intermediate players who want an easy, arm-friendly diamond. Skip it if you hit hard.",
   "yes": [
    {
-    "title": "Forgiving sweet spot",
-    "t": "Balls come off cleanly ==even off-centre==.",
+    "title": "Clean off-centre",
+    "t": "Balls still come off cleanly ==a little off-centre== for a diamond.",
     "for": [
      "beginner",
      "intermediate"
@@ -6384,12 +6384,12 @@
   ]
  },
  "adidas-arrow-hit-light-2026": {
-  "tagline": "A light, forgiving control diamond that is quick in defence. The catch: little smash power.",
+  "tagline": "A light control diamond that is quick in defence. The catch: little smash power.",
   "bottom": "For control players who build points from the back. Skip it if you want to finish with smashes.",
   "yes": [
    {
-    "title": "Forgiving and soft",
-    "t": "The soft core ==forgives off-centre hits== and keeps shots predictable.",
+    "title": "Soft, steady core",
+    "t": "Off-centre hits ==lose less than on most diamonds== and shots stay predictable.",
     "for": [
      "beginner",
      "intermediate"
@@ -7621,7 +7621,7 @@
    },
    {
     "title": "Margin on mishits",
-    "t": "A ==wide hitting zone== keeps stretched half-volleys playable.",
+    "t": "A ==wide sweet spot== keeps stretched half-volleys playable.",
     "for": [
      "intermediate"
     ],
@@ -7842,8 +7842,8 @@
     ]
    },
    {
-    "title": "Centred sweet spot",
-    "t": "A ==generous, central hitting zone== helps on late blocks.",
+    "title": "Easy contact point",
+    "t": "A ==generous, central sweet spot== helps on late blocks.",
     "for": [],
     "src": [
      "https://www.padelful.com/en/rackets/adidas-cross-it-ctrl-2026",
@@ -8395,8 +8395,8 @@
   ],
   "no": [
    {
-    "title": "High sweet spot",
-    "t": "The ==hitting zone sits high==, so late contact in defence gets punished.",
+    "title": "High contact point",
+    "t": "The ==sweet spot sits up top==, so late contact in defence gets punished.",
     "for": [
      "beginner"
     ],
@@ -8434,7 +8434,7 @@
   "source": "research"
  },
  "adidas-arrow-hit-pro-edt-2026": {
-  "tagline": "An attacking diamond for overheads. The catch: its hitting zone is tight and up top in many reviews.",
+  "tagline": "An attacking diamond for overheads. The catch: a demanding sweet spot that splits opinion.",
   "bottom": "For advanced attackers with sound overhead technique. Newer players and pure defenders should skip it.",
   "yes": [
    {
@@ -8472,7 +8472,7 @@
   ],
   "no": [
    {
-    "title": "Demanding hitting zone",
+    "title": "Demanding sweet spot",
     "t": "Splits opinion: ==tight and up top== in some reviews, centred in others.",
     "for": [
      "beginner"
@@ -9242,7 +9242,7 @@
   "yes": [
    {
     "title": "Huge sweet spot",
-    "t": "A ==wide, central hitting zone== keeps mishits in play.",
+    "t": "The ==wide, central face== keeps mishits in play.",
     "for": [
      "beginner",
      "intermediate"
@@ -9468,8 +9468,8 @@
     ]
    },
    {
-    "title": "Forgiving for a diamond",
-    "t": "A ==generous, easy-to-find hitting zone== helps on mishits.",
+    "title": "Fair for a diamond",
+    "t": "Mishits ==hold up better than on most diamonds==, but clean contact still pays.",
     "for": [
      "intermediate"
     ],
@@ -11486,7 +11486,7 @@
    },
    {
     "title": "Demanding sweet spot",
-    "t": "A ==high, small hitting zone== punishes off-centre lobs and defence.",
+    "t": "A ==high, small contact area== punishes off-centre lobs and defence.",
     "for": [],
     "src": [
      "6b66dfba-a265-4ce5-ab90-a51ae6fd8413",
@@ -11782,7 +11782,7 @@
    },
    {
     "title": "Central sweet spot",
-    "t": "A big hitting zone in the middle ==keeps slightly low contact clean==.",
+    "t": "A big, central contact area ==keeps slightly low hits clean==.",
     "for": [
      "intermediate"
     ],
