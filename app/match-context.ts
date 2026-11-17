@@ -19,7 +19,7 @@ import { evidenceRows } from "../db/evidence";
 import { evidenceBalance, labPercentiles, reportOf } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
-import { isIntermediatePlus, intermediatePlus } from "../lib/level-tiers";
+import { levelTier, applyTier } from "../lib/level-tiers";
 import { EXTRACTORS } from "../lib/evidence";
 import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts , coreClass, FINE_ROWS } from "../lib/fine-tune";
 import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
@@ -211,8 +211,9 @@ const keptContext = kept(async () => {
       // A site's level floor (DiscGolfRecs: a speed ≤ 7 disc suits advanced players at least 50, lib/discgolf-hard.ts).
       const floor = RULES && rulesOf(id).suitsFloor;
       if (floor) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.max(su[l], floor[l] ?? 0);
-      // Owner's intermediate+ tier (lib/level-tiers.ts): the last word on these models' level scores.
-      if (isIntermediatePlus(niche.id, name)) { suitsOf.set(id, { suits: intermediatePlus(su), disagree: null }); continue; }
+      // The owner's level tiers (lib/level-tiers.ts): the last word on intermediate+ and truly advanced rackets.
+      const tier = levelTier(niche.id, name, su);
+      if (tier) { suitsOf.set(id, { suits: applyTier(tier, su), disagree: null }); continue; }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.

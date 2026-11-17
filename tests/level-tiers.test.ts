@@ -1,18 +1,25 @@
-// The owner's intermediate+ tier (2026-11-17): every year of the three models, beginner not a fit, intermediate a fit below
-// core intermediates, advanced a full fit; "Generally best for intermediate → advanced".
+// The owner's level tiers (2026-11-17): advanced-only padel rackets become intermediate → advanced, the named three always,
+// a short list stays truly advanced; beginner never changes.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { isIntermediatePlus, intermediatePlus } from "../lib/level-tiers";
+import { levelTier, applyTier } from "../lib/level-tiers";
 import { bestFor, SUITS_OK } from "../lib/fit-verdict";
 
-test("intermediate+: the three models in every year, nothing else", () => {
-  for (const n of ["Siux Electra Pro ST4 2025", "Siux Electra Pro ST4 2026", "Head Coello Motion 2026", "Head Coello Motion 2025", "Kuikma Hybrid Pro 2026"]) assert.ok(isIntermediatePlus("padel", n), n);
-  for (const n of ["Head Coello Pro 2026", "Kuikma Hybrid Soft 2026", "Siux Electra Pro ST3 2024"]) assert.ok(!isIntermediatePlus("padel", n), n);
-  assert.ok(!isIntermediatePlus("pickleball", "Head Coello Motion 2026"));
+const adv = { beginner: 20, intermediate: 45, advanced: 85, basis: ["expert"] };
+test("tiers: an advanced-only racket becomes intermediate+, the named list stays advanced, other sites untouched", () => {
+  assert.equal(levelTier("padel", "Oxdog Ultimate Pro 2026", adv), "plus");
+  for (const n of ["Siux Fenix Pro 6 2026", "Bullpadel Hack Advance 2026", "Adidas Metalbone HRD+ 3.5 2026", "Adidas Metalbone HRD+ 3.4 2025", "Head Coello Pro 2026", "Babolat Viper Juan Lebrón 3.0 2026", "Babolat Technical Viper 2025"])
+    assert.equal(levelTier("padel", n, adv), "advanced", n);
+  assert.equal(levelTier("padel", "Head Coello Motion 2026", { beginner: 20, intermediate: 80, advanced: 80, basis: [] }), "plus");
+  assert.equal(levelTier("padel", "Adidas Match 2026", { beginner: 80, intermediate: 80, advanced: 40, basis: [] }), null);
+  assert.equal(levelTier("pickleball", "Oxdog Ultimate Pro 2026", adv), null);
 });
 
-test("intermediate+: beginner out, intermediate in but under core, advanced full; best for reads both levels", () => {
-  const su = intermediatePlus({ beginner: 40, intermediate: 35, advanced: 95, basis: ["12 players", "the brand"] });
-  assert.ok(su.beginner < SUITS_OK && su.intermediate >= SUITS_OK && su.intermediate < 75 && su.advanced === 95);
-  assert.equal(bestFor({ reports: 30, tags: {}, suits: su } as never)[0], "intermediate → advanced");
+test("tiers: intermediate+ passes intermediate but under core, advanced full, beginner kept; truly advanced stays out", () => {
+  const p = applyTier("plus", adv);
+  assert.ok(p.beginner === 20 && p.intermediate >= SUITS_OK && p.intermediate < 75 && p.advanced === 85);
+  assert.equal(bestFor({ reports: 30, tags: {}, suits: p } as never)[0], "intermediate → advanced");
+  const a = applyTier("advanced", { ...adv, intermediate: 85 });
+  assert.ok(a.intermediate < 50 && a.advanced >= SUITS_OK);
+  assert.equal(bestFor({ reports: 30, tags: {}, suits: a } as never)[0], "advanced");
 });
