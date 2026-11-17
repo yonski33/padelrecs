@@ -66,6 +66,8 @@ const QUICK = SITE_FIT.quick ? SITE_FIT : null;
 const SCORE_WORD = v2copy.score ?? "player score";
 /** Product page v11 (owner 2026-11-17, design_handoff_product_page_v11): padel, pickleball and disc golf, each in its own words
  *  (lib/v11-site.ts); the other sites keep their page. PADEL: the padel-only wording passes (padelWords, its bar nuances). */
+/** "Still deciding?" link wording per site (owner 2026-11-18): each site's own verb, played it? by default. */
+const ASK_LINK: Record<string, string> = { discgolf: "thrown it?", simracing: "raced on it?" };
 const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
 const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
@@ -506,7 +508,7 @@ export default async function RacketFit(props: {
           {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
             score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={buy}
             compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
-            one={niche.words.one} ask={`${QUICK ? "thrown" : "played"} it? add your verdict →`}/>}
+            one={niche.words.one} ask={`${ASK_LINK[niche.id] ?? "played it?"} add your review →`}/>}
           {V11 && tiles.length > 0 && <section className="v11-rt" aria-labelledby="v11-rt-t">
             <div className="v11-sh"><h2 id="v11-rt-t">Explore the rankings</h2><Link href="/rankings">all rankings →</Link></div>
             <div className="v11-rtgrid">{tiles.map(t => <Link key={t.href} href={t.href}><span className="t"><b>{t.title}<span aria-hidden="true"> →</span></b><em>{t.sub}</em></span>

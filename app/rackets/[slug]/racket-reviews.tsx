@@ -117,7 +117,12 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
           {verdict && <div className="rv-pwords">
             {/* A box that wraps and grows (owner 2026-11-18): 3 lines to start, up to about 8, then it scrolls; Enter is a new line. */}
             <textarea ref={grow} rows={3} value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
-            <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
+            {/* "posting as" (owner 2026-11-18, as the quick review card): a nickname filled in for this device, ↻ for another,
+                or clear it and type your own name. */}
+            <div className="rv-psend"><span className="rv-pas">posting as</span>
+              <span className="rv-nick"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} placeholder="your name (optional)" aria-label="Posting as (optional, change it if you like)"/>
+                <button type="button" onClick={newNick} title="Another nickname" aria-label="Another nickname">↻</button></span>
+              <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div></div>}
           {error && <p className="rv-err" role="alert">{error}</p>}
         </div>}
         {top5.length > 0 && <div className="rv12-row" aria-label={`What ${W.people} mention`}>{top5.map(([t, n]) => tagButton(t, n, true))}</div>}

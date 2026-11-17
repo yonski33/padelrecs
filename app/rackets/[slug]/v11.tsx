@@ -172,8 +172,26 @@ export function V11Decide({ id, facts, name, pic, score, line, buy, compare, ask
       <a href={compare.href} onClick={() => { try {
         const s = JSON.parse(sessionStorage.getItem("compare-picks") ?? "null"), picks = Array.isArray(s?.picks) ? s.picks.filter((p: { id: string }) => p.id !== compare.pick.id) : [];
         sessionStorage.setItem("compare-picks", JSON.stringify({ on: true, picks: [compare.pick, ...picks].slice(0, 3) })); } catch { /* private mode */ } }}>{`compare with another ${one} →`}</a>
-      <a href="#played">{ask}</a>
+      <a href="#played" onClick={toPlayed}>{ask}</a>
     </div>
   </section>;
+}
+/** "add your review →" (owner 2026-11-18): a smooth scroll to the "Played it?" box, clear of the sticky header, then focus on its
+ *  first verdict button (no jump, the focus doesn't scroll again). Falls back to the plain #played jump if the box is missing. */
+function toPlayed(e: React.MouseEvent<HTMLAnchorElement>) {
+  const box = document.getElementById("played"); if (!box) return;
+  e.preventDefault();
+  // The sticky bar at the top (padel's is 98px, more than the box's 80px scroll margin, which hid it): whatever sticky or
+  // fixed element covers the top of the viewport.
+  let head: Element | null = document.elementFromPoint(window.innerWidth / 2, 2);
+  while (head && !/sticky|fixed/.test(getComputedStyle(head).position)) head = head.parentElement;
+  const off = (head ? Math.max(0, head.getBoundingClientRect().bottom) : 0) + 16, still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const target = () => Math.max(0, box.getBoundingClientRect().top + window.scrollY - off);
+  box.querySelector<HTMLButtonElement>(".rv-prow button")?.focus({ preventScroll: true });
+  window.scrollTo({ top: target(), behavior: still ? "auto" : "smooth" });
+  // A smooth scroll can stop short (a background tab, images loading above it and moving the box): after it, if the box
+  // isn't where it should be, finish with a jump.
+  setTimeout(() => { if (Math.abs(box.getBoundingClientRect().top - off) > 24) window.scrollTo({ top: target() }); }, still ? 50 : 1000);
+  try { history.replaceState(null, "", "#played"); } catch { /* sandboxed */ }
 }
 const cap = (t: string) => t ? t[0].toUpperCase() + t.slice(1) : t;
