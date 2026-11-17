@@ -1,6 +1,7 @@
 // SimRacingRecs' v2 palette and display font (owner mock AgaVcamisXwobUR5sY9CDn, 2026-11-16): carbon ink, warm white paper,
 // a signal red-orange accent, a slate offset shadow and Chakra Petch headings, laid over the shared v2 pages' own tokens. The
-// layout prints it only on sites that set niche.v2style, so every other site's pages are byte-identical.
+// layout prints it only on sites that set niche.v2style, so every other site's pages are byte-identical. Score boxes keep the
+// shared score colours (green 85+, yellow 70–84, white below; app/globals.css --score-*, owner 2026-11-18), not the accent.
 const ROOTS = [".hv2-top", ".hv2", ".hw", ".pg2", ".ar", ".bv2", ".ct2", ".rk2", ".rl2", ".gd", ".lr2", ".qt", ".rf", ".shr"];
 const RED = "oklch(0.7 0.19 30)", SLATE = "oklch(0.42 0.03 260)";
 export const simracingV2Style = `
@@ -15,8 +16,6 @@ html .hv2 .hv2-hero{align-items:flex-start}
 html .hv2 .hv2-list>li.top{background:oklch(0.98 0.02 30)}
 html .hv2 .hv2-list>li:hover{background:oklch(0.975 0.025 30)}
 html .hv2 .hv2-list>li{border-bottom:1.5px dashed var(--line)}
-html .hv2 .hv2-sc.hi b{background:${RED}}
-html .hv2 .hv2-sc.mid b{background:oklch(0.9 0.07 30)}
 html .hv2 .hv2-chip.arm{background:oklch(0.92 0.04 260)}
 html .hv2 .hv2-seg{flex-wrap:wrap;max-width:100%}
 html .ct2 .ct2-list>li.first{background:oklch(0.98 0.02 30)}
