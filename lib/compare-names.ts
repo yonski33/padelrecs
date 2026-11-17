@@ -7,10 +7,10 @@ export type Named = { brand: string; model: string };
 const words = (s: string) => s.split(/\s+/).filter(Boolean);
 
 /** The shortest distinct name for product i among all shown. */
-export function refName(i: number, all: Named[]): string {
+export function refName(i: number, all: Named[], /** Never the brand alone (DiscGolfRecs, audit 2026-11-17: "than the Discraft" names hundreds of molds). */ byModel = false): string {
   const me = all[i], brand = me.brand.trim().toLowerCase();
   const sameBrand = all.filter((x, j) => j !== i && x.brand.trim().toLowerCase() === brand);
-  if (me.brand.trim() && !sameBrand.length) return me.brand.trim();
+  if (me.brand.trim() && !sameBrand.length) return byModel ? me.model : me.brand.trim();
   const taken = new Set(sameBrand.flatMap(x => words(x.model.toLowerCase())));
   const mw = words(me.model), own = mw.filter(t => t.length >= 2 && !taken.has(t.toLowerCase()));
   // A name that shares no word with its siblings is its own name: "the Double Black Diamond Control", not "the Black".

@@ -2,6 +2,7 @@
 // name, short take, category and a quiet shop link · signal score · positive reviews over a sentiment bar · total reviews.
 // The name's link covers the row; the shop link, the reviews link and anything in `extra` (the compare box) sit above it.
 import type { CSSProperties, ReactNode } from "react";
+import { ownScore } from "../lib/niche";
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
 import { niche, productHref } from "../lib/niche";
@@ -47,4 +48,4 @@ export function LightRow(props: Parameters<typeof lightRowProps>[0]) {
 }
 
 /** The first row's signal tooltip words, set once on the list (CSS shows them from a variable, so they aren't repeated per row). */
-export const sigTipStyle = { "--sig-tip": JSON.stringify("Signal score: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.") } as CSSProperties;
+export const sigTipStyle = { "--sig-tip": JSON.stringify(`${ownScore("Signal score")}: how well reviewed this is next to others of its kind, out of 100. Positive reviews raise it, weighed by how many there are; negative and mixed reviews take points off.`) } as CSSProperties;

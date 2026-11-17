@@ -8,7 +8,7 @@ import type { Finder, FinderOption } from "./niche/types";
 import { fitConfigFor, SITE_FIT, type FitConfig } from "./fit-config";
 
 import { readFine, fineEmpty, fineParams, type FineTune } from "./fine-tune";
-import { niche } from "./niche";
+import { niche, ownScore } from "./niche";
 
 /** Every style pick any site has; a site's own (lib/fit-config.ts styles) are STYLES. */
 export const ALL_STYLES = ["any", "control", "balance", "power", "spin"] as const;
@@ -56,6 +56,8 @@ export const STYLE_WORD: Record<Style, string> = { any: "any", control: "control
 export const styleWordOf = (s: Style) => SITE_FIT.quick && s !== "any" ? (SITE_FIT.styleLabels[s as "control"] ?? s).toLowerCase() : STYLE_WORD[s];
 /** The arm pick's words: a type-picker site's own ("slower arm speed"), else padel's. */
 export const ARM_PICK = SITE_FIT.quick?.arm ?? "sore elbow / wrist";
+/** The arm pick in a chip or a profile line: "sore arm", or "slower arm" on a type-picker site (DiscGolfRecs). */
+export const ARM_SHORT = SITE_FIT.quick ? "slower arm" : "sore arm";
 /** Sore elbow or wrist: rackets players call arm-friendly rank first (a strong weight, not a filter, so the list stays full),
  *  with vibration complaints counting against. */
 export const armOption = (cfg: FitConfig = SITE_FIT): FinderOption => ({ label: "Sore elbow / wrist", want: [cfg.arm.plus], avoid: cfg.arm.minus ? [cfg.arm.minus] : [], weight: 2.5 });
@@ -131,7 +133,7 @@ export const levelPeople = (l: Level) => SITE_FIT.levelLabels ? `${SITE_FIT.leve
 export function matchTitle(c: QuickChoice, many: string, cfg: FitConfig | undefined = fitConfigFor(niche)) {
   if (cfg?.quick) return quickTitle(c, many, cfg);
   const what = c.style === "any" ? many : c.style === "balance" ? `all-round ${many}` : `${c.style} ${many}`;
-  if (isDefault(c)) return { title: `Top ${many} right now`, sub: "ranked by Player score" };
+  if (isDefault(c)) return { title: `Top ${many} right now`, sub: `ranked by ${ownScore("Player score")}` };
   return { title: `Top ${what} for you`, sub: [c.level ? `ranked for ${levelPeople(c.level)}` : "ranked for your picks", c.arm ? "arm-friendly first" : null].filter(Boolean).join(" · ") };
 }
 /** The page title for a shared choice: "Best control padel rackets for beginners". */
@@ -148,7 +150,7 @@ function quickWhat(c: QuickChoice, many: string, cfg: FitConfig) {
   return c.style === "any" ? t : `${(cfg.styleLabels[c.style] ?? c.style).toLowerCase()} ${t}`;
 }
 function quickTitle(c: QuickChoice, many: string, cfg: FitConfig) {
-  if (isDefault(c)) return { title: `Top ${many} right now`, sub: "ranked by player score" };
+  if (isDefault(c)) return { title: `Top ${many} right now`, sub: `ranked by ${ownScore("player score")}` };
   return { title: `Top ${quickWhat(c, many, cfg)} for you`, sub: [c.level ? `ranked for ${levelPeople(c.level)}` : "ranked for your picks", c.arm ? `${cfg.quick!.armChip} first` : null].filter(Boolean).join(" · ") };
 }
 

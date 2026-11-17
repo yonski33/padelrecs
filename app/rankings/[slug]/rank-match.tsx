@@ -8,7 +8,7 @@ import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { RANK_SETUP } from "../../../lib/rank-seed";
 import { SAVED_PICKS_KEY } from "../../../lib/saved-picks";
 import { fitStep } from "../../../lib/verdict-scale";
-import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level } from "../../../lib/quick-match";
+import { STYLES, LEVELS, levelLabel, STYLE_WORD, type QuickChoice, type Level, ARM_SHORT } from "../../../lib/quick-match";
 
 const Ctx = createContext<(id: string) => number | null | undefined>(() => undefined);
 const word = (n: number) => fitStep(n).word;
@@ -34,7 +34,7 @@ export function RankMatch({ head, children }: { head: string; children: ReactNod
           <button key={s} type="button" aria-pressed={c.style === s} onClick={() => save({ ...c, style: c.style === s ? "any" : s })}>{STYLE_WORD[s] ?? s}</button>)}</span>
         <span className="rk3-seg" role="group" aria-label="Your level">{(LEVELS as readonly Level[]).map(l =>
           <button key={l} type="button" aria-pressed={c.level === l} onClick={() => save({ ...c, level: l })}>{levelLabel(l)}</button>)}</span>
-        <button type="button" className="rk3-arm" aria-pressed={c.arm} onClick={() => save({ ...c, arm: !c.arm })}><i aria-hidden="true">{c.arm ? "✓" : ""}</i>sore arm</button>
+        <button type="button" className="rk3-arm" aria-pressed={c.arm} onClick={() => save({ ...c, arm: !c.arm })}><i aria-hidden="true">{c.arm ? "✓" : ""}</i>{ARM_SHORT}</button>
         <span className="rk3-hint">{!c.level ? "pick your level to see your match" : !pcts ? "working it out…" : "your match is on every row"}</span>
       </div>}
     </div>

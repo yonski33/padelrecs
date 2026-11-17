@@ -10,6 +10,7 @@
 import type { FitConfig } from "./fit-config";
 import type { EvidenceRow } from "./evidence";
 import { flightOf } from "./discgolf-profile";
+import { stabilityOfFlight } from "./niche/discgolf-guide";
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
 /** The catalogue's median turn + fade (discgolfrecs, 2026-11-15: 1): a typical disc's stability. */
@@ -75,7 +76,9 @@ export const DISCGOLF_FIT: FitConfig = {
     // "Slow-arm friendly" only where the flight numbers agree: speed 9 or less and turn + fade 2 or less (match audit 2026-11-16:
     // Firebird 9/3/0/4 and Resistor had the chip); a page that tells slow arms to skip it also drops it (app/home-payload.ts).
     leanFor: { control: "turnovers and hyzer flips", balance: "straight lines", power: "forehands, wind and a reliable fade" },
-    armSpecOk: s => { const f = flightOf(s.weight); return !!f && f.speed <= 9 && f.turn + f.fade <= 2; },
+    // The guide's slow-arm rule (site audit 2026-11-17 #22: one rule for the guide, the chip and the best-for lines): speed 7 or
+    // less with turn + fade ≤ 2, or an understable 8–9.
+    armSpecOk: s => { const f = flightOf(s.weight); return !!f && ((f.speed <= 7 && f.turn + f.fade <= 2) || (f.speed <= 9 && stabilityOfFlight(f) === "understable")); },
     beginnerShapeNote: "A distance driver: few of them fly well for beginners." },
   evidenceAdapter: discgolfEvidence,
 };

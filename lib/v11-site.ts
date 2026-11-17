@@ -83,10 +83,16 @@ function discBuilds(spec: Spec): V11Build[] {
     out.push({ key: "flight", title: "Flight numbers", nums: [f.speed, f.glide, f.turn, f.fade], line: cap(`${turn}, then ${fade} (right-hand backhand).`) });
     const st = stabilityOf(spec.weight);
     if (st) out.push({ key: "gauge", title: cap(st), low: "under", high: "over", at: st === "understable" ? 0.18 : st === "overstable" ? 0.85 : 0.5,
-      line: st === "understable" ? "Turns over easily, so a slower arm still gets it straight and far."
-        : st === "overstable" ? "Fights the wind and finishes left; reliable for big arms and forehands." : "Flies straight with a gentle finish: the safe pick for most shots." });
+      // Speed 9+ needs a smooth 250 ft throw whatever its stability (audit #20, the Beast): never "a slower arm still gets it".
+      line: st === "understable" ? (f.speed >= 9 ? "Turns over easily: a smooth throw of 250 ft or more holds a long, straight line."
+        : "Turns over easily, so a slower arm still gets it straight and far.")
+        : st === "overstable" ? "Fights the wind and finishes left; reliable for big arms and forehands."
+        // Written from the same numbers as the flight line (audit 2026-11-17 #2): fade 3+ is a firm finish, never "gentle".
+        : f.fade >= 3 ? "Straight through the middle, then a firm fade at the end: dependable, but it needs the arm."
+        : "Flies straight with a gentle finish: the safe pick for most shots." });
     const sp = speedBandOf(spec.weight);
-    if (sp) out.push({ key: "gauge", title: `Speed ${f.speed}`, low: "1", high: "14", at: Math.max(0, Math.min(1, (f.speed - 1) / 13)),
+    // The scale runs to 15 (audit #31: Tantrum, Delirium and Excite are 14.5, the Raketen 15).
+    if (sp) out.push({ key: "gauge", title: `Speed ${f.speed}`, low: "1", high: "15", at: Math.max(0, Math.min(1, (f.speed - 1) / 14)),
       line: sp === "slow" ? "Flies as rated for nearly any arm." : sp === "mid" ? "Needs a smooth throw of about 250 to 325 ft to fly as rated."
         : "Needs a 325 ft arm or more; without it, it just fades early." });
   }

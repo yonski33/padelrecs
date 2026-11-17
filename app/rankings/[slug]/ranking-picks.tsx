@@ -8,7 +8,7 @@ import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { niche, mockLook } from "../../../lib/niche";
-import { LEVELS, STYLES, type QuickChoice, type Level } from "../../../lib/quick-match";
+import { LEVELS, STYLES, ARM_SHORT, type QuickChoice, type Level } from "../../../lib/quick-match";
 import RankPicks from "./rank-picks";
 
 export const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
@@ -49,7 +49,7 @@ export function RowPct({ id }: { id: string }) {
 /** The "your match" box: the picks, the show-% switch and the note. */
 export function MatchBox({ finder }: { finder?: string }) {
   const { s, set, href } = use(), c = s.choice;
-  const profileLine = c ? [c.level, c.style !== "any" ? c.style : null, c.arm ? "sore arm" : null].filter(Boolean).join(" · ") : "";
+  const profileLine = c ? [c.level, c.style !== "any" ? c.style : null, c.arm ? ARM_SHORT : null].filter(Boolean).join(" · ") : "";
   return <section className="rl2-match" aria-label="Your match">
     <input type="checkbox" id="rl2-edit" className="rl2-edit-t"/>
     {c ? <>

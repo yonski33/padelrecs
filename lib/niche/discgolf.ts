@@ -30,7 +30,7 @@ export const discgolf: Niche = {
     madeBy: "made by people with one disc too many in the bag 🥏", forum: "disc golf forum", blog: "disc golf blog",
     aboutStory: ["discgolfrecs started in a parking lot after a round. We'd bought discs off hype and flight numbers, found half of them flew nothing like the chart for our arms, and couldn't find a straight answer anywhere.",
       "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and disc golf forums together, counts it honestly, and tells you if a disc fits"],
-    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, venue: "course", tellUs: "Tell us how you throw", aboutLast: "your throw",
+    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, venue: "course", tellUs: "Tell us how you throw", aboutLast: "throw",
   },
   schema: "discgolfrecs",
   site: {
@@ -55,11 +55,14 @@ export const discgolf: Niche = {
     // reasons (−0.10, held at 54%, sorted last; lib/discgolf-hard.ts); "any" gets a stability window; display 40 + 50, max 95;
     // labels only as a whole last word ("Zone OS", never the mold "XS").
     levelGate: { beginner: 50, intermediate: 40, advanced: 40 },
-    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.37, wf: 0.55, wp: 0.08, minReports: 6, ax: 0.75,
+    // Site audit 2026-11-17: one stability per disc bounds the axis (lib/discgolf-hard.ts axisKey); a stability mismatch weighs
+    // more (ax 0.75 → 0.9); speed 9–10 step-up drivers and page warnings are a softer tier (warnPenalty).
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.37, wf: 0.55, wp: 0.08, minReports: 6, ax: 0.9, warnPenalty: 0.05, slowArmLift: 0.04, oppositeLeanLow: true,
+      shapeBounds: { "dg-under": [0, 0.4], "dg-stable": [0.43, 0.57], "dg-over": [0.6, 1] },
       controlLabels: ["ss"], powerLabels: ["os", "xs"], labelLastWord: true,
       labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.4, fineShare: 0.2,
       levelShare: 0.2, hardCap: 54, hardPenalty: 0.10, anyOwnAnchors: true, tieByReports: true,
-      anyWindow: { share: 0.5, target: 0.5, lowTarget: 0.35 }, display: { base: 40, span: 50, max: 95 } } },
+      anyWindow: { share: 0.5, target: 0.5, lowTarget: 0.35 }, display: { base: 40, span: 46, max: 95 } } },
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",

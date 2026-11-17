@@ -5,6 +5,7 @@
 // lib/home-rank.ts matchPcts and alternatives, the same functions the server uses), then updates the address with no round
 // trip. "What players said" comes in its four level views, worked out on the server.
 import { V11_HEADLINES } from "../../../lib/v11-words";
+import { ownScore } from "../../../lib/niche";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "../../instant-view";
 import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
@@ -179,7 +180,7 @@ export function FitSaid({ views }: { views: Record<string, SaidView> }) {
     <div className="rf-h"><h2>{v.title}</h2><span>{v.sub}</span></div>
     <div className="rf-said">
       <div className="rf-sum">
-        {v.badge && <div className="rf-badge" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{v.badge.n}</b><span>{v.badge.label}</span></div>}
+        {v.badge && <div className="rf-badge" title={`${ownScore("Player score")}: not a % of happy players. It blends how much players like it with how many have weighed in.`}><b>{v.badge.n}</b><span>{v.badge.label}</span></div>}
         {v.pos + v.mix + v.neg > 0 && <div className="rf-sumr"><div className="rf-sbar" role="img" aria-label={`${v.pos} positive, ${v.mix} mixed, ${v.neg} negative`}><i className="p" style={{ flex: v.pos }}/><i className="m" style={{ flex: v.mix }}/><i className="n" style={{ flex: v.neg }}/></div>
           <p className="rf-counts"><span>{`👍 ${v.pos} loved`}</span><span>{`🤷 ${v.mix} mixed`}</span><span>{`👎 ${v.neg} nope`}</span></p></div>}
       </div>
@@ -207,7 +208,7 @@ export function FitAlts({ id, facts, cards, similar, brandLink, similarTitle }: 
       <span className="rf-apic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading="lazy"/> : <span>{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
       <span className="rf-abody"><b>{r.name}</b>{r.why && <span>{r.why}</span>}</span>
       {picked ? <span className="rf-score" title="How well it fits your picks, from player reports. Not a % of happy players.">{r.score === null ? "—" : `${r.score}%`}</span>
-        : r.score !== null && <span className="rf-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{r.score}</span>}
+        : r.score !== null && <span className="rf-score" title={`${ownScore("Player score")}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>{r.score}</span>}
     </a></li>)}</ul>
   </div>;
 }

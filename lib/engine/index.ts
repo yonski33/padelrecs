@@ -74,6 +74,11 @@ export type EngineProfile = {
   /** The balance pick's axis term with a flat middle: within this distance of 0.5 counts as fully all-round. */ balanceFlat?: number;
   // The DiscGolfRecs match audit (Grok 2026-11-16, owner OK 2026-11-17). Unset: as before.
   /** A hard reason (with hardCap) also takes this off the cautious score, and the product sorts after every other row. */ hardPenalty?: number;
+  /** A softer warning (FitFacts.warn: DiscGolfRecs' step-up drivers, page warnings) takes this off, holds the % under Strong fit
+   *  and sorts the row after the unwarned ones (audit 2026-11-17). */ warnPenalty?: number;
+  /** A product whose own stability (FitFacts.lean) is the opposite of the picked one is held under "Worth a look" and sorted
+   *  after the rest. */ oppositeLeanLow?: boolean;
+  /** With the slower-arm pick, a product the specs call slow-arm friendly (RankItem.flags.slowArm) gains this much. */ slowArmLift?: number;
   /** The display scale: the floor anchor maps to `base`, the best to base + span, clamped at max (default 45 / 50 / 97). */ display?: { base: number; span: number; max: number };
   /** "Any" style: a stability window at this share of the fit, around `target` (or `lowTarget` for a beginner or a slower arm),
    *  so a well-suited product can reach Strong fit without a style pick. */ anyWindow?: { share: number; target: number; lowTarget: number };

@@ -33,7 +33,7 @@ export type RankItem = {
   /** A high (or medium-high) balance spec, on sites with curated lists: the beginner rule. */ headHeavy?: boolean;
   /** A site's ranking flags (DiscGolfRecs, lib/discgolf-hard.ts): a specialty disc is never #1 for "any"; without flight
    *  numbers it isn't ranked. */
-  flags?: { specialty?: true; noFlight?: true };
+  flags?: { specialty?: true; noFlight?: true; /** Slow-arm friendly by the specs: the slower-arm pick lifts it (EngineProfile.slowArmLift). */ slowArm?: true };
 };
 /** The finder's questions, plus the level gate (lib/niche fit.levelGate): with a level picked, only rackets whose suits score
  *  reaches the bar are candidates, and the % is spread within that eligible set (owner 2026-11-15). */
@@ -65,7 +65,9 @@ const engPick = (choice: QuickChoice) => ({ style: choice.style, arm: choice.arm
  *  out says "Probably not" (its % held under that line). */
 /** A capped % squeezed into 25 … cap in the same order (97 → cap, 25 → 25). */
 const squeeze = (pct: number, cap: number) => Math.round(25 + (Math.max(25, pct) - 25) * (cap - 25) / 72);
-type EngView = { cautious: number; pct: number; hard?: boolean; curated?: boolean; /** Its place on the curated list. */ ci?: number };
+type EngView = { cautious: number; pct: number; hard?: boolean; /** A softer warning for the pick (EngineProfile.warnPenalty). */ warn?: boolean; curated?: boolean; /** Its place on the curated list. */ ci?: number };
+/** Sort tiers: unwarned rows, then warned ones, then hard ones. */
+const tier = (v: EngView) => v.hard ? 2 : v.warn ? 1 : 0;
 function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | undefined, p: EngineProfile): Map<string, EngView> {
   return cached(items, `eng:view:${JSON.stringify([choice, gate ?? null])}`, () => {
     const base = engBase(items, p), all = engAnchors(items, p, gate), anchors = all.byStyle?.[choice.style] ?? all, out = new Map<string, EngView>();
@@ -86,6 +88,11 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       // (DiscGolfRecs) it also costs score and the row goes after every other one.
       const hard = p.hardCap !== undefined && hardOnLevelOrArm(choice, x.it.facts);
       if (hard && p.hardPenalty) cautious -= p.hardPenalty;
+      // A softer warning for the pick (DiscGolfRecs: a speed 9–10 step-up driver for a beginner, a page warning for a slower arm):
+      // a smaller cost, never Strong fit, and the row goes after the unwarned ones (and before the hard ones).
+      const f0 = x.it.facts, warned = !hard && !!p.warnPenalty && ((choice.level === "beginner" && !!f0.warn?.beginner) || (!!choice.arm && !!f0.warn?.arm));
+      if (warned) cautious -= p.warnPenalty!;
+      if (choice.arm && p.slowArmLift && x.it.flags?.slowArm) cautious += p.slowArmLift;
       let pct = enginePct(cautious, anchors, p.display);
       // Held under "Worth a look" (level gate, hard reason, shape rule): squeezed into 25–54 in order, not piled at 54 (audit).
       let cap: number | null = null;
@@ -96,6 +103,11 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       // And for beginners a high balance (owner's brief 2026-11-17: no head-heavy racket in a beginner list).
       const lowShape = (!!shapeRule && shapeRule.includes(x.it.facts.fine?.shape ?? "")) || (!!x.it.headHeavy && !!choice.level && !!p.headHeavyBelow?.includes(choice.level));
       if (lowShape) cap = Math.min(cap ?? 99, p.cuts.maybe - 1);
+      if (warned) cap = Math.min(cap ?? 99, p.cuts.good - 1);
+      // The opposite stability (DiscGolfRecs, audit 2026-11-17 #19: a roller mid "Worth a look" for overstable): never "Worth a
+      // look" or better, and after the rest, like a hard reason.
+      const opposite = !!p.oppositeLeanLow && (choice.style === "control" || choice.style === "power") && !!f0.lean && f0.lean !== "balance" && f0.lean !== choice.style;
+      if (opposite) cap = Math.min(cap ?? 99, p.cuts.maybe - 1);
       if (cap !== null) pct = squeeze(pct, cap);
       // A curated pick keeps its place, and its % is its real match (owner 2026-11-17: "the % shown is the real match").
       // A power pick on a racket with an Attack bar of 3 or less (or control on a Control bar of 3 or less) is never a Strong fit:
@@ -113,7 +125,7 @@ function engineView(items: RankItem[], choice: QuickChoice, gate: LevelGate | un
       const i = curIx.get(x.id);
       // The owner's curated #1–3 are meant as perfect fits (owner 2026-11-17): at least a Strong fit, in their order.
       if (i !== undefined && p.curatedTop?.[i] !== undefined) pct = Math.max(pct, p.curatedTop[i]);
-      out.set(x.id, { cautious, pct, ...(i !== undefined ? { curated: true, ci: i } : (hard && p.hardPenalty) || lowShape ? { hard: true } : {}) });
+      out.set(x.id, { cautious, pct, ...(i !== undefined ? { curated: true, ci: i } : (hard && p.hardPenalty) || lowShape || opposite ? { hard: true } : warned ? { warn: true } : {}) });
     }
     return out;
   });
@@ -186,7 +198,7 @@ function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, ol
   // Curated picks are never folded into another member of their model (each is the owner's own choice of year and version).
   const isCur = (x: EngItem) => !!view.get(x.id)?.curated;
   const cands = [...all.filter(x => isCur(x) && okNew(x)), ...engineCandidates(all.filter(x => !isCur(x)), okNew, 0, older, best)].sort((a, b) => (view.get(a.id)!.ci ?? 1e9) - (view.get(b.id)!.ci ?? 1e9)
-    || Number(!!view.get(a.id)!.hard) - Number(!!view.get(b.id)!.hard)
+    || tier(view.get(a.id)!) - tier(view.get(b.id)!)
     // The shown % first (a capped row never sits above a higher %), then the score behind it.
     || view.get(b.id)!.pct - view.get(a.id)!.pct || view.get(b.id)!.cautious - view.get(a.id)!.cautious || (p.tieByReports ? b.n - a.n : 0) || a.id.localeCompare(b.id));
   // A specialty disc (DiscGolfRecs: a roller / turnover disc, turn ≤ −4) is never the #1 for "any stability".
