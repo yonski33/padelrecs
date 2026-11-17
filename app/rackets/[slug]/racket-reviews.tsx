@@ -13,8 +13,9 @@ export type ReviewCard = {
   id: string; kind: "player" | "youtube"; who: string; initial?: string; meta?: string | null; verdict?: Verdict | null; when?: string | null;
   /** Player cards: the text and whether it's the writer's exact words (quote marks only then). */
   text?: string; verbatim?: boolean;
-  /** YouTube cards: video id for the thumbnail, the summary's points, and whether it's a comment under the video. */
-  video?: string | null; points?: string[]; comment?: boolean;
+  /** YouTube cards: video id for the thumbnail, the summary's points, whether it's a comment under the video, and the video's
+   *  length in minutes when known. */
+  video?: string | null; points?: string[]; comment?: boolean; minutes?: number | null;
   url?: string | null; source?: string | null;
 };
 
@@ -148,7 +149,7 @@ function Card({ c, i, pill, v11c = false }: { c: ReviewCard; i: number; pill: Re
           </div>
           {v11c && c.meta && <div className="rv-who2">{c.meta}</div>}
           <p className="rv-text">{c.verbatim ? `“${c.text}”` : c.text}</p>
-        </> : <div className="rv-yt">
+        </> : v11c ? <YtLite c={c} pill={pill}/> : <div className="rv-yt">
           <a className="rv-thumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${c.who}`}>
             {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}
             <span className="rv-play" aria-hidden="true">▶</span>
@@ -163,4 +164,25 @@ function Card({ c, i, pill, v11c = false }: { c: ReviewCard; i: number; pill: Re
           </div>
         </div>}
   </article>;
+}
+
+/** A YouTube review on the v11c page (owner 2026-11-17): a lighter card in the same list. Small thumbnail, a grey
+ *  "▶ YouTube · 16 min" label (the length when we know it), the channel and verdict, "summary of the video" (our words, not the
+ *  creator's), then the stored points joined into one or two plain sentences, at most two lines. */
+function YtLite({ c, pill }: { c: ReviewCard; pill: Record<Verdict, string> }) {
+  const end = (t: string) => /[.!?]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
+  const text = (c.points ?? []).filter(Boolean).slice(0, 2).map(end).join(" ");
+  return <div className="rv-ytl">
+    <a className="rv-tl" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${c.who}`}>
+      {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}
+    </a>
+    <div className="rv-yb">
+      <div className="rv-top"><span className="rv-ylab">{`▶ YouTube${c.minutes ? ` · ${c.minutes} min` : ""}`}</span><strong>{c.who}</strong>
+        {c.verdict && <span className={`rv-pill ${c.verdict}`}>{pill[c.verdict]}</span>}
+        {c.when && <span className="rv-when">{c.when}</span>}</div>
+      <div className="rv-ysub">{c.comment ? "a viewer\u2019s comment under the video" : "summary of the video"}</div>
+      {text && <p className="rv-text rv-y2">{text}</p>}
+      {c.url && <a className="rv-watch" href={c.url} target="_blank" rel="noopener nofollow">{c.comment ? "see the comment ↗" : "watch ↗"}</a>}
+    </div>
+  </div>;
 }
