@@ -414,7 +414,7 @@
 @media (min-width: 1024px) {
   /* The left column stays 720px with or without the tag list (the mock's score row and cards width). */
   .rf .rv12 { grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; }
-  .rf .rv12.side .rv12-side { display: block; position: sticky; top: 84px; margin-top: 52px; }
+  .rf .rv12.side .rv12-side { display: block; position: sticky; top: 114px; margin-top: 52px; }
   .rf .rv12.side .rv12-row { display: none; }
 }
 
@@ -439,7 +439,7 @@
   .rf .v11-up { width: 100%; display: grid; grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; align-items: stretch; }
   .rf .v11-upl { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
   .rf .v11-rail { display: block; min-width: 0; }
-  .rf .rp-rail { position: sticky; top: 84px; max-width: 244px; border: 2px solid #151515; border-radius: 16px; background: #fff; padding: 14px;
+  .rf .rp-rail { position: sticky; top: 114px; max-width: 244px; border: 2px solid #151515; border-radius: 16px; background: #fff; padding: 14px;
     display: flex; flex-direction: column; gap: 12px; }
   .rf .rp-rail .rp-sk { flex-direction: column; align-items: flex-start; gap: 10px; }
   .rf:has(.v11-score) .rp-rail .rp-sk .rp-k { display: inline-block; }
