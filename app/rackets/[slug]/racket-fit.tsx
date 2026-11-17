@@ -43,6 +43,8 @@ import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
 
 /** The date n days back (YYYY-MM-DD), for "new this week". */
+/** Reports a newer year needs before it replaces the older one (as the curated lists, lib/engine newestAt). */
+const NEWEST_AT = 10;
 const isoDaysAgo = (n: number) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
 import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
@@ -157,10 +159,11 @@ export default async function RacketFit(props: {
   const spread = (a: string, b: string) => { let h = 2166136261; for (const ch of `${props.slug}|${a}`) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
     let k = 2166136261; for (const ch of `${props.slug}|${b}`) k = Math.imul(k ^ ch.charCodeAt(0), 16777619); return (h >>> 0) - (k >>> 0); };
   const band = (id: string) => Math.floor((ctx.signal(id) ?? -5) / 5);
-  // Newest version wins (owner 2026-11-17, as the curated lists): no card, strip or alternative is an older year of a model
-  // the catalog also lists in a newer one; this year's models come first, older ones only to fill.
+  // Newest version wins (owner 2026-11-17, the curated lists' rule: "the new version, if it has enough reviews", 10+): no card,
+  // strip or alternative is an older year of a model whose newer year has 10+ reports; this year's models come first, older
+  // ones only to fill.
   const famNewest = new Map<string, number>();
-  for (const x of ctx.data.listed) { const k = modelFamily(x); famNewest.set(k, Math.max(famNewest.get(k) ?? 0, x.year)); }
+  for (const x of ctx.data.listed) if (ctx.facts(x.id).reports >= NEWEST_AT) { const k = modelFamily(x); famNewest.set(k, Math.max(famNewest.get(k) ?? 0, x.year)); }
   const superseded = (id: string) => { const x = ctx.data.rackets.find(y => y.id === id); return !!x && x.year < (famNewest.get(modelFamily(x)) ?? x.year); };
   const thisYear = Number(isoDaysAgo(0).slice(0, 4));
   const current = (id: string) => Number((ctx.data.rackets.find(y => y.id === id)?.year ?? 0) >= thisYear);
