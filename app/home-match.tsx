@@ -3,6 +3,7 @@
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { scoreBox, matchBox } from "../lib/score-tone";
 import { whyHere } from "../lib/curated";
 import { useEffect, useState, type ReactNode } from "react";
 import { scoreState } from "../lib/score-view";
@@ -21,7 +22,6 @@ import { forgetSavedPicks } from "../lib/saved-picks";
 export const RESET_CHOICE: QuickChoice = DEFAULT_CHOICE;
 
 /** The mockup's tints for a match % or a score: green at 85+, yellow at 70+, plain below. */
-const tone = (n: number) => n >= 85 ? "hi" : n >= 70 ? "mid" : "";
 const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
 const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 /** A site's own home mock (niche.v2home; PickleballRecs): every row has the match box, "check price" is a button. */
@@ -128,7 +128,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         // With picks the match % is the star; the product's own score stays as a small neutral pill under it (owner 2026-11-16).
         // The mockup's after-pick column (owner 2026-11-16): the match % box, "your match", then a small pill with the product's
         // own score, tinted by it like the box (green 85+, yellow 70+). No verdict chip here: the box says it.
-        const scorePill = st === "new" ? <NewPill n={r.judged}/> : sig !== null && <span className={`hv2-spill ${tone(sig)}`}><b>{sig}</b>{` ${SCORE_WORD}`}</span>;
+        const scorePill = st === "new" ? <NewPill n={r.judged}/> : sig !== null && <span className={`hv2-spill ${scoreBox(sig)}`}><b>{sig}</b>{` ${SCORE_WORD}`}</span>;
         // The fit check's verdict for the picks (lib/fit-verdict.ts), with one short real reason; none without picks or on thin data.
         const fitWord = fit && fit.kind !== "thin" ? FIT_WORD[fit.kind] : null;
         const chips = [
@@ -149,10 +149,10 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           <span className="hv2-sent"><span>{`${r.n.toLocaleString("en-US")} ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
           {/* Its score badge (owner 2026-11-16): the Player score until a pick, then the match %. */}
-          {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE}
+          {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : matchBox(pct)}`} title={MATCH_NOTE}
             aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
             <b>{pct !== null ? `${pct}%` : "—"}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
-            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
+            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
             <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
@@ -169,9 +169,9 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
             {fitWord && fit!.short && <span className={`hv2-fit ${fit!.kind}`}><span>{fit!.short}</span></span>}</span>
           <span className="hv2-sent"><span><strong>{r.n.toLocaleString("en-US")}</strong>{` ${r.n === 1 ? "review" : "reviews"}`}</span>
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
-          {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
+          {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : matchBox(pct)}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
               <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
-            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
+            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
               <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
       })}</ol>

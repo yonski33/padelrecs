@@ -63,8 +63,8 @@
 .bc-score { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 84px; }
 .bc-sc { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--ink); font: 25px/1 var(--serif); box-sizing: border-box; }
 .bc-sc.pct { width: auto; min-width: 46px; border-radius: 999px; padding: 0 9px; font-size: 22px; }
-.bc-sc.hi { background: oklch(0.86 0.07 155); } .bc-sc.mid { background: oklch(0.91 0.05 155); } .bc-sc.lo { background: oklch(0.95 0.03 155); } .bc-sc.none { background: var(--sand); color: var(--mute2); }
-.bc-sc.pct.mid { background: var(--mark); } .bc-sc.pct.lo { background: var(--paper); }
+.bc-sc.hi { background: var(--score-g); } .bc-sc.mid { background: var(--score-y); } .bc-sc.lo { background: var(--score-w); } .bc-sc.none { background: var(--sand); color: var(--mute2); }
+.bc-sc.pct.lo { background: var(--score-w); }
 .bc-score .bp-mood { width: 64px; height: 6px; }
 .bc-score small { font: 10.5px var(--mono); color: var(--mute); white-space: nowrap; }
 .bc-empty { border: 2px dashed var(--dash); border-radius: 20px; padding: 28px 16px; text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; }

@@ -76,7 +76,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       best: best.filter(b => b !== otherStyle).join(", "), sig: e.signal?.signal ?? null, judged: score(data, r.id).judged, shop }];
   });
   const [first, ...rest] = rows;
-  const tone = (n: number | null) => n === null ? "" : n >= 90 ? " t90" : n >= 85 ? " t85" : "";
+  const tone = (n: number | null) => n === null ? "" : n >= 85 ? " hi" : n >= 70 ? " mid" : "";
   const buy = (x: typeof rows[number], cls: string) => x.shop ? <a className={cls} href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : null;
   const tag = (rank: number) => rank === 2 ? <span className="rk3-tag ru">runner-up</span> : null;
 
@@ -128,7 +128,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
           {first.best && <span className="rk3-best">{`best for ${first.best}`}</span>}
         </div>
         <div className="rk3-side">
-          <span className="rk3-sc" title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
+          <span className={`rk3-sc${tone(first.sig)}`} title={`${scoreLabel}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
             <b>{first.sig ?? "–"}</b><small>{scoreLabel.toLowerCase().replace(" ", "\n")}</small></span>
           {ctx && <RowMatch id={first.r.id}/>}
           {buy(first, "rk3-buy")}
