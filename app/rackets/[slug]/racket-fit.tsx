@@ -154,6 +154,11 @@ export default async function RacketFit(props: {
     return [...close, ...fill].slice(0, 10).map(x => x.id);
   })();
   const similarIds = simPool.slice(0, 4);
+  // Past the similar pool, well-reviewed rackets of the same shape, then any, so every card can bring its own gain.
+  const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
+  const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
+    && rowOfFamily(x, ctx.data.listed, y => ctx.facts(y.id).reports >= MIN_FIT_REPORTS).shown.id === x.id)
+    .sort((a, b) => Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || (ctx.signal(b.id) ?? -1) - (ctx.signal(a.id) ?? -1)).slice(0, 30).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -277,7 +282,7 @@ export default async function RacketFit(props: {
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
     // Each card's word is its own main gain over this one, never the same twice (owner 2026-11-17); "similar feel" only when no
     // card in the pool beats it anywhere.
-    items: (() => { const edges = distinctEdges(compareMe.dots, byScore(simPool).map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
+    items: (() => { const edges = distinctEdges(compareMe.dots, [...byScore(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4);
       return edges.length ? edges.map((e, i) => simItem(e.id, i, dotWords[e.gain])) : byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))); })(),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
@@ -307,7 +312,7 @@ export default async function RacketFit(props: {
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
-  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, byScore(simPool).map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byScore(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid),
