@@ -3,6 +3,9 @@ import { and, count, desc, eq, notLike } from "drizzle-orm";
 import { database } from "../../db/data";
 import { reviews, rackets, externalReviews, brands } from "../../db/schema";
 import { isAdmin } from "./auth";
+import { ReviewActions, ApproveAll } from "./review-actions";
+/** Player reviews per page in the queue (owner 2026-11-17: 100). */
+const QUEUE_PAGE = 100;
 import { getCurrentUser } from "../../lib/supabase/auth";
 import RacketPicker from "../racket-picker";
 import RacketSpecs from "./racket-specs";
@@ -71,7 +74,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  const [models, totals, queue, external, allBrands] = await Promise.all([
   db.select().from(rackets).orderBy(rackets.name),
   db.select({status:reviews.status,total:count()}).from(reviews).where(notLike(reviews.id,"demo-%")).groupBy(reviews.status),
-  db.select().from(reviews).where(and(eq(reviews.status,status),notLike(reviews.id,"demo-%"))).orderBy(desc(reviews.createdAt)).limit(21).offset((page-1)*20),
+  db.select().from(reviews).where(and(eq(reviews.status,status),notLike(reviews.id,"demo-%"))).orderBy(desc(reviews.createdAt)).limit(QUEUE_PAGE+1).offset((page-1)*QUEUE_PAGE),
   web ? db.select().from(externalReviews).where(notLike(externalReviews.id,"demo-%")).orderBy(desc(externalReviews.createdAt)).limit(21).offset((page-1)*20) : Promise.resolve([]),
   (web||specs) ? db.select({id:brands.id,name:brands.name}).from(brands).orderBy(brands.name) : Promise.resolve([])
  ]);
@@ -98,15 +101,16 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  </div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/funtimes?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
- <div className="admin-queue">{queue.slice(0,20).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
+ {status!=="approved"&&<ApproveAll count={Math.min(queue.length,QUEUE_PAGE)}/>}
+ <div className="admin-queue">{queue.slice(0,QUEUE_PAGE).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
  <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={model ? productHref(model) : catalogPath}>{model?.name}</a></h3>
  <p className="review-text">{r.reviewText}</p><TagList tags={r.tags}/>{variantLine(r.variant)}<div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
  <div className="byline"><span>by <b>{r.alias||`Anonymous ${niche.people.one}`}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
  <p><a href={`/funtimes/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
- <div className="admin-actions">{["approved","rejected","pending"].filter(s=>s!==r.status).map(next=><form action="/api/funtimes/reviews" method="post" key={next}><input type="hidden" name="id" value={r.id}/><input type="hidden" name="status" value={next}/><input type="hidden" name="expectedStatus" value={r.status}/><input type="hidden" name="returnStatus" value={status}/><button type="submit" className={next==="approved"?"":"secondary-button"}>{next==="approved"?"Approve":next==="rejected"?"Reject":"Move to pending"}</button></form>)}</div>
+ <ReviewActions id={r.id} status={r.status as "pending"|"approved"|"rejected"} back={status}/>
  </article>})}{!queue.length && <p className="admin-empty">No {status} submissions.</p>}</div>
- <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>20&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
+ <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>QUEUE_PAGE&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
  </>}
  </main>;
 }
