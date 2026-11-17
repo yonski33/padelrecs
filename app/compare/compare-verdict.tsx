@@ -26,7 +26,6 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
   /** The catalog's match items (engine sites); none: no quick match, the verdict before picks. */ items: RankItem[] | null;
   specLabels: string[]; scoreWord: string; removeHref: Record<string, string> }) {
   const [c, setC] = useState<QuickChoice>({ style: "any", arm: false });
-  const [specs, setSpecs] = useState(false);
   const picks = useMemo<Record<string, VPick> | null>(() => {
     if (!items || !c.level) return null;
     const pcts = matchPcts(items, c, niche.fit?.levelGate, niche.fit?.engine), byId = new Map(items.map(x => [x.id, x]));
@@ -83,13 +82,14 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
     </section>}
 
     {specLabels.length > 0 && <section className="cx-sec">
-      <button type="button" className="cx-spech" aria-expanded={specs} onClick={() => setSpecs(x => !x)}><span>Specs side by side</span><small>{specs ? "hide specs ▴" : "show specs ▾"}</small></button>
-      {specs && <div className="cx-specs" style={cols}>
+      {/* Always open (owner 2026-11-17): the page is short enough without a toggle. */}
+      <h2 className="cx-spech">Specs side by side</h2>
+      <div className="cx-specs" style={cols}>
         <div className="cx-sr cx-srh"><span/>{shown.map(p => <b key={p.id}>{p.short}</b>)}</div>
         {specLabels.map((label, k) => { const vals = shown.map(p => p.specs[k]), differ = new Set(vals.map(x => x ?? "")).size > 1;
-          return <div key={label} className="cx-sr"><span>{label}</span>{vals.map((x, i) => <span key={i}><em className={differ ? "d" : undefined}>{x ?? "not listed"}</em></span>)}</div>; })}
+          return <div key={label} className="cx-sr"><span>{label}</span>{vals.map((x, i) => <span key={i}><em className={differ ? "d" : undefined}>{x ? x.replace(/\//g, "/\u200b") : "not listed"}</em></span>)}</div>; })}
         <div className="cx-srf"><em className="d">highlighted</em> = they differ here</div>
-      </div>}
+      </div>
     </section>}
   </>;
 }
