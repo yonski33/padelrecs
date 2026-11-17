@@ -25,7 +25,7 @@ import { forgetSavedPicks } from "../../../lib/saved-picks";
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability words, arm pick and compare words. Unset: padel's. */
 const CFG = fitConfigFor(niche), QUICK = CFG?.quick ? CFG : null;
 const styleWord = (s: QuickChoice["style"]) => QUICK && s !== "any" ? (QUICK.styleLabels[s] ?? STYLE_WORD[s]).toLowerCase() : STYLE_WORD[s];
-const ARM_WORD = QUICK?.quick?.arm ?? "sore arm", USE_WORD = QUICK ? "flies" : "plays";
+const ARM_WORD = QUICK?.quick?.arm ?? "sore arm", USE_WORD = QUICK?.quick?.useWord ?? (QUICK ? "flies" : "plays");
 const BAD = NEGATIVE_TAGS, SETUP = RANK_SETUP;
 const PICK_KEYS = ["style", "level", "arm"];
 
@@ -241,18 +241,21 @@ export type CompareCard = { name: string; short: string; href: string; pic: stri
 const DOTS = SITE_FIT.traits.filter(t => !t.hidden);
 const DIFF: [string, string][] = DOTS.map(t => [t.key, t.diff ?? `more ${t.label.toLowerCase()}`]);
 /** "more power": the trait where the other racket is furthest ahead; "similar" when it is ahead nowhere. */
-const diffWord = (me: number[], other: number[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[best]?.[1] ?? "similar feel"; };
+/** Row i's trait: by its key when the rows say (per-type rows, SimRacingRecs), else the site's i-th dot trait. */
+const at = (i: number, keys?: string[]) => keys ? DOTS.findIndex(t => t.key === keys[i]) : i;
+const diffWord = (me: number[], other: number[], keys?: string[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[at(best, keys)]?.[1] ?? "similar feel"; };
 /** "Stick with this one if you…" / "Pick X if you…" (owner's final mock): the two traits where a racket's dots are furthest
  *  ahead, each as a player's need. Derived from the dots only, so the lines never disagree with the bars above them. */
 const IF_YOU = DOTS.map(t => t.ifYou ?? `care about ${t.noun}`);
-const aheadIn = (a: number[], b: number[]) => a.map((v, i) => ({ i, g: v && b[i] ? v - b[i] : 0 })).filter(x => x.g > 0).sort((x, y) => y.g - x.g || x.i - y.i).slice(0, 2).map(x => IF_YOU[x.i]);
+const aheadIn = (a: number[], b: number[], keys?: string[]) => a.map((v, i) => ({ i, g: v && b[i] ? v - b[i] : 0 })).filter(x => x.g > 0).sort((x, y) => y.g - x.g || x.i - y.i).slice(0, 2).map(x => IF_YOU[at(x.i, keys)]);
 const Segs = ({ n }: { n: number }) => n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? `on t${n}` : undefined}/>)}</span> : <span className="rf-segs none"/>;
 
 /** "How it plays & compares" (owner's final mock): tab one is this racket's six trait bars with a short note each; the other
  *  tabs set it beside an alternative. With picks, the alternatives are the visitor's better matches (lib/home-rank.ts, the
  *  home's order); without, similar rackets from the server. */
 export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: CompareCard;
-  rows: { label: string; note: string }[]; cards: Record<string, CompareCard>; similar: string[] }) {
+  rows: { label: string; note: string; key?: string }[]; cards: Record<string, CompareCard>; similar: string[] }) {
+  const keys = rows.every(r => r.key) ? rows.map(r => r.key!) : undefined;
   const rank = useRank(id), { choice, picked } = rank;
   const alts = (picked ? rank.alts(6).map(r => r.id) : similar).filter(x => cards[x] && x !== id).slice(0, 3);
   const [tab, setTab] = useState<string>("me");
@@ -263,7 +266,7 @@ export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: C
         <span className="rp-tpic">{me.pic && <img src={me.pic} alt="" width={36} height={54} loading="lazy"/>}</span><span><b>{`This ${niche.words.one}`}</b><small>{`how it ${USE_WORD}`}</small></span></button>
       {alts.map(a => <button key={a} type="button" role="tab" aria-selected={cur === cards[a]} onClick={() => setTab(a)}>
         <span className="rp-tpic">{cards[a].pic && <img src={cards[a].pic!} alt="" width={36} height={54} loading="lazy"/>}</span>
-        <span><b>{cards[a].short}</b><small>{diffWord(me.dots, cards[a].dots)}</small></span></button>)}
+        <span><b>{cards[a].short}</b><small>{diffWord(me.dots, cards[a].dots, keys)}</small></span></button>)}
     </div>
     <div className="rp-panel" role="tabpanel">
       {!cur ? rows.map((r, i) => <div key={r.label} className="rp-row"><b>{r.label}</b><Segs n={me.dots[i]}/><span className="rp-note">{r.note.split("==").map((x, j) => j % 2 ? <mark key={j}>{x}</mark> : <span key={j}>{x}</span>)}</span></div>)
@@ -276,7 +279,7 @@ export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: C
             <span className="rp-cside"><Segs n={cur.dots[i]}/>{cur.dots[i] > me.dots[i] && me.dots[i] > 0 && <em>▲ better</em>}</span></div>)}
         </>}
     </div>
-    {cur && (() => { const stay = aheadIn(me.dots, cur.dots), go = aheadIn(cur.dots, me.dots), href = `${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`;
+    {cur && (() => { const stay = aheadIn(me.dots, cur.dots, keys), go = aheadIn(cur.dots, me.dots, keys), href = `${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`;
       return <div className="rp-pick">
         <div className="rp-stay"><span className="rp-ph">stick with this one if you…</span>{stay.length ? stay.map(x => <span key={x} className="rp-pi"><i>→</i>{x}</span>) : <span className="rp-pi"><i>→</i>like how it plays: the two feel much alike</span>}</div>
         <div className="rp-go"><span className="rp-ph">{`pick ${cur.short} if you…`}</span>{go.length ? go.map(x => <span key={x} className="rp-pi"><i>→</i>{x}</span>) : <span className="rp-pi"><i>→</i>prefer its feel or price: the two play much alike</span>}

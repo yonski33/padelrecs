@@ -59,7 +59,7 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
     <header className={`site-header hv2-sh${mockLook ? " hv2-sh-m" : ""}`}><div className="hv2-shin">
       <Link className="hv2-logo" href="/">{v2copy.logo === "icon" ? <img className="hv2-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/> : <i aria-hidden="true"/>}{niche.site.name.toLowerCase()}</Link>
       <nav aria-label="Main navigation">
-        <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{niche.words.many}</a>
+        <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{v2copy.catalogNav ?? niche.words.many}</a>
         {/* Owner 2026-11-16: "the ranking menu item as a drop down that shows all the lists" (the classic menu, v2 styling). */}
         {ranked.length ? <TopMenu pathname={pathname} ranked={ranked} v2/> : <a href={RANKINGS_PATH} aria-current={inRankings ? "page" : undefined}>rankings</a>}
         {niche.guide && <a href="/guide" aria-current={pathname === "/guide" ? "page" : undefined}>{niche.guide.nav ?? "guide"}</a>}

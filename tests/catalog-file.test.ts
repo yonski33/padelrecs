@@ -239,7 +239,7 @@ test("the SimRacingRecs starter catalog: sourced gear without years in five know
   const { shapeOf } = await import("../app/art/simracing");
   for (const r of snapshot.tables.rackets) {
     assert(r.shape !== null && shapeOf(r.shape) !== "unknown", `${r.name}: category ${r.shape}`);
-    assert(r.weight === null || /^\d+(\.\d)? (Nm|kg load cell)$/.test(r.weight), `${r.name}: torque / force ${r.weight}`);
+    assert(r.weight === null || /^\d+(\.\d)? (Nm|kg load cell|kg max( \([^)]*load cell[^)]*\))?)$/.test(r.weight), `${r.name}: torque / force ${r.weight}`);
     assert(!/ 20\d\d$/.test(r.name), `${r.name}: gear is named by generation, not year`);
   }
   assert(catalog.products.every(p => p.sources.length >= 1 && p.sources.every(s => s.startsWith("https://"))));

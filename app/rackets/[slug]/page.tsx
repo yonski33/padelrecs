@@ -336,6 +336,9 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null });
     return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3).map(part));
   })() : [];
+  // The "works with" tab, also on the v2 product page (racket-fit.tsx, SimRacingRecs).
+  const pairsTab: SimilarTab | null = niche.similar && works.length ? { key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
+    items: works.map((w, i) => oldItem(data.listed.find(x => x.id === w.id)!, i, w.why)), more: null } : null;
   const simTabs: SimilarTab[] = niche.similar ? [
     { key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`,
       // One card per model (the best liked year), never another year of this one.
@@ -345,8 +348,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         .filter(({ x }, _i, all) => niche.similar?.pairs !== "works" || r.shape !== "Wheelbase" || !r.balance || all.filter(y => y.x.balance === r.balance).length < 2 || x.balance === r.balance)
         .map(({ x }, i) => oldItem(x, i, loved?.get(x.id)?.loved ?? null)),
       more: firstList ? { href: rankingHref(firstList.slug), label: `all ${groupWord}, ranked →` } : null },
-    ...(works.length ? [{ key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
-      items: works.map((w, i) => oldItem(data.listed.find(x => x.id === w.id)!, i, w.why)), more: null }] : []),
+    ...(pairsTab ? [pairsTab] : []),
   ] : [];
   const simSection = simTabs.length > 0 && simTabs[0].items.length + (simTabs[1]?.items.length ?? 0) > 0
     && <SimilarSection title="Also worth a look" tabs={simTabs} scoreLabel={scoreLabel.toLowerCase()} look={niche.similar?.look}/>;
@@ -412,7 +414,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       return web ? { id: web.id, text: web.excerpt!, verbatim: true, ok } : null;
     };
     const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
-    return <RacketFit qt={null} line={shortLine(r) ?? listLine(r)} quotes={[pickTake(true), pickTake(false)].filter((x): x is NonNullable<typeof x> => !!x)}
+    return <RacketFit pairsTab={pairsTab} qt={null} line={shortLine(r) ?? listLine(r)} quotes={[pickTake(true), pickTake(false)].filter((x): x is NonNullable<typeof x> => !!x)}
       racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null}
       crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
@@ -438,7 +440,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     // check for the visitor's picks (?style=&level=&arm=1, the same as the home's quick match). ?layout=long shows the old one.
     if (query.layout !== "long" && query.look !== "classic") {
       const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
-      return <RacketFit qt={qt} racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
+      return <RacketFit pairsTab={pairsTab} qt={qt} racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
         crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
         reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
           ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}

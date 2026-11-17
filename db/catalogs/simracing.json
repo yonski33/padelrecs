@@ -61,11 +61,12 @@
    "name": "Asetek Dual Mode Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC; Xbox with an Asetek Racing Xbox-compatible wheelbase and steering wheel",
    "surface": null,
    "balance": "H-pattern + sequential",
    "sources": [
-    "https://www.asetek.com/simsports/product/dual-mode-shifter/"
+    "https://www.asetek.com/simsports/product/dual-mode-shifter/",
+    "https://www.asetek.com/simsports/us/product/dual-mode-shifter/"
    ]
   },
   {
@@ -109,23 +110,25 @@
    "name": "Asetek Forte GT",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
-   "surface": null,
-   "balance": "GT",
+   "core": "PC",
+   "surface": "Rim sold separately",
+   "balance": "Button box",
    "sources": [
-    "https://www.asetek.com/simsports/product/forte-gt-steering-wheel-black-aluminum/"
+    "https://www.asetek.com/simsports/product/forte-gt-steering-wheel-black-aluminum/",
+    "https://www.asetek.com/simsports/us/product/forte-gt-steering-wheel-black-aluminum/"
    ]
   },
   {
    "brand": "asetek",
    "name": "Asetek Forte Pedals",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "180 kg max",
    "core": null,
    "surface": null,
    "balance": "Load cell",
    "sources": [
-    "https://www.asetek.com/simsports/product/forte-sim-racing-pedals-brake-throttle/"
+    "https://www.asetek.com/simsports/product/forte-sim-racing-pedals-brake-throttle/",
+    "https://www.asetek.com/simsports/us/product/forte-sim-racing-pedals-brake-throttle/"
    ]
   },
   {
@@ -146,10 +149,11 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Steel tube",
    "sources": [
-    "https://www.asetek.com/simsports/product/initium-2-in-1-cockpit/"
+    "https://www.asetek.com/simsports/product/initium-2-in-1-cockpit/",
+    "https://www.asetek.com/simsports/us/product/initium-2-in-1-cockpit/"
    ]
   },
   {
@@ -205,23 +209,25 @@
    "name": "Asetek Invicta Formula",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
-   "surface": null,
-   "balance": "Formula",
+   "core": "PC",
+   "surface": "Handles sold separately",
+   "balance": "Button box",
    "sources": [
-    "https://www.asetek.com/simsports/product/invicta-formula-steering-wheel/"
+    "https://www.asetek.com/simsports/product/invicta-formula-steering-wheel/",
+    "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/"
    ]
   },
   {
    "brand": "asetek",
    "name": "Asetek Invicta Pedals THORP II",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "180 kg max",
    "core": null,
    "surface": null,
    "balance": "Hydraulic",
    "sources": [
-    "https://www.asetek.com/simsports/product/invicta-pedals-thorp-2/"
+    "https://www.asetek.com/simsports/product/invicta-pedals-thorp-2/",
+    "https://www.asetek.com/simsports/us/product/invicta-pedals-thorp-2/"
    ]
   },
   {
@@ -252,12 +258,13 @@
    "brand": "asetek",
    "name": "Asetek La Prima Pedals",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "180 kg max",
    "core": null,
    "surface": null,
    "balance": null,
    "sources": [
-    "https://www.asetek.com/simsports/product/la-prima-sim-racing-pedals-brake-throttle/"
+    "https://www.asetek.com/simsports/product/la-prima-sim-racing-pedals-brake-throttle/",
+    "https://www.asetek.com/simsports/global/product/la-prima-sim-racing-pedals-brake-throttle/"
    ]
   },
   {
@@ -278,10 +285,11 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium tube",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/cockpits/crd-9010009-ww/csl-cockpit-v1-5"
+    "https://www.fanatec.com/eu/en/p/cockpits/crd-9010009-ww/csl-cockpit-v1-5",
+    "https://www.fanatec.com/us/en/p/cockpits/crd-9010009-ww/csl-cockpit-v1-5"
    ]
   },
   {
@@ -312,12 +320,13 @@
    "brand": "fanatec",
    "name": "Fanatec CSL Elite Pedals V2",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "90 kg max (load cell rated 200 kg+)",
    "core": null,
    "surface": null,
    "balance": "Load cell",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/pedals/csl_ep_v2/csl-elite-pedals-v2"
+    "https://www.fanatec.com/eu/en/p/pedals/csl_ep_v2/csl-elite-pedals-v2",
+    "https://www.fanatec.com/us/en/p/pedals/csl_ep_v2/csl-elite-pedals-v2"
    ]
   },
   {
@@ -373,11 +382,12 @@
    "name": "Fanatec CSL Steering Wheel P1 V2",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase",
    "surface": null,
    "balance": null,
    "sources": [
-    "https://www.fanatec.com/eu/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
+    "https://www.fanatec.com/eu/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
+    "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
    ]
   },
   {
@@ -387,9 +397,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Round",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_csl_r300_v2_qr2l/csl-steering-wheel-r300-v2-qr2l"
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_csl_r300_v2_qr2l/csl-steering-wheel-r300-v2-qr2l",
+    "https://www.fanatec.com/us/en/p/steering-wheels/sw_csl_r300_v2_qr2l/csl-steering-wheel-r300-v2-qr2l"
    ]
   },
   {
@@ -436,10 +447,11 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Steel tube",
    "sources": [
     "https://www.fanatec.com/eu/en/p/cockpits/cs_gt_c_blk/clubsport-gt-cockpit-black",
-    "https://www.fanatec.com/eu/en/p/cockpits/cs_gt_c_w/clubsport-gt-cockpit-white"
+    "https://www.fanatec.com/eu/en/p/cockpits/cs_gt_c_w/clubsport-gt-cockpit-white",
+    "https://www.fanatec.com/us/en/p/cockpits/cs_gt_c_blk/clubsport-gt-cockpit-black"
    ]
   },
   {
@@ -651,11 +663,12 @@
    "name": "Fanatec ClubSport Wheel Rim 320",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)",
    "surface": null,
-   "balance": "Wheel rim",
+   "balance": "Round",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_320/clubsport-wheel-rim-320"
+    "https://www.fanatec.com/eu/en/p/wheel-rims/cs_wr_320/clubsport-wheel-rim-320",
+    "https://www.fanatec.com/us/en/p/wheel-rims/cs_wr_320/clubsport-wheel-rim-320"
    ]
   },
   {
@@ -675,11 +688,12 @@
    "name": "Fanatec ClubSport Wheel Rim Classic 2",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)",
    "surface": null,
-   "balance": "Wheel rim",
+   "balance": "Round",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rclassic2/clubsport-wheel-rim-classic-2"
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_rclassic2/clubsport-wheel-rim-classic-2",
+    "https://www.fanatec.com/us/en/p/wheel-rims/uh_rclassic2/clubsport-wheel-rim-classic-2"
    ]
   },
   {
@@ -735,11 +749,12 @@
    "name": "Fanatec ClubSport Wheel Rim GT3",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)",
    "surface": null,
-   "balance": "Wheel rim",
+   "balance": "GT",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/wheel-rims/crd-9020020-ww/clubsport-wheel-rim-gt3"
+    "https://www.fanatec.com/eu/en/p/wheel-rims/crd-9020020-ww/clubsport-wheel-rim-gt3",
+    "https://www.fanatec.com/us/en/p/wheel-rims/crd-9020020-ww/clubsport-wheel-rim-gt3"
    ]
   },
   {
@@ -879,11 +894,12 @@
    "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase",
    "surface": null,
    "balance": "GT",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/steering-wheels/p_sw_bmw_gt3_h/podium-steering-wheel-bmw-m4-gt3"
+    "https://www.fanatec.com/eu/en/p/steering-wheels/p_sw_bmw_gt3_h/podium-steering-wheel-bmw-m4-gt3",
+    "https://www.fanatec.com/us/en/p/steering-wheels/p_sw_bmw_gt3_h/podium-steering-wheel-bmw-m4-gt3"
    ]
   },
   {
@@ -915,12 +931,13 @@
    "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase",
    "surface": null,
    "balance": "GT",
    "sources": [
     "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_p911_gt3r_s_qr2/podium-steering-wheel-porsche-911-gt3r-suede-qr2",
-    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_p911_gt3r_l_qr2/podium-steering-wheel-porsche-911-gt3r-leather-qr2"
+    "https://www.fanatec.com/eu/en/p/steering-wheels/sw_p_p911_gt3r_l_qr2/podium-steering-wheel-porsche-911-gt3r-leather-qr2",
+    "https://www.fanatec.com/us/en/p/steering-wheels/sw_p_p911_gt3r_s_qr2/podium-steering-wheel-porsche-911-gt3r-suede-qr2"
    ]
   },
   {
@@ -928,12 +945,13 @@
    "name": "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)",
    "surface": null,
-   "balance": "Wheel rim",
+   "balance": "GT",
    "sources": [
     "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r911/podium-wheel-rim-porsche-911-gt3-cup-suede",
-    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r911s/podium-wheel-rim-porsche-911-gt3-cup-leather"
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r911s/podium-wheel-rim-porsche-911-gt3-cup-leather",
+    "https://www.fanatec.com/us/en/p/wheel-rims/uh_r911s/podium-wheel-rim-porsche-911-gt3-cup-leather"
    ]
   },
   {
@@ -941,11 +959,12 @@
    "name": "Fanatec Podium Wheel Rim R300",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation with a PlayStation-licensed Fanatec base; Xbox with the ClubSport Universal Hub V2 for Xbox (depends on the hub)",
    "surface": null,
-   "balance": "Wheel rim",
+   "balance": "Round",
    "sources": [
-    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r300/podium-wheel-rim-r300"
+    "https://www.fanatec.com/eu/en/p/wheel-rims/uh_r300/podium-wheel-rim-r300",
+    "https://www.fanatec.com/us/en/p/wheel-rims/uh_r300/podium-wheel-rim-r300"
    ]
   },
   {
@@ -955,9 +974,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Steel tube",
    "sources": [
-    "https://gtomega.com/products/art-racing-cockpit"
+    "https://gtomega.com/products/art-racing-cockpit",
+    "https://www.gtomega.com/products/art-racing-cockpit"
    ]
   },
   {
@@ -967,9 +987,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Aluminium profile",
    "sources": [
-    "https://gtomega.com/products/hybrid-cockpit"
+    "https://gtomega.com/products/hybrid-cockpit",
+    "https://www.gtomega.com/products/hybrid-cockpit"
    ]
   },
   {
@@ -979,9 +1000,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Aluminium profile",
    "sources": [
-    "https://gtomega.com/products/prime-cockpit"
+    "https://gtomega.com/products/prime-cockpit",
+    "https://www.gtomega.com/products/prime-cockpit"
    ]
   },
   {
@@ -991,9 +1013,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Aluminium profile",
    "sources": [
-    "https://gtomega.com/products/prime-lite-cockpit"
+    "https://gtomega.com/products/prime-lite-cockpit",
+    "https://www.gtomega.com/products/prime-lite-cockpit"
    ]
   },
   {
@@ -1003,9 +1026,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Aluminium profile",
    "sources": [
-    "https://gtomega.com/products/prime-lite-r"
+    "https://gtomega.com/products/prime-lite-r",
+    "https://www.gtomega.com/products/prime-lite-r"
    ]
   },
   {
@@ -1027,16 +1051,17 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Steel tube",
    "sources": [
-    "https://gtomega.com/products/titan-cockpit"
+    "https://gtomega.com/products/titan-cockpit",
+    "https://www.gtomega.com/products/titan-cockpit"
    ]
   },
   {
    "brand": "heusinkveld",
    "name": "Heusinkveld Handbrake",
    "shape": "Shifter / handbrake",
-   "weight": null,
+   "weight": "120 kg load cell",
    "core": null,
    "surface": null,
    "balance": "Handbrake",
@@ -1073,9 +1098,9 @@
    "name": "Heusinkveld One",
    "shape": "Wheel",
    "weight": null,
-   "core": "Wireless",
-   "surface": null,
-   "balance": null,
+   "core": "PC",
+   "surface": "Wireless (USB dongle)",
+   "balance": "Formula",
    "sources": [
     "https://heusinkveld.com/shop/wheel/one/"
    ]
@@ -1097,21 +1122,22 @@
    "brand": "heusinkveld",
    "name": "Heusinkveld Sprint",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "65 kg max",
    "core": null,
    "surface": null,
    "balance": "Load cell",
    "sources": [
     "https://heusinkveld.com/shop/sprint-pedals/sprint/",
     "https://heusinkveld.com/shop/sprint-pedals/sprint-3-pedal-set/",
-    "https://trakracer.com/products/heusinkveld-sprint-2-pedal-set-black"
+    "https://trakracer.com/products/heusinkveld-sprint-2-pedal-set-black",
+    "https://heusinkveld.com/pedal-selection-guide/"
    ]
   },
   {
    "brand": "heusinkveld",
    "name": "Heusinkveld Ultimate+",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "140 kg max (200 kg load cell)",
    "core": null,
    "surface": null,
    "balance": "Hydraulic / load cell",
@@ -1127,7 +1153,7 @@
    "name": "Logitech Driving Force Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": "G29, G920",
+   "core": "PC; PlayStation with a G29 / G923, Xbox with a G920 / G923",
    "surface": null,
    "balance": null,
    "sources": [
@@ -1138,36 +1164,39 @@
    "brand": "logitech",
    "name": "Logitech G29",
    "shape": "Wheelbase",
-   "weight": null,
+   "weight": "2.3 Nm",
    "core": "PlayStation, PC",
    "surface": "Bundle: wheel and pedals",
-   "balance": null,
+   "balance": "Gear drive",
    "sources": [
-    "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel"
+    "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel",
+    "https://www.logitechg.com/en-us/discover/learn/sim-racing-wheel-guide"
    ]
   },
   {
    "brand": "logitech",
    "name": "Logitech G920",
    "shape": "Wheelbase",
-   "weight": null,
+   "weight": "2.3 Nm",
    "core": "Xbox, PC",
    "surface": "Bundle: wheel and pedals",
-   "balance": null,
+   "balance": "Gear drive",
    "sources": [
-    "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel"
+    "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel",
+    "https://www.logitechg.com/en-us/discover/learn/sim-racing-wheel-guide"
    ]
   },
   {
    "brand": "logitech",
    "name": "Logitech G923",
    "shape": "Wheelbase",
-   "weight": null,
+   "weight": "2.3 Nm",
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Gear drive",
    "sources": [
-    "https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel"
+    "https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel",
+    "https://www.logitechg.com/en-us/discover/learn/what-is-trueforce"
    ]
   },
   {
@@ -1175,7 +1204,7 @@
    "name": "Logitech PRO DD11",
    "shape": "Wheelbase",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation / PC edition; Xbox compatibility option",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
@@ -1189,7 +1218,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": "Wheel rim",
+   "balance": "GT (D-shape)",
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/pro-gtd-rim"
    ]
@@ -1297,7 +1326,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "GT",
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/rs-track-wheel"
    ]
@@ -1307,12 +1336,13 @@
    "name": "Logitech RS50",
    "shape": "Wheelbase",
    "weight": null,
-   "core": null,
+   "core": "PC; PlayStation / PC and Xbox / PC editions",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
     "https://www.logitechg.com/en-us/shop/p/rs50-base",
-    "https://www.logitechg.com/en-us/shop/p/rs50-mclaren-racing-bundle"
+    "https://www.logitechg.com/en-us/shop/p/rs50-mclaren-racing-bundle",
+    "https://www.logitechg.com/en-us/shop/p/rs50-system"
    ]
   },
   {
@@ -1320,9 +1350,9 @@
    "name": "MOZA Active Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
-   "balance": "H-pattern + sequential",
+   "balance": "H-pattern + sequential + handbrake",
    "sources": [
     "https://mozaracing.com/products/active-shifter"
    ]
@@ -1356,7 +1386,7 @@
    "name": "MOZA CS V2P",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -1370,7 +1400,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Rally",
    "sources": [
     "https://mozaracing.com/products/esx-steering-wheel"
    ]
@@ -1380,7 +1410,7 @@
    "name": "MOZA Essenza SCV12 Steering Wheel",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -1406,7 +1436,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "GT (D-shape)",
    "sources": [
     "https://mozaracing.com/products/ford-gtd-wheel"
    ]
@@ -1416,7 +1446,7 @@
    "name": "MOZA GS V2P",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "GT",
    "sources": [
@@ -1524,11 +1554,12 @@
    "name": "MOZA R25 Ultra",
    "shape": "Wheelbase",
    "weight": "25 Nm",
-   "core": null,
+   "core": "PC; Xbox with MOZA ESX Steering Wheel",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://mozaracing.com/products/r25-ultra"
+    "https://mozaracing.com/products/r25-ultra",
+    "https://support.mozaracing.com/en/support/solutions/articles/70000679654-moza-r25-ultra-true-torque-wheel-base-support"
    ]
   },
   {
@@ -1573,7 +1604,7 @@
    "name": "MOZA RS V2",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -1621,7 +1652,7 @@
    "name": "MOZA SRP2 Pedals",
    "shape": "Pedals",
    "weight": "100 kg load cell",
-   "core": null,
+   "core": "PC, Xbox",
    "surface": null,
    "balance": "Load cell",
    "sources": [
@@ -1682,8 +1713,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included",
+   "balance": "Steel tube",
    "sources": [
     "https://nextlevelracing.com/products/next-level-racing-f1gt-formula-1-and-gt-simulator-cockpit/"
    ]
@@ -1694,8 +1725,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-elite-wheel-plate-edition/",
     "https://nextlevelracing.com/products/f-gt-elite-front-side-mount-edition-2/",
@@ -1708,8 +1739,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/elite-160-wheel-plate-edition/",
     "https://nextlevelracing.com/products/f-gt-elite-160-front-side-mount-edition/"
@@ -1721,8 +1752,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-elite-lite-wheelplate-edition/",
     "https://nextlevelracing.com/products/f-gt-elite-lite-front-side-mount-edition/"
@@ -1734,7 +1765,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat included",
    "balance": null,
    "sources": [
     "https://nextlevelracing.com/products/f-gt-lite/"
@@ -1747,7 +1778,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Steel tube",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-pro-formula-and-gt-racing-simulator-cockpit-black-edition/"
    ]
@@ -1770,7 +1801,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat included",
    "balance": null,
    "sources": [
     "https://nextlevelracing.com/products/formula-lite-pro/"
@@ -1782,8 +1813,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-wheel-plate-edition/",
     "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-front-and-side-mount-edition/"
@@ -1795,8 +1826,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/gtelite-lite-wheel-plate-edition/",
     "https://nextlevelracing.com/products/gtelite-lite-front-side-mount-edition/"
@@ -1808,8 +1839,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included",
+   "balance": "Foldable",
    "sources": [
     "https://nextlevelracing.com/products/gtlite-air/"
    ]
@@ -1820,7 +1851,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat included",
    "balance": null,
    "sources": [
     "https://nextlevelracing.com/products/gtlite-pro/"
@@ -1833,7 +1864,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Steel tube",
    "sources": [
     "https://nextlevelracing.com/products/gtracer-2/"
    ]
@@ -1845,7 +1876,7 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Steel tube",
    "sources": [
     "https://nextlevelracing.com/products/next-level-racing-gttrack/"
    ]
@@ -1856,8 +1887,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included",
+   "balance": "Kart-style",
    "sources": [
     "https://nextlevelracing.com/products/go-kart-plus/"
    ]
@@ -1892,7 +1923,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat not included",
    "balance": "Wheel stand",
    "sources": [
     "https://nextlevelracing.com/products/racing-wheel-stand-2-0/"
@@ -1904,7 +1935,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat not included; Rated for wheelbases up to 10 Nm",
    "balance": "Wheel stand",
    "sources": [
     "https://nextlevelracing.com/products/wheel-stand-lite-2-0/"
@@ -1940,10 +1971,11 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat included",
    "balance": null,
    "sources": [
-    "https://www.logitechg.com/en-us/shop/p/playseat-challenge-x-sim-racing-seat"
+    "https://www.logitechg.com/en-us/shop/p/playseat-challenge-x-sim-racing-seat",
+    "https://www.playseat.com/en-us/products/playseat-challenge-x"
    ]
   },
   {
@@ -1952,10 +1984,11 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included",
+   "balance": "Steel frame",
    "sources": [
-    "https://www.logitechg.com/en-us/shop/p/playseat-trophy-sim-racing-seat"
+    "https://www.logitechg.com/en-us/shop/p/playseat-trophy-sim-racing-seat",
+    "https://www.playseat.com/en-us/products/playseat-trophy-black"
    ]
   },
   {
@@ -2001,8 +2034,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included; Rated for wheelbases up to 40 Nm",
+   "balance": "Aluminium profile",
    "sources": [
     "https://sim-lab.eu/products/gt1-evo-sim-racing-cockpit-1"
    ]
@@ -2013,8 +2046,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://sim-lab.eu/products/gt1-pro-sim-racing-cockpit-int"
    ]
@@ -2037,8 +2070,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://sim-lab.eu/products/mercedes-amg-petronas-formula-one-team-sim-racing-cockpit-int"
    ]
@@ -2061,8 +2094,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://sim-lab.eu/products/p1x-pro-sim-racing-cockpit-int"
    ]
@@ -2073,8 +2106,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included",
+   "balance": "Aluminium profile",
    "sources": [
     "https://sim-lab.eu/products/p1x-ultimate-simracing-cockpit-us"
    ]
@@ -2108,7 +2141,7 @@
    "name": "Sim-Lab SQ1",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Sequential",
    "sources": [
@@ -2131,12 +2164,13 @@
    "brand": "sim-lab",
    "name": "Sim-Lab XP1",
    "shape": "Pedals",
-   "weight": null,
+   "weight": "100 kg max (200 kg load cell)",
    "core": null,
    "surface": null,
    "balance": "Load cell",
    "sources": [
-    "https://sim-lab.eu/products/pedal-set-xp1-loadcell-sim-racing"
+    "https://sim-lab.eu/products/pedal-set-xp1-loadcell-sim-racing",
+    "https://sim-lab.eu/en-us/products/pedal-set-xp1-loadcell-sim-racing"
    ]
   },
   {
@@ -2144,11 +2178,12 @@
    "name": "Simagic Alpha",
    "shape": "Wheelbase",
    "weight": "15 Nm",
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://simagic.com/products/alpha"
+    "https://simagic.com/products/alpha",
+    "https://simagic.com/collections/all/products.json"
    ]
   },
   {
@@ -2207,11 +2242,12 @@
    "name": "Simagic Alpha Mini",
    "shape": "Wheelbase",
    "weight": "10 Nm",
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://simagic.com/products/alpha-mini"
+    "https://simagic.com/products/alpha-mini",
+    "https://simagic.com/pages/details-alpha-mini"
    ]
   },
   {
@@ -2219,11 +2255,12 @@
    "name": "Simagic Alpha Ultimate",
    "shape": "Wheelbase",
    "weight": "23 Nm",
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://simagic.com/products/alpha-u"
+    "https://simagic.com/products/alpha-u",
+    "https://simagic.com/pages/details-alpha-u"
    ]
   },
   {
@@ -2231,7 +2268,7 @@
    "name": "Simagic Aston Martin Valkyrie",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -2256,7 +2293,7 @@
    "name": "Simagic FX",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Formula",
    "sources": [
@@ -2268,7 +2305,7 @@
    "name": "Simagic FX Pro",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Formula",
    "sources": [
@@ -2280,9 +2317,9 @@
    "name": "Simagic GT Neo",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
-   "balance": "Formula",
+   "balance": "GT",
    "sources": [
     "https://simagic.com/products/gt-neo"
    ]
@@ -2292,7 +2329,7 @@
    "name": "Simagic GT1",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -2304,7 +2341,7 @@
    "name": "Simagic GTC",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -2316,7 +2353,7 @@
    "name": "Simagic GTS",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -2328,9 +2365,9 @@
    "name": "Simagic P-325C",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
-   "balance": null,
+   "balance": "D-shape (cut-off top)",
    "sources": [
     "https://simagic.com/products/p-325c"
    ]
@@ -2487,7 +2524,7 @@
    "name": "Simagic Zeus Formula",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Formula",
    "sources": [
@@ -2499,7 +2536,7 @@
    "name": "Simagic Zeus GT",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "GT",
    "sources": [
@@ -2511,7 +2548,7 @@
    "name": "Simagic Zeus Sport",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -2631,9 +2668,9 @@
    "name": "Simucube Savu Pro",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
-   "balance": null,
+   "balance": "GT",
    "sources": [
     "https://simucube.com/products/simucube-savu-pro"
    ]
@@ -2692,7 +2729,7 @@
    "name": "Simucube Valo GT-23",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "GT",
    "sources": [
@@ -2716,7 +2753,7 @@
    "name": "Simucube x BavarianSimTec Delta Pro SC",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": null,
    "sources": [
@@ -2729,10 +2766,11 @@
    "shape": "Wheel",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
    "balance": null,
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/599xx-evo-30-wheel-add-on-alcantara-edition/"
+    "https://www.thrustmaster.com/en-us/products/599xx-evo-30-wheel-add-on-alcantara-edition/",
+    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
    ]
   },
   {
@@ -2766,9 +2804,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Round",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/ferrari-250-gto-wheel-add-on/"
+    "https://www.thrustmaster.com/en-us/products/ferrari-250-gto-wheel-add-on/",
+    "https://eshop.thrustmaster.com/en_us/ferrari-250-gto-wheel-add-on.html"
    ]
   },
   {
@@ -2812,11 +2851,12 @@
    "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
    "shape": "Wheel",
    "weight": null,
-   "core": null,
+   "core": "PC, PS4, PS5, Xbox One, Xbox Series X|S with a compatible Thrustmaster base",
    "surface": null,
    "balance": "Formula",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/formula-wheel-add-on-ferrari-sf1000-edition-us-can/"
+    "https://www.thrustmaster.com/en-us/products/formula-wheel-add-on-ferrari-sf1000-edition-us-can/",
+    "https://eshop.thrustmaster.com/en_us/formula-wheel-add-on-ferrari-sf1000-edition.html"
    ]
   },
   {
@@ -2885,10 +2925,11 @@
    "shape": "Wheel",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
    "balance": "Rally",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/rally-wheel-add-on-sparco-r383-mod/"
+    "https://www.thrustmaster.com/en-us/products/rally-wheel-add-on-sparco-r383-mod/",
+    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
    ]
   },
   {
@@ -2923,10 +2964,11 @@
    "weight": null,
    "core": "PlayStation / PC; Xbox / PC edition",
    "surface": null,
-   "balance": null,
+   "balance": "Hybrid (belt + gear)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t128/",
-    "https://www.thrustmaster.com/en-us/products/t128-xbox-pc/"
+    "https://www.thrustmaster.com/en-us/products/t128-xbox-pc/",
+    "https://www.thrustmaster.com/products/t128/"
    ]
   },
   {
@@ -2936,9 +2978,10 @@
    "weight": null,
    "core": "PC, PS4",
    "surface": null,
-   "balance": null,
+   "balance": "Hybrid (belt + gear)",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/t150-force-feedback/"
+    "https://www.thrustmaster.com/en-us/products/t150-force-feedback/",
+    "https://www.thrustmaster.com/products/t150/"
    ]
   },
   {
@@ -2948,10 +2991,11 @@
    "weight": null,
    "core": "PlayStation / PC; Xbox / PC edition",
    "surface": null,
-   "balance": null,
+   "balance": "Hybrid (belt + gear)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t248/",
-    "https://www.thrustmaster.com/en-us/products/t248-xbox-pc/"
+    "https://www.thrustmaster.com/en-us/products/t248-xbox-pc/",
+    "https://www.thrustmaster.com/products/t248/"
    ]
   },
   {
@@ -2961,9 +3005,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Hybrid (belt + gear)",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/t248r/"
+    "https://www.thrustmaster.com/en-us/products/t248r/",
+    "https://www.thrustmaster.com/products/t248r/"
    ]
   },
   {
@@ -2973,9 +3018,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": null,
+   "balance": "Belt drive",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/t300rs/"
+    "https://www.thrustmaster.com/en-us/products/t300rs/",
+    "https://www.thrustmaster.com/products/t300rs/"
    ]
   },
   {
@@ -2985,9 +3031,10 @@
    "weight": null,
    "core": "PC, PS4, PS5",
    "surface": null,
-   "balance": null,
+   "balance": "Belt drive",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/t300rs-gt-edition/"
+    "https://www.thrustmaster.com/en-us/products/t300rs-gt-edition/",
+    "https://www.thrustmaster.com/products/t300rs-gt-edition/"
    ]
   },
   {
@@ -3018,7 +3065,7 @@
    "brand": "thrustmaster",
    "name": "Thrustmaster T598",
    "shape": "Wheelbase",
-   "weight": null,
+   "weight": "5 Nm",
    "core": "PC, PlayStation; Xbox / PC edition",
    "surface": null,
    "balance": "Direct axial drive",
@@ -3034,7 +3081,7 @@
    "weight": null,
    "core": "PC, PS4, PS5",
    "surface": null,
-   "balance": null,
+   "balance": "No force feedback (bungee return)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t80-ferrari-488-gtb-edition/"
    ]
@@ -3043,12 +3090,13 @@
    "brand": "thrustmaster",
    "name": "Thrustmaster T818",
    "shape": "Wheelbase",
-   "weight": null,
+   "weight": "10 Nm",
    "core": "PC",
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/t818-black-edition/"
+    "https://www.thrustmaster.com/en-us/products/t818-black-edition/",
+    "https://www.thrustmaster.com/en-us/products/t818/"
    ]
   },
   {
@@ -3094,10 +3142,11 @@
    "shape": "Wheel",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
    "balance": null,
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/tm-competition-wheel-add-on-sparco-p310-mod/"
+    "https://www.thrustmaster.com/en-us/products/tm-competition-wheel-add-on-sparco-p310-mod/",
+    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
    ]
   },
   {
@@ -3106,10 +3155,11 @@
    "shape": "Wheel",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
    "balance": null,
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/tm-leather-28-gt-wheel-add-on/"
+    "https://www.thrustmaster.com/en-us/products/tm-leather-28-gt-wheel-add-on/",
+    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
    ]
   },
   {
@@ -3131,9 +3181,10 @@
    "weight": null,
    "core": "PC, Xbox",
    "surface": null,
-   "balance": null,
+   "balance": "Hybrid (belt + gear)",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/tmx-force-feedback/"
+    "https://www.thrustmaster.com/en-us/products/tmx-force-feedback/",
+    "https://www.thrustmaster.com/products/tmx/"
    ]
   },
   {
@@ -3143,9 +3194,10 @@
    "weight": null,
    "core": "PC",
    "surface": null,
-   "balance": null,
+   "balance": "Belt drive",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/ts-pc-racer-ferrari-488-challenge-edition-2/"
+    "https://www.thrustmaster.com/en-us/products/ts-pc-racer-ferrari-488-challenge-edition-2/",
+    "https://www.thrustmaster.com/products/ts-pc-racer-ferrari-488-challenge-edition/"
    ]
   },
   {
@@ -3155,9 +3207,10 @@
    "weight": null,
    "core": "PC, Xbox",
    "surface": null,
-   "balance": null,
+   "balance": "Belt drive",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/ts-xw-racer-sparco-p310-competition-mod/"
+    "https://www.thrustmaster.com/en-us/products/ts-xw-racer-sparco-p310-competition-mod/",
+    "https://www.thrustmaster.com/products/ts-xw-racer-sparco-p310-competition-mod/"
    ]
   },
   {
@@ -3167,9 +3220,10 @@
    "weight": null,
    "core": null,
    "surface": null,
-   "balance": "Handbrake",
+   "balance": "Handbrake + sequential",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/tss-handbrake/"
+    "https://www.thrustmaster.com/en-us/products/tss-handbrake/",
+    "https://eshop.thrustmaster.com/en_us/tss-handbrake.html"
    ]
   },
   {
@@ -3177,11 +3231,12 @@
    "name": "Thrustmaster TSS Handbrake Sparco Mod+",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC via USB; PS4 / PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster racing wheel/base",
    "surface": null,
-   "balance": "Handbrake",
+   "balance": "Handbrake + sequential",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/tss-handbrake-sparco-mod/"
+    "https://www.thrustmaster.com/en-us/products/tss-handbrake-sparco-mod/",
+    "https://www.thrustmaster.com/products/tss-handbrake-sparco-mod/"
    ],
    "slug": "thrustmaster-tss-handbrake-sparco-mod-plus"
   },
@@ -3192,9 +3247,10 @@
    "weight": null,
    "core": "PC, Xbox",
    "surface": null,
-   "balance": null,
+   "balance": "Belt drive",
    "sources": [
-    "https://www.thrustmaster.com/en-us/products/tx-racing-wheel-leather-edition/"
+    "https://www.thrustmaster.com/en-us/products/tx-racing-wheel-leather-edition/",
+    "https://www.thrustmaster.com/products/tx-racing-wheel-leather-edition/"
    ]
   },
   {
@@ -3287,8 +3343,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included; Recommended for wheelbases up to 10 Nm",
+   "balance": "Aluminium profile",
    "sources": [
     "https://trakracer.com/products/tr40s-racing-simulator"
    ]
@@ -3299,8 +3355,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included; Rated for wheelbases up to 25 Nm",
+   "balance": "Steel tube",
    "sources": [
     "https://trakracer.com/products/tr5"
    ]
@@ -3311,8 +3367,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included; Recommended for wheelbases up to 25 Nm",
+   "balance": "Steel tube",
    "sources": [
     "https://trakracer.com/products/tr8-pro-racing-simulator-1"
    ]
@@ -3323,8 +3379,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included; Recommended for wheelbases up to 16 Nm",
+   "balance": "Aluminium profile",
    "sources": [
     "https://trakracer.com/products/tr80s-racing-simulator"
    ]
@@ -3335,8 +3391,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat not included; Recommended for wheelbases up to 30 Nm+",
+   "balance": "Aluminium profile",
    "sources": [
     "https://trakracer.com/products/tr120s-v2-racing-simulator-new"
    ]
@@ -3359,8 +3415,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Recommended for wheelbases up to 30 Nm+",
+   "balance": "Steel tube",
    "sources": [
     "https://trakracer.com/products/alpine-racing-trx-black-new"
    ]

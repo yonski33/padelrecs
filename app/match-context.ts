@@ -59,6 +59,10 @@ const keptContext = kept(async () => {
   const rulesOf = (id: string, noLevel = false): SiteRules => { const key = `${id}|${noLevel}`; let r = rulesMemo.get(key); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }, noLevel) : {}; rulesMemo.set(key, r); } return r; };
   // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
   const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
+  // The owner's facts per product (owner evidence rows, the latest per attribute), for the hard filters' facts (quick.factValues).
+  const ownerFacts = new Map<string, Record<string, string | number | null>>();
+  if (cfg.quick?.factValues) for (const r of [...stored].filter(x => x.sourceKind === "owner").sort((a, b) => (a.saidAt ?? "").localeCompare(b.saidAt ?? "")))
+    (ownerFacts.get(r.productId) ?? ownerFacts.set(r.productId, {}).get(r.productId)!)[r.attribute] = r.valueText ?? r.value;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
   // that one used another order, so "control" picked a different ten than the Best for control page (owner, 2026-11-15).
@@ -217,7 +221,8 @@ const keptContext = kept(async () => {
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
-    const expertTraits = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.expert ?? {}).filter(([k]) => !k.startsWith("suits_")).map(([k, e]) => [k, e!.value])) as Partial<Record<TraitKey, number>>;
+    const expertTraits = (id: string) => ({ ...Object.fromEntries(Object.entries(overrides.get(id)?.expert ?? {}).filter(([k]) => !k.startsWith("suits_")).map(([k, e]) => [k, e!.value])),
+      ...Object.fromEntries(Object.entries(cfg.expertAlias ?? {}).flatMap(([t, k]) => { const v = (overrides.get(id)?.expert as Record<string, { value: number } | undefined> | undefined)?.[k]?.value; return v === undefined ? [] : [[t, v]]; })) }) as Partial<Record<TraitKey, number>>;
     traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) }, expert: expertTraits(p.id) })), cfg);
   } else {
     traitAuto = traitScores([...tagIn.values()], cfg);
@@ -231,7 +236,7 @@ const keptContext = kept(async () => {
   const engOf = (id: string, r: (typeof data.rackets)[number]): EngineFacts => {
     const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {};
     const vo = (k: DotTrait) => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
-    const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[k]?.value;
+    const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[cfg.expertAlias?.[k] ?? k]?.value;
     return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
       voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, vo(k)])) },
       spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
@@ -279,7 +284,8 @@ const keptContext = kept(async () => {
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
       ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}),
       ...(hasCurated() ? { slug: r.slug, ...(/high/i.test(r.balance ?? "") ? { headHeavy: true } : {}) } : {}),
-      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}), ...(RULES && rulesOf(id).flags ? { flags: rulesOf(id).flags } : {}) };
+      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}), ...(RULES && rulesOf(id).flags ? { flags: rulesOf(id).flags } : {}),
+      ...(cfg.quick?.factValues ? { ff: cfg.quick.factValues(r, ownerFacts.get(id) ?? {}) } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
   const factsFor = (choice: QuickChoice, id: string): FitFacts => factsWith(items, choice, facts(id), id);

@@ -87,11 +87,18 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(levelLabel(l), { ...choice, level: l }, choice.level === l)}</span>)}</span>
       <a className="hv2-arm" href={`${hrefOf({ ...choice, arm: !choice.arm }, older)}#match`} onClick={go({ ...choice, arm: !choice.arm })} aria-current={choice.arm ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>{QUICK?.arm ?? "sore elbow / wrist"}</a>
       {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
-      {(M ? !!choice.level : picked) && <details className={`hv2-fine${M ? " m" : ""}`} open={QUICK ? choice.style !== "any" : !fineEmpty(choice.fine)}>
+      {(M ? !!choice.level : picked) && <details className={`hv2-fine${M ? " m" : ""}`} open={QUICK ? choice.style !== "any" || !!Object.keys(choice.ff ?? {}).length : !fineEmpty(choice.fine)}>
         <summary><span className="c">Not sure yet? <b>{(() => { const n = FINE_GROUPS.filter(([, k]) => choice.fine?.[k]).length; return M && n ? `fine-tune (${n}) ▾` : "fine-tune ▾"; })()}</b></span><span className="o">{M ? <>Not sure yet? <b>fewer filters ▴</b></> : "fewer filters ▴"}</span>
           {M && <em className="hv2-fhint">{(() => { const n = FINE_GROUPS.filter(([, k]) => choice.fine?.[k]).length; return n ? `match % includes ${n} extra filter${n > 1 ? "s" : ""}` : `${FINE_GROUPS.map(([l]) => l.split(" ")[0].toLowerCase()).join(", ").replace(/, ([^,]*)$/, " & $1")}, all optional`; })()}</em>}</summary>
         <div className="hv2-fine-rows">
-          {QUICK ? <div className="hv2-fine-row"><span className="hv2-fk">{QUICK.stabilityLabel}</span><span className="hv2-lv" role="group" aria-label={QUICK.stabilityLabel}>
+          {/* Fine-tune hard filters (SimRacingRecs: drive type for wheelbases, budget, rim type for wheels), each shown only for
+              the type it belongs to (or with no type picked). */}
+          {QUICK?.filters?.filter(f => !f.kinds || !choice.kind || f.kinds.includes(choice.kind)).map(f => {
+            const cur = choice.ff?.[f.key], with_ = (v: string | undefined) => { const ff = { ...choice.ff }; if (v) ff[f.key] = v; else delete ff[f.key]; return { ...choice, ff }; };
+            return <div key={f.key} className="hv2-fine-row"><span className="hv2-fk">{f.label}</span><span className="hv2-lv" role="group" aria-label={f.label}>
+              {f.options.map(([v, l]) => <span key={v}>{pill(l, with_(cur === v ? undefined : v), cur === v)}</span>)}
+              <span>{pill("any", with_(undefined), !cur)}</span></span></div>; })}
+          {QUICK && STYLES.length < 2 ? null : QUICK ? <div className="hv2-fine-row"><span className="hv2-fk">{QUICK.stabilityLabel}</span><span className="hv2-lv" role="group" aria-label={QUICK.stabilityLabel}>
             {(["control", "balance", "power"] as const).map(v => <span key={v}>{pill(styleWord(v), { ...choice, style: choice.style === v ? "any" : v }, choice.style === v)}</span>)}
             <span>{pill("any", { ...choice, style: "any" }, choice.style === "any")}</span></span></div> : <>
           {FINE_GROUPS.map(([label, key, opts]) => {
@@ -104,7 +111,8 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           </>}
         </div>
       </details>}
-      {picked && !M && <p className="hv2-game">{QUICK ? "Your throw: " : "Your game: "}<b>{(QUICK ? [QUICK.types.find(t => t.key === choice.kind)?.many ?? null, choice.level ?? null, choice.style !== "any" ? styleWord(choice.style) : null, choice.arm ? QUICK.arm : null]
+      {picked && !M && <p className="hv2-game">{QUICK ? `${v2copy.yourPicks ?? "Your throw"}: ` : "Your game: "}<b>{(QUICK ? [QUICK.types.find(t => t.key === choice.kind)?.many ?? null, choice.level ? levelLabel(choice.level) : null, choice.style !== "any" ? styleWord(choice.style) : null, choice.arm ? QUICK.arm : null,
+            ...Object.entries(choice.ff ?? {}).map(([k, v]) => QUICK.filters?.find(f => f.key === k)?.options.find(([o]) => o === v)?.[1] ?? null)]
           : [choice.level ? levelLabel(choice.level)[0].toUpperCase() + levelLabel(choice.level).slice(1) : null, STYLE_WORD[choice.style][0].toUpperCase() + STYLE_WORD[choice.style].slice(1), choice.arm ? ARM_SHORT : null, ...fineWords(choice.fine)]).filter(Boolean).join(" · ")}</b>
         <a href="/" onClick={reset}>reset ↺</a></p>}
     </section>
@@ -113,7 +121,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
     <section className="hv2-main" aria-live="polite">
       <div className="hv2-lhead"><h2>{picked ? head.title : `Top ${niche.words.many} right now`}</h2>
         <span>{M ? (picked ? [choice.level ? `ranked for ${levelPeople(choice.level)}` : "pick a level to sharpen this", choice.arm ? "arm-friendly first" : null].filter(Boolean).join(" · ") : M.listSub)
-          : picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? ` · ${QUICK?.armChip ?? "arm-friendly"} first` : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : `ranked by ${SCORE_WORD} · pick above to personalise`}</span></div>
+          : picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? ` · ${QUICK?.armChip ?? "arm-friendly"} ${QUICK?.armFilter ? "only" : "first"}` : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : `ranked by ${SCORE_WORD} · pick above to personalise`}</span></div>
       {note && (() => { const next = { ...choice, style: note.link.style as QuickChoice["style"], level: note.link.level as QuickChoice["level"] };
         return <p className="hv2-note" role="note">{note.text} <a href={`${hrefOf(next, older)}#match`} onClick={go(next)}>{note.link.label}</a></p>; })()}
       {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
@@ -134,7 +142,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         const chips = [
           ...(i === 0 && picked && fit?.kind === "good" ? [{ k: "best", t: "best match" }] : []),
           ...(r.shape ? [{ k: "shape", t: r.shape }] : []),
-          ...(choice.arm && (QUICK ? armOf(id) >= 70 && r.armOk !== false : arm >= ARM_BAR) ? [{ k: "arm", t: QUICK?.armChip ?? "arm-friendly" }] : []),
+          ...(choice.arm && (QUICK?.armFilter ? !!byId?.get(id)?.ff?.[QUICK.armFilter.key]?.includes(QUICK.armFilter.value) : QUICK ? armOf(id) >= 70 && r.armOk !== false : arm >= ARM_BAR) ? [{ k: "arm", t: QUICK?.armChip ?? "arm-friendly" }] : []),
         ];
         // The row is one link (the name's, stretched over the row) with "check price" as a quiet text link under the
         // summary line (owner 2026-11-15: low-key, close to the text). Reviews over the sentiment bar, then the score box.
@@ -157,7 +165,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
-          <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : QUICK ? <span className={`hv2-disc t${i % 6}`} aria-hidden="true"/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
+          <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : QUICK?.flightLabel ? <span className={`hv2-disc t${i % 6}`} aria-hidden="true"/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
           <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
             {line && <span className={`hv2-line${low ? " why" : ""}`}>{line}</span>}
             {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}

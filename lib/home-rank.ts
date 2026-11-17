@@ -5,7 +5,7 @@
 import { curatedEntries, CURATED_MIN } from "./curated";
 import type { Finder } from "./niche/types";
 import { hardOnLevelOrArm } from "./fit-verdict";
-import { quickMatch, isDefault, passesLevel, ARM_OPTION, type QuickChoice, type LevelEvidence, type LevelGate, type Level } from "./quick-match";
+import { quickMatch, isDefault, passesLevel, passesFilters, engineArm, engineStyle, ARM_OPTION, type QuickChoice, type LevelEvidence, type LevelGate, type Level } from "./quick-match";
 import { fitVerdict, styleLean, styleOf, MIN_FIT_REPORTS, type FitFacts, type FitVerdict } from "./fit-verdict";
 import { matchFit, spreadMatch } from "./match-score";
 import { fineFit } from "./fine-tune";
@@ -29,6 +29,8 @@ export type RankItem = {
   eng?: EngineFacts;
   /** The product type key (type-picker sites, lib/fit-config.ts quick.types): the picked type filters on it. */
   kind?: string;
+  /** The facts its hard filters read (lib/fit-config.ts quick.factValues: SimRacingRecs' console, drive, budget, rim). */
+  ff?: Record<string, string[]>;
   /** The product slug, on sites with curated lists (lib/curated.ts). */ slug?: string;
   /** A high (or medium-high) balance spec, on sites with curated lists: the beginner rule. */ headHeavy?: boolean;
   /** A site's ranking flags (DiscGolfRecs, lib/discgolf-hard.ts): a specialty disc is never #1 for "any"; without flight
@@ -60,7 +62,7 @@ const engItems = (items: RankItem[]) => cached(items, "eng:items", () => items.f
 const engBase = (items: RankItem[], p: EngineProfile) => cached(items, "eng:base", () => engineBase(engItems(items), p));
 const engAnchors = (items: RankItem[], p: EngineProfile, gate: LevelGate | undefined) => cached(items, `eng:anchors:${JSON.stringify(gate ?? null)}`,
   () => engineAnchors(engItems(items), engBase(items, p), (x, level) => passesLevel(x.it.level, level as Level, gate), p, (x, level) => x.it.level?.suits?.[level as Level]));
-const engPick = (choice: QuickChoice) => ({ style: choice.style, arm: choice.arm, fine: undefined as number | null | undefined });
+const engPick = (choice: QuickChoice) => ({ style: engineStyle(choice), arm: engineArm(choice), fine: undefined as number | null | undefined });
 /** The engine's cautious score and % for every product with enough reports, for these picks. A product the level gate keeps
  *  out says "Probably not" (its % held under that line). */
 /** A capped % squeezed into 25 … cap in the same order (97 → cap, 25 → 25). */
@@ -188,7 +190,7 @@ export function matchPcts(items: RankItem[], choice: QuickChoice, gate?: LevelGa
 function rankEngine(items: RankItem[], setup: RankSetup, choice: QuickChoice, older: boolean, size: number): { rows: RankedRow[]; olderN: number } {
   const p = setup.engine!, view = engineView(items, choice, setup.levelGate, p), shape = choice.fine?.shape, all = engItems(items);
   // A picked type (type-picker sites) is a hard filter, never a score.
-  const ok = (x: EngItem) => view.has(x.id) && !x.it.flags?.noFlight && (view.get(x.id)!.curated || x.n >= p.minReports) && (view.get(x.id)!.curated || !choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind);
+  const ok = (x: EngItem) => view.has(x.id) && !x.it.flags?.noFlight && (view.get(x.id)!.curated || x.n >= p.minReports) && (view.get(x.id)!.curated || !choice.level || passesLevel(x.it.level, choice.level, setup.levelGate)) && (!shape || x.it.facts.fine?.shape === shape) && (!choice.kind || x.it.kind === choice.kind) && passesFilters(x.it, choice);
   // Newest model wins (owner 2026-11-17): an older year is left out once a newer year of the model has newestAt reports, even
   // when that newer year doesn't pass these picks ("show older models" shows it again).
   const newerWith = cached(items, `eng:newer:${p.newestAt}`, () => { const top = new Map<string, number>();

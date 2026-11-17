@@ -96,7 +96,10 @@ export async function proxy(request:NextRequest) {
  if(isV2&&niche.finder&&!attrProfileFor(niche)){
   const {pathname,searchParams}=request.nextUrl;
   const to=(path:string)=>{const url=request.nextUrl.clone();url.pathname=path;url.search="";return NextResponse.rewrite(url);};
-  const ranking=/^\/rankings\/([a-z0-9-]+)$/.exec(pathname),racket=pathname.startsWith(`${catalogPath}/`)?/^([a-z0-9-]+)$/.exec(pathname.slice(catalogPath.length+1)):null;
+  const ranking=/^\/rankings\/([a-z0-9-]+)$/.exec(pathname),seg=pathname.split("/").slice(1);
+  // A categoryPaths site (SimRacingRecs) has its product pages under the type page (/wheelbases/<slug>), not the catalogue.
+  const racket=niche.categoryPaths?(seg.length===2&&TYPE_SLUGS.has(seg[0])?/^([a-z0-9-]+)$/.exec(seg[1]):null)
+   :pathname.startsWith(`${catalogPath}/`)?/^([a-z0-9-]+)$/.exec(pathname.slice(catalogPath.length+1)):null;
   if(pathname===catalogPath){const k=viewKey(searchParams,CATALOG_Q);if(k)return to(`/v/rackets/${k}`);}
   else if(ranking){const k=viewKey(searchParams,RANKING_VIEW);if(k)return to(`/v/rankings/${ranking[1]}/${k}`);}
   else if(racket){const k=viewKey(searchParams,RACKET_VIEW);if(k)return to(`/v/racket/${racket[1]}/${k}`);}

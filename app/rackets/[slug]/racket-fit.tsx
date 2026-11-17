@@ -101,14 +101,19 @@ const ratingVerdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? 
 /** Reports at the picked level needed before "What players said" narrows to them. */
 const LEVEL_SAID_MIN = 5;
 /** The site's dot traits and labels, in order (lib/fit-config.ts; padel's are TRAITS). */
-const SITE_TRAITS = SITE_FIT.traits.filter(t => !t.hidden).map(t => t.key), SITE_LABEL: Record<string, string> = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t.label]));
+const SITE_TRAITS = SITE_FIT.traits.filter(t => !t.hidden).map(t => t.key),
+  /** A site whose traits apply to some product types only (SimRacingRecs: FFB on wheelbases): rows and compares stay within
+   *  the type. Every other site: all its rows, as before. */
+  PER_TYPE = SITE_FIT.traits.some(t => t.appliesTo),
+  traitsFor = (shape: string | null) => PER_TYPE ? SITE_TRAITS.filter(k => { const a = SITE_FIT.traits.find(t => t.key === k)?.appliesTo; return !a || (!!shape && a.includes(shape)); }) : SITE_TRAITS, SITE_LABEL: Record<string, string> = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t.label]));
 
 /** The line under a bar from the evidence store: [praise (many, one), fault (many, one)] per trait. */
 
 
 export default async function RacketFit(props: {
   /** The quick-take block; null for the beginner pilots that have none yet (their lines come from tag counts). */
-  qt: QuickTake | null; line?: string | null; quotes?: { id: string; text: string; verbatim: boolean; ok: boolean }[]; racketId: string; slug: string; href: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
+  qt: QuickTake | null; line?: string | null; quotes?: { id: string; text: string; verbatim: boolean; ok: boolean }[]; /** The "works with" tab (SimRacingRecs, niche.similar.pairs "works"), built on the product page. */ pairsTab?: SimilarTab | null;
+  racketId: string; slug: string; href: string; name: string; shortName: string; year: number; shape: string | null; photo: string | null;
   crumbs: ReactNode; reports: QtReport[]; reviews: QtReview[]; site: string; specs: string[]; buy: { url: string; label: string; rel: string } | null;
   fontClass: string; tags: string[]; nicknames: string[]; choice: QuickChoice; picked: boolean; jsonLd: object;
 }) {
@@ -123,8 +128,10 @@ export default async function RacketFit(props: {
   const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
   const armWords = QUICK ? "slower arms" : "sore arms";
-  const bf = bestFor(facts), bfArm = bf.includes(armWords), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b)), bfLean = QUICK ? null : lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
-  const bfWho = [bfLevel, bfLean ?? (bfLevel ? "players" : null)].filter(Boolean).join(" ");
+  const bf = bestFor(facts), bfArm = bf.includes(armWords), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b) || (!!SITE_FIT.levelPeople && Object.values(SITE_FIT.levelLabels ?? {}).some(w => b.split(" → ").includes(w)))), bfLean = QUICK ? null : lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
+  // A site with its own level words (SimRacingRecs: new / serious / all-in; bestFor says them) says its own people ("drivers").
+  const ownLevels = SITE_FIT.levelPeople ? SITE_FIT.levelLabels : undefined;
+  const bfWho = [bfLevel, bfLean ?? (bfLevel ? ownLevels ? niche.people.many : "players" : null)].filter(Boolean).join(" ");
   const bestLine = bfWho ? `${bfWho}${bfArm ? `, and ${armWords}` : ""}` : bfArm ? armWords : null;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
   const webLevels = await reportLevels(props.racketId);
@@ -139,7 +146,8 @@ export default async function RacketFit(props: {
   const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
   const tr = ctx.traits(props.racketId);
   const qtRow: Partial<Record<string, { chip: string; line: string }>> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
-  const traits = SITE_TRAITS.map(t => {
+  const TRAITS = traitsFor(props.shape);
+  const traits = TRAITS.map(t => {
     const sc = tr.scores?.[t] ?? null, q = qtRow[t];
     // The hand-written line must agree with the dots: a strong chip beside 1–2 dots, or a weak/divided one beside 4–5, loses.
     const tone = q ? chipTone(q.chip as Chip) : null;
@@ -310,7 +318,7 @@ export default async function RacketFit(props: {
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
   const page = pageForCard, tier = pageTier(page);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
-  const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return SITE_TRAITS.map(t => sc?.[t as Trait]?.dots ?? 0); };
+  const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t as Trait]?.dots ?? 0); };
   const shortOf = (r: ReturnType<typeof racketOf>) => withoutYear(displayName(r.name, brand(r.brandId)));
   const cardOf = (rid: string): CompareCard => { const r = racketOf(rid); return { name: displayName(r.name, brand(r.brandId)), short: shortOf(r), href: productHref(r), pic: photoOf(r), dots: dotsOf(rid), reports: ctx.facts(rid).reports }; };
   const compareMe = cardOf(props.racketId);
@@ -328,7 +336,8 @@ export default async function RacketFit(props: {
   // "Similar products" at the foot of the page (owner 2026-11-16, app/similar-section.tsx): the similar rackets above as cards,
   // each with the trait it is furthest ahead on, and on DiscGolfRecs a second tab with the discs that complete the bag.
   const simCfg = niche.similar;
-  const dotWords = SITE_FIT.traits.filter(t => !t.hidden).map(t => t.diff ?? `more ${t.label.toLowerCase()}`);
+  // In the order of the dots (TRAITS: this product type's own bars on a per-type site, every bar elsewhere).
+  const dotWords = TRAITS.map(k => SITE_FIT.traits.find(t => t.key === k)!).map(t => t.diff ?? `more ${t.label.toLowerCase()}`);
   const kindOfId = (id: string) => payload.items.find(x => x.id === id)?.kind;
   const quickTypes = QUICK?.quick?.types ?? [];
   const typeOf = (kind: string | undefined) => quickTypes.find(t => t.key === kind);
@@ -354,7 +363,7 @@ export default async function RacketFit(props: {
   const simTabs: SimilarTab[] = simCfg ? [{ key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`, subPicked: `other ${groupWord}, sorted by your match`,
     // Each card's word is its own main gain over this one, never the same twice (owner 2026-11-17); "similar feel" only when no
     // card in the pool beats it anywhere.
-    items: (() => { const edges = distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), SITE_TRAITS, 4, "arm", gainOk);
+    items: (() => { const edges = distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), TRAITS, 4, "arm", gainOk);
       return edges.length ? edges.map((e, i) => simItem(e.id, i, dotWords[e.gain])) : byScore(similarIds).map((id, i) => simItem(id, i, aheadWord(compareMe.dots, cardOf(id).dots, dotWords))); })(),
     more: simList ? { href: listHref(simList.slug), label: `all ${groupWord}, ranked →` } : null }] : [];
   if (simCfg?.pairs === "bag") {
@@ -369,6 +378,8 @@ export default async function RacketFit(props: {
       items: bag.map((b, i) => ({ ...simItem(b.id, i, b.why), tag: ({ distance: "driver", midrange: "mid", fairway: "fairway" } as Record<string, string>)[kindOfId(b.id) ?? ""] ?? kindOfId(b.id) ?? tagOf(b.id) })),
       more: beginners ? { href: listHref(beginners.slug), label: `${beginners.label.toLowerCase()}, ranked →` } : null });
   }
+
+  if (simCfg?.pairs === "works" && props.pairsTab?.items.length) simTabs.push(props.pairsTab);
 
   // ── Product page v11 (padel) ──────────────────────────────────────────────────────────────────────────────────────────
   const shopOf = (id: string) => payload.cards[id]?.shop ?? null;
@@ -385,7 +396,7 @@ export default async function RacketFit(props: {
       v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots, ref: refOf(a.id) };
     }
   }
-  const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
+  const DOT_KEYS = TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
   const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
@@ -398,7 +409,7 @@ export default async function RacketFit(props: {
   }) : [];
   // "How it plays": three bands from the trait dots and their notes; the strongest is marked. A rule of thumb only from a tip
   // with 2+ players behind it.
-  const bandRows = V11_BANDS.map(([k, label]) => { const i = SITE_TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
+  const bandRows = V11_BANDS.map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
     // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
     const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
     return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
@@ -417,8 +428,8 @@ export default async function RacketFit(props: {
   const tiles = V11 ? (await rankedLists()).lists.filter((l, i, a) => l.entries.length > 0 && a.findIndex(x => x.list.slug === l.list.slug) === i).slice(0, 6).map(l => ({
     href: listHref(l.list.slug), title: l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))),
     sub: `${l.entries.length} ${niche.words.many}`, pics: l.entries.slice(0, 3).map(e => { const x = ctx.data.rackets.find(y => y.id === e.product.id); return x ? photoOf(x) : null; }) })) : [];
-  const edgeWords = { me: compareMe.dots, keys: SITE_TRAITS, words: niche.words, scoreWord: SCORE_CAP,
-    gainWord: SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
+  const edgeWords = { me: compareMe.dots, keys: TRAITS, words: niche.words, scoreWord: SCORE_CAP,
+    gainWord: TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
   const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots}
     chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
@@ -475,7 +486,7 @@ export default async function RacketFit(props: {
           {!V11 && <div id="compare">
             {/* Under 3 reports there is no verdict word or dots (audit 2026-11-15, #15): every claim needs 3+ players. */}
             <div className="rf-h"><h2>How it plays &amp; compares</h2><span>{page?.source === "research" ? `from specs and expert ratings, compared with other ${niche.words.many}` : total < 3 ? `too few reports to rate yet (${total})` : `from player reports, compared with other ${niche.words.many}`}</span></div>
-            <FitCompare id={props.racketId} me={compareMe} rows={traits.map(([label, note]) => ({ label, note }))} cards={compareCards} similar={similarIds}/>
+            <FitCompare id={props.racketId} me={compareMe} rows={traits.map(([label, note], i) => ({ label, note, ...(PER_TYPE ? { key: TRAITS[i] } : {}) }))} cards={compareCards} similar={similarIds}/>
           </div>}
         </div>
 

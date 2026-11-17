@@ -29,7 +29,7 @@ export function catalogRows(data: Catalog, ctx: Ctx, listed: Catalog["listed"] =
     const d = facts.styleDots ? facts.styleDots.power - facts.styleDots.control : null;
     const styles = ctx.cfg.quick ? undefined : [...new Set([lean, ...((su?.beginner ?? 0) >= SUITS_OK ? ["control", "balance"] as const : []), ...(d === -1 ? ["balance"] as const : [])].filter((s): s is "control" | "power" | "balance" => !!s))];
     return { id: r.id, name: r.name, lean, ...(styles ? { styles } : {}), ...(su ? { suits: { beginner: su.beginner, intermediate: su.intermediate, advanced: su.advanced } } : {}),
-      shape: shapeWord(r.shape), year: String(r.year), arm: armScore ? (armScore.get(r.id) ?? 0) >= 70 && !!ctx.cfg.quick?.armSpecOk?.(r) && !facts.hard?.arm :(facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
+      shape: shapeWord(r.shape), year: String(r.year), arm: ctx.cfg.quick?.armFilter ? !!ctx.items.find(x => x.id === r.id)?.ff?.[ctx.cfg.quick.armFilter.key]?.includes(ctx.cfg.quick.armFilter.value) : armScore ? (armScore.get(r.id) ?? 0) >= 70 && !!ctx.cfg.quick?.armSpecOk?.(r) && !facts.hard?.arm :(facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
       spec: specValues(niche.guide, r),
       sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: ctx.signal(r.id), n: facts.reports, judged: sc.judged, newest: newest.has(r.id) };
   });
