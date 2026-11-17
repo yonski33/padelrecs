@@ -5322,7 +5322,7 @@
   ],
   "catches": [
    {
-    "t": "Tiny hitting zone: mistimed balls die or fall short; clean contact is required.",
+    "t": "Tiny sweet spot: mistimed balls die or fall short; clean contact is required.",
     "for": [
      "beginner",
      "intermediate"
@@ -5785,7 +5785,7 @@
     ]
    },
    {
-    "t": "Small margin: the hitting zone is relatively small and not very forgiving.",
+    "t": "Small margin: the sweet spot is relatively small and not very forgiving.",
     "for": [
      "intermediate"
     ],
@@ -6607,7 +6607,7 @@
     }
    },
    {
-    "t": "Tight hitting zone: splits opinion: the boxy 95 sweet spot can feel tiny.",
+    "t": "Tight sweet spot: splits opinion: the boxy 95 head can feel tiny on contact.",
     "for": [
      "intermediate"
     ],
