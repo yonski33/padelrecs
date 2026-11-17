@@ -1,4 +1,6 @@
 import { cache } from "react";
+import { pageBar, PAGE_BAR_TRAITS } from "../lib/page-bars";
+import { pageContent } from "../lib/racket-page";
 import { kept } from "../db/keep";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
@@ -29,6 +31,7 @@ import type { QuickChoice } from "../lib/quick-match";
 
 import { fitConfigFor } from "../lib/fit-config";
 import { discRules, type SiteRules } from "../lib/discgolf-hard";
+import { paddleRules } from "../lib/pickleball-hard";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -37,8 +40,10 @@ const MATCH = matchData(niche.id);
 const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = ENGINE?.traits ?? DOT_TRAITS;
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
-/** A site's own hard rules and level floors (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts); none elsewhere. */
-const RULES: ((d: { slug: string; weight: string | null }) => SiteRules) | undefined = niche.id === "discgolf" ? discRules : undefined;
+/** A site's own hard rules and level floors (DiscGolfRecs, lib/discgolf-hard.ts; PickleballRecs, lib/pickleball-hard.ts). */
+type SiteRuleFn = (d: { slug: string; weight: string | null }, noLevel?: boolean) => SiteRules;
+const SITE_RULES: Partial<Record<string, SiteRuleFn>> = { discgolf: discRules, pickleball: paddleRules };
+const RULES: SiteRuleFn | undefined = SITE_RULES[niche.id];
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 // Built once per server instance and kept (db/keep.ts), not once per page: it takes seconds over a big catalog (owner
 // 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
@@ -49,7 +54,8 @@ const keptContext = kept(async () => {
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
   const rulesMemo = new Map<string, SiteRules>();
-  const rulesOf = (id: string): SiteRules => { let r = rulesMemo.get(id); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }) : {}; rulesMemo.set(id, r); } return r; };
+  // `noLevel`: the product has no level data, so a rule may read the page's own level (PickleballRecs, lib/pickleball-hard.ts).
+  const rulesOf = (id: string, noLevel = false): SiteRules => { const key = `${id}|${noLevel}`; let r = rulesMemo.get(key); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }, noLevel) : {}; rulesMemo.set(key, r); } return r; };
   // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
   const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
@@ -97,8 +103,9 @@ const keptContext = kept(async () => {
     const su = suitsOf.get(id), fi = fineOf.get(id);
     const armDots = traitMap?.get(id)?.arm?.dots;
     // The Attack and Control bars as shown (owner audit 2026-11-17: one style per racket on every page).
-    const pd = traitMap?.get(id)?.power?.dots, cd = traitMap?.get(id)?.control?.dots, styleDots = pd && cd ? { power: pd, control: cd } : undefined;
-    const hard = RULES && rulesOf(id).hard;
+    const pd = traitMap?.get(id)?.power?.dots, cd = traitMap?.get(id)?.control?.dots, sp = traitMap?.get(id)?.spin?.dots;
+    const styleDots = pd && cd ? { power: pd, control: cd, ...(sp ? { spin: sp } : {}) } : undefined;
+    const hard = RULES && rulesOf(id, !su).hard;
     return { reports, tags, ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
@@ -234,6 +241,17 @@ const keptContext = kept(async () => {
       for (const k of ENGINE_TRAITS) { const cur = m[k]; if (!cur) continue;
         const hand = cur.set && !(k in ex); if (hand) continue;
         m[k] = { ...cur, dots: d[k].dots, score: d[k].score }; } }
+    // The page's own clear claims (engine pageBars, PickleballRecs Grok audit 2026-11-17): a bar never reads the opposite of
+    // its Why yes / Why not (lib/page-bars.ts). Hand-set and expert dots still win.
+    // An expert 3 or less gives way to 4 only where the page claims the strength and the reviews (the auto dots) say 4+ too
+    // (owner 2026-11-17: "Raise to 4" for the 9 paddles in the Grok audit, e.g. the Ruby's spin). It only ever raises.
+    if (ENGINE.pageBars) for (const id of listed) { const m = traitMap.get(id), ex = overrides.get(id)?.expert ?? {}, page = pageContent(slugOf.get(id) ?? ""); if (!m || !page) continue;
+      for (const k of PAGE_BAR_TRAITS as TraitKey[]) { const cur = m[k]; if (!cur) continue;
+        if (k in ex) { const auto = traitAuto.get(id)?.[k]?.dots ?? 0;
+          if (cur.dots < 4 && auto >= 4 && pageBar(k, cur.dots, page) >= 4) m[k] = { ...cur, dots: 4, score: 70 };
+          continue; }
+        if (cur.set) continue;
+        const dots = pageBar(k, cur.dots, page); if (dots !== cur.dots) m[k] = { ...cur, dots, score: (dots - 1) * 20 + 10 }; } }
   }
 
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));

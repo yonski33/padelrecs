@@ -79,7 +79,9 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
 
     <section className="ct2-main">
       <div className="ct2-bar">
+        {/* The count is one row per model; older versions have their own pages (Grok pickleball audit 2026-11-17, #32). */}
         <div className="ct2-count"><b>{active.length || f.q || f.older === "1" ? `${shown.length} ${shown.length === 1 ? one : many}` : `All ${v.total} ${many}`}</b>
+          {!(active.length || f.q || f.older === "1") && <span className="ct2-per">one per model</span>}
           {active.map(a => <a {...to(a.next)} key={a.label} className="ct2-chipx">{a.label} <i aria-hidden="true">✕</i></a>)}</div>
         <div className="ct2-sort"><button type="button" className={`ct2-cmp${cmp.on ? " on" : ""}`} aria-pressed={cmp.on} onClick={cmp.toggleMode}><i aria-hidden="true"/>compare</button><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
       </div>

@@ -99,7 +99,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
       <section className="lr2-hero">
         <div><h1>{skinSite ? <>Latest <em>reviews</em></> : "Latest reviews"}</h1>
           <p>{`Straight from ${skinSite ? "people" : "players"} who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes.`}</p></div>
-        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} new this week`}</p>
+        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} added this week`}</p>
       </section>
       <div className="lr2-bar">
         <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", skinSite ? "from people" : "from players"], ["yt", "youtube summaries"]] as const).map(([k, label]) =>

@@ -111,7 +111,11 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
         <h1>{`The ${entries.length} best ${skin && list.filters?.some(f => f.column === "shape") ? "" : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
         <p className="rk3-sub">{picked ? `${entries.length} ${niche.words.many} we picked${pickStyle ? ` for ${pickStyle} players` : ""}, checked against ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. No brand pays for a place.` : `${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. Not by us, not by brands.`}</p>
         {/* How the order is made, in one quiet line (owner 2026-11-16). SkinRecs words it as "skin score" and "people". */}
-        <span className="rk3-note">{picked ? `the order is our pick${pickStyle ? ` for ${pickStyle}` : ""}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one` : skin ? "ranked by skin score and how many people reviewed it" : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
+        <span className="rk3-note">{picked ? `the order is our pick${pickStyle ? ` for ${pickStyle}` : ""}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one` : skin ? "ranked by skin score and how many people reviewed it"
+          // A list for a kind of player (list.picks) is in the match's order for that pick (Grok pickleball audit 2026-11-17, #5).
+          : list.trait?.bar ? `only ${niche.words.many} with ${list.trait.bar.key} ${list.trait.bar.min}/5 or more; strongest ${list.trait.bar.key} first, then by ${scoreLabel.toLowerCase()}`
+          : list.picks ? `ordered by how well each fits ${list.picks.level ? `${list.picks.level === "advanced" ? "advanced players" : `${list.picks.level}s`}` : "a sore arm"}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one`
+          : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>
       {tabs.length > 1 && <nav className="rk3-tabs" aria-label="Rankings">{tabs.map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</a>)}</nav>}
       {/* Find my match opens here (owner 2026-11-17), with the match % on every row; SkinRecs has no engine picks, so it links home. */}

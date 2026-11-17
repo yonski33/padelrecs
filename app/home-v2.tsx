@@ -44,16 +44,17 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
   // Fresh off the court: the newest reports with a verdict, one per racket.
   const seen = new Set<string>();
   const fresh = [
-    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: niche.site.name.toLowerCase() })),
+    // Who wrote it, beside where (Grok pickleball audit 2026-11-17, #35: every card read "pickleballrecs", /reviews names them).
+    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: niche.site.name.toLowerCase(), who: r.alias || null })),
     // Our own reviews and YouTube summaries only (owner 2026-11-15).
     ...data.external.filter(e => e.sentiment && e.sourcePlatform === "YouTube").map(e => {
       // Our summary is a paraphrase (no quote marks); an English excerpt is the player's words (quote marks).
       const words = e.excerpt && !e.sourceLanguage ? e.excerpt : null;
       return { id: e.id, racketId: e.racketId, date: e.sourceDate || e.createdAt, text: e.summary ?? words ?? "", quote: !e.summary && !!words,
-        tag: platformName(e.sourcePlatform).toLowerCase() };
+        tag: platformName(e.sourcePlatform).toLowerCase(), who: e.sourceName || null };
     }),
   ].filter(x => x.text).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
-  const live = <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} new this week`}</p>;
+  const live = <p className="hv2-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${added.toLocaleString("en-US")} added this week`}</p>;
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
 
   // A site's own home mock (niche.v2home; PickleballRecs): the rankings tiles, the "how we score" strip and Questions follow the
@@ -89,7 +90,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
           <section>
             <div className="hv2-sidehead"><h3>{`Fresh off the ${v2copy.venue ?? "court"}`}</h3><a href="/reviews">all →</a></div>
             <ul className="hv2-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}><a href={productHref(r)}>
-              <span className="hv2-src"><span className={`t ${f.tag}`}>{f.tag}</span>{ago(f.date, now)}</span>
+              <span className="hv2-src"><span className={`t ${f.tag}`}>{f.tag}</span>{f.who && <span className="hv2-who">{f.who}</span>}{ago(f.date, now)}</span>
               <b>{nameOf(r)}</b>
               <span className="hv2-q">{f.quote ? `“${clip(f.text)}”` : clip(f.text)}</span>
             </a></li>; })}</ul>

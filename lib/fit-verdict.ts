@@ -32,7 +32,7 @@ export type FitFacts = {
   styleWithin?: { rank: number; shape: string };
   /** Arm comfort dots (1–5, lib/trait-score.ts, an expert value wins), for the sore-arm check. */
   armDots?: number;
-  /** The Attack and Control bars (1–5) as the page shows them: the one style every page uses (owner audit 2026-11-17). */ styleDots?: { power: number; control: number };
+  /** The Attack and Control bars (1–5) as the page shows them: the one style every page uses (owner audit 2026-11-17). */ styleDots?: { power: number; control: number; /** PickleballRecs' spin pick. */ spin?: number };
   /** A site's own hard rules (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts): the reason it is wrong for a beginner
    *  or a slower arm (the page says skip it, or it is too fast). Each is a hard level / arm reason, so the engine caps it. */
   hard?: { beginner?: string; arm?: string };
@@ -129,7 +129,7 @@ export const SUITS_OK = 62, SUITS_LOW = 40;
 function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   // No level picked yet: nothing to check (owner 2026-11-15).
   if (!choice.level) return { level: "unknown" };
-  if (choice.level === "beginner" && f.hard?.beginner) return { level: "hard", short: "Not a first disc", reason: f.hard.beginner };
+  if (choice.level === "beginner" && f.hard?.beginner) return { level: "hard", short: `Not a first ${niche.words.one}`, reason: f.hard.beginner };
   const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
