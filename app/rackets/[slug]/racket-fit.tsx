@@ -38,7 +38,7 @@ import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
-import { V11Better, V11Others, type V11Card } from "./v11";
+import { V11Better, V11Others, type V11Card, type V11Pool } from "./v11";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { buildCards } from "../../../lib/build-cards";
 import { distinctEdges } from "../../../lib/other-picks";
@@ -303,11 +303,12 @@ export default async function RacketFit(props: {
   const shopOf = (id: string) => payload.cards[id]?.shop ?? null;
   // The better-matches strip's cards: every racket the strip can show for any pick (the alternatives for each style × level ×
   // sore arm), so a pick in the browser never waits for more data.
-  const v11Strip: Record<string, { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null }> = {};
+  const v11Strip: V11Pool = {};
   if (V11) for (const style of STYLES) for (const level of [undefined, ...LEVELS]) for (const arm of [false, true]) {
-    for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 4)) {
+    for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
       if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id)) continue;
-      const c = cardOf(a.id); v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id) };
+      const c = cardOf(a.id), bf = bestFor(ctx.facts(a.id));
+      v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots };
     }
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
@@ -417,7 +418,8 @@ export default async function RacketFit(props: {
           </div>}
         </div>
 
-          {V11 && v11Cards.length > 0 && <V11Others cards={v11Cards} short={meShort}/>}
+          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS}
+            gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)} giveWord={SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
