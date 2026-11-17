@@ -8,7 +8,9 @@ const ok = (t: string) => { assert.ok(t.length <= 105, `${t.length}: ${t}`); ass
 
 test("pickleball build cards: shape, core, weight, face in plain lines", () => {
   const c = V11_SITES.pickleball.builds({ shape: "Hybrid", core: "16 mm", weight: "8.0–8.3 oz", surface: "Raw T700 carbon" }, 2);
-  assert.deepEqual(c.map(x => x.title), ["Hybrid shape", "16 mm core", "Mid weight", "Carbon face"]);
+  assert.deepEqual(c.map(x => x.title), ["Hybrid shape", "16 mm core", "8.0–8.3 oz", "Carbon face"]);
+  // The face line names the material (owner 2026-11-17).
+  assert.match(c[3].line, /^Raw T700 carbon: /);
   lines(c).forEach(ok);
   // Under 4 on the Arm bar no card promises comfort on the arm.
   assert.ok(!c.some(x => /arm/.test(x.line)), c.map(x => x.line).join(" | "));
@@ -32,4 +34,17 @@ test("every v11 site has three bands and its own headline words", () => {
     Object.values(V11_HEADLINES[id]).forEach(ok);
   }
   assert.match(V11_HEADLINES.pickleball.no, /paddle/); assert.match(V11_HEADLINES.discgolf.no, /disc/);
+});
+
+test("v11c build row: padel weight chip after balance, hidden without a weight; disc golf max weight", () => {
+  const p = V11_SITES.padel.builds({ shape: "Round", core: "EVA Soft", balance: "Medium", weight: "345–360 g", surface: "16K carbon" });
+  assert.deepEqual(p.map(x => x.title), ["Round shape", "Soft core", "Medium balance", "345–360 g", "16K carbon face"]);
+  assert.match(p[3].line, /^Mid-weight: /);
+  assert.match(V11_SITES.padel.builds({ weight: "340 g" })[0].line, /^Light: /);
+  assert.match(V11_SITES.padel.builds({ weight: "370 g" })[0].line, /^Heavy: /);
+  assert.ok(!V11_SITES.padel.builds({ shape: "Round", weight: null }).some(x => x.key === "weight"));
+  assert.match(p[4].line, /^16K carbon: /);
+  const d = V11_SITES.discgolf.builds({ shape: "Distance driver", weight: "11 / 5 / -1 / 3", surface: "175.1 g" });
+  assert.equal(d.at(-1)!.title, "up to 175 g");
+  [...p, ...d].forEach(x => assert.ok(x.line.length <= 105, x.line));
 });
