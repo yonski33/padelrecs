@@ -120,10 +120,10 @@ body:has(main.rk2), body:has(main.rl2) { background: #fbfaf6; }
   .rl2-score { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 84px; text-decoration: none; }
   .rl2-score b { font: 800 28px/1 var(--display); border: 2px solid var(--ink); border-radius: 10px; padding: 6px 10px; background: var(--paper); transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--ink); }
   .rl2-row:nth-child(even) .rl2-score b { transform: rotate(2deg); }
-  .rl2-score b.hi { background: var(--good); } .rl2-score b.mid { background: var(--soso); }
+  .rl2-score b.hi { background: var(--score-g); } .rl2-score b.mid { background: var(--score-y); }
   .rl2-score small { font: 11px var(--mono); color: var(--soft); white-space: nowrap; }
   .rl2-pct { white-space: nowrap; font: 600 11px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; background: var(--paper); }
-  .rl2-pct.hi { background: var(--good); } .rl2-pct.mid { background: var(--soso); } .rl2-pct.thin { font-weight: 400; color: var(--mute); border-style: dashed; }
+  .rl2-pct.hi { background: var(--score-g); } .rl2-pct.mid { background: var(--score-y); } .rl2-pct.thin { font-weight: 400; color: var(--mute); border-style: dashed; }
   .rl2-wc { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 10px; padding: 0 20px 18px 96px; }
   .rl2-wc > div { display: flex; gap: 10px; align-items: flex-start; border-radius: 12px; padding: 10px 14px; }
   .rl2-wc .why { background: oklch(0.95 0.05 145); } .rl2-wc .catch { background: oklch(0.96 0.04 60); }

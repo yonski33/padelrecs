@@ -2,7 +2,7 @@
    scoped to .rf so the other sites' pages stay as they are. */
 .rf {
   --v-ink: #151515; --v-page: #fbfaf6; --v-card: #fff; --v-mute: #4a4740; --v-mute2: #6a675f; --v-body: #2b2925; --v-dash: #c9c5ba;
-  --v-lime: oklch(0.88 0.17 125); --v-hl: oklch(0.93 0.14 100); --v-green: oklch(0.8 0.16 145); --v-yellow: oklch(0.88 0.15 95);
+  --v-lime: oklch(0.88 0.17 125); --v-hl: oklch(0.93 0.14 100); --v-green: var(--score-g); --v-yellow: var(--score-y);
   --v-yes: oklch(0.95 0.05 145); --v-no: oklch(0.96 0.04 60); --v-nofit: oklch(0.9 0.08 30);
   --v-mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; --v-display: var(--qt-display, "Archivo"), system-ui, sans-serif;
 }

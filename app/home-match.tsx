@@ -152,7 +152,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE}
             aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
             <b>{pct !== null ? `${pct}%` : "—"}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
-            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
+            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}.`}>
             <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
@@ -171,7 +171,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
             {r.judged > 0 && <span className="hv2-bar" aria-label={`${r.pos} positive, ${r.mix} mixed, ${r.neg} negative`}><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>}</span>
           {picked ? <span className={`hv2-sc hv2-sc-pk ${pct === null ? "none" : tone(pct)}`} title={MATCH_NOTE} aria-label={pct === null ? "No match % yet: not enough reports" : `${pct}% match. ${MATCH_NOTE}`}>
               <b>{pct === null ? "—" : `${pct}%`}</b><small>{pct === null ? "too few reports" : "your match"}</small>{scorePill}</span>
-            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
+            : st === "new" ? <NewPill n={r.judged}/> : <span className={`hv2-sc ${sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : ""}`} title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy ${niche.people.many}. It blends how much ${niche.people.many} like it with how many have weighed in.`}>
               <b>{sig ?? "—"}</b><small>{SCORE_WORD}</small></span>}
         </div></li>;
       })}</ol>

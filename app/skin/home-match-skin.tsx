@@ -85,7 +85,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
             ];
             // The user score until a pick, then the match % (owner 2026-11-16: as on padel), with the same colours.
             const sig = ctx.signal(r.id), best = skinBestFor(ctx.profile, ctx.attrs.get(r.id));
-            const pctCls = picked ? (x.pct === null ? "none" : x.pct >= 80 ? "hi" : x.pct >= 60 ? "mid" : "") : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : "";
+            const pctCls = picked ? (x.pct === null ? "none" : x.pct >= 85 ? "hi" : x.pct >= 70 ? "mid" : "") : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : "";
             return <li key={r.id} className={top ? "top" : undefined}>
               <span className="bh-rank">{i + 1}</span>
               <span className="bh-pic">{card.pic && <img src={card.pic} alt="" width={112} height={140} decoding="async" loading={i < 3 ? "eager" : "lazy"}/>}</span>
@@ -103,7 +103,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
                 {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}</span>
               <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : scoreState(card.pos + card.mix + card.neg) === "new" ? "—" : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : scoreState(card.pos + card.mix + card.neg) === "new" ? newLine(card.pos + card.mix + card.neg) : "user score"}</small>
                 {/* With picks the match % is the star; the user score stays as a small neutral pill (owner 2026-11-16). */}
-                {picked && sig !== null && <span className={`bh-spill ${sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`}><b>{sig}</b> user score</span>}</span>
+                {picked && sig !== null && <span className={`bh-spill ${sig >= 85 ? "hi" : sig >= 70 ? "mid" : ""}`}><b>{sig}</b> user score</span>}</span>
             </li>;
           })}</ol>
           <a className="bh-all" href={choice.typeSlug ? `/${choice.typeSlug}${pickQ}` : `${catalogPath}${pickQ}`}>{`see all ${allOfType} ${catWord === "skincare" ? niche.words.many : catWord} →`}</a>

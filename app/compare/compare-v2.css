@@ -42,7 +42,7 @@ body:has(main.cx) { background: #fbfaf6; }
   .cx-buy { font: 600 14px var(--mono); white-space: nowrap; align-self: flex-start; }
   .cx-num { flex: none; display: flex; flex-direction: column; align-items: center; gap: 3px; }
   .cx-num b { font: 800 24px/1 var(--display); border: 2px solid var(--ink); border-radius: 9px; padding: 6px 8px; background: var(--paper); }
-  .cx-num b.hi { background: oklch(0.8 0.17 145); } .cx-num b.mid { background: oklch(0.9 0.15 95); }
+  .cx-num b.hi { background: var(--score-g); } .cx-num b.mid { background: var(--score-y); }
   .cx-num small { font: 12px var(--mono); color: var(--soft); white-space: nowrap; }
   .cx-x { position: absolute; top: -11px; right: -11px; width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: center; font-size: 11px; text-decoration: none; }
   /* Sections */

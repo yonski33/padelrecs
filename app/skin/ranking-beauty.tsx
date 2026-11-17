@@ -21,7 +21,7 @@ import { NewPill } from "../score-tags";
 /** A SkinRecs ranking in the owner's beauty design (Claude Design "SkinRecs rankings", 2026-11-16): the lists as tabs, a big
  *  serif title, a "find my match" nudge to the home's quick match, the #1 as a card, the rest as rows with "best for" (from who
  *  it suits: people with that skin type rating it well) and the user score. The order is the list's own. FAQ stays for search. */
-const DOT = (n: number) => n >= 88 ? "hi" : n >= 84 ? "mid" : "lo";
+const DOT = (n: number) => n >= 85 ? "hi" : n >= 70 ? "mid" : "lo";
 
 export default async function RankingBeauty({ data, lists, found, amazon, affiliate, faq, jsonLd }: {
   data: Catalog; lists: RankedList[]; found: RankedList; amazon: (AmazonButton | null)[]; affiliate: boolean;

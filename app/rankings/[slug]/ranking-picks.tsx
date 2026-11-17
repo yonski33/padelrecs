@@ -42,7 +42,7 @@ export function RowPct({ id }: { id: string }) {
   if (!s.choice || !s.showPct) return null;
   const p = pct(id);
   return p === null ? <span className="rl2-pct thin" title="Too few reports from players like you for a match %">match: few reports</span>
-    : <span className={`rl2-pct${p >= 80 ? " hi" : p >= 60 ? " mid" : ""}`} title={MATCH_NOTE}>{`${p}% match`}</span>;
+    : <span className={`rl2-pct${p >= 85 ? " hi" : p >= 70 ? " mid" : ""}`} title={MATCH_NOTE}>{`${p}% match`}</span>;
 }
 
 /** The "your match" box: the picks, the show-% switch and the note. */

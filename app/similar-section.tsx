@@ -4,6 +4,7 @@
 // "Complete your bag" on DiscGolfRecs, "Works with" on SimRacingRecs). The lists are worked out on the server with the page
 // (lib/similar-picks.ts); this only switches tabs and shows each card's badge: the visitor's match % when the page knows their
 // picks (`pct`, from the racket page's fit check), else the Player score.
+import { scoreBox } from "../lib/score-tone";
 import { useState } from "react";
 import "./similar.css";
 
@@ -35,7 +36,7 @@ export function SimilarSection({ title, tabs, pct, scoreLabel, picksHref = "", l
         <span className="sp-top">
           {p.photo ? <span className="sp-tag sp-photo" aria-hidden="true"><img src={p.photo} alt="" width={48} height={48} loading="lazy" decoding="async"/></span>
             : <span className="sp-tag" style={{ background: p.tint }}>{p.tag}</span>}
-          <span className="sp-badge"><b className={picked && (m ?? 0) < 80 ? "plain" : undefined}>{badge}</b><small>{picked ? "your match" : scoreLabel}</small></span>
+          <span className="sp-badge"><b className={scoreBox(picked ? m : p.score) || "plain"}>{badge}</b><small>{picked ? "your match" : scoreLabel}</small></span>
         </span>
         <span className="sp-name">{p.name}</span>
         {p.why && <span className="sp-why">{p.why}</span>}

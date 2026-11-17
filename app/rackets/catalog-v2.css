@@ -99,7 +99,7 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-mt span { white-space: nowrap; background: var(--tile); border-radius: 6px; padding: 0 7px; }
   .ct2-sc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 68px; }
   .ct2-sc b { font: 800 22px/1 var(--display); border: 2px solid var(--ink); border-radius: 8px; padding: 4px 7px; background: var(--paper); }
-  .ct2-sc.hi b { background: var(--good); } .ct2-sc.mid b { background: var(--soso); } .ct2-sc.none b { background: var(--tile); color: #8a867c; }
+  .ct2-sc.hi b { background: var(--score-g); } .ct2-sc.mid b { background: var(--score-y); } .ct2-sc.none b { background: var(--tile); color: #8a867c; }
   .ct2-sc small { font: 10.5px var(--mono); color: var(--soft); white-space: nowrap; }
   .ct2-empty { border: 2px dashed #b9b5aa; border-radius: 14px; padding: 28px 16px; text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; }
   .ct2-empty b { font: 800 18px var(--display); }
@@ -148,7 +148,7 @@ body:has(main.ct2) { background: #fbfaf6; }
   .ct2-mt span { padding: 1px 7px; }
   .ct2-sc { gap: 5px; min-width: 84px; }
   .ct2-sc b { font-size: 24px; letter-spacing: -0.02em; border-radius: 10px; padding: 6px 8px; }
-  .ct2-sc.mid b { background: var(--acc); }
+  .ct2-sc.mid b { background: var(--score-y); }
   .ct2-sc .ct2-bar6 { width: 64px; height: 6px; border: 0; border-radius: 999px; background: #eceee8; }
   .ct2-sc small { font-size: 10.5px; color: var(--soft); }
   .ct2-load, .ct2-empty { border-color: #b9bdc9; }
