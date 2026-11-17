@@ -65,12 +65,13 @@ export function V11Others({ id, cards, short, pool, me, keys, gainWord, giveWord
           </div>
           <div className="v11-ofoot">
             <span className="v11-oscore"><b className={tone(c.score)}>{c.score ?? "–"}</b><span><b>Player score</b></span></span>
-            {picked && st && <span className={`v11-pill ${tone(c.pct)}`}>{`${c.pct}% · ${st.word}`}</span>}
             {c.shop && <a className="v11-plink" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}
           </div>
         </div>
         <div className="v11-oright">
-          <span className="v11-otag">{picked ? "⚡ your match" : c.vs ? `⚡ vs the ${short}: ${c.vs}` : "⚡ similar feel"}</span>
+          {/* After an answer, one pill at the top right: the match and its word, in the score colour (owner 2026-11-17). */}
+          {picked && st ? <span className={`v11-otag v11-omatch ${tone(c.pct)}`}>{`⚡ ${c.pct}% · ${st.word}`}</span>
+            : <span className="v11-otag">{c.vs ? `⚡ vs the ${short}: ${c.vs}` : "⚡ similar feel"}</span>}
           {(picked ? st?.head : c.pick) && <p className="v11-ohead">{picked ? st!.head : c.pick}</p>}
           {c.gain && <div className="v11-ogain"><b>{picked && st?.fits ? "✓ Why it fits" : "✓ What you gain"}</b><span>{c.gain}</span></div>}
           {c.give && <div className="v11-ogive"><b>{picked ? "↗ What to consider" : "↗ What you give up"}</b><span>{c.give}</span></div>}
