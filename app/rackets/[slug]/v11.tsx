@@ -186,11 +186,12 @@ function toPlayed(e: React.MouseEvent<HTMLAnchorElement>) {
   let head: Element | null = document.elementFromPoint(window.innerWidth / 2, 2);
   while (head && !/sticky|fixed/.test(getComputedStyle(head).position)) head = head.parentElement;
   const off = (head ? Math.max(0, head.getBoundingClientRect().bottom) : 0) + 16, still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const top = Math.max(0, box.getBoundingClientRect().top + window.scrollY - off), from = window.scrollY;
+  const target = () => Math.max(0, box.getBoundingClientRect().top + window.scrollY - off);
   box.querySelector<HTMLButtonElement>(".rv-prow button")?.focus({ preventScroll: true });
-  window.scrollTo({ top, behavior: still ? "auto" : "smooth" });
-  // Some browsers skip the smooth scroll (a background tab, a focus change mid-scroll): then jump straight there.
-  if (!still) setTimeout(() => { if (window.scrollY === from && Math.abs(from - top) > 2) window.scrollTo({ top }); }, 900);
+  window.scrollTo({ top: target(), behavior: still ? "auto" : "smooth" });
+  // A smooth scroll can stop short (a background tab, images loading above it and moving the box): after it, if the box
+  // isn't where it should be, finish with a jump.
+  setTimeout(() => { if (Math.abs(box.getBoundingClientRect().top - off) > 24) window.scrollTo({ top: target() }); }, still ? 50 : 1000);
   try { history.replaceState(null, "", "#played"); } catch { /* sandboxed */ }
 }
 const cap = (t: string) => t ? t[0].toUpperCase() + t.slice(1) : t;
