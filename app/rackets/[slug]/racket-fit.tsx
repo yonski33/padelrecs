@@ -37,7 +37,8 @@ import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
-import { V11Better, V11Others, tone as v11Tone, type V11Card } from "./v11";
+import { V11Better, V11Others, type V11Card } from "./v11";
+import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { buildCards } from "../../../lib/build-cards";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";

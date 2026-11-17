@@ -4,11 +4,11 @@
 // sort by it. Both read the same match engine as the home and the fit check (fit-live.tsx), so a pick changes them at once.
 import type { FitFacts } from "../../../lib/fit-verdict";
 import { useAnswer, useMatchOf } from "./fit-live";
+import { scoreTone as tone } from "../../../lib/score-tone";
 
 /** A racket card's data from the server (app/rackets/[slug]/racket-fit.tsx). */
 export type V11Card = { id: string; name: string; href: string; pic: string | null; line: string | null; best: string | null;
   score: number | null; shop: { url: string; rel: string } | null; vs: string | null; pick: string | null; gain: string | null; give: string | null };
-export const tone = (n: number | null | undefined) => n == null ? "" : n >= 85 ? "g" : n >= 70 ? "y" : "w";
 const word = (n: number) => n >= 75 ? "Strong fit" : n >= 55 ? "Decent fit" : "Weak fit";
 const WEAK = 60;
 
