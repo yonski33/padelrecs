@@ -146,3 +146,6 @@
 .rf:has(.v11-score) .rp-buy { padding: 9px 16px; }
 .rf .v11-bcards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
 .rf .v11-yit summary { padding: 10px 18px; }
+
+/* Phones: the bottom line stacks; its text sizes to its words (a desktop flex-basis made it 300px tall). */
+@media (max-width: 760px) { .rf .rp-bottom b { flex: 1 1 auto; } }
