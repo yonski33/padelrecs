@@ -6,10 +6,6 @@ const p=(id:string,category:string,positive:number,mixed:number,judged:number)=>
 // A site with a spread of review counts, so "well reviewed" means something.
 const site=(extra:(ReturnType<typeof p>&{override?:number})[])=>[...Array.from({length:20},(_,i)=>p(`filler${i}`,"road",Math.round((20+i*7)*0.7),Math.round((20+i*7)*0.15),20+i*7)),...extra];
 
-test("a handful of all-positive reviews can't beat a product many people like (owner, RunningRecs 2026-11-12)",()=>{
- const s=signals(site([p("thin","trail",16,0,16),p("popular","road",130,15,150)]));
- assert(s.get("popular")!.signal>s.get("thin")!.signal, `${s.get("popular")!.signal} vs ${s.get("thin")!.signal}`);
-});
 
 test("with the same volume, fewer negative and mixed reviews score higher",()=>{
  const s=signals(site([p("loved","road",90,5,100),p("split","road",60,20,100)]));
@@ -34,21 +30,7 @@ test("a score set by hand replaces the worked-out one and takes its place in the
  assert.equal(s.get("a")!.set,undefined);
 });
 
-test("each category's best scores in the 90s and the next ones step down, even when their reviews are close (owner, 2026-11-13)",()=>{
- const close=Array.from({length:8},(_,i)=>p(`m${i}`,"moist",80-i,8,100));
- const s=signals(site([...close,p("weak1","vps",40,20,80),p("weak2","vps",38,20,80)]));
- const m=close.map(x=>s.get(x.id)!.signal);
- assert(m[0]>=92,`leader ${m[0]}`);
- for(let i=1;i<m.length;i++) assert(m[i]<m[i-1],`${m.join(" ")}`);
- // A category whose products are all weaker still has its best near the top: scores are against its own kind.
- assert(s.get("weak1")!.signal>=88,`vps leader ${s.get("weak1")!.signal}`);
- assert(s.get("weak1")!.signal>s.get("weak2")!.signal);
-});
 
-test("more positive reviews usually rank higher, even with a slightly lower share (owner, 2026-11-13)",()=>{
- const s=signals(site([p("many","road",300,60,520),p("few","road",90,15,130)]));
- assert(s.get("many")!.signal>s.get("few")!.signal,`${s.get("many")!.signal} vs ${s.get("few")!.signal}`);
-});
 
 test("a mostly negative product doesn't top its category on volume alone",()=>{
  const s=signals(site([p("liked","road",150,20,200),p("panned","road",100,40,380)]));
@@ -59,4 +41,22 @@ test("a widely reviewed product with mostly negative reviews gets a failing scor
  const s=signals(site([p("loved","tax",453,75,554),p("hated","tax",46,13,303),p("small","tax",9,9,26)]));
  assert(s.get("hated")!.signal<=35, `${s.get("hated")!.signal}`);
  assert(s.get("loved")!.signal>s.get("small")!.signal);
+});
+
+test("the score is how happy owners are, never how many reviews (owner 2026-11-17: Prism Flash vs Jelly Bean 2)",()=>{
+ const s=signals(site([p("popular","x",104,38,165),p("loved","x",23,0,24)]));
+ assert(s.get("loved")!.signal>s.get("popular")!.signal,`${s.get("loved")!.signal} vs ${s.get("popular")!.signal}`);
+ // Same happiness, ten times the reviews: the same number (a point either way from the smoothing).
+ const t=signals(site([p("big","y",800,100,1000),p("small","y",80,10,100)]));
+ assert(Math.abs(t.get("big")!.signal-t.get("small")!.signal)<=1,`${t.get("big")!.signal} vs ${t.get("small")!.signal}`);
+});
+
+test("a small sample is pulled toward the site average, so 16 of 16 positive isn't a perfect score",()=>{
+ const s=signals(site([p("thin","trail",16,0,16)]));
+ assert(s.get("thin")!.signal<97,`${s.get("thin")!.signal}`);
+});
+
+test("on a tie the better-reviewed product ranks first",()=>{
+ const s=signals(site([p("many","z",160,20,200),p("few","z",16,2,20)]));
+ if(s.get("many")!.signal===s.get("few")!.signal) assert.equal(s.get("many")!.rank,1);
 });
