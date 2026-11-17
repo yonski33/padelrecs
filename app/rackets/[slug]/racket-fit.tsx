@@ -212,7 +212,8 @@ export default async function RacketFit(props: {
     // One card per channel (lib/youtube-pick.ts): its video about this racket alone where there is one; every row still counts.
     ...onePerChannel(ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
-      const text = e.summary ? plainSummary(e.summary) : (!english && e.excerptTranslation) || e.excerpt || "";
+      // Our own summaries speak padel ("sweet spot"); a player's verbatim words stay as they wrote them.
+      const text = e.summary ? (V11 ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : (!english && e.excerptTranslation) || e.excerpt || "";
       const verbatim = !e.summary && english && !!e.excerpt;
       const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
