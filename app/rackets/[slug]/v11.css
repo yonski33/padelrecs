@@ -410,7 +410,8 @@
 .rf .rv12-legend span { display: inline-flex; align-items: center; gap: 5px; } .rf .rv12-legend i { width: 8px; height: 8px; border-radius: 50%; }
 .rf .rv12-legend i.pos { background: oklch(0.72 0.15 145); } .rf .rv12-legend i.neg { background: oklch(0.75 0.13 50); }
 @media (min-width: 1024px) {
-  .rf .rv12.side { grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; }
+  /* The left column stays 720px with or without the tag list (the mock's score row and cards width). */
+  .rf .rv12 { grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; }
   .rf .rv12.side .rv12-side { display: block; position: sticky; top: 84px; margin-top: 52px; }
   .rf .rv12.side .rv12-row { display: none; }
 }
