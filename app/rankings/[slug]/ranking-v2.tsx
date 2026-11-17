@@ -1,7 +1,9 @@
 import { RankMatch, RowMatch } from "./rank-match";
 import { withoutYear } from "../../../lib/brand-name";
 import "../rankings-v2.css";
-import { rowLine } from "../../../lib/row-line";
+import { rowLineWhere } from "../../../lib/row-line";
+import { curatedRankingStyle } from "../../../lib/curated";
+import { claims } from "../../../lib/content-consistency";
 import "./ranking-v3.css";
 import Link from "next/link";
 import { niche, productHref } from "../../../lib/niche";
@@ -55,6 +57,12 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
   const year = listYear(list), many = `${niche.seo.productCategory.toLowerCase()}s`;
   const hl = list.label.replace(/^best\s+/i, "").toLowerCase();
   const yearPart = /\d{4}/.test(hl) ? "" : ` in ${year}`;
+  // A curated page (db/curated rankings, owner 2026-11-17): the order is our pick for that style, so the page says so, and no
+  // row line or "best for" argues with the list (audit 2026-11-17 #2/#3: "short on power", "best for control players" on the
+  // power list). The order itself stays the owner's.
+  const picked = skin ? null : curatedRankingStyle(list.slug), pickStyle = picked === "power" || picked === "control" ? picked : null;
+  const against = (t: string) => !pickStyle || !claims(t).some(c => c.trait === pickStyle && c.dir < 0);
+  const otherStyle = pickStyle === "power" ? "control players" : pickStyle === "control" ? "power players" : null;
   const seen = new Set<string>(), tabs = lists.filter(l => !seen.has(l.list.slug) && seen.add(l.list.slug));
 
   // The final mock (owner 2026-11-16, https://claude.ai/artifact/EBkNdZnn4LbRi6fK8ytAJi): crumbs, the title, the lists as pills, a
@@ -64,8 +72,8 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
     const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
     const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
     const best = ctx ? bestFor(ctx.facts(r.id)) : skinBest(r.id);
-    return [{ e, r, i, name: displayName(r.name, brand(r.brandId)), url: productHref(r), pic: photoOf(r), line: rowLine(e.product),
-      best: best.join(", "), sig: e.signal?.signal ?? null, judged: score(data, r.id).judged, shop }];
+    return [{ e, r, i, name: displayName(r.name, brand(r.brandId)), url: productHref(r), pic: photoOf(r), line: rowLineWhere(e.product, against),
+      best: best.filter(b => b !== otherStyle).join(", "), sig: e.signal?.signal ?? null, judged: score(data, r.id).judged, shop }];
   });
   const [first, ...rest] = rows;
   const tone = (n: number | null) => n === null ? "" : n >= 90 ? " t90" : n >= 85 ? " t85" : "";
@@ -101,9 +109,9 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       <div className="rk3-head">
         {/* A product-type list on SkinRecs is its own noun ("The 10 best moisturizers"), not "skincare products moisturizers". */}
         <h1>{`The ${entries.length} best ${skin && list.filters?.some(f => f.column === "shape") ? "" : `${many} `}`}<span className="hl">{hl}</span>{yearPart}</h1>
-        <p className="rk3-sub">{`${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. Not by us, not by brands.`}</p>
+        <p className="rk3-sub">{picked ? `${entries.length} ${niche.words.many} we picked${pickStyle ? ` for ${pickStyle} players` : ""}, checked against ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. No brand pays for a place.` : `${entries.length} ${entries.length === 1 ? niche.words.one : niche.words.many}, ranked from ${reviews.toLocaleString("en-US")} ${niche.people.one} reviews. Not by us, not by brands.`}</p>
         {/* How the order is made, in one quiet line (owner 2026-11-16). SkinRecs words it as "skin score" and "people". */}
-        <span className="rk3-note">{skin ? "ranked by skin score and how many people reviewed it" : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
+        <span className="rk3-note">{picked ? `the order is our pick${pickStyle ? ` for ${pickStyle}` : ""}; the ${scoreLabel.toLowerCase()} shows how ${niche.people.many} rate each one` : skin ? "ranked by skin score and how many people reviewed it" : `ranked by ${scoreLabel.toLowerCase()} and how many ${niche.people.many} reviewed it`}</span>
       </div>
       {tabs.length > 1 && <nav className="rk3-tabs" aria-label="Rankings">{tabs.map(l => <a key={l.list.slug} href={listHref(l.list.slug)} aria-current={l.list.slug === list.slug ? "page" : undefined}>{l.list.label.toLowerCase()}</a>)}</nav>}
       {/* Find my match opens here (owner 2026-11-17), with the match % on every row; SkinRecs has no engine picks, so it links home. */}

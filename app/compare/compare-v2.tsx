@@ -60,11 +60,14 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
   // from its page; the "!" is its own catch. Expert voice, ≤ 105 characters, never a count.
   // Named, not "the other one" (owner 2026-11-17): "Longer than the Wraith", "Easier on the arm than the Jelly Bean 2 and the
   // Envy"; "than both others" only when the names would push the line past 105 characters.
-  const named = base.map(b => ({ brand: brandOf(b.r) ?? "", model: shortName(b.name, brandOf(b.r)) }));
+  // Two that share a name once the year is gone (Vertex 05 Geo 2026 vs 2027) keep their years (audit 2026-11-17, #7).
+  const plainShort = base.map(b => shortName(b.name, brandOf(b.r)));
+  const shorts = plainShort.map((n, i) => plainShort.filter(x => x.toLowerCase() === n.toLowerCase()).length > 1 ? `${n} ${base[i].r.year}` : n);
+  const named = base.map((b, i) => ({ brand: brandOf(b.r) ?? "", model: shorts[i] }));
   const othersOf = (i: number) => named.map((_, j) => j).filter(j => j !== i).map(j => `the ${refName(j, named)}`).join(" and ");
   const short = (t: string | null | undefined) => t && t.length <= MAX_LINE ? t : null;
   const cprods: CProduct[] = base.map((b, i) => {
-    const vp = { id: b.r.id, short: shortName(b.name, brandOf(b.r)),
+    const vp = { id: b.r.id, short: shorts[i],
       signal: sigs.get(b.r.id)?.signal ?? null, judged: score(data, b.r.id).judged, dots: b.dots, catchShort: catchShort(b.catchLine) };
     const lead = leads(base.map(x => ({ ...vp, dots: x.dots })), i).slice(0, 2).map(k => { const d = `${TRAITS[k].diff[0].toUpperCase()}${TRAITS[k].diff.slice(1)} than `, line = `${d}${othersOf(i)}.`;
       return line.length <= MAX_LINE ? line : `${d}${base.length === 2 ? "the other one" : "both others"}.`; });

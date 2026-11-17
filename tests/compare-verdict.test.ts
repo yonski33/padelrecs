@@ -57,3 +57,9 @@ test("3 points apart is a clear pick; a product with no lead uses its own strong
   assert.match(all(v)[0], /^Get the Metalbone CTRL 3\.5\./);
   assert.match(all(v)[1], /^Take the Ultimate Tour X instead if you want margin for error/);
 });
+
+test("audit #29: a noun trait reads 'has the most power', never 'is the most power'", async () => {
+  const { bestAt } = await import("../lib/compare-verdict");
+  assert.equal(bestAt("more power"), "has the most power");
+  assert.equal(bestAt("more forgiving"), "is the most forgiving");
+});

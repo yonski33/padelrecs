@@ -53,7 +53,9 @@ export function fitReasonParts(kind: ReasonKind, yes: ReasonItem[], no: ReasonIt
   // A weak fit's deal-breaker is the fit check's first conflict: when that is the level, the level reason is the catch.
   const levelFirst = !!lvl && !!conflicts?.[0] && levelReason(conflicts.slice(0, 1), c) === lvl;
   // A strength that isn't about the picks is only "its strength", not something that suits the visitor.
-  const lead = kind === "good" ? "Built for what you picked:" : !y?.tagged ? "Its strength:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
+  // "Built for what you picked" only when the line speaks to the style or sore arm picked (audit: a power pick shown a touch line).
+  const forPick = !!y && (y.it.for ?? []).some(t => (c.style !== "any" && t === c.style) || (c.arm && t === "arm"));
+  const lead = kind === "good" ? (forPick || (c.style === "any" && !c.arm && y?.tagged) ? "Built for what you picked:" : "Its strength:") : !y?.tagged ? "Its strength:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
   const nLead = kind === "good" ? "One thing to know:" : kind === "maybe" ? "The catch:" : "Holding it back:";
   const out: ReasonPart[] = [];
   if (y) out.push(part("yes", lead, y.it));

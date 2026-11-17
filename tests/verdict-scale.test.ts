@@ -1,12 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fitStep, fittingRows, FIT_MIN } from "../lib/verdict-scale";
+import { fitStep, fittingRows, MAYBE } from "../lib/verdict-scale";
 
 // Owner 2026-11-17 (Metalbone CTRL 3.5 page: "57% · Decent fit" beside "Probably not for you", unfit cards in "for your game").
-test("the pill word and the headline always come from the same step", () => {
+test("the pill word and the headline always come from the same step, on the engine's own bands", () => {
+  assert.equal(fitStep(75).word, "Strong fit"); assert.equal(fitStep(74).word, "Worth a look"); assert.equal(fitStep(55).word, "Worth a look"); assert.equal(fitStep(54).word, "Probably not");
   for (let p = 0; p <= 100; p++) {
     const s = fitStep(p);
-    assert.equal(s.fits, p >= FIT_MIN, `${p}%`);
+    assert.equal(s.fits, p >= MAYBE, `${p}%`);
     assert.equal(/Probably not/.test(s.head), /Probably not/.test(s.word), `${p}%: ${s.word} / ${s.head}`);
   }
 });

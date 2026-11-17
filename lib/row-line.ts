@@ -21,7 +21,11 @@ export function rowVoiceOk(t: string | null | undefined): t is string {
 
 /** The row's line, or null when no candidate reads right (better no line than a "players say" one). */
 export function rowLine(product: { slug: string; reviewSummary?: string | null }, ...preferred: (string | null | undefined)[]): string | null {
+  return rowLineWhere(product, () => true, ...preferred);
+}
+/** The same, skipping candidates `ok` rejects (a "short on power" line on a power list, audit 2026-11-17 #3). */
+export function rowLineWhere(product: { slug: string; reviewSummary?: string | null }, ok: (t: string) => boolean, ...preferred: (string | null | undefined)[]): string | null {
   const site = niche.id;
   const page = pageContent(product.slug, site)?.tagline, skin = site === "skin" ? first(skinPage(product.slug)?.bottom) : null;
-  return [...preferred, shortLine(product, site), lines[site]?.[product.slug], first(page), skin, first(product.reviewSummary)].find(rowVoiceOk) ?? null;
+  return [...preferred, shortLine(product, site), lines[site]?.[product.slug], first(page), skin, first(product.reviewSummary)].find((t): t is string => rowVoiceOk(t) && ok(t)) ?? null;
 }

@@ -7,6 +7,8 @@ import type { Catalog } from "../../db/data";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { productSignals } from "../signals";
+import { rowOfFamily } from "../../lib/compare-pairs";
+import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 
 // Brands in design v2 (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/3XBVLw7sGXDYTJcReV1mLm), PadelRecs
 // only: one card per brand with its best-scored rackets' photos (a name tile when it has none), most reviewed first or A–Z.
@@ -22,7 +24,10 @@ export default async function BrandsV2({ data, sort }: { data: Catalog; sort?: s
   const brands = data.listedBrands.map(b => {
     const products = data.listed.filter(r => r.brandId === b.id);
     const best = [...products].sort((x, y) => (sig.get(y.id)?.signal ?? -1) - (sig.get(x.id)?.signal ?? -1) || y.year - x.year);
-    return { b, count: products.length, reviews: products.reduce((n, r) => n + (reviewsOf.get(r.id) ?? 0), 0),
+    // One count per model, newest year, the same rule as the catalogue and the brand page (audit 2026-11-17, #28: "Adidas 28
+    // rackets" here, "All 19" on its page). Older years stay live on their own pages.
+    const count = products.filter(r => rowOfFamily(r, data.listed, x => (reviewsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS).shown.id === r.id).length;
+    return { b, count, reviews: products.reduce((n, r) => n + (reviewsOf.get(r.id) ?? 0), 0),
       pics: best.map(r => ({ r, src: photo(r) })).filter((x): x is { r: typeof x.r; src: string } => !!x.src).slice(0, 4) };
   }).filter(x => x.count > 0).sort((a, b) => az ? a.b.name.localeCompare(b.b.name) : b.reviews - a.reviews || a.b.name.localeCompare(b.b.name));
   const w = niche.words;

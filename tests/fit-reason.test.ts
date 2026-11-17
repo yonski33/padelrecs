@@ -39,7 +39,7 @@ test("match box: never 'owners'", () => {
 });
 test("match box: every sentence stays within 105 characters", () => {
     const long: ReasonItem[] = [{ title: "Huge sweet spot", t: "Almost the whole racket is sweet spot, and even the edges send the ball deep with very little effort from you." }];
-    assert.equal(fitReason("good", long, [], pick("any", null)), "Built for what you picked: huge sweet spot.");
+    assert.equal(fitReason("good", long, [], pick("any", null)), "Its strength: huge sweet spot.");
 });
 test("match box: words", () => {
     assert.equal(clause("AT10 players say ==x==."), "AT10 players say x");

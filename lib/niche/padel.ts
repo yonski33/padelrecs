@@ -1,5 +1,6 @@
 import type { Niche } from "./types";
 import { padelGuide } from "./padel-guide";
+import { padelHome } from "./padel-home";
 
 // Rating-icon images. Repeated horizontally by .balls (17×14 tiles) and shown one per option by .ballpick (20×20).
 const ballTile = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14'%3E%3Ccircle cx='7' cy='7' r='6.1' fill='%23d4ea4f' stroke='%231b3d27' stroke-width='1.3'/%3E%3Cpath d='M2.4 4.4c2.2 1 2.2 4.2 0 5.2M11.6 4.4c-2.2 1-2.2 4.2 0 5.2' fill='none' stroke='%231b3d27' stroke-width='1.1' stroke-linecap='round'/%3E%3C/svg%3E\")";
@@ -10,6 +11,7 @@ const ballPickOff = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 export const padel: Niche = {
   id: "padel",
   guide: padelGuide,
+  homeMore: padelHome,
   design: "v2",
   v2copy: {
     sport: "padel", emoji: "🎾", strip: "a free, ad-light side project · built by padel players",
@@ -35,7 +37,9 @@ export const padel: Niche = {
   fit: { minReports: 6, fewReports: 15,
     // Owner 2026-11-15: pro lines "are meant for advanced players, they can never show if someone picks intermediate" (when the
     // brand says advanced), and never for beginners. The owner corrects single rackets through the expert level.
-    proLines: ["\\bPro\\+?(?=\\s|$)", "\\bHRD\\+?", "\\bEdge\\b", "\\bNeuron\\b", "\\bBela\\b", "\\bMetalbone\\b(?!.*\\b(?:CTRL|Team|Youth|Junior|Light|Lite)\\b)"],
+    // Owner 2026-11-17 ("the pro comes from the brand"): a model name never sets the level; levels come from players, reviewers,
+    // the maker's own level and expert values.
+    proLines: [],
     // Owner 2026-11-15: "very few diamond rackets can be played by beginners … like bullpadel vertex women".
     // Owner 2026-11-15: "the team version is a beginner racket" (HEAD Team lines, Coello Team included).
     // Owner 2026-11-16 (match audit): no name exceptions for beginners; a racket reaches beginners through its suits (the expert
@@ -62,7 +66,9 @@ export const padel: Niche = {
       // Owner 2026-11-17 (curated lists, lib/curated.ts): the newest year with 10+ reports takes the model's row; diamonds go
       // after the rest for control and balance at beginner and intermediate ("Bullpadel Vertex should not be a good match").
       newestAt: 10, shapeOrder: { styles: ["control", "balance"], levels: ["beginner", "intermediate"], below: ["diamond"] },
-      headHeavyBelow: ["beginner"], } },
+      headHeavyBelow: ["beginner"],
+      // Owner audit fixes 2026-11-17: a style pick needs the matching bar above 3 for a Strong fit; curated #1–3 are Strong fits.
+      styleBarMax: 3, curatedTop: [90, 86, 82], } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

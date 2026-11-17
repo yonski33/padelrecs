@@ -1,0 +1,60 @@
+/* The home's sections below the list: "Explore the rankings", "how we score" and "Questions". PickleballRecs' mock (hv2-m) and
+   the sites that keep their own look (hv2-x: padel, disc golf; owner 2026-11-17) share the layout; colours come from each site's
+   tokens. */
+.hv2.hv2-m { --hover: oklch(0.975 0.04 105); --steps: oklch(0.95 0.035 235); }
+.hv2.hv2-x { --hover: color-mix(in oklch, var(--acc) 14%, var(--paper)); --steps: color-mix(in oklch, var(--acc) 22%, var(--paper)); }
+.hv2:is(.hv2-m, .hv2-x) {
+  /* Explore the rankings */
+  .hv2-rt { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
+  .hv2-rthead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .hv2-rthead h2 { margin: 0; font: 800 28px var(--display); letter-spacing: -0.02em; }
+  .hv2-rthead a { font: 13px var(--mono); }
+  .hv2-rtgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .hv2-rtgrid a { text-decoration: none; border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: 4px 4px 0 var(--shadow, var(--ink)); padding: 14px 18px; display: flex; align-items: center; gap: 10px; height: 120px; box-sizing: border-box; transition: box-shadow .12s, transform .12s; }
+  .hv2-rtgrid a:hover { background: var(--hover); box-shadow: 6px 6px 0 var(--shadow, var(--ink)); transform: translate(-2px, -2px); }
+  .hv2-rtgrid .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .hv2-rtgrid b { font: 800 20px/1.15 var(--display); }
+  .hv2-rtgrid em { font: 13px var(--mono); font-style: normal; color: var(--soft); }
+  .hv2-rtgrid .mini { flex: none; display: flex; align-items: flex-end; gap: 6px; height: 84px; }
+  .hv2-rtgrid .mini i { position: relative; display: flex; justify-content: center; }
+  .hv2-rtgrid .mini i::before { content: ""; width: 100%; height: 72%; border: 2px solid var(--ink); border-radius: 9px 9px 6px 6px; background: var(--f); box-sizing: border-box; }
+  .hv2-rtgrid .mini i::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 7px; height: 30%; margin-left: -3.5px; border-radius: 0 0 3px 3px; background: var(--ink); }
+  .hv2-rtgrid .mini .p0 { width: 22px; height: 58px; } .hv2-rtgrid .mini .p1 { width: 26px; height: 70px; } .hv2-rtgrid .mini .p2 { width: 30px; height: 84px; }
+
+  /* How we score */
+  .hv2-steps { margin-top: 40px; border: 2px solid var(--ink); border-radius: 18px; background: var(--steps); box-shadow: 5px 5px 0 var(--ink); padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+  .hv2-steps .k { font: 600 12.5px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 1px 9px; background: var(--paper); }
+  .hv2-steps .s { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; }
+  .hv2-steps .s i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--ink); background: var(--paper); display: inline-flex; align-items: center; justify-content: center; font: normal 800 12px var(--display); box-sizing: border-box; }
+  .hv2-steps b { font: 800 15px var(--display); }
+  .hv2-steps a { margin-left: auto; font: 600 12.5px var(--mono); }
+
+  /* Questions */
+  .hv2-faq { margin-top: 40px; display: flex; flex-direction: column; gap: 10px; max-width: 780px; }
+  .hv2-faq h2 { margin: 0; font: 800 28px var(--display); letter-spacing: -0.02em; }
+  .hv2-faq .box { border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); overflow: hidden; }
+  .hv2-faq details { margin: 0; padding: 0; }
+  .hv2-faq details + details { border-top: 1.5px dashed var(--line); }
+  .hv2-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; margin: 0; padding: 11px 16px; font: 700 15.5px/1.5 var(--body); }
+  .hv2-faq summary::-webkit-details-marker { display: none; }
+  .hv2-faq summary i::before { content: "+"; font: normal 400 15px var(--mono); }
+  .hv2-faq details[open] summary i::before { content: "−"; }
+  .hv2-faq p { margin: 0; padding: 0 16px 12px; font-size: 15px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+  .hv2-faq p a { font-weight: 700; }
+
+  @media (max-width: 760px) {
+    .hv2-rtgrid { grid-template-columns: minmax(0, 1fr); }
+    .hv2-rtgrid a { height: auto; min-height: 96px; }
+    .hv2-steps a { margin-left: 0; }
+  }
+  @media (min-width: 761px) and (max-width: 1000px) { .hv2-rtgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+}
+/* Disc golf's tiles: three discs, not paddles. */
+.hv2.hv2-disc .hv2-rtgrid .mini { align-items: center; }
+.hv2.hv2-disc .hv2-rtgrid .mini i::before { height: 100%; border-radius: 50%; }
+.hv2.hv2-disc .hv2-rtgrid .mini i::after { display: none; }
+.hv2.hv2-disc .hv2-rtgrid .mini .p0 { width: 30px; height: 30px; } .hv2.hv2-disc .hv2-rtgrid .mini .p1 { width: 38px; height: 38px; } .hv2.hv2-disc .hv2-rtgrid .mini .p2 { width: 46px; height: 46px; }
+/* Four lists (padel): two by two, so no tile sits alone on a row. */
+@media (min-width: 761px) { .hv2.hv2-x .hv2-rtgrid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Phones hide the sidebar's best-of links (home-v2.css); the tiles above cover them, so its heading goes too. */
+@media (max-width: 640px) { .hv2.hv2-x .hv2-side section:has(> .hv2-best) { display: none; } }
