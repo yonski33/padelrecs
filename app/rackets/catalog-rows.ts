@@ -2,7 +2,7 @@
 // check. Shared by the catalogue (app/rackets/catalog-v2.tsx) and the racket guide (app/guide), so a guide count is exactly
 // the list its link opens.
 import { score, type Catalog } from "../../db/data";
-import { styleLean, ARM_BAR, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
+import { styleLean, styleOf, ARM_BAR, MIN_FIT_REPORTS, SUITS_OK } from "../../lib/fit-verdict";
 import { gramsOf, weightOf } from "../../lib/fine-tune";
 import { rowOfFamily } from "../../lib/compare-pairs";
 import { shapeWord, specValues } from "../../lib/guide";
@@ -23,7 +23,12 @@ export function catalogRows(data: Catalog, ctx: Ctx, listed: Catalog["listed"] =
   const armScore = ctx.cfg.quick ? new Map(ctx.items.map(x => [x.id, x.arm])) : null;
   return listed.map(r => {
     const facts = ctx.facts(r.id), sc = score(data, r.id), su = facts.suits;
-    return { id: r.id, name: r.name, lean: styleLean(facts).lean, ...(su ? { suits: { beginner: su.beginner, intermediate: su.intermediate, advanced: su.advanced } } : {}),
+    // One style per racket, from the bars, as on the racket page and the rankings (audit 2026-11-17); a type-picker site keeps
+    // its own lean. Beginner rackets (soft, easy, forgiving) also count as control and balance in the filter (owner 2026-11-17).
+    const lean = ctx.cfg.quick ? styleLean(facts).lean : styleOf(facts, ctx.cfg);
+    const d = facts.styleDots ? facts.styleDots.power - facts.styleDots.control : null;
+    const styles = ctx.cfg.quick ? undefined : [...new Set([lean, ...((su?.beginner ?? 0) >= SUITS_OK ? ["control", "balance"] as const : []), ...(d === -1 ? ["balance"] as const : [])].filter((s): s is "control" | "power" | "balance" => !!s))];
+    return { id: r.id, name: r.name, lean, ...(styles ? { styles } : {}), ...(su ? { suits: { beginner: su.beginner, intermediate: su.intermediate, advanced: su.advanced } } : {}),
       shape: shapeWord(r.shape), year: String(r.year), arm: armScore ? (armScore.get(r.id) ?? 0) >= 70 && !!ctx.cfg.quick?.armSpecOk?.(r) && !facts.hard?.arm :(facts.tags["arm-friendly"] ?? 0) >= ARM_BAR, weight: weightOf(gramsOf(r.weight)), feel: ctx.fineOf(r.id)?.feel ?? null,
       spec: specValues(niche.guide, r),
       sweet: (ctx.traits(r.id).scores?.forgiveness?.dots ?? 0) >= 4, signal: ctx.signal(r.id), n: facts.reports, judged: sc.judged, newest: newest.has(r.id) };

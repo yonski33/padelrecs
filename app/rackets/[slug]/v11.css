@@ -275,3 +275,12 @@
   .rf .rf-back, .rf .rf-last, .rf .rv-watch, .rf .v11-rt .v11-sh a { display: inline-flex; align-items: center; min-height: 32px; }
   .rf .v11-others .v11-oname { display: inline-flex; align-items: center; min-height: 32px; }
 }
+
+/* Other rackets, two cards (owner 2026-11-17): the tagline, then a green gain line and a peach give-up line. */
+.rf .v11-others.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rf .v11-tgain, .rf .v11-tgive { margin: 0; border-radius: 8px; padding: 5px 9px; font-size: 14px; line-height: 1.35; align-self: stretch; }
+.rf .v11-tgain { background: var(--v-yes); } .rf .v11-tgive { background: var(--v-no); }
+/* More rackets for your game: the richer cards, stacked. */
+.rf .v11-mlist { display: flex; flex-direction: column; gap: 14px; }
+.rf .v11-more2 .v11-ofoot .v11-olinks { margin-left: auto; }
+@media (max-width: 760px) { .rf .v11-others.two { grid-template-columns: 1fr; } }

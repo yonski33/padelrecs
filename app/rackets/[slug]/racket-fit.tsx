@@ -38,7 +38,7 @@ import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH
 import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
-import { V11Better, V11Others, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
+import { V11Better, V11Others, V11More, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
 import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
 
@@ -49,6 +49,7 @@ import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
 import { CompareWith } from "./compare-with";
+import { refName } from "../../../lib/compare-names";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
 import { alternatives } from "../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../lib/rank-seed";
@@ -345,8 +346,10 @@ export default async function RacketFit(props: {
   }
 
   // ── Product page v11 (padel) ──────────────────────────────────────────────────────────────────────────────────────────
-  const meShort = shortOf(racketOf(props.racketId)).replace(new RegExp(`^${(brand(racketOf(props.racketId).brandId) ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s+`), "");
   const shopOf = (id: string) => payload.cards[id]?.shop ?? null;
+  // This racket's shortest name beside another one (#435 rule, lib/compare-names refName): "than the 12K", "than the Adidas".
+  const modelOf = (rid: string) => { const x = racketOf(rid), b = brand(x.brandId) ?? ""; return { brand: b, model: shortOf(x).replace(new RegExp(`^${b.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s+`, "i"), "") }; };
+  const refOf = (otherId: string) => refName(0, [modelOf(props.racketId), modelOf(otherId)]);
   // The better-matches strip's cards: every racket the strip can show for any pick (the alternatives for each style × level ×
   // sore arm), so a pick in the browser never waits for more data.
   const v11Strip: V11Pool = {};
@@ -354,7 +357,7 @@ export default async function RacketFit(props: {
     for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
       if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id)) continue;
       const c = cardOf(a.id), bf = bestFor(ctx.facts(a.id));
-      v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots };
+      v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots, ref: refOf(a.id) };
     }
   }
   const DOT_KEYS = SITE_TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
@@ -362,10 +365,11 @@ export default async function RacketFit(props: {
   const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
-    return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid),
+    const me = refOf(oid);
+    return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid), ref: me,
       vs: t ? (t.diff ?? `more ${t.label.toLowerCase()}`) : null, pick: t ? `Pick it if you ${t.ifYou ?? `want more ${t.label.toLowerCase()}`}.` : null,
-      gain: t ? `${(t.diff ?? `more ${t.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${meShort}.` : null,
-      give: d ? `${(GIVE_UP[d] ?? `less ${TRAIT_DEF[d]?.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${meShort}.` : null };
+      gain: t ? `${(t.diff ?? `more ${t.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${me}.` : null,
+      give: d ? `${(GIVE_UP[d] ?? `less ${TRAIT_DEF[d]?.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${me}.` : null };
   }) : [];
   // "How it plays": three bands from the trait dots and their notes; the strongest is marked. A rule of thumb only from a tip
   // with 2+ players behind it.
@@ -388,6 +392,8 @@ export default async function RacketFit(props: {
   const tiles = V11 ? (await rankedLists()).lists.filter((l, i, a) => l.entries.length > 0 && a.findIndex(x => x.list.slug === l.list.slug) === i).slice(0, 6).map(l => ({
     href: listHref(l.list.slug), title: l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))),
     sub: `${l.entries.length} ${niche.words.many}`, pics: l.entries.slice(0, 3).map(e => { const x = ctx.data.rackets.find(y => y.id === e.product.id); return x ? photoOf(x) : null; }) })) : [];
+  const edgeWords = { me: compareMe.dots, keys: SITE_TRAITS, words: niche.words, scoreWord: SCORE_CAP,
+    gainWord: SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: SITE_TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
   const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots}
     chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
@@ -448,14 +454,15 @@ export default async function RacketFit(props: {
           </div>}
         </div>
 
-          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} short={meShort} pool={v11Strip} me={compareMe.dots} keys={SITE_TRAITS} words={niche.words} scoreWord={SCORE_CAP}
-            gainWord={SITE_TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`)}/>}
+          {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10 } : undefined}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: "Thrown it?", people: "players", peopleTab: "players" } } : {})}/>
           </section>
 
           {/* v11c: the closing card and the rankings, after the reviews. */}
+          {/* Not-a-fit state only: the next best fits after the Better matches strip (owner 2026-11-17). */}
+          {V11 && <V11More id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} pool={v11Strip} {...edgeWords}/>}
           {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
             score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={props.buy}
             compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
