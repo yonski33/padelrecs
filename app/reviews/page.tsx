@@ -21,7 +21,7 @@ const word = { positive: "Positive", mixed: "Mixed", negative: "Negative" } as c
 
 export function generateMetadata(): Metadata {
   const title = `Latest ${w.One} Reviews from Real ${people.One}s`;
-  const description = isV2 ? `The newest ${w.one} reviews from ${niche.site.name} players, plus summaries of YouTube reviews.` : `The newest first-hand ${w.one} reviews from YouTube, blogs, forums and ${niche.site.name} ${people.many}, each linked to its source.`;
+  const description = isV2 ? `The newest ${w.one} reviews from ${niche.site.name} ${people.many}, plus summaries of YouTube reviews.` : `The newest first-hand ${w.one} reviews from YouTube, blogs, forums and ${niche.site.name} ${people.many}, each linked to its source.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: "/reviews" }, openGraph: { title, description, url: "/reviews", type: "website", images: siteOgImages } };
 }
 

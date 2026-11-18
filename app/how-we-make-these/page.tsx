@@ -19,7 +19,7 @@ import "./how.css";
 
 // "How we make these" (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/CVvBQnDCRtn2PhCdd77PA5). PadelRecs
 // only for now. Every number on it comes from the real formula (lib/signal.ts) and the real catalog.
-export const metadata: Metadata = { title: "How we make these", description: `How ${niche.site.name} turns player reviews into one honest line and a score.`, alternates: { canonical: "/how-we-make-these" } };
+export const metadata: Metadata = { title: "How we make these", description: `How ${niche.site.name} turns ${niche.people.one} reviews into one honest line and a score.`, alternates: { canonical: "/how-we-make-these" } };
 
 const w = niche.words;
 export default async function HowWeMakeThese() {
