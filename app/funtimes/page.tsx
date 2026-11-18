@@ -3,7 +3,7 @@ import { and, count, desc, eq, notLike } from "drizzle-orm";
 import { database } from "../../db/data";
 import { reviews, rackets, externalReviews, brands } from "../../db/schema";
 import { isAdmin } from "./auth";
-import { ReviewActions, ApproveAll } from "./review-actions";
+import { ReviewActions, ApproveAll, DeleteRejected, DeleteAllRejected } from "./review-actions";
 import { QuickEdit } from "./quick-edit";
 /** Player reviews per page in the queue (owner 2026-11-17: 100). */
 const QUEUE_PAGE = 100;
@@ -31,6 +31,7 @@ const messages: Record<string,string> = {
  pending:"Review moved back to pending and hidden from the public feed.",
  web:"Web review published.",
  "edit-saved":"Review updated.",
+ deleted:"Rejected reviews deleted permanently.",
  "web-deleted":"Web review deleted. It leaves the public pages within about a minute.",
  "edit-invalid":"Could not open the review editor. Please try again.",
  invalid:`Please check all fields. A web review needs an existing ${w.one} or a new brand, model and year (1980–2100), an excerpt of at least 20 characters or a summary of at least 30, source details, and a valid HTTP or HTTPS source link.`,
@@ -103,6 +104,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/funtimes?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
  {status!=="approved"&&<ApproveAll count={Math.min(queue.length,QUEUE_PAGE)}/>}
+ {status==="rejected"&&<DeleteAllRejected total={Number(totals.find(t=>t.status==="rejected")?.total||0)}/>}
  <div className="admin-queue">{queue.slice(0,QUEUE_PAGE).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
  <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={model ? productHref(model) : catalogPath}>{model?.name}</a></h3>
  <QuickEdit id={r.id} field="text" value={r.reviewText}/><TagList tags={r.tags}/>{variantLine(r.variant)}<div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
@@ -110,6 +112,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
  <p><a href={`/funtimes/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
  <ReviewActions id={r.id} status={r.status as "pending"|"approved"|"rejected"} back={status}/>
+ {r.status==="rejected"&&<DeleteRejected id={r.id}/>}
  </article>})}{!queue.length && <p className="admin-empty">No {status} submissions.</p>}</div>
  <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>QUEUE_PAGE&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
  </>}
