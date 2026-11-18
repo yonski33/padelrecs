@@ -13,10 +13,11 @@ import { HomeC } from "./home-catalog";
 import { HomeLight } from "./home-light";
 import HomeV2 from "./home-v2";
 import { readChoice } from "../lib/quick-match";
+import { shareImage } from "./share-meta";
 import { homeMetadata } from "./home-metadata";
 import { attrProfileFor } from "../lib/attr-profile";
 import { skinHomeTitle } from "./skin/titles";
-import { readSkinChoice, skinPicked, skinQuery } from "../lib/skin-choice";
+import { readSkinChoice, skinPicked } from "../lib/skin-choice";
 import { productSignals } from "./signals";
 import { platformName } from "../lib/source-label";
 import { LoadMore } from "./load-more";
@@ -42,9 +43,10 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       const what = c.typeSlug ? niche.typePages!.find(t => t.slug === c.typeSlug)!.label.toLowerCase() : "skincare";
       const title = skinHomeTitle(c);
       const description = `${what[0].toUpperCase()}${what.slice(1)} ranked for your skin from ${(data.reviews.length + data.external.length).toLocaleString("en-US")} reviews: what people with your skin type say about hydration, irritation, finish and texture. No sponsored picks.`;
-      const keep = new URLSearchParams([...skinQuery(c)].filter(([k]) => k === "type" || k === "skin"));
-      const url = keep.size ? `/?${keep}` : "/";
-      return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website" },
+      // A view of the home: canonical to it, not in the sitemap (Grok SEO audit, owner 2026-11-18).
+      const url = "/";
+      const { images, twitter } = shareImage();
+      return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { title, description, url, type: "website", images }, twitter,
         ...(c.concerns.length || c.finish || c.ff ? { robots: { index: false, follow: true } } : {}) };
     }
   }
