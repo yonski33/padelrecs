@@ -16,13 +16,15 @@ if (niche.id !== "simracing") throw new Error("Run with NICHE=simracing.");
 const args = process.argv.slice(2), check = args.includes("--check"), write = args.includes("--write") || check;
 const [file] = args.filter(a => !a.startsWith("--"));
 if (!file) throw new Error("Usage: simracing-data-fix.mts <fixes.json> [--check|--write]");
-type Col = "balance" | "weight" | "core" | "surface";
+type Col = "balance" | "weight" | "core" | "surface" | "review_summary";
+/** The catalogue file holds the spec columns only; the review summary lives in the database alone. */
+const CATALOG_COLS = new Set<Col>(["balance", "weight", "core", "surface"]);
 type Fix = { name: string; set?: Partial<Record<Col, string | null>>; note?: string; source: string };
 const fixes = JSON.parse(readFileSync(file, "utf8")) as Fix[];
-const LABEL: Record<Col, string> = { balance: "type", weight: "torque/force", core: "platforms", surface: "notes" };
+const LABEL: Record<Col, string> = { balance: "type", weight: "torque/force", core: "platforms", surface: "notes", review_summary: "summary" };
 const R = <T,>(x: unknown) => (Array.isArray(x) ? x : (x as { rows: T[] }).rows) as T[];
 const db = await database(), S = sql.identifier(assertSchemaName(niche.schema));
-const rows = R<{ id: string; name: string; shape: string; balance: string | null; weight: string | null; core: string | null; surface: string | null }>(await db.execute(sql`select id, name, shape, balance, weight, core, surface from ${S}.rackets`));
+const rows = R<{ id: string; name: string; shape: string; balance: string | null; weight: string | null; core: string | null; surface: string | null; review_summary: string | null }>(await db.execute(sql`select id, name, shape, balance, weight, core, surface, review_summary from ${S}.rackets`));
 const owner = R<{ product_id: string; value_text: string }>(await db.execute(sql`select product_id, value_text from ${S}.evidence where niche = ${niche.id} and extracted_by = 'owner-sheet-v1' and attribute = 'platform'`));
 const ownerPlat = new Map(owner.map(o => [o.product_id, o.value_text]));
 const plan: { id: string; name: string; cols: Partial<Record<Col, string | null>>; ownerPlat?: string; source: string }[] = [], bad: string[] = [];
@@ -56,7 +58,7 @@ if (write) {
     const path = new URL("../db/catalogs/simracing.json", import.meta.url);
     const cat = JSON.parse(readFileSync(path, "utf8")) as { products: ({ name: string; sources?: string[] } & Partial<Record<Col, string | null>>)[] };
     for (const p of plan) { const c = cat.products.find(x => x.name === p.name); if (!c) continue;
-      Object.assign(c, p.cols); c.sources = [...new Set([...(c.sources ?? []), p.source])]; }
+      Object.assign(c, Object.fromEntries(Object.entries(p.cols).filter(([k]) => CATALOG_COLS.has(k as Col)))); c.sources = [...new Set([...(c.sources ?? []), p.source])]; }
     writeFileSync(path, JSON.stringify(cat, null, 1) + "\n");
     console.log("db/catalogs/simracing.json updated");
   }
