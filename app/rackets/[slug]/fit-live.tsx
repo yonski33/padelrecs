@@ -217,8 +217,7 @@ export function FitAlts({ id, facts, cards, similar, brandLink, similarTitle }: 
 
 /** The sticky "your match" box beside the page (owner's final mock): the % and verdict word once picked, "Check your fit ↑"
  *  before, and Check price. On phones it is a bar fixed to the bottom of the screen (racket-fit.css). */
-export function FitSticky({ buy, name, rail }: { buy: { url: string; label: string; rel: string } | null; name: string;
-  /** v11c desktop (owner 2026-11-18): the card in the right rail beside the page, sticky until the reviews start (v11.css). */ rail?: boolean }) {
+export function FitSticky({ buy, name }: { buy: { url: string; label: string; rel: string } | null; name: string }) {
   const { p: { picked } } = use(), { result } = useContext(ResultCtx);
   const shown = picked && result && result.kind !== "thin" && result.pct !== null ? result : null;
   // Shown once the hero (and its fit box) has scrolled out of view (the final mock: a floating card on desktop, a bar on phones).
@@ -228,17 +227,15 @@ export function FitSticky({ buy, name, rail }: { buy: { url: string; label: stri
     const io = new IntersectionObserver(([e]) => setOn(!e.isIntersecting && e.boundingClientRect.top < 0));
     io.observe(hero); return () => io.disconnect();
   }, []);
-  // The rail card too only once the hero (its fit card and Check price) is out of view, and gone again back up there (owner
-  // 2026-11-18: no second fit card beside the first). Hidden, it keeps its place in the rail, so nothing shifts.
-  return <div className={rail ? `rp-rail${on ? " on" : ""}` : `rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`} aria-hidden={rail && !on ? true : undefined}>
+  return <div className={`rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
     <div className="rp-sk">
       <span className="rp-k">⚡ your match</span>
       {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}><b>{`${shown.pct}%`}</b><span className="rp-vw">{shown.word}</span></a>
         : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>
     {buy && <a className="rf-btn rp-buy" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a>}
-    {/* No shop link (owner 2026-11-18): the rail card still has somewhere to go, a quiet compare link, never a bare card. */}
-    {!buy && rail && <a className="rp-cmp" href={`${catalogPath}?compare=1`}>compare →</a>}
+    {/* No shop link (owner 2026-11-18, SimRacingRecs #469): the bar still has somewhere to go, a quiet compare link. */}
+    {!buy && <a className="rp-cmp" href={`${catalogPath}?compare=1`}>compare →</a>}
   </div>;
 }
 

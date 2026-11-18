@@ -452,31 +452,11 @@
 .rf .rv-psend .rv-post { margin-left: auto; }
 @media (max-width: 520px) { .rf .rv-psend .rv-nick { flex-basis: 100%; max-width: none; } }
 
-/* The fit card in the right rail (owner 2026-11-18, as SimRacingRecs product pages): desktop only, sticky beside everything above
-   the reviews, gone where they start (the rail ends there and the tag list takes over). Phones keep the bottom bar. The wrappers
-   are invisible to layout below 1024px. */
-.rf .v11-up, .rf .v11-flat, .rf .v11-upl { display: contents; }
-.rf .v11-rail { display: none; }
-@media (min-width: 1024px) {
-  /* Same columns as the reviews (720px + the rest), so the card lines up with the tag list below it. */
-  .rf .v11-up { width: 100%; display: grid; grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; align-items: stretch; }
-  .rf .v11-upl { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
-  .rf .v11-rail { display: block; min-width: 0; }
-  .rf .rp-rail { position: sticky; top: 114px; max-width: 244px; border: 2px solid #151515; border-radius: 16px; background: #fff; padding: 14px;
-    display: flex; flex-direction: column; gap: 12px; }
-  /* Fades in once the hero has scrolled away (fit-live.tsx FitSticky); out of reach while hidden. */
-  .rf .rp-rail:not(.on) { opacity: 0; visibility: hidden; transform: translateY(6px); }
-  .rf .rp-rail { transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
-  .rf .rp-rail.on { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .2s ease, visibility 0s; }
-  @media (prefers-reduced-motion: reduce) { .rf .rp-rail, .rf .rp-rail.on { transition: none; transform: none; } }
-  .rf .rp-rail .rp-sk { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .rf:has(.v11-score) .rp-rail .rp-sk .rp-k { display: inline-block; }
-  .rf .rp-rail .rp-buy { display: block; text-align: center; padding: 10px 6px; white-space: nowrap; }
-  .rf .rp-rail .rp-cmp { display: block; margin-top: 10px; font: 13px var(--mono); color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-  @media (max-width: 1180px) { .rf .rp-rail .rp-buy { font-size: 14px; } }
-  /* The bottom bar stays on phones and tablets only. */
-  .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; }
-}
+/* Full content width for the sections above the reviews (owner 2026-11-18): rp-body is a flex column that doesn't stretch, and
+   since the bottom line moved out of rp-main (#472) nothing held rp-main at the full width any more. */
+.rf:has(.v11-score) .rp-main { width: 100%; }
+/* The bottom bar's compare link, for a product with no shop link (SimRacingRecs #469). */
+.rf .rp-stick .rp-cmp { margin-left: auto; font: 13px var(--v-mono, var(--mono)); color: inherit; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 
 /* Hero (owner 2026-11-18): the fit card is as tall as its content, so "Generally best for" sits right under the questions
    instead of at the bottom of a card stretched to the left column; both columns align to the top. */
