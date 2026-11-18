@@ -1,0 +1,5745 @@
+{
+ "_about": "Expert How it plays scores (owner decision 2026-11-18): an expert's blind 1–5 per trait from lab and reviewer data, matched by name + year (scripts/import-expert-play.mts). dots = the shown bar; line = the bar's line in the site voice (≤105 chars), note = the expert's own reason. The engine keeps its own reading for matching (scripts/expert-play-gaps.mts).",
+ "products": {
+  "six-zero-coral-pro-16mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid 16mm: firepower 58/100, serve ~54th pct; enough drive pace, not a power paddle",
+     "line": "Enough pace on drives, but it's no power paddle."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Dense foam, Matt control 5/5; very grabby face makes loose drops float until calibrated",
+     "line": "Dense foam gives strong control, though the very grabby face makes loose drops float at first."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "DiamondGrit: 2,481 RPM (99th pct), roughest face, durable grit; elite spin",
+     "line": "Among the spinniest faces around, with a rough grit that lasts."
+    }
+   }
+  },
+  "11six24-ultre-power-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Gen 4 foam, PE firepower 84 (95th pct); hottest pop in Power 2 line (37.2 mph, 96th pct)",
+     "line": "Gen 4 foam gives some of the hottest pop in its line."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Hot pop needs the most touch management of the series on resets/dinks",
+     "line": "Hot off the face; dinks and resets take real touch to keep low."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,130 RPM very high (Matt 2,381); Tier 1 grit, 98% Ra retained",
+     "line": "Very high spin from a durable grit that keeps its texture."
+    }
+   }
+  },
+  "11six24-vapor-power-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 4 foam power paddle; firepower 74 (80th pct), 56.7 mph serve, predictable not twitchy",
+     "line": "Gen 4 foam gives real power that stays predictable rather than twitchy."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light 111 SW, good TW 6.7; real pop so resets need some touch",
+     "line": "Light, with real pop, so resets need some touch."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "2,139 RPM, top-5 in PE database; HexGrit lost <100 RPM over 100 games",
+     "line": "Among the spinniest faces, and the grit holds up with play."
+    }
+   }
+  },
+  "vatic-pro-prism-flash": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "16mm Gen 1.5 honeycomb; lowest power of any hybrid tested (STS), serve ~15th pct",
+     "line": "A 16mm honeycomb core gives the lowest power of the hybrids; you supply the pace."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Plush, soft, absorbs pace; top-tier for drops and resets, sweet spot only average",
+     "line": "Plush and soft, it absorbs pace for top-tier drops and resets, though the sweet spot is only average."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw T700, no grit: ~1,950-2,280 RPM across testers (avg); fades as face wears",
+     "line": "Raw carbon with no grit gives middle-of-the-road spin that fades as the face wears."
+    }
+   }
+  },
+  "six-zero-ruby": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm thermoformed honeycomb; firepower 35, serve ~31st pct, low pop. 14mm is crisper/poppier",
+     "line": "A thermoformed 16mm honeycomb gives low pop, so you make your own pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft, muted, heavy (8.36oz); Matt control 5/5, good resets; some find it less predictable",
+     "line": "Soft, muted and heavy, with good resets, though some find it less predictable."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Aramid weave grips well on feel, but measured 2,250 RPM is mid-pack",
+     "line": "Aramid weave grips well, but spin sits mid-pack."
+    }
+   }
+  },
+  "six-zero-coral-16mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 4 foam built for placement: firepower 54, serve ~54th pct, average pop",
+     "line": "Foam core built for placement gives average pop."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Control score 84 (5/5), low 110 SW, stable; mishits stay in play",
+     "line": "Soft, stable and forgiving, so mishits stay in play."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,259 RPM (Matt), 2,187 (PPA lab): about average spin",
+     "line": "About average spin."
+    }
+   }
+  },
+  "honolulu-j2cr": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "CR core trampoline: 60.4 mph serve, 39.2 mph pop; PE firepower 78th pct",
+     "line": "Trampoline-style core gives strong pop and plenty of drive pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Hybrid with big sweet spot, but deep flex/pop makes soft game demanding",
+     "line": "Big sweet spot, but the deep flex and pop make the soft game demanding."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "Crystal Blue grit: 2,471 RPM (Matt), Tier 1 durability; elite",
+     "line": "Tough, durable grit puts it among the spinniest faces."
+    }
+   }
+  },
+  "honolulu-j6cr": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Elongated CR: Pickleheads 10/10 power, hits like Boomstik/CRBN Waves; 60.7 mph serve",
+     "line": "Elongated shape with a hot core hits with elite power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Power hard to tame on serves/returns; less forgiving and slower than J2CR",
+     "line": "Power is hard to tame on serves and returns, and it's less forgiving."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "Crystal Blue: 2,463 RPM (Matt), ~2,120 (PE); elite durable grit",
+     "line": "Rough, durable grit makes it one of the spinniest faces."
+    }
+   }
+  },
+  "vatic-pro-v-sol-pro": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm floating EPP foam, Flash: firepower 80, pop 39.3 mph (90th pct); trampoline pop",
+     "line": "Floating foam core gives trampoline pop and top-end power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 3/5; hollow, hot pop is less forgiving on touch shots",
+     "line": "Hollow, hot pop is less forgiving on touch shots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon peel ply: 2,215-2,256 RPM across shapes; medium",
+     "line": "Raw carbon face gives medium spin."
+    }
+   }
+  },
+  "11six24-vapor-power": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3 PP core w/ EVA ring, CFC face; linear power, less pop than Pegasus",
+     "line": "Polypropylene core with an EVA ring gives linear power, a bit less pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Predictable pop that rarely gets you in trouble; good sweet spot",
+     "line": "Predictable pop that rarely gets you in trouble, with a good sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "CFC face: 2,139 RPM (Studio), 2,366 (Matt); above average",
+     "line": "Carbon face with texture gives above-average spin."
+    }
+   }
+  },
+  "six-zero-double-black-diamond-control": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "16mm Gen 2 honeycomb; very low pace (14mm firepower 16/100), you supply power",
+     "line": "A 16mm honeycomb gives very low pace, so you supply the power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Benchmark control paddle: soft, stable, resets and drops easy; 14mm firmer, less dwell",
+     "line": "Soft and stable, with easy resets and drops; a benchmark control paddle."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 raw carbon: ~2,018 RPM (Studio 16mm); average when new, wears",
+     "line": "Raw carbon gives average spin that wears down with use."
+    }
+   }
+  },
+  "bread-butter-loco-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Full foam, elite power: 60.9 mph serve, 39.1 mph pop; above Power 2 per PE ranking",
+     "line": "Full foam gives elite power and a big, hot pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "SW 114 / TW 6.75 balance; controlled for its power but still hot",
+     "line": "Controlled for its power, but still hot off the face."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon 2,273 RPM (Matt); Studio saw ~300 RPM loss after 100 games",
+     "line": "Raw carbon gives medium spin that fades with play."
+    }
+   }
+  },
+  "11six24-hurache-x-power-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Elongated Gen 4, highest SW (117) in line; 57 mph serve, top 10% power",
+     "line": "Elongated foam paddle with plenty of plow-through gives elite power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Least forgiving of Power 2 (TW 6.12); tight sweet spot, resets need care",
+     "line": "Tight sweet spot, so resets need care."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,092 RPM, very high on PE scale; Tier 1 durable grit",
+     "line": "Very high spin from a tough, durable grit."
+    }
+   }
+  },
+  "joola-perseus-pro-iv": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm Gen 3: 60.8 mph serve (83rd pct), firepower 66. 14mm: lighter (SW~113), crisper, poppier",
+     "line": "Strong serve pace and a bit of pop, with crisper feel in the thinner version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Plush dwell, decent touch but lively; Matt control 4/5, score 61",
+     "line": "Plush dwell and decent touch, though it stays lively."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Dual-cert face smoother: 2,048-2,236 RPM, Ra 5th pct; medium",
+     "line": "Smoother face gives medium spin."
+    }
+   }
+  },
+  "pickleball-apes-pulse": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Aggressive control: ~35th pct power, 50-60th pct pop (V/S); E shape a bit more power",
+     "line": "Control-minded build gives modest power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Foam-ring perimeter absorbs pace, crisp feedback; V shape very forgiving (TW 7.4)",
+     "line": "Foam-ring edges absorb pace for crisp feedback and a very forgiving face."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Aramid/nylon face: 1,971-1,978 RPM, 'high' on PE's scale",
+     "line": "Aramid and nylon face gives above-average spin."
+    }
+   }
+  },
+  "enhance-mpp-turbo": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm MPP foam, EVA ring; 84th-pct power in Pickleball Effect tests, near the top of market",
+     "line": "Foam core with an EVA ring puts it near the top of the market for power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft dwell and connected feel; dinks/resets reliable, forgiving face",
+     "line": "Soft dwell and a connected feel make dinks and resets reliable."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw T700 CFC face; spin solid but standard for carbon fiber",
+     "line": "Raw carbon face gives standard spin for the material."
+    }
+   }
+  },
+  "six-zero-black-opal-14mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Gen 4 foam: 61.4 mph serve (98th pct), firepower 86; non-linear, hits very hard",
+     "line": "Gen 4 foam is non-linear and hits very hard."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 29 (2/5): 60% swing gives 80% output; demanding touch",
+     "line": "Demanding touch, since a partial swing can still send the ball a long way."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,307 RPM (87th pct, high) despite smoother Ra; durable grit",
+     "line": "High spin from a durable grit, even with a smoother face."
+    }
+   }
+  },
+  "luzz-cannon": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3 elongated: 61 mph serve (92nd pct), but low pop (33rd pct); baseline power",
+     "line": "Elongated paddle with a solid baseline of power but low pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 4/5, yet tight sweet spot hurts dinks and kitchen exchanges",
+     "line": "Tight sweet spot hurts dinks and kitchen exchanges."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 peel ply, 2,219 RPM; medium spin",
+     "line": "Medium spin from peeled-ply carbon."
+    }
+   }
+  },
+  "luzz-pro-4-inferno": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "MPP foam elongated: 61 mph serve (92nd pct), firepower 70; head-heavy",
+     "line": "Elongated foam paddle with a head-heavy feel gives strong serves."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively hollow feel; resets/dinks can float without soft hands",
+     "line": "Lively, hollow feel makes resets and dinks float without soft hands."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon 2,281 RPM (64th pct); grit wears quickly per reviews",
+     "line": "Raw carbon gives medium spin, and the grit wears quickly."
+    }
+   }
+  },
+  "11six24-pegasus-power": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3 widebody; most pop of the 2025 Power shapes (Studio)",
+     "line": "Widebody with the most pop of its line."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Big sweet spot (TW 7.21) but extra pop lifts drops/dinks",
+     "line": "Big sweet spot, but the extra pop lifts drops and dinks."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "CFC face: 2,103 RPM (Studio), 2,306 (Matt); above average",
+     "line": "Carbon face with texture gives above-average spin."
+    }
+   }
+  },
+  "spartus-apollo": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm thermoformed honeycomb widebody; decent drive power, light 108 SW",
+     "line": "Thermoformed honeycomb widebody gives decent drive power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Large sweet spot, high twist weight; plush Kevlar feel for dinks/resets",
+     "line": "Large sweet spot and a plush Kevlar feel for dinks and resets."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "100% Kevlar face, ~2,300 RPM claimed; no independent lab RPM found",
+     "line": "Kevlar face is claimed to spin well, so call it above average."
+    }
+   }
+  },
+  "11six24-pegasus-power-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 4 widebody: 56.9 mph serve (85th pct), firepower 71; lowest pop of line",
+     "line": "Widebody with strong serve pace but the lowest pop of its line."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Most forgiving Power 2 (TW 7.23), light 110 SW; easier resets",
+     "line": "The most forgiving of its line, so resets come easier."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,109 RPM very high; Tier 1 durability (98% Ra kept)",
+     "line": "Very high spin from a durable grit."
+    }
+   }
+  },
+  "spartus-olympus": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm foam-filled honeycomb; bottom of power / top of all-court (Studio)",
+     "line": "Foam-filled honeycomb gives middling power in an all-court build."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Good control for a 14mm, full feel; touchy dinks less forgiving",
+     "line": "Good control for a thinner core, though touch dinks are less forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon + fiberglass; no RPM published; reviews call spin good",
+     "line": "Raw carbon and fibreglass give average spin."
+    }
+   }
+  },
+  "bread-butter-loco-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Full foam, most power/plow of Loco shapes: 60.9 mph serve, SW 118.6",
+     "line": "Full foam gives the most power and plow-through of its line."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Low TW 6.05: least forgiving Loco; hot face on resets",
+     "line": "Least forgiving shape of its line, and the hot face makes resets harder."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon 2,270 RPM (Matt); medium and wears over time",
+     "line": "Raw carbon gives medium spin that wears over time."
+    }
+   }
+  },
+  "ronbus-quanta-r4-16": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "EPP foam hybrid: firepower 66, 60.6 mph serve; more with added weight",
+     "line": "Foam hybrid gives solid power, and more with added weight."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light (SW 104, TW 5.85) so needs tape for stability; good touch",
+     "line": "Light, so it may need tape for stability, but the touch is good."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Textured T700: 2,296 RPM (81st pct)",
+     "line": "Textured carbon gives above-average spin."
+    }
+   }
+  },
+  "crbn2-trufoam-genesis": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm TruFoam widebody; aggressive all-court, above-avg power, most pop of TFG",
+     "line": "Aggressive all-court widebody with above-average power and plenty of pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Most forgiving TFG (TW 6.7); fiberglass gives occasional extra pop",
+     "line": "The most forgiving of its line, with a little extra pop from fibreglass."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "1,992 RPM, 'high' on PE scale; Studio rates grit above Perseus Pro IV",
+     "line": "High spin, with grit that beats its sibling."
+    }
+   }
+  },
+  "vatic-pro-v-sol-tour": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm EPP foam, PE Power+ (power 95%, pop 91%); firm dense feel, needs effort",
+     "line": "Firm, dense foam gives top-end power, but it takes effort to swing."
+    },
+    "control": {
+     "dots": 3,
+     "note": "PE control 78%; poppy, drops/resets take time to dial in",
+     "line": "Poppy, so drops and resets take time to dial in."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "EverGrit 2,131-2,278 RPM; durability inconsistent between samples",
+     "line": "Textured face gives above-average spin, though durability varies."
+    }
+   }
+  },
+  "11six24-hurache-x-power": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3 elongated, SW 117; most leverage/plow of the 2025 Power shapes",
+     "line": "Elongated shape gives plenty of leverage and plow-through."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Pop aggressive but manageable; smallest sweet spot (TW 6.25) of the three",
+     "line": "Pop is aggressive but manageable, with the smallest sweet spot of the three."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "CFC face: 2,038 RPM (Studio), 2,316 (Matt)",
+     "line": "Carbon face with texture gives above-average spin."
+    }
+   }
+  },
+  "spartus-spitfire-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "EPP/EVA foam, thermoformed: 60.7 mph serve (78th pct), firepower 70",
+     "line": "Thermoformed foam gives strong serves and good drive pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy, TW 6.2 (forgiveness 2/5); controllable power, decent dwell",
+     "line": "Head-heavy with a small sweet spot, but the power is controllable."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PermagritNano 2,347 RPM (91st pct) new; owner reports of bite fading ~50h",
+     "line": "Nano-textured grit gives high spin, though the bite can fade with play."
+    }
+   }
+  },
+  "11six24-ultre-jelly-bean-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm EMA foam control line; 59.9 mph serve = field avg; heavy 122 SW adds plow",
+     "line": "Control-focused foam paddle gives average pace, with weight adding plow."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft, dense, absorbs pace; heavy swing slows hands in fast exchanges",
+     "line": "Soft and dense, it absorbs pace, though the heavy swing slows hands in fast exchanges."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit: 2,398 RPM (Matt), 2,397 (STS); elite and durable",
+     "line": "Elite spin from a durable grit."
+    }
+   }
+  },
+  "ronbus-quanta-r3-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "EPP foam elongated: firepower 72, pop 39.2 mph (82nd pct, 5/5)",
+     "line": "Elongated foam paddle gives strong pace and lively pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Stock TW 5.6 (2nd pct): thin feel, harsh edge drop-off; needs weight",
+     "line": "Thin feel and a tiny sweet spot on the stock build, so resets need more weight."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Low-Ra T700 (2.6th pct): 2,265 RPM, medium",
+     "line": "Smoother carbon gives medium spin."
+    }
+   }
+  },
+  "crbn3-trufoam-genesis": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm TruFoam elongated (5.25in handle), SW ~121; more drive power, less pop",
+     "line": "Thicker foam core elongated paddle gives more drive power and less pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Heavier but more stable than TFG1; still needs adjustment on resets",
+     "line": "Heavier and more stable than the first version, but resets still need adjusting."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "~2,000+ RPM on TFG line, 'high' on PE scale",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "vatic-pro-saga": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Saga Flash 16mm: firepower 37, pop 19th pct; must supply pace. 14mm crisper, more pop",
+     "line": "Soft-pop paddle where you supply the pace."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Control score 88 (5/5), solid dwell, good resets and touch",
+     "line": "Solid dwell and good touch make resets easy."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,284 RPM (68th pct) on coarse peel-ply carbon",
+     "line": "Coarse peeled carbon gives about average-plus spin."
+    }
+   }
+  },
+  "11six24-vapor-alpha-pro-power": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm Gen 3 PP+foam; firepower 40, serve 31st pct, avg pop",
+     "line": "Polypropylene and foam core gives average pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 93 (5/5), stable TW 6.8; some core-crush reports",
+     "line": "Stable, with good touch, though some report the core crushing."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon/fiberglass face: 2,218 RPM, medium",
+     "line": "Carbon and fibreglass face gives medium spin."
+    }
+   }
+  },
+  "crbn1-trufoam-genesis": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm TruFoam elongated: PE power 89%, more drive power than TFG2, less pop",
+     "line": "Thicker core gives more drive power than its sibling, with less pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low TW 5.7: small sweet spot stock; fiberglass layer adds some unexpected pop",
+     "line": "Small stock sweet spot, with a fibreglass layer adding unexpected pop."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,036 RPM, 'very high' on PE scale (spin 95%)",
+     "line": "Very high spin for a textured face."
+    }
+   }
+  },
+  "joola-agassi-pro": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm Gen 3 Propulsion core, Perseus-like pop/power. 14mm lighter, hotter, less control",
+     "line": "Propulsion-style core gives strong pop and power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively response, SW 117 limits hand speed; big sweet spot helps",
+     "line": "Lively response and a big sweet spot, but the heavy swing limits hand speed."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Dual-cert raw carbon: 1,997 RPM (Studio); average",
+     "line": "Raw carbon gives average spin."
+    }
+   }
+  },
+  "six-zero-ruby-pro-14mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm thermoformed honeycomb: firepower 55, serve 36th pct, pop 74th pct",
+     "line": "Thermoformed honeycomb gives middling serve power, with decent pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Firm, predictable; control 4/5 (score 61) but small sweet spot",
+     "line": "Firm and predictable at the kitchen, if a little unforgiving off-centre."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Diamond Tough aramid, Ra 93rd pct & durable; measured 2,257 RPM is mid-pack",
+     "line": "Durable aramid grit gives above-average spin."
+    }
+   }
+  },
+  "gearbox-gx2-power-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "SST carbon-tube core: low-90s pct power, high-70s pop; near JOOLA Pro IV",
+     "line": "Carbon-tube core gives top-end power and plenty of pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Long dwell, resets easier than Pro IV; high launch can float rolls/drives",
+     "line": "Long dwell eases resets, but the high launch can float rolls and drives."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "~2,050 RPM, 'very high' on PE scale; weaker on soft shots",
+     "line": "High spin, though weaker on soft shots."
+    }
+   }
+  },
+  "joola-hyperion-pro-iv": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm Gen 3: 60.9 mph serve (88th pct), firepower 66. 14mm: lighter, crisper, more pop",
+     "line": "Strong serve pace with a crisper, poppier thin version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 57 (3/5); pop-heavy feel needs adjustment on touch shots",
+     "line": "Pop-heavy feel needs adjusting on touch shots."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "2,187 RPM (21st pct, low) on dual-cert face",
+     "line": "Below-average spin from a smoother face."
+    }
+   }
+  },
+  "11six24-pegasus-jelly-bean-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "EMA foam control widebody: 55.7 mph serve (27th pct), pop 22nd pct",
+     "line": "Control widebody gives low serve pace and little pop."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Control+; soft dense, light 107 SW, TW 7.03; easiest resets in line",
+     "line": "Soft and dense with the easiest resets in its line."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,111 RPM (93rd pct PE), 2,407 (Matt); Tier 1 durable",
+     "line": "Very high spin from a tough, durable grit."
+    }
+   }
+  },
+  "bread-butter-loco-standard": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Full foam widebody: 60.6 mph serve, 39.4 mph pop; PE firepower 66th pct",
+     "line": "Full-foam widebody gives strong pace and pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Most forgiving Loco (TW 7.3), quick 110 SW; still a hot power face",
+     "line": "The most forgiving of its line, and quick, but still a hot power face."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon 2,285 RPM (Matt), 2,004 (PE); lowest Ra of Loco shapes",
+     "line": "Raw carbon gives medium spin, with the lowest texture of its shapes."
+    }
+   }
+  },
+  "paddletek-bantam-tko-cx": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14.3mm Gen 1 elongated: firepower 45, avg serve; heavy 122 SW gives plow",
+     "line": "Heavy elongated paddle with average pace, and plow-through from the weight."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 4/5 but forgiveness 2/5; 12.7mm version hotter, harder to control",
+     "line": "Good control on paper, but forgiveness is lacking, and the thinner version is hotter."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PT-700 raw carbon: 2,302 RPM (84th pct)",
+     "line": "Raw carbon gives above-average spin."
+    }
+   }
+  },
+  "enhance-duo": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm foam w/ EVA band: 89th pct power (Matt); PE mid-tier, controlled power",
+     "line": "Foam core with an EVA band gives controlled but strong power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Dense, predictable for a foam power paddle; PE control 81%, solid sweet spots",
+     "line": "Dense and predictable for a foam power paddle, with solid sweet spots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon: 2,270 RPM (Matt); good but not elite",
+     "line": "Raw carbon gives good but not elite spin."
+    }
+   }
+  },
+  "paddletek-bantam-esq-c": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 1 but among hardest hitters, big pop; 14.3mm rated, 12.7mm hotter still",
+     "line": "Among the hardest hitters, with big pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Small Gen 1 sweet spot plus pop make soft game hard; 14.3mm friendlier",
+     "line": "Small sweet spot plus pop makes the soft game hard."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Raw T700: 2,312 RPM (Matt, 14.3mm); above average",
+     "line": "Raw carbon gives above-average spin."
+    }
+   }
+  },
+  "rpm-jade-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm MPP foam: 57.1 mph serve (93rd pct), pop 72nd; light 113 SW",
+     "line": "Foam core gives strong serve pace in a light build."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Pop calmer than power so resets OK; low TW 5.94 benefits from tape",
+     "line": "Pop is calmer than the power, so resets are fine, though tape may help the light head."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "SICmatrix 2,170 RPM (top 10 of 383 PE); 96% grit retained",
+     "line": "Among the top spin faces, and the grit keeps its bite."
+    }
+   }
+  },
+  "joola-perseus-pro-v": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm: PE firepower 62, Matt 55; linear Gen 3 power. 14mm: lighter (SW 115), similar pace",
+     "line": "Linear power from a firm core, and the thin version is similar in pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 61 (4/5); more muted than Pro IV, predictable on resets",
+     "line": "More muted than its sibling and predictable on resets."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,288 RPM (73rd pct, Matt), 2,060 'high' on PE; same spin in 14mm",
+     "line": "Textured carbon gives above-average spin, and the same in the thinner build."
+    }
+   }
+  },
+  "joola-hyperion-pro-v": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "No radar data; Perseus Pro V layup (avg pace), longer handle. 14mm: 7.8oz, SW 111, crisper",
+     "line": "Average pace from a Pro-style layup, with a longer handle for leverage."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt: controlled, predictable; soft-dense feel; PE TW 6.17 mid sweet spot",
+     "line": "Controlled and predictable, with a soft, dense feel and a mid-sized sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Pro V faces measure 2,276-2,290 RPM (Matt), upper half; texture wears ~40-60h",
+     "line": "Upper-half spin from a textured face, though the texture wears over time."
+    }
+   }
+  },
+  "joola-scorpeus-pro-v": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm: firepower 60, serve 45th pct but pop 74th; 14mm measures nearly the same (60.1 mph)",
+     "line": "Medium pace, and the thin version is about the same."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 77, TW 7.15 (89th pct); one of the most stable widebodies",
+     "line": "One of the more stable widebodies, with good touch."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,290 RPM (76th pct, Matt); 14mm 2,276 RPM",
+     "line": "Above-average spin from textured carbon."
+    }
+   }
+  },
+  "selkirk-labs-project-boomstik-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Gen 4 foam: PE firepower 95 (power 93%, pop 98%); Matt 60.8 mph serve",
+     "line": "Gen 4 foam hits very hard, with serve pace to match."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 4/5 but forgiveness 3/5; hot pop needs soft hands",
+     "line": "Hot pop needs soft hands."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,989 RPM (medium, grit tier 3); Matt 2,294 RPM; average-plus",
+     "line": "Average-plus spin from a mid-range grit."
+    }
+   }
+  },
+  "selkirk-labs-project-boomstik-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "PE firepower 87, pop 96th pct; slightly less plow than the Elongated",
+     "line": "Very strong pop, with slightly less plow than the elongated version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 7.72 very stable, but foam pop makes drops/resets lively",
+     "line": "Very stable, but foam pop makes drops and resets lively."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,980 RPM, medium; InfiniGrit durability tier 3",
+     "line": "Medium spin from an average grit."
+    }
+   }
+  },
+  "selkirk-luxx-control-air-invikta": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "19mm InfiniGrit LUXX: PE firepower 12 (serve 11th pct); you supply all pace",
+     "line": "Very thick core gives low power; you supply all the pace."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Plush, very low pop (13th pct); among the easiest paddles for dinks/resets",
+     "line": "Plush and very low in pop; among the easiest paddles for dinks and resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "InfiniGrit lifts it to 1,993 RPM (medium) vs 1,858 on old 20mm LUXX",
+     "line": "Textured face lifts it to medium spin."
+    }
+   }
+  },
+  "selkirk-luxx-control-air-epic": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Not lab-tested; same 19mm core as Invikta (PE firepower 12); drives need big swings",
+     "line": "Thick core gives drives little help, so they need big swings."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Plush dinks and resets; wide face, higher TW than Invikta",
+     "line": "Plush dinks and resets, with a wide face."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "InfiniGrit face; Invikta sibling 1,993 RPM (medium); reviewers note strong spin",
+     "line": "Textured face gives medium spin, with strong spin reported."
+    }
+   }
+  },
+  "selkirk-slk-halo-power-max": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm Rev-Control core, light SW; reviewers found drive power underwhelming",
+     "line": "Light build and a control core mean drive power is underwhelming."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Easy dinks and blocks, widebody sweet spot; dies a bit on edge hits",
+     "line": "Easy dinks and blocks with a widebody sweet spot, though edge hits die a bit."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw Spin carbon: 'good, not great' vs other raw carbon; no lab RPM",
+     "line": "Raw carbon gives good, not great, spin."
+    }
+   }
+  },
+  "selkirk-slk-halo-power-xl": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "13mm Gen 1 core: more pop than 16mm Halo but PE kept it out of the power category",
+     "line": "Thin core gives more pop than thicker versions, but it's still not a power paddle."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firmer 13mm; resets need more touch, smaller forgiveness than Control XL",
+     "line": "Firmer thin core means resets need more touch."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE and testers: 1,400-1,450 RPM (old scale), below other raw carbon",
+     "line": "Raw carbon gives spin a touch under other raw faces."
+    }
+   }
+  },
+  "six-zero-double-black-diamond-control-15mm-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "15mm extra-elongated: PE firepower 43, serve 45th pct; more reach than 16mm DBD",
+     "line": "Extra-elongated shape gives more reach and moderate drive power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Gen 2 control layup, SW 122 but low TW 5.74; less forgiving than DBD hybrid",
+     "line": "Control layup that stays precise, though the small sweet spot is less forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,931 RPM (low); raw T700 wears like other DBDs",
+     "line": "Raw carbon gives middling spin and wears like similar faces."
+    }
+   }
+  },
+  "crbn3-trufoam-waves": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm TruFoam: PE firepower 56 (power 62%); plow from SW 119 elongated",
+     "line": "Thick foam gives plow-through from an elongated shape."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 6.61 steadier than Waves 1; foam pop still lively on resets",
+     "line": "Steadier than its predecessor, though foam pop still makes resets lively."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 1,988 RPM; scored like CRBN TruFoam Genesis siblings",
+     "line": "Textured face gives above-average spin."
+    }
+   }
+  },
+  "crbn1-trufoam-barrage": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Not lab-tested; Barrage 2/4 hit firepower 67-72; elongated SW ~118, pop-forward",
+     "line": "Pop-forward elongated paddle with strong drive power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm, pop-forward face; TW ~6.0 so off-center less stable",
+     "line": "Firm, pop-forward face, so off-centre hits are less stable."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Barrage siblings 2,084-2,091 RPM (very high) but PE grit tier 4: capped at 4",
+     "line": "High spin, though the grit tier caps it a notch below the very best."
+    }
+   }
+  },
+  "engage-pursuit-pro-ex-15-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "= EX 6.0 (15.2mm Gen 1): PE firepower 34, serve 32nd pct",
+     "line": "Thick first-gen core gives low power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Thick Gen 1 widebody, TW 7.37: stable, easy blocks and drops",
+     "line": "Thick widebody gives stable, easy blocks and drops."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,946 RPM (low); raw carbon reviewers rate spin good",
+     "line": "Raw carbon gives average spin, though it feels good on the court."
+    }
+   }
+  },
+  "engage-pursuit-pro-ex-12-7": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "= EX (13mm Gen 1): PE firepower 42, pop 62nd pct; crisper than 15.2",
+     "line": "Thin core is crisper than the thick version, with modest-to-average power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Thinner core, lower TW 6.77: poppier, less forgiving on resets",
+     "line": "Thinner core makes it poppier and less forgiving on resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,952 RPM (low/average)",
+     "line": "Raw carbon gives about average spin."
+    }
+   }
+  },
+  "engage-pursuit-pro1-elongated-15-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Pro1 6.0 Power 15.2: Matt firepower 10 (57.9 mph); PE 46. Low free pace",
+     "line": "Low free pace from a thick core."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 87 (5/5); soft absorbent face, TW 6.55",
+     "line": "Soft, absorbent face with good control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,231 RPM (Matt, 38th pct); PE 1,959 RPM",
+     "line": "Medium spin from a raw face."
+    }
+   }
+  },
+  "engage-pursuit-pro1-elongated-12-7": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Pro1 13mm Gen 1: PE firepower 46, pop 51st pct; more pop than 15.2",
+     "line": "Thin first-gen core gives more pop than the thick version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Thinner core, TW 5.94: livelier, smaller sweet spot than 15.2",
+     "line": "Thin core means it's livelier, with a smaller sweet spot."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,956 RPM; raw T700, average",
+     "line": "Raw carbon gives average spin."
+    }
+   }
+  },
+  "paddletek-bantam-tko-c": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "14.3 rated: PE firepower 88, pop 98th pct. 12.7: pop 100th pct, even hotter",
+     "line": "Trampoline pop gives some of the highest power, and the thinnest version is hotter still."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Gen 1 trampoline pop; dinks/resets fly without soft hands",
+     "line": "First-gen trampoline pop sends dinks and resets flying without soft hands."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,910 RPM (low) on PT-700 raw carbon",
+     "line": "Raw carbon gives middling spin."
+    }
+   }
+  },
+  "paddletek-tempest-wave-pro-c": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "14.3mm Gen 1: Matt firepower 26, PE 18; you supply the pace",
+     "line": "Thick first-gen core means you supply the pace."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Matt control 91, TW 7.15 (89th pct); very forgiving touch paddle",
+     "line": "Very forgiving touch paddle with a stable sweet spot."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,286 RPM (Matt, 70th pct) but PE 1,835 (low)",
+     "line": "Raw carbon gives about average spin."
+    }
+   }
+  },
+  "franklin-c45-dynasty": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm: firepower 45 (Matt), PE 45. 14mm: PE firepower 61, crisper and quicker",
+     "line": "The thicker core gives modest power; the thinner one is crisper and quicker."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control 57, TW 6.05 (forgiveness 2/5); 16mm adds dwell on resets",
+     "line": "Moderate forgiveness, though the thicker core adds dwell on resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,245 RPM (Matt, 43rd pct); PE 2,034 'high'",
+     "line": "Raw carbon gives middling spin."
+    }
+   }
+  },
+  "franklin-c45-aurelius": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm rated: firepower 45, serve 36th pct. 14/12.7mm lighter, crisper and poppier",
+     "line": "Thick core gives modest power; thinner versions are crisper and poppier."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 73, forgiveness 4/5; tiny 99.6 SW = very fast hands",
+     "line": "Very fast hands from a tiny, light head, with good forgiveness."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,269 RPM (Matt), 2,310 (PPA lab); about average",
+     "line": "Raw carbon gives about average spin."
+    }
+   }
+  },
+  "head-radical-pro-ex15": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "15mm Gen 3: PE firepower 40, power 52nd pct, pop 27th",
+     "line": "Modest power from a third-gen core."
+    },
+    "control": {
+     "dots": 4,
+     "note": "PE Control+, TW 6.56 stable; predictable on resets",
+     "line": "Stable and predictable on resets."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "PE 1,945 RPM (low)",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "head-gravity-pro-ex15": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "15mm Gen 4: PE firepower 39, serve 28th pct; modest pace",
+     "line": "Modest pace from a fourth-gen core."
+    },
+    "control": {
+     "dots": 4,
+     "note": "PE Control+; light SW 111 but TW 5.3 shrinks sweet spot",
+     "line": "Light, but the sweet spot shrinks, though control remains good."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,040 RPM ('high')",
+     "line": "Textured face gives above-average spin."
+    }
+   }
+  },
+  "head-boom-pro-ex15": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "15mm TriFlex full-foam elongated: good pop and depth; no PE/Matt radar yet",
+     "line": "Full-foam elongated paddle gives good pop and depth."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Hot spot and low TW; touch takes adjustment, tape helps",
+     "line": "Hot spot and a small sweet spot mean touch takes adjusting, and tape helps."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Johnkew measured 2,300+ RPM on textured raw carbon",
+     "line": "Textured raw carbon gives strong spin."
+    }
+   }
+  },
+  "joola-kosmos-pro-v": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm hybrid: PE firepower 59, Matt 60.4 mph (54th pct). 14mm a touch lighter",
+     "line": "Hybrid core gives average pace, with a lighter thin version."
+    },
+    "control": {
+     "dots": 4,
+     "note": "TW 6.75 (73rd pct), All-Court+; stable and predictable",
+     "line": "Stable and predictable with a good-sized sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,283 RPM (Matt), 2,057 'high' (PE)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "joola-agassi-pro-v": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm: controlled, player-generated power, less pop than Agassi Pro. 14mm quicker",
+     "line": "Controlled power that you generate, with less pop than its sibling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Thicker core adds dwell; big sweet spot (PE TW 6.25), strong resets",
+     "line": "Thicker core adds dwell and a big sweet spot for strong resets."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Pro V faces 2,276-2,290 RPM (Matt), upper half",
+     "line": "Textured carbon gives above-average spin."
+    }
+   }
+  },
+  "joola-graf-pro-v": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Same layup as Agassi Pro V with 4.125in grip; strong baseline pace",
+     "line": "Strong baseline pace, similar to its sibling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Predictable launch; moderate TW makes late blocks less forgiving",
+     "line": "Predictable launch, though late blocks are less forgiving."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Pro V textured carbon, high spin per reviewers (2,276-2,290 RPM line)",
+     "line": "Textured carbon gives high spin."
+    }
+   }
+  },
+  "joola-radius-pro-v": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "No lab data; 16mm Pro V core in short-handle widebody, less leverage",
+     "line": "Short-handle widebody gives less leverage, so pace is average."
+    },
+    "control": {
+     "dots": 4,
+     "note": "JOOLA's largest sweet spot, foam-injected walls; built for kitchen play",
+     "line": "Largest sweet spot of the line, with foam-injected walls built for kitchen play."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Same Pro V textured face (2,276-2,290 RPM on tested shapes)",
+     "line": "Textured carbon face gives above-average spin."
+    }
+   }
+  },
+  "joola-perseus-power-fx": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 4 foam: PE firepower 61 (power 66%, pop 56%)",
+     "line": "Gen 4 foam gives good pace without being a true power paddle."
+    },
+    "control": {
+     "dots": 3,
+     "note": "PE All-Court+; light SW 114 but TW 6.1 so edges less stable",
+     "line": "Light and quick, but edges are less stable."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,097 RPM very high (PE), 2,147 (Kew) but ~15% loss after wear",
+     "line": "Very high spin when new, though the grit wears with play."
+    }
+   }
+  },
+  "joola-perseus-cfs": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "New 16mm Gen 1 CFS; old Perseus 16 measured firepower 4 on PE",
+     "line": "New first-gen core gives little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Fast hands, low SW ~116; controlled but small sweet spot",
+     "line": "Fast hands and controlled, but the sweet spot is small."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Carbon Friction Surface; tested near high-1700s RPM (low)",
+     "line": "Smooth friction surface gives below-average spin."
+    }
+   }
+  },
+  "joola-scorpeus-pro-iv": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm: PE firepower 71 (pop 71%); 14mm 63, similar pace",
+     "line": "Strong pace on drives, and the thinner version plays much the same."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Big widebody sweet spot (TW 7.09) but Pro IV pop on resets",
+     "line": "Big widebody sweet spot, but the pop shows up on resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 2,027 RPM 16mm, 2,002 14mm; Pro IV face smoother",
+     "line": "Smoother face gives about average spin."
+    }
+   }
+  },
+  "joola-magnus-pro-iv": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm: firepower 63, 61.4 mph serve. 14mm: firepower 66, more pop",
+     "line": "Strong drives, and the thinner version adds more pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "16mm control 72 vs 55 for 14mm; heavier swing",
+     "line": "Thicker core gives better control, but the heavier swing slows hands."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,216 RPM 16mm, 2,190 14mm (Matt): below median",
+     "line": "Raw carbon gives medium spin, a touch under the middle."
+    }
+   }
+  },
+  "joola-graf-pro": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Agassi Pro build with smaller grip: lively Gen 3 drive power",
+     "line": "Lively third-gen core gives strong drive power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Dwell and upper-face sweet spot; higher SW slows hands",
+     "line": "Good dwell and a sweet spot high on the face, though the heavier head slows hands."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Dual-cert raw carbon; good spin per reviewers, ~average lab",
+     "line": "Raw carbon gives average spin that many find good."
+    }
+   }
+  },
+  "joola-perseus-3s-dual": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm rated; dual-cert core toned down from 3S (3S 14mm FP 75). 14mm poppier",
+     "line": "Toned-down core gives middling power, and the thinner version is poppier."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Easy, predictable power; good touch for a Gen 3",
+     "line": "Easy, predictable power with good touch for a third-gen core."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Smoother dual-cert face; testers say spin reduced vs original 3S",
+     "line": "Smoother face gives reduced, average spin."
+    }
+   }
+  },
+  "joola-scorpeus-3s-dual": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm Gen 3: 'mid-tier power', less pop than Pro IV per testers",
+     "line": "Mid-tier power with less pop than the more powerful models."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average sweet spot stock; resets OK when connected",
+     "line": "Average sweet spot, and resets are fine when you stay connected."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Tester: one of the smoothest faces, spin clearly below original 3S",
+     "line": "One of the smoothest faces, so spin is clearly below average."
+    }
+   }
+  },
+  "joola-hyperion-3s-dual": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm: 'easy, accessible' power, consistent not explosive",
+     "line": "Easy, accessible power that is consistent rather than explosive."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Forgiving, smooth control; extra margin on defensive shots",
+     "line": "Forgiving, smooth control with extra margin on defensive shots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Peel-ply face; reliable but not top spin",
+     "line": "Peeled-ply face gives reliable but not top spin."
+    }
+   }
+  },
+  "joola-magnus-3s-dual": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "No tests; 14mm dual-cert 3S core, toned down vs original 3S",
+     "line": "Toned-down core gives average power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Gen 3 elongated, thinner core: lively on touch shots",
+     "line": "Elongated shape with a thinner core is lively on touch shots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Dual-cert faces reported smoother than original 3S",
+     "line": "Smoother face gives average spin."
+    }
+   }
+  },
+  "joola-scorpeus-3s": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm: PE firepower 50 (pop 56%); 16mm hotter pop (96th pct)",
+     "line": "Thin core gives average drive power, with a hotter pop in the thicker version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 6.78 forgiving widebody, but Gen 3 pop on soft shots",
+     "line": "Forgiving widebody, but the core pop shows on soft shots."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,068 RPM ('high'); gritty original 3S face",
+     "line": "Gritty face gives high spin."
+    }
+   }
+  },
+  "joola-magnus-3s": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm Gen 3 elongated like Perseus 3S 14 (PE firepower 75); 16mm 60.6 mph (Matt)",
+     "line": "Elongated third-gen core gives strong drive power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Heavy-ish, lively pop; touch needs adjustment",
+     "line": "Fairly heavy and lively, so touch needs adjusting."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "14mm 2,049 RPM (PE review); 16mm 2,177 (Matt), 1,949 (PE)",
+     "line": "Average spin in either thickness."
+    }
+   }
+  },
+  "joola-hyperion-cas": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm Gen 2 control core; less power than the CFS 16",
+     "line": "Control core gives less power than its sibling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft, forgiving, lighter than CFS; good for dinks and resets",
+     "line": "Soft, forgiving and lighter, so dinks and resets come easily."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Gritty CAS face gives good spin when new but wears faster",
+     "line": "Gritty face gives good spin when new, but wears faster."
+    }
+   }
+  },
+  "joola-hyperion-vision": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "$90 cold-pressed 16mm; average-to-low power, needs effort on drives",
+     "line": "Cold-pressed core gives low-to-average power and needs effort on drives."
+    },
+    "control": {
+     "dots": 4,
+     "note": "16mm core keeps dinks and resets controlled and forgiving",
+     "line": "Thick core keeps dinks and resets controlled and forgiving."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Textured carbon face praised for bite; no lab RPM",
+     "line": "Textured carbon face gives good spin bite."
+    }
+   }
+  },
+  "joola-hyperion-double-vision": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm aramid with SK film; soft feel, modest pace",
+     "line": "Aramid face with a soft feel gives modest pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Softer, controlled feel; smaller sweet spot than Scorpeus shape",
+     "line": "Softer, controlled feel with a small sweet spot."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Aramid face; decent spin, no lab RPM",
+     "line": "Aramid face gives decent spin."
+    }
+   }
+  },
+  "joola-perseus-double-vision": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Most powerful Double Vision shape per JOOLA; still 16mm intermediate",
+     "line": "Most powerful shape in its line, though still an intermediate core."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Elongated, less forgiving than Scorpeus shape",
+     "line": "Elongated shape is less forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Aramid face; decent spin, no lab RPM",
+     "line": "Aramid face gives decent spin."
+    }
+   }
+  },
+  "joola-scorpeus-double-vision": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm widebody intermediate; lower power than Perseus shape",
+     "line": "Widebody with an intermediate core gives lower power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Most forgiving, maneuverable shape in the line",
+     "line": "The most forgiving, manoeuvrable shape in its line."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Aramid face; decent spin, no lab RPM",
+     "line": "Aramid face gives decent spin."
+    }
+   }
+  },
+  "joola-perseus-heat-vision": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm textured carbon, elongated reach for drives; mid-level pace",
+     "line": "Textured carbon and an elongated shape give mid-level pace and reach on drives."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Less forgiving face; testers note dead spots",
+     "line": "Less forgiving face with some dead spots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured carbon; reasonable spin, no lab RPM",
+     "line": "Textured carbon gives reasonable spin."
+    }
+   }
+  },
+  "joola-scorpeus-heat-vision": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm widebody intermediate; modest power",
+     "line": "Widebody with an intermediate core gives modest power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Forgiving, wide face; good for defense and fast hands",
+     "line": "Forgiving, wide face, good for defence and fast hands."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured carbon; reasonable spin, no lab RPM",
+     "line": "Textured carbon gives reasonable spin."
+    }
+   }
+  },
+  "joola-agassi-edge": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm Gen 1 control build; reduced power and pop",
+     "line": "Control build gives reduced power and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft, predictable dinks/resets; PE TW 5.47 small sweet spot",
+     "line": "Soft, predictable dinks and resets, though the sweet spot is small."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured carbon, spin-friendly for its tier; no lab RPM",
+     "line": "Textured carbon gives fair, spin-friendly bite for its class."
+    }
+   }
+  },
+  "joola-graf-edge": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Same paddle as Agassi Edge with 4.125in grip; low pop",
+     "line": "Low pop and little free pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft 16mm core, predictable on touch shots",
+     "line": "Soft core is predictable on touch shots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured carbon, spin-friendly for its tier; no lab RPM",
+     "line": "Textured carbon gives fair, spin-friendly bite for its class."
+    }
+   }
+  },
+  "selkirk-slk-era-power": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Elongated rated: firepower 45 (Matt), 44 (PE); reviewers feel more pop",
+     "line": "Elongated shape gives modest power, with a bit more pop than expected."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 74; bigger sweet spot than most elongated power paddles",
+     "line": "Bigger sweet spot than most elongated power paddles, with good touch."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,155 RPM (low) vs PE 2,020 (medium); reviewers rate it high",
+     "line": "Medium spin, though some feel it plays better than it looks."
+    }
+   }
+  },
+  "selkirk-omni-pro": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "UPA-A OMNI: same Gen 4 core; PE firepower 64 with MOI weights",
+     "line": "Gen 4 core gives good pace, steadied by weights."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Less pop than Boomstik, resets stay low; MOI weights add stability",
+     "line": "Less pop than the harder-hitting model, so resets stay low and the weights add stability."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "OMNI 2,059-2,064 RPM ('high'); InfiniGrit durability tier 3",
+     "line": "High spin, and the grit holds up reasonably well."
+    }
+   }
+  },
+  "selkirk-slk-dauntless": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Elongated rated: PE firepower 34, 55.9 mph serve; Widebody also 34",
+     "line": "Low power from an elongated shape, and the widebody plays much the same."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control+ foam; good touch and consistency, Widebody TW 7.36",
+     "line": "Foam core gives good touch and consistency, with a stable widebody."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Elongated 2,064 RPM ('high'); Widebody 2,020 (medium)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "selkirk-slk-geo": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "14mm polypro budget build; functional power, not a weapon",
+     "line": "Budget core gives functional power, but it's not a weapon."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Big sweet spot (WB TW 7.5), predictable resets for developing players",
+     "line": "Big, predictable sweet spot for developing players."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 raw carbon bite; one tester found spin limited",
+     "line": "Raw carbon bite is decent, though some find spin limited."
+    }
+   }
+  },
+  "selkirk-slk-valkyrie": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm polypro + fiberglass; some pop but limited put-away power",
+     "line": "Fibreglass-faced core has some pop, but limited put-away power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very forgiving widebody, easy to keep the ball in",
+     "line": "Very forgiving widebody that makes it easy to keep the ball in."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Fiberglass face; better than most cheap paddles but below carbon",
+     "line": "Fibreglass face spins better than most cheap paddles, but below carbon."
+    }
+   }
+  },
+  "selkirk-labs-project-007": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm rated: PE firepower 53 (Epic) / 56 (Invikta); 10mm much hotter",
+     "line": "Mid-level power, with a much hotter thinner version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Small sweet spot on Invikta (TW 5.94); Epic steadier (6.50)",
+     "line": "Small sweet spot on one version, steadier on the other."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,981-2,005 RPM (medium)",
+     "line": "Medium spin from an average grit."
+    }
+   }
+  },
+  "six-zero-boulder-opal-14mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Gen 4 foam: PE firepower 88 (power 99%); Matt 76, pop 5/5",
+     "line": "Gen 4 foam gives top-tier power and pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 40; dense and muted, a bit easier than Black Opal",
+     "line": "Dense and muted, so a bit easier to handle than its sibling."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,099 RPM very high (PE), 2,288 (Matt); smooth SharkSkin Ra",
+     "line": "Smooth, textured face gives high spin."
+    }
+   }
+  },
+  "six-zero-black-opal-14mm-elongated": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Not lab-tested; Black Opal hybrid PE firepower 94; elongated adds leverage",
+     "line": "Elongated shape adds leverage to an already hot hybrid."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Hybrid scored control 2/5; longer shape, TW ~6.0 less forgiving",
+     "line": "Control suffers, with a longer shape and a less forgiving sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Same face as hybrid: 2,024 RPM (PE), durable tier 1 grit",
+     "line": "Durable, tier-one grit gives high spin."
+    }
+   }
+  },
+  "six-zero-coral-16mm-lightweight": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Firepower 54, serve 45th pct; pop 4/5, crisper than standard Coral",
+     "line": "Moderate power and good pop, but crisper than the standard shape."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control 60, SW 107.65 very quick; less stable than standard Coral",
+     "line": "Very quick and controlled, but less stable than the standard version."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,278 RPM (Matt, 60th pct); Diamond Grit",
+     "line": "Diamond-grit face gives average spin."
+    }
+   }
+  },
+  "six-zero-infinity-edgeless-ruby": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm edgeless Ruby; moderate power and pop like the 16mm Ruby",
+     "line": "Edgeless 16mm core gives moderate power and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Foam walls and no edge guard: stable, good touch; heavy 8.5oz",
+     "line": "Foam walls and no edge guard give stable, good touch, though the paddle is heavy."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Aramid/Kevlar face; reviewers rate spin high, no lab RPM",
+     "line": "Aramid and Kevlar face gives decent spin."
+    }
+   }
+  },
+  "six-zero-sapphire": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "13mm Gen 2: Matt firepower 8 (56.9 mph); reviewers report decent pop",
+     "line": "Gen 2 core gives low power, though some feel a decent pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stiff, smaller sweet spot; resets 4/5 per Matt",
+     "line": "Stiff with a smaller sweet spot, though resets are still good."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "2,107 RPM (Matt, 8th pct, low)",
+     "line": "Low-spin face with limited bite."
+    }
+   }
+  },
+  "six-zero-quartz": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "15mm Gen 1: PE firepower 4 (serve 2nd pct); very low pace",
+     "line": "First-gen core gives very low pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Gen 1 control widebody; soft, but TW 6.43 only average",
+     "line": "Soft control widebody, though the sweet spot is only average."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "PE 1,949 RPM (low)",
+     "line": "Below-average spin from a mostly smooth face."
+    }
+   }
+  },
+  "six-zero-black-diamond-power": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm Gen 2: PE firepower 44; 14mm firepower 54, more pop",
+     "line": "Mid-level power, with the thinner core adding pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stiff, firm feel; dinks and drops harder than DBD Control",
+     "line": "Stiff, firm feel makes dinks and drops harder."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,981 RPM (medium); reviewers call spin very good",
+     "line": "Medium spin from a face that feels better than it plays."
+    }
+   }
+  },
+  "six-zero-infinity-edgeless-black-diamond-power": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "PE: 52.8 mph serve (2nd pct), firepower 8; fast hands, solid counters",
+     "line": "Low power, with fast hands and solid counters."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low SW 107 and TW 5.8: quick but twists off-center",
+     "line": "Quick, but it twists off-centre."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,990 RPM (medium); reviewers rate it top-tier",
+     "line": "Medium spin from a face many players like."
+    }
+   }
+  },
+  "crbn4-trufoam-genesis": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm hybrid: PE firepower 39, the calmest TFG shape",
+     "line": "Calmest shape of its line, with modest power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "PE Control+; SW 109 quick, TW 6.3",
+     "line": "Quick hands and a stable, controlled feel."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,040 RPM ('high', PE); grit tier 4",
+     "line": "High spin from a gritty, textured face."
+    }
+   }
+  },
+  "crbn1-trufoam-waves": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm TruFoam: PE firepower 53, serve power 66th pct",
+     "line": "Solid drive power from a foam core."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low TW 5.93: small sweet spot; pop needs touch",
+     "line": "Small sweet spot, and pop needs touch."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 1,995 RPM; consistent with TFG line scoring",
+     "line": "High spin, consistent with the line."
+    }
+   }
+  },
+  "crbn2-trufoam-waves": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm widebody: PE firepower 57, pop 62nd pct",
+     "line": "Widebody gives strong power with a hot pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "All-Court+, TW 7.02: most forgiving Waves",
+     "line": "The most forgiving of its line, and stable."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,021 RPM ('high')",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "crbn4-trufoam-waves": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm hybrid: PE firepower 50, power 45th pct",
+     "line": "Hybrid gives middling power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "TW 6.68, light 112 SW; balanced",
+     "line": "Balanced, light and controlled."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,056 RPM ('high')",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "crbn2-trufoam-barrage": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm widebody: PE firepower 67, pop 71st pct",
+     "line": "Widebody gives strong power with plenty of pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "All-Court+, TW 6.9 forgiving for a power foam",
+     "line": "Forgiving for a power foam, with a stable face."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,084 RPM very high but grit tier 4: capped at 4",
+     "line": "High spin, though the grit tier keeps it just below the top."
+    }
+   }
+  },
+  "crbn3-trufoam-barrage": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Not lab-tested; Barrage 2/4 firepower 67-72, CRBN³ adds plow (SW 119)",
+     "line": "Elongated shape adds plow to strong, pop-forward power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 6.54 steadier than CRBN¹; less hand speed",
+     "line": "Steadier than its predecessor, but with less hand speed."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Barrage line 2,084-2,091 RPM, grit tier 4: capped at 4",
+     "line": "High spin, though the grit tier keeps it just below the top."
+    }
+   }
+  },
+  "crbn4-trufoam-barrage": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm hybrid: PE firepower 72, pop 89th pct",
+     "line": "Hybrid gives strong power with a lot of pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "PE Power type; hot pop makes resets harder than Barrage 2",
+     "line": "Hot pop makes resets harder than on its sibling."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,091 RPM very high, grit tier 4: capped at 4",
+     "line": "High spin, though the grit tier keeps it just below the top."
+    }
+   }
+  },
+  "engage-alpha-pro": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm rated: firepower 55 (Matt), 51 (PE). 14mm: PE firepower 59, more pop",
+     "line": "Moderate power, with more pop in the thinner version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control 58, TW 6.1; less harsh than most Gen 3",
+     "line": "Less harsh than most third-gen cores, with a modest sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,085 RPM very high (PE), 2,278 (Matt, 60th pct)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "engage-encore-pro": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm polymer core, $70 carbon: some pop, not a power paddle",
+     "line": "Polymer core gives some pop, but it's not a power paddle."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Strong control for price, but small sweet spot",
+     "line": "Strong control for the price, but the sweet spot is small."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon face gives fair spin; no lab RPM",
+     "line": "Carbon face gives fair spin."
+    }
+   }
+  },
+  "engage-encore-16mm": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "No tests; $60 16mm polymer core with fiberglass face",
+     "line": "Budget polymer core and fibreglass face give low power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Recreational control paddle, soft 16mm core",
+     "line": "Recreational control paddle with a soft 16mm core."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Textured fiberglass; below-average spin expected",
+     "line": "Textured fibreglass gives below-average spin."
+    }
+   }
+  },
+  "engage-pursuit-pro-mx-15-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "= MX 6.0: PE firepower 51 (power 79%, pop 23%); heavy SW 125 plow",
+     "line": "Heavy elongated shape gives plow, with moderate power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stable but head-heavy; slower in hand battles",
+     "line": "Stable but head-heavy, so slower in hand battles."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Testers 2,057-2,258 RPM; raw carbon around average",
+     "line": "Raw carbon gives about average spin."
+    }
+   }
+  },
+  "engage-pursuit-pro-mx-12-7": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "= MX (13mm): PE firepower 52, pop 56th pct",
+     "line": "Thin core gives moderate power with some pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 5.88: smaller sweet spot than 15.2; livelier",
+     "line": "Smaller sweet spot, so a livelier feel."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon; spin about average",
+     "line": "Raw carbon gives about average spin."
+    }
+   }
+  },
+  "engage-pursuit-pro1-innovation-15-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Firepower 38 (Matt), 35 (PE); pop 14th pct",
+     "line": "Low power with little pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "PE Control+; Matt control 59, SW 121 stable",
+     "line": "Stable, with good control and a solid feel."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "2,065 RPM (Matt, 5th pct); PE 2,020 (medium)",
+     "line": "Smooth face gives below-average spin."
+    }
+   }
+  },
+  "paddletek-honeyfoam-esq": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm rated (3-foam core); 14mm adds pop but is UPA-A only. No radar data",
+     "line": "Multi-foam core gives middling power, and the thin version adds pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable, forgiving widebody; strong resets and dinks",
+     "line": "Stable, forgiving widebody with strong resets and dinks."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon; no lab RPM, reviewers call spin solid",
+     "line": "Raw carbon gives solid spin."
+    }
+   }
+  },
+  "paddletek-honeyfoam-tko-x": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm: firepower 58, 60.8 mph serve but pop 2/5. 14mm poppier, UPA-A only",
+     "line": "Decent pace, but pop is low and drives feel muted."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control 49; low TW 5.95 (13th pct), forgiveness 2/5",
+     "line": "Small sweet spot makes it less forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,267 RPM (Matt, 53rd pct), medium",
+     "line": "Raw carbon gives medium spin."
+    }
+   }
+  },
+  "paddletek-bantam-exl-c": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light Gen 1 widebody (SW 103); lively, but little plow",
+     "line": "Light widebody is lively, but with little plow."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Fast hands; less mass/stability on hard blocks",
+     "line": "Fast hands, but less mass and stability on hard blocks."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw carbon; spin praised but no lab RPM",
+     "line": "Raw carbon gives medium spin."
+    }
+   }
+  },
+  "paddletek-phoenix-talon": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "No tests; budget 14mm polypro widebody",
+     "line": "Budget widebody gives low power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Balanced all-court widebody per maker",
+     "line": "Balanced all-court widebody."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon face; no lab RPM",
+     "line": "Carbon face gives average spin."
+    }
+   }
+  },
+  "paddletek-phoenix-firestorm": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "No tests; 14mm elongated sold as 'power-lean'",
+     "line": "Elongated build leans toward power, with moderate pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Longer 5.5in handle; elongated, less forgiving",
+     "line": "Longer handle and an elongated shape, so less forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon face; no lab RPM",
+     "line": "Carbon face gives average spin."
+    }
+   }
+  },
+  "paddletek-phoenix-sabre-carbon": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "No tests; 14mm elongated for reach and power",
+     "line": "Elongated shape gives reach and moderate power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Elongated budget build; average touch expected",
+     "line": "Budget elongated build with average touch."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon face; no lab RPM",
+     "line": "Carbon face gives average spin."
+    }
+   }
+  },
+  "paddletek-phoenix-genesis-carbon": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "No tests; 14mm polypro widebody, control-leaning",
+     "line": "Widebody, control-leaning core gives low power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Forgiving 16x8 widebody, fewer mishits",
+     "line": "Forgiving widebody means fewer mishits."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured carbon; no lab RPM",
+     "line": "Textured carbon gives average spin."
+    }
+   }
+  },
+  "paddletek-the-reserve-honeyfoam": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm foam: firepower 58, 60.8 mph serve; pop 2/5, no free pace",
+     "line": "Foam core gives decent pace, but pop is low and there's no free pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control 46; TW 6.0 (16th pct), forgiveness 2/5",
+     "line": "Small sweet spot makes it less forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,267 RPM (Matt, 53rd pct)",
+     "line": "Medium spin from a raw face."
+    }
+   }
+  },
+  "paddletek-phoenix-genesis-ii": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "14mm honeycomb, fiberglass face; accessible, modest power",
+     "line": "Honeycomb core and fibreglass face give modest power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Forgiving widebody, big sweet spot, low vibration",
+     "line": "Low vibration and a big widebody face make dinks and resets easy to place."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Fiberglass face: below-average spin",
+     "line": "Fibreglass face gives below-average spin."
+    }
+   }
+  },
+  "paddletek-bantam-gto-c": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14.3 rated: firepower 51, 60.4 mph. 12.7: poppier, better for speed-ups",
+     "line": "Moderate pace, and the thinner version is poppier for speed-ups."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control 65, TW 6.8 (76th pct); 14.3 steadier on resets",
+     "line": "Steady and controlled, especially on resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,267 RPM (Matt, 53rd pct); reviewers rate spin higher",
+     "line": "Medium spin from a raw face."
+    }
+   }
+  },
+  "paddletek-tempest-tko-c": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14.3mm: firepower 42, serve 46th pct; heavy SW 122 adds plow",
+     "line": "Heavy build adds plow to moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control 62; resets and touch 4/5",
+     "line": "Good touch and reliable resets."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,286 RPM (Matt, 70th pct)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "gearbox-gbx-power-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Cold-bond Gen 3: PE firepower 63; Matt 60.6 mph (69th pct)",
+     "line": "Cold-bond core gives good drive pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "TW 6.8 (76th pct); Matt: much higher control than GX2 Power",
+     "line": "Much more control than its power-focused sibling."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,030 RPM ('high', PE); 2,278 (Matt, 60th pct)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "gearbox-gbx-power-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 61; Matt 60.9 mph (88th pct), SW 120 plow",
+     "line": "Strong serve pace and plow from a heavier build."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 6.4 (48th pct); less forgiving than the Hybrid",
+     "line": "Less forgiving than the hybrid."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,052 RPM ('high', PE); 2,283 (Matt, 66th pct)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "gearbox-gx2-hyper": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "PE firepower 31; Matt 59.8 mph (33rd pct), pop 27th pct",
+     "line": "Low pace, with little pop."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Matt control 98, best in lineup; light SW 108, TW 6.6",
+     "line": "Best control in its lineup, and light and quick."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "2,071 RPM (Matt, 5th pct); PE 2,009 (medium)",
+     "line": "Below-average spin from a smoother face."
+    }
+   }
+  },
+  "gearbox-gx2-integra-xl": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "PE firepower 34; Matt 60.0 mph (39th pct)",
+     "line": "Low-to-modest pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 5.8 (6th pct): small sweet spot, needs break-in",
+     "line": "Small sweet spot that needs breaking in."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,194 RPM (Matt, 24th pct); PE 2,025 'high'",
+     "line": "Medium spin from a raw face."
+    }
+   }
+  },
+  "gearbox-pro-ultimate-power-elongated-14mm": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE (Pro Ultimate Elong 14) firepower 55, power 79%; quiet dense power",
+     "line": "Quiet, dense power at a moderate level."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Very small sweet spot (TW 5.3-5.8); off-center shots die",
+     "line": "Very small sweet spot, so off-centre shots die."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "1,993 RPM (PE); 2,200 (Matt, 26th pct)",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "gearbox-pro-ultimate-hyper-16mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE firepower 55; Matt 60.2 mph (45th pct)",
+     "line": "Moderate pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Edgeless SST, TW 6.3-6.4: steadier than the elongated",
+     "line": "Edgeless build is steadier than the elongated shape."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "1,986 RPM (PE); 2,203 (Matt, 28th pct); heavy baseline spin",
+     "line": "Medium spin with a heavy baseline of bite."
+    }
+   }
+  },
+  "gearbox-pro-ultimate-elongated-16mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE firepower 53 (power 79%, pop 27%); heavy SW 124 gives plow",
+     "line": "Heavy build gives plow, with moderate power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "TW 5.4-5.5 (1st pct): tiny sweet spot",
+     "line": "Tiny sweet spot."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "2,000 RPM (Matt, 2nd pct); PE 1,987",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "proton-project-coyote": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Matt firepower 84, pop 5/5; PE firepower 58",
+     "line": "Strong pop gives high power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 24, TW 5.9 (10th pct): not forgiving",
+     "line": "Not forgiving, and control is limited."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,095 RPM very high (PE); 2,279 (Matt, 61st pct)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "proton-project-peacock-wide-body": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "15mm rated (no radar); elongated sibling PE firepower 81. 13mm crisper, poppier",
+     "line": "Crisper, poppier thin version gives strong power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "SW 109, TW 7.1: fast, stable; easier resets than elongated",
+     "line": "Fast, stable and easier on resets than the elongated shape."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Kitchen Pickle spin 91/100; elongated 2,093 RPM (PE)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "proton-project-peacock-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "15mm Gen 4: PE firepower 81 (power 79%, pop 83%). 13mm lighter (7.6oz), poppier",
+     "line": "Gen 4 foam gives top-end power and pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "TW 6.27; more pop than widebody, touch takes care",
+     "line": "More pop than the widebody, so touch takes care."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,093 RPM very high (PE); grit tier 4",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "proton-series-four-project-roadrunner": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "= PE 'Series 4': firepower 10, serve 16th pct; pop only on demand",
+     "line": "Very low pace; pop comes only on demand."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Plush Nomex/PP edgeless core; low TW 5.51 needs tape",
+     "line": "Plush, edgeless core keeps dinks soft and resets low."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 1,944 RPM (low); gritty carbon/Kevlar praised by reviewers",
+     "line": "Gritty face gives about average spin."
+    }
+   }
+  },
+  "bread-butter-loco-2-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Matt firepower 86, 61.3 mph serve (98th pct); PE firepower 88",
+     "line": "Hits hard, with serve pace among the best."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 30; TW 5.9 (10th pct), stiff and hollow",
+     "line": "Stiff and hollow, so it's not forgiving."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "2,394 RPM (95th pct, Matt), 2,154 (PE); Space Dust grit tier 2",
+     "line": "Space-dust grit gives elite spin."
+    }
+   }
+  },
+  "bread-butter-loco-2-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "PE firepower 79 (pop 83rd pct); similar punch to Loco Hybrid",
+     "line": "Punch similar to its power hybrid sibling."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Quicker SW 109, TW 6.57; more stable than Elongated",
+     "line": "Quicker and more stable than the elongated shape."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "2,135 RPM very high (PE); durable Space Dust grit",
+     "line": "Durable, very high spin."
+    }
+   }
+  },
+  "bread-butter-filth-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm Gen 2: PE firepower 26, serve 26th pct",
+     "line": "Gen 2 core gives low power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "PE Control; TW 6.77, large sweet spot",
+     "line": "Large sweet spot and solid control."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "PE 1,908 RPM (low)",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "bread-butter-filth-standard": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm Gen 2 widebody: PE firepower 28",
+     "line": "Widebody with a Gen 2 core gives low power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "TW 7.47 (very stable), widest face; control and placement",
+     "line": "Very stable, with the widest face for control and placement."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "PE 1,919 RPM (low)",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "bread-butter-psycho": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 2 14mm: firepower 52, serve only 29th pct but pop 4/5 for quick hands",
+     "line": "Thin core gives moderate pace and lively hands."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 80 (Matt 5/5); light 103 SW widebody, easy dinks and blocks",
+     "line": "Light widebody with easy dinks and blocks, and strong control."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "2,110 RPM, 9th pct; smooth-ish face, you make the spin",
+     "line": "Smoother face, so you make the spin yourself."
+    }
+   }
+  },
+  "11six24-vapor-jelly-bean-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 4 control foam: Matt firepower 45, PE 46; same pace as Ultré JB2, a bit livelier than Pegasus",
+     "line": "Gen 4 foam control build gives average pace, a bit livelier than similar foam paddles."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 79, PE control class; dense, predictable, SW ~116-118",
+     "line": "Dense, predictable and controlled."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit: 2,377 RPM (93rd pct, Matt), 2,152 PE; elite and durable",
+     "line": "Among the spinniest faces, with a durable grit."
+    }
+   }
+  },
+  "11six24-hurache-x-jelly-bean-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE firepower 58 (most in JB2 line), Matt 41; elongated reach adds drive pace",
+     "line": "Elongated reach adds drive pace, the most in its line."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control 61: least forgiving JB2 (TW 6.0), resets still predictable",
+     "line": "Least forgiving of its line, though resets stay predictable."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,393 RPM (95th pct, Matt), PE 2,101; top-tier spin",
+     "line": "Top-tier spin from a rough, durable grit."
+    }
+   }
+  },
+  "11six24-vapor-jelly-bean": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Gen 1.5: firepower 23, serve 22nd pct; you supply the pace",
+     "line": "Soft core gives low pace, so you supply the power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Control score 94 (Matt 5/5); dense, plush, very easy resets",
+     "line": "Dense and plush, with very easy resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,237 RPM, 40th pct; average coarse peel ply",
+     "line": "Coarse peeled carbon gives average spin."
+    }
+   }
+  },
+  "11six24-pegasus-jelly-bean": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Gen 1.5 widebody: firepower 20, serve 16th pct; little free power",
+     "line": "Widebody with a soft core gives little free power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Control score 100, TW 7.4; one of the most forgiving soft paddles tested",
+     "line": "One of the most forgiving soft paddles, with a wide, stable face."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,202 RPM, 28th pct; average-low spin",
+     "line": "Medium spin from a rough but average face."
+    }
+   }
+  },
+  "11six24-hurache-x-jelly-bean": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Gen 1.5 elongated: firepower 20, serve 19th pct; SW 120 helps a little",
+     "line": "Elongated shape adds a little help to a low-power core."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 67; soft, but low 6.15 TW narrows the sweet spot",
+     "line": "Soft, but the narrow sweet spot holds control back a notch."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,287 RPM, 71st pct; above average",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "volair-cmd-el": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 4: firepower 75, serve 88th pct, pop 4/5",
+     "line": "Gen 4 foam gives strong pace and good pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 35; lively and narrow (TW 6.0), resets need touch",
+     "line": "Lively and narrow, so resets need touch."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,431 RPM (97th pct); elite spin",
+     "line": "Elite spin from a tough grit."
+    }
+   }
+  },
+  "volair-cmd-wb": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 72, pop 5/5 (punch 90th pct), serve only 54th pct",
+     "line": "Strong pop and punch, though serve pace is only middling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 73, TW 7.15, light 108 SW; most forgiving CMD",
+     "line": "Most forgiving of its line, and light and quick."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "HexGrit 2,444 RPM (97th pct); elite spin",
+     "line": "Elite spin from a tough grit."
+    }
+   }
+  },
+  "volair-cmd-hyb": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 76 (Matt), 69 (PE); serve 78th pct, pop 4/5",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 53, PE all-court class; hollow feel, predictable",
+     "line": "Hollow feel is predictable, with all-court control."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "2,410 RPM (96th pct, Matt), 2,146 PE; elite spin",
+     "line": "Elite spin from a rough face."
+    }
+   }
+  },
+  "volair-shift-el": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm Gen 4: firepower 62, serve 69th pct",
+     "line": "Thinner Gen 4 foam gives good pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 47; heavier 119 SW elongated",
+     "line": "Heavier elongated shape makes control average."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,284 RPM, 68th pct; above average",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "volair-shift-wb": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 68, pop 5/5 (punch 82nd pct), serve 54th pct",
+     "line": "Good pop and punch."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 68, TW 7.2; light 105.5 SW, forgiving",
+     "line": "Forgiving and light, with a stable face."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,289 RPM, 74th pct",
+     "line": "Above-average spin from a textured face."
+    }
+   }
+  },
+  "volair-shift-hyb": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 68, punch 74th pct, serve 62nd pct",
+     "line": "Strong pace and punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 57; crisp 14mm needs touch on drops",
+     "line": "Crisp thin core needs touch on drops."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,277 RPM, 59th pct; average",
+     "line": "Average spin."
+    }
+   }
+  },
+  "volair-pro-1": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Budget fiberglass honeycomb, SW 120; estimate moderate pop, no lab data. 14mm lighter, livelier",
+     "line": "Budget fibreglass honeycomb gives moderate pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Estimate: average control; hybrid, low TW 6.09",
+     "line": "Hybrid with a small sweet spot gives average control."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Painted fiberglass face, no grit; below-average spin (estimate)",
+     "line": "Painted fibreglass without grit gives below-average spin."
+    }
+   }
+  },
+  "volair-pro-2": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Budget fiberglass widebody, light 109 SW; estimate modest power. 14mm livelier",
+     "line": "Budget fibreglass widebody gives modest power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Estimate: forgiving TW 7.12 widebody, easy for newer players",
+     "line": "Forgiving widebody that is easy for newer players."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Painted fiberglass, no grit; below-average spin (estimate)",
+     "line": "Painted fibreglass with no grit gives below-average spin."
+    }
+   }
+  },
+  "volair-ctrl-1-forza": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Gen 2 control: firepower 11, serve 6th pct; you supply all pace",
+     "line": "Control core gives very low pace, so you supply it all."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft, low-pop control build; narrower than CTRL 2 (TW 6.35)",
+     "line": "Soft, low-pop control build with a narrower sweet spot."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,198 RPM, 25th pct; average-low",
+     "line": "Medium spin, a touch under the middle."
+    }
+   }
+  },
+  "volair-ctrl-2-forza": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Gen 2 widebody: firepower 12, serve 5th pct; very little free power",
+     "line": "Widebody with a Gen 2 core gives very little free power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Plush, slow, TW 7.25 widebody; top-tier for drops and resets",
+     "line": "Plush, slow widebody, top-tier for drops and resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,183 RPM, 20th pct; average-low",
+     "line": "Medium spin, a touch under the middle."
+    }
+   }
+  },
+  "volair-v-1f-xl-w": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Gen 2: firepower 13, serve 7th pct; slow off the face",
+     "line": "Slow off the face, so you supply the pace."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Control score 88 (Matt 5/5), TW 7.05; very easy resets",
+     "line": "Very easy resets from a soft, stable build."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,300 RPM, 83rd pct; good coarse texture",
+     "line": "Good spin from a coarse texture."
+    }
+   }
+  },
+  "diadem-edge-flex-pro": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm firepower 81, serve 100th pct. 14mm: FP 77, a bit less plow, even jumpier",
+     "line": "Among the hardest hitters, with jumpy pace."
+    },
+    "control": {
+     "dots": 2,
+     "note": "16mm control score 42 (14mm only 29); hot, needs touch",
+     "line": "Hot and jumpy, so it needs touch."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Durable grit 2,301 RPM (84th pct); 14mm 2,282 (65th)",
+     "line": "Durable grit gives above-average spin."
+    }
+   }
+  },
+  "diadem-edge-flex-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Firepower 81, serve 99th pct, pop 4/5",
+     "line": "Hits hard, with serve pace among the best."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 60; more forgiving than Flex Pro (TW 6.8)",
+     "line": "More forgiving than its sibling, with moderate control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Diamond grit 2,303 RPM (86th pct)",
+     "line": "Diamond grit gives above-average spin."
+    }
+   }
+  },
+  "diadem-edge-blucore-pro": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm firepower 35, serve 22nd pct. 14mm: FP 37, similar pace",
+     "line": "Thicker core gives low power and a similar pace in the thinner build."
+    },
+    "control": {
+     "dots": 4,
+     "note": "16mm control score 80 (14mm 62); dense foam, easy resets",
+     "line": "Dense foam makes resets easy."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "16mm 2,286 RPM (70th pct); 14mm 2,262 (51st)",
+     "line": "Above-average spin, and the thinner version is close."
+    }
+   }
+  },
+  "diadem-edge-blucore-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm firepower 60: pop 94th pct but serve 27th; quick, not a driver. 14mm a bit faster",
+     "line": "Quick and poppy but not a driver, so power is middling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 75, TW 6.95; stable foam",
+     "line": "Stable foam and good control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,292 RPM (79th pct, Matt); PE 2,112",
+     "line": "Above-average spin from a textured face."
+    }
+   }
+  },
+  "diadem-edge-18k-power": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Thermoformed 18K: only slightly more power than standard Edge 18K (FP 9); Pickleheads 8/10",
+     "line": "Thermoformed carbon gives only slightly more power than the standard version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stiffer and less consistent than standard 18K; small sweet spot",
+     "line": "Stiffer and less consistent than the standard version, with a small sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "3D 18K carbon: Pickleheads 9.5/10; standard 18K 2,286-2,304 RPM",
+     "line": "Textured 3D carbon gives high spin."
+    }
+   }
+  },
+  "diadem-edge-18k-max": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Non-thermoformed 16mm widebody; Edge 18K lab: firepower 9, serve 12th pct",
+     "line": "Non-thermoformed widebody gives very low power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Plush, TW 7.51 (99th pct); Edge 18K control score 90",
+     "line": "Plush and very stable, with a big sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "3D 18K carbon: Edge 18K 2,286 RPM (70th pct); no Max-specific spin test",
+     "line": "Textured 3D carbon gives above-average spin."
+    }
+   }
+  },
+  "diadem-warrior-blucore": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Max 16mm: firepower 18, punch 6th pct. Std 14mm: FP 29, a little more pop",
+     "line": "Thick core gives very little power, with a bit more pop in the standard version."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Max 16mm control score 100; Std 14mm 62 (narrow, TW 5.75)",
+     "line": "Very good control in the thick version, but the thinner one has a narrow sweet spot."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Max 2,185 RPM (20th pct); Std 14mm 2,105 (8th pct)",
+     "line": "Medium spin, a touch under the middle."
+    }
+   }
+  },
+  "diadem-hush": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Quiet eTPU face: lab 62.9 mph drive (top 1%), pop 99th pct; serves sail long at first",
+     "line": "Quiet, soft face has huge pop and a drive that sails long at first."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Twist weight 5.13 (2nd pct), small sweet spot; needs acclimation",
+     "line": "Small sweet spot that needs getting used to."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "Rubbery textured face: 2,776 RPM in lab data, highest listed",
+     "line": "Rubbery, textured face gives the highest spin of the field."
+    }
+   }
+  },
+  "diadem-edge-18k-sp": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Gen 2 14mm: firepower 13, serve 18th pct; little free power",
+     "line": "Little free power from a Gen 2 core."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 56; heavy-ish 118 SW, low 6.03 TW",
+     "line": "Heavier and low in twist, so control is average."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,234 RPM, 39th pct; average",
+     "line": "Average spin."
+    }
+   }
+  },
+  "prokennex-black-ace-avenger-11": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "11mm one-piece widebody built for pop; reviewers call it explosive. No radar data",
+     "line": "Thin one-piece widebody is built for pop and feels explosive."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Firm, fast; control below average, dinks need precision",
+     "line": "Firm and fast, so control is below average and dinks need precision."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon Fire face; spin rated average in spec-based comparisons",
+     "line": "Carbon face gives average spin."
+    }
+   }
+  },
+  "prokennex-black-ace-avenger-lg-11": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "11mm one-piece elongated, long 5.9in handle; owners report big power. No lab data",
+     "line": "Thin one-piece elongated build with a long handle hits big."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Thin, firm core; less forgiving than 14/16mm Black Ace",
+     "line": "Thin, firm core is less forgiving than the thicker versions."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon Fire face, average spin (estimate)",
+     "line": "Carbon face gives average spin."
+    }
+   }
+  },
+  "prokennex-black-ace-16": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Lab drive 55.4 mph (21st pct), pop 56th pct; control-first 16mm",
+     "line": "Control-first 16mm gives modest drive power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Forgiving TW 6.92 (85th pct), light 109 SW, Kinetic damping",
+     "line": "Forgiving, light and well damped."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Carbon Fire 2,056 RPM, rated very high on that lab's scale",
+     "line": "High spin from a carbon face."
+    }
+   }
+  },
+  "prokennex-black-ace-14": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Drive 54.9 mph (14th pct) but pop 37.1 mph (86th pct); quick, not a driver",
+     "line": "Quick pop but not a driver, so power is middling."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Very light 102 SW, TW 6.57; crisper than the 16",
+     "line": "Very light and crisp, so control is middling."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Carbon Fire 2,042 RPM, very high on that lab's scale",
+     "line": "High spin from a carbon face."
+    }
+   }
+  },
+  "prokennex-black-ace-xf-14": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Drive 54.7 mph (12th pct), pop 60th pct; firepower 40",
+     "line": "Low drive pace and modest pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light 101 SW but TW 5.4 (5th pct); small sweet spot",
+     "line": "Light, but the small sweet spot limits forgiveness."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "1,993 RPM, about average",
+     "line": "About average spin."
+    }
+   }
+  },
+  "prokennex-black-ace-lg-14": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Drive 55.7 mph (27th pct), pop 37.1 mph (86th pct)",
+     "line": "Pop is good, but drive pace is middling."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light 107 SW, but TW 5.6 (11th pct) limits forgiveness",
+     "line": "Light, but a small sweet spot limits forgiveness."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Carbon Fire 2,056 RPM, very high on that lab's scale",
+     "line": "High spin from a carbon face."
+    }
+   }
+  },
+  "prokennex-pro-flight": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light 11mm build; PE player test power 94%, Tennisnerd 5/5 power",
+     "line": "Light thin build hits big, with strong power for its weight."
+    },
+    "control": {
+     "dots": 3,
+     "note": "PE control 75%; very light SW 89, hard feel, drops take adjusting",
+     "line": "Hard feel makes drops take adjusting, though control is acceptable."
+    },
+    "spin": {
+     "dots": 1,
+     "note": "1,620 RPM in lab data, among the lowest; grit wears fast",
+     "line": "Among the weakest spin faces, and the grit wears fast."
+    }
+   }
+  },
+  "prokennex-black-ace-xf": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Original thin-core Black Ace (10-11mm): big pop for a light paddle (estimate from siblings)",
+     "line": "Thin core gives big pop for a light paddle."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Elongated, very light, low twist weight; lively and less forgiving",
+     "line": "Elongated, very light and lively, so it's less forgiving."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Original Black Ace spin 1,777-1,848 RPM in lab data; below average",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "prokennex-black-ace-ovation": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "11mm original Black Ace; owners report big power and pop",
+     "line": "Thin core gives big power and pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Lively rebound, small sweet spot, very light 101 SW; needs lead tape",
+     "line": "Lively rebound and a small sweet spot, so it needs lead tape."
+    },
+    "spin": {
+     "dots": 1,
+     "note": "Lab spin 1,654 RPM, among the lowest; raw carbon only in center",
+     "line": "Among the weakest spin faces, with raw carbon only in the centre."
+    }
+   }
+  },
+  "prokennex-black-ace-pro": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "10mm: drive 56.8 mph (64th pct), pop 38.1 mph (97th pct)",
+     "line": "Thin core gives strong drives and big pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Light 105 SW, thin hard core; hot on dinks",
+     "line": "Thin, hard core runs hot on dinks."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "1,848 RPM, below average",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "prokennex-black-ace-lg": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Original 10mm LG (De La Rosa); thin, poppy (estimate from Black Ace Pro lab)",
+     "line": "Thin, poppy core hits strong."
+    },
+    "control": {
+     "dots": 2,
+     "note": "TW 5.42 (5th pct), long 5.8in handle; small sweet spot",
+     "line": "Small sweet spot and a long handle."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "1,777 RPM in lab data; below average",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "holbrook-fuze-vantagrit": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Firepower 48-52 (elongated-hybrid), serve 54-62nd pct; moderate pace",
+     "line": "Moderate pace from an elongated hybrid."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 53 both shapes; grittier face grabs, needs calibration",
+     "line": "Grittier face grabs the ball, so it needs calibrating."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "VantaGrit 2,399-2,412 RPM (96th pct); big jump over plain Fuze",
+     "line": "Very high spin from a gritty face."
+    }
+   }
+  },
+  "holbrook-mav": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Likely Mav 2.0: balanced all-court, enough drive pace; no lab data",
+     "line": "Balanced all-court paddle with enough drive pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Plush 16mm, lighter SW, quick hands; strong for resets",
+     "line": "Plush 16mm with quick hands, strong for resets."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Raw carbon, reviewers praise topspin and cut serves",
+     "line": "Raw carbon gives good topspin and cut serves."
+    }
+   }
+  },
+  "holbrook-zone-power": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm elongated, EVA perimeter, SW ~120: deep drives and heavy put-aways",
+     "line": "Elongated build with an EVA perimeter gives deep drives and heavy put-aways."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stable on mishits, but extra pop needs adjustment at the kitchen",
+     "line": "Stable on mishits, but the extra pop needs adjusting at the kitchen."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Textured peel ply grips well for topspin and slice; no RPM test",
+     "line": "Textured face grips well for topspin and slice."
+    }
+   }
+  },
+  "holbrook-arma-t": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 3 14mm: firepower 43, serve 50th pct; SW 122 adds plow",
+     "line": "Third-gen core gives moderate pace, with heavy plow-through."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 69; heavy and stable",
+     "line": "Heavy and stable, with good control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,186 RPM, 20th pct (Matt); lab 2,114 elsewhere",
+     "line": "Below-the-middle spin from a raw face."
+    }
+   }
+  },
+  "holbrook-arma-x": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Arma (Metallic) X 14mm: firepower 64, serve 95th pct",
+     "line": "Strong pace, with serve pop among the best."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 57; pop only 2/5 so touch is manageable",
+     "line": "Low pop keeps touch manageable."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,215 RPM, 32nd pct; average",
+     "line": "Medium spin from a raw face."
+    }
+   }
+  },
+  "holbrook-pro-aero-t": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "16mm Gen 2: firepower 16, serve 22nd pct. 14mm: FP 14, about the same",
+     "line": "Gen 2 core gives very low pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 64-67; soft, but low TW 5.8-5.95",
+     "line": "Soft, but the small sweet spot holds it back."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "16mm 2,098 RPM (7th pct); 14mm 2,002 (2nd pct)",
+     "line": "Below-average spin."
+    }
+   }
+  },
+  "holbrook-pro-aero-s": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Square 16mm Gen 2 sibling of Aero T/X (FP 14-20); light 105 SW, no lab power",
+     "line": "Square Gen 2 shape gives very low power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Estimate: forgiving TW 6.63 widebody, soft control build",
+     "line": "Forgiving widebody with a soft control build."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Aero line tests 2,000-2,100 RPM; low spin",
+     "line": "Low spin from a raw face."
+    }
+   }
+  },
+  "holbrook-pro-aero-x": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Gen 2: 14mm firepower 20, serve 27th pct; 16mm a touch slower",
+     "line": "Thin Gen 2 core gives low power, a touch slower in the thick version."
+    },
+    "control": {
+     "dots": 4,
+     "note": "14mm control score 69; soft, low TW 5.95",
+     "line": "Soft with a low-twist feel but good control."
+    },
+    "spin": {
+     "dots": 1,
+     "note": "1,999 RPM (1.5th pct), among the lowest measured",
+     "line": "Among the weakest spin faces."
+    }
+   }
+  },
+  "ronbus-quanta-pro-r2-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 78, Matt 68; pop 5/5 (punch 82nd pct)",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 72, TW 7.1; light 109 SW widebody",
+     "line": "Light widebody with stable, forgiving control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Nanograph 2,302 RPM (85th pct, Matt); PE 2,103",
+     "line": "Nano-textured face gives high spin."
+    }
+   }
+  },
+  "ronbus-quanta-pro-r3-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 77, Matt 72; serve 69th pct",
+     "line": "Strong pace from an elongated shape."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 51; elongated, TW 6.3",
+     "line": "Elongated, with a middling sweet spot, so control is average."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,300 RPM (83rd pct, Matt); PE 2,110",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "ronbus-quanta-pro-r4-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 78, Matt 72; pop 5/5",
+     "line": "Strong pace and pop from a hybrid shape."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 64; stable hybrid, TW 6.5",
+     "line": "Stable hybrid with decent control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,302 RPM (85th pct, Matt); PE 2,078",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "ronbus-quanta-r1-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 4: firepower 68, pop 4/5",
+     "line": "Gen 4 core gives good pace and plenty of pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 42; low TW 5.6, narrow",
+     "line": "Low and narrow, so control suffers."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,273 RPM, 57th pct",
+     "line": "Medium spin from a raw face."
+    }
+   }
+  },
+  "ronbus-quanta-r2-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 64, pop 4/5; very light 102 SW",
+     "line": "Strong pace from a very light build."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 68; easy-handling widebody",
+     "line": "Easy-handling widebody with good control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,216 RPM, 33rd pct; average",
+     "line": "Average spin."
+    }
+   }
+  },
+  "ronbus-tenon-r1-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 67, Matt 66; serve 69th pct",
+     "line": "Solid pace with a good serve."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 46; elongated, TW 6.05",
+     "line": "Elongated, with a modest sweet spot, so control is average."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,258 RPM (48th pct, Matt); PE 2,067",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-tenon-r2-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 69, Matt 68; pop 4/5",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 74; soft-dense widebody, light 110 SW",
+     "line": "Soft, dense widebody with strong control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,269 RPM (54th pct, Matt); PE 2,053",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-tenon-r3-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 71, Matt 66; heavy 118 SW",
+     "line": "Strong pace from a heavy build."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 42; head-heavy elongated",
+     "line": "Head-heavy elongated shape is hard to control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,255 RPM (46th pct, Matt); PE 2,081",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-tenon-r4-16": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 73, Matt 70; serve 78th pct",
+     "line": "Good pace and strong serves."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 53; hybrid",
+     "line": "Hybrid with average control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,262 RPM (51st pct, Matt); PE 2,091",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-ripple-v2-r1-14": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Firepower 94, serve 98th pct; one of the hottest paddles tested",
+     "line": "One of the hottest paddles around."
+    },
+    "control": {
+     "dots": 1,
+     "note": "Control score 2: very jumpy, heavy 124 SW",
+     "line": "Very jumpy and heavy, so control is poor."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,210 RPM, 30th pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-ripple-v2-r2-14": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Firepower 96, punch 98th pct",
+     "line": "Elite punch and pace."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 34; widebody tames it a little",
+     "line": "Widebody tames it a little, but control is limited."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,295 RPM, 80th pct",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "ronbus-ripple-v2-r4-14": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Firepower 97, serve 99th pct",
+     "line": "Very strong pace and serves."
+    },
+    "control": {
+     "dots": 1,
+     "note": "Control score 6; extremely hot on soft shots",
+     "line": "Extremely hot on soft shots, so control is poor."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,253 RPM, 45th pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-ripple-v2-r5-14": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Firepower 89, serve 97th pct",
+     "line": "Very strong pace and serves."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 26; hot, but a wider face helps",
+     "line": "Hot, though the wider face helps a bit."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,278 RPM, 60th pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-refoam-r1-14": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Gen 4 foam: firepower 33, serve 39th pct; measured, not hot",
+     "line": "Gen 4 foam gives modest pace and isn't a hot paddle."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 66; stable and predictable",
+     "line": "Stable and predictable."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,213 RPM, 31st pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-refoam-r4-14": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Firepower 47, serve 50th pct",
+     "line": "Mid-level pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 72; stable foam hybrid",
+     "line": "Stable foam hybrid with good control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,243 RPM, 42nd pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "ronbus-refoam-r5-14": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Widebody 14mm MPP sibling of R4 (FP 47); no radar data, estimate",
+     "line": "Widebody foam gives middling pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Owners note soft dinks; low twist weight for a widebody, lead tape helps",
+     "line": "Soft feel keeps dinks and resets low and easy to place."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Owners report strong spin; siblings test about average",
+     "line": "Strong spin reported, though similar faces play about average."
+    }
+   }
+  },
+  "ronbus-beta-ripple-r1-14": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Original (beta) Ripple R1: Matt power 5/5, pop 5/5; lab drive ~60 mph",
+     "line": "Early version hits hard with huge pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 2/5; very low TW 5.4-5.6",
+     "line": "Very small sweet spot, so control is poor."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "2,343-2,392 RPM in tests; elite",
+     "line": "Elite spin."
+    }
+   }
+  },
+  "ronbus-beta-ripple-r2-14": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Original (beta) Ripple R2: Matt power 5/5, pop 5/5",
+     "line": "Hits hard with huge pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 3/5; light 105 SW widebody",
+     "line": "Light widebody with middling control."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "2,305-2,380 RPM in tests; elite",
+     "line": "Elite spin."
+    }
+   }
+  },
+  "spartus-spitfire-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 74, pop 5/5 (punch 94th pct), serve 54th pct",
+     "line": "Strong punch and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 71, TW 7.15; light 107 SW",
+     "line": "Light and forgiving with good control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,441 RPM (97th pct) new; capped at 4 like Elongated for grit wear",
+     "line": "High spin from a new face, though the grit wears."
+    }
+   }
+  },
+  "spartus-p1-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firepower 66, serve 69th pct; heavy 124 SW",
+     "line": "Strong pace from a heavy build."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 43; head-heavy, narrow",
+     "line": "Head-heavy and narrow, so control is low."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Permagrit 2,358 RPM (92nd pct, Matt); PE tests P1s lower (2,047-2,080)",
+     "line": "Durable grit gives high spin."
+    }
+   }
+  },
+  "spartus-p1-standard": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 69, Matt 66; pop 5/5",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 70, TW 7.3-7.4; forgiving",
+     "line": "Forgiving with good control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,378 RPM (93rd pct, Matt) but PE 2,080 (avg); split to 4",
+     "line": "High spin from a durable face."
+    }
+   }
+  },
+  "spartus-p1-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 71, Matt 68; predictable, not twitchy",
+     "line": "Predictable power that isn't twitchy."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 65, TW 6.7-6.9",
+     "line": "Solid control with a stable face."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,349 RPM (92nd pct, Matt), PE 2,047; split to 4",
+     "line": "High spin, though grit performs differently across samples."
+    }
+   }
+  },
+  "spartus-oracle-apex": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "'Apollo 2.0' standard 16mm; no radar data, estimate a bit poppier than the Apollo",
+     "line": "Standard 16mm gives middling power, a bit poppier than the original."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Forgiving TW 6.83, light 106 SW; plush and stable",
+     "line": "Forgiving, plush and stable."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured carbon/fiberglass face; average spin (estimate)",
+     "line": "Textured carbon and fibreglass face gives average spin."
+    }
+   }
+  },
+  "spartus-orion-apex": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Lab drive 55.4 mph (21st pct), pop 25th pct; less power than billed",
+     "line": "Less power than billed."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Elongated, low TW 5.9; plush 16mm",
+     "line": "Elongated with a plush 16mm core, so control is average."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Textured face; no RPM test, assume average",
+     "line": "Textured face gives average spin."
+    }
+   }
+  },
+  "spartus-odyssey-apex": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Lab drive 57.4 mph (81st pct), pop 46th pct",
+     "line": "Strong drive pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Balanced, forgiving hybrid, TW 6.41, quick 110 SW",
+     "line": "Balanced, forgiving hybrid with quick hands."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,130 RPM, very high on that lab's scale",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "rpm-jade-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm firepower 64, pop 5/5. 14mm: FP 66, very similar",
+     "line": "Strong pace and pop, and the thinner version is similar."
+    },
+    "control": {
+     "dots": 4,
+     "note": "16mm control score 77 (14mm 61); light 110 SW",
+     "line": "Light and controlled."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "SICmatrix 2,475 RPM (98.5th pct); 14mm 2,437 (97th)",
+     "line": "Elite spin from a tough grit."
+    }
+   }
+  },
+  "rpm-q2-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm firepower 91, serve 99th pct. 14mm: FP 94, even hotter",
+     "line": "Hits very hard, and the thin version is even hotter."
+    },
+    "control": {
+     "dots": 2,
+     "note": "16mm control score 25 (14mm 23); trampoline-like",
+     "line": "Trampoline-like and hot, so control is poor."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "16mm 2,290 RPM (76th pct); 14mm 2,260 (49th)",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "rpm-q2-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm firepower 93, serve 95th pct; 14mm (not tested) likely hotter",
+     "line": "Very hot, with serve pace among the best."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 53; most forgiving Q2 (TW 6.85)",
+     "line": "Most forgiving of its line, so control is middling."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,310 RPM, 87th pct",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "rpm-q2-hybrid-curve-top": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Rounded-top: firepower 94, punch 96th pct",
+     "line": "Rounded-top shape gives huge punch and pace."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 33; very lively",
+     "line": "Very lively, so control is low."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "No spin reading; same face as Flat Top (2,294 RPM, 80th pct)",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "rpm-q2-hybrid-flat-top": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Firepower 94, serve 98th pct",
+     "line": "Hits very hard, with serve pace among the best."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 38; lively",
+     "line": "Lively, so control is low."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,294 RPM, 80th pct",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "rpm-friction-pro-v2-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm firepower 77, serve 92nd pct; 14mm V2 is a touch crisper",
+     "line": "Strong pace from a 16mm core, and the thinner version is a touch crisper."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 55; heavy 122 SW",
+     "line": "Heavy build, so control is only average."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,279 RPM, 61st pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "rpm-friction-pro-v2-hybrid-flat-top": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm firepower 81, pop 4/5; 14mm a bit livelier",
+     "line": "Hits hard, with plenty of pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 58; hollow feel",
+     "line": "Hollow feel keeps control average."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,289 RPM, 74th pct",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "rpm-friction-pro-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm firepower 79, Gen 3 pop 4/5; 14mm similar, crisper",
+     "line": "Strong drive pace, with good pop from a third-gen core."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 66, TW 7.35; forgiving",
+     "line": "Forgiving, with a stable face."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,303 RPM, 86th pct",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "rpm-friction-pro-elongated-14mm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm firepower 76, serve 78th pct, pop 4/5",
+     "line": "Strong pace and good serves."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 32; crisp and lively",
+     "line": "Crisp and lively, so control is low."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,253 RPM, 45th pct (16mm gets 81st)",
+     "line": "Medium spin from a textured face."
+    }
+   }
+  },
+  "luzz-cannon2-m1": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3: firepower 68, serve 92nd pct; heavy 120 SW",
+     "line": "Strong pace with serve power, though heavy."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Control score 57; stiff-hollow but stable",
+     "line": "Stiff and hollow, but stable."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,270 RPM, 55th pct; Aero-9966 coating holds texture",
+     "line": "Medium spin, and the coating keeps its texture."
+    }
+   }
+  },
+  "luzz-cannon-xpp-m1": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 78 but Matt 48 (serve 42nd pct); labs split, 4",
+     "line": "Good pace on drives and serves."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 55; lively XPOP foam, heavy 122 SW",
+     "line": "Lively foam and a heavy build make control average."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "SiC grit: 2,482 RPM (99th pct, Matt), 2,218 PE (top of database)",
+     "line": "Elite spin, among the best."
+    }
+   }
+  },
+  "luzz-cannon-ex": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Springy PEBA/MPP foam, sold as trampoline pop; no lab data. Not certified",
+     "line": "Springy foam gives trampoline-style pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Soft, springy rebound; forgiving but harder to keep dinks low",
+     "line": "Soft, springy rebound is forgiving, but dinks are harder to keep low."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 carbon, no grit claim; average spin assumed",
+     "line": "Raw carbon with no grit claims gives about average spin."
+    }
+   }
+  },
+  "luzz-glider-2026-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Matt firepower 55, PE 61; middling pace",
+     "line": "Middling pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 74; light 108-109 SW, quick",
+     "line": "Quick hands and good control from a light build."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,295 RPM (80th pct, Matt); PE 2,155 (near top)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "luzz-glider-m1": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Elongated Glider honeycomb build, SW 118; estimate Glider pace plus reach. Not certified",
+     "line": "Honeycomb build with reach from the elongated shape gives middling pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Estimate: less forgiving than Glider hybrid (TW 6.3)",
+     "line": "Less forgiving than its hybrid sibling."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Same ceramic-polymer coated T700 face as Glider 2026 (80th pct)",
+     "line": "High spin from a coated face."
+    }
+   }
+  },
+  "luzz-inferno2-m1": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Matt firepower 83, PE 80; pop 5/5",
+     "line": "Hits very hard with plenty of pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 34; heavy 120-121 SW, hot",
+     "line": "Heavy and hot, so control is poor."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "2,294 RPM (80th pct, Matt); PE 2,168 (top 3)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "luzz-inferno2-m2": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Hybrid MPP-Z sibling of M1 (FP 80-83); lighter 110 SW, estimate a bit less power",
+     "line": "Hybrid foam gives solid power, though a touch lighter than its sibling."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Plush, damped, bigger sweet spot per maker/reviews; not certified",
+     "line": "Plush and damped, with a bigger sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Same coated T700 face as M1; strong spin assumed",
+     "line": "Strong spin from a coated face."
+    }
+   }
+  },
+  "luzz-probladz-2": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Pro Blade 2 14mm: firepower 60, serve 39th pct, quick pop",
+     "line": "Quick pop and strong pace."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 40; crisp, small sweet spot",
+     "line": "Crisp with a small sweet spot, so control is low."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,279 RPM, 61st pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "luzz-pro-bladz-2x": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "14mm stiff MPP, basalt-carbon face; estimate like Pro Blade 2 (FP 60). Not certified",
+     "line": "Stiff core with a basalt-carbon face gives good pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Crisp, direct; maker pitches more balance than Blade 2",
+     "line": "Crisp and direct, with a more balanced feel."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Resin-coated face; average spin assumed",
+     "line": "Resin-coated face gives average spin."
+    }
+   }
+  },
+  "luzz-pro-4-tornazo": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 4: firepower 76, serve 97th pct",
+     "line": "Strong pace and serves."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Control score 39; jumpy",
+     "line": "Jumpy, so control is poor."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,278 RPM, 60th pct",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "luzz-pro-2nd-archer": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Pro 2 Archer hybrid 16mm; no radar numbers, estimate from Luzz Pro line",
+     "line": "Hybrid with a 16mm core gives good pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Estimate: SW 112.5, TW 6.65, fairly stable",
+     "line": "Fairly stable, with good balance."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Coarse peel ply; average spin assumed",
+     "line": "Coarse peeled carbon gives average spin."
+    }
+   }
+  },
+  "luzz-glider-2024-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 3: firepower 54, serve 54th pct",
+     "line": "Middling pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control score 81 (Matt 5/5); light 108 SW",
+     "line": "Excellent control from a light, quick build."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,259 RPM, 49th pct; lab 2,077 elsewhere",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "luzz-original": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Budget 16mm honeycomb, sandblasted T700; no lab data, estimate modest power",
+     "line": "Budget honeycomb gives modest power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Soft, forgiving wide face per maker; easy for newer players",
+     "line": "Soft, forgiving wide face, easy for newer players."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Sandblasted face, no grit; below-average spin (estimate)",
+     "line": "Sandblasted face with no grit gives below-average spin."
+    }
+   }
+  },
+  "luzz-ultra-original": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "14mm version of the budget Original: crisper, more pop (estimate, no lab data)",
+     "line": "Crisper thin core, so a bit more pop than the thicker version."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Thinner, less stable than the 16mm Original",
+     "line": "Thinner and less stable than the 16mm."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Sandblasted T700; below-average spin (estimate)",
+     "line": "Sandblasted face gives below-average spin."
+    }
+   }
+  },
+  "luzz-pro-zz": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Thermoformed 16mm raw T700 with foam walls; estimate moderate power, no lab data",
+     "line": "Thermoformed core with foam walls gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable 16mm honeycomb, owners cite control",
+     "line": "Stable honeycomb core with good control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw T700 carbon; average spin (estimate)",
+     "line": "Raw carbon gives average spin."
+    }
+   }
+  },
+  "pakle-fuse-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 79, Matt 76; pop 5/5",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 38; stiff-hollow, narrow TW 6.05",
+     "line": "Stiff and hollow with a narrow sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,132 RPM (high), Matt 2,281 (64th pct)",
+     "line": "High spin from a textured face."
+    }
+   }
+  },
+  "pakle-fuse-hybrid-w": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 75; light 107 SW",
+     "line": "Strong pace from a light build."
+    },
+    "control": {
+     "dots": 3,
+     "note": "PE power class; wider hybrid, TW 6.47",
+     "line": "Wider hybrid with moderate control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,094 RPM, above average",
+     "line": "Above-average spin."
+    }
+   }
+  },
+  "pickleball-apes-zen": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Zen S+: PE firepower 82, Matt 79; serve 84th pct, Apes' hardest hitter",
+     "line": "Hits very hard, among the hardest hitters in its brand."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 66; light 107 SW, TW ~7.0, stiff-hollow",
+     "line": "Light and stiff, but control is solid."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "SilverBack TPU grit: 2,329 RPM (90th pct, Matt), PE 2,093",
+     "line": "High spin from a durable TPU grit."
+    }
+   }
+  },
+  "pickleball-apes-charm": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Charm S: firepower 39; V 45, X 41. Moderate pace across shapes",
+     "line": "Moderate pace across shapes."
+    },
+    "control": {
+     "dots": 4,
+     "note": "S control 78; V widebody 90 (5/5), X elongated 68",
+     "line": "Soft control with a big sweet spot in the widebody."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "S 2,277 RPM (59th pct); X 2,291 (78th)",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "pickleball-apes-harmony": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Gen 3: S firepower 14, V 19, X 22; you supply the pace",
+     "line": "Low pace from a third-gen core, so you supply the power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "S control 77; V 98 (5/5); X 65",
+     "line": "Soft control with a very stable widebody."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "S 2,241 RPM (41st pct); V 2,290 (76th)",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "flik-axon": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Budget floating EPP foam core; maker pitches balanced power. No lab data",
+     "line": "Floating foam core gives balanced power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Owners report good control and forgiveness",
+     "line": "Good control and forgiveness."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "4-ply raw T700 carbon; average spin (estimate). Not USAP approved",
+     "line": "Four-ply raw carbon gives average spin."
+    }
+   }
+  },
+  "flik-f3": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Rated Hybrid: PE firepower 55th pct, avg power; Elongated/Widebody ~67th pct, a bit more",
+     "line": "Hybrid has average power, and the other shapes are a bit stronger."
+    },
+    "control": {
+     "dots": 4,
+     "note": "EPP foam with good dwell, forgiving; pickletip calls power controlled not explosive",
+     "line": "Foam core gives good dwell and forgiveness, with controlled rather than explosive power."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,111 RPM (very high) on raw carbon; durability unproven vs durable-grit faces",
+     "line": "High spin from raw carbon, though how well the grit lasts is unproven."
+    }
+   }
+  },
+  "flik-falcon-hybrid-smh": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "13mm EPP foam + cork dwell pads; reviewer 8/10 power, 6/10 pop; not explosive",
+     "line": "Thin foam core with cork pads gives moderate power, not explosive."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Cork pads give soft, muted dwell for a 13mm; low TW 5.9 so off-center hits twist",
+     "line": "Cork pads give a soft, muted dwell, though off-centre hits twist."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "3-layer raw T700; reviewer spin 7/10, no lab RPM; Elongated F1 sibling hits 2,088",
+     "line": "Three-layer raw carbon gives average spin."
+    }
+   }
+  },
+  "flik-falcon-standard-smh": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Same 13mm EPP/cork layup as Falcon Elongated in 16x8 shape; moderate power",
+     "line": "Same thin foam and cork layup in a wider shape gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Widebody face, muted cork dwell; TW 6.55 is low for a widebody",
+     "line": "Widebody face and muted cork dwell, but the sweet spot is a bit low for a widebody."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw T700, 3 layers; no independent RPM, estimate average",
+     "line": "Raw carbon gives average spin."
+    }
+   }
+  },
+  "flik-f1-smh-standard": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm EPP full foam F1 layup; owners call it a rocket, very poppy; light 109 SW",
+     "line": "Full-foam core is very poppy and rocket-like."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Many owners report shots sailing long and erratic pop; needs dialing in",
+     "line": "Shots can sail long and the pop is erratic, so it needs dialling in."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Very gritty raw T700; F1 Elongated measured 2,088 RPM (very high) at PE",
+     "line": "Very gritty raw carbon gives high spin."
+    }
+   }
+  },
+  "neonic-swift-flx": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Dual-density foam elongated; PE firepower 64th pct, Matt serve 69th pct",
+     "line": "Dual-density foam gives strong pace from an elongated shape."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Very light 107 SW, quick hands, but low TW 5.8 leaks pace off-center",
+     "line": "Very light and quick, but pace leaks off-centre."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,110 RPM very high; Matt 2,264 (median); raw peel ply",
+     "line": "High spin from a raw peeled face."
+    }
+   }
+  },
+  "neonic-flare-prime-x": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "14mm widebody; PE firepower 25th pct, power 30th, pop 20th; you supply pace",
+     "line": "Widebody gives low pace, so you supply the power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control-type widebody, TW 6.75, light 107 SW; easy blocks and resets",
+     "line": "Control widebody that is light and easy on blocks and resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 2,003 RPM (medium); standard raw carbon",
+     "line": "Standard raw carbon gives average spin."
+    }
+   }
+  },
+  "neonic-flare-titanium": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm widebody; PE firepower 20th pct, low pop (17th pct)",
+     "line": "Widebody gives low power and little pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control paddle; stable TW 7.06 widebody, soft and forgiving",
+     "line": "Stable, soft and forgiving widebody."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 2,015 RPM (medium)",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "enhance-epp-turbo": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Rated Hybrid: PE firepower 88th pct; Elongated/Widebody 86th; EPP foam power+",
+     "line": "Hits very hard, with plenty of power in foam."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stable TW 6.45, more predictable than most power+ foams but still hot at net",
+     "line": "Stable and more predictable than most power foams, but still hot at the net."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,050 RPM (high) on raw carbon, no durable grit",
+     "line": "High spin from a raw face, but no durable grit."
+    }
+   }
+  },
+  "enhance-sweetspot-team": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Budget 16mm honeycomb; reviewers say not a power paddle, you supply pace",
+     "line": "Budget honeycomb is not a power paddle, so you supply the pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Big, forgiving sweet spot for beginner-4.5; easy drops, dinks and resets",
+     "line": "Big, forgiving sweet spot for easy drops, dinks and resets."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 carbon face, spin good vs starter paddles; no lab RPM found",
+     "line": "Carbon face spins well for a starter paddle."
+    }
+   }
+  },
+  "enhance-sweetspot-pro": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "16mm PP honeycomb, explicitly control-first; adequate, not explosive power",
+     "line": "Control-first honeycomb gives adequate but not explosive power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Huge forgiving sweet spot, calm feel; built for drops, dinks and resets",
+     "line": "Huge, forgiving sweet spot and a calm feel."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 carbon; spin-friendly but no lab RPM; estimate average",
+     "line": "Carbon face is spin-friendly, but about average."
+    }
+   }
+  },
+  "enhance-the-banger": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "14mm edgeless; Matt firepower 31, serve 19th pct; pop avg (44th pct)",
+     "line": "Edgeless build gives low pace with average pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 73 (4/5); bigger sweet spot than most edgeless paddles",
+     "line": "Bigger sweet spot than most edgeless paddles."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,102 RPM (8th pct, his scale); similar to Prism Flash, average overall",
+     "line": "Average spin overall."
+    }
+   }
+  },
+  "helios-flare": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 3 16mm hybrid, foam-injected honeycomb; brand says all-court; no lab test",
+     "line": "Foam-injected honeycomb core gives all-court pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Hybrid TW 7.23 (brand); Gen 3 pop needs break-in",
+     "line": "Pop needs breaking in, and the sweet spot is average."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "ForceGrid T700; brand claims 2,300+ RPM, 3.3% loss; not independently verified",
+     "line": "Textured carbon gives high spin."
+    }
+   }
+  },
+  "helios-sol": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3 16mm elongated, marketed as the power model; SW 114 (brand); no lab data",
+     "line": "Elongated shape gives power-minded pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Elongated TW 6.87 (brand); Gen 3 pop, less forgiving than Blaze",
+     "line": "Less forgiving than the standard shape, with lively pop."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "ForceGrid T700; brand claims 2,300+ RPM; not independently verified",
+     "line": "Textured carbon gives high spin."
+    }
+   }
+  },
+  "helios-blaze": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 3 16mm widebody, accelerated core; light 109 SW; no lab power data",
+     "line": "Accelerated core in a light widebody gives middling power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Widebody TW 7.69 (brand) is very stable; big sweet spot",
+     "line": "Very stable widebody with a big sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "ForceGrid T700; brand claims 2,300+ RPM; not independently verified",
+     "line": "Textured carbon gives high spin."
+    }
+   }
+  },
+  "helios-the-hawaii": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "13mm fiberglass beginner paddle; no lab data, estimate low free power",
+     "line": "Beginner fibreglass paddle with low free power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Large sweet spot, aimed at beginners for control; basic feel",
+     "line": "Large sweet spot aimed at beginners, with a basic feel."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "Particle-printed fiberglass, not carbon; expect low spin",
+     "line": "Fibreglass face gives low spin."
+    }
+   }
+  },
+  "helios-the-astraeus": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm T700 elongated w/ extended handle; owners note good power; no lab data",
+     "line": "Elongated build with extended handle gives good power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Solid, predictable feel per owners; elongated reach, avg forgiveness",
+     "line": "Solid, predictable feel with elongated reach."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Ultra-gritty T700 face, owner reports high spin; no lab RPM",
+     "line": "Ultra-gritty face gives high spin."
+    }
+   }
+  },
+  "helios-the-athos": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm Kevlar hybrid; Amazon Vine tester: not very powerful, on par w/ premium",
+     "line": "Kevlar hybrid is not very powerful."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Responsive, helps placement per owner; no lab data",
+     "line": "Responsive, and it helps placement."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Very textured face per owner review; no lab RPM, estimate average",
+     "line": "Very textured face gives average spin."
+    }
+   }
+  },
+  "helios-the-apollo": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Thermoformed T700 16mm hybrid marketed for power; no independent lab data",
+     "line": "Thermoformed hybrid is marketed for power, with moderate pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Brand TW 6.9, forgiving platform; avg control estimate",
+     "line": "Forgiving platform with average control."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Brand claims 2,300+ RPM textured T700; not independently verified",
+     "line": "Textured face gives high spin."
+    }
+   }
+  },
+  "helios-the-khione": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "13mm fiberglass widebody; light and responsive, some pop; beginner level",
+     "line": "Light, responsive fibreglass widebody with some pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Larger sweet spot and forgiving for beginners; fiberglass less dwell",
+     "line": "Larger sweet spot and forgiving for beginners."
+    },
+    "spin": {
+     "dots": 2,
+     "note": "G2S fiberglass face; expect low spin vs carbon",
+     "line": "Fibreglass face gives low spin versus carbon."
+    }
+   }
+  },
+  "pickle-poppers-pop-n-rush-elongated": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm MPPE/TPE foam; 60.3 mph serve, 38.1 mph pop; power-leaning all-court",
+     "line": "Foam core with power-leaning all-court pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Soft/hollow; pop manageable per one tester, but Playbook says dinks pop up early",
+     "line": "Soft and hollow, so pop is manageable, though dinks can pop up early."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "MAGMAGRIT 2,354 RPM vs 2,151 shape median; durability still being tested",
+     "line": "Gritty face gives high spin, though durability is still unproven."
+    }
+   }
+  },
+  "pickle-poppers-pop-n-treasure-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Gen 4 foam: Matt firepower 80, pop 97.6th pct (#8 of 533); serve 61st pct",
+     "line": "Gen 4 foam gives top-end pop and strong serves."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 63 (4/5), TW 7.25 forgiving, but stiff/hollow and very poppy",
+     "line": "Forgiving, but stiff, hollow and very poppy."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,285 RPM (69th pct, medium); coarse peel ply",
+     "line": "Coarse peeled carbon gives medium spin."
+    }
+   }
+  },
+  "pickle-poppers-pop-n-treasure-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Matt firepower 82, pop 94th pct, heavy 121.7 SW plows through drives",
+     "line": "Heavy build plows through drives with serious power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Matt control 37 (2/5), forgiveness 2/5; stiff/hollow, hard on touch shots",
+     "line": "Stiff and hollow, hard on touch shots."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,279 RPM (61st pct, medium)",
+     "line": "Medium spin."
+    }
+   }
+  },
+  "pickle-poppers-pop-n-pink-petite": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 4 foam; very light 96 SW, serve 29th pct but pop 82nd pct; firepower 55",
+     "line": "Very light with plenty of pop, though serve pace is low."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 78 (4/5), forgiveness 5/5; very fast hands",
+     "line": "Very fast hands and forgiving."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,260 RPM (49th pct); low Ra roughness",
+     "line": "Smooth, low-roughness face gives average spin."
+    }
+   }
+  },
+  "pickle-poppers-pop-n-tango-widebody": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "16mm PP honeycomb, carbon/aramid face; owners say not overwhelmingly powerful",
+     "line": "Honeycomb core is not overwhelmingly powerful."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Owners: forgiving, stable widebody, balanced all-court; no lab data",
+     "line": "Forgiving, stable widebody that plays balanced all-court."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Carbon/aramid face, owner-reported good spin; no lab RPM",
+     "line": "Carbon and aramid face gives good spin."
+    }
+   }
+  },
+  "pickle-poppers-pop-n-frost-elongated": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 2 16mm PP elongated; heavy 120.4 SW adds plow; no power test published",
+     "line": "Heavy elongated build adds plow to moderate power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt forgiveness 2/5, TW 6.25; honeycomb is calmer than the foam models",
+     "line": "Honeycomb is calmer than foam, but forgiveness is limited."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "T700 peel ply but low Ra (24th pct); estimate average spin",
+     "line": "Peeled carbon with a smoother face gives average spin."
+    }
+   }
+  },
+  "engage-axiom-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "16mm: PE firepower 79th pct (power 75th, pop 83rd); 14mm likely crisper",
+     "line": "Strong pace, with the thinner version likely crisper."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light 116 SW, TW 6.08; power-type, pop needs managing",
+     "line": "Light with a small sweet spot, so pop needs managing."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "Armor Grit 2,142 RPM (very high, durable texture)",
+     "line": "Durable, very high spin from a tough texture."
+    }
+   }
+  },
+  "engage-axiom-widebody": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Same Fusion core as Elongated (79th pct PE); widebody likely a bit less plow",
+     "line": "Same core as the elongated version, with a little less plow."
+    },
+    "control": {
+     "dots": 4,
+     "note": "16x8 face, forgiving and quick; no independent SW/TW yet",
+     "line": "Forgiving and quick 16x8 face."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "Same durable Armor Grit as Elongated (2,142 RPM PE)",
+     "line": "Same durable grit gives elite spin."
+    }
+   }
+  },
+  "friday-aura-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE firepower 49th pct (power 52nd, pop 46th); all-court",
+     "line": "Middling pace for all-court play."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low TW 5.75 for the shape, all-court feel",
+     "line": "Small sweet spot for the shape, with an all-court feel."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,040 RPM (high), raw peel ply",
+     "line": "Raw peeled carbon gives above-average spin."
+    }
+   }
+  },
+  "friday-aura-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE firepower 46th pct; middle-of-market pace",
+     "line": "Middle-of-the-market pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "All-court; light 112 SW but low TW 5.98",
+     "line": "All-court feel with average control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 2,028 RPM (high band, raw); average",
+     "line": "Raw face gives average spin."
+    }
+   }
+  },
+  "friday-aura-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "PE firepower 56th pct; light 106 SW limits plow",
+     "line": "Light build limits plow, so pace is middling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very light, quick widebody, TW 6.44; all-court+",
+     "line": "Very light, quick widebody for all-court control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "PE 2,036 RPM, raw peel ply; average",
+     "line": "Raw peeled carbon gives average spin."
+    }
+   }
+  },
+  "friday-aura-pro-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 75th pct, power 88th pct; clear step up from Aura",
+     "line": "Clear step up in power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Power-type; low TW 6.02, pop 62nd pct is manageable",
+     "line": "Power-type paddle with manageable pop, though the sweet spot is small."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,058 RPM (high), raw",
+     "line": "Raw carbon gives high spin."
+    }
+   }
+  },
+  "friday-aura-pro-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 73rd pct (power 84th, pop 62nd)",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Power-type, TW 6.43; predictable for a power paddle",
+     "line": "Predictable for a power paddle."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,051 RPM (high), raw",
+     "line": "Raw carbon gives high spin."
+    }
+   }
+  },
+  "friday-aura-pro-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "PE firepower 74th pct; pop 77th pct, light 108 SW",
+     "line": "Strong pop from a light build."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Power widebody, TW 6.86; poppy at net",
+     "line": "Power widebody that is poppy at the net."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "PE 2,097 RPM (very high) but raw peel ply, not durable grit",
+     "line": "High spin from a raw face, but not a durable grit."
+    }
+   }
+  },
+  "friday-fever-101-elongated": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 3 16mm; matches PE's Fever (46th pct); ImpactTune serve 6.7/10, punch 4/10",
+     "line": "Third-gen core gives middling pace with good serve feel."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low TW 5.66-5.8, all-court; slightly soft dense feel",
+     "line": "Small sweet spot with a slightly soft, dense feel."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "2,035 RPM (PE and ImpactTune); average",
+     "line": "Average spin."
+    }
+   }
+  },
+  "friday-fever-102-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Gen 3 PP+foam: Matt firepower 60, pop 82nd pct (5/5); serve 39th pct",
+     "line": "Foam core gives strong pop but lower serve pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Matt control 58 (3/5); heavy 122 SW, 8.3 oz, poppy",
+     "line": "Heavy and poppy, so control is only average."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,189 RPM (22nd pct, low); coarse peel ply",
+     "line": "Coarse peeled carbon gives below-the-middle spin."
+    }
+   }
+  },
+  "friday-fever-102-widebody": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Matt firepower 62 (pop 90th pct) but PE's Fever 2 only 30th pct; serve below avg",
+     "line": "Good pop and moderate pace, but serves are below average."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 76, forgiveness 4/5, TW 7.1; stable",
+     "line": "Stable and forgiving with good control."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Matt 2,157 RPM (15th pct); PE 2,015 (medium)",
+     "line": "Raw face gives below-the-middle spin."
+    }
+   }
+  },
+  "honolulu-j3cr": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Core Reactor EPP/EVA foam: KewCOR firepower 79/100, most power of Honolulu WBs",
+     "line": "Foam core gives the most power of its line."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Hollow, stiff live face; resets demand touch; low 22.7cm balance, quick",
+     "line": "Hollow, stiff face means resets demand touch, though it's quick."
+    },
+    "spin": {
+     "dots": 5,
+     "note": "Blue Grit 2,417 RPM (elite), Tier 1 durability",
+     "line": "Elite spin from a tough, durable grit."
+    }
+   }
+  },
+  "aireo-cyclone-elongated": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "16mm MPP foam: PE firepower 88th pct (power 88th, pop 89th); very light 7.67 oz",
+     "line": "Strong pace and pop from a very light build."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Power+ but TW 6.41 decent for elongated; hot at the net",
+     "line": "Hot at the net, though decent for an elongated shape."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Nanograph texture: PE 2,054 RPM (high)",
+     "line": "Nano-textured face gives high spin."
+    }
+   }
+  },
+  "aireo-cyclone-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "UPA-A Cyclone Hybrid: Matt firepower 76, serve 78th pct, pop 74th pct",
+     "line": "Hybrid with strong pace and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 67 (4/5), TW 6.6; light 107 SW, stiff/hollow",
+     "line": "Light and quick, with good control from a stiff, hollow feel."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Nanograph 2,282 RPM (65th pct Matt); elongated sibling 2,054 at PE",
+     "line": "Nano-textured face gives high spin."
+    }
+   }
+  },
+  "aireo-cyclone-x-hybrid": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "USAP version: Matt firepower 72, serve 69th, pop 74th pct",
+     "line": "Strong pace and pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Matt control 70 (4/5); light 107 SW, TW 6.7",
+     "line": "Light, with good control and a mid-sized sweet spot."
+    },
+    "spin": {
+     "dots": 4,
+     "note": "Nanograph durable grit: 2,288 RPM (73rd pct Matt)",
+     "line": "Durable grit gives above-average spin."
+    }
+   }
+  },
+  "aireo-falcon-pro-o16": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "$79 Gen 2 16mm PP, raw T700; heavier SW ~121 gives plow; no lab power data",
+     "line": "Heavier build gives plow with middling pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Steady all-court per reviews; less forgiving on mishits",
+     "line": "Steady all-court feel, but less forgiving on mishits."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw T700 bite; no lab RPM, estimate average",
+     "line": "Raw carbon bite gives average spin."
+    }
+   }
+  },
+  "aireo-falcon-pro-l16": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Gen 2 16mm PP elongated, SW 120 (brand); no lab power data",
+     "line": "Elongated reach and heft give moderate pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Brand TW 6.2, all-around; elongated reach, avg forgiveness",
+     "line": "All-around control with average forgiveness."
+    },
+    "spin": {
+     "dots": 3,
+     "note": "Raw T700 grit; brand claims elite spin, no lab RPM",
+     "line": "Raw carbon grit gives about average spin."
+    }
+   }
+  }
+ }
+}

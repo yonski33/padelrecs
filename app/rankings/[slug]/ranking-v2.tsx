@@ -22,7 +22,7 @@ import { attrProfileFor } from "../../../lib/attr-profile";
 import { FEW_VOICES } from "../../../lib/attr-score";
 import { skinContext } from "../../skin/context";
 import { scoreLabel, catalogPath } from "../../../lib/niche";
-import { newThisWeek } from "../../../lib/new-this-week";
+import { newThisWeek, WEEK_SHORT } from "../../../lib/new-this-week";
 import { catalogView } from "../../../lib/catalog-filter";
 import { specGroups } from "../../../lib/guide";
 import { SUITS_OK } from "../../../lib/fit-verdict";
@@ -99,7 +99,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       line: WORDS?.guidePromo ?? `${g.sections.slice(0, 3).map(s => s.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1").replace(/^./, c => c.toUpperCase())} in two minutes.`, cta: `read the ${g.crumb} →` }] : []),
     { k: "catalog", kicker: "catalog", title: `All ${total.toLocaleString("en-US")} ${w.many}`, href: catalogPath,
       line: skin ? "Filter and sort every one." : WORDS?.catalogPromo ?? "Filter by style, level, shape and weight.", cta: `browse ${w.many} →` },
-    { k: "fresh", kicker: "fresh", title: fresh > 0 ? `${fresh.toLocaleString("en-US")} new reviews this week` : "The latest reviews", href: "/reviews",
+    { k: "fresh", kicker: "fresh", title: fresh > 0 ? `${fresh.toLocaleString("en-US")} ${WEEK_SHORT}` : "The latest reviews", href: "/reviews",
       line: `What ${niche.people.many} just said${skin ? "." : `, straight from the ${v2copy.venue ?? "court"}.`}`, cta: "latest reviews →" },
     { k: "turn", kicker: "your turn", title: skin ? "Used one of these?" : WORDS ? niche.copy.ui.triedOneOfThese : "Played one of these?", href: "/add-review",
       line: "Your verdict moves the list. One tap, no account.", cta: "+ add a review" },

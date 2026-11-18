@@ -1,5 +1,7 @@
 import { withoutYear } from "../../../lib/brand-name";
 import { suitsLine } from "../../../lib/suits-line";
+import { sideWord } from "../../../lib/byline";
+import { NoBreak } from "../../no-break";
 import { productPhoto } from "../../visual";
 import { ownScore } from "../../../lib/niche";
 import type { ReactNode } from "react";
@@ -35,6 +37,7 @@ import { modelFamily } from "../../../lib/compare-pairs";
 import { SUITS_OK } from "../../../lib/fit-verdict";
 import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
+import { redditPick, subOf } from "../../../lib/reddit-cards";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
 import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH_LINE } from "../../../lib/racket-page";
@@ -42,6 +45,7 @@ import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
 import "../../review-card.css";
+import { approvalNote } from "../../../lib/approval";
 import { V11Better, V11Others, V11More, V11Plays, V11BuildCards, V11Decide, type V11Card, type V11Pool } from "./v11";
 import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
@@ -165,6 +169,7 @@ export default async function RacketFit(props: {
   // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
   const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
   const tr = ctx.traits(props.racketId);
+  const approval = approvalNote(niche.id, props.slug);
   const qtRow: Partial<Record<string, { chip: string; line: string }>> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
   const TRAITS = traitsFor(props.shape);
   const traits = TRAITS.map(t => {
@@ -177,7 +182,8 @@ export default async function RacketFit(props: {
     // doesn't say who said it, else a plain statement from the dots (lib/trait-note.ts), with both sides named on a real split.
     const stated = sc ? traitNote(t, sc.dots, ev ? ev.players.plus + ev.reviewers.plus : 0, ev ? ev.players.minus + ev.reviewers.minus : 0, SITE_LABEL[t],
       SITE_FIT.traits.find(d => d.key === t)?.say ?? (SITE_FIT.sport === "padel" ? TRAIT_SAY[t as Trait] : undefined)) : null;
-    const text = tr.edits?.traits[t as Trait]?.text ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
+    // The expert's bar line (db/expert-play, owner 2026-11-18) comes right after an admin edit.
+    const text = tr.edits?.traits[t as Trait]?.text ?? ctx.expertLine(props.racketId, t) ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
     return [SITE_LABEL[t], text, sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
@@ -285,7 +291,6 @@ export default async function RacketFit(props: {
   // reports say "A player" and link their source; a verdict pill only where the sentiment was judged.
   const lv = (v?: string | null) => v ? (v === "Competitive" ? "competitive" : v.toLowerCase()) : null;
   // v11c: a card's second line is the writer's own level · court side, only what they gave us (never inferred).
-  const sideWord = (v?: string | null) => !v ? null : /^both$/i.test(v) ? "both sides" : `${v.toLowerCase()} side`;
   const givenMeta = (r: QtReview) => [lv(r.playerLevel), V11 ? sideWord(r.playingSide) : null].filter(Boolean).join(" · ") || null;
   const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
   const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
@@ -309,19 +314,10 @@ export default async function RacketFit(props: {
       .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate),
         url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
   };
-  const redditCards = () => {
-    // 60+ characters (owner 2026-11-18): a one-liner like "Been maining it for 6 months" says nothing; the next comment fills the slot.
-    // Whole comments only (owner 2026-11-18): a stored excerpt cut mid-sentence is skipped and the next pick fills the slot.
-    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && isComplete(unmd(t));
-    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
-      && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
-    // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
-    const pick = (["positive", "mixed", "negative"] as const).flatMap(v => rows.filter(e => e.sentiment === v).slice(0, 1));
-    for (const e of rows) { if (pick.length >= 5) break; if (!pick.includes(e)) pick.push(e); }
-    const sub = (url: string, name: string) => url.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? name;
-    return pick.slice(0, 5).map(e => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "reddit" as const, who: "Reddit user", source: sub(e.sourceUrl, e.sourceName),
-      verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text: unmd(e.excerpt!), verbatim: true } satisfies ReviewCard }));
-  };
+  // Reddit (owner 2026-11-18): up to 5 cards, each our short summary of the comment (lib/reddit-cards.ts), never its words.
+  const redditCards = () => redditPick(ctx.data.external, props.racketId).map(({ row: e, text }) => ({ at: e.sourceDate ?? "", card: {
+    id: e.id, kind: "reddit" as const, who: "Reddit", source: subOf(e.sourceUrl, e.sourceName), verdict: e.sentiment ?? null, when: ago(e.sourceDate),
+    url: e.sourceUrl, tags: e.tags ?? [], text: PADEL ? padelWords(text) : text, verbatim: false } satisfies ReviewCard }));
   const dated: { at: string; card: ReviewCard }[] = [
     ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, tags: r.tags, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
@@ -333,7 +329,7 @@ export default async function RacketFit(props: {
       const verbatim = !e.summary && english && !!e.excerpt;
       const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [] };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
-        ? { ...base, kind: "youtube", who: e.sourceName, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? (V11 ? sentences(text) : sentences(text).slice(0, 4)) : [text] }
+        ? { ...base, kind: "youtube", who: e.sourceName, date: e.sourceDate ?? null, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? (V11 ? sentences(text) : sentences(text).slice(0, 4)) : [text] }
         : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
       return { at: e.sourceDate ?? "", card };
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
@@ -341,7 +337,6 @@ export default async function RacketFit(props: {
     // "Other", Telegram and Facebook sources stay out, like forums), one card per blog, its newest
     // row that has our summary or a short English excerpt (quoted, verbatim). Forum reports still count in the score only.
     ...(V11 ? blogCards() : []),
-    // Reddit (owner 2026-11-18): up to 5 comments, the commenter's exact words only (English, short, never edited by us).
     ...(V11 ? redditCards() : []),
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
@@ -491,7 +486,7 @@ export default async function RacketFit(props: {
   // with 2+ players behind it.
   const bandRows = V11_BANDS_OF(props.shape).map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
     // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
-    const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
+    const nuance = !sc?.expert && (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
     return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
   const topDots = Math.max(0, ...bandRows.map(b => b.dots));
   const tip = qt?.tips.find(t => t.reports.length >= 2);
@@ -540,8 +535,9 @@ export default async function RacketFit(props: {
             <div className="rf-chips">{[soon ? "not shipping yet" : gone ? "discontinued" : null, leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
-            <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
+            <h1><NoBreak name={V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}/></h1>
             {tagline && <p className="rf-hook">{tagline}</p>}
+            {approval && <p className="rf-approval">{approval}</p>}
             {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
             {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}

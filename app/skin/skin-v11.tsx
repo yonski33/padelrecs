@@ -1,4 +1,5 @@
 import "../rackets/[slug]/racket-fit.css";
+import { NoBreak } from "../no-break";
 import "../rackets/[slug]/v11.css";
 import "../review-card.css";
 import "./skin-product.css";
@@ -21,6 +22,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { listShopLink } from "../../lib/amazon-offer";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { plainSummary } from "../../lib/plain-summary";
+import { redditPick, subOf } from "../../lib/reddit-cards";
 import { isComplete } from "../../lib/complete-text";
 import { expertLine } from "../../lib/similar-picks";
 import RacketReviews, { type ReviewCard } from "../rackets/[slug]/racket-reviews";
@@ -101,7 +103,7 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
       line: voiceTagline(x.slug) ?? expertLine(firstSentence(skinPage(x.slug)?.bottom)) ?? shortLine(x) ?? listLine(x) ?? null, shop: listShopLink(x), score: scoreState((ctx.counts.get(x.id)?.positive ?? 0) + (ctx.counts.get(x.id)?.mixed ?? 0) + (ctx.counts.get(x.id)?.negative ?? 0)) === "new" ? null : ctx.signal(x.id) }])) };
 
   // ── Reviews (as padel's shipped section, racket-fit.tsx): our own, YouTube (one card per channel), blogs (one per site,
-  // websites only) and up to 5 Reddit comments in the writer's exact words. Forum reports still count in the score.
+  // websites only) and up to 5 Reddit comments, summarised. Forum reports still count in the score.
   const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
   const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
   const ytProducts = new Map<string, number>(), ytSeen = new Set<string>();
@@ -118,18 +120,14 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
   }).filter(x => x.text).sort((p, q) => (q.e.sourceDate ?? "").localeCompare(p.e.sourceDate ?? ""))
     .filter(({ e }) => { const k = host(e.sourceUrl) || e.sourceName.trim().toLowerCase(); if (blogSeen.has(k)) return false; blogSeen.add(k); return true; })
     .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
-  const okReddit = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && english(t) && isComplete(unmd(t));
-  const redditRows = mine.filter(e => e.sourcePlatform === "Reddit" && !e.adminEditedAt && (!e.sourceLanguage || e.sourceLanguage === "en") && okReddit(e.excerpt))
-    .sort((p, q) => (q.sourceDate ?? "").localeCompare(p.sourceDate ?? ""));
-  const redditPick = (["positive", "mixed", "negative"] as const).flatMap(v => redditRows.filter(e => e.sentiment === v).slice(0, 1));
-  for (const e of redditRows) { if (redditPick.length >= 5) break; if (!redditPick.includes(e)) redditPick.push(e); }
-  const reddit = redditPick.slice(0, 5).map(e => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "reddit" as const, who: "Reddit user", source: e.sourceUrl.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? e.sourceName,
-    verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text: unmd(e.excerpt!), verbatim: true } satisfies ReviewCard }));
+  // Reddit: up to 5 cards, each our short summary of the comment (lib/reddit-cards.ts), never its words.
+  const reddit = redditPick(mine, r.id).map(({ row: e, text }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "reddit" as const, who: "Reddit",
+    source: subOf(e.sourceUrl, e.sourceName), verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text, verbatim: false } satisfies ReviewCard }));
   const cards: ReviewCard[] = [
     ...data.reviews.filter(x => x.racketId === r.id).map(x => ({ at: x.createdAt, card: { id: x.id, kind: "player" as const, who: x.alias || "A SkinRecs user", meta: x.playerLevel ? `${x.playerLevel.toLowerCase()} skin` : null,
       tags: x.tags, verdict: (x.rating >= 4 ? "positive" : x.rating === 3 ? "mixed" : "negative") as ReviewCard["verdict"], when: ago(x.createdAt), text: unmd(x.reviewText), verbatim: false } satisfies ReviewCard })),
     ...onePerChannel(mine.filter(e => e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).map(e => { const text = unmd(e.summary ? plainSummary(e.summary) : e.excerpt ?? "");
-      return { at: e.sourceDate ?? "", card: { id: e.id, kind: "youtube" as const, who: e.sourceName.replace(/^YouTube\s*[·:-]\s*/i, ""), verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [],
+      return { at: e.sourceDate ?? "", card: { id: e.id, kind: "youtube" as const, who: e.sourceName.replace(/^YouTube\s*[·:-]\s*/i, ""), verdict: e.sentiment ?? null, when: ago(e.sourceDate), date: e.sourceDate ?? null, url: e.sourceUrl, tags: e.tags ?? [],
         video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? sentences(text) : [text] } satisfies ReviewCard }; })
       .filter(x => !!x.card.points?.[0]),
     ...blogs, ...reddit,
@@ -162,7 +160,7 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
           <div className="bp-idt">
             <div className="bp-chips">{[r.shape?.toLowerCase(), ff === "free" ? "fragrance-free" : null, spf ? `SPF ${spf}` : null, price].filter(Boolean).map(x => <span key={x}>{x}</span>)}</div>
             {brand && <div className="bp-brand">{brand.name}</div>}
-            <h1>{title || name}</h1>
+            <h1><NoBreak name={title || name}/></h1>
             {hook && <p className="bp-hook">{hook}</p>}
             {scoreRow}
             {buy && <div className="bp-buyrow"><a className="bp-btn" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a></div>}

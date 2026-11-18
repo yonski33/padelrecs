@@ -1,0 +1,18 @@
+{
+ "_about": "Paddles not on the USA Pickleball approved list (Grok's catalog check, 2026-11-18, AFTER-RESET item 12). `pulled`: approved once, then removed. Read by lib/approval.ts; the product page shows a small note.",
+ "products": {
+  "flik-f1-smh-standard": {},
+  "flik-falcon-hybrid-smh": {},
+  "flik-falcon-standard-smh": {},
+  "flik-axon": {},
+  "helios-the-hawaii": {},
+  "luzz-cannon-ex": {},
+  "luzz-glider-m1": {},
+  "luzz-inferno2-m2": {},
+  "luzz-pro-bladz-2x": {},
+  "prokennex-black-ace-xf": { "pulled": "July 2025" },
+  "prokennex-black-ace-lg": { "pulled": "July 2025" },
+  "prokennex-black-ace-pro": { "pulled": "July 2025" },
+  "prokennex-black-ace-ovation": { "pulled": "July 2025" }
+ }
+}

@@ -42,6 +42,7 @@ export type TraitInput = {
 };
 export type TraitScore = { score: number; dots: number; plus: number; minus: number; yt: number; spec: number;
   /** What set it: player reports, or (few player mentions) the specs and YouTube, or nothing (3 by default). */ basis: "players" | "specs" | "none"; set?: boolean;
+  /** The dots are the expert's How it plays score (db/expert-play), not the engine's reading. */ expert?: boolean;
   /** Scorer v2: people behind it, one voice once (players incl. our reviewers, and YouTube reviewers), for the line under the bar. */
   people?: { players: { plus: number; minus: number }; reviewers: { plus: number; minus: number } } };
 

@@ -1,0 +1,5155 @@
+{
+ "_about": "Expert How it plays scores (owner decision 2026-11-18): an expert's blind 1–5 per trait from lab and reviewer data, matched by name + year (scripts/import-expert-play.mts). dots = the shown bar; line = the bar's line in the site voice (≤105 chars), note = the expert's own reason. The engine keeps its own reading for matching (scripts/expert-play-gaps.mts).",
+ "products": {
+  "siux-electra-pro-st4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Hybrid, medium-high balance, hard EVA; easy pop on smashes",
+     "line": "Medium-high balance and hard EVA give easy pop on smashes."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise for a power frame; springy bed at the net",
+     "line": "Precise for a power frame, with a springy bed at the net."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot; tip hits lose output",
+     "line": "Average sweet spot; hits off the tip lose output."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard EVA and 15K face feel firm on the arm",
+     "line": "Hard EVA and a 15K face feel firm on the arm."
+    }
+   }
+  },
+  "oxdog-ultimate-tour-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Diamond but medium balance and 355 g; moderate pop",
+     "line": "Diamond shape, but medium balance and a middling weight keep the pop moderate."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Versatile; diamond head limits pinpoint control",
+     "line": "Versatile, though the diamond head limits pinpoint control."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot, a bit higher on the face",
+     "line": "Average sweet spot that sits a touch high on the face."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium foam, 8K face, lighter build; easy on arm",
+     "line": "Medium foam, 8K face and a lighter build keep it easy on the arm."
+    }
+   }
+  },
+  "siux-fenix-pro-6-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, hard EVA; among the hardest hitters",
+     "line": "Diamond shape, high balance and hard EVA make it one of the hardest hitters."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy and stiff; hard to keep low",
+     "line": "Head-heavy and stiff, so it's hard to keep the ball low."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot; punishes mishits",
+     "line": "Small, high sweet spot that punishes mishits."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Siux rates feel 10/10 hard; very stiff",
+     "line": "Very hard, stiff feel that is rough on the arm."
+    }
+   }
+  },
+  "babolat-air-viper-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light, fast head speed turns into strong smashes",
+     "line": "Light and fast, so head speed turns into strong smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively 16K face; less precise than Counter",
+     "line": "Lively 16K face gives up some precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot per tests",
+     "line": "Smallish sweet spot, so contact has to be clean."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Vibrabsorb and lighter weight offset firm feel",
+     "line": "Vibration damping and a lighter build offset the firm feel."
+    }
+   }
+  },
+  "adidas-metalbone-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance, aluminized 16K face",
+     "line": "Diamond shape, high balance and an aluminised 16K face bring plenty of attack."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy diamond; control needs technique",
+     "line": "Head-heavy diamond; control takes good technique."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot",
+     "line": "Small, high sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Soft Performance core softens a stiff face",
+     "line": "A soft core takes the edge off a stiff face."
+    }
+   }
+  },
+  "adidas-metalbone-ctrl-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, even balance; moderate power, weights help",
+     "line": "Round shape and even balance give moderate power, helped by the weight."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Round head and even balance; precise",
+     "line": "Round head and even balance make it precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Big central sweet spot",
+     "line": "Big, central sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Soft core, firm 16K alum face; average comfort",
+     "line": "Soft core under a firm 16K aluminised face gives average comfort."
+    }
+   }
+  },
+  "head-extreme-motion-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, 270 mm balance; strong overheads at 360 g",
+     "line": "Diamond shape, high balance and a solid weight make for strong overheads."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Lighter than Extreme Pro; precise volleys",
+     "line": "Lighter and precise on volleys."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot",
+     "line": "Small, high sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Fiberglass blend softens a firm Power Foam core",
+     "line": "Fibreglass blend softens a firm foam core."
+    }
+   }
+  },
+  "siux-diablo-pro-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, medium balance; good output, not a smasher",
+     "line": "Teardrop with medium balance gives good output, but it's not a smasher."
+    },
+    "control": {
+     "dots": 4,
+     "note": "All-court Diablo; easy to direct",
+     "line": "All-court shape that is easy to direct."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot, centred",
+     "line": "Average sweet spot, nicely centred."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard 7/10 feel; middling comfort",
+     "line": "Medium-hard feel gives middling comfort."
+    }
+   }
+  },
+  "adidas-metalbone-hrd-plus-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, hard High Memory EVA; huge smash",
+     "line": "Diamond shape, high balance and hard EVA deliver a huge smash."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise at full swing; dense core",
+     "line": "Dense core keeps it precise at full swing."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, demanding sweet spot",
+     "line": "Small, demanding sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard core and 16K alum face; tough on the arm",
+     "line": "Hard core and a 16K aluminised face are tough on the arm."
+    }
+   }
+  },
+  "siux-diablo-pro-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, medium balance; moderate free power",
+     "line": "Teardrop with medium balance gives moderate free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Easy to place; medium touch",
+     "line": "Easy to place, with a medium touch."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Fair sweet spot for its class",
+     "line": "Fair sweet spot for its class."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium EVA; average comfort",
+     "line": "Medium EVA gives average comfort."
+    }
+   }
+  },
+  "adidas-metalbone-carbon-ctrl-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low-power 6K face; little free pace",
+     "line": "Round shape and a low-power 6K face leave you supplying the pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Round, even balance; precise",
+     "line": "Round head and even balance make it precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Big forgiving sweet spot",
+     "line": "Big, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft feel and 6K face; arm-friendly",
+     "line": "Medium-soft feel and a 6K face are friendly on the arm."
+    }
+   }
+  },
+  "siux-fenix-pro-5-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, hard EVA, 24K face; max power",
+     "line": "Diamond shape, high balance, hard EVA and a 24K face give maximum power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy and stiff; hard to keep low",
+     "line": "Head-heavy and stiff, so it's hard to keep low."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot high on the face",
+     "line": "Small sweet spot high on the face."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Very hard feel; harsh for sensitive arms",
+     "line": "Very hard feel that is harsh on sensitive arms."
+    }
+   }
+  },
+  "bullpadel-hack-04-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Hack power in an easier hybrid head",
+     "line": "Big hitting in an easier hybrid head."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Hybrid shape steadies volleys and lobs",
+     "line": "Hybrid shape steadies volleys and lobs."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot, bigger than Hack 04 diamond",
+     "line": "Average sweet spot, bigger than the diamond version."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard touch; average comfort",
+     "line": "Medium-hard touch gives average comfort."
+    }
+   }
+  },
+  "head-coello-motion-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, 268 mm balance; strong at 360 g",
+     "line": "Diamond shape with strong pace for its weight."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Fast at the net; precise for a diamond",
+     "line": "Fast at the net and precise for a diamond."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot; demanding defence",
+     "line": "Small, high sweet spot makes defending demanding."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm Power Foam and carbon face",
+     "line": "Firm foam and a carbon face feel stiff on the arm."
+    }
+   }
+  },
+  "oxdog-ultimate-pro-plus-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, top-heavy, hard EVA, 370 g; huge power",
+     "line": "Top-heavy diamond with hard EVA and a heavy build gives huge power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Sandy face, precise at pace",
+     "line": "Sandy face keeps it precise at pace."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot; needs clean contact",
+     "line": "Small sweet spot, so it needs clean contact."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard foam and 370 g load the arm",
+     "line": "Hard foam and a heavy build load the arm."
+    }
+   }
+  },
+  "kuikma-hybrid-pro-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid, neutral balance; moderate pace",
+     "line": "Hybrid shape with neutral balance gives moderate pace."
+    },
+    "control": {
+     "dots": 3,
+     "note": "All-round; good but not elite precision",
+     "line": "All-round and good, but not elite for precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Tests split; padelful rates it smallish",
+     "line": "Smallish sweet spot, though opinions differ."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard dual foam; average comfort",
+     "line": "Medium-hard dual foam gives average comfort."
+    }
+   }
+  },
+  "nox-ea10-ventus-hybrid-12k-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Firm teardrop; control over free power",
+     "line": "Firm teardrop that favours control over free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Agile, stable all-rounder",
+     "line": "Agile and stable all-rounder."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot per tests",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard 12K Xtrem; average comfort",
+     "line": "Medium-hard 12K face gives average comfort."
+    }
+   }
+  },
+  "bullpadel-neuron-02-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid, medium balance; power needs a full swing",
+     "line": "Hybrid with medium balance; power needs a full swing."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Neuron control: precise, steady at the net",
+     "line": "Precise and steady at the net."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Firm MultiEVA eased by 3K face; average",
+     "line": "A 3K face eases a firm foam for average comfort."
+    }
+   }
+  },
+  "wilson-bela-v3-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, 260 mm balance; decent smash, not explosive",
+     "line": "Teardrop with balance in the middle gives a decent smash, but not an explosive one."
+    },
+    "control": {
+     "dots": 4,
+     "note": "All-rounder; easy to place",
+     "line": "All-rounder that is easy to place."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Forgiving for club players",
+     "line": "Forgiving enough for club players."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "3K face softens a firm foam; average comfort",
+     "line": "A 3K face softens a firm foam for average comfort."
+    }
+   }
+  },
+  "adidas-metalbone-hrd-plus-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, dense core; top smash speed",
+     "line": "Diamond shape, high balance and a dense core give top smash speed."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Direct, precise at full swing",
+     "line": "Direct and precise at full swing."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot; less forgiving than Metalbone",
+     "line": "Small sweet spot, less forgiving than its sibling."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard core and alum 16K; firm on the arm",
+     "line": "Hard core and a 16K aluminised face feel firm on the arm."
+    }
+   }
+  },
+  "bullpadel-neuron-2024": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid, low balance; modest free power",
+     "line": "Hybrid shape with low balance gives modest free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise, fast at the net",
+     "line": "Precise and fast at the net."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard MultiEVA, 3K face; average",
+     "line": "Medium-hard foam and a 3K face give average comfort."
+    }
+   }
+  },
+  "babolat-air-viper-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light, fast; speed turns into pace at the net",
+     "line": "Light and fast, so speed turns into pace at the net."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively 16K face; less precise than Counter",
+     "line": "Lively 16K face gives up some precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Tests rate it small despite wider new shape",
+     "line": "Small sweet spot despite the wider new shape."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Vibrabsorb² and light build offset firm feel",
+     "line": "Vibration damping and a light build offset the firm feel."
+    }
+   }
+  },
+  "siux-pegasus-pro-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Hard core gives strong pace for a teardrop",
+     "line": "Hard core gives strong pace for a teardrop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Manoeuvrable, precise when centred",
+     "line": "Manoeuvrable and precise when you hit the middle."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot; firm feel punishes mishits",
+     "line": "Average sweet spot, and the firm feel punishes mishits."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard 9/10 feel; tough on sensitive arms",
+     "line": "Hard feel that is tough on sensitive arms."
+    }
+   }
+  },
+  "siux-electra-pro-st5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Strong smashes and volleys for a teardrop",
+     "line": "Strong smashes and volleys for a teardrop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable in transitions; precise",
+     "line": "Stable in transitions and precise."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot; firm feel punishes mishits",
+     "line": "Average sweet spot, and the firm feel punishes mishits."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard 8/10 feel; firm on the arm",
+     "line": "Medium-hard feel is firm on the arm."
+    }
+   }
+  },
+  "bullpadel-neuron-02-edge-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Geometric diamond, high balance; offensive Neuron",
+     "line": "Geometric diamond with high balance is the attacking choice."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise for an attack shape",
+     "line": "Precise for an attacking shape."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot, higher on the face",
+     "line": "Average sweet spot that sits higher on the face."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard feel listed by Bullpadel",
+     "line": "Hard feel is firm on the arm."
+    }
+   }
+  },
+  "oxdog-ultimate-pro-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "High balance but 350 g; less mass behind smashes",
+     "line": "High balance, but the light build puts less mass behind smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Diamond head; quick but less precise",
+     "line": "Quick, but the diamond head costs some precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard foam; lighter build helps",
+     "line": "Medium-hard foam eased by a lighter build."
+    }
+   }
+  },
+  "adidas-metalbone-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance; lively soft core",
+     "line": "Diamond shape, high balance and a lively soft core attack well."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy; control needs technique",
+     "line": "Head-heavy, so control takes technique."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot; bigger than HRD+",
+     "line": "Small, high sweet spot, though bigger than a harder-hitting sibling."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Softer core than HRD+; average comfort",
+     "line": "Softer core gives average comfort."
+    }
+   }
+  },
+  "babolat-technical-viper-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, ~270 mm balance, 12K; elite smash power",
+     "line": "Diamond shape, high balance and a 12K face give elite smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy; demanding to keep low",
+     "line": "Head-heavy and demanding to keep low."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot",
+     "line": "Small sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard X-EVA and 12K; stiff",
+     "line": "Medium-hard foam and a 12K face feel stiff."
+    }
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance; strong but softer response",
+     "line": "Diamond shape and high balance, strong but with a softer response."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy; less precise than round lines",
+     "line": "Head-heavy, so less precise than round shapes."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Softer face gives more tolerance than Technical",
+     "line": "Softer face gives more tolerance."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Softer carbon and EVA; easier than Technical",
+     "line": "Softer carbon and EVA make it easier on the arm."
+    }
+   }
+  },
+  "adidas-metalbone-carbon-ctrl-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, 6K face; little free power",
+     "line": "Round shape and a 6K face leave little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Round, even balance; precise",
+     "line": "Round head and even balance make it precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large forgiving sweet spot",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft feel, 6K face; arm-friendly",
+     "line": "Medium-soft feel and a 6K face are friendly on the arm."
+    }
+   }
+  },
+  "oxdog-ultimate-pro-smash-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance, reactive HES carbon: strong flat and kick smashes",
+     "line": "Diamond shape, high balance and reactive carbon give strong flat and kick smashes."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Medium+ EVA keeps it precise for a diamond; lab rates control well",
+     "line": "Medium-plus EVA keeps it precise for a diamond."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good-sized sweet spot for a diamond, stable on off-centre volleys",
+     "line": "Good-sized sweet spot for a diamond, stable on off-centre volleys."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard feel; Vibradamp grip helps but not a soft racket",
+     "line": "Medium-hard feel; the damping grip helps, but it isn't a soft racket."
+    }
+   }
+  },
+  "oxdog-hyper-pro-plus-2-0-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Head-heavy teardrop with stiff HES carbon; punchy volleys and smashes",
+     "line": "Head-heavy teardrop with stiff carbon gives punchy volleys and smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm and direct but heavier swing makes fine placement harder",
+     "line": "Firm and direct, but the heavier swing makes fine placement harder."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "DSH large holes widen usable area; forgiving for a hard teardrop",
+     "line": "Large holes widen the usable area, forgiving for a hard teardrop."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard foam core and stiff carbon face; demanding on the elbow",
+     "line": "Hard foam core and stiff carbon face are demanding on the elbow."
+    }
+   }
+  },
+  "oxdog-hyper-tour-2-0-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Medium-balance teardrop; decent pop but no free smash power",
+     "line": "Medium-balance teardrop with decent pop but no free smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Versatile and predictable rather than surgical",
+     "line": "Versatile and predictable rather than surgical."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Wide teardrop sweet spot, easy ball exit from the back",
+     "line": "Wide teardrop sweet spot gives an easy ball exit from the back."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium foam with Vibradamp; fairly comfortable",
+     "line": "Medium foam with damping makes it fairly comfortable."
+    }
+   }
+  },
+  "oxdog-pure-pro-plus-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "High balance and stiff HES carbon give real punch for a control-shape racket",
+     "line": "High balance and stiff carbon give real punch for a control shape."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Round-ish head and hard core give very precise placement",
+     "line": "Round-ish head and hard core give very precise placement."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Huge, centred sweet spot (lab 93/100)",
+     "line": "Huge, centred sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard, dry touch at 370 g; not for sore arms",
+     "line": "Hard, dry touch on a heavy frame is not for sore arms."
+    }
+   }
+  },
+  "oxdog-ultimate-pro-smash-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Oversized diamond, high balance, 370 g: among the hardest smashers (lab 97)",
+     "line": "Oversized diamond with high balance and a heavy build is among the hardest smashers."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Firm EVA keeps it controllable, but slow handling costs placement",
+     "line": "Firm EVA keeps it controllable, but slow handling costs some placement."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Oversized head keeps a fair sweet spot for a power diamond",
+     "line": "Oversized head keeps a fair sweet spot for a power diamond."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Heavy head and stiff HES carbon load the arm",
+     "line": "Heavy head and stiff carbon load the arm."
+    }
+   }
+  },
+  "oxdog-ultimate-pro-light-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light diamond with high balance; fast head speed on bandejas and smashes",
+     "line": "Light diamond with high balance gives fast head speed on bandejas and smashes."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Quick at the net and accurate, though light mass gives way on blocks",
+     "line": "Quick at the net and accurate, though the light weight gives way on blocks."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Smaller, higher sweet spot; late blocks are punished",
+     "line": "Smaller, higher sweet spot that punishes late blocks."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard feel, light weight eases arm load",
+     "line": "Medium-hard feel, and the light weight eases the load."
+    }
+   }
+  },
+  "oxdog-ultimate-nxt-gen-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Head-heavy diamond helps, but light weight and soft core limit put-aways",
+     "line": "Head-heavy diamond helps, but light weight and soft core limit put-aways."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Soft, lively core is hard to keep low; lab control only 69",
+     "line": "Soft, lively core is hard to keep low."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot; diamond head with soft core is fairly tolerant",
+     "line": "Average sweet spot; diamond head with a soft core is fairly tolerant."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft feel and 345 g make it easy on the arm",
+     "line": "Medium-soft feel and a light build make it easy on the arm."
+    }
+   }
+  },
+  "oxdog-hyper-pro-plus-2-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Head-leaning teardrop; heavy, fast ball once you accelerate",
+     "line": "Head-leaning teardrop gives a heavy, fast ball once you accelerate."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Hard core and stiff face give very straight, precise trajectories (lab 95)",
+     "line": "Hard core and stiff face give very straight, precise trajectories."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Wide, stable usable area for such a hard racket",
+     "line": "Wide, stable usable area for such a hard racket."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard feel; vibrations contained but firm on the arm",
+     "line": "Hard feel; vibrations are contained, but it's firm on the arm."
+    }
+   }
+  },
+  "oxdog-hyper-tour-x-2-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Medium-balance teardrop; easy depth but modest smash power (lab 74)",
+     "line": "Medium-balance teardrop gives easy depth but modest smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Steady and forgiving, built for building points not precision",
+     "line": "Steady and forgiving, built for building points rather than precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large teardrop sweet spot (lab 90) and lively rebound",
+     "line": "Large teardrop sweet spot and a lively rebound."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium foam with high rebound; comfortable for most arms",
+     "line": "Medium foam with high rebound is comfortable for most arms."
+    }
+   }
+  },
+  "oxdog-pure-pro-plus-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Control racket; firm face hits through but little free power (lab 75)",
+     "line": "Control racket with a firm face that hits through, but little free power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Hard core and round head: among the most precise rackets (lab 96)",
+     "line": "Hard core and round head make it among the most precise rackets."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Very large, centred sweet spot (lab 97)",
+     "line": "Very large, centred sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch at 370 g; firm on the elbow",
+     "line": "Hard touch on a heavy frame is firm on the elbow."
+    }
+   }
+  },
+  "oxdog-pure-tour-x-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round control shape and medium foam; you supply the pace on smashes",
+     "line": "Round control shape and medium foam mean you supply the pace on smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Manageable and consistent, not razor-precise",
+     "line": "Manageable and consistent, not razor-precise."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Huge, forgiving round sweet spot (lab 93)",
+     "line": "Huge, forgiving round sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium foam and manageable balance; arm-friendly",
+     "line": "Medium foam and manageable balance are friendly on the arm."
+    }
+   }
+  },
+  "oxdog-pure-court-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Entry-level soft composite; very little smash power (lab 59)",
+     "line": "Entry-level soft composite with very little smash power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Springy soft core is hard to keep low at speed",
+     "line": "Springy soft core is hard to keep low at speed."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Very forgiving round sweet spot (lab 96)",
+     "line": "Very forgiving round sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft composite face and soft foam; gentle on the arm",
+     "line": "Medium-soft composite face and soft foam are gentle on the arm."
+    }
+   }
+  },
+  "siux-trilogy-pro-5-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance: almost no free power on smashes (lab 65)",
+     "line": "Round and low-balance, so there's almost no free power on smashes."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Hard, dry round racket built for pinpoint placement (lab 94)",
+     "line": "Hard, dry round racket built for pinpoint placement."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Broad central sweet spot from the round mould",
+     "line": "Broad central sweet spot from the round mould."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch and stiff carbon face; tough on the elbow",
+     "line": "Hard touch and a stiff carbon face are tough on the elbow."
+    }
+   }
+  },
+  "siux-trilogy-pro-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance control racket; you generate the pace",
+     "line": "Round, low-balance control racket, so you generate the pace."
+    },
+    "control": {
+     "dots": 5,
+     "note": "One of the most precise rackets tested (lab 97)",
+     "line": "One of the most precise rackets around."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large central sweet spot (lab 90)",
+     "line": "Large central sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium feel; softer than the Trilogy 5 Pro",
+     "line": "Medium feel, softer than its pro sibling."
+    }
+   }
+  },
+  "siux-valkiria-pro-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light teardrop with soft EVA; natural acceleration but modest put-aways",
+     "line": "Light teardrop with soft EVA accelerates naturally but gives modest put-aways."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Soft feel aids touch, but lively rebound costs some precision",
+     "line": "Soft feel helps touch, but the lively rebound costs some precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Generous sweet spot (lab 91)",
+     "line": "Generous sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA and 340–360 g make it comfortable",
+     "line": "Soft EVA and a light-to-medium build make it comfortable."
+    }
+   }
+  },
+  "siux-diablo-elite-6-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Medium-balance teardrop; easy ball exit, average smash power",
+     "line": "Medium-balance teardrop with an easy ball exit and average smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively rebound (lab 94) trades some precision for ease",
+     "line": "Lively rebound trades some precision for ease."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving teardrop sweet spot (lab 87)",
+     "line": "Large, forgiving teardrop sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft feel with 3K carbon; arm-friendly",
+     "line": "Medium-soft feel with a 3K carbon face is friendly on the arm."
+    }
+   }
+  },
+  "siux-electra-elite-6-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Attacking teardrop with firmer feel; good punch on volleys (lab 85)",
+     "line": "Attacking teardrop with a firmer feel gives good punch on volleys."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Quick and fairly precise, but firm and less forgiving",
+     "line": "Quick and fairly precise, but firm and less forgiving."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smaller sweet spot than its siblings (lab 74)",
+     "line": "Smaller sweet spot than its siblings."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; 3K carbon softens it a little",
+     "line": "Medium-hard feel, softened a little by the 3K carbon."
+    }
+   }
+  },
+  "siux-fenix-elite-6-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance: strong overheads (lab 90)",
+     "line": "Diamond shape with high balance gives strong overheads."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head weight makes placement harder than the round/teardrop Siux",
+     "line": "Head weight makes placement harder than on the round and teardrop shapes."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot for a diamond (lab 84)",
+     "line": "Average sweet spot for a diamond."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; 3K carbon keeps it bearable",
+     "line": "Medium-hard feel kept bearable by the 3K carbon."
+    }
+   }
+  },
+  "siux-trilogy-elite-6-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance: little free power (lab 64)",
+     "line": "Round shape and low balance give little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Same mould as Trilogy Pro; easy to place and keep low",
+     "line": "Easy to place and keep low."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large round sweet spot (lab 90)",
+     "line": "Large round sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft, more forgiving feel than the Pro",
+     "line": "Medium-soft, more forgiving feel than the pro version."
+    }
+   }
+  },
+  "siux-pegasus-elite-4-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firm teardrop with hard EVA; strong acceleration on smashes (lab 84)",
+     "line": "Firm teardrop with hard EVA accelerates strongly on smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm and direct but needs clean timing",
+     "line": "Firm and direct, but it needs clean timing."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 83)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard EVA core (Siux 8.5/10 firmness family); firm on the arm",
+     "line": "Hard EVA core feels firm on the arm."
+    }
+   }
+  },
+  "siux-astra-hybrid-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Entry teardrop; easy ball exit at low pace but limited smash power",
+     "line": "Entry teardrop with an easy ball exit at low pace, but limited smash power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Soft fiberglass trampoline is hard to control at speed (lab 70)",
+     "line": "Soft fibreglass trampoline is hard to control at speed."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot for a beginner teardrop",
+     "line": "Average sweet spot for a beginner teardrop."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA and fiberglass; comfortable",
+     "line": "Soft EVA and fibreglass keep it comfortable."
+    }
+   }
+  },
+  "siux-astra-control-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Round, low balance beginner racket; very little power (lab 49)",
+     "line": "Round, low-balance beginner racket with very little power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low balance and round head make it easy to direct for beginners",
+     "line": "Low balance and a round head make it easy to direct for beginners."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Centred, fairly tolerant round sweet spot",
+     "line": "Centred, fairly tolerant round sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA and fiberglass; arm-friendly",
+     "line": "Soft EVA and fibreglass are friendly on the arm."
+    }
+   }
+  },
+  "siux-beat-hybrid-3-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Budget teardrop; low power for anything but soft play (lab 61)",
+     "line": "Budget teardrop with low power for anything but soft play."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Springy fiberglass face; imprecise at higher speed (lab 68)",
+     "line": "Springy fibreglass face turns imprecise at higher speed."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average beginner sweet spot",
+     "line": "Average beginner sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft core and fiberglass face; comfortable",
+     "line": "Soft core and fibreglass face are comfortable."
+    }
+   }
+  },
+  "siux-beat-control-3-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Round, low balance budget racket; minimal attack (lab 50)",
+     "line": "Round, low-balance budget racket with minimal attack."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Low balance and round head are easy to steer at club pace",
+     "line": "Low balance and a round head are easy to steer at club pace."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Centred, tolerant sweet spot (lab 76)",
+     "line": "Centred, tolerant sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA and fiberglass; easy on the arm",
+     "line": "Soft EVA and fibreglass are easy on the arm."
+    }
+   }
+  },
+  "siux-obsidian-pro-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Low-balance teardrop built for control; limited free power (lab 73)",
+     "line": "Low-balance teardrop built for control, with limited free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Siux's new control benchmark; precise and easy to handle (lab 88)",
+     "line": "A control benchmark for the brand: precise and easy to handle."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot for a teardrop (lab 88)",
+     "line": "Large sweet spot for a teardrop."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA, 5/10 feel; comfortable",
+     "line": "Soft EVA gives a comfortable feel."
+    }
+   }
+  },
+  "siux-obsidian-elite-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Soft, low-balance teardrop; easy exit but little punch (lab 63)",
+     "line": "Soft, low-balance teardrop with an easy exit but little punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Very lively rebound (lab 93) makes it less precise than the Pro",
+     "line": "Very lively rebound makes it less precise than the pro version."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Very large, forgiving sweet spot (lab 93)",
+     "line": "Very large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Softest of the line (4.5/10 feel); very arm-friendly",
+     "line": "Softest of the line, so very friendly on the arm."
+    }
+   }
+  },
+  "starvie-raptor-plus-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Medium-balance teardrop; solid but not explosive smash (lab 80)",
+     "line": "Medium-balance teardrop; solid, but the smash isn't explosive."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and stable (lab 89)",
+     "line": "Precise and stable."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot (lab 90)",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium M-EVA feel; average comfort",
+     "line": "Medium EVA feel gives average comfort."
+    }
+   }
+  },
+  "starvie-astrum-plus-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Medium-balance teardrop with lively rebound; average power (lab 82)",
+     "line": "Medium-balance teardrop with a lively rebound gives average power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively rebound (lab 91) trades some precision",
+     "line": "Lively rebound trades some precision for ease."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Very large sweet spot (lab 94)",
+     "line": "Very large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium feel; average comfort",
+     "line": "Medium feel gives average comfort."
+    }
+   }
+  },
+  "starvie-drax-plus-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "More offensive than Raptor/Astrum; good punch (lab 84)",
+     "line": "More offensive than its siblings, with good punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Balanced, average precision",
+     "line": "Balanced, with average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 83)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium M-EVA feel",
+     "line": "Medium EVA feel."
+    }
+   }
+  },
+  "starvie-triton-plus-power-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, hard H-EVA: top-tier smash power (lab 100)",
+     "line": "Diamond shape, high balance and hard EVA give top-tier smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very precise when you hit cleanly; demanding on slow balls",
+     "line": "Very precise when you hit cleanly, but demanding on slow balls."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot (lab 79); punishes mishits",
+     "line": "Smallish sweet spot that punishes mishits."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard core and 18K face; stiff on the arm",
+     "line": "Hard core and an 18K face feel stiff on the arm."
+    }
+   }
+  },
+  "starvie-triton-plus-balance-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond with medium balance; strong but less brutal than the Power",
+     "line": "Diamond with medium balance is strong but less brutal than the power version."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Better handling than the Power version, precise (lab 89)",
+     "line": "Handles better than the power version and stays precise."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 80)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; softer than Triton+ Power",
+     "line": "Medium-hard feel, softer than the power version."
+    }
+   }
+  },
+  "starvie-black-titan-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "High balance, hard H-EVA and 24K carbon: explosive (lab 94)",
+     "line": "High balance, hard EVA and a 24K carbon face make it explosive."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very precise for a power racket (lab 97) with clean technique",
+     "line": "Very precise for a power racket, given clean technique."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 81)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch; firm on the arm",
+     "line": "Hard touch that is firm on the arm."
+    }
+   }
+  },
+  "starvie-kenta-plus-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round with soft S-EVA; little smash power (lab 67)",
+     "line": "Round with soft EVA, so little smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Very lively soft rebound (lab 94) reduces precision",
+     "line": "Very lively soft rebound reduces precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot (lab 90)",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft flex core; arm-friendly",
+     "line": "Medium-soft flex core is friendly on the arm."
+    }
+   }
+  },
+  "starvie-arkos-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Entry round fiberglass racket; minimal attack (lab 56)",
+     "line": "Entry round fibreglass racket with minimal attack."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Soft trampoline face; imprecise at pace (lab 70)",
+     "line": "Soft trampoline face turns imprecise at pace."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average, round-centred sweet spot",
+     "line": "Average, round-centred sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft core and fiberglass; very comfortable",
+     "line": "Soft core and fibreglass face are very comfortable."
+    }
+   }
+  },
+  "starvie-polaris-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Entry teardrop; some help at low pace, little smash power (lab 61)",
+     "line": "Entry teardrop that helps at low pace but has little smash power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Soft face hard to control at speed (lab 59)",
+     "line": "Soft face is hard to control at speed."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average beginner sweet spot",
+     "line": "Average beginner sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft touch; very arm-friendly",
+     "line": "Soft touch that is very easy on the arm."
+    }
+   }
+  },
+  "starvie-metheora-plus-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firmer hybrid with good punch (lab 87)",
+     "line": "Firmer hybrid with good punch."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and direct (lab 92)",
+     "line": "Precise and direct."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smaller sweet spot (lab 77)",
+     "line": "Smaller sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard feel",
+     "line": "Medium-hard feel."
+    }
+   }
+  },
+  "starvie-raptor-plus-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "More punch than the 2026 Raptor+ (lab 87)",
+     "line": "More punch than the previous year's version."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable and precise (lab 88)",
+     "line": "Stable and precise."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average-plus sweet spot (lab 85), smaller than 2026",
+     "line": "Slightly above-average sweet spot, a bit smaller than the previous version."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium feel; average comfort",
+     "line": "Medium feel gives average comfort."
+    }
+   }
+  },
+  "starvie-astrum-plus-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Medium-balance teardrop; average power (lab 81)",
+     "line": "Medium-balance teardrop with average power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision, lively rebound",
+     "line": "Average precision and a lively rebound."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot (lab 91)",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard 2027 feel; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "starvie-drax-plus-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Offensive teardrop with good punch (lab 84)",
+     "line": "Offensive teardrop with good punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 83)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "starvie-eternal-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Very powerful hybrid (lab 94), built for attackers",
+     "line": "Very powerful hybrid built for attackers."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Power over precision; average control",
+     "line": "Power over precision, so control is average."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot (lab 74)",
+     "line": "Small sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium feel; average comfort",
+     "line": "Medium feel gives average comfort."
+    }
+   }
+  },
+  "starvie-triton-power-plus-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, hard core: top-tier power (lab 99)",
+     "line": "Diamond shape, high balance and a hard core give top-tier power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise when struck cleanly (lab 91)",
+     "line": "Precise when struck cleanly."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot (lab 81)",
+     "line": "Smallish sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch; stiff on the arm",
+     "line": "Hard touch that is stiff on the arm."
+    }
+   }
+  },
+  "starvie-triton-balance-plus-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, medium balance; strong but not Power-level (lab 86)",
+     "line": "Diamond with medium balance is strong but not at power-racket level."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot (lab 73)",
+     "line": "Small sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard",
+     "line": "Medium-hard feel."
+    }
+   }
+  },
+  "starvie-black-titan-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Hard H-EVA and 24K carbon: among the most powerful (lab 98)",
+     "line": "Hard EVA and 24K carbon make it among the most powerful."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good precision for a power racket (lab 88)",
+     "line": "Good precision for a power racket."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 80)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch; demanding on the arm",
+     "line": "Hard touch that is demanding on the arm."
+    }
+   }
+  },
+  "starvie-phantom-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance, soft core: little free power (lab 68)",
+     "line": "Round, low-balance shape with a soft core gives little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Easy to place and very manoeuvrable (lab 88)",
+     "line": "Easy to place and very manoeuvrable."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Very large sweet spot (lab 93)",
+     "line": "Very large sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft core; very arm-friendly",
+     "line": "Soft core makes it very friendly on the arm."
+    }
+   }
+  },
+  "wilson-bela-pro-v3-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firm Power Foam and 24K carbon: explosive smash (lab 90)",
+     "line": "Firm foam and a 24K carbon face give an explosive smash."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise, penetrating volleys (lab 88)",
+     "line": "Precise, penetrating volleys."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot for an attacking racket (lab 89)",
+     "line": "Good sweet spot for an attacking racket."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard 24K face; firm on the arm",
+     "line": "Medium-hard 24K face feels firm on the arm."
+    }
+   }
+  },
+  "wilson-blade-v3-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Head-heavy teardrop, firm foam; solid smash power",
+     "line": "Head-heavy teardrop with firm foam gives solid smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm, direct response; decent placement",
+     "line": "Firm, direct response with decent placement."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot (lab 75)",
+     "line": "Smallish sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm foam, hardness 91/100 in lab; stiff",
+     "line": "Very firm foam makes it stiff on the arm."
+    }
+   }
+  },
+  "wilson-blade-pro-v3-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firm foam and 3K carbon; strong smash power (lab 86)",
+     "line": "Firm foam and 3K carbon give strong smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise, solid blocks (lab 88)",
+     "line": "Precise, with solid blocks."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot (lab 73)",
+     "line": "Small sweet spot."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Very hard (lab hardness 99/100); harsh on the arm",
+     "line": "Very hard feel that is harsh on the arm."
+    }
+   }
+  },
+  "wilson-defy-v1-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond with Power Foam; strong but manageable power (lab 84)",
+     "line": "Diamond with firm foam gives strong but manageable power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good control for a diamond (lab 90)",
+     "line": "Good control for a diamond."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 85)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium feel with 3K carbon; average comfort",
+     "line": "Medium feel with 3K carbon gives average comfort."
+    }
+   }
+  },
+  "wilson-defy-pro-v1-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, 15K carbon, 370 g: explosive smashes (lab 97)",
+     "line": "Diamond shape, 15K carbon and a heavy build make for explosive smashes."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very good control for the power level (lab 91)",
+     "line": "Very good control for the power level."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 84)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard 15K face at 370 g; firm on the arm",
+     "line": "Medium-hard 15K face on a heavy frame feels firm on the arm."
+    }
+   }
+  },
+  "wilson-optix-v1-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round fiberglass beginner racket; limited smash power",
+     "line": "Round fibreglass beginner racket with limited smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Easy to direct; low balance and big face",
+     "line": "Easy to direct thanks to low balance and a big face."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Big 500 cm² face with enlarged sweet spot (lab 92)",
+     "line": "Big face with an enlarged sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft foam and fiberglass; very comfortable",
+     "line": "Soft foam and fibreglass are very comfortable."
+    }
+   }
+  },
+  "wilson-blade-v4-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "High-balance teardrop with firm foam; good power (lab 83)",
+     "line": "High-balance teardrop with firm foam gives good power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and direct (lab 88)",
+     "line": "Precise and direct."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot (lab 76)",
+     "line": "Small sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm foam; stiff feel",
+     "line": "Firm foam gives a stiff feel."
+    }
+   }
+  },
+  "wilson-endure-v1-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round control racket with some pop (lab 79)",
+     "line": "Round control racket with some pop."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and easy to keep low (lab 92)",
+     "line": "Precise and easy to keep low."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 84)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft dual-density foam; comfortable",
+     "line": "Medium-soft dual-density foam is comfortable."
+    }
+   }
+  },
+  "wilson-endure-pro-v1-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, low balance; more punch than most control rackets (lab 84)",
+     "line": "Round, low balance, with more punch than most control rackets."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Top-tier precision (lab 94)",
+     "line": "Top-tier precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 83)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard 3K carbon; average comfort",
+     "line": "Medium-hard 3K carbon gives average comfort."
+    }
+   }
+  },
+  "wilson-optix-v2-power-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Entry fiberglass teardrop; high balance helps but power is low (lab 65)",
+     "line": "Entry fibreglass teardrop; high balance helps, but power is low."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Soft face, imprecise at pace (lab 70)",
+     "line": "Soft face turns imprecise at pace."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average beginner sweet spot",
+     "line": "Average beginner sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft foam and fiberglass; comfortable",
+     "line": "Medium-soft foam and fibreglass are comfortable."
+    }
+   }
+  },
+  "wilson-optix-v2-lite-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 1,
+     "note": "Light round fiberglass racket; very little power (lab 58)",
+     "line": "Light round fibreglass racket with very little power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Easy to steer; lively rebound limits precision",
+     "line": "Easy to steer, though the lively rebound limits precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large forgiving sweet spot (lab 91)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft and light; very arm-friendly",
+     "line": "Soft and light, so very easy on the arm."
+    }
+   }
+  },
+  "stiga-cybershape-18k-2-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Cybershape lifts sweet spot; moderate smash power (lab 78)",
+     "line": "Shape lifts the sweet spot; smash power is moderate."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Good control on bandejas and volleys (lab 81)",
+     "line": "Good control on bandejas and volleys."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Higher, average-size sweet spot (lab 81)",
+     "line": "Higher sweet spot of average size."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Hypersoft EVA; comfortable",
+     "line": "Very soft EVA keeps it comfortable."
+    }
+   }
+  },
+  "stiga-cybershape-18k-hard-2-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Head-heavy and hard core: strong smashes (lab 92)",
+     "line": "Head-heavy with a hard core gives strong smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Powerful but less precise than the soft 18K (lab 76)",
+     "line": "Powerful but less precise than its soft sibling."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot (lab 72)",
+     "line": "Smallish sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard core (lab hardness 88); firm on the arm",
+     "line": "Hard core feels firm on the arm."
+    }
+   }
+  },
+  "stiga-cybershape-18k-lw-2-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light, low balance: little free power (lab 72)",
+     "line": "Light and low balance, so little free power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Very manoeuvrable and controlled (lab 85)",
+     "line": "Very manoeuvrable and controlled."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 82)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft core and light weight; arm-friendly",
+     "line": "Soft core and light weight are friendly on the arm."
+    }
+   }
+  },
+  "stiga-cybershape-18k-x-hard-2026": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Stiga's most powerful racket per maker; hard Power Foam",
+     "line": "The maker's most powerful racket, with a hard foam core."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Hard, direct; maker and users stress control",
+     "line": "Hard and direct, so control is a strength."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Hard build; likely smallish sweet spot (no lab test)",
+     "line": "Hard build suggests a smallish sweet spot."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Hard+ core and hard face; very stiff",
+     "line": "Hard core and hard face make it very stiff."
+    }
+   }
+  },
+  "stiga-axe-4-cybershape-2026": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Extremely hard core and 15K carbon; slightly higher balance",
+     "line": "Extremely hard core and 15K carbon, with slightly higher balance."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Stiff and direct, demands technique",
+     "line": "Stiff and direct, so it demands technique."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Cybershape claims a larger sweet spot than round",
+     "line": "Shape is claimed to give a larger sweet spot than a round head."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Extremely hard per Stiga; harsh on the arm",
+     "line": "Extremely hard build that is harsh on the arm."
+    }
+   }
+  },
+  "stiga-axe-4-hybrid-2026": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Extremely hard core and 15K carbon: powerful for skilled hitters",
+     "line": "Extremely hard core and 15K carbon make it powerful for skilled hitters."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Medium-high balance, versatile but stiff",
+     "line": "Medium-high balance is versatile but stiff."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Maker cites a generous sweet spot",
+     "line": "Maker claims a generous sweet spot."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Extremely hard per Stiga; harsh on the arm",
+     "line": "Extremely hard build that is harsh on the arm."
+    }
+   }
+  },
+  "kuikma-power-pro-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, firm 18K TeXtreme: strong smashes (lab 93/88)",
+     "line": "Diamond with a firm 18K face gives strong smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm but less precise than Control Pro (lab 81/78)",
+     "line": "Firm, but less precise than the control model."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Narrow sweet spot (lab 73)",
+     "line": "Narrow sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard feel; Shock Block grip reduces vibration",
+     "line": "Hard feel, with a shock-absorbing grip to reduce vibration."
+    }
+   }
+  },
+  "kuikma-control-pro-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, firm carbon: some punch but you supply pace",
+     "line": "Round, firm carbon gives some punch, but you supply the pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very precise and predictable (lab 93/90)",
+     "line": "Very precise and predictable."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large centred sweet spot (lab 96/81)",
+     "line": "Large, centred sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm (lab hardness 94); Shock Block helps a little",
+     "line": "Firm feel; the damping grip helps only a little."
+    }
+   }
+  },
+  "bullpadel-xplo-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance: explosive smash acceleration (lab 97)",
+     "line": "Diamond with high balance gives explosive smash acceleration."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Crisp, precise volleys for a diamond (lab 90)",
+     "line": "Crisp, precise volleys for a diamond."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Decent sweet spot for a diamond (lab 89)",
+     "line": "Decent sweet spot for a diamond."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard 12K carbon; firm on the arm",
+     "line": "Medium-hard 12K carbon feels firm on the arm."
+    }
+   }
+  },
+  "bullpadel-xplo-comfort-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Xplo diamond softened by Fibrix; less free power (lab 79)",
+     "line": "Diamond softened by a fibre-blend face, so less free power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively rebound (lab 90), average precision",
+     "line": "Lively rebound with average precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Forgiving sweet spot (lab 89)",
+     "line": "Forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft Fibrix face; arm-friendly",
+     "line": "Medium-soft face is friendly on the arm."
+    }
+   }
+  },
+  "wilson-bela-ls-v3-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light Bela; moderate smash power (lab 74)",
+     "line": "Light build gives moderate smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and quick at the net (lab 89)",
+     "line": "Precise and quick at the net."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot (lab 88)",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Comfort Flex face, medium feel; arm-friendly",
+     "line": "Flexible face with a medium feel is friendly on the arm."
+    }
+   }
+  },
+  "adidas-metalbone-pro-edt-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Oversized diamond, high balance, aluminized carbon: explosive",
+     "line": "Oversized diamond, high balance and aluminised carbon make it explosive."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Demanding; head weight makes it harder to place",
+     "line": "Demanding, since the head weight makes it harder to place."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Narrow sweet spot for the power level",
+     "line": "Narrow sweet spot for this level of power."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Rigid aluminized carbon; not for sore arms",
+     "line": "Rigid aluminised carbon is not for sore arms."
+    }
+   }
+  },
+  "babolat-air-veron-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Lighter Veron with good free power (lab 86)",
+     "line": "Lighter build with good free power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Fast but less precise (lab 79)",
+     "line": "Fast, but less precise."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (lab 75)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Air line: flexible Carbon Flex face, comfortable",
+     "line": "Flexible carbon face keeps it comfortable."
+    }
+   }
+  },
+  "head-evo-speed-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Beginner teardrop with soft foam; low power ceiling (lab 71)",
+     "line": "Beginner teardrop with soft foam has a low power ceiling."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Steady at club pace (lab 81)",
+     "line": "Steady at club pace."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Wide sweet spot (lab 85)",
+     "line": "Wide sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft foam and Innegra face; very arm-friendly",
+     "line": "Soft foam and a flexible face are very friendly on the arm."
+    }
+   }
+  },
+  "head-one-ultralight-2024": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Ultralight round racket; little free power (lab 65–69)",
+     "line": "Ultralight round racket with little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very manoeuvrable and precise (lab 86–88)",
+     "line": "Very manoeuvrable and precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large forgiving sweet spot (lab 88)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft Comfort Foam, very light; very arm-friendly",
+     "line": "Very soft foam and a light build make it very easy on the arm."
+    }
+   }
+  },
+  "adidas-metalbone-carbon-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance, lively soft EVA; strong smash help (Padelful power 84, rebound 97)",
+     "line": "Diamond shape, high balance and a lively soft EVA give strong smash help."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Bouncy soft core needs touch on fast blocks; average placement (Padelful 81)",
+     "line": "Bouncy soft core needs touch on fast blocks, so placement is average."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Diamond with high, compact sweet spot (Padelful 78)",
+     "line": "Diamond with a high, compact sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft EVA Soft Performance and 6K carbon; easy on the arm",
+     "line": "Medium-soft EVA and a 6K carbon face are easy on the arm."
+    }
+   }
+  },
+  "adidas-adipower-carbon-ctrl-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, 3K carbon, firm feel; little free power, you supply the pace (Padelful 69)",
+     "line": "Round shape and a firm 3K face leave you supplying the pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Round, quick and precise for placement and defence (Padelful control 90)",
+     "line": "Round, quick and precise for placement and defence."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Round shape with a big central sweet spot (Padelful 91)",
+     "line": "Round shape gives a big central sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard touch; average comfort for a carbon control racket",
+     "line": "Medium-hard touch gives average comfort for a carbon control racket."
+    }
+   }
+  },
+  "adidas-adipower-carbon-light-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light round 345–360 g; very little smash power (Padelful 64)",
+     "line": "Light round frame has very little smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Fast and precise in defence and at the net (Padelful control 89)",
+     "line": "Fast and precise in defence and at the net."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving round sweet spot (Padelful 89)",
+     "line": "Large, forgiving round sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard 3K carbon feel; light weight helps a little",
+     "line": "Medium-hard 3K carbon feel, with the light weight helping a little."
+    }
+   }
+  },
+  "adidas-cross-it-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Oversized diamond, high balance, 15K alu carbon; among the most powerful (Padelful 97)",
+     "line": "Oversized diamond, high balance and a 15K aluminised carbon face are among the most powerful."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Surprisingly precise for a power diamond (Padelful control 91)",
+     "line": "Surprisingly precise for a power diamond."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Oversized face helps, but still a high diamond sweet spot (Padelful 81)",
+     "line": "Oversized face helps, but it's still a high diamond sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard High Memory EVA; firm but not harsh",
+     "line": "Medium-hard EVA is firm but not harsh."
+    }
+   }
+  },
+  "adidas-cross-it-ctrl-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, medium balance; moderate pop, little free power (Padelful 76)",
+     "line": "Round with medium balance gives moderate pop but little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control-first round, stable and precise (Padelful control 89)",
+     "line": "Control-first round shape that is stable and precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving sweet spot (Padelful 91)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard feel; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "adidas-cross-it-light-3-4-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light round with soft core; very limited smash power (Padelful 61)",
+     "line": "Light round with a soft core gives very limited smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light and quick but lively exit; average precision (Padelful 83)",
+     "line": "Light and quick, but the lively exit keeps precision average."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Big, forgiving round sweet spot (Padelful 89)",
+     "line": "Big, forgiving round sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "EVA Soft Energy, light 345–360 g; comfortable on the arm",
+     "line": "Soft, light EVA is comfortable on the arm."
+    }
+   }
+  },
+  "adidas-cross-it-carbon-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Oversized diamond, high balance, 6K carbon; strong kick-smash power",
+     "line": "Oversized diamond, high balance and 6K carbon give strong kick-smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Agile but the soft face gives way on fast balls; average control",
+     "line": "Agile, but the soft face gives way on fast balls."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Frame mishits punished; compact high sweet spot (no lab test, from 2026 sibling)",
+     "line": "Compact, high sweet spot that punishes frame mishits."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Soft EVA with 6K carbon; medium comfort",
+     "line": "Soft EVA under 6K carbon gives medium comfort."
+    }
+   }
+  },
+  "adidas-metalbone-carbon-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond with soft lively EVA; strong overhead help (Padelful power 87, rebound 97)",
+     "line": "Diamond with soft, lively EVA gives strong overhead help."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Bouncy core makes touch shots less precise (Padelful 78)",
+     "line": "Bouncy core makes touch shots less precise."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "High, compact diamond sweet spot (Padelful 78)",
+     "line": "High, compact diamond sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft EVA Soft Performance, 6K carbon; arm-friendly",
+     "line": "Medium-soft EVA and a 6K face are friendly on the arm."
+    }
+   }
+  },
+  "adidas-metalbone-team-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Fiberglass diamond; easy but not explosive overhead pop (Padelful 79)",
+     "line": "Fibreglass diamond gives easy but not explosive overhead pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Head-heavy, average precision (Padelful control 81)",
+     "line": "Head-heavy, with average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Generous for a diamond, about average overall (Padelful 80)",
+     "line": "Generous for a diamond, but about average overall."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft fiberglass face and soft EVA; comfortable",
+     "line": "Soft fibreglass face and soft EVA are comfortable."
+    }
+   }
+  },
+  "adidas-metalbone-team-light-3-5-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light round fiberglass; limited smash power (Padelful 71)",
+     "line": "Light round fibreglass frame has limited smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Easy to handle, average precision (Padelful 85)",
+     "line": "Easy to handle, with average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average-to-good sweet spot for a round (Padelful 84)",
+     "line": "Average to good sweet spot for a round racket."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fiberglass and soft EVA, light; comfortable",
+     "line": "Light fibreglass and soft EVA are comfortable."
+    }
+   }
+  },
+  "adidas-metalbone-superlight-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Very light frame; little mass behind smashes (Padelful 69)",
+     "line": "Very light frame, so little mass behind smashes."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Light and lively, harder to keep low (Padelful 75)",
+     "line": "Light and lively, which makes it harder to keep low."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small-ish sweet spot (Padelful 79)",
+     "line": "Smallish sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA, fiberglass and very low weight; easy on the arm",
+     "line": "Soft EVA, fibreglass and very low weight are easy on the arm."
+    }
+   }
+  },
+  "adidas-metalbone-pro-edt-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Head-heavy diamond with weight system; top-tier smash power (Padelful 100)",
+     "line": "Head-heavy diamond with a weight system gives top-tier smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Precise when struck clean, demanding otherwise (Padelful 78)",
+     "line": "Precise when struck clean, demanding otherwise."
+    },
+    "forgiveness": {
+     "dots": 1,
+     "note": "Narrow, high sweet spot; punishing (Padelful 68)",
+     "line": "Narrow, high sweet spot that is punishing."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Rigid alu-carbon, high balance; reviewers say not for arm issues",
+     "line": "Rigid aluminium carbon and high balance are not kind to a sore arm."
+    }
+   }
+  },
+  "adidas-metalbone-zz-carbon-2026": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, medium balance, 3K carbon; control racket with little free power",
+     "line": "Round, medium-balance 3K carbon control racket with little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Round 3K carbon with direct response; precise placement (maker data)",
+     "line": "Round 3K carbon with a direct response gives precise placement."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Round shape gives a large central sweet spot (no lab test yet)",
+     "line": "Round shape gives a large central sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Soft EVA but firm 3K carbon; medium feel (estimate)",
+     "line": "Soft EVA, but firm 3K carbon gives a medium feel."
+    }
+   }
+  },
+  "adidas-cross-it-carbon-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, 6K carbon; crisp overheads, strong power (Padelful 86)",
+     "line": "Diamond with 6K carbon gives crisp overheads and strong power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Calmer than a Metalbone; average precision (Padelful 80)",
+     "line": "Calmer than the harder-hitting models, with average precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Late or off-centre hits punished (Padelful 78)",
+     "line": "Late or off-centre hits are punished."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch, soft EVA; average comfort",
+     "line": "Medium touch and soft EVA give average comfort."
+    }
+   }
+  },
+  "adidas-cross-it-carbon-ctrl-3-5-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round 6K carbon; limited free power (Padelful 70)",
+     "line": "Round 6K carbon frame has limited free power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision; less stable than the CTRL (Padelful 80)",
+     "line": "Average precision, and less stable than the control model."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average sweet spot (Padelful 83)",
+     "line": "About average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch EVA Soft Performance; average comfort",
+     "line": "Medium-touch soft EVA gives average comfort."
+    }
+   }
+  },
+  "adidas-cross-it-ctrl-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, 15K alu carbon; moderate pop, no free power (Padelful 75)",
+     "line": "Round 15K aluminised carbon gives moderate pop but no free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Calm, stable and very precise (Padelful control 92)",
+     "line": "Calm, stable and very precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving sweet spot (Padelful 90)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard High Memory EVA; average comfort",
+     "line": "Medium-hard EVA gives average comfort."
+    }
+   }
+  },
+  "adidas-cross-it-light-3-5-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light round, soft core; very little smash power (Padelful 60)",
+     "line": "Light round frame with a soft core has very little smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Light and quick; decent precision (Padelful 85)",
+     "line": "Light and quick, with decent precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Big forgiving sweet spot (Padelful 89)",
+     "line": "Big, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "EVA Soft Energy, light; comfortable",
+     "line": "Soft, light EVA is comfortable."
+    }
+   }
+  },
+  "adidas-cross-it-light-pro-edt-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, even balance; little x3 smash power (Padelful 65)",
+     "line": "Round, even balance, with little smash power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Among the most precise rackets tested (Padelful control 94)",
+     "line": "Among the most precise rackets around."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Huge, very forgiving sweet spot (Padelful 95)",
+     "line": "Huge, very forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft Energy EVA and low weight; arm-friendly",
+     "line": "Soft EVA and low weight are friendly on the arm."
+    }
+   }
+  },
+  "adidas-arrow-hit-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, ASC carbon, adjustable balance; strong punch (Padelful 84)",
+     "line": "Diamond with adjustable balance gives strong punch."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Sharp volleys, good precision for a diamond (Padelful 86)",
+     "line": "Sharp volleys and good precision for a diamond."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot for a diamond (Padelful 87)",
+     "line": "Good sweet spot for a diamond."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "adidas-arrow-hit-carbon-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Diamond, high balance, ASC carbon; decent pop, not explosive (Padelful 73)",
+     "line": "Diamond with high balance gives decent pop, but it's not explosive."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision; slow in defence (Padelful 82)",
+     "line": "Average precision, and slow in defence."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot, more forgiving than a Metalbone (Padelful 84)",
+     "line": "Average sweet spot, more forgiving than the harder-hitting models."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch, soft EVA; average comfort",
+     "line": "Medium touch and soft EVA give average comfort."
+    }
+   }
+  },
+  "adidas-arrow-hit-light-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light diamond, high balance; moderate power (Padelful 83)",
+     "line": "Light diamond with high balance gives moderate power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Lively and light; harder to place (Padelful control 71)",
+     "line": "Lively and light, so harder to place."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot (Padelful 72)",
+     "line": "Small, high sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA, light; comfortable",
+     "line": "Soft, light EVA is comfortable."
+    }
+   }
+  },
+  "adidas-arrow-hit-pro-edt-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond with rail weights; heavy finishing power (Padelful 94)",
+     "line": "Diamond with rail weights gives heavy finishing power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Head-heavy and lively; hard to place (Padelful control 69)",
+     "line": "Head-heavy and lively, so it's hard to place."
+    },
+    "forgiveness": {
+     "dots": 1,
+     "note": "Small, high sweet spot (Padelful 66)",
+     "line": "Small, high sweet spot that is unforgiving."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA Soft Performance touch; fairly comfortable",
+     "line": "Soft EVA touch is fairly comfortable."
+    }
+   }
+  },
+  "babolat-technical-veron-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance, Carbon Flex; strong power (Padelful 88)",
+     "line": "Diamond with high balance and a flexible carbon face gives strong power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Reasonable precision for a diamond (Padelful 86)",
+     "line": "Reasonable precision for a diamond."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot for its class (Padelful 87)",
+     "line": "Good sweet spot for its class."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch Black EVA; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "babolat-technical-vertuo-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Diamond fiberglass; easy but moderate power (Padelful 79)",
+     "line": "Fibreglass diamond is easy to swing, but power is moderate."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Loose precision (Padelful control 74)",
+     "line": "Loose precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (Padelful 84)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft fiberglass and soft EVA; comfortable",
+     "line": "Medium-soft fibreglass and soft EVA are comfortable."
+    }
+   }
+  },
+  "babolat-air-origin-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light teardrop fiberglass; little smash power (Padelful 70)",
+     "line": "Light fibreglass teardrop has little smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Easy, but only average precision (Padelful 77)",
+     "line": "Easy to use, but only average precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Wide, forgiving sweet spot (Padelful 87)",
+     "line": "Wide, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA, fiberglass, light; comfortable",
+     "line": "Soft, light EVA and fibreglass are comfortable."
+    }
+   }
+  },
+  "babolat-counter-origin-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance; almost no smash power (Padelful 68)",
+     "line": "Round with low balance gives almost no smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Easy to keep in play, average precision (Padelful 85)",
+     "line": "Easy to keep in play, but average precision."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Huge, very forgiving sweet spot (Padelful 92)",
+     "line": "Huge, very forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft EVA and fiberglass; very arm-friendly",
+     "line": "Soft EVA and fibreglass are very friendly on the arm."
+    }
+   }
+  },
+  "babolat-technical-viper-3-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, ~270 mm balance, 3K carbon, hard EVA; elite power (Padelful 98)",
+     "line": "Diamond with high balance, 3K carbon and hard EVA gives elite power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable and precise when struck clean (Padelful 95)",
+     "line": "Stable and precise when struck clean."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot; demanding (reviewers)",
+     "line": "Small, high sweet spot that is demanding."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard EVA, stiff 3K carbon; loads the arm",
+     "line": "Hard EVA and stiff 3K carbon load the arm."
+    }
+   }
+  },
+  "babolat-technical-veron-3-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, Carbon Flex; reliable overhead power (Padelful 85)",
+     "line": "Diamond with a flexible carbon face gives reliable overhead power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good precision for a diamond (Padelful 86)",
+     "line": "Good precision for a diamond."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (Padelful 85)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch Black EVA; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "babolat-technical-viper-soft-3-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, soft carbon; high output (Padelful 88)",
+     "line": "Diamond with soft carbon gives high output."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision; head-heavy (Padelful 84)",
+     "line": "Average precision, and head-heavy."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Solid sweet spot for the category (Padelful 87)",
+     "line": "Solid sweet spot for the category."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Softer carbon than the Technical Viper but still firm",
+     "line": "Softer carbon than its harder sibling, but still firm."
+    }
+   }
+  },
+  "babolat-viper-juan-lebron-3-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, 3K carbon, hard EVA; elite smash power (Padelful 98)",
+     "line": "Diamond, high balance, 3K carbon and hard EVA give elite smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Direct, stable response (Padelful control 94)",
+     "line": "Direct, stable response."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot; demanding (Padelful 86, reviewers)",
+     "line": "Compact sweet spot that is demanding."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard EVA, stiff face; tiring on the arm",
+     "line": "Hard EVA and a stiff face are tiring on the arm."
+    }
+   }
+  },
+  "babolat-veron-juan-lebron-3-0-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, Carbon Flex; punchy (Padelful 90)",
+     "line": "Diamond with a flexible carbon face is punchy."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good control for a diamond (Padelful 87)",
+     "line": "Good control for a diamond."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average sweet spot (Padelful 85)",
+     "line": "Average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch Black EVA; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "babolat-technical-origin-2026": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Fiberglass diamond, 270 mm balance; easy but modest power (Origin+ test, Padelful 73)",
+     "line": "Fibreglass diamond is easy to swing, but power is modest."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Lively, loose precision (Padelful 75 on Origin+)",
+     "line": "Lively and loose on precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Wide perforated sweet spot per Babolat (Padelful 80 on Origin+)",
+     "line": "Wide, perforated sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVA and fiberglass; comfortable (estimate, thin data)",
+     "line": "Soft EVA and fibreglass should be comfortable."
+    }
+   }
+  },
+  "babolat-counter-veron-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, high balance; some pop but low smash ceiling (Padelful 75)",
+     "line": "Round with high balance gives some pop, but a low smash ceiling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable blocks and lobs; precise (Padelful 91)",
+     "line": "Stable blocks and lobs, and precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Big sweet spot (Padelful 90)",
+     "line": "Big sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch, Carbon Flex; average comfort",
+     "line": "Medium touch and a flexible carbon face give average comfort."
+    }
+   }
+  },
+  "babolat-counter-vertuo-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round fiberglass; no punch (Padelful 66)",
+     "line": "Round fibreglass frame has no real punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 79)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Huge, easy sweet spot (Padelful 91)",
+     "line": "Huge, easy sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft EVA and fiberglass; very arm-friendly",
+     "line": "Soft EVA and fibreglass are very friendly on the arm."
+    }
+   }
+  },
+  "babolat-air-veron-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light, quick shape; moderate overhead punch (Padelful 81)",
+     "line": "Light, quick shape gives moderate overhead punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 80)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot (Padelful 74)",
+     "line": "Compact sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Light 345–365 g, medium touch; fairly comfortable",
+     "line": "Light build and medium touch are fairly comfortable."
+    }
+   }
+  },
+  "babolat-air-vertuo-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light fiberglass; accessible but moderate power (Padelful 75)",
+     "line": "Light fibreglass frame is accessible, but power is moderate."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Lively and less precise, unstable at pace (Padelful 69)",
+     "line": "Lively and less precise, and unstable at pace."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot (Padelful 73)",
+     "line": "Compact sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fiberglass and Black EVA, light; comfortable",
+     "line": "Light fibreglass and Black EVA are comfortable."
+    }
+   }
+  },
+  "babolat-viper-juan-lebron-3-1-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Same diamond mould as 3.0; elite smash power (Padelful 98, PadelVerdict 9.2)",
+     "line": "Same diamond mould as its sibling, with elite smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Stable face, precise if you hit clean (Padelful 95)",
+     "line": "Stable face that is precise if you hit clean."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot (PadelVerdict 6.6)",
+     "line": "Compact sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard EVA, 3K carbon; hard feel loads the arm",
+     "line": "Hard EVA and 3K carbon load the arm."
+    }
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-1-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, soft carbon; heavy flat smashes (Padelful 88)",
+     "line": "Diamond with soft carbon gives heavy flat smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision; head-heavy (Padelful 84)",
+     "line": "Average precision, and head-heavy."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "More forgiving than the Viper but sits high (Padelful 87)",
+     "line": "More forgiving than its harder sibling, but the sweet spot sits high."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Softer than the Viper but still firm (PadelVerdict comfort 7.9)",
+     "line": "Softer than its sibling, but still firm."
+    }
+   }
+  },
+  "babolat-veron-juan-lebron-3-1-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, Carbon Flex; good power, below the Viper (Padelful 85)",
+     "line": "Diamond with a flexible carbon face gives good power, below its harder sibling."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good precision on bandejas and viboras (Padelful 86)",
+     "line": "Good precision on bandejas and viboras."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Wider than the Viper, about average overall (Padelful 85)",
+     "line": "Wider than its sibling, about average overall."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "bullpadel-hack-04-comfort-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance, Fibrix; big ball output (Padelful 85)",
+     "line": "Diamond with high balance and a fibre-blend face gives big ball output."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Less accurate on full flat smashes (Padelful 80)",
+     "line": "Less accurate on full flat smashes."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Comfort build widens usable area; average (Padelful 79)",
+     "line": "Comfort build widens the usable area, but it's average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix faces and Adaptia MultiEVA; comfortable",
+     "line": "Fibre-blend faces and a multi-density EVA are comfortable."
+    }
+   }
+  },
+  "bullpadel-vertex-05-comfort-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Medium-balance diamond with soft face; limited punch (Padelful 70)",
+     "line": "Medium-balance diamond with a soft face has limited punch."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Lively and less precise (Padelful 70)",
+     "line": "Lively and less precise."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Forgiving for a diamond, about average (Padelful 85)",
+     "line": "Forgiving for a diamond, but about average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix and soft MultiEVA; arm-friendly",
+     "line": "Soft multi-density EVA and a fibre-blend face are friendly on the arm."
+    }
+   }
+  },
+  "bullpadel-xplo-comfort-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Diamond, high balance, Fibrix; decent but not explosive (Padelful 81)",
+     "line": "Diamond with high balance gives decent power, but it's not explosive."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 84)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot for a diamond (Padelful 91)",
+     "line": "Large sweet spot for a diamond."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft Fibrix face; comfortable",
+     "line": "Medium-soft face is comfortable."
+    }
+   }
+  },
+  "bullpadel-pearl-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light diamond, high balance; lively, punchy (Padelful 87)",
+     "line": "Light diamond with high balance is lively and punchy."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Bouncy in fast exchanges (Padelful 76)",
+     "line": "Bouncy in fast exchanges."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 85)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix and Adaptia MultiEVA; comfortable",
+     "line": "Fibre-blend faces and multi-density EVA are comfortable."
+    }
+   }
+  },
+  "bullpadel-icon-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "370–375 g diamond, 12K carbon; heavy overheads (Padelful 90)",
+     "line": "Heavy diamond with 12K carbon gives heavy overheads."
+    },
+    "control": {
+     "dots": 4,
+     "note": "More control than the shape suggests (Padelful 89)",
+     "line": "More control than the shape suggests."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot; punishes lazy contact (reviewers)",
+     "line": "Small, high sweet spot that punishes lazy contact."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch, crisp not plush; average comfort",
+     "line": "Medium touch that is crisp rather than plush gives average comfort."
+    }
+   }
+  },
+  "bullpadel-wonder-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light 350–360 g, medium balance; limited smash finish (Padelful 69)",
+     "line": "Light frame with medium balance has a limited smash finish."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Agile and accurate, lively exit (Padelful 78)",
+     "line": "Agile and accurate, with a lively exit."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 83)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix faces, light; comfortable",
+     "line": "Light frame with fibre-blend faces is comfortable."
+    }
+   }
+  },
+  "bullpadel-vertex-advance-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Diamond Glaphite entry model; limited power (Padelful 71)",
+     "line": "Entry diamond with limited power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Loose precision (Padelful 74)",
+     "line": "Loose precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot (Padelful 76)",
+     "line": "Smallish sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVAlastic core; comfortable",
+     "line": "Soft elastic core is comfortable."
+    }
+   }
+  },
+  "bullpadel-hack-advance-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round Glaphite; flat smashes lack punch (Padelful 62)",
+     "line": "Round shape means flat smashes lack punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Calm and predictable, average precision (Padelful 80)",
+     "line": "Calm and predictable, with average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average, forgiving from the back (Padelful 80)",
+     "line": "About average, and forgiving from the back."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft EVAlastic core; comfortable",
+     "line": "Soft elastic core is comfortable."
+    }
+   }
+  },
+  "bullpadel-vertex-05-hybrid-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid, lower balance, 12K carbon; you work for smash power (Padelful 79)",
+     "line": "Hybrid with lower balance and 12K carbon means you work for smash power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Very controlled and precise (Padelful 94)",
+     "line": "Very controlled and precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Most forgiving carbon Vertex (Padelful 87)",
+     "line": "The most forgiving of the carbon models in its line."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "bullpadel-vertex-05-geo-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Wide geometric head, 3K carbon, high balance; most powerful Vertex (Padelful 91)",
+     "line": "Wide geometric head, 3K carbon and high balance make it the most powerful of its line."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good net control and spin (Padelful 90)",
+     "line": "Good net control and spin."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Big for a diamond, average overall (Padelful 89, reviews split)",
+     "line": "Big for a diamond, but average overall."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard 3K face transmits vibration (reviewers)",
+     "line": "Medium-hard 3K face transmits vibration."
+    }
+   }
+  },
+  "bullpadel-vertex-05-women-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "350–360 g diamond, Fibrix; moderate power (Padelful 75)",
+     "line": "Light diamond with fibre-blend faces gives moderate power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Lively exit reduces precision (Padelful 75)",
+     "line": "Lively exit reduces precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Forgiving face (Padelful 85)",
+     "line": "Forgiving face."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch, light; average comfort",
+     "line": "Medium touch and light weight give average comfort."
+    }
+   }
+  },
+  "bullpadel-hack-05-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, Tricarbon 18K; elite smash power (Padelful 100)",
+     "line": "Diamond with high balance and an 18K carbon face gives elite smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Precise when calm, but power first (PadelMesh 7.2)",
+     "line": "Precise when you stay calm, but power comes first."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact, high sweet spot (Padelful 70)",
+     "line": "Compact, high sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm frame; softer than Hack 04 but tiring (PRR comfort 60)",
+     "line": "Firm frame, softer than its harder sibling but still tiring."
+    }
+   }
+  },
+  "bullpadel-hack-05-hybrid-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid, 18K alu carbon; low natural ball exit (Padelful 72)",
+     "line": "Hybrid with an 18K aluminised carbon face has a low natural ball exit."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Very precise placement and bandejas (Padelful 94)",
+     "line": "Very precise placement and bandejas."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average sweet spot (Padelful 84)",
+     "line": "About average sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Firm 18K face but hybrid shape; average comfort",
+     "line": "Firm 18K face, but the hybrid shape keeps comfort average."
+    }
+   }
+  },
+  "bullpadel-hack-05-comfort-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond Hack mould, Fibrix; strong output (Padelful 86)",
+     "line": "Diamond shape with a fibre-blend face gives strong output."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 81)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 82)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix and Adaptia MultiEVA; comfortable",
+     "line": "Fibre-blend faces and multi-density EVA are comfortable."
+    }
+   }
+  },
+  "bullpadel-neuron-02-comfort-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Hybrid, high balance; good depth but soft on flat smashes (Padelful 80)",
+     "line": "Hybrid with high balance gives good depth but a soft feel on flat smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision, trampoline effect (Padelful 84)",
+     "line": "Average precision, with a trampoline effect."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Huge, very forgiving sweet spot (Padelful 92)",
+     "line": "Huge, very forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft Fibrix and low-density MultiEVA; comfortable",
+     "line": "Soft fibre-blend face and low-density EVA are comfortable."
+    }
+   }
+  },
+  "bullpadel-xplo-02-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Hybrid/geometric, ~27 cm balance, 3K carbon; extreme power (Padelful 99)",
+     "line": "Hybrid geometric shape with 27 cm balance and 3K carbon gives extreme power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Demanding, average precision (Padelful 80)",
+     "line": "Demanding, with average precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot, little tolerance (Padelful 78)",
+     "line": "Small sweet spot with little tolerance."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard 3K carbon; firm on the arm",
+     "line": "Medium-hard 3K carbon feels firm on the arm."
+    }
+   }
+  },
+  "bullpadel-xplo-02-comfort-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Comfort Xplo, Fibrix; decent pop (Padelful 81)",
+     "line": "Comfort-focused build gives decent pop."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Lively on touch shots (Padelful 84)",
+     "line": "Lively on touch shots."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Generous sweet spot (Padelful 91)",
+     "line": "Generous sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix with MultiEVA; comfortable",
+     "line": "Fibre-blend face and multi-density EVA are comfortable."
+    }
+   }
+  },
+  "bullpadel-pearl-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, high balance, firm Fibrix; punchy (Padelful 88)",
+     "line": "Diamond with high balance and a firm face is punchy."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Firm and lively; harder to place (Padelful 74)",
+     "line": "Firm and lively, so harder to place."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot (Padelful 73)",
+     "line": "Compact sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "bullpadel-icon-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Heavy 12K carbon diamond; strong power (Padelful 95)",
+     "line": "Heavy 12K carbon diamond gives strong power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 85)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small, high sweet spot (Padelful 77)",
+     "line": "Small, high sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "bullpadel-wonder-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Light teardrop/hybrid; limited smash finish (Padelful 68)",
+     "line": "Light teardrop-hybrid has a limited smash finish."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Quick hands, average precision (Padelful 85)",
+     "line": "Quick hands, but average precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Generous sweet spot (Padelful 86)",
+     "line": "Generous sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fibrix faces, light; comfortable",
+     "line": "Light frame with fibre-blend faces is comfortable."
+    }
+   }
+  },
+  "head-coello-pro-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, hard Power Foam; elite power (Padelful 100)",
+     "line": "Diamond, high balance and hard foam give elite power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very precise when struck clean (Padelful 99)",
+     "line": "Very precise when struck clean."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact, high sweet spot; demanding",
+     "line": "Compact, high sweet spot that is demanding."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch; loads the arm",
+     "line": "Hard touch loads the arm."
+    }
+   }
+  },
+  "head-coello-team-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond fiberglass; good power (Padelful 89)",
+     "line": "Fibreglass diamond with good power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and versatile (Padelful 93)",
+     "line": "Precise and versatile."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 82)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch fiberglass; average comfort",
+     "line": "Medium-touch fibreglass gives average comfort."
+    }
+   }
+  },
+  "head-extreme-pro-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "370 g diamond, high balance, carbon; elite power (about 9/10 in tests)",
+     "line": "Heavy carbon diamond with high balance gives elite power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good control on clean contact",
+     "line": "Good control on clean contact."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Demanding sweet spot, about 7.2–7.5/10 in tests",
+     "line": "Demanding sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Stiff face, hard feel; tough on the arm",
+     "line": "Stiff face and hard feel are tough on the arm."
+    }
+   }
+  },
+  "head-extreme-one-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light 350 g diamond, 12K carbon; easy pace (Padelful 89)",
+     "line": "Light diamond with 12K carbon gives easy pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Quick and precise (Padelful 90)",
+     "line": "Quick and precise."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot (Padelful 75)",
+     "line": "Compact sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard 12K carbon; average comfort",
+     "line": "Medium-hard 12K carbon gives average comfort."
+    }
+   }
+  },
+  "head-speed-motion-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop with carbon/glass; versatile, moderate power (Padelful 73)",
+     "line": "Carbon and glass teardrop is versatile, with moderate power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Quick and controlled (Padelful 84)",
+     "line": "Quick and controlled."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot (Padelful 86)",
+     "line": "Good sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "head-speed-one-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Light teardrop, high balance, carbon; good smash help (Padelful 87)",
+     "line": "Light, high-balance carbon teardrop gives good smash help."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Fast and controlled (Padelful 91)",
+     "line": "Fast and controlled."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot to get used to (Padelful 79)",
+     "line": "Small sweet spot that takes getting used to."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard feel; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "head-speed-team-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Teardrop fiberglass; floats at speed, modest power (Padelful 72)",
+     "line": "Fibreglass teardrop floats at speed, so power is modest."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 80)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average, forgiving (Padelful 81)",
+     "line": "About average, and forgiving."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft fiberglass; comfortable",
+     "line": "Medium-soft fibreglass is comfortable."
+    }
+   }
+  },
+  "head-coello-pro-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, carbon hybrid; elite power (Padelful 99)",
+     "line": "Diamond with high balance and a carbon hybrid face gives elite power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very precise for a power racket (Padelful 99)",
+     "line": "Very precise for a power racket."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact, high sweet spot",
+     "line": "Compact, high sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch; loads the arm",
+     "line": "Hard touch loads the arm."
+    }
+   }
+  },
+  "head-coello-team-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond fiberglass; strong power (Padelful 92)",
+     "line": "Fibreglass diamond with strong power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and versatile (Padelful 95)",
+     "line": "Precise and versatile."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 80)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch fiberglass; average comfort",
+     "line": "Medium-touch fibreglass gives average comfort."
+    }
+   }
+  },
+  "head-extreme-pro-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, carbon; explosive (Padelful 100)",
+     "line": "Diamond with high balance and carbon is explosive."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise for a power frame (Padelful 96)",
+     "line": "Precise for a power frame."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Compact sweet spot; demanding in defence",
+     "line": "Compact sweet spot that is demanding in defence."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard feel, very head-heavy; tough on the arm",
+     "line": "Hard feel and a very head-heavy build are tough on the arm."
+    }
+   }
+  },
+  "head-evo-extreme-2026": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Entry oversize teardrop, fiberglass; low power (Padelful 60, data conflicts)",
+     "line": "Entry oversize fibreglass teardrop with low power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Average-to-low precision (Padelful 71)",
+     "line": "Average to low precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Oversize face, about average (estimate)",
+     "line": "Oversize face, about average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft Foam core and fiberglass; comfortable (estimate)",
+     "line": "Soft foam core and fibreglass should be comfortable."
+    }
+   }
+  },
+  "head-radical-motion-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, 3K carbon, Control Foam; moderate power (Padelful 75)",
+     "line": "Teardrop with 3K carbon and control foam gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise control racket (Padelful 89)",
+     "line": "Precise control racket."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot (Padelful 88)",
+     "line": "Good sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Firm 3K carbon (Padelful touch hard); average comfort",
+     "line": "Firm 3K carbon feel gives average comfort."
+    }
+   }
+  },
+  "head-radical-pro-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, low balance, 3K carbon; moderate power (Padelful 79)",
+     "line": "Low-balance teardrop with 3K carbon gives moderate power."
+    },
+    "control": {
+     "dots": 5,
+     "note": "Among the most precise (Padelful 95)",
+     "line": "Among the most precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot (Padelful 89)",
+     "line": "Good sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard touch 3K carbon; firm on the arm",
+     "line": "Hard 3K carbon touch is firm on the arm."
+    }
+   }
+  },
+  "head-radical-team-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Teardrop, low balance, fiberglass; limited power (Padelful 68)",
+     "line": "Low-balance fibreglass teardrop with limited power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very controlled (Padelful 93)",
+     "line": "Very controlled."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving sweet spot (Padelful 90)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Fiberglass and Control Foam; comfortable",
+     "line": "Fibreglass and control foam are comfortable."
+    }
+   }
+  },
+  "head-radical-team-light-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Very light, low balance; almost no finishing power (Padelful 65)",
+     "line": "Very light and low-balance, so almost no finishing power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Easy to whip, average precision (Padelful 77)",
+     "line": "Easy to whip around, with average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 79)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Very light 340–355 g, soft and connected",
+     "line": "Very light, soft and connected."
+    }
+   }
+  },
+  "nox-at10-genius-attack-18k-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, 18K alu carbon; very strong power (Padelful 95)",
+     "line": "Diamond, high balance and an 18K carbon face give very strong power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Strong control for a power racket (Padelful 92)",
+     "line": "Strong control for a power racket."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Average for a diamond (Padelful 79)",
+     "line": "Average for a diamond."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch, multilayer EVA; average comfort",
+     "line": "Medium touch and multilayer EVA give average comfort."
+    }
+   }
+  },
+  "nox-ml10-pro-cup-silver-2025": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance, fiberglass; limited power (Padelful 74)",
+     "line": "Round, low-balance fibreglass has limited power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very controlled (Padelful 90)",
+     "line": "Very controlled."
+    },
+    "forgiveness": {
+     "dots": 5,
+     "note": "Huge, forgiving sweet spot (Padelful 92)",
+     "line": "Huge, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft HR3 EVA with fiberglass; comfortable",
+     "line": "Medium-soft EVA with fibreglass is comfortable."
+    }
+   }
+  },
+  "nox-ml10-pro-cup-coorp-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance, fiberglass; little free power (from ML10 Pro Cup data)",
+     "line": "Round, low-balance fibreglass has little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Control-oriented, precise (Padelful 90 on ML10 Pro Cup)",
+     "line": "Control-oriented and precise."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving sweet spot (Padelful 88 on ML10 Pro Cup)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "HR3 core and silver fiberglass; comfortable",
+     "line": "Soft-core EVA and fibreglass are comfortable."
+    }
+   }
+  },
+  "nox-at10-genius-attack-12k-alum-xtrem-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, 12K Alum Xtrem, high balance; elite power (Padelful 99)",
+     "line": "Diamond with 12K carbon and high balance gives elite power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Direct, stable (Padelful 92)",
+     "line": "Direct and stable."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "High sweet spot (Padelful 79)",
+     "line": "High sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard, stiff face; firm on the arm",
+     "line": "Medium-hard, stiff face feels firm on the arm."
+    }
+   }
+  },
+  "nox-at10-genius-attack-18k-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, 18K alu carbon; very strong power (Padelful 96)",
+     "line": "Diamond with an 18K carbon face gives very strong power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "More precise than expected (Padelful 91)",
+     "line": "More precise than you'd expect."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 82)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "nox-at10-pro-cup-hard-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, aluminized fiberglass; moderate power (Padelful 79)",
+     "line": "Aluminised fibreglass teardrop gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Firm, direct and accurate (Padelful 91)",
+     "line": "Firm, direct and accurate."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Punishes off-centre contact (Padelful 79)",
+     "line": "Punishes off-centre contact."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard HR3; average comfort",
+     "line": "Medium-hard core gives average comfort."
+    }
+   }
+  },
+  "nox-at10-pro-cup-soft-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Teardrop with soft core; lacks punch on flat attacks (Padelful 75)",
+     "line": "Teardrop with a soft core lacks punch on flat attacks."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 74)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 81)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "HR3 Soft EVA; very arm-friendly",
+     "line": "Soft EVA is very friendly on the arm."
+    }
+   }
+  },
+  "nox-ea10-ventus-attack-12k-xtrem-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, 12K carbon, high balance; explosive (Padelful 94)",
+     "line": "Diamond, 12K carbon and high balance make it explosive."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good control (Padelful 88)",
+     "line": "Good control."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot, demanding timing (Padelful 81, reviewers)",
+     "line": "Small sweet spot with demanding timing."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Medium-hard; can load the arm",
+     "line": "Medium-hard feel can load the arm."
+    }
+   }
+  },
+  "nox-ml10-ventus-control-3k-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, 3K carbon; moderate power (Padelful 79)",
+     "line": "Round 3K carbon gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very controlled (Padelful 90)",
+     "line": "Very controlled."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot (Padelful 87)",
+     "line": "Good sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "nox-vk10-ventus-control-12k-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, 12K carbon; no free power (Padelful 73)",
+     "line": "Round 12K carbon has no free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Predictable blocks (Padelful 88)",
+     "line": "Predictable blocks."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 84)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "nox-ventus-hybrid-12k-lite-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light teardrop, 12K carbon; limited smash firepower (Padelful 79)",
+     "line": "Light 12K carbon teardrop gives limited smash punch."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Quick and precise (Padelful 87)",
+     "line": "Quick and precise."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 84)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium touch, light; kind to the elbow",
+     "line": "Medium touch and light weight are kind to the elbow."
+    }
+   }
+  },
+  "nox-equation-hard-advanced-2026": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round fiberglass, hard core; little power (Padelful 66)",
+     "line": "Round fibreglass with a hard core has little power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 80)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average for a round (Padelful 78)",
+     "line": "About average for a round racket."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard HR3; average comfort",
+     "line": "Medium-hard core gives average comfort."
+    }
+   }
+  },
+  "nox-equation-soft-advanced-2026": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round fiberglass, soft core; overheads lack punch (Padelful 61)",
+     "line": "Round fibreglass with a soft core means overheads lack punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 81)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Forgiving round face, about average (Padelful 79)",
+     "line": "Forgiving round face, but about average."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "HR3 Soft EVA and fiberglass; very comfortable",
+     "line": "Soft EVA and fibreglass are very comfortable."
+    }
+   }
+  },
+  "nox-at10-genius-12k-alum-xtrem-lite-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Light teardrop, medium balance; moderate power (2026 Lite, Padelful 76)",
+     "line": "Light teardrop with medium balance gives moderate power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Very maneuverable, average precision (Padelful 80)",
+     "line": "Very manoeuvrable, with average precision."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Big, forgiving sweet spot (Padelful 91)",
+     "line": "Big, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Medium-soft White EVA HR3; comfortable",
+     "line": "Medium-soft EVA is comfortable."
+    }
+   }
+  },
+  "nox-at10-genius-18k-alum-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, lower swingweight for 2027; moderate power (Padelful 79)",
+     "line": "Teardrop with a lighter head gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise and quick at the net (Padelful 87)",
+     "line": "Precise and quick at the net."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large sweet spot (Padelful 90)",
+     "line": "Large sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard, new VCS damping; average comfort",
+     "line": "Medium-hard feel, helped by damping, gives average comfort."
+    }
+   }
+  },
+  "nox-at10-genius-attack-12k-alum-xtrem-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, 12K Alum Xtrem; elite power (Padelful 95)",
+     "line": "Diamond with a 12K aluminised face gives elite power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Firm, precise response (Padelful 92)",
+     "line": "Firm, precise response."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 82)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Stiff face; VCS damping helps a bit",
+     "line": "Stiff face, helped a bit by damping."
+    }
+   }
+  },
+  "nox-at10-genius-attack-18k-alum-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Diamond, high balance, 18K alu carbon; explosive smashes (Padelful 94)",
+     "line": "Diamond, high balance and an 18K carbon face give explosive smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Harder to control in defence (Padelful 66)",
+     "line": "Harder to control in defence."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "High sweet spot, harsh off-centre (Padelful 67)",
+     "line": "High sweet spot that is harsh off-centre."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium touch; average comfort",
+     "line": "Medium touch gives average comfort."
+    }
+   }
+  },
+  "nox-at10-pro-cup-hard-2027": {
+   "confidence": "high",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, hard HR3; moderate power (Padelful 79)",
+     "line": "Teardrop with a hard core gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Strong control on volleys (Padelful 84, reviewers)",
+     "line": "Strong control on volleys."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Demanding sweet spot (Padelful 80)",
+     "line": "Demanding sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "nox-at10-pro-cup-soft-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Teardrop, soft core; lacks punch (Padelful 75)",
+     "line": "Teardrop with a soft core lacks punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 74)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 81)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft HR3 EVA; very comfortable",
+     "line": "Soft EVA is very comfortable."
+    }
+   }
+  },
+  "nox-ea10-ventus-hybrid-12k-xtrem-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, 12K Alum Xtrem; good but not free power (reviews)",
+     "line": "Teardrop with a 12K aluminised face gives good but not free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise, spin-friendly and stable (reviews)",
+     "line": "Precise, spin-friendly and stable."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Demanding sweet spot (reviews)",
+     "line": "Demanding sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Firm feel; average comfort (estimate)",
+     "line": "Firm feel gives average comfort."
+    }
+   }
+  },
+  "nox-ventus-attack-12k-xtrem-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 5,
+     "note": "Same diamond as EA10 2026; explosive smash",
+     "line": "Same diamond shape as its predecessor, with explosive smashes."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Good control for a power racket",
+     "line": "Good control for a power racket."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot, demanding timing",
+     "line": "Small sweet spot with demanding timing."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm, head-heavy; can strain the arm",
+     "line": "Firm and head-heavy, so it can strain the arm."
+    }
+   }
+  },
+  "nox-vk10-ventus-control-12k-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, 12K carbon; little free power (Padelful 70)",
+     "line": "Round 12K carbon has little free power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very controlled (Padelful 91)",
+     "line": "Very controlled."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot (Padelful 88)",
+     "line": "Good sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "nox-ml10-ventus-control-3k-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, 3K carbon; moderate power (Padelful 79)",
+     "line": "Round 3K carbon gives moderate power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very controlled (Padelful 92)",
+     "line": "Very controlled."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Good sweet spot (Padelful 89)",
+     "line": "Good sweet spot."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard; average comfort",
+     "line": "Medium-hard feel gives average comfort."
+    }
+   }
+  },
+  "nox-ml10-pro-cup-silver-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round, low balance, fiberglass; little power (Padelful 67)",
+     "line": "Round, low-balance fibreglass has little power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Controlled (Padelful 85)",
+     "line": "Controlled."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large, forgiving sweet spot (Padelful 90)",
+     "line": "Large, forgiving sweet spot."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "Soft touch HR3 EVA; very comfortable",
+     "line": "Soft-touch EVA is very comfortable."
+    }
+   }
+  },
+  "nox-equation-hard-advanced-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round fiberglass, hard core; little power (Padelful 66)",
+     "line": "Round fibreglass with a hard core has little power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (Padelful 80)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "About average (Padelful 78)",
+     "line": "About average."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "Medium-hard HR3; average comfort",
+     "line": "Medium-hard core gives average comfort."
+    }
+   }
+  },
+  "nox-equation-soft-advanced-2027": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Round fiberglass, soft core; overheads lack punch (2026 data)",
+     "line": "Round fibreglass with a soft core means overheads lack punch."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Average precision (2026 data)",
+     "line": "Average precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Forgiving round face, about average (2026 data)",
+     "line": "Forgiving round face, but about average."
+    },
+    "arm": {
+     "dots": 5,
+     "note": "HR3 Soft EVA; very comfortable",
+     "line": "Soft EVA is very comfortable."
+    }
+   }
+  },
+  "wilson-bela-v3-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Teardrop, 260 mm balance; decent smash, not explosive",
+     "line": "Teardrop with balance in the middle gives a decent smash, but not an explosive one."
+    },
+    "control": {
+     "dots": 4,
+     "note": "All-rounder; easy to place",
+     "line": "All-rounder that is easy to place."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Forgiving for club players",
+     "line": "Forgiving enough for club players."
+    },
+    "arm": {
+     "dots": 3,
+     "note": "3K face softens a firm foam; average comfort",
+     "line": "A 3K face softens a firm foam for average comfort."
+    }
+   }
+  },
+  "wilson-blade-v3-2024": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Head-heavy teardrop, firm foam; solid smash power",
+     "line": "Head-heavy teardrop with firm foam gives solid smash power."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm, direct response; decent placement",
+     "line": "Firm, direct response with decent placement."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Smallish sweet spot (lab 75)",
+     "line": "Smallish sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm foam, hardness 91/100 in lab; stiff",
+     "line": "Very firm foam makes it stiff on the arm."
+    }
+   }
+  },
+  "wilson-blade-pro-v3-2024": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Firm foam and 3K carbon; strong smash power (lab 86)",
+     "line": "Firm foam and 3K carbon give strong smash power."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Precise, solid blocks (lab 88)",
+     "line": "Precise, with solid blocks."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Small sweet spot (lab 73)",
+     "line": "Small sweet spot."
+    },
+    "arm": {
+     "dots": 1,
+     "note": "Very hard (lab hardness 99/100); harsh on the arm",
+     "line": "Very hard feel that is harsh on the arm."
+    }
+   }
+  },
+  "kuikma-power-pro-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 4,
+     "note": "Diamond, firm 18K TeXtreme: strong smashes (lab 93/88)",
+     "line": "Diamond with a firm 18K face gives strong smashes."
+    },
+    "control": {
+     "dots": 3,
+     "note": "Firm but less precise than Control Pro (lab 81/78)",
+     "line": "Firm, but less precise than the control model."
+    },
+    "forgiveness": {
+     "dots": 2,
+     "note": "Narrow sweet spot (lab 73)",
+     "line": "Narrow sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Hard feel; Shock Block grip reduces vibration",
+     "line": "Hard feel, with a shock-absorbing grip to reduce vibration."
+    }
+   }
+  },
+  "kuikma-control-pro-2025": {
+   "confidence": "medium",
+   "traits": {
+    "power": {
+     "dots": 3,
+     "note": "Round, firm carbon: some punch but you supply pace",
+     "line": "Round, firm carbon gives some punch, but you supply the pace."
+    },
+    "control": {
+     "dots": 4,
+     "note": "Very precise and predictable (lab 93/90)",
+     "line": "Very precise and predictable."
+    },
+    "forgiveness": {
+     "dots": 4,
+     "note": "Large centred sweet spot (lab 96/81)",
+     "line": "Large, centred sweet spot."
+    },
+    "arm": {
+     "dots": 2,
+     "note": "Firm (lab hardness 94); Shock Block helps a little",
+     "line": "Firm feel; the damping grip helps only a little."
+    }
+   }
+  },
+  "head-evo-extreme-2025": {
+   "confidence": "low",
+   "traits": {
+    "power": {
+     "dots": 2,
+     "note": "Entry oversize teardrop, fiberglass; low power (Padelful 60, data conflicts)",
+     "line": "Entry oversize fibreglass teardrop with low power."
+    },
+    "control": {
+     "dots": 2,
+     "note": "Average-to-low precision (Padelful 71)",
+     "line": "Average to low precision."
+    },
+    "forgiveness": {
+     "dots": 3,
+     "note": "Oversize face, about average (estimate)",
+     "line": "Oversize face, about average."
+    },
+    "arm": {
+     "dots": 4,
+     "note": "Soft Foam core and fiberglass; comfortable (estimate)",
+     "line": "Soft foam core and fibreglass should be comfortable."
+    }
+   }
+  }
+ }
+}
