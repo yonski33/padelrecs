@@ -71,14 +71,15 @@ export function V11Others({ id, slug, facts, better, cards, pool, me, keys, gain
   if (!list.length) return null;
   return <section className="v11-sec" id="alternatives">
     <div className="v11-sh v11-rule"><h2>{picked ? `Other ${words.many} for your game` : `Other ${words.many} to consider`}</h2><span>{picked ? "the best fits for your picks, by match" : `similar ${words.many}, same quick answer`}</span></div>
-    <div className="v11-others two">{list.map(c => <article key={c.id} className="v11-ocard" id={`racket-${c.id}`}>
+    {/* One card only (no second with honest lines): full width, photo left, the two lines side by side (owner 2026-11-18). */}
+    <div className={`v11-others ${list.length > 1 ? "two" : "one"}`}>{list.map(c => <article key={c.id} className="v11-ocard" id={`racket-${c.id}`}>
       <a className="v11-opic" href={`${c.href}${m.picksHref}`} tabIndex={-1} aria-hidden="true"><Pic pic={c.pic} name={c.name} w={64} h={96}/></a>
       <div className="v11-obody">
         <a className="v11-oname" href={`${c.href}${m.picksHref}`}>{c.name}</a>
         <Score pct={picked ? c.pct : null} score={c.score} word={scoreWord}/>
         {c.line && <p className="v11-oline">{c.line}</p>}
-        {c.gain && <p className="v11-tgain">{`✓ ${c.gain}`}</p>}
-        {c.give && <p className="v11-tgive">{`↗ ${c.give}`}</p>}
+        <div className="v11-olines">{c.gain && <p className="v11-tgain">{`✓ ${c.gain}`}</p>}
+          {c.give && <p className="v11-tgive">{`↗ ${c.give}`}</p>}</div>
         <Links c={c} slug={slug}/>
       </div>
     </article>)}</div>

@@ -464,6 +464,14 @@
 .rf:has(.v11-score) .rf-fit { align-self: flex-start; }
 .rf:has(.v11-score) .rf-fit .rf-best { margin-top: 14px !important; }
 
+/* "Other rackets": a lone card runs the full width, photo left, the gain and give-up side by side (owner 2026-11-18). */
+.rf .v11-olines { display: flex; flex-direction: column; gap: inherit; align-self: stretch; }
+.rf .v11-others.one { grid-template-columns: 1fr; }
+.rf .v11-others.one .v11-ocard { grid-template-columns: 96px minmax(0, 1fr); gap: 4px 18px; }
+.rf .v11-others.one .v11-opic img { max-height: 140px; }
+.rf .v11-others.one .v11-olines { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+@media (max-width: 760px) { .rf .v11-others.one .v11-ocard { grid-template-columns: 56px minmax(0, 1fr); } .rf .v11-others.one .v11-olines { grid-template-columns: 1fr; } }
+
 /* Desktop (owner 2026-11-18): no sticky fit / price bar. The hero's fit card and Check price, the Other rackets links and the
    "Still deciding?" card are enough; phones (< 1024px) keep the bottom bar. Its bottom padding only applies under 900px. */
 @media (min-width: 1024px) { .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; } }

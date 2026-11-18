@@ -85,13 +85,70 @@ export function balanceRank(spec: ClaimSpec): number | null {
 const voiced = (t: TraitEvidence) => !!t && t.dots > 0 && (!!t.set || t.plus + t.minus >= MIN_TRAIT_VOICES);
 
 /** Why "other is more `key` than me" (dir 1) or "less `key`" (dir -1) can't be said, or null when it holds. */
-export function claimBlock(site: string, key: string, dir: 1 | -1, other: { spec: ClaimSpec; tr: TraitEvidence }, me: { spec: ClaimSpec; tr: TraitEvidence }): string | null {
+// Spec facts (owner 2026-11-18: "every product usable as a suggestion"): like the disc golf flight numbers, a clear gap in the
+// stored specs is evidence on its own for the trait it decides, and the line says the fact ("quicker than the Nox (lighter, 355
+// vs 370 g)"). A clear gap the other way blocks the line. Player dots that clearly disagree (voiced, a dot or more the other
+// way) still win over a spec.
+type Fact = { gap: number; note: () => string };
+const num = (re: RegExp, t?: string | null) => { const m = re.exec(t ?? ""); return m ? +m[1] : null; };
+const fact = (o: number | null, m: number | null, step: number, sign: 1 | -1, note: () => string): Fact | null =>
+  o === null || m === null ? null : { gap: ((o - m) / step) * sign, note };
+const either = (a: Fact | null, b: Fact | null): Fact | null => {
+  // The first spec that shows a clear gap decides; two that point opposite ways decide nothing.
+  const clear = [a, b].filter((f): f is Fact => !!f && Math.abs(f.gap) >= 1);
+  if (clear.length === 2 && Math.sign(clear[0].gap) !== Math.sign(clear[1].gap)) return null;
+  return clear[0] ?? a ?? b;
+};
+const g = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
+export function specFact(site: string, key: string, o: ClaimSpec, m: ClaimSpec): Fact | null {
+  if (site === "padel" || site === "pickleball") {
+    if (key === "speed") {
+      const step = WEIGHT_STEP[site], wo = weightMid(site, o), wm = weightMid(site, m), u = site === "padel" ? "g" : "oz";
+      // The weights as stored ("355 vs 360–375 g"), not the midpoints the gap is worked out on.
+      const shown = (x: ClaimSpec) => { const r = site === "padel" ? [...low(x.weight).matchAll(/(\d{3})/g)].map(v => +v[1]).filter(v => v >= 300 && v <= 420)
+        : [...low(x.weight).matchAll(/(\d+(?:\.\d+)?)/g)].map(v => +v[1]).filter(v => v >= 6 && v <= 10); const lo = Math.min(...r), hi = Math.max(...r); return lo === hi ? g(lo) : `${g(lo)}–${g(hi)}`; };
+      const w = fact(wo, wm, step, -1, () => `${wo! < wm! ? "lighter" : "heavier"}, ${shown(o)} vs ${shown(m)} ${u}`);
+      const b = site === "padel" ? fact(balanceRank(o), balanceRank(m), 0.5, -1, () => `${low(o.balance)} vs ${low(m.balance)} balance`)
+        : fact(num(/(\d{2,3})/, o.balance), num(/(\d{2,3})/, m.balance), 4, -1, () => `swing weight ${num(/(\d{2,3})/, o.balance)} vs ${num(/(\d{2,3})/, m.balance)}`);
+      return either(w, b);
+    }
+    if (key === "forgiveness") return fact(shapeRank(site, o.shape), shapeRank(site, m.shape), 1, 1, () => `${low(o.shape)} vs ${low(m.shape)} shape`);
+    if (key === "arm") { const fo = firmness(site, o), fm = firmness(site, m); return fact(fo, fm, 1, -1, () => `${fo! < fm! ? "softer" : "firmer"} core and face`); }
+  }
+  if (site === "tennis") {
+    const gr = (x: ClaimSpec) => num(/(\d{3})\s*g\b/, x.weight), hl = (x: ClaimSpec) => { const v = num(/(\d+(?:\.\d+)?)\s*pts?\s*HL/i, x.balance); return v ?? (num(/(\d+(?:\.\d+)?)\s*pts?\s*HH/i, x.balance) !== null ? -num(/(\d+(?:\.\d+)?)\s*pts?\s*HH/i, x.balance)! : null); };
+    if (key === "maneuverability") return either(fact(gr(o), gr(m), 8, -1, () => `${gr(o)! < gr(m)! ? "lighter" : "heavier"}, ${gr(o)} vs ${gr(m)} g`),
+      fact(hl(o), hl(m), 2, 1, () => `${g(hl(o)!)} vs ${g(hl(m)!)} pts head-light`));
+    const hs = (x: ClaimSpec) => num(/(\d{2,3})\s*sq/i, x.shape), ra = (x: ClaimSpec) => num(/(\d{2})\s*RA/i, x.surface);
+    if (key === "forgiveness") return fact(hs(o), hs(m), 3, 1, () => `${hs(o)} vs ${hs(m)} sq in head`);
+    if (key === "arm") return fact(ra(o), ra(m), 3, -1, () => `${ra(o)} vs ${ra(m)} RA stiffness`);
+  }
+  if (site === "simracing" && key === "ffb_strength") {
+    const nm = (x: ClaimSpec) => num(/(\d+(?:\.\d+)?)\s*Nm\b/i, x.weight);
+    return fact(nm(o), nm(m), 1, 1, () => `${g(nm(o)!)} vs ${g(nm(m)!)} Nm`);
+  }
+  return null;
+}
+/** The evidence behind a line beyond the player dots: flight numbers (disc golf) or a clear spec gap; null when there is none. */
+export function factFor(site: string, key: string, o: ClaimSpec, m: ClaimSpec): Fact | null {
+  const f = flightFact(site, key, o.flight, m.flight);
+  if (f) return { gap: f.gap, note: () => f.note(1) };
+  return specFact(site, key, o, m);
+}
+
+export function claimBlock(site: string, key: string, dir: 1 | -1, other: { spec: ClaimSpec; tr: TraitEvidence }, me: { spec: ClaimSpec; tr: TraitEvidence },
+  /** Off only for audits that compare with the rule before spec facts. */ useSpecs = true): string | null {
   const ff = flightFact(site, key, other.spec.flight, me.spec.flight);
   if (ff && ff.gap * dir >= 1) return null;
   if (ff && ff.gap * dir <= -1) return "flight numbers";
-  if (!other.tr || !me.tr || (other.tr.dots - me.tr.dots) * dir < 1) return "no dot gap";
-  if (!voiced(other.tr) || !voiced(me.tr)) return "too few reports";
   const more = (a: number | null, b: number | null, step = 1) => a !== null && b !== null && a - b >= step;
+  const sf = ff || !useSpecs ? null : specFact(site, key, other.spec, me.spec);
+  const dotsAgainst = !!other.tr && !!me.tr && voiced(other.tr) && voiced(me.tr) && (other.tr.dots - me.tr.dots) * dir <= -1;
+  const bySpec = !!sf && sf.gap * dir >= 1 && !dotsAgainst;
+  if (!bySpec) {
+    if (!other.tr || !me.tr || (other.tr.dots - me.tr.dots) * dir < 1) return "no dot gap";
+    if (!voiced(other.tr) || !voiced(me.tr)) return "too few reports";
+  }
   if (key === "forgiveness") {
     const so = shapeRank(site, other.spec.shape), sm = shapeRank(site, me.spec.shape);
     if (dir > 0 ? more(sm, so) : more(so, sm)) return `shape (${low(other.spec.shape)} vs ${low(me.spec.shape)})`;
@@ -112,5 +169,6 @@ export function claimBlock(site: string, key: string, dir: 1 | -1, other: { spec
     const no = nm(other.spec), nmMe = nm(me.spec);
     if (dir > 0 ? more(nmMe, no) : more(no, nmMe)) return dir > 0 ? "less torque" : "more torque";
   }
+  if (sf && sf.gap * dir <= -1) return `specs (${sf.note()})`;
   return null;
 }
