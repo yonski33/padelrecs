@@ -76,8 +76,8 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
     <div className="bh-wrap">
       <section className="bh-hero">
         {/* One row on desktop (owner 2026-11-16, as PickleballRecs), the live pill on the subtitle's line; both wrap on phones. */}
-        <div><h1>{"Less guessing. "}<em>Better skincare.</em></h1>
-          <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p>
+        <div><h1>{`${niche.v2copy?.homeH1?.[0] ?? "Less guessing."} `}<em>{niche.v2copy?.homeH1?.[1] ?? "Better skincare."}</em></h1>
+          <div className="bh-subrow">{!niche.v2copy?.homeH1 && <p>{"Tell us about your skin. We'll handle the homework."}</p>}
             <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} added this week`}</span></div></div>
       </section>
 

@@ -22,6 +22,7 @@ export const skin: Niche = {
   // fact scores of lib/attr-profile.ts, and the skin pages in app/skin/.
   design: "v2",
   v2copy: {
+    homeH1: ["Find your", "skincare"],
     sport: "", emoji: "🧴", strip: "independent & ad-light · written by people with real skin",
     madeBy: "made by people with too many half-used bottles 🧴", forum: "skincare forum", blog: "beauty blog",
     aboutStory: ["skinrecs started with a bathroom shelf of half-used bottles. Every product promised the same things, every review site sold the same picks, and nobody said which ones work for skin like ours.",

@@ -20,6 +20,7 @@ export const simracing: Niche = {
   guide: simracingGuide,
   v2style: simracingV2Style, v2fonts: ["Chakra+Petch:wght@600;700"],
   v2copy: {
+    homeH1: ["Find your", "sim racing gear"],
     sport: "sim racing", emoji: "🏁", strip: "a free, ad-light side project · built by sim racers",
     madeBy: "kept by people whose rig takes up most of the spare room 🏁", forum: "sim racing forum", blog: "sim racing blog",
     aboutStory: ["simracingrecs started after one too many upgrades bought off a spec sheet. We'd spent real money on bases and pedals that racers had already warned about, and couldn't find a straight answer in one place.",

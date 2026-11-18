@@ -14,6 +14,7 @@ export const padel: Niche = {
   homeMore: padelHome,
   design: "v2",
   v2copy: {
+    homeH1: ["Find your", "padel racket"],
     sport: "padel", emoji: "🎾", strip: "a free, ad-light side project · built by padel players",
     madeBy: "made by people who own too many rackets 🎾", forum: "padel forum", blog: "padel blog",
     aboutStory: ["padelrecs started at a club bar. Three of us had bought rackets off hype, hated two of them, and couldn't find a straight answer anywhere. Just spec sheets, sponsored reviews and 20-minute videos.",

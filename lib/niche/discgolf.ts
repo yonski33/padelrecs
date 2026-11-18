@@ -26,6 +26,7 @@ export const discgolf: Niche = {
   homeMore: discgolfHome,
   v2style: discgolfV2Style, v2fonts: ["Familjen+Grotesk:wght@500;700"],
   v2copy: {
+    homeH1: ["Find your", "disc"],
     sport: "disc golf", emoji: "🥏", strip: "a free, ad-light side project · built by disc golfers",
     madeBy: "made by people with one disc too many in the bag 🥏", forum: "disc golf forum", blog: "disc golf blog",
     aboutStory: ["discgolfrecs started in a parking lot after a round. We'd bought discs off hype and flight numbers, found half of them flew nothing like the chart for our arms, and couldn't find a straight answer anywhere.",
