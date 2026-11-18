@@ -173,7 +173,7 @@ export function choiceKey(c: QuickChoice, older: boolean) {
 }
 /** A filter value as a cache-key part: "$$" → "2d" (dots and "$" stay out of the path), unset → "-". */
 const keyPart = (x: string | undefined) => x === undefined ? "-" : /^\$+$/.test(x) ? `${x.length}d` : x;
-const keyValue = (x: string | undefined) => x === undefined || x === "-" ? undefined : /^[1-3]d$/.test(x) ? "$".repeat(Number(x[0])) : x;
+const keyValue = (x: string | undefined) => x === undefined || x === "-" ? undefined : /^[1-4]d$/.test(x) ? "$".repeat(Number(x[0])) : x;
 /** The picks a key stands for, or null when it isn't the canonical key of any (so each page has one address). */
 export function readChoiceKey(key: string): { choice: QuickChoice; older: boolean } | null {
   const [style, level, arm, shape, weight, feel, sweet, older, ninth, ...rest] = key.split(".");

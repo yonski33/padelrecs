@@ -4,6 +4,8 @@
 // keeps the maker page it came from. Grok's "unknown" stays null: a filter never drops a product on an unknown.
 // Price tiers (approximate USD street price, Nov 2026): $ under 150, $$ 150–500, $$$ 500–1,500, $$$$ over 1,500.
 import data from "../db/specs/coffee.json";
+import { steamRank } from "./claim-guard";
+export { steamRank };
 
 export type CoffeeCat = "espresso" | "grinder" | "brewer" | "kettle" | "scale";
 export type CoffeeLevel = "beginner" | "middle" | "enthusiast";
@@ -33,11 +35,5 @@ export const coffeeSpec = (p: { slug?: string | null; name?: string | null }): C
 export const CAT_OF_SHAPE: Record<string, CoffeeCat> = { "Espresso machine": "espresso", Grinder: "grinder", Brewer: "brewer", Kettle: "kettle", Scale: "scale" };
 export const TIER_WORDS: Record<string, string> = { $: "under $150", $$: "$150–500", $$$: "$500–1,500", $$$$: "over $1,500" };
 
-/** Steam for milk drinks, from the heater (a lever or a hand pump has none): 0 none, 1 on-demand (thermoblock / thermocoil, waits
- *  between pitchers), 1.5 a shared single boiler (switch to steam), 2 heat exchanger, 3 dual boiler. Null when unknown. */
-export function steamRank(type?: string | null): number | null {
-  const t = (type ?? "").toLowerCase();
-  return /dual boiler/.test(t) ? 3 : /heat exchanger/.test(t) ? 2 : /single boiler/.test(t) ? 1.5 : /thermo(block|coil|jet)/.test(t) ? 1 : /manual (lever|pump)/.test(t) ? 0 : null;
-}
 /** Brews and steams back to back without a long wait: a heat exchanger or a dual boiler (profile E3). */
 export const backToBack = (s: CoffeeSpec) => s.cat === "espresso" && (steamRank(s.type) ?? 0) >= 2 && s.steam !== "none";
