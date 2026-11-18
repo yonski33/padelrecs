@@ -53,7 +53,7 @@ import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
-import { claimBlock, flightFact, sameFlightFact } from "../../../lib/claim-guard";
+import { claimBlock, factFor, sameFlightFact } from "../../../lib/claim-guard";
 import { CompareWith } from "./compare-with";
 import { refName } from "../../../lib/compare-names";
 import { suggestionFloor } from "../../../lib/suggestion-floor";
@@ -441,9 +441,11 @@ export default async function RacketFit(props: {
   const specOf = (rid: string) => { const x = racketOf(rid); return { shape: x.shape, core: x.core, surface: x.surface, balance: x.balance, weight: x.weight, flight: QUICK ? flightOfId(rid) : null }; };
   // Disc golf (owner 2026-11-18): a 1+ point flight gap stands in for the dots on distance, arm, glide and wind (capped at 2 so it
   // doesn't always win the card), and the line carries the numbers.
-  const flightOn = (oid: string, i: number) => { const f = flightFact(niche.id, TRAITS[i], flightOfId(oid), flightOfId(props.racketId)); return f && Math.abs(f.gap) >= 1 ? f : null; };
+  // …and on every site a clear spec gap does the same (owner 2026-11-18): weight, balance, shape, core and face, head size,
+  // stiffness, torque (lib/claim-guard.ts specFact).
+  const flightOn = (oid: string, i: number) => { const f = factFor(niche.id, TRAITS[i], specOf(oid), specOf(props.racketId)); return f && Math.abs(f.gap) >= 1 ? f : null; };
   const gapOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? Math.max(-2, Math.min(2, f.gap)) : undefined; };
-  const noteOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? ` (${f.note(1)})` : ""; };
+  const noteOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? ` (${f.note()})` : ""; };
   const allow = (oid: string, i: number, dir: 1 | -1) => { const k = TRAITS[i];
     if (dir > 0 && gainOk && !gainOk(oid, k)) return false;
     return claimBlock(niche.id, k, dir, { spec: specOf(oid), tr: ctx.traits(oid).scores?.[k as Trait] }, { spec: specOf(props.racketId), tr: tr.scores?.[k as Trait] }) === null; };

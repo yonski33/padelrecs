@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { claimBlock, firmness, shapeRank, weightMid, balanceRank, flightFact } from "../lib/claim-guard";
+import { claimBlock, firmness, shapeRank, weightMid, balanceRank, flightFact, specFact } from "../lib/claim-guard";
 import { distinctEdges } from "../lib/other-picks";
 
 const tr = (dots: number, voices = 10) => ({ dots, plus: voices, minus: 0 });
@@ -81,5 +81,29 @@ describe("disc golf flight numbers as evidence (owner 2026-11-18)", () => {
     assert.equal(flightFact("discgolf", "accuracy", wraith.flight, tesla.flight), null);
     assert.equal(claimBlock("discgolf", "accuracy", 1, { spec: wraith, tr: { dots: 4, plus: 1, minus: 0 } }, { spec: tesla, tr: none }), "too few reports");
     assert.equal(flightFact("padel", "distance", [1, 1, 1, 1], [0, 0, 0, 0]), null);
+  });
+});
+
+describe("spec facts as evidence (owner 2026-11-18)", () => {
+  const none = { dots: 3, plus: 0, minus: 0 };
+  it("a clearly lighter padel racket is quicker without player voices, and says so", () => {
+    assert.equal(claimBlock("padel", "speed", 1, { spec: { weight: "355 g" }, tr: none }, { spec: { weight: "370 g" }, tr: none }), null);
+    assert.equal(specFact("padel", "speed", { weight: "355 g" }, { weight: "370 g" })!.note(), "lighter, 355 vs 370 g");
+  });
+  it("a round shape is more forgiving than a diamond on specs alone; not the other way", () => {
+    assert.equal(claimBlock("padel", "forgiveness", 1, { spec: { shape: "Round" }, tr: none }, { spec: { shape: "Diamond" }, tr: none }), null);
+    assert.notEqual(claimBlock("padel", "forgiveness", 1, { spec: { shape: "Diamond" }, tr: none }, { spec: { shape: "Round" }, tr: none }), null);
+  });
+  it("voiced player dots that clearly disagree win over a spec", () => {
+    assert.equal(claimBlock("padel", "speed", 1, { spec: { weight: "355 g" }, tr: { dots: 2, plus: 1, minus: 9 } }, { spec: { weight: "370 g" }, tr: { dots: 4, plus: 9, minus: 0 } }), "no dot gap");
+  });
+  it("tennis reads head size, head-light points and RA; sim racing reads torque", () => {
+    assert.equal(claimBlock("tennis", "forgiveness", 1, { spec: { shape: "100 sq in" }, tr: none }, { spec: { shape: "97 sq in" }, tr: none }), null);
+    assert.equal(claimBlock("tennis", "arm", 1, { spec: { surface: "62 RA" }, tr: none }, { spec: { surface: "68 RA" }, tr: none }), null);
+    assert.equal(specFact("tennis", "maneuverability", { weight: "285 g", balance: "6 pts HL" }, { weight: "305 g", balance: "4 pts HL" })!.note(), "lighter, 285 vs 305 g");
+    assert.equal(claimBlock("simracing", "ffb_strength", 1, { spec: { weight: "12 Nm" }, tr: none }, { spec: { weight: "8 Nm" }, tr: none }), null);
+  });
+  it("can be switched off for audits", () => {
+    assert.equal(claimBlock("padel", "speed", 1, { spec: { weight: "355 g" }, tr: none }, { spec: { weight: "370 g" }, tr: none }, false), "no dot gap");
   });
 });
