@@ -9,11 +9,14 @@ import { driveOf, brakeOf } from "./niche/simracing-guide";
 import { SIMRACING_FIT } from "./simracing-fit";
 import { torqueOf, platformsOf } from "./attr-profile-simracing";
 import { tennisPtsHL } from "./fit-config";
+import { COFFEE_FIT } from "./coffee-fit";
+import { coffeeSpec, TIER_WORDS } from "./coffee-specs";
 
 /** A build card: padel's four (shape, core, balance, face) and the other sites' own. `at` places a gauge's dot (0 … 1);
  *  `shape` names the outline; `nums` are disc golf's four flight numbers. */
 export type V11Build = Omit<BuildCard, "key"> & { key: BuildCard["key"] | "gauge" | "flight" | "disc"; nums?: number[]; low?: string; high?: string };
-type Spec = { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null; weight?: string | null };
+type Spec = { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null; weight?: string | null;
+  /** The product row's slug and name (CoffeeRecs reads its spec facts by them). */ slug?: string | null; name?: string | null };
 
 export type V11Site = {
   /** "How it plays": three bands, [trait key, label]; or per product type (SimRacingRecs: each type's own bars). */ bands: [string, string][] | ((shape: string | null) => [string, string][]);
@@ -182,6 +185,66 @@ function racketBuilds(spec: Spec, armDots?: number): V11Build[] {
   return out.filter(c => c.line.length <= 105);
 }
 
+/** CoffeeRecs (PM 2026-11-18): what the specs mean, per product type, from db/specs/coffee.json (Grok's maker check) in the
+ *  coffee guide's words (lib/niche/coffee-guide.ts). A status card first when it's discontinued or not shipping yet. */
+function coffeeBuilds(spec: Spec): V11Build[] {
+  const s = coffeeSpec(spec), out: V11Build[] = [];
+  if (!s) return out;
+  const card = (title: string, line: string) => out.push({ key: "disc", title, line });
+  if (s.preRelease) card("Not shipping yet", `${s.preRelease} Impressions so far are pre-release.`);
+  else if (s.gone) card("Discontinued", `${cap(s.gone.replace(/\s*\(.*$/, ""))}; reviews stay for owners of this one.`);
+  if (s.cat === "espresso") {
+    const HEAT: Record<string, string> = {
+      Thermoblock: "Heats on demand: ready in seconds; steam needs a pause between milk drinks.",
+      Thermocoil: "Heats on demand: ready fast; steam needs a pause between milk drinks.",
+      "Single boiler": "One boiler brews and steams, so you wait while it switches between the two.",
+      "Heat exchanger": s.pid ? "Brews and steams at once; the PID keeps the brew water steady." : "Brews and steams at once; a short cooling flush keeps the first shot from running hot.",
+      "Dual boiler": "A boiler for brew and one for steam: milk drinks back to back without waiting.",
+      "Manual lever": "You make the pressure by hand: full control of the shot, no steam, kettle water.",
+      "Manual pump": "Hand-pumped and portable: no steam, and it needs a fine, even grind.",
+    };
+    if (s.type && HEAT[s.type]) card(s.type, HEAT[s.type]);
+    if (s.flowControl || s.profiling) card(s.flowControl ? "Flow control" : "Pressure profiling", "Shapes the shot as it runs; it pays off with practice, and with light roasts.");
+    else if (s.pid && s.type !== "Heat exchanger") card("PID", "Holds the brew temperature you set: what light roasts need most.");
+    else if (s.pid === false && s.type && !/^Manual/.test(s.type)) card("No PID", "Brew temperature swings a little: fine for medium and dark roasts.");
+    if (s.builtInGrinder) card("Built-in grinder", "One box to start with; the grinder can't be upgraded later.");
+    if (s.group) card(`${s.group} mm portafilter`, s.group === 58 ? "The common standard: the widest choice of baskets and tools." : "A smaller basket than 58 mm, with fewer aftermarket parts.");
+  } else if (s.cat === "grinder") {
+    if (s.power === "hand") card("Hand grinder", "The best grind for the money; espresso fineness takes some effort.");
+    else if (s.burr) card(`${s.burrMm ? `${s.burrMm} mm ` : ""}${s.burr} burrs`, s.burr === "flat" ? "Flat burrs: the shorthand is more clarity; design and alignment matter as much."
+      : "Conical burrs: the shorthand is more body; usually quieter for the money.");
+    if (s.espresso === false) card("Filter only", "Built for filter: it can't grind fine enough for espresso.");
+    else if (s.espresso === "limited") card("Espresso, just", "Reaches espresso, but its steps are coarse for dialling in a shot.");
+    if (s.adjust === "stepless") card("Stepless", "Any tiny change, so a shot dials in exactly; mark your settings to go back.");
+    else if (s.espresso === true) card("Fine steps", "Steps small enough to dial in espresso, and easy to return to.");
+    if (s.power !== "hand" && s.singleDose) card("Single dose", "Weigh the beans and grind them all: good for switching beans often.");
+  } else if (s.cat === "brewer") {
+    const M: Record<string, [string, string]> = {
+      "pour-over": ["Pour-over", "A paper-filtered pour: a clean, bright cup that rewards a steady hand."],
+      immersion: ["Immersion", "Coffee steeps, then you press: forgiving and easy to repeat."],
+      hybrid: ["Immersion and pour-over", "Steep, then drain: immersion's ease with a paper-filtered cup."],
+      "french press": ["French press", "A metal filter: a full, heavy cup with some sediment."],
+      drip: ["Drip machine", s.sca ? "SCA certified: it heats water properly and wets the coffee evenly." : "Press a button and walk away."],
+    };
+    if (s.method) card(...M[s.method]);
+    if (s.cups?.includes("pot")) card("A full pot", "Brews enough for a household or guests.");
+    else if (s.cups?.length === 1 && s.cups[0] === "one") card("One mug", "Built around a single cup at a time.");
+  } else if (s.cat === "kettle") {
+    card(s.gooseneck ? "Gooseneck" : "Standard spout", s.gooseneck ? "A thin, steady stream: what pour-over needs." : "Fine for French press, AeroPress and tea; not for pour-over.");
+    if (s.power === "stovetop") card("Stovetop", "Heats on the stove: no set temperatures without a thermometer.");
+    else card(s.hold ? "Set and hold" : s.temp ? "Set temperature" : "Boil only", s.hold ? "Set a temperature and keep it: handy for light roasts and tea."
+      : s.temp ? "Set the temperature you brew at." : "No set temperatures: fine for darker roasts and French press.");
+  } else if (s.cat === "scale") {
+    if (s.espressoFit !== null && s.espressoFit !== undefined) card(s.espressoFit ? "Fits a drip tray" : "Pour-over size", s.espressoFit ? "Small enough to sit under the portafilter for espresso." : "Too big for most drip trays: room for a carafe instead.");
+    if (s.res === 0.01) card("Reads 0.01 g", "Finer than most recipes need; handy for small espresso doses.");
+    if (s.autoStart || s.flow) card(s.flow ? "Flow rate" : "Auto-start timer", s.flow ? "Shows how fast you pour or how fast the shot runs." : "The timer starts when the coffee does.");
+    if (s.app) card("App", "Logs shots and brews on your phone; plenty never use it.");
+  }
+  if (s.tier) card(s.tier, `About ${TIER_WORDS[s.tier]} street price${s.tierEst ? " (estimate)" : ""}.`);
+  return out.filter(c => c.line.length <= 105).slice(0, 5);
+}
+const COFFEE_LABEL = Object.fromEntries(COFFEE_FIT.traits.map(t => [t.key, t.label]));
+
 export const V11_SITES: Record<string, V11Site> = {
   padel: {
     bands: [["power", "Attack"], ["control", "Control"], ["forgiveness", "Sweet spot"]],
@@ -206,6 +269,13 @@ export const V11_SITES: Record<string, V11Site> = {
     giveUp: { ffb_detail: "less force feedback detail", ffb_strength: "weaker force feedback", brake_feel: "a vaguer brake", rigidity: "more flex",
       build: "more build complaints", quiet: "noisier", setup: "fiddlier to set up", software: "clunkier software", ergonomics: "less comfortable", value: "worse value" },
     builds: simBuilds, buildHead: s => `What the ${s}'s specs mean for you`,
+  },
+  coffee: {
+    // Each type's own bars (fit-config appliesTo), in the profile's order.
+    bands: shape => COFFEE_FIT.traits.filter(t => !t.hidden && (!t.appliesTo || (!!shape && t.appliesTo.includes(shape)))).map(t => [t.key, COFFEE_LABEL[t.key]] as [string, string]),
+    giveUp: { quality: "less in the cup", consistency: "less consistent", steam: "weaker steam", retention: "more retention", quiet: "louder", heat: "slower to heat",
+      ease: "more of a learning curve", clean: "messier", build: "more durability complaints", value: "worse value" },
+    builds: coffeeBuilds, buildHead: s => `What the ${s}'s specs mean for you`,
   },
   tennis: {
     bands: [["power", "Power"], ["control", "Control"], ["spin", "Spin"]],

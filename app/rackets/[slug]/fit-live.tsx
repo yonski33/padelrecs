@@ -12,7 +12,7 @@ import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fi
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
-import { niche, catalogPath } from "../../../lib/niche";
+import { niche, catalogPath, v2copy } from "../../../lib/niche";
 import { fitConfigFor, SITE_FIT } from "../../../lib/fit-config";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
@@ -159,7 +159,8 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
       <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
       {/* "Matched for intermediate · power" (owner 2026-11-17: bare pick words read out of context). */}
-      <div className="rf-afoot"><span>{`Matched for ${gameWords.join(" · ")}`}</span>
+      <div className="rf-afoot"><span>{`Matched for ${(QUICK?.levelOne ? [choice.level ? QUICK.levelOne[choice.level] : null,
+        ...Object.entries(choice.ff ?? {}).map(([k, v]) => QUICK.quick?.filters?.find(f => f.key === k)?.options.find(([x]) => x === v)?.[1] ?? null)].filter(Boolean) : gameWords).join(" · ") || "your picks"}`}</span>
         <span className="rf-acts"><label htmlFor="rf-edit-t" className="rf-editl"><span className="o">edit ↗</span><span className="c">done ✓</span></label>
         <a {...to(null)} className="rf-reset">start over</a></span></div>
       <div className="rf-bar rf-editp">

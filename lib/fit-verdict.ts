@@ -268,7 +268,7 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
   // Sore arms only when the Arm comfort bar backs it (4+), not on the tag count alone (audit: the AT10 12K XTREM).
-  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) { if (!cfg.quick?.armFilter) out.push(cfg.quick ? "slower arms" : "sore arms"); }
+  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) { if (!cfg.quick?.armFilter && !cfg.quick?.filters?.some(q => q.main)) out.push(cfg.quick ? "slower arms" : "sore arms"); }
   return out;
 }
 /** One style per racket (owner audit 2026-11-17): from the Attack and Control bars the page shows (a clear lead of 1+ dots),

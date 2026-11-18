@@ -1,4 +1,7 @@
 import type { Niche } from "./types";
+import { coffeeGuide } from "./coffee-guide";
+import { coffeeHome } from "./coffee-home";
+import { coffeeV2Style } from "./coffee-v2-style";
 
 // Rating icons: a roasted coffee bean, dark-roast brown with a crema-coloured crease. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -13,6 +16,23 @@ const ogBean = (shell: string, crema: string) => `<svg xmlns="http://www.w3.org/
 
 export const coffee: Niche = {
   id: "coffee",
+  // Design v2 with product page v11c (PM 2026-11-18): the shared pages in coffee words, on the site's own roast look.
+  design: "v2",
+  guide: coffeeGuide,
+  homeMore: coffeeHome,
+  v2style: coffeeV2Style,
+  v2copy: {
+    sport: "coffee", emoji: "☕", strip: "a free, ad-light side project · built by home baristas",
+    madeBy: "kept by people who weigh their beans to a tenth of a gram ☕", forum: "coffee forum", blog: "coffee blog",
+    aboutStory: ["coffeerecs started after one too many purchases made off a spec sheet: machines and grinders that home baristas had already warned about, with no straight answer in one place.",
+      "So it became that place: home barista reviews, YouTube reviewers and coffee forums together, counted honestly, with a clear answer on whether a piece of gear fits"],
+    example: "Breville Bambino Plus", use: "works", tested: "real mornings", score: "barista score", pillInline: true, tellUs: "Match gear to how you make coffee",
+    aboutLast: "your setup", yourPicks: "Your setup", better: "coffee", venue: "counter", catalogNav: "gear", game: "setup", homeH1: ["Find your", "coffee gear"], plain: true,
+    footLine: "forums, YouTube & your reviews, read and counted, one honest line each. no sponsored picks ☕",
+    rate: { powerRating: ["flat", "superb"], comfortRating: ["fiddly", "effortless"], maneuverabilityRating: ["all over the place", "same every time"],
+      controlRating: ["flimsy", "built like a tank"], forgivenessRating: ["overpriced", "a steal"] },
+    prompts: ["what surprised you", "what you used before", "what you pair it with", "who should skip it"],
+  },
   // The fit check and quick match (lib/coffee-fit.ts, PM / owner 2026-11-18, Grok's coffeerecs-match-profile.md). The engine's
   // numbers are padel's, as on SimRacingRecs (no coffee tuning; ENGINE-ALGO: a site supplies its profile and its rules).
   fit: { minReports: 6, fewReports: 15,
@@ -193,10 +213,13 @@ export const coffee: Niche = {
     { slug: "best-budget-coffee-gear", label: "Budget", title: "Best Budget Coffee Gear", minReviews: 5,
       intro: "The machines, grinders, brewers, kettles and scales home baristas most often call great value.", trait: { tags: ["great value"], minShare: 0.25, against: ["overpriced"], noun: "the value" } },
   ],
+  // "Other gear" at the foot of product pages: two honest cards (lib/other-picks.ts), as TennisRecs.
+  similar: { mode: "single" },
   sourcePlatforms: ["Reddit", "YouTube", "Coffee retailer", "Forum", "Blog"],
   examples: { brand: "Breville", model: "Bambino Plus", year: 2026, search: "bambino" },
   form: {
     prompts: [["What did you use before?", "Before this I used "], ["What do you make with it?", "I mostly make "], ["Any issues?", "After a while I noticed "]],
+    quickVote: { question: "Have you brewed with this?", placeholder: "What stood out? Taste, workflow, build, how it fits your setup…", nicknames: ["Crema", "Ristretto", "Cortado", "Bloom", "Pourover", "Doppio", "Lungo", "Macchiato", "Portafilter", "Burr", "Tamper", "Gooseneck"] },
     tips: ["What you used before, and how this compares", "What you make with it (espresso, milk drinks, pour-over) and how often", "Workflow, heat-up time, noise and cleaning", "What you pair it with (grinder, machine, kettle, beans)", "Reliability, defects and whether it was worth the price"],
   },
   seo: {
@@ -231,7 +254,7 @@ export const coffee: Niche = {
       triedOne: "Own one?",
       triedOneOfThese: "Own one of these?",
     },
-    notFound: "We couldn’t find that gear or page. Maybe it moved, maybe it was discontinued, maybe it went the way of last week’s beans.",
+    notFound: "That gear or page isn’t here. Maybe it moved, maybe it was discontinued, maybe it went the way of last week’s beans.",
     about: {
       heading: "Why CoffeeRecs exists",
       paragraphs: [

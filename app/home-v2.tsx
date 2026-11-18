@@ -124,7 +124,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
               <span className="mini" aria-hidden="true">{[0, 1, 2].map(j => <i key={j} className={`p${j}`} style={{ "--f": tileFills[(j + k) % 3] } as React.CSSProperties}/>)}</span></a>; })}</div>
         </section>
         <section className="hv2-steps" aria-label="How we score">
-          <span className="k">how we score</span>
+          <span className="k">{v2copy.plain ? "how scoring works" : "how we score"}</span>
           {[`${total.toLocaleString("en-US")} ${WORDS?.person ?? "player"} reviews + ${channels} YouTube channels + forums`, "we count every verdict", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
           <b>No sponsored picks.</b>
           <a href="/how-we-make-these">how it works →</a>

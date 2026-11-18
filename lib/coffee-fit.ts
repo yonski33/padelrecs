@@ -11,7 +11,7 @@
 //            (espresso); hand / hopper / single dose (grinders); effort and cups (brewers); set temperature and stovetop or
 //            electric (kettles); smart features (scales).
 //   style    none: coffee gear has no control / power axis, so the engine's style part stays at "any".
-// Six qualities per type (profile section 4), each shown on the types it applies to; they come from the quick tags we have.
+// Six qualities per type (profile section 4), each shown on the types it applies to; they come from the quick tags on reports.
 // Traits the tags can't measure (pour control, response speed, battery) are left out rather than guessed.
 import type { FitConfig, TraitDef } from "./fit-config";
 import { coffeeSpec, backToBack, CAT_OF_SHAPE } from "./coffee-specs";
@@ -77,8 +77,9 @@ export const COFFEE_FIT: FitConfig = {
   axis: { control: { trait: "control", tags: [] }, power: { trait: "power", tags: [] } },
   styleLabels: { control: "Simple", balance: "Balanced", power: "Hands-on" },
   styles: [],
-  levelLabels: { beginner: "new", intermediate: "comfortable", advanced: "an enthusiast" },
+  levelLabels: { beginner: "new", intermediate: "comfortable", advanced: "enthusiast" },
   levelPeople: { beginner: "new home baristas", intermediate: "comfortable home baristas", advanced: "enthusiasts" },
+  levelOne: { beginner: "a new home barista", intermediate: "a comfortable home barista", advanced: "an enthusiast" },
   words: { person: "home barista", game: "setup", tryFirst: "try one first", howIt: "performs", catalogPromo: "Filter by type, level, budget and what you make.",
     guidePromo: "Boilers, burrs and goosenecks, explained in two minutes.", added: "added to the site this week",
     armShort: "milk drinks", hardArm: "No steam: it can't make milk drinks.", hardArmShort: "No steam" },
@@ -120,6 +121,7 @@ export const COFFEE_FIT: FitConfig = {
     missWhy: coffeeMiss,
   },
   tagEvidence: true,
+  noLeanChip: true,
 };
 
 type Row = { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string; slug?: string | null };
