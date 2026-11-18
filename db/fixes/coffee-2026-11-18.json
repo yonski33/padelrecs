@@ -1,0 +1,605 @@
+[
+ {
+  "name": "Breville Bambino Plus",
+  "set": {
+   "balance": "Thermoblock"
+  },
+  "source": "https://www.breville.com/en-us/product/bes500",
+  "why": "type: thermoblock (ThermoJet)"
+ },
+ {
+  "name": "Breville Bambino",
+  "set": {
+   "balance": "Thermoblock"
+  },
+  "source": "https://www.breville.com/en-us/product/bes450",
+  "why": "type: thermoblock (ThermoJet)"
+ },
+ {
+  "name": "Breville Barista Express Impress",
+  "set": {
+   "balance": "Thermocoil"
+  },
+  "source": "https://www.breville.com/en-us/product/bes876",
+  "why": "type: thermocoil"
+ },
+ {
+  "name": "Breville Barista Express",
+  "set": {
+   "balance": "Thermocoil"
+  },
+  "source": "https://www.breville.com/en-us/product/bes870",
+  "why": "type: thermocoil"
+ },
+ {
+  "name": "Breville Barista Pro",
+  "set": {
+   "balance": "Thermoblock"
+  },
+  "source": "https://www.breville.com/en-us/product/bes878",
+  "why": "type: thermoblock (ThermoJet)"
+ },
+ {
+  "name": "Breville Barista Touch Impress",
+  "set": {
+   "balance": "Thermoblock",
+   "surface": "54 mm portafilter, Baratza European precision burrs (30 settings), 67.6 fl oz tank"
+  },
+  "source": "https://www.breville.com/en-us/product/bes881",
+  "why": "type: thermoblock (ThermoJet); key specs: the 54 mm portafilter"
+ },
+ {
+  "name": "Breville Barista Touch",
+  "set": {
+   "balance": "Thermoblock"
+  },
+  "source": "https://www.breville.com/en-us/product/bes880",
+  "why": "type: thermoblock (ThermoJet)"
+ },
+ {
+  "name": "Breville Oracle Jet",
+  "set": {
+   "balance": "Thermoblock",
+   "surface": "58 mm portafilter, Baratza European precision burrs (45 settings), 2.3 L tank"
+  },
+  "source": "https://www.breville.com/en-us/product/bes985",
+  "why": "type: thermoblock (ThermoJet); key specs: the 58 mm portafilter"
+ },
+ {
+  "name": "Breville Oracle Touch",
+  "set": {
+   "balance": "Dual boiler"
+  },
+  "source": "https://www.breville.com/en-us/product/bes990",
+  "why": "type: dual boiler"
+ },
+ {
+  "name": "Decent DE1",
+  "set": {
+   "balance": "Thermoblock"
+  },
+  "source": "https://decentespresso.com/de1",
+  "why": "type: thermoblock (boiler-free flow-through heaters)"
+ },
+ {
+  "name": "De'Longhi La Specialista Arte Evo",
+  "set": {
+   "balance": "Thermoblock",
+   "surface": "51 mm portafilter, conical burr grinder (8 settings), 2 L tank, cold brew function"
+  },
+  "source": "https://www.delonghi.com/en-us/search?q=arte%20evo",
+  "why": "type: thermoblock; key specs: specs, not just a feature"
+ },
+ {
+  "name": "De'Longhi La Specialista Opera",
+  "set": {
+   "balance": "Thermoblock"
+  },
+  "source": "https://www.delonghi.com/en-us/search?q=specialista%20opera",
+  "why": "type: thermoblock"
+ },
+ {
+  "name": "ECM Mechanika Max II",
+  "set": {
+   "balance": "Heat exchanger"
+  },
+  "source": "https://www.ecm.de/en/products/mechanika-max-ii/",
+  "why": "type: heat exchanger (E61, BTC)"
+ },
+ {
+  "name": "ECM Synchronika II",
+  "set": {
+   "balance": "Dual boiler"
+  },
+  "source": "https://www.ecm.de/en/products/synchronika-ii/",
+  "why": "type: dual boiler (E61-style, heated group)"
+ },
+ {
+  "name": "Flair 2GO",
+  "set": {
+   "balance": "Manual lever"
+  },
+  "source": "https://flairespresso.com/products/flair-2go",
+  "why": "type: manual lever (portable)"
+ },
+ {
+  "name": "Lelit Bianca V3",
+  "set": {
+   "balance": "Dual boiler"
+  },
+  "source": "https://lelit.com/product/bianca-pl162t/",
+  "why": "type: dual boiler (E61-style L58E, flow control)"
+ },
+ {
+  "name": "Profitec Pro 600",
+  "set": {
+   "balance": "Dual boiler"
+  },
+  "source": "https://www.profitec-espresso.com/en/products",
+  "why": "type: dual boiler (E61)"
+ },
+ {
+  "name": "Profitec Pro 700",
+  "set": {
+   "balance": "Dual boiler"
+  },
+  "source": "https://www.profitec-espresso.com/en/products",
+  "why": "type: dual boiler (E61)"
+ },
+ {
+  "name": "Rocket Espresso Appartamento TCA",
+  "set": {
+   "balance": "Heat exchanger"
+  },
+  "source": "https://rocket-espresso.com/products/domestic-models/appartamento-tca",
+  "why": "type: heat exchanger (E61)"
+ },
+ {
+  "name": "Rocket Espresso Appartamento",
+  "set": {
+   "balance": "Heat exchanger"
+  },
+  "source": "https://rocket-espresso.com/products/domestic-models/appartamento",
+  "why": "type: heat exchanger (E61)"
+ },
+ {
+  "name": "Wacaco Nanopresso",
+  "set": {
+   "balance": "Manual pump"
+  },
+  "source": "https://www.wacaco.com/products/nanopresso",
+  "why": "type: manual (hand pump, portable)"
+ },
+ {
+  "name": "Wacaco Picopresso",
+  "set": {
+   "balance": "Manual pump"
+  },
+  "source": "https://www.wacaco.com/products/picopresso",
+  "why": "type: manual (hand pump, portable)"
+ },
+ {
+  "name": "1Zpresso J-Ultra",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://1zpresso.coffee/j-ultra/",
+  "why": "type: hand conical"
+ },
+ {
+  "name": "1Zpresso Q Air",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://1zpresso.com/",
+  "why": "type: hand conical"
+ },
+ {
+  "name": "1Zpresso Q2 S",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://1zpresso.com/",
+  "why": "type: hand conical"
+ },
+ {
+  "name": "1Zpresso ZP6 Special",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://1zpresso.coffee/zp6/",
+  "why": "type: hand conical"
+ },
+ {
+  "name": "Acaia Orbit",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://acaia.co/products/orbit",
+  "why": "type: electric flat (grind-by-weight)"
+ },
+ {
+  "name": "Baratza Encore ESP Pro",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.baratza.com/en-us/",
+  "why": "type: electric conical"
+ },
+ {
+  "name": "Baratza Encore ESP",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.baratza.com/en-us/",
+  "why": "type: electric conical"
+ },
+ {
+  "name": "Baratza Sette 270",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.baratza.com/en-us/",
+  "why": "type: electric conical"
+ },
+ {
+  "name": "Baratza Sette 30",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.baratza.com/en-us/product/sette-30-zcg1130",
+  "why": "type: electric conical; use: maker markets it for espresso and manual brew"
+ },
+ {
+  "name": "Comandante X25 Trailmaster",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://comandantegrinder.com/products/x25-trailmaster-forest",
+  "why": "type: hand conical (travel)"
+ },
+ {
+  "name": "Eureka Mignon Libra",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.eureka.co.it/en/",
+  "why": "type: electric flat (grind-by-weight)"
+ },
+ {
+  "name": "Eureka Mignon Zero",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.eureka.co.it/en/products/eureka+1920/prosumer+grinders/zero+range/74/",
+  "why": "type: electric flat (single dose)"
+ },
+ {
+  "name": "Fellow Ode Gen 2",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://fellowproducts.com/products/ode-brew-grinder-gen-2",
+  "why": "type: electric flat"
+ },
+ {
+  "name": "Mahlkönig X54",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.mahlkoenig.us/products/x54-allround-home-grinder",
+  "why": "type: electric flat"
+ },
+ {
+  "name": "Niche Duo",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.nichecoffee.co.uk/products/niche-duo",
+  "why": "type: electric flat (single dose)"
+ },
+ {
+  "name": "Niche Zero",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.nichecoffee.co.uk/products/niche-zero",
+  "why": "type: electric conical (single dose)"
+ },
+ {
+  "name": "Timemore Chestnut C5 ESP Pro",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://www.timemore.com/products/timemore-manual-coffee-grinder-chestnut-c5-series",
+  "why": "type: hand conical"
+ },
+ {
+  "name": "Timemore Chestnut Nano 3",
+  "set": {
+   "balance": "Hand grinder"
+  },
+  "source": "https://www.timemore.com/",
+  "why": "type: hand conical (folding)"
+ },
+ {
+  "name": "Turin DF54",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.turingrinders.com/",
+  "why": "type: electric flat (single dose)"
+ },
+ {
+  "name": "Turin DF64 Gen 2",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.turingrinders.com/products/turin-df64-gen-2-single-dose-coffee-grinder-1",
+  "why": "type: electric flat (single dose)"
+ },
+ {
+  "name": "Turin DF64V Gen 3",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.turingrinders.com/products/turin-df64v-gen-3-220v-grinder-with-ion-generator-variable-speed-single-dose-grinder-eu-220v-plug",
+  "why": "type: electric flat (single dose, variable speed)"
+ },
+ {
+  "name": "Turin DF83V",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.turingrinders.com/",
+  "why": "type: electric flat (single dose, variable speed)"
+ },
+ {
+  "name": "Varia VS3",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.variabrewing.com/products/varia-vs3-grinder",
+  "why": "type: electric conical (single dose)"
+ },
+ {
+  "name": "Varia VS4",
+  "set": {
+   "balance": "Conical burr electric"
+  },
+  "source": "https://www.variabrewing.com/products/varia-vs4-grinder",
+  "why": "type: electric conical (single dose, variable speed)"
+ },
+ {
+  "name": "Varia VS6",
+  "set": {
+   "balance": "Flat burr electric"
+  },
+  "source": "https://www.variabrewing.com/products/varia-vs6-grinder",
+  "why": "type: electric flat (or conical)"
+ },
+ {
+  "name": "AeroPress Go Plus",
+  "set": {
+   "balance": "Immersion press"
+  },
+  "source": "https://aeropress.com/",
+  "why": "type: AeroPress-style (travel)"
+ },
+ {
+  "name": "AeroPress Go",
+  "set": {
+   "balance": "Immersion press"
+  },
+  "source": "https://aeropress.com/",
+  "why": "type: AeroPress-style (travel)"
+ },
+ {
+  "name": "Breville Precision Brewer Thermal",
+  "set": {
+   "balance": "Drip coffee maker"
+  },
+  "source": "https://www.breville.com/en-us/product/bdc450",
+  "why": "type: auto drip"
+ },
+ {
+  "name": "Chemex Classic",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://chemexcoffeemaker.com/",
+  "why": "type: pour-over dripper"
+ },
+ {
+  "name": "Chemex Glass Handle",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://chemexcoffeemaker.com/",
+  "why": "type: pour-over dripper"
+ },
+ {
+  "name": "Chemex Ottomatic 2.0",
+  "set": {
+   "balance": "Drip coffee maker"
+  },
+  "source": "https://chemexcoffeemaker.com/products/ottomatic",
+  "why": "type: auto drip (pour-over machine)"
+ },
+ {
+  "name": "Hario Switch",
+  "set": {
+   "balance": "Immersion and pour-over dripper"
+  },
+  "source": "https://global.hario.com/",
+  "why": "type: immersion + pour-over dripper"
+ },
+ {
+  "name": "Hario V60 MUGEN",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://global.hario.com/",
+  "why": "type: pour-over dripper (cone)"
+ },
+ {
+  "name": "Hario V60",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://global.hario.com/",
+  "why": "type: pour-over dripper (cone)"
+ },
+ {
+  "name": "Kalita Wave 155",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://www.kalita.co.jp/",
+  "why": "type: pour-over dripper (flat bottom)"
+ },
+ {
+  "name": "Kalita Wave 185",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://www.kalita.co.jp/",
+  "why": "type: pour-over dripper (flat bottom)"
+ },
+ {
+  "name": "Moccamaster Cup-One",
+  "set": {
+   "balance": "Drip coffee maker"
+  },
+  "source": "https://us.moccamaster.com/products/cup-one",
+  "why": "type: auto drip (single cup)"
+ },
+ {
+  "name": "Moccamaster KBGT",
+  "set": {
+   "balance": "Drip coffee maker"
+  },
+  "source": "https://us.moccamaster.com/",
+  "why": "type: auto drip (thermal carafe)"
+ },
+ {
+  "name": "Moccamaster KBGV",
+  "set": {
+   "balance": "Drip coffee maker"
+  },
+  "source": "https://us.moccamaster.com/",
+  "why": "type: auto drip (glass carafe, hot plate)"
+ },
+ {
+  "name": "Ratio Four",
+  "set": {
+   "balance": "Drip coffee maker"
+  },
+  "source": "https://ratiocoffee.com/",
+  "why": "type: auto drip (half batch)"
+ },
+ {
+  "name": "Timemore Crystal Eye B75",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://www.timemore.com/",
+  "why": "type: pour-over dripper (flat bottom)"
+ },
+ {
+  "name": "Timemore Crystal Eye Dripper 02",
+  "set": {
+   "balance": "Pour-over dripper"
+  },
+  "source": "https://www.timemore.com/",
+  "why": "type: pour-over dripper (cone)"
+ },
+ {
+  "name": "Acaia Pearl Model S",
+  "set": {
+   "balance": "Brew scale"
+  },
+  "source": "https://acaia.co/blogs/news/new-pearl-model-s-2022",
+  "why": "espresso fit: no"
+ },
+ {
+  "name": "Fellow Tally Pro",
+  "set": {
+   "balance": "Brew scale"
+  },
+  "source": "https://fellowproducts.com/products/tally-coffee-scale",
+  "why": "espresso fit: no"
+ },
+ {
+  "name": "Hario Polaris Scale",
+  "set": {
+   "balance": "Brew scale"
+  },
+  "source": "https://www.hario-usa.com/products/polaris-scale",
+  "why": "espresso fit: no"
+ },
+ {
+  "name": "Hario V60 Drip Scale",
+  "set": {
+   "balance": "Brew scale"
+  },
+  "source": "https://global.hario.com/",
+  "why": "espresso fit: no"
+ },
+ {
+  "name": "Timemore Black Mirror Nano",
+  "set": {
+   "balance": "Espresso scale"
+  },
+  "source": "https://www.timemore.com/products/timemore-black-mirror-nano-espresso-coffee-weighing-with-timer-white",
+  "why": "espresso fit: yes"
+ },
+ {
+  "name": "Baratza Vario+",
+  "set": {
+   "surface": "54 mm flat ceramic burrs, timer"
+  },
+  "source": "https://www.baratza.com/en-us/product/zcg887",
+  "why": "burrs: the Vario+ ships with ceramic burrs (steel is the Vario-W+ option)"
+ },
+ {
+  "name": "Timemore Basic 3.0",
+  "set": {
+   "surface": "2,000 g max, 0.1 g"
+  },
+  "source": "https://www.timemore.com/products/timemore-basic-3-0-electronic-espresso-scale-with-timer",
+  "why": "max weight: maker says 2,000 g"
+ },
+ {
+  "name": "Varia EVO",
+  "set": {
+   "weight": "800 g"
+  },
+  "source": "https://www.variabrewing.com/products/evo-hand-grinder",
+  "why": "weight: maker says 0.8 kg"
+ },
+ {
+  "name": "Timemore Sculptor 064S",
+  "set": {
+   "surface": "64 mm flat burrs"
+  },
+  "source": "https://www.timemore.com/",
+  "why": "key specs: burr size, not the motor figure"
+ },
+ {
+  "name": "Comandante C40 MK4",
+  "set": {
+   "core": "Steel body, glass and polymer bean jars"
+  },
+  "source": "https://comandantegrinder.com/",
+  "why": "material: the body, not the burrs (Nitro Blade per the key specs)"
+ },
+ {
+  "name": "Lelit Mara X3",
+  "set": {
+   "surface": "58 mm portafilter, Pagaia flow control, vibration pump"
+  },
+  "source": "https://www.lelit.com/content/dam/lelit/npd/lpe/EN_Technical%20Sheet%20MaraX3.pdf",
+  "why": "flow control: Pagaia ships as standard"
+ }
+]
