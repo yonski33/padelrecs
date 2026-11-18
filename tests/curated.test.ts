@@ -68,7 +68,8 @@ test("the importer reads the Grok pack's split files (curated-<combo>.json)", as
   const { keyOf, listOf } = await import("../scripts/import-curated.mjs");
   assert.equal(keyOf("control-beginner-noarm"), "control/beginner/arm-off");
   assert.equal(keyOf("balance-intermediate-arm"), "balance/intermediate/arm-on");
-  assert.equal(keyOf("spin-beginner-arm"), null);
+  assert.equal(keyOf("spin-beginner-arm"), "spin/beginner/arm-on"); // PickleballRecs (2026-11-19)
+  assert.equal(keyOf("smash-beginner-arm"), null);
   assert.deepEqual(listOf({ combo: "x", picks: [{ slug: "a", reason: "Soft and roomy.", source: "https://x.com/a" }, { slug: "a" }, { slug: "b" }] }),
     [{ slug: "a", note: "Soft and roomy.", src: "https://x.com/a" }, { slug: "b" }]);
 });

@@ -20,6 +20,7 @@ import { HomeMatch } from "./home-match";
 import { V2Footer } from "./v2-footer";
 import { GuideRow } from "./guide/guide-row";
 import { rankHome } from "../lib/home-rank";
+import { withVoiceFaq } from "../lib/site-voice";
 
 /** The PadelRecs home in design language v2, built around Quick match (owner 2026-11-15: "the home page IS the quiz — you
  *  see the rackets according to what you need, not what we set"). Choices live in the URL (?style=&level=&arm=1); the server
@@ -132,8 +133,8 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         </section>
         <section className="hv2-faq" aria-labelledby="hv2-faq-t">
           <h2 id="hv2-faq-t">Questions</h2>
-          <div className="box">{more.faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
-            <p>{`${f.a.replace(/\{top:(beginner|arm)\}/g, (_, p: "beginner" | "arm") => topTwo(p))} `}<a href={f.href}>{f.link}</a></p></details>)}</div>
+          <div className="box">{withVoiceFaq(more.faq, f => ({ ...f, link: "", href: "" })).map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
+            <p>{`${f.a.replace(/\{top:(beginner|arm)\}/g, (_, p: "beginner" | "arm") => topTwo(p))} `}{f.href && <a href={f.href}>{f.link}</a>}</p></details>)}</div>
         </section>
       </>}
     </div>

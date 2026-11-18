@@ -54,6 +54,8 @@ const isoDaysAgo = (n: number) => new Date(Date.now() - n * 864e5).toISOString()
 import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
+import { V11Works, type WorksGroup } from "./v11-works";
+import simPairs from "../../../db/compat/simracing-pairs.json";
 import { distinctEdges } from "../../../lib/other-picks";
 import { claimBlock, factFor, sameFlightFact } from "../../../lib/claim-guard";
 import { refName } from "../../../lib/compare-names";
@@ -85,6 +87,7 @@ const GIVE_UP: Record<string, string> = V11_SITE?.giveUp ?? {};
 import type { QtReport, QtReview } from "./quick-take";
 import { scoreState } from "../../../lib/score-view";
 import { NewPill } from "../../score-tags";
+import { voiceTagline } from "../../../lib/voice-taglines";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
  *  the important things and our recommendation. One fit-check box with two states: no picks asks "Is this the right racket
@@ -370,6 +373,9 @@ export default async function RacketFit(props: {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
   const page = pageForCard, tier = pageTier(page);
+  // The site-voice tagline (owner 2026-11-18, lib/voice-taglines.ts) leads, unless padel's trait bars contradict it (one story).
+  const voiced = voiceTagline(props.slug), voiceOk = voiced && !(PADEL && contradicts(voiced, dotsNow)) ? voiced : null;
+  const tagline = voiceOk ?? (page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line ?? null);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
   const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t as Trait]?.dots ?? 0); };
   const shortOf = (r: ReturnType<typeof racketOf>) => withoutYear(displayName(r.name, brand(r.brandId)));
@@ -396,7 +402,7 @@ export default async function RacketFit(props: {
   const typeOf = (kind: string | undefined) => quickTypes.find(t => t.key === kind);
   const tagOf = (id: string) => { const c = payload.cards[id]; return c?.flight ? c.flight.join(" ") : c?.shape ?? racketOf(id).shape?.toLowerCase() ?? niche.words.one; };
   // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
-  const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
+  const lineOf = (id: string) => [voiceTagline(racketOf(id).slug), pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
     .map(expertLine).find((t): t is string => !!t) ?? null;
   // A gain on a disc card must hold in its flight numbers (site audit 2026-11-17 #8, #14): "better in wind" only with more fade or
   // less turn than this disc; "easier for a slower arm" never from a disc its page or its numbers warn slower arms off.
@@ -501,6 +507,18 @@ export default async function RacketFit(props: {
   // A site with its own words (SimRacingRecs) says "Other gear to consider" (its catalogue word), not "Other products".
   const edgeWords = { me: compareMe.dots, keys: TRAITS, words: SITE_FIT.words ? { ...niche.words, many: v2copy.catalogNav ?? niche.words.many } : niche.words, scoreWord: SCORE_CAP,
     gainWord: TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
+  // "Works with" (SimRacingRecs, owner 2026-11-18): only the makers' compatibility pairs, listed and still sold products,
+  // grouped by type, the best-liked first, four a group at most.
+  const WORKS_LABEL: Record<string, string> = { Wheelbase: "Wheelbases", Wheel: "Wheels & rims", Pedals: "Pedals", "Shifter / handbrake": "Shifters & handbrakes" };
+  const worksGroups: WorksGroup[] = niche.id !== "simracing" ? [] : (() => {
+    const mine = (simPairs as Record<string, { name: string; shape: string; note?: string }[]>)[racketOf(props.racketId).name] ?? [];
+    const listed = mine.flatMap(p => { const x = ctx.data.listed.find(y => y.name === p.name); return x && !/^Discontinued\b/i.test(x.surface ?? "") ? [{ p, x }] : []; });
+    return Object.keys(WORKS_LABEL).flatMap(shape => {
+      const all = listed.filter(({ p }) => p.shape === shape).sort((a, b) => (ctx.signal(b.x.id) ?? -1) - (ctx.signal(a.x.id) ?? -1));
+      if (!all.length) return [];
+      return [{ label: WORKS_LABEL[shape], more: Math.max(0, all.length - 4), items: all.slice(0, 4).map(({ p, x }) => ({ name: displayName(x.name, brand(x.brandId)), href: productHref(x), pic: photoOf(x), score: ctx.signal(x.id), ...(p.note ? { note: p.note } : {}) })) }];
+    });
+  })();
   const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})}
     chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
@@ -516,7 +534,7 @@ export default async function RacketFit(props: {
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1><NoBreak name={V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}/></h1>
-            {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
+            {tagline && <p className="rf-hook">{tagline}</p>}
             {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
             {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
@@ -567,6 +585,7 @@ export default async function RacketFit(props: {
         </div>
 
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
+          {V11 && worksGroups.length > 0 && <V11Works groups={worksGroups} short={props.shortName}/>}
           <section id="reviews" className="rv">
             {soon && <p className="rv-soon">Not shipping yet: the maker says first units arrive in December 2026, so these are pre-release impressions, not owner reviews.</p>}
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
@@ -577,7 +596,7 @@ export default async function RacketFit(props: {
           {/* Not-a-fit state only: the next best fits after the Better matches strip (owner 2026-11-17). */}
           {V11 && <V11More id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} pool={v11Strip} {...edgeWords}/>}
           {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
-            score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={buy}
+            score={scoreState(rated) === "new" ? null : overallScore} line={voiceOk ?? (page ? page.tagline : props.line ?? null)} buy={buy}
             compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
             one={niche.words.one} ask={`${ASK_LINK[niche.id] ?? "played it?"} add your review →`}/>}
           {V11 && tiles.length > 0 && <section className="v11-rt" aria-labelledby="v11-rt-t">

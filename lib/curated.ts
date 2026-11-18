@@ -1,11 +1,13 @@
 // Curated top 10s (owner 2026-11-17, "Yes, build it"): per pick (style × level × sore arm), an owner-edited list of products
-// that lead the match list in that order (db/curated/<site>.json). Padel only for now; other sites have none.
+// that lead the match list in that order (db/curated/<site>.json). Padel (2026-11-17) and PickleballRecs (owner "Import them"
+// 2026-11-19, with a spin style); other sites have none.
 import padel from "../db/curated/padel.json";
+import pickleball from "../db/curated/pickleball.json";
 import { niche } from "./niche";
 import type { QuickChoice } from "./quick-match";
 
 export type CuratedEntry = { slug: string; /** The owner's own pick: kept whatever its evidence. */ owner?: boolean; note?: string; /** Why an older year is allowed (validator). */ exception?: string; /** The source the reason rests on (Grok pack). */ src?: string };
-const SITES: Record<string, { lists: Record<string, CuratedEntry[]>; rankings?: Record<string, string[] | string> }> = { padel };
+const SITES: Record<string, { lists: Record<string, CuratedEntry[]>; rankings?: Record<string, string[] | string> }> = { padel, pickleball };
 export const curatedKey = (c: Pick<QuickChoice, "style" | "level" | "arm">) => `${c.style}/${c.level}/arm-${c.arm ? "on" : "off"}`;
 /** A drafted pick needs this much evidence to stay on a list (owner 2026-11-17); the owner's picks are exempt. */
 export const CURATED_MIN = { reviews: 10, score: 70 };

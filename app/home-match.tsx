@@ -1,4 +1,5 @@
 "use client";
+import { siteVoice } from "../lib/site-voice";
 // The quick-match picks and list on the PadelRecs home (batch D, owner 2026-11-15: "the quick match and filters feel
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
@@ -129,7 +130,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
           : picked ? <>{`${choice.level ? `ranked for ${levelPeople(choice.level)}` : "ranked for your picks"}${choice.arm ? ` · ${QUICK?.armChip ?? "arm-friendly"} ${QUICK?.armFilter ? "only" : "first"}` : ""} · `}<details className="hv2-what"><summary>{"what's the %?"}</summary><span>{`${MATCH_NOTE} `}<a href="/how-we-make-these#match">how it works</a></span></details></> : `ranked by ${SCORE_WORD} · pick above to personalise`}</span></div>
       {note && (() => { const next = { ...choice, style: note.link.style as QuickChoice["style"], level: note.link.level as QuickChoice["level"] };
         return <p className="hv2-note" role="note">{note.text} <a href={`${hrefOf(next, older)}#match`} onClick={go(next)}>{note.link.label}</a></p>; })()}
-      {rows.length === 0 && <p className="hv2-empty">Nothing matches that yet. Try another combination.</p>}
+      {rows.length === 0 && <p className="hv2-empty">{siteVoice()?.empty.filters ?? "Nothing matches that yet. Try another combination."}</p>}
       <div className="hv2-box">
       <ol className={`hv2-list${picked ? " hv2-picked" : ""}`}>{rows.map(({ id, fit, pct, arm, low }, i) => {
         const r = cards[id], sig = signalOf(id);

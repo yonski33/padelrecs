@@ -15,6 +15,7 @@ import { SKIN_TYPES, type SkinChoice } from "../../lib/skin-choice";
 import { niche, catalogPath, productHref, typePageFor } from "../../lib/niche";
 import { displayName } from "../../lib/brand-name";
 import { shortLine } from "../../lib/short-lines";
+import { voiceTagline } from "../../lib/voice-taglines";
 import { listLine } from "../../lib/list-lines";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
@@ -64,7 +65,8 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
   const content = skinPage(r.slug);
   const firstSentence = (t?: string | null) => t ? t.split(/(?<=\.)\s/)[0] : null;
   // The tagline: the product's short line (as the earlier skin page); its bottom line's first sentence only when it has none.
-  const hook = expertLine(shortLine(r)) ?? expertLine(listLine(r)) ?? expertLine(content?.bottom ? firstSentence(content.bottom) : null) ?? firstSentence(r.reviewSummary);
+  // The site-voice tagline leads (owner 2026-11-18, lib/voice-taglines.ts).
+  const hook = voiceTagline(r.slug) ?? expertLine(shortLine(r)) ?? expertLine(listLine(r)) ?? expertLine(content?.bottom ? firstSentence(content.bottom) : null) ?? firstSentence(r.reviewSummary);
   // "Tri-Plus" → the short name for "than the …" lines: the product's name without the brand, up to 3 words.
   const ref = (title || name).split(/\s+/).slice(0, 3).join(" ").replace(/[,:]$/, "");
 
@@ -97,7 +99,7 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
     .sort((p, q) => dist(p.id) - dist(q.id)).slice(0, 8).sort((p, q) => (ctx.signal(q.id) ?? -1) - (ctx.signal(p.id) ?? -1)).map(x => x.id);
   const peersP: SkinPeers = { self, peers: peerWire.filter(w => pool.some(x => x.id === w.id)), similar, ref,
     cards: Object.fromEntries(pool.map(x => [x.id, { id: x.id, name: displayName(x.name, brandOf(x)), href: productHref(x), pic: photoOf(x),
-      line: expertLine(firstSentence(skinPage(x.slug)?.bottom)) ?? shortLine(x) ?? listLine(x) ?? null, shop: listShopLink(x), score: scoreState((ctx.counts.get(x.id)?.positive ?? 0) + (ctx.counts.get(x.id)?.mixed ?? 0) + (ctx.counts.get(x.id)?.negative ?? 0)) === "new" ? null : ctx.signal(x.id) }])) };
+      line: voiceTagline(x.slug) ?? expertLine(firstSentence(skinPage(x.slug)?.bottom)) ?? shortLine(x) ?? listLine(x) ?? null, shop: listShopLink(x), score: scoreState((ctx.counts.get(x.id)?.positive ?? 0) + (ctx.counts.get(x.id)?.mixed ?? 0) + (ctx.counts.get(x.id)?.negative ?? 0)) === "new" ? null : ctx.signal(x.id) }])) };
 
   // ── Reviews (as padel's shipped section, racket-fit.tsx): our own, YouTube (one card per channel), blogs (one per site,
   // websites only) and up to 5 Reddit comments in the writer's exact words. Forum reports still count in the score.

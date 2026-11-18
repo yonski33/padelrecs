@@ -16,6 +16,7 @@ import { V2Footer } from "../v2-footer";
 import SignalTry from "./signal-try";
 import FaqList from "./faq-list";
 import "./how.css";
+import { siteVoice } from "../../lib/site-voice";
 
 // "How we make these" (owner 2026-11-15, Claude Design mockup https://claude.ai/artifact/CVvBQnDCRtn2PhCdd77PA5). PadelRecs
 // only for now. Every number on it comes from the real formula (lib/signal.ts) and the real catalog.
@@ -88,7 +89,8 @@ export default async function HowWeMakeThese() {
       </section>
       <section>
         <h2>Fair questions</h2>
-        <FaqList faqs={faqs}/>
+        {/* A site without home Questions (SimRacingRecs) shows its voice FAQ here first (owner 2026-11-18, lib/site-voice.ts). */}
+        <FaqList faqs={[...(niche.homeMore || niche.v2home ? [] : (siteVoice()?.faq ?? []).map(f => [f.q, f.a] as [string, string])), ...faqs]}/>
       </section>
       <section className="hw-cta">
         <div><p className="t">The site is only as good as its reviews.</p><p>{`Got a ${w.one}? Two taps and you're part of it.`}</p></div>

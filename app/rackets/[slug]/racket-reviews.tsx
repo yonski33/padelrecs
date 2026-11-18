@@ -1,4 +1,5 @@
 "use client";
+import { siteVoice, voiceThanks } from "../../../lib/site-voice";
 import { scoreBox } from "../../../lib/score-tone";
 import { niche } from "../../../lib/niche";
 import { useFormToken } from "../../form-token-client";
@@ -55,6 +56,8 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   const [vf, setVf] = useState<Verdict | null>(null), [tf, setTf] = useState<string | null>(null);
   const [verdict, setVerdict] = useState<Verdict | null>(null), [level, setLevel] = useState<string | null>(null);
   const [text, setText] = useState(""), [nick, setNick] = useState(""), [busy, setBusy] = useState(false), [error, setError] = useState(""), [posted, setPosted] = useState<"words" | "vote" | null>(null);
+  // The site's own thank-you (lib/site-voice.ts), picked once per page view; shown only after a send, so SSR never renders it.
+  const [thanksLine] = useState(() => voiceThanks(THANKS.words));
   // The "a few words" box grows with its text (up to its CSS max-height).
   const grow = useRef<HTMLTextAreaElement>(null);
   useEffect(() => { const t = grow.current; if (t) { t.style.height = "auto"; t.style.height = `${t.scrollHeight + 2}px`; } }, [text, verdict]);
@@ -121,7 +124,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
             n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
               onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
             <small>{hideUnder ? countLine(mood, rated, hideUnder, v11c.thin) : v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
-        {posted ? <div className="rv12-thanks" role="status">{THANKS[posted]}</div>
+        {posted ? <div className="rv12-thanks" role="status">{posted === "words" ? thanksLine : THANKS[posted]}</div>
         : <div id="played" className="rv-played">
           <div className="rv-prow"><b>{W.ask}</b>
             {VERDICTS.map(x => <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}><i aria-hidden="true"/>{PLAIN[x.key]}</button>)}
@@ -141,7 +144,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         {(vf || tf) && <span className="rv12-showing">showing <strong>{[vf && VERDICT_PILL[vf], tf].filter(Boolean).join(" · ")}</strong>{` (${list.length}) · `}
           <button type="button" onClick={() => { setVf(null); setTf(null); }}>clear</button></span>}
         <div className="rv12-list">{list.slice(0, shown).map((c, i) => <Rv12Card key={c.id} c={c} i={i}/>)}</div>
-        {list.length === 0 && <div className="rv12-empty"><b>{vf || tf ? "No reviews match these filters" : tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</b>
+        {list.length === 0 && <div className="rv12-empty"><b>{vf || tf ? "No reviews match these filters" : tab === "youtube" ? "No YouTube reviews summarised yet." : siteVoice()?.empty.reviews ?? `No ${W.people.replace(/s$/, "")} reviews yet.`}</b>
           {(vf || tf) && <button type="button" onClick={() => { setVf(null); setTf(null); }}>show all reviews</button>}</div>}
         {!v11c.thin && list.length > shown && <button type="button" className="rv12-more" onClick={() => setShown(s => s + PAGE)}>{`show ${list.length - shown} more reviews ↓`}</button>}
       </div>
@@ -165,7 +168,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     </div>
     <div className="rv-list">
       {posted ? <div className="rv-thanks" role="status"><span aria-hidden="true">🎾</span>
-        <span>{THANKS[posted]}</span></div>
+        <span>{posted === "words" ? thanksLine : THANKS[posted]}</span></div>
       : <div className={`rv-compose${verdict ? "" : " one"}`}>
         <div className="rv-ct"><b>{W.ask}</b><span>one tap, no account</span></div>
         <div className="rv-verdicts" role="group" aria-label={`Your verdict on the ${name}`}>{VERDICTS.map(x =>
@@ -183,7 +186,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         {error && <p className="rv-err" role="alert">{error}</p>}
       </div>}
 
-      {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
+      {list.length === 0 && <p className="rv-empty">{tab === "youtube" ? "No YouTube reviews summarised yet." : siteVoice()?.empty.reviews ?? `No ${W.people.replace(/s$/, "")} reviews yet.`}</p>}
       {list.slice(0, shown).map((c, i) => <Card key={c.id} c={c} i={i} pill={PILL}/>)}
       {list.length > shown && <button type="button" className="rv-more" onClick={() => setShown(s => s + PAGE)}>show more reviews ↓</button>}
     </div>

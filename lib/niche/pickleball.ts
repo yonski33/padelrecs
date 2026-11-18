@@ -197,7 +197,9 @@ export const pickleball: Niche = {
       // and a power, control or spin pick needs that bar above 3 for a Strong fit (padel #438, audit #3 #4 #12).
       styleBarMax: 3,
       // A paddle's own style never scores under "balance", the opposite style never over it (#15).
-      styleOrder: true } },
+      styleOrder: true,
+      // Curated lists (db/curated/pickleball.json, owner 2026-11-19): as padel, curated #1–3 are at least Strong fits.
+      curatedTop: [90, 86, 82] } },
   finder: {
     title: "Pickleball Paddle Finder Quiz",
     heading: "Which pickleball paddle is right for you?",

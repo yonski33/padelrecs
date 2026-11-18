@@ -1,0 +1,5202 @@
+{
+ "Asetek Forte Formula Pro": [
+  {
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Asetek Forte Direct Drive Wheelbase": [
+  {
+   "name": "Asetek Forte Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte Formula Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Initium Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Invicta Formula",
+   "shape": "Wheel"
+  }
+ ],
+ "Asetek Invicta Direct Drive Wheelbase": [
+  {
+   "name": "Asetek Forte Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte Formula Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Initium Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Invicta Formula",
+   "shape": "Wheel"
+  }
+ ],
+ "Asetek La Prima Direct Drive Wheelbase": [
+  {
+   "name": "Asetek Forte Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte Formula Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Initium Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Invicta Formula",
+   "shape": "Wheel"
+  }
+ ],
+ "Asetek Forte Formula": [
+  {
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Initium Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Asetek Initium Direct Drive Wheelbase": [
+  {
+   "name": "Asetek Forte Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Forte GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Asetek Initium Steering Wheel",
+   "shape": "Wheel"
+  }
+ ],
+ "Asetek Forte GT": [
+  {
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Initium Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Asetek Initium Steering Wheel": [
+  {
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Initium Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Asetek Invicta Formula": [
+  {
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec ClubSport Formula V3": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Gran Turismo DD Pro": [
+  {
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel R300 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
+   "shape": "Wheel"
+  }
+ ],
+ "Fanatec ClubSport DD+": [
+  {
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "shape": "Wheel"
+  }
+ ],
+ "Fanatec ClubSport DD": [
+  {
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "shape": "Wheel"
+  }
+ ],
+ "Fanatec Podium DD": [
+  {
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel"
+  }
+ ],
+ "Fanatec CSL DD 5 Nm": [
+  {
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Sim-Lab Push-Pull Rally Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Wheel Rim 320",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec ClubSport Wheel Rim Classic 2",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec ClubSport Wheel Rim GT3",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel R300 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec Podium Wheel Rim R300",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  }
+ ],
+ "Fanatec CSL DD 8 Nm": [
+  {
+   "name": "Fanatec ClubSport Pedals V3",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Elite Pedals V2",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec CSL Pedals LC",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Formula",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec Podium Pedals Sport",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Fanatec ClubSport Handbrake V2",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Sim-Lab Push-Pull Rally Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Fanatec ClubSport Formula V3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec ClubSport Wheel Rim 320",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec ClubSport Wheel Rim Classic 2",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec ClubSport Wheel Rim GT3",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec CSL Steering Wheel R300 V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec Podium Wheel Rim R300",
+   "shape": "Wheel",
+   "note": "needs a hub"
+  }
+ ],
+ "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec ClubSport Wheel Rim 320": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  }
+ ],
+ "Fanatec ClubSport Wheel Rim Classic 2": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  }
+ ],
+ "Fanatec ClubSport Wheel Rim GT3": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  }
+ ],
+ "Fanatec CSL Elite Steering Wheel Porsche Vision GT": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec CSL Steering Wheel GT3": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec CSL Steering Wheel P1 V2": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec CSL Steering Wheel R300 V2": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Steering Wheel BMW M4 GT3": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Steering Wheel GT3 Endurance": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Steering Wheel Monte Carlo Rally": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Steering Wheel Porsche 911 GT3 R": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  }
+ ],
+ "Fanatec Podium Wheel Rim R300": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase",
+   "note": "needs a hub"
+  }
+ ],
+ "Logitech PRO Racing GT D Rim": [
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech PRO Racing Wheel": [
+  {
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Logitech RS Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Logitech Driving Force Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech PRO Racing GT D Rim",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Logitech RS Formula Wheel McLaren Racing Edition",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS Round Wheel",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS Track Wheel",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  }
+ ],
+ "Logitech PRO DD11": [
+  {
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Logitech RS Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech PRO Racing GT D Rim",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Logitech RS Formula Wheel McLaren Racing Edition",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS Round Wheel",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS Track Wheel",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  }
+ ],
+ "Logitech RS Formula Wheel McLaren Racing Edition": [
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS50",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  }
+ ],
+ "Logitech RS50": [
+  {
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Logitech RS Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech RS Formula Wheel McLaren Racing Edition",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS Round Wheel",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS Track Wheel",
+   "shape": "Wheel",
+   "note": "needs the RS Wheel Hub"
+  }
+ ],
+ "Logitech RS Round Wheel": [
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS50",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  }
+ ],
+ "Logitech RS Track Wheel": [
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  },
+  {
+   "name": "Logitech RS50",
+   "shape": "Wheelbase",
+   "note": "needs the RS Wheel Hub"
+  }
+ ],
+ "MOZA CS Pro": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA R21 Ultra": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R25 Ultra": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R9 V2": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R12 V2": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R16 Ultra": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R3": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R5": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA R9 V3": [
+  {
+   "name": "MOZA CRP2 Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA mBooster Active Pedal",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA SR-P Pedals",
+   "shape": "Pedals"
+  },
+  {
+   "name": "MOZA Active Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HBP Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA HGP Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA SGP Sequential Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "MOZA CS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA CS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA ESX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA FSR2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA GS V2P",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA KS Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Revuelto Steering Wheel",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA RS V2",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA TSW",
+   "shape": "Wheel"
+  },
+  {
+   "name": "MOZA Vision GS",
+   "shape": "Wheel"
+  }
+ ],
+ "MOZA CS V2P": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA Essenza SCV12 Steering Wheel": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA ESX": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA Ford Mustang GTD Wheel": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA FSR2": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA GS V2P": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA KS Pro": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA KS": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA Porsche Mission R Steering Wheel": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA Revuelto Steering Wheel": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA RS V2": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA TSW": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA Vision GS": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic Aston Martin Valkyrie": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic Alpha EVO": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT Neo",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT1",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTC",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic Alpha": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Sim-Lab Push-Pull Rally Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic Alpha EVO Pro": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT Neo",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT1",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTC",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic Alpha EVO Sport": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT Neo",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT1",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTC",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic Alpha EVO Ultra": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic FX Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT Neo",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GT1",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTC",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic GTS",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic Alpha Mini": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic Alpha Ultimate": [
+  {
+   "name": "Simagic P1000",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P1000i",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic P500",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simagic DS-8X",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Q1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-1",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-NEO",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic TB-RS",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Simagic Aston Martin Valkyrie",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Formula",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus GT",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simagic Zeus Sport",
+   "shape": "Wheel"
+  }
+ ],
+ "Simagic FX Pro": [
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic FX": [
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic GT Neo": [
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic GT1": [
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic GTC": [
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic GTS": [
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic Zeus Formula": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic Zeus GT": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic Zeus Sport": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simucube Savu Pro": [
+  {
+   "name": "Simucube 2 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 2 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simucube 2 Pro": [
+  {
+   "name": "Simucube Savu Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Tahko GT-21",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Valo GT-23",
+   "shape": "Wheel"
+  }
+ ],
+ "Simucube 2 Sport": [
+  {
+   "name": "Simucube Savu Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Tahko GT-21",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Valo GT-23",
+   "shape": "Wheel"
+  }
+ ],
+ "Simucube 3 Pro": [
+  {
+   "name": "Simucube ActivePedal Pro",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simucube ActivePedal Ultimate",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simucube Savu Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Valo GT-23",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube x BavarianSimTec Delta Pro SC",
+   "shape": "Wheel"
+  }
+ ],
+ "Simucube 3 Sport": [
+  {
+   "name": "Simucube ActivePedal Pro",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simucube ActivePedal Ultimate",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simucube Savu Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Tahko GT-21",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Valo GT-23",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube x BavarianSimTec Delta Pro SC",
+   "shape": "Wheel"
+  }
+ ],
+ "Simucube 3 Ultimate": [
+  {
+   "name": "Simucube ActivePedal Pro",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simucube ActivePedal Ultimate",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Simucube Savu Pro",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube Valo GT-23",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Simucube x BavarianSimTec Delta Pro SC",
+   "shape": "Wheel"
+  }
+ ],
+ "Simucube Tahko GT-21": [
+  {
+   "name": "Simucube 2 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 2 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simucube Valo GT-23": [
+  {
+   "name": "Simucube 2 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 2 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simucube x BavarianSimTec Delta Pro SC": [
+  {
+   "name": "Simucube 3 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition": [
+  {
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster TS-XW Racer Sparco P310 Competition Mod": [
+  {
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Rally Wheel Add-On Sparco R383 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster TX Racing Wheel Leather Edition": [
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster T300RS GT Edition": [
+  {
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster EVO Racing 32R Leather",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 488 GT3 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster T-GT II": [
+  {
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster EVO Racing 32R Leather",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 488 GT3 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster T300RS": [
+  {
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Rally Wheel Add-On Sparco R383 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster T598": [
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster EVO Racing 32R Leather",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 488 GT3 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Hypercar Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster T818": [
+  {
+   "name": "Thrustmaster Raceline Pedals III",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster EVO Racing 32R Leather",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari 488 GT3 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster GT Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster Hypercar Wheel Add-On",
+   "shape": "Wheel"
+  },
+  {
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "shape": "Wheel"
+  }
+ ],
+ "Thrustmaster EVO Racing 32R Leather": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Ferrari 250 GTO Wheel Add-On": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Ferrari 488 GT3 Wheel Add-On": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Ferrari F1 Wheel Add-On": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Ferrari SF1000 Edition Wheel Add-On": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster GT Wheel Add-On": [
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Hypercar Wheel Add-On": [
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Rally Wheel Add-On Sparco R383 Mod": [
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TM Leather 28 GT Wheel Add-On": [
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TM Open Wheel Add-On": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec CSL Elite Pedals V2": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec CSL Pedals LC": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec CSL Pedals": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech PRO Racing Pedals": [
+  {
+   "name": "Logitech G29",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech G920",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech G923",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech RS50",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech G923": [
+  {
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech Driving Force Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech RS Shifter & Handbrake",
+   "shape": "Shifter / handbrake",
+   "note": "needs the G Racing Adapter on console"
+  }
+ ],
+ "Logitech G29": [
+  {
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech Driving Force Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech RS Shifter & Handbrake",
+   "shape": "Shifter / handbrake",
+   "note": "needs the G Racing Adapter on console"
+  }
+ ],
+ "MOZA CRP2 Pedals": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA mBooster Active Pedal": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic P1000": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic P1000i": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic P500": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simucube ActivePedal Pro": [
+  {
+   "name": "Simucube 3 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simucube ActivePedal Ultimate": [
+  {
+   "name": "Simucube 3 Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simucube 3 Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster Raceline Pedals LTE": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster T-LCM": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster T128": [
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  }
+ ],
+ "Thrustmaster T150": [
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  }
+ ],
+ "Thrustmaster T248": [
+  {
+   "name": "Thrustmaster T-LCM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8A",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  }
+ ],
+ "Thrustmaster T3PA": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248R",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T80 Ferrari 488 GTB Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster T80 Ferrari 488 GTB Edition": [
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  }
+ ],
+ "Thrustmaster T3PM": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TMX",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TMX": [
+  {
+   "name": "Thrustmaster T3PM",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "shape": "Shifter / handbrake"
+  }
+ ],
+ "Fanatec ClubSport Handbrake V2": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec ClubSport Shifter SQ V1.5": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech Driving Force Shifter": [
+  {
+   "name": "Logitech G29",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech G920",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech G923",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech G920": [
+  {
+   "name": "Logitech PRO Racing Pedals",
+   "shape": "Pedals",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech Driving Force Shifter",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Logitech RS H-Shifter",
+   "shape": "Shifter / handbrake",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech RS Shifter & Handbrake",
+   "shape": "Shifter / handbrake",
+   "note": "needs the G Racing Adapter on console"
+  }
+ ],
+ "Logitech RS H-Shifter": [
+  {
+   "name": "Logitech G29",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech G920",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech G923",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech RS50",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA HBP Handbrake": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA HGP Shifter": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Sim-Lab Push-Pull Rally Shifter": [
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic DS-8X": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic Q1": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic TB-1": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic TB-NEO": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Simagic TB-RS": [
+  {
+   "name": "Simagic Alpha",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Sport",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha EVO Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Mini",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Simagic Alpha Ultimate",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TH8A": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TH8S": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248R",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TSS Handbrake Sparco Mod+": [
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TMX",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster TSS Handbrake": [
+  {
+   "name": "Thrustmaster T-GT II",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T128",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T150",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T248R",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T300RS GT Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T598",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T80 Ferrari 488 GTB Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec ClubSport Pedals V3": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec ClubSport Pedals V3 Inverted": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Pedals Formula": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Fanatec Podium Pedals Sport": [
+  {
+   "name": "Fanatec ClubSport DD",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec ClubSport DD+",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 5 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec CSL DD 8 Nm",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Gran Turismo DD Pro",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Fanatec Podium DD",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech RS Pedals": [
+  {
+   "name": "Logitech PRO DD11",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech PRO Racing Wheel",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "Logitech RS50",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA SR-P Pedals": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Thrustmaster T248R": [
+  {
+   "name": "Thrustmaster T3PA",
+   "shape": "Pedals"
+  },
+  {
+   "name": "Thrustmaster TH8S",
+   "shape": "Shifter / handbrake"
+  },
+  {
+   "name": "Thrustmaster TSS Handbrake",
+   "shape": "Shifter / handbrake"
+  }
+ ],
+ "Thrustmaster Raceline Pedals III": [
+  {
+   "name": "Thrustmaster T818",
+   "shape": "Wheelbase"
+  }
+ ],
+ "Logitech RS Shifter & Handbrake": [
+  {
+   "name": "Logitech G29",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech G920",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  },
+  {
+   "name": "Logitech G923",
+   "shape": "Wheelbase",
+   "note": "needs the G Racing Adapter on console"
+  }
+ ],
+ "MOZA Active Shifter": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ],
+ "MOZA SGP Sequential Shifter": [
+  {
+   "name": "MOZA R12 V2",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R16 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R21 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R25 Ultra",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R3",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R5",
+   "shape": "Wheelbase"
+  },
+  {
+   "name": "MOZA R9 V3",
+   "shape": "Wheelbase"
+  }
+ ]
+}

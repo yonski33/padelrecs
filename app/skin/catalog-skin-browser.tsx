@@ -1,4 +1,5 @@
 "use client";
+import { siteVoice } from "../../lib/site-voice";
 // The SkinRecs catalogue's filters and list in the browser (owner 2026-11-16: "changing filters … is slow"). The server
 // renders the address's filters (a cached page per view, app/v/…); a tap filters, counts and sorts the rows sent with the page
 // here, with the match % from the server's own functions (app/skin/rank.ts), and updates the address with no request
@@ -125,7 +126,7 @@ export function CatalogSkinBrowser({ pack, f: first, base, fixedType }: { pack: 
             <small>{matching ? (pct === null ? "too few reports" : "match") : `${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</small>
           </span>
         </li>; })}</ol>
-      {shown.length === 0 && <div className="bc-empty"><b>Nothing matches all of that</b><a {...clearTo()}>clear filters</a></div>}
+      {shown.length === 0 && <div className="bc-empty"><b>{siteVoice()?.empty.filters ?? "Nothing matches all of that"}</b><a {...clearTo()}>clear filters</a></div>}
       {shown.length > show && <a className="bc-load" {...to({ show: String(show + CATALOG_PAGE) })}>{`load ${Math.min(CATALOG_PAGE, shown.length - show)} more ↓`}</a>}
     </section>
   </div>;
