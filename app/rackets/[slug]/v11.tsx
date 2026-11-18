@@ -91,9 +91,10 @@ export function V11More({ id, slug, facts, better, pool, me, keys, gainWord, giv
   const m = useMatchOf(), alts = useAlts(id, 12), b = useBetter(id, facts, better);
   if (!b || !alts) return null;
   const shown = new Set(b.rows.map(r => r.id));
-  const next = alts.filter(r => r.id !== id && pool[r.id] && !shown.has(r.id) && (r.pct ?? 0) >= FIT_MIN).sort((x, y) => (y.pct ?? 0) - (x.pct ?? 0)).slice(0, 3);
+  const next = alts.filter(r => r.id !== id && pool[r.id] && !shown.has(r.id) && (r.pct ?? 0) >= FIT_MIN).sort((x, y) => (y.pct ?? 0) - (x.pct ?? 0));
   if (next.length < 2) return null;
-  const list = withEdges(next, pool, me, keys, gainWord, giveWord);
+  // All the 60%+ candidates go in, best first: one without two honest lines gives way to the next (owner 2026-11-18).
+  const list = withEdges(next, pool, me, keys, gainWord, giveWord).slice(0, 3);
   if (list.length < 2) return null;
   return <section className="v11-sec v11-more2" id="more-for-you">
     <div className="v11-sh v11-rule"><h2>{`More ${words.many} for your game`}</h2><span>the next best fits for your picks, by match</span></div>
