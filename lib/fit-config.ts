@@ -44,7 +44,7 @@ export type FitConfig = {
   levelCap?: (r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>) => Partial<Record<"beginner" | "intermediate" | "advanced", boolean>> | null;
   /** A site's own words where the shared pages say "player", "throw one first", "how it plays" (SimRacingRecs, Grok audit
    *  2026-11-17 #10 #11 #25 #27 #28). Unset: every page keeps its words. */
-  words?: { person: string; game: string; tryFirst: string; howIt: string; catalogPromo: string; guidePromo: string; added: string;
+  words?: { person: string; game: string; tryFirst: string; howIt: string; catalogPromo: string; guidePromo: string;
     /** The console pick in a chip ("console") and the fit check's reason for a product without it. */ armShort: string; hardArm: string; hardArmShort: string };
   /** Sore arm: the tag that praises arm comfort and the one that faults it (if the site has one). */ arm: { trait: string; plus: string; minus?: string };
   /** The fit check's fallback level signal: forgiving against demanding tags (plus more for beginners). */ forgiving: { plus: string; minus: string[]; beginner: string[] };

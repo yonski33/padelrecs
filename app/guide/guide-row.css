@@ -9,3 +9,5 @@
 .shr-row em { font: 700 13px var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; font-style: normal; margin-top: auto; padding-top: 4px; }
 .shr-guide { align-self: flex-start; font: 700 13px var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; color: var(--ink); text-underline-offset: 3px; }
 @media (max-width: 760px) { .shr-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* The products with no value listed, so the tiles add up to the catalogue (Grok audit 2026-11-18). */
+.shr-rest { align-self: flex-start; font-size: 14px; color: var(--mute, #5a5a66); text-underline-offset: 3px; }

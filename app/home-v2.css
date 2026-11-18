@@ -209,3 +209,10 @@ body:has(main.hv2) { background: #fbfaf6; }
 
 /* The "N reviews · N added this week" pill is desktop only on every site (owner 2026-11-18: "hide the stats on mobile"). */
 @media (max-width: 640px) { .hv2 .hv2-hero .hv2-live { display: none; } }
+
+/* Quick-match options wrap on phones (Grok audit 2026-11-18: "spin" was cut off at 390px): the joined row becomes separate
+   buttons that wrap, the same shape as the level pills. */
+@media (max-width: 760px) {
+  .hv2 .hv2-seg { flex-wrap: wrap; gap: 6px; border: 0; border-radius: 0; overflow: visible; }
+  .hv2 .hv2-seg a, .hv2 .hv2-seg > span:last-child a { border: 1.5px solid var(--ink); border-radius: 8px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+}

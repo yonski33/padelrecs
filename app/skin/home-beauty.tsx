@@ -10,7 +10,7 @@ import { displayName } from "../../lib/brand-name";
 import { rankedLists, listHref } from "../rankings/lists";
 import { platformName } from "../../lib/source-label";
 import { niche, productHref } from "../../lib/niche";
-import { newThisWeek } from "../../lib/new-this-week";
+import { newThisWeek, WEEK_SHORT } from "../../lib/new-this-week";
 import { FEW_VOICES } from "../../lib/attr-score";
 import { V2Footer } from "../v2-footer";
 import { skinHref, type SkinChoice } from "../../lib/skin-choice";
@@ -42,7 +42,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
   // Fresh: our own reviews and YouTube, one per product (as before).
   const seen = new Set<string>();
   const fresh = [
-    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: niche.site.name.toLowerCase(), who: r.playerLevel ? `${r.playerLevel} skin` : null })),
+    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: null as string | null, who: r.playerLevel ? `${r.playerLevel} skin` : null })),
     ...data.external.filter(e => e.sentiment && e.sourcePlatform === "YouTube" && e.summary).map(e => ({ id: e.id, racketId: e.racketId, date: e.sourceDate || e.createdAt, text: e.summary!, quote: false, tag: platformName(e.sourcePlatform).toLowerCase(), who: e.sourceName })),
   ].filter(x => byId.has(x.racketId)).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
@@ -78,7 +78,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
       <section className="bh-hero">
         {/* The live pill on the headline's line, to its right (owner 2026-11-18, every site). */}
         <div><div className="bh-hrow"><h1>{`${niche.v2copy?.homeH1?.[0] ?? "Less guessing."} `}<em>{niche.v2copy?.homeH1?.[1] ?? "Better skincare."}</em></h1>
-            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} added this week`}</span></div>
+            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} ${WEEK_SHORT}`}</span></div>
           {!niche.v2copy?.homeH1 && <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p></div>}</div>
       </section>
 
@@ -88,7 +88,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
           <section>
             <div className="bh-sidehead"><h3>Fresh reviews</h3><a href="/reviews">all →</a></div>
             <ul className="bh-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}><a href={productHref(r)}>
-              <span className="bh-src"><span className={`t ${f.tag}`}>{f.tag}</span>{[ago(f.date, now), f.who].filter(Boolean).join(" · ")}</span>
+              <span className="bh-src">{f.tag && <span className={`t ${f.tag}`}>{f.tag}</span>}{[ago(f.date, now), f.who].filter(Boolean).join(" · ")}</span>
               <b>{nameOf(r)}</b>
               <span className="bh-q">{f.quote ? `“${clip(f.text)}”` : clip(f.text)}</span>
             </a></li>; })}</ul>

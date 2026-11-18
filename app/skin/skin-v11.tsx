@@ -1,4 +1,5 @@
 import "../rackets/[slug]/racket-fit.css";
+import { NoBreak } from "../no-break";
 import "../rackets/[slug]/v11.css";
 import "../review-card.css";
 import "./skin-product.css";
@@ -162,7 +163,7 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
           <div className="bp-idt">
             <div className="bp-chips">{[r.shape?.toLowerCase(), ff === "free" ? "fragrance-free" : null, spf ? `SPF ${spf}` : null, price].filter(Boolean).map(x => <span key={x}>{x}</span>)}</div>
             {brand && <div className="bp-brand">{brand.name}</div>}
-            <h1>{title || name}</h1>
+            <h1><NoBreak name={title || name}/></h1>
             {hook && <p className="bp-hook">{hook}</p>}
             {scoreRow}
             {buy && <div className="bp-buyrow"><a className="bp-btn" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a></div>}

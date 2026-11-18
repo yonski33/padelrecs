@@ -81,7 +81,7 @@ export const COFFEE_FIT: FitConfig = {
   levelPeople: { beginner: "new home baristas", intermediate: "comfortable home baristas", advanced: "enthusiasts" },
   levelOne: { beginner: "a new home barista", intermediate: "a comfortable home barista", advanced: "an enthusiast" },
   words: { person: "home barista", game: "setup", tryFirst: "try one first", howIt: "performs", catalogPromo: "Filter by type, level, budget and what you make.",
-    guidePromo: "Boilers, burrs and goosenecks, explained in two minutes.", added: "added to the site this week",
+    guidePromo: "Boilers, burrs and goosenecks, explained in two minutes.",
     armShort: "milk drinks", hardArm: "No steam: it can't make milk drinks.", hardArmShort: "No steam" },
   levelWords: { beginner: ["first espresso machine", "first machine", "first grinder", "new to espresso", "just getting into coffee", "beginner"],
     intermediate: ["upgraded from", "coming from", "moved up from"], advanced: ["endgame", "dialled in", "light roast"] },

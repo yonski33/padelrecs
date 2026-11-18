@@ -82,7 +82,8 @@ function Avatar({alias}: {alias: string | null}) {
 // How a profile answer reads in a review byline: the option's display text if the niche gives one ("tried briefly", "oily skin").
 function profileLabel(field: ProfileField, value: string) {
   const display = niche.profile[field].options.find(o => o.value === value)?.display;
-  return display ?? (field === "playingSide" ? `${value}${niche.profile.sideSuffix}` : value);
+  // "Both" reads "Both sides", never "Both side" (Grok audit 2026-11-18).
+  return display ?? (field === "playingSide" ? `${value}${niche.profile.sideSuffix}${niche.profile.sideSuffix && /^both$/i.test(value) ? "s" : ""}` : value);
 }
 
 const categories = niche.categories.map(c => [c.label, c.column] as const);

@@ -16,6 +16,7 @@ const ICONS: Record<string, React.ReactNode> = {
   "pb-elongated": <rect x="9" y="-1" width="30" height="58" rx="11" {...PBF}/>,
   "pb-hybrid": <rect x="6.5" y="1" width="35" height="54" rx="12" {...PBF}/>,
   "pb-widebody": <rect x="0" y="5" width="48" height="46" rx="14" {...PBF}/>,
+  widebody: <><rect x="2" y="5" width="44" height="38" rx="13" {...PB}/><rect x="19" y="43" width="10" height="12" rx="3" fill="currentColor"/></>,
   "hybrid-paddle": <><rect x="7" y="2" width="34" height="43" rx="12" {...PB}/><rect x="19" y="45" width="10" height="10" rx="3" fill="currentColor"/></>,
 };
 

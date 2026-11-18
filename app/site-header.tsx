@@ -43,7 +43,8 @@ function TopMenu({ pathname, ranked, v2 = false }: { pathname: string; ranked: s
 }
 
 /** `ranked`: slugs of the rankings lists that rank at least one product; empty lists are left out of the menu. */
-export function SiteHeader({ ranked }: { ranked: string[] }) {
+export function SiteHeader({ ranked, guide = false }: { ranked: string[]; /** The site has a /guide page (SkinRecs: its own, with no
+ *  niche.guide): the phone menu links it. */ guide?: boolean }) {
   const pathname = usePathname();
   const onAddPage = pathname.startsWith("/add-review");
   const inRankings = pathname === RANKINGS_PATH || pathname.startsWith(`${RANKINGS_PATH}/`);
@@ -52,22 +53,29 @@ export function SiteHeader({ ranked }: { ranked: string[] }) {
   // A cached view's own path (/v/racket/<slug>/<key>, proxy.ts) reads as the product's public address (site audit 2026-11-17 #12).
   const shown = pathname.replace(/^\/v\/racket\/([a-z0-9-]+)\/[^/]*$/, `${catalogPath}/$1`);
   const addHref = shown === "/" ? "/add-review" : `/add-review?from=${encodeURIComponent(shown)}`;
+  // Phones (Grok audit 2026-11-18): the links and search sit behind a "menu" button; it opens them as a list under the bar.
+  const [menu, setMenu] = useState(false);
   // PadelRecs: the Claude Design header (owner 2026-11-15, "match the mockup"): the black side-project strip, then the logo dot,
   // three plain links, search and "+ add a review". Other niches keep the light header below.
   if (isV2) return <div className={`hv2-top ${qtFontVars}`}>
     <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">{v2copy.plain ? "how it works →" : "how we make these →"}</a></div>
-    <header className={`site-header hv2-sh${mockLook ? " hv2-sh-m" : ""}`}><div className="hv2-shin">
+    <header className={`site-header hv2-sh${mockLook ? " hv2-sh-m" : ""}${menu ? " hv2-open" : ""}`} onKeyDown={e => { if (e.key === "Escape") setMenu(false); }}><div className="hv2-shin">
       <Link className="hv2-logo" href="/">{v2copy.logo === "icon" ? <img className="hv2-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/> : <i aria-hidden="true"/>}{niche.site.name.toLowerCase()}</Link>
-      <nav aria-label="Main navigation">
+      <nav id="hv2-nav" aria-label="Main navigation">
         <a href={catalogPath} aria-current={pathname === catalogPath || pathname.startsWith(`${catalogPath}/`) ? "page" : undefined}>{v2copy.catalogNav ?? niche.words.many}</a>
         {/* Owner 2026-11-16: "the ranking menu item as a drop down that shows all the lists" (the classic menu, v2 styling). */}
         {ranked.length ? <TopMenu pathname={pathname} ranked={ranked} v2/> : <a href={RANKINGS_PATH} aria-current={inRankings ? "page" : undefined}>rankings</a>}
         {niche.guide && <a href="/guide" aria-current={pathname === "/guide" ? "page" : undefined}>{niche.guide.nav ?? "guide"}</a>}
+        {!niche.guide && guide && <a className="hv2-monly" href="/guide" aria-current={pathname === "/guide" ? "page" : undefined}>guide</a>}
         <a href="/reviews" aria-current={pathname === "/reviews" ? "page" : undefined}>latest reviews</a>
+        <a className="hv2-monly" href="/brands" aria-current={pathname.startsWith("/brands") ? "page" : undefined}>brands</a>
       </nav>
       <span className="hv2-grow"/>
       <div className="hv2-find"><RacketSearch placeholder={`search ${niche.words.many}…`}/></div>
       {!onAddPage && <a className="hv2-add" href={addHref}>+ add a review</a>}
+      <button type="button" className="hv2-menub" aria-expanded={menu} aria-controls="hv2-nav" aria-label="Menu" onClick={() => setMenu(m => !m)}>
+        <svg viewBox="0 0 16 12" aria-hidden="true">{menu ? <path d="M3 1l10 10M13 1L3 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          : <path d="M1 1h14M1 6h14M1 11h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>}</svg><span className="hv2-mlabel">menu</span></button>
     </div></header>
   </div>;
   return (

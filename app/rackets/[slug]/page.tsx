@@ -95,12 +95,13 @@ export async function generateMetadata({params, searchParams}: {params: Promise<
   // Racket pages with their own words (lib/racket-page.ts, owner's final mock): "<Brand Model Year> review" and the bottom line.
   const pc = pageContent(r.slug);
   if (pc && pageTier(pc)) {
-    const t = `${name} review`, images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
+    const t = `${name} review | ${niche.site.name}`, images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
     return { title: { absolute: t }, description: pc.bottom, alternates: { canonical: productHref(r) }, openGraph: { title: t, description: pc.bottom, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
   }
   const bare = hasYears ? name.replace(new RegExp(`\\s+${r.year}$`), "") : name;
   // "<Brand Model Year> review" on every racket page (owner's final mock, SEO rule).
-  const title = `${name} review`;
+  // "| SiteName" on every product page (Grok audit 2026-11-18), as the other pages have.
+  const title = `${name} review | ${niche.site.name}`;
   const sig = (await productSignals()).get(r.id)?.signal;
   const line = shortLine(r) ?? listLine(r) ?? (r.reviewSummary && r.reviewSummary.length <= 155 ? r.reviewSummary : null);
   const facts = reportsN === 0 ? `No ${niche.people.one} reports yet. Be the first to review it.`
