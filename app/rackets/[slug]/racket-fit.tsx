@@ -41,7 +41,7 @@ import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
 import "../../review-card.css";
-import { V11Better, V11Others, V11More, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
+import { V11Better, V11Others, V11More, V11Plays, V11BuildCards, V11Decide, type V11Card, type V11Pool } from "./v11";
 import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
 
@@ -500,8 +500,11 @@ export default async function RacketFit(props: {
   // A site with its own words (SimRacingRecs) says "Other gear to consider" (its catalogue word), not "Other products".
   const edgeWords = { me: compareMe.dots, keys: TRAITS, words: SITE_FIT.words ? { ...niche.words, many: v2copy.catalogNav ?? niche.words.many } : niche.words, scoreWord: SCORE_CAP,
     gainWord: TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
-  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})}
-    chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
+  // How it plays keeps its compact bars; the build is back as full explained cards below it (owner 2026-11-18).
+  const v11Body = V11 ? <>
+    <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})} tip={tipText}/>
+    <V11BuildCards head={V11_SITE!.buildHead(props.shortName)} cards={builds} ring={niche.id === "discgolf"}/>
+  </> : null;
 
   return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
