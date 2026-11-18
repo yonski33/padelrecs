@@ -1,4 +1,5 @@
 "use client";
+import { siteVoice } from "../lib/site-voice";
 
 import { useEffect, useRef, useState } from "react";
 import { matchingRackets, type SearchRacket } from "../lib/racket-search";
@@ -113,7 +114,8 @@ export function RacketSearch({ placeholder }: { placeholder?: string } = {}) {
       {!matches.length && <p className="search-status" role="status">{
         failed ? "Press Enter to search." :
         !rackets ? `Loading ${w.many}…` :
-        <><b>{`No ${w.one} found.`}</b>Either it’s very new, very obscure, or we need to add it. <a href="/add-review">Add it with a review →</a></>
+        siteVoice() ? <><b>{siteVoice()!.empty.search}</b> <a href="/add-review">Add it with a review →</a></>
+        : <><b>{`No ${w.one} found.`}</b>Either it’s very new, very obscure, or we need to add it. <a href="/add-review">Add it with a review →</a></>
       }</p>}
     </div>}
   </form>;

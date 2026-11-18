@@ -14,6 +14,7 @@ import { newThisWeek } from "../../lib/new-this-week";
 import { FEW_VOICES } from "../../lib/attr-score";
 import { V2Footer } from "../v2-footer";
 import { skinHref, type SkinChoice } from "../../lib/skin-choice";
+import { withVoiceFaq } from "../../lib/site-voice";
 
 /** The SkinRecs home in the owner's beauty design (Claude Design "SkinRecs home", 2026-11-16): quick match as one sentence
  *  ("My skin is … and I want to …"), an optional fine-tune, the ranked list with category pills, then textures, rankings, how
@@ -122,8 +123,8 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
 
       <section className="bh-sec bh-faq">
         <h2>Questions</h2>
-        <div className="bp-card">{faqs.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
-          <p>{`${f.a} `}<a href={f.link.href}>{f.link.t}</a></p></details>)}</div>
+        <div className="bp-card">{withVoiceFaq<{ q: string; a: string; link?: { href: string; t: string } }>(faqs, f => f).map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
+          <p>{`${f.a} `}{f.link && <a href={f.link.href}>{f.link.t}</a>}</p></details>)}</div>
       </section>
     </div>
     <V2Footer/>
