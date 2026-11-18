@@ -15,7 +15,8 @@ export function distinctEdges(me: number[], cands: Cand[], keys: string[], n = 3
   /** Only cards with both lines, a gain and a give-up (owner 2026-11-18: no blank cards); a racket without both is passed over. */
   needGive = false,
   /** A gap from other evidence than the dots (disc golf flight numbers), signed as `cand − me`, used where given. */
-  gapOf?: (id: string, i: number) => number | undefined): Edge[] {
+  gapOf?: (id: string, i: number) => number | undefined,
+  /** A gain and give-up that may not share a card (two readings of one fact). */ apart?: (gain: number, give: number) => boolean): Edge[] {
   const out: Edge[] = [], gains = new Set<number>(), gives = new Set<number>();
   for (const c of cands) {
     if (out.length >= n) break;
@@ -23,7 +24,7 @@ export function distinctEdges(me: number[], cands: Cand[], keys: string[], n = 3
     const gain = gaps.filter(x => x.g > 0 && !gains.has(x.i) && (x.k !== armKey || c.dots[x.i] >= 4) && (!gainOk || gainOk(c.id, x.k)) && (!allow || allow(c.id, x.i, 1)))
       .sort((a, b) => b.g - a.g || a.i - b.i)[0];
     if (!gain) continue;
-    const give = gaps.filter(x => x.g < 0 && !gives.has(x.i) && (!allow || allow(c.id, x.i, -1))).sort((a, b) => a.g - b.g || a.i - b.i)[0];
+    const give = gaps.filter(x => x.g < 0 && !gives.has(x.i) && (!allow || allow(c.id, x.i, -1)) && (!apart || !apart(gain.i, x.i))).sort((a, b) => a.g - b.g || a.i - b.i)[0];
     if (needGive && !give) continue;
     gains.add(gain.i); if (give) gives.add(give.i);
     out.push({ id: c.id, gain: gain.i, give: give ? give.i : null });

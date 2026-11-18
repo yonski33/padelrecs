@@ -24,6 +24,9 @@ const FLIGHT: Record<string, { at: (f: number[]) => number; label: string; sign:
   glide: { at: f => f[1], label: "glide", sign: 1 },
   wind: { at: f => f[2] + f[3], label: "turn + fade", sign: 1 },
 };
+/** Two traits read off the same flight number (distance and arm both from speed): a card never pairs them as its gain and give-up,
+ *  which would say one fact twice ("longer (speed 11 vs 9)" and "needs more arm (speed 11 vs 9)"). */
+export const sameFlightFact = (site: string, a: string, b: string) => site === "discgolf" && !!FLIGHT[a] && !!FLIGHT[b] && FLIGHT[a].label === FLIGHT[b].label;
 const fmt = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1)).replace("-", "−");
 /** The flight gap behind "other is more `key`" in that trait's own direction (positive = other has more of the trait), and the
  *  note for the line; null when the trait isn't a flight trait or either disc has no numbers. */

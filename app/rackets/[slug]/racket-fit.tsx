@@ -52,7 +52,7 @@ import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
-import { claimBlock, flightFact } from "../../../lib/claim-guard";
+import { claimBlock, flightFact, sameFlightFact } from "../../../lib/claim-guard";
 import { CompareWith } from "./compare-with";
 import { refName } from "../../../lib/compare-names";
 import { suggestionFloor } from "../../../lib/suggestion-floor";
@@ -454,7 +454,7 @@ export default async function RacketFit(props: {
   const DOT_KEYS = TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
   // Only rackets we can write both lines for (owner 2026-11-18: no blank cards); the next candidate takes a blocked one's place.
-  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk, allow, true, gapOf).map(({ id: oid, gain, give }) => {
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk, allow, true, gapOf, (g, v) => sameFlightFact(niche.id, DOT_KEYS[g], DOT_KEYS[v])).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     const me = refOf(oid);
