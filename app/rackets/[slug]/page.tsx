@@ -52,6 +52,7 @@ import { summary } from "../../../lib/product-summary";
 import { comparePairs, comparePick, pairHref, pairKey, modelFamily } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../../similar-section";
+import simPairs from "../../../db/compat/simracing-pairs.json";
 import { tint, tileWord, worksWith, expertLine, type RigPart } from "../../../lib/similar-picks";
 import { platformsOf as simPlatforms } from "../../../lib/attr-profile-simracing";
 import { evidenceRows } from "../../../db/evidence";
@@ -338,7 +339,11 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const works = sheet ? (() => {
     const part = (x: (typeof data.listed)[number]): RigPart => ({ id: x.id, type: x.shape, brand: data.brands.find(y => y.id === x.brandId)?.name ?? null,
       platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null, weight: x.weight, frame: x.shape === "Cockpit" ? x.balance : null });
-    return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3 && !/^Discontinued\b/i.test(x.surface ?? "")).map(part));
+    void part;
+    // Only the makers' compatibility pairs (db/compat/simracing-pairs.json, owner 2026-11-18), never a brand guess.
+    const mine = (simPairs as Record<string, { name: string; shape: string; note?: string }[]>)[r.name] ?? [];
+    return mine.flatMap(p => { const x = data.listed.find(y => y.name === p.name); return x && !/^Discontinued\b/i.test(x.surface ?? "") ? [{ id: x.id, why: p.note ?? "on the maker's list" }] : []; })
+      .sort((a, b) => (sigs.get(b.id)?.signal ?? -1) - (sigs.get(a.id)?.signal ?? -1)).slice(0, 4);
   })() : [];
   // The "works with" tab, also on the v2 product page (racket-fit.tsx, SimRacingRecs).
   const pairsTab: SimilarTab | null = niche.similar && works.length ? { key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,

@@ -52,6 +52,8 @@ const isoDaysAgo = (n: number) => new Date(Date.now() - n * 864e5).toISOString()
 import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
+import { V11Works, type WorksGroup } from "./v11-works";
+import simPairs from "../../../db/compat/simracing-pairs.json";
 import { distinctEdges } from "../../../lib/other-picks";
 import { claimBlock, factFor, sameFlightFact } from "../../../lib/claim-guard";
 import { refName } from "../../../lib/compare-names";
@@ -495,6 +497,18 @@ export default async function RacketFit(props: {
   // A site with its own words (SimRacingRecs) says "Other gear to consider" (its catalogue word), not "Other products".
   const edgeWords = { me: compareMe.dots, keys: TRAITS, words: SITE_FIT.words ? { ...niche.words, many: v2copy.catalogNav ?? niche.words.many } : niche.words, scoreWord: SCORE_CAP,
     gainWord: TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
+  // "Works with" (SimRacingRecs, owner 2026-11-18): only the makers' compatibility pairs, listed and still sold products,
+  // grouped by type, the best-liked first, four a group at most.
+  const WORKS_LABEL: Record<string, string> = { Wheelbase: "Wheelbases", Wheel: "Wheels & rims", Pedals: "Pedals", "Shifter / handbrake": "Shifters & handbrakes" };
+  const worksGroups: WorksGroup[] = niche.id !== "simracing" ? [] : (() => {
+    const mine = (simPairs as Record<string, { name: string; shape: string; note?: string }[]>)[racketOf(props.racketId).name] ?? [];
+    const listed = mine.flatMap(p => { const x = ctx.data.listed.find(y => y.name === p.name); return x && !/^Discontinued\b/i.test(x.surface ?? "") ? [{ p, x }] : []; });
+    return Object.keys(WORKS_LABEL).flatMap(shape => {
+      const all = listed.filter(({ p }) => p.shape === shape).sort((a, b) => (ctx.signal(b.x.id) ?? -1) - (ctx.signal(a.x.id) ?? -1));
+      if (!all.length) return [];
+      return [{ label: WORKS_LABEL[shape], more: Math.max(0, all.length - 4), items: all.slice(0, 4).map(({ p, x }) => ({ name: displayName(x.name, brand(x.brandId)), href: productHref(x), pic: photoOf(x), score: ctx.signal(x.id), ...(p.note ? { note: p.note } : {}) })) }];
+    });
+  })();
   const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})}
     chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
@@ -558,6 +572,7 @@ export default async function RacketFit(props: {
         </div>
 
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
+          {V11 && worksGroups.length > 0 && <V11Works groups={worksGroups} short={props.shortName}/>}
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: SITE_FIT.words ? niche.copy.ui.triedIt : "Thrown it?", people: SITE_FIT.words ? niche.people.many : "players", peopleTab: SITE_FIT.words ? niche.people.many : "players" } } : {})}/>
