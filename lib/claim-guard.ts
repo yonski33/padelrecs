@@ -11,7 +11,31 @@
 //     head-heavy never "slower".
 // The same rule runs on the server (the first two cards) and in the browser (the cards after a pick). Pure: no site config.
 
-export type ClaimSpec = { shape?: string | null; core?: string | null; surface?: string | null; balance?: string | null; weight?: string | null };
+export type ClaimSpec = { shape?: string | null; core?: string | null; surface?: string | null; balance?: string | null; weight?: string | null;
+  /** Disc golf: the maker's flight numbers [speed, glide, turn, fade]. */ flight?: number[] | null };
+
+// Disc golf (owner 2026-11-18): the maker's flight numbers count as evidence for the traits they measure, on a 1+ point gap.
+// Speed for distance and for the arm it needs, glide for glide, turn + fade (stability) for wind. A clear gap the right way
+// allows the line with the numbers beside it ("more glide (glide 5 vs 4)"); a clear gap the other way blocks it; within a
+// point, the player-voice rule decides.
+const FLIGHT: Record<string, { at: (f: number[]) => number; label: string; sign: 1 | -1 }> = {
+  distance: { at: f => f[0], label: "speed", sign: 1 },
+  arm: { at: f => f[0], label: "speed", sign: -1 }, // easier for a slower arm = lower speed
+  glide: { at: f => f[1], label: "glide", sign: 1 },
+  wind: { at: f => f[2] + f[3], label: "turn + fade", sign: 1 },
+};
+/** Two traits read off the same flight number (distance and arm both from speed): a card never pairs them as its gain and give-up,
+ *  which would say one fact twice ("longer (speed 11 vs 9)" and "needs more arm (speed 11 vs 9)"). */
+export const sameFlightFact = (site: string, a: string, b: string) => site === "discgolf" && !!FLIGHT[a] && !!FLIGHT[b] && FLIGHT[a].label === FLIGHT[b].label;
+const fmt = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1)).replace("-", "−");
+/** The flight gap behind "other is more `key`" in that trait's own direction (positive = other has more of the trait), and the
+ *  note for the line; null when the trait isn't a flight trait or either disc has no numbers. */
+export function flightFact(site: string, key: string, other?: number[] | null, me?: number[] | null): { gap: number; note: (dir: 1 | -1) => string } | null {
+  const f = site === "discgolf" ? FLIGHT[key] : undefined;
+  if (!f || !other || !me) return null;
+  const o = f.at(other), m = f.at(me);
+  return { gap: (o - m) * f.sign, note: () => `${f.label} ${fmt(o)} vs ${fmt(m)}` };
+}
 /** A trait's dots and the player voices behind them (lib/trait-score.ts TraitScore). */
 export type TraitEvidence = { dots: number; plus: number; minus: number; set?: boolean } | null | undefined;
 export const MIN_TRAIT_VOICES = 3;
@@ -62,6 +86,9 @@ const voiced = (t: TraitEvidence) => !!t && t.dots > 0 && (!!t.set || t.plus + t
 
 /** Why "other is more `key` than me" (dir 1) or "less `key`" (dir -1) can't be said, or null when it holds. */
 export function claimBlock(site: string, key: string, dir: 1 | -1, other: { spec: ClaimSpec; tr: TraitEvidence }, me: { spec: ClaimSpec; tr: TraitEvidence }): string | null {
+  const ff = flightFact(site, key, other.spec.flight, me.spec.flight);
+  if (ff && ff.gap * dir >= 1) return null;
+  if (ff && ff.gap * dir <= -1) return "flight numbers";
   if (!other.tr || !me.tr || (other.tr.dots - me.tr.dots) * dir < 1) return "no dot gap";
   if (!voiced(other.tr) || !voiced(me.tr)) return "too few reports";
   const more = (a: number | null, b: number | null, step = 1) => a !== null && b !== null && a - b >= step;
