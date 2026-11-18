@@ -1,0 +1,1011 @@
+{
+ "_about": "PickleballRecs curated top 10 per pick (owner \"Import them\" 2026-11-19). Key: style/level/arm-off|arm-on. Built from a consensus of 6 owner-approved expert sources (grok/pickleball-curated/curated-final.json, merge_consensus.py); engine fills and weak spots are flagged in curated-report.md and kept as they are. Every entry counts as the owner's (\"owner\": true). A list shows first, in order, with its real match %; under 55% a row says why it is here.",
+ "lists": {
+  "control/beginner/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-prism-flash",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   }
+  ],
+  "control/beginner/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   },
+   {
+    "slug": "spartus-apollo",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   }
+  ],
+  "control/intermediate/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-prism-flash",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   }
+  ],
+  "control/intermediate/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-saga",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   }
+  ],
+  "control/advanced/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-prism-flash",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   }
+  ],
+  "control/advanced/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-saga",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   }
+  ],
+  "balance/beginner/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-saga",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "ronbus-quanta-r4-16",
+    "owner": true
+   }
+  ],
+  "balance/beginner/arm-on": [
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-apollo",
+    "owner": true
+   }
+  ],
+  "balance/intermediate/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   }
+  ],
+  "balance/intermediate/arm-on": [
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "gearbox-gx2-power-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-saga",
+    "owner": true
+   }
+  ],
+  "balance/advanced/arm-off": [
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   }
+  ],
+  "balance/advanced/arm-on": [
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "gearbox-gx2-power-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-hybrid",
+    "owner": true
+   }
+  ],
+  "power/beginner/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "11six24-hurache-x-power",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power",
+    "owner": true
+   }
+  ],
+  "power/beginner/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   }
+  ],
+  "power/intermediate/arm-off": [
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-hurache-x-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   }
+  ],
+  "power/intermediate/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "gearbox-gx2-power-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power",
+    "owner": true
+   }
+  ],
+  "power/advanced/arm-off": [
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-hurache-x-power-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-elongated",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   }
+  ],
+  "power/advanced/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "gearbox-gx2-power-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   }
+  ],
+  "spin/beginner/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-prism-flash",
+    "owner": true
+   }
+  ],
+  "spin/beginner/arm-on": [
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "spartus-apollo",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-alpha-pro-power",
+    "owner": true
+   }
+  ],
+  "spin/intermediate/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   }
+  ],
+  "spin/intermediate/arm-on": [
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   }
+  ],
+  "spin/advanced/arm-off": [
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-hurache-x-power-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   }
+  ],
+  "spin/advanced/arm-on": [
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
+    "owner": true
+   }
+  ]
+ },
+ "rankings": {
+  "_about": "Which curated lists each /rankings page is built from, as padel (owner 2026-11-17): interleaved by curated rank, repeats dropped. A page not listed here keeps its Player-score order.",
+  "best-power-pickleball-paddles": [
+   "power/advanced/arm-off"
+  ],
+  "best-control-pickleball-paddles": [
+   "control/intermediate/arm-off",
+   "control/advanced/arm-off"
+  ],
+  "best-spin-pickleball-paddles": [
+   "spin/intermediate/arm-off",
+   "spin/advanced/arm-off"
+  ]
+ }
+}
