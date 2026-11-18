@@ -9,8 +9,8 @@ import Link from "next/link";
 // subject: the topic (plus the racket) becomes the subject and the name is sent as "visitor". An email is required so the
 // reply has somewhere to go; the mockup's optional email would need an API change for every site.
 const TOPICS = [
-  ["fix", "Something's wrong", "a spec, photo or summary", "Tell us what's off and what it should be.", true],
-  ["missing", `Missing ${niche.words.one}`, "we don't list it yet", "Brand, model and year, plus a link if you have one.", true],
+  ["fix", "Something's wrong", "a spec, photo or summary", "What's off, and what should it be?", true],
+  ["missing", `Missing ${niche.words.one}`, "not listed yet", "Brand, model and year, plus a link if you have one.", true],
   ["idea", "Idea or feedback", "make the site better", `What would make ${niche.site.name.toLowerCase()} more useful for you?`, false],
   ["brand", "Brand or shop", "specs, stock, partnerships", "Who you are and what you need.", false],
   ["other", "Something else", "anything goes", "Go for it.", false],
@@ -49,7 +49,7 @@ export default function ContactV2() {
 
   if (sent !== null) return <section className="pg2-done" role="status">
     <h1>Got it, thanks.</h1>
-    <p>{`We'll reply to ${sent} within a couple of days.`}</p>
+    <p>{`You'll hear back at ${sent} within a couple of days.`}</p>
     <div className="pg2-row"><button type="button" className="pg2-btn" onClick={() => { setTopic(null); setRacket(""); setMsg(""); setSent(null); }}>send another</button><Link className="pg2-btn dark" href="/">back to rackets</Link></div>
   </section>;
 

@@ -45,7 +45,7 @@ export default function HubBeauty({ data, lists }: { data: Catalog; lists: Ranke
             return <span key={e.product.id} className={`bk-ph p${j}`}><i>{j + 1}</i>{pic ? <img src={pic} alt={nameOf(e.product.id)} width={120} height={160} loading={i < 3 ? "eager" : "lazy"} decoding="async"/> : <span className="bk-tile"/>}</span>; })}</span>
           <span className="bk-foot"><span>{first ? <>#1 <b>{nameOf(first.product.id)}</b></> : null}</span><span className="bk-n">{`${entries.length} ranked →`}</span></span>
         </a>; })}</section>
-      <section className="bg-cta"><div><b>{"Lists are for everyone. Your match isn't."}</b><span>{"Tell us your skin type and goal and we'll rank every product for you."}</span></div>
+      <section className="bg-cta"><div><b>{"Lists are for everyone. Your match isn't."}</b><span>{"Pick your skin type and goal to see every product ranked for you."}</span></div>
         <Link className="bp-btn" href="/#match">Find my match →</Link></section>
     </div>
     <V2Footer/>
