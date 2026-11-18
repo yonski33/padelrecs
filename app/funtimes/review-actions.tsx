@@ -60,3 +60,43 @@ export function ApproveAll({ count }: { count: number }) {
     {run && <span role="status">{`${run.ok} of ${run.total} approved${run.failed ? `, ${run.failed} failed (see the rows)` : ""}`}</span>}
   </div>;
 }
+
+// Permanent delete of rejected reviews (owner 2026-11-18): a confirm step that says it can't be undone, then the JSON post.
+async function purge(body: Record<string, string>) {
+  const r = await fetch("/api/funtimes/delete-rejected", { method: "POST", credentials: "same-origin",
+    headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" }, body: new URLSearchParams(body) });
+  const b = await r.json().catch(() => ({})) as { error?: string; count?: number };
+  if (!r.ok) throw new Error(b.error || (r.status === 403 ? "Admin access required. Sign in again." : `Deleting failed (${r.status}). Try again.`));
+  return b.count ?? 0;
+}
+
+/** "Delete permanently" on one rejected row. */
+export function DeleteRejected({ id }: { id: string }) {
+  const [state, setState] = useState<"idle" | "busy" | "done">("idle"), [error, setError] = useState("");
+  async function go() {
+    if (state !== "idle" || !window.confirm("Delete this rejected review permanently? This can't be undone.")) return;
+    setState("busy"); setError("");
+    try { await purge({ id }); setState("done"); } catch (e) { setError(e instanceof Error ? e.message : "Deleting failed."); setState("idle"); }
+  }
+  if (state === "done") return <div className="admin-actions"><span className="admin-done-note" role="status">deleted permanently</span></div>;
+  return <div className="admin-actions">
+    <button type="button" className="danger-button" disabled={state === "busy"} onClick={go}>{state === "busy" ? "Deleting…" : "Delete permanently"}</button>
+    {error && <p className="admin-row-error" role="alert">{error}</p>}
+  </div>;
+}
+
+/** "Delete all rejected": every rejected review on this site, not just this page; then the list reloads. */
+export function DeleteAllRejected({ total }: { total: number }) {
+  const [busy, setBusy] = useState(false), [note, setNote] = useState("");
+  async function go() {
+    if (busy || !window.confirm(`Delete all ${total} rejected reviews on this site permanently? This can't be undone.`)) return;
+    setBusy(true); setNote("");
+    try { const n = await purge({ all: "yes" }); setNote(`${n} deleted permanently`); window.location.assign("/funtimes?status=rejected"); }
+    catch (e) { setNote(e instanceof Error ? e.message : "Deleting failed."); setBusy(false); }
+  }
+  if (!total) return null;
+  return <div className="admin-bulk">
+    <button type="button" className="danger-button" onClick={go} disabled={busy}>{busy ? "Deleting…" : `Delete all rejected (${total})`}</button>
+    {note && <span role="status">{note}</span>}
+  </div>;
+}
