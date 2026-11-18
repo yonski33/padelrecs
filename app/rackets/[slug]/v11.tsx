@@ -2,7 +2,6 @@
 // Product page v11 (owner 2026-11-17, design_handoff_product_page_v11): the browser parts. The better-matches strip shows only
 // when this racket is a weak match for the picks (under 60%); the other-racket cards carry their match % after a pick and
 // sort by it. Both read the same match engine as the home and the fit check (fit-live.tsx), so a pick changes them at once.
-import { useState } from "react";
 import { ownScore, niche } from "../../../lib/niche";
 import type { FitFacts } from "../../../lib/fit-verdict";
 import { useAnswer, useMatchOf, useAlts } from "./fit-live";
@@ -143,29 +142,41 @@ const Links = ({ c, slug }: { c: { href: string; shop: V11Card["shop"] }; slug: 
   {/* Side by side with this one (UX audit 2026-11-17: compare was hard to find). */}
   <a className="v11-plink v11-ocmp" href={`/compare?ids=${encodeURIComponent(slug)},${encodeURIComponent(c.href.split(/[?#]/)[0].split("/").pop() ?? "")}`}>compare ↗</a></span>;
 
-/** "How it plays" (v11c): one slim box. Three bars in a row, the build as chips (a tap shows its line, the key phrase marked),
- *  then the rule of thumb. */
-export function V11Plays({ bands, top, chips, tip, title = "How it plays" }: { bands: { k: string; label: string; dots: number; note: string | null }[]; top: number;
-  chips: { key: string; title: string; line: string }[]; tip: string; /** SimRacingRecs: "How it drives". */ title?: string }) {
-  const [open, setOpen] = useState<string | null>(null);
-  const shown = chips.find(c => c.key === open);
-  // The key phrase: what follows the first colon or semicolon ("Black EVA sits between soft and firm: ==some comfort…=="),
-  // else the first clause.
-  const mark = (t: string) => { const m = t.match(/^(.*?[:;]\s+)(.+?)(\.?)$/); if (m) return [m[1], m[2], m[3]];
-    const k = t.search(/[,.]\s/); return k > 0 ? ["", t.slice(0, k), t.slice(k)] : ["", t, ""]; };
+/** "How it plays" (v11c): one slim box. Three bars in a row, then the rule of thumb. The build has its own cards below
+ *  (V11BuildCards, owner 2026-11-18: the explained cards are the expert content). */
+export function V11Plays({ bands, top, tip, title = "How it plays" }: { bands: { k: string; label: string; dots: number; note: string | null }[]; top: number;
+  tip: string; /** SimRacingRecs: "How it drives". */ title?: string }) {
+  if (!bands.length && !tip) return null;
   return <div id="plays" className="v11-plays v11c">
     <h2>{title}</h2>
-    <div className="v11-bands">{bands.map(b => <div key={b.k} className={b.dots === top ? "top" : undefined}>
+    {bands.length > 0 && <div className="v11-bands">{bands.map(b => <div key={b.k} className={b.dots === top ? "top" : undefined}>
       <span className="v11-bh"><b>{b.label}</b><span className="v11-bn">{b.dots}<small>/5</small></span></span>
       <span className="v11-segs" aria-label={`${b.dots} of 5`}>{[1, 2, 3, 4, 5].map(x => <i key={x} className={x <= b.dots ? `on t${b.dots}` : undefined}/>)}</span>
-      {b.note && <span className="v11-bnote">{b.note}</span>}</div>)}</div>
-    {(chips.length > 0 || tip) && <div className="v11-pfoot">
-      {chips.length > 0 && <div className="v11-chips"><span className="v11-ck">build</span>{chips.map(c =>
-        <button key={c.key} type="button" aria-expanded={open === c.key} onClick={() => setOpen(open === c.key ? null : c.key)}>{c.title}<span aria-hidden="true">{open === c.key ? "−" : "+"}</span></button>)}</div>}
-      {shown && (() => { const [a, b, z] = mark(shown.line); return <p className="v11-cline">{a}<mark>{b}</mark>{z}</p>; })()}
-      {tip && <p className="v11-tip"><span>rule of thumb</span><span>{tip}</span></p>}
-    </div>}
+      {b.note && <span className="v11-bnote">{b.note}</span>}</div>)}</div>}
+    {tip && <div className="v11-pfoot"><p className="v11-tip"><span>rule of thumb</span><span>{tip}</span></p></div>}
   </div>;
+}
+
+/** One build card for "What the …'s build means for you" (lib/v11-site.ts builds()). */
+export type V11BuildCard = { key: string; title: string; line: string; at?: number; shape?: string; nums?: number[]; low?: string; high?: string };
+/** "What the <product>'s build means for you" (owner 2026-11-18: back as full cards below How it plays): each spec with its
+ *  small picture and its plain line. A grid on desktop, a sideways swipe row on phones. */
+export function V11BuildCards({ head, cards, ring = false }: { head: string; cards: V11BuildCard[]; /** Disc golf: a plain card shows a disc. */ ring?: boolean }) {
+  if (!cards.length) return null;
+  // A plain fact (a drive type, a boiler, a pattern) has no gauge; off disc golf it shows no picture.
+  const plain = (c: V11BuildCard) => c.key !== "shape" && c.key !== "flight" && c.key !== "balance" && c.key !== "face" && (c.key === "disc" || c.at === undefined);
+  const dot = (at?: number) => `calc(${Math.round((at ?? 0.5) * 100)}% - 7px)`;
+  return <section id="build" className="v11-build v11c" aria-labelledby="v11-build-t">
+    <h2 id="v11-build-t">{head}</h2>
+    <div className="v11-bcards">{cards.map((c, i) => <div key={`${c.key}-${i}`} className={`v11-bc ${c.key}`}>
+      {plain(c) && !ring ? null : <span className="v11-vis" aria-hidden="true">{c.key === "shape" ? <i className={`sh ${c.shape ?? "round"}`}/>
+        : c.key === "flight" ? <i className="flight">{(c.nums ?? []).map((n, j) => <b key={j}>{n}</b>)}</i>
+        : plain(c) ? <i className="disc"/>
+        : c.key === "gauge" || c.key === "weight" ? <i className="gauge"><i className="core"><i style={{ left: dot(c.at) }}/></i><small>{c.low ?? "light"}</small><small>{c.high ?? "heavy"}</small></i>
+        : c.key === "core" ? <i className="gauge"><i className="core"><i style={{ left: dot(c.at) }}/></i><small>soft</small><small>firm</small></i>
+        : c.key === "balance" ? <i className="bal"><i style={{ top: `calc(${Math.round((1 - (c.at ?? 0.5)) * 100)}% - 7px)` }}/></i> : <i className="face"/>}</span>}
+      <b>{c.title}</b><span>{c.line}</span></div>)}</div>
+  </section>;
 }
 
 /** "Still deciding?" (v11c): the closing card. Before an answer the Player score and the one-line verdict; after it the match

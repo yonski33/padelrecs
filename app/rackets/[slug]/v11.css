@@ -496,3 +496,19 @@
 .rf .v11-jump { align-self: start; font: 600 14px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; }
 .rf .v11-jump:hover, .rf .v11-jump:focus-visible { background: var(--v-hl); }
 .rf:has(.v11-score) #reviews { scroll-margin-top: 112px; }
+
+/* What the build means for you, back as full cards below How it plays (owner 2026-11-18). Flat cards like the other v11c
+   boxes; on phones a sideways swipe row, one card and a bit of the next in view. */
+.rf .v11-build.v11c { gap: 12px; scroll-margin-top: 80px; }
+.rf .v11-build.v11c h2 { font-size: 22px; letter-spacing: -0.01em; }
+.rf .v11-build.v11c .v11-bcards { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.rf .v11-build.v11c .v11-bc { box-shadow: none; border-radius: 14px; padding: 14px; gap: 6px; }
+.rf .v11-build.v11c .v11-bc > b { font-size: 18px; line-height: 1.2; }
+.rf .v11-build.v11c .v11-bc > span:last-child { font-size: 15.5px; }
+.rf .v11-build.v11c .v11-vis { height: 52px; }
+@media (max-width: 760px) {
+  .rf .v11-build.v11c .v11-bcards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    padding-bottom: 4px; scrollbar-width: none; }
+  .rf .v11-build.v11c .v11-bcards::-webkit-scrollbar { display: none; }
+  .rf .v11-build.v11c .v11-bc { flex: 0 0 80%; scroll-snap-align: start; box-sizing: border-box; }
+}

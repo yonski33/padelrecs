@@ -1,4 +1,5 @@
 import { withoutYear } from "../../../lib/brand-name";
+import { suitsLine } from "../../../lib/suits-line";
 import { sideWord } from "../../../lib/byline";
 import { NoBreak } from "../../no-break";
 import { productPhoto } from "../../visual";
@@ -45,7 +46,7 @@ import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
 import "../../review-card.css";
 import { approvalNote } from "../../../lib/approval";
-import { V11Better, V11Others, V11More, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
+import { V11Better, V11Others, V11More, V11Plays, V11BuildCards, V11Decide, type V11Card, type V11Pool } from "./v11";
 import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
 
@@ -151,7 +152,11 @@ export default async function RacketFit(props: {
   // A site with its own level words (SimRacingRecs: new / serious / all-in; bestFor says them) says its own people ("drivers").
   const ownLevels = SITE_FIT.levelPeople ? SITE_FIT.levelLabels : undefined;
   const bfWho = [bfLevel, bfLean ?? (bfLevel ? ownLevels ? niche.people.many : "players" : null)].filter(Boolean).join(" ");
-  const bestLine = bfWho ? `${bfWho}${bfArm ? `, and ${armWords}` : ""}` : bfArm ? armWords : null;
+  // "Usually best for …" before the picks (owner 2026-11-19), in the site's people word; a type-picker site (disc golf) adds
+  // what its lean is good for. None without a level, a lean or the arm.
+  const bfUse = QUICK ? bf.find(b => b !== bfLevel && b !== armWords) ?? null : null;
+  const bestLine = bfWho || bfArm || bfUse ? suitsLine({ level: bfLevel ?? null, lean: bfLean ? bfLean.replace(/ players$/, "") : null, use: bfUse,
+    arm: bfArm ? armWords : null, people: ownLevels || QUICK?.words ? niche.people.many : "players" }) : null;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
   const webLevels = await reportLevels(props.racketId);
   const levelOf = (r: QtReport) => { const v = r.level ?? webLevels.get(r.id)?.level; return v === "Competitive" ? "advanced" : v?.toLowerCase(); };
@@ -513,8 +518,11 @@ export default async function RacketFit(props: {
       return [{ label: WORKS_LABEL[shape], more: Math.max(0, all.length - 4), items: all.slice(0, 4).map(({ p, x }) => ({ name: displayName(x.name, brand(x.brandId)), href: productHref(x), pic: photoOf(x), score: ctx.signal(x.id), ...(p.note ? { note: p.note } : {}) })) }];
     });
   })();
-  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})}
-    chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
+  // How it plays keeps its compact bars; the build is back as full explained cards below it (owner 2026-11-18).
+  const v11Body = V11 ? <>
+    <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})} tip={tipText}/>
+    <V11BuildCards head={V11_SITE!.buildHead(props.shortName)} cards={builds} ring={niche.id === "discgolf"}/>
+  </> : null;
 
   return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>

@@ -3,6 +3,7 @@
 // (?skin=&goal=&sens=1&acne=1, the same as the home's quick match), so a page opened from the home already has its answer; a
 // tap re-runs the answers here with no request (app/instant-view.ts). The last answers also stay in this browser, so "use my
 // last answers" fills them in on the next product. Filters and picks stay client-side (owner rule).
+import { skinSuitsLine } from "../../lib/suits-line";
 import { useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "../instant-view";
 import { productView, type ProductInput, type Listed } from "./product-view";
@@ -81,7 +82,7 @@ export function SkinV11Live({ input, peers, choice: first, summary, buy, self, h
             <div><span className="bp-sl">2. Your goal</span><div className="bp-picks">{goalsRow()}</div></div>
             <div className="sv-ticks">{ticks()}</div>
           </div>
-          {v.bestFor.length > 0 && <div className="bp-best"><strong>Generally best for</strong>{` ${v.bestFor.join(", ")}.`}</div>}
+          {skinSuitsLine(v.bestFor) && <div className="bp-best">{skinSuitsLine(v.bestFor)}</div>}
         </div> : <div className="bp-ans" aria-live="polite">
           <div className="bp-ansh"><span className="bp-tag">✦ your match</span>
             {pct !== null ? <Pill pct={pct}/> : <span className="sv-pill">not enough reports</span>}</div>
