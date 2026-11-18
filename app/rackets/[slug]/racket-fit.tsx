@@ -525,12 +525,14 @@ export default async function RacketFit(props: {
       {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
           why not and How it plays share a group; Reviews and Specs follow. The match box floats once the hero scrolls away. */}
       <section className="rp-body">
-        {/* v11c desktop (owner 2026-11-18): everything above the reviews in the 720px column, the fit card sticky in the right
-            rail beside it; the rail ends where "What players say" starts, whose tag list takes the rail from there. */}
+        {/* v11c: the bottom line runs the full content width (owner 2026-11-18); the rail starts beside "Why yes, why not". */}
+        {V11 && page && tier && <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>}
+        {/* v11c desktop (owner 2026-11-18): from Why yes down to the reviews in the 720px column, the fit card sticky in the right
+            rail beside it, shown once the hero's own fit card has scrolled away; the rail ends where "What players say" starts,
+            whose tag list takes the rail from there. */}
         <div className={V11 ? "v11-up" : "v11-flat"}><div className="v11-upl">
         <div className="rp-main">
-          {page && tier && (V11 ? <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>
-            : <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>)}
+          {!V11 && page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
           {page && tier && <div id="yes-no">
             <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
             <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"} fold={V11}/>
