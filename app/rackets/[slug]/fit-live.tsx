@@ -12,7 +12,7 @@ import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fi
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
-import { niche } from "../../../lib/niche";
+import { niche, catalogPath } from "../../../lib/niche";
 import { fitConfigFor, SITE_FIT } from "../../../lib/fit-config";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
@@ -235,6 +235,8 @@ export function FitSticky({ buy, name, rail }: { buy: { url: string; label: stri
         : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>
     {buy && <a className="rf-btn rp-buy" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a>}
+    {/* No shop link (owner 2026-11-18): the rail card still has somewhere to go, a quiet compare link, never a bare card. */}
+    {!buy && rail && <a className="rp-cmp" href={`${catalogPath}?compare=1`}>compare →</a>}
   </div>;
 }
 
