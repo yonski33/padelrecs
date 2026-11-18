@@ -41,6 +41,7 @@ import { hasAttribution } from "../../../lib/voice";
 import { traitNote, TRAIT_SAY } from "../../../lib/trait-note";
 import "./v11.css";
 import "../../review-card.css";
+import { approvalNote } from "../../../lib/approval";
 import { V11Better, V11Others, V11More, V11Plays, V11Decide, type V11Card, type V11Pool } from "./v11";
 import { rankedLists } from "../../rankings/lists";
 import Link from "next/link";
@@ -160,6 +161,7 @@ export default async function RacketFit(props: {
   // from the quick-take's own line where it has one and it agrees with the dots, else what the tag counts say.
   const row = (label: string) => qt?.plays?.rows.find(r => r.label.toLowerCase() === label.toLowerCase());
   const tr = ctx.traits(props.racketId);
+  const approval = approvalNote(niche.id, props.slug);
   const qtRow: Partial<Record<string, { chip: string; line: string }>> = { forgiveness: row("Sweet spot"), power: row("Power"), control: row("Control"), defence: qt?.plays?.court?.defence, arm: row("Comfort"), speed: row("Handling") };
   const TRAITS = traitsFor(props.shape);
   const traits = TRAITS.map(t => {
@@ -172,7 +174,8 @@ export default async function RacketFit(props: {
     // doesn't say who said it, else a plain statement from the dots (lib/trait-note.ts), with both sides named on a real split.
     const stated = sc ? traitNote(t, sc.dots, ev ? ev.players.plus + ev.reviewers.plus : 0, ev ? ev.players.minus + ev.reviewers.minus : 0, SITE_LABEL[t],
       SITE_FIT.traits.find(d => d.key === t)?.say ?? (SITE_FIT.sport === "padel" ? TRAIT_SAY[t as Trait] : undefined)) : null;
-    const text = tr.edits?.traits[t as Trait]?.text ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
+    // The expert's bar line (db/expert-play, owner 2026-11-18) comes right after an admin edit.
+    const text = tr.edits?.traits[t as Trait]?.text ?? ctx.expertLine(props.racketId, t) ?? (q && agrees && !hasAttribution(q.line) ? q.line : null) ?? stated ?? "Too few reports to call it yet.";
     return [SITE_LABEL[t], text, sc ? "●".repeat(sc.dots) + "○".repeat(5 - sc.dots) : null] as [string, string, string | null];
   });
 
@@ -486,7 +489,7 @@ export default async function RacketFit(props: {
   // with 2+ players behind it.
   const bandRows = V11_BANDS_OF(props.shape).map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
     // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
-    const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
+    const nuance = !sc?.expert && (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
     return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
   const topDots = Math.max(0, ...bandRows.map(b => b.dots));
   const tip = qt?.tips.find(t => t.reports.length >= 2);
@@ -534,6 +537,7 @@ export default async function RacketFit(props: {
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
             {tagline && <p className="rf-hook">{tagline}</p>}
+            {approval && <p className="rf-approval">{approval}</p>}
             {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
             {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}

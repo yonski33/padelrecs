@@ -13,7 +13,8 @@ import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
 import { traitOverrides, levelToSuits } from "../db/trait-override";
-import { traitScores, type TraitInput } from "../lib/trait-score";
+import { traitScores, type TraitInput, type TraitScore } from "../lib/trait-score";
+import { shownDots } from "../lib/expert-play";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
 import { evidenceBalance, labPercentiles, reportOf, tagRows, type EvidenceRow } from "../lib/evidence";
@@ -293,6 +294,17 @@ const keptContext = kept(async () => {
     for (const [k, b] of Object.entries(rulesOf(id).dotBounds ?? {})) { const cur = m?.[k]; if (!m || !cur) continue;
       const dots = Math.min(b[1], Math.max(b[0], cur.dots)); if (dots !== cur.dots) m[k] = { ...cur, dots, score: Math.min(Math.max(cur.score, (dots - 1) * 20), (dots - 1) * 20 + 19) }; } }
 
+  // The expert's How it plays (owner decision 2026-11-18, db/expert-play/<niche>.json): the shown bars, the style a product is
+  // filed under, its arm check and the "more X than" lines read these dots. The engine's own reading stays for the match %
+  // (each trait's `score` and the engine facts are untouched; `engineDots` keeps its dots for the gap report). An admin
+  // hand-set dot still wins.
+  const engineDots = new Map<string, Partial<Record<string, number>>>();
+  const EXPERT_PLAY = MATCH.expertPlay?.products ?? {};
+  for (const id of listed) { const m = traitMap?.get(id) as Record<string, TraitScore | undefined> | undefined, e = EXPERT_PLAY[slugOf.get(id) ?? ""]; if (!m || !e) continue;
+    const hand = dotsSet(id), was: Partial<Record<string, number>> = {};
+    for (const [k, dots] of Object.entries(shownDots(e, hand))) { const cur = m[k]; if (!cur || dots === undefined) continue;
+      was[k] = cur.dots; m[k] = { ...cur, dots, set: true, expert: true }; }
+    engineDots.set(id, was); }
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
   const feels = feelClasses(leans);
   for (const id of listed) { const r = data.rackets.find(x => x.id === id);
@@ -315,5 +327,7 @@ const keptContext = kept(async () => {
   /** The level suits scores before any expert value (for the admin expert grid). */
   const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence, scoreInputs };
+    /** The expert's bar line for a trait (db/expert-play), when the bar shows the expert's dots. */
+  const expertLine = (id: string, k: string) => (traitMap?.get(id) as Record<string, TraitScore | undefined> | undefined)?.[k]?.expert ? EXPERT_PLAY[slugOf.get(id) ?? ""]?.traits[k]?.line ?? null : null;
+  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence, scoreInputs, engineDots: (id: string) => engineDots.get(id) ?? null, expertLine };
 });
