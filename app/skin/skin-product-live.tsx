@@ -3,6 +3,7 @@
 // renders the address's picks (a cached page per set of picks, app/v/racket); a tap re-runs the page's answers
 // (app/skin/product-view.ts) on the data sent once with the page and updates the address with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { skinSuitsLine } from "../../lib/suits-line";
 import type { ReactNode } from "react";
 import { useInstantView, instantClick } from "../instant-view";
 import { productView, GOAL_LABEL, type ProductInput } from "./product-view";
@@ -56,7 +57,7 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
             <div><span className="bp-sl">2. What do you want it to do?</span><div className="bp-picks">{goalsRow()}</div></div>
             <a {...go(sensNext, "bp-sens", sensOn)}><i>{sensOn ? "✓" : ""}</i>My skin reacts easily <span>(optional)</span></a>
           </div>
-          {v.bestFor.length > 0 && <div className="bp-best"><strong>Generally best for</strong>{` ${v.bestFor.join(", ")}.`}</div>}
+          {skinSuitsLine(v.bestFor) && <div className="bp-best">{skinSuitsLine(v.bestFor)}</div>}
         </div> : <div className="bp-ans" aria-live="polite">
           <div className="bp-ansh"><span className="bp-tag">✦ your match</span>
             <span className="bp-verdict" style={{ background: kind && kind !== "thin" ? PILL[kind][1] : "#f4ede6" }}>{pct === null ? "— · not enough reports" : `${pct}% · ${PILL[kind as "good"][0]}`}</span></div>

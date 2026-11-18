@@ -145,7 +145,7 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
         <p>{`Two taps to check it against ${[rated - yt > 0 || !yt ? `${rated - yt} ${QUICK?.words?.person ?? "player"} ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
       <AskPicks onPick={c => set({ choice: c, picked: true })} noMain={(() => { const m = QUICK?.quick?.filters?.find(f => f.main); return !!m && m.options.every(([v]) => facts.ff?.[m.key]?.includes(v)); })()}/>
-      {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
+      {bestLine && <p className="rf-best">{bestLine}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
     </div> : <div className="rf-ans" aria-live="polite">
       {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm} {...(choice.ff ? { ff: choice.ff } : {})}/>}

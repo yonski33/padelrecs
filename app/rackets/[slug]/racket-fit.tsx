@@ -1,4 +1,5 @@
 import { withoutYear } from "../../../lib/brand-name";
+import { suitsLine } from "../../../lib/suits-line";
 import { productPhoto } from "../../visual";
 import { ownScore } from "../../../lib/niche";
 import type { ReactNode } from "react";
@@ -144,7 +145,11 @@ export default async function RacketFit(props: {
   // A site with its own level words (SimRacingRecs: new / serious / all-in; bestFor says them) says its own people ("drivers").
   const ownLevels = SITE_FIT.levelPeople ? SITE_FIT.levelLabels : undefined;
   const bfWho = [bfLevel, bfLean ?? (bfLevel ? ownLevels ? niche.people.many : "players" : null)].filter(Boolean).join(" ");
-  const bestLine = bfWho ? `${bfWho}${bfArm ? `, and ${armWords}` : ""}` : bfArm ? armWords : null;
+  // "Usually best for …" before the picks (owner 2026-11-19), in the site's people word; a type-picker site (disc golf) adds
+  // what its lean is good for. None without a level, a lean or the arm.
+  const bfUse = QUICK ? bf.find(b => b !== bfLevel && b !== armWords) ?? null : null;
+  const bestLine = bfWho || bfArm || bfUse ? suitsLine({ level: bfLevel ?? null, lean: bfLean ? bfLean.replace(/ players$/, "") : null, use: bfUse,
+    arm: bfArm ? armWords : null, people: ownLevels || QUICK?.words ? niche.people.many : "players" }) : null;
   // Players' own stated levels: own reviews carry one; web reports get one when the writer states it (migration 0021).
   const webLevels = await reportLevels(props.racketId);
   const levelOf = (r: QtReport) => { const v = r.level ?? webLevels.get(r.id)?.level; return v === "Competitive" ? "advanced" : v?.toLowerCase(); };
