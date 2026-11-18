@@ -53,7 +53,7 @@ import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
-import { claimBlock, flightFact, sameFlightFact } from "../../../lib/claim-guard";
+import { claimBlock, factFor, sameFlightFact } from "../../../lib/claim-guard";
 import { refName } from "../../../lib/compare-names";
 import { suggestionFloor } from "../../../lib/suggestion-floor";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
@@ -212,9 +212,14 @@ export default async function RacketFit(props: {
   const similarIds = simPool.slice(0, 4);
   // Past the similar pool, well-reviewed rackets of the same shape, then any, so every card can bring its own gain.
   const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
+  const lvOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
+  const myLv = lvOf(props.racketId), sharesLevel = (id: string) => !myLv.length || lvOf(id).some(l => myLv.includes(l));
   const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
     && !superseded(x.id) && goodEnough(x.id))
-    .sort((a, b) => current(b.id) - current(a.id) || Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || band(b.id) - band(a.id) || spread(a.id, b.id)).slice(0, 30).map(x => x.id)];
+    // No cap (owner 2026-11-18: one lone card on pages where the first 30 had no honest pair of lines): the cards stop at the first
+    // that pass, so the rest is only read when needed. Same shape first, then a shared level, then the rest by score.
+    .sort((a, b) => current(b.id) - current(a.id) || Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape)
+      || Number(sharesLevel(b.id)) - Number(sharesLevel(a.id)) || band(b.id) - band(a.id) || spread(a.id, b.id)).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
@@ -435,9 +440,11 @@ export default async function RacketFit(props: {
   const specOf = (rid: string) => { const x = racketOf(rid); return { shape: x.shape, core: x.core, surface: x.surface, balance: x.balance, weight: x.weight, flight: QUICK ? flightOfId(rid) : null }; };
   // Disc golf (owner 2026-11-18): a 1+ point flight gap stands in for the dots on distance, arm, glide and wind (capped at 2 so it
   // doesn't always win the card), and the line carries the numbers.
-  const flightOn = (oid: string, i: number) => { const f = flightFact(niche.id, TRAITS[i], flightOfId(oid), flightOfId(props.racketId)); return f && Math.abs(f.gap) >= 1 ? f : null; };
+  // …and on every site a clear spec gap does the same (owner 2026-11-18): weight, balance, shape, core and face, head size,
+  // stiffness, torque (lib/claim-guard.ts specFact).
+  const flightOn = (oid: string, i: number) => { const f = factFor(niche.id, TRAITS[i], specOf(oid), specOf(props.racketId)); return f && Math.abs(f.gap) >= 1 ? f : null; };
   const gapOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? Math.max(-2, Math.min(2, f.gap)) : undefined; };
-  const noteOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? ` (${f.note(1)})` : ""; };
+  const noteOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? ` (${f.note()})` : ""; };
   const allow = (oid: string, i: number, dir: 1 | -1) => { const k = TRAITS[i];
     if (dir > 0 && gainOk && !gainOk(oid, k)) return false;
     return claimBlock(niche.id, k, dir, { spec: specOf(oid), tr: ctx.traits(oid).scores?.[k as Trait] }, { spec: specOf(props.racketId), tr: tr.scores?.[k as Trait] }) === null; };
