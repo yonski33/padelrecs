@@ -424,7 +424,8 @@
 .rf .rv12-legend i.pos { background: oklch(0.72 0.15 145); } .rf .rv12-legend i.neg { background: oklch(0.75 0.13 50); }
 @media (min-width: 1024px) {
   /* The left column stays 720px with or without the tag list (the mock's score row and cards width). */
-  .rf .rv12 { grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; }
+  /* No tag list (owner 2026-11-18): the reviews take the full width instead of leaving the right column empty. */
+  .rf .rv12.side { grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; }
   .rf .rv12.side .rv12-side { display: block; position: sticky; top: 114px; margin-top: 52px; }
   .rf .rv12.side .rv12-row { display: none; }
 }
@@ -457,3 +458,7 @@
 .rf:has(.v11-score) .rp-main { width: 100%; }
 /* The bottom bar's compare link, for a product with no shop link (SimRacingRecs #469). */
 .rf .rp-stick .rp-cmp { margin-left: auto; font: 13px var(--v-mono, var(--mono)); color: inherit; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+
+/* Desktop (owner 2026-11-18): no sticky fit / price bar. The hero's fit card and Check price, the Other rackets links and the
+   "Still deciding?" card are enough; phones (< 1024px) keep the bottom bar. Its bottom padding only applies under 900px. */
+@media (min-width: 1024px) { .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; } }
