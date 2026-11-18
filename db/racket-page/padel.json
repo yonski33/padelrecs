@@ -13727,5 +13727,158 @@
    }
   ],
   "source": "research"
+ },
+ "wilson-bela-v3-2025": {
+  "tagline": "A lively all-rounder with a very rough, spin-friendly face. The catch: a small sweet spot.",
+  "bottom": "For intermediates who want a lively, spinny all-rounder. Skip it as a first racket or for comfort.",
+  "yes": [
+   {
+    "title": "Lively ball output",
+    "t": "The face is ==lively and reactive==, giving pace on víboras and kick smashes.",
+    "for": [
+     "power",
+     "intermediate"
+    ],
+    "src": [
+     "6f8ba079-7a27-495f-b77a-b359d0ca6bab",
+     "research-6bd06b18-33d9-49f9-b0ee-adbaa888af76",
+     "research-9bc57926-162e-4b03-b59a-49d72fc6a34a"
+    ]
+   },
+   {
+    "title": "Lots of spin",
+    "t": "The rough face gives ==a lot of spin== for slices and kick shots.",
+    "for": [
+     "intermediate"
+    ],
+    "src": [
+     "6f8ba079-7a27-495f-b77a-b359d0ca6bab",
+     "research-ad31e1a6-fa97-4ac9-9a00-fe98d4af5374",
+     "research-4693a8cb-69e2-4530-b3d0-4febe4f8a39d",
+     "research-9bc57926-162e-4b03-b59a-49d72fc6a34a"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Small, unforgiving sweet spot",
+    "t": "A small sweet spot ==punishes poor contact==, so off-centre balls die.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "research-881c41f9-cd2a-42fa-94e7-38cbe416dab8",
+     "research-4693a8cb-69e2-4530-b3d0-4febe4f8a39d"
+    ]
+   },
+   {
+    "title": "Muted, odd feel",
+    "t": "It ==can feel muted or hollow==, with an odd sound on contact.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "research-0caca6be-1992-4963-9b6f-8fec539a0c49",
+     "6f8ba079-7a27-495f-b77a-b359d0ca6bab",
+     "research-51025995-7430-4e86-9044-742236556ef8"
+    ]
+   }
+  ]
+ },
+ "wilson-blade-pro-v3-2024": {
+  "tagline": "A firm, powerful all-rounder with control at pace. The catch: it is hard and unforgiving.",
+  "bottom": "For strong, aggressive players who like a firm racket. Skip it if you are newer or want an easy one.",
+  "yes": [
+   {
+    "title": "Control at pace",
+    "t": "Precise lobs, ==control against fast balls== and clean bandejas.",
+    "for": [
+     "control",
+     "advanced"
+    ],
+    "src": [
+     "155f6a1d-bc9d-4bc4-9f7c-f9572d6fab30",
+     "e31680ba-d1f5-4c2f-ba34-4d92bcb22a7e",
+     "6d4d65e0-0de3-40ab-bc0c-de165ca33ab7",
+     "1259415d-c3a8-4497-b83a-e31d072b8586",
+     "88c47bdf-87e7-472a-9d5b-8b1ea587620a",
+     "research-40bbc559-340b-4e18-9b24-6d6487bf0af1"
+    ]
+   },
+   {
+    "title": "Handles better than it looks",
+    "t": "==Comfortable to move== even in quick volley exchanges.",
+    "for": [
+     "balance"
+    ],
+    "src": [
+     "155f6a1d-bc9d-4bc4-9f7c-f9572d6fab30",
+     "4428f6fe-ae8f-4e46-87e4-38a61214041e",
+     "1259415d-c3a8-4497-b83a-e31d072b8586",
+     "88c47bdf-87e7-472a-9d5b-8b1ea587620a"
+    ]
+   },
+   {
+    "title": "Kick smashes and víboras",
+    "t": "Kick and flat smashes ==carry heavy power==.",
+    "for": [
+     "power",
+     "advanced"
+    ],
+    "src": [
+     "479dbbff-75db-4d49-9cd2-8651939087f9",
+     "4428f6fe-ae8f-4e46-87e4-38a61214041e",
+     "6fe9cf94-fdb2-4d16-b964-87e848c6c533",
+     "6d4d65e0-0de3-40ab-bc0c-de165ca33ab7",
+     "research-c09d303d-6a80-4dc2-b7b3-ef798dc0bc4f",
+     "research-40bbc559-340b-4e18-9b24-6d6487bf0af1"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Hard and unforgiving",
+    "t": "==Hard and less tolerant==, harder than the V2.",
+    "for": [
+     "beginner",
+     "intermediate"
+    ],
+    "src": [
+     "f36a08ca-1317-45a1-8780-644afff5125c",
+     "research-3a87fa7b-0726-425f-96ac-69759b245fc8",
+     "research-a31356ed-857c-400d-bd82-6ac579907949",
+     "research-6207c73d-9e81-4853-9fd7-179646a60f5a"
+    ]
+   },
+   {
+    "title": "Heavy and slow in defence",
+    "t": "The weight and high balance ==make it heavy and slow== in defence.",
+    "for": [
+     "control"
+    ],
+    "ev": "the #1 complaint, {n} players",
+    "src": [
+     "e31680ba-d1f5-4c2f-ba34-4d92bcb22a7e",
+     "6fe9cf94-fdb2-4d16-b964-87e848c6c533",
+     "f36a08ca-1317-45a1-8780-644afff5125c",
+     "research-e54f0df5-54b4-4121-9322-0e30c848096b",
+     "research-6207c73d-9e81-4853-9fd7-179646a60f5a"
+    ]
+   },
+   {
+    "title": "Little help from the back",
+    "t": "Low defensive balls ==need more from you==, with little free output.",
+    "for": [
+     "control"
+    ],
+    "src": [
+     "479dbbff-75db-4d49-9cd2-8651939087f9",
+     "155f6a1d-bc9d-4bc4-9f7c-f9572d6fab30",
+     "e31680ba-d1f5-4c2f-ba34-4d92bcb22a7e",
+     "6d4d65e0-0de3-40ab-bc0c-de165ca33ab7"
+    ]
+   }
+  ]
  }
 }

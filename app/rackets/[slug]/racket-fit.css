@@ -758,3 +758,6 @@
 .rf .rf-afoot > span:first-child { flex: 1 1 auto; min-width: 0; white-space: normal; }
 .rf .rf-afoot > .rf-acts { flex: none; margin-left: auto; }
 @media (max-width: 640px) { .rf .rf-afoot { flex-wrap: wrap; } .rf .rf-afoot > span:first-child { flex-basis: 100%; } }
+
+/* Not tournament-approved (PickleballRecs, lib/approval.ts): one quiet line under the tagline. */
+.rf-approval { margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: var(--v-mute, var(--muted, #6b6b6b)); }
