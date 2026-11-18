@@ -1,4 +1,5 @@
 import type { Niche } from "./types";
+import { tennisHome } from "./tennis-home";
 
 // Rating icons: an optic-yellow tennis ball with white seams, outlined in dark clay. Same tile sizes as padel (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -9,6 +10,20 @@ const ballPickOff = svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20
 
 export const tennis: Niche = {
   id: "tennis",
+  // Design v2 with product page v11c (owner 2026-11-18, via PM): the shared pages in tennis words, on its own clay look.
+  design: "v2",
+  homeMore: tennisHome,
+  v2copy: {
+    sport: "tennis", emoji: "🎾", strip: "a free, ad-light side project · built by tennis players",
+    madeBy: "made by people who own too many rackets 🎾", forum: "tennis forum", blog: "tennis blog",
+    aboutStory: ["tennisrecs started at a club demo day. Every racket promised more power, more spin and more control at once, every review site sold the same picks, and nobody said which ones suit a game like ours.",
+      "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and tennis forums together, counts it honestly, and tells you if a racket fits"],
+    example: "Babolat Pure Aero 98",
+    // The add-review page: the dot ratings' low / high words (spin is stored in forgiveness_rating) and the "+ prompt" chips.
+    rate: { powerRating: ["no free power", "cannon"], controlRating: ["all over the place", "on a string"], forgivenessRating: ["no bite", "grabs the ball"],
+      comfortRating: ["harsh", "plush"], maneuverabilityRating: ["sluggish", "whippy"] },
+    prompts: ["what surprised you", "what you came from", "your string setup", "who should skip it"],
+  },
   schema: "tennisrecs",
   site: {
     name: "TennisRecs",

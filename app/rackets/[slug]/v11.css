@@ -18,6 +18,8 @@
 .rf .v11-score { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px 18px; flex-wrap: wrap;
   border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; }
 .rf .v11-sl { display: flex; align-items: center; gap: 14px; min-width: 0; text-decoration: none; color: var(--v-ink); }
+/* A new product's "New · N reviews so far" pill is wider than the score box: on a phone it wraps above the label. */
+.rf .v11-sl:has(.sv-new) { flex-wrap: wrap; gap: 8px 14px; }
 .rf .v11-sq { flex: none; width: 60px; height: 60px; box-sizing: border-box; border: 2px solid var(--v-ink); border-radius: 12px; background: var(--v-card);
   display: flex; align-items: center; justify-content: center; font: 800 32px/1 var(--v-display); letter-spacing: -0.03em; }
 .rf .v11-sq.g { background: var(--v-green); } .rf .v11-sq.y { background: var(--v-yellow); }

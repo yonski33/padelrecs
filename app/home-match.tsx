@@ -12,7 +12,7 @@ import { useInstantView, instantClick } from "./instant-view";
 import { rankHome } from "../lib/home-rank";
 import { choiceHref, homeHref, isDefault, DEFAULT_CHOICE, matchTitle, matchSeoTitle, readChoice, levelPeople, levelLabel, LEVELS, STYLES, STYLE_WORD, type QuickChoice, ARM_SHORT } from "../lib/quick-match";
 import { ARM_BAR } from "../lib/fit-verdict";
-import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords } from "../lib/fine-tune";
+import { WEIGHTS, FEELS, CORES, SHAPE_LABEL, FINE_ROWS, FINE_SHAPES, FINE_SWEET, weightWord, fineEmpty, fineWords, FINE_SHAPE_WORD } from "../lib/fine-tune";
 import { niche, catalogPath, v2copy } from "../lib/niche";
 import { fitConfigFor } from "../lib/fit-config";
 import type { HomePayload, HomeSeed } from "./home-payload";
@@ -27,7 +27,7 @@ const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
 /** A site's own home mock (niche.v2home; PickleballRecs): every row has the match box, "check price" is a button. */
 const M = niche.v2home;
 /** The fine-tune's rows on this site (lib/fine-tune.ts): [label, URL key, options as [value, label]]. */
-const FINE_GROUPS = FINE_ROWS.map(k => k === "shape" ? ["Shape", "shape", FINE_SHAPES.map(v => [v, SHAPE_LABEL[v]] as const)] as const
+const FINE_GROUPS = FINE_ROWS.map(k => k === "shape" ? [FINE_SHAPE_WORD, "shape", FINE_SHAPES.map(v => [v, SHAPE_LABEL[v]] as const)] as const
   : k === "weight" ? ["Weight", "weight", WEIGHTS.map(v => [v, weightWord(v)] as const)] as const
   : k === "feel" ? ["Feel on impact", "feel", FEELS.map(v => [v, v] as const)] as const : ["Core thickness", "core", CORES.map(v => [v, v] as const)] as const);
 const FIT_WORD = { good: "Strong fit", maybe: "Worth a look", no: "Probably not" } as const;
