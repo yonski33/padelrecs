@@ -4,6 +4,7 @@ import { scoreBox } from "../../../lib/score-tone";
 import { niche } from "../../../lib/niche";
 import { useFormToken } from "../../form-token-client";
 import { VERDICT_PILL } from "../../../lib/review-pill";
+import { videoLabel } from "../../../lib/video-label";
 import { useEffect, useRef, useState } from "react";
 import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } from "../../quick-vote";
 
@@ -20,6 +21,7 @@ export type ReviewCard = {
   /** YouTube cards: video id for the thumbnail, the summary's points, whether it's a comment under the video, and the video's
    *  length in minutes when known. */
   video?: string | null; points?: string[]; comment?: boolean; minutes?: number | null;
+  /** YouTube cards: the video's date (ISO), for "Summary of <channel>'s video, <date>". */ date?: string | null;
   /** How long the writer has played it ("6–12 months"), when given. */ played?: string | null;
   /** What this review mentions (its stored tags), for "What players mention". */ tags?: string[];
   url?: string | null; source?: string | null;
@@ -268,14 +270,16 @@ function Rv12Card({ c, i }: { c: ReviewCard; i: number }) {
     <div className="rv12-yt">{text && <p className="rv12-text">{text}</p>}{pill}</div>
     <div className="rv12-ymeta"><a className="rv12-thumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${channel}`}>
       {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}</a>
-      <strong>{channel}</strong>{c.url && <a href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}{c.when && <span className="rv12-when">{c.when}</span>}</div>
+      <span className="rv12-ysum">{videoLabel(channel, c.date)}</span>{c.url && <a href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}
+      {!c.date && c.when && <span className="rv12-when">{c.when}</span>}</div>
   </article>;
   // A blog review (owner 2026-11-18): like the video summary, text first (pill beside it), then "blog", the blog's name, read ↗, time.
   if (c.kind === "blog") return <article className="rv12-card">
     <div className="rv12-yt"><p className="rv12-text">{text}</p>{pill}</div>
     <div className="rv12-ymeta"><span className="rv12-src">blog</span><strong>{c.who}</strong>{c.url && <a href={c.url} target="_blank" rel="noopener nofollow">read ↗</a>}{c.when && <span className="rv12-when">{c.when}</span>}</div>
   </article>;
-  // A Reddit comment (owner 2026-11-18): no usernames; "Reddit user", the real subreddit, the quote, "see the thread ↗".
+  // A Reddit comment (owner 2026-11-18): the subreddit as the name, "Reddit comment" under it, then our one- to two-sentence
+  // summary of what the comment says about the product (no quote marks, no usernames: the words are ours), "see the thread ↗".
   if (c.kind === "reddit") return <article className="rv12-card">
     {/* The community is the name (owner 2026-11-18): we keep no usernames, and showing them would be a privacy risk. Plain text,
         like a player card. */}
