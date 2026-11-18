@@ -43,9 +43,8 @@ export default async function HowWeMakeThese() {
   // The lowest review floor of the site's lists (each list sets its own; MIN_LIST_REVIEWS where unset).
   const listMin = Math.min(...(niche.topLists ?? []).map(l => l.minReviews ?? MIN_LIST_REVIEWS), Infinity);
   const rules = [
-    // A promise kept, so a tick, not a cross (Grok audit 2026-11-18: the ✗ read as a fault).
-    ["✓", "Brands can't pay for placement.", "Not for a higher rank, a nicer summary, or to remove a bad review."],
-    ["✓", `No free ${w.many} in exchange for coverage.`, "If a brand sends one, it doesn't get reviewed by us."],
+    ["✗", "Brands can't pay for placement.", "Not for a higher rank, a nicer summary, or to remove a bad review."],
+    ["✗", `No free ${w.many} in exchange for coverage.`, "If a brand sends one, it doesn't get reviewed by us."],
     ["$", "Some \"check price\" links are affiliate.", "They pay for hosting. They never change the order: the score is worked out from reviews only."],
     // The real thresholds (Grok pickleball audit 2026-11-17, #16): a score from NEW_UNDER reviews; the lists' own floor.
     [`${NEW_UNDER}+`, `A score from ${NEW_UNDER} reviews.`, `Below that, a ${w.one} has a page that says "New", with no score${listMin >= NEW_UNDER ? " and no spot in any list" : ""}.`],

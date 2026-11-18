@@ -135,7 +135,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
               </div>
             </article>; })}
           </div>)}
-          {items.length === 0 && <div className="lr2-empty">Nothing like that yet</div>}
+          {items.length === 0 && <div className="lr2-empty">{skinSite ? "Nothing like that yet" : "Nothing like that yet 🤷"}</div>}
           {olderN > 0 && <Link className="lr2-older" href={href({ older: older ? undefined : "1", show: undefined })} scroll={false}>{older ? "hide older models ▴" : `show older models (${olderN} reviews) ▾`}</Link>}
           {items.length > show && <Link className="lr2-more" href={href({ show: String(show + PAGE) })} scroll={false}>load older reviews ↓</Link>}
         </section>

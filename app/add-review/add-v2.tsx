@@ -13,7 +13,7 @@ export type AddRacket = { id: string; name: string; photo: string | null; href: 
 type Opt = { label: string; value: string };
 const MIN_WORDS = 20;
 const V: Record<Verdict, { icon: string; label: string; bg: string }> = {
-  positive: { icon: "✓", label: "loved it", bg: "oklch(0.9 0.1 145)" }, mixed: { icon: "~", label: "mixed", bg: "oklch(0.93 0.12 95)" }, negative: { icon: "✕", label: "not for me", bg: "oklch(0.9 0.08 30)" },
+  positive: { icon: "👍", label: "loved it", bg: "oklch(0.9 0.1 145)" }, mixed: { icon: "🤷", label: "mixed", bg: "oklch(0.93 0.12 95)" }, negative: { icon: "👎", label: "not for me", bg: "oklch(0.9 0.08 30)" },
 };
 const TRAITS = [["Forgiveness", "forgivenessRating", "tiny sweet spot", "huge sweet spot"], ["Power", "powerRating", "no pop", "cannon"], ["Control", "controlRating", "all over the place", "on a string"], ["Arm comfort", "comfortRating", "hurts", "zero pain"]] as const;
 const PROMPTS = ["what surprised you", "what you came from", "weights setup", "who should skip it"];

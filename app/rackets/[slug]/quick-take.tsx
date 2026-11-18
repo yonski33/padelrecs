@@ -143,8 +143,8 @@ function Tally({ c }: { c: Ctx }) {
 const TldrBody = ({ c }: { c: Ctx }) => <>
   <p className="verdict"><Rich text={c.qt.tldr.lead}/></p>
   <div className="getskip">
-    <div className="gs yes"><h3>Get it if you…</h3><Bullets items={c.qt.tldr.madeFor}/></div>
-    <div className="gs no"><h3>Skip it if you…</h3><Bullets items={c.qt.tldr.notFor}/></div>
+    <div className="gs yes"><h3>👍 Get it if you…</h3><Bullets items={c.qt.tldr.madeFor}/></div>
+    <div className="gs no"><h3>👎 Skip it if you…</h3><Bullets items={c.qt.tldr.notFor}/></div>
   </div>
   <Tally c={c}/>
   {c.qt.level && <Level level={c.qt.level}/>}
@@ -253,7 +253,7 @@ const SECTIONS: Record<SectionKey, Sec> = {
   plays: { id: "plays", show: c => !!c.qt.plays, toc: () => "How it plays", title: () => "How it plays", verdict: c => c.qt.plays?.verdict, Body: PlaysBody },
   themes: moduleSec("themes"), version: moduleSec("version"), setup: moduleSec("setup"),
   catch: { id: "catch", show: () => true, toc: c => c.qt.catch.debate ? `The ${c.qt.catch.debate.topic} debate` : "The catch",
-    title: c => c.qt.catch.debate ? `The ${c.qt.catch.debate.topic} debate` : "The catch", verdict: c => c.qt.catch.verdict, Body: CatchBody },
+    title: c => c.qt.catch.debate ? `The ${c.qt.catch.debate.topic} debate 🔥` : "The catch", verdict: c => c.qt.catch.verdict, Body: CatchBody },
   compare: { id: "compare", show: c => !!c.qt.compare?.cards.length, toc: () => "How it compares", title: c => `How the ${c.shortName} compares`, verdict: c => c.qt.compare?.verdict, Body: CompareBody },
   beforeYouBuy: { id: "before-you-buy", show: c => !!(c.module("weigh") || c.module("durability") || c.module("arm")), toc: () => "Before you buy", title: () => "Before you buy", Body: BybBody },
   headsUp: { id: "heads-up", show: c => c.qt.tips.length > 0, toc: () => "Heads up", title: () => "Heads up ⚠️", Body: HeadsUpBody },
