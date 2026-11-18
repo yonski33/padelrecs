@@ -5,6 +5,9 @@
 import { buildCards, type BuildCard } from "./build-cards";
 import { flightOf } from "./discgolf-profile";
 import { discTypeOf, stabilityOf, speedBandOf } from "./niche/discgolf-guide";
+import { driveOf, brakeOf } from "./niche/simracing-guide";
+import { SIMRACING_FIT } from "./simracing-fit";
+import { torqueOf, platformsOf } from "./attr-profile-simracing";
 import { tennisPtsHL } from "./fit-config";
 
 /** A build card: padel's four (shape, core, balance, face) and the other sites' own. `at` places a gauge's dot (0 … 1);
@@ -13,7 +16,7 @@ export type V11Build = Omit<BuildCard, "key"> & { key: BuildCard["key"] | "gauge
 type Spec = { shape?: string | null; core?: string | null; balance?: string | null; surface?: string | null; weight?: string | null };
 
 export type V11Site = {
-  /** "How it plays": three bands, [trait key, label]. */ bands: [string, string][];
+  /** "How it plays": three bands, [trait key, label]; or per product type (SimRacingRecs: each type's own bars). */ bands: [string, string][] | ((shape: string | null) => [string, string][]);
   /** What an other card gives up, per trait it is behind on; else "less <label>". */ giveUp: Record<string, string>;
   /** The build cards from the catalog's specs; `armDots` is the Arm comfort bar, `bars` the product's other bars. */ builds: (spec: Spec, armDots?: number, bars?: Partial<Record<string, number>>) => V11Build[];
   /** The build section's heading. */ buildHead: (short: string) => string;
@@ -110,6 +113,47 @@ function discBuilds(spec: Spec): V11Build[] {
   return out;
 }
 
+/** SimRacingRecs (owner 2026-11-18: sim racing on the shared v11c page): what the specs mean, per product type, in the gear
+ *  guide's words (lib/niche/simracing-guide.ts). The platforms chip carries the edition note; Notes otherwise stay off chips. */
+function simBuilds(spec: Spec): V11Build[] {
+  const out: V11Build[] = [], shape = spec.shape ?? "", type = spec.balance ?? "", notes = spec.surface ?? "";
+  if (shape === "Wheelbase") {
+    const d = driveOf(type);
+    const DRIVE: Record<string, string> = { direct: "The motor sits on the wheel shaft: sharp detail, strong force, no cogging.",
+      belt: "Smoother and quieter than gear, with a little softness in the feel.", hybrid: "Belt plus gears: smoother than gear alone, still notchier than belt.",
+      gear: "Cheapest and loudest, with notchy force feedback." };
+    if (d) out.push({ key: "disc", title: cap(clean(type)), line: DRIVE[d] });
+    else if (/no force feedback/i.test(type)) out.push({ key: "disc", title: "No force feedback", line: "A spring or bungee centres the wheel; you feel no road or grip." });
+    const nm = torqueOf(spec.weight);
+    if (nm !== null) out.push({ key: "gauge", title: `${nm} Nm`, low: "light", high: "strong", at: Math.max(0, Math.min(1, nm / 25)),
+      line: nm < 6 ? "Light torque: fine on a desk or stand, outgrown once you want weight." : nm < 12 ? "Mid torque: plenty for most cars; wants a solid desk or a rig." : "High torque: real weight in heavy cars; needs a rigid cockpit." });
+  } else if (shape === "Pedals") {
+    const b = brakeOf(type);
+    const BRAKE: Record<string, string> = { loadcell: "You brake by pressure, like a real car: the biggest step for consistent braking.",
+      hydraulic: "The most car-like feel, for the most money and some upkeep.", active: "A motor shapes the pedal feel, even ABS; it needs a solid rig.",
+      pot: "Measures how far the pedal moves; fine to start, hard to repeat lap after lap." };
+    if (b) out.push({ key: "disc", title: cap(clean(type)), line: BRAKE[b] });
+    const kg = /(\d+(?:\.\d+)?)\s*kg/i.exec(spec.weight ?? "");
+    if (kg) out.push({ key: "gauge", title: `${kg[1]} kg`, low: "light", high: "firm", at: Math.max(0, Math.min(1, +kg[1] / 200)),
+      line: +kg[1] > 100 ? "A firm brake: it wants an aluminium-profile rig, not a desk or a light cockpit." : "A brake most cockpits and stands can take." });
+  } else if (shape === "Cockpit") {
+    const FRAME: Record<string, string> = { "aluminium profile": "Bolt-together profile: the stiffest frame, and easy to adjust or add to.",
+      "steel tube": "A welded tube frame: solid for most bases, less adjustable than profile.", "steel frame": "A one-piece frame with the seat built in.",
+      "aluminium tube": "Light tube frame: fine for mid-torque bases.", foldable: "Folds away after racing; some flex with strong bases.",
+      "wheel stand": "A stand, not a full rig: use your own chair.", "kart-style": "A kart-style frame with the seat built in." };
+    const f = clean(type).toLowerCase();
+    if (FRAME[f]) out.push({ key: "disc", title: cap(clean(type)), line: FRAME[f] });
+    const seat = /seat included/i.test(notes) ? "Seat included." : /seat not included/i.test(notes) ? "Seat sold separately." : null;
+    const rated = /wheelbases up to (\d+(?:\.\d+)?) ?Nm/i.exec(notes);
+    if (seat || rated) out.push({ key: "disc", title: rated ? `Up to ${rated[1]} Nm` : seat!.replace(/\.$/, "").toLowerCase().replace(/^./, c => c.toUpperCase()), line: [rated ? `The maker rates it for bases up to ${rated[1]} Nm.` : null, seat].filter(Boolean).join(" ") });
+  } else if (type && shape) out.push({ key: "disc", title: cap(clean(type)), line: shape === "Wheel" ? "Pick the rim shape for what you race: GT, formula, rally or round." : "How it shifts or brakes; check it fits your base." });
+  // Platforms, with the edition note when it is sold per console (PR B, owner OK 2026-11-18).
+  const pl = shape === "Cockpit" ? null : platformsOf(spec.core);
+  if (pl) out.push({ key: "disc", title: pl.join(" · "), line: /separate PlayStation and Xbox editions/i.test(notes) ? "Sold as separate PlayStation and Xbox editions: buy the one for your console."
+    : pl.length === 1 ? `${pl[0]} only.` : /with|via|depends/i.test(spec.core ?? "") ? "On console it needs a compatible base or wheel; check the pairing." : `Works on ${pl.join(", ").replace(/, ([^,]*)$/, " and $1")}.` });
+  return out;
+}
+const SIM_LABEL = Object.fromEntries(SIMRACING_FIT.traits.map(t => [t.key, t.label]));
 /** Tennis: head size, string pattern, weight with balance, and stiffness, from the catalog's specs (shape = head size,
  *  core = pattern, surface = RA). No card says a racket is kind to the arm unless its Arm bar is 4+. */
 function racketBuilds(spec: Spec, armDots?: number): V11Build[] {
@@ -155,6 +199,13 @@ export const V11_SITES: Record<string, V11Site> = {
     giveUp: { arm: "needs more arm", distance: "less distance", accuracy: "harder to keep on line", glide: "less glide", wind: "pushed around more in wind",
       durability: "beats in faster" },
     builds: discBuilds, buildHead: s => `What the ${s}'s flight means for you`,
+  },
+  simracing: {
+    // Each type's own bars (fit-config appliesTo), in the profile's order.
+    bands: shape => SIMRACING_FIT.traits.filter(t => !t.hidden && (!t.appliesTo || (!!shape && t.appliesTo.includes(shape)))).map(t => [t.key, SIM_LABEL[t.key]] as [string, string]),
+    giveUp: { ffb_detail: "less force feedback detail", ffb_strength: "weaker force feedback", brake_feel: "a vaguer brake", rigidity: "more flex",
+      build: "more build complaints", quiet: "noisier", setup: "fiddlier to set up", software: "clunkier software", ergonomics: "less comfortable", value: "worse value" },
+    builds: simBuilds, buildHead: s => `What the ${s}'s specs mean for you`,
   },
   tennis: {
     bands: [["power", "Power"], ["control", "Control"], ["spin", "Spin"]],

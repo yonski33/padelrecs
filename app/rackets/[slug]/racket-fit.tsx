@@ -73,7 +73,7 @@ const ASK_LINK: Record<string, string> = { discgolf: "thrown it?", simracing: "r
 const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
 const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
-const V11_BANDS: [string, string][] = V11_SITE?.bands ?? [];
+const V11_BANDS_OF = (shape: string | null): [string, string][] => { const b = V11_SITE?.bands; return typeof b === "function" ? b(shape) : b ?? []; };
 /** v11 other-racket cards: what you give up, per trait where the other racket is behind (padel's words). */
 /** A strong bar's words when a Why not says the opposite (audit 2026-11-17). */
 const BAR_NUANCE: Record<string, string> = { power: "Power when you swing; little free power.", control: "Precise, though fast balls can fly.",
@@ -460,7 +460,7 @@ export default async function RacketFit(props: {
   }) : [];
   // "How it plays": three bands from the trait dots and their notes; the strongest is marked. A rule of thumb only from a tip
   // with 2+ players behind it.
-  const bandRows = V11_BANDS.map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
+  const bandRows = V11_BANDS_OF(props.shape).map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
     // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
     const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
     return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
@@ -479,9 +479,10 @@ export default async function RacketFit(props: {
   const tiles = V11 ? (await rankedLists()).lists.filter((l, i, a) => l.entries.length > 0 && a.findIndex(x => x.list.slug === l.list.slug) === i).slice(0, 6).map(l => ({
     href: listHref(l.list.slug), title: l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))),
     sub: `${l.entries.length} ${niche.words.many}`, pics: l.entries.slice(0, 3).map(e => { const x = ctx.data.rackets.find(y => y.id === e.product.id); return x ? photoOf(x) : null; }) })) : [];
-  const edgeWords = { me: compareMe.dots, keys: TRAITS, words: niche.words, scoreWord: SCORE_CAP,
+  // A site with its own words (SimRacingRecs) says "Other gear to consider" (its catalogue word), not "Other products".
+  const edgeWords = { me: compareMe.dots, keys: TRAITS, words: SITE_FIT.words ? { ...niche.words, many: v2copy.catalogNav ?? niche.words.many } : niche.words, scoreWord: SCORE_CAP,
     gainWord: TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
-  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots}
+  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})}
     chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
   return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
@@ -534,7 +535,7 @@ export default async function RacketFit(props: {
         <div className="rp-main">
           {!V11 && page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
           {page && tier && <div id="yes-no">
-            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
+            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : `from ${SITE_FIT.words?.person ?? "player"} reports & YouTube`}</span></div>
             <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"} fold={V11}/>
           </div>}
 

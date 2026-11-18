@@ -8,7 +8,7 @@ const ok = (t: string) => { assert.ok(t.length <= 105, `${t.length}: ${t}`); ass
 const tn = V11_SITES.tennis;
 
 test("tennis v11: Power / Control / Spin bands, racket headline, words for every trait", () => {
-  assert.deepEqual(tn.bands.map(b => b[1]), ["Power", "Control", "Spin"]);
+  assert.deepEqual((tn.bands as [string, string][]).map(b => b[1]), ["Power", "Control", "Spin"]);
   assert.equal(V11_HEADLINES.tennis.no, "Probably not your racket");
   for (const t of fitConfigFor({ id: "tennis" })!.traits) { assert.ok(t.say && t.diff && t.ifYou, t.key); assert.ok(tn.giveUp[t.key], t.key); for (const x of [t.say!.hi, t.say!.mid, t.say!.lo]) ok(x); }
 });

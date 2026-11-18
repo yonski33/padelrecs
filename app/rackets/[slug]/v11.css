@@ -472,6 +472,7 @@
   .rf .rp-rail .rp-sk { flex-direction: column; align-items: flex-start; gap: 10px; }
   .rf:has(.v11-score) .rp-rail .rp-sk .rp-k { display: inline-block; }
   .rf .rp-rail .rp-buy { display: block; text-align: center; padding: 10px 6px; white-space: nowrap; }
+  .rf .rp-rail .rp-cmp { display: block; margin-top: 10px; font: 13px var(--mono); color: inherit; text-decoration: underline; text-underline-offset: 3px; }
   @media (max-width: 1180px) { .rf .rp-rail .rp-buy { font-size: 14px; } }
   /* The bottom bar stays on phones and tablets only. */
   .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; }

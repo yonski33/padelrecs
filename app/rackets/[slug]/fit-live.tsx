@@ -12,7 +12,7 @@ import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fi
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
-import { niche } from "../../../lib/niche";
+import { niche, catalogPath } from "../../../lib/niche";
 import { fitConfigFor, SITE_FIT } from "../../../lib/fit-config";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
@@ -144,11 +144,11 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
     {!verdict ? <div className="rf-ask">
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
         <p>{`Two taps and we'll check it against ${[rated - yt > 0 || !yt ? `${rated - yt} ${QUICK?.words?.person ?? "player"} ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
-      <AskPicks onPick={c => set({ choice: c, picked: true })}/>
+      <AskPicks onPick={c => set({ choice: c, picked: true })} noMain={(() => { const m = QUICK?.quick?.filters?.find(f => f.main); return !!m && m.options.every(([v]) => facts.ff?.[m.key]?.includes(v)); })()}/>
       {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
     </div> : <div className="rf-ans" aria-live="polite">
-      {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>}
+      {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm} {...(choice.ff ? { ff: choice.ff } : {})}/>}
       <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
         <span className={`rf-vpill ${verdict.kind}`} title={`How well it fits your picks, from ${QUICK?.words?.person ?? "player"} reports. Not a % of happy ${QUICK?.words ? niche.people.many : "players"}.`}>{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
@@ -237,6 +237,8 @@ export function FitSticky({ buy, name, rail }: { buy: { url: string; label: stri
         : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>
     {buy && <a className="rf-btn rp-buy" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a>}
+    {/* No shop link (owner 2026-11-18): the rail card still has somewhere to go, a quiet compare link, never a bare card. */}
+    {!buy && rail && <a className="rp-cmp" href={`${catalogPath}?compare=1`}>compare →</a>}
   </div>;
 }
 
