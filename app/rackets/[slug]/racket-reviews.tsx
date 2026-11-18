@@ -264,10 +264,12 @@ function Rv12Card({ c, i }: { c: ReviewCard; i: number }) {
   </article>;
   // A Reddit comment (owner 2026-11-18): no usernames; "Reddit user", the real subreddit, the quote, "see the thread ↗".
   if (c.kind === "reddit") return <article className="rv12-card">
-    <div className="rv12-top"><span className={`rv12-av a${i % 4}`} aria-hidden="true">R</span>
-      <span className="rv12-who"><span className="rv12-line"><strong>Reddit user</strong>{pill}{c.when && <span className="rv12-when">{c.when}</span>}</span>
-        {c.source && <span className="rv12-sub">{`from ${c.source}`}</span>}</span></div>
-    <p className="rv12-text">{text}</p>
+    {/* The community is the name (owner 2026-11-18): we keep no usernames, and showing them would be a privacy risk. Plain text,
+        like a player card. */}
+    <div className="rv12-top"><span className={`rv12-av a${i % 4}`} aria-hidden="true">r</span>
+      <span className="rv12-who"><span className="rv12-line"><strong>{c.source ?? "Reddit"}</strong>{pill}{c.when && <span className="rv12-when">{c.when}</span>}</span>
+        <span className="rv12-sub">Reddit comment</span></span></div>
+    <p className="rv12-text">{c.text}</p>
     {c.url && <a className="rv12-link" href={c.url} target="_blank" rel="noopener nofollow">see the thread ↗</a>}
   </article>;
   const comment = c.kind === "youtube";

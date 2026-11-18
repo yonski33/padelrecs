@@ -24,6 +24,7 @@ import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
 import { signalCategory } from "../../signals";
 import { platformName } from "../../../lib/source-label";
+import { isComplete } from "../../../lib/complete-text";
 import { displayName } from "../../../lib/brand-name";
 import { productHref, niche, catalogPath, v2copy, hasYears } from "../../../lib/niche";
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
@@ -283,7 +284,7 @@ export default async function RacketFit(props: {
     const SOCIAL = /(^|\.)(t\.me|telegram\.org|facebook\.com|instagram\.com|x\.com|twitter\.com|reddit\.com|tiktok\.com|discord\.(gg|com))$/;
     const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Blog" && !SOCIAL.test(host(e.sourceUrl))).map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
-      const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) ? unmd(e.excerpt!) : "";
+      const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) && isComplete(unmd(e.excerpt!)) ? unmd(e.excerpt!) : "";
       return { e, text, verbatim: !e.summary };
     }).filter(x => x.text).sort((a, b) => (b.e.sourceDate ?? "").localeCompare(a.e.sourceDate ?? ""));
     const seen = new Set<string>();
@@ -293,7 +294,8 @@ export default async function RacketFit(props: {
   };
   const redditCards = () => {
     // 60+ characters (owner 2026-11-18): a one-liner like "Been maining it for 6 months" says nothing; the next comment fills the slot.
-    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    // Whole comments only (owner 2026-11-18): a stored excerpt cut mid-sentence is skipped and the next pick fills the slot.
+    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && isComplete(unmd(t));
     const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
       && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
     // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
