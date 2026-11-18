@@ -11,7 +11,7 @@
 //            (espresso); hand / hopper / single dose (grinders); effort and cups (brewers); set temperature and stovetop or
 //            electric (kettles); smart features (scales).
 //   style    none: coffee gear has no control / power axis, so the engine's style part stays at "any".
-// Six qualities per type (profile section 4), each shown on the types it applies to; they come from the quick tags we have.
+// Six qualities per type (profile section 4), each shown on the types it applies to; they come from the quick tags on reports.
 // Traits the tags can't measure (pour control, response speed, battery) are left out rather than guessed.
 import type { FitConfig, TraitDef } from "./fit-config";
 import { coffeeSpec, backToBack, CAT_OF_SHAPE } from "./coffee-specs";

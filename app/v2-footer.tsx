@@ -5,6 +5,6 @@ import { v2copy } from "../lib/niche";
 export function V2Footer() {
   return <footer className="v2-foot"><div className="v2-footin">
     <span>{v2copy.footLine ?? `we read forums, YouTube & your reviews, count the verdicts, write one honest line. no sponsored picks${v2copy.emoji ? ` ${v2copy.emoji}` : ""}`}</span>
-    <nav aria-label="Footer"><a href="/about">about</a>{v2copy.footBrands && <a href="/brands">brands</a>}<a href="/how-we-make-these">how we score</a>{amazonLinksOn() && <a href="/affiliate-disclosure">affiliate note</a>}<a href="/contact">contact</a></nav>
+    <nav aria-label="Footer"><a href="/about">about</a>{v2copy.footBrands && <a href="/brands">brands</a>}<a href="/how-we-make-these">{v2copy.plain ? "how scoring works" : "how we score"}</a>{amazonLinksOn() && <a href="/affiliate-disclosure">affiliate note</a>}<a href="/contact">contact</a></nav>
   </div></footer>;
 }

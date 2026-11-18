@@ -174,3 +174,6 @@
 
 /* check price inside the row's text (owner 2026-11-17), not its own column. */
 .bh-list .bh-buy { grid-area: auto; grid-column: auto; grid-row: auto; justify-self: auto; align-self: flex-start; }
+
+/* The live pill is desktop only on every site (owner 2026-11-18: "hide the stats on mobile"). */
+@media (max-width: 640px) { .bh-live { display: none !important; } }

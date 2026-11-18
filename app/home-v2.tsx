@@ -65,7 +65,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
   const M = niche.v2home;
   // The same sections on a site that keeps its own look (niche.homeMore: padel, disc golf).
   const more = M ?? niche.homeMore;
-  const heroSub = M?.h1 ? M.sub : `${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`;
+  const H = v2copy.hero, heroSub = H ? H.sub : M?.h1 ? M.sub : `${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`;
   const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
   const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   const topTwo = (pick: "beginner" | "arm") => {
@@ -83,7 +83,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
       <section className="hv2-hero">
         {/* One row on desktop on every site (owner 2026-11-16, as PickleballRecs): the headline with its marked half, then the
             subtitle with the "N reviews · N new this week" pill on the same line. Both wrap on phones. */}
-        <div><h1>{`${M?.h1?.[0] ?? "Less guessing."} `}<span className="hl">{M?.h1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>
+        <div><h1>{`${H?.h1[0] ?? M?.h1?.[0] ?? "Less guessing."} `}<span className="hl">{H?.h1[1] ?? M?.h1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>
           <div className="hv2-subrow">{heroSub && <p className="hv2-sub">{heroSub}</p>}{live}</div></div>
       </section>
 
@@ -122,7 +122,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
               <span className="mini" aria-hidden="true">{[0, 1, 2].map(j => <i key={j} className={`p${j}`} style={{ "--f": tileFills[(j + k) % 3] } as React.CSSProperties}/>)}</span></a>; })}</div>
         </section>
         <section className="hv2-steps" aria-label="How we score">
-          <span className="k">how we score</span>
+          <span className="k">{v2copy.plain ? "how scoring works" : "how we score"}</span>
           {[`${total.toLocaleString("en-US")} ${WORDS?.person ?? "player"} reviews + ${channels} YouTube channels + forums`, "we count every verdict", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
           <b>No sponsored picks.</b>
           <a href="/how-we-make-these">how it works →</a>

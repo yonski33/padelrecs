@@ -169,6 +169,10 @@ export type Niche = {
     /** The home headline's last word ("Less guessing. Better rigs."); default the product word. */ better?: string;
     /** The v2 header's catalogue link ("gear"); default the product word. */ catalogNav?: string;
     /** "Better matches for your …" on product pages ("setup"); default "game". */ game?: string;
+    /** The home's H1 (plain words, then the highlighted ones) and its subline (null: none), in place of the shared "Less guessing.
+     *  Better …" and "Tell us how you play" (CoffeeRecs, owner 2026-11-18: "Find your coffee gear", no subline). */ hero?: { h1: [string, string]; sub: string | null };
+    /** No "we / us" service voice in the shared page chrome (CoffeeRecs, owner 2026-11-18): "how it works", "how scoring works",
+     *  "Two taps to check it", "report it" and so on. Unset: every other site keeps its words. */ plain?: boolean;
     /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
   };
   /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */

@@ -1,4 +1,4 @@
-// CoffeeRecs home below the list (PM 2026-11-18, design v2): the rankings tiles, the "how we score" strip and these questions.
+// CoffeeRecs home below the list (PM 2026-11-18, design v2): the rankings tiles, the scoring strip and these questions.
 // `{top:beginner}` names the two top products for a newcomer from the live list. Expert voice, from Grok's match profile.
 import type { HomeFaq } from "./types";
 
@@ -20,5 +20,5 @@ export const coffeeHome: { faq: HomeFaq[] } = { faq: [
     link: "See kettles →", href: "/?kind=kettle#match" },
   { q: "What does the match % mean?",
     a: "How well a product fits what you make, your level and your budget. It is not a quality score; the barista score is separate.",
-    link: "How we score →", href: "/how-we-make-these#match" },
+    link: "How scoring works →", href: "/how-we-make-these#match" },
 ] };

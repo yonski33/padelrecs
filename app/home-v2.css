@@ -204,3 +204,6 @@ body:has(main.hv2) { background: #fbfaf6; }
 
 /* Tap targets on phones (UX audit 2026-11-17): the sore-arm toggle at least 32px tall. */
 @media (max-width: 760px) { .hv2 .hv2-arm { min-height: 36px; } }
+
+/* The "N reviews · N added this week" pill is desktop only on every site (owner 2026-11-18: "hide the stats on mobile"). */
+@media (max-width: 640px) { .hv2 .hv2-hero .hv2-live { display: none; } }

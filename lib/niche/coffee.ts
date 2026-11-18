@@ -24,10 +24,11 @@ export const coffee: Niche = {
   v2copy: {
     sport: "coffee", emoji: "☕", strip: "a free, ad-light side project · built by home baristas",
     madeBy: "kept by people who weigh their beans to a tenth of a gram ☕", forum: "coffee forum", blog: "coffee blog",
-    aboutStory: ["coffeerecs started after one too many purchases off a spec sheet. We'd spent real money on machines and grinders that home baristas had already warned about, and couldn't find a straight answer in one place.",
-      "So we built the thing we wanted: one place that brings home barista reviews, YouTube reviewers and coffee forums together, counts it honestly, and tells you if a piece of gear fits"],
-    example: "Breville Bambino Plus", use: "works", tested: "real mornings", score: "barista score", pillInline: true, tellUs: "Tell us how you make coffee",
-    aboutLast: "your setup", yourPicks: "Your setup", better: "coffee", venue: "counter", catalogNav: "gear", game: "setup",
+    aboutStory: ["coffeerecs started after one too many purchases made off a spec sheet: machines and grinders that home baristas had already warned about, with no straight answer in one place.",
+      "So it became that place: home barista reviews, YouTube reviewers and coffee forums together, counted honestly, with a clear answer on whether a piece of gear fits"],
+    example: "Breville Bambino Plus", use: "works", tested: "real mornings", score: "barista score", pillInline: true, tellUs: "Match gear to how you make coffee",
+    aboutLast: "your setup", yourPicks: "Your setup", better: "coffee", venue: "counter", catalogNav: "gear", game: "setup", hero: { h1: ["Find your", "coffee gear"], sub: null }, plain: true,
+    footLine: "forums, YouTube & your reviews, read and counted, one honest line each. no sponsored picks ☕",
     rate: { powerRating: ["flat", "superb"], comfortRating: ["fiddly", "effortless"], maneuverabilityRating: ["all over the place", "same every time"],
       controlRating: ["flimsy", "built like a tank"], forgivenessRating: ["overpriced", "a steal"] },
     prompts: ["what surprised you", "what you used before", "what you pair it with", "who should skip it"],
@@ -253,7 +254,7 @@ export const coffee: Niche = {
       triedOne: "Own one?",
       triedOneOfThese: "Own one of these?",
     },
-    notFound: "We couldn’t find that gear or page. Maybe it moved, maybe it was discontinued, maybe it went the way of last week’s beans.",
+    notFound: "That gear or page isn’t here. Maybe it moved, maybe it was discontinued, maybe it went the way of last week’s beans.",
     about: {
       heading: "Why CoffeeRecs exists",
       paragraphs: [

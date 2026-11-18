@@ -75,7 +75,7 @@ export default function QuickTakePage(props: Props) {
   const toc = shown.filter(k => k !== "spot").map((k, i) => ({ k, n: String(i + 1).padStart(2, "0"), label: SECTIONS[k].toc(ctx) }));
   return <main className={`qt ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
-    <div className="qt-strip">{`${v2copy.strip} · `}<a href="#how-we-read">how we make these →</a></div>
+    <div className="qt-strip">{`${v2copy.strip} · `}<a href="#how-we-read">{v2copy.plain ? "how it works →" : "how we make these →"}</a></div>
     <div className="wrap">
       {props.crumbs}
       <Hero c={ctx}/>

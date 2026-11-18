@@ -53,8 +53,8 @@ export default async function CatalogV2({ data: all, f, brand: only }: { data: C
       <section className="ct2-hero">
         <div>{only && <p className="ct2-crumbs"><a href="/">home</a> / <a href="/brands">brands</a> / {only.name.toLowerCase()}</p>}
           {only ? <h1>{`${only.name} `}<span className="hl">{niche.words.many}</span></h1> : <h1>All <span className="hl">{niche.words.many}</span></h1>}
-          <p>{only ? `Every ${only.name} ${niche.words.one} we track, ranked by ${QUICK && v2copy.score ? v2copy.score : "Player score"}. Filter by what you want and the list updates as you tap.` : `Every ${niche.words.one} we track. ${CAT_FILTER_LINE}`}</p></div>
-        <span className="ct2-meta">updated daily · <a href="/how-we-make-these">how we rank</a></span>
+          <p>{only ? `Every ${only.name} ${niche.words.one} ${v2copy.plain ? "listed" : "we track"}, ranked by ${QUICK && v2copy.score ? v2copy.score : "Player score"}. Filter by what you want and the list updates as you tap.` : `Every ${niche.words.one} ${v2copy.plain ? "listed" : "we track"}. ${CAT_FILTER_LINE}`}</p></div>
+        <span className="ct2-meta">updated daily · <a href="/how-we-make-these">{v2copy.plain ? "how ranking works" : "how we rank"}</a></span>
       </section>
       <CatalogBrowser rows={rows} cards={cards} f={f} base={base} suitsOk={SUITS_OK} many={niche.words.many} one={niche.words.one} spec={specGroups(niche.guide)}
         {...(QUICK ? { look: { lead: QUICK.catalogLead ?? ["disc", "stab"], arm: QUICK.armChip, score: v2copy.score ?? "player score", ...(QUICK.catalogOneOf ? { oneOf: QUICK.catalogOneOf } : {}) } } : {})}/>

@@ -12,6 +12,9 @@ html .hv2 h1 .hl{background:${CREMA};border-radius:10px}
 html .hv2 .hv2-list>li.top{background:#fff8f1}
 html .hv2 .hv2-list>li:hover{background:#fdf3ea}
 html .hv2 .hv2-seg{flex-wrap:wrap;max-width:100%}
+html .hv2 .hv2-hero>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px}
+html .hv2 .hv2-hero>div>h1{margin:0}
+html .hv2 .hv2-hero .hv2-subrow{margin:0}
 html .ct2 .ct2-list>li.first{background:#fff8f1}
 html .rf .v11-tile{border:1.5px dashed var(--line);background:var(--tile);color:var(--mute);font-weight:600;font-size:11px}
 html .rf .rv-badge:has(b.hi){background:var(--score-g)}

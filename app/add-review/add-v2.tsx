@@ -121,7 +121,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
         </article>
         <button type="button" className="ar-submit" disabled={!ready || busy} onClick={submit}>{busy ? "posting…" : ready ? "Post my review →" : !racket ? `pick a ${niche.words.one} first` : "pick a verdict first"}</button>
         {error && <p className="ar-err" role="alert">{error}</p>}
-        <p className="ar-small">{"Every review gets a check before it counts. No ads in your inbox: we don't ask for an email."}</p>
+        <p className="ar-small">{v2copy.plain ? "Every review gets a check before it counts. No email needed." : "Every review gets a check before it counts. No ads in your inbox: we don't ask for an email."}</p>
       </aside>
     </div>
   </>;

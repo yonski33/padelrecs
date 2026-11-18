@@ -18,7 +18,7 @@ export const spoutOf = (s: string | null | undefined) => { const x = (s ?? "").t
 
 export const coffeeGuide: GuideConfig = {
   title: "Coffee gear guide: boilers, PID, burrs, pour-over and scales explained",
-  description: "Single boiler vs heat exchanger vs dual boiler, what a PID does, flat vs conical burrs, stepless grinders, single dosing, pour-over vs immersion, gooseneck kettles and scales, with how many products of each we track.",
+  description: "Single boiler vs heat exchanger vs dual boiler, what a PID does, flat vs conical burrs, stepless grinders, single dosing, pour-over vs immersion, gooseneck kettles and scales, with how many products of each are listed.",
   crumb: "coffee gear guide",
   h1: ["Coffee gear,", "decoded"],
   intro: "A machine or a brewer, a grinder, and something to weigh with. Here's what the specs mean, and which ones matter for how you make coffee.",
@@ -78,5 +78,5 @@ export const coffeeGuide: GuideConfig = {
     ] },
   ],
   home: { section: "heater", title: "Which espresso machine type is for you?", link: "Boilers, burrs & goosenecks explained → coffee gear guide" },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us what you need and how you make coffee; we'll rank the gear for you.", button: "Find your gear →" },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick what you need and how you make coffee to see the gear ranked for you.", button: "Find your gear →" },
 };

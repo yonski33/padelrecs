@@ -12,7 +12,7 @@ import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fi
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
-import { niche, catalogPath } from "../../../lib/niche";
+import { niche, catalogPath, v2copy } from "../../../lib/niche";
 import { fitConfigFor, SITE_FIT } from "../../../lib/fit-config";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
@@ -143,7 +143,7 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
   return <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
     {!verdict ? <div className="rf-ask">
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
-        <p>{`Two taps and we'll check it against ${[rated - yt > 0 || !yt ? `${rated - yt} ${QUICK?.words?.person ?? "player"} ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
+        <p>{`${v2copy.plain ? "Two taps to check it against" : "Two taps and we'll check it against"} ${[rated - yt > 0 || !yt ? `${rated - yt} ${QUICK?.words?.person ?? "player"} ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
       <AskPicks onPick={c => set({ choice: c, picked: true })} noMain={(() => { const m = QUICK?.quick?.filters?.find(f => f.main); return !!m && m.options.every(([v]) => facts.ff?.[m.key]?.includes(v)); })()}/>
       {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
